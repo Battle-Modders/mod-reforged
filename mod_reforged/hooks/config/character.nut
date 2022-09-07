@@ -30,6 +30,30 @@ local getClone = ::Const.CharacterProperties.getClone;
 }
 ::Const.CharacterProperties.IsAffectedByReach <- true;
 
+local getMeleeSkill = ::Const.CharacterProperties.getMeleeSkill;
+::Const.CharacterProperties.getMeleeSkill = function()
+{
+	return getMeleeSkill() + ::Math.min(0, this.getVision() - 7) * 2;
+}
+
+local getRangedSkill = ::Const.CharacterProperties.getRangedSkill;
+::Const.CharacterProperties.getRangedSkill = function()
+{
+	return getRangedSkill() + ::Math.min(0, this.getVision() - 7) * 2;
+}
+
+local getMeleeDefense = ::Const.CharacterProperties.getMeleeDefense;
+::Const.CharacterProperties.getMeleeDefense = function()
+{
+	return getMeleeDefense() + ::Math.min(0, this.getVision() - 7) * 2;
+}
+
+local getRangedDefense = ::Const.CharacterProperties.getRangedDefense;
+::Const.CharacterProperties.getRangedDefense = function()
+{
+	return getRangedDefense() + ::Math.min(0, this.getVision() - 7) * 2;
+}
+
 ::Const.ProjectileType.FlamingArrow <- ::Const.ProjectileType.COUNT;
 ::Const.ProjectileType.COUNT += 1;
 ::Const.ProjectileDecals.push(clone ::Const.ProjectileDecals[::Const.ProjectileType.Arrow]);
