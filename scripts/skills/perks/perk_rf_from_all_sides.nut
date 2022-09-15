@@ -1,0 +1,76 @@
+this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
+	m = {
+		IsForceEnabled = false,
+		SkillCount = 0,
+		LastTargetID = 0,
+	},
+	function create()
+	{
+		this.m.ID = "perk.rf_from_all_sides";
+		this.m.Name = ::Const.Strings.PerkName.RF_FromAllSides;
+		this.m.Description = ::Const.Strings.PerkDescription.RF_FromAllSides;
+		this.m.Icon = "ui/perks/rf_from_all_sides.png";
+		this.m.Type = ::Const.SkillType.Perk;
+		this.m.Order = ::Const.SkillOrder.Perk;
+		this.m.IsActive = false;
+		this.m.IsStacking = false;
+		this.m.IsHidden = false;
+	}
+
+	function isEnabled()
+	{
+		if (this.m.IsForceEnabled)
+		{
+			return true;
+		}
+
+		if (!::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()) || this.getContainer().getActor().isDisarmed())
+		{
+			return false;
+		}
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Flail))
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
+	{
+		this.procIfApplicable(_skill, _targetEntity, _hitInfo);
+	}
+
+	function onTargetMissed( _skill, _targetEntity )
+	{
+		this.procIfApplicable(_skill, _targetEntity);
+	}
+
+	function procIfApplicable( _skill, _targetEntity, _hitInfo = null)
+	{
+		if (!_skill.isAttack() || _targetEntity.isAlliedWith(this.getContainer().getActor()) || !this.isEnabled() || (!_skill.m.IsWeaponSkill && !this.m.IsForceEnabled))
+		{
+			return;
+		}
+
+		if (this.m.SkillCount == ::Const.SkillCounter && this.m.LastTargetID == _targetEntity.getID())
+		{
+			return;
+		}
+
+		this.m.SkillCount = ::Const.SkillCounter;
+		this.m.LastTargetID = _targetEntity.getID();
+
+		local effect = _targetEntity.getSkills().getSkillByID("effects.rf_from_all_sides");
+		if (effect == null)
+		{
+			effect = ::new("scripts/skills/effects/rf_from_all_sides_effect");
+		}		
+
+		_targetEntity.getSkills().add(effect);
+
+		effect.proc(_hitInfo);
+	}
+});
