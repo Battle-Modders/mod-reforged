@@ -3,7 +3,8 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 		TargetTile = null,
 		TargetActor = null,
 		PossibleSkills = [
-			"actives.rf_kata_step"
+			"actives.rf_kata_step",
+			"actives.rf_move_under_cover"
 		],
 		Skill = null
 	},
