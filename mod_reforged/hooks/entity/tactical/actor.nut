@@ -23,4 +23,21 @@
 			}
 		}
 	}
+
+	local checkMorale = o.checkMorale;
+	o.checkMorale = function( _change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
+	{
+		if (_change < 0)
+		{
+			this.getCurrentProperties().MoraleCheckBravery[_type] += this.getCurrentProperties().NegativeMoraleCheckBravery[_type];
+			this.getCurrentProperties().MoraleCheckBraveryMult[_type] *= this.getCurrentProperties().NegativeMoraleCheckBraveryMult[_type];
+		}
+		else if (_change > 0)
+		{
+			this.getCurrentProperties().MoraleCheckBravery[_type] += this.getCurrentProperties().PositiveMoraleCheckBravery[_type];
+			this.getCurrentProperties().MoraleCheckBraveryMult[_type] *= this.getCurrentProperties().PositiveMoraleCheckBraveryMult[_type];
+		}
+
+		checkMorale(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
+	}
 });
