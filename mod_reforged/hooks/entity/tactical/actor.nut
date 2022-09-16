@@ -9,6 +9,8 @@
 	o.onInit = function()
 	{
 		onInit();
+		this.getSkills().add(::new("scripts/skills/effects/rf_encumbrance_effect"));
+
 		local flags = this.getFlags();
 		if (flags.has("undead") && !flags.has("ghost") && !flags.has("ghoul") && !flags.has("vampire"))
 		{
