@@ -10,3 +10,5 @@ foreach (moraleCheckType in ::Const.MoraleCheckType)
 	::Const.CharacterProperties.NegativeMoraleCheckBravery.push(0);
 	::Const.CharacterProperties.NegativeMoraleCheckBraveryMult.push(1.0);
 }
+
+::Const.Corpse.IsValidForOpportunist <- true;
