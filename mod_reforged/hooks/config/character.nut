@@ -11,6 +11,13 @@ foreach (moraleCheckType in ::Const.MoraleCheckType)
 	::Const.CharacterProperties.NegativeMoraleCheckBraveryMult.push(1.0);
 }
 
+::Const.CharacterProperties.Reach <- 0;
+::Const.CharacterProperties.ReachMult <- 1.0;
+::Const.CharacterProperties.getReach <- function()
+{
+	return this.Reach * this.ReachMult;
+}
+
 ::Const.ProjectileType.FlamingArrow <- ::Const.ProjectileType.COUNT;
 ::Const.ProjectileType.COUNT += 1;
 ::Const.ProjectileDecals.push(clone ::Const.ProjectileDecals[::Const.ProjectileType.Arrow]);
