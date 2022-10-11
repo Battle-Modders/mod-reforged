@@ -57,9 +57,30 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )
+	{
+		if (_corpseTile != null)
+		{
+			_corpseTile.Properties.get("Corpse").IsValidForOpportunist <- true;
+		}
+	}
+
 	function canProcOntile( _tile )
 	{
 		return _tile.IsCorpseSpawned && _tile.Properties.get("Corpse").IsValidForOpportunist && this.getContainer().getActor().getAlliedFactions().find(_tile.Properties.get("Corpse").Faction) == null;
+	}
+
+	function onQueryTileTooltip( _tile, _tooltip )
+	{
+		if (this.canProcOntile(_tile))
+		{
+			_tooltip.push({
+				id = 90,
+				type = "text",
+				icon = this.m.Icon,
+				text = "Can be used for " + ::MSU.Text.colorGreen(this.getName())
+			});
+		}
 	}
 
 	function isEnabled()
