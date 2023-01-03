@@ -4,7 +4,16 @@
 	{
 		create();
 		this.m.PerkTreeMultipliers = {
-			
+			"pg.rf_leadership": 10,
+			"pg.rf_resilient": 3,
+			"pg.rf_sturdy": 3,
+			"pg.rf_vicious": 3,
+			"pg.rf_bow": 0,
+			"pg.rf_crossbow": 0,
+			"pg.rf_power": 2,
+			"pg.rf_ranged": 0,
+			"pg.rf_shield": 0,
+			"pg.rf_swift": 2
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
 			"pgc.rf_exclusive_1": [],
