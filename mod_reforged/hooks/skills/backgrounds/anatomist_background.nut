@@ -4,7 +4,14 @@
 	{
 		create();
 		this.m.PerkTreeMultipliers = {
-			
+			"pg.rf_devious": 1.5,
+			"pg.rf_large": 0.75,
+			"pg.rf_leadership": 0.8,
+			"pg.rf_resilient": 0.75,
+			"pg.rf_shield": 0.75,
+			"pg.rf_sturdy": 0.75,
+			"pg.rf_tactician": 4,
+			"pg.rf_talented": 4
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
 			"pgc.rf_exclusive_1": [],

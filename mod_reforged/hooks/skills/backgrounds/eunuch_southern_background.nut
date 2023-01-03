@@ -4,7 +4,9 @@
 	{
 		create();
 		this.m.PerkTreeMultipliers = {
-			
+			"pg.rf_devious": 1.5,
+			"pg.rf_tactician": 4,
+			"pg.rf_talented": 6
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
 			"pgc.rf_exclusive_1": [],
