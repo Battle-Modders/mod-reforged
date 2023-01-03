@@ -1,16 +1,28 @@
 ::mods_hookExactClass("entity/tactical/humans/engineer", function(o) {
 	o.onInit = function()
 	{
-	    // copy vanilla function contents completely
-	    // and replace skills except equipment based skills
-	    // NOTE: Remove the hook on onInit completely if unused
-	}
+		this.human.onInit();
+		local b = this.m.BaseProperties;
+		b.setValues(this.Const.Tactical.Actor.Engineer);
+		b.TargetAttractionMult = 1.1;
+		this.m.ActionPoints = b.ActionPoints;
+		this.m.Hitpoints = b.Hitpoints;
+		this.m.CurrentProperties = clone b;
+		this.setAppearance();
+		this.getSprite("socket").setBrush("bust_base_southern");
+		this.m.Skills.add(this.new("scripts/skills/actives/load_mortar_skill"));
+		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced as perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced as perk
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
-	{
-	    assignRandomEquipment();
+		//Reforged
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 
-	    // any skills that should be added based on equipment
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
+
+		if (::Reforged.Config.IsLegendaryDifficulty)
+		{
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
+		}
 	}
 });

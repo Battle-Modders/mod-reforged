@@ -17,7 +17,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
 		this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));

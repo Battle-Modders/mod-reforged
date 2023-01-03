@@ -1,16 +1,29 @@
 ::mods_hookExactClass("entity/tactical/enemies/direwolf_high", function(o) {
 	o.onInit = function()
 	{
-	    // copy vanilla function contents completely
-	    // and replace skills except equipment based skills
-	    // NOTE: Remove the hook on onInit completely if unused
-	}
+		this.direwolf.onInit();
+		local b = this.m.BaseProperties;
+		b.setValues(this.Const.Tactical.Actor.FrenziedDirewolf);
+		b.IsAffectedByNight = false;
+		b.IsImmuneToDisarm = true;
+		b.DamageTotalMult = 1.25;
+		this.m.ActionPoints = b.ActionPoints;
+		this.m.Hitpoints = b.Hitpoints;
+		this.m.CurrentProperties = clone b;
+		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		local head_frenzy = this.getSprite("head_frenzy");
+		head_frenzy.setBrush(this.getSprite("head").getBrush().Name + "_frenzy");
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
-	{
-	    assignRandomEquipment();
+		// Reforged
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 
-	    // any skills that should be added based on equipment
+		if (::Reforged.Config.IsLegendaryDifficulty)
+		{
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_double_strike"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_unstoppable"));
+		}
 	}
 });

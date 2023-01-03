@@ -47,7 +47,6 @@
     	{
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bulwark"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vengeance"));

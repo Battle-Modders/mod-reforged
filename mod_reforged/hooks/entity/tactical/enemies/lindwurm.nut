@@ -56,7 +56,7 @@
 		this.m.Skills.add(this.new("scripts/skills/racial/lindwurm_racial"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 
 		if (this.m.Tail == null)
 		{

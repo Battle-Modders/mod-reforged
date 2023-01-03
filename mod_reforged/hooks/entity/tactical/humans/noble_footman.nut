@@ -38,7 +38,7 @@
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bulwark"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
     	}
 	}
 

@@ -30,8 +30,8 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
     	}
 	}
 

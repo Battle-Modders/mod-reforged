@@ -19,7 +19,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
 
 		// Reforged
@@ -31,6 +31,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_personal_armor"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_shields_up"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
 
@@ -40,7 +41,6 @@
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_pattern_recognition"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_man_of_steel"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_personal_armor"));
 		}
 	}
 

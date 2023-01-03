@@ -97,6 +97,7 @@
 		local ret = makeMiniboss();
 		if (ret)
 		{
+			this.m.Skills.removeByID("perk.underdog");
 			this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
 	    	if (::Reforged.Config.IsLegendaryDifficulty)

@@ -37,15 +37,15 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
+    		this.m.Skills.removeByID("perk.rf_personal_armor");
     		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
     	}
 	}

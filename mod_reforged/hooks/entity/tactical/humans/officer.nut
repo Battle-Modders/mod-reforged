@@ -45,15 +45,15 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_inspiring_presence", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rally_the_troops"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
+    		this.m.Skills.removeByID("perk.rf_personal_armor");
     		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
     	}
 	}
 

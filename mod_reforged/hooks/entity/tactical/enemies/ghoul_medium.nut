@@ -1,16 +1,16 @@
 ::mods_hookExactClass("entity/tactical/enemies/ghoul_medium", function(o) {
 	o.onInit = function()
 	{
-	    // copy vanilla function contents completely
-	    // and replace skills except equipment based skills
-	    // NOTE: Remove the hook on onInit completely if unused
-	}
+		this.ghoul.onInit();
+		this.grow(true);
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
-	{
-	    assignRandomEquipment();
+		// Reforged
+		this.m.Skills.add(this.new("scripts/skills/traits/iron_jaw_trait"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_unstoppable"));
 
-	    // any skills that should be added based on equipment
+		if (::Reforged.Config.IsLegendaryDifficulty)
+		{
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+		}
 	}
 });

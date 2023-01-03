@@ -72,7 +72,7 @@
     		this.m.Skills.add(::new("scripts/skills/perks/perk_colossus"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
     	}
 	}
 

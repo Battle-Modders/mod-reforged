@@ -21,7 +21,6 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_underdog"));
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{

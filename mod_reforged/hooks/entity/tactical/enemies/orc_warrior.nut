@@ -104,12 +104,13 @@
 		local ret = makeMiniboss();
 		if (ret)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
     		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
+    			this.m.Skills.removeByID("perk.perk_rf_personal_armor");
+    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_balance"));
+    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
     		}
 		}
 

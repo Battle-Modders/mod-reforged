@@ -45,8 +45,8 @@
     		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fresh_and_furious"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fruits_of_labor"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
     	}
 	}
 
