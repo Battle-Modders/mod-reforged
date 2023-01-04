@@ -1,5 +1,5 @@
 ::mods_hookExactClass("items/weapons/weapon", function (o) {
-	this.m.Reach <- 1;
+	o.m.Reach <- 1;
 
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
