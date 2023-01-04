@@ -33,23 +33,23 @@ this.rf_reach_effect <- ::inherit("scripts/skills/skill", {
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		::Reforged.Reach.CurrAttackerBonus = 0;
+		::Reforged.Reach.CurrDefenderBonus = 0;
 		if (_skill.isRanged() || _targetEntity == null || _targetEntity.isArmedWithShield() || !::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetEntity))
 			return;
 
 		if (!this.getContainer().getActor().hasZoneOfControl())
 			_properties.ReachMult *= 0;
 
-		::Reforged.Reach.CurrAttackerBonus = ::Reforged.Reach.BonusPerReach * _properties.getReach();
+		::Reforged.Reach.CurrAttackerBonus = ::Math.floor(::Reforged.Reach.BonusPerReach * _properties.getReach());
 		_properties.MeleeSkill += ::Reforged.Reach.CurrAttackerBonus;
 	}
 
 	function onBeingAttacked( _attacker, _skill, _properties )
 	{
-		::Reforged.Reach.CurrDefenderBonus = 0;
 		if (_skill.isRanged() || !::Reforged.Reach.hasLineOfSight(_attacker, this.getContainer().getActor()))
 			return;
 
-		::Reforged.Reach.CurrDefenderBonus = ::Reforged.Reach.BonusPerReach * _properties.getReach();
+		::Reforged.Reach.CurrDefenderBonus = ::Math.floor(::Reforged.Reach.BonusPerReach * _properties.getReach());
 		_properties.MeleeDefense += ::Reforged.Reach.CurrDefenderBonus;
 	}
 
