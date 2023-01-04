@@ -1,7 +1,16 @@
 ::Reforged.Reach <- {
 	BonusPerReach = 5,
-	CurrAttackerBonus = 0,
+	CurrAttackerBonus = 0, // These two variables are used in rf_reach_effect for tooltip purposes
 	CurrDefenderBonus = 0,
+	Default = {
+		Dagger = 1,
+		Short_1H = 2,
+		Medium_1H = 3,
+		Long_1H = 4,
+		Short_2H = 5,
+		Medium_2H = 6,
+		Long_2H = 7
+	},
 
 	function hasLineOfSight( _actor1, _actor2 )
 	{
