@@ -9,7 +9,6 @@
 			"pg.rf_large": 0.25,
 			"pg.rf_leadership": 0.5,
 			"pg.rf_resilient": 0.25,
-			"pg.rf_sturdy": 1.25,
 			"pg.rf_talented": 0
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
