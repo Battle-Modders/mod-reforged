@@ -46,9 +46,4 @@
 
 		checkMorale(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
-
-	o.getReach <- function()
-	{
-		return this.hasZoneOfControl() ? this.getCurrentProperties().getReach() : 0.0;
-	}
 });

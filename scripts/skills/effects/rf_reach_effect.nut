@@ -1,13 +1,10 @@
 this.rf_reach_effect <- ::inherit("scripts/skills/skill", {
-	m = {
-		BonusPerReach = 5
-		CurrChange = 0
-	},
+	m = {},
 	function create()
 	{
 		this.m.ID = "effects.rf_reach";
 		this.m.Name = "Reach";
-		this.m.Description = "Reach is a depiction of how far this character\'s attacks can reach, making melee combat easier against targets with shorter reach. Greater Reach grants a Melee Skill bonus of " + ::MSU.Text.colorizeValue(this.m.BonusPerReach) + " whereas shorter reach incurs a Melee Skill penalty of " + ::MSU.Text.colorizeValue(-1 * this.m.BonusPerReach) + " per difference in reach between the attacker and the defender. A character without Zone of Control has no Reach.";
+		this.m.Description = "Reach is a depiction of how far this character\'s attacks can reach, making melee combat easier against targets with shorter reach. In combat, every point of Reach increases Melee Skill and Melee Defense by " + ::MSU.Text.colorizeValue(::Reforged.Reach.BonusPerReach) + ". Attackers with longer weapons will, therefore, have an advantage against those with shorter ones. Note: Reach grants no Melee Skill when attacking an opponent who has a shield and a character without Zone of Control has no Reach.";
 		this.m.Icon = "skills/rf_reach_effect.png";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast + 100;
@@ -18,7 +15,7 @@ this.rf_reach_effect <- ::inherit("scripts/skills/skill", {
 
 	function getName()
 	{
-		return this.getContainer().getActor().isPlayerControlled() ? this.m.Name : this.m.Name + " (" + this.getContainer().getActor().getReach() + ")";
+		return this.getContainer().getActor().isPlayerControlled() ? this.m.Name : this.m.Name + " (" + this.getContainer().getActor().getCurrentProperties().getReach() + ")";
 	}
 
 	function getTooltip()
@@ -28,31 +25,46 @@ this.rf_reach_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = "Current Reach: " + this.getContainer().getActor().getReach()
+			text = "Current Reach: " + this.getContainer().getActor().getCurrentProperties().getReach()
 		});
 		return tooltip;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		this.m.CurrChange = 0;
-		if (_targetEntity != null && !_skill.isRanged())
-		{
-			local difference = this.getContainer().getActor().getReach() - _targetEntity.getReach();
-			if ((difference > 0 && _targetEntity.isArmedWithShield()) || (difference < 0 && this.getContainer().getActor().isArmedWithShield())) return;
+		::Reforged.Reach.CurrAttackerBonus = 0;
+		if (_skill.isRanged() || _targetEntity == null || _targetEntity.isArmedWithShield() || !::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetEntity))
+			return;
 
-			this.m.CurrChange = this.m.BonusPerReach * difference;
-			_properties.MeleeSkill += this.m.CurrChange;
-		}
+		if (!this.getContainer().getActor().hasZoneOfControl())
+			_properties.ReachMult *= 0;
+
+		::Reforged.Reach.CurrAttackerBonus = ::Reforged.Reach.BonusPerReach * _properties.getReach();
+		_properties.MeleeSkill += ::Reforged.Reach.CurrAttackerBonus;
+	}
+
+	function onBeingAttacked( _attacker, _skill, _properties )
+	{
+		::Reforged.Reach.CurrDefenderBonus = 0;
+		if (_skill.isRanged() || !::Reforged.Reach.hasLineOfSight(_attacker, this.getContainer().getActor()))
+			return;
+
+		::Reforged.Reach.CurrDefenderBonus = ::Reforged.Reach.BonusPerReach * _properties.getReach();
+		_properties.MeleeDefense += ::Reforged.Reach.CurrDefenderBonus;
 	}
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
-		if (!_targetTile.IsOccupiedByActor || _skill.isRanged() || this.m.CurrChange == 0) return;
+		if (!_targetTile.IsOccupiedByActor || _targetTile.getEntity().getID() == this.getContainer().getActor().getID())
+			return;
 
-		_tooltip.push({
-			icon = this.m.CurrChange > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
-			text = ::MSU.Text.colorizePercentage(this.m.CurrChange) + " " + this.getName()
-		});
+		local diff = ::Reforged.Reach.CurrAttackerBonus - ::Reforged.Reach.CurrDefenderBonus;
+		if (diff != 0)
+		{
+			_tooltip.push({
+				icon = diff > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
+				text = ::MSU.Text.colorizePercentage(diff) + (diff > 0 ? " Reach Advantage" : " Reach Disadvantage")
+			});
+		}
 	}
 });
