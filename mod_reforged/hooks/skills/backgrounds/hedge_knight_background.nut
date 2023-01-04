@@ -18,7 +18,6 @@
 			"pg.rf_polearm": 0,
 			"pg.rf_spear": 0,
 			"pg.rf_throwing": 0,
-			"pg.rf_ranged": 0,
 
             "perk.rf_professional": -1,
             "perk.rf_man_of_steel": -1

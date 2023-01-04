@@ -14,6 +14,7 @@
 			"pg.rf_crossbow": 0,
 			"pg.rf_dagger": 2,
 			"pg.rf_spear": 0.75,
+			"pg.rf_sword": 1.25,
 			"pg.rf_ranged": 0
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
