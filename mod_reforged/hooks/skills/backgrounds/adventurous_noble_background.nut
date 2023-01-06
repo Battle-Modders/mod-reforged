@@ -10,7 +10,7 @@
             "pg.rf_trained": 5,
             "pg.rf_bow": 0,
             "pg.rf_crossbow": 0,
-            "pg.rf_ranged": 0,
+            "pg.rf_ranged": 0
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
 			"pgc.rf_exclusive_1": [

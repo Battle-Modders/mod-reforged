@@ -8,7 +8,7 @@
 			"pg.rf_fast": 1.5,
 			"pg.rf_leadership": 0,
 			"pg.rf_tactician": 0,
-			"pg.rf_shield": 0,
+			"pg.rf_shield": 0
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
 			"pgc.rf_exclusive_1": [],

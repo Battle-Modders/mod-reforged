@@ -29,8 +29,8 @@
 				"pg.rf_medium_armor"
 			],
 			"pgc.rf_fighting_style": [
-				"pg.rf_power": 0,
-				"pg.rf_swift": 0
+				"pg.rf_power",
+				"pg.rf_swift"
 			]
 		});
 	}
