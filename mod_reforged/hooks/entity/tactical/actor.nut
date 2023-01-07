@@ -14,7 +14,15 @@
 	// Complete overwrite of vanilla function to fix bug where buffs to fatigue also buff initiative for the same amount
 	o.getInitiative = function()
 	{
-		local ret = this.m.CurrentProperties.Initiative * (this.m.CurrentProperties.InitiativeMult >= 0 ? this.m.CurrentProperties.InitiativeMult : 1.0 / this.m.CurrentProperties.InitiativeMult);
+		local ret = this.m.CurrentProperties.Initiative;
+		if (ret >= 0)	// Vanilla compares 'this.m.CurrentProperties.InitiativeMult' at this point which makes no sense and should be considered a bug
+		{
+			ret *= this.m.CurrentProperties.InitiativeMult;
+		}
+		else // Effects of good multipliers on negative InitiativeValues need to be reversed. Otherwise they make already bad values even worse.
+		{
+			ret *= (1.0 / this.m.CurrentProperties.InitiativeMult);
+		}
 		ret -= this.getFatigue() * this.m.CurrentProperties.FatigueToInitiativeRate;	// Subtract Accumulated Fatigue from Initiative
 		ret -= ::Math.max(0, this.getBurden() * this.getBurdenMult());					// Subtract Burden from Initiative
 		return ::Math.round(ret);
