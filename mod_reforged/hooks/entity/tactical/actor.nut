@@ -14,6 +14,7 @@
 		this.getSkills().add(::new("scripts/skills/effects/rf_inspired_by_champion_effect"));
 		this.getSkills().add(::new("scripts/skills/effects/rf_immersive_damage_effect"));
 		this.getSkills().add(::new("scripts/skills/special/rf_reach"));
+		this.getSkills().add(::new("scripts/skills/special/rf_formidable_approach_manager"));
 
 		local flags = this.getFlags();
 		if (flags.has("undead") && !flags.has("ghost") && !flags.has("ghoul") && !flags.has("vampire"))
