@@ -1,5 +1,24 @@
 ::mods_hookExactClass("entity/tactical/actor", function(o) {
 	o.m.IsPerformingAttackOfOpportunity <- false;
+	
+	o.getBurden <- function()
+	{
+		return this.m.CurrentProperties.Burden;
+	}
+
+	o.getBurdenMult <- function()
+	{
+		return this.m.CurrentProperties.BurdenMult;
+	}
+
+	// Complete overwrite of vanilla function to fix bug where buffs to fatigue also buff initiative for the same amount
+	o.getInitiative = function()
+	{
+		local ret = this.m.CurrentProperties.Initiative * (this.m.CurrentProperties.InitiativeMult >= 0 ? this.m.CurrentProperties.InitiativeMult : 1.0 / this.m.CurrentProperties.InitiativeMult);
+		ret -= this.getFatigue() * this.m.CurrentProperties.FatigueToInitiativeRate;	// Subtract Accumulated Fatigue from Initiative
+		ret -= ::Math.max(0, this.getBurden() * this.getBurdenMult());					// Subtract Burden from Initiative
+		return ::Math.round(ret);
+	}
 
 	o.isDisarmed <- function()
 	{

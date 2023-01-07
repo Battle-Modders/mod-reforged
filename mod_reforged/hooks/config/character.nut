@@ -2,6 +2,8 @@
 ::Const.CharacterProperties.PositiveMoraleCheckBraveryMult <- [];
 ::Const.CharacterProperties.NegativeMoraleCheckBravery <- [];
 ::Const.CharacterProperties.NegativeMoraleCheckBraveryMult <- [];
+::Const.CharacterProperties.Burden <- 0;		// Combined Fatigue Penalty from all equipped and bagged items (reductions from perks like Brawny are already applied here)
+::Const.CharacterProperties.BurdenMult <- 1.0;	// Multiplier deciding how much the Burden affects the characters Initiative
 
 foreach (moraleCheckType in ::Const.MoraleCheckType)
 {
