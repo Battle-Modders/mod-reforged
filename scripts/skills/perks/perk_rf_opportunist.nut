@@ -43,7 +43,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "The next throwing attack builds " + ::MSU.Text.colorGreen(this.m.FatCostRed + "%") " less Fatigue"
+				text = "The next throwing attack builds " + ::MSU.Text.colorGreen(this.m.FatCostRed + "%") + " less Fatigue"
 			});
 
 			tooltip.push({

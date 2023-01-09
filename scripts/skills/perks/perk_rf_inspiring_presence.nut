@@ -15,7 +15,7 @@ this.perk_rf_inspiring_presence <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	o.isEnabled <- function()
+	function isEnabled()
 	{
 		if (this.m.IsForceEnabled)
 		{

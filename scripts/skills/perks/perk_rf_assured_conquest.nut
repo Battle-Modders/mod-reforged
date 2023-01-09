@@ -67,7 +67,7 @@ this.perk_rf_assured_conquest <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	o.onUpdate = function( _properties )
+	function onUpdate( _properties )
 	{
 		if (this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Confident)
 		{
