@@ -1,7 +1,5 @@
 this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/actives/rf_swordmaster_stance_abstract_skill", {
-	m = {
-		RemovedSkills = []
-	},
+	m = {},
 	function create()
 	{
 		this.rf_swordmaster_stance_abstract_skill.create();
@@ -57,7 +55,6 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		local skills = weapon.getSkills();
 		foreach (skill in skills)
 		{
-			this.m.RemovedSkills.push(skill);
 			weapon.removeSkill(skill);
 		}
 
@@ -79,34 +76,14 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon != null && this.m.RemovedSkills.len() != 0)
 		{
-			if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))
-			{
-				weapon.removeSkill(this.getContainer().getSkillByID("actives.cudgel"));
-				weapon.removeSkill(this.getContainer().getSkillByID("actives.strike_down"));
-			}
-			else
-			{
-				weapon.removeSkill(this.getContainer().getSkillByID("actives.bash"));
-				weapon.removeSkill(this.getContainer().getSkillByID("actives.knock_out"));
-			}
-
-			foreach (skill in this.m.RemovedSkills)
-			{
-				weapon.addSkill(skill);
-			}
+			this.getContainer().getActor().getItems().unequip(weapon);
+			this.getContainer().getActor().getItems().equip(weapon);
 		}
-
-		this.m.RemovedSkills.clear();
-	}
-
-	function onUnequip( _item )
-	{
-		if (_item.getSlotType() == ::Const.ItemSlot.Mainhand) this.m.RemovedSkills.clear();
 	}
 
 	function onCombatFinished()
 	{
 		this.rf_swordmaster_stance_abstract_skill.onCombatFinished();
-		this.m.RemovedSkills.clear();
+		this.toggleOff();
 	}
 });
