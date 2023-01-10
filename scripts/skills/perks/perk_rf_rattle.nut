@@ -1,7 +1,5 @@
 this.perk_rf_rattle <- ::inherit("scripts/skills/skill", {
-	m = {
-		MinimumDamage = 10
-	},
+	m = {},
 	function create()
 	{
 		this.m.ID = "perk.rf_rattle";
@@ -17,13 +15,14 @@ this.perk_rf_rattle <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_damageInflictedHitpoints < this.m.MinimumDamage || !_targetEntity.isAlive() || _targetEntity.isDying() || !_skill.isAttack() || !_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt) || _targetEntity.isAlliedWith(this.getContainer().getActor()))
+		if (!_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.getCurrentProperties().IsImmuneToStun || _targetEntity.getCurrentProperties().IsImmuneToDaze ||
+			!_skill.isAttack() || !_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt) || _targetEntity.isAlliedWith(this.getContainer().getActor()))
 		{
 			return;
 		}
-		
-		local targetArmorItem = _bodyPart == ::Const.BodyPart.Head ? _targetEntity.getHeadItem() : _targetEntity.getBodyItem();
-		if (targetArmorItem != null)
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (_damageInflictedHitpoints >= 10 || (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Mace)))
 		{
 			_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_rattled_effect"));
 		}
