@@ -11,6 +11,7 @@ this.perk_rf_trauma_survivor <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
+		this.m.IsRefundable = false;
 	}
 
 	function onUpdate( _properties )
