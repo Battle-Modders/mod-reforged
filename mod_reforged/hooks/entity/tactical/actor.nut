@@ -47,4 +47,26 @@
 
 		checkMorale(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
+
+	local getSurroundedCount = o.getSurroundedCount;
+	o.getSurroundedCount = function()
+	{
+		local startSurroundCountAt = this.m.CurrentProperties.StartSurroundCountAt;
+		this.m.CurrentProperties.StartSurroundCountAt = ::Const.CharacterProperties.StartSurroundCountAt;
+
+		local count = getSurroundedCount();
+
+		foreach (enemy in ::Tactical.Entities.getHostileActors(this, this.getTile(), 2, true))
+		{
+			local perk = enemy.getSkills().hasSkill("perk.rf_long_reach");
+			if (perk != null && perk.isEnabled())
+			{
+				count++;
+			}
+		}
+
+		this.m.CurrentProperties.StartSurroundCountAt = startSurroundCountAt;
+
+		return ::Math.max(0, count - startSurroundCountAt);
+	}
 });
