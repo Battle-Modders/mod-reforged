@@ -1,0 +1,110 @@
+this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordmaster_active_abstract", {
+	m = {},
+	function create()
+	{
+		this.m.ID = "actives.rf_swordmaster_tackle";
+		this.m.Name = "Tackle";
+		this.m.Description = "Tackle an enemy with sheer force and skill, switching places with them.";
+		this.m.Icon = "skills/rf_swordmaster_tackle_skill.png";
+		this.m.IconDisabled = "skills/rf_swordmaster_tackle_skill_bw.png";
+		this.m.Overlay = "rf_swordmaster_tackle_skill";
+		this.m.SoundOnUse = [
+			"sounds/combat/indomitable_01.wav",
+			"sounds/combat/indomitable_02.wav"
+		];
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
+		this.m.IsSerialized = false;
+		this.m.IsActive = true;
+		this.m.IsTargeted = true;
+		this.m.IsStacking = false;
+		this.m.IsAttack = false;
+		this.m.IsIgnoredAsAOO = true;
+		this.m.IsUsingHitchance = false;
+		this.m.ActionPointCost = 6;
+		this.m.FatigueCost = 25;
+		this.m.MinRange = 1;
+		this.m.MaxRange = 1;
+	}
+
+	function getTooltip()
+	{
+		local tooltip = this.getDefaultUtilityTooltip();
+
+		tooltip.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger the target"
+		});
+
+		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
+		{
+			tooltip.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a two-handed or double-gripped one-handed sword[/color]"
+			});
+		}
+
+		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
+		{
+			tooltip.push({
+				id = 9,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Cannot be used while rooted[/color]"
+			});
+		}
+
+		this.addEnabledTooltip(tooltip);
+
+		return tooltip;
+	}
+
+	function getCursorForTile( _tile )
+	{
+		return ::Const.UI.Cursor.Rotation;
+	}
+
+	function isUsable()
+	{
+		return this.rf_swordmaster_active_abstract.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted && (this.getContainer().getActor().isArmedWithTwoHandedWeapon() || this.getContainer().getActor().isDoubleGrippingWeapon());
+	}
+
+	function onVerifyTarget( _originTile, _targetTile )
+	{
+		if (!_targetTile.IsOccupiedByActor)
+		{
+			return false;
+		}
+
+		local target = _targetTile.getEntity();
+
+		if (target.isAlliedWith(this.getContainer().getActor()))
+		{
+			return false;
+		}
+
+		return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
+	}
+
+	function onUse( _user, _targetTile )
+	{
+		local target = _targetTile.getEntity();
+		local userTile = _user.getTile();
+		target.getSkills().add(::new("scripts/skills/effects/staggered_effect"));
+
+		::Tactical.getNavigator().switchEntities(_user, target, null, null, 1.0);
+
+		if (userTile.IsVisibleForPlayer)
+		{
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " tackled and staggered " + ::Const.UI.getColorizedEntityName(target));
+		}
+
+		return true;
+	}
+
+});
+
