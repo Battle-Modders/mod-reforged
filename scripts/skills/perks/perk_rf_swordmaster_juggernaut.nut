@@ -37,7 +37,7 @@ this.perk_rf_swordmaster_juggernaut <- ::inherit("scripts/skills/perks/perk_rf_s
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		if (this.m.Target != null || !_skill.isAttack() || _skill.isAOE() || !this.isEnabled())
+		if (this.m.Target != null || !_skill.isAttack() || _skill.isAOE() || !this.isEnabled() || this.getContainer().getActor().m.IsPerformingAttackOfOpportunity)
 		{
 			this.m.Target = null;
 			return;
@@ -67,7 +67,7 @@ this.perk_rf_swordmaster_juggernaut <- ::inherit("scripts/skills/perks/perk_rf_s
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (this.m.Target != null)
+		if (this.m.Target != null && this.m.Target.isAlive())
 		{
 			_skill.onUse(this.getContainer().getActor(), this.m.Target.getTile());
 			this.m.Target = null;
