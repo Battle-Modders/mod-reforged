@@ -8,7 +8,8 @@ this.perk_rf_inspiring_presence <- ::inherit("scripts/skills/skill", {
 		this.m.Name = ::Const.Strings.PerkName.RF_InspiringPresence;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_InspiringPresence;
 		this.m.Icon = "ui/perks/rf_inspiring_presence.png";
-		this.m.Type = ::Const.SkillType.Perk;
+		this.m.IconMini = "rf_inspiring_presence_mini";
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
