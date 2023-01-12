@@ -1,8 +1,8 @@
 this.perk_rf_eyes_up <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsForceEnabled = false,
-		TargetEntity = null,
-		TargetTile = null
+		TargetTile = null,
+		ActorsAppliedTo = []
 	},
 	function create()
 	{
@@ -37,66 +37,57 @@ this.perk_rf_eyes_up <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_targetEntity != null && this.isEnabled() && (_skill.isRanged() || this.m.IsForceEnabled))
-		{
-			this.m.TargetEntity = _targetEntity;
-			this.m.TargetTile = _targetTile;
-		}
+		this.m.TargetTile = _targetTile;
+		this.m.ActorsAppliedTo.clear();
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		this.applyEffect();
+		if (this.isEnabled() && (_skill.isRanged() || this.m.IsForceEnabled)) this.applyEffect(_targetEntity);
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
 	{
-		this.applyEffect();
+		if (this.isEnabled() && (_skill.isRanged() || this.m.IsForceEnabled)) this.applyEffect(_targetEntity);
 	}
 
-	function applyEffect()
+	function applyEffect( _targetEntity )
 	{
-		if (this.m.TargetEntity == null) return;
-
-		if (this.m.TargetEntity.isAlive() && !this.m.TargetEntity.isDying())
+		if (_targetEntity.isAlive() && !_targetEntity.isDying() && this.m.ActorsAppliedTo.find(_targetEntity.getID()) == null)
 		{
-			local effect = ::new("scripts/skills/effects/rf_eyes_up_effect");
-			if (this.m.TargetEntity.isArmedWithShield() && this.m.TargetEntity.getOffhandItem().getID().find("buckler") == null)
-			{
-				effect.m.Stacks -= 0.5;
-			}
-			this.m.TargetEntity.getSkills().add(effect);
+			_targetEntity.getSkills().add(this.new("scripts/skills/effects/rf_eyes_up_effect"));
+			this.m.ActorsAppliedTo.push(_targetEntity.getID());
 		}
 
-		for (local i = 0; i < 6; i++)
+		if (this.m.TargetTile == null)
+			return;
+
+		foreach (tile in ::MSU.Tile.getNeighbors(this.m.TargetTile))
 		{
-			if (this.m.TargetTile.hasNextTile(i))
+			if (tile.IsOccupiedByActor)
 			{
-				local nextTile = this.m.TargetTile.getNextTile(i);
-				if (nextTile.IsOccupiedByActor)
+				local entity = tile.getEntity();
+				if (entity.isAlliedWith(this.getContainer().getActor()) || this.m.ActorsAppliedTo.find(entity.getID() != null)) continue;
+
+				local effect = ::new("scripts/skills/effects/rf_eyes_up_effect");
+				local previouslyAppliedEffect = entity.getSkills().getSkillByID("effects.rf_eyes_up");
+				if (previouslyAppliedEffect != null)
 				{
-					local nextActor = nextTile.getEntity();
-					if (nextActor.isAlliedWith(this.getContainer().getActor()) || (nextActor.isArmedWithShield() && nextActor.getOffhandItem().getID().find("buckler") == null))
-					{
-						continue;
-					}
-
-					local effect = ::new("scripts/skills/effects/rf_eyes_up_effect");
-					local previouslyAppliedEffect = nextTile.getEntity().getSkills().getSkillByID("effects.rf_eyes_up");
-					if (previouslyAppliedEffect != null)
-					{
-						previouslyAppliedEffect.m.Stacks -= 0.5;
-					}
-					else
-					{
-						effect.m.Stacks -= 0.5;
-					}
-					nextTile.getEntity().getSkills().add(effect);
+					previouslyAppliedEffect.addStacks(-0.5);
 				}
+				else
+				{
+					effect.addStacks(-0.5);
+				}
+				entity.getSkills().add(effect);
+				this.m.ActorsAppliedTo.push(entity.getID());
 			}
 		}
+	}
 
-		this.m.TargetEntity = null;
+	function onCombatFinished()
+	{
 		this.m.TargetTile = null;
+		this.m.ActorsAppliedTo.clear();
 	}
 });
