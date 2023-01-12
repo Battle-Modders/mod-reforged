@@ -20,14 +20,13 @@ this.perk_rf_smashing_shields <- ::inherit("scripts/skills/skill", {
 	{
 		if (!_skill.isRanged() && _targetEntity != null)
 		{
-			local shield = _targetEntity.getOffhandItem();
-			if (::MSU.isItemType(::Const.Items.ItemType.Shield)) this.m.Shield = shield;
+			this.m.Shield = _targetEntity.getOffhandItem();
 		}
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (!::MSU.isNull(this.m.Shield) && this.m.Shield.getCondition() == 0)
+		if (!::MSU.isNull(this.m.Shield) && this.m.Shield.isItemType(::Const.Items.ItemType.Shield) && this.m.Shield.getCondition() == 0)
 		{
 			local user = this.getContainer().getActor();
 			user.setActionPoints(::Math.min(user.getActionPointsMax(), user.getActionPoints() + this.m.APRestore));
