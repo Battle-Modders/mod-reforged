@@ -2,7 +2,8 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 	m = {
 		BleedStacksBeforeAttack = 0,
 		FatigueRecoveryStacks = 0,		
-		FatigueReductionPercentage = 5
+		FatigueReductionPercentage = 5,
+		ActorFatigue = null
 	},
 	function create()
 	{
@@ -37,24 +38,43 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
+		this.m.ActorFatigue = null;
+
 		if (_skill.isAttack() && !_skill.isRanged() && _targetEntity == null)
 		{
 			this.m.BleedStacksBeforeAttack = _targetEntity.getSkills().getAllSkillsByID("effects.bleeding").len();
 		}
 	}
 
+	// We need to do it like this in two split functions i.e. onAnySkillExecuted and onTargetKilled:
+	// onAnySkillExecuted is used for counting the bleed stacks applied during the attack e.g. cleave skill's onUse function
+	// onTargetKilled is used separately to handle situations where the attack is delayed e.g. Lunge, and onAnySkillExecuted runs before the target actually gets killed
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (!_skill.isAttack() || _skill.isRanged() || _targetEntity == null || _targetEntity.isAlliedWith(this.getContainer().geta()) || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
-		{
+		local actor = this.getContainer().getActor();
+		if (!_skill.isAttack() || _skill.isRanged() || _targetEntity == null || _targetEntity.isAlliedWith(this.getContainer().geta()) || !::Tactical.TurnSequenceBar.isActiveEntity(actor))
 			return;
-		}
 
-		local bleedCount = _targetEntity.isAlive() ? _targetEntity.getSkills().getAllSkillsByID("effects.bleeding").len() : this.m.BleedStacksBeforeAttack + 1;
+		local bleedCount = _targetEntity.isAlive() ? _targetEntity.getSkills().getAllSkillsByID("effects.bleeding").len() : this.m.BleedStacksBeforeAttack;
+
 		this.m.FatigueRecoveryStacks += bleedCount;
 
-		local user = this.getContainer().getActor();
-		user.setFatigue(::Math.max(0, user.getFatigue() - user.getFatigue() * (bleedCount * this.m.FatigueReductionPercentage * 0.01)));
+		if (this.m.ActorFatigue == null) this.m.ActorFatigue = actor.getFatigue();
+
+		actor.setFatigue(::Math.max(0, this.m.ActorFatigue - this.m.ActorFatigue * (bleedCount * this.m.FatigueReductionPercentage * 0.01)));
+	}
+
+	function onTargetKilled( _targetEntity, _skill )
+	{
+		local actor = this.getContainer().getActor();
+		if (!_skill.isAttack() || _skill.isRanged() || _targetEntity.isAlliedWith(actor) || !::Tactical.TurnSequenceBar.isActiveEntity(actor))
+			return;
+
+		this.m.FatigueRecoveryStacks += 1;
+
+		if (this.m.ActorFatigue == null) this.m.ActorFatigue = actor.getFatigue();
+
+		actor.setFatigue(::Math.max(0, this.m.ActorFatigue - this.m.ActorFatigue * (this.m.FatigueReductionPercentage * 0.01)));
 	}
 
 	function onUpdate( _properties )
