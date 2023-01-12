@@ -12,7 +12,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Overlay = "rf_between_the_eyes_skill";
 		this.m.SoundOnUse = [];
 		this.m.Type = ::Const.SkillType.Active;
-		this.m.Order = ::Const.SkillOrder.VeryLast;
+		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -72,12 +72,16 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		if (aoo != null)
 		{
 			this.m.DamageType = aoo.getDamageType().weakref();
-			this.m.ActionPointCost = aoo.m.ActionPointCost + 1;
-			this.m.FatigueCost = aoo.m.FatigueCost + 20;
+			this.m.ActionPointCost += aoo.m.ActionPointCost;
+			this.m.FatigueCost += aoo.m.FatigueCost;
 			this.m.FatigueCostMult = aoo.m.FatigueCostMult;
 			this.m.DirectDamageMult = aoo.m.DirectDamageMult;
 			this.m.MinRange = aoo.m.MinRange;
 			this.m.MaxRange = aoo.m.MaxRange;
+		}
+		else
+		{
+			this.m.DamageType = null;
 		}
 	}
 
@@ -95,7 +99,18 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		return this.skill.isUsable() && this.getBonus() > 0;
+		return aoo.isUsable();
+	}
+
+	function onVerifyTarget( _originTile, _targetTile )
+	{
+		local aoo = this.getContainer().getAttackOfOpportunity();
+		if (aoo == null)
+		{
+			return false;
+		}
+
+		return aoo.onVerifyTarget(_originTile, _targetTile);
 	}
 
 	// This skill really just serves as a proxy for the AOO. It's job is to trigger the AOO on the target tile
@@ -107,12 +122,12 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		aoo.m.Overlay = "";
 
 		this.m.IsAttacking = true;
-		aoo.useForFree(_targetTile);
+		local ret = aoo.useForFree(_targetTile);
 		this.m.IsAttacking = false;
 
 		aoo.m.Overlay = overlay;
 
-		return true;
+		return ret;
 	}
 
 	function getBonus()
