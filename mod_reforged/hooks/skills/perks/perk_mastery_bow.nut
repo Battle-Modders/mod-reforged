@@ -14,7 +14,7 @@
 	{
 		if (_item.isItemType(::Const.Items.ItemType.Weapon) && _item.isWeaponType(::Const.Items.WeaponType.Bow))
 		{
-			_item.addSkill(::new("scripts/skills/active/rf_arrow_to_the_knee_skill"));
+			_item.addSkill(::new("scripts/skills/actives/rf_arrow_to_the_knee_skill"));
 		}
 	}
 });
