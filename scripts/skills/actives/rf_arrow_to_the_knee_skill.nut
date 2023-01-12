@@ -77,13 +77,13 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Target will have [color=" + ::Const.UI.Color.NegativeValue + "]-10%[/color] Melee and Ranged defense for 1 turn and [color=" + ::Const.UI.Color.NegativeValue + "]-5%[/color] the turn after that"
+				text = "Target will have [color=" + ::Const.UI.Color.NegativeValue + "]-5[/color] Melee and Ranged defense for for 2 turns"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Target will require [color=" + ::Const.UI.Color.NegativeValue + "]2[/color] additional Action Points per tile moved for 1 turn and [color=" + ::Const.UI.Color.NegativeValue + "]1[/color] in the turn after that"
+				text = "Target will require [color=" + ::Const.UI.Color.NegativeValue + "]2[/color] additional Action Points per tile moved for 2 turns"
 			}
 		]);
 
@@ -168,6 +168,7 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/skill", {
 				Skill = this,
 				User = _user,
 				TargetTile = _targetTile
+				TargetEntity = _targetTile.getEntity()
 			};
 			::Time.scheduleEvent(::TimeUnit.Virtual, this.m.Delay, this.onPerformAttack, tag);
 
@@ -184,10 +185,19 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	{
+		if (_skill == this && _targetEntity.isAlive())
+		{
+			_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_arrow_to_the_knee_debuff_effect"));
+		}
+	}
+
 	function onPerformAttack( _tag )
 	{
 		_tag.Skill.getContainer().setBusy(false);
-		return _tag.Skill.attackEntity(_tag.User, _tag.TargetTile.getEntity());
+		local ret = _tag.Skill.attackEntity(_tag.User, _tag.TargetTile.getEntity());
+		return ret;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -200,6 +210,5 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/skill", {
 			_properties.HitChanceMult[::Const.BodyPart.Head] *= 0.0;
 		}
 	}
-
 });
 
