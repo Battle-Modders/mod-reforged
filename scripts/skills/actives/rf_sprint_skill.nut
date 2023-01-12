@@ -48,7 +48,7 @@ this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Cannot be used while rooted");
+				text = ::MSU.Text.colorRed("Cannot be used while rooted")
 			});
 		}
 

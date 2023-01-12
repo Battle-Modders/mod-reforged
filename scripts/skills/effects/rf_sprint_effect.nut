@@ -12,11 +12,11 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
-	
+
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
-		
+
 		tooltip.extend([
 			{
 				id = 10,
@@ -28,10 +28,10 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorRed("20%")" more Fatigue built per tile traveled"
+				text = ::MSU.Text.colorRed("20%") + " more Fatigue built per tile traveled"
 			}
 		]);
-		
+
 		return tooltip;
 	}
 
@@ -40,7 +40,7 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 		_properties.MovementAPCostAdditional -= 1;
 		_properties.MovementFatigueCostMult *= 1.2;
 	}
-	
+
 	function onTurnEnd()
 	{
 		this.removeSelf();
