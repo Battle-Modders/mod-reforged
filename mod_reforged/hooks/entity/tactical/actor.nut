@@ -1,4 +1,6 @@
 ::mods_hookExactClass("entity/tactical/actor", function(o) {
+	o.m.IsPerformingAttackOfOpportunity <- false;
+
 	o.isDisarmed <- function()
 	{
 		local handToHand = this.getSkills().getSkillByID("actives.hand_to_hand");
@@ -30,6 +32,15 @@
 				this.m.ExcludedInjuries.extend(::Const.Injury.ExcludedInjuries.get(::Const.Injury.ExcludedInjuries.RF_Undead));
 			}
 		}
+	}
+
+	local onAttackOfOpportunity = o.onAttackOfOpportunity;
+	o.onAttackOfOpportunity = function( _entity, _isOnEnter )
+	{
+		this.m.IsPerformingAttackOfOpportunity = true;
+		local ret = onAttackOfOpportunity(_entity, _isOnEnter);
+		this.m.IsPerformingAttackOfOpportunity = false;
+		return ret;
 	}
 
 	local checkMorale = o.checkMorale;
