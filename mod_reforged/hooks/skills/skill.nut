@@ -3,6 +3,6 @@
 
 	o.isDuelistValid <- function()
 	{
-		return this.isAttack() && !this.isRanged() && this.getBaseValue("ActionPointCost") <= 4 && this.getMaxRange() == 1;
+		return this.isAttack() && !this.isRanged() && this.getBaseValue("ActionPointCost") <= 4 && this.getBaseValue("MaxRange") == 1;
 	}
 });
