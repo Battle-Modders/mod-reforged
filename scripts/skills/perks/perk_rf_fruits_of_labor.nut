@@ -17,9 +17,12 @@ this.perk_rf_fruits_of_labor <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate(_properties)
 	{
-		local mult = 1.0 + this.m.Bonus * 0.01;
-		_properties.HitpointsMult *= mult;
-		_properties.StaminaMult *= mult;
-		_properties.InitiativeMult *= mult;
+		local baseProperties = this.getContainer().getActor().getBaseProperties();
+
+		local mult = this.m.Bonus * 0.01;
+
+		_properties.Hitpoints += ::Math.floor(mult * baseProperties.Hitpoints);
+		_properties.Stamina += ::Math.floor(mult * baseProperties.Stamina);
+		_properties.Initiative += ::Math.floor(mult * baseProperties.Initiative);
 	}
 });
