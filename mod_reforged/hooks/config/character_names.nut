@@ -12,6 +12,7 @@
     "Baldo",
     "Baldovin",
     "Baldwin",
+    "Baranor",
     "Bertilo",
     "Bjorn",
     "Brando",
@@ -21,10 +22,12 @@
     "Conrad",
     "Dagfinn",
     "Dunstan",
+    "Eckhart",
     "Edgar",
     "Egino",
     "Elof",
     "Emelrich",
+    "Eswig",
     "Faramund",
     "Farvald",
     "Filibert",
@@ -37,6 +40,7 @@
     "Giselbert",
     "Gismund",
     "Godric",
+    "Grimm",
     "Hadubert",
     "Hagano",
     "Harold",
@@ -69,12 +73,15 @@
     "Reinald",
     "Reinhard",
     "Richard",
+    "Roland",
     "Sigimar",
+    "Silvan",
     "Siward",
     "Svenn",
+    "Theo",
     "Theodar",
     "Thiemo",
-    "Valdimar",
+    "Valdemar",
     "Veremund",
     "Waldo",
     "Waldomar",
@@ -82,6 +89,17 @@
     "Widald",
     "Wido",
     "Wigand",
+    "Wighart",
     "Wilfred",
+    "Wolfhart",
     "Wulfric"
 ]);
+
+// This will also void any custom names from other mods that execute before Reforged
+::Const.Strings.KnightNames = [];
+
+local knightPrefix = "Sir ";
+foreach(characterName in ::Const.Strings.CharacterNames)
+{
+    ::Const.Strings.KnightNames.push(knightPrefix + characterName);
+}
