@@ -1,7 +1,5 @@
 ::Reforged.Reach <- {
 	BonusPerReach = 5,
-	CurrAttackerBonus = 0, // These two variables are used in rf_reach_effect for tooltip purposes
-	CurrDefenderBonus = 0,
 	Default = {
 		Goblin = 1,
 		Human = 2,

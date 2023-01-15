@@ -1,10 +1,12 @@
 this.rf_reach_effect <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		HitEnemies = []
+	},
 	function create()
 	{
 		this.m.ID = "effects.rf_reach";
 		this.m.Name = "Reach";
-		this.m.Description = "Reach is a depiction of how far this character\'s attacks can reach, making melee combat easier against targets with shorter reach. In combat, every point of Reach increases Melee Skill and Melee Defense by " + ::MSU.Text.colorizeValue(::Reforged.Reach.BonusPerReach) + ". Attackers with longer weapons will, therefore, have an advantage against those with shorter ones. Note: Reach grants no Melee Skill when attacking an opponent who has a shield and a character without Zone of Control has no Reach.";
+		this.m.Description = "Reach is a depiction of how far this character\'s attacks can reach, making melee combat easier against targets with shorter reach. Melee skill is increased when attacking opponents with shorter reach, and reduced against opponents with longer reach, by " + ::MSU.Text.colorizeValue(::Reforged.Reach.BonusPerReach) + " per difference in reach. Note: Reach grants no Melee Skill when attacking an opponent who has a shield. Characters who are Rooted or have no Zone of Control have no Reach.";
 		this.m.Icon = "skills/rf_reach_effect.png";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast + 100;
@@ -30,40 +32,77 @@ this.rf_reach_effect <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	function onUpdate( _properties )
 	{
-		::Reforged.Reach.CurrAttackerBonus = 0;
-		::Reforged.Reach.CurrDefenderBonus = 0;
-		if (_skill.isRanged() || _targetEntity == null || _targetEntity.isArmedWithShield() || !::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetEntity))
-			return;
-
-		if (!this.getContainer().getActor().hasZoneOfControl())
-			_properties.ReachMult *= 0;
-
-		::Reforged.Reach.CurrAttackerBonus = ::Math.floor(::Reforged.Reach.BonusPerReach * _properties.getReach());
-		_properties.MeleeSkill += ::Reforged.Reach.CurrAttackerBonus;
+		if (!this.getContainer().getActor().hasZoneOfControl() || _properties.IsRooted)
+		{
+			_properties.ReachMult = 0.0;
+		}
 	}
 
-	function onBeingAttacked( _attacker, _skill, _properties )
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill.isRanged() || !::Reforged.Reach.hasLineOfSight(_attacker, this.getContainer().getActor()))
+		this.m.CurrBonus = 0;
+
+		if (_targetEntity == null || _skill.isRanged() || !::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetEntity))
 			return;
 
-		::Reforged.Reach.CurrDefenderBonus = ::Math.floor(::Reforged.Reach.BonusPerReach * _properties.getReach());
-		_properties.MeleeDefense += ::Reforged.Reach.CurrDefenderBonus;
+		local myReach = _targetEntity.isArmedWithShield() ? 0 : _properties.getReach();
+		local diff = myReach - _targetEntity.buildPropertiesForDefense(this.getContainer().getActor(), _skill).getReach();
+
+		if (diff == 0 || (diff < 0 && this.m.HitEnemies.find(_targetEntity.getID()) != null))
+			return;
+
+		this.m.CurrBonus = ::Math.floor(::Reforged.Reach.BonusPerReach * diff);
+		_properties.MeleeSkill += this.m.CurrBonus;
+	}
+
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	{
+		if (!_skill.isRanged() && _targetEntity.isAlive() && ::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetEntity) && this.m.HitEnemies.find(_targetEntity.getID()) == null)
+		{
+			this.m.HitEnemies.push(_targetEntity.getID());
+		}
+	}
+
+	function onTargetMissed( _skill, _targetEntity )
+	{
+		::MSU.Array.removeByValue(this.m.HitEnemies, _targetEntity.getID());
+	}
+
+	function onTurnStart()
+	{
+		this.m.HitEnemies.clear();
+	}
+
+	function onTurnEnd()
+	{
+		this.m.HitEnemies.clear();
+	}
+
+	function onWaitTurn()
+	{
+		this.m.HitEnemies.clear();
+	}
+
+	function onPayForItemAction( _skill, _items )
+	{
+		this.m.HitEnemies.clear();
+	}
+
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		this.m.HitEnemies.clear();
 	}
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
-		if (!_targetTile.IsOccupiedByActor || _targetTile.getEntity().getID() == this.getContainer().getActor().getID())
-			return;
-
-		local diff = ::Reforged.Reach.CurrAttackerBonus - ::Reforged.Reach.CurrDefenderBonus;
-		if (diff != 0)
+		if (this.m.CurrBonus != 0)
 		{
 			_tooltip.push({
-				icon = diff > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
-				text = ::MSU.Text.colorizePercentage(diff) + (diff > 0 ? " Reach Advantage" : " Reach Disadvantage")
+				icon = this.m.CurrBonus > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
+				text = ::MSU.Text.colorizePercentage(this.m.CurrBonus) + (this.m.CurrBonus > 0 ? " Reach Advantage" : " Reach Disadvantage")
 			});
 		}
 	}
