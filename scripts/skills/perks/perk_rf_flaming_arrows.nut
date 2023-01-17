@@ -61,7 +61,12 @@ this.perk_rf_flaming_arrows <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		this.m.TargetTile = _skill.getID() == "actives.aimed_shot" ? _targetTile : null;
+		this.m.TargetTile = null;
+	}
+
+	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
+	{
+		if (_skill.getID() == "actives.aimed_shot") this.m.TargetTile = _targetEntity.getTile();
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
