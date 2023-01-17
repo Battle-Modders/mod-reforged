@@ -64,6 +64,7 @@
 	RF_OffhandTraining = "Offhand Training",
 	RF_Opportunist = "Opportunist",
 	RF_PatternRecognition = "Pattern Recognition",
+	RF_Phalanx = "Phalanx",
 	RF_PowerShot = "Power Shot",
 	RF_Professional = "Professional",
 	RF_PromisedPotential = "Promised Potential",
@@ -1002,6 +1003,16 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Every subsequent attack gives a larger bonus, with the first attack giving " + ::MSU.Text.colorGreen("+1") + ", the second " + ::MSU.Text.colorGreen("+2") + ", the third " + ::MSU.Text.colorGreen("+3") + " and so on.",
 				"Once the total bonus reaches " + ::MSU.Text.colorGreen(10) + ", all subsequent attacks increase it by " + ::MSU.Text.colorGreen("+1") + " only.",
 				"Only works with dealing or receiving melee attacks."
+			]
+		}]
+ 	}),
+ 	RF_Phalanx = ::UPD.getDescription({
+ 		Fluff = "Learn the ancient art of fighting in a shielded formation.",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"When equipped with a shield, gain " + ::MSU.Text.colorGreen("+1") + " Reach per adjacent ally also equipped with a shield.",
+				"Bucklers do not count as shields for this perk."
 			]
 		}]
  	}),
