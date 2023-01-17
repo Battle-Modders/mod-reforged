@@ -111,21 +111,198 @@
 	RF_WhirlingDeath = "Whirling Death",
 });
 
-::MSU.Table.merge(::Const.Strings.PerkDescription, {
-	// Vanilla
-// 	CoupDeGrace
-// 	Dodge
-// 	Duelist
-// 	SpecBow
-// 	SpecPolearm
-// 	SpecThrowing
-// 	Nimble
-// 	Overwhelm
-// 	Pathfinder
-// 	QuickHands
-// 	ShieldExpert
+local vanillaDescriptions = [
+	{
+		ID = "perk.coup_de_grace",
+		Key = "CoupDeGrace",
+		Description = ::UPD.getDescription({
+	 		Fluff = "\'Off with their heads!\'",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+ 					"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " against enemies who have sustained an injury.",
+ 					"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " against enemies who are Sleeping, Stunned, Netted, Webbed, or Rooted.",
+ 					"Both damage bonuses stack multiplicatively."
+ 				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.duelist",
+		Key = "Duelist",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Become one with your weapon and go for the weak spots!",
+	 		Requirement = "Melee Attack",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+ 					"Additional damage ignores armor. This bonus is " + ::MSU.Text.colorGreen("25%") + " for one-handed weapons and " + ::MSU.Text.colorGreen("15%") + " for two-handed weapons.",
+ 					"Gain " + ::MSU.Text.colorGreen("+2") + " Reach when engaged with a single enemy, and " + ::MSU.Text.colorGreen("+1") + " when engaged with a maximum of 2 enemies."
+ 				]
+ 			}]
+	 	}),
+	 	Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks with a Base Action Point cost of 4 or less that are either \'Lunge\' or have a Base Maximum Range of 1 tile.")
+	},
+	{
+		ID = "perk.mastery.bow",
+		Key = "SpecBow",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Master the art of archery and pelting your opponents with arrows from afar.",
+	 		Requirement = "Bow",
+	 		Effects = [
+		 		{
+	 				Type = ::UPD.EffectType.Passive,
+	 				Description = [
+	 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less Fatigue.",
+	 					"View range and maximum shooting range with bows is increased by " + ::MSU.Text.colorGreen("+1") + "."
+	 				]
+	 			},
+	 			{
+	 				Type = ::UPD.EffectType.Active,
+	 				Script = "scripts/skills/actives/rf_arrow_to_the_knee_skill"
+	 				Description = [
+	 					"Applies a debuff on the target for 2 turns reducing their Melee and Ranged Defense by " + ::MSU.Text.colorRed("-5") + " each and requiring them to spend " + ::MSU.Text.colorRed("2") + " additional Action Points per tile moved."
+	 					"Deals " + ::MSU.Text.colorRed("50%") + " reduced Ranged Damage, and has no chance to hit the head."
+	 				]
+	 			}
+ 			]
+	 	})
+	},
+	{
+		ID = "perk.mastery.polearm",
+		Key = "SpecPolearm",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Master polearms and keeping the enemy at bay.",
+	 		Requirement = "Polearm",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+ 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less Fatigue.",
+ 					"All skills with two-handed weapons, with a range of 2 tiles, having an Action Point cost of " + ::MSU.Text.colorRed("6") + " have their Action Point cost reduced to " + ::MSU.Text.colorRed("5") + ", and no longer have a penalty for attacking targets directly adjacent."
+ 				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.mastery.throwing",
+		Key = "SpecThrowing",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Master throwing weapons to wound or kill the enemy before they even get close.",
+	 		Requirement = "Polearm",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+ 					"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " when attacking at a distance of 3 tiles or less.",
+ 					"Gain 20% of your Melee Skill as additional chance to hit when attacking at a distance of 3 tiles or less.",
+ 					"Throwing Spear ignores the target\'s damage reduction to shields from Shield Mastery."
+ 				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.nimble",
+		Key = "Nimble",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Specialize in light armor! By nimbly dodging or deflecting blows, convert any hits to glancing hits.",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+ 					"Damage to Hitpoints is reduced by " + ::MSU.Text.colorGreen("50%") + " and that to armor by " + ::MSU.Text.colorGreen("25%") + ".",
+ 					"The bonus drops exponentially when wearing head and body armor with a total penalty to Maximum Fatigue above 15. The lighter your armor and helmet, the more you benefit.",
+ 					"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
+ 					"Brawny does not affect this perk."
+ 				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.overwhelm",
+		Key = "Overwhelm",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Learn to take advantage of your high Initiative and prevent the enemy from attacking effectively by overwhelming them with your attacks!",
+	 		Requirement = "Melee Attack",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+ 					"With every attack, hit or miss, against an opponent that acts after you in the current round, inflict the \'Overwhelmed\' status effect which lowers both Melee Skill and Ranged Skill by " + ::MSU.Text.colorRed("-10%") + " for one turn.",
+ 					"The effect stacks with each attack, up to a maximum of 7 times, and can be applied to multiple targets at once with a single attack."
+ 				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.pathfinder",
+		Key = "Pathfinder",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Learn to move on difficult terrain.",
+	 		Effects = [
+		 		{
+	 				Type = ::UPD.EffectType.Passive,
+	 				Description = [
+	 					"Action Point costs for movement on all terrain is reduced by " + ::MSU.Text.colorRed("-1") + " to a minimum of 2 Action Points per tile, and Fatigue cost is reduced to half.",
+	 					"Changing height levels also has no additional Action Point cost anymore."
+	 				]
+	 			},
+	 			{
+	 				Type = ::UPD.EffectType.Active,
+	 				Script = "scripts/skills/actives/rf_sprint_skill"
+	 				Description = [
+	 					"Further reduces the Action Point cost of movement on all terrain by " + ::MSU.Text.colorRed("-1") + ".",
+	 					"Increases the Fatigue Cost of movement by " + ::MSU.Text.colorRed("20%") + "."
+	 				]
+	 			}
+ 			]
+	 	}),
+	},
+	{
+		ID = "perk.quick_hands",
+		Key = "QuickHands",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Looking for this?",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+ 					"Swapping any item in battle a free action with no Action Point cost once every turn.",
+ 					"Does not work when swapping a shield, or when swapping from one Two-Handed melee weapon to another Two-Handed melee weapon."
+ 				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.shield_expert",
+		Key = "ShieldExpert",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Learn to better deflect hits to the side instead of blocking them head on.",
+	 		Effects = [
+		 		{
+	 				Type = ::UPD.EffectType.Passive,
+	 				Description = [
+	 					"The shield defense bonus is increased by " + ::MSU.Text.colorGreen("25%") + ". This also applies to the additional defense bonus of the Shieldwall skill.",
+	 					"Shield damage received is reduced by " + ::MSU.Text.colorRed("50%") + " to a minimum of 1.",
+	 					"The \'Knock Back\' skill gains " + ::MSU.Text.colorGreen("+15%") + " chance to hit and now applies the Staggered effect."
+	 				]
+	 			},
+	 			{
+	 				Type = ::UPD.EffectType.Active,
+	 				Script = "scripts/skills/actives/rf_cover_ally_skill"
+	 				Description = [
+	 					"Target an adjacent ally to give them the \'Move Under Cover\' skill which allows them to move " + ::MSU.Text.colorGreen("1") + " tile ignoring Zone of Control on their turn.",
+	 					"If the ally remains adjacent to you, their position in the turn order in the next round is determined as if they had " + ::MSU.Text.colorGreen("+5000") + " Initiative.",
+	 					"Your Melee Skill, Ranged Skill, Melee Defense, and Ranged Defense are reduced by " + ::MSU.Text.colorRed("-15") + " while you provide cover.",
+	 					"The effect only remains active as long as you are adjacent to that ally."
+	 				]
+	 			}
+ 			]
+	 	}),
+	},
+];
 
-	// Reforged
+foreach (vanillaDesc in vanillaDescriptions)
+{
+	::UPD.setDescription(vanillaDesc.ID, vanillaDesc.Key, vanillaDesc.Description);
+}
+
+::MSU.Table.merge(::Const.Strings.PerkDescription, {
  	RF_Angler = ::UPD.getDescription({
  		Fluff = "Throw nets in a way that perfectly billows around your targets.",
  		Requirement = "Net",
