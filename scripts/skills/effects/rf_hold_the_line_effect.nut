@@ -3,7 +3,7 @@ this.rf_hold_the_line_effect <- ::inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "effects.rf_hold_the_line";
-		this.m.Name = "Pushing Forward";
+		this.m.Name = "Holding the Line";
 		this.m.Description = "This character is holding his ground against the enemy's onslaught.";
 		this.m.Icon = "ui/perks/rf_hold_the_line.png";
 		this.m.IconMini = "rf_hold_the_line_effect_mini";
