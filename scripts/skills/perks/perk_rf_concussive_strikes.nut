@@ -65,7 +65,7 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 				}
 			}
 		}
-		else if (_targetEntity.getCurrentProperties().IsImmuneToDaze)
+		else if (!_targetEntity.getCurrentProperties().IsImmuneToDaze)
 		{
 			local effect = ::new("scripts/skills/effects/dazed_effect");
 			_targetEntity.getSkills().add(effect);
