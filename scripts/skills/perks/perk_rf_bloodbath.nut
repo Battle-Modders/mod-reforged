@@ -1,5 +1,6 @@
 this.perk_rf_bloodbath <- ::inherit("scripts/skills/skill", {
 	m = {
+		IsSpent = true,
 		RestoredActionPoints = 3
 	},
 	function create()
@@ -17,12 +18,23 @@ this.perk_rf_bloodbath <- ::inherit("scripts/skills/skill", {
 
 	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )
 	{
-		if (_fatalityType != ::Const.FatalityType.None && _killer != null && _killer.getID() == this.getContainer().getActor().getID() && _skill != null && !_skill.isRanged() && _skill.isAttack() && ::Tactical.TurnSequenceBar.isActiveEntity(_killer))
+		if (!this.m.IsSpent && _fatalityType != ::Const.FatalityType.None && _killer != null && _killer.getID() == this.getContainer().getActor().getID() && _skill != null && !_skill.isRanged() && _skill.isAttack() && ::Tactical.TurnSequenceBar.isActiveEntity(_killer))
 		{
 			_killer.setActionPoints(::Math.min(_killer.getActionPointsMax(), _killer.getActionPoints() + this.m.RestoredActionPoints));
 			_killer.setDirty(true);
 			this.spawnIcon("perk_rf_bloodbath", _killer.getTile());
+			this.m.IsSpent = true;
 		}
 	}
-});
 
+	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		this.m.IsSpent = false;
+	}
+
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		this.m.IsSpent = true;
+	}
+});
