@@ -1,4 +1,4 @@
-this.rf_swordmaster_stance_abstract_skill <- ::inherit("scripts/skills/actives/rf_swordmaster_abstract_skill", {
+this.rf_swordmaster_stance_abstract_skill <- ::inherit("scripts/skills/actives/rf_swordmaster_active_abstract", {
 	m = {
 		IsOn = false
 	},
