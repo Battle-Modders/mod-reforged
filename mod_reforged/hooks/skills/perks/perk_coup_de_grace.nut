@@ -6,12 +6,7 @@
 			return;
 		}
 
-		if (_targetEntity.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury))
-		{
-			_properties.DamageTotalMult *= 1.2;
-		}
-
-		if (_targetEntity.getSkills().hasSkill("effects.sleeping") || _targetEntity.getSkills().hasSkill("effects.stunned") || _targetEntity.getSkills().hasSkill("effects.net") || _targetEntity.getSkills().hasSkill("effects.web") || _targetEntity.getSkills().hasSkill("effects.rooted"))
+		if (_targetEntity.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury) || _targetEntity.getSkills().hasSkill("effects.sleeping") || _targetEntity.getSkills().hasSkill("effects.stunned") || _targetEntity.getSkills().hasSkill("effects.net") || _targetEntity.getSkills().hasSkill("effects.web") || _targetEntity.getSkills().hasSkill("effects.rooted"))
 		{
 			_properties.DamageTotalMult *= 1.2;
 		}
