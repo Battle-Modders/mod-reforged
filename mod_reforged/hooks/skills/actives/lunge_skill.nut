@@ -3,7 +3,7 @@
 	o.create = function()
 	{
 		this.m.HitChanceBonus = -20;
-		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RFAttackLunge;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_AttackLunge;
 	}
 
 	o.isDuelistValid <- function()
