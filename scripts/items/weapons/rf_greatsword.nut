@@ -20,7 +20,7 @@ this.rf_greatsword <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_sword_two_handed_01";
-		this.m.Value = 3200;
+		this.m.Value = 2400;
 		this.m.ShieldDamage = 12;
 		this.m.Condition = 60.0;
 		this.m.ConditionMax = 60.0;
@@ -39,7 +39,6 @@ this.rf_greatsword <- ::inherit("scripts/items/weapons/weapon", {
 
 		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike", function(o) {
 			o.m.ActionPointCost -= 1;
-			o.m.FatigueCost -= 2;
 			o.setStunChance(this.m.StunChance);
 		}));
 
