@@ -48,7 +48,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		if (_targetEntity == null || _skill.isRanged() || !::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetEntity))
 			return;
 
-		local diff = _properties.getReach() - _targetEntity.buildPropertiesForDefense(this.getContainer().getActor(), _skill).getReach();
+		local diff = _properties.getReach() - _targetEntity.getSkills().buildPropertiesForDefense(this.getContainer().getActor(), _skill).getReach();
 
 		if (diff == 0 || (diff > 0 && _targetEntity.isArmedWithShield()) || (diff < 0 && this.m.HitEnemies.find(_targetEntity.getID()) != null))
 			return;
