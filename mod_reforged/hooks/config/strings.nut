@@ -45,6 +45,7 @@
 	RF_FreshAndFurious = "Fresh and Furious",
 	RF_FromAllSides = "From all Sides",
 	RF_FruitsOfLabor = "Fruits of Labor",
+	RF_Ghostlike = "Ghostlike",
 	RF_HaleAndHearty = "Hale and Hearty",
 	RF_Heft = "Heft",
 	RF_HipShooter = "Hip Shooter",
@@ -845,6 +846,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Hitpoints, Maximum Fatigue, and Initiative are increased by " + ::MSU.Text.colorGreen("10%") + " of their respective base values."
+			]
+		}]
+ 	}),
+ 	RF_Ghostlike = ::UPD.getDescription({
+ 		Fluff = "Blink and you\'ll miss me.",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"When the number of adjacent allies is greater than or equal to the number of adjacent enemies, you may ignore Zone of Control for your next movement action."
 			]
 		}]
  	}),
