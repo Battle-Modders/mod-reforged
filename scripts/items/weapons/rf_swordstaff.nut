@@ -22,6 +22,7 @@ this.rf_swordstaff <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.StaminaModifier = -10;
 		this.m.RangeMin = 1;
 		this.m.RangeMax = 2;
+		this.m.RangeIdeal = 2;
 		this.m.RegularDamage = 55;
 		this.m.RegularDamageMax = 80;
 		this.m.ArmorDamageMult = 1.0;
