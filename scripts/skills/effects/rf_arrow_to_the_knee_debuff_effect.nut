@@ -10,7 +10,7 @@ this.rf_arrow_to_the_knee_debuff_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.rf_arrow_to_the_knee_debuff";
 		this.m.Name = "Took an Arrow to the Knee";		
 		this.m.Description = "This character used to move around freely like you, but then he took arrow to the knee.";
-		this.m.Icon = "ui/perks/rf_arrow_to_the_knee.png";
+		this.m.Icon = "skills/rf_arrow_to_the_knee_debuff_effect.png";
 		this.m.IconMini = "rf_arrow_to_the_knee_debuff_effect_mini";
 		this.m.Overlay = "rf_arrow_to_the_knee_debuff_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;
