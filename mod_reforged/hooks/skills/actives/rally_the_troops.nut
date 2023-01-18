@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/actives/rally_the_troops", function(o) {
 	o.m.Cooldown <- 0;
-	o.m.TurnsRemaining = 0;
+	o.m.TurnsRemaining <- 0;
 
 	local create = o.create;
 	o.create = function()
