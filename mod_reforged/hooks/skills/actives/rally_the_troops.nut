@@ -6,10 +6,7 @@
 	o.create = function()
 	{
 		create();
-		this.m.AIBehavior = {
-			ID = ::Const.AI.Behavior.ID.Rally,
-			Script = "scripts/ai/tactical/behaviors/ai_rally"
-		};
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Rally;
 	}
 
 	local onUse = o.onUse;

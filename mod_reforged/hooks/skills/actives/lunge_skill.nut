@@ -3,10 +3,7 @@
 	o.create = function()
 	{
 		this.m.HitChanceBonus = -20;
-		this.m.AIBehavior = {
-			ID = ::Const.AI.Behavior.ID.RFAttackLunge,
-			Script = "scripts/ai/tactical/behaviors/ai_rf_attack_lunge"
-		};
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RFAttackLunge;
 	}
 
 	o.isDuelistValid <- function()

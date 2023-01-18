@@ -23,10 +23,7 @@ this.rf_hold_the_line_skill <- ::inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 30;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
-		this.m.AIBehavior = {
-			ID = ::Const.AI.Behavior.ID.RF_HoldTheLine,
-			Script = "scripts/ai/tactical/behaviors/ai_rf_hold_the_line"
-		};
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_HoldTheLine;
 	}
 
 	function getTooltip()

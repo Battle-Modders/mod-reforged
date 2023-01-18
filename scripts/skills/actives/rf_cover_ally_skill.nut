@@ -26,10 +26,7 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 20;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
-		this.m.AIBehavior = {
-			ID = ::Const.AI.Behavior.ID.RF_CoverAlly,
-			Script = "scripts/ai/tactical/behaviors/ai_rf_cover_ally"
-		};
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_CoverAlly;
 	}
 
 	function getTooltip()
