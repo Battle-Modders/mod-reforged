@@ -4,7 +4,7 @@ this.rf_swordmaster_stance_meisterhau_skill <- ::inherit("scripts/skills/actives
 	},
 	function create()
 	{
-		this.rf_swordmaster__stance_abstract.create();
+		this.rf_swordmaster_stance_abstract_skill.create();
 		this.m.ID = "actives.rf_swordmaster_stance_meisterhau";
 		this.m.Name = "Stance: Meisterhau";
 		this.m.Description = "Readying yourself for the master strikes known as the Meisterhäu allows you to strike and defend at the same time.";
