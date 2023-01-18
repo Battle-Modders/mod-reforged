@@ -1,5 +1,7 @@
 this.perk_rf_muscle_memory <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		MaxBonus = 30
+	},
 	function create()
 	{
 		this.m.ID = "perk.rf_muscle_memory";
@@ -15,16 +17,18 @@ this.perk_rf_muscle_memory <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate(_properties)
 	{
-		local reloadBolt = this.getContainer().getSkillByID("actives.reload_bolt");
-		if (reloadBolt != null && reloadBolt.m.ActionPointCost > 4)
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Crossbow))
 		{
-			reloadBolt.m.ActionPointCost -= 1;
+			_properties.RangedDamageMult *= 1.0 + ::Math.minf(this.m.MaxBonus * 0.01, ::Math.maxf(0, (_properties.RangedSkill - 90) * 0.01));
 		}
-
-		local reloadHandgonne = this.getContainer().getSkillByID("actives.reload_handgonne");
-		if (reloadHandgonne != null && reloadHandgonne.m.ActionPointCost > 2)
+		else
 		{
-			reloadHandgonne.m.ActionPointCost -= 2;
+			local reloadHandgonne = this.getContainer().getSkillByID("actives.reload_handgonne");
+			if (reloadHandgonne != null && reloadHandgonne.m.ActionPointCost > 1)
+			{
+				reloadHandgonne.m.ActionPointCost -= 2;
+			}
 		}
 	}
 });
