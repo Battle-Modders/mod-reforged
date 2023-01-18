@@ -6,16 +6,16 @@
 		this.m.Reach = 0;
 	}
 
-	// TODO: Needs to be done in some other way so that the changes to the skills
-	// costs can be seen even before the update happens (useful for skill costs in weapon tooltip)
-	o.onAfterUpdateProperties <- function( _properties )
+	o.onEquip = function()
 	{
-		this.weapon.onAfterUpdateProperties(_properties);
+		this.weapon.onEquip();
 
-		local reload = this.getContainer().getActor().getSkills().findById("actives.reload_bolt");
-		if (reload != null)
-		{
-			reload.m.FatigueCost += 2;
-		}
+		this.addSkill(::new("scripts/skills/actives/shoot_bolt"));
+
+		local reload = ::MSU.new("scripts/skills/actives/reload_bolt", function(o) {
+			o.m.FatigueCost += 2;
+		});
+		reload.m.IsHidden = this.m.IsLoaded;
+		this.addSkill(reload);
 	}
 });
