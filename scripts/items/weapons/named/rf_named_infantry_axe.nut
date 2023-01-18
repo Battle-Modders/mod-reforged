@@ -50,6 +50,7 @@ this.rf_named_infantry_axe <- ::inherit("scripts/items/weapons/named_weapon", {
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
+			skillToAdd.setApplyAxeMastery(true);
 			o.m.FatigueCost += 3;
 		}));
 });
