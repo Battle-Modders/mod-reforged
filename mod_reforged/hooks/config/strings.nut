@@ -178,8 +178,9 @@ local vanillaDescriptions = [
 	 			},
 	 			{
 	 				Type = ::UPD.EffectType.Active,
-	 				Script = "scripts/skills/actives/rf_arrow_to_the_knee_skill"
+	 				Name = "Arrow to the Knee",
 	 				Description = [
+	 					"Costs 7 AP and builds 20 Fatigue",
 	 					"Applies a debuff on the target for 2 turns reducing their Melee and Ranged Defense by " + ::MSU.Text.colorRed("-5") + " each and requiring them to spend " + ::MSU.Text.colorRed("2") + " additional Action Points per tile moved."
 	 					"Deals " + ::MSU.Text.colorRed("50%") + " reduced Ranged Damage, and has no chance to hit the head."
 	 				]
@@ -282,8 +283,9 @@ local vanillaDescriptions = [
 	 			},
 	 			{
 	 				Type = ::UPD.EffectType.Active,
-	 				Script = "scripts/skills/actives/rf_sprint_skill"
+	 				Name = "Sprint",
 	 				Description = [
+	 					"Costs 0 AP and builds 10 Fatigue",
 	 					"Further reduces the Action Point cost of movement on all terrain by " + ::MSU.Text.colorRed("-1") + ".",
 	 					"Increases the Fatigue Cost of movement by " + ::MSU.Text.colorRed("20%") + "."
 	 				]
@@ -322,8 +324,9 @@ local vanillaDescriptions = [
 	 			},
 	 			{
 	 				Type = ::UPD.EffectType.Active,
-	 				Script = "scripts/skills/actives/rf_cover_ally_skill"
+	 				Name = "Cover Ally",
 	 				Description = [
+	 					"Costs 4 AP and builds 20 Fatigue",
 	 					"Target an adjacent ally to give them the \'Move Under Cover\' skill which allows them to move " + ::MSU.Text.colorGreen("1") + " tile ignoring Zone of Control on their turn.",
 	 					"If the ally remains adjacent to you, their position in the turn order in the next round is determined as if they had " + ::MSU.Text.colorGreen("+5000") + " Initiative.",
 	 					"Your Melee Skill, Ranged Skill, Melee Defense, and Ranged Defense are reduced by " + ::MSU.Text.colorRed("-15") + " while you provide cover.",
@@ -360,8 +363,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  			},
  			{
  				Type = ::UPD.EffectType.Active,
- 				Script = "scripts/skills/actives/rf_net_pull_skill",
+ 				Name = "Net Pull",
  				Description = [
+ 					"Costs 6 AP and builds 25 Fatigue",
  					"Can be used on a target up to 2 tiles away to pull them towards you and net them.",
  					"Does not gain the passive " + ::MSU.Text.colorRed("-20%") + " chance to break free."
  				]
@@ -440,8 +444,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Fluff = "Unleash the beast within!",
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
-			Script = "scripts/skills/actives/rf_bestial_vigor_skill"
+			Name = "Bestial Vigor",
 			Description = [
+				"Costs 0 AP and builds 0 Fatigue",
 				"Reduce current Fatigue by " + ::MSU.Text.colorRed("50%") + " and gain " + ::MSU.Text.colorGreen("+3") + " Action Points for the current turn.",
 				"Can only be used once per combat."
 			]
@@ -452,8 +457,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Requirement = "Melee Attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
-			Script = "scripts/skills/actives/rf_between_the_eyes_skill"
+			Name = "Between the Eyes",
 			Description = [
+				"Costs 1 AP and builds 20 Fatigue",
 				"The Action Point cost and Fatigue Cost of your weapon\'s primary melee attack is added to the costs of this skill.",
 				"Perform your primary attack with an additional chance to hit the head equal to " + ::MSU.Text.colorGreen("50%") + " of your Melee Skill."
 			]
@@ -473,8 +479,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Fluff = "It will be over in a flash!",
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
-			Script = "scripts/skills/actives/rf_blitzkrieg_skill"
+			Name = "Blitzkrieg",
 			Description = [
+				"Costs 7 AP and builds 30 Fatigue",
 				"You and other members of your company within 4 tiles, who have at least " + ::MSU.Text.colorRed(10) + " Fatigue remaining and are not Stunned or Fleeing, gain the Adrenaline effect.",
 				"The affect allies build " + ::MSU.Text.colorRed(10) + " Fatigue.",
 				"Is only usable once per day."
@@ -799,8 +806,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Requirement = "Two-Handed Melee Weapon",
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
-			Script = "scripts/skills/actives/rf_follow_up_skill"
+			Name = "Follow Up",
 			Description = [
+				"Costs 4 AP and builds 30 Fatigue",
 				"Gain the \'Follow Up\' effect until your next turn. Under this effect:",
 				"When wielding a two-handed melee weapon and not engaged in melee, perform a free attack with " + ::MSU.Text.colorRed("30%") + " reduced damage against enemies in your attack range who get successfully hit by your allies.",
 				"Each susbequent attack increases the damage reduction by " + ::MSU.Text.colorRed("10%") + " up to a maximum of " + ::MSU.Text.colorRed("90%") + ".",
@@ -892,8 +900,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Fluff = "Direct your troops to stand their ground!",
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
-			Script = "scripts/skills/actives/rf_hold_the_line_skill"
+			Name = "Hold the Line",
 			Description = [
+				"Costs 7 AP and builds 30 Fatigue",
 				"You and any allies within 4 tiles who have at least " + ::MSU.Text.colorRed("10") + " Fatigue remaining gain the \'Holding the Line\' effect which increases Melee and Ranged Defense by " + ::MSU.Text.colorGreen("+10") + " and grants immunity to being stunned, knocked back, grabbed, or swallowed for one turn.",
 				"Affected allies build " + ::MSU.Text.colorRed("10") + " Fatigue."
 			]
@@ -954,8 +963,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Requirement = "Sword",
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
-			Script = "scripts/skills/actives/rf_kata_step_skill"
+			Name = "Kata Step",
 			Description = [
+				"Costs 0 AP and builds 0 Fatigue",
 				"This skill has variable cost. The Action Point cost is 2 less than the movement cost of your current tile. The Fatigue cost is equal to the movement cost of your current tile.",
 				"Immediately after a successful attack, allows you to move one tile ignoring zone of control. However, the target tile for the movement must be adjacent to an enemy.",
 				"Only works with Two-Handed swords or with One-Handed swords with the offhand free."
@@ -1001,8 +1011,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Requirement = "Shield",
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
-			Script = "scripts/skills/actives/rf_line_breaker_skill"
+			Name = "Line Breaker",
 			Description = [
+				"Costs 4 AP and builds 25 Fatigue",
 				"Knock back an enemy and take their place, all in one action."
 			]
 		}]
@@ -1178,8 +1189,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Fluff = "Break their ranks, break their backs, break them all!",
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
-			Script = "scripts/skills/actives/rf_push_forward_skill"
+			Name = "Push Forward",
 			Description = [
+				"Costs 7 AP and builds 30 Fatigue",
 				"You and other members of your company within 4 tiles, who have at least " + ::MSU.Text.colorRed(10) + " Fatigue remaining and are not Fleeing or Stunned, gain " + ::MSU.Text.colorGreen("+20") + " Initiative, " + ::MSU.Text.colorGreen("+10") + " Melee Skill and the \'Line Breaker\' skill for one turn.",
 				"The first use of this \'Line Breaker\' skill costs " + ::MSU.Text.colorGreen(1) + " fewer Action Point and builds " + ::MSU.Text.colorGreen(10) + " less Fatigue.",
 				"The affected allies build " + ::MSU.Text.colorRed(10) + " Fatigue."
@@ -1362,8 +1374,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [
 	 		{
 				Type = ::UPD.EffectType.Active,
-				Script = "scripts/skills/actives/rf_swordmaster_kick_skill",
+				Name = "Kick",
 				Description = [
+					"Costs 4 AP and builds 20 Fatigue",
 					"Knocks back and staggers the target."
 					"When using a two-handed sword or double-gripping a one-handed sword, the Action Point cost is reduced by " + ::MSU.Text.colorGreen(1) + " and the Fatigue Cost by " + ::MSU.Text.colorGreen(5) + "."
 
@@ -1371,16 +1384,18 @@ foreach (vanillaDesc in vanillaDescriptions)
 			},
 			{
 				Type = ::UPD.EffectType.Active,
-				Script = "scripts/skills/actives/rf_swordmaster_push_through_skill",
+				Name = "Push Through",
 				Description = [
+					"Costs 4 AP and builds 25 Fatigue",
 					"Allows you to knock back and stagger a target while moving into their tile in one action."
 
 				]
 			},
 			{
 				Type = ::UPD.EffectType.Active,
-				Script = "scripts/skills/actives/rf_swordmaster_tackle_skill",
+				Name = "Tackle",
 				Description = [
+					"Costs 6 AP and builds 25 Fatigue",
 					"Allows you to exchange positions with and stagger an adjacent target.",
 					"Requires a two-handed or double-gripped one-handed sword."
 
@@ -1402,8 +1417,9 @@ foreach (vanillaDesc in vanillaDescriptions)
 			},
 			{
 				Type = ::UPD.EffectType.Active,
-				Script = "scripts/skills/actives/rf_swordmaster_charge_skill",
+				Name = "Juggernaut Charge",
 				Description = [
+					"Costs 5 AP and builds 25 Fatigue",
 					"Immediately gain the \'Indomitable\' effect that lasts until your next turn.",
 					"Charge towards a tile up to 2 tiles away, staggering all enemies adjacent to that tile and performing a free attack against a random enemy that does " + ::MSU.Text.colorGreen("50%") + " increased damage (allows you to close the gap with targets up to 3 tiles away).",
 					"Can only be used once per turn and cannot be used when engaged in melee."
@@ -1462,8 +1478,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [
 	 		{
 				Type = ::UPD.EffectType.Active,
-				Script = "scripts/skills/actives/rf_swordmaster_stance_half_swording_skill",
+				Name = "Stance: Half-Swording",
 				Description = [
+					"Costs 3 AP and builds 1 Fatigue to switch",
 					"While this stance is active, all the skills of the equipped sword are removed and replaced with \'Puncture\'."
 					"Requires a two-handed sword or double-gripped one-handed sword."
 
@@ -1471,8 +1488,9 @@ foreach (vanillaDesc in vanillaDescriptions)
 			},
 			{
 				Type = ::UPD.EffectType.Active,
-				Script = "scripts/skills/actives/rf_swordmaster_stance_reverse_grip_skill",
+				Name = "Stance: Reverse Grip",
 				Description = [
+					"Costs 3 AP and builds 1 Fatigue to switch",
 					"While this stance is active, all the skills of the equipped sword are removed and replaced with \'Cudgel\' and \'Strike Down\' for two-handed swords and \'Bash\' and \'Knock Out\' for one-handed swords.",
 					"Requires a two-handed sword or double-gripped one-handed sword.This is the default stance. While this stance is active, moving from your position no longer disables the En Garde perk."
 
@@ -1480,8 +1498,9 @@ foreach (vanillaDesc in vanillaDescriptions)
 			},
 			{
 				Type = ::UPD.EffectType.Active,
-				Script = "scripts/skills/actives/rf_swordmaster_stance_meisterhau_skill",
+				Name = "Stance: Meisterhau",
 				Description = [
+					"Costs 3 AP and builds 1 Fatigue to switch",
 					"While this stance is active, moving from your position no longer disables the En Garde perk.",
 					"This is the default stance."
 				]
