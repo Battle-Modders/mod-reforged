@@ -1,5 +1,6 @@
 this.rf_reach <- ::inherit("scripts/skills/skill", {
 	m = {
+		CurrBonus = 0,
 		HitEnemies = []
 	},
 	function create()
