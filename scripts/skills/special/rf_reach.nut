@@ -1,14 +1,14 @@
-this.rf_reach_effect <- ::inherit("scripts/skills/skill", {
+this.rf_reach <- ::inherit("scripts/skills/skill", {
 	m = {
 		HitEnemies = []
 	},
 	function create()
 	{
-		this.m.ID = "effects.rf_reach";
+		this.m.ID = "special.rf_reach";
 		this.m.Name = "Reach";
 		this.m.Description = "Reach is a depiction of how far this character\'s attacks can reach, making melee combat easier against targets with shorter reach. Melee skill is increased when attacking opponents with shorter reach, and reduced against opponents with longer reach, by " + ::MSU.Text.colorizeValue(::Reforged.Reach.BonusPerReach) + " per difference in reach. Note: Reach grants no Melee Skill when attacking an opponent who has a shield. Characters who are Rooted or have no Zone of Control have no Reach.";
 		this.m.Icon = "skills/rf_reach_effect.png";
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast + 100;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
