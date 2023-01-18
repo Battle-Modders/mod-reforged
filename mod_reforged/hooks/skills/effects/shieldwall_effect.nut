@@ -17,7 +17,7 @@
 
 	o.onSkillsUpdated <- function()
 	{
-		local stun = this.getContainer().hasSkill("effects.stunned");
+		local stun = this.getContainer().getSkillByID("effects.stunned");
 		if (stun != null)
 		{
 			stun.removeSelf();
