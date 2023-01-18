@@ -68,9 +68,9 @@
 
 		local count = getSurroundedCount();
 
-		foreach (enemy in ::Tactical.Entities.getHostileActors(this, this.getTile(), 2, true))
+		foreach (enemy in ::Tactical.Entities.getHostileActors(this.getFaction(), this.getTile(), 2, true))
 		{
-			local perk = enemy.getSkills().hasSkill("perk.rf_long_reach");
+			local perk = enemy.getSkills().getSkillByID("perk.rf_long_reach");
 			if (perk != null && perk.isEnabled())
 			{
 				count++;
