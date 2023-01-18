@@ -2,6 +2,7 @@ this.rf_line_breaker_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 	m = {},
 	function create()
 	{
+		this.line_breaker.create();
 		this.m.ID = "actives.rf_line_breaker";
 		this.m.Name = "Line Breaker";
 		this.m.Description = "Push through the ranks of your enemies by knocking back a target and taking its place, all in one action.";
