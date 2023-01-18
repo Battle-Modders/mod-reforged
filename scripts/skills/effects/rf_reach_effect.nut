@@ -47,10 +47,9 @@ this.rf_reach_effect <- ::inherit("scripts/skills/skill", {
 		if (_targetEntity == null || _skill.isRanged() || !::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetEntity))
 			return;
 
-		local myReach = _targetEntity.isArmedWithShield() ? 0 : _properties.getReach();
-		local diff = myReach - _targetEntity.buildPropertiesForDefense(this.getContainer().getActor(), _skill).getReach();
+		local diff = _properties.getReach() - _targetEntity.buildPropertiesForDefense(this.getContainer().getActor(), _skill).getReach();
 
-		if (diff == 0 || (diff < 0 && this.m.HitEnemies.find(_targetEntity.getID()) != null))
+		if (diff == 0 || (diff > 0 && _targetEntity.isArmedWithShield()) || (diff < 0 && this.m.HitEnemies.find(_targetEntity.getID()) != null))
 			return;
 
 		this.m.CurrBonus = ::Math.floor(::Reforged.Reach.BonusPerReach * diff);
