@@ -8,6 +8,8 @@
 ::mods_queue(::Reforged.ID, "mod_msu", function() {
 	::Reforged.Mod <- ::MSU.Class.Mod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);	
 
+	::include("mod_reforged/hooks/msu.nut");
+
 	local generalPage = ::Reforged.Mod.ModSettings.addPage("General");
 	local legendaryDifficulty = generalPage.addBooleanSetting("LegendaryDifficulty", false, "Legendary Difficulty");
 	legendaryDifficulty.getData().NewCampaign <- true;
