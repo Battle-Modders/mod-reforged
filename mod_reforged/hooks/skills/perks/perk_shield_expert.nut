@@ -2,11 +2,11 @@
 	local onAdded = ::mods_getMember(o, "onAdded");
 	::mods_override(o, "onAdded", function() {
 		onAdded();
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null)
+		local shield = this.getContainer().getActor().getOffhandItem();
+		if (shield != null)
 		{
-			this.getContainer().getActor().getItems().unequip(weapon);
-			this.getContainer().getActor().getItems().equip(weapon);
+			this.getContainer().getActor().getItems().unequip(shield);
+			this.getContainer().getActor().getItems().equip(shield);
 		}
 	});
 
