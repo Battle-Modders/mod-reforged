@@ -18,8 +18,14 @@ this.perk_rf_back_to_basics <- ::inherit("scripts/skills/skill", {
 	{
 		if (this.m.IsNew)
 		{
-			this.getContainer().getActor().getBackground().getPerkTree().setPerkTier(2);
-			this.getContainer().getActor().m.PerkPoints += 2;
+			local actor = this.getContainer().getActor();
+			if (::MSU.isKindOf(actor, "player"))
+			{
+				// One perk tier is added after this function due to picking the perk.
+				// So if we want to set it to 2, we set it to 1
+				actor.setPerkTier(1);
+				actor.m.PerkPoints += 2;
+			}
 		}
 	}
 });
