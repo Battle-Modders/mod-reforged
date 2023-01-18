@@ -19,6 +19,14 @@
 		}
 	}
 
+	o.onBeforeAnySkillExecuted <- function( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (_skill.getID() == "actives.throw_spear" && this.getContainer().getActor().getCurrentProperties().IsSpecializedInThrowing && _targetEntity.getCurrentProperties().IsSpecializedInShields)
+		{
+			this.getContainer().getActor().getMainhandItem().m.ShieldDamage *= 2;
+		}
+	}
+
 	o.onQueryTooltip <- function( _skill, _tooltip )
 	{
 		if (_skill.isRanged() && _skill.m.IsWeaponSkill)
@@ -33,6 +41,16 @@
 					text = "Has " + ::MSU.Text.colorizePercentage(this.getHitchanceBonus()) + " chance to hit at a distance of 3 tiles or less"
 				});
 			}
+		}
+
+		if (_skill.getID() == "actives.throw_spear")
+		{
+			tooltip.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Ignores the damage reduction to shields from the target\'s Shield Expert perk"
+			});
 		}
 	}
 });
