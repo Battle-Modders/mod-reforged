@@ -71,7 +71,7 @@ this.rf_inspiring_presence_buff_effect <- ::inherit("scripts/skills/skill", {
 		{
 			if (!hasInspirer)
 			{
-				local inspiringPresence = ally.getSkills().getSkillByID("perk.rf_inspiring_presence");
+				local inspiringPresence = ally.getSkills().getSkillByID("perk.inspiring_presence");
 				if (inspiringPresence != null && inspiringPresence.isEnabled())
 				{
 					hasInspirer = true;
