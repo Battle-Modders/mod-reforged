@@ -1,23 +1,28 @@
 ::MSU.Table.merge(::Const.Strings.PerkName, {
+	RF_Alert = "Alert",
 	RF_Angler = "Angler",
-// 	RF_AssuredConquest = "Assured Conquest",
-// 	RF_BackToBasics = "Back to Basics",
-// 	RF_Balance = "Balance",
+	RF_AssuredConquest = "Assured Conquest",
+	RF_BackToBasics = "Back to Basics",
+	RF_Balance = "Balance",
+	RF_Ballistics = "Ballistics",
+	RF_BattleFlow = "Battle Flow",
 	RF_BearDown = "Bear Down",
 	RF_BestialVigor = "Bestial Vigor",
 	RF_BetweenTheEyes = "Between the Eyes",
 	RF_BetweenTheRibs = "Between the Ribs",
 	RF_Blitzkrieg = "Blitzkrieg",
 	RF_Bloodbath = "Bloodbath",
-//	RF_BloodyHarvest = "Bloody Harvest",
+	RF_Bloodlust = "Bloodlust",
+	RF_BloodyHarvest = "Bloody Harvest",
 	RF_Bolster = "Bolster",
 	RF_BoneBreaker = "Bone Breaker",
 	RF_Bully = "Bully",
 	RF_Bulwark = "Bulwark",
-	// RF_Clarity = "Clarity",
+	RF_Clarity = "Clarity",
 	RF_ConcussiveStrikes = "Concussive Strikes",
 	RF_Cull = "Cull",
 	RF_DeepCuts = "Deep Cuts",
+	RF_DeepImpact = "Deep Impact",
 	RF_DentArmor = "Dent Armor",
 	RF_DiscoveredTalent = "Discovered Talent",
 	RF_Dismantle = "Dismantle",
@@ -54,7 +59,7 @@
 	RF_KingOfAllWeapons = "King of all Weapons",
 	RF_Leverage = "Leverage",
 	RF_LineBreaker = "Line Breaker",
-// 	RF_Lithe = "Lithe",
+	RF_Lithe = "Lithe",
 	RF_LongReach = "Long Reach",
 	RF_ManOfSteel = "Man of Steel",
 	RF_Marksmanship = "Marksmanship",
@@ -64,20 +69,21 @@
 	RF_OffhandTraining = "Offhand Training",
 	RF_Opportunist = "Opportunist",
 	RF_PatternRecognition = "Pattern Recognition",
+	RF_PersonalArmor = "Personal Armor",
 	RF_Phalanx = "Phalanx",
 	RF_PowerShot = "Power Shot",
 	RF_Professional = "Professional",
 	RF_PromisedPotential = "Promised Potential",
  	RF_ProximityThrowingSpecialist = "Proximity Throwing Specialist",
-// 	RF_PushForward = "Push Forward",
+	RF_PushForward = "Push Forward",
 	RF_Rattle = "Rattle",
 	RF_RealizedPotential = "Realized Potential",
 	RF_RisingStar = "Rising Star",
 	RF_Sanguinary = "Sanguinary",
 	RF_SavageStrength = "Savage Strength",
-// 	RF_ShieldsUp = "Shields Up",
+	RF_ShieldsUp = "Shields Up",
 	RF_SmallTarget = "Small Target",
-// 	RF_SmashingShields = "Smashing Shields",
+	RF_SmashingShields = "Smashing Shields",
 	RF_SneakAttack = "Sneak Attack",
 	RF_SpearAdvantage = "Spear Advantage",
 	RF_StrengthInNumbers = "Strength in Numbers",
@@ -102,7 +108,7 @@
 	RF_TripArtist = "Trip Artist",
 	RF_TwoForOne = "Two for One",
 	RF_Unstoppable = "Unstoppable",
-// 	RF_Vengeance = "Vengeance",
+	RF_Vengeance = "Vengeance",
 	RF_VengefulSpite = "Vengeful Spite",
 	RF_Vigilant = "Vigilant",
 	RF_VigorousAssault = "Vigorous Assault",
@@ -334,6 +340,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 }
 
 ::MSU.Table.merge(::Const.Strings.PerkDescription, {
+	RF_Alert = ::UPD.getDescription({
+ 		Fluff = "What was that over there?",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Initiative is increased by " + ::MSU.Text.colorGreen("20%") + "."
+			]
+		}]
+ 	}),
  	RF_Angler = ::UPD.getDescription({
  		Fluff = "Throw nets in a way that perfectly billows around your targets.",
  		Requirement = "Net",
@@ -381,6 +396,25 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"The penalty to initiative from head and body armor is reduced by " + ::MSU.Text.colorRed("30%") + ".",
 				"At all times your Initiative is reduced only by " ::MSU.Text.colorGreen("50%") + " of accumulated Fatigue, instead of all of it",
 				"Stacks multiplicatively with the Relentless perk"
+			]
+		}]
+ 	}),
+ 	RF_Ballistics = ::UPD.getDescription({
+ 		Fluff = "Death from afar!",
+ 		Requirement = "Ranged Attack",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"The penalty to hit chance per tile of distance is reduced by " + ::MSU.Text.colorGreen("2%") + "."
+			]
+		}]
+ 	}),
+ 	RF_BattleFlow = ::UPD.getDescription({
+ 		Fluff = "On to the next!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Once per turn, making a kill reduces current Fatigue by " + ::MSU.Text.colorGreen("15%") + " of Base Maximum Fatigue."
 			]
 		}]
  	}),
@@ -454,6 +488,17 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Fatalities instantly restore " + ::MSU.Text.colorGreen(3) + " Action Points.",
 				"Can proc multiple times per turn, but only once per attack."
+			]
+		}]
+ 	}),
+ 	RF_Bloodlust = ::UPD.getDescription({
+ 		Fluff = "When surrounded by carnage, you feel revitalized and right at home!",
+ 		Requirement = "Melee Attack",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"During your turn, every successful attack reduces current Fatigue by " + ::MSU.Text.colorGreen("5%") + " per stack of Bleeding on the target and increases Fatigue Recovery by " + ::MSU.Text.colorGreen("+1") + " for one turn per stack of Bleeding on the target.",
+				"Bleeding inflicted by the attack, or killing a target, also counts towards the bonus."
 			]
 		}]
  	}),
@@ -548,6 +593,16 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"During your turn, after a successful attack against a target, all subsequent attacks have a " + ::MSU.Text.colorRed("33%") + " reduced threshold to inflict injury and will inflict an additional stack of Bleeding for " + ::MSU.Text.colorRed(5) + " damage. This damage is increased to " + ::MSU.Text.colorRed(10) + " if any of the attacks inflicted an injury.",
 				"The effect expires upon switching your target, moving, swapping an item, waiting or ending a turn, or using any skill except a cutting attack."
+			]
+		}]
+ 	}),
+ 	RF_DeepImpact = ::UPD.getDescription({
+ 		Fluff = "\'Roll out the barrel, feel it in your bones!\'",
+ 		Requirement = "Blunt Damage",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"An additional " + ::MSU.Text.colorRed("10%") + " of damage ignores armor."
 			]
 		}]
  	}),
@@ -974,7 +1029,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Marksmanship = ::UPD.getDescription({
  		Fluff = "Intuitively calculate wind velocity and distance to target your enemies\' weak spots!",
- 		Requires = "Ranged Weapon",
+ 		Requirement = "Ranged Weapon",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1046,6 +1101,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+ 	RF_PersonalArmor = ::UPD.getDescription({
+ 		Fluff = "Give your own armor some of that special treatment!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Damage received to armor is reduced by " + ::MSU.Text.colorGreen("10%") + "."
+			]
+		}]
+ 	}),
  	RF_Phalanx = ::UPD.getDescription({
  		Fluff = "Learn the ancient art of fighting in a shielded formation.",
  		Effects = [{
@@ -1114,7 +1178,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Rattle = ::UPD.getDescription({
  		Fluff = "Rattle your enemies to their bones to weaken them!",
- 		Requires = "Blunt Damage",
+ 		Requirement = "Blunt Damage",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1145,7 +1209,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Sanguinary = ::UPD.getDescription({
  		Fluff = "Fountain of Blood!",
- 		Requires = "Melee Attack",
+ 		Requirement = "Melee Attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1359,9 +1423,21 @@ foreach (vanillaDesc in vanillaDescriptions)
 		],
 		Footer = ::MSU.Text.colorRed("You can only pick ONE perk from the Swordmaster perk group.")
  	}),
+ 	RF_SwordmasterPrecise = ::UPD.getDescription({
+ 		Fluff = "Let me show you how to thread a needle... blindfolded!",
+ 		Requirement = "Non-hybrid Sword"
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"The bonuses of the \'Swordmaster\'s Training\' or \'Swordmaster\'s Finesse\' effect are doubled."
+				"While wielding a Fencing Sword an additional " + ::MSU.Text.colorGreen("25%") + " of damage ignores armor."
+			]
+		}],
+		Footer = ::MSU.Text.colorRed("You can only pick ONE perk from the Swordmaster perk group.")
+ 	}),
 	RF_SwordmasterReaper = ::UPD.getDescription({
- 		Fluff = "Let's Dance!",
- 		Requirement = "Bring in the harvest!"
+ 		Fluff = "Bring in the harvest!",
+ 		Requirement = "Non-Hybrid Sword"
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
