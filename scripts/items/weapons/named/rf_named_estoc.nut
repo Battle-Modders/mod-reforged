@@ -25,6 +25,7 @@ this.rf_named_estoc <- ::inherit("scripts/items/weapons/named_weapon", {
 		this.m.DirectDamageMult = 0.25;
 		this.m.DirectDamageAdd = 0.2;
 		this.m.Reach = 5;
+		this.randomizeValues();
 	}
 
 	function updateVariant()
