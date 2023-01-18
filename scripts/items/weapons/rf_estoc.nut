@@ -36,33 +36,7 @@ this.rf_estoc <- ::inherit("scripts/items/weapons/weapon", {
 			o.m.FatigueCost += 2;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/lunge", function(o) {
-		}));
+		this.addSkill(::MSU.new("scripts/skills/actives/lunge"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/riposte", function(o) {
-		}));
-	}
-
-	local onUpdateProperties = ::mods_getMember(o, "onUpdateProperties");
-			o.onUpdateProperties <- function( _properties )
-			{
-				onUpdateProperties(_properties);
-				_properties.HitChance[::Const.BodyPart.Head] += -25;
-			}
-
-	local getTooltip = ::mods_getMember(o, "getTooltip");
-			o.getTooltip <- function()
-			{
-				local tooltip = getTooltip();
-				tooltip.insert(tooltip.len() - 1,
-					{
-						id = 9,
-						type = "text",
-						icon = "ui/icons/chance_to_hit_head.png",
-						text = "Chance to hit head [color=" + this.Const.UI.Color.NegativeValue + "]-25%[/color]"
-					}
-				);
-
-				return tooltip;
-			}
+		this.addSkill(::MSU.new("scripts/skills/actives/riposte"));
 });
