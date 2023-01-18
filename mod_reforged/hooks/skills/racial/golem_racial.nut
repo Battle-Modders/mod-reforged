@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/skill/golem_racial", function(o) {
+::mods_hookExactClass("skills/racial/golem_racial", function(o) {
 	o.onBeforeDamageReceived = function( _attacker, _skill, _hitInfo, _properties )
 	{
 		if (_skill != null && _skill.getID() == "actives.throw_golem")

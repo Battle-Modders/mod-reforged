@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/skill/huge_trait", function (o) {
+::mods_hookExactClass("skills/traits/huge_trait", function (o) {
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
 	{

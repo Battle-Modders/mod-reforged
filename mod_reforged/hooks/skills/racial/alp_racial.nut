@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/skill/alp_racial", function(o) {
+::mods_hookExactClass("skills/racial/alp_racial", function(o) {
 	o.onBeforeDamageReceived = function( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)
