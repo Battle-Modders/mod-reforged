@@ -22,7 +22,7 @@ this.perk_rf_leverage <- ::inherit("scripts/skills/skill", {
 		if (this.getContainer().getActor().isDisarmed()) return false;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || weapon.getRangeMax() == 2)
+		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.TwoHanded) || weapon.getRangeMax() != 2)
 		{
 			return false;
 		}
