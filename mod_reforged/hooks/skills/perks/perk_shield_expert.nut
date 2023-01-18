@@ -17,4 +17,13 @@
 			_item.addSkill(::new("scripts/skills/actives/rf_cover_ally_skill"));
 		}
 	}
+
+	function onMissed( _attacker, _skill )
+	{
+		local actor = this.getContainer().getActor();
+		if (actor.isArmedWithShield())
+		{
+			actor.setFatigue(::Math.max(0, actor.getFatigue() - ::Const.Combat.FatigueLossOnBeingMissed));
+		}
+	}
 });
