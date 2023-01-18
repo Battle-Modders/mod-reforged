@@ -13,10 +13,7 @@ this.rf_line_breaker_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 			"sounds/combat/indomitable_02.wav"
 		];
 		this.m.FatigueCost = 25;
-		this.m.AIBehavior = {
-			ID = ::Const.AI.Behavior.ID.LineBreaker,
-			Script = "scripts/ai/tactical/behaviors/ai_line_breaker"
-		}
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.LineBreaker;
 	}
 
 	function getTooltip()

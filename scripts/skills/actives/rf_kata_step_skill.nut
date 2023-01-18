@@ -30,10 +30,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 		this.m.MaxLevelDifference = 1;
-		this.m.AIBehavior = {
-			ID = ::Const.AI.Behavior.ID.RF_KataStep,
-			Script = "scripts/ai/tactical/behaviors/ai_rf_kata_step"
-		}
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_KataStep;
 	}
 
 	function getTooltip()

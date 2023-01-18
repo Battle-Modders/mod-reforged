@@ -3,9 +3,6 @@
 	o.create = function()
 	{
 		create();
-		this.m.AIBehavior = {
-			ID = ::Const.AI.Behavior.ID.Adrenaline,
-			Script = "scripts/ai/tactical/behaviors/ai_adrenaline"
-		};
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Adrenaline;
 	}
 });

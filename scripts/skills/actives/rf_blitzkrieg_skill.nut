@@ -27,10 +27,7 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 30;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
-		this.m.AIBehavior = {
-			ID = ::Const.AI.Behavior.ID.RF_Blitzkrieg,
-			Script = "scripts/ai/tactical/behaviors/ai_rf_blitzkrieg"
-		};
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_Blitzkrieg;
 	}
 
 	function getTooltip()
