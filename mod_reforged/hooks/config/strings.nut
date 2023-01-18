@@ -121,9 +121,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " against enemies who have sustained an injury.",
- 					"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " against enemies who are Sleeping, Stunned, Netted, Webbed, or Rooted.",
- 					"Both damage bonuses stack multiplicatively."
+ 					"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " against enemies who have sustained an injury or are Sleeping, Stunned, Netted, Webbed, or Rooted."
  				]
  			}]
 	 	}),
@@ -143,6 +141,19 @@ local vanillaDescriptions = [
  			}]
 	 	}),
 	 	Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks with a Base Action Point cost of 4 or less that are either \'Lunge\' or have a Base Maximum Range of 1 tile.")
+	},
+	{
+		ID = "perk.lone_wolf",
+		Key = "LoneWolf",
+		Description = ::UPD.getDescription({
+	 		Fluff = "I work best alone.",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+ 					"With no ally within 2 tiles of distance, gain a " + ::MSU.Text.colorGreen("+15%") + " bonus to Melee Skill, Ranged Skill, Melee Defense, Ranged Defense, and Resolve."
+ 				]
+ 			}]
+	 	}),
 	},
 	{
 		ID = "perk.mastery.bow",
@@ -185,14 +196,32 @@ local vanillaDescriptions = [
 	 	}),
 	},
 	{
+		ID = "perk.mastery.spear",
+		Key = "SpecSpear",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Master fighting with spears and keeping the enemy at bay.",
+	 		Requirement = "Spear",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+ 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less Fatigue.",
+ 					"The Action Point cost of Spearwall is reduced by " + ::MSU.Text.colorGreen("1") + ".",
+ 					"Spearwall is no longer disabled once an opponent manages to overcome it. Instead, Spearwall can still be used and continues to give free attacks on any further opponent attempting to enter the Zone of Control.",
+ 					"The Spetum and Warfork no longer have a penalty for attacking targets directly adjacent."
+ 				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.mastery.throwing",
 		Key = "SpecThrowing",
 		Description = ::UPD.getDescription({
 	 		Fluff = "Master throwing weapons to wound or kill the enemy before they even get close.",
-	 		Requirement = "Polearm",
+	 		Requirement = "Throwing Weapon",
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
+ 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less Fatigue.",
  					"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " when attacking at a distance of 3 tiles or less.",
  					"Gain 20% of your Melee Skill as additional chance to hit when attacking at a distance of 3 tiles or less.",
  					"Throwing Spear ignores the target\'s damage reduction to shields from Shield Mastery."
@@ -280,7 +309,8 @@ local vanillaDescriptions = [
 	 				Description = [
 	 					"The shield defense bonus is increased by " + ::MSU.Text.colorGreen("25%") + ". This also applies to the additional defense bonus of the Shieldwall skill.",
 	 					"Shield damage received is reduced by " + ::MSU.Text.colorRed("50%") + " to a minimum of 1.",
-	 					"The \'Knock Back\' skill gains " + ::MSU.Text.colorGreen("+15%") + " chance to hit and now applies the Staggered effect."
+	 					"The \'Knock Back\' skill gains " + ::MSU.Text.colorGreen("+15%") + " chance to hit and now applies the Staggered effect.",
+	 					"Missed attacks against you no longer increase your Fatigue"
 	 				]
 	 			},
 	 			{
@@ -354,6 +384,16 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+ 	RF_Ballistics = ::UPD.getDescription({
+ 		Fluff = "Take your time and get it right, just like the Captain says!",
+ 		Requirement = "Ranged Attack",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"The penalty to hit chance per tile of distance is reduced by " + ::MSU.Text.colorGreen(2) + "."
+			]
+		}]
+ 	}),
 	RF_BearDown = ::UPD.getDescription({
  		Fluff = "\'Give their \'ed a nice knock, then move in for the kill!\'",
  		Effects = [{
@@ -412,8 +452,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Fatalities instantly restore " + ::MSU.Text.colorGreen(3) + " Action Points."
-				"Has no limit on how many times it can proc per turn.",
+				"Fatalities instantly restore " + ::MSU.Text.colorGreen(3) + " Action Points.",
+				"Can proc multiple times per turn, but only once per attack."
 			]
 		}]
  	}),
@@ -1011,7 +1051,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When equipped with a shield, gain " + ::MSU.Text.colorGreen("+1") + " Reach per adjacent ally also equipped with a shield.",
+				"When equipped with a shield, gain " + ::MSU.Text.colorGreen("+1") + " Reach per adjacent ally also equipped with a shield up to a maximum of " + ::MSU.Text.colorGreen("+2") + ".",
 				"Bucklers do not count as shields for this perk."
 			]
 		}]
@@ -1437,7 +1477,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The first attack every turn against an adjacent target will apply the Staggered effect."
+				"The first attack every turn against an adjacent target will apply the Staggered effect.",
+				"When wielding a weapon with a Reach of less than 4, gain the difference in Reach up to 4."
 			]
 		}]
  	}),
