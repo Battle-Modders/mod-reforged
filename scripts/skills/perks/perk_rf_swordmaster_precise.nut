@@ -12,7 +12,7 @@ this.perk_rf_swordmaster_precise <- ::inherit("scripts/skills/perks/perk_rf_swor
 	function onUpdate( _properties )
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.RF_Fencing))
+		if (weapon != null && weapon.isItemType(::Const.Items.WeaponType.RF_Fencing))
 		{
 			_properties.DirectDamageAdd += 1.25;
 		}
