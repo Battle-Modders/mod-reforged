@@ -1,0 +1,3 @@
+::Reforged.Config <- {
+	IsLegendaryDifficulty = false,
+}
