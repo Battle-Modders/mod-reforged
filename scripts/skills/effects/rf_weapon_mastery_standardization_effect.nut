@@ -1,4 +1,4 @@
-this.rf_weapon_mastery_standardization <- ::inherit("scripts/skills/skill", {
+this.rf_weapon_mastery_standardization_effect <- ::inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
