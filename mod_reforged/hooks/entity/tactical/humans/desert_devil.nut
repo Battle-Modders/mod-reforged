@@ -42,7 +42,6 @@
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_alert"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_pattern_recognition"));
 		}
@@ -64,7 +63,7 @@
 		else
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bloody_harvest"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_clarity"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));

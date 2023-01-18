@@ -30,7 +30,6 @@
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_alert"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
 		}
 	}

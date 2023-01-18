@@ -78,7 +78,7 @@
 
 	    if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
 	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_smashing_shields"));
+	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_splitter"));
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_heft"));
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
@@ -109,7 +109,7 @@
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
     		{
     			this.m.Skills.removeByID("perk.perk_rf_personal_armor");
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_balance"));
+    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
     			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
     		}
 		}

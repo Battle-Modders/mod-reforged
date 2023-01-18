@@ -47,27 +47,24 @@
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-			local weapon = this.getMainhandItem();
-			local offhand = this.getOffhandItem();
 
 			if (this.isArmedWithShield())
 			{
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
 			}
-
-			elseif (this.m.Skills.hasSkill("actives.throw_net")))
+			else if (this.m.Skills.hasSkill("actives.throw_net"))
 			{
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_angler"));
 			}
-
-			elseif (offhand == null)
+			else if (this.getOffhandItem() == null)
 			{
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 			}
-
-			else (weapon != null && weapon.isWeaponType(this.Const.Items.ItemType.TwoHanded))
+			else
 			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
+				local weapon = this.getMainhandItem();
+				if (weapon != null && weapon.isWeaponType(this.Const.Items.ItemType.TwoHanded))
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
 			}
 		}
 	}

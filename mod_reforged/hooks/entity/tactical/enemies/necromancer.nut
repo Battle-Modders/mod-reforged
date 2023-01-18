@@ -19,7 +19,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/possess_undead_skill"));
 
 		// Reforged
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_inspiring_presence", function(o) {
+		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
 		if (::Reforged.Config.IsLegendaryDifficulty)

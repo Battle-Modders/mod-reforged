@@ -61,14 +61,14 @@
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_orc_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bulwark"));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_inspiring_presence", function(o) {
+		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_assured_conquest"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
@@ -96,7 +96,7 @@
 	    }
 	    else
 	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bloody_harvest"));
+	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
     		{
     			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
@@ -113,7 +113,7 @@
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
     		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vengeance"));
+    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_retribution"));
     		}
 		}
 

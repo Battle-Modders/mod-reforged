@@ -28,7 +28,7 @@
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_assured_conquest"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_battle_fervor"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));

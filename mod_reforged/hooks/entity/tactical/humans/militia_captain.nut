@@ -32,7 +32,7 @@
 		this.m.BaseProperties.RangedDefense += 10;
 		this.m.BaseProperties.MeleeDefense += 10;
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_push_forward"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_the_line"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shields_up"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
@@ -40,10 +40,10 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_balance"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_inspiring_presence", function(o) {
+    		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
     			o.m.IsForceEnabled = true;
     		}));
     	}

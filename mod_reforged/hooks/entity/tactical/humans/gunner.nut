@@ -39,9 +39,9 @@
 	{
 	    assignRandomEquipment();
 
-	    foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag)
+	    foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
 	    {
-	    	if (item.isItemType(::Const.Items.ItemType.MeleeWeapon)
+	    	if (item.isItemType(::Const.Items.ItemType.MeleeWeapon))
 	    	{
 	    		if (item.isWeaponType(::Const.Items.WeaponType.Sword))
 	    		{

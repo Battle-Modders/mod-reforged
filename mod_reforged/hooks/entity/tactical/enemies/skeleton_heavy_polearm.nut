@@ -47,7 +47,7 @@
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bloody_harvest"));
+	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 	    }
 

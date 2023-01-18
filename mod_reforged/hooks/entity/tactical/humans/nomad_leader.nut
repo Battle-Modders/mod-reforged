@@ -41,13 +41,13 @@
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_push_forward"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_the_line"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rally_the_troops"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shields_up"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_balance"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_lithe"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
@@ -102,7 +102,6 @@
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
     		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_alert"));
     			this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
     			this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
     		}

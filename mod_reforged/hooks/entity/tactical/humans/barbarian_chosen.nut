@@ -85,7 +85,7 @@
 			local weapon = this.getMainhandItem();
 			if (weapon != null && weapon.isWeaponType(this.Const.Items.ItemType.Axe))
 			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bloody_harvest"));
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
 			}
 			else
 			{

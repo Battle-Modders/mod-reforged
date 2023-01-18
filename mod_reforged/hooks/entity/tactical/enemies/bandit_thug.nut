@@ -40,7 +40,7 @@
 		this.getSprite("shield_icon").setBrightness(0.9);
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 	}
 
 	local assignRandomEquipment = o.assignRandomEquipment;

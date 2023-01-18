@@ -25,7 +25,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_balance"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_muscle_memory"));

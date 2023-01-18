@@ -62,7 +62,7 @@
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
 			this.m.Skills.removeByID("perk.sundering_strikes");
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_balance"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_skirmisher"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 		}
 	}

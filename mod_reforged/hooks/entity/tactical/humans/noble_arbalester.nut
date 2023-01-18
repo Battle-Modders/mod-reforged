@@ -20,7 +20,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_assured_conquest"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_entrenched"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));

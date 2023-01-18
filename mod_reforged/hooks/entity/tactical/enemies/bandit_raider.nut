@@ -73,11 +73,11 @@
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 				}
-			}
 				else
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
 				}
+			}
 		}
 	}
 });

@@ -65,7 +65,7 @@
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 	    		if (::Reforged.Config.IsLegendaryDifficulty)
 	    		{
-	    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bloody_harvest"));
+	    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
 	    		}
 	    	}
 	    	else
@@ -90,7 +90,7 @@
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
     		{
     			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vengeance"));
+    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_retribution"));
     		}
 		}
 

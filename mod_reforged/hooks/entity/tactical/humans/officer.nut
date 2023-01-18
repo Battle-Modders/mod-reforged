@@ -32,17 +32,17 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_blitzkrieg"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_push_forward"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_the_line"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shields_up"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_assured_conquest"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_bolster", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bulwark"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_clarity"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_inspiring_presence", function(o) {
+		this.m.Skills.add(::new("scripts/skills/perks/perk_inspiring_presence", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));

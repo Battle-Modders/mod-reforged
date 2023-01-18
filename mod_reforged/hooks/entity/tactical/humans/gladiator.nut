@@ -32,7 +32,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_balance"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
@@ -71,7 +71,7 @@
 	    if (weapon != null)
 	    {
 	    	if (weapon.getRangeMax() == 2) this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-	    	if (weapon.isAOE()) this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bloody_harvest"));
+	    	if (weapon.isAOE()) this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
 	    	if (weapon.isItemType(::Const.Items.ItemType.TwoHanded) && weapon.isWeaponType(::Const.Items.WeaponType.Mace))
 	    	{
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));

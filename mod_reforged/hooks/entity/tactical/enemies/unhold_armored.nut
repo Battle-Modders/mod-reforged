@@ -8,12 +8,4 @@
 		this.m.Skills.removeByID("perk.fortified_mind");
 		this.m.Skills.removeByID("perk.rf_survival_instinct");
 	}
-
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
-	{
-	    assignRandomEquipment();
-
-	    // any skills that should be added based on equipment
-	}
 });

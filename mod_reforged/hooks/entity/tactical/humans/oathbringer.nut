@@ -33,7 +33,7 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_balance"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
@@ -151,7 +151,7 @@
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fresh_and_furious"));
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
     		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_assured_conquest"));
+    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
     		}
 		}
 

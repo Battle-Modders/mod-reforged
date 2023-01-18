@@ -80,12 +80,4 @@
 			}));
     	}
 	}
-
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
-	{
-	    assignRandomEquipment();
-
-	    // any skills that should be added based on equipment
-	}
 });

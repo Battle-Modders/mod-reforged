@@ -35,9 +35,9 @@
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_assured_conquest"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_balance"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_lithe"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_kata"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));

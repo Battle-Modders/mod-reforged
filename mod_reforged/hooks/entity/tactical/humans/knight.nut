@@ -36,7 +36,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_linebreaker"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_assured_conquest"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_clarity"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
@@ -49,7 +49,7 @@
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vengeance"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_retribution"));
     	}
 	}
 
