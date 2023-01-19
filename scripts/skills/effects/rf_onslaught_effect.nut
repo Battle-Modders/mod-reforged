@@ -1,16 +1,16 @@
-this.rf_push_forward_effect <- ::inherit("scripts/skills/skill", {
+this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsSpent = false,
 		LineBreakerAdded = false
 	},
 	function create()
 	{
-		this.m.ID = "effects.rf_push_forward";
-		this.m.Name = "Pushing Forward";
+		this.m.ID = "effects.rf_onslaught";
+		this.m.Name = "Onslaught";
 		this.m.Description = "This character is ready to push forward through the enemy's ranks.";
-		this.m.Icon = "ui/perks/rf_push_forward.png";
-		this.m.IconMini = "rf_push_forward_effect_mini";
-		this.m.Overlay = "rf_push_forward_effect";
+		this.m.Icon = "ui/perks/rf_onslaught.png";
+		this.m.IconMini = "rf_onslaught_effect_mini";
+		this.m.Overlay = "rf_onslaught_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;

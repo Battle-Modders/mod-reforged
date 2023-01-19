@@ -1,14 +1,14 @@
-this.ai_rf_push_forward <- ::inherit("scripts/ai/tactical/behavior", {
+this.ai_rf_onslaught <- ::inherit("scripts/ai/tactical/behavior", {
 	m = {
 		PossibleSkills = [
-			"actives.rf_push_forward"
+			"actives.rf_onslaught"
 		],
 		Skill = null
 	},
 	function create()
 	{
-		this.m.ID = ::Const.AI.Behavior.ID.RF_PushForward;
-		this.m.Order = ::Const.AI.Behavior.Order.RF_PushForward;
+		this.m.ID = ::Const.AI.Behavior.ID.RF_Onslaught;
+		this.m.Order = ::Const.AI.Behavior.Order.RF_Onslaught;
 		this.behavior.create();
 	}
 
@@ -43,7 +43,7 @@ this.ai_rf_push_forward <- ::inherit("scripts/ai/tactical/behavior", {
 
 		foreach( ally in allies )
 		{
-			if (ally.getTile().getDistanceTo(myTile) > 4 || !ally.hasZoneOfControl() || ally.getSkills().hasSkill("effects.rf_push_forward"))
+			if (ally.getTile().getDistanceTo(myTile) > 4 || !ally.hasZoneOfControl() || ally.getSkills().hasSkill("effects.rf_onslaught"))
 			{
 				continue;
 			}
