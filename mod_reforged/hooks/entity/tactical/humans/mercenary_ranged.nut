@@ -1,9 +1,43 @@
 ::mods_hookExactClass("entity/tactical/humans/mercenary_ranged", function(o) {
 	o.onInit = function()
 	{
-	    // copy vanilla function contents completely
-	    // and replace skills except equipment based skills
-	    // NOTE: Remove the hook on onInit completely if unused
+	    this.human.onInit();
+		local b = this.m.BaseProperties;
+		b.setValues(this.Const.Tactical.Actor.MercenaryRanged);
+		b.TargetAttractionMult = 1.1;
+		b.Vision = 8;
+		// b.IsSpecializedInBows = true;
+		// b.IsSpecializedInCrossbows = true;
+		// b.IsSpecializedInDaggers = true; // Replaced with perk
+		this.m.ActionPoints = b.ActionPoints;
+		this.m.Hitpoints = b.Hitpoints;
+		this.m.CurrentProperties = clone b;
+		this.setAppearance();
+		this.getSprite("socket").setBrush("bust_base_militia");
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
+		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/footwork")); // Replaced with perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
+
+		// Reforged
+		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_dagger"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
+		if (::Reforged.Config.IsLegendaryDifficulty)
+    	{
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ballistics"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_marksmanship"));
+    	}
 	}
 
 	local assignRandomEquipment = o.assignRandomEquipment;
@@ -11,6 +45,6 @@
 	{
 	    assignRandomEquipment();
 
-	    // any skills that should be added based on equipment
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	}
 });

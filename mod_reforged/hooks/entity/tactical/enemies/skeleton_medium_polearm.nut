@@ -1,16 +1,36 @@
 ::mods_hookExactClass("entity/tactical/enemies/skeleton_medium_polearm", function(o) {
 	o.onInit = function()
 	{
-	    // copy vanilla function contents completely
-	    // and replace skills except equipment based skills
-	    // NOTE: Remove the hook on onInit completely if unused
-	}
+	    this.skeleton.onInit();
+		local b = this.m.BaseProperties;
+		b.setValues(this.Const.Tactical.Actor.SkeletonMedium);
+		b.Initiative -= 20;
+		b.IsAffectedByNight = false;
+		b.IsAffectedByInjuries = false;
+		b.IsImmuneToBleeding = true;
+		b.IsImmuneToPoison = true;
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
-	{
-	    assignRandomEquipment();
+		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 100)
+		// {
+		// 	b.IsSpecializedInPolearms = true;
+		// }
 
-	    // any skills that should be added based on equipment
+		this.m.ActionPoints = b.ActionPoints;
+		this.m.Hitpoints = b.Hitpoints;
+		this.m.CurrentProperties = clone b;
+		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+
+		// Reforged
+		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
+		if (::Reforged.Config.IsLegendaryDifficulty)
+    	{
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
+    	}
 	}
 });

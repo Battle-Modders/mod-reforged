@@ -1,16 +1,36 @@
 ::mods_hookExactClass("entity/tactical/humans/standard_bearer", function(o) {
 	o.onInit = function()
 	{
-	    // copy vanilla function contents completely
-	    // and replace skills except equipment based skills
-	    // NOTE: Remove the hook on onInit completely if unused
-	}
+	    this.human.onInit();
+		local b = this.m.BaseProperties;
+		b.setValues(this.Const.Tactical.Actor.StandardBearer);
+		b.TargetAttractionMult = 1.5;
+		this.m.ActionPoints = b.ActionPoints;
+		this.m.Hitpoints = b.Hitpoints;
+		this.m.CurrentProperties = clone b;
+		this.setAppearance();
+		this.getSprite("socket").setBrush("bust_base_military");
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_inspiring_presence"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
+		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced by perk
+		this.m.Skills.add(this.new("scripts/skills/actives/rally_the_troops"));
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced by perk
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
-	{
-	    assignRandomEquipment();
+		// Reforged
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 
-	    // any skills that should be added based on equipment
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_assured_conquest"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bolster"));
+
+		if (::Reforged.Config.IsLegendaryDifficulty)
+		{
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_clarity"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
+		}
 	}
 });
