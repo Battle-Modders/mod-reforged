@@ -1,11 +1,11 @@
-this.perk_rf_lithe <- ::inherit("scripts/skills/skill", {
+this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.rf_lithe";
-		this.m.Name = ::Const.Strings.PerkName.RF_Lithe;
+		this.m.ID = "perk.rf_poise";
+		this.m.Name = ::Const.Strings.PerkName.RF_Poise;
 		this.m.Description = "This character moves lithely, turning incoming attacks into somewhat glancing hits.";
-		this.m.Icon = "ui/perks/rf_lithe.png";
+		this.m.Icon = "ui/perks/rf_poise.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -48,7 +48,7 @@ this.perk_rf_lithe <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]This character\'s body and head armor are too heavy to gain any benefit from being lithe[/color]"
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]This character\'s body and head armor are too heavy to gain any benefit from poise[/color]"
 			});
 		}
 
