@@ -1,14 +1,13 @@
 ::Reforged.Skills <- {
 	function addPerkGroup( _entity, _perkGroupID, _maxTier = 7 )
 	{
-		for (local i = 0; i < _maxTier; i++)
+		foreach (i, row in ::DPF.Perks.PerkGroups.findById(_perkGroupID).getTree())
 		{
-			foreach (row in ::DPF.Perks.PerkGroup.findById(_perkGroupID).getTree())
+			if (i >= _maxTier) return;
+
+			foreach (perkID in row)
 			{
-				foreach (perkID in row)
-				{
-					_entity.getSkills().add(::new(::Const.Perks.findById(perkID).Script));
-				}
+				_entity.getSkills().add(::new(::Const.Perks.findById(perkID).Script));
 			}
 		}
 	}
