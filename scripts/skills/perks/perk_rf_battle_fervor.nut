@@ -1,11 +1,11 @@
-this.perk_rf_assured_conquest <- ::inherit("scripts/skills/skill", {
+this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.rf_assured_conquest";
-		this.m.Name = ::Const.Strings.PerkName.RF_AssuredConquest;
-		this.m.Description = "This character considers victory an absolute certainty.";
-		this.m.Icon = "ui/perks/rf_assured_conquest.png";
+		this.m.ID = "perk.rf_battle_fervor";
+		this.m.Name = ::Const.Strings.PerkName.RF_BattleFervor;
+		this.m.Description = "This character will stop at nothing short of absolute victory.";
+		this.m.Icon = "ui/perks/rf_battle_fervor.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
