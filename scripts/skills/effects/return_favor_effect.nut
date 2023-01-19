@@ -11,7 +11,7 @@ this.return_favor_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.return_favor";
 		this.m.Name = "Return Favor";
 		this.m.Description = "This character will return any missed melee attacks from adjacent attackers with a jolting bash.";
-		this.m.Icon = "ui/perks/rf_return_favor.png";
+		this.m.Icon = "skills/rf_return_favor_effect.png";
 		this.m.IconMini = "rf_return_favor_effect_mini";
 		this.m.Overlay = "rf_return_favor_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;
