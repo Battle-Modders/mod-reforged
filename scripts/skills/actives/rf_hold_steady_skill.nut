@@ -1,15 +1,15 @@
-this.rf_hold_the_line_skill <- ::inherit("scripts/skills/skill", {
+this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsSpent = false	
 	},
 	function create()
 	{
-		this.m.ID = "actives.rf_hold_the_line";
-		this.m.Name = "Hold the Line";
+		this.m.ID = "actives.rf_hold_steady";
+		this.m.Name = "Hold Steady";
 		this.m.Description = "Order your men to hold their ground!"
-		this.m.Icon = "skills/rf_hold_the_line_skill.png";
-		this.m.IconDisabled = "skills/rf_hold_the_line_skill_bw.png";
-		this.m.Overlay = "rf_hold_the_line_skill";
+		this.m.Icon = "skills/rf_hold_steady_skill.png";
+		this.m.IconDisabled = "skills/rf_hold_steady_skill_bw.png";
+		this.m.Overlay = "rf_hold_steady_skill";
 		this.m.SoundOnUse = [];
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.Any;
@@ -23,7 +23,7 @@ this.rf_hold_the_line_skill <- ::inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 30;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
-		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_HoldTheLine;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_HoldSteady;
 	}
 
 	function getTooltip()
@@ -48,7 +48,7 @@ this.rf_hold_the_line_skill <- ::inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Affected allies and you gain the \'Holding the Line\' effect which grants " + ::MSU.Text.colorizeValue(10) + " Melee Defense, " + ::MSU.Text.colorizeValue(10) + " Ranged Defense and " + ::MSU.Text.colorGreen("immunity") + " to being Stunned, Knocked Back or Grabbed for one turn"
+			text = "Affected allies and you gain the \'Holding Steady\' effect which grants " + ::MSU.Text.colorizeValue(10) + " Melee Defense, " + ::MSU.Text.colorizeValue(10) + " Ranged Defense and " + ::MSU.Text.colorGreen("immunity") + " to being Stunned, Knocked Back or Grabbed for one turn"
 		});
 
 		if (this.m.IsSpent)
@@ -78,7 +78,7 @@ this.rf_hold_the_line_skill <- ::inherit("scripts/skills/skill", {
 			local rosterBros = ::World.getPlayerRoster().getAll();
 			foreach (bro in rosterBros)
 			{
-				local skill = bro.getSkills().getSkillByID("actives.rf_hold_the_line");
+				local skill = bro.getSkills().getSkillByID("actives.rf_hold_steady");
 				if (skill != null) skill.m.IsSpent = true;
 			}
 		}
@@ -87,7 +87,7 @@ this.rf_hold_the_line_skill <- ::inherit("scripts/skills/skill", {
 
 		foreach (ally in ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()))
 		{
-			local skill = ally.getSkills().getSkillByID("actives.rf_hold_the_line");
+			local skill = ally.getSkills().getSkillByID("actives.rf_hold_steady");
 			if (skill != null) skill.m.IsSpent = true;
 
 			if (ally.getMoraleState() == ::Const.MoraleState.Fleeing || ally.getCurrentProperties().IsStunned)
@@ -97,14 +97,14 @@ this.rf_hold_the_line_skill <- ::inherit("scripts/skills/skill", {
 
 			if (ally.getID() == _user.getID())
 			{
-				this.getContainer().add(::new("scripts/skills/effects/rf_hold_the_line_effect"));
+				this.getContainer().add(::new("scripts/skills/effects/rf_hold_steady_effect"));
 			}
 			else
 			{
 				if (ally.getTile().getDistanceTo(myTile) <= 4 && ally.getFatigueMax() - ally.getFatigue() >= 10)
 				{
 					ally.setFatigue(ally.getFatigue() + 10);
-					bro.getSkills().add(::new("scripts/skills/effects/rf_hold_the_line_effect"));
+					bro.getSkills().add(::new("scripts/skills/effects/rf_hold_steady_effect"));
 				}
 			}
 		}
