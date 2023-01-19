@@ -25,7 +25,7 @@
 				if (key in ::Reforged.WMS.WeaponTypeAlias) key = ::Reforged.WMS.WeaponTypeAlias[key];
 				if (this.isWeaponType(weaponType) && (key in ::Reforged.WMS.WeaponTypeMastery))
 				{
-					masteries += ::Reforged.WMS.WeaponTypeMastery[key] + ", ";
+					masteries += key + ", ";
 				}
 			}
 
