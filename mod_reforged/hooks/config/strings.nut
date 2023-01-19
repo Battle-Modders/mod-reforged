@@ -53,7 +53,7 @@
 	RF_Hybridization = "Hybridization",
 	InspiringPresence = "Inspiring Presence",
 	RF_InternalHemorrhage = "Internal Hemorrhage",
-	RF_Intimidate = "Intimidage",
+	RF_Intimidate = "Intimidate",
 	RF_IronSights = "Iron Sights",
 	RF_Kata = "Kata",
 	RF_Kingfisher = "Kingfisher",
@@ -161,6 +161,35 @@ local vanillaDescriptions = [
  				]
  			}]
 	 	}),
+	},
+	{
+		ID = "perk.mastery.axe",
+		Key = "SpecAxe",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Master combat with axes and destroying shields.",
+	 		Requirement = "Axe",
+	 		Effects = [
+		 		{
+	 				Type = ::UPD.EffectType.Passive,
+	 				Description = [
+	 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less Fatigue.",
+	 					"Split Shield damage to shields is increased by " + ::MSU.Text.colorGreen("50%") + " when used with axes."
+	 					"Round Swing gains " + ::MSU.Text.colorGreen("+5%") + " chance to hit."
+	 					"The Longaxe no longer has a penalty for attacking targets directly adjacent.",
+	 				]
+	 			},
+	 			{
+	 				Type = ::UPD.EffectType.Active,
+	 				Name = "Bearded Blade",
+	 				Description = [
+	 					"Costs 3 AP and builds 15 Fatigue",
+	 					"Gain the \'Bearded Blade\' effect until your next attack or the start of your next turn.",
+	 					"Causes your next attack, hit or miss, to have a chance equal to the hit chance to disarm the target.",
+	 					"Attackers who miss against you have a chance to be disarmed equal to the miss chance. Expires upon a successful disarm."
+	 				]
+	 			}
+ 			]
+	 	})
 	},
 	{
 		ID = "perk.mastery.bow",
@@ -905,7 +934,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Name = "Hold Steady",
 			Description = [
 				"Costs 7 AP and builds 30 Fatigue",
-				"You and any allies within 4 tiles who have at least " + ::MSU.Text.colorRed("10") + " Fatigue remaining gain the \'Holding the Line\' effect which increases Melee and Ranged Defense by " + ::MSU.Text.colorGreen("+10") + " and grants immunity to being stunned, knocked back, grabbed, or swallowed for one turn.",
+				"You and any allies within 4 tiles who have at least " + ::MSU.Text.colorRed("10") + " Fatigue remaining gain " + ::MSU.Text.colorGreen("+10") + " Melee Defense and Ranged Defense, and immunity to being stunned, knocked back, grabbed, or swallowed for one turn.",
 				"Affected allies build " + ::MSU.Text.colorRed("10") + " Fatigue."
 			]
 		}]
@@ -1179,10 +1208,10 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Damage is increased by 20% when attacking at 2 tiles of distance.",
-				"Piercing type throwing attacks have a 50% chance to inflict the \'Arrow to the Knee\' effect.",
+				"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " when attacking at 2 tiles of distance.",
+				"Piercing type throwing attacks have a " + ::MSU.Text.colorGreen("50%") + " chance to inflict the \'Arrow to the Knee\' effect.",
 				"Cutting type throwing attacks always apply the \'Overwhelmed\' effect.",
-				"Blunt type throwing attacks have a 100% chance to inflict Staggered and if the target is already Staggered, inflict Stunned.",
+				"Blunt type throwing attacks have a " + ::MSU.Text.colorGreen("100%") + " chance to inflict Staggered and if the target is already Staggered, inflict Stunned.",
 				"The damage bonus and chance applies up to a distance of 2 tiles, is halved at 3 tiles of distance, and does not apply at longer distances."
 			]
 		}]
