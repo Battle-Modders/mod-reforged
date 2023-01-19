@@ -3,7 +3,7 @@
 	RF_Angler = "Angler",
 	RF_BattleFervor = "Battle Fervor",
 	RF_BackToBasics = "Back to Basics",
-	RF_Skirmisher = "Balance",
+	RF_Skirmisher = "Skirmisher",
 	RF_Ballistics = "Ballistics",
 	RF_BattleFlow = "Battle Flow",
 	RF_BearDown = "Bear Down",
@@ -51,7 +51,7 @@
 	RF_HipShooter = "Hip Shooter",
 	RF_HoldSteady = "Hold Steady",
 	RF_Hybridization = "Hybridization",
-	RF_InspiringPresence = "Inspiring Presence",
+	InspiringPresence = "Inspiring Presence",
 	RF_InternalHemorrhage = "Internal Hemorrhage",
 	RF_Intimidate = "Intimidage",
 	RF_IronSights = "Iron Sights",
@@ -399,7 +399,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"The penalty to initiative from head and body armor is reduced by " + ::MSU.Text.colorRed("30%") + ".",
-				"At all times your Initiative is reduced only by " ::MSU.Text.colorGreen("50%") + " of accumulated Fatigue, instead of all of it.",
+				"At all times your Initiative is reduced only by " + ::MSU.Text.colorGreen("50%") + " of accumulated Fatigue, instead of all of it.",
 				"Stacks multiplicatively with the Relentless perk."
 			]
 		}]
@@ -920,7 +920,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
-	RF_InspiringPresence = ::UPD.getDescription({
+	InspiringPresence = ::UPD.getDescription({
  		Fluff = "Standing next to the company\'s banner inspires your men to go beyond their limits!",
  		Requirement = "Banner",
  		Effects = [{
@@ -1025,7 +1025,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Damage to Hitpoints is reduced by " + ::MSU.Text.colorRed("30%") + " and to Armor by " + ::MSU.Text.colorRed("+15%") + ".",
+				"Damage to Hitpoints is reduced by " + ::MSU.Text.colorRed("30%") + " and to Armor by " + ::MSU.Text.colorRed("15%") + ".",
 				"The bonus drops exponentially when wearing head and body armor with a total penalty to Maximum Fatigue above 35.",
 				"Does not work if you have the Nimble perk."
 			]
