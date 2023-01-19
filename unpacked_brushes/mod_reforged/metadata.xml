@@ -1,0 +1,107 @@
+<brush name="gfx/mod_reforged.png" version ="17" b1="2" b5="0">
+	<sprite id="perk_rf_bloodbath" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_bloodbath.png" />
+	<sprite id="perk_rf_opportunist" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_opportunist.png" />
+	<sprite id="perk_rf_sanguinary" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_sanguinary.png" />
+	<sprite id="perk_rf_exude_confidence" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_exude_confidence.png" />
+	<sprite id="perk_rf_shield_splitter" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_shield_splitter.png" />
+
+	<sprite id="rf_adjust_dented_armor_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_adjust_dented_armor_skill.png" />
+	<sprite id="rf_adjust_dented_armor_ally_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_adjust_dented_armor_ally_skill.png" />
+	<sprite id="rf_arrow_to_the_knee_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_arrow_to_the_knee_skill.png" />
+	<sprite id="rf_bearded_blade_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_bearded_blade_skill.png" />
+	<sprite id="rf_blitzkrieg_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_blitzkrieg_skill.png" />
+	<sprite id="rf_bestial_vigor_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_bestial_vigor_skill.png" />
+	<sprite id="rf_cover_ally_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_cover_ally_skill.png" />
+	<sprite id="rf_adjust_dented_armor_ally_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_adjust_dented_armor_ally_skill.png" />
+	<sprite id="rf_line_breaker_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_line_breaker_skill.png" />
+	<sprite id="rf_take_aim_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_take_aim_skill.png" />
+	<sprite id="rf_between_the_eyes_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_between_the_eyes_skill.png" />
+	<sprite id="rf_follow_up_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_follow_up_skill.png" />
+	<sprite id="rf_kata_step_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_kata_step_skill.png" />
+	<sprite id="rf_net_pull_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_net_pull_skill.png" />
+	<sprite id="rf_onslaught_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_onslaught_skill.png" />
+	<sprite id="rf_sprint_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sprint_skill.png" />
+	<sprite id="rf_swordmaster_stance_meisterhau_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_stance_meisterhau_skill.png" />
+	<sprite id="rf_swordmaster_stance_reverse_grip_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_stance_reverse_grip_skill.png" />
+	<sprite id="rf_swordmaster_stance_half_swording_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_stance_half_swording_skill.png" />
+	<sprite id="rf_swordmaster_charge_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_charge_skill.png" />
+	<sprite id="rf_swordmaster_tackle_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_tackle_skill.png" />
+	<sprite id="rf_swordmaster_kick_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_kick_skill.png" />
+	<sprite id="rf_swordmaster_push_through_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_push_through_skill.png" />
+
+	<sprite id="rf_arrow_to_the_knee_debuff_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_arrow_to_the_knee_debuff_effect.png" />
+	<sprite id="rf_arrow_to_the_knee_debuff_effect_mini" ic = "FF23165B" img="mini\rf_arrow_to_the_knee_debuff_effect_mini.png" />
+
+	<sprite id="rf_bloodlust_mini" ic = "FF23165B" img="mini\rf_bloodlust_mini.png" />
+	<sprite id="rf_bulwark_mini" ic = "FF23165B" img="mini\rf_bulwark_mini.png" />
+
+	<sprite id="rf_covered_by_ally_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_covered_by_ally_effect.png" />
+	<sprite id="rf_covered_by_ally_effect_mini" ic = "FF23165B" img="mini\rf_covered_by_ally_effect_mini.png" />
+
+	<sprite id="rf_covering_ally_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_cover_ally.png" />
+	<sprite id="rf_covering_ally_effect_mini" ic = "FF23165B" img="mini\rf_covering_ally_effect_mini.png" />
+
+	<sprite id="rf_cull_mini" ic = "FF23165B" img="mini\rf_cull_mini.png" />
+
+	<sprite id="rf_feral_rage_mini" ic = "FF23165B" img="mini\rf_feral_rage_mini.png" />
+	<sprite id="rf_exploit_opening_mini" ic = "FF23165B" img="mini\rf_exploit_opening_mini.png" />
+	<sprite id="rf_exploitable_opening_effect_mini" ic = "FF23165B" img="mini\rf_exploitable_opening_effect_mini.png" />
+	<sprite id="rf_fluid_weapon_mini" ic = "FF23165B" img="mini\rf_fluid_weapon_mini.png" />
+	<sprite id="rf_fresh_and_furious_mini" ic = "FF23165B" img="mini\rf_fresh_and_furious_mini.png" />
+	<sprite id="rf_king_of_all_weapons_mini" ic = "FF23165B" img="mini\rf_king_of_all_weapons_mini.png" />
+	<sprite id="rf_man_of_steel_mini" ic = "FF23165B" img="mini\rf_man_of_steel_mini.png" />
+	<sprite id="rf_pattern_recognition_mini" ic = "FF23165B" img="mini\rf_pattern_recognition_mini.png" />
+	<sprite id="rf_phalanx_mini" ic = "FF23165B" img="mini\rf_phalanx_mini.png" />
+	<sprite id="rf_strength_in_numbers_mini" ic = "FF23165B" img="mini\rf_strength_in_numbers_mini.png" />
+	<sprite id="rf_survival_instinct_mini" ic = "FF23165B" img="mini\rf_survival_instinct_mini.png" />
+	<sprite id="rf_take_aim_effect_mini" ic = "FF23165B" img="mini\rf_take_aim_effect_mini.png" />
+	<sprite id="rf_tempo_mini" ic = "FF23165B" img="mini\rf_tempo_mini.png" />
+	<sprite id="rf_the_rush_of_battle_mini" ic = "FF23165B" img="mini\rf_the_rush_of_battle_mini.png" />
+	<sprite id="rf_unstoppable_mini" ic = "FF23165B" img="mini\rf_unstoppable_mini.png" />
+	<sprite id="rf_vengeful_spite_mini" ic = "FF23165B" img="mini\rf_vengeful_spite_mini.png" />
+	<sprite id="rf_vigilant_mini" ic = "FF23165B" img="mini\rf_vigilant_mini.png" />
+	<sprite id="rf_vigorous_assault_mini" ic = "FF23165B" img="mini\rf_vigorous_assault_mini.png" />
+	<sprite id="rf_vigorous_assault_barbarian_mini" ic = "FF23165B" img="mini\rf_vigorous_assault_barbarian_mini.png" />
+
+	<sprite id="rf_bestial_vigor_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_bestial_vigor.png" />
+	<sprite id="rf_bestial_vigor_effect_mini" ic = "FF23165B" img="mini\rf_bestial_vigor_effect_mini.png" />
+
+	<sprite id="rf_dented_armor_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_dent_armor.png" />
+	<sprite id="rf_dented_armor_effect_mini" ic = "FF23165B" img="mini\rf_dented_armor_effect_mini.png" />
+
+	<sprite id="rf_dismantled_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_dismantled_effect.png" />
+	<sprite id="rf_dismantled_effect_mini" ic = "FF23165B" img="mini\rf_dismantled_effect_mini.png" />
+
+	<sprite id="rf_en_garde_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_en_garde.png" />
+	<sprite id="rf_en_garde_effect_mini" ic = "FF23165B" img="mini\rf_en_garde_effect_mini.png" />
+
+	<sprite id="rf_entrenched_mini" ic = "FF23165B" img="mini\rf_entrenched_mini.png" />
+
+	<sprite id="rf_eyes_up_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_eyes_up.png" />
+	<sprite id="rf_eyes_up_mini" ic = "FF23165B" img="mini\rf_eyes_up_mini.png" />
+
+	<sprite id="rf_follow_up_effect_mini" ic = "FF23165B" img="mini\rf_follow_up_effect_mini.png" />
+
+	<sprite id="rf_from_all_sides_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_from_all_sides.png" />
+	<sprite id="rf_from_all_sides_effect_mini" ic = "FF23165B" img="mini\rf_from_all_sides_effect_mini.png" />
+
+	<sprite id="rf_inspiring_presence_buff_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_inspiring_presence_buff_effect.png" />
+
+	<sprite id="rf_inspiring_presence_mini" ic = "FF23165B" img="mini\rf_inspiring_presence_mini.png" />
+
+	<sprite id="rf_onslaught_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_onslaught.png" />
+	<sprite id="rf_onslaught_effect_mini" ic = "FF23165B" img="mini\rf_onslaught_effect_mini.png" />
+
+	<sprite id="rf_rattled_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_rattle.png" />
+	<sprite id="rf_rattled_effect_mini" ic = "FF23165B" img="mini\rf_rattled_effect_mini.png" />
+
+	<sprite id="rf_sprint_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_sprint_effect.png" />
+	<sprite id="rf_sprint_effect" ic = "FF23165B" img="mini\rf_sprint_effect_mini.png" />
+
+	<sprite id="rf_swift_stabs_mini" ic = "FF23165B" img="mini\rf_swift_stabs_mini.png" />
+
+	<sprite id="rf_worn_down_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_wear_them_down.png" />
+	<sprite id="rf_worn_down_effect_mini" ic = "FF23165B" img="mini\rf_worn_down_effect_mini.png" />
+
+	<sprite id="projectile_flaming_arrow" ic = "FF23165B" img="projectiles\rf_projectile_flaming_arrow.png" />
+</brush>
