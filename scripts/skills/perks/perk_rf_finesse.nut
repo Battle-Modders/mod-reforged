@@ -1,11 +1,11 @@
-this.perk_rf_clarity <- ::inherit("scripts/skills/skill", {
+this.perk_rf_finesse <- ::inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.rf_clarity";
-		this.m.Name = ::Const.Strings.PerkName.RF_Clarity;
-		this.m.Description = ::Const.Strings.PerkDescription.RF_Clarity;
-		this.m.Icon = "ui/perks/rf_clarity.png";
+		this.m.ID = "perk.rf_finesse";
+		this.m.Name = ::Const.Strings.PerkName.RF_Finesse;
+		this.m.Description = ::Const.Strings.PerkDescription.RF_Finesse;
+		this.m.Icon = "ui/perks/rf_finesse.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
