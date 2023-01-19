@@ -52,6 +52,17 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
+		local actor = this.getContainer().getActor();
+		local maxHPString = ::Math.floor(actor.getHitpointsMax() / (hpBonus * 0.01));
+		local currHPString = ::Math.floor(actor.getHitpoints() / (hpBonus * 0.01));
+
+		tooltip.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::MSU.Text.colorGreen("Effective Hitpoints: ") + currHPString + " / " + maxHPString
+		});
+
 		return tooltip;
 	}
 
