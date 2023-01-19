@@ -89,6 +89,7 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
 		// Reforged
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 	}
 });

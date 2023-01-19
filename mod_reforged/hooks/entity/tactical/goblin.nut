@@ -47,6 +47,8 @@
 		}
 
 		// Reforged
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Goblin;
+
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{

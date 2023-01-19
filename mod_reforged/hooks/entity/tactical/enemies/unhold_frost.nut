@@ -50,6 +50,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
 
 		// Reforged
+		this.m.BaseProperties.Reach = 5;
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
 			this.m.BaseProperties.MeleeSkill += 10;

@@ -120,6 +120,7 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 
 		// Reforged
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bear_down"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_wear_them_down"));
 		if (::Reforged.Config.IsLegendaryDifficulty)

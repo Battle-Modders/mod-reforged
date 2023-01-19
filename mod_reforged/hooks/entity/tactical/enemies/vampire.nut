@@ -83,6 +83,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
 
 		// Reforged
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
