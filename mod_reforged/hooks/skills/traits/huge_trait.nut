@@ -1,4 +1,14 @@
 ::mods_hookExactClass("skills/traits/huge_trait", function (o) {
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.PerkTreeMultipliers = {
+			"pg.rf_devious": 0.5,
+			"pg.rf_large": -1
+		};
+	}
+	
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
 	{
