@@ -1,11 +1,11 @@
-this.perk_rf_balance <- ::inherit("scripts/skills/skill", {
+this.perk_rf_skirmisher <- ::inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.rf_balance";
-		this.m.Name = ::Const.Strings.PerkName.RF_Balance;
-		this.m.Description = "This character gains increased speed and endurance by balancing their armor and mobility.";
-		this.m.Icon = "ui/perks/rf_balance.png";
+		this.m.ID = "perk.rf_skirmisher";
+		this.m.Name = ::Const.Strings.PerkName.RF_Skirmisher;
+		this.m.Description = "This character gains moves faster than most.";
+		this.m.Icon = "ui/perks/rf_skirmisher.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -16,7 +16,7 @@ this.perk_rf_balance <- ::inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
-		local initBonus = this.getInitiativeBonus()
+		local initBonus = this.getInitiativeBonus();
 		if (initBonus > 0)
 		{
 			tooltip.push({
