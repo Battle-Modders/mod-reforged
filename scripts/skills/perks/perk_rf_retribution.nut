@@ -1,14 +1,14 @@
-this.perk_rf_vengeance <- ::inherit("scripts/skills/skill", {
+this.perk_rf_retribution <- ::inherit("scripts/skills/skill", {
 	m = {
 		Stacks = 0,
 		BonusPerStack = 25
 	},
 	function create()
 	{
-		this.m.ID = "perk.rf_vengeance";
-		this.m.Name = ::Const.Strings.PerkName.RF_Vengeance;
+		this.m.ID = "perk.rf_retribution";
+		this.m.Name = ::Const.Strings.PerkName.RF_Retribution;
 		this.m.Description = "This character hits significantly harder after taking a hit.";
-		this.m.Icon = "ui/perks/rf_vengeance.png";
+		this.m.Icon = "ui/perks/rf_retribution.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
