@@ -29,7 +29,7 @@ this.perk_rf_sanguinary <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		if (this.m.IsAttackValid) this.m.WasBleeding = _targetEntity.getSkills().hasSkill("effects.bleeding");
+		if (this.isAttackValid(_skill, this.getContainer().getActor(), _targetEntity)) this.m.WasBleeding = _targetEntity.getSkills().hasSkill("effects.bleeding");
 	}
 
 	// Handles cases where target is already bleeding before the hit
