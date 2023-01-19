@@ -18,7 +18,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 
 	function getName()
 	{
-		return this.getContainer().getActor().isPlayerControlled() ? this.m.Name : this.m.Name + " (" + this.getContainer().getActor().getCurrentProperties().getReach() + ")";
+		return this.m.Name + " (" + this.getContainer().getActor().getCurrentProperties().getReach() + ")";
 	}
 
 	function getTooltip()
@@ -102,7 +102,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				icon = this.m.CurrBonus > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
-				text = ::MSU.Text.colorizePercentage(this.m.CurrBonus) + (this.m.CurrBonus > 0 ? " Reach Advantage" : " Reach Disadvantage")
+				text = ::MSU.Text.colorizePercentage(this.m.CurrBonus, {AddSign = false}) + (this.m.CurrBonus > 0 ? " Reach Advantage" : " Reach Disadvantage")
 			});
 		}
 	}
