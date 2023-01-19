@@ -1,13 +1,13 @@
-this.rf_hold_the_line_effect <- ::inherit("scripts/skills/skill", {
+this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.rf_hold_the_line";
-		this.m.Name = "Holding the Line";
+		this.m.ID = "effects.rf_hold_steady";
+		this.m.Name = "Holding Steady";
 		this.m.Description = "This character is holding his ground against the enemy's onslaught.";
-		this.m.Icon = "ui/perks/rf_hold_the_line.png";
-		this.m.IconMini = "rf_hold_the_line_effect_mini";
-		this.m.Overlay = "rf_hold_the_line_effect";
+		this.m.Icon = "ui/perks/rf_steady_formation.png";
+		this.m.IconMini = "rf_steady_formation_effect_mini";
+		this.m.Overlay = "rf_steady_formation_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;

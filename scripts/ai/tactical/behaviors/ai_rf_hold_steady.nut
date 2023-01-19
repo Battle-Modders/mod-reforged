@@ -1,14 +1,14 @@
-this.ai_rf_hold_the_line <- ::inherit("scripts/ai/tactical/behavior", {
+this.ai_rf_hold_steady <- ::inherit("scripts/ai/tactical/behavior", {
 	m = {
 		PossibleSkills = [
-			"actives.rf_hold_the_line"
+			"actives.rf_hold_steady"
 		],
 		Skill = null
 	},
 	function create()
 	{
-		this.m.ID = ::Const.AI.Behavior.ID.RF_HoldTheLine;
-		this.m.Order = ::Const.AI.Behavior.Order.RF_HoldTheLine;
+		this.m.ID = ::Const.AI.Behavior.ID.RF_HoldSteady;
+		this.m.Order = ::Const.AI.Behavior.Order.RF_HoldSteady;
 		this.behavior.create();
 	}
 
@@ -51,7 +51,7 @@ this.ai_rf_hold_the_line <- ::inherit("scripts/ai/tactical/behavior", {
 			}
 			
 			local bestTarget = this.queryBestMeleeTarget(enemy, null, allies).Target;			
-			if (bestTarget == null || bestTarget.getMoraleState() == ::Const.MoraleState.Fleeing || bestTarget.getTile().getDistanceTo(myTile) > 4 || bestTarget.getSkills().hasSkill("effects.rf_hold_the_line"))
+			if (bestTarget == null || bestTarget.getMoraleState() == ::Const.MoraleState.Fleeing || bestTarget.getTile().getDistanceTo(myTile) > 4 || bestTarget.getSkills().hasSkill("effects.rf_hold_steady"))
 			{
 				continue;
 			}
