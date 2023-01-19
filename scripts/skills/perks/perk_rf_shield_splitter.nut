@@ -1,14 +1,14 @@
-this.perk_rf_smashing_shields <- ::inherit("scripts/skills/skill", {
+this.perk_rf_shield_splitter <- ::inherit("scripts/skills/skill", {
 	m = {
 		APRestore = 4,
 		Shield = null
 	},
 	function create()
 	{
-		this.m.ID = "perk.rf_smashing_shields";
-		this.m.Name = ::Const.Strings.PerkName.RF_SmashingShields;
-		this.m.Description = ::Const.Strings.PerkDescription.RF_SmashingShields;
-		this.m.Icon = "ui/perks/rf_smashing_shields.png";
+		this.m.ID = "perk.rf_shield_splitter";
+		this.m.Name = ::Const.Strings.PerkName.RF_ShieldSplitter;
+		this.m.Description = ::Const.Strings.PerkDescription.RF_ShieldSplitter;
+		this.m.Icon = "ui/perks/rf_shield_splitter.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -30,7 +30,7 @@ this.perk_rf_smashing_shields <- ::inherit("scripts/skills/skill", {
 		{
 			local user = this.getContainer().getActor();
 			user.setActionPoints(::Math.min(user.getActionPointsMax(), user.getActionPoints() + this.m.APRestore));
-			this.spawnIcon("perk_rf_smashing_shields", user.getTile());
+			this.spawnIcon("perk_rf_shield_splitter", user.getTile());
 		}
 
 		this.m.Shield = null;
