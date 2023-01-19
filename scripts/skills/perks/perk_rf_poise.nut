@@ -15,13 +15,13 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.getContainer().hasSkill("perk.nimble") || (::Math.floor(this.getHitpointsDamageReduction() * 100) >= 100 && ::Math.floor(this.getArmorDamageReduction() * 100) >= 100);
+		return this.getContainer().hasSkill("perk.nimble") || (::Math.floor(this.getHitpointsDamage() * 100) >= 100 && ::Math.floor(this.getArmorDamage() * 100) >= 100);
 	}
 
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
-		local hpBonus = ::Math.round(this.getHitpointsDamageReduction() * 100);
+		local hpBonus = ::Math.round(this.getHitpointsDamage() * 100);
 		if (hpBonus < 100)
 		{
 			tooltip.push({
@@ -31,7 +31,7 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 				text = "Damage to hitpoints from attacks is reduced by [color=" + ::Const.UI.Color.PositiveValue + "]" + (100-hpBonus) + "%[/color]"
 			});
 		}
-		local armorBonus = ::Math.round(this.getArmorDamageReduction() * 100);
+		local armorBonus = ::Math.round(this.getArmorDamage() * 100);
 		if (armorBonus < 100)
 		{
 			tooltip.push({
@@ -55,14 +55,14 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function getHitpointsDamageReduction()
+	function getHitpointsDamage()
 	{
 		local fat = this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
 		fat = ::Math.min(0, fat + 35);
 		return ::Math.minf(1.0, 1.0 - 0.3 + this.Math.pow(this.Math.abs(fat), 1.23) * 0.01);
 	}
 
-	function getArmorDamageReduction()
+	function getArmorDamage()
 	{
 		local fat = this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
 		fat = ::Math.min(0, fat + 35);
@@ -78,8 +78,8 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 
 		if (!this.getContainer().hasSkill("perk.nimble"))
 		{
-			_properties.DamageReceivedRegularMult *= this.getHitpointsDamageReduction();
-			_properties.DamageReceivedArmorMult *= this.getArmorDamageReduction();
+			_properties.DamageReceivedRegularMult *= this.getHitpointsDamage();
+			_properties.DamageReceivedArmorMult *= this.getArmorDamage();
 		}
 	}
 });
