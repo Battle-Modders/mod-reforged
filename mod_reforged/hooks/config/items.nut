@@ -1,1 +1,1 @@
-::Const.Items.addNewItemType("RFFencing", "Fencing Item");
+::Const.Items.addNewItemType("RF_Fencing", "Fencing Item");
