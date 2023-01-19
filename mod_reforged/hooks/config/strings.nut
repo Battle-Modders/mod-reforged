@@ -1,9 +1,9 @@
 ::MSU.Table.merge(::Const.Strings.PerkName, {
 	RF_Alert = "Alert",
 	RF_Angler = "Angler",
-	RF_AssuredConquest = "Assured Conquest",
+	RF_BattleFervor = "Battle Fervor",
 	RF_BackToBasics = "Back to Basics",
-	RF_Balance = "Balance",
+	RF_Skirmisher = "Balance",
 	RF_Ballistics = "Ballistics",
 	RF_BattleFlow = "Battle Flow",
 	RF_BearDown = "Bear Down",
@@ -13,12 +13,12 @@
 	RF_Blitzkrieg = "Blitzkrieg",
 	RF_Bloodbath = "Bloodbath",
 	RF_Bloodlust = "Bloodlust",
-	RF_BloodyHarvest = "Bloody Harvest",
+	RF_DeathDealer = "Death Dealer",
 	RF_Bolster = "Bolster",
 	RF_BoneBreaker = "Bone Breaker",
 	RF_Bully = "Bully",
 	RF_Bulwark = "Bulwark",
-	RF_Clarity = "Clarity",
+	RF_Finesse = "Finesse",
 	RF_ConcussiveStrikes = "Concussive Strikes",
 	RF_Cull = "Cull",
 	RF_DeepCuts = "Deep Cuts",
@@ -49,7 +49,7 @@
 	RF_HaleAndHearty = "Hale and Hearty",
 	RF_Heft = "Heft",
 	RF_HipShooter = "Hip Shooter",
-	RF_HoldTheLine = "Hold the Line",
+	RF_HoldSteady = "Hold Steady",
 	RF_Hybridization = "Hybridization",
 	RF_InspiringPresence = "Inspiring Presence",
 	RF_InternalHemorrhage = "Internal Hemorrhage",
@@ -60,7 +60,7 @@
 	RF_KingOfAllWeapons = "King of all Weapons",
 	RF_Leverage = "Leverage",
 	RF_LineBreaker = "Line Breaker",
-	RF_Lithe = "Lithe",
+	RF_Poise = "Poise",
 	RF_LongReach = "Long Reach",
 	RF_ManOfSteel = "Man of Steel",
 	RF_Marksmanship = "Marksmanship",
@@ -76,15 +76,15 @@
 	RF_Professional = "Professional",
 	RF_PromisedPotential = "Promised Potential",
  	RF_ProximityThrowingSpecialist = "Proximity Throwing Specialist",
-	RF_PushForward = "Push Forward",
+	RF_Onslaught = "Onslaught",
 	RF_Rattle = "Rattle",
 	RF_RealizedPotential = "Realized Potential",
 	RF_RisingStar = "Rising Star",
 	RF_Sanguinary = "Sanguinary",
 	RF_SavageStrength = "Savage Strength",
-	RF_ShieldsUp = "Shields Up",
+	RF_ShieldSergeant = "Shield Sergeant",
 	RF_SmallTarget = "Small Target",
-	RF_SmashingShields = "Smashing Shields",
+	RF_ShieldSplitter = "Shield Splitter",
 	RF_SneakAttack = "Sneak Attack",
 	RF_SpearAdvantage = "Spear Advantage",
 	RF_StrengthInNumbers = "Strength in Numbers",
@@ -109,7 +109,7 @@
 	RF_TripArtist = "Trip Artist",
 	RF_TwoForOne = "Two for One",
 	RF_Unstoppable = "Unstoppable",
-	RF_Vengeance = "Vengeance",
+	RF_Retribution = "Retribution",
 	RF_VengefulSpite = "Vengeful Spite",
 	RF_Vigilant = "Vigilant",
 	RF_VigorousAssault = "Vigorous Assault",
@@ -319,7 +319,7 @@ local vanillaDescriptions = [
 	 					"The shield defense bonus is increased by " + ::MSU.Text.colorGreen("25%") + ". This also applies to the additional defense bonus of the Shieldwall skill.",
 	 					"Shield damage received is reduced by " + ::MSU.Text.colorRed("50%") + " to a minimum of 1.",
 	 					"The \'Knock Back\' skill gains " + ::MSU.Text.colorGreen("+15%") + " chance to hit and now applies the Staggered effect.",
-	 					"Missed attacks against you no longer increase your Fatigue"
+	 					"Missed attacks against you no longer increase your Fatigue."
 	 				]
 	 			},
 	 			{
@@ -327,10 +327,10 @@ local vanillaDescriptions = [
 	 				Name = "Cover Ally",
 	 				Description = [
 	 					"Costs 4 AP and builds 20 Fatigue",
-	 					"Target an adjacent ally to give them the \'Move Under Cover\' skill which allows them to move " + ::MSU.Text.colorGreen("1") + " tile ignoring Zone of Control on their turn.",
-	 					"If the ally remains adjacent to you, their position in the turn order in the next round is determined as if they had " + ::MSU.Text.colorGreen("+5000") + " Initiative.",
-	 					"Your Melee Skill, Ranged Skill, Melee Defense, and Ranged Defense are reduced by " + ::MSU.Text.colorRed("-15") + " while you provide cover.",
-	 					"The effect only remains active as long as you are adjacent to that ally."
+	 					"Give an adjacent ally the \'Move Under Cover\' skill allowing them to move " + ::MSU.Text.colorGreen("1") + " tile ignoring Zone of Control.",
+	 					"The ally\'s turn order in the next round is determined with " + ::MSU.Text.colorGreen("+5000") + " Initiative.",
+	 					"Your Melee Skill, Ranged Skill, Melee Defense, and Ranged Defense are reduced by " + ::MSU.Text.colorRed("-15") + ".",
+	 					"The effect expires if you are no longer adjacent to that ally."
 	 				]
 	 			}
  			]
@@ -372,14 +372,14 @@ foreach (vanillaDesc in vanillaDescriptions)
  			}
  		]
  	}),
-	RF_AssuredConquest = ::UPD.getDescription({
+	RF_BattleFervor = ::UPD.getDescription({
  		Fluff = "It is our destiny!",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Resolve is increased by " + ::MSU.Text.colorGreen("10%") + " at all times.",
 				"Additionally, at positive morale checks, Resolve is increased by a further " + ::MSU.Text.colorGreen(10) + ".",
-				"When at Confident Morale, all the bonuses of this perk are doubled, and Melee Skill, Ranged Skill, Melee Defense, and Ranged Defense are increased by " + ::MSU.Text.colorGreen("5%")
+				"When at Confident Morale, all the bonuses of this perk are doubled, and Melee Skill, Ranged Skill, Melee Defense, and Ranged Defense are increased by " + ::MSU.Text.colorGreen("5%") + "."
 			]
 		}]
  	}),
@@ -393,14 +393,14 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
-	RF_Balance = ::UPD.getDescription({
+	RF_Skirmisher = ::UPD.getDescription({
  		Fluff = "Gain increased speed and endurance by balancing your armor and mobility.",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"The penalty to initiative from head and body armor is reduced by " + ::MSU.Text.colorRed("30%") + ".",
-				"At all times your Initiative is reduced only by " ::MSU.Text.colorGreen("50%") + " of accumulated Fatigue, instead of all of it",
-				"Stacks multiplicatively with the Relentless perk"
+				"At all times your Initiative is reduced only by " ::MSU.Text.colorGreen("50%") + " of accumulated Fatigue, instead of all of it.",
+				"Stacks multiplicatively with the Relentless perk."
 			]
 		}]
  	}),
@@ -414,7 +414,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
- 	RF_BattleFlow = ::UPD.getDescription({
+ 	BattleFlow = ::UPD.getDescription({
  		Fluff = "On to the next!",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
@@ -437,7 +437,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Fluff = "\'Give their \'ed a nice knock, then move in for the kill!\'",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
-			Description = ["Gain " + ::MSU.Text.colorGreen("+10") + " Melee Skill and Ranged Skill, and " + ::MSU.Text.colorGreen("+20%") + " chance to hit the head when attacking a rattled, stunned, dazed, netted, sleeping, staggered, webbed, or rooted target."]
+			Description = [
+				"Gain " + ::MSU.Text.colorGreen("+10") + " Melee Skill and Ranged Skill, and " + ::MSU.Text.colorGreen("+20%") + " chance to hit the head when attacking a rattled, stunned, dazed, netted, sleeping, staggered, webbed, or rooted target."
+			]
 		}]
  	}),
 	RF_BestialVigor = ::UPD.getDescription({
@@ -510,7 +512,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
-	RF_BloodyHarvest = ::UPD.getDescription({
+	RF_DeathDealer = ::UPD.getDescription({
  		Fluff = "Like wheat before a scythe!",
  		Requirement = "Melee AOE Attack",
  		Effects = [{
@@ -562,12 +564,12 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
-	RF_Clarity = ::UPD.getDescription({
+	RF_Finesse = ::UPD.getDescription({
  		Fluff = "Years of combat training have given you insight into the most efficient way of carrying yourself on the battlefield.",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Fatigue build-up is reduced by " ::MSU.Text.colorRed("20%")
+				"Fatigue build-up is reduced by " + ::MSU.Text.colorRed("20%") + "."
 			]
 		}]
  	}),
@@ -896,11 +898,11 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
-	RF_HoldTheLine = ::UPD.getDescription({
+	RF_HoldSteady = ::UPD.getDescription({
  		Fluff = "Direct your troops to stand their ground!",
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
-			Name = "Hold the Line",
+			Name = "Hold Steady",
 			Description = [
 				"Costs 7 AP and builds 30 Fatigue",
 				"You and any allies within 4 tiles who have at least " + ::MSU.Text.colorRed("10") + " Fatigue remaining gain the \'Holding the Line\' effect which increases Melee and Ranged Defense by " + ::MSU.Text.colorGreen("+10") + " and grants immunity to being stunned, knocked back, grabbed, or swallowed for one turn.",
@@ -914,7 +916,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorGreen("10%") + " of your Base Ranged Skill as additional Melee Skill and Melee Defense"
+				"Gain " + ::MSU.Text.colorGreen("10%") + " of your Base Ranged Skill as additional Melee Skill and Melee Defense."
 			]
 		}]
  	}),
@@ -1018,7 +1020,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
-	RF_Lithe = ::UPD.getDescription({
+	RF_Poise = ::UPD.getDescription({
  		Fluff = "Specialize in Medium Armor! Not as nimble as some but more lithe than others!",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
@@ -1106,7 +1108,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"The first 2 throwing attacks during a combat have their Action Point costs " + ::MSU.Text.colorGreen("halved") + ".",
 				"Every time you stand over an enemy\'s corpse during your turn, gain " + ::MSU.Text.colorGreen(1) + " ammo and restore " + ::MSU.Text.colorGreen(4) + " Action Points. Afterward, the next throwing attack has its Fatigue Cost " + ::MSU.Text.colorGreen("halved") + ".",
-				"A corpse can only be used once per combat and cannot be used by multiple characters with this perk"
+				"A corpse can only be used once per combat and cannot be used by multiple characters with this perk."
 			]
 		}]
  	}),
@@ -1185,11 +1187,11 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
-	RF_PushForward = ::UPD.getDescription({
+	RF_Onslaught = ::UPD.getDescription({
  		Fluff = "Break their ranks, break their backs, break them all!",
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
-			Name = "Push Forward",
+			Name = "Onslaught",
 			Description = [
 				"Costs 7 AP and builds 30 Fatigue",
 				"You and other members of your company within 4 tiles, who have at least " + ::MSU.Text.colorRed(10) + " Fatigue remaining and are not Fleeing or Stunned, gain " + ::MSU.Text.colorGreen("+20") + " Initiative, " + ::MSU.Text.colorGreen("+10") + " Melee Skill and the \'Line Breaker\' skill for one turn.",
@@ -1250,7 +1252,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
-	RF_ShieldsUp = ::UPD.getDescription({
+	RF_ShieldSergeant = ::UPD.getDescription({
  		Fluff = "Lock and Shield",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
@@ -1272,12 +1274,12 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
-	RF_SmashingShields = ::UPD.getDescription({
+	RF_ShieldSplitter = ::UPD.getDescription({
  		Fluff = "\'If you can\'t get around it, try smashing through. It works!\'",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Upon destroying a shield using the \'Split Shield\' skill, " + ::MSU.Text.colorGreen(4) + " Action Points are instantly restored.",
+				"Upon destroying a shield using the \'Split Shield\' skill, with any weapon, " + ::MSU.Text.colorGreen(4) + " Action Points are instantly restored.",
 			]
 		}]
  	}),
@@ -1613,7 +1615,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
-	RF_Vengeance = ::UPD.getDescription({
+	RF_Retribution = ::UPD.getDescription({
  		Fluff = "Revenge is a dish best served with a vengeance.",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
