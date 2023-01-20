@@ -1,3 +1,5 @@
 *.sublime-workspace
 *.sublime-project
 brushes/
+gfx/*.png
+!gfx/*/.png
