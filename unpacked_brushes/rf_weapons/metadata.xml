@@ -1,0 +1,6 @@
+<brush name="gfx/rf_weapons.png" version="17">
+
+//base//
+<sprite id="cultist_rage_eyes" offsetY="35" ic="FFFFFFFE" width="104" height="142" img="entity\cultist_rage_eyes.png"  left="-5" right="33" top="8" bottom="28" />
+
+</brush>
