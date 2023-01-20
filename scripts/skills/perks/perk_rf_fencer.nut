@@ -59,7 +59,6 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 		{
 			_properties.MeleeSkill += this.m.Bonus;
 			_skill.m.HitChanceBonus += this.m.Bonus;
-			_skill.m.MaxHitChancePenalty += this.m.Bonus;
 		}
 	}
 });
