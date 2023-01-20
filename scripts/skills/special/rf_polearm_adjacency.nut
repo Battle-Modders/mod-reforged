@@ -36,6 +36,8 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 		}
 
 		local user = this.getContainer().getActor();
+		if (!user.isPlacedOnMap())
+			return;
 
 		foreach (faction in ::Tactical.Entities.getAllInstances())
 		{
