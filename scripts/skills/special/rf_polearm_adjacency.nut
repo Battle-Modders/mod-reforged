@@ -43,7 +43,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 		{
 			foreach (actor in faction)
 			{
-				if (actor.isPlacedOnMap() && actor.getTile().getDistanceTo(user) == 1)
+				if (actor.isPlacedOnMap() && actor.getTile().getDistanceTo(user.getTile()) == 1)
 				{
 					this.m.TotalMalus += actor.isAlliedWith(user) ? this.m.MalusPerAlly : this.m.MalusPerEnemy;
 				}
