@@ -40,7 +40,7 @@ this.rf_greatsword <- ::inherit("scripts/items/weapons/weapon", {
 		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.setStunChance(this.m.StunChance);
-		}));
+		}.bindenv(this)));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split", function(o) {
 			o.m.ActionPointCost -= 1;
