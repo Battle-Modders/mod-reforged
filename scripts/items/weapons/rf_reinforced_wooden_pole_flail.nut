@@ -37,8 +37,13 @@ this.rf_reinforced_wooden_pole_flail <- ::inherit("scripts/items/weapons/weapon"
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/flail"));
+		this.addSkill(::MSU.new("scripts/skills/actives/flail", function(o) {
+			o.m.MaxRange = 2;
+		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/lash"));
-		o.m.FatigueCost -= 3;
+		this.addSkill(::MSU.new("scripts/skills/actives/lash", function(o) {
+			o.m.MaxRange = 2;
+			o.m.FatigueCost -= 3;
+		}));
+	}
 });

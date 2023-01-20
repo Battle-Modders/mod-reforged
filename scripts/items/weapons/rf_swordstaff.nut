@@ -10,7 +10,7 @@ this.rf_swordstaff <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.Icon = "weapons/melee/rf_swordstaff_01_70x70.png";
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Spear
+		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Spear;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
@@ -50,6 +50,9 @@ this.rf_swordstaff <- ::inherit("scripts/items/weapons/weapon", {
 			o.m.Icon = "skills/active_124.png";
 			o.m.IconDisabled = "skills/active_124_sw.png";
 			o.m.Overlay = "active_124";
+			local prong = ::MSU.new("scripts/skills/actives/prong_skill");
+			this.addSkill(prong);
 			o.m.BaseAttackName = prong.getName();
 		}));
+	}
 });

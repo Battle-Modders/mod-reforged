@@ -8,25 +8,8 @@ this.rf_named_swordstaff <- ::inherit("scripts/items/weapons/named_weapon", {
 		this.m.ID = "weapon.rf_named_swordstaff";
 		this.m.NameList = this.Const.Strings.SpetumNames;
 		this.m.Description = "A well-crafted Swordstaff as beautiful as it is deadly. This masterpiece would make a welcome addition to any mercenary company";
-		this.m.SlotType = ::Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Spear
-		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
-		this.m.AddGenericSkill = true;
-		this.m.ShowQuiver = false;
-		this.m.ShowArmamentIcon = true;
 		this.m.Value = 4200;
-		this.m.Condition = 72.0;
-		this.m.ConditionMax = 72.0;
-		this.m.StaminaModifier = -10;
-		this.m.RangeMin = 1;
-		this.m.RangeMax = 2;
-		this.m.RegularDamage = 55;
-		this.m.RegularDamageMax = 80;
-		this.m.ArmorDamageMult = 1.0;
-		this.m.DirectDamageMult = 0.25;
-		this.m.Reach = 6;
-		this.m.ChanceToHitHead = 5;
+		this.m.BaseWeaponScript = "scripts/items/weapons/rf_swordstaff";
 		this.randomizeValues();
 	}
 
@@ -56,6 +39,9 @@ this.rf_named_swordstaff <- ::inherit("scripts/items/weapons/named_weapon", {
 			o.m.Icon = "skills/active_124.png";
 			o.m.IconDisabled = "skills/active_124_sw.png";
 			o.m.Overlay = "active_124";
+			local prong = ::MSU.new("scripts/skills/actives/prong_skill");
+			this.addSkill(prong);
 			o.m.BaseAttackName = prong.getName();
 		}));
+	}
 });
