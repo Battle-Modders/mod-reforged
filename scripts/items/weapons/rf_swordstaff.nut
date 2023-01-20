@@ -35,9 +35,14 @@ this.rf_swordstaff <- ::inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/prong", function(o) {
+		local prong = ::MSU.new("scripts/skills/actives/prong_skill", function(o) {
 			o.m.FatigueCost += 2;
-		}));
+			o.m.Icon = "skills/active_174.png";
+			o.m.IconDisabled = "skills/active_174_sw.png";
+			o.m.Overlay = "active_174";
+		});
+
+		this.addSkill(prong);
 
 		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike", function(o) {
 			o.m.FatigueCost += 2;
@@ -50,8 +55,6 @@ this.rf_swordstaff <- ::inherit("scripts/items/weapons/weapon", {
 			o.m.Icon = "skills/active_124.png";
 			o.m.IconDisabled = "skills/active_124_sw.png";
 			o.m.Overlay = "active_124";
-			local prong = ::MSU.new("scripts/skills/actives/prong_skill");
-			this.addSkill(prong);
 			o.m.BaseAttackName = prong.getName();
 		}));
 	}

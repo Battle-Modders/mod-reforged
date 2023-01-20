@@ -1,13 +1,13 @@
-this.rf_pole_flail <- ::inherit("scripts/items/weapons/weapon", {
+this.rf_reinforced_wooden_poleflail <- ::inherit("scripts/items/weapons/weapon", {
 	m = {},
 	function create()
 	{
 		this.weapon.create();
-		this.m.ID = "weapon.rf_pole_flail";
-		this.m.Name = "Pole Flail";
-		this.m.Description = "A farmer's implement adapted for war, this weapon allows quick attacks from a safe distance.";
-		this.m.IconLarge = "weapons/melee/rf_pole_flail_01.png";
-		this.m.Icon = "weapons/melee/rf_pole_flail_01_70x70.png";
+		this.m.ID = "weapon.rf_reinforced_wooden_poleflail";
+		this.m.Name = "Reinforced Wooden Poleflail";
+		this.m.Description = "A long-handled farmer's implement reinforced to be sturdier in battle.";
+		this.m.IconLarge = "weapons/melee/rf_reinforced_wooden_poleflail_01.png";
+		this.m.Icon = "weapons/melee/rf_reinforced_wooden_poleflail_01_70x70.png";
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
 		this.m.WeaponType = this.Const.Items.WeaponType.Flail;
@@ -17,17 +17,17 @@ this.rf_pole_flail <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
-		this.m.ArmamentIcon = "icon_rf_pole_flail_01";
-		this.m.Value = 1400;
-		this.m.Condition = 64.0;
-		this.m.ConditionMax = 64.0;
-		this.m.StaminaModifier = -14;
+		this.m.ArmamentIcon = "icon_rf_reinforced_wooden_poleflail_01";
+		this.m.Value = 700;
+		this.m.Condition = 48.0;
+		this.m.ConditionMax = 48.0;
+		this.m.StaminaModifier = -12;
 		this.m.RangeMin = 1;
 		this.m.RangeMax = 2;
 		this.m.RangeIdeal = 2;
-		this.m.RegularDamage = 25;
-		this.m.RegularDamageMax = 55;
-		this.m.ArmorDamageMult = 1.0;
+		this.m.RegularDamage = 20;
+		this.m.RegularDamageMax = 45;
+		this.m.ArmorDamageMult = 0.8;
 		this.m.DirectDamageMult = 0.3;
 		this.m.ChanceToHitHead = 10;
 		this.m.Reach = 5;
@@ -39,12 +39,11 @@ this.rf_pole_flail <- ::inherit("scripts/items/weapons/weapon", {
 
 		this.addSkill(::MSU.new("scripts/skills/actives/flail", function(o) {
 			o.m.MaxRange = 2;
-			o.m.FatigueCost += 3;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/lash", function(o) {
 			o.m.MaxRange = 2;
-			o.m.FatigueCost += 5;
+			o.m.FatigueCost -= 3;
 		}));
 	}
 });
