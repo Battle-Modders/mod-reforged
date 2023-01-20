@@ -2,6 +2,7 @@
 	local create = o.create;
 	o.create = function()
 	{
+		create();
 		this.m.HitChanceBonus = -20;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_AttackLunge;
 	}
