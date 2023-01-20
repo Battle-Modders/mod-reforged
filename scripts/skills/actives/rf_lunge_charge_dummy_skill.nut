@@ -7,6 +7,7 @@ this.rf_lunge_charge_dummy_skill <- ::inherit("scripts/skills/actives/charge", {
 	m = {},
 	function create()
 	{
+		this.charge.create();
 		this.m.ID = "actives.rf_lunge_charge_dummy";
 		this.m.Name = "Lunge Charge";
 		this.m.Description = "You should not be able to see this skill. If you are seeing it, then please report it as a bug."
