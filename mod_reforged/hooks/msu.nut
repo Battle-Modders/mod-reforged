@@ -133,7 +133,25 @@
 			StaminaModifier = baseWeapon.m.StaminaModifier,
 			ShieldDamage = baseWeapon.m.ShieldDamage,
 			AdditionalAccuracy = baseWeapon.m.AdditionalAccuracy,
-			FatigueOnSkillUse = baseWeapon.m.FatigueOnSkillUse
+			FatigueOnSkillUse = baseWeapon.m.FatigueOnSkillUse,
+
+			IsAoE = baseWeapon.m.IsAoE,
+			SlotType = baseWeapon.m.SlotType,
+			ItemType = this.m.ItemType | baseWeapon.m.ItemType,
+			WeaponType = baseWeapon.m.WeaponType,
+			BlockedSlotType = baseWeapon.m.BlockedSlotType,
+			IsDoubleGrippable = baseWeapon.m.IsDoubleGrippable,
+			IsAgainstShields = baseWeapon.m.IsAgainstShields,
+			AddGenericSkill = baseWeapon.m.AddGenericSkill,
+			ShowQuiver = baseWeapon.m.ShowQuiver,
+			ShowArmamentIcon = baseWeapon.m.ShowArmamentIcon,
+			ShieldDamage = baseWeapon.m.ShieldDamage,
+			RangeMin = baseWeapon.m.RangeMin,
+			RangeMax = baseWeapon.m.RangeMax,
+			RangeIdeal = baseWeapon.m.RangeIdeal,
+
+			// Reforged stuff -- should be removed when porting to MSU
+			Reach = baseWeapon.m.Reach
 		};
 	}
 
