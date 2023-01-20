@@ -1,5 +1,7 @@
 ::mods_hookExactClass("skills/perks/perk_nimble", function(o) {
-	o.isHidden <- function()
+	o.m.EffectHiddenInTacticalTooltip <- true;
+
+	o.isHidden = function()
 	{
 		return ::Math.floor(this.getHitpointsDamage() * 100) >= 100 && ::Math.floor(this.getArmorDamage() * 100) >= 100;
 	}
