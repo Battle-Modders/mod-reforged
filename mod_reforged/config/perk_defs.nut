@@ -462,6 +462,21 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_PromisedPotential,
 		Icon = "ui/perks/rf_promised_potential.png",
 		IconDisabled = "ui/perks/rf_promised_potential_bw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			if (_player.getPerkPointsSpent() > 0)
+			{
+				_tooltip.push({
+					id = 3,
+					type = "hint",
+					icon = "ui/icons/icon_locked.png",
+					text = "Locked because this character has already spent a perk point"
+				});
+				return false;
+			}
+
+			return true;
+		}
 	},
 	{
 		ID = "perk.rf_realized_potential",
@@ -550,6 +565,23 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_WeaponMaster,
 		Icon = "ui/perks/rf_weapon_master.png",
 		IconDisabled = "ui/perks/rf_weapon_master_bw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			foreach (s in _player.getSkills().m.Skills)
+			{
+				local id = s.getID();
+				if (!s.isGarbage() && id != "perk.mastery.bow" && id != "perk.mastery.crossbow" && id.find("perk.mastery.") != null)
+					return true;
+			}
+
+			_tooltip.push({
+				id = 3,
+				type = "hint",
+				icon = "ui/icons/icon_locked.png",
+				text = "Locked until at least one melee weapon mastery perk is picked"
+			});
+			return false;
+		}
 	},
 	{
 		ID = "perk.rf_bully",
@@ -686,6 +718,24 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_SwordmasterBladeDancer,
 		Icon = "ui/perks/rf_swordmaster_blade_dancer.png",
 		IconDisabled = "ui/perks/rf_swordmaster_blade_dancer_bw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			foreach (s in _player.getSkills().m.Skills)
+			{
+				if (!s.isGarbage() && s.getID().find("perk.rf_swordmaster_") != null)
+				{
+					_tooltip.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/icon_locked.png",
+						text = "Locked because this character already has another Swordmaster perk"
+					});
+					return false;
+				}
+			}
+
+			return true;
+		}
 	},
 	{
 		ID = "perk.rf_swordmaster_reaper",
@@ -694,6 +744,24 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_SwordmasterReaper,
 		Icon = "ui/perks/rf_swordmaster_reaper.png",
 		IconDisabled = "ui/perks/rf_swordmaster_reaper_bw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			foreach (s in _player.getSkills().m.Skills)
+			{
+				if (!s.isGarbage() && s.getID().find("perk.rf_swordmaster_") != null)
+				{
+					_tooltip.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/icon_locked.png",
+						text = "Locked because this character already has another Swordmaster perk"
+					});
+					return false;
+				}
+			}
+
+			return true;
+		}
 	},
 	{
 		ID = "perk.rf_swordmaster_metzger",
@@ -702,6 +770,24 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_SwordmasterMetzger,
 		Icon = "ui/perks/rf_swordmaster_metzger.png",
 		IconDisabled = "ui/perks/rf_swordmaster_metzger_bw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			foreach (s in _player.getSkills().m.Skills)
+			{
+				if (!s.isGarbage() && s.getID().find("perk.rf_swordmaster_") != null)
+				{
+					_tooltip.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/icon_locked.png",
+						text = "Locked because this character already has another Swordmaster perk"
+					});
+					return false;
+				}
+			}
+
+			return true;
+		}
 	},
 	{
 		ID = "perk.rf_swordmaster_precise",
@@ -710,6 +796,24 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_SwordmasterPrecise,
 		Icon = "ui/perks/rf_swordmaster_precise.png",
 		IconDisabled = "ui/perks/rf_swordmaster_precise_bw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			foreach (s in _player.getSkills().m.Skills)
+			{
+				if (!s.isGarbage() && s.getID().find("perk.rf_swordmaster_") != null)
+				{
+					_tooltip.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/icon_locked.png",
+						text = "Locked because this character already has another Swordmaster perk"
+					});
+					return false;
+				}
+			}
+
+			return true;
+		}
 	},
 	{
 		ID = "perk.rf_swordmaster_versatile_swordsman",
@@ -718,6 +822,24 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_SwordmasterVersatileSwordsman,
 		Icon = "ui/perks/rf_swordmaster_versatile_swordsman.png",
 		IconDisabled = "ui/perks/rf_swordmaster_versatile_swordsman_bw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			foreach (s in _player.getSkills().m.Skills)
+			{
+				if (!s.isGarbage() && s.getID().find("perk.rf_swordmaster_") != null)
+				{
+					_tooltip.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/icon_locked.png",
+						text = "Locked because this character already has another Swordmaster perk"
+					});
+					return false;
+				}
+			}
+
+			return true;
+		}
 	},
 	{
 		ID = "perk.rf_swordmaster_juggernaut",
@@ -726,6 +848,24 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_SwordmasterJuggernaut,
 		Icon = "ui/perks/rf_swordmaster_juggernaut.png",
 		IconDisabled = "ui/perks/rf_swordmaster_juggernaut_bw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			foreach (s in _player.getSkills().m.Skills)
+			{
+				if (!s.isGarbage() && s.getID().find("perk.rf_swordmaster_") != null)
+				{
+					_tooltip.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/icon_locked.png",
+						text = "Locked because this character already has another Swordmaster perk"
+					});
+					return false;
+				}
+			}
+
+			return true;
+		}
 	},
 	{
 		ID = "perk.rf_swordmaster_grappler",
@@ -734,6 +874,24 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_SwordmasterGrappler,
 		Icon = "ui/perks/rf_swordmaster_grappler.png",
 		IconDisabled = "ui/perks/rf_swordmaster_grappler_bw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			foreach (s in _player.getSkills().m.Skills)
+			{
+				if (!s.isGarbage() && s.getID().find("perk.rf_swordmaster_") != null)
+				{
+					_tooltip.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/icon_locked.png",
+						text = "Locked because this character already has another Swordmaster perk"
+					});
+					return false;
+				}
+			}
+
+			return true;
+		}
 	},
 	{
 		ID = "perk.battle_flow",
@@ -830,6 +988,22 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_Poise,
 		Icon = "ui/perks/rf_poise.png",
 		IconDisabled = "ui/perks/rf_poise_bw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			local poison = _player.getSkills().getSkillByID("perk.nimble");
+			if (poison != null)
+			{
+				_tooltip.push({
+					id = 3,
+					type = "hint",
+					icon = "ui/icons/icon_locked.png",
+					text = "Locked because this character has the " + poison.getName() + " perk"
+				});
+				return false;
+			}
+
+			return true;
+		}
 	},
 	{
 		ID = "perk.rf_death_dealer",
@@ -944,3 +1118,20 @@
 		IconDisabled = "ui/perks/rf_kingfisher_bw.png",
 	}
 ]);
+
+::Const.Perks.findById("perk.nimble").verifyPrerequisites <- function( _player, _tooltip )
+{
+	local poison = _player.getSkills().getSkillByID("perk.rf_poise");
+	if (poison != null)
+	{
+		_tooltip.push({
+			id = 3,
+			type = "hint",
+			icon = "ui/icons/icon_locked.png",
+			text = "Locked because this character has the " + poison.getName() + " perk"
+		});
+		return false;
+	}
+
+	return true;
+}
