@@ -6,7 +6,7 @@
 
 ::mods_registerMod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
 ::mods_queue(::Reforged.ID, "mod_msu(>=1.2.0-rc.2), mod_dpf, mod_upd, mod_stack_based_skills, !mod_legends", function() {
-	::Reforged.Mod <- ::MSU.Class.Mod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);	
+	::Reforged.Mod <- ::MSU.Class.Mod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
 
 	::include("mod_reforged/hooks/msu.nut");
 
@@ -39,6 +39,9 @@
 	{
 		::include(file);
 	}
+
+	::mods_registerCSS("mod_reforged/controls.css");
+	::mods_registerCSS("mod_reforged/screens/tooltip/modules/tooltip_module.css");
 
 	foreach (perkGroupScript in ::IO.enumerateFiles("scripts/mods/mod_reforged/perk_groups"))
 	{
