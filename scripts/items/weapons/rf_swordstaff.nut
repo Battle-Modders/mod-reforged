@@ -37,9 +37,6 @@ this.rf_swordstaff <- ::inherit("scripts/items/weapons/weapon", {
 
 		local prong = ::MSU.new("scripts/skills/actives/prong_skill", function(o) {
 			o.m.FatigueCost += 2;
-			o.m.Icon = "skills/active_174.png";
-			o.m.IconDisabled = "skills/active_174_sw.png";
-			o.m.Overlay = "active_174";
 		});
 
 		this.addSkill(prong);
