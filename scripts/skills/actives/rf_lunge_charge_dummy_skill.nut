@@ -12,6 +12,7 @@ this.rf_lunge_charge_dummy_skill <- ::inherit("scripts/skills/actives/charge", {
 		this.m.Name = "Lunge Charge";
 		this.m.Description = "You should not be able to see this skill. If you are seeing it, then please report it as a bug."
 		this.m.Order = ::Const.SkillOrder.VeryLast;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Charge;
 	}
 
 	function isHidden()
