@@ -13,12 +13,10 @@
 	::Reforged.Mod.ModSettings.requireSettingValue(::getModSetting("mod_msu", "ExpandedSkillTooltips"), true);
 	::Reforged.Mod.ModSettings.requireSettingValue(::getModSetting("mod_msu", "ExpandedItemTooltips"), true);
 
-	local generalPage = ::Reforged.Mod.ModSettings.addPage("General");
-	local legendaryDifficulty = generalPage.addBooleanSetting("LegendaryDifficulty", false, "Legendary Difficulty");
-	legendaryDifficulty.getData().NewCampaign <- true;
-	legendaryDifficulty.onBeforeChangeCallback(function( _newValue ) {
-		::Reforged.Config.IsLegendaryDifficulty = _newValue;
-	});
+	foreach (file in ::IO.enumerateFiles("mod_reforged/mod_settings"))
+	{
+		::include(file);
+	}
 
 	::include("mod_reforged/hooks/msu.nut");
 	::include("mod_reforged/hooks/hook_dpf.nut");
