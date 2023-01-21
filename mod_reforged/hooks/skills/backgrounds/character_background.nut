@@ -35,7 +35,7 @@
 		local function getStringSpacing( _attribute )
 		{
 			local str = "&nbsp;&nbsp;&nbsp;";
-			foreach (attributeName, attribute in ::Const.Attributes)
+			foreach (attribute in ::Const.Attributes)
 			{
 				if (attribute > ::Const.Attributes.Initiative) continue;
 				if (attribute != _attribute)
