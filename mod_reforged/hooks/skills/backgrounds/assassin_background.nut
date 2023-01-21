@@ -38,5 +38,7 @@
 				]
 			}
 		});
+
+		this.m.Excluded.push("trait.swindler");
 	}
 });

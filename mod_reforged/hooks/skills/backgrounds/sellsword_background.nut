@@ -32,5 +32,7 @@
 				"pgc.rf_fighting_style": []
 			}
 		});
+
+		this.m.Excluded.push("trait.swindler");
 	}
 });
