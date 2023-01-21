@@ -22,8 +22,8 @@
 			"pg.rf_ranged": 0,
 			"pg.rf_swift": 0
 
-            "perk.rf_professional": -1,
-            "perk.rf_man_of_steel": -1
+            "pg.special.rf_professional": -1,
+            "pg.special.rf_man_of_steel": -1
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
 			"pgc.rf_exclusive_1": [
