@@ -30,4 +30,10 @@
 
 		return ret;
 	}
+
+	o.isHired <- function()
+	{
+		return this.getPlaceInFormation() != 255;
+	}
+
 });

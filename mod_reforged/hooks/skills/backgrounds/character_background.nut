@@ -1,8 +1,10 @@
 ::mods_hookExactClass("skills/backgrounds/character_background", function(o) {
 	local getBackgroundDescription = o.getBackgroundDescription;
 	o.getBackgroundDescription = function()
+	o.isHired <- function()
 	{
-		local ret = getBackgroundDescription() + "\n\n";
+		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
+	}
 
 		if (!this.getContainer().getActor().isTryoutDone())
 		{
