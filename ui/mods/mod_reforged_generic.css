@@ -1,0 +1,14 @@
+.attributePredictionContainer
+{
+	display:flex;
+	flex-wrap: wrap;
+}
+.attributePredictionContainer > span
+{
+	width: 50%;
+}
+.attributePredictionContainer img
+{
+	width: 20px;
+	height: 20px;
+}

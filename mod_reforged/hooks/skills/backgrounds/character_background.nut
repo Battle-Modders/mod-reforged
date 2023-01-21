@@ -1,67 +1,84 @@
+local function hookTooltip(_ret)
+{
+	if (this.isHired() && this.getContainer().getActor().getLevel() < ::Const.XP.MaxLevelWithPerkpoints)
+	{
+		foreach (segment in _ret)
+		{
+			if ("type" in segment && segment.type === "description")
+			{
+				ret[1].rawHTML <- this.getProjectedAttributesDescription();
+				return;
+			}
+		}
+	}
+}
+
 ::mods_hookExactClass("skills/backgrounds/character_background", function(o) {
-	local getBackgroundDescription = o.getBackgroundDescription;
-	o.getBackgroundDescription = function()
+
 	o.isHired <- function()
 	{
 		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
 	}
 
-		if (!this.getContainer().getActor().isTryoutDone())
-		{
-			ret += ::MSU.Text.colorRed("Try out") + " this character to reveal " + ::MSU.Text.colorGreen("more") + " information!";
-		}
-		else
-		{
-			ret += this.getContainer().getActor().getBackground().getPerkTree().getTooltip();
-			ret = ::MSU.String.replace(ret, "%name%", this.getContainer().getActor().getNameOnly());
-		}
-
+	o.getTooltip <- function()
+	{
+		local ret = this.skill.getTooltip();
+		hookTooltip.call(this, ret)
 		return ret;
 	}
 
-	local getDescription = "getDescription" in o ? o.getDescription : null;
-	o.getDescription <- function()
+	local getGenericTooltip = o.getGenericTooltip;
+	o.getGenericTooltip = function()
 	{
-		local ret = getDescription != null ? getDescription() : this.skill.getDescription();
-
-		if (::MSU.isNull(this.getContainer()) || this.getContainer().getActor().getLevel() >= ::Const.XP.MaxLevelWithPerkpoints || this.getContainer().getActor().getPlaceInFormation() != 255) // Formation check to confirm this character is hired and default is 255
-			return ret;
-
-		return ret + "\n\n----\n" + this.getProjectedAttributesDescription();
+		local ret = getGenericTooltip();
+		local descriptionContainer = ret[1];
+		if (this.getContainer().getActor().isTryoutDone())
+		{
+			descriptionContainer.text += this.getContainer().getActor().getBackground().getPerkTree().getTooltip();
+			descriptionContainer.text = ::MSU.String.replace(descriptionContainer.text, "%name%", this.getContainer().getActor().getNameOnly());
+			descriptionContainer.rawHTML <- this.getProjectedAttributesDescription();
+		}
+		else
+		{
+			descriptionContainer.text += "/n" +  ::MSU.Text.colorRed("Try out") + " this character to reveal " + ::MSU.Text.colorGreen("more") + " information!";
+		}
+		return ret;
 	}
 
 	o.getProjectedAttributesDescription <- function()
 	{
 		local projection = this.getContainer().getActor().getProjectedAttributes();
-
-		local function getStringSpacing( _attribute )
-		{
-			local str = "&nbsp;&nbsp;&nbsp;";
-			foreach (attribute in ::Const.Attributes)
-			{
-				if (attribute > ::Const.Attributes.Initiative) continue;
-				if (attribute != _attribute)
-				{
-					if (projection[attribute][0] >= 100) str += "&nbsp;&nbsp;&nbsp;";
-					if (projection[attribute][1] >= 100) str += "&nbsp;&nbsp;";
-				}
-			}
-			return str;
-		}
-
 		local function formatString( _img, _attribute )
 		{
 			local min = projection[_attribute][0];
 			local max = projection[_attribute][1];
-			return (format("<div class='attributeDescriptionPair'><img src='%s'><span>%i - $i</span></img></div>", _img, (min + max) / 2, min, max)
+			return format("<span><img src='coui://%s'/> <span>%i [%i - %i]</span></span>", _img, (min + max) / 2, min, max)
 		}
 
-		local ret = "Projection of this character\'s base attribute ranges if that attribute is improved on every level up from current level to " + ::Const.XP.MaxLevelWithPerkpoints + ".\n";
-		ret += "\n" + formatString("gfx/ui/icons/health_15px.png", ::Const.Attributes.Hitpoints) + ::Const.Attributes.Hitpoints + formatString("gfx/ui/icons/melee_skill_15px.png", ::Const.Attributes.MeleeSkill);
-		ret += "\n" + formatString("gfx/ui/icons/fatigue_15px.png", ::Const.Attributes.Fatigue) + ::Const.Attributes.Fatigue + formatString("gfx/ui/icons/ranged_skill_15px.png", ::Const.Attributes.RangedSkill);
-		ret += "\n" + formatString("gfx/ui/icons/bravery_15px.png", ::Const.Attributes.Bravery) + ::Const.Attributes.Bravery + formatString("gfx/ui/icons/melee_defense_15px.png", ::Const.Attributes.MeleeDefense);
-		ret += "\n" + formatString("gfx/ui/icons/initiative_15px.png", ::Const.Attributes.Initiative) + ::Const.Attributes.Initiative + formatString("gfx/ui/icons/ranged_defense_15px.png", ::Const.Attributes.RangedDefense);
+		local ret = "<div>Projection of this character\'s base attribute ranges if that attribute is improved on every level up from current level to " + ::Const.XP.MaxLevelWithPerkpoints + ".</div>";
+		ret += "<div class='attributePredictionContainer'>"
+		ret += formatString("gfx/ui/icons/health.png", ::Const.Attributes.Hitpoints)
+		ret += formatString("gfx/ui/icons/melee_skill.png", ::Const.Attributes.MeleeSkill)
+		ret += formatString("gfx/ui/icons/fatigue.png", ::Const.Attributes.Fatigue)
+		ret += formatString("gfx/ui/icons/ranged_skill.png", ::Const.Attributes.RangedSkill)
+		ret += formatString("gfx/ui/icons/bravery.png", ::Const.Attributes.Bravery)
+		ret += formatString("gfx/ui/icons/melee_defense.png", ::Const.Attributes.MeleeDefense)
+		ret += formatString("gfx/ui/icons/initiative.png", ::Const.Attributes.Initiative)
+		ret += formatString("gfx/ui/icons/ranged_defense.png", ::Const.Attributes.RangedDefense)
+		ret += "</div>"
 
 		return ret;
 	}
 });
+::mods_hookDescendants("skills/backgrounds/character_background", function(o) {
+	if ("getTooltip" in o)
+	{
+		local getTooltip = o.getTooltip;
+		o.getTooltip <- function()
+		{
+			local ret = getTooltip();
+			hookTooltip.call(this, ret)
+			return ret;
+		}
+	}
+})
