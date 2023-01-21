@@ -40,7 +40,7 @@ this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 				local moraleState = ally.getMoraleState();
 				if (moraleState < ::Const.MoraleState.Confident)
 				{
-					ally.checkMorale(1);
+					ally.checkMorale(1, ::Const.Morale.RallyBaseDifficulty);
 					if (ally.getMoraleState() > moraleState)
 					{
 						this.spawnIcon("perk_rf_bolster", ally.getTile());
