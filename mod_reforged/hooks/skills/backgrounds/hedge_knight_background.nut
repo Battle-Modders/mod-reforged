@@ -36,5 +36,7 @@
 				"pg.rf_power"
 			]
 		});
+
+		this.m.Excluded.push("trait.swindler");
 	}
 });

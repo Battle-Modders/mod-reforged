@@ -26,5 +26,7 @@
 				"pg.rf_ranged"
 			]
 		});
+
+		this.m.Excluded.push("trait.swindler");
 	}
 });

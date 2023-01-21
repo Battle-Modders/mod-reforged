@@ -6,5 +6,6 @@
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_talented": 0
 		};
+		this.m.Excluded.push("trait.swindler");
 	}
 });

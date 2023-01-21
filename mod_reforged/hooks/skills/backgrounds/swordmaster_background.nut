@@ -33,5 +33,7 @@
 				"pg.rf_swift"
 			]
 		});
+
+		this.m.Excluded.push("trait.swindler");
 	}
 });
