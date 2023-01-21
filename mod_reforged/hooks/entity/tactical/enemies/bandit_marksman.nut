@@ -72,12 +72,12 @@
 	    if (weapon == null) return;
 		if (weapon.isWeaponType(::Const.Items.WeaponType.Bow))
 	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/rf_target_practice"));
+	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
 	    }
     	else
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/rf_power_shot"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
     	}
 	}

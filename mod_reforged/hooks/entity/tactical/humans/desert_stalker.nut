@@ -33,14 +33,14 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/rf_small_target"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_small_target"));
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_ballistics"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			this.m.Skills.add(this.new("scripts/skills/perks/rf_marksmanship"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_marksmanship"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 		}
 	}
