@@ -1,0 +1,44 @@
+.attributePredictionHeader
+{
+	border-top: 1px solid black;
+	margin-top:1rem;
+}
+.attributePredictionContainer
+{
+	display: flex;
+	flex-wrap: wrap;
+}
+.attributePredictionContainer > .attributePredictionItem
+{
+	width: 50%;
+	display: flex;
+	align-items: center;
+}
+.attributePredictionContainer > .attributePredictionItem > .attributePredictionSingle
+{
+	width: 30px;
+	font-size: 16px;
+	text-align: right;
+}
+.attributePredictionContainer > .attributePredictionItem > img
+{
+	width: 20px;
+	height: 20px;
+}
+.attributePredictionContainer > .attributePredictionItem .attributePredictionRange
+{
+	font-size: 12px;
+	padding-left: 3px;
+}
+.character-screen .ui-control.popup-dialog.unlock-perk-popup
+{
+    min-height: 30.0rem;
+    height: auto;
+
+    background-size: 60.0rem 100%;
+}
+.character-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container
+{
+    min-height: 17.7rem;
+    height: auto;
+}
