@@ -4,6 +4,7 @@
 	<sprite id="perk_rf_sanguinary" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_sanguinary.png" />
 	<sprite id="perk_rf_exude_confidence" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_exude_confidence.png" />
 	<sprite id="perk_rf_shield_splitter" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_shield_splitter.png" />
+	<sprite id="perk_rf_bolster" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_bolster.png" />
 
 	<sprite id="rf_adjust_dented_armor_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_adjust_dented_armor_skill.png" />
 	<sprite id="rf_adjust_dented_armor_ally_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_adjust_dented_armor_ally_skill.png" />
