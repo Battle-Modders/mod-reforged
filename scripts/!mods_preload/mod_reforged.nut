@@ -9,7 +9,7 @@
 	::Reforged.Mod <- ::MSU.Class.Mod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);	
 
 	::include("mod_reforged/hooks/msu.nut");
-	::include("mod_reforged/ui/load.nut")
+	::include("mod_reforged/ui/load.nut");
 
 	::Reforged.Mod.ModSettings.requireSettingValue(::getModSetting("mod_msu", "ExpandedSkillTooltips"), true);
 	::Reforged.Mod.ModSettings.requireSettingValue(::getModSetting("mod_msu", "ExpandedItemTooltips"), true);
