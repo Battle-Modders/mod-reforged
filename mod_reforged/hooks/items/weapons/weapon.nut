@@ -85,4 +85,9 @@
 			_properties.Reach += this.m.Reach;
 		}
 	}
+
+	o.getReach <- function()
+	{
+		return this.m.Reach;
+	}
 });
