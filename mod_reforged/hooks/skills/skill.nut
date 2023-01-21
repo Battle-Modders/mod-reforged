@@ -20,13 +20,15 @@
 		{
 			// Direct damage entry
 			local damageDirectPct = properties.DamageDirectMult * (this.m.DirectDamageMult + properties.DamageDirectAdd + (this.m.IsRanged ? properties.DamageDirectRangedAdd : properties.DamageDirectMeleeAdd));
-			ret[3].text = ::MSU.String.replace(ret[3].text, "can ignore armor", ::MSU.Text.colorRed("(" + ::Math.floor(100 * damageDirectPct) + "%)") + " can ignore armor");
+			ret[3].text = ::MSU.String.replace(ret[3].text, "which ", "which " + ::MSU.Text.colorRed(::Math.floor(100 * damageDirectPct) + "%") + " [");
+			ret[3].text = ::MSU.String.replace(ret[3].text, " can", "] can");
 		}
 
 		// Armor damage entry
 		if (ret[4].id == 5)
 		{
-			ret[4].text = ::MSU.String.replace(ret[3].text, "damage to armor", ::MSU.Text.colorRed("(" + ::Math.floor(100 * properties.DamageArmorMult) + "%)") + " damage to armor");
+			ret[4].text = ::MSU.String.replace(ret[4].text, "Inflicts ", "Inflicts " + ::MSU.Text.colorRed(::Math.floor(100 * properties.DamageArmorMult) + "%") + " [");
+			ret[4].text = ::MSU.String.replace(ret[4].text, " damage", "] damage");
 		}
 
 		return ret;
