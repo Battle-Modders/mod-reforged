@@ -33,7 +33,7 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 	function spinFlail (_skill, _targetTile)
 	{
 		local targetEntity = _targetTile.getEntity();
-		if (targetEntity == null || this.m.IsSpinningFlail || ::tMath.rand(1,100) > this.m.Chance)
+		if (targetEntity == null || this.m.IsSpinningFlail || ::Math.rand(1,100) > this.m.Chance)
 		{
 			return;
 		}
