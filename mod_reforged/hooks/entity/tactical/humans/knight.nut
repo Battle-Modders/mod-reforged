@@ -70,7 +70,7 @@
 			this.m.Skills.removeByID("perk.killing_frenzy"); // revert vanilla
 
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shields_up"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
     		{
     			this.m.Skills.add(::new("scripts/skills/perks/perk_lone_wolf"));

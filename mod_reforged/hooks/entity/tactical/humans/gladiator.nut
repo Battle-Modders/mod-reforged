@@ -84,7 +84,7 @@
 	    	{
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_momentum"));
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_whites_of_their_eyes"));
+	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_proximity_throwing_specialist"));
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_opportunist"));
 	    		break;
 	    	}

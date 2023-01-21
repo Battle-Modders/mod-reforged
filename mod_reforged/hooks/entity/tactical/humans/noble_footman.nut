@@ -31,7 +31,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		if (::Math.rand(1, 100) <= 25)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_linebreaker"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
 		}
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
 

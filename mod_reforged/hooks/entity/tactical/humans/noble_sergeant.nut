@@ -58,8 +58,8 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_the_line"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shields_up"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_clarity"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));

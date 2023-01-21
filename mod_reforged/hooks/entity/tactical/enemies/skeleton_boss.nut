@@ -27,12 +27,12 @@
 			o.m.IsForceEnabled = true;
 		}));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_onslaught"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_hold_the_line"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_hold_steady"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_personal_armor"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_shields_up"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_sergeant"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
 
 		if (::Reforged.Config.IsLegendaryDifficulty)

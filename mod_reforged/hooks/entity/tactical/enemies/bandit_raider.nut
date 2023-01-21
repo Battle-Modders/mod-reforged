@@ -65,7 +65,7 @@
 			if (this.isArmedWithShield())
 			{
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_linebreaker"));
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_line_breaker"));
 			}
 			else
 			{

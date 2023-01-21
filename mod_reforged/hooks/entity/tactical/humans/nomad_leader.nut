@@ -42,9 +42,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_the_line"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rally_the_troops"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shields_up"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
@@ -76,7 +76,7 @@
 	    if (this.isArmedWithShield())
 	    {
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_linebreaker"));
+	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
 	    }
 
 	    foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
@@ -85,7 +85,7 @@
 	    	{
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_momentum"));
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_whites_of_their_eyes"));
+	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_proximity_throwing_specialist"));
 	    		break;
 	    	}
 	    }

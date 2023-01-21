@@ -33,8 +33,8 @@
 		this.m.BaseProperties.MeleeDefense += 10;
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_the_line"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shields_up"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
