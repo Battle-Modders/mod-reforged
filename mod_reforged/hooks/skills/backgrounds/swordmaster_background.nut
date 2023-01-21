@@ -42,7 +42,8 @@
 
 		this.m.Excluded.extend([
 		    "trait.asthmatic",
-		    "trait.cocky"
+		    "trait.cocky",
+		    "trait.swindler"
 		]);
 
 		this.m.ExcludedTalents.push(::Const.Attributes.RangedDefense);
