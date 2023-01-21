@@ -34,7 +34,7 @@ this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 	{
 		if (_targetEntity != null && this.getContainer().getActor().isPlacedOnMap() && _skill.isAttack() && !_skill.isRanged() && (this.m.IsForceEnabled || _skill.m.IsWeaponSkill) && this.isEnabled())
 		{
-			local allies = ::Tactical.Entities.getFactionActors(this.getContainer().getActor(), this.getContainer().getActor().getTile(), 1, true);
+			local allies = ::Tactical.Entities.getFactionActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true);
 			foreach (ally in allies)
 			{
 				local moraleState = ally.getMoraleState();
