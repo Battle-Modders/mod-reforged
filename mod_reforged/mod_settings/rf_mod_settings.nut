@@ -1,6 +1,6 @@
 local generalPage = ::Reforged.Mod.ModSettings.addPage("General");
 local legendaryDifficulty = generalPage.addBooleanSetting("LegendaryDifficulty", false, "Legendary Difficulty");
 legendaryDifficulty.getData().NewCampaign <- true;
-legendaryDifficulty.onBeforeChangeCallback(function( _newValue ) {
-	::Reforged.Config.IsLegendaryDifficulty = _newValue;
+legendaryDifficulty.addAfterChangeCallback(function( _oldValue ) {
+	::Reforged.Config.IsLegendaryDifficulty = this.getValue();
 });
