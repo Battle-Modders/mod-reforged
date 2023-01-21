@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/special/bag_fatigue", function(o) {
+::mods_hookExactClass("skills/items/generic_item", function(o) {
 
     local onUpdate = o.onUpdate;
 	o.onUpdate = function( _properties )

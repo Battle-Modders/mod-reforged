@@ -8,15 +8,6 @@
 	dummyPlayer.m.Skills.add = function( _skill, _order = 0 ) {};
 	dummyPlayer.getFaction <- function() { return ::Const.Faction.Player };
 
-	local onUpdateProperties = o.onUpdateProperties;
-	o.onUpdateProperties = function( _properties )
-	{
-        local oldStamina = _properties.Stamina;
-        onUpdateProperties(_properties);
-        local staminaDifference = _properties.Stamina - oldStamina;
-		_properties.Burden += (-1.0 * staminaDifference);
-	}
-
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
 	{
