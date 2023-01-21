@@ -22,7 +22,7 @@
 	{
 		local ret = getDescription != null ? getDescription() : this.skill.getDescription();
 
-		if (::MSU.isNull(this.getContainer()) || this.getContainer().getActor().getLevel() >= ::Const.XP.MaxLevelWithPerkpoints)
+		if (::MSU.isNull(this.getContainer()) || this.getContainer().getActor().getLevel() >= ::Const.XP.MaxLevelWithPerkpoints || this.getContainer().getActor().getPlaceInFormation() != 255) // Formation check to confirm this character is hired and default is 255
 			return ret;
 
 		return ret + "\n\n----\n" + this.getProjectedAttributesDescription();
