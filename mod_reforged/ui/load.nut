@@ -8,8 +8,6 @@
 ::Reforged.UI.JSConnection <- ::new("mod_reforged/ui/reforged_js_connection");
 ::MSU.UI.registerConnection(::Reforged.UI.JSConnection);
 
-::mods_registerJS("mod_reforged/setup.js");
-
 local prefixLen = "ui/mods/".len();
 if (this.IO.enumerateFiles("ui/mods/mod_reforged/hooks") != null)
 {
