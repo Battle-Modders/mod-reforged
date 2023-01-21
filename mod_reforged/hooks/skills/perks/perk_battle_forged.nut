@@ -1,3 +1,9 @@
 ::mods_hookExactClass("skills/perks/perk_battle_forged", function(o) {
-	o.m.EffectHiddenInTacticalTooltip <- true;
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+
+		this.m.IsEffectHiddenInTacticalTooltip = true;
+	}
 });

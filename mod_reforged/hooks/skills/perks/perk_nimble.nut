@@ -1,5 +1,11 @@
 ::mods_hookExactClass("skills/perks/perk_nimble", function(o) {
-	o.m.EffectHiddenInTacticalTooltip <- true;
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+
+		this.m.IsEffectHiddenInTacticalTooltip = true;
+	}
 
 	o.isHidden = function()
 	{

@@ -12,6 +12,8 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
+
+		this.m.IsEffectHiddenInTacticalTooltip = true;
 	}
 
 	function isHidden()

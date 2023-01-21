@@ -56,8 +56,9 @@
 		local toRemove = [];
 
 		// Adjust existing progressbars displayed by Vanilla
-		foreach(index, entry in ret)
+		for (local index = (ret.len() - 1); index >= 0; index--)
 		{
+			local entry = ret[index];
 			// Display the actual values for Armor (5, 6), Health (7) and Fatigue (9)
 			if (entry.id == 5 || entry.id == 6 || entry.id == 7 || entry.id == 9)
 			{
@@ -77,24 +78,18 @@
 			}
 
 			// Remove all vanilla generated effect entries but possible also most mod-generated entries
-			if (entry.id >= 100) toRemove.push(index);
+			if (entry.id >= 100) ret.remove(index);
 		}
 
-		toRemove.reverse();
-		foreach(index in toRemove)
-		{
-			ret.remove(index);
-		}
-
-		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("AttributesPlayer").getValue()) 	ret.extend(this.getTooltipAttributesSmall(100));
-		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("AttributesNonPlayer").getValue()) 	ret.extend(this.getTooltipAttributesSmall(100));
-		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EffectsPlayer").getValue()) 		ret.extend(this.getTooltipEffects(200));
-		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EffectsNonPlayer").getValue()) 	ret.extend(this.getTooltipEffects(200));
-		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("PerksPlayer").getValue()) 			ret.extend(this.getTooltipPerks(300));
-		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("PerksNonPlayer").getValue()) 		ret.extend(this.getTooltipPerks(300));
-		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("ItemsPlayer").getValue()) 			ret.extend(this.getTooltipItems(400));
-		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("ItemsNonPlayer").getValue()) 		ret.extend(this.getTooltipItems(400));
-		ret.extend(this.getGroundItems(500));
+		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("AttributesPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
+		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("AttributesNonPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
+		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EffectsPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
+		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EffectsNonPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
+		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("PerksPlayer").getValue()) 			ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
+		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("PerksNonPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
+		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("ItemsPlayer").getValue()) 			ret.extend(::Reforged.TacticalTooltip.getTooltipItems(this, 400));
+		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("ItemsNonPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipItems(this, 400));
+		ret.extend(::Reforged.TacticalTooltip.getGroundItems(this, 500));
 
 		return ret;
 	}
