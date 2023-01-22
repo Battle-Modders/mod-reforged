@@ -55,6 +55,6 @@ WorldTownScreenHireDialogModule.prototype.selectListEntry = function(_element, _
 	if (_element === null || _element.length === 0)
 		return;
 	// Via data_helper, the recruits now also get their perkTree
-	this.mDetailsPanel.mPerksModule.loadPerkTreesWithBrotherData(_element.data('entry'));
+	this.mDetailsPanel.mPerksModule.loadFromData(_element.data('entry').perkTree);
 }
 
