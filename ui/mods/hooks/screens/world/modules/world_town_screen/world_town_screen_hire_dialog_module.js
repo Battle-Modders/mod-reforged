@@ -5,9 +5,6 @@ WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	createDIV.call(this, _parentDiv);
 	var self = this;
 
-	// 	.appendTo(this.mDetailsPanel.Container)
-	// this.mDetailsPanel.mPerksModule = new HireScreenPerksModule(this.mDetailsPanel.CharacterBackgroundPerksContainer);
-
 	this.mDetailsPanel.CharacterBackgroundPerksContainer = $("<div class='hire-screen-perks-container'/>")
 		.appendTo(this.mDetailsPanel.Container)
 	this.mDetailsPanel.mPerksModule = new GenericPerksModule(this.mDetailsPanel.CharacterBackgroundPerksContainer);
