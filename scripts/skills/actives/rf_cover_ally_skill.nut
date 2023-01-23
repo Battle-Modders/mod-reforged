@@ -14,7 +14,7 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 			"sounds/combat/shieldwall_03.wav"
 		];
 		this.m.Type = ::Const.SkillType.Active;
-		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
+		this.m.Order = ::Const.SkillOrder.NonTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
