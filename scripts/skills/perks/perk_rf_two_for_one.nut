@@ -18,6 +18,9 @@ this.perk_rf_two_for_one <- ::inherit("scripts/skills/skill", {
 	function onAfterUpdate( _properties )
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon == null)
+			return;
+
 		foreach (skill in weapon.getSkills())
 		{
 			switch (skill.getID())
