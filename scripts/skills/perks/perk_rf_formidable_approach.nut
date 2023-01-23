@@ -18,7 +18,7 @@ this.perk_rf_formidable_approach <- ::inherit("scripts/skills/skill", {
 
 	function registerEnemy( _actor )
 	{
-		if (this.getContainer().getActor().hasZoneOfControl() && this.m.Enemies.find(_actor.getID() == null))
+		if (this.getContainer().getActor().hasZoneOfControl() && this.m.Enemies.find(_actor.getID()) == null)
 			this.m.Enemies.push(_actor.getID());
 	}
 
@@ -53,12 +53,12 @@ this.perk_rf_formidable_approach <- ::inherit("scripts/skills/skill", {
 		if (!_skill.isAttack() || _skill.isRanged() || !_targetTile.IsOccupiedByActor || !this.hasEnemy(_targetTile.getEntity()))
 			return;
 
-		local defenderPerk = _targetTile.getEntity().getSkills().hasSkill("perk.rf_formidable_approach");
+		local defenderPerk = _targetTile.getEntity().getSkills().getSkillByID("perk.rf_formidable_approach");
 		if (defenderPerk == null || !defenderPerk.hasEnemy(this.getContainer().getActor()))
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
-				text = ::MSU.colorGreen(this.getName())
+				text = this.getName()
 			});
 		}
 	}
@@ -68,12 +68,12 @@ this.perk_rf_formidable_approach <- ::inherit("scripts/skills/skill", {
 		if (!_skill.isAttack() || _skill.isRanged() || !this.hasEnemy(_skill.getContainer().getActor()))
 			return;
 
-		local attackerPerk = _skill.getContainer().hasSkill("perk.rf_formidable_approach");
+		local attackerPerk = _skill.getContainer().getSkillByID("perk.rf_formidable_approach");
 		if (attackerPerk == null || !attackerPerk.hasEnemy(this.getContainer().getActor()))
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/negative.png",
-				text = ::MSU.colorRed(this.getName())
+				text = this.getName()
 			});
 		}
 	}
