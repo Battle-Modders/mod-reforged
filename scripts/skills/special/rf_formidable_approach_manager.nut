@@ -48,8 +48,8 @@ this.rf_formidable_approach_manager <- ::inherit("scripts/skills/skill", {
 		// Iterate over the enemies next to our new tile
 		foreach (tile in ::MSU.Tile.getNeighbors(_tile))
 		{
-			// Ignore the enemies we were already next to when starting our movement
-			if (!tile.IsOccupiedByActor || this.m.Enemies.find(tile.getEntity().getID()) != null)
+			// Ignore allies. Additionatlly, ignore enemies we were already next to when starting our movement
+			if (!tile.IsOccupiedByActor || tile.getEntity().isAlliedWith(this.getContainer().getActor()) || this.m.Enemies.find(tile.getEntity().getID()) != null)
 				continue;
 
 			// We have ended our movement next to a new enemy
