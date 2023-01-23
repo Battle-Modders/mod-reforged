@@ -41,7 +41,7 @@ this.rf_formidable_approach_manager <- ::inherit("scripts/skills/skill", {
 				// We have exited an enemy's Zone of Control
 				local perk = enemy.getSkills().getSkillByID("perk.rf_formidable_approach");
 				if (perk != null) perk.unregisterEnemy(this.getContainer().getActor());
-				if (myPerk != null) myPerk.unregisterEnemy(tile.getEntity());
+				if (myPerk != null) myPerk.unregisterEnemy(enemy.getID());
 			}
 		}
 
