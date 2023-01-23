@@ -150,6 +150,22 @@ local vanillaDescriptions = [
 	 	Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks with a Base Action Point cost of 4 or less that are either \'Lunge\' or have a Base Maximum Range of 1 tile.")
 	},
 	{
+		ID = "perk.indomitable",
+		Key = "Indomitable",
+		Description = ::UPD.getDescription({
+	 		Fluff = "\'Mountains cannot be moved, nor taken down!\'",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Active,
+ 				Name = "Indomitable",
+ 				Description = [
+ 					"Costs 5 AP and builds 25 Fatigue",
+ 					"Grants a " + ::MSU.Text.colorGreen("50%") + " damage reduction and immunity to being stunned, knocked back, grabbed, swallowed or culled for one turn."
+ 				]
+ 			}]
+	 	}),
+	 	Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks with a Base Action Point cost of 4 or less that are either \'Lunge\' or have a Base Maximum Range of 1 tile.")
+	},
+	{
 		ID = "perk.lone_wolf",
 		Key = "LoneWolf",
 		Description = ::UPD.getDescription({
@@ -363,6 +379,20 @@ local vanillaDescriptions = [
 	 				]
 	 			}
  			]
+	 	}),
+	},
+	{
+		ID = "perk.steel_brow",
+		Key = "SteelBrow",
+		Description = ::UPD.getDescription({
+	 		Fluff = "\'I can take it!\'",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+ 					"Hits to the head no longer cause critical damage to this character, which also lowers the risk of sustaining debilitating head injuries significantly."
+ 					"Grants passive immunity against Cull."
+ 				]
+ 			}]
 	 	}),
 	},
 ];
