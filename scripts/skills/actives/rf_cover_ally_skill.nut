@@ -75,7 +75,7 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		return this.skill.isUsable() && actor.isPlacedOnMap() && !actor.getCurrentProperties().IsRooted && !actor.getCurrentProperties().IsStunned && !this.getContainer().hasSkill("effects.rf_covering_ally") && ::Tactical.Entities.getAlliedActors(actor.getFaction(), actor.getTile(), 1, true).len() > 1;
+		return this.skill.isUsable() && actor.isPlacedOnMap() && !actor.getCurrentProperties().IsRooted && !actor.getCurrentProperties().IsStunned && !this.getContainer().hasSkill("effects.rf_covering_ally") && ::Tactical.Entities.getAlliedActors(actor.getFaction(), actor.getTile(), 1, true).len() != 0;
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
