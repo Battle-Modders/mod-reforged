@@ -74,7 +74,7 @@
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 		local weapon = this.getMainhandItem();
 
-		if (weapon != null && weapon.isWeaponType(this.Const.Items.ItemType.Throwing))
+		if (weapon != null && weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_throwing"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_momentum"));

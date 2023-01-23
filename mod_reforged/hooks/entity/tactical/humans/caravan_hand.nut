@@ -26,7 +26,7 @@
 		{
 			local weapon = this.getMainhandItem();
 
-			if (weapon != null && weapon.isWeaponType(this.Const.Items.ItemType.Sword))
+			if (weapon != null && weapon.isWeaponType(this.Const.Items.WeaponType.Sword))
 			{
 				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 2);
 			}

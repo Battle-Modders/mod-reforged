@@ -54,7 +54,7 @@
 	    local weapon = this.getMainhandItem();
 	    if (weapon != null)
 	    {
-	    	if (weapon.isItemType(::Const.ItemType.OneHanded))
+	    	if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 	    	{
 	    		if (::Reforged.Config.IsLegendaryDifficulty)
 	    		{
@@ -92,7 +92,7 @@
 			local weapon = this.getMainhandItem();
 			if (weapon != null)
 			{
-				if (weapon.isItemType(::Const.ItemType.OneHanded))
+				if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 		    	{
 		    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)

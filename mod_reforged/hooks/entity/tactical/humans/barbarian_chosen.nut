@@ -83,7 +83,7 @@
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
 			local weapon = this.getMainhandItem();
-			if (weapon != null && weapon.isWeaponType(this.Const.Items.ItemType.Axe))
+			if (weapon != null && weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
 			{
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
 			}
