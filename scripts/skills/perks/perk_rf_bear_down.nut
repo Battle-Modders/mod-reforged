@@ -35,7 +35,7 @@ this.perk_rf_bear_down <- ::inherit("scripts/skills/skill", {
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
-		if (_targetTile.getEntity() != null && _targetEntity.getSkills().getSkillsByFunction((@(s) this.m.ValidEffects.find(s.getID()) != null).bindenv(this)).len() != 0)
+		if (_targetTile.getEntity() != null && _targetTile.getEntity().getSkills().getSkillsByFunction((@(s) this.m.ValidEffects.find(s.getID()) != null).bindenv(this)).len() != 0)
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
