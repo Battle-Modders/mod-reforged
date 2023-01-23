@@ -37,7 +37,7 @@ this.perk_rf_intimidate <- ::inherit("scripts/skills/skill", {
 			local moraleState = _targetEntity.getMoraleState();
 			if (moraleState > ::Const.MoraleState.Fleeing && moraleState != ::Const.MoraleState.Ignore)
 			{
-				_targetEntity.checkMorale(-1);
+				_targetEntity.checkMorale(-1, ::Const.MoraleCheckType.Default);
 				if (_targetEntity.getMoraleState() < moraleState)
 				{
 					this.spawnIcon("perk_rf_intimidate", _targetEntity.getTile());
