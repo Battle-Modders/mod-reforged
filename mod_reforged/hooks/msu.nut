@@ -177,8 +177,8 @@
 	o.update = function()
 	{
 		update();
-		if (!this.m.IsUpdating)
-			if (!this.getActor().isDying()) this.onSkillsUpdated();
+		if (!this.m.IsUpdating && this.getActor().isAlive())
+			this.onSkillsUpdated();
 	}
 
 	o.onSkillsUpdated <- function()
