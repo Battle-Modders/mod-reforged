@@ -717,7 +717,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Whenever an opponent misses a Melee attack against you, they are affected by the \'Exploitable Opening\' effect for one turn, which gives you " + ::MSU.Text.colorGreen("+10%") + "chance to hit against them for your next attack.",
+				"Whenever an opponent misses a Melee attack against you, gain " + ::MSU.Text.colorGreen("+10%") + " chance to hit against them for your next attack.",
 				"Unlocks the \'Riposte\' skill on southern curved swords such as the Shamshir and One-Handed versions of Saif and Scimitar."
 			]
 		}]
