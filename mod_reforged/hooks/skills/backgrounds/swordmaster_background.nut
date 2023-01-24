@@ -34,4 +34,26 @@
 			]
 		});
 	}
+
+	o.onBuildPerkTree <- function()
+	{
+		local perkTree = this.getPerkTree();
+		local masteryPerks = [
+			"perk.mastery.axe",
+			"perk.mastery.bow",
+			"perk.mastery.cleaver",
+			"perk.mastery.crossbow",
+			"perk.mastery.dagger",
+			"perk.mastery.flail",
+			"perk.mastery.hammer",
+			"perk.mastery.mace",
+			"perk.mastery.polearm",
+			"perk.mastery.spear",
+			"perk.mastery.throwing",
+		];
+		foreach (perk in masteryPerks)
+		{
+			if (perkTree.hasPerk(perk)) perkTree.removePerk(perk);
+		}
+	}
 });
