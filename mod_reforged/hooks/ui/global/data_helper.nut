@@ -8,12 +8,12 @@
 			return ret
 
 		local perkTree = _entity.getBackground().getPerkTree();
-		result.perkTree <- perkTree.toUIData();
-		result.perkTier <- _entity.getPerkTier();
-		result.lockedPerks <- [];
+		ret.perkTree <- perkTree.toUIData();
+		ret.perkTier <- _entity.getPerkTier();
+		ret.lockedPerks <- [];
 		foreach (id, perk in perkTree.getPerks())
 		{
-			if (!_entity.isPerkUnlockable(id)) result.lockedPerks.push(id);
+			if (!_entity.isPerkUnlockable(id)) ret.lockedPerks.push(id);
 		}
 		return ret;
 	}
