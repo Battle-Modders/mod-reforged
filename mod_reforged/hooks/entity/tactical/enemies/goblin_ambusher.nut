@@ -43,7 +43,7 @@
 	{
 	    assignRandomEquipment();
 
-	    if (::Reforged.Skills.IsLegendaryDifficulty)
+	    if (::Reforged.Config.IsLegendaryDifficulty)
 	    {
 	    	::Reforged.Skills.addSkillsOfPerkGroup(this, "pg.rf_dagger", 4);
 	    }
