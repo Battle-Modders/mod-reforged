@@ -7,16 +7,13 @@
 		if (ret == null || _entity.getBackground() == null)
 			return ret
 
-		_entity.getBackground().getPerkTree().getTree();
-		ret.perkTree <- _entity.getBackground().getPerkTree().toUIData();
-		ret.perkTier <- _entity.getPerkTier();
-		ret.lockedPerks <- [];
-		foreach (row in ret.perkTree)
+		local perkTree = _entity.getBackground().getPerkTree();
+		result.perkTree <- perkTree.toUIData();
+		result.perkTier <- _entity.getPerkTier();
+		result.lockedPerks <- [];
+		foreach (id, perk in perkTree.getPerks())
 		{
-			foreach (perk in row)
-			{
-				if (!_entity.isPerkUnlockable(perk.ID)) ret.lockedPerks.push(perk.ID);
-			}
+			if (!_entity.isPerkUnlockable(id)) result.lockedPerks.push(id);
 		}
 		return ret;
 	}
