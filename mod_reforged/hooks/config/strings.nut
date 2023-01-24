@@ -1574,7 +1574,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Fluff = "You\'ve learned the value of taking time with your shots when the situation calls for it!",
  		Requirement = "Crossbow or Handgonne",
  		Effects = [{
-			Type = ::UPD.EffectType.Passive,
+			Type = ::UPD.EffectType.Active,
+			Name = "Take Aim",
 			Description = [
 				"Applies to your next attack during this turn only.",
 				"For crossbows, the attack ignores the hitchance penalty from obstacles and the shot cannot go astray.",
@@ -1656,7 +1657,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"The Action Point cost of Thrust, Glaive Slash, and Prong is reduced by " + ::MSU.Text.colorGreen(1) + ".",
-				"When double-gripping one-handed spears, the range of Thrust is increaed to " + ::MSU.Text.colorGreen(2) + " tiles. When used at this range, it does " + ::MSU.Text.colorRed("20%") + " reduced damage, has no bonus chance to hit, and has " + ::MSU.Text.colorRed("-20%") + " chance to hit per character between you and the target."
+				"When double-gripping one-handed spears, the range of Thrust is increased to " + ::MSU.Text.colorGreen(2) + " tiles. When used at this range, it does " + ::MSU.Text.colorRed("20%") + " reduced damage, has no bonus chance to hit, and has " + ::MSU.Text.colorRed("-20%") + " chance to hit per character between you and the target."
 			]
 		}]
  	}),
