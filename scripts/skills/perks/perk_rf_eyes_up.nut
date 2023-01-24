@@ -67,7 +67,7 @@ this.perk_rf_eyes_up <- ::inherit("scripts/skills/skill", {
 			if (tile.IsOccupiedByActor)
 			{
 				local entity = tile.getEntity();
-				if (entity.isAlliedWith(this.getContainer().getActor()) || this.m.ActorsAppliedTo.find(entity.getID() != null)) continue;
+				if (entity.isAlliedWith(this.getContainer().getActor()) || this.m.ActorsAppliedTo.find(entity.getID()) != null) continue;
 
 				local effect = ::new("scripts/skills/effects/rf_eyes_up_effect");
 				local previouslyAppliedEffect = entity.getSkills().getSkillByID("effects.rf_eyes_up");
