@@ -1144,7 +1144,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The Action Point Cost of reloading a Crossbow is reduced by " + ::MSU.Text.colorGreen(1) + " and that of a Handgonne by " + ::MSU.Text.colorGreen(2) + "."
+				"The Action Point Cost of reloading a Handgonne is reduced by " + ::MSU.Text.colorGreen(2) + ".",
+				"When using a crossbow, for each point of current Ranged Skill above 90, damage is increased by " + ::MSU.Text.colorGreen("1%") + " up to a maximum of " + ::MSU.Text.colorGreen("30%") + "."
 			]
 		}]
  	}),
