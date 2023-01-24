@@ -46,7 +46,9 @@
 			o.m.IsForceEnabled = true;
 		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rally_the_troops"));
+		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rally_the_troops", function(o) {
+			o.m.Cooldown = 3;
+		}));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
     		this.m.Skills.removeByID("perk.rf_personal_armor");

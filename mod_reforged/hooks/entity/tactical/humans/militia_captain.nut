@@ -25,7 +25,9 @@
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced by perk
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perk/perk_rally_the_troops"));
+		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rally_the_troops", function(o) {
+			o.m.Cooldown = 3;
+		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 
 		this.m.BaseProperties.MeleeSkill += 10;
