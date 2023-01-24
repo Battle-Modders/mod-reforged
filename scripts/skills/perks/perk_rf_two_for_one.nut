@@ -26,7 +26,8 @@ this.perk_rf_two_for_one <- ::inherit("scripts/skills/skill", {
 			switch (skill.getID())
 			{
 				case "actives.thrust":
-					skill.m.MaxRange += 1;
+					if (this.getContainer().getActor().isDoubleGrippingWeapon())
+						skill.m.MaxRange += 1;
 				case "actives.prong":
 				case "actives.rf_glaive_slash":
 					if (skill.m.ActionPointCost > 1) skill.m.ActionPointCost -= 1;
