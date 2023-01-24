@@ -19,7 +19,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/goblin_whip"));
 
 		// Reforged
-		::Reforged.Skills.addSkillsOfPerkGroup(this, "pg.rf_sword");
+		::Reforged.Skills.addPerkGroup(this, "pg.rf_sword");
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));

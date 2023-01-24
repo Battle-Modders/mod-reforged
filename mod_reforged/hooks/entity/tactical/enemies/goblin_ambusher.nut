@@ -45,11 +45,11 @@
 
 	    if (::Reforged.Config.IsLegendaryDifficulty)
 	    {
-	    	::Reforged.Skills.addSkillsOfPerkGroup(this, "pg.rf_dagger", 4);
+	    	::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 4);
 	    }
 	    else
 	    {
-	    	::Reforged.Skills.addSkillsOfPerkGroup(this, "pg.rf_dagger", 3);
+	    	::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 3);
 	    }
 	}
 
