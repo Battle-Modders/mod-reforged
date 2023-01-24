@@ -11,6 +11,7 @@ this.pgc_rf_shared_1 <- ::inherit(::DPF.Class.PerkGroupCollection, {
 			"pg.rf_agile",
 			"pg.rf_devious",
 			"pg.rf_fast",
+			"pg.rf_large",
 			"pg.rf_leadership",
 			"pg.rf_resilient",
 			"pg.rf_sturdy",
