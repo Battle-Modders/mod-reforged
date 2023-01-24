@@ -16,6 +16,11 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
+	function isHidden()
+	{
+		return !this.m.IsInEffect;
+	}
+
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
@@ -44,19 +49,16 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		this.m.IsInEffect = false;
+	}
+
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (_skill.isAttack() && !_skill.isRanged() && !_skill.isAOE())
 		{
 			this.m.IsInEffect = true;
-		}
-	}
-
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		if (!_skill.isAttack() || _skill.isRanged() || _skill.isAOE())
-		{
-			this.m.IsInEffect = false;
 		}
 	}
 
