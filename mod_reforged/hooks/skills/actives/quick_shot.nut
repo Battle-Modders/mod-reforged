@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/actives/quick_shot", function(o) {
-	o.m.AdditionalAccuracy <- 10;
-	o.m.AdditionalHitChance <- -2;
+	o.m.AdditionalAccuracy <- 0;
+	o.m.AdditionalHitChance <- -4;
 
 	o.getTooltip = function()
 	{
