@@ -41,25 +41,36 @@ WorldTownScreenHireDialogModule.prototype.destroyDIV = function()
 	destroyDIV.call(this)
 }
 
-WorldTownScreenHireDialogModule.prototype.toggleModule = function()
+WorldTownScreenHireDialogModule.prototype.checkToggleModule = function()
 {
+	if (this.mSelectedEntry === null || !this.mSelectedEntry.data('entry').IsTryoutDone)
+		return false;
+	return true;
+}
+WorldTownScreenHireDialogModule.prototype.toggleModule = function(_idx)
+{
+	if (_idx !== undefined)
+	{
+		this.mDetailsPanel.ActiveModuleIdx = _idx;
+	}
+	else
+	{
+		this.mDetailsPanel.ActiveModuleIdx++;
+		if (this.mDetailsPanel.ActiveModuleIdx > this.mDetailsPanel.mModules.length - 1)
+			this.mDetailsPanel.ActiveModuleIdx = 0;
+	}
+
 	this.mDetailsPanel.ActiveModule.hide();
-
-	this.mDetailsPanel.ActiveModuleIdx++;
-	if (this.mDetailsPanel.ActiveModuleIdx > this.mDetailsPanel.mModules.length - 1)
-		this.mDetailsPanel.ActiveModuleIdx = 0;
-
 	this.mDetailsPanel.ActiveModule = this.mDetailsPanel.mModules[this.mDetailsPanel.ActiveModuleIdx];
 	this.mDetailsPanel.ActiveModule.show();
 }
 
-var selectListEntry = WorldTownScreenHireDialogModule.prototype.selectListEntry;
-WorldTownScreenHireDialogModule.prototype.selectListEntry = function(_element, _scrollToEntry)
+var updateDetailsPanel = WorldTownScreenHireDialogModule.prototype.updateDetailsPanel;
+WorldTownScreenHireDialogModule.prototype.updateDetailsPanel = function(_element)
 {
-	selectListEntry.call(this, _element, _scrollToEntry)
-	if (_element === null || _element.length === 0)
-		return;
-	// Via data_helper, the recruits now also get their perkTree
-	this.mDetailsPanel.mPerksModule.loadFromData(_element.data('entry').perkTree);
+	updateDetailsPanel.call(this, _element);
+	if (!this.checkToggleModule())
+		this.toggleModule(0);
+	else
+		this.mDetailsPanel.mPerksModule.loadFromData(_element.data('entry').perkTree);
 }
-
