@@ -63,6 +63,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/uproot_zoc_skill"));
 
 		// Reforged
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_internal_hemorrhage", function(o) {
 			o.m.IsForceEnabled = true;
 		}));

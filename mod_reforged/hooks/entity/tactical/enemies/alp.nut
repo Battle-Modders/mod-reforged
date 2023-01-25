@@ -36,6 +36,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 
 		//Reforged
+		this.m.BaseProperties.IsAffectedByReach = false;
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));

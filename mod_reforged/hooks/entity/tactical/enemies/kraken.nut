@@ -77,6 +77,7 @@
 		}
 
 		// Reforged
+		this.m.BaseProperties.IsAffectedByReach = false;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_colossus"));
 	}
 });
