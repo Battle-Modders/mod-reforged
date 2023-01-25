@@ -64,10 +64,93 @@
 		}
 	}
 
-    local assignRandomEquipment = o.assignRandomEquipment;
-    o.assignRandomEquipment = function()
-    {
-        assignRandomEquipment();
+	o.assignRandomEquipment = function()
+	{
+		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+		{
+			local weapons = [
+				"weapons/noble_sword",
+				"weapons/fighting_axe",
+				"weapons/warhammer",
+				"weapons/fighting_spear",
+				"weapons/winged_mace",
+				"weapons/arming_sword",
+				"weapons/military_cleaver"
+			];
+
+			if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+			{
+				weapons.extend([
+					"weapons/greatsword",
+					"weapons/greataxe",
+					"weapons/warbrand",
+
+					// Reforged
+					"weapons/rf_greatsword",
+					"weapons/rf_battle_axe",
+					"weapons/rf_swordstaff"
+				]);
+			}
+
+			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		}
+
+		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		{
+			local shields = [
+				"shields/wooden_shield",
+				"shields/heater_shield",
+				"shields/kite_shield"
+			];
+			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+		}
+
+		if (this.Math.rand(1, 100) <= 35)
+		{
+			local weapons = [
+				"weapons/throwing_axe",
+				"weapons/javelin"
+			];
+			this.m.Items.addToBag(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		}
+
+		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
+		{
+			local armor = [
+				"armor/reinforced_mail_hauberk",
+				"armor/worn_mail_shirt",
+				"armor/patched_mail_shirt",
+				"armor/mail_shirt"
+			];
+
+			if (this.Const.DLC.Unhold)
+			{
+				armor.extend([
+					"armor/footman_armor",
+					"armor/leather_scale_armor",
+					"armor/light_scale_armor"
+				]);
+			}
+
+			this.m.Items.equip(this.new("scripts/items/" + armor[this.Math.rand(0, armor.len() - 1)]));
+		}
+
+		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
+		{
+			local helmet = [
+				"helmets/closed_mail_coif",
+				"helmets/padded_kettle_hat",
+				"helmets/kettle_hat_with_closed_mail",
+				"helmets/kettle_hat_with_mail",
+				"helmets/padded_flat_top_helmet",
+				"helmets/nasal_helmet_with_mail",
+				"helmets/flat_top_with_mail",
+				"helmets/padded_nasal_helmet",
+				"helmets/bascinet_with_mail"
+			];
+			this.m.Items.equip(this.new("scripts/items/" + helmet[this.Math.rand(0, helmet.len() - 1)]));
+		}
+
       	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
 		if (this.isArmedWithShield())
@@ -88,7 +171,8 @@
 				this.m.Skills.add(this.new("scripts/skills/perks/perks_perk_rf_formidable_approach"));
 			}
 		}
-    }
+	}
+
 
 	local makeMiniboss = o.makeMiniboss;
 	o.makeMiniboss = function()
