@@ -1,13 +1,6 @@
 ::mods_hookExactClass("items/weapons/weapon", function (o) {
 	o.m.Reach <- 1;
 
-	local dummyPlayer = ::new("scripts/entity/tactical/player");
-	dummyPlayer.m.BaseProperties = ::Const.CharacterProperties.getClone();
-	dummyPlayer.m.CurrentProperties = clone dummyPlayer.m.BaseProperties;
-	dummyPlayer.m.Items.setUnlockedBagSlots(::Const.ItemSlotSpaces[::Const.ItemSlot.Bag]);
-	dummyPlayer.m.Skills.add = function( _skill, _order = 0 ) {};
-	dummyPlayer.getFaction <- function() { return ::Const.Faction.Player };
-
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
 	{
@@ -27,15 +20,15 @@
 		if (::MSU.isNull(this.getContainer()))
 		{
 			local lastEquippedByFaction = this.m.LastEquippedByFaction;
-			this.setContainer(dummyPlayer.m.Items);
-			this.onEquip();
+			local itemContainer = ::Reforged.getDummyPlayer().getItems();
+
+			itemContainer.equip(this);
 			foreach (skill in this.getSkills())
 			{
 				skillsString += format("- %s (%s, %s)\n", skill.getName(), ::MSU.Text.colorGreen(skill.m.ActionPointCost), ::MSU.Text.colorRed(skill.m.FatigueCost));
 			}
+			itemContainer.unequip(this);
 
-			this.clearSkills();
-			this.setContainer(null);
 			this.m.LastEquippedByFaction = lastEquippedByFaction;
 		}
 
