@@ -15,11 +15,11 @@ this.perk_rf_take_aim <- ::inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.getContainer().add(::new("scripts/skills/actives/ptr_take_aim_skill"));
+		this.getContainer().add(::new("scripts/skills/actives/rf_take_aim_skill"));
 	}
 
 	function onRemoved()
 	{
-		this.getContainer().removeByID("actives.ptr_take_aim");
+		this.getContainer().removeByID("actives.rf_take_aim");
 	}
 });
