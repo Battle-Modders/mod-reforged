@@ -1,18 +1,3 @@
-local function hookTooltip(_ret)
-{
-	if (!this.isHired() || this.getContainer().getActor().getLevel() >= ::Const.XP.MaxLevelWithPerkpoints)
-		return;
-	foreach (segment in _ret)
-	{
-		// We'll probably want this in a more unified way later
-		if ("type" in segment && segment.type === "description")
-		{
-			ret[1].rawHTML <- this.getProjectedAttributesDescription();
-			return;
-		}
-	}
-}
-
 ::mods_hookExactClass("skills/backgrounds/character_background", function(o) {
 
 	o.isHired <- function()
@@ -23,8 +8,23 @@ local function hookTooltip(_ret)
 	o.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
-		hookTooltip.call(this, ret);
+		this.addProjectedAttributesToTooltip(ret);
 		return ret;
+	}
+
+	o.addProjectedAttributesToTooltip <- function(_tooltip)
+	{
+		if (!this.isHired() || this.getContainer().getActor().getLevel() >= ::Const.XP.MaxLevelWithPerkpoints)
+			return;
+		foreach (segment in _tooltip)
+		{
+			// We'll probably want this in a more unified way later
+			if ("type" in segment && segment.type == "description")
+			{
+				_tooltip[1].rawHTML <- this.getProjectedAttributesDescription();
+				return;
+			}
+		}
 	}
 
 	local getGenericTooltip = o.getGenericTooltip;
@@ -77,7 +77,7 @@ local function hookTooltip(_ret)
 		o.getTooltip <- function()
 		{
 			local ret = getTooltip();
-			hookTooltip.call(this, ret);
+			this.addProjectedAttributesToTooltip(ret);
 			return ret;
 		}
 	}
