@@ -49,16 +49,9 @@ WorldTownScreenHireDialogModule.prototype.checkToggleModule = function()
 
 WorldTownScreenHireDialogModule.prototype.toggleModule = function(_idx)
 {
-	if (_idx !== undefined)
-	{
-		this.mDetailsPanel.ActiveModuleIdx = _idx;
-	}
-	else
-	{
-		this.mDetailsPanel.ActiveModuleIdx++;
-		if (this.mDetailsPanel.ActiveModuleIdx > this.mDetailsPanel.mModules.length - 1)
-			this.mDetailsPanel.ActiveModuleIdx = 0;
-	}
+	this.mDetailsPanel.ActiveModuleIdx = _idx === undefined ? this.mDetailsPanel.ActiveModuleIdx + 1 : _idx;
+	if (this.mDetailsPanel.ActiveModuleIdx > this.mDetailsPanel.mModules.length - 1)
+		this.mDetailsPanel.ActiveModuleIdx = 0;
 
 	this.mDetailsPanel.ActiveModule.hide();
 	this.mDetailsPanel.ActiveModule = this.mDetailsPanel.mModules[this.mDetailsPanel.ActiveModuleIdx];
