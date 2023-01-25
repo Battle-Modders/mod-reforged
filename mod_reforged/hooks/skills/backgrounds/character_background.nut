@@ -1,14 +1,14 @@
 local function hookTooltip(_ret)
 {
-	if (this.isHired() && this.getContainer().getActor().getLevel() < ::Const.XP.MaxLevelWithPerkpoints)
+	if (!this.isHired() || this.getContainer().getActor().getLevel() >= ::Const.XP.MaxLevelWithPerkpoints)
+		return;
+	foreach (segment in _ret)
 	{
-		foreach (segment in _ret)
+		// We'll probably want this in a more unified way later
+		if ("type" in segment && segment.type === "description")
 		{
-			if ("type" in segment && segment.type === "description")
-			{
-				ret[1].rawHTML <- this.getProjectedAttributesDescription();
-				return;
-			}
+			ret[1].rawHTML <- this.getProjectedAttributesDescription();
+			return;
 		}
 	}
 }
