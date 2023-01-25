@@ -55,11 +55,239 @@
 		}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+		function assignRandomEquipment()
 	{
-	    assignRandomEquipment();
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		local r;
+
+		if (this.Math.rand(1, 100) <= 20)
+		{
+			if (this.Const.DLC.Unhold)
+			{
+				r = this.Math.rand(0, 11);
+
+				if (r == 0)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
+				}
+				else if (r == 1)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/hooked_blade"));
+				}
+				else if (r == 2)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/pike"));
+				}
+				else if (r == 3)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
+				}
+				else if (r == 4)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/longaxe"));
+				}
+				else if (r == 5)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
+				}
+				else if (r == 6)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_wooden_flail"));
+				}
+				else if (r == 7)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_mace"));
+				}
+				else if (r == 8)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/longsword"));
+				}
+
+				//Reforged
+				else if (r == 9)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/rf_battle_axe"));
+				}
+				else if (r == 10)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/rf_greatsword"));
+				}
+				else if (r == 11)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/rf_reinforced_wooden_poleflail"));
+				}
+
+			}
+			else
+			{
+				r = this.Math.rand(0, 4);
+
+				if (r == 0)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
+				}
+				else if (r == 1)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/hooked_blade"));
+				}
+				else if (r == 2)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/pike"));
+				}
+				else if (r == 3)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
+				}
+				else if (r == 4)
+				{
+					this.m.Items.equip(this.new("scripts/items/weapons/longaxe"));
+				}
+			}
+		}
+		else
+		{
+			r = this.Math.rand(2, 10);
+
+			if (r == 2)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/shortsword"));
+			}
+			else if (r == 3)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/hand_axe"));
+			}
+			else if (r == 4)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/boar_spear"));
+			}
+			else if (r == 5)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/morning_star"));
+			}
+			else if (r == 6)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/falchion"));
+			}
+			else if (r == 7)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/arming_sword"));
+			}
+			else if (r == 8)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/flail"));
+			}
+			else if (r == 9)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/scramasax"));
+			}
+			else if (r == 10)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/military_pick"));
+			}
+
+			if (this.Math.rand(1, 100) <= 75)
+			{
+				if (this.Math.rand(1, 100) <= 75)
+				{
+					this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
+				}
+				else
+				{
+					this.m.Items.equip(this.new("scripts/items/shields/kite_shield"));
+				}
+			}
+		}
+
+		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 35)
+		{
+			if (this.Const.DLC.Unhold)
+			{
+				r = this.Math.rand(1, 3);
+
+				if (r == 1)
+				{
+					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
+				}
+				else if (r == 2)
+				{
+					this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
+				}
+				else if (r == 3)
+				{
+					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
+				}
+			}
+			else
+			{
+				r = this.Math.rand(1, 2);
+
+				if (r == 1)
+				{
+					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
+				}
+				else if (r == 2)
+				{
+					this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
+				}
+			}
+		}
+
+		r = this.Math.rand(2, 7);
+		local armor;
+
+		if (r == 2)
+		{
+			armor = this.new("scripts/items/armor/ragged_surcoat");
+		}
+		else if (r == 3)
+		{
+			armor = this.new("scripts/items/armor/padded_leather");
+		}
+		else if (r == 4)
+		{
+			armor = this.new("scripts/items/armor/worn_mail_shirt");
+		}
+		else if (r == 5)
+		{
+			armor = this.new("scripts/items/armor/patched_mail_shirt");
+		}
+		else if (r == 6)
+		{
+			armor = this.new("scripts/items/armor/worn_mail_shirt");
+		}
+		else if (r == 7)
+		{
+			armor = this.new("scripts/items/armor/patched_mail_shirt");
+		}
+
+		this.m.Items.equip(armor);
+
+		if (this.Math.rand(1, 100) <= 85)
+		{
+			local r = this.Math.rand(1, 5);
+
+			if (r == 1)
+			{
+				this.m.Items.equip(this.new("scripts/items/helmets/nasal_helmet"));
+			}
+			else if (r == 2)
+			{
+				this.m.Items.equip(this.new("scripts/items/helmets/dented_nasal_helmet"));
+			}
+			else if (r == 3)
+			{
+				this.m.Items.equip(this.new("scripts/items/helmets/nasal_helmet_with_rusty_mail"));
+			}
+			else if (r == 4)
+			{
+				this.m.Items.equip(this.new("scripts/items/helmets/rusty_mail_coif"));
+			}
+			else if (r == 5)
+			{
+				this.m.Items.equip(this.new("scripts/items/helmets/headscarf"));
+			}
+		}
+
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	    if (::Reforged.Config.IsLegendaryDifficulty)
 		{
 			if (this.isArmedWithShield())
@@ -79,5 +307,6 @@
 				}
 			}
 		}
+
 	}
 });
