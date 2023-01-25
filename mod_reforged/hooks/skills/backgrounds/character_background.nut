@@ -36,7 +36,6 @@
 		{
 			descriptionContainer.text += this.getContainer().getActor().getBackground().getPerkTree().getTooltip();
 			descriptionContainer.text = ::MSU.String.replace(descriptionContainer.text, "%name%", this.getContainer().getActor().getNameOnly());
-			descriptionContainer.rawHTML <- this.getProjectedAttributesDescription();
 		}
 		else
 		{
