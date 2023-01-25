@@ -51,33 +51,33 @@
 		{
 			local min = projection[_attribute][0];
 			local max = projection[_attribute][1];
-			return format("<span><img src='coui://%s'/> <span>%i [%i - %i]</span></span>", _img, (min + max) / 2, min, max)
+			return format("<span><img src='coui://%s'/> <span>%i [%i - %i]</span></span>", _img, (min + max) / 2, min, max);
 		}
 
 		local ret = "<div>Projection of this character\'s base attribute ranges at level " + ::Const.XP.MaxLevelWithPerkpoints + ".</div>";
-		ret += "<div class='attributePredictionContainer'>"
-		ret += formatString("gfx/ui/icons/health.png", ::Const.Attributes.Hitpoints)
-		ret += formatString("gfx/ui/icons/melee_skill.png", ::Const.Attributes.MeleeSkill)
-		ret += formatString("gfx/ui/icons/fatigue.png", ::Const.Attributes.Fatigue)
-		ret += formatString("gfx/ui/icons/ranged_skill.png", ::Const.Attributes.RangedSkill)
-		ret += formatString("gfx/ui/icons/bravery.png", ::Const.Attributes.Bravery)
-		ret += formatString("gfx/ui/icons/melee_defense.png", ::Const.Attributes.MeleeDefense)
-		ret += formatString("gfx/ui/icons/initiative.png", ::Const.Attributes.Initiative)
-		ret += formatString("gfx/ui/icons/ranged_defense.png", ::Const.Attributes.RangedDefense)
-		ret += "</div>"
+		ret += "<div class='attributePredictionContainer'>";
+		ret += formatString("gfx/ui/icons/health.png", ::Const.Attributes.Hitpoints);
+		ret += formatString("gfx/ui/icons/melee_skill.png", ::Const.Attributes.MeleeSkill);
+		ret += formatString("gfx/ui/icons/fatigue.png", ::Const.Attributes.Fatigue);
+		ret += formatString("gfx/ui/icons/ranged_skill.png", ::Const.Attributes.RangedSkill);
+		ret += formatString("gfx/ui/icons/bravery.png", ::Const.Attributes.Bravery);
+		ret += formatString("gfx/ui/icons/melee_defense.png", ::Const.Attributes.MeleeDefense);
+		ret += formatString("gfx/ui/icons/initiative.png", ::Const.Attributes.Initiative);
+		ret += formatString("gfx/ui/icons/ranged_defense.png", ::Const.Attributes.RangedDefense);
+		ret += "</div>";
 
 		return ret;
 	}
 });
 ::mods_hookDescendants("skills/backgrounds/character_background", function(o) {
-	if ("getTooltip" in o)
+	if (!("getTooltip" in o))
+		return;
+
+	local getTooltip = o.getTooltip;
+	o.getTooltip <- function()
 	{
-		local getTooltip = o.getTooltip;
-		o.getTooltip <- function()
-		{
-			local ret = getTooltip();
-			this.addProjectedAttributesToTooltip(ret);
-			return ret;
-		}
+		local ret = getTooltip();
+		this.addProjectedAttributesToTooltip(ret);
+		return ret;
 	}
 })
