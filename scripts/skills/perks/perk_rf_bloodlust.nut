@@ -52,7 +52,7 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		local actor = this.getContainer().getActor();
-		if (!_skill.isAttack() || _skill.isRanged() || _targetEntity == null || _targetEntity.isAlliedWith(this.getContainer().geta()) || !::Tactical.TurnSequenceBar.isActiveEntity(actor))
+		if (!_skill.isAttack() || _skill.isRanged() || _targetEntity == null || _targetEntity.isAlliedWith(actor) || !::Tactical.TurnSequenceBar.isActiveEntity(actor))
 			return;
 
 		local bleedCount = _targetEntity.isAlive() ? _targetEntity.getSkills().getAllSkillsByID("effects.bleeding").len() : this.m.BleedStacksBeforeAttack;
