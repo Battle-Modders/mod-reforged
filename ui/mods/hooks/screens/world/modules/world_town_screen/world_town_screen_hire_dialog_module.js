@@ -5,7 +5,7 @@ WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	createDIV.call(this, _parentDiv);
 
 	this.mDetailsPanel.CharacterBackgroundPerksContainer = $("<div class='hire-screen-perks-container'/>")
-		.appendTo(this.mDetailsPanel.Container)
+		.appendTo(this.mDetailsPanel.Container);
 	this.mDetailsPanel.mPerksModule = new GenericPerksModule(this.mDetailsPanel.CharacterBackgroundPerksContainer);
 
 	var characterDetailsContainer = this.mDetailsPanel.Container.find(".is-character-container"); // The character icon, description etc that will be hidden
@@ -17,8 +17,8 @@ WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 		characterDetailsContainer,
 		this.mDetailsPanel.CharacterBackgroundPerksContainer
 	]
-	this.mDetailsPanel.ActiveModule = this.mDetailsPanel.mModules[0]
-	this.mDetailsPanel.ActiveModuleIdx = 0
+	this.mDetailsPanel.ActiveModule = this.mDetailsPanel.mModules[0];
+	this.mDetailsPanel.ActiveModuleIdx = 0;
 }
 
 Reforged.WorldTownScreenHireDialogModule_destroyDIV = WorldTownScreenHireDialogModule.prototype.destroyDIV
@@ -26,13 +26,14 @@ WorldTownScreenHireDialogModule.prototype.destroyDIV = function()
 {
 	this.mDetailsPanel.mPerksModule.destroyDIV();
 	this.mDetailsPanel.mPerksModule = null;
-	this.mDetailsPanel.CharacterBackgroundPerksContainer.empty();
 	this.mDetailsPanel.CharacterBackgroundPerksContainer.remove();
 	this.mDetailsPanel.CharacterBackgroundPerksContainer = null;
-	this.mDetailsPanel.ActiveModule = null
-	this.mDetailsPanel.ActiveModuleIdx = 0
+	this.mDetailsPanel.ActiveModule = null;
+	this.mDetailsPanel.ActiveModuleIdx = 0;
 
-	destroyDIV.call(this)
+	destroyDIV.call(this);
+}
+
 WorldTownScreenHireDialogModule.prototype.toggleModuleIfValid = function()
 {
 	if (this.checkToggleModule())
@@ -45,6 +46,7 @@ WorldTownScreenHireDialogModule.prototype.checkToggleModule = function()
 		return false;
 	return true;
 }
+
 WorldTownScreenHireDialogModule.prototype.toggleModule = function(_idx)
 {
 	if (_idx !== undefined)
