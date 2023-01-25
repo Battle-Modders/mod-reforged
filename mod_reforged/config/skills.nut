@@ -81,51 +81,51 @@
 
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_axe"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_axe"));
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Bow))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_bow"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_bow"));
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Cleaver))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_cleaver"));
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow) || weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_crossbow"));
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Dagger))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_dagger"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_dagger"));
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Flail))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_flail"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_flail"));
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Hammer))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_hammer"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_hammer"));
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_mace"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_mace"));
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Polearm))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_polearm"));
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Spear))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_spear"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_spear"));
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Sword))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_sword"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_sword"));
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
 		{
-			_entity.getSkills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
+			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_throwing"));
 		}
 	}
 };
