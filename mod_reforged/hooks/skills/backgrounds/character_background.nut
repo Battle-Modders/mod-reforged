@@ -39,7 +39,7 @@
 		}
 		else
 		{
-			descriptionContainer.text += "/n" +  ::MSU.Text.colorRed("Try out") + " this character to reveal " + ::MSU.Text.colorGreen("more") + " information!";
+			descriptionContainer.text += "\n" +  ::MSU.Text.colorRed("Try out") + " this character to reveal " + ::MSU.Text.colorGreen("more") + " information!";
 		}
 		return ret;
 	}
