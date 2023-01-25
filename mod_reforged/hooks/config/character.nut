@@ -22,3 +22,5 @@ foreach (moraleCheckType in ::Const.MoraleCheckType)
 ::Const.ProjectileType.COUNT += 1;
 ::Const.ProjectileDecals.push(clone ::Const.ProjectileDecals[::Const.ProjectileType.Arrow]);
 ::Const.ProjectileSprite.push("rf_projectile_flaming_arrow");
+
+::Const.Movement.AutoEndTurnBelowAP = 1;
