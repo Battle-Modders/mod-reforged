@@ -23,7 +23,7 @@ local function hookTooltip(_ret)
 	o.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
-		hookTooltip.call(this, ret)
+		hookTooltip.call(this, ret);
 		return ret;
 	}
 
@@ -77,7 +77,7 @@ local function hookTooltip(_ret)
 		o.getTooltip <- function()
 		{
 			local ret = getTooltip();
-			hookTooltip.call(this, ret)
+			hookTooltip.call(this, ret);
 			return ret;
 		}
 	}
