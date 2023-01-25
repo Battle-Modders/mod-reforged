@@ -4,6 +4,12 @@
 		Goblin = 1,
 		Human = 2,
 		Orc = 3,
+
+		BeastSmall = 3,
+		BeastMedium = 5,
+		BeastLarge = 7,
+		BeastHuge = 9,
+
 		Dagger = 1,
 		Short_1H = 2,
 		Medium_1H = 3,
