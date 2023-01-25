@@ -102,7 +102,7 @@ this.rf_swordmasters_finesse_effect <- ::inherit("scripts/skills/skill", {
 			return;
 
 		if (actor.getFlags().has("SwordmasterAgeDays")) actor.getFlags().increment("SwordmasterAgeDays", 1);
-		else actor.getFlags.set("SwordmasterAgeDays", 1);
+		else actor.getFlags().set("SwordmasterAgeDays", 1);
 
 	}
 
