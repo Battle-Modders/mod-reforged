@@ -1,15 +1,15 @@
-this.rf_follow_up_proccer_effect <- ::inherit("scripts/skills/skill", {
+this.rf_follow_up_proccer <- ::inherit("scripts/skills/skill", {
 	m = {
 		SkillCount = 0
 	},
 	function create()
 	{
-		this.m.ID = "effects.rf_follow_up_proccer";
+		this.m.ID = "special.rf_follow_up_proccer";
 		this.m.Name = "";
 		this.m.Description = "";
 		this.m.Icon = "ui/perks/rf_follow_up.png";
 		//this.m.IconMini = "perk_01_mini";
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Special;
 		this.m.IsActive = false;
 		this.m.IsHidden = true;
 		this.m.IsRemovedAfterBattle = false;
