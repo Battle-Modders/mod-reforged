@@ -3,12 +3,6 @@ Reforged.WorldTownScreenHireDialogModule_createDIV = WorldTownScreenHireDialogMo
 WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 {
 	createDIV.call(this, _parentDiv);
-	var self = this;
-	var toggleFunction = function(_e)
-	{
-		if (self.checkToggleModule())
-			self.toggleModule()
-	}
 
 	this.mDetailsPanel.CharacterBackgroundPerksContainer = $("<div class='hire-screen-perks-container'/>")
 		.appendTo(this.mDetailsPanel.Container)
@@ -16,8 +10,8 @@ WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 
 	var characterDetailsContainer = this.mDetailsPanel.Container.find(".is-character-container"); // The character icon, description etc that will be hidden
 
-	characterDetailsContainer.on("click", toggleFunction);
-	this.mDetailsPanel.CharacterBackgroundPerksContainer.on("click", toggleFunction);
+	characterDetailsContainer.on("click", this.toggleModuleIfValid.bind(this));
+	this.mDetailsPanel.CharacterBackgroundPerksContainer.on("click", this.toggleModuleIfValid.bind(this));
 
 	this.mDetailsPanel.mModules = [
 		characterDetailsContainer,
@@ -39,6 +33,10 @@ WorldTownScreenHireDialogModule.prototype.destroyDIV = function()
 	this.mDetailsPanel.ActiveModuleIdx = 0
 
 	destroyDIV.call(this)
+WorldTownScreenHireDialogModule.prototype.toggleModuleIfValid = function()
+{
+	if (this.checkToggleModule())
+		this.toggleModule();
 }
 
 WorldTownScreenHireDialogModule.prototype.checkToggleModule = function()
