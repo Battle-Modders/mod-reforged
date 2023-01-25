@@ -5,7 +5,7 @@ this.pg_rf_trapper <- ::inherit(::DPF.Class.PerkGroup, {
 		this.m.ID = "pg.rf_trapper";
 		this.m.Name = "Trapper";
 		this.m.FlavorText = [
-			"trapping and using nets"
+			"has experience in trapping and using nets"
 		];
 		this.m.Trees = {
 			"default": [
