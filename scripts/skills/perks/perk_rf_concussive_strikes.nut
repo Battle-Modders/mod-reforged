@@ -28,7 +28,7 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_bodyPart != ::Const.BodyPart.Head || !_skill.isAttack() || !_skill.m.IsWeaponSkill || !_targetEntity.isAlive() || _targetEntity.isDying() )
+		if (_bodyPart != ::Const.BodyPart.Head || !_skill.isAttack() || (!this.m.IsForceEnabled && !_skill.m.IsWeaponSkill) || !_targetEntity.isAlive() || _targetEntity.isDying() || !this.isEnabled())
 		{
 			return;
 		}
