@@ -2,7 +2,7 @@
 Reforged.WorldTownScreenHireDialogModule_createDIV = WorldTownScreenHireDialogModule.prototype.createDIV;
 WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 {
-	createDIV.call(this, _parentDiv);
+	Reforged.WorldTownScreenHireDialogModule_createDIV.call(this, _parentDiv);
 
 	this.mDetailsPanel.CharacterBackgroundPerksContainer = $("<div class='hire-screen-perks-container'/>")
 		.appendTo(this.mDetailsPanel.Container);
@@ -31,7 +31,7 @@ WorldTownScreenHireDialogModule.prototype.destroyDIV = function()
 	this.mDetailsPanel.ActiveModule = null;
 	this.mDetailsPanel.ActiveModuleIdx = 0;
 
-	destroyDIV.call(this);
+	Reforged.WorldTownScreenHireDialogModule_destroyDIV.call(this);
 }
 
 WorldTownScreenHireDialogModule.prototype.toggleModuleIfValid = function()
@@ -61,7 +61,7 @@ WorldTownScreenHireDialogModule.prototype.toggleModule = function(_idx)
 Reforged.WorldTownScreenHireDialogModule_updateDetailsPanel = WorldTownScreenHireDialogModule.prototype.updateDetailsPanel;
 WorldTownScreenHireDialogModule.prototype.updateDetailsPanel = function(_element)
 {
-	updateDetailsPanel.call(this, _element);
+	Reforged.WorldTownScreenHireDialogModule_updateDetailsPanel.call(this, _element);
 	if (!this.checkToggleModule())
 		this.toggleModule(0);
 	else
