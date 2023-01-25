@@ -69,7 +69,7 @@
 
 	    foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
 	    {
-	    	if (item.isItemType(::Const.Items.RangedWeapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
+	    	if (item.isItemType(::Const.Items.ItemType.RangedWeapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
 	    	{
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_proximity_throwing_specialist"));
