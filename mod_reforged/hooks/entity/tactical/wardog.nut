@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/flying_skull", function(o) {
+::mods_hookExactClass("entity/tactical/wardog", function(o) {
 	o.onInit = function()
 	{
 		this.actor.onInit();

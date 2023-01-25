@@ -37,6 +37,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/gore_skill"));
 
 		// Reforged
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_dent_armor", function(o) {
 			o.m.IsForceEnabled = true;
 		}));

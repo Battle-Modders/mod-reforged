@@ -96,7 +96,7 @@
 		}
 
 		// Reforged
-		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge + 2;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 		if (::Reforged.Config.IsLegendaryDifficulty)

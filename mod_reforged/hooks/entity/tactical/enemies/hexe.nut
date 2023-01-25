@@ -43,7 +43,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/fake_drink_night_vision_skill"));
 
 		// Reforged
-		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
+		this.m.BaseProperties.IsAffectedByReach = false;
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
     		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));

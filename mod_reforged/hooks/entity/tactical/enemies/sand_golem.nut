@@ -36,7 +36,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/headbutt_skill"));
 
 		// Reforged
-		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall +1;
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall + 1;
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_concussive_strikes", function(o) {
     		o.m.IsForceEnabled = true;
 			o.m.IsForceMace = true;
