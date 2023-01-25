@@ -36,6 +36,13 @@
 		});
 	}
 
+	local onAdded = o.onAdded;
+	o.onAdded <- function()
+	{
+		if (this.m.IsNew) this.getContainer().add(::new("scripts/skills/effects/rf_swordmasters_finesse_effect"));
+		return onAdded();
+	}
+
 	o.onBuildPerkTree <- function()
 	{
 		local perkTree = this.getPerkTree();
