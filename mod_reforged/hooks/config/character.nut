@@ -11,6 +11,17 @@ foreach (moraleCheckType in ::Const.MoraleCheckType)
 	::Const.CharacterProperties.NegativeMoraleCheckBraveryMult.push(1.0);
 }
 
+local getClone = ::Const.CharacterProperties.getClone;
+::Const.CharacterProperties.getClone = function()
+{
+	local ret = getClone();
+	ret.PositiveMoraleCheckBravery = clone this.PositiveMoraleCheckBravery;
+	ret.PositiveMoraleCheckBraveryMult = clone this.PositiveMoraleCheckBraveryMult;
+	ret.NegativeMoraleCheckBravery = clone this.NegativeMoraleCheckBravery;
+	ret.NegativeMoraleCheckBraveryMult = clone this.NegativeMoraleCheckBraveryMult;
+	return ret;
+}
+
 ::Const.CharacterProperties.Reach <- 0;
 ::Const.CharacterProperties.ReachMult <- 1.0;
 ::Const.CharacterProperties.getReach <- function()
