@@ -12,7 +12,7 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
 
-		this.m.EffectHiddenInTacticalTooltip = true;
+		this.m.IsEffectHiddenInTacticalTooltip = true;
 	}
 
 	function isHidden()

@@ -57,7 +57,7 @@
     {
         foreach( statusEffect in statusEffects )
         {
-            if (statusEffect.m.EffectHiddenInTacticalTooltip) continue;
+            if (statusEffect.m.IsEffectHiddenInTacticalTooltip) continue;
 
             local effect = {
                 id = currentID,
@@ -123,7 +123,7 @@
         statusEffects.sort(@(a,b) a.getName() <=> b.getName());
         foreach( statusEffect in statusEffects )
         {
-            if (statusEffect.m.EffectHiddenInTacticalTooltip) continue;
+            if (statusEffect.m.IsEffectHiddenInTacticalTooltip) continue;
             entryText += underlineFirstCharacter(statusEffect.getName());
             entryText += ", ";
         }
