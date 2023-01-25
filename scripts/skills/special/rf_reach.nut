@@ -16,6 +16,11 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
+	function isHidden()
+	{
+		return !this.getContainer().getActor().getCurrentProperties().IsAffectedByReach;
+	}
+
 	function getName()
 	{
 		return this.m.Name + " (" + this.getContainer().getActor().getCurrentProperties().getReach() + ")";
@@ -45,7 +50,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.CurrBonus = 0;
 
-		if (_targetEntity == null || _skill.isRanged() || !::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetEntity))
+		if (_skill.isRanged() || !_properties.IsAffectedByReach || _targetEntity == null || !_targetEntity.getCurrentProperties().IsAffectedByReach || !::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetEntity))
 			return;
 
 		local diff = _properties.getReach() - _targetEntity.getSkills().buildPropertiesForDefense(this.getContainer().getActor(), _skill).getReach();
