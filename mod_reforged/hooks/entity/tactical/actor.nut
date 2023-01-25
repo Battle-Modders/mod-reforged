@@ -53,10 +53,8 @@
 		if (this.isDiscovered() == false) return ret;
 		if (this.isHiddenToPlayer()) return ret;
 
-		local toRemove = [];
-
 		// Adjust existing progressbars displayed by Vanilla
-		for (local index = (ret.len() - 1); index >= 0; index--)
+		for (local index = (ret.len() - 1); index >= 0; index--)	// we move through it backwards to safely remove entries during it
 		{
 			local entry = ret[index];
 			// Display the actual values for Armor (5, 6), Health (7) and Fatigue (9)
@@ -87,8 +85,11 @@
 		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EffectsNonPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
 		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("PerksPlayer").getValue()) 			ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
 		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("PerksNonPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
-		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("ItemsPlayer").getValue()) 			ret.extend(::Reforged.TacticalTooltip.getTooltipItems(this, 400));
-		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("ItemsNonPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipItems(this, 400));
+		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EquippedItemsPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipEquippedItems(this, 400));
+		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EquippedItemsNonPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipEquippedItems(this, 400));
+		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("BagItemsPlayer").getValue()) 			ret.extend(::Reforged.TacticalTooltip.getTooltipBagItems(this, 400));
+		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("BagItemsNonPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipBagItems(this, 400));
+
 		ret.extend(::Reforged.TacticalTooltip.getGroundItems(this, 500));
 
 		return ret;

@@ -189,8 +189,8 @@
     return perkList;
 }
 
-// Returns a list of all important items of the character in tooltip-form
-::Reforged.TacticalTooltip.getTooltipItems <- function( _actor, _startID )
+// Returns a list of all important equipped items of the character in tooltip-form
+::Reforged.TacticalTooltip.getTooltipEquippedItems <- function( _actor, _startID )
 {
     local currentID = _startID;
     local itemList = [];
@@ -198,6 +198,7 @@
     local mainhandItems = _actor.getItems().getAllItemsAtSlot(::Const.ItemSlot.Mainhand);
     local offhandItems = _actor.getItems().getAllItemsAtSlot(::Const.ItemSlot.Offhand);
     local accessories = _actor.getItems().getAllItemsAtSlot(::Const.ItemSlot.Accessory);
+
     if (mainhandItems.len() != 0 || offhandItems.len() != 0 || accessories.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(itemList, "Equipped Items", currentID);
     currentID++;
 
@@ -231,6 +232,15 @@
         });
         currentID++;
     }
+
+    return itemList;
+}
+
+// Returns a list of all important bag items of the character in tooltip-form
+::Reforged.TacticalTooltip.getTooltipBagItems <- function( _actor, _startID )
+{
+    local currentID = _startID;
+    local itemList = [];
 
     local bagItems = _actor.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
     if (bagItems.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(itemList, "Items in bag", currentID);
