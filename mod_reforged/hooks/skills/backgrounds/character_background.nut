@@ -54,7 +54,7 @@
 			return format("<span><img src='coui://%s'/> <span>%i [%i - %i]</span></span>", _img, (min + max) / 2, min, max)
 		}
 
-		local ret = "<div>Projection of this character\'s base attribute ranges if that attribute is improved on every level up from current level to " + ::Const.XP.MaxLevelWithPerkpoints + ".</div>";
+		local ret = "<div>Projection of this character\'s base attribute ranges at level " + ::Const.XP.MaxLevelWithPerkpoints + ".</div>";
 		ret += "<div class='attributePredictionContainer'>"
 		ret += formatString("gfx/ui/icons/health.png", ::Const.Attributes.Hitpoints)
 		ret += formatString("gfx/ui/icons/melee_skill.png", ::Const.Attributes.MeleeSkill)
