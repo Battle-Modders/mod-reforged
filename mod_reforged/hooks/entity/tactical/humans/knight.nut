@@ -37,7 +37,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_linebreaker"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_clarity"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));

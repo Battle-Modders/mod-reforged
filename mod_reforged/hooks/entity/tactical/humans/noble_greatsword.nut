@@ -45,7 +45,7 @@
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
     		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_clarity"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_tempo"));

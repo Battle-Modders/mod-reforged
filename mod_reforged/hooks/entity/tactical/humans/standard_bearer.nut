@@ -29,7 +29,7 @@
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_clarity"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_finesse"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
 		}
 	}

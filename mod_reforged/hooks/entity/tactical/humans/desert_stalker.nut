@@ -58,7 +58,7 @@
 		local ret = makeMiniboss();
 		if (ret)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_clarity"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_finesse"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_fresh_and_furious"));
 
 			if (::Reforged.Config.IsLegendaryDifficulty)

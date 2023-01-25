@@ -64,7 +64,7 @@
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_clarity"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_finesse"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 		}

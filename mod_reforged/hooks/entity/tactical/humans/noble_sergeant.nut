@@ -61,7 +61,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_clarity"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
 

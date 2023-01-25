@@ -85,7 +85,7 @@
 		local ret = makeMiniboss();
 		if (ret)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_clarity"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_lone_wolf"));
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
     		{
