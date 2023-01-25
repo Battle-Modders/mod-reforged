@@ -1,4 +1,5 @@
 var Reforged = {
 	ID : "mod_reforged",
-	JSConnectionID : "ReforgedJSConnection"
+	JSConnectionID : "ReforgedJSConnection",
+	Hooks : {}
 }
