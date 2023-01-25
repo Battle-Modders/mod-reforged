@@ -1,5 +1,5 @@
 // This hook adds the ability to toggle between description and perks display for hires in the crowd building
-var createDIV = WorldTownScreenHireDialogModule.prototype.createDIV;
+Reforged.WorldTownScreenHireDialogModule_createDIV = WorldTownScreenHireDialogModule.prototype.createDIV;
 WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 {
 	createDIV.call(this, _parentDiv);
@@ -27,7 +27,7 @@ WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	this.mDetailsPanel.ActiveModuleIdx = 0
 }
 
-var destroyDIV = WorldTownScreenHireDialogModule.prototype.destroyDIV
+Reforged.WorldTownScreenHireDialogModule_destroyDIV = WorldTownScreenHireDialogModule.prototype.destroyDIV
 WorldTownScreenHireDialogModule.prototype.destroyDIV = function()
 {
 	this.mDetailsPanel.mPerksModule.destroyDIV();
@@ -65,7 +65,7 @@ WorldTownScreenHireDialogModule.prototype.toggleModule = function(_idx)
 	this.mDetailsPanel.ActiveModule.show();
 }
 
-var updateDetailsPanel = WorldTownScreenHireDialogModule.prototype.updateDetailsPanel;
+Reforged.WorldTownScreenHireDialogModule_updateDetailsPanel = WorldTownScreenHireDialogModule.prototype.updateDetailsPanel;
 WorldTownScreenHireDialogModule.prototype.updateDetailsPanel = function(_element)
 {
 	updateDetailsPanel.call(this, _element);
