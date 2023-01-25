@@ -57,7 +57,7 @@
 			this.getCurrentProperties().MoraleCheckBraveryMult[_type] *= this.getCurrentProperties().PositiveMoraleCheckBraveryMult[_type];
 		}
 
-		checkMorale(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
+		return checkMorale(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
 
 	local getSurroundedCount = o.getSurroundedCount;
