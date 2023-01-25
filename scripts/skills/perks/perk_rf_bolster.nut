@@ -32,7 +32,7 @@ this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_targetEntity != null && this.getContainer().getActor().isPlacedOnMap() && _skill.isAttack() && !_skill.isRanged() && (this.m.IsForceEnabled || _skill.m.IsWeaponSkill) && this.isEnabled())
+		if (_targetEntity != null && this.getContainer().getActor().isPlacedOnMap() && !this.getContainer().getActor().isEngagedInMelee() && _skill.isAttack() && !_skill.isRanged() && (this.m.IsForceEnabled || _skill.m.IsWeaponSkill) && this.isEnabled())
 		{
 			local allies = ::Tactical.Entities.getFactionActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true);
 			foreach (ally in allies)
