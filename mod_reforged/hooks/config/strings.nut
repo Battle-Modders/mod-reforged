@@ -134,6 +134,20 @@ local vanillaDescriptions = [
 	 	}),
 	},
 	{
+		ID = "perk.crippling_strikes",
+		Key = "CripplingStrikes",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Cripple your enemies!",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+ 					"Lowers the threshold to inflict injuries by " + ::MSU.Text.colorRed("33%") + " for both melee and ranged attacks.",
+ 					"Allows attacks to inflict injuries on the Undead."
+ 				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.duelist",
 		Key = "Duelist",
 		Description = ::UPD.getDescription({
