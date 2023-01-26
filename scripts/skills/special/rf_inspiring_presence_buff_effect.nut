@@ -10,7 +10,7 @@ this.rf_inspiring_presence_buff_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Feeling Inspired";
 		this.m.Description = "This character started the turn in the presence of a highly inspiring character!";
 		this.m.Icon = "skills/rf_inspiring_presence_buff_effect.png";
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
 		this.m.SoundOnUse = [
 			"sounds/combat/rf_inspiring_presence_01.wav",
 			"sounds/combat/rf_inspiring_presence_02.wav",
