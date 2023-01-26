@@ -112,4 +112,15 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 		this.m.MissStacks = 0;
 		this.m.HitStacks = 0;
 	}
+
+	function onGetHitFactorsAsTarget( _skill, _targetTile, _tooltip )
+	{
+		if (_skill.isAttack() && (this.m.HitStacks > 0 || this.m.MissStacks > 0))
+		{
+			_tooltip.push({
+				icon = "ui/tooltips/negative.png",
+				text = ::MSU.Text.colorRed(this.getBonus()) + "% " + this.getName()
+			});
+		}
+	}
 });
