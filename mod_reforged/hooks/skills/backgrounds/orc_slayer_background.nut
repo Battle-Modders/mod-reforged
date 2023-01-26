@@ -18,7 +18,9 @@
 			"pg.rf_polearm": 0,
 			"pg.rf_spear": 0,
 			"pg.rf_sword": 0.8,
-			"pg.rf_throwing": 0
+			"pg.rf_throwing": 0,
+
+			"pg.special.rf_professional": -1
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
 			"pgc.rf_exclusive_1": [

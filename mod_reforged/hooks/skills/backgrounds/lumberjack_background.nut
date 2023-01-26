@@ -7,7 +7,8 @@
 			"pg.rf_large": 2,
 			"pg.rf_leadership": 2,
 			"pg.rf_resilient": 2,
-			"pg.rf_sturdy": 2
+			"pg.rf_sturdy": 2,
+			"pg.rf_swift": 0.5
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
 			"pgc.rf_exclusive_1": [
@@ -18,7 +19,9 @@
 				"pg.rf_axe"
 			],
 			"pgc.rf_armor": [],
-			"pgc.rf_fighting_style": []
+			"pgc.rf_fighting_style": [
+				"pg.rf_power"
+			]
 		});
 	}
 });

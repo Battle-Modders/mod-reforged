@@ -19,8 +19,6 @@
 			"pg.rf_dagger": 0,
 			"pg.rf_polearm": 9,
 			"pg.rf_spear": 0,
-			"pg.rf_ranged": 0,
-			"pg.rf_swift": 0
 
             "pg.special.rf_professional": -1,
             "pg.special.rf_man_of_steel": -1
@@ -38,7 +36,8 @@
 				"pg.rf_heavy_armor"
 			],
 			"pgc.rf_fighting_style": [
-				"pg.rf_power"
+				"pg.rf_power",
+				"pg.rf_shield"
 			]
 		});
 	}

@@ -26,7 +26,9 @@
 				"pg.rf_light_armor",
 				"pg.rf_medium_armor"
 			],
-			"pgc.rf_fighting_style": []
+			"pgc.rf_fighting_style": [
+				"pg.rf_ranged"
+			]
 		});
 	}
 });

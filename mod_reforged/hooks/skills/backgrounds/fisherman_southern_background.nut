@@ -11,7 +11,8 @@
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
 			"pgc.rf_exclusive_1": [
-				"pg.rf_laborer"
+				"pg.rf_laborer",
+				"pg.rf_trapper"
 			],
 			"pgc.rf_shared_1": [],
 			"pgc.rf_weapon": [],

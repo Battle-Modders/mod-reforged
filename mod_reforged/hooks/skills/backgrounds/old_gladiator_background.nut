@@ -25,10 +25,7 @@
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
 			"pgc.rf_exclusive_1": [
 				"pg.rf_soldier",
-				::MSU.Class.WeightedContainer([
-                	[50, "pg.rf_trapper"],
-                	[50, "DPF_NoPerkGroup"]
-                ])
+				"pg.rf_trapper"
 			],
 			"pgc.rf_shared_1": [],
 			"pgc.rf_weapon": [],
