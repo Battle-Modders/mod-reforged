@@ -40,6 +40,14 @@
 		return ret;
 	}
 
+	local onAfterUpdate = o.onAfterUpdate;
+	o.onAfterUpdate = function( _properties )
+	{
+		local additionalAccuracy = this.m.AdditionalAccuracy;
+		onAfterUpdate(_properties);
+		this.m.AdditionalAccuracy = additionalAccuracy;
+	}
+
 	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
