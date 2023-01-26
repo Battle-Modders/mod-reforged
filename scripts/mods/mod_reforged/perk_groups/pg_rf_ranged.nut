@@ -15,7 +15,7 @@ this.pg_rf_ranged <- ::inherit(::DPF.Class.PerkGroup, {
 				[],
 				[],
 				[],
-				["perk.rf_ballistics"],
+				[],
 				[]
 			]
 		};
