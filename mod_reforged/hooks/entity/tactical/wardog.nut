@@ -47,5 +47,6 @@
 			b.MeleeDefense += 5;
 			b.RangedDefense += 5;
 		}
+		this.getSkills().update()
 	}
 });

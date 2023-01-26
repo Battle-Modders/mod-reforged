@@ -49,5 +49,6 @@
     		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
     	}
+    	this.getSkills().update()
 	}
 });

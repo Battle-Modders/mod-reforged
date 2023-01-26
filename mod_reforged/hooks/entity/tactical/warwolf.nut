@@ -55,5 +55,6 @@
 			b.Hitpoints += 10;
 			b.MeleeSkill += 5;
 		}
+		this.getSkills().update()
 	}
 });

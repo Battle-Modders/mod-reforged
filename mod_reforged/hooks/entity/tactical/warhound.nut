@@ -47,5 +47,6 @@
 			b.RangedDefense += 5;
 			b.Initiative += 10;
 		}
+		this.getSkills().update()
 	}
 });

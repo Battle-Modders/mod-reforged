@@ -29,5 +29,6 @@
 
 		//Reforged
 		this.m.BaseProperties.IsAffectedByReach = false;
+		this.getSkills().update()
 	}
 });
