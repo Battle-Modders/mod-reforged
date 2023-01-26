@@ -1,16 +1,12 @@
-// ::mods_hookExactClass("entity/tactical/enemies/sand_golem_medium", function(o) {
-// 	o.onInit = function()
-// 	{
-// 	    // copy vanilla function contents completely
-// 	    // and replace skills except equipment based skills
-// 	    // NOTE: Remove the hook on onInit completely if unused
-// 	}
+::mods_hookExactClass("entity/tactical/enemies/sand_golem_medium", function(o) {
+	o.onInit = function()
+	{
+		this.sand_golem.onInit();
+		this.grow(true);
 
-// 	local assignRandomEquipment = o.assignRandomEquipment;
-// 	o.assignRandomEquipment = function()
-// 	{
-// 	    assignRandomEquipment();
+		// Reforged
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium + 1;
+		this.getSkills().update()
+	}
 
-// 	    // any skills that should be added based on equipment
-// 	}
-// });
+});

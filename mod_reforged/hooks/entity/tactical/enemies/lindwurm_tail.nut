@@ -64,7 +64,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 
 		// Reforged
-		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Medium_2H;
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{

@@ -36,6 +36,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/uproot_small_zoc_skill"));
 
 		// Reforged
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall;
 		this.m.Skills.add(this.new("scripts/skills/actives/rf_schrat_small_root_skill"));
 	}
 });
