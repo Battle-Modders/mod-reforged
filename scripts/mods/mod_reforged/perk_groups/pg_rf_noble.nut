@@ -4,6 +4,7 @@ this.pg_rf_noble <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_noble";
 		this.m.Name = "Noble";
+		this.m.Icon = "ui/perks/rf_family_pride.png";
 		this.m.FlavorText = [
 			"is of noble birth",
 			"hails from a noble family",

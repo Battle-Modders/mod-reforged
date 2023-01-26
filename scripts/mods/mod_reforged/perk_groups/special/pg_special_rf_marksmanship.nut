@@ -5,6 +5,7 @@ this.pg_special_rf_marksmanship <- ::inherit(::DPF.Class.SpecialPerkGroup, {
 		this.special_perk_group.create();
 		this.m.ID = "pg.special.rf_marksmanship";
 		this.m.Name = "Special Perks";
+		this.m.Icon = "ui/perks/rf_marksmanship.png";
 		this.m.FlavorText = [
 			"Has the talent to become a formidable marksman."
 		];

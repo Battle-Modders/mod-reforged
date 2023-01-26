@@ -5,6 +5,7 @@ this.pg_special_rf_gifted <- ::inherit(::DPF.Class.SpecialPerkGroup, {
 		this.special_perk_group.create();
 		this.m.ID = "pg.special.rf_gifted";
 		this.m.Name = "Special Perks";
+		this.m.Icon = "ui/perks/perk_56.png"; // gifted icon
 		this.m.FlavorText = [
 			"Seems naturally gifted for mercenary work!"
 		];

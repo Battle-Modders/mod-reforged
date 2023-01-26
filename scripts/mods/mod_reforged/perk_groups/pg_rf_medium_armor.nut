@@ -4,6 +4,7 @@ this.pg_rf_medium_armor <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_medium_armor";
 		this.m.Name = "Medium Armor";
+		this.m.Icon = "ui/perks/rf_poise.png";
 		this.m.FlavorText = [
 			"medium armor"
 		];

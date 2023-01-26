@@ -4,6 +4,7 @@ this.pg_rf_mace <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_mace";
 		this.m.Name = "Mace";
+		this.m.Icon = "ui/perks/perk_43.png"; // mace mastery icon
 		this.m.FlavorText = [
 			"maces"
 		];

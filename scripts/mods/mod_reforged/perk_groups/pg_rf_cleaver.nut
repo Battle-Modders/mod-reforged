@@ -4,6 +4,7 @@ this.pg_rf_cleaver <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_cleaver";
 		this.m.Name = "Cleaver";
+		this.m.Icon = "ui/perks/perk_52.png"; // cleaver mastery icon
 		this.m.FlavorText = [
 			"cleavers"
 		];
