@@ -5,33 +5,37 @@
 		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
 	}
 
-	o.getTooltip <- function()
+	o.addReforgedAttributesToTooltip <- function(_tooltip)
 	{
-		local ret = this.skill.getTooltip();
-		this.addProjectedAttributesToTooltip(ret);
-		return ret;
+		local container = this.findHeaderTooltipContainer(_tooltip);
+		container.rawHTML <- "";
+		if (this.isHired() && this.getContainer().getActor().getLevel() >= ::Const.XP.MaxLevelWithPerkpoints)
+			this.addProjectedAttributesToTooltip(container);
+		return _tooltip;
+	}
+
+	o.findHeaderTooltipContainer <- function(_tooltip)
+	{
+		// We'll probably want this in a more unified way later
+		foreach (segment in _tooltip)
+		{
+			if ("type" in segment && segment.type == "description")
+			{
+				return segment;
+			}
+		}
 	}
 
 	o.addProjectedAttributesToTooltip <- function(_tooltip)
 	{
-		if (!this.isHired() || this.getContainer().getActor().getLevel() >= ::Const.XP.MaxLevelWithPerkpoints)
-			return;
-		foreach (segment in _tooltip)
-		{
-			// We'll probably want this in a more unified way later
-			if ("type" in segment && segment.type == "description")
-			{
-				_tooltip[1].rawHTML <- this.getProjectedAttributesDescription();
-				return;
-			}
-		}
+		_tooltip.rawHTML += this.getProjectedAttributesHTML();
 	}
 
 	local getGenericTooltip = o.getGenericTooltip;
 	o.getGenericTooltip = function()
 	{
 		local ret = getGenericTooltip();
-		local descriptionContainer = ret[1];
+		local container = this.findHeaderTooltipContainer(ret);
 		if (this.getContainer().getActor().isTryoutDone())
 		{
 			descriptionContainer.text += this.getContainer().getActor().getBackground().getPerkTree().getTooltip();
@@ -39,12 +43,12 @@
 		}
 		else
 		{
-			descriptionContainer.text += "\n" +  ::MSU.Text.colorRed("Try out") + " this character to reveal " + ::MSU.Text.colorGreen("more") + " information!";
+			container.text += "\n" +  ::MSU.Text.colorRed("Try out") + " this character to reveal " + ::MSU.Text.colorGreen("more") + " information!";
 		}
 		return ret;
 	}
 
-	o.getProjectedAttributesDescription <- function()
+	o.getProjectedAttributesHTML <- function()
 	{
 		local projection = this.getContainer().getActor().getProjectedAttributes();
 		local function formatString( _img, _attribute )
@@ -69,6 +73,7 @@
 		return ret;
 	}
 });
+
 ::mods_hookDescendants("skills/backgrounds/character_background", function(o) {
 	if (!("getTooltip" in o))
 		return;
@@ -77,7 +82,7 @@
 	o.getTooltip <- function()
 	{
 		local ret = getTooltip();
-		this.addProjectedAttributesToTooltip(ret);
+		this.addReforgedAttributesToTooltip(ret);
 		return ret;
 	}
 })
