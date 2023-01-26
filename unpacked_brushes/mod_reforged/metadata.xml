@@ -1,5 +1,6 @@
 <brush name="gfx/mod_reforged.png" version ="17" b1="2" b5="0">
 	<sprite id="perk_rf_bloodbath" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_bloodbath.png" />
+	<sprite id="perk_rf_intimidate" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_intimidate.png" />
 	<sprite id="perk_rf_opportunist" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_opportunist.png" />
 	<sprite id="perk_rf_sanguinary" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_sanguinary.png" />
 	<sprite id="perk_rf_exude_confidence" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_exude_confidence.png" />
