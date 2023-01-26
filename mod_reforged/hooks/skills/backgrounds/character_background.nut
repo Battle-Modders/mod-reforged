@@ -10,7 +10,7 @@
 		local container = this.findHeaderTooltipContainer(_tooltip);
 		container.rawHTML <- "";
 		if (this.isHired() && this.getContainer().getActor().getLevel() >= ::Const.XP.MaxLevelWithPerkpoints)
-			this.addProjectedAttributesToTooltip(container);
+			container.rawHTML += this.getProjectedAttributesHTML();
 		return _tooltip;
 	}
 
@@ -20,15 +20,8 @@
 		foreach (segment in _tooltip)
 		{
 			if ("type" in segment && segment.type == "description")
-			{
 				return segment;
-			}
 		}
-	}
-
-	o.addProjectedAttributesToTooltip <- function(_tooltip)
-	{
-		_tooltip.rawHTML += this.getProjectedAttributesHTML();
 	}
 
 	local getGenericTooltip = o.getGenericTooltip;
