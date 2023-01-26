@@ -51,10 +51,10 @@
 		{
 			local min = projection[_attribute][0];
 			local max = projection[_attribute][1];
-			return format("<span><img src='coui://%s'/> <span>%i [%i - %i]</span></span>", _img, (min + max) / 2, min, max);
+			return format("<span class='attributePredictionItem'><img src='coui://%s'/> <span class='attributePredictionSingle'>%i</span> <span class='attributePredictionRange'>[%i - %i]</span></span>", _img, (min + max) / 2, min, max);
 		}
 
-		local ret = "<div>Projection of this character\'s base attribute ranges at level " + ::Const.XP.MaxLevelWithPerkpoints + ".</div>";
+		local ret = "<div class='attributePredictionHeader'>Projection of this character\'s base attribute ranges at level " + ::Const.XP.MaxLevelWithPerkpoints + ".</div>";
 		ret += "<div class='attributePredictionContainer'>";
 		ret += formatString("gfx/ui/icons/health.png", ::Const.Attributes.Hitpoints);
 		ret += formatString("gfx/ui/icons/melee_skill.png", ::Const.Attributes.MeleeSkill);
