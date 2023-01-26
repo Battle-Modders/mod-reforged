@@ -60,7 +60,7 @@
 		this.Tactical.getTemporaryRoster().add(this);
 
 		// Reforged
-		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge + 1;
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge;
 		this.m.BaseProperties.MeleeDefense = 15;
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_between_the_ribs", function(o) {
 			o.m.IsForceEnabled = true;
