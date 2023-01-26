@@ -1042,7 +1042,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"While holding a net, every successful melee attack against an adjacent target has a chance to net the target without expending your currently held net. The chance is equal to the hit chance of the attack.",
 				"You cannot use or swap this net until the enemy escapes or dies.",
 				"The net effect can be broken out of with 100% effectiveness",
-				"Does not benefit from Angler"
+				"Does not benefit from Angler."
 			]
 		}]
  	}),
@@ -1608,7 +1608,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Whenever you are attacked, hit or miss, gain a stacking " + ::MSU.Text.colorGreen("+5") + " Initiative and " + ::MSU.Text.colorGreen("+5%") + " reduction to the Fatigue Cost of skills during your next turn, up to a maximum of " + ::MSU.Text.colorGreen("+25") + "and " + ::MSU.Text.colorGreen("+25%") + " respectively."
+				"Whenever you are attacked, hit or miss, gain a stacking " + ::MSU.Text.colorGreen("+5") + " Initiative and " + ::MSU.Text.colorGreen("+5%") + " reduction to the Fatigue Cost of skills during your next turn, up to a maximum of " + ::MSU.Text.colorGreen("+25") + " and " + ::MSU.Text.colorGreen("+25%") + " respectively."
 			]
 		}]
  	}),
