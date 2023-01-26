@@ -168,7 +168,7 @@
 			}
 			else
 			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perks_perk_rf_formidable_approach"));
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
 			}
 		}
 	}
