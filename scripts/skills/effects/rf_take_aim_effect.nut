@@ -69,14 +69,14 @@ this.rf_take_aim_effect <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		this.m.DiversionMinDist = null;
+		this.m.DiversionMaxLevelDifference = null;
 		
 		if (_skill.isAttack() && _skill.isRanged())
 		{
 			local weapon = this.getContainer().getActor().getMainhandItem();
 			if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Crossbow))
 			{
-				this.m.DiversionMinDist = ::Const.Combat.DiversionMaxLevelDifference;
+				this.m.DiversionMaxLevelDifference = ::Const.Combat.DiversionMaxLevelDifference;
 				::Const.Combat.DiversionMaxLevelDifference = -100;
 			}
 		}
@@ -84,9 +84,9 @@ this.rf_take_aim_effect <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (this.m.DiversionMinDist != null)
+		if (this.m.DiversionMaxLevelDifference != null)
 		{
-			::Const.Combat.DiversionMinDist = this.m.DiversionMinDist;
+			::Const.Combat.DiversionMaxLevelDifference = this.m.DiversionMaxLevelDifference;
 		}
 	}
 
