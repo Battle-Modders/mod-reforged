@@ -18,7 +18,7 @@
 ::DPF.Perks.TalentMultipliers.add(::Const.Attributes.MeleeSkill, "pg.rf_unstoppable", 1.2);
 ::DPF.Perks.TalentMultipliers.add(::Const.Attributes.MeleeSkill, "pg.rf_vicious", 1.2);
 
-::DPF.Perks.TalentMultipliers.add(::Const.Attributes.RangedSkill, "pg.rf_bow", 2);
+::DPF.Perks.TalentMultipliers.add(::Const.Attributes.RangedSkill, "pg.rf_bow", 3);
 ::DPF.Perks.TalentMultipliers.add(::Const.Attributes.RangedSkill, "pg.rf_crossbow", 2);
 ::DPF.Perks.TalentMultipliers.add(::Const.Attributes.RangedSkill, "pg.rf_throwing", 1.5);
 ::DPF.Perks.TalentMultipliers.add(::Const.Attributes.RangedSkill, "pg.rf_ranged", 2);
