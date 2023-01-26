@@ -37,7 +37,6 @@
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_ballistics"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_marksmanship"));

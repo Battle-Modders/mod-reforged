@@ -27,7 +27,6 @@
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ballistics"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_iron_sights"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
     	}
