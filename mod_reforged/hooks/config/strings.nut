@@ -1616,6 +1616,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Fluff = "Learn to call your strikes and target gaps in your opponents\' armor!",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
+			Requirement = "Melee Piercing Attack",
 			Description = [
 				"Your attacks ignore an additional " + ::MSU.Text.colorGreen("15%") + " of the target\'s armor."
 			]
