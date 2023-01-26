@@ -4,6 +4,7 @@ this.pg_rf_trained <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_trained";
 		this.m.Name = "Trained";
+		this.m.Icon = "ui/perks/rf_finesse.png";
 		this.m.FlavorText = [
 			"is well trained",
 			"has great training",

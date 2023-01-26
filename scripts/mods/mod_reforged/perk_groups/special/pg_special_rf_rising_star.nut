@@ -5,6 +5,7 @@ this.pg_special_rf_rising_star <- ::inherit(::DPF.Class.SpecialPerkGroup, {
 		this.special_perk_group.create();
 		this.m.ID = "pg.special.rf_rising_star";
 		this.m.Name = "Special Perks";
+		this.m.Icon = "ui/perks/rf_rising_star.png";
 		this.m.FlavorText = [
 			"Has the talent to rise and shine above all others!"
 		];

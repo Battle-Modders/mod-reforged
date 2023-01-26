@@ -5,6 +5,7 @@ this.pg_special_rf_fencer <- ::inherit(::DPF.Class.SpecialPerkGroup, {
 		this.special_perk_group.create();
 		this.m.ID = "pg.special.rf_fencer";
 		this.m.Name = "Special Perks";
+		this.m.Icon = "ui/perks/rf_fencer.png";
 		this.m.FlavorText = [
 			"Has all the makings of a capable fencer."
 		];

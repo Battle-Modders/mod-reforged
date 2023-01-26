@@ -4,6 +4,7 @@ this.pg_rf_trapper <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_trapper";
 		this.m.Name = "Trapper";
+		this.m.Icon = "ui/perks/rf_angler.png";
 		this.m.FlavorText = [
 			"has experience in trapping and using nets"
 		];

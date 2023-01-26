@@ -4,6 +4,7 @@ this.pg_rf_swift <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_swift";
 		this.m.Name = "Swift Strikes";
+		this.m.Icon = "ui/perks/perk_41.png"; // duelist icon
 		this.m.FlavorText = [
 			"swift weapons"
 		];

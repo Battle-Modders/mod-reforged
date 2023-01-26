@@ -4,6 +4,7 @@ this.pg_rf_unstoppable <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_unstoppable";
 		this.m.Name = "Unstoppable";
+		this.m.Icon = "ui/perks/rf_unstoppable.png";
 		this.m.FlavorText = [
 			"seems unstoppable",
 			"lifts weights unstoppably",

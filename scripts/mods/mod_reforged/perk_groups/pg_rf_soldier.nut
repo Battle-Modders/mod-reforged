@@ -4,6 +4,7 @@ this.pg_rf_soldier <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_soldier";
 		this.m.Name = "Soldier";
+		this.m.Icon = "ui/perks/rf_pattern_recognition.png";
 		this.m.FlavorText = [
 			"served in the military",
 			"has had professional military experience",

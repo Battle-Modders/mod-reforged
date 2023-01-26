@@ -4,6 +4,7 @@ this.pg_rf_tactician <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_tactician";
 		this.m.Name = "Tactician";
+		this.m.Icon = "ui/perks/rf_blitzkrieg.png";
 		this.m.FlavorText = [
 			"is skilled in battlefield tactics",
 			"claims to have studied battlefield tactics",
