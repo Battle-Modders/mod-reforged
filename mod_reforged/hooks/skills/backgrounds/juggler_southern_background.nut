@@ -17,7 +17,9 @@
 			"pgc.rf_shared_1": [],
 			"pgc.rf_weapon": [],
 			"pgc.rf_armor": [],
-			"pgc.rf_fighting_style": []
+			"pgc.rf_fighting_style": [
+				"pg.rf_swift"
+			]
 		});
 	}
 });

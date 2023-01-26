@@ -23,7 +23,8 @@
 			"pgc.rf_exclusive_1": [
                 ::MSU.Class.WeightedContainer([
                     [20, "pg.rf_laborer"],
-                    [60, "pg.rf_raider"],
+                    [50, "pg.rf_raider"],
+                    [10, "pg.rf_trapper"],
                     [20, "pg.rf_wildling"]
                 ])
 			],

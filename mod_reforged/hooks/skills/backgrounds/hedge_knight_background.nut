@@ -33,7 +33,8 @@
 				"pg.rf_heavy_armor"
 			],
 			"pgc.rf_fighting_style": [
-				"pg.rf_power"
+				"pg.rf_power",
+				"pg.rf_shield"
 			]
 		});
 	}
