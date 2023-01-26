@@ -82,6 +82,11 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 		this.m.IsInEffect = false;
 	}
 
+	function onResumeTurn()
+	{
+		this.m.IsInEffect = false;
+	}
+
 	function onPayForItemAction( _skill, _items )
 	{
 		this.m.IsInEffect = false;
