@@ -9,15 +9,13 @@
 			"pg.rf_talented": 3,
 			"pg.rf_spear": 0.75,
 			"pg.rf_sword": 0.8
-
-			"pg.special.rf_professional": -1
 		};
 		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
 			"pgc.rf_exclusive_1": [
                 ::MSU.Class.WeightedContainer([
                     [50, "pg.rf_soldier"],
                     [50, "DPF_NoPerkGroup"]
-                ])
+                ]),
                 ::MSU.Class.WeightedContainer([
                    [30, "pg.special.rf_professional"],
                    [70, "DPF_NoPerkGroup"]
