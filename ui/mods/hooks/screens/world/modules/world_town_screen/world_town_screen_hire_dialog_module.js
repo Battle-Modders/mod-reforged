@@ -1,8 +1,8 @@
 // This hook adds the ability to toggle between description and perks display for hires in the crowd building
-Reforged.WorldTownScreenHireDialogModule_createDIV = WorldTownScreenHireDialogModule.prototype.createDIV;
+Reforged.Hooks.WorldTownScreenHireDialogModule_createDIV = WorldTownScreenHireDialogModule.prototype.createDIV;
 WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 {
-	Reforged.WorldTownScreenHireDialogModule_createDIV.call(this, _parentDiv);
+	Reforged.Hooks.WorldTownScreenHireDialogModule_createDIV.call(this, _parentDiv);
 
 	this.mDetailsPanel.CharacterBackgroundPerksContainer = $("<div class='hire-screen-perks-container'/>")
 		.appendTo(this.mDetailsPanel.Container);
@@ -21,7 +21,7 @@ WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	this.mDetailsPanel.ActiveModuleIdx = 0;
 }
 
-Reforged.WorldTownScreenHireDialogModule_destroyDIV = WorldTownScreenHireDialogModule.prototype.destroyDIV
+Reforged.Hooks.WorldTownScreenHireDialogModule_destroyDIV = WorldTownScreenHireDialogModule.prototype.destroyDIV
 WorldTownScreenHireDialogModule.prototype.destroyDIV = function()
 {
 	this.mDetailsPanel.mPerksModule.destroyDIV();
@@ -31,7 +31,7 @@ WorldTownScreenHireDialogModule.prototype.destroyDIV = function()
 	this.mDetailsPanel.ActiveModule = null;
 	this.mDetailsPanel.ActiveModuleIdx = 0;
 
-	Reforged.WorldTownScreenHireDialogModule_destroyDIV.call(this);
+	Reforged.Hooks.WorldTownScreenHireDialogModule_destroyDIV.call(this);
 }
 
 WorldTownScreenHireDialogModule.prototype.toggleModuleIfValid = function()
@@ -58,10 +58,10 @@ WorldTownScreenHireDialogModule.prototype.toggleModule = function(_idx)
 	this.mDetailsPanel.ActiveModule.show();
 }
 
-Reforged.WorldTownScreenHireDialogModule_updateDetailsPanel = WorldTownScreenHireDialogModule.prototype.updateDetailsPanel;
+Reforged.Hooks.WorldTownScreenHireDialogModule_updateDetailsPanel = WorldTownScreenHireDialogModule.prototype.updateDetailsPanel;
 WorldTownScreenHireDialogModule.prototype.updateDetailsPanel = function(_element)
 {
-	Reforged.WorldTownScreenHireDialogModule_updateDetailsPanel.call(this, _element);
+	Reforged.Hooks.WorldTownScreenHireDialogModule_updateDetailsPanel.call(this, _element);
 	if (!this.checkToggleModule())
 		this.toggleModule(0);
 	else
