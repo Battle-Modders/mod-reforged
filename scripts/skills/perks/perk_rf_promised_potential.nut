@@ -38,12 +38,14 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 			if (!this.m.WillSucceed)
 			{
 				perkTree.addPerk("perk.rf_failed_potential", 1);
+				this.getContainer().add(::new("scripts/skills/perks/perk_rf_failed_potential"));
 			}
 			else
 			{
 				actor.m.PerkPoints++;
 				actor.m.PerkPointsSpent--;
 				perkTree.addPerk("perk.rf_realized_potential", 1);
+				this.getContainer().add(::new("scripts/skills/perks/perk_rf_realized_potential"));
 
 				if (this.getContainer().hasSkill("perk.rf_trauma_survivor"))
 				{
