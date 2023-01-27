@@ -58,6 +58,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;
+		this.m.Skills.add(::new("scripts/skills/racial/rf_orc_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
