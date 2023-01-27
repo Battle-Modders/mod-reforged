@@ -5,7 +5,7 @@
 	RF_BackToBasics = "Back to Basics",
 	RF_Skirmisher = "Skirmisher",
 	RF_Ballistics = "Ballistics",
-	RF_BattleFlow = "Battle Flow",
+	// RF_BattleFlow = "Battle Flow",
 	RF_BearDown = "Bear Down",
 	RF_BestialVigor = "Bestial Vigor",
 	RF_BetweenTheEyes = "Between the Eyes",
