@@ -1,6 +1,8 @@
 this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false
+		ReachBonus = 2,
+		IsForceEnabled = false,
+		IsSpent = false
 	},
 	function create()
 	{
@@ -38,12 +40,11 @@ this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 		});
 	}
 
-	function onUpdate( _properties )
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		local weapon = this.getContainer().getMainhandItem();
-		if (weapon != null && weapon.getReach() < 4)
+		if (_skill.isAttack() && !_skill.isRanged() && _targetEntity != null && this.hasEnemy(_targetEntity))
 		{
-			_properties.Reach += 4 - weapon.getReach();
+			_properties.Reach += this.m.ReachBonus;
 		}
 	}
 
