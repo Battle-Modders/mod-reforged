@@ -2,7 +2,8 @@ this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 	m = {
 		ReachBonus = 2,
 		IsForceEnabled = false,
-		IsSpent = false
+		IsSpent = false,
+		Enemies = []
 	},
 	function create()
 	{
@@ -38,6 +39,22 @@ this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 			icon = "ui/icons/special.png",
 			text = "The next melee attack against an adjacent target will apply the Staggered effect"
 		});
+	}
+
+	function registerEnemy( _actor )
+	{
+		if (this.getContainer().getActor().hasZoneOfControl() && this.m.Enemies.find(_actor.getID()) == null)
+			this.m.Enemies.push(_actor.getID());
+	}
+
+	function unregisterEnemy( _actor )
+	{
+		::MSU.Array.removeByValue(this.m.Enemies, _actor.getID());
+	}
+
+	function hasEnemy( _actor )
+	{
+		return this.m.Enemies.find(_actor.getID()) != null;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
