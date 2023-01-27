@@ -41,7 +41,7 @@
 		return options.InvertColor ? this.colorRed(_value) : this.colorGreen(_value);
 	}
 
-	if (_value == options.CcompareTo)
+	if (_value == options.CompareTo)
 	{
 		if (options.AddPercent) _value = _value + "%";
 		return _value;
