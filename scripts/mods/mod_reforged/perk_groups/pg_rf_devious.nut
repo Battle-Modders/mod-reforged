@@ -25,8 +25,10 @@ this.pg_rf_devious <- ::inherit(::DPF.Class.PerkGroup, {
 				[]
 			]
 		};
-		this.m.PerkTreeMultipliers = {
-			"self": 0.66
-		};
+	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		return 0.66;
 	}
 });

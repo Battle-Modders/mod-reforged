@@ -19,8 +19,10 @@ this.pg_rf_sword <- ::inherit(::DPF.Class.PerkGroup, {
 				["perk.rf_en_garde"]
 			]
 		};
-		this.m.PerkTreeMultipliers = {
-			"self": 1.2
-		};
+	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		return 1.2;
 	}
 });

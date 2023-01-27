@@ -19,8 +19,10 @@ this.pg_rf_heavy_armor <- ::inherit(::DPF.Class.PerkGroup, {
 				[]
 			]
 		};
-		this.m.PerkTreeMultipliers = {
-			"self": 0.5
-		};
+	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		return 0.5;
 	}
 });

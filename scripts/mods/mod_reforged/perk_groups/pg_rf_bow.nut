@@ -20,8 +20,12 @@ this.pg_rf_bow <- ::inherit(::DPF.Class.PerkGroup, {
 			]
 		};
 		this.m.PerkTreeMultipliers = {
-			"self": 0.33,
 			"pg.rf_ranged": 1.5
 		};
+	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		return 0.33;
 	}
 });

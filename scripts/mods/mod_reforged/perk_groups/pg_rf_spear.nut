@@ -19,8 +19,10 @@ this.pg_rf_spear <- ::inherit(::DPF.Class.PerkGroup, {
 				["perk.rf_king_of_all_weapons"]
 			]
 		};
-		this.m.PerkTreeMultipliers = {
-			"self": 1.33
-		};
+	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		return 1.33;
 	}
 });

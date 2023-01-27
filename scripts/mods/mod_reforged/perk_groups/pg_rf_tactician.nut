@@ -21,8 +21,10 @@ this.pg_rf_tactician <- ::inherit(::DPF.Class.PerkGroup, {
 				["perk.rf_blitzkrieg"]
 			]
 		};
-		this.m.PerkTreeMultipliers = {
-			"self": 0.1
-		};
+	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		return 0.1;
 	}
 });

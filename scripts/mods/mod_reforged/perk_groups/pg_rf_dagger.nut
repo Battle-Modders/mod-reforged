@@ -19,8 +19,10 @@ this.pg_rf_dagger <- ::inherit(::DPF.Class.PerkGroup, {
 				["perk.rf_swift_stabs"]
 			]
 		};
-		this.m.PerkTreeMultipliers = {
-			"self": 0.5
-		};
+	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		return 0.5;
 	}
 });

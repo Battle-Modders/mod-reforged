@@ -25,8 +25,10 @@ this.pg_rf_talented <- ::inherit(::DPF.Class.PerkGroup, {
 				[]
 			]
 		};
-		this.m.PerkTreeMultipliers = {
-			"self": 0.1
-		};
+	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		return 0.1;
 	}
 });
