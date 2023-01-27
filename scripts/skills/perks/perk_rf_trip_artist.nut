@@ -1,6 +1,7 @@
 this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false
+		IsForceEnabled = false,
+		IsSpent = true
 	},
 	function create()
 	{
@@ -40,7 +41,7 @@ this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		local weapon = this.getContainer().getMainhandItem();
+		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon != null && weapon.getReach() < 4)
 		{
 			_properties.Reach += 4 - weapon.getReach();
@@ -62,5 +63,11 @@ this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 	function onTurnStart()
 	{
 		this.m.IsSpent = false;
+	}
+
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		this.m.IsSpent = true;
 	}
 });
