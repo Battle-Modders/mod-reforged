@@ -33,7 +33,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The next " + ::MSU.colorGreen(this.m.AttacksRemaining) + " throwing attack(s) in this battle have their Action Point costs halved"
+				text = "The next " + ::MSU.Text.colorGreen(this.m.AttacksRemaining) + " throwing attack(s) in this battle have their Action Point costs halved"
 			});
 		}
 
