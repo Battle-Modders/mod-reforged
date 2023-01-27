@@ -18,6 +18,10 @@
                     [50, "pg.rf_soldier"],
                     [50, "DPF_NoPerkGroup"]
                 ])
+                ::MSU.Class.WeightedContainer([
+                   [30, "pg.special.rf_professional"],
+                   [70, "DPF_NoPerkGroup"]
+                ])
 			],
 			"pgc.rf_shared_1": [
 				"pg.rf_trained"
