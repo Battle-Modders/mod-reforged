@@ -112,7 +112,7 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 	{
 		if (!this.m.IsSpent && this.m.Skills.find(_skill.getID()) != null && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 		{
-			_properties.MeleeDamageMult *= this.m.DamageReductionPercentage * 0.01;
+			_properties.MeleeDamageMult *= 1.0 - this.m.DamageReductionPercentage * 0.01;
 		}
 	}
 
