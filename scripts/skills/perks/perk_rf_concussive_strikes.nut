@@ -34,7 +34,7 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 		}
 
 		local actor = this.getContainer().getActor();
-		local weapon = this.getContainer().getMainhandItem();
+		local weapon = actor.getMainhandItem();
 		local isMace = this.m.IsForceMace || (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Mace));
 
 		if (isMace && (this.m.IsForceEnabled || _skill.getDamageType().contains(::Const.Damage.DamageType.Blunt)))
