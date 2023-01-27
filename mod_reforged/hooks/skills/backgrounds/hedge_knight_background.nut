@@ -4,9 +4,9 @@
 	{
 		create();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 0.5,
+			"pg.rf_agile": 0,
 			"pg.rf_devious": 0,
-			"pg.rf_fast": 0.5,
+			"pg.rf_fast": 0,
 			"pg.rf_leadership": 0,
 			"pg.rf_tactician": 0,
 			"pg.rf_talented": 4,
