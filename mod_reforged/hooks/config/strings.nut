@@ -1628,9 +1628,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_ThroughTheGaps = ::UPD.getDescription({
  		Fluff = "Learn to call your strikes and target gaps in your opponents\' armor!",
+ 		Requirement = "Melee Piercing Attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
-			Requirement = "Melee Piercing Attack",
 			Description = [
 				"Your attacks ignore an additional " + ::MSU.Text.colorGreen("15%") + " of the target\'s armor."
 			]
