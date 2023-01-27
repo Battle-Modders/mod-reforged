@@ -55,29 +55,29 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
-		local user = _skill.getContainer().getActor();
 		local targetEntity = _targetTile.getEntity();
 		if (skill.isRanged() || targetEntity == null) return;
 
-		if (user.getID() == this.getContainer().getID())
+		if (targetEntity.getID() in this.m.Opponents)
 		{
-			if (targetEntity.getID() in this.m.Opponents)
-			{
-				_tooltip.push({
-					icon = "ui/tooltips/positive.png",
-					text = "[color=" + ::Const.UI.Color.PositiveValue + "]" + this.getBonus(targetEntity.getID()) + "%[/color] " + this.getName()
-				});
-			}
+			_tooltip.push({
+				icon = "ui/tooltips/positive.png",
+				text = "[color=" + ::Const.UI.Color.PositiveValue + "]" + this.getBonus(targetEntity.getID()) + "%[/color] " + this.getName()
+			});
 		}
-		else
+	}
+
+	function onGetHitFactorsAsTarget( _skill, _targetTile, _tooltip )
+	{
+		if (_skill.isRanged()) return;
+
+		local user = _skill.getContainer().getActor();
+		if (user.getID() in this.m.Opponents)
 		{
-			if (user.getID() in this.m.Opponents)
-			{
-				_tooltip.push({
-					icon = "ui/tooltips/negative.png",
-					text = "[color=" + ::Const.UI.Color.NegativeValue + "]" + this.getBonus(user.getID()) + "%[/color] " + this.getName()
-				});
-			}
+			_tooltip.push({
+				icon = "ui/tooltips/negative.png",
+				text = ::MSU.Text.colorRed(this.getBonus(user.getID()) + "% ") + this.getName()
+			});
 		}
 	}
 

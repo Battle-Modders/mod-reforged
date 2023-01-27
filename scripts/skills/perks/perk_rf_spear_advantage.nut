@@ -109,11 +109,26 @@ this.perk_rf_spear_advantage <- ::inherit("scripts/skills/skill", {
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
+		if (_skill.isRanged() || !_targetTile.IsOccupiedByActor) return;
+
 		if (_targetTile.getEntity().getID() in this.m.Opponents)
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]" + this.getBonus(_targetTile.getEntity().getID()) + "%[/color] " + this.getName()
+				text = ::MSU.Text.colorGreen(this.getBonus(_targetTile.getEntity().getID()) + "% ") + this.getName()
+			});
+		}
+	}
+
+	function onGetHitFactorsAsTarget( _skill, _targetTile, _tooltip )
+	{
+		if (_skill.isRanged()) return;
+
+		if (_skill.getContainer().getActor() in this.m.Opponents)
+		{
+			_tooltip.push({
+				icon = "ui/tooltips/negative.png",
+				text = ::MSU.Text.colorRed(this.getBonus(_skill.getContainer().getActor().getID()) + "% ") + this.getName()
 			});
 		}
 	}
