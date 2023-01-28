@@ -9,7 +9,7 @@
 			return _entity.getSprite("selection").Visible;
 		})
 
-		// If wew went through them all
+		// Reset if we clicked through them all
 		if (this.m.SelectionClickedArray.len() == markedEntites.len())
 			this.m.SelectionClickedArray.clear();
 
