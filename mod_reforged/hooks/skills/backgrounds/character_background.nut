@@ -5,22 +5,22 @@
 		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
 	}
 
-	o.addReforgedAttributesToTooltip <- function(_tooltip)
+	o.getProjectedAttributesTooltip <- function()
 	{
-		local container = this.findHeaderTooltipContainer(_tooltip);
-		container.rawHTML <- "";
-		if (this.isHired() && this.getContainer().getActor().getLevel() >= ::Const.XP.MaxLevelWithPerkpoints)
-			container.rawHTML += this.getProjectedAttributesHTML();
-		return _tooltip;
+		return {
+			id = 3,
+			type = "description",
+			text = "", // Needs text key or it'll be skipped
+			rawHTML = this.getProjectedAttributesHTML()
+		}
 	}
 
-	o.findHeaderTooltipContainer <- function(_tooltip)
+	o.getPerkTreeTooltip <- function()
 	{
-		// We'll probably want this in a more unified way later
-		foreach (segment in _tooltip)
-		{
-			if ("type" in segment && segment.type == "description")
-				return segment;
+		return {
+			id = 3,
+			type = "description",
+			text = this.getContainer().getActor().getBackground().getPerkTree().getTooltip()
 		}
 	}
 
@@ -28,15 +28,20 @@
 	o.getGenericTooltip = function()
 	{
 		local ret = getGenericTooltip();
-		local container = this.findHeaderTooltipContainer(ret);
 		if (this.getContainer().getActor().isTryoutDone())
 		{
-			descriptionContainer.text += this.getContainer().getActor().getBackground().getPerkTree().getTooltip();
-			descriptionContainer.text = ::MSU.String.replace(descriptionContainer.text, "%name%", this.getContainer().getActor().getNameOnly());
+			local perkTreeTooltip = this.getPerkTreeTooltip();
+			perkTreeTooltip.text = ::MSU.String.replace(perkTreeTooltip.text, "%name%", this.getContainer().getActor().getNameOnly());
+			ret.push(perkTreeTooltip);
+			ret.push(this.getProjectedAttributesTooltip());
 		}
 		else
 		{
-			container.text += "\n" +  ::MSU.Text.colorRed("Try out") + " this character to reveal " + ::MSU.Text.colorGreen("more") + " information!";
+			ret.push({
+				id = 3,
+				type = "description",
+				text =  ::MSU.Text.colorRed("Try out") + " this character to reveal " + ::MSU.Text.colorGreen("more") + " information!"
+			})
 		}
 		return ret;
 	}
@@ -74,7 +79,7 @@
 		o.getTooltip <- function()
 		{
 			local ret = getTooltip();
-			this.addReforgedAttributesToTooltip(ret);
+			ret.push(this.getProjectedAttributesTooltip());
 			return ret;
 		}
 	}
