@@ -68,14 +68,14 @@
 });
 
 ::mods_hookDescendants("skills/backgrounds/character_background", function(o) {
-	if (!("getTooltip" in o))
-		return;
-
-	local getTooltip = o.getTooltip;
-	o.getTooltip <- function()
+	if ("getTooltip" in o)
 	{
-		local ret = getTooltip();
-		this.addReforgedAttributesToTooltip(ret);
-		return ret;
+		local getTooltip = o.getTooltip;
+		o.getTooltip <- function()
+		{
+			local ret = getTooltip();
+			this.addReforgedAttributesToTooltip(ret);
+			return ret;
+		}
 	}
 })
