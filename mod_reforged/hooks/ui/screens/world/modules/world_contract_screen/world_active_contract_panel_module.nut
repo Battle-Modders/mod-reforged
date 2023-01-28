@@ -19,6 +19,9 @@
 			}
 		}
 		addEligibleMembers(contract.m);
+		addEligibleMembers(contract.m.Origin);
+		addEligibleMembers(contract.m.Home);
+		addEligibleMembers(contract.m.UnitsSpawned);
 		if (markedEntites.len() == 0)
 			return;
 		if (this.m.SelectionClickedArray.len() == markedEntites.len())
