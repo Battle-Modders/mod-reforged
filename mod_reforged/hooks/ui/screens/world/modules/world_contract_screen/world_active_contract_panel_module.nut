@@ -3,32 +3,17 @@
 	o.m.SelectionClickedArray <- [];
 	o.onActiveContractDetailsClicked <- function()
 	{
-		local contract = this.World.Contracts.getActiveContract();
-		local markedEntites = [];
-		local addEligibleMembers;
-		addEligibleMembers = function(_obj)
-		{
-			if (::MSU.isBBObject(_obj) && _obj.getSprite("selection").Visible)
-			{
-				markedEntites.push(_obj);
-			}
-			else if (typeof _obj == "table" || typeof _obj == "array")
-			{
-				foreach(key, value in _obj)
-					addEligibleMembers(value);
-			}
-		}
-		addEligibleMembers(contract.m);
-		addEligibleMembers(contract.m.Origin);
-		addEligibleMembers(contract.m.Home);
-		addEligibleMembers(contract.m.UnitsSpawned);
-		if (markedEntites.len() == 0)
-			return;
+		local centerTile = this.World.getTileSquare(70, 85);
+		local entities = this.World.getAllEntitiesAtPos(centerTile, 15000);
+		local markedEntites = entities.filter(function(_idx, _entity){
+			return _entity.getSprite("selection").Visible;
+		})
+
+		// If wew went through them all
 		if (this.m.SelectionClickedArray.len() == markedEntites.len())
-		{
 			this.m.SelectionClickedArray.clear();
-		}
-		foreach(idx, entity in markedEntites)
+
+		foreach (entity in markedEntites)
 		{
 			if (this.m.SelectionClickedArray.find(entity.getID()) == null)
 			{
