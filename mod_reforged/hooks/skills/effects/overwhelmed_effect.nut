@@ -17,6 +17,8 @@
 				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + (this.m.Count * 10) + "%[/color] Ranged Skill"
 			}
 		]);
+
+		return tooltip;
 	}
 
 	o.onUpdate = function( _properties )
