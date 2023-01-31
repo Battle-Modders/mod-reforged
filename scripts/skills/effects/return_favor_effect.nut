@@ -22,7 +22,7 @@ this.return_favor_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getDefaultTooltip();
+		local tooltip = this.skill.getTooltip();
 		tooltip.push({
 			id = 7,
 			type = "text",
