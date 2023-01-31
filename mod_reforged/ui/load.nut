@@ -9,11 +9,8 @@
 ::MSU.UI.registerConnection(::Reforged.UI.JSConnection);
 
 local prefixLen = "ui/mods/".len();
-if (this.IO.enumerateFiles("ui/mods/mod_reforged/hooks") != null)
+foreach(file in this.IO.enumerateFiles("ui/mods/mod_reforged/hooks"))
 {
-	foreach(file in this.IO.enumerateFiles("ui/mods/mod_reforged/hooks"))
-	{
-		file = file.slice(prefixLen) + ".js";
-		::mods_registerJS(file);
-	}
+	file = file.slice(prefixLen) + ".js";
+	::mods_registerJS(file);
 }
