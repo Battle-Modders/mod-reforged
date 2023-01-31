@@ -5,7 +5,7 @@
 	{
 		local ret = convertEntityHireInformationToUIData(_entity);
 		if (ret == null || _entity.getBackground() == null)
-			return ret
+			return ret;
 
 		local perkTree = _entity.getBackground().getPerkTree();
 		ret.perkTree <- perkTree.toUIData();

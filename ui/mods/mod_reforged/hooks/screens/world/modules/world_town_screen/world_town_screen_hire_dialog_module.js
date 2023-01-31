@@ -16,7 +16,7 @@ WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	this.mDetailsPanel.mModules = [
 		characterDetailsContainer,
 		this.mDetailsPanel.CharacterBackgroundPerksContainer
-	]
+	];
 	this.mDetailsPanel.ActiveModule = this.mDetailsPanel.mModules[0];
 	this.mDetailsPanel.ActiveModuleIdx = 0;
 }
@@ -34,11 +34,14 @@ WorldTownScreenHireDialogModule.prototype.destroyDIV = function()
 	Reforged.Hooks.WorldTownScreenHireDialogModule_destroyDIV.call(this);
 }
 
-WorldTownScreenHireDialogModule.prototype.toggleModuleIfValid = function()
+Reforged.Hooks.WorldTownScreenHireDialogModule_updateDetailsPanel = WorldTownScreenHireDialogModule.prototype.updateDetailsPanel;
+WorldTownScreenHireDialogModule.prototype.updateDetailsPanel = function(_element)
 {
-	console.error("toggleModuleIfValid")
-	if (this.checkToggleModule())
-		this.toggleModule();
+	Reforged.Hooks.WorldTownScreenHireDialogModule_updateDetailsPanel.call(this, _element);
+	if (!this.checkToggleModule())
+		this.toggleModule(0);
+	else
+		this.mDetailsPanel.mPerksModule.loadFromData(_element.data('entry').perkTree);
 }
 
 WorldTownScreenHireDialogModule.prototype.checkToggleModule = function()
@@ -46,6 +49,12 @@ WorldTownScreenHireDialogModule.prototype.checkToggleModule = function()
 	if (this.mSelectedEntry === null || !this.mSelectedEntry.data('entry').IsTryoutDone)
 		return false;
 	return true;
+}
+
+WorldTownScreenHireDialogModule.prototype.toggleModuleIfValid = function()
+{
+	if (this.checkToggleModule())
+		this.toggleModule();
 }
 
 WorldTownScreenHireDialogModule.prototype.toggleModule = function(_idx)
@@ -57,14 +66,4 @@ WorldTownScreenHireDialogModule.prototype.toggleModule = function(_idx)
 	this.mDetailsPanel.ActiveModule.hide();
 	this.mDetailsPanel.ActiveModule = this.mDetailsPanel.mModules[this.mDetailsPanel.ActiveModuleIdx];
 	this.mDetailsPanel.ActiveModule.show();
-}
-
-Reforged.Hooks.WorldTownScreenHireDialogModule_updateDetailsPanel = WorldTownScreenHireDialogModule.prototype.updateDetailsPanel;
-WorldTownScreenHireDialogModule.prototype.updateDetailsPanel = function(_element)
-{
-	Reforged.Hooks.WorldTownScreenHireDialogModule_updateDetailsPanel.call(this, _element);
-	if (!this.checkToggleModule())
-		this.toggleModule(0);
-	else
-		this.mDetailsPanel.mPerksModule.loadFromData(_element.data('entry').perkTree);
 }
