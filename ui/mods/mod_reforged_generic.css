@@ -30,3 +30,9 @@
 	font-size: 12px;
 	padding-left: 3px;
 }
+
+.perkGroupTooltipContainer .perkGroupImage
+{
+	width: 3.5rem;
+	height: 3.5rem;
+}

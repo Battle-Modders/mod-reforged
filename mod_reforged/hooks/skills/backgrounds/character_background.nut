@@ -16,11 +16,27 @@
 
 	o.getPerkTreeTooltip <- function()
 	{
-		return {
+		return [{
 			id = 3,
 			type = "description",
 			text = this.getContainer().getActor().getBackground().getPerkTree().getTooltip()
+		}]
+	}
+
+	o.getPerkGroupsHTML <- function()
+	{
+		local perkGroups = this.getPerkTree().getPerkGroups();
+
+		local ret = "<div class='perkGroupTooltipHeader'>Perk Groups:</div>";
+		ret += "<div class='perkGroupTooltipContainer'>";
+		foreach (perkGroup in perkGroups)
+		{
+			local icon = perkGroup.getIcon() == "" ? "gfx/ui/perks/rf_angler.png" : perkGroup.getIcon();
+			ret += format("<img class='perkGroupImage' src='coui://%s'/>", icon);
 		}
+		ret += "</div>";
+
+		return ret;
 	}
 
 	local getGenericTooltip = o.getGenericTooltip;
@@ -31,8 +47,7 @@
 		{
 			local perkTreeTooltip = this.getPerkTreeTooltip();
 			perkTreeTooltip.text = ::MSU.String.replace(perkTreeTooltip.text, "%name%", this.getContainer().getActor().getNameOnly());
-			ret.push(perkTreeTooltip);
-			ret.push(this.getProjectedAttributesTooltip());
+			ret.extend(perkTreeTooltip);
 		}
 		else
 		{
