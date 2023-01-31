@@ -36,6 +36,7 @@ WorldTownScreenHireDialogModule.prototype.destroyDIV = function()
 
 WorldTownScreenHireDialogModule.prototype.toggleModuleIfValid = function()
 {
+	console.error("toggleModuleIfValid")
 	if (this.checkToggleModule())
 		this.toggleModule();
 }

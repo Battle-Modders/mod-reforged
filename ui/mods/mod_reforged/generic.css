@@ -42,3 +42,9 @@
     min-height: 17.7rem;
     height: auto;
 }
+.hire-screen-perks-container
+{
+	height:65%;
+	display:none;
+	padding-top: 2rem;
+}
