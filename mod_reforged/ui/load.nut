@@ -11,8 +11,11 @@
 ::mods_registerJS("mod_reforged/setup.js");
 
 local prefixLen = "ui/mods/".len();
-foreach(file in this.IO.enumerateFiles("ui/mods/mod_reforged/hooks"))
+if (this.IO.enumerateFiles("ui/mods/mod_reforged/hooks") != null)
 {
-	file = file.slice(prefixLen) + ".js";
-	::mods_registerJS(file);
+	foreach(file in this.IO.enumerateFiles("ui/mods/mod_reforged/hooks"))
+	{
+		file = file.slice(prefixLen) + ".js";
+		::mods_registerJS(file);
+	}
 }
