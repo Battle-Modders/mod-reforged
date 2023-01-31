@@ -37,7 +37,7 @@ this.perk_rf_swordmaster_juggernaut <- ::inherit("scripts/skills/perks/perk_rf_s
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		if (this.m.Target != null || !_skill.isAttack() || _skill.isAOE() || !this.isEnabled() || this.getContainer().getActor().m.IsPerformingAttackOfOpportunity)
+		if (this.m.Target != null || !_skill.isAttack() || _skill.isAOE() || !this.isEnabled() || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 		{
 			this.m.Target = null;
 			return;
