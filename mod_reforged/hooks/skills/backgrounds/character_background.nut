@@ -1,5 +1,4 @@
 ::mods_hookExactClass("skills/backgrounds/character_background", function(o) {
-
 	o.isHired <- function()
 	{
 		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
@@ -7,12 +6,12 @@
 
 	o.getProjectedAttributesTooltip <- function()
 	{
-		return {
+		return [{
 			id = 3,
 			type = "description",
 			text = "", // Needs text key or it'll be skipped
 			rawHTML = this.getProjectedAttributesHTML()
-		}
+		}]
 	}
 
 	o.getPerkTreeTooltip <- function()
@@ -79,7 +78,7 @@
 		o.getTooltip <- function()
 		{
 			local ret = getTooltip();
-			ret.push(this.getProjectedAttributesTooltip());
+			ret.extend(this.getProjectedAttributesTooltip());
 			return ret;
 		}
 	}
