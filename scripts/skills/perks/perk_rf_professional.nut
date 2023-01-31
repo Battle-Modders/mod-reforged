@@ -17,7 +17,7 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 	{
 		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand) return;
 
-		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_bloody_harvest", function(o) {
+		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_death_dealer", function(o) {
 			o.m.IsSerialized = false;
 			o.m.IsRefundable = false;
 		}));
@@ -63,7 +63,7 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 		{
 			local perkTree = this.getContainer().getActor().getBackground().getPerkTree();
 
-			perkTree.addPerk("perk.rf_bloody_harvest", 2);
+			perkTree.addPerk("perk.rf_death_dealer", 2);
 			perkTree.addPerk("perk.shield_expert", 3);
 			perkTree.addPerk("perk.rf_formidable_approach", 3);
 			perkTree.addPerk("perk.duelist", 6);
