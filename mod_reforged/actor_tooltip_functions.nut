@@ -61,56 +61,9 @@
                 id = currentID,
                 type = "text",
                 icon = statusEffect.getIcon(),
-                text = statusEffect.getName()
+                text = ::Reforged.TacticalTooltip.getNestedSkillName(statusEffect)
             };
             currentID++;
-
-            // This will print the effects of Injuries as children entries:
-            /*
-            if (statusEffect.isType(::Const.SkillType.Injury))	// Injuries additionally display their effects is child-tooltips
-            {
-                local injuryEffects = statusEffect.getTooltip().filter(function ( _, row )
-                {
-                    return (("type" in row) && row.type == "text");
-                });
-
-                local addedTooltipHints = [];	// getTooltip() adds more lines of text which we need to filter out now
-                statusEffect.addTooltipHint(addedTooltipHints);
-                addedTooltipHints = addedTooltipHints.filter(function ( _, row )
-                {
-                    return (("type" in row) && row.type == "text");
-                });
-                local added_count = addedTooltipHints.len();
-
-                if (added_count)
-                {
-                    injuryEffects.resize(injuryEffects.len() - added_count);
-                }
-
-                local isUnderIronWill = function ()
-                {
-                    local pattern = this.regexp("Iron Will");
-
-                    foreach( _, row in addedTooltipHints )
-                    {
-                        if (("text" in row) && pattern.search(row.text))
-                        {
-                            return true;
-                        }
-                    }
-
-                    return false;
-                }();
-
-                if (isUnderIronWill)
-                {
-                    effect.text += "[color=" + this.Const.UI.Color.PositiveValue + "]" + " (Iron Will)[/color]";
-                }
-                else
-                {
-                    effect.children <- injuryEffects;
-                }
-            }*/
 
             effectList.push(effect);
         }
@@ -121,7 +74,7 @@
         statusEffects.sort(@(a,b) a.getName() <=> b.getName());
         foreach( statusEffect in statusEffects )
         {
-            entryText += underlineFirstCharacter(statusEffect.getName());
+            entryText += ::Reforged.TacticalTooltip.getNestedSkillName(statusEffect, underlineFirstCharacter(statusEffect.getName()));
             entryText += ", ";
         }
         if (entryText.len() != 0) entryText = entryText.slice(0, -2);
@@ -158,7 +111,7 @@
                 id = currentID,
                 type = "text",
                 icon = perk.getIcon(),
-                text = perk.m.Name
+                text = ::Reforged.TacticalTooltip.getNestedPerkName(perk)
             };
             currentID++;
 
@@ -170,7 +123,7 @@
         local entryText = "";
         foreach( perk in perks )
         {
-            entryText += underlineFirstCharacter(perk.m.Name);
+            entryText += ::Reforged.TacticalTooltip.getNestedPerkName(perk);
             entryText += ", ";
         }
         if (entryText.len() != 0) entryText = entryText.slice(0, -2);
@@ -205,7 +158,7 @@
             id = currentID,
             type = "text",
             icon = "ui/items/" + mainhandItem.getIcon(),
-            text = mainhandItem.getName()
+            text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,%s,entity]", mainhandItem.getName(), split(::IO.scriptFilenameByHash(mainhandItem.ClassNameHash), "/").top(), mainhandItem.getInstanceID()))
         });
         currentID++;
     }
@@ -215,7 +168,7 @@
             id = currentID,
             type = "text",
             icon = "ui/items/" + offhandItem.getIcon(),
-            text = offhandItem.getName()
+            text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,%s,entity]", offhandItem.getName(), split(::IO.scriptFilenameByHash(offhandItem.ClassNameHash), "/").top(), offhandItem.getInstanceID()))
         });
         currentID++;
     }
@@ -225,7 +178,7 @@
             id = currentID,
             type = "text",
             icon = "ui/items/" + accessory.getIcon(),
-            text = accessory.getName()
+            text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,%s,entity]", accessory.getName(), split(::IO.scriptFilenameByHash(accessory.ClassNameHash), "/").top(), accessory.getInstanceID()))
         });
         currentID++;
     }
@@ -249,7 +202,7 @@
             id = currentID,
             type = "text",
             icon = "ui/items/" + bagItem.getIcon(),
-            text = bagItem.getName()
+            text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,%s,entity]", bagItem.getName(), split(::IO.scriptFilenameByHash(bagItem.ClassNameHash), "/").top(), bagItem.getInstanceID()))
         });
         currentID++;
     }
@@ -274,7 +227,7 @@
                 id = currentID,
                 type = "text",
                 icon = "ui/items/" + groundItem.getIcon(),
-                text = groundItem.getName()
+                text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,%s,ground]", groundItem.getName(), split(::IO.scriptFilenameByHash(groundItem.ClassNameHash), "/").top(), groundItem.getInstanceID()))
             });
             currentID++;
         }
@@ -315,3 +268,21 @@
         text = "[u][size=15]" + _title + "[/size][/u]"
     });
 };
+
+// These two functions are temporary at this spot. They should be made into more global reforged functions because they will be needed in other places aswell
+::Reforged.TacticalTooltip.getNestedPerkName <- function ( _perk, _displayName = null )
+{
+    if (_displayName == null) _displayName = _perk.m.Name;
+    local fileName = split(::IO.scriptFilenameByHash(_perk.ClassNameHash), "/").top();
+    local nestedText = ::Reforged.Mod.Tooltips.parseString(format("[%s|%s]", _displayName, "Perk+" + fileName));
+    return nestedText;
+}
+
+// All other kinds of skills like effects and actives
+::Reforged.TacticalTooltip.getNestedSkillName <- function ( _skill, _displayName = null )
+{
+    if (_displayName == null) _displayName = _skill.getName();
+    local fileName = split(::IO.scriptFilenameByHash(_skill.ClassNameHash), "/").top();
+    local nestedText = ::Reforged.Mod.Tooltips.parseString(format("[%s|%s]", _displayName, "Skill+" + fileName));
+    return nestedText;
+}
