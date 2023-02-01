@@ -14,6 +14,14 @@
 		}];
 	}
 
+	local getTooltip = "getTooltip" in o ? o.getTooltip : null;
+	o.getTooltip <- function()
+	{
+		local ret = getTooltip == null ? this.skill.getTooltip() : getTooltip();
+		ret.extend(this.getProjectedAttributesTooltip());
+		return ret;
+	}
+
 	o.getPerkTreeTooltip <- function()
 	{
 		return {
