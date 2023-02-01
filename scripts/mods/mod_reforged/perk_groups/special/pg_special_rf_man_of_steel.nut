@@ -5,7 +5,7 @@ this.pg_special_rf_man_of_steel <- ::inherit(::DPF.Class.SpecialPerkGroup, {
 		this.special_perk_group.create();
 		this.m.ID = "pg.special.rf_man_of_steel";
 		this.m.Name = "Special Perks";
-		this.m.Icon = "ui/perks/rf_man_of_steel.png";
+		this.m.Icon = "ui/perk_groups/rf_man_of_steel.png";
 		this.m.FlavorText = [
 			"Is tough as if made of steel!"
 		];

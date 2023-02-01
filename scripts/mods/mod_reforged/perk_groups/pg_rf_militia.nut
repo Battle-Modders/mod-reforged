@@ -4,7 +4,7 @@ this.pg_rf_militia <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_militia";
 		this.m.Name = "Militia";
-		this.m.Icon = "ui/perks/rf_strength_in_numbers.png";
+		this.m.Icon = "ui/perk_groups/rf_militia.png";
 		this.m.FlavorText = [
 			"served in the local militia",
 			"was a member of local militia",

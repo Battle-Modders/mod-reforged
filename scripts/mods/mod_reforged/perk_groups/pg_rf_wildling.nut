@@ -4,7 +4,7 @@ this.pg_rf_wildling <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_wildling";
 		this.m.Name = "Wildling";
-		this.m.Icon = "ui/perks/rf_feral_rage.png";
+		this.m.Icon = "ui/perk_groups/rf_wildling.png";
 		this.m.FlavorText = [
 			"hails from the wild",
 			"is wild and savage",

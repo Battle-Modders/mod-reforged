@@ -4,7 +4,7 @@ this.pg_rf_sturdy <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_sturdy";
 		this.m.Name = "Sturdy";
-		this.m.Icon = "ui/perks/perk_30.png"; // indomitable icon
+		this.m.Icon = "ui/perk_groups/rf_sturdy.png";
 		this.m.FlavorText = [
 			"is sturdy",
 			"is sturdily built",

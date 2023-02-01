@@ -4,7 +4,7 @@ this.pg_rf_large <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_large";
 		this.m.Name = "Large";
-		this.m.Icon = "ui/perks/perk_06.png"; // colossus icon
+		this.m.Icon = "ui/perk_groups/rf_large.png";
 		this.m.FlavorText = [
 			"is large",
 			"is large and hulking",

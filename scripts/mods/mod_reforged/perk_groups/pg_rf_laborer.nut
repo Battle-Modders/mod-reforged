@@ -4,7 +4,7 @@ this.pg_rf_laborer <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_laborer";
 		this.m.Name = "Laborer";
-		this.m.Icon = "ui/perks/rf_fruits_of_labor.png";
+		this.m.Icon = "ui/perk_groups/rf_laborer.png";
 		this.m.FlavorText = [
 			"did hard labor to make a living",
 			"has strong, calloused hands, just like those of a laborer"
