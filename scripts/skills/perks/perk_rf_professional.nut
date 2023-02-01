@@ -13,10 +13,8 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function onEquip( _item )
+	function onAdded()
 	{
-		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand) return;
-
 		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_death_dealer", function(o) {
 			o.m.IsSerialized = false;
 			o.m.IsRefundable = false;
@@ -37,27 +35,6 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 			o.m.IsSerialized = false;
 			o.m.IsRefundable = false;
 		}));
-	}
-
-	function onUnequip( _item )
-	{
-		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand) return;
-
-		this.getContainer().removeByStackByID("perk.rf_bloody_harvest", false);
-		this.getContainer().removeByStackByID("perk.shield_expert", false);
-		this.getContainer().removeByStackByID("perk.rf_formidable_approach", false);
-		this.getContainer().removeByStackByID("perk.duelist", false);
-		this.getContainer().removeByStackByID("perk.rf_weapon_master", false);
-	}
-
-	function onAdded()
-	{
-		local equippedItem = this.getContainer().getActor().getMainhandItem();
-		if (equippedItem != null)
-		{
-			this.getContainer().getActor().getItems().unequip(equippedItem);
-			this.getContainer().getActor().getItems().equip(equippedItem);
-		}
 
 		if (this.m.IsNew)
 		{
@@ -73,11 +50,10 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		local equippedItem = this.getContainer().getActor().getMainhandItem();
-		if (equippedItem != null)
-		{
-			this.getContainer().getActor().getItems().unequip(equippedItem);
-			this.getContainer().getActor().getItems().equip(equippedItem);
-		}
+		this.getContainer().removeByStackByID("perk.rf_death_dealer", false);
+		this.getContainer().removeByStackByID("perk.shield_expert", false);
+		this.getContainer().removeByStackByID("perk.rf_formidable_approach", false);
+		this.getContainer().removeByStackByID("perk.duelist", false);
+		this.getContainer().removeByStackByID("perk.rf_weapon_master", false);
 	}
 });
