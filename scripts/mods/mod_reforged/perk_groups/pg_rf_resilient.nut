@@ -4,7 +4,7 @@ this.pg_rf_resilient <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_resilient";
 		this.m.Name = "Resilent";
-		this.m.Icon = "ui/perks/perk_04.png"; // resilient icon
+		this.m.Icon = "ui/perk_groups/rf_resilient.png";
 		this.m.FlavorText = [
 			"is unnaturally resilient",
 			"is stubbornly resilient",

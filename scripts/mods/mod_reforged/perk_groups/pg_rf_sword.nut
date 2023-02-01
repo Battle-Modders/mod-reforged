@@ -4,7 +4,7 @@ this.pg_rf_sword <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_sword";
 		this.m.Name = "Sword";
-		this.m.Icon = "ui/perks/perk_46.png"; // sword mastery icon
+		this.m.Icon = "ui/perk_groups/rf_sword.png";
 		this.m.FlavorText = [
 			"swords"
 		];

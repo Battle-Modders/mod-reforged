@@ -4,7 +4,7 @@ this.pg_rf_fast <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_fast";
 		this.m.Name = "Fast";
-		this.m.Icon = "ui/perks/perk_26.png"; // relentless icon
+		this.m.Icon = "ui/perk_groups/rf_fast.png";
 		this.m.FlavorText = [
 			"is fast",
 			"runs fast",

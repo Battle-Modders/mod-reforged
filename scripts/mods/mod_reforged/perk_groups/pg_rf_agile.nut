@@ -4,7 +4,7 @@ this.pg_rf_agile <- ::inherit(::DPF.Class.PerkGroup, {
 	{
 		this.m.ID = "pg.rf_agile";
 		this.m.Name = "Agile";
-		this.m.Icon = "ui/perks/perk_25.png"; // footwork icon
+		this.m.Icon = "ui/perk_groups/rf_agile.png";
 		this.m.FlavorText = [
 			"is agile",
 			"moves with grace and agility",
