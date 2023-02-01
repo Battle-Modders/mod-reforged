@@ -3,20 +3,30 @@ Reforged.Hooks.WorldTownScreenHireDialogModule_createDIV = WorldTownScreenHireDi
 WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 {
 	Reforged.Hooks.WorldTownScreenHireDialogModule_createDIV.call(this, _parentDiv);
+	//perkGroups
 
 	this.mDetailsPanel.CharacterBackgroundPerksContainer = $("<div class='hire-screen-perks-container'/>")
+		.append($("<div class='name title-font-normal font-bold font-color-brother-name'>Perks</div>"))
+		.hide()
 		.appendTo(this.mDetailsPanel.Container);
+
+	this.mDetailsPanel.CharacterBackgroundPerkGroupsContainer = $("<div class='hire-screen-perkgroups-container'/>")
+		.append($("<div class='name title-font-normal font-bold font-color-brother-name'>Perk Groups</div>"))
+		.hide()
+		.appendTo(this.mDetailsPanel.Container);
+
 	this.mDetailsPanel.mPerksModule = new GenericPerksModule(this.mDetailsPanel.CharacterBackgroundPerksContainer);
-
-	var characterDetailsContainer = this.mDetailsPanel.Container.find(".is-character-container"); // The character icon, description etc that will be hidden
-
-	characterDetailsContainer.on("click", this.toggleModuleIfValid.bind(this));
-	this.mDetailsPanel.CharacterBackgroundPerksContainer.on("click", this.toggleModuleIfValid.bind(this));
+	this.mDetailsPanel.mPerkGroupsModule = new GenericPerkGroupsModule(this.mDetailsPanel.CharacterBackgroundPerkGroupsContainer, 1);
 
 	this.mDetailsPanel.mModules = [
-		characterDetailsContainer,
-		this.mDetailsPanel.CharacterBackgroundPerksContainer
+		this.mDetailsPanel.Container.find(".is-character-container"), // The character icon, description etc that will be hidden
+		this.mDetailsPanel.CharacterBackgroundPerkGroupsContainer,
+		this.mDetailsPanel.CharacterBackgroundPerksContainer,
 	];
+	$.each(this.mDetailsPanel.mModules, $.proxy(function(_idx, _module)
+	{
+		_module.on("click", this.toggleModuleIfValid.bind(this));
+	}, this));
 	this.mDetailsPanel.ActiveModule = this.mDetailsPanel.mModules[0];
 	this.mDetailsPanel.ActiveModuleIdx = 0;
 }
@@ -41,7 +51,10 @@ WorldTownScreenHireDialogModule.prototype.updateDetailsPanel = function(_element
 	if (!this.checkToggleModule())
 		this.toggleModule(0);
 	else
+	{
 		this.mDetailsPanel.mPerksModule.loadFromData(_element.data('entry').perkTree);
+		this.mDetailsPanel.mPerkGroupsModule.loadFromData(_element.data('entry').perkGroupsOrdered);
+	}
 }
 
 WorldTownScreenHireDialogModule.prototype.checkToggleModule = function()

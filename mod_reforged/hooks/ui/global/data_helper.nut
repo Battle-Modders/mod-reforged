@@ -10,6 +10,24 @@
 		local perkTree = _entity.getBackground().getPerkTree();
 		ret.perkTree <- perkTree.toUIData();
 		ret.perkTier <- _entity.getPerkTier();
+		ret.perkGroups <- [];
+		ret.perkGroupsOrdered <- [];
+		local perkGroupIDs = perkTree.getPerkGroups();
+		foreach (idx, category in ::DPF.Perks.PerkGroupCategories.getOrdered())
+		{
+			local row = [];
+			foreach (perkGroupID in category.getGroups())
+			{
+				if (perkGroupIDs.find(perkGroupID) == null)
+					continue;
+				local perkGroup = ::DPF.Perks.PerkGroups.findById(perkGroupID);
+				local uiData = perkGroup.toUIData();
+				ret.perkGroups.push(uiData);
+				row.push(uiData);
+			}
+			if (row.len() > 0)
+				ret.perkGroupsOrdered.push(row);
+		}
 		ret.lockedPerks <- [];
 		foreach (id, perk in perkTree.getPerks())
 		{
