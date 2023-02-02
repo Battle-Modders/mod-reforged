@@ -15,8 +15,8 @@ WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 		.hide()
 		.appendTo(this.mDetailsPanel.Container);
 
-	this.mDetailsPanel.mPerksModule = new GenericPerksModule(this.mDetailsPanel.CharacterBackgroundPerksContainer);
-	this.mDetailsPanel.mPerkGroupsModule = new GenericPerkGroupsModule(this.mDetailsPanel.CharacterBackgroundPerkGroupsContainer, 1);
+	this.mDetailsPanel.mPerksModule = new DynamicPerks.GenericPerksModule(this.mDetailsPanel.CharacterBackgroundPerksContainer);
+	this.mDetailsPanel.mPerkGroupsModule = new DynamicPerks.GenericPerkGroupsModule(this.mDetailsPanel.CharacterBackgroundPerkGroupsContainer, 1);
 
 	this.mDetailsPanel.mModules = [
 		this.mDetailsPanel.Container.find(".is-character-container"), // The character icon, description etc that will be hidden
