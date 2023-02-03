@@ -1,5 +1,4 @@
-::mods_hookExactClass("ui/screens/world/modules/world_contract_screen/world_active_contract_panel_module", function(o)
-{
+::mods_hookExactClass("ui/screens/world/modules/world_contract_screen/world_active_contract_panel_module", function(o){
 	o.m.SelectionClickedArray <- [];
 	o.onActiveContractDetailsClicked <- function()
 	{
