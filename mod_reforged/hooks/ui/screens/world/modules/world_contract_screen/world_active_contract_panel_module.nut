@@ -2,6 +2,8 @@
 	o.m.SelectionClickedArray <- [];
 	o.onActiveContractDetailsClicked <- function()
 	{
+		// Map size: 140 x 170 tiles
+		// This does not translate entirely to the Pos style distances, but 15000 radius covers the whole map
 		local centerTile = this.World.getTileSquare(70, 85);
 		local entities = this.World.getAllEntitiesAtPos(centerTile, 15000);
 		local markedEntites = entities.filter(function(_idx, _entity){
