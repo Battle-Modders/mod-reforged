@@ -53,7 +53,7 @@
 	    assignRandomEquipment();
 		local weapon = this.getMainhandItem();
 
-		if (weapon != null && weapon.isWeaponType(this.Const.Items.ItemType.OneHanded))
+		if (weapon != null && weapon.isItemType(this.Const.Items.ItemType.OneHanded))
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));

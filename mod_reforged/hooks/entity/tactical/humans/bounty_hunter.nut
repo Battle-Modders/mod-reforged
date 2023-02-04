@@ -63,7 +63,7 @@
 			else
 			{
 				local weapon = this.getMainhandItem();
-				if (weapon != null && weapon.isWeaponType(this.Const.Items.ItemType.TwoHanded))
+				if (weapon != null && weapon.isItemType(this.Const.Items.ItemType.TwoHanded))
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
 			}
 		}
