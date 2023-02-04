@@ -22,7 +22,7 @@
 	    assignRandomEquipment();
 	    local weapon = this.getMainhandItem();
 
-	    if (weapon != null && weapon.isWeaponType(this.Const.Items.ItemType.Mace))
+	    if (weapon != null && weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_mace"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_heavy_strikes"));
@@ -36,7 +36,7 @@
 
 	    if (::Reforged.Config.IsLegendaryDifficulty)
 		{
-			if (weapon != null && weapon.isWeaponType(this.Const.Items.ItemType.Mace))
+			if (weapon != null && weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
 			{
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_follow_up"));
 			}
