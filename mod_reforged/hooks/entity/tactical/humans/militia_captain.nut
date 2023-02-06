@@ -58,11 +58,11 @@
 
 	    if (::Reforged.Config.IsLegendaryDifficulty)
 	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(6);
+	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
 	    }
 	    else
 	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(5);
+	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
 	    }
 
 	    if (this.isArmedWithShield())
