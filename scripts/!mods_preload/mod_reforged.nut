@@ -40,6 +40,4 @@
 	{
 		::include(file);
 	}
-
-	::DPF.Perks.addPerkGroupToTooltips();
 });

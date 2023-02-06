@@ -7,3 +7,5 @@ foreach (perkGroupCollectionScript in ::IO.enumerateFiles("scripts/mods/mod_refo
 {
 	::DPF.Perks.PerkGroupCategories.add(::new(perkGroupCollectionScript));
 }
+
+::DPF.Perks.addPerkGroupToTooltips();
