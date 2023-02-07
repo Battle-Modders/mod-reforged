@@ -28,6 +28,20 @@
 			if (row.len() > 0)
 				ret.perkGroupsOrdered.push(row);
 		}
+
+		local specialRow = [];
+		foreach (perkGroup in ::DPF.Perks.PerkGroups.getByType(::DPF.Class.SpecialPerkGroup))
+		{
+		    if (perkTree.hasPerkGroup(perkGroup.getID()))
+		    {
+		        local uiData = perkGroup.toUIData();
+		        ret.perkGroups.push(uiData);
+		        specialRow.push(uiData);
+		    }
+		}
+		if (specialRow.len() > 0)
+		    ret.perkGroupsOrdered.push(specialRow);
+
 		ret.lockedPerks <- [];
 		foreach (id, perk in perkTree.getPerks())
 		{
