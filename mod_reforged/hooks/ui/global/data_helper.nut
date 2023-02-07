@@ -7,7 +7,7 @@
 		if (ret == null || _entity.getBackground() == null)
 			return ret;
 
-		local perkTree = _entity.getBackground().getPerkTree();
+		local perkTree = _entity.getPerkTree();
 		ret.perkTree <- perkTree.toUIData();
 		ret.perkTier <- _entity.getPerkTier();
 		ret.perkGroups <- [];
