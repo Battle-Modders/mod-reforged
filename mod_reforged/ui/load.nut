@@ -9,8 +9,11 @@
 ::MSU.UI.registerConnection(::Reforged.UI.JSConnection);
 
 local prefixLen = "ui/mods/".len();
-foreach(file in this.IO.enumerateFiles("ui/mods/mod_reforged/hooks"))
+foreach(file in ::IO.enumerateFiles("ui/mods/mod_reforged/js_hooks"))
 {
-	file = file.slice(prefixLen) + ".js";
-	::mods_registerJS(file);
+	::mods_registerJS(file.slice(prefixLen) + ".js");
+}
+foreach(file in ::IO.enumerateFiles("ui/mods/mod_reforged/css_hooks"))
+{
+	::mods_registerCSS(file.slice(prefixLen) + ".css");
 }
