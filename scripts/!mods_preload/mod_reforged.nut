@@ -14,7 +14,7 @@
 	::Reforged.Mod.ModSettings.requireSettingValue(::getModSetting("mod_msu", "ExpandedSkillTooltips"), true);
 	::Reforged.Mod.ModSettings.requireSettingValue(::getModSetting("mod_msu", "ExpandedItemTooltips"), true);
 
-	foreach (file in ::IO.enumerateFiles("mod_reforged/mod_settings"))
+	foreach (file in ::IO.enumerateFiles("mod_reforged/msu_systems"))
 	{
 		::include(file);
 	}
