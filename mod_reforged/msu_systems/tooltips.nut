@@ -1,0 +1,2 @@
+::Reforged.Mod.Tooltips.setTooltips({
+});
