@@ -17,22 +17,24 @@
             "pg.special.rf_professional": -1,
             "pg.special.rf_fencer": -1
 		};
-		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
-			"pgc.rf_exclusive_1": [
-				"pg.rf_soldier",
-				"pg.rf_swordmaster"
-			],
-			"pgc.rf_shared_1": [],
-			"pgc.rf_weapon": [
-				"pg.rf_sword"
-			],
-			"pgc.rf_armor": [
-				"pg.rf_medium_armor"
-			],
-			"pgc.rf_fighting_style": [
-				"pg.rf_power",
-				"pg.rf_swift"
-			]
+		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+			DynamicMap = {
+				"pgc.rf_exclusive_1": [
+					"pg.rf_soldier",
+					"pg.rf_swordmaster"
+				],
+				"pgc.rf_shared_1": [],
+				"pgc.rf_weapon": [
+					"pg.rf_sword"
+				],
+				"pgc.rf_armor": [
+					"pg.rf_medium_armor"
+				],
+				"pgc.rf_fighting_style": [
+					"pg.rf_power",
+					"pg.rf_swift"
+				]
+			}
 		});
 	}
 

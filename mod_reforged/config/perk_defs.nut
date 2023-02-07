@@ -1,4 +1,4 @@
-::DPF.Perks.addPerks([
+::DynamicPerks.Perks.addPerks([
 	{
 		ID = "perk.rf_heft",
 		Script = "scripts/skills/perks/perk_rf_heft",

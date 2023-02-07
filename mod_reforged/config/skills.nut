@@ -1,7 +1,7 @@
 ::Reforged.Skills <- {
 	function addPerkGroup( _entity, _perkGroupID, _maxTier = 7 )
 	{
-		foreach (i, row in ::DPF.Perks.PerkGroups.findById(_perkGroupID).getTree())
+		foreach (i, row in ::DynamicPerks.PerkGroups.findById(_perkGroupID).getTree())
 		{
 			if (i >= _maxTier) return;
 

@@ -1,4 +1,4 @@
-this.pg_rf_vicious <- ::inherit(::DPF.Class.PerkGroup, {
+this.pg_rf_vicious <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 	m = {},
 	function create()
 	{

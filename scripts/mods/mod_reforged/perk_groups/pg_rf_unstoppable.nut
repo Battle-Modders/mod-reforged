@@ -1,4 +1,4 @@
-this.pg_rf_unstoppable <- ::inherit(::DPF.Class.PerkGroup, {
+this.pg_rf_unstoppable <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 	m = {},
 	function create()
 	{

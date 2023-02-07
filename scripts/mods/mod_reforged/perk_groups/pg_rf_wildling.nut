@@ -1,4 +1,4 @@
-this.pg_rf_wildling <- ::inherit(::DPF.Class.PerkGroup, {
+this.pg_rf_wildling <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 	m = {},
 	function create()
 	{

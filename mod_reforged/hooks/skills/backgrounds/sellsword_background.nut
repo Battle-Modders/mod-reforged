@@ -14,20 +14,22 @@
 
             "pg.special.rf_professional": -1
 		};
-		this.m.PerkTree = ::new(::DPF.Class.PerkTree).init(null, {
-			"pgc.rf_exclusive_1": [
-                ::MSU.Class.WeightedContainer([
-                    [50, "pg.rf_soldier"],
-                    [30, "pg.rf_raider"],
-                    [20, "DPF_NoPerkGroup"]
-                ])
-			],
-			"pgc.rf_shared_1": [
-				"pg.rf_trained"
-			],
-			"pgc.rf_weapon": [],
-			"pgc.rf_armor": [],
-			"pgc.rf_fighting_style": []
+		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+			DynamicMap = {
+				"pgc.rf_exclusive_1": [
+	                ::MSU.Class.WeightedContainer([
+	                    [50, "pg.rf_soldier"],
+	                    [30, "pg.rf_raider"],
+	                    [20, "DPF_NoPerkGroup"]
+	                ])
+				],
+				"pgc.rf_shared_1": [
+					"pg.rf_trained"
+				],
+				"pgc.rf_weapon": [],
+				"pgc.rf_armor": [],
+				"pgc.rf_fighting_style": []
+			}
 		});
 	}
 });

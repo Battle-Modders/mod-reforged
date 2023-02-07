@@ -1,4 +1,4 @@
-::mods_hookExactClass(::DPF.Class.PerkTree.slice(8), function(o) { // slice(8) to remove "scripts/"
+::mods_hookExactClass(::DynamicPerks.Class.PerkTree.slice(8), function(o) { // slice(8) to remove "scripts/"
 	local addItemMultipliers = o.addItemMultipliers;
 	o.addItemMultipliers = function( _multipliers )
 	{

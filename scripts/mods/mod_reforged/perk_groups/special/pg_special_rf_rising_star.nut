@@ -1,4 +1,4 @@
-this.pg_special_rf_rising_star <- ::inherit(::DPF.Class.SpecialPerkGroup, {
+this.pg_special_rf_rising_star <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
 	m = {},
 	function create()
 	{

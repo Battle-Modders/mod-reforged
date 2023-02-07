@@ -1,4 +1,4 @@
-this.pg_rf_leadership <- ::inherit(::DPF.Class.PerkGroup, {
+this.pg_rf_leadership <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 	m = {},
 	function create()
 	{

@@ -74,7 +74,7 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 
 				foreach (categoryID in categories)
 				{
-					local category = ::DPF.Perks.PerkGroupCategories.findById(categoryID);
+					local category = ::DynamicPerks.PerkGroupCategories.findById(categoryID);
 					local exclude = ["pg.rf_talented"];
 					foreach (groupID in category.getGroups())
 					{

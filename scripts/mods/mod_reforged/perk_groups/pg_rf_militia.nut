@@ -1,4 +1,4 @@
-this.pg_rf_militia <- ::inherit(::DPF.Class.PerkGroup, {
+this.pg_rf_militia <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 	m = {},
 	function create()
 	{
