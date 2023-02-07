@@ -985,7 +985,6 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Hybridization = ::UPD.getDescription({
  		Fluff = "\'Hatchet, throwing axe, spear, javelin... they all kill just the same!\'",
- 		Requirement = "Bow",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
