@@ -45,6 +45,56 @@
 		return ret;
 	}
 
+	local getTooltip = o.getTooltip;
+	o.getTooltip = function( _targetedWithSkill = null )
+	{
+		local ret = getTooltip(_targetedWithSkill);
+
+		if (this.isDiscovered() == false) return ret;
+		if (this.isHiddenToPlayer()) return ret;
+
+		// Adjust existing progressbars displayed by Vanilla
+		for (local index = (ret.len() - 1); index >= 0; index--)	// we move through it backwards to safely remove entries during it
+		{
+			local entry = ret[index];
+			// Display the actual values for Armor (5, 6), Health (7) and Fatigue (9)
+			if (entry.id == 5 || entry.id == 6 || entry.id == 7 || entry.id == 9)
+			{
+				entry.text = " " + entry.value + " / " + entry.valueMax;
+			}
+
+			if (entry.id == 8)	// Replace Morale-Bar with Action-Point-Bar
+			{
+				local turnsToGo = ::Tactical.TurnSequenceBar.getTurnsUntilActive(this.getID());
+
+				entry.icon = "ui/icons/action_points.png",
+				entry.value = this.getActionPoints(),
+				entry.valueMax = this.getActionPointsMax(),
+				entry.text = "" + this.getActionPoints() + " / " + this.getActionPointsMax() + "",
+				entry.style = "action-points-slim";
+				continue;
+			}
+
+			// Remove all vanilla generated effect entries but possible also most mod-generated entries
+			if (entry.id >= 100) ret.remove(index);
+		}
+
+		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("AttributesPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
+		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("AttributesNonPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
+		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EffectsPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
+		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EffectsNonPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
+		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("PerksPlayer").getValue()) 			ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
+		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("PerksNonPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
+		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EquippedItemsPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipEquippedItems(this, 400));
+		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EquippedItemsNonPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipEquippedItems(this, 400));
+		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("BagItemsPlayer").getValue()) 			ret.extend(::Reforged.TacticalTooltip.getTooltipBagItems(this, 400));
+		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("BagItemsNonPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipBagItems(this, 400));
+
+		ret.extend(::Reforged.TacticalTooltip.getGroundItems(this, 500));
+
+		return ret;
+	}
+
 	local checkMorale = o.checkMorale;
 	o.checkMorale = function( _change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{

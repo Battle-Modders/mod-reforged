@@ -2,6 +2,7 @@
 
 ::mods_registerJS("mod_reforged/setup.js");
 ::mods_registerCSS("mod_reforged/generic.css");
+::mods_registerCSS("mod_reforged/controls.css");
 
 ::mods_registerJS("mod_reforged/reforged_js_connection.js");
 ::include("mod_reforged/ui/reforged_js_connection");

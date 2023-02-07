@@ -1,0 +1,9 @@
+
+/* Add slim variant for action points to be used in the tactical tooltip */
+.ui-control-stats-progressbar.action-points-slim,
+.ui-control-stats-progressbar-preview.action-points-slim
+{
+	background-image: url("coui://gfx/ui/skin/rf_bar_fill_action_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
+}
