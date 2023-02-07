@@ -13,14 +13,14 @@
 		ret.perkGroups <- [];
 		ret.perkGroupsOrdered <- [];
 		local perkGroupIDs = perkTree.getPerkGroups();
-		foreach (idx, category in ::DPF.Perks.PerkGroupCategories.getOrdered())
+		foreach (idx, category in ::DynamicPerks.PerkGroupCategories.getOrdered())
 		{
 			local row = [];
 			foreach (perkGroupID in category.getGroups())
 			{
 				if (perkGroupIDs.find(perkGroupID) == null)
 					continue;
-				local perkGroup = ::DPF.Perks.PerkGroups.findById(perkGroupID);
+				local perkGroup = ::DynamicPerks.PerkGroups.findById(perkGroupID);
 				local uiData = perkGroup.toUIData();
 				ret.perkGroups.push(uiData);
 				row.push(uiData);
@@ -30,7 +30,7 @@
 		}
 
 		local specialRow = [];
-		foreach (perkGroup in ::DPF.Perks.PerkGroups.getByType(::DPF.Class.SpecialPerkGroup))
+		foreach (perkGroup in ::DynamicPerks.PerkGroups.getByType(::DynamicPerks.Class.SpecialPerkGroup))
 		{
 		    if (perkTree.hasPerkGroup(perkGroup.getID()))
 		    {
