@@ -79,16 +79,17 @@
 			if (entry.id >= 100) ret.remove(index);
 		}
 
-		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("AttributesPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
-		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("AttributesNonPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
-		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EffectsPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
-		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EffectsNonPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
-		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("PerksPlayer").getValue()) 			ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
-		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("PerksNonPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
-		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EquippedItemsPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipEquippedItems(this, 400));
-		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("EquippedItemsNonPlayer").getValue()) 	ret.extend(::Reforged.TacticalTooltip.getTooltipEquippedItems(this, 400));
-		if ( this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("BagItemsPlayer").getValue()) 			ret.extend(::Reforged.TacticalTooltip.getTooltipBagItems(this, 400));
-		if (!this.isPlayerControlled() && ::Reforged.Mod.ModSettings.getSetting("BagItemsNonPlayer").getValue()) 		ret.extend(::Reforged.TacticalTooltip.getTooltipBagItems(this, 400));
+		local function verifySettingValue( _settingID )
+		{
+			local value = ::Reforged.Mod.ModSettings.getSetting(_settingID).getValue();
+			return value != "None" && (value == "All" || (value == "Player Only" && this.isPlayerControlled()) || (value == "AI Only" && !this.isPlayerControlled()))
+		}
+
+		if (verifySettingValue("TacticalTooltip_Attributes")) ret.extend(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
+		if (verifySettingValue("TacticalTooltip_Effects")) ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
+		if (verifySettingValue("TacticalTooltip_Perks")) ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
+		if (verifySettingValue("TacticalTooltip_EquippedItems")) ret.extend(::Reforged.TacticalTooltip.getTooltipEquippedItems(this, 400));
+		if (verifySettingValue("TacticalTooltip_BagItems")) ret.extend(::Reforged.TacticalTooltip.getTooltipBagItems(this, 400));
 
 		ret.extend(::Reforged.TacticalTooltip.getGroundItems(this, 500));
 
