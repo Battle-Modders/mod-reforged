@@ -1,6 +1,7 @@
 ::Reforged.UI <- {};
 
 ::mods_registerJS("mod_reforged/setup.js");
+::mods_registerJS("mod_reforged/reforged_assets.js");
 ::mods_registerCSS("mod_reforged/generic.css");
 ::mods_registerCSS("mod_reforged/controls.css");
 

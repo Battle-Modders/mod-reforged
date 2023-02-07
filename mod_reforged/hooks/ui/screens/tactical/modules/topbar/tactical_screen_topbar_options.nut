@@ -1,7 +1,6 @@
-::mods_hookExactClass("ui/screens/tactical/modules/topbar/tactical_screen_topbar_options.nut", function(o)
-{
-    o.changeFleeButtonToAllowRetreat <- function (_bool)
+::mods_hookExactClass("ui/screens/tactical/modules/topbar/tactical_screen_topbar_options", function(o) {
+    o.changeFleeButtonToWin <- function( _bool )
     {
-        this.m.JSHandle.asyncCall("changeFleeButtonToAllowRetreat", _bool);
+        this.m.JSHandle.asyncCall("changeFleeButtonToWin", _bool);
     }
 });
