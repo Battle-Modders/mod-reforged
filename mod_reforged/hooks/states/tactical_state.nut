@@ -4,6 +4,6 @@
     o.showRetreatScreen = function ( _tag = null )
     {
         this.m.TacticalScreen.getTopbarOptionsModule().changeFleeButtonToWin(true);
-        showRetreatScreen();
+        showRetreatScreen(_tag);
     }
 });
