@@ -71,7 +71,7 @@ this.perk_rf_flaming_arrows <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (this.m.TargetTile = null)
+		if (this.m.TargetTile == null)
 		{
 			return;
 		}
