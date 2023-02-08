@@ -3,7 +3,7 @@
     local showRetreatScreen = o.showRetreatScreen
     o.showRetreatScreen = function ( _tag = null )
     {
-        this.m.TacticalScreen.getTopbarOptionsModule().changeFleeButtonToWin(true);
+        this.m.TacticalScreen.getTopbarOptionsModule().changeFleeButtonToWin();
         return showRetreatScreen(_tag);
     }
 });
