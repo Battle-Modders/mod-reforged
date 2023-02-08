@@ -20,7 +20,7 @@
 	                ::MSU.Class.WeightedContainer([
 	                    [50, "pg.rf_soldier"],
 	                    [30, "pg.rf_raider"],
-	                    [20, "DPF_NoPerkGroup"]
+	                    [20, "DynamicPerks_NoPerkGroup"]
 	                ])
 				],
 				"pgc.rf_shared_1": [

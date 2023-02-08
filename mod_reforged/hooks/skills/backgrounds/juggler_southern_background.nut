@@ -17,7 +17,7 @@
 				"pgc.rf_exclusive_1": [
 					::MSU.Class.WeightedContainer([
 	                    [20, "pg.rf_trapper"],
-	                    [80, "DPF_NoPerkGroup"]
+	                    [80, "DynamicPerks_NoPerkGroup"]
 	                ])
 				],
 				"pgc.rf_shared_1": [],

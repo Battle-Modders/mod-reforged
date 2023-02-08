@@ -15,11 +15,11 @@
 				"pgc.rf_exclusive_1": [
 	                ::MSU.Class.WeightedContainer([
 	                    [50, "pg.rf_soldier"],
-	                    [50, "DPF_NoPerkGroup"]
+	                    [50, "DynamicPerks_NoPerkGroup"]
 	                ]),
 	                ::MSU.Class.WeightedContainer([
 	                   [30, "pg.special.rf_professional"],
-	                   [70, "DPF_NoPerkGroup"]
+	                   [70, "DynamicPerks_NoPerkGroup"]
 	                ])
 				],
 				"pgc.rf_shared_1": [
