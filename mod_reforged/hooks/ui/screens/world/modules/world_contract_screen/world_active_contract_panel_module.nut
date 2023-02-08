@@ -1,4 +1,4 @@
-::mods_hookExactClass("ui/screens/world/modules/world_contract_screen/world_active_contract_panel_module", function(o){
+::mods_hookExactClass("ui/screens/world/modules/world_contract_screen/world_active_contract_panel_module", function(o) {
 	o.m.SelectionClickedArray <- [];
 	o.onActiveContractDetailsClicked <- function()
 	{
@@ -7,7 +7,7 @@
 		local centerTile = this.World.getTileSquare(70, 85);
 		local entities = this.World.getAllEntitiesAtPos(centerTile, 25000);
 		local markedEntites = entities.filter(function(_idx, _entity){
-			return _entity.getSprite("selection").Visible;
+			return _entity.getSprite("selection").Visible && _entity.isDiscovered();
 		})
 		// Reset if we clicked through them all
 		if (this.m.SelectionClickedArray.len() == markedEntites.len())
