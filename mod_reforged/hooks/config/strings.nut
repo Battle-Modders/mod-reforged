@@ -850,7 +850,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_FollowUp = ::UPD.getDescription({
  		Fluff = "\'When your buddy\'s hittin\' \'em, you hit \'em too!\'",
- 		Requirement = "Two-Handed Melee Weapon",
+ 		Requirement = "Melee Attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [

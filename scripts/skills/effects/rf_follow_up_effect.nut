@@ -35,7 +35,7 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorRed("Can only Follow Up when not engaged in Melee and wielding a Two-Handed Weapon with a range of 2 tiles")
+				text = ::MSU.Text.colorRed("Cannot follow up when engaged in melee")
 			});
 		}
 
@@ -47,12 +47,6 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 
 		if (!actor.getCurrentProperties().IsAbleToUseWeaponSkills || !actor.hasZoneOfControl() || actor.isEngagedInMelee())
-		{
-			return false;
-		}
-
-		local weapon = actor.getMainhandItem();
-		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.TwoHanded) || !weapon.isItemType(::Const.Items.ItemType.MeleeWeapon))
 		{
 			return false;
 		}
