@@ -11,8 +11,14 @@
 	::include("mod_reforged/hooks/msu.nut");
 	::include("mod_reforged/ui/load.nut");
 
-	::Reforged.Mod.ModSettings.requireSettingValue(::getModSetting("mod_msu", "ExpandedSkillTooltips"), true);
-	::Reforged.Mod.ModSettings.requireSettingValue(::getModSetting("mod_msu", "ExpandedItemTooltips"), true);
+	local function requireSettingValue( _setting, _value )
+	{
+		if (_setting.set(true)) _setting.lock(format("Required by %s (%s)", ::Reforged.Name, ::Reforged.ID));
+		else ::MSU.QueueErrors.add(format("%s (%s) requires the MSU setting \'%s\' to be \'%s\'", ::Reforged.Name, ::Reforged.ID, _setting.getID(), _value + ""));
+	}
+
+	requireSettingValue(::getModSetting("mod_msu", "ExpandedSkillTooltips"), true);
+	requireSettingValue(::getModSetting("mod_msu", "ExpandedItemTooltips"), true);
 
 	foreach (file in ::IO.enumerateFiles("mod_reforged/msu_systems"))
 	{
