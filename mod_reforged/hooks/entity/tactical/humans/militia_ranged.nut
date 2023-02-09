@@ -27,7 +27,7 @@
     			[50, ""]
     		]).roll();
 
-    		if (skill != "") this.m.Skills.add(skill);
+    		if (skill != "") this.m.Skills.add(::new(skill));
     	}
 	}
 
