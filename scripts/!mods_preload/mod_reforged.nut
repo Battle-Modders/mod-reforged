@@ -2,11 +2,15 @@
 	Version = "0.1.0",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
+	GitHubURL = "https://github.com/Battle-Modders/mod-reforged"
 };
 
 ::mods_registerMod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
 ::mods_queue(::Reforged.ID, "mod_msu(>=1.2.0-rc.2), mod_dynamic_perks, mod_upd, mod_stack_based_skills, !mod_legends", function() {
 	::Reforged.Mod <- ::MSU.Class.Mod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);	
+
+	::Reforged.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, ::Reforged.GitHubURL);
+	::Reforged.Mod.Registry.setUpdateSource(::MSU.System.Registry.ModSourceDomain.GitHub);
 
 	::include("mod_reforged/hooks/msu.nut");
 	::include("mod_reforged/ui/load.nut");
