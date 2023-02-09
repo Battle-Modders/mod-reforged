@@ -1,11 +1,12 @@
 Reforged.Hooks.WorldScreenActiveContractPanelModule_createDIV = WorldScreenActiveContractPanelModule.prototype.createDIV;
 WorldScreenActiveContractPanelModule.prototype.createDIV = function(_parentDiv)
 {
+	var self = this;
 	Reforged.Hooks.WorldScreenActiveContractPanelModule_createDIV.call(this, _parentDiv);
-	this.mContentContainer.on("click.reforged", $.proxy(function()
+	this.mContentContainer.on("click.reforged", function()
 	{
-		SQ.call(this.mSQHandle, 'onActiveContractDetailsClicked');
-	}, this));
+		SQ.call(self.mSQHandle, 'onActiveContractDetailsClicked');
+	});
 }
 
 Reforged.Hooks.WorldScreenActiveContractPanelModule_bindTooltips = WorldScreenActiveContractPanelModule.prototype.bindTooltips;
