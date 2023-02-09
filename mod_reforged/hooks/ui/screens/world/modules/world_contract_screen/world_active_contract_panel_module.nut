@@ -25,7 +25,7 @@
 	}
 
 	local updateContract = o.updateContract;
-	o.updateContract = function(_contract = null)
+	o.updateContract = function( _contract = null )
 	{
 		this.m.SelectionClickedArray.clear();
 		return updateContract(_contract);
