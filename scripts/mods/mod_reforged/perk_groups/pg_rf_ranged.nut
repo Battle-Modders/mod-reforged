@@ -10,7 +10,7 @@ this.pg_rf_ranged <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.bags_and_belts"],
+				[],
 				["perk.bullseye"],
 				[],
 				[],
