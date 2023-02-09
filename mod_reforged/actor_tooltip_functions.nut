@@ -74,7 +74,7 @@
         statusEffects.sort(@(a,b) a.getName() <=> b.getName());
         foreach( statusEffect in statusEffects )
         {
-            entryText += ::Reforged.TacticalTooltip.getNestedSkillName(statusEffect, underlineFirstCharacter(statusEffect.getName()));
+            entryText += ::Reforged.TacticalTooltip.getNestedSkillName(statusEffect);
             entryText += ", ";
         }
         if (entryText.len() != 0) entryText = entryText.slice(0, -2);
