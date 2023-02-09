@@ -28,7 +28,7 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorRed("20%") + " more Fatigue built per tile traveled"
+				text = ::MSU.Text.colorRed("50%") + " more Fatigue built per tile traveled"
 			}
 		]);
 
@@ -38,7 +38,7 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		_properties.MovementAPCostAdditional -= 1;
-		_properties.MovementFatigueCostMult *= 1.2;
+		_properties.MovementFatigueCostMult *= 1.5;
 	}
 
 	function onTurnEnd()
