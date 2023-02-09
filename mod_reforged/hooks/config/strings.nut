@@ -1318,10 +1318,10 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Only works when wielding a one-handed melee weapon with a [Reach|Concept.Reach] of " + ::MSU.Text.colorRed(4) + " or less and a total penalty to [Fatigue|Concept.Fatigue] from head and body armor less than " + ::MSU.Text.colorRed(20) + ".",
 				"When you enter a tile adjacent to an enemy, your next attack gains " + ::MSU.Text.colorGreen("+2") + " [Reach|Concept.Reach], has " + ::MSU.Text.colorGreen("+20%") + " armor penetration and deals " + ::MSU.Text.colorGreen("25%") + " increased damage."
 				"The effect is lost upon switching an item, waiting or ending your [turn|Concept.Turn], or using any skill.",
 				"Ranged attacks gain " + ::MSU.Text.colorGreen("+10%") + " armor penetration and " + ::MSU.Text.colorGreen("15%") + " increased damage against targets you have not previously attacked and who have not previously attacked you."
+				"When wielding a melee weapon requires a weapon with [Reach|Concept.Reach] of " + ::MSU.Text.colorRed(4) + " or less and a total penalty to [Fatigue|Concept.Fatigue] from head and body armor less than " + ::MSU.Text.colorRed(20) + ".",
 			]
 		}]
  	}),
