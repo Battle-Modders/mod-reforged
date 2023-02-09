@@ -1,27 +1,25 @@
-this.pg_rf_leadership <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Leadership <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_leadership";
-		this.m.Name = "Leadership";
-		this.m.Icon = "ui/perk_groups/rf_leadership.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_leadership";
+		this.Name = "Leadership";
+		this.Icon = "ui/perk_groups/rf_leadership.png";
+		this.FlavorText = [
 			"is a natural born leader",
 			"has an aura of leadership",
 			"seems like a capable leader"
 		];
-		this.m.Trees = {
-			"default": [
-				[],
-				["perk.rally_the_troops"],
-				["perk.fortified_mind"],
-				[],
-				[],
-				[],
-				["perk.inspiring_presence"]
-			]
-		};
-		this.m.PerkTreeMultipliers = {
+		this.Tree = [
+			[],
+			["perk.rally_the_troops"],
+			["perk.fortified_mind"],
+			[],
+			[],
+			[],
+			["perk.inspiring_presence"]
+		];
+		this.PerkTreeMultipliers = {
 			"pg.rf_polearm": -1
 		};
 	}
@@ -30,4 +28,4 @@ this.pg_rf_leadership <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 	{
 		return 0.1;
 	}
-});
+};

@@ -1,26 +1,23 @@
-this.pg_special_rf_marksmanship <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Marksmanship <- class extends ::DynamicPerks.Class.SpecialPerkGroup
+{
+	constructor()
 	{
-		this.special_perk_group.create();
-		this.m.ID = "pg.special.rf_marksmanship";
-		this.m.Name = "Special Perks";
-		this.m.Icon = "ui/perk_groups/rf_marksmanship.png";
-		this.m.FlavorText = [
+		this.ID = "pg.special.rf_marksmanship";
+		this.Name = "Special Perks";
+		this.Icon = "ui/perk_groups/rf_marksmanship.png";
+		this.FlavorText = [
 			"Has the talent to become a formidable marksman."
 		];
-		this.m.Chance = 20;
-		this.m.Trees = {
-			"default": [
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				["perk.rf_marksmanship"]
-			]
-		};
+		this.Chance = 20;
+		this.Tree = [
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			["perk.rf_marksmanship"]
+		];
 	}
 
 	function getMultiplier( _perkTree )
@@ -32,4 +29,4 @@ this.pg_special_rf_marksmanship <- ::inherit(::DynamicPerks.Class.SpecialPerkGro
 
 		return talents.len() == 0 || talents[::Const.Attributes.RangedSkill] < 2 ? 0 : talents[::Const.Attributes.RangedSkill];
 	}
-});
+};

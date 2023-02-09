@@ -1,16 +1,14 @@
-this.pg_rf_always_1 <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Always_1 <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_always_1";
-		this.m.Name = "General Perks";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_always_1";
+		this.Name = "General Perks";
+		this.FlavorText = [
 			""
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.bags_and_belts"]
-			]
-		};
+		this.Tree = [
+			["perk.bags_and_belts"]
+		];
 	}
-});
+};

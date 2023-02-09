@@ -1,28 +1,26 @@
-this.pg_rf_soldier <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Soldier <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_soldier";
-		this.m.Name = "Soldier";
-		this.m.Icon = "ui/perk_groups/rf_soldier.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_soldier";
+		this.Name = "Soldier";
+		this.Icon = "ui/perk_groups/rf_soldier.png";
+		this.FlavorText = [
 			"served in the military",
 			"has had professional military experience",
 			"claims to have served in a professional army"
 		];
-		this.m.Trees = {
-			"default": [
-				[],
-				[],
-				["perk.rf_exude_confidence"],
-				[],
-				["perk.rf_pattern_recognition"],
-				[],
-				[]
-			]
-		};
-		this.m.PerkTreeMultipliers = {
+		this.Tree = [
+			[],
+			[],
+			["perk.rf_exude_confidence"],
+			[],
+			["perk.rf_pattern_recognition"],
+			[],
+			[]
+		];
+		this.PerkTreeMultipliers = {
 			"pg.rf_trained": -1
 		};
 	}
-});
+};

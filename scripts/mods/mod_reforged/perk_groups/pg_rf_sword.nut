@@ -1,28 +1,26 @@
-this.pg_rf_sword <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Sword <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_sword";
-		this.m.Name = "Sword";
-		this.m.Icon = "ui/perk_groups/rf_sword.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_sword";
+		this.Name = "Sword";
+		this.Icon = "ui/perk_groups/rf_sword.png";
+		this.FlavorText = [
 			"swords"
 		];
-		this.m.Trees = {
-			"default": [
-				[],
-				["perk.rf_exploit_opening"],
-				["perk.rf_fluid_weapon"],
-				["perk.mastery.sword"],
-				["perk.rf_tempo"],
-				["perk.rf_kata"],
-				["perk.rf_en_garde"]
-			]
-		};
+		this.Tree = [
+			[],
+			["perk.rf_exploit_opening"],
+			["perk.rf_fluid_weapon"],
+			["perk.mastery.sword"],
+			["perk.rf_tempo"],
+			["perk.rf_kata"],
+			["perk.rf_en_garde"]
+		];
 	}
 
 	function getSelfMultiplier( _perkTree )
 	{
 		return 1.2;
 	}
-});
+};

@@ -1,25 +1,22 @@
-this.pg_special_rf_rising_star <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.RisingStar <- class extends ::DynamicPerks.Class.SpecialPerkGroup
+{
+	constructor()
 	{
-		this.special_perk_group.create();
-		this.m.ID = "pg.special.rf_rising_star";
-		this.m.Name = "Special Perks";
-		this.m.Icon = "ui/perk_groups/rf_rising_star.png";
-		this.m.FlavorText = [
+		this.ID = "pg.special.rf_rising_star";
+		this.Name = "Special Perks";
+		this.Icon = "ui/perk_groups/rf_rising_star.png";
+		this.FlavorText = [
 			"Has the talent to rise and shine above all others!"
 		];
-		this.m.Chance = 2;
-		this.m.Trees = {
-			"default": [
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				["perk.rf_rising_star"]
-			]
-		};
+		this.Chance = 2;
+		this.Tree = [
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			["perk.rf_rising_star"]
+		];
 	}
-});
+};

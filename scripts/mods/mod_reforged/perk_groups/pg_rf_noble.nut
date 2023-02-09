@@ -1,28 +1,26 @@
-this.pg_rf_noble <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Noble <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_noble";
-		this.m.Name = "Noble";
-		this.m.Icon = "ui/perk_groups/rf_noble.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_noble";
+		this.Name = "Noble";
+		this.Icon = "ui/perk_groups/rf_noble.png";
+		this.FlavorText = [
 			"is of noble birth",
 			"hails from a noble family",
 			"has noble blood in his veins"
 		];
-		this.m.Trees = {
-			"default": [
-				[],
-				["perk.rf_family_pride"],
-				[],
-				[],
-				[],
-				[],
-				[]
-			]
-		};
-		this.m.PerkTreeMultipliers = {
+		this.Tree = [
+			[],
+			["perk.rf_family_pride"],
+			[],
+			[],
+			[],
+			[],
+			[]
+		];
+		this.PerkTreeMultipliers = {
 			"pg.rf_trained": 1.5
 		};
 	}
-});
+};

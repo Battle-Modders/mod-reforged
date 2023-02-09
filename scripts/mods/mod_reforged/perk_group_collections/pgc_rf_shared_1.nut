@@ -1,13 +1,13 @@
-this.pgc_rf_shared_1 <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
-	m = {},
-	function create()
+::Reforged.PerkGroupCollections.Shared_1 <- class extends DynamicPerks.Class.PerkGroupCollection
+{
+	constructor()
 	{
-		this.m.ID = "pgc.rf_shared_1";
-		this.m.Name = "Trait";
-		this.m.OrderOfAssignment = 2;
-		this.m.Min = 5;
-		this.m.TooltipPrefix = "He";
-		this.m.Groups = [
+		this.ID = "pgc.rf_shared_1";
+		this.Name = "Trait";
+		this.OrderOfAssignment = 2;
+		this.Min = 5;
+		this.TooltipPrefix = "He";
+		this.PerkGroups = [
 			"pg.rf_agile",
 			"pg.rf_devious",
 			"pg.rf_fast",
@@ -22,4 +22,4 @@ this.pgc_rf_shared_1 <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 			"pg.rf_vicious",
 		];
 	}
-});
+};

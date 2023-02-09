@@ -1,13 +1,13 @@
-this.pgc_rf_weapon <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
-	m = {},
-	function create()
+::Reforged.PerkGroupCollections.Weapon <- class extends DynamicPerks.Class.PerkGroupCollection
+{
+	constructor()
 	{
-		this.m.ID = "pgc.rf_weapon";
-		this.m.Name = "Weapon";
-		this.m.OrderOfAssignment = 3;
-		this.m.Min = 4;
-		this.m.TooltipPrefix = "Has an aptitude for";
-		this.m.Groups = [
+		this.ID = "pgc.rf_weapon";
+		this.Name = "Weapon";
+		this.OrderOfAssignment = 3;
+		this.Min = 4;
+		this.TooltipPrefix = "Has an aptitude for";
+		this.PerkGroups = [
 			"pg.rf_axe",
 			"pg.rf_bow",
 			"pg.rf_cleaver",
@@ -22,4 +22,4 @@ this.pgc_rf_weapon <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 			"pg.rf_throwing"
 		];
 	}
-});
+};

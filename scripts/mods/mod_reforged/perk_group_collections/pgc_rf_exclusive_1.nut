@@ -1,13 +1,13 @@
-this.pgc_rf_exclusive_1 <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
-	m = {},
-	function create()
+::Reforged.PerkGroupCollections.Exclusive_1 <- class extends DynamicPerks.Class.PerkGroupCollection
+{
+	constructor()
 	{
-		this.m.ID = "pgc.rf_exclusive_1";
-		this.m.Name = "Profession";
-		this.m.OrderOfAssignment = 1;
-		this.m.Min = 0;
-		this.m.TooltipPrefix = "%name%";
-		this.m.Groups = [
+		this.ID = "pgc.rf_exclusive_1";
+		this.Name = "Profession";
+		this.OrderOfAssignment = 1;
+		this.Min = 0;
+		this.TooltipPrefix = "%name%";
+		this.PerkGroups = [
 			"pg.rf_laborer",
 			"pg.rf_militia",
 			"pg.rf_noble",
@@ -19,4 +19,4 @@ this.pgc_rf_exclusive_1 <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 			"pg.rf_trapper",
 		];
 	}
-});
+};

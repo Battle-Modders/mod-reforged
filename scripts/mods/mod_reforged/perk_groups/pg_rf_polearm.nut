@@ -1,23 +1,21 @@
-this.pg_rf_polearm <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Polearm <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_polearm";
-		this.m.Name = "Polearm";
-		this.m.Icon = "ui/perk_groups/rf_polearm.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_polearm";
+		this.Name = "Polearm";
+		this.Icon = "ui/perk_groups/rf_polearm.png";
+		this.FlavorText = [
 			"polearms"
 		];
-		this.m.Trees = {
-			"default": [
-				[],
-				["perk.rf_bolster"],
-				["perk.rf_leverage"],
-				["perk.mastery.polearm"],
-				["perk.rf_intimidate"],
-				["perk.rf_long_reach"],
-				["perk.rf_follow_up"]
-			]
-		};
+		this.Tree = [
+			[],
+			["perk.rf_bolster"],
+			["perk.rf_leverage"],
+			["perk.mastery.polearm"],
+			["perk.rf_intimidate"],
+			["perk.rf_long_reach"],
+			["perk.rf_follow_up"]
+		];
 	}
-});
+};

@@ -1,28 +1,26 @@
-this.pg_rf_dagger <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Dagger <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_dagger";
-		this.m.Name = "Dagger";
-		this.m.Icon = "ui/perk_groups/rf_dagger.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_dagger";
+		this.Name = "Dagger";
+		this.Icon = "ui/perk_groups/rf_dagger.png";
+		this.FlavorText = [
 			"daggers"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.rf_featherweight"],
-				["perk.backstabber"],
-				["perk.rf_between_the_ribs"],
-				["perk.mastery.dagger"],
-				["perk.rf_double_strike"],
-				["perk.overwhelm"],
-				["perk.rf_swift_stabs"]
-			]
-		};
+		this.Tree = [
+			["perk.rf_featherweight"],
+			["perk.backstabber"],
+			["perk.rf_between_the_ribs"],
+			["perk.mastery.dagger"],
+			["perk.rf_double_strike"],
+			["perk.overwhelm"],
+			["perk.rf_swift_stabs"]
+		];
 	}
 
 	function getSelfMultiplier( _perkTree )
 	{
 		return 0.5;
 	}
-});
+};

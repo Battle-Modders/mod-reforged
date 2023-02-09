@@ -1,11 +1,11 @@
-this.pg_rf_devious <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Devious <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_devious";
-		this.m.Name = "Devious";
-		this.m.Icon = "ui/perk_groups/rf_devious.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_devious";
+		this.Name = "Devious";
+		this.Icon = "ui/perk_groups/rf_devious.png";
+		this.FlavorText = [
 			"is devious",
 			"strikes you as devious",
 			"has a devious appearance",
@@ -14,21 +14,19 @@ this.pg_rf_devious <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"carries himself deviously",
 			"is shrewd and devious"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.pathfinder"],
-				["perk.backstabber"],
-				[],
-				["perk.rf_ghostlike"],
-				["perk.rf_sneak_attack"],
-				[],
-				[]
-			]
-		};
+		this.Tree = [
+			["perk.pathfinder"],
+			["perk.backstabber"],
+			[],
+			["perk.rf_ghostlike"],
+			["perk.rf_sneak_attack"],
+			[],
+			[]
+		];
 	}
 
 	function getSelfMultiplier( _perkTree )
 	{
 		return 0.66;
 	}
-});
+};

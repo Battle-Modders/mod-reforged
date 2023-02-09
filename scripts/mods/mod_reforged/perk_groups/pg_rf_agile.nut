@@ -1,11 +1,11 @@
-this.pg_rf_agile <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Agile <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_agile";
-		this.m.Name = "Agile";
-		this.m.Icon = "ui/perk_groups/rf_agile.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_agile";
+		this.Name = "Agile";
+		this.Icon = "ui/perk_groups/rf_agile.png";
+		this.FlavorText = [
 			"is agile",
 			"moves with grace and agility",
 			"is naturally agile",
@@ -14,19 +14,17 @@ this.pg_rf_agile <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"is agile like a fox",
 			"is particularly agile"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.pathfinder"],
-				["perk.anticipation"],
-				[],
-				[],
-				["perk.footwork"],
-				["perk.rf_fresh_and_furious"],
-				["perk.battle_flow"]
-			]
-		};
-		this.m.PerkTreeMultipliers = {
+		this.Tree = [
+			["perk.pathfinder"],
+			["perk.anticipation"],
+			[],
+			[],
+			["perk.footwork"],
+			["perk.rf_fresh_and_furious"],
+			["perk.battle_flow"]
+		];
+		this.PerkTreeMultipliers = {
 			"pg.rf_swift": 1.2
 		};
 	}
-});
+};

@@ -1,23 +1,21 @@
-this.pg_rf_shield <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Shield <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_shield";
-		this.m.Name = "Shield";
-		this.m.Icon = "ui/perk_groups/rf_shield.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_shield";
+		this.Name = "Shield";
+		this.Icon = "ui/perk_groups/rf_shield.png";
+		this.FlavorText = [
 			"shields"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.recover"],
-				["perk.rf_phalanx"],
-				["perk.shield_expert"],
-				["perk.rf_line_breaker"],
-				[],
-				["perk.duelist"],
-				["perk.rf_weapon_master"]
-			]
-		};
+		this.Tree = [
+			["perk.recover"],
+			["perk.rf_phalanx"],
+			["perk.shield_expert"],
+			["perk.rf_line_breaker"],
+			[],
+			["perk.duelist"],
+			["perk.rf_weapon_master"]
+		];
 	}
-});
+};

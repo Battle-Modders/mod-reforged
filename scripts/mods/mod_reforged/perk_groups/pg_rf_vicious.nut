@@ -1,11 +1,11 @@
-this.pg_rf_vicious <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Vicious <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_vicious";
-		this.m.Name = "Vicious";
-		this.m.Icon = "ui/perk_groups/rf_vicious.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_vicious";
+		this.Name = "Vicious";
+		this.Icon = "ui/perk_groups/rf_vicious.png";
+		this.FlavorText = [
 			"is vicious",
 			"seems fiendishly vicious",
 			"is ferociously vicious",
@@ -14,19 +14,17 @@ this.pg_rf_vicious <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"is beastially vicious",
 			"enjoys vicious butchery"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.crippling_strikes"],
-				["perk.coup_de_grace"],
-				["perk.taunt"],
-				[],
-				["perk.berserk"],
-				["perk.rf_battle_fervor"],
-				["perk.fearsome"]
-			]
-		};
-		this.m.PerkTreeMultipliers = {
+		this.Tree = [
+			["perk.crippling_strikes"],
+			["perk.coup_de_grace"],
+			["perk.taunt"],
+			[],
+			["perk.berserk"],
+			["perk.rf_battle_fervor"],
+			["perk.fearsome"]
+		];
+		this.PerkTreeMultipliers = {
 			"pg.rf_shield": 0.8
 		};
 	}
-});
+};

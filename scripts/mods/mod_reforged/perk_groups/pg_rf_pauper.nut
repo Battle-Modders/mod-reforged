@@ -1,29 +1,27 @@
-this.pg_rf_pauper <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Pauper <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_pauper";
-		this.m.Name = "Pauper";
-		this.m.Icon = "ui/perk_groups/rf_pauper.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_pauper";
+		this.Name = "Pauper";
+		this.Icon = "ui/perk_groups/rf_pauper.png";
+		this.FlavorText = [
 			"is a dreg of society",
 			"looks utterly beaten down",
 			"is a pitiful pile of flesh and bones"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.rf_promised_potential"],
-				[],
-				[],
-				[],
-				["perk.rf_trauma_survivor"],
-				[],
-				[]
-			]
-		};
-		this.m.PerkTreeMultipliers = {
+		this.Tree = [
+			["perk.rf_promised_potential"],
+			[],
+			[],
+			[],
+			["perk.rf_trauma_survivor"],
+			[],
+			[]
+		];
+		this.PerkTreeMultipliers = {
 			"pg.rf_devious": 1.5,
 			"pg.rf_talented": 0
 		};
 	}
-});
+};

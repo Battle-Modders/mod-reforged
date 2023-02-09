@@ -1,23 +1,21 @@
-this.pg_rf_axe <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Axe <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_axe";
-		this.m.Name = "Axe";
-		this.m.Icon = "ui/perk_groups/rf_axe.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_axe";
+		this.Name = "Axe";
+		this.Icon = "ui/perk_groups/rf_axe.png";
+		this.FlavorText = [
 			"axes"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.rf_shield_splitter"],
-				[],
-				[],
-				["perk.mastery.axe"],
-				["perk.rf_between_the_eyes"],
-				["perk.rf_heft"],
-				["perk.rf_cull"]
-			]
-		};
+		this.Tree = [
+			["perk.rf_shield_splitter"],
+			[],
+			[],
+			["perk.mastery.axe"],
+			["perk.rf_between_the_eyes"],
+			["perk.rf_heft"],
+			["perk.rf_cull"]
+		];
 	}
-});
+};

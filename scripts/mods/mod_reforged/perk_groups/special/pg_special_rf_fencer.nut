@@ -1,26 +1,23 @@
-this.pg_special_rf_fencer <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Fencer <- class extends ::DynamicPerks.Class.SpecialPerkGroup
+{
+	constructor()
 	{
-		this.special_perk_group.create();
-		this.m.ID = "pg.special.rf_fencer";
-		this.m.Name = "Special Perks";
-		this.m.Icon = "ui/perk_groups/rf_fencer.png";
-		this.m.FlavorText = [
+		this.ID = "pg.special.rf_fencer";
+		this.Name = "Special Perks";
+		this.Icon = "ui/perk_groups/rf_fencer.png";
+		this.FlavorText = [
 			"Has all the makings of a capable fencer."
 		];
-		this.m.Chance = 25;
-		this.m.Trees = {
-			"default": [
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				["perk.rf_fencer"]
-			]
-		};
+		this.Chance = 25;
+		this.Tree = [
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			["perk.rf_fencer"]
+		];
 	}
 
 	function getMultiplier( _perkTree )
@@ -35,4 +32,4 @@ this.pg_special_rf_fencer <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
 
 		return talents.len() == 0 ? 0 : talents[::Const.Attributes.Initiative] * talents[::Const.Attributes.MeleeSkill];
 	}
-});
+};

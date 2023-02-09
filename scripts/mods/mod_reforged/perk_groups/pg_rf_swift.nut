@@ -1,23 +1,21 @@
-this.pg_rf_swift <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Swift <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_swift";
-		this.m.Name = "Swift Strikes";
-		this.m.Icon = "ui/perk_groups/rf_swift.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_swift";
+		this.Name = "Swift Strikes";
+		this.Icon = "ui/perk_groups/rf_swift.png";
+		this.FlavorText = [
 			"swift weapons"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.pathfinder"],
-				["perk.rf_vigorous_assault"],
-				[],
-				["perk.rf_offhand_training"],
-				[],
-				["perk.duelist"],
-				["perk.rf_weapon_master"]
-			]
-		};
+		this.Tree = [
+			["perk.pathfinder"],
+			["perk.rf_vigorous_assault"],
+			[],
+			["perk.rf_offhand_training"],
+			[],
+			["perk.duelist"],
+			["perk.rf_weapon_master"]
+		];
 	}
-});
+};

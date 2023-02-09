@@ -1,11 +1,11 @@
-this.pg_rf_sturdy <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Sturdy <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_sturdy";
-		this.m.Name = "Sturdy";
-		this.m.Icon = "ui/perk_groups/rf_sturdy.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_sturdy";
+		this.Name = "Sturdy";
+		this.Icon = "ui/perk_groups/rf_sturdy.png";
+		this.FlavorText = [
 			"is sturdy",
 			"is sturdily built",
 			"looks strong and sturdy",
@@ -14,19 +14,17 @@ this.pg_rf_sturdy <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"seems sturdy",
 			"is sturdy as a mountain"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.recover"],
-				["perk.steel_brow"],
-				["perk.taunt"],
-				[],
-				[],
-				["perk.rf_retribution"],
-				["perk.indomitable"]
-			]
-		};
-		this.m.PerkTreeMultipliers = {
+		this.Tree = [
+			["perk.recover"],
+			["perk.steel_brow"],
+			["perk.taunt"],
+			[],
+			[],
+			["perk.rf_retribution"],
+			["perk.indomitable"]
+		];
+		this.PerkTreeMultipliers = {
 			"pg.rf_power": 1.2
 		};
 	}
-});
+};

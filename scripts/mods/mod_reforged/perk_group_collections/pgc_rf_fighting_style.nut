@@ -1,17 +1,17 @@
-this.pgc_rf_fighting_style <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
-	m = {},
-	function create()
+::Reforged.PerkGroupCollections.Fighting_style <- class extends DynamicPerks.Class.PerkGroupCollection
+{
+	constructor()
 	{
-		this.m.ID = "pgc.rf_fighting_style";
-		this.m.Name = "Fighting Style";
-		this.m.OrderOfAssignment = 5;
-		this.m.Min = 2;
-		this.m.TooltipPrefix = "Prefers using";
-		this.m.Groups = [
+		this.ID = "pgc.rf_fighting_style";
+		this.Name = "Fighting Style";
+		this.OrderOfAssignment = 5;
+		this.Min = 2;
+		this.TooltipPrefix = "Prefers using";
+		this.PerkGroups = [
 			"pg.rf_power",
 			"pg.rf_ranged",
 			"pg.rf_shield",
 			"pg.rf_swift"
 		];
 	}
-});
+};

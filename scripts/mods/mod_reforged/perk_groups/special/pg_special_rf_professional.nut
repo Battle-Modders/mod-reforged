@@ -1,25 +1,22 @@
-this.pg_special_rf_professional <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Professional <- class extends ::DynamicPerks.Class.SpecialPerkGroup
+{
+	constructor()
 	{
-		this.special_perk_group.create();
-		this.m.ID = "pg.special.rf_professional";
-		this.m.Name = "Special Perks";
-		this.m.Icon = "ui/perk_groups/rf_professional.png";
-		this.m.FlavorText = [
+		this.ID = "pg.special.rf_professional";
+		this.Name = "Special Perks";
+		this.Icon = "ui/perk_groups/rf_professional.png";
+		this.FlavorText = [
 			"Carries himself with the grace of a professional soldier."
 		];
-		this.m.Chance = 0;
-		this.m.Trees = {
-			"default": [
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				["perk.rf_professional"]
-			]
-		};
+		this.Chance = 0;
+		this.Tree = [
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			["perk.rf_professional"]
+		];
 	}
-});
+};

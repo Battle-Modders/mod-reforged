@@ -1,11 +1,11 @@
-this.pg_rf_talented <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Talented <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_talented";
-		this.m.Name = "Talented";
-		this.m.Icon = "ui/perk_groups/rf_talented.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_talented";
+		this.Name = "Talented";
+		this.Icon = "ui/perk_groups/rf_talented.png";
+		this.FlavorText = [
 			"is talented",
 			"lives with talented ease",
 			"has unparalleled talent",
@@ -14,21 +14,19 @@ this.pg_rf_talented <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"is talented beyond belief",
 			"succeeds easily and with talent"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.student"],
-				[],
-				[],
-				["perk.rf_discovered_talent"],
-				["perk.rf_back_to_basics"],
-				[],
-				[]
-			]
-		};
+		this.Tree = [
+			["perk.student"],
+			[],
+			[],
+			["perk.rf_discovered_talent"],
+			["perk.rf_back_to_basics"],
+			[],
+			[]
+		];
 	}
 
 	function getSelfMultiplier( _perkTree )
 	{
 		return 0.1;
 	}
-});
+};

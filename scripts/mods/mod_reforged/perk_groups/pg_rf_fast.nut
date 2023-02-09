@@ -1,11 +1,11 @@
-this.pg_rf_fast <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Fast <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_fast";
-		this.m.Name = "Fast";
-		this.m.Icon = "ui/perk_groups/rf_fast.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_fast";
+		this.Name = "Fast";
+		this.Icon = "ui/perk_groups/rf_fast.png";
+		this.FlavorText = [
 			"is fast",
 			"runs fast",
 			"is fast like a flash",
@@ -14,19 +14,17 @@ this.pg_rf_fast <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"has fast steps",
 			"is a fast sprinter"
 		];
-		this.m.Trees = {
-			"default": [
-				[],
-				["perk.quick_hands"],
-				["perk.relentless"],
-				[],
-				[],
-				["perk.overwhelm"],
-				[]
-			]
-		};
-		this.m.PerkTreeMultipliers = {
+		this.Tree = [
+			[],
+			["perk.quick_hands"],
+			["perk.relentless"],
+			[],
+			[],
+			["perk.overwhelm"],
+			[]
+		];
+		this.PerkTreeMultipliers = {
 			"pg.rf_swift": 1.2
 		};
 	}
-});
+};

@@ -1,11 +1,11 @@
-this.pg_rf_resilient <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Resilient <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_resilient";
-		this.m.Name = "Resilent";
-		this.m.Icon = "ui/perk_groups/rf_resilient.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_resilient";
+		this.Name = "Resilent";
+		this.Icon = "ui/perk_groups/rf_resilient.png";
+		this.FlavorText = [
 			"is unnaturally resilient",
 			"is stubbornly resilient",
 			"is staunchly resilient",
@@ -14,19 +14,17 @@ this.pg_rf_resilient <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"seems unwaveringly resilient",
 			"is resilient beyond measure"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.nine_lives"],
-				["perk.hold_out"],
-				["perk.fortified_mind"],
-				[],
-				["perk.rf_survival_instinct"],
-				[],
-				[]
-			]
-		};
-		this.m.PerkTreeMultipliers = {
+		this.Tree = [
+			["perk.nine_lives"],
+			["perk.hold_out"],
+			["perk.fortified_mind"],
+			[],
+			["perk.rf_survival_instinct"],
+			[],
+			[]
+		];
+		this.PerkTreeMultipliers = {
 			"pg.rf_shield": 1.2
 		};
 	}
-});
+};

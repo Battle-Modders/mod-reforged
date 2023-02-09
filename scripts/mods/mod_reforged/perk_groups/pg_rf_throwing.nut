@@ -1,23 +1,21 @@
-this.pg_rf_throwing <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Throwing <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_throwing";
-		this.m.Name = "Throwing";
-		this.m.Icon = "ui/perk_groups/rf_throwing.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_throwing";
+		this.Name = "Throwing";
+		this.Icon = "ui/perk_groups/rf_throwing.png";
+		this.FlavorText = [
 			"throwing weapons"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.rf_momentum"],
-				[],
-				["perk.rf_hybridization"],
-				["perk.mastery.throwing"],
-				["perk.rf_opportunist"],
-				[],
-				["perk.rf_proximity_throwing_specialist"]
-			]
-		};
+		this.Tree = [
+			["perk.rf_momentum"],
+			[],
+			["perk.rf_hybridization"],
+			["perk.mastery.throwing"],
+			["perk.rf_opportunist"],
+			[],
+			["perk.rf_proximity_throwing_specialist"]
+		];
 	}
-});
+};

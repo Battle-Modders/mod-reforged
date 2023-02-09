@@ -1,11 +1,11 @@
-this.pg_rf_large <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Large <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_large";
-		this.m.Name = "Large";
-		this.m.Icon = "ui/perk_groups/rf_large.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_large";
+		this.Name = "Large";
+		this.Icon = "ui/perk_groups/rf_large.png";
+		this.FlavorText = [
 			"is large",
 			"is large and hulking",
 			"has impressively large shoulders",
@@ -14,19 +14,17 @@ this.pg_rf_large <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"is mountainously large",
 			"has large musculature"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.colossus"],
-				["perk.steel_brow"],
-				[],
-				[],
-				[],
-				[],
-				[]
-			]
-		};
-		this.m.PerkTreeMultipliers = {
+		this.Tree = [
+			["perk.colossus"],
+			["perk.steel_brow"],
+			[],
+			[],
+			[],
+			[],
+			[]
+		];
+		this.PerkTreeMultipliers = {
 			"pg.rf_power": 1.2
 		};
 	}
-});
+};

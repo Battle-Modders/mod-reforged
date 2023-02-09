@@ -1,23 +1,21 @@
-this.pg_rf_trapper <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Trapper <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_trapper";
-		this.m.Name = "Trapper";
-		this.m.Icon = "ui/perk_groups/rf_trapper.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_trapper";
+		this.Name = "Trapper";
+		this.Icon = "ui/perk_groups/rf_trapper.png";
+		this.FlavorText = [
 			"has experience in trapping and using nets"
 		];
-		this.m.Trees = {
-			"default": [
-				[],
-				["perk.rf_trip_artist"],
-				[],
-				["perk.rf_offhand_training"],
-				["perk.rf_angler"],
-				[],
-				["perk.rf_kingfisher"]
-			]
-		};
+		this.Tree = [
+			[],
+			["perk.rf_trip_artist"],
+			[],
+			["perk.rf_offhand_training"],
+			["perk.rf_angler"],
+			[],
+			["perk.rf_kingfisher"]
+		];
 	}
-});
+};

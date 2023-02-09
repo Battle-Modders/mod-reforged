@@ -1,26 +1,23 @@
-this.pg_special_rf_man_of_steel <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.ManOfSteel <- class extends ::DynamicPerks.Class.SpecialPerkGroup
+{
+	constructor()
 	{
-		this.special_perk_group.create();
-		this.m.ID = "pg.special.rf_man_of_steel";
-		this.m.Name = "Special Perks";
-		this.m.Icon = "ui/perk_groups/rf_man_of_steel.png";
-		this.m.FlavorText = [
+		this.ID = "pg.special.rf_man_of_steel";
+		this.Name = "Special Perks";
+		this.Icon = "ui/perk_groups/rf_man_of_steel.png";
+		this.FlavorText = [
 			"Is tough as if made of steel!"
 		];
-		this.m.Chance = 25;
-		this.m.Trees = {
-			"default": [
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				["perk.rf_man_of_steel"]
-			]
-		};
+		this.Chance = 25;
+		this.Tree = [
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			["perk.rf_man_of_steel"]
+		];
 	}
 
 	function getMultiplier( _perkTree )
@@ -32,4 +29,4 @@ this.pg_special_rf_man_of_steel <- ::inherit(::DynamicPerks.Class.SpecialPerkGro
 
 		return talents.len() == 0 ? 0 : talents[::Const.Attributes.Fatigue];
 	}
-});
+};

@@ -1,25 +1,23 @@
-this.pg_rf_bow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
-	m = {},
-	function create()
+::Reforged.PerkGroups.Bow <- class extends ::DynamicPerks.Class.PerkGroup
+{
+	constructor()
 	{
-		this.m.ID = "pg.rf_bow";
-		this.m.Name = "Bow";
-		this.m.Icon = "ui/perk_groups/rf_bow.png";
-		this.m.FlavorText = [
+		this.ID = "pg.rf_bow";
+		this.Name = "Bow";
+		this.Icon = "ui/perk_groups/rf_bow.png";
+		this.FlavorText = [
 			"bows"
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.rf_target_practice"],
-				[],
-				[],
-				["perk.mastery.bow"],
-				["perk.rf_flaming_arrows"],
-				["perk.rf_eyes_up"],
-				["perk.rf_hip_shooter"]
-			]
-		};
-		this.m.PerkTreeMultipliers = {
+		this.Tree = [
+			["perk.rf_target_practice"],
+			[],
+			[],
+			["perk.mastery.bow"],
+			["perk.rf_flaming_arrows"],
+			["perk.rf_eyes_up"],
+			["perk.rf_hip_shooter"]
+		];
+		this.PerkTreeMultipliers = {
 			"pg.rf_ranged": 1.5
 		};
 	}
@@ -28,4 +26,4 @@ this.pg_rf_bow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 	{
 		return 0.33;
 	}
-});
+};
