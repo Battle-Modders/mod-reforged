@@ -12,11 +12,17 @@ TacticalScreenTopbarEventLogModule.prototype.createDIV = function(_parentDiv)
 
     var newParentDiv = $('<div class="new-log-container"/>');
     grandpa.append(newParentDiv);
+
+    // This solution defines a dymanic width for the combat log which is dependant on the current resolution
 	var width = Math.max(200, Math.min(grandpa.parent().width() / 3.5, 800));
 	newParentDiv.css('width', width);
 	newParentDiv.css('background-size', newParentDiv.width() + " " + newParentDiv.height());
 
     Reforged.Hooks.TacticalScreenTopbarEventLogModule_createDIV.call(this, newParentDiv);
 
-    this.mEventsListContainer.css('background-size', newParentDiv.width() - 65, + " " + newParentDiv.height());
+    // Now we retroactively adjust the width of some child elements according to the 'width' calculated above
+	var eventLogsContainerLayout = this.mContainer.find('.l-event-logs-container:first');
+	eventLogsContainerLayout.css('width', newParentDiv.width() - 60);
+
+    this.mEventsListContainer.css('background-size', newParentDiv.width() - 75, + " " + newParentDiv.height());
 };
