@@ -11,5 +11,3 @@ Object.defineProperty(ReforgedJSConnection.prototype, 'constructor', {
     enumerable: false,
     writable: true
 });
-
-registerScreen(Reforged.JSConnectionID, new ReforgedJSConnection());
