@@ -120,6 +120,95 @@
 
 local vanillaDescriptions = [
 	{
+		ID = "perk.rotation",
+		Key = "Rotation",
+		Description = ::UPD.getDescription({
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Active,
+ 				Description = [
+					"Unlocks the [Rotation|Skill+rotation] skill which allows you to switch places with an adjacent allied character while ignoring Zone of Control.",
+					"Does not work if either character is [stunned|Skill+stunned_effect], [rooted|Skill+rooted_effect] or otherwise disabled."
+				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.footwork",
+		Key = "Footwork",
+		Description = ::UPD.getDescription({
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Active,
+ 				Description = [
+					"Unlocks the [Footwork|Skill+footwork] skill which allows you to leave a Zone of Control without triggering free attacks."
+				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.rally_the_troops",
+		Key = "RallyTheTroops",
+		Description = ::UPD.getDescription({
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Active,
+ 				Description = [
+					"Unlocks the [Rally|Skill+rally_the_troops] skill which can raise [morale|Concept.Morale] of all nearby allies to a steady level.",
+					"The higher the [Resolve|Concept.Resolve] of the character using this skill, the higher the chance to succeed."
+				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.adrenaline",
+		Key = "Adrenaline",
+		Description = ::UPD.getDescription({
+			Fluff = "Feel the adrenaline rushing through your veins!",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Active,
+ 				Description = [
+					"Unlocks the [Adrenaline|Skill+adrenaline_skill] skill which puts you first in the [turn|Concept.Turn] order for the next [round|Concept.Round], to have another [turn|Concept.Turn] before your enemies do."
+				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.taunt",
+		Key = "Taunt",
+		Description = ::UPD.getDescription({
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Active,
+ 				Description = [
+					"Unlocks the [Taunt|Skill+taunt] skill which makes the targeted opponent take offensive actions instead of defensive ones, and attack the taunting character over another, potentially more vulnerable one."
+				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.recover",
+		Key = "Recover",
+		Description = ::UPD.getDescription({
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Active,
+ 				Description = [
+					"Unlocks the [Recover|Skill+recover_skill] skill which allows for resting a [turn|Concept.Turn] in order to reduce accumulated [Fatigue|Concept.Fatigue]."
+				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.underdog",
+		Key = "Underdog",
+		Description = ::UPD.getDescription({
+			Fluff = "I\'m used to it.",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"The defense malus due to being [surrounded|Concept.Surrounding] by opponents no longer applies to this character.",
+					"If an attacker has the [Backstabber|Perk+perk_backstabber] perk, the effect of that perk is negated, and the normal defense malus due to being [surrounded|Concept.Surrounding] is applied instead."
+				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.coup_de_grace",
 		Key = "CoupDeGrace",
 		Description = ::UPD.getDescription({
