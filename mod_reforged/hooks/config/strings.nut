@@ -670,7 +670,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Successful attacks have a chance to apply the [Dented Armor|Skill+rf_dented_armor_effect] effect for the remainder of the combat.",
 				"The chance is " + ::MSU.Text.colorRed("66%") + " for two-handed hammers and " + ::MSU.Text.colorGreen("33%") + " for one-handed hammers.",
 				"Only works when attacks hit an armor item with a maximum durability of at least 200.",
-				"The affected target, or their allies, can use the [Adjust Armor|Skill+rf_adjust_armor_skill] skill, when not engaged in melee, to remove the effect."
+				"The affected target, or their allies, can use the [Adjust Armor|Skill+rf_adjust_dented_armor_skill] skill, when not engaged in melee, to remove the effect."
 			]
 		}]
  	}),
