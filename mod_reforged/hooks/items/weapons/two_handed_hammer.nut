@@ -3,7 +3,7 @@
 	o.create = function()
 	{
 		create();
-		this.m.Reach = 1;
+		this.m.Reach = 5;
 	}
 
 	o.onEquip = function()
