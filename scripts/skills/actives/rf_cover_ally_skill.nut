@@ -4,7 +4,7 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_cover_ally";
 		this.m.Name = "Cover Ally";
-		this.m.Description = "Cover an adjacent ally, allowing them to move one tile ignoring zone of control on their turn. Your Melee Skill, Melee Defense, Ranged Skill, and Ranged Defense will be reduced while providing cover, and if you get stunned or rooted or are no longer adjacent to the target, the cover will be lost.";
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Cover an adjacent ally, allowing them to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] on their turn. Your Melee Skill, Melee Defense, Ranged Skill, and Ranged Defense will be reduced while providing cover, and if you get stunned or rooted or are no longer adjacent to the target, the cover will be lost.");
 		this.m.Icon = "skills/rf_cover_ally_skill.png";
 		this.m.IconDisabled = "skills/rf_cover_ally_skill_bw.png";
 		this.m.Overlay = "rf_cover_ally_skill";
@@ -38,7 +38,7 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Grants the \'Move Under Cover\' skill to the target which allows moving " + ::MSU.Text.colorGreen(1) + " tile ignoring zone of control"
+				text = ::Reforged.Mod.Tooltips.parseString("Grants the Move Under Cover skill to the target which allows moving " + ::MSU.Text.colorGreen(1) + " tile ignoring [Zone of Control|Concept.ZoneOfControl]")
 			},
 			{
 				id = 7,

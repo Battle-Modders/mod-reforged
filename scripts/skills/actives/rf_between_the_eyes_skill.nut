@@ -39,7 +39,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Requires an attack which can exert zone of control")
+				text = ::MSU.Text.colorRed("Requires an attack which can exert Zone of Control")
 			});
 		}
 		else if (bonus == 0)
