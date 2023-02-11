@@ -249,7 +249,7 @@ local vanillaDescriptions = [
  				]
  			}]
 	 	}),
-	 	Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks with a Base [Action Point|Concept.ActionPoints] cost of 4 or less that are either \'Lunge\' or have a Base Maximum Range of 1 tile.")
+	 	Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks with a [Base|Concept.BaseAttribute] [Action Point|Concept.ActionPoints] cost of 4 or less that are either [Lunge|Skill+lunge_skill] or have a Base Maximum Range of 1 tile.")
 	},
 	{
 		ID = "perk.indomitable",
@@ -824,7 +824,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Whenever an opponent misses a Melee attack against you, gain " + ::MSU.Text.colorGreen("+10%") + " chance to hit against them for your next attack.",
-				"Unlocks the \'Riposte\' skill on southern curved swords such as the Shamshir and One-Handed versions of Saif and Scimitar."
+				"Unlocks the [Riposte|Skill+riposte] skill on southern curved swords such as the [Shamshir|Item+shamshir], [Saif|Item+saif], and [Scimitar|Item+scimitar]."
 			]
 		}]
  	}),
@@ -858,14 +858,14 @@ foreach (vanillaDesc in vanillaDescriptions)
  			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Always start battles at Confident morale.",
-					"Morale checks can never drop your morale below Confident for the first " + ::MSU.Text.colorGreen(5) + " rounds of battle (the entire battle if you have the \'Determined\' trait) and below Steady after that."
+					"Always start battles at Confident [morale|Concept.Morale].",
+					"Morale checks can never drop your [morale|Concept.Morale] below Confident for the first " + ::MSU.Text.colorGreen(5) + " rounds of battle (the entire battle if you have the [Determined+Skill+determined_trait] trait) and below Steady after that."
 				]
 			},
 			{
 				Type = ::UPD.EffectType.OneTimeEffect,
 				Description = [
-					"Removes the \'Insecure\' and \'Dastard\' traits."
+					"Removes the [Insecure|Skill+insecure_trait] and [Dastard|Skill+dastard_trait] traits."
 				]
 			}
 		]
@@ -1306,7 +1306,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " when attacking at 2 tiles of distance.",
 				"Piercing type throwing attacks have a " + ::MSU.Text.colorGreen("50%") + " chance to inflict the \'Arrow to the Knee\' effect.",
-				"Cutting type throwing attacks always apply the \'Overwhelmed\' effect.",
+				"Cutting type throwing attacks always apply the [Overwhelmed|Skill+overwhelmed_effect] effect.",
 				"Blunt type throwing attacks have a " + ::MSU.Text.colorGreen("100%") + " chance to inflict [staggered|Skill+staggered_effect] and if the target is already [staggered|Skill+staggered_effect], inflict [stunned|Skill+stunned_effect].",
 				"The damage bonus and chance applies up to a distance of 2 tiles, is halved at 3 tiles of distance, and does not apply at longer distances."
 			]
