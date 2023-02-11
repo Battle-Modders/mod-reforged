@@ -132,7 +132,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand || !this.isEnabled() || !::MSU.isKindOf(actor, "player") || actor.getBackground() == null)
 			return;
 
-		local perkTree = actor.getBackground().getPerkTree();
+		local perkTree = actor.getPerkTree();
 		if (perkTree != null)
 		{
 			foreach (id in this.m.MasteryIDs)
@@ -155,7 +155,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand || !this.isEnabled() || !::MSU.isKindOf(actor, "player") || actor.getBackground() == null)
 			return;
 
-		local perkTree = actor.getBackground().getPerkTree();
+		local perkTree = actor.getPerkTree();
 		if (perkTree != null)
 		{
 			foreach (id in this.m.MasteryIDs)

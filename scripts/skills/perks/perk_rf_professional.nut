@@ -38,7 +38,7 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 
 		if (this.m.IsNew)
 		{
-			local perkTree = this.getContainer().getActor().getBackground().getPerkTree();
+			local perkTree = this.getContainer().getActor().getPerkTree();
 
 			perkTree.addPerk("perk.rf_death_dealer", 2);
 			perkTree.addPerk("perk.shield_expert", 3);

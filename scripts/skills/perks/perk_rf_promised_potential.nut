@@ -32,7 +32,7 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 		{
 			this.removeSelf();
 
-			local perkTree = actor.getBackground().getPerkTree();
+			local perkTree = actor.getPerkTree();
 			perkTree.removePerk(this.getID());
 
 			if (!this.m.WillSucceed)

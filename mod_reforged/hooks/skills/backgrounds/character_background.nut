@@ -27,7 +27,7 @@
 		return {
 			id = 3,
 			type = "description",
-			text = this.getContainer().getActor().getBackground().getPerkTree().getTooltip()
+			text = this.getContainer().getActor().getPerkTree().getTooltip()
 		};
 	}
 

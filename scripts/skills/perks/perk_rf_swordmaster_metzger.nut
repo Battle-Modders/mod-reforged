@@ -34,7 +34,7 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 
 		if (this.m.IsNew)
 		{
-			local perkTree = this.getContainer().getActor().getBackground().getPerkTree();
+			local perkTree = this.getContainer().getActor().getPerkTree();
 
 			perkTree.addPerkGroup("pg.rf_cleaver");
 			perkTree.removePerk("perk.mastery.cleaver");
