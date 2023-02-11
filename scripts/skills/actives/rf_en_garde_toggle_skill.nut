@@ -92,7 +92,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		{
 			return riposte;
 		}
-		else if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))
+		else if (this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded))
 		{
 			return ::new("scripts/skills/effects/return_favor_effect");
 		}
