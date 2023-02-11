@@ -1,4 +1,4 @@
-// ::mods_hookExactClass("entity/tactical/enemies/bandit_raider_low", function(o) {
+::mods_hookExactClass("entity/tactical/enemies/bandit_raider_low", function(o) {
 // 	o.onInit = function()
 // 	{
 // 	    // copy vanilla function contents completely
@@ -6,11 +6,9 @@
 // 	    // NOTE: Remove the hook on onInit completely if unused
 // 	}
 
-// 	local assignRandomEquipment = o.assignRandomEquipment;
-// 	o.assignRandomEquipment = function()
-// 	{
-// 	    assignRandomEquipment();
-
-// 	    // any skills that should be added based on equipment
-// 	}
-// });
+	local assignRandomEquipment = o.assignRandomEquipment;
+	o.assignRandomEquipment = function()
+	{
+		this.bandit_raider.assignRandomEquipment();
+	}
+});
