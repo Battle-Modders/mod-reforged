@@ -28,6 +28,13 @@ this.rf_follow_up_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
+		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = "The damage dealt is reduced by " + ::MSU.Text.colorRed("30%") + " and by an additional " + ::MSU.Text.colorRed("10%") + " for every next attack up to a maximum of " + ::MSU.Text.colorRed("90%")
+		});
+
 		if (this.getContainer().getActor().isEngagedInMelee())
 		{
 			ret.push({
