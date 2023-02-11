@@ -263,7 +263,6 @@ local vanillaDescriptions = [
  				]
  			}]
 	 	}),
-	 	Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks with a [Base|Concept.BaseAttribute] [Action Point|Concept.ActionPoints] cost of 4 or less that are either [Lunge|Skill+lunge_skill] or have a Base Maximum Range of 1 tile.")
 	},
 	{
 		ID = "perk.lone_wolf",
