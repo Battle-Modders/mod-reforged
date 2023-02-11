@@ -58,8 +58,10 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			this.m.HitStacks += _hitInfo.BodyPart == ::Const.BodyPart.Head ? this.m.MalusForHit * 2 : this.m.MalusForHit;
+			this.m.HitStacks++;
+			if (_hitInfo.BodyPart == ::Const.BodyPart.Head) this.m.HitStacks++;
 		}
+		this.m.Malus = (this.m.MissStacks * this.m.MalusForMiss) + (this.m.HitStacks * this.m.MalusForHit);
 	}
 
 	function onRefresh()
