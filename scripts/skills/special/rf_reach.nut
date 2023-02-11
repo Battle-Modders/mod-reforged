@@ -38,6 +38,22 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function getNestedTooltip()
+	{
+		return [
+			{
+				id = 1,
+				type = "title",
+				text = this.m.Name
+			},
+			{
+				id = 2,
+				type = "description",
+				text = this.getDescription()
+			}
+		];
+	}
+
 	function onUpdate( _properties )
 	{
 		if (!this.getContainer().getActor().hasZoneOfControl() || _properties.IsRooted)
