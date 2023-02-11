@@ -50,7 +50,6 @@ this.rf_bearded_blade_skill <- ::inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		this.m.Container.add(::new("scripts/skills/effects/rf_bearded_blade_effect"));
-		this.m.IsSpent = true;
 
 		if (!_user.isHiddenToPlayer())
 		{
