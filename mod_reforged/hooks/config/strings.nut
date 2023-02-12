@@ -127,7 +127,7 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Active,
  				Description = [
 					"Unlocks the [Rotation|Skill+rotation] skill which allows you to switch places with an adjacent allied character while ignoring [Zone of Control|Concept.ZoneOfControl].",
-					"Does not work if either character is [stunned|Skill+stunned_effect], [rooted|Skill+rooted_effect] or otherwise disabled."
+					"Does not work if either character is [trapped|Keyword.Trapped] or [out of action|Keyword.OutOfAction]."
 				]
  			}]
 	 	}),
@@ -216,7 +216,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " against enemies who have sustained an [injury|Concept.Injury] or are [sleeping|Skill+sleeping_effect], [stunned|Skill+stunned_effect], [netted|Skill+net_effect], [webbed|Skill+web_effect], or [rooted|Skill+rooted_effect]."
+ 					"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " against enemies who have sustained an [injury|Concept.Injury], are [trapped|Keyword.Trapped] or [out of action|Keyword.OutOfAction]."
  				]
  			}]
 	 	}),
@@ -582,7 +582,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorGreen("+10") + " [Melee Skill|Concept.MeleeSkill] and [Ranged Skill|Concept.RangeSkill], and " + ::MSU.Text.colorGreen("+20%") + " chance to hit the head when attacking a [rattled|Skill+rf_rattled_effect], [stunned|Skill+stunned_effect], [dazed|Skill+dazed_effect], [netted|Skill+net_effect], [sleeping|Skill+sleeping_effect], [staggered|Skill+staggered_effect], [webbed|Skill+web_effect], or [rooted|Skill+rooted_effect] target."
+				"Gain " + ::MSU.Text.colorGreen("+10") + " [Melee Skill|Concept.MeleeSkill] and [Ranged Skill|Concept.RangeSkill], and " + ::MSU.Text.colorGreen("+20%") + " chance to hit the head when attacking a [trapped|Keyword.Trapped], [rattled|Skill+rf_rattled_effect], [dazed|Skill+dazed_effect], [staggered|Skill+staggered_effect] target or one that is [out of action|Keyword.OutOfAction]."
 			]
 		}]
  	}),
@@ -674,9 +674,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Attacks that do at least " + ::MSU.Text.colorRed(5) + " damage to [Hitpoints|Concept.Hitpoints] and apply a valid [status effect|Concept.StatusEffect] or are against characters with a valid [status effect|Concept.StatusEffect] have a chance to inflict an [injury|Concept.Injury]. This chance is " + ::MSU.Text.colorGreen("100%") + " for two-handed maces and " + ::MSU.Text.colorGreen("50%") + " for one-handed maces.",
-				"If the damage was sufficient to inflict an [injury|Concept.Injury], it inflicts an additional [injury|Concept.Injury].",
-				"Valid status effects include: [stunned|Skill+stunned_effect], [netted|Skill+net_effect], [webbed|Skill+web_effect], [rooted|Skill+rooted_effect], [sleeping|Skill+sleeping_effect]."
+				"Attacks that do at least " + ::MSU.Text.colorRed(5) + " damage to [Hitpoints|Concept.Hitpoints] and apply a valid [status effect|Concept.StatusEffect] or are against characters that are [trapped|Keyword.Trapped] or [out of action|Keyword.OutOfAction] have a chance to inflict an [injury|Concept.Injury]. This chance is " + ::MSU.Text.colorGreen("100%") + " for two-handed maces and " + ::MSU.Text.colorGreen("50%") + " for one-handed maces.",
+				"If the damage was sufficient to inflict an [injury|Concept.Injury], it inflicts an additional [injury|Concept.Injury]."
 			]
 		}]
  	}),
