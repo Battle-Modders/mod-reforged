@@ -1,6 +1,7 @@
 this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsUpdating = false
+		IsUpdating = false,
+		HitChance = 0
 	},
 	function create()
 	{
