@@ -34,6 +34,9 @@
 	<sprite id="rf_arrow_to_the_knee_debuff_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_arrow_to_the_knee_debuff_effect.png" />
 	<sprite id="rf_arrow_to_the_knee_debuff_effect_mini" ic = "FF23165B" img="mini\rf_arrow_to_the_knee_debuff_effect_mini.png" />
 
+	<sprite id="rf_bearded_blade_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_bearded_blade_effect.png" />
+	<sprite id="rf_bearded_blade_effect_mini" ic = "FF23165B" img="mini\rf_bearded_blade_effect_mini.png" />
+
 	<sprite id="rf_bloodlust_mini" ic = "FF23165B" img="mini\rf_bloodlust_mini.png" />
 	<sprite id="rf_bulwark_mini" ic = "FF23165B" img="mini\rf_bulwark_mini.png" />
 
