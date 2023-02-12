@@ -1,6 +1,5 @@
 this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		Malus = 0,
 		HitStacks = 0,
 		MissStacks = 0,
 		MalusForHit = 3,
@@ -30,6 +29,7 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
+		local malus = this.getMalus();
 
 		tooltip.extend(
 		[
@@ -37,13 +37,13 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + this.m.Malus + "[/color] Melee Defense"
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + malus + "[/color] Melee Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + this.m.Malus + "[/color] Ranged Defense"
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + malus + "[/color] Ranged Defense"
 			}
 		]);
 
@@ -58,7 +58,7 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			this.m.HitStacks += _hitInfo.BodyPart == ::Const.BodyPart.Head ? this.m.MalusForHit * 2 : this.m.MalusForHit;
+			this.m.HitStacks += _hitInfo.BodyPart == ::Const.BodyPart.Head ? 2 : 1;
 		}
 	}
 
@@ -67,10 +67,16 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 		this.spawnIcon("rf_from_all_sides_effect", this.getContainer().getActor().getTile());
 	}
 
+	function getMalus()
+	{
+		return this.m.HitStacks * this.m.MalusForHit + this.m.MissStacks * this.m.MalusForMiss;
+	}
+
 	function onUpdate( _properties )
 	{
-		_properties.MeleeDefense -= this.m.Malus;
-		_properties.RangedDefense -= this.m.Malus;
+		local malus = this.getMalus();
+		_properties.MeleeDefense -= malus;
+		_properties.RangedDefense -= malus;
 	}
 
 	function onTurnStart()
