@@ -1151,7 +1151,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorRed("30%") + " and to Armor by " + ::MSU.Text.colorRed("15%") + ".",
 				"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 35.",
 				"[Brawny|Perk+perk_brawny] does not affect this perk.",
-				"Cannot be picked if you have [Nimble|perk_nimble]."
+				"Cannot be picked if you have [Nimble|Perk+perk_nimble]."
 			]
 		}]
  	}),
