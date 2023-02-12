@@ -9,7 +9,7 @@ this.perk_rf_savage_strength <- ::inherit("scripts/skills/skill", {
 		this.m.Description = ::Const.Strings.PerkDescription.RF_SavageStrength;
 		this.m.Icon = "ui/perks/rf_savage_strength.png";
 		this.m.Type = ::Const.SkillType.Perk;
-		this.m.Order = ::Const.SkillOrder.Perk;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
