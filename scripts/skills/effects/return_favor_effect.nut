@@ -27,7 +27,7 @@ this.return_favor_effect <- ::inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Any adjacent attacker who misses a melee attack against this character has a " + ::MSU.Text.colorGreen(this.m.StunChance + "%") + " chance to be Stunned," + ::MSU.Text.colorGreen(this.m.DazeChance + "%") + " chance to be Dazed and " + ::MSU.Text.colorGreen(this.m.StaggerChance + "%") + " chance to be Staggered"
+			text = "Any adjacent attacker who misses a melee attack against this character has a " + ::MSU.Text.colorGreen(this.m.StunChance + "%") + " chance to be Stunned, " + ::MSU.Text.colorGreen(this.m.DazeChance + "%") + " chance to be Dazed and " + ::MSU.Text.colorGreen(this.m.StaggerChance + "%") + " chance to be Staggered"
 		});
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
