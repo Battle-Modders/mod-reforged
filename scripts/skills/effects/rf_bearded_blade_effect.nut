@@ -65,11 +65,6 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 
 	function onTargetMissed( _skill, _targetEntity )
 	{
-		this.onTargetHit(_skill, _targetEntity);
-	}
-
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
 		this.removeSelf();
 
 		if (!_targetEntity.isAlive() || ::Math.rand(1, 100) > this.m.HitChance)
@@ -82,6 +77,11 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 		{
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " has disarmed " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn(s)");
 		}
+	}
+
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	{
+		this.onTargetMissed(_skill, _targetEntity);
 	}
 
 	function onMissed( _attacker, _skill )
