@@ -34,7 +34,7 @@
 			local weapon = this.getContainer().getActor().getMainhandItem();
 			if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
 			{
-				tooltip.push({
+				_tooltip.push({
 					id = 10,
 					type = "text",
 					icon = "ui/icons/hitchance.png",
@@ -45,7 +45,7 @@
 
 		if (_skill.getID() == "actives.throw_spear")
 		{
-			tooltip.push({
+			_tooltip.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
