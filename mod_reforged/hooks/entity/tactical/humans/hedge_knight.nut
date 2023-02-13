@@ -60,7 +60,7 @@
 	    local weapon = this.getMainhandItem();
 	    if (weapon != null)
 	    {
-	    	if (weapon.isAOE())
+	    	if (weapon.isAoE())
 	    	{
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 	    		if (::Reforged.Config.IsLegendaryDifficulty)

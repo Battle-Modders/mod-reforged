@@ -51,7 +51,7 @@
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 	    }
 
-	    if (weapon.isAOE())
+	    if (weapon.isAoE())
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 		}

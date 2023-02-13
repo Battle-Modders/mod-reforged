@@ -71,7 +71,7 @@
 	    if (weapon != null)
 	    {
 	    	if (weapon.getRangeMax() == 2) this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-	    	if (weapon.isAOE()) this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+	    	if (weapon.isAoE()) this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
 	    	if (weapon.isItemType(::Const.Items.ItemType.TwoHanded) && weapon.isWeaponType(::Const.Items.WeaponType.Mace))
 	    	{
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
