@@ -56,10 +56,22 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
+		// Midas -- We need to switch the CurrentProperties with _properties because effects such as stunned_effect, when added,
+		// change the IsStunned attribute to true in _properties, but it isn't yet updated for CurrentProperties as _properties
+		// becomes CurrentProperties at the end of the current skill_container update. This causes `hasZoneOfControl` to
+		// return true because it uses CurrentProperties to check for IsStunned.
+		// This switcheroo is better than checking for _properties.IsStunned because we want to use hasZoneOfControl to
+		// be able to check for all (potentially new modded) conditions which may remove zone of control. Secondly, without the switcheroo
+		// when the stunned effect is removed, the ReachMult will still remain 0 as while _properties.IsStunned will be false,
+		// for CurrentProperties it will still be true, causing hasZoneOfControl to return false.
+		local actor = this.getContainer().getActor();
+		local currentProperties = actor.getCurrentProperties();
+		actor.m.CurrentProperties = _properties;
 		if (!this.getContainer().getActor().hasZoneOfControl() || _properties.IsRooted)
 		{
 			_properties.ReachMult = 0.0;
 		}
+		actor.m.CurrentProperties = currentProperties;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
