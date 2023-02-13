@@ -7,7 +7,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_kata_step";
 		this.m.Name = "Kata Step";
-		this.m.Description = "Use the flow of your sword\'s swings to take a step through Zone of Control without triggering attacks of opportunity. Can only be used immediately after a successful attack.";
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Use the flow of your sword\'s swings to take a step through [Zone of Control|Concept.ZoneOfControl] without triggering attacks of opportunity. Can only be used immediately after a successful attack.");
 		this.m.Icon = "skills/rf_kata_step_skill.png";
 		this.m.IconDisabled = "skills/rf_kata_step_skill_bw.png";
 		this.m.Overlay = "rf_kata_step_skill";

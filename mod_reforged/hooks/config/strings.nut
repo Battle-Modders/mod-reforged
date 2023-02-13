@@ -126,7 +126,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Active,
  				Description = [
-					"Unlocks the [Rotation|Skill+rotation] skill which allows you to switch places with an adjacent allied character while ignoring Zone of Control.",
+					"Unlocks the [Rotation|Skill+rotation] skill which allows you to switch places with an adjacent allied character while ignoring [Zone of Control|Concept.ZoneOfControl].",
 					"Does not work if either character is [stunned|Skill+stunned_effect], [rooted|Skill+rooted_effect] or otherwise disabled."
 				]
  			}]
@@ -139,7 +139,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Active,
  				Description = [
-					"Unlocks the [Footwork|Skill+footwork] skill which allows you to leave a Zone of Control without triggering free attacks."
+					"Unlocks the [Footwork|Skill+footwork] skill which allows you to leave a [Zone of Control|Concept.ZoneOfControl] without triggering free attacks."
 				]
  			}]
 	 	}),
@@ -351,7 +351,7 @@ local vanillaDescriptions = [
  				Description = [
  					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
  					"The [Action Point|Concept.ActionPoints] cost of [Spearwall|Skill+spearwall] is reduced by " + ::MSU.Text.colorGreen("1") + ".",
- 					"[Spearwall|Skill+spearwall] is no longer disabled once an opponent manages to overcome it. Instead, [Spearwall|Skill+spearwall] can still be used and continues to give free attacks on any further opponent attempting to enter the Zone of Control.",
+ 					"[Spearwall|Skill+spearwall] is no longer disabled once an opponent manages to overcome it. Instead, [Spearwall|Skill+spearwall] can still be used and continues to give free attacks on any further opponent attempting to enter the [Zone of Control|Concept.ZoneOfControl]",
  					"The [Spetum|Item+spetum] and [Warfork|Item+warfork] no longer have a penalty for attacking targets directly adjacent."
  				]
  			}]
@@ -461,7 +461,7 @@ local vanillaDescriptions = [
 	 			{
 	 				Type = ::UPD.EffectType.Active,
 	 				Description = [
-	 					"Unlocks the [Cover Ally|Skill+rf_cover_ally_skill] skill which allows you to target an ally to allow them to move 1 tile ignoring zone of control on their [turn|Concept.Turn] while improving their position in the turn order in the next [round|Concept.Round]."
+	 					"Unlocks the [Cover Ally|Skill+rf_cover_ally_skill] skill which allows you to target an ally to allow them to move 1 tile ignoring [Zone of Control|Concept.ZoneOfControl] on their [turn|Concept.Turn] while improving their position in the turn order in the next [round|Concept.Round]."
 	 				]
 	 			}
  			]
@@ -954,8 +954,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Your [Reach|Concept.Reach] is increased by " + ::MSU.Text.colorGreen("+2") + " against enemies in your zone of control, until they hit you.",
-				"After being hit the effect expires, but is reset if the zone of control is broken."
+				"Your [Reach|Concept.Reach] is increased by " + ::MSU.Text.colorGreen("+2") + " against enemies in your [Zone of Control|Concept.ZoneOfControl], until they hit you.",
+				"After being hit the effect expires, but is reset if the [Zone of Control|Concept.ZoneOfControl] is broken."
 			]
 		}]
  	}),
@@ -995,7 +995,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When the number of adjacent allies is greater than or equal to the number of adjacent enemies, you may ignore Zone of Control for your next movement action."
+				"When the number of adjacent allies is greater than or equal to the number of adjacent enemies, you may ignore [Zone of Control|Concept.ZoneOfControl] for your next movement action."
 			]
 		}]
  	}),
@@ -1093,7 +1093,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Kata Step|Skill+rf_kata_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring zone of control with reduced [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of movement.",
+				"Unlocks the [Kata Step|Skill+rf_kata_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of movement.",
 				"The target tile for the movement must be adjacent to an enemy.",
 				"Only works with Two-Handed swords or with One-Handed swords with the offhand free."
 			]

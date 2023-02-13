@@ -13,7 +13,7 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.rf_covering_ally";
 		this.m.Name = "Covering an Ally";
-		this.m.Description = "This character is using the shield to help an ally move ignoring Zone of Control. This takes up significant effort, resulting in reduced combat effectiveness."
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character is using the shield to help an ally move ignoring [Zone of Control|Concept.ZoneOfControl]. This takes up significant effort, resulting in reduced combat effectiveness.");
 		this.m.Icon = "ui/perks/rf_cover_ally.png";
 		this.m.IconMini = "rf_covering_ally_effect_mini";
 		this.m.Overlay = "rf_covering_ally_effect";
@@ -61,7 +61,7 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 	{
 		if (::MSU.isNull(this.m.Ally) || !this.m.Ally.isPlacedOnMap() || this.getContainer().getActor().getCurrentProperties().IsRooted || this.getContainer().getActor().getCurrentProperties().IsStunned)
 		{
-			this.removeSelf(); 
+			this.removeSelf();
 			this.onRemoved();
 			return;
 		}

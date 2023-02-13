@@ -28,7 +28,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "The next movement will ignore Zone of Control"
+			text = ::Reforged.Mod.Tooltips.parseString("The next movement will ignore [Zone of Control|Concept.ZoneOfControl]")
 		});
 
 		return tooltip;
