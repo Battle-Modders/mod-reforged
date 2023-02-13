@@ -33,7 +33,7 @@
 				local name = ::Reforged.Mod.Tooltips.parseString(format("[%s|Skill+%s]", skill.getName(), split(::IO.scriptFilenameByHash(skill.ClassNameHash), "/").top()));
 				skillsString += format("- %s (%s, %s)\n", name, ::MSU.Text.colorGreen(skill.m.ActionPointCost), ::MSU.Text.colorRed(skill.m.FatigueCost));
 			}
-			this.clearSkills();
+			this.onUnequip();
 			this.setContainer(null);
 
 			this.m.LastEquippedByFaction = lastEquippedByFaction;
