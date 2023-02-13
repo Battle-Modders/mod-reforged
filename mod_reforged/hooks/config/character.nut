@@ -26,7 +26,7 @@ local getClone = ::Const.CharacterProperties.getClone;
 ::Const.CharacterProperties.ReachMult <- 1.0;
 ::Const.CharacterProperties.getReach <- function()
 {
-	return this.Reach * this.ReachMult;
+	return ::Math.floor(this.Reach * this.ReachMult);
 }
 ::Const.CharacterProperties.IsAffectedByReach <- true;
 
