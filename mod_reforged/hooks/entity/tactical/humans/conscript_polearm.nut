@@ -25,7 +25,7 @@
 	    if (weapon != null && weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_mace"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_heavy_strikes"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_concussive_strikes"));
 		}
 		else
