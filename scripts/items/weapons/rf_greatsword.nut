@@ -21,7 +21,7 @@ this.rf_greatsword <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_sword_two_handed_01";
 		this.m.Value = 2400;
-		this.m.ShieldDamage = 12;
+		this.m.ShieldDamage = 18;
 		this.m.Condition = 60.0;
 		this.m.ConditionMax = 60.0;
 		this.m.StaminaModifier = -10;

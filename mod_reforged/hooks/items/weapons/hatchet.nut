@@ -3,6 +3,7 @@
 	o.create = function()
 	{
 		create();
+		this.m.ShieldDamage = 14;
 		this.m.Reach = 2;
 	}
 

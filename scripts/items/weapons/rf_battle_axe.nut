@@ -18,7 +18,7 @@ this.rf_battle_axe <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_goblin_weapon_05";
 		this.m.Value = 1950;
-		this.m.ShieldDamage = 24;
+		this.m.ShieldDamage = 40;
 		this.m.Condition = 64.0;
 		this.m.ConditionMax = 64.0;
 		this.m.StaminaModifier = -14;

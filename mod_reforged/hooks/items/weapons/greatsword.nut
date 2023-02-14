@@ -4,6 +4,7 @@
 	{
 		create();
 		this.m.Name = "Zweihander";
+		this.m.ShieldDamage = 24;
 		this.m.Reach = 6;
 	}
 

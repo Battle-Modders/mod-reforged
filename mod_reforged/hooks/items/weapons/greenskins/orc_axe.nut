@@ -3,6 +3,7 @@
 	o.create = function()
 	{
 		create();
+		this.m.ShieldDamage = 42;
 		this.m.Reach = 3;
 	}
 
@@ -11,11 +12,11 @@
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/chop", function(o) {
-			o.m.FatigueCost += 5;
+			o.m.FatigueCost += 1;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
-			o.m.FatigueCost += 8;
+			o.m.FatigueCost += 3;
 			o.setApplyAxeMastery(true);
 		}));
 	}
