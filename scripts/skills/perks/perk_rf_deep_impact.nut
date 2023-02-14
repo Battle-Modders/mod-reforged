@@ -17,7 +17,7 @@ this.perk_rf_deep_impact <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill.isAttack() && (skill.getDamageType().contains(::Const.Damage.DamageType.Blunt) || this.m.IsForceEnabled))
+		if (_skill.isAttack() && (_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt) || this.m.IsForceEnabled))
 		{
 			_properties.DamageDirectAdd += 0.1;
 		}
