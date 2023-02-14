@@ -14,7 +14,7 @@ this.perk_rf_swordmaster_blade_dancer <- ::inherit("scripts/skills/perks/perk_rf
 		if (!this.isEnabled()) return;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (!weapon.isItemType(::Const.Items.WeaponType.RF_Fencing))
+		if (!weapon.isItemType(::Const.Items.ItemType.RF_Fencing))
 		{
 			foreach (skill in weapon.getSkills())
 			{
