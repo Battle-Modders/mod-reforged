@@ -104,7 +104,14 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 				if (ally.getTile().getDistanceTo(myTile) <= 4 && ally.getFatigueMax() - ally.getFatigue() >= 10)
 				{
 					ally.setFatigue(ally.getFatigue() + 10);
-					ally.getSkills().add(::new("scripts/skills/effects/rf_hold_steady_effect"));
+					local effect = ::new("scripts/skills/effects/rf_hold_steady_effect");
+					if (!ally.isTurnStarted())
+					{
+						// If the ally has not started their turn yet, add one more turn
+						// so that the effect doesn't immediately expire upon the ally's turn starting
+						effect.m.TurnsLeft++;
+					}
+					ally.getSkills().add(effect);
 				}
 			}
 		}
