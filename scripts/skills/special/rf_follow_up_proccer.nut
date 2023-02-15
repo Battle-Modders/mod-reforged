@@ -12,7 +12,7 @@ this.rf_follow_up_proccer <- ::inherit("scripts/skills/skill", {
 		this.m.Type = ::Const.SkillType.Special;
 		this.m.IsActive = false;
 		this.m.IsHidden = true;
-		this.m.IsRemovedAfterBattle = false;
+		this.m.IsSerialized = false;
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )

@@ -16,6 +16,7 @@ this.rf_direct_damage_limiter <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = true;		
+		this.m.IsSerialized = false;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

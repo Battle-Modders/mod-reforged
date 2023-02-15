@@ -11,6 +11,7 @@ this.rf_formidable_approach_manager <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsHidden = true;
 		this.m.IsSerialized = false;
+		this.m.IsSerialized = false;
 	}
 
 	function onMovementStarted( _tile, _numTiles )

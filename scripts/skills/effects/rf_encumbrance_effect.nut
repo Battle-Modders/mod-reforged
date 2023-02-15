@@ -11,6 +11,7 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
+		this.m.IsSerialized = false;
 	}
 
 	function isHidden()

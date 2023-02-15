@@ -13,7 +13,8 @@ this.rf_immersive_damage_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
-		this.m.IsHidden = true;		
+		this.m.IsHidden = true;
+		this.m.IsSerialized = false;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
