@@ -102,9 +102,9 @@ this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 				{
 					ally.setFatigue(ally.getFatigue() + 10);
 					local effect = ::new("scripts/skills/effects/rf_onslaught_effect");
-					if (!ally.isTurnStarted())
+					if (!ally.isTurnStarted() && !ally.isTurnDone())
 					{
-						// If the ally has not started their turn yet, add one more turn
+						// If the ally has not started their turn yet in this round, add one more turn
 						// so that the effect doesn't immediately expire upon the ally's turn starting
 						effect.m.TurnsLeft++;
 					}
