@@ -16,14 +16,15 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function isHidden()
-	{
-		return !this.getContainer().getActor().getCurrentProperties().IsAffectedByReach;
-	}
-
 	function getName()
 	{
-		return this.m.Name + " (" + this.getContainer().getActor().getCurrentProperties().getReach() + ")";
+		local ret = this.m.Name;
+		if (this.getContainer().getActor().getCurrentProperties().IsAffectedByReach)
+			ret += " (" + this.getContainer().getActor().getCurrentProperties().getReach() + ")";
+		else
+			ret += " (Irrelevant)";
+
+		return ret;
 	}
 
 	function getTooltip()
