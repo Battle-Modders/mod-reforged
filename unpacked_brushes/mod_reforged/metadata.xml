@@ -90,6 +90,9 @@
 	<sprite id="rf_from_all_sides_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_from_all_sides.png" />
 	<sprite id="rf_from_all_sides_effect_mini" ic = "FF23165B" img="mini\rf_from_all_sides_effect_mini.png" />
 
+	<sprite id="rf_hold_steady_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_hold_steady.png" />
+	<sprite id="rf_hold_steady_effect_mini" ic = "FF23165B" img="mini\rf_hold_steady_effect_mini.png" />
+
 	<sprite id="rf_inspiring_presence_buff_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_inspiring_presence_buff_effect.png" />
 
 	<sprite id="rf_inspiring_presence_mini" ic = "FF23165B" img="mini\rf_inspiring_presence_mini.png" />
