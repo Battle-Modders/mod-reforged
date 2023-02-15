@@ -101,7 +101,7 @@ this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 				if (ally.getTile().getDistanceTo(myTile) <= 4 && ally.getFatigueMax() - ally.getFatigue() >= 10)
 				{
 					ally.setFatigue(ally.getFatigue() + 10);
-					bro.getSkills().add(::new("scripts/skills/effects/rf_onslaught_effect"));
+					ally.getSkills().add(::new("scripts/skills/effects/rf_onslaught_effect"));
 				}
 			}
 		}

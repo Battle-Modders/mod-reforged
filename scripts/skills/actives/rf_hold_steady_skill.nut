@@ -104,7 +104,7 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 				if (ally.getTile().getDistanceTo(myTile) <= 4 && ally.getFatigueMax() - ally.getFatigue() >= 10)
 				{
 					ally.setFatigue(ally.getFatigue() + 10);
-					bro.getSkills().add(::new("scripts/skills/effects/rf_hold_steady_effect"));
+					ally.getSkills().add(::new("scripts/skills/effects/rf_hold_steady_effect"));
 				}
 			}
 		}
