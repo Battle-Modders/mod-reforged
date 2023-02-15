@@ -1,5 +1,6 @@
 this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 	m = {
+		TurnsLeft = 1,
 		IsSpent = false,
 		LineBreakerAdded = false
 	},
@@ -82,10 +83,13 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onTurnEnd()
+	function onTurnStart()
 	{
-		if (this.m.LineBreakerAdded) this.getContainer().removeByID("actives.rf_line_breaker");
-		this.removeSelf();
+		if (--this.m.TurnsLeft == 0)
+		{
+			if (this.m.LineBreakerAdded) this.getContainer().removeByID("actives.rf_line_breaker");
+			this.removeSelf();
+		}
 	}
 });
 

@@ -1,5 +1,7 @@
 this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		TurnsLeft = 1
+	},
 	function create()
 	{
 		this.m.ID = "effects.rf_hold_steady";
@@ -49,9 +51,9 @@ this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 		_properties.IsImmuneToKnockBackAndGrab = true;
 	}
 
-	function onTurnEnd()
+	function onTurnStart()
 	{
-		this.removeSelf();
+		if (--this.m.TurnsLeft == 0) this.removeSelf();
 	}
 });
 
