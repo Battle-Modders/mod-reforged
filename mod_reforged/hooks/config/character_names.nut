@@ -1,4 +1,3 @@
-
 ::Const.Strings.CharacterNames.extend([
     "Agnar",
     "Alard",
@@ -95,11 +94,15 @@
     "Wulfric"
 ]);
 
-// This will also void any custom names from other mods that execute before Reforged
-::Const.Strings.KnightNames = [];
+// This removes all duplicate CharacterNames. This line is redundant for Vanilla + Reforged because our additional names are already checke for duplicates
+// Any mod that adds names after ours may re-introduce duplicates. This is not game-breaking but still undesired
+::Const.Strings.CharacterNames = ::MSU.Array.removeDuplicateStrings(::Const.Strings.CharacterNames);
 
 local knightPrefix = "Sir ";
 foreach(characterName in ::Const.Strings.CharacterNames)
 {
     ::Const.Strings.KnightNames.push(knightPrefix + characterName);
 }
+
+// This removes all duplicate KnightNames. This is important because Vanilla has KnightNames that also exist as CharacterNames.
+::Const.Strings.KnightNames = ::MSU.Array.removeDuplicateStrings(::Const.Strings.KnightNames);

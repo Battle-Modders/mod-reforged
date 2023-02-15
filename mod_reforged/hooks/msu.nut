@@ -8,6 +8,25 @@
 	return obj;
 }
 
+// Removes all duplicates from a string array and returns a new unique array
+::logInfo("Reforged::MSU -- adding ::MSU.Array.removeDuplicateStrings");
+::MSU.Array.removeDuplicateStrings <- function( _array )
+{
+	local _nonDuplicatesArray = [];
+	local _arrayTable = {};
+	foreach( string in _array )
+	{
+		::MSU.requireString(string);
+		_arrayTable[string] <- null;	// The value doesn't matter here. We just put in some random value
+	}
+
+	foreach( nonDuplicateString, value in _arrayTable )
+	{
+		_nonDuplicatesArray.push(nonDuplicateString);
+	}
+	return _nonDuplicatesArray;
+}
+
 ::logInfo("Reforged::MSU -- adding ::MSU.Text.colorizeValue");
 ::MSU.Text.colorizeValue <- function( _value, _options = null )
 {
