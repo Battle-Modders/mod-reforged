@@ -7,7 +7,7 @@ this.perk_rf_finesse <- ::inherit("scripts/skills/skill", {
 		this.m.Description = ::Const.Strings.PerkDescription.RF_Finesse;
 		this.m.Icon = "ui/perks/rf_finesse.png";
 		this.m.Type = ::Const.SkillType.Perk;
-		this.m.Order = ::Const.SkillOrder.Perk;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
