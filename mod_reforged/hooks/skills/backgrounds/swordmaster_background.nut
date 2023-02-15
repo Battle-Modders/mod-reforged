@@ -41,7 +41,13 @@
 	local onAdded = o.onAdded;
 	o.onAdded <- function()
 	{
-		if (this.m.IsNew) this.getContainer().add(::new("scripts/skills/effects/rf_swordmasters_finesse_effect"));
+		if (this.m.IsNew)
+		{
+			this.getContainer().add(::new("scripts/skills/effects/rf_swordmasters_finesse_effect"));
+			this.getContainer().add(::MSU.new("scripts/skills/perks/perk_mastery_sword", function(o) {
+				o.m.IsRefundable = false;
+			}));
+		}
 		return onAdded();
 	}
 
