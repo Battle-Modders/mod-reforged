@@ -38,7 +38,7 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = "[color=" + ::Const.UI.Color.NegativeValue + "]-1[/color] Fatigue Recovery per turn"
+					text = "[color=" + ::Const.UI.Color.NegativeValue + "]+1[/color] Fatigue at the start of every turn"
 				});
 				break;
 
@@ -48,7 +48,7 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 						id = 10,
 						type = "text",
 						icon = "ui/icons/fatigue.png",
-						text = "[color=" + ::Const.UI.Color.NegativeValue + "]-2[/color] Fatigue Recovery per turn"
+						text = "[color=" + ::Const.UI.Color.NegativeValue + "]+2[/color] Fatigue at the start of every turn"
 					},
 					{
 						id = 10,
@@ -65,7 +65,7 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 						id = 10,
 						type = "text",
 						icon = "ui/icons/fatigue.png",
-						text = "[color=" + ::Const.UI.Color.NegativeValue + "]-2[/color] Fatigue Recovery per turn"
+						text = "[color=" + ::Const.UI.Color.NegativeValue + "]+2[/color] Fatigue at the start of every turn"
 					},
 					{
 						id = 10,
@@ -82,7 +82,7 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 						id = 10,
 						type = "text",
 						icon = "ui/icons/fatigue.png",
-						text = "[color=" + ::Const.UI.Color.NegativeValue + "]-3[/color] Fatigue Recovery per turn"
+						text = "[color=" + ::Const.UI.Color.NegativeValue + "]+3[/color] Fatigue at the start of every turn"
 					},
 					{
 						id = 10,
@@ -130,26 +130,46 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 		switch (this.getEncumbranceLevel())
 		{
 			case 0:
+			case 1:
 				return;
 
-			case 1:
-				_properties.FatigueRecoveryRate -= 1;
-				break;
-
 			case 2:
-				_properties.FatigueRecoveryRate -= 2;
 				_properties.MovementFatigueCostAdditional += 1;
 				break;
 
 			case 3:
-				_properties.FatigueRecoveryRate -= 2;
 				_properties.MovementFatigueCostAdditional += 3;
 				break;
 
 			default:
-				_properties.FatigueRecoveryRate -= 3;
 				_properties.MovementFatigueCostAdditional += 3;
 				break;
 		}
+	}
+
+	function onTurnStart()
+	{
+		local fatigue;
+		switch (this.getEncumbranceLevel())
+		{
+			case 0:
+				return;
+
+			case 1:
+				fatigue = 1;
+				break;
+
+			case 2:
+			case 3:
+				fatigue = 2;
+				break;
+
+			default:
+				fatigue = 3;
+				break;
+		}
+
+		local actor = this.getContainer().getActor();
+		actor.setFatigue(::Math.min(actor.getFatigueMax(), actor.getFatigue() + fatigue));
 	}
 });
