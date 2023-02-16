@@ -53,7 +53,7 @@
 
 	o.onBuildPerkTree <- function()
 	{
-		local perkTree = this.getPerkTree();
+		local perkTree = this.getContainer().getActor().getPerkTree();
 		local masteryPerks = [
 			"perk.mastery.axe",
 			"perk.mastery.bow",
