@@ -32,7 +32,7 @@ this.perk_rf_internal_hemorrhage <- ::inherit("scripts/skills/skill", {
 				local effect = ::new("scripts/skills/effects/rf_internal_hemorrhage_effect");
 				if (actor.getFaction() == ::Const.Faction.Player || actor.getFaction() == ::Const.Faction.PlayerAnimals)
 				{
-					effect.setActor(actor);
+					effect.setAttacker(actor);
 				}
 				effect.setDamage(hemorrhageDamage);
 				_targetEntity.getSkills().add(effect);
