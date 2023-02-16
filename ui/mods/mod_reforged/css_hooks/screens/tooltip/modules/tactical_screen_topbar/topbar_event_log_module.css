@@ -1,9 +1,27 @@
-.tactical-screen .topbar-event-log-module .l-event-logs-container
+.tactical-screen .new-log-container
 {
-	width: calc(100% - 70px);
+	bottom: 0;
+	top: 0.3rem;
+	left: 0.3rem;
+	width: 52rem;
+	height: 15.1rem;
+	position: relative;
+	background-image: url("coui://gfx/ui/skin/tactical_character_background.png");
+	z-index: 1;
 }
 
 .tactical-screen .topbar-event-log-module .ui-control.list
 {
-    background-size: 100% 41.1rem;
+	background-size: 39.0rem 41.1rem;
+}
+
+.tactical-screen .topbar-event-log-module .l-event-logs-container
+{
+	top: 0.0rem;
+	height: 13.0rem;
+}
+
+.tactical-screen .topbar-event-log-module .l-event-logs-container .entry
+{
+	margin-left: 1.0rem;
 }
