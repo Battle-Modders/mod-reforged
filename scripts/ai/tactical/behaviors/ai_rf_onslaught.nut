@@ -77,7 +77,7 @@ this.ai_rf_onslaught <- ::inherit("scripts/ai/tactical/behavior", {
 		}
 
 		score = score * (useScore * 0.01);
-		return ::Const.AI.Behavior.Score.RF_PushForward * score;
+		return ::Const.AI.Behavior.Score.RF_Onslaught * score;
 	}
 
 	function onExecute( _entity )

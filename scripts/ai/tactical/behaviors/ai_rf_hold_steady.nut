@@ -83,7 +83,7 @@ this.ai_rf_hold_steady <- ::inherit("scripts/ai/tactical/behavior", {
 		}
 
 		score = score * (useScore * 0.01);
-		return ::Const.AI.Behavior.Score.LegendHoldTheLine * score;
+		return ::Const.AI.Behavior.Score.RF_HoldSteady * score;
 	}
 
 	function onExecute( _entity )
