@@ -53,14 +53,12 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_lone_wolf"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_kata", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
     	}
