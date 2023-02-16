@@ -99,7 +99,7 @@
 	    }
 
 	    local offhand = this.getOffhandItem();
-	    if (offhand != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
+	    if (offhand != null && offhand.isItemType(::Const.Items.ItemType.Shield))
 	    {
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 	    }
