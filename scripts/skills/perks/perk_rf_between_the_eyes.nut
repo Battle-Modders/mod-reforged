@@ -16,11 +16,7 @@ this.perk_rf_between_the_eyes <- ::inherit("scripts/skills/skill", {
 	function onAdded()
 	{
 		local equippedItem = this.getContainer().getActor().getMainhandItem();
-		if (equippedItem != null)
-		{
-			this.getContainer().getActor().getItems().unequip(equippedItem);
-			this.getContainer().getActor().getItems().equip(equippedItem);
-		}
+		if (equippedItem != null) this.onEquip(equippedItem);
 	}
 
 	function onEquip( _item )

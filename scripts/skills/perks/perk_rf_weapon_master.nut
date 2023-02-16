@@ -92,12 +92,8 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		local equippedItem = this.getContainer().getActor().getMainhandItem();
-		if (equippedItem != null)
-		{
-			this.getContainer().getActor().getItems().unequip(equippedItem);
-			this.getContainer().getActor().getItems().equip(equippedItem);
-		}
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon != null) this.onEquip(weapon);
 	}
 
 	function onRemoved()

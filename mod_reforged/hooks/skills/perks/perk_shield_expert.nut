@@ -3,11 +3,7 @@
 	::mods_override(o, "onAdded", function() {
 		onAdded();
 		local shield = this.getContainer().getActor().getOffhandItem();
-		if (shield != null)
-		{
-			this.getContainer().getActor().getItems().unequip(shield);
-			this.getContainer().getActor().getItems().equip(shield);
-		}
+		if (shield != null) this.onEquip(shield);
 	});
 
 	o.onEquip <- function( _item )

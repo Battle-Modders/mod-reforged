@@ -3,11 +3,7 @@
 	::mods_override(o, "onAdded", function() {
 		onAdded();
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null)
-		{
-			this.getContainer().getActor().getItems().unequip(weapon);
-			this.getContainer().getActor().getItems().equip(weapon);
-		}
+		if (weapon != null) this.onEquip(weapon);
 	});
 
 	o.onEquip <- function( _item )
