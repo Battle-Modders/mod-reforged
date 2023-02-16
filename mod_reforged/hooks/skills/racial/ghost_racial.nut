@@ -3,8 +3,23 @@
 	o.create = function()
 	{
 		create();
+		this.m.Name = "Ghost";
+		this.m.Icon = "ui/orientation/ghost_01_orientation.png";
+		this.m.IsHidden = false;
 		if (this.isType(::Const.SkillType.Perk))
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
+	}
+
+	o.getTooltip <- function()
+	{
+		local ret = this.skill.getTooltip();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/melee_defense.png",
+			text = "When being attacked, gain " + ::MSU.Text.colorGreen("+10") + " Melee Defense and Ranged Defense for each tile between you and the attacker"
+		});
+		return ret;
 	}
 
 	o.onAdded <- function()
