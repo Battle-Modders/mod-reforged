@@ -97,3 +97,11 @@
 // This removes all duplicate CharacterNames. This line is redundant for Vanilla + Reforged because our additional names are already checked for duplicates
 // Any mod that adds names after ours may re-introduce duplicates. This is not game-breaking but still undesired
 ::Const.Strings.CharacterNames = ::MSU.Array.removeDuplicates(::Const.Strings.CharacterNames);
+
+foreach(characterName in ::Const.Strings.CharacterNames)
+{
+    ::Const.Strings.KnightNames.push("Sir " + characterName);
+}
+
+// This removes all duplicate KnightNames. This is important because Vanilla has KnightNames that also exist as CharacterNames.
+::Const.Strings.KnightNames = ::MSU.Array.removeDuplicates(::Const.Strings.KnightNames);
