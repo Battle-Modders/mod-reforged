@@ -215,6 +215,7 @@
 {
     local currentID = _startID;
     local itemList = [];
+    if (!_actor.isPlacedOnMap()) return itemList;  // Fixes bug when looking at tooltips during actions like rotate when the actors tile is unspecified
 
     local groundItems = _actor.getTile().Items;
     if (groundItems.len() != 0)
