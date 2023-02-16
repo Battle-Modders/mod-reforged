@@ -8,6 +8,19 @@
 	return obj;
 }
 
+// Removes all duplicates from an array and returns a new now-unique array
+::logInfo("Reforged::MSU -- adding ::MSU.Array.removeDuplicates");
+::MSU.Array.removeDuplicates <- function( _array )
+{
+	local arrayTable = {};
+	foreach (entry in _array)
+	{
+		arrayTable[entry] <- null;	// The value doesn't matter here. We just put in some random value
+	}
+
+	return ::MSU.Table.keys(arrayTable);
+}
+
 ::logInfo("Reforged::MSU -- adding ::MSU.Text.colorizeValue");
 ::MSU.Text.colorizeValue <- function( _value, _options = null )
 {
