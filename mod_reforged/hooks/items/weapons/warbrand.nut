@@ -15,10 +15,12 @@
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split", function(o) {
+			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 10;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/swing", function(o) {
+			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 10;
 		}));
 	}
