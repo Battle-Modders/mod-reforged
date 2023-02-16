@@ -100,4 +100,9 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " has disarmed " + ::Const.UI.getColorizedEntityName(_attacker) + " for " + effect.m.TurnsLeft + " turn(s)");
 		}
 	}
+
+	function onTurnStart()
+	{
+		this.removeSelf();
+	}
 });
