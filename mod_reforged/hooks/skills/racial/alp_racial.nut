@@ -1,4 +1,45 @@
 ::mods_hookExactClass("skills/racial/alp_racial", function(o) {
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.Name = "Alp";
+		this.m.Icon = "ui/orientation/alp_01_orientation.png";
+		this.m.IsHidden = false;
+	}
+
+	o.getTooltip <- function()
+	{
+		local ret = this.skill.getTooltip();
+		ret.extend([
+			{
+				id = 10,
+				type = "text",
+                icon = "ui/icons/melee_defense.png",
+				text = ::MSU.Text.colorRed("50%") + " reduced melee piercing damage received"
+			},
+			{
+				id = 11,
+				type = "text",
+                icon = "ui/icons/ranged_defense.png",
+				text = ::MSU.Text.colorRed("66%") + " reduced ranged piercing and ranged blunt damage received"
+			},
+			{
+				id = 12,
+				type = "text",
+                icon = "ui/icons/melee_defense.png",
+				text = ::MSU.Text.colorRed("66%") + " reduced cutting damage received from dogs and wolfs"
+			},
+			{
+				id = 13,
+				type = "text",
+                icon = "ui/icons/health.png",
+				text = "Whenever this character receives damage to Hitpoints, teleport all Alps to new random locations close to enemies"
+			}
+		]);
+		return ret;
+	}
+
 	o.onAdded <- function()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();

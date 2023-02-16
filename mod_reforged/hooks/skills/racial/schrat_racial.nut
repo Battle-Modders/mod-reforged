@@ -1,4 +1,59 @@
 ::mods_hookExactClass("skills/racial/schrat_racial", function(o) {
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.Name = "Schrat";
+		this.m.Icon = "ui/orientation/schrat_01_orientation.png";
+		this.m.IsHidden = false;
+	}
+
+	o.isHidden <- function()	// In Vanilla this skill is only shown while the Schrat has a shield
+	{
+		return this.skill.isHidden();
+	}
+
+	o.getName <- function()
+	{
+		if (this.getContainer().getActor().isArmedWithShield()) return (this.skill.getName() + " (Shielded)");
+		return this.skill.getName();
+	}
+
+	o.getTooltip <- function()
+	{
+		local ret = this.skill.getTooltip();
+		ret.extend([
+			{
+				id = 10,
+				type = "text",
+                icon = "ui/icons/melee_defense.png",
+				text = ::MSU.Text.colorRed("50%") + " reduced melee piercing damage received"
+			},
+			{
+				id = 11,
+				type = "text",
+                icon = "ui/icons/ranged_defense.png",
+				text = ::MSU.Text.colorRed("66%") + " reduced ranged piercing damage received"
+			},
+			{
+				id = 12,
+				type = "text",
+                icon = "ui/icons/campfire.png",
+				text = ::MSU.Text.colorGreen("100%") + " increased burning damage received"
+			}
+		]);
+		if (this.getContainer().getActor().isArmedWithShield())
+		{
+			ret.push({
+				id = 15,
+				type = "text",
+                icon = "skills/status_effect_86.png",
+				text = ::MSU.Text.colorRed("70%") + " reduced damage received while this character is shielded"
+			})
+		}
+		return ret;
+	}
+
 	o.onAdded <- function()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
