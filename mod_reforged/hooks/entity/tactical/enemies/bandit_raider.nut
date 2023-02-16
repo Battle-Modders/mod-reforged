@@ -55,7 +55,7 @@
 		}
 	}
 
-		function assignRandomEquipment()
+	function assignRandomEquipment()
 	{
 		local r;
 
