@@ -28,7 +28,7 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 	function onUpdateLevel()
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.m.Level == 11 || (actor.m.Level == 7 && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getBackground().getID() == "background.slave"))
+		if (actor.m.Level == 11 || (actor.m.Level == 7 && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getContainer().getActor().getBackground().getID() == "background.slave"))
 		{
 			this.removeSelf();
 
