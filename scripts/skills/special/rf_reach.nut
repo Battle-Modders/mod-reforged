@@ -7,7 +7,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "special.rf_reach";
 		this.m.Name = "Reach";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Reach is a depiction of how far a character\'s attacks can reach, making melee combat easier against targets with shorter reach.\n\n[Melee skill|Concept.MeleeSkill] is increased when attacking opponents with shorter reach, and reduced against opponents with longer reach, by " + ::MSU.Text.colorGreen(::Reforged.Reach.BonusPerReach) + " per difference in reach. It only applies when attacking a target adjacent to you or up to 2 tiles away with nothing between you and the target.\n\nAfter a successful hit, the target\'s reach advantage is lost until the attacker waits or ends their turn.\n\nReach grants no [Melee Skill|Concept.MeleeSkill] when attacking an opponent who has a shield. Characters who are rooted or have no [Zone of Control|Concept.ZoneOfControl] have no Reach.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Reach is a depiction of how far a character\'s attacks can reach, making melee combat easier against targets with shorter reach.\n\n[Melee skill|Concept.MeleeSkill] is increased when attacking opponents with shorter reach, and reduced against opponents with longer reach, by " + ::MSU.Text.colorGreen(::Reforged.Reach.BonusPerReach) + " per difference in reach. It only applies when attacking a target adjacent to you or up to 2 tiles away with nothing between you and the target.\n\nAfter a successful hit, the target\'s reach advantage is lost until the attacker waits or ends their turn.\n\nReach grants no [Melee Skill|Concept.MeleeSkill] when attacking an opponent who has a shield. Characters who are rooted, [stunned|Skill+stunned_effect], fleeing, or without a melee attack have no Reach.");
 		this.m.Icon = "skills/rf_reach_effect.png";
 		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast + 100;
@@ -58,22 +58,10 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		// Midas -- We need to switch the CurrentProperties with _properties because effects such as stunned_effect, when added,
-		// change the IsStunned attribute to true in _properties, but it isn't yet updated for CurrentProperties as _properties
-		// becomes CurrentProperties at the end of the current skill_container update. This causes `hasZoneOfControl` to
-		// return true because it uses CurrentProperties to check for IsStunned.
-		// This switcheroo is better than checking for _properties.IsStunned because we want to use hasZoneOfControl to
-		// be able to check for all (potentially new modded) conditions which may remove zone of control. Secondly, without the switcheroo
-		// when the stunned effect is removed, the ReachMult will still remain 0 as while _properties.IsStunned will be false,
-		// for CurrentProperties it will still be true, causing hasZoneOfControl to return false.
-		local actor = this.getContainer().getActor();
-		local currentProperties = actor.getCurrentProperties();
-		actor.m.CurrentProperties = _properties;
-		if (!this.getContainer().getActor().hasZoneOfControl() || _properties.IsRooted)
+		if (_properties.IsRooted || _properties.IsStunned || this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing || this.getContainer().getAttackOfOpportunity() == null)
 		{
 			_properties.ReachMult = 0.0;
 		}
-		actor.m.CurrentProperties = currentProperties;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
