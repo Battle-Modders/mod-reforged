@@ -247,9 +247,9 @@ local vanillaDescriptions = [
  					"Additional damage ignores armor. This bonus is " + ::MSU.Text.colorGreen("25%") + " for one-handed weapons and " + ::MSU.Text.colorGreen("15%") + " for two-handed weapons.",
  					"Gain " + ::MSU.Text.colorGreen("+2") + " [Reach|Concept.Reach] when engaged with a single enemy, and " + ::MSU.Text.colorGreen("+1") + " when engaged with a maximum of 2 enemies."
  				]
- 			}]
-	 	}),
-	 	Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks with a [Base|Concept.BaseAttribute] [Action Point|Concept.ActionPoints] cost of 4 or less that are either [Lunge|Skill+lunge_skill] or have a Base Maximum Range of 1 tile.")
+ 			}],
+ 			Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks with a [Base|Concept.BaseAttribute] [Action Point|Concept.ActionPoints] cost of 4 or less that are either [Lunge|Skill+lunge_skill] or have a Base Maximum Range of 1 tile.")
+	 	})
 	},
 	{
 		ID = "perk.indomitable",
