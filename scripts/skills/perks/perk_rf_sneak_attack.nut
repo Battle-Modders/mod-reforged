@@ -94,8 +94,11 @@ this.perk_rf_sneak_attack <- ::inherit("scripts/skills/skill", {
 	{
 		if (!this.isEnabled()) return;
 
-		if ((!_skill.isRanged() && this.m.Enemies.find(_targetTile.getEntity().getID()) != null) ||
-			(_skill.isRanged() && this.m.EnemiesHitWithRanged.find(_targetEntity.getID()) == null))
+		local targetEntity = _targetTile.getEntity();
+		if (targetEntity == null) return;
+
+		if ((!_skill.isRanged() && this.m.Enemies.find(targetEntity.getID()) != null) ||
+			(_skill.isRanged() && this.m.EnemiesHitWithRanged.find(targetEntity.getID()) == null))
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
