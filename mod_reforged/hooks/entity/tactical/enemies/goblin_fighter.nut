@@ -113,7 +113,7 @@
 		    	}
 			}
 
-			if (::Reforged.Config.IsLegendaryDifficulty && this.m.Skills.has("actives.throw_net"))
+			if (::Reforged.Config.IsLegendaryDifficulty && this.m.Skills.hasSkill("actives.throw_net"))
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_angler"));
 			}
