@@ -39,7 +39,6 @@
 		"character-stats.ChanceToHitHead",
 		"character-stats.Initiative",
 		"character-stats.Bravery",
-		"character-stats.Talent",
 
 		"character-screen.left-panel-header-module.Experience",
 		"character-screen.left-panel-header-module.Level",
@@ -52,6 +51,20 @@
 		local desc = ::TooltipScreen.m.TooltipEvents.general_queryUIElementTooltipData(::Reforged.getDummyPlayer().getID(), concept, null);
 		::Reforged.NestedTooltips.Tooltips.Concept[split(concept, ".").top()] <- ::MSU.Class.CustomTooltip(@(data) desc);
 	}
+
+	// Manual adding of 'Talent' because that concepts description never got past 'TODO' in vanilla
+	::Reforged.NestedTooltips.Tooltips.Concept["Talent"] <- ::MSU.Class.CustomTooltip(@(data) [
+		{
+			id = 1,
+			type = "title",
+			text = "Talent"
+		},
+		{
+			id = 2,
+			type = "description",
+			text = "Talents are the stars next to some of the attributes of a brother. Talents improve the minimum and maximum possible rolls for those attribute during a level-up depending on the number of stars."
+		}
+	]);
 
 	::Reforged.Mod.Tooltips.setTooltips(::Reforged.NestedTooltips.Tooltips);
 });
