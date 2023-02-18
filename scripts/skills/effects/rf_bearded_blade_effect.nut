@@ -95,7 +95,7 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 
 		local effect = ::new("scripts/skills/effects/disarmed_effect");
 		_attacker.getSkills().add(effect);
-		effect.setTurns(2);
+		if (!effect.isGarbage()) effect.setTurns(2); // if effect wasn't removed during addition
 
 		if (!this.getContainer().getActor().isHiddenToPlayer() && _attacker.getTile().IsVisibleForPlayer)
 		{
