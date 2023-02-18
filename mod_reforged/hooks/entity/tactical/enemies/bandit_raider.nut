@@ -55,7 +55,7 @@
 		}
 	}
 
-	function assignRandomEquipment()
+	o.assignRandomEquipment = function()
 	{
 		local r;
 
