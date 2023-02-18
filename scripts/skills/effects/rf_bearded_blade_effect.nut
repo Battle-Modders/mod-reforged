@@ -67,7 +67,7 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 	{
 		this.removeSelf();
 
-		if (!_targetEntity.isAlive() || ::Math.rand(1, 100) > this.m.HitChance)
+		if (!_targetEntity.isAlive() || ::Math.rand(1, 100) > this.m.HitChance || _targetEntity.getMainhandItem() == null)
 			return;
 
 		local effect = ::new("scripts/skills/effects/disarmed_effect");
@@ -89,7 +89,9 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 		if (_skill.isRanged() || !_attacker.isAlive() || ::Math.rand(1, 100) <= this.m.HitChance)
 			return;
 
-		this.removeSelf();
+		local weapon = _attacker.getMainhandItem();
+		if (weapon == null)
+			return;
 
 		local effect = ::new("scripts/skills/effects/disarmed_effect");
 		_attacker.getSkills().add(effect);
