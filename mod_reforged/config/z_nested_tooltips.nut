@@ -19,6 +19,10 @@
 			Turn = ::MSU.Class.BasicTooltip("Turn", ::Reforged.Mod.Tooltips.parseString("Combat in battle brothers is turn-based. Each combat consists of a series of [rounds|Concept.Round]. During a round, characters act in turns. A character\'s position in the turn order is determined by the character\'s [Initiative|Concept.Initiative] relative to other characters.\n\n[Effects|Concept.StatusEffect] that last a certain number of turns last until the character has started or ended their turn that many times, depending on whether the [effect|Concept.StatusEffect] expires at the start or end of the turn respectively.")),
 			Round = ::MSU.Class.BasicTooltip("Round", ::Reforged.Mod.Tooltips.parseString("Combat in battle brothers is turn-based. Each combat consists of a series of rounds. During a round, characters act in [turns|Concept.Turn]. A round ends when all characters have ended their [turns|Concept.Turn].")),
 			ZoneOfControl = ::MSU.Class.BasicTooltip("Zone of Control", ::Reforged.Mod.Tooltips.parseString("Most melee characters exert Zone of Control on their surrounding tiles. Trying to move out of enemy Zone of Control will trigger one free attack from each controlling enemy until the first attack hit or every attack missed. A hit will cancel the movement.")),
+		},
+		Keyword = {
+			Trapped = ::MSU.Class.BasicTooltip("Trapped", ::Reforged.Mod.Tooltips.parseString("A trapped character is unable to move until they are freed. This is caused by effects like [Netted|Skill+net_effect], [Webbed|Skill+web_effect] and [Rooted|Skill+rooted_effect].")),
+			OutOfAction = ::MSU.Class.BasicTooltip("Out of Action", ::Reforged.Mod.Tooltips.parseString("A character that is out of action will have their [turns|Concept.Turn] skipped. This is caused by effects like [Stunned|Skill+stunned_effect], [Sleeping|Skill+sleeping_effect] and [Nightmares|Skill+nightmare_effect].")),
 		}
 	},
 	AutoConcepts = [
