@@ -16,6 +16,7 @@
 
 		this.addSkill(::MSU.new("scripts/skills/actives/round_swing", function(o) {
 			o.m.ActionPointCost -= 1;
+			o.m.FatigueCost -= 5;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
