@@ -1665,6 +1665,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_TripArtist = ::UPD.getDescription({
  		Fluff = "\'Let me take you on a trip to the floor.\'",
+ 		Requirement = "Equipped Net",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
