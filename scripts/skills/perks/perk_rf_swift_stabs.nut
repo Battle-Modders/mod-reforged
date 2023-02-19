@@ -24,7 +24,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 	function isEnabled()
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Dagger, true))
+		if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Dagger, true, true))
 		{
 			return true;
 		}

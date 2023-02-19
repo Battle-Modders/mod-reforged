@@ -18,7 +18,7 @@ this.perk_rf_swordmaster_abstract <- ::inherit("scripts/skills/skill", {
 		if (this.getContainer().getActor().isDisarmed()) return false;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sword, true))
+		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sword, true, true))
 		{
 			return false;
 		}

@@ -87,7 +87,7 @@ this.rf_swordmasters_finesse_effect <- ::inherit("scripts/skills/skill", {
 	function isEnabled()
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sword, true))
+		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sword, true, true))
 		{
 			return false;
 		}
