@@ -19,6 +19,8 @@ this.rf_immersive_damage_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
+		return;
+
 		if (_targetEntity == null || !_skill.isAttack() || this.m.IsUpdating)
 		{
 			return;
@@ -49,6 +51,8 @@ this.rf_immersive_damage_effect <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
+		return;
+
 		if (!_targetEntity.isAlive() || _targetEntity.isDying() || this.getContainer().getActor().isHiddenToPlayer() || !_targetEntity.getTile().IsVisibleForPlayer || (_damageInflictedHitpoints == 0 && _damageInflictedArmor == 0))
 		{
 			return;
