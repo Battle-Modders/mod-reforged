@@ -1,5 +1,5 @@
 ::Reforged.Config <- {
-	IsLegendaryDifficulty = false,
+	IsLegendaryDifficulty = true,
 }
 
 ::Reforged.DummyPlayer <- null;
