@@ -39,4 +39,8 @@
 				break;
 		}
 	}
+
+	// We exported everything this function does into its own effect (rf_sapling_harvest).
+	// By overwriting this method we also nullify all other mods hooking into this before us but there is clean solution to this
+	o.onDamageReceived = function( _attacker, _damageHitpoints, _damageArmor ) {};
 });
