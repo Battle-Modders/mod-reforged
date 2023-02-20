@@ -4,7 +4,7 @@
 	{
 		create();
 		this.m.Name = "Zweihander";
-		this.m.Reach = 6;
+		this.m.Reach = 7;
 	}
 
 	o.onEquip = function()
