@@ -91,5 +91,11 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 			this.removeSelf();
 		}
 	}
+
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		if (this.m.LineBreakerAdded) this.getContainer().removeByID("actives.rf_line_breaker");
+	}
 });
 
