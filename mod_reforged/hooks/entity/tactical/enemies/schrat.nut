@@ -54,6 +54,7 @@
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
 		this.m.Skills.add(this.new("scripts/skills/racial/schrat_racial"));
+		this.m.Skills.add(this.new("scripts/skills/effects/rf_sapling_harvest_effect"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
