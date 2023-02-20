@@ -87,6 +87,7 @@ this.perk_rf_eyes_up <- ::inherit("scripts/skills/skill", {
 
 	function onCombatFinished()
 	{
+		this.skill.onCombatFinished();
 		this.m.TargetTile = null;
 		this.m.ActorsAppliedTo.clear();
 	}

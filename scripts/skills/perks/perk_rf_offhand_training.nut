@@ -135,6 +135,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 
 	function onCombatFinished()
 	{
+		this.skill.onCombatFinished();
 		this.m.IsFreeUse = false;
 		this.m.IsSpent = true;
 	}
