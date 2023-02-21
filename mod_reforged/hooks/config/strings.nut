@@ -1669,7 +1669,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The first attack every [turn|Concept.Turn] against an adjacent target will apply the [staggered|Skill+staggered_effect] effect.",
+				"The first successful melee attack every [turn|Concept.Turn] against an adjacent target will apply the [staggered|Skill+staggered_effect] effect.",
 				"When wielding a weapon with a [Reach|Concept.Reach] of less than 4, gain the difference in [Reach|Concept.Reach] up to 4."
 			]
 		}]
