@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/perks/perk_shield_expert", function (o) {
+::mods_hookExactClass("skills/perks/perk_recover", function (o) {
 	local create = o.create;
     o.create = function()
     {
