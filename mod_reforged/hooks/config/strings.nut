@@ -1327,7 +1327,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Every attack, which is either from a mace or does at least " + ::MSU.Text.colorRed(10) + " damage, applies the [Rattled|Skill+rf_rattled_effect] for one [turn|Concept.Turn]."
+				"Every attack, which is either from a mace or does at least " + ::MSU.Text.colorRed(10) + " damage, applies the [Rattled|Skill+rf_rattled_effect] effect for one [turn|Concept.Turn]."
 			]
 		}]
  	}),
