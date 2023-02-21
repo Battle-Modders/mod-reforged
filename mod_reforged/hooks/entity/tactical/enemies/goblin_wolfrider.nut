@@ -53,6 +53,8 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 
 		// Reforged
+		this.m.BaseProperties.ActionPoints = 7;
+		this.m.BaseProperties.MovementAPCostAdditional -= 1;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_kata", function(o) {
 			o.m.IsForceEnabled = true;
