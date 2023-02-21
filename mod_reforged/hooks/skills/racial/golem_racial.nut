@@ -19,7 +19,7 @@
 			case ::Const.Damage.DamageType.Blunt:
 				if (_skill != null)
 				{
-					if (_skill.isRanged())
+					if (_skill.isRanged())	// In Vanilla this reduction only exists for slinging of stones. Here it expands to bolas and potential future blunt ranged attacks
 					{
 						_properties.DamageReceivedRegularMult *= 0.33;
 					}
@@ -29,55 +29,22 @@
 			case ::Const.Damage.DamageType.Piercing:
 				if (_skill == null)
 				{
-					_properties.DamageReceivedRegularMult *= 0.33;
+					_properties.DamageReceivedRegularMult *= 0.5;
 				}
 				else
 				{
 					if (_skill.isRanged())
 					{
-						if (::MSU.isNull(_skill.getItem()))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else if (!_skill.getItem().isItemType(::Const.Items.ItemType.Weapon))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else
-						{
-							if (_skill.getItem().isWeaponType(::Const.Items.WeaponType.Bow))
-							{
-								_properties.DamageReceivedRegularMult *= 0.1;
-							}
-							else if (_skill.getItem().isWeaponType(::Const.Items.WeaponType.Crossbow))
-							{
-								_properties.DamageReceivedRegularMult *= 0.33;
-							}
-							else if (_skill.getItem().isWeaponType(::Const.Items.WeaponType.Firearm))
-							{
-								_properties.DamageReceivedRegularMult *= 0.25;
-							}
-							else if (_skill.getItem().isWeaponType(::Const.Items.WeaponType.Throwing))
-							{
-								if (_skill.getID() == "actives.throw_spear") _properties.DamageReceivedRegularMult *= 0.5;
-								else _properties.DamageReceivedRegularMult *= 0.25;
-							}
-						}
+						_properties.DamageReceivedRegularMult *= 0.33;
+						/* This streamlines the following differences in vanilla:
+							Arrows dealing only 10% damage
+							javelins and handgonne dealing only 25% damage
+							one-use throwing spear dealing 100% damage
+						*/
 					}
 					else
 					{
-						if (::MSU.isNull(_skill.getItem()))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else if (!_skill.getItem().isItemType(::Const.Items.ItemType.Weapon))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else
-						{
-							_properties.DamageReceivedRegularMult *= 0.5;
-						}
+						_properties.DamageReceivedRegularMult *= 0.5;
 					}
 				}
 				break;

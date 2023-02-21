@@ -9,6 +9,8 @@
 			case ::Const.Damage.DamageType.Burning:
 				_properties.DamageReceivedRegularMult *= 0.66;
 				break;
+
+			// In Vanilla they also take reduced damage from firearms and mortars. But those are currently not covered here
 		}
 	}
 });
