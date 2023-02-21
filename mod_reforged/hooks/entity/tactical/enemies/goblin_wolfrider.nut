@@ -4,7 +4,7 @@
 	    this.goblin.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.GoblinWolfrider);
-		b.AdditionalActionPointCost = 1;
+		// b.AdditionalActionPointCost = 1;
 		// b.DamageDirectMult = 1.25;
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInSpears = true;
@@ -53,6 +53,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 
 		// Reforged
+		this.m.Skills.add(::new("scripts/skills/racial/rf_goblin_wolfrider_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_kata", function(o) {
 			o.m.IsForceEnabled = true;
