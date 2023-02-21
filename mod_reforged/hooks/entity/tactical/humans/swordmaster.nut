@@ -49,7 +49,7 @@
 	    if (weapon == null) return;
 
 	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	    if (weapon.isItemType(::Const.Items.ItemType.BFFencing))
+	    if (weapon.isItemType(::Const.Items.ItemType.RF_Fencing))
 	    {
 	    	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_fencer"));
 	    	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_precise"));

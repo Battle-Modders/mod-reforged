@@ -21,7 +21,7 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 		if (this.getContainer().getActor().isDisarmed()) return false;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isItemType(::Const.Items.WeaponType.BFFencing))
+		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.RF_Fencing))
 		{
 			return false;
 		}
