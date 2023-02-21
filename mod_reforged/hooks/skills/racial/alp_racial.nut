@@ -6,59 +6,41 @@
 			case null:
 				break;
 
-			case ::Const.Damage.DamageType.Burning:
-				_properties.DamageReceivedRegularMult *= 1.01; // To balance Handgonne (0.75 x 0.33) + (0.25 * 1.01) = 0.5 where 0.5 is the vanilla damage from handgonne
+			case ::Const.Damage.DamageType.Blunt:
+				if (_skill != null)
+				{
+					if (_skill.isRanged())	// In Vanilla this reduction only exists for slinging of stones. Here it expands to bolas and potential future blunt ranged attacks
+					{
+						_properties.DamageReceivedRegularMult *= 0.33;
+					}
+				}
 				break;
 
 			case ::Const.Damage.DamageType.Piercing:
-				if (_skill != null)
+				if (_skill == null)
+				{
+					_properties.DamageReceivedRegularMult *= 0.5;
+				}
+				else
 				{
 					if (_skill.isRanged())
 					{
-						if (::MSU.isNull(_skill.getItem()))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else if (!_skill.getItem().isItemType(::Const.Items.ItemType.Weapon))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else
-						{
-							if (_skill.getItem().isWeaponType(::Const.Items.WeaponType.Bow))
-							{
-								_properties.DamageReceivedRegularMult *= 0.1;
-							}
-							else if (_skill.getItem().isWeaponType(::Const.Items.WeaponType.Crossbow) || _skill.getItem().isWeaponType(::Const.Items.WeaponType.Firearm))
-							{
-								_properties.DamageReceivedRegularMult *= 0.33;
-							}
-							else if (_skill.getItem().isWeaponType(::Const.Items.WeaponType.Throwing))
-							{
-								if (_skill.getID() == "actives.throw_spear") _properties.DamageReceivedRegularMult *= 0.5;
-								else _properties.DamageReceivedRegularMult *= 0.25;
-							}
-						}
+						_properties.DamageReceivedRegularMult *= 0.33;
+						/* This streamlines the following differences in vanilla:
+							Arrows dealing only 10% damage
+							javelins dealing only 25% damage
+							handgonne & one-use throwing spear dealing 50% damage
+						*/
 					}
 					else
 					{
-						if (::MSU.isNull(_skill.getItem()))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else if (!_skill.getItem().isItemType(::Const.Items.ItemType.Weapon))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else
-						{
-							_properties.DamageReceivedRegularMult *= 0.5;
-						}
+						_properties.DamageReceivedRegularMult *= 0.5;
 					}
 				}
 				break;
 
 			case ::Const.Damage.DamageType.Cutting:
+				// Maybe replace this with some sort of isAnimal or isBeast check on the attacker?
 				if (_skill != null && (_skill.getID() == "actives.wardog_bite" || _skill.getID() == "actives.wolf_bite" || _skill.getID() == "actives.warhound_bite"))
 				{
 					_properties.DamageReceivedRegularMult *= 0.33;

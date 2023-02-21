@@ -7,33 +7,27 @@
 				break;
 
 			case ::Const.Damage.DamageType.Burning:
-				_properties.DamageReceivedRegularMult *= 1.33;
+				_properties.DamageReceivedRegularMult *= 2.0;	// In Vanilla this is 1.33 for firelance and 3.0 for burning ground
 				break;
 
 			case ::Const.Damage.DamageType.Piercing:
-				if (_skill != null)
+				if (_skill == null)
+				{
+					_properties.DamageReceivedRegularMult *= 0.50;
+				}
+				else
 				{
 					if (_skill.isRanged())
 					{
-						if (::MSU.isNull(_skill.getItem()))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else if (!_skill.getItem().isItemType(::Const.Items.ItemType.Weapon))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else
-						{
-							if (_skill.getItem().isWeaponType(::Const.Items.WeaponType.Throwing))
-							{
-								_properties.DamageReceivedRegularMult *= 0.5;
-							}
-							else
-							{
-								_properties.DamageReceivedRegularMult *= 0.25;
-							}
-						}
+						_properties.DamageReceivedRegularMult *= 0.25;
+						/* This streamlines the following differences in vanilla:
+							javelins dealing 50% damage
+							handgonne and one-use throwing spear dealing 100% damage
+						*/
+					}
+					else
+					{
+						_properties.DamageReceivedRegularMult *= 0.50;	// New: In Vanilla piercing melee attacks are not reduced
 					}
 				}
 				break;

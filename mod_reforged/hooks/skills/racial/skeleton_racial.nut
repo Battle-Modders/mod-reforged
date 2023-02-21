@@ -11,49 +11,24 @@
 				break;
 
 			case ::Const.Damage.DamageType.Piercing:
-				if (_skill != null)
+				if (_skill == null)
+				{
+					_properties.DamageReceivedRegularMult *= 0.5;
+				}
+				else
 				{
 					if (_skill.isRanged())
 					{
-						if (::MSU.isNull(_skill.getItem()))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else if (!_skill.getItem().isItemType(::Const.Items.ItemType.Weapon))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else
-						{
-							if (_skill.getItem().isWeaponType(::Const.Items.WeaponType.Bow))
-							{
-								_properties.DamageReceivedRegularMult *= 0.1;
-							}
-							else if (_skill.getItem().isWeaponType(::Const.Items.WeaponType.Crossbow) || _skill.getItem().isWeaponType(::Const.Items.WeaponType.Firearm))
-							{
-								_properties.DamageReceivedRegularMult *= 0.33;
-							}
-							else if (_skill.getItem().isWeaponType(::Const.Items.WeaponType.Throwing))
-							{
-								if (_skill.getID() == "actives.throw_spear") _properties.DamageReceivedRegularMult *= 0.5;
-								else _properties.DamageReceivedRegularMult *= 0.25;
-							}
-						}
+						_properties.DamageReceivedRegularMult *= 0.33;
+						/* This streamlines the following differences in vanilla:
+							Arrows dealing only 10% damage
+							javelins dealing only 25% damage
+							one-use throwing spear dealing 50% damage
+						*/
 					}
 					else
 					{
-						if (::MSU.isNull(_skill.getItem()))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else if (!_skill.getItem().isItemType(::Const.Items.ItemType.Weapon))
-						{
-							_properties.DamageReceivedRegularMult *= 0.33;
-						}
-						else
-						{
-							_properties.DamageReceivedRegularMult *= 0.5;
-						}
+						_properties.DamageReceivedRegularMult *= 0.5;
 					}
 				}
 				break;
