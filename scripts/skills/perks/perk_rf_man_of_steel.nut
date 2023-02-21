@@ -69,7 +69,7 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 
 	function getBonus( _bodyPart )
 	{
-		return ::Math.max(100, this.getContainer().getActor().getArmor(_bodyPart) * 0.1);
+		return ::Math.min(100, this.getContainer().getActor().getArmor(_bodyPart) * 0.1);
 	}
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
