@@ -4,5 +4,6 @@
 	{
 		create();
 		this.m.Reach = 0;
+		this.addWeaponType(::Const.Items.WeaponType.Sling);
 	}
 });
