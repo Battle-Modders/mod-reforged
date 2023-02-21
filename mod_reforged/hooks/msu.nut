@@ -184,6 +184,40 @@
 	}
 });
 
+::logInfo("Reforged::MSU -- adding BaseItemScript for named_shield");
+::mods_hookExactClass("items/shields/named/named_shield", function(o) {
+	o.m.BaseItemScript <- null;
+
+	o.getValuesForRandomize <- function()
+	{
+		if (this.m.BaseItemScript == null) return {};
+
+		local baseItem = ::new(this.m.BaseItemScript);
+		return {
+			Condition = baseItem.m.Condition,
+			ConditionMax = baseItem.m.ConditionMax,
+			MeleeDefense = baseItem.m.MeleeDefense,
+			RangedDefense = baseItem.m.RangedDefense,
+			StaminaModifier = baseItem.m.StaminaModifier
+		};
+	}
+
+	o.setValuesBeforeRandomize <- function( _values )
+	{
+		foreach (key, value in _values)
+		{
+			this.m[key] = value;
+		}
+	}
+
+	local randomizeValues = o.randomizeValues;
+	o.randomizeValues <- function()
+	{
+		this.setValuesBeforeRandomize(this.getValuesForRandomize());
+		randomizeValues();
+	}
+});
+
 ::logInfo("Reforged::MSU -- adding onSkillsUpdated event");
 ::mods_hookNewObject("skills/skill_container", function(o) {
 	local update = o.update;
