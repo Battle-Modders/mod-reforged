@@ -14,12 +14,10 @@
 		}
 	}
 
-	function onMissed( _attacker, _skill )
+	local onUpdate = o.onUpdate;
+	o.onUpdate = function( _properties )
 	{
-		local actor = this.getContainer().getActor();
-		if (actor.isArmedWithShield())
-		{
-			actor.setFatigue(::Math.max(0, actor.getFatigue() - ::Const.Combat.FatigueLossOnBeingMissed));
-		}
+		onUpdate(_properties);
+		if (this.getContainer().getActor().isArmedWithShield()) _properties.FatigueLossOnAnyAttackMult = 0.0;
 	}
 });
