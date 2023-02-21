@@ -59,7 +59,7 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if (::MSU.isNull(this.m.Ally) || !this.m.Ally.isPlacedOnMap() || this.getContainer().getActor().getCurrentProperties().IsRooted || this.getContainer().getActor().getCurrentProperties().IsStunned)
+		if (::MSU.isNull(this.m.Ally) || !this.m.Ally.isPlacedOnMap() || _properties.IsRooted || _properties.IsStunned)
 		{
 			this.removeSelf();
 			this.onRemoved();
