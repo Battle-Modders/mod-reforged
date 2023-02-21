@@ -5,6 +5,7 @@
 		create();
 		this.m.Name = "Zweihander";
 		this.m.Reach = 7;
+		this.m.ShieldDamage = 24;
 	}
 
 	o.onEquip = function()
