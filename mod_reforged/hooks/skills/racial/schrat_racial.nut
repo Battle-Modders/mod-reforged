@@ -1,4 +1,21 @@
 ::mods_hookExactClass("skills/racial/schrat_racial", function(o) {
+	o.onAdded <- function()
+	{
+		local base = this.getContainer().getActor().getBaseProperties();
+
+		base.IsAffectedByInjuries = false;
+		base.IsAffectedByNight = false;
+		base.IsImmuneToBleeding = true;
+		base.IsImmuneToDisarm = true;
+		base.IsImmuneToKnockBackAndGrab = true;
+		base.IsImmuneToPoison = true;
+		base.IsImmuneToRoot = true;
+		base.IsImmuneToStun = true;
+
+		// This is purely a setting for AI decisions:
+		base.IsIgnoringArmorOnAttack = true;
+	}
+
 	o.onBeforeDamageReceived = function( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)
