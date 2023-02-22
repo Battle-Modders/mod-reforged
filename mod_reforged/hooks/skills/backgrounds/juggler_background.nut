@@ -11,7 +11,7 @@
 			"pg.rf_flail": 3,
 			"pg.rf_polearm": 1.5
 		};
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+		this.m.PerkTree = ::DynamicPerks.Class.PerkTree({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					::MSU.Class.WeightedContainer([

@@ -23,7 +23,7 @@
 			"pg.rf_shield": 0,
 			"pg.rf_swift": 3
 		};
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+		this.m.PerkTree = ::DynamicPerks.Class.PerkTree({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					"pg.rf_trapper"

@@ -8,7 +8,7 @@
 			"pg.rf_crossbow": 3,
 			"pg.rf_throwing": 2
 		};
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+		this.m.PerkTree = ::DynamicPerks.Class.PerkTree({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [],
 				"pgc.rf_shared_1": [],

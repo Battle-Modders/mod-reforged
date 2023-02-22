@@ -10,7 +10,7 @@
 			"pg.rf_resilient": 5,
 			"pg.rf_sturdy": 3
 		};
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+		this.m.PerkTree = ::DynamicPerks.Class.PerkTree({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					"pg.rf_wildling"

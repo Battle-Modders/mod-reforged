@@ -9,7 +9,7 @@
 			"pg.rf_crossbow": 0,
 			"pg.rf_ranged": 0
 		};
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+		this.m.PerkTree = ::DynamicPerks.Class.PerkTree({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 	                ::MSU.Class.WeightedContainer([

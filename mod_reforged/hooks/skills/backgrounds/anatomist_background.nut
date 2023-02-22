@@ -13,7 +13,7 @@
 			"pg.rf_tactician": 4,
 			"pg.rf_talented": 4
 		};
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+		this.m.PerkTree = ::DynamicPerks.Class.PerkTree({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					"pg.rf_trapper"
