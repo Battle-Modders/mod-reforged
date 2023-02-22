@@ -5,9 +5,9 @@
 		this.setRenderCallbackEnabled(true);
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.Spider);
-		b.IsAffectedByNight = false;
-		b.IsImmuneToPoison = true;
-		b.IsImmuneToDisarm = true;
+		// b.IsAffectedByNight = false;		// Now handled by racial effect
+		// b.IsImmuneToPoison = true;		// Now handled by racial effect
+		// b.IsImmuneToDisarm = true;		// Now handled by racial effect
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 25)
 		// {
