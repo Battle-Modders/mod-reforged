@@ -5,8 +5,8 @@
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.Serpent);
 		b.Initiative += this.Math.rand(0, 50);
-		b.IsAffectedByNight = false;
-		b.IsImmuneToDisarm = true;
+		// b.IsAffectedByNight = false;		// Now handled by racial effect
+		// b.IsImmuneToDisarm = true;		// Now handled by racial effect
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
 		// {
