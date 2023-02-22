@@ -93,6 +93,8 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 		if (weapon == null)
 			return;
 
+		this.removeSelf();
+
 		local effect = ::new("scripts/skills/effects/disarmed_effect");
 		_attacker.getSkills().add(effect);
 		if (!effect.isGarbage()) effect.setTurns(2); // if effect wasn't removed during addition
