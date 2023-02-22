@@ -1,4 +1,14 @@
 ::mods_hookExactClass("skills/racial/skeleton_racial", function(o) {
+	o.onAdded <- function()
+	{
+		local base = this.getContainer().getActor().getBaseProperties();
+
+		base.IsAffectedByInjuries = false;
+		base.IsAffectedByNight = false;
+		base.IsImmuneToBleeding = true;
+		base.IsImmuneToPoison = true;
+	}
+
 	o.onBeforeDamageReceived = function( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)
