@@ -71,5 +71,6 @@
 	    assignRandomEquipment();
 
 	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
+	    this.m.Skills.removeByID("perk.rf_two_for_one");
 	}
 });
