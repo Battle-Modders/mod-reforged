@@ -4,9 +4,9 @@
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.Vampire);
-		b.IsAffectedByNight = false;
-		b.IsAffectedByInjuries = false;
-		b.IsImmuneToPoison = true;
+		// b.IsAffectedByNight = false;			// Now handled by racial effect
+		// b.IsAffectedByInjuries = false;		// Now handled by racial effect
+		// b.IsImmuneToPoison = true;			// Now handled by racial effect
 		// b.IsSpecializedInSwords = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
