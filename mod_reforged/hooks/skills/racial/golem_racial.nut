@@ -1,4 +1,17 @@
 ::mods_hookExactClass("skills/racial/golem_racial", function(o) {
+	o.onAdded <- function()
+	{
+		local base = this.getContainer().getActor().getBaseProperties();
+
+		base.IsAffectedByInjuries = false;
+		base.IsAffectedByNight = false;
+		base.IsImmuneToBleeding = true;
+		base.IsImmuneToDisarm = true;
+		base.IsImmuneToFire = true;
+		base.IsImmuneToPoison = true;
+		base.IsImmuneToStun = true;
+	}
+
 	o.onBeforeDamageReceived = function( _attacker, _skill, _hitInfo, _properties )
 	{
 		if (_skill != null && _skill.getID() == "actives.throw_golem")

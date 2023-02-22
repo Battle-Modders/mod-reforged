@@ -4,13 +4,13 @@
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.SandGolem);
-		b.IsAffectedByNight = false;
-		b.IsImmuneToDisarm = true;
-		b.IsImmuneToBleeding = true;
-		b.IsImmuneToPoison = true;
-		b.IsImmuneToStun = true;
-		b.IsImmuneToFire = true;
-		b.IsAffectedByInjuries = false;
+		// b.IsAffectedByNight = false;			// Now handled by racial effect
+		// b.IsImmuneToDisarm = true;			// Now handled by racial effect
+		// b.IsImmuneToBleeding = true;			// Now handled by racial effect
+		// b.IsImmuneToPoison = true;			// Now handled by racial effect
+		// b.IsImmuneToStun = true;				// Now handled by racial effect
+		// b.IsImmuneToFire = true;				// Now handled by racial effect
+		// b.IsAffectedByInjuries = false;		// Now handled by racial effect
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
