@@ -5,16 +5,16 @@
 		this.setRenderCallbackEnabled(true);
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.Ghost);
-		b.IsImmuneToBleeding = true;
-		b.IsImmuneToPoison = true;
-		b.IsImmuneToKnockBackAndGrab = true;
-		b.IsImmuneToStun = true;
-		b.IsImmuneToRoot = true;
-		b.IsImmuneToDisarm = true;
-		b.IsImmuneToFire = true;
-		b.IsIgnoringArmorOnAttack = true;
-		b.IsAffectedByNight = false;
-		b.IsAffectedByInjuries = false;
+		// b.IsImmuneToBleeding = true;				// Now handled by racial effect
+		// b.IsImmuneToPoison = true;				// Now handled by racial effect
+		// b.IsImmuneToKnockBackAndGrab = true;		// Now handled by racial effect
+		// b.IsImmuneToStun = true;					// Now handled by racial effect
+		// b.IsImmuneToRoot = true;					// Now handled by racial effect
+		// b.IsImmuneToDisarm = true;				// Now handled by racial effect
+		// b.IsImmuneToFire = true;					// Now handled by racial effect
+		// b.IsIgnoringArmorOnAttack = true;		// Now handled by racial effect
+		// b.IsAffectedByNight = false;				// Now handled by racial effect
+		// b.IsAffectedByInjuries = false;			// Now handled by racial effect
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 140)
 		// {
