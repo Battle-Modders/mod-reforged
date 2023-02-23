@@ -43,6 +43,29 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		return tooltip;
 	}
 
+	function getNestedTooltip()
+	{
+		local tooltip = this.rf_swordmaster_stance_abstract_skill.getTooltip();
+
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Removes") + " all skills from the currently equipped sword and " + ::MSU.Text.colorGreen("adds") + " the [Bash|Skill+bash] and [Knock Out|Skill+knock_out] or the [Cudgel|Skill+cudgel_skill] and [Strike Down|Skill+strike_down_skill] skills for one-handed and two-handed swords respectively")
+		});
+
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a two-handed sword or a double-gripped one-handed sword[/color]"
+		});
+
+		this.addEnabledTooltip(tooltip);
+
+		return tooltip;
+	}
+
 	function isUsable()
 	{
 		return this.rf_swordmaster_stance_abstract_skill.isUsable() && (this.getContainer().getActor().isArmedWithTwoHandedWeapon() || this.getContainer().getActor().isDoubleGrippingWeapon());
