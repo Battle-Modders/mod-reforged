@@ -4,6 +4,7 @@ this.rf_life_leech_effect <- ::inherit("scripts/skills/skill", {
         LeechDistance = 1,	// 1 only allows leeching from adjacent enemies
 		ForceHeal = false   // Temporary helper variable
 	},
+
 	function create()
 	{
 		this.m.ID = "effects.rf_life_leech";
@@ -50,7 +51,7 @@ this.rf_life_leech_effect <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_damageInflictedHitpoints <= 0) return;
+		if (_damageInflictedHitpoints == 0) return;
 		if (this.m.ForceHeal)      // If our attack killed the target we instead handle the leeching in here
 		{
 			this.leechLife(_damageInflictedHitpoints);
