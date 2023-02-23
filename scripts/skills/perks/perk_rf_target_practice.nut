@@ -20,7 +20,7 @@ this.perk_rf_target_practice <- ::inherit("scripts/skills/skill", {
 	{
 		if (!_skill.isRanged() || _targetEntity == null) return;
 
-		if (_targetEntity.isArmedWithRangedWeapon() || ::Tactical.Entities.getAlliedActors(_targetEntity, _targetEntity.getTile(), 1, true).len() == 0)
+		if (_targetEntity.isArmedWithRangedWeapon() || ::Tactical.Entities.getAlliedActors(_targetEntity.getFaction(), _targetEntity.getTile(), 1, true).len() == 0)
 		{
 			_properties.RangedSkill += this.m.RangedSkillBonus;
 		}
@@ -29,7 +29,7 @@ this.perk_rf_target_practice <- ::inherit("scripts/skills/skill", {
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
 		local targetEntity = _targetTile.getEntity();
-		if (_skill.isRanged() && targetEntity != null && (targetEntity.isArmedWithRangedWeapon() || ::Tactical.Entities.getAlliedActors(targetEntity, targetEntity.getTile(), 1, true).len() == 0))
+		if (_skill.isRanged() && targetEntity != null && (targetEntity.isArmedWithRangedWeapon() || ::Tactical.Entities.getAlliedActors(targetEntity.getFaction(), targetEntity.getTile(), 1, true).len() == 0))
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
