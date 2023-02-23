@@ -107,6 +107,9 @@
     {
         foreach( i, perk in perks )
         {
+            if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
+                if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
+
             local perkEntry = {
                 id = currentID,
                 type = "text",
@@ -123,6 +126,9 @@
         local entryText = "";
         foreach( perk in perks )
         {
+            if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
+                if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
+
             entryText += ::Reforged.TacticalTooltip.getNestedPerkName(perk);
             entryText += ", ";
         }
