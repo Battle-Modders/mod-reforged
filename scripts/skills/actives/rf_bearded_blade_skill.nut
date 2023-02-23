@@ -29,7 +29,14 @@ this.rf_bearded_blade_skill <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		return this.skill.getDefaultUtilityTooltip();
+		local ret = this.skill.getDefaultUtilityTooltip();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Bearded Blade|Skill+rf_bearded_blade_effect] effect that allows you to [Disarm|Skill+disarmed_effect] your opponents")
+		});
+		return ret;
 	}
 
 	function onAfterUpdate( _properties )
