@@ -120,5 +120,8 @@
 	<sprite id="rf_worn_down_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_wear_them_down.png" />
 	<sprite id="rf_worn_down_effect_mini" ic = "FF23165B" img="mini\rf_worn_down_effect_mini.png" />
 
+	<sprite id="perk_rf_soul_link" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_soul_link.png" />
+	<sprite id="perk_rf_soul_link_mini" ic = "FF23165B" img="mini\rf_soul_link_mini.png" />
+
 	<sprite id="rf_projectile_flaming_arrow" ic = "FF23165B" img="projectiles\rf_projectile_flaming_arrow.png" />
 </brush>
