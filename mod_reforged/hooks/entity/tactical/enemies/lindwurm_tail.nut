@@ -10,12 +10,12 @@
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.Lindwurm);
-		b.IsAffectedByNight = false;
-		b.IsImmuneToKnockBackAndGrab = true;
-		b.IsImmuneToStun = true;
+		// b.IsAffectedByNight = false;			// Now handled by racial effect
+		// b.IsImmuneToKnockBackAndGrab = true;	// Now handled by racial effect
+		// b.IsImmuneToStun = true;				// Now handled by racial effect
 		b.IsMovable = false;
-		b.IsImmuneToDisarm = true;
-		b.IsImmuneToRoot = true;
+		// b.IsImmuneToDisarm = true;			// Now handled by racial effect
+		// b.IsImmuneToRoot = true;				// Now handled by racial effect
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 180)
 		// {

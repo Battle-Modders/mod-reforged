@@ -4,15 +4,15 @@
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.SchratSmall);
-		b.IsImmuneToBleeding = true;
-		b.IsImmuneToPoison = true;
-		b.IsImmuneToKnockBackAndGrab = true;
-		b.IsImmuneToStun = true;
-		b.IsImmuneToRoot = true;
-		b.IsIgnoringArmorOnAttack = true;
-		b.IsAffectedByNight = false;
-		b.IsAffectedByInjuries = false;
-		b.IsImmuneToDisarm = true;
+		// b.IsImmuneToBleeding = true;				// Now handled by racial effect
+		// b.IsImmuneToPoison = true;				// Now handled by racial effect
+		// b.IsImmuneToKnockBackAndGrab = true;		// Now handled by racial effect
+		// b.IsImmuneToStun = true;					// Now handled by racial effect
+		// b.IsImmuneToRoot = true;					// Now handled by racial effect
+		// b.IsIgnoringArmorOnAttack = true;		// Now handled by racial effect
+		// b.IsAffectedByNight = false;				// Now handled by racial effect
+		// b.IsAffectedByInjuries = false;			// Now handled by racial effect
+		// b.IsImmuneToDisarm = true;				// Now handled by racial effect
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;

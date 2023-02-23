@@ -4,8 +4,8 @@
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.Unhold);
-		b.IsImmuneToDisarm = true;
-		b.IsImmuneToRotation = true;
+		// b.IsImmuneToDisarm = true;		// Now handled by racial effect
+		// b.IsImmuneToRotation = true;		// Now handled by racial effect
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 90)
 		// {

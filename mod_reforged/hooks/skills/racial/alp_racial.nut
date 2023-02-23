@@ -1,4 +1,16 @@
 ::mods_hookExactClass("skills/racial/alp_racial", function(o) {
+	o.onAdded <- function()
+	{
+		local baseProperties = this.getContainer().getActor().getBaseProperties();
+
+		baseProperties.IsAffectedByInjuries = false;
+		baseProperties.IsAffectedByNight = false;
+		baseProperties.IsImmuneToBleeding = true;
+		baseProperties.IsImmuneToDisarm = true;
+		baseProperties.IsImmuneToKnockBackAndGrab = true;
+		baseProperties.IsImmuneToPoison = true;
+	}
+
 	o.onBeforeDamageReceived = function( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)
