@@ -24,7 +24,7 @@
 		body.setBrush("nest_01");
 		body.setHorizontalFlipping(flip);
 		this.addDefaultStatusSprites();
-		this.m.Skills.add(this.new("scripts/skills/racial/skeleton_racial"));
+		// this.m.Skills.add(this.new("scripts/skills/racial/skeleton_racial"));	// Probably vanilla mistake to ever give eggs such a weird racial. Now they no longer take reduced damage from fire and piercing attacks
 		this.m.Skills.update();
 
 		//Reforged
