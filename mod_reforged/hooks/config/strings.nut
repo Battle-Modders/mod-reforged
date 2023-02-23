@@ -704,7 +704,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"[Fatigue|Concept.Fatigue] build-up is reduced by " + ::MSU.Text.colorRed("20%") + "."
+				"[Fatigue|Concept.Fatigue] cost of skills is reduced by " + ::MSU.Text.colorRed("20%") + "."
 			]
 		}]
  	}),
