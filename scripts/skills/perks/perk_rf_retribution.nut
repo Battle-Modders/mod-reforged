@@ -38,4 +38,32 @@ this.perk_rf_retribution <- ::inherit("scripts/skills/skill", {
 	{
 		_properties.DamageTotalMult *= 1.0 + this.m.Stacks * this.m.BonusPerStack * 0.01;
 	}
+
+	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
+	{
+		local actor = this.getContainer().getActor();
+		if (_attacker.getID() == actor.getID() || _attacker.isAlliedWith(actor))
+			return;
+
+		this.m.Stacks += 1;
+	}
+
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (_skill.isAttack())
+		{
+			this.m.Stacks = 0;
+		}
+	}
+
+	function onTurnEnd()
+	{
+		this.m.Stacks = 0;
+	}
+
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		this.m.Stacks = 0;
+	}
 });
