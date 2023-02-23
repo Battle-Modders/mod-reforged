@@ -32,7 +32,7 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Armor penetrating damage through Head Armor is reduced by " + ::MSU.Text.colorizePercentage(headBonus)
+				text = "Armor penetrating damage through Head Armor is reduced by " + ::MSU.Text.colorGreen(headBonus + "%")
 			});
 		}
 		else
@@ -51,7 +51,7 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Armor penetrating damage through Body Armor is reduced by " + ::MSU.Text.colorizePercentage(bodyBonus)
+				text = "Armor penetrating damage through Body Armor is reduced by " + ::MSU.Text.colorGreen(bodyBonus + "%")
 			});
 		}
 		else
