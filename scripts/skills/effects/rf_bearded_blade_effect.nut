@@ -42,6 +42,12 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function onUpdate( _properties )
+	{
+		if (_properties.IsStunned || this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing)
+			this.removeSelf();
+	}
+
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		this.m.HitChance = 0;
