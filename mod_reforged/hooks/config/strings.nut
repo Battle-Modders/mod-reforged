@@ -1879,3 +1879,6 @@ foreach (key, string in ::Const.Strings.PerkDescription)
 	local parsedString = ::Reforged.Mod.Tooltips.parseString(string);
 	::Const.Strings.PerkDescription[key] = parsedString;
 }
+
+::Const.Strings.Distance[4] = "far away";
+::Const.Strings.Distance[5] = "very far away";
