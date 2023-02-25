@@ -1,10 +1,41 @@
 ::mods_hookExactClass("entity/tactical/actor", function(o) {
 	o.m.IsPerformingAttackOfOpportunity <- false;
 
+	// Returns the current combined weight of all equipped items after reductions from perks&stuff
+	// During onUpdateProperties this may not be correct if called with SkillOrder.Perk or below (Brawny and BagsAndBelts influence this)
+	o.getWeight <- function()
+	{
+		return this.m.CurrentProperties.getWeight();
+	}
+
+	// Returns the current initiative penalty inflicted onto the actor by all the items they wear
+	// During onUpdateProperties this may not be correct if called with SkillOrder.Perk or below (Brawny and BagsAndBelts influence this)
+	o.getBurden <- function()
+	{
+		return this.m.CurrentProperties.getBurden();
+	}
+
 	o.isDisarmed <- function()
 	{
 		local handToHand = this.getSkills().getSkillByID("actives.hand_to_hand");
 		return handToHand != null && handToHand.isUsable();
+	}
+
+	// Complete overwrite of vanilla function to fix bug where buffs to fatigue also buff initiative for the same amount
+	o.getInitiative = function()
+	{
+		local initiative = this.m.CurrentProperties.getInitiative();
+		initiative -= this.getFatigue() * this.m.CurrentProperties.FatigueToInitiativeRate;	// Subtract Accumulated Fatigue from Initiative
+		initiative -= ::Math.max(0, this.getBurden());					// Subtract Burden from Initiative
+		return ::Math.floor(initiative);	// Vanilla does a round here but I argue that a consistent use of floor is better overall
+	}
+
+	// Items no longer apply their Fatigue Penalty directly. This is now only done when calling this function
+	// This rewrite also fixes the issue where StaminaMult was based of the stamina after gear. Now it only affects the stamina before gear
+	o.getFatigueMax = function()
+	{
+		local stamina = this.m.CurrentProperties.getStamina();
+		return ::Math.floor(::Math.max(0, stamina - this.getWeight()));
 	}
 
 	local onInit = o.onInit;
