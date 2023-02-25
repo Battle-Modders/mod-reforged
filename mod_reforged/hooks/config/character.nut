@@ -20,7 +20,7 @@
 	1.0,	// Head
 	1.0,	// Accessory
 	1.0,	// Ammo
-	1.0		// Bag
+	0.5		// Bag - We apply the fatigue reduction for bags here at this point instead of in 'bag_fatigue.nut'
 ]
 
 ::Const.CharacterProperties.BurdenMult <- [
