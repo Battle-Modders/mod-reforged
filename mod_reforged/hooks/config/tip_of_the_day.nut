@@ -24,5 +24,6 @@ for (local index = (::Const.TipOfTheDay.len() - 1); index >= 0; index--)
     "Morale Checks are harder for every adjacent enemy and easier for every adjacent ally.",
     "Click on an active contract to focus on its target on the world map, if it is known to you.",
     "The more mods you add the harder it is to debug the game for the modder.",
+    "Tavern rumors will never be about legendary locations you have already discovered"
     // "If you see colorful squares, do NOT save the game or you might end up with a corrupted savefile"    // We wait with adding this until we actually get reports of those happening under reforged
 ]);
