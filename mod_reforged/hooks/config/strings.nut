@@ -252,6 +252,18 @@ local vanillaDescriptions = [
 	 	})
 	},
 	{
+		ID = "perk.brawny",
+		Key = "Brawny",
+		Description = ::UPD.getDescription({
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"The [Weight|Concept.Weight] from wearing armor and helmet is reduced by [color=" + ::Const.UI.Color.NegativeValue + "]30%[/color]."
+				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.indomitable",
 		Key = "Indomitable",
 		Description = ::UPD.getDescription({
@@ -417,12 +429,9 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorGreen("50%") + " and that to armor by " + ::MSU.Text.colorGreen("25%") + ".",
- 					"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 15. The lighter your armor and helmet, the more you benefit.",
- 					"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
- 					"[Brawny|Perk+perk_brawny] does not affect this perk.",
+ 					"Damage from attacks to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorGreen("50%") + " and that to armor by " + ::MSU.Text.colorGreen("25%") + ".",
+ 					"The bonus drops exponentially when wearing head and body armor with a total [Base Weight|Concept.Weight] above 15. The lighter your armor and helmet, the more you benefit.",
  					"Cannot be picked if you have [Poise|Perk+perk_rf_poise]."
-
  				]
  			}]
 	 	}),
@@ -578,7 +587,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The penalty to [Initiative|Concept.Initiative] from head and body armor is reduced by " + ::MSU.Text.colorRed("30%") + ".",
+				"The [Burden|Concept.Burden] from head and body armor is reduced by " + ::MSU.Text.colorRed("30%") + ".",
 				"At all times your [Initiative|Concept.Initiative] is reduced only by " + ::MSU.Text.colorGreen("50%") + " of accumulated [Fatigue|Concept.Fatigue], instead of all of it.",
 				"Stacks [multiplicatively|Concept.StackMultiplicatively] with the [Relentless|Perk+perk_relentless] perk."
 			]
@@ -1185,9 +1194,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorRed("30%") + " and to Armor by " + ::MSU.Text.colorRed("15%") + ".",
-				"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 35.",
-				"[Brawny|Perk+perk_brawny] does not affect this perk.",
+				"Damage from attacks to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorGreen("30%") + " and that to armor by " + ::MSU.Text.colorGreen("15%") + ".",
+				"The bonus drops exponentially when wearing head and body armor with a total a total [Base Weight|Concept.Weight] above 35.",
 				"Cannot be picked if you have [Nimble|Perk+perk_nimble]."
 			]
 		}]
@@ -1805,7 +1813,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The penalty to [Maximum Fatigue|Concept.MaximumFatigue] and [Initiative|Concept.Initiative] from equipped items in your head, body, mainhand and offhand slots is reduced by " + ::MSU.Text.colorRed("20%") + ". Stacks with [Brawny|Perk+perk_brawny]."
+				"The [Weight|Concept.Weight] from equipped items in your head, body, mainhand and offhand slots is reduced by " + ::MSU.Text.colorRed("20%") + "."
 			]
 		}]
  	}),
