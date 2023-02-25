@@ -70,12 +70,13 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 				];
 			}));
 
-			local effect = ::Tactical.spawnSpriteEffect(this.m.IsReinforced ? "bust_net_02" : "bust_net", this.createColor("#ffffff"), _targetEntity.getTile(), 0, 10, 1.0, _targetEntity.getSprite("status_rooted").Scale, 100, 100, 0);
+			local isReinforced = this.getContainer().getSkillByID("actives.throw_net").m.IsReinforced;
+			local effect = ::Tactical.spawnSpriteEffect(isReinforced ? "bust_net_02" : "bust_net", this.createColor("#ffffff"), _targetEntity.getTile(), 0, 10, 1.0, _targetEntity.getSprite("status_rooted").Scale, 100, 100, 0);
 			local flip = !_targetEntity.isAlliedWithPlayer();
 			effect.setHorizontalFlipping(flip);
 			::Time.scheduleEvent(::TimeUnit.Real, 200, this.onNetSpawn.bindenv(this), {
 				TargetEntity = _targetEntity,
-				IsReinforced = this.m.IsReinforced
+				IsReinforced = isReinforced
 			});
 		}
 	}
