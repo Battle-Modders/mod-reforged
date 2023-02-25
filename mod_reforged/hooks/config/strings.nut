@@ -66,6 +66,7 @@
 	RF_Menacing = "Menacing",
 	RF_Momentum = "Momentum",
 	RF_MuscleMemory = "Muscle Memory",
+	RF_Nudist = "Nudist,"
 	RF_OffhandTraining = "Offhand Training",
 	RF_Opportunist = "Opportunist",
 	RF_PatternRecognition = "Pattern Recognition",
@@ -1222,6 +1223,18 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+	RF_Nudist = ::UPD.getDescription({
+		Fluff = "You function best with no weight on your shoulders.",
+		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorGreen("20%") + ".",
+				"While while the combined [Base Weight|Concept.Weight] of your helmet and armor below 5, recover an additional 3 Fatigue each turn",
+				"The [Weight|Concept.Weight] from wearing helmet and armor is increased by " + ::MSU.Text.colorRed("100%"),
+				"The [Burden|Concept.Burden] from wearing helmet and armor is increased by " + ::MSU.Text.colorRed("100%")
+			]
+	   }]
+	}),
 	RF_OffhandTraining = ::UPD.getDescription({
  		Fluff = "Frequent use of tools with your offhand has given you an enviable level of ambidexterity!",
  		Requirement = "Buckler or Tool",

@@ -21,7 +21,7 @@ this.pg_rf_resilient <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.fortified_mind"],
 				[],
 				["perk.rf_survival_instinct"],
-				[],
+				["perk.rf_nudist"],
 				[]
 			]
 		};
