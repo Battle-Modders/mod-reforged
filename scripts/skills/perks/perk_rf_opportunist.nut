@@ -59,7 +59,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 
 	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )
 	{
-		if (_corpseTile != null)
+		if (_corpseTile != null && _corpseTile.IsCorpseSpawned)
 		{
 			_corpseTile.Properties.get("Corpse").IsValidForOpportunist <- true;
 		}
