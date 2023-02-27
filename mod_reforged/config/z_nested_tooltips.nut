@@ -49,7 +49,7 @@
 ::MSU.AfterQueue.add(::Reforged.ID, function() {
 	foreach (concept in ::Reforged.NestedTooltips.AutoConcepts)
 	{
-		local desc = ::TooltipScreen.m.TooltipEvents.general_queryUIElementTooltipData(::Reforged.getDummyPlayer().getID(), concept, null);
+		local desc = ::TooltipScreen.m.TooltipEvents.general_queryUIElementTooltipData(::MSU.getDummyPlayer().getID(), concept, null);
 		::Reforged.NestedTooltips.Tooltips.Concept[split(concept, ".").top()] <- ::MSU.Class.CustomTooltip(@(data) desc);
 	}
 
