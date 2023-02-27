@@ -20,21 +20,13 @@
 		if (::MSU.isNull(this.getContainer()))
 		{
 			local lastEquippedByFaction = this.m.LastEquippedByFaction;
-			// Midas -- Use setContainer and onEquip instead of container.equip(this) because
-			// somehow using equip() causes the "faction_banner" item to throw an error
-			// on alternate launches of the game. More weirdly, if it works on a launch then it'll work for a campaign started
-			// during that launch. If it was the launch where it errors, then it won't work for a campaign started in that launch.
-			// The behavior in the campaign persists for all future launches of the game. Setting container manually and calling`
-			// onEquip doesn't suffer from this issue. This should be looked into at some point.
-			this.setContainer(::Reforged.getDummyPlayer().getItems());
-			this.onEquip();
+			::MSU.getDummyPlayer().getItems().equip(this);
 			foreach (skill in this.getSkills())
 			{
 				local name = ::Reforged.Mod.Tooltips.parseString(format("[%s|Skill+%s]", skill.getName(), split(::IO.scriptFilenameByHash(skill.ClassNameHash), "/").top()));
 				skillsString += format("- %s (%s, %s)\n", name, ::MSU.Text.colorGreen(skill.m.ActionPointCost), ::MSU.Text.colorRed(skill.m.FatigueCost));
 			}
-			this.onUnequip();
-			this.setContainer(null);
+			::MSU.getDummyPlayer().getItems().unequip(this);
 
 			this.m.LastEquippedByFaction = lastEquippedByFaction;
 		}
