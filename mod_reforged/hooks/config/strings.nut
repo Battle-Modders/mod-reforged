@@ -375,6 +375,41 @@ local vanillaDescriptions = [
 	 	}),
 	},
 	{
+		ID = "perk.student",
+		Key = "Student",
+		Description = ::UPD.getDescription({
+			Fluff = "Everything can be learned if you put your mind to it.",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.OneTimeEffect,
+ 				Description = [
+					"At the eleventh character level, you gain an additional perk point and this perk becomes inert.",
+					"Playing the \'Manhunters\' origin, your indebted get the perk point refunded at the seventh character level."
+				]
+ 			},
+			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"Gain additional [color=" + ::Const.UI.Color.PositiveValue + "]20%[/color] experience from battle."
+				]
+			}],
+			Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")	// This line is new, rest is the same
+	 	})
+	},
+	{
+		ID = "perk.gifted",
+		Key = "Gifted",
+		Description = ::UPD.getDescription({
+			Fluff = "Mercenary life comes easy when you\'re naturally gifted.",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.OneTimeEffect,
+ 				Description = [
+					"Instantly gain a levelup to increase this character\'s attributes with maximum rolls, but without talents."
+				]
+ 			}],
+			Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")	// This line is new, rest is the same
+	 	})
+	},
+	{
 		ID = "perk.nimble",
 		Key = "Nimble",
 		Description = ::UPD.getDescription({
@@ -535,7 +570,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Gain 2 perk points.",
 				"Drop your [perk tier|Concept.PerkTier] down to " + ::MSU.Text.colorRed(2) + ".",
 			]
-		}]
+		}],
+		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
  	}),
 	RF_Skirmisher = ::UPD.getDescription({
  		Fluff = "Gain increased speed and endurance by balancing your armor and mobility.",
@@ -772,7 +808,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Gain " + ::MSU.Text.colorGreen(1) + " star in the [talents|Concept.Talent] of all [attributes|Concept.CharacterAttribute].",
 				"Then instantly gain a levelup to increase this character\'s [attributes|Concept.CharacterAttribute] with normal rolls with [talents|Concept.Talent].",
 			]
-		}]
+		}],
 		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
  	}),
 	RF_Dismantle = ::UPD.getDescription({
@@ -850,7 +886,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
  	}),
 	RF_FailedPotential = ::UPD.getDescription({
- 		Fluff = "This character looked promising, but either due to bad luck or simply lack of talent, they have not shown the potential you thought they had. " + ::MSU.Text.colorRed("This perk does nothing and cannot be refunded") + ".",
+ 		Fluff = "This character looked promising, but either due to bad luck or simply lack of talent, they have not shown the potential you thought they had. " + ::MSU.Text.colorRed("This perk does nothing."),
+		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
  	}),
 	RF_FamilyPride = ::UPD.getDescription({
  		Fluff = "Death before dishonor!",
@@ -1297,7 +1334,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"If unsuccessful, it is replaced by \'Failed Potential\' which does nothing."
 				"The success chance is reduced by " + ::MSU.Text.colorRed("-10%") + " per perk point already spent before picking this perk. Only perks you spend perk points on are counted for this reduction."
 			]
-		}]
+		}],
+		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
  	}),
 	RF_ProximityThrowingSpecialist = ::UPD.getDescription({
  		Fluff = "\'Don\'t attack until you\'ve seen the whites of their eyes!\'",
@@ -1332,7 +1370,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
  	}),
 	RF_RealizedPotential = ::UPD.getDescription({
- 		Fluff = "From rags to riches! This character has truly come a long way. Who was once a dreg of society is now a full-fledged mercenary. " + ::MSU.Text.colorGreen("All perk points have been refunded and attributes increased. This perk cannot be refunded") + ".",
+ 		Fluff = "From rags to riches! This character has truly come a long way. Who was once a dreg of society is now a full-fledged mercenary. " + ::MSU.Text.colorGreen("All perk points have been refunded and attributes increased.") + ".",
+		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
  	}),
 	RF_RisingStar = ::UPD.getDescription({
  		Fluff = "Captain said take it slow and steady and I could become a legend someday!",
@@ -1661,7 +1700,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"[Resolve|Concept.Bravery] is increased by " + ::MSU.Text.colorGreen("50%") + " against negative morale checks.",
 				"If [Promised Potential|Perk+perk_rf_promised_potential] is a success, this perk becomes permanent and the perk point is refunded."
 			]
-		}]
+		}],
+		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
  	}),
 	RF_TripArtist = ::UPD.getDescription({
  		Fluff = "\'Let me take you on a trip to the floor.\'",
