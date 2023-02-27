@@ -1,6 +1,13 @@
 ::mods_hookExactClass("entity/tactical/actor", function(o) {
 	o.m.IsPerformingAttackOfOpportunity <- false;
 
+	o.getInitiative = function()
+	{
+		// Change the calculation to no longer reduce Initiative by the penalty to Stamina
+		// Initiative is reduced by items directly via a new Item property called InitiativeModifier
+		return this.m.CurrentProperties.getInitiative() - this.m.Fatigue * this.m.CurrentProperties.FatigueToInitiativeRate;
+	}
+
 	o.isDisarmed <- function()
 	{
 		local handToHand = this.getSkills().getSkillByID("actives.hand_to_hand");
