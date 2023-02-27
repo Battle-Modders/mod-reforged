@@ -608,7 +608,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Once per [turn|Concept.Turn], making a kill reduces current [Fatigue|Concept.Fatigue] by " + ::MSU.Text.colorGreen("15%") + " of [Base|Concept.BaseAttribute] [Maximum Fatigue|Concept.MaximumFatigue]."
+				"Once per [turn|Concept.Turn], making a kill reduces current [Fatigue|Concept.Fatigue] by " + ::MSU.Text.colorGreen("15%") + " of your [Stamina|Concept.MaximumFatigue]."
 			]
 		}]
  	}),
@@ -1010,7 +1010,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"As long as your current [Fatigue|Concept.Fatigue] is below " + ::MSU.Text.colorRed("30%") + " of [Maximum Fatigue|Concept.MaximumFatigue] after gear, the [Action Point|Concept.ActionPoints] cost of the first skill used every [turn|Concept.Turn] is " + ::MSU.Text.colorGreen("halved") + " and its [Fatigue|Concept.Fatigue] Cost is reduced by " + ::MSU.Text.colorGreen("25%") + ".",
+				"As long as your current [Fatigue|Concept.Fatigue] is below " + ::MSU.Text.colorRed("30%") + " of your [Stamina|Concept.MaximumFatigue], the [Action Point|Concept.ActionPoints] cost of the first skill used every [turn|Concept.Turn] is " + ::MSU.Text.colorGreen("halved") + " and its [Fatigue|Concept.Fatigue] Cost is reduced by " + ::MSU.Text.colorGreen("25%") + ".",
 				"Does not expire when using a skill with no [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost."
 			]
 		}]
@@ -1032,7 +1032,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"[Hitpoints|Concept.Hitpoints], [Maximum Fatigue|Concept.MaximumFatigue], and [Initiative|Concept.Initiative] are increased by " + ::MSU.Text.colorGreen("10%") + " of their respective base values."
+				"[Hitpoints|Concept.Hitpoints], [Stamina|Concept.MaximumFatigue], and [Initiative|Concept.Initiative] are increased by " + ::MSU.Text.colorGreen("10%") + " of their respective base values."
 			]
 		}]
  	}),
@@ -1050,7 +1050,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Fatigue Recovery is increased by " + ::MSU.Text.colorGreen("5%") + " of your [Maximum Fatigue|Concept.MaximumFatigue] after gear."
+				"Fatigue Recovery is increased by " + ::MSU.Text.colorGreen("5%") + " of your [Stamina|Concept.MaximumFatigue]."
 			]
 		}]
  	}),
