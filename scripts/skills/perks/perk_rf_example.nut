@@ -18,18 +18,7 @@ this.perk_rf_example <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		local actor = this.getContainer().getActor();
-		local headItem = actor.getHeadItem();
-		local bodyItem = actor.getBodyItem();
-
-		if (headItem != null)
-		{
-			_properties.Stamina -= headItem.getStaminaModifier() * 0.2; // subtract because it is negative
-		}
-
-		if (bodyItem != null)
-		{
-			_properties.Initiative -= bodyItem.getStaminaModifier() * 0.5; // subtract because it is negative
-		}
+		_properties.StaminaModifierMult[::Const.ItemSlot.Head] *= 0.8;
+		_properties.InitiativeModifierMult[::Const.ItemSlot.Body] *= 0.5;
 	}
 });

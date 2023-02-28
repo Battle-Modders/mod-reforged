@@ -5,7 +5,30 @@
 	{
 		// Change the calculation to no longer reduce Initiative by the penalty to Stamina
 		// Initiative is reduced by items directly via a new Item property called InitiativeModifier
-		return this.m.CurrentProperties.getInitiative() - this.m.Fatigue * this.m.CurrentProperties.FatigueToInitiativeRate;
+		local initiative = this.m.CurrentProperties.Initiative - this.m.Fatigue * this.m.CurrentProperties.FatigueToInitiativeRate;
+		foreach (i, _ in ::Const.ItemSlotSpaces) // i corresponds to a valid slot in ::Const.ItemSlot
+		{
+			local mult = this.m.CurrentProperties.InitiativeModifierMult[i];
+			foreach (item in this.getItems().m.Items[i])
+			{
+				if (item != null && item != -1) initiative += item.getInitiativeModifier() * mult;
+			}
+		}
+		return ::Math.floor(initiative * this.m.CurrentProperties.InitiativeMult); // will fix negative case later
+	}
+
+	o.getFatigueMax = function()
+	{
+		local stamina = this.m.CurrentProperties.Stamina;
+		foreach (i, _ in ::Const.ItemSlotSpaces) // i corresponds to a valid slot in ::Const.ItemSlot
+		{
+			local mult = this.m.CurrentProperties.StaminaModifierMult[i];
+			foreach (item in this.getItems().m.Items[i])
+			{
+				if (item != null && item != -1) stamina += item.getStaminaModifier() * mult;
+			}
+		}
+		return ::Math.floor(stamina * this.m.CurrentProperties.StaminaMult); // will fix negative case later
 	}
 
 	o.isDisarmed <- function()

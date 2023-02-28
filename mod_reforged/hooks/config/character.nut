@@ -11,6 +11,17 @@ foreach (moraleCheckType in ::Const.MoraleCheckType)
 	::Const.CharacterProperties.NegativeMoraleCheckBraveryMult.push(1.0);
 }
 
+::Const.CharacterProperties.StaminaModifierMult <- [];
+::Const.CharacterProperties.InitiativeModifierMult <- [];
+
+foreach (i, slot in ::Const.ItemSlotSpaces)
+{
+	local mult = i == ::Const.ItemSlot.Bag ? 0.5 : 1.0;
+
+	::Const.CharacterProperties.StaminaModifierMult.push(mult);
+	::Const.CharacterProperties.InitiativeModifierMult.push(mult);
+}
+
 local getClone = ::Const.CharacterProperties.getClone;
 ::Const.CharacterProperties.getClone = function()
 {
@@ -19,6 +30,8 @@ local getClone = ::Const.CharacterProperties.getClone;
 	ret.PositiveMoraleCheckBraveryMult = clone this.PositiveMoraleCheckBraveryMult;
 	ret.NegativeMoraleCheckBravery = clone this.NegativeMoraleCheckBravery;
 	ret.NegativeMoraleCheckBraveryMult = clone this.NegativeMoraleCheckBraveryMult;
+	ret.StaminaModifierMult = clone this.StaminaModifierMult;
+	ret.InitiativeModifierMult = clone this.InitiativeModifierMult;
 	return ret;
 }
 
