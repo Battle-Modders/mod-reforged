@@ -72,8 +72,8 @@
 	local onEquip = o.onEquip;
 	o.onEquip = function()
 	{
-		if (isWeaponType(::Const.Items.WeaponType.Sling)) this.addSkill(::new("scripts/skills/actives/rf_sling_item_dummy_skill"));
 		onEquip();
+		if (isWeaponType(::Const.Items.WeaponType.Sling)) this.addSkill(::new("scripts/skills/actives/rf_sling_item_dummy_skill"));
 	}
 
 	local onUpdateProperties = o.onUpdateProperties;
