@@ -2,6 +2,13 @@
 	o.m.AdditionalAccuracy <- 20;
 	o.m.AdditionalHitChance <- -10;
 
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.FatigueCost = 10;
+	}
+
 	o.getTooltip = function()
 	{
 		local ret = this.getRangedTooltip(this.skill.getDefaultTooltip());
