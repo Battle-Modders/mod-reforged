@@ -14,7 +14,7 @@
 				id = 10,
 				type = "text",
                 icon = "ui/icons/action_points.png",
-				text = "Maximum Action Points are set to " + ::MSU.Test.colorGreen("12")
+				text = "Maximum Action Points are set to " + ::MSU.Text.colorGreen("12")
 			},
 			{
 				id = 11,
