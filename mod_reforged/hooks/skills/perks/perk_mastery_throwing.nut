@@ -11,19 +11,16 @@
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing)) return;
 
-		local distance = _targetEntity.getTile().getDistanceTo(this.getContainer().getActor().getTile());
-		if (distance <= 3)
-		{
-			_properties.RangedSkill += this.getHitchanceBonus();
-			_properties.DamageTotalMult	*= 1.2;
-		}
-	}
+		_properties.RangedSkill += this.getHitchanceBonus();
 
-	o.onBeforeAnySkillExecuted <- function( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		if (_skill.getID() == "actives.throw_spear" && this.getContainer().getActor().getCurrentProperties().IsSpecializedInThrowing && _targetEntity.getCurrentProperties().IsSpecializedInShields)
+		local distance = _targetEntity.getTile().getDistanceTo(this.getContainer().getActor().getTile());
+		if (distance <= 2)
 		{
-			this.getContainer().getActor().getMainhandItem().m.ShieldDamage *= 2;
+			_properties.DamageTotalMult	*= 1.3;
+		}
+		else if (distance <= 3)
+		{
+			_properties.DamageTotalMult	*= 1.2;
 		}
 	}
 
@@ -38,19 +35,9 @@
 					id = 10,
 					type = "text",
 					icon = "ui/icons/hitchance.png",
-					text = "Has " + ::MSU.Text.colorizePercentage(this.getHitchanceBonus()) + " chance to hit at a distance of 3 tiles or less"
+					text = "Has " + ::MSU.Text.colorizePercentage(this.getHitchanceBonus()) + " chance to hit due to " + this.getName()
 				});
 			}
-		}
-
-		if (_skill.getID() == "actives.throw_spear")
-		{
-			_tooltip.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Ignores the damage reduction to shields from the target\'s Shield Expert perk"
-			});
 		}
 	}
 });

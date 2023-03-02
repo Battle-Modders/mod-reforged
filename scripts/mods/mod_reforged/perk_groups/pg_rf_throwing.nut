@@ -16,7 +16,7 @@ this.pg_rf_throwing <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.mastery.throwing"],
 				["perk.rf_opportunist"],
 				[],
-				["perk.rf_proximity_throwing_specialist"]
+				[]
 			]
 		};
 	}

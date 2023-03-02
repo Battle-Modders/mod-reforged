@@ -74,7 +74,7 @@
 	RF_PowerShot = "Power Shot",
 	RF_Professional = "Professional",
 	RF_PromisedPotential = "Promised Potential",
- 	RF_ProximityThrowingSpecialist = "Proximity Throwing Specialist",
+ 	RF_ProximityThrowingSpecialist = "Proximity Specialist",
 	RF_Onslaught = "Onslaught",
 	RF_Rattle = "Rattle",
 	RF_RealizedPotential = "Realized Potential",
@@ -386,9 +386,8 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
  					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
- 					"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " when attacking at a distance of 3 tiles or less.",
- 					"Gain 20% of your [Melee Skill|Concept.MeleeSkill] as additional chance to hit when attacking at a distance of 3 tiles or less.",
- 					"[Throwing Spear|Item+throwing_spear] ignores the target\'s damage reduction to shields from Shield Mastery."
+ 					"Gain " + ::MSU.Text.colorGreen("20%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional chance to hit.",
+ 					"Damage is increased by " + ::MSU.Text.colorGreen("30%") + " when attacking at a distance of 3 tiles and by " + ::MSU.Text.colorGreen("20%") + " when attacking at a distance of 2 tiles."
  				]
  			}]
 	 	}),
@@ -1100,6 +1099,10 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Gain " + ::MSU.Text.colorGreen("10%") + " of your Base [Ranged Skill|Concept.RangeSkill] as additional [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense]."
+				"Piercing type throwing attacks have a " + ::MSU.Text.colorGreen("50%") + " chance to inflict the \'Arrow to the Knee\' effect.",
+				"Cutting type throwing attacks always apply the [Overwhelmed|Skill+overwhelmed_effect] effect.",
+				"Blunt type throwing attacks have a " + ::MSU.Text.colorGreen("50%") + " chance to inflict [staggered|Skill+staggered_effect] and if the target is already [staggered|Skill+staggered_effect], " + ::MSU.Text.colorGreen("100%") + " chance to inflict [stunned|Skill+stunned_effect].",
+				"[Throwing Spear|Item+throwing_spear] does " + ::MSU.Text.colorGreen("50%") + " increased damage to shields."
 			]
 		}]
  	}),
@@ -1358,14 +1361,11 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_ProximityThrowingSpecialist = ::UPD.getDescription({
  		Fluff = "\'Don\'t attack until you\'ve seen the whites of their eyes!\'",
+ 		Requirement = "Ranged attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " when attacking at 2 tiles of distance.",
-				"Piercing type throwing attacks have a " + ::MSU.Text.colorGreen("50%") + " chance to inflict the \'Arrow to the Knee\' effect.",
-				"Cutting type throwing attacks always apply the [Overwhelmed|Skill+overwhelmed_effect] effect.",
-				"Blunt type throwing attacks have a " + ::MSU.Text.colorGreen("100%") + " chance to inflict [staggered|Skill+staggered_effect] and if the target is already [staggered|Skill+staggered_effect], inflict [stunned|Skill+stunned_effect].",
-				"The damage bonus and chance applies up to a distance of 2 tiles, is halved at 3 tiles of distance, and does not apply at longer distances."
+				"Ranged attacks ignore an additional " + ::MSU.Text.colorGreen("25%") + " of the target\'s armor when attacking at a distance of 2 tiles."
 			]
 		}]
  	}),

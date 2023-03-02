@@ -1,13 +1,13 @@
-this.pg_special_rf_marksmanship <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
+this.pg_special_rf_proximity_specialist <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
 	m = {},
 	function create()
 	{
 		this.special_perk_group.create();
-		this.m.ID = "pg.special.rf_marksmanship";
+		this.m.ID = "pg.special.rf_proximity_specialist";
 		this.m.Name = "Special Perks";
-		this.m.Icon = "ui/perk_groups/rf_marksmanship.png";
+		this.m.Icon = "ui/perk_groups/rf_proximity_specialist.png";
 		this.m.FlavorText = [
-			"Has the talent to become a formidable marksman."
+			"Likes to use ranged weapons at close range."
 		];
 		this.m.Chance = 10;
 		this.m.Trees = {
@@ -18,7 +18,7 @@ this.pg_special_rf_marksmanship <- ::inherit(::DynamicPerks.Class.SpecialPerkGro
 				[],
 				[],
 				[],
-				["perk.rf_marksmanship"]
+				["perk.rf_proximity_throwing_specialist"]
 			]
 		};
 	}

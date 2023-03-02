@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/actives/throw_axe", function(o) {
 	o.m.AdditionalAccuracy <- 20;
-	o.m.AdditionalHitChance <- -10;
+	o.m.AdditionalHitChance <- -15;
 
 	local create = o.create;
 	o.create = function()

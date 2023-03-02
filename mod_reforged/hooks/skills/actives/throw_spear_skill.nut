@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/actives/throw_spear_skill", function(o) {
 	o.m.AdditionalAccuracy <- 20;
-	o.m.AdditionalHitChance <- -10;
+	o.m.AdditionalHitChance <- -15;
 
 	o.getTooltip = function()
 	{
