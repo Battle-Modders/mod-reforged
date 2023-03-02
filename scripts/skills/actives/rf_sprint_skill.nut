@@ -41,7 +41,7 @@ this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue cost for movement on all terrain will be increased by " + ::MSU.Text.colorRed("50%")
+				text = "Fatigue cost for movement on all terrain will be increased by " + ::MSU.Text.colorRed("100%")
 			}
 		]);
 
