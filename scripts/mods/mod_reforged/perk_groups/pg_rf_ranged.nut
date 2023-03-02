@@ -12,7 +12,7 @@ this.pg_rf_ranged <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"default": [
 				[],
 				["perk.bullseye"],
-				[],
+				["perk.rf_entrenched"],
 				[],
 				[],
 				[],

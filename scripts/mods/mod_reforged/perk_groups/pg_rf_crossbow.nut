@@ -11,7 +11,7 @@ this.pg_rf_crossbow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				["perk.rf_power_shot"],
-				["perk.rf_entrenched"],
+				[],
 				[],
 				["perk.mastery.crossbow"],
 				["perk.rf_iron_sights"],
