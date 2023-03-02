@@ -66,6 +66,7 @@
 	RF_Menacing = "Menacing",
 	RF_Momentum = "Momentum",
 	RF_MuscleMemory = "Muscle Memory",
+	RF_NailedIt = "Nailed It",
 	RF_OffhandTraining = "Offhand Training",
 	RF_Opportunist = "Opportunist",
 	RF_PatternRecognition = "Pattern Recognition",
@@ -1270,6 +1271,17 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"The [Action Point|Concept.ActionPoints] Cost of reloading a Handgonne is reduced by " + ::MSU.Text.colorGreen(2) + ".",
 				"When using a crossbow, for each point of current [Ranged Skill|Concept.RangeSkill] above 90, damage is increased by " + ::MSU.Text.colorGreen("1%") + " up to a maximum of " + ::MSU.Text.colorGreen("30%") + "."
+			]
+		}]
+ 	}),
+ 	RF_NailedIt = ::UPD.getDescription({
+ 		Fluff = "\'One javelin to the head will take \'em right out!\'",
+ 		Requirement = "Ranged attack",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Gain " + ::MSU.Text.colorGreen("+25%") + " chance to hit the head at a distance of 2 tiles. For every tile beyond that, this bonus is reduced by " + ::MSU.Text.colorRed("-5%") + ".",
+				"The penalty to hitchance from obstructed line of sight is reduced by " + ::MSU.Text.colorGreen("50%") + " at a distance of 2 tiles."
 			]
 		}]
  	}),
