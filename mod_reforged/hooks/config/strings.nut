@@ -326,6 +326,25 @@ local vanillaDescriptions = [
 	 	})
 	},
 	{
+		ID = "perk.mastery.crossbow",
+		Key = "SpecCrossbow",
+		Description = ::UPD.getDescription({
+	 		Fluff = "Master crossbows and firearms, and learn where to aim best.",
+	 		Requirement = "Crossbow",
+	 		Effects = [
+		 		{
+	 				Type = ::UPD.EffectType.Passive,
+	 				Description = [
+	 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+	 					"An additional " + ::MSU.Text.colorGreen("20%") + " of damage inflicted with crossbows ignores armor.",
+	 					"[Heavy crossbows|Item+heavy_crossbow] now require " + ::MSU.Text.colorRed("4") + ", [Action Points|Concept.ActionPoints] to [reload|Skill+reload_bolt], just like regular crossbows, allowing you to shoot, reload and move.",
+						"[Handgonnes|Item+handgonne] now require " + ::MSU.Text.colorRed("6") + " [Action Points|Concept.ActionPoints] to [reload|Skill+reload_handgonne_skill] and can be fired every turn instead of every other turn."
+	 				]
+	 			}
+ 			]
+	 	})
+	},
+	{
 		ID = "perk.mastery.polearm",
 		Key = "SpecPolearm",
 		Description = ::UPD.getDescription({
