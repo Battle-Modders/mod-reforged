@@ -10,13 +10,8 @@
 	{
 		this.named_weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/quick_shot", function(o) {
-			o.m.FatigueCost += 2;
-		}));
+		this.addSkill(::MSU.new("scripts/skills/actives/quick_shot"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/aimed_shot", function(o) {
-			o.m.ActionPointCost += 1;
-			o.m.FatigueCost += 3;
-		}));
+		this.addSkill(::MSU.new("scripts/skills/actives/aimed_shot"));
 	}
 });

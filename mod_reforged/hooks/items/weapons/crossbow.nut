@@ -13,7 +13,7 @@
 		this.addSkill(::new("scripts/skills/actives/shoot_bolt"));
 
 		local reload = ::MSU.new("scripts/skills/actives/reload_bolt", function(o) {
-			o.m.FatigueCost += 2;
+			o.m.FatigueCost -= 2;
 		});
 		reload.m.IsHidden = this.m.IsLoaded;
 		this.addSkill(reload);

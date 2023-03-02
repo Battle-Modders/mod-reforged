@@ -19,7 +19,7 @@
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/gash_skill", function(o) {
-			o.m.FatigueCost -= 5;
+			o.m.FatigueCost -= 4;
 		}));
 	}
 });

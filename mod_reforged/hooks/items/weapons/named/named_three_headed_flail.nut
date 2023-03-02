@@ -12,8 +12,6 @@
 
 		this.addSkill(::MSU.new("scripts/skills/actives/cascade_skill"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/hail_skill", function(o) {
-			o.m.FatigueCost += 2;
-		}));
+		this.addSkill(::MSU.new("scripts/skills/actives/hail_skill"));
 	}
 });

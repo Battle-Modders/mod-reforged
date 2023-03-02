@@ -23,18 +23,17 @@ this.named_rf_battle_axe <- ::inherit("scripts/items/weapons/named/named_weapon"
 
 	function onEquip()
 	{
-		this.named_weapon.onEquip()
+		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/chop", function(o) {
-			o.m.FatigueCost += 1;
+			o.m.FatigueCost += 2;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split_man", function(o) {
-			o.m.FatigueCost += 3;
+			o.m.ActionPointCost -= 1;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
-			o.m.FatigueCost += 3;
 			o.setApplyAxeMastery(true);
 		}));
 	}

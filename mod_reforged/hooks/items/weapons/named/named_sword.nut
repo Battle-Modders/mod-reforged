@@ -10,9 +10,7 @@
 	{
 		this.named_weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/slash", function(o) {
-			o.m.FatigueCost += 1;
-		}));
+		this.addSkill(::MSU.new("scripts/skills/actives/slash"));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/riposte"));
 	}

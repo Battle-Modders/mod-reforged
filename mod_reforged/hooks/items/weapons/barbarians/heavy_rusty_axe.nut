@@ -12,7 +12,6 @@
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split_man", function(o) {
-			o.m.FatigueCost += 4;
 			o.m.Icon = "skills/active_187.png";
 			o.m.IconDisabled = "skills/active_187_sw.png";
 			o.m.Overlay = "active_187";
@@ -26,7 +25,7 @@
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
 			o.m.ActionPointCost += 2;
-			o.m.FatigueCost += 13;
+			o.m.FatigueCost += 5;
 			o.setApplyAxeMastery(true);
 		}));
 	}

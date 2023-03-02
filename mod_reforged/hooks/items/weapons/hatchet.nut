@@ -12,11 +12,12 @@
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/chop", function(o) {
-			o.m.FatigueCost -= 1;
+			o.m.FatigueCost -= 3;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
 			o.setApplyAxeMastery(true);
+			o.m.FatigueCost -= 3;
 		}));
 	}
 });

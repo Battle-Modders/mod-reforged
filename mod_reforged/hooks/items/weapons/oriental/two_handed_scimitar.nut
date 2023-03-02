@@ -13,18 +13,16 @@
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/cleave", function(o) {
-			o.m.FatigueCost += 4;
+			o.m.FatigueCost += 3;
 			o.m.Icon = "skills/active_210.png";
 			o.m.IconDisabled = "skills/active_210_sw.png";
 			o.m.Overlay = "active_210";
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/decapitate", function(o) {
-			o.m.FatigueCost += 2;
-		}));
+		this.addSkill(::MSU.new("scripts/skills/actives/decapitate"));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
-			o.m.FatigueCost += 7;
+			o.m.FatigueCost += 5;
 		}));
 	}
 });

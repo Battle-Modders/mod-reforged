@@ -23,7 +23,7 @@
 
 		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike", function(o) {
 			o.m.ActionPointCost -= 1;
-			o.m.FatigueCost -= 2;
+			o.m.FatigueCost -= 1;
 			o.setStunChance(this.m.StunChance);
 		}.bindenv(this)));
 
