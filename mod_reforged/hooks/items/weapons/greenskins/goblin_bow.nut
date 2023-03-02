@@ -15,7 +15,7 @@
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/aimed_shot", function(o) {
-			o.m.FatigueCost -= 4;
+			o.m.FatigueCost -= 5;
 		}));
 	}
 });

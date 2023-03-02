@@ -12,7 +12,6 @@
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/chop", function(o) {
-			o.m.FatigueCost += 1;
 			o.m.Icon = "skills/active_185.png";
 			o.m.IconDisabled = "skills/active_185_sw.png";
 			o.m.Overlay = "active_185";

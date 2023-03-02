@@ -39,6 +39,7 @@ this.rf_reinforced_wooden_poleflail <- ::inherit("scripts/items/weapons/weapon",
 
 		this.addSkill(::MSU.new("scripts/skills/actives/flail_skill", function(o) {
 			o.m.MaxRange = 2;
+			o.m.FatigueCost += 1;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/lash_skill", function(o) {

@@ -15,9 +15,11 @@
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/riposte", function(o) {
-			o.m.FatigueCost -= 2;
+			o.m.FatigueCost -= 3;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/decapitate"));
+		this.addSkill(::MSU.new("scripts/skills/actives/decapitate", function(o) {
+			o.m.FatigueCost -= 2;
+		}));
 	}
 });

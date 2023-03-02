@@ -11,7 +11,7 @@
 		this.named_weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/slash", function(o) {
-			o.m.FatigueCost += 2;
+			o.m.FatigueCost += 3;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/split", function(o) {

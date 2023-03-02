@@ -33,7 +33,7 @@ this.rf_estoc <- ::inherit("scripts/items/weapons/weapon", {
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/rf_sword_thrust_skill", function(o) {
-			o.m.FatigueCost += 2;
+			o.m.FatigueCost += 3;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/lunge_skill"));

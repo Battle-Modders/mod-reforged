@@ -10,9 +10,7 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/pound", function(o) {
-			o.m.FatigueCost += 3;
-		}));
+		this.addSkill(::MSU.new("scripts/skills/actives/pound"));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/thresh"));
 	}

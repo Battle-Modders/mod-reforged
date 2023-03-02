@@ -11,14 +11,12 @@
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/cleave", function(o) {
-			o.m.FatigueCost += 1;
 			o.m.Icon = "skills/active_182.png";
 			o.m.IconDisabled = "skills/active_182_sw.png";
 			o.m.Overlay = "active_182";
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/decapitate", function(o) {
-			o.m.FatigueCost += 2;
 		}));
 	}
 });

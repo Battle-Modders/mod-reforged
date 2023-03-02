@@ -11,7 +11,7 @@
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/throw_axe", function(o) {
-			o.m.FatigueCost += 3;
+			o.m.FatigueCost += 1;
 		}));
 	}
 });
