@@ -20,6 +20,7 @@
 		this.getSkills().add(::new("scripts/skills/special/rf_polearm_adjacency"));
 		this.getSkills().add(::new("scripts/skills/special/rf_follow_up_proccer"));
 		this.getSkills().add(::new("scripts/skills/special/rf_inspiring_presence_buff_effect"));
+		this.getSkills().add(::new("scripts/skills/special/rf_weapon_mastery_standardization"));
 
 		local flags = this.getFlags();
 		if (flags.has("undead") && !flags.has("ghost") && !flags.has("ghoul") && !flags.has("vampire"))
