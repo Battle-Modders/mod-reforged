@@ -33,7 +33,7 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_targetEntity.isAlive() || !_skill.isRanged() || !_skill.m.IsWeaponSkill || !this.isEnabled())
+		if (!_targetEntity.isAlive() || !_skill.isRanged() || !_skill.m.IsWeaponSkill)
 		{
 			return;
 		}
