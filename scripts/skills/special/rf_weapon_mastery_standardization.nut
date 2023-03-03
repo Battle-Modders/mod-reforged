@@ -1,12 +1,13 @@
-this.rf_weapon_mastery_standardization_effect <- ::inherit("scripts/skills/skill", {
+this.rf_weapon_mastery_standardization <- ::inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.rf_weapon_mastery_standardization";
+		this.m.ID = "special.rf_weapon_mastery_standardization";
 		this.m.Name = "";
 		this.m.Description = "";
-		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.Order = ::Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Special;
+		this.m.Order = ::Const.SkillOrder.Background;
+		this.m.IsSerialized = false;
 		this.m.IsActive = false;
 		this.m.IsHidden = true;
 		this.m.IsRemovedAfterBattle = false;
@@ -35,7 +36,6 @@ this.rf_weapon_mastery_standardization_effect <- ::inherit("scripts/skills/skill
 								if (key2 in ::Reforged.WMS.WeaponTypeMastery) _properties[::Reforged.WMS.WeaponTypeMastery[key2]] = true;
 							}
 						}
-						break;
 					}
 				}
 			}
