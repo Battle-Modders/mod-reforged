@@ -88,3 +88,25 @@
 		return this.m.Reach;
 	}
 });
+
+::Reforged.HooksMod.hookTree("scripts/items/weapons/weapon", function(q) {
+	// We change getAmmoID to return an unsigned enum instead of an ID-String. This could break mod compatibility but it isn't worth it to support the flawed vanilla ammoType mechanic.
+	// This will correct all current and most future Vanilla items and those coming from random mods
+	q.getAmmoID = @(__original) function()
+	{
+		local ret = __original();
+		if (ret == "ammo.arrows")
+		{
+			return ::Const.Items.AmmoType.Arrows;
+		}
+		if (ret == "ammo.bolts")
+		{
+			return ::Const.Items.AmmoType.Bolts;
+		}
+		if (ret == "ammo.powder")
+		{
+			return ::Const.Items.AmmoType.Powder;
+		}
+		return ret;
+	}
+});

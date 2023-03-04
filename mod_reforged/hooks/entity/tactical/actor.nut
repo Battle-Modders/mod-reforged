@@ -154,6 +154,36 @@
 		return __original() || this.m.IsWaitingTurn;
 	}
 
+	// Temporarily changes the getID function from the ammo item to instead return getAmmoType
+	// This is the alternative to re-/overwriting these two functions. The Vanilla function uses 'ammo.getID' which we can't fix otherwise
+    q.hasRangedWeapon = @(__original) function()
+    {
+        local ammoItem = this.getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
+        if (ammoItem == null) return __original();
+
+        local oldGetID = ammoItem.getID;
+        ammoItem.getID = ammoItem.getAmmoType;
+
+        local ret = __original();
+
+        ammoItem.getID = oldGetID;
+        return ret;
+    }
+
+    q.getRangedWeaponInfo = @(__original) function()
+    {
+        local ammoItem = this.getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
+        if (ammoItem == null) return __original();
+
+        local oldGetID = ammoItem.getID;
+        ammoItem.getID = ammoItem.getAmmoType;
+
+        local ret = __original();
+
+        ammoItem.getID = oldGetID;
+        return ret;
+    }
+
 // New Functions:
 	q.getSurroundedBonus <- function( _targetEntity )
 	{
