@@ -17,7 +17,7 @@ this.rf_internal_hemorrhage_effect <- ::inherit("scripts/skills/skill", {
 
 	function setAttacker( _a )
 	{
-		this.m.Actor = ::MSU.asWeakTableRef(_a);
+		this.m.Attacker = ::MSU.asWeakTableRef(_a);
 	}
 
 	function create()
