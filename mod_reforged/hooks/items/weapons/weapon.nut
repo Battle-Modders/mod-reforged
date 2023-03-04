@@ -1,5 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/weapon", function(q) {
 	q.m.Reach <- 1;
+	q.m.RequiredAmmoType <- ::Const.Items.AmmoType.None;
 
 	q.getTooltip = @(__original) function()
 	{
@@ -83,10 +84,18 @@
 		}
 	}
 
+// New Functions
 	q.getReach <- function()
 	{
 		return this.m.Reach;
 	}
+
+	q.getRequiredAmmoType <- function()
+	{
+		if (this.m.RequiredAmmoType == ::Const.Items.AmmoType.None) return this.getAmmoID();
+		return this.m.RequiredAmmoType;
+	}
+
 });
 
 ::Reforged.HooksMod.hookTree("scripts/items/weapons/weapon", function(q) {
