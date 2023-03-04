@@ -91,3 +91,27 @@
 		return this.m.Reach;
 	}
 });
+
+::mods_hookDescendants("items/weapons/weapon", function(o) {
+	if ("getAmmoID" in o)
+	{
+		local getAmmoID = o.getAmmoID;
+		o.getAmmoID = function()	// This will correct all current and most future Vanilla items and those coming from random mods
+		{
+			local ret = getAmmoID();
+			if (ret == "ammo.arrows")
+			{
+				return ::Const.Items.AmmoType.Arrows;
+			}
+			if (ret == "ammo.bolts")
+			{
+				return ::Const.Items.AmmoType.Bolts;
+			}
+			if (ret == "ammo.powder")
+			{
+				return ::Const.Items.AmmoType.Powder;
+			}
+			return ret;
+		}
+	}
+})
