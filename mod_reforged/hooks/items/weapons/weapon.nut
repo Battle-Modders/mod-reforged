@@ -1,5 +1,6 @@
 ::mods_hookExactClass("items/weapons/weapon", function (o) {
 	o.m.Reach <- 1;
+	o.m.RequiredAmmoType <- ::Const.Items.AmmoType.None;
 
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
@@ -90,6 +91,13 @@
 	{
 		return this.m.Reach;
 	}
+
+	o.getRequiredAmmoType <- function()
+	{
+		if (this.m.RequiredAmmoType == ::Const.Items.AmmoType.None) return this.getAmmoID();
+		return this.m.RequiredAmmoType;
+	}
+
 });
 
 ::mods_hookDescendants("items/weapons/weapon", function(o) {
