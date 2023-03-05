@@ -13,6 +13,7 @@
 	<sprite id="rf_sling_holy_water_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sling_holy_water_skill.png" />
 	<sprite id="rf_sling_smoke_bomb_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sling_smoke_bomb_skill.png" />
 
+	<sprite id="rf_pressure_bleed_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_pressure_bleed_skill.png" />
 	<sprite id="rf_adjust_dented_armor_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_adjust_dented_armor_skill.png" />
 	<sprite id="rf_adjust_dented_armor_ally_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_adjust_dented_armor_ally_skill.png" />
 	<sprite id="rf_arrow_to_the_knee_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_arrow_to_the_knee_skill.png" />

@@ -13,6 +13,7 @@
 		onInit();
 		this.getSkills().add(::new("scripts/skills/actives/rf_adjust_dented_armor_ally_skill"));
 		this.getSkills().add(::new("scripts/skills/special/rf_veteran_levels"));
+		this.getSkills().add(::new("scripts/skills/actives/rf_pressure_bleed_skill"));
 	}
 
 	o.getProjectedAttributes <- function()
