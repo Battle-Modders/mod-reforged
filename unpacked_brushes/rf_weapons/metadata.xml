@@ -9,6 +9,9 @@
 <sprite id="icon_rf_kriegsmesser_01" offsetY="35" ic="FF616061" width="104" height="142" img="icon_rf_kriegsmesser_01.png" left="-52" right="10" />
   <sprite id="icon_rf_kriegsmesser_01_bloodied" offsetY="35" ic="FF56565E" width="104" height="142" img="icon_rf_kriegsmesser_01_bloodied.png" left="-52" right="10" />
 
+  <sprite id="icon_rf_kriegsmesser_named_01" offsetY="35" ic="FF616061" width="104" height="142" img="icon_rf_kriegsmesser_named_01.png" left="-52" right="10" />
+  <sprite id="icon_rf_kriegsmesser_named_01_bloodied" offsetY="35" ic="FF56565E" width="104" height="142" img="icon_rf_kriegsmesser_named_01_bloodied.png" left="-52" right="10" />
+
 <sprite id="icon_rf_poleflail_01" offsetY="35" ic="FF727272" width="104" height="142" img="icon_rf_poleflail_01.png" left="-72" right="18" top="-51" bottom="58" />
 <sprite id="icon_rf_poleflail_01_bloodied" offsetY="35" ic="FF5E5E66" width="104" height="142" img="icon_rf_poleflail_01_bloodied.png" left="-52" right="32" top="-62" bottom="40" />
 
