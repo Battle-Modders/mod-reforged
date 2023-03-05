@@ -388,7 +388,7 @@ local vanillaDescriptions = [
  				Description = [
  					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
  					"Gain " + ::MSU.Text.colorGreen("20%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional chance to hit.",
- 					"Damage is increased by " + ::MSU.Text.colorGreen("30%") + " when attacking at a distance of 3 tiles and by " + ::MSU.Text.colorGreen("20%") + " when attacking at a distance of 2 tiles."
+ 					"Damage is increased by " + ::MSU.Text.colorGreen("30%") + " when attacking at a distance of 2 tiles and by " + ::MSU.Text.colorGreen("20%") + " when attacking at a distance of 3 tiles."
  				]
  			}]
 	 	}),
