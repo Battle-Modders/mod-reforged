@@ -73,6 +73,7 @@
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
     		this.m.BaseProperties.Armor = [80, 80];
+    		this.m.BaseProperties.ArmorMax = [80, 80];
     		this.m.Skills.add(::new("scripts/skills/perks/perk_adrenalin"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_colossus"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
