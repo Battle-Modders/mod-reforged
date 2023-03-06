@@ -2,6 +2,8 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 	m = {
 		MissStacks = 0,
 		HitStacks = 0,
+		MissStacksMax = 5,
+		HitStacksMax = 2,
 		BonusPerMiss = 2,
 		BonusPerHit = 5
 	},
@@ -77,7 +79,7 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill != null && _skill.isAttack() && _attacker != null && _attacker.getID() != this.getContainer().getActor().getID())
 		{
-			this.m.HitStacks += 1;
+			this.m.HitStacks = ::Math.min(this.m.HitStacksMax, this.m.HitStacks + 1);
 		}
 	}
 
@@ -85,7 +87,7 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill != null && _skill.isAttack() && _attacker != null && _attacker.getID() != this.getContainer().getActor().getID())
 		{
-			this.m.MissStacks += 1;
+			this.m.MissStacks += ::Math.min(this.m.MissStacksMax, this.m.MissStacks + 1);
 		}
 	}
 

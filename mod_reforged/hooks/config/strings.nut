@@ -1512,8 +1512,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Whenever you are attacked, gain a stacking bonus to [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] of " + ::MSU.Text.colorGreen("+2") + " on a miss and " + ::MSU.Text.colorGreen("+5") + " on a hit.",
-				"At the start of every [turn|Concept.Turn] the bonus is reset except the bonus gained from getting hit which is retained for the remainder of the combat. This retained bonus cannot be higher than " + ::MSU.Text.colorGreen("+10") + "."
+				"Whenever you are attacked, gain a stacking bonus to [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] of " + ::MSU.Text.colorGreen("+2") + " on a miss and " + ::MSU.Text.colorGreen("+5") + " on a hit. This can stack up to " + ::MSU.Text.colorGreen("5") + " times for misses and up to " + ::MSU.Text.colorGreen("2") + " times for hits.",
+				"At the start of every [turn|Concept.Turn] the bonus is reset except the bonus gained from getting hit which is retained for the remainder of the combat."
 			]
 		}]
  	}),
