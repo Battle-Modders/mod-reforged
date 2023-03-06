@@ -10,7 +10,7 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::new("scripts/skills/actives/shoot_bolt"));
+		this.addSkill(::new("scripts/skills/actives/fire_handgonne_skill"));
 
 		local reload = ::MSU.new("scripts/skills/actives/reload_handgonne_skill", function(o) {
 			o.m.FatigueCost += 2;
