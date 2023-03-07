@@ -20,7 +20,7 @@ this.pg_rf_resilient <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.hold_out"],
 				["perk.fortified_mind"],
 				[],
-				["perk.rf_survival_instinct"],
+				[],
 				[],
 				[]
 			]
