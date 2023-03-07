@@ -570,7 +570,7 @@
 			foreach (s in _player.getSkills().m.Skills)
 			{
 				local id = s.getID();
-				if (!s.isGarbage() && id != "perk.mastery.bow" && id != "perk.mastery.crossbow" && id.find("perk.mastery.") != null)
+				if (!s.isGarbage() && id != "perk.mastery.bow" && id != "perk.mastery.crossbow" && id != "perk.mastery.polearm" && id.find("perk.mastery.") != null)
 					return true;
 			}
 
@@ -578,7 +578,7 @@
 				id = 3,
 				type = "hint",
 				icon = "ui/icons/icon_locked.png",
-				text = "Locked until at least one melee weapon mastery perk is picked"
+				text = "Locked until at least one melee weapon mastery perk other than Polearm Mastery is picked"
 			});
 			return false;
 		}
