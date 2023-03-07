@@ -29,6 +29,11 @@
 					{
 						R = 60,
 						P = 1.0,
+						S = "weapons/rf_kriegsmesser"
+					},
+					{
+						R = 60,
+						P = 1.0,
 						S = "weapons/rf_greatsword"
 					},
 					{
