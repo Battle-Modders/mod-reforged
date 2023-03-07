@@ -27,3 +27,6 @@
 	"Fleshripper",
 	"Fleshrender"
 ];
+
+// Remove Kriegsmesser from Warbrand names because we have our own actual Kriegsmesser item
+::MSU.Array.removeByValue(::Const.Strings.WarbrandNames, "Kriegsmesser");
