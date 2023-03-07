@@ -355,7 +355,8 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
  					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
- 					"All skills with two-handed weapons, with a range of 2 tiles, having an [Action Point|Concept.ActionPoints] cost of " + ::MSU.Text.colorRed("6") + " have their [Action Point|Concept.ActionPoints] cost reduced to " + ::MSU.Text.colorRed("5") + ", and no longer have a penalty for attacking targets directly adjacent."
+ 					"All skills with two-handed weapons, with a range of 2 tiles, having an [Action Point|Concept.ActionPoints] cost of " + ::MSU.Text.colorRed("6") + " have their [Action Point|Concept.ActionPoints] cost reduced to " + ::MSU.Text.colorRed("5") + ".",
+ 					"Polearms no longer have a penalty for attacking targets directly adjacent."
  				]
  			}]
 	 	}),
