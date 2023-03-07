@@ -349,13 +349,13 @@ local vanillaDescriptions = [
 		ID = "perk.mastery.polearm",
 		Key = "SpecPolearm",
 		Description = ::UPD.getDescription({
-	 		Fluff = "Master polearms and keeping the enemy at bay.",
-	 		Requirement = "Polearm",
+	 		Fluff = "Master polearms in close formation and keep the enemy at bay.",
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
- 					"All skills with two-handed weapons, with a range of 2 tiles, having an [Action Point|Concept.ActionPoints] cost of " + ::MSU.Text.colorRed("6") + " have their [Action Point|Concept.ActionPoints] cost reduced to " + ::MSU.Text.colorRed("5") + ", and no longer have a penalty for attacking targets directly adjacent."
+ 					"Polearm Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+					"Adjacent allies no longer reduce your chance to hit for melee attacks with a range of 2 or more tiles."
+					"[Hook|Skill+hook] and [Repel|Skill+hook] ignore the defense bonus of shields."
  				]
  			}]
 	 	}),

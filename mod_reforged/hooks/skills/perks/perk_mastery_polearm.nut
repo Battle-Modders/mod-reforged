@@ -1,18 +1,17 @@
 ::mods_hookExactClass("skills/perks/perk_mastery_polearm", function(o) {
-	local onAfterUpdate = ::mods_getMember(o, "onAfterUpdate");
-	::mods_override(o, "onAfterUpdate", function( _properties ) {
-		onAfterUpdate(_properties);
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.TwoHanded) && weapon.isItemType(::Const.Items.ItemType.MeleeWeapon))
-		{
-			foreach (skill in weapon.getSkills())
-			{
-				 if (skill.m.MaxRange == 2 && skill.m.ActionPointCost > 5)
-				 {
-					 skill.m.ActionPointCost -= 1;
-				 }
-			}
-		}
-	});
+	// Not the cleanest way but it'll have to do for now.
+	// Other methods would be more performance intensive or may cause drinking an oblivion potion to let a brother keep the adjacency ignore until the savegame is reloaded
+	o.onCombatStarted <- function()
+	{
+		local adjacencySkill = this.getContainer().getSkillByID("special.rf_polearm_adjacency");
+		adjacencySkill.m.IgnoreAllyPenalty = true;
+	}
+
+	o.onCombatFinished <- function()
+	{
+		local adjacencySkill = this.getContainer().getSkillByID("special.rf_polearm_adjacency");
+		adjacencySkill.m.IgnoreAllyPenalty = false;
+	}
+
 });
 
