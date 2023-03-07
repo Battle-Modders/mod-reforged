@@ -30,7 +30,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.TotalMalus = 0;
 
-		if (_targetEntity == null || _skill.getMaxRange() == 1 || !_skill.isAttack() || _skill.isRanged() || !_skill.m.IsWeaponSkill || !this.isEnabled() || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		if (_targetEntity == null || _skill.getMaxRange() == 1 || !_skill.isAttack() || _skill.isRanged() || !_skill.m.IsWeaponSkill || !this.isEnabled())
 		{
 			return;
 		}
