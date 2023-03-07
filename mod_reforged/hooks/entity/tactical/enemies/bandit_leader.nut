@@ -88,7 +88,8 @@
 					// Reforged
 					"weapons/rf_greatsword",
 					"weapons/rf_battle_axe",
-					"weapons/rf_swordstaff"
+					"weapons/rf_swordstaff",
+					"weapons/rf_kriegsmesser"
 				]);
 			}
 
