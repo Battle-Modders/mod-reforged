@@ -72,7 +72,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has reduced chance to hit when standing next to others. " + ::MSU.Text.colorizePercentage(-this.m.MalusPerAlly) + " per adjacent ally and " + ::MSU.Text.colorizePercentage(-this.m.MalusPerAlly) + " per adjacent enemy"
+				text = "Has reduced chance to hit when standing next to others. " + ::MSU.Text.colorizePercentage(-this.m.MalusPerAlly) + " per adjacent ally and " + ::MSU.Text.colorizePercentage(-this.m.MalusPerEnemy) + " per adjacent enemy"
 			});
 		}
 	}
