@@ -64,21 +64,56 @@
 	local makeMiniboss = o.makeMiniboss;
 	o.makeMiniboss = function()
 	{
-		local ret = makeMiniboss();
-		if (ret)
+		if (!this.actor.makeMiniboss())
 		{
-			this.m.Skills.removeByID("perk.killing_frenzy"); // revert vanilla
-
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_lone_wolf"));
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vengeful_spite"));
-    		}
+			return false;
 		}
 
-		return ret;
+		this.getSprite("miniboss").setBrush("bust_miniboss");
+		local weapons = [
+			"weapons/named/named_axe",
+			"weapons/named/named_greatsword",
+			"weapons/named/named_mace",
+			"weapons/named/named_sword"
+
+			// Reforged
+			"weapons/named/named_rf_kriegsmesser"
+		];
+		local shields = clone this.Const.Items.NamedShields;
+		local armor = [
+			"armor/named/brown_coat_of_plates_armor",
+			"armor/named/golden_scale_armor",
+			"armor/named/green_coat_of_plates_armor",
+			"armor/named/heraldic_mail_armor"
+		];
+		local r = this.Math.rand(1, 3);
+
+		if (r == 1)
+		{
+			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		}
+		else if (r == 2)
+		{
+			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+		}
+		else
+		{
+			this.m.Items.equip(this.new("scripts/items/" + armor[this.Math.rand(0, armor.len() - 1)]));
+		}
+
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
+
+		// Reforged
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
+    	if (::Reforged.Config.IsLegendaryDifficulty)
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_lone_wolf"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vengeful_spite"));
+		}
+
+		return true;
 	}
 });
