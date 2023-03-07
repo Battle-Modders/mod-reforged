@@ -57,13 +57,10 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 	{
 		if (this.m.TotalMalus > 0)
 		{
-			if (this.getContainer().getActor().isEngagedInMelee())
-			{
-				_tooltip.push({
-					icon = "ui/tooltips/negative.png",
-					text = ::MSU.Text.colorizePercentage(-this.m.TotalMalus) + " Crowded"
-				});
-			}
+			_tooltip.push({
+				icon = "ui/tooltips/negative.png",
+				text = ::MSU.Text.colorizePercentage(-this.m.TotalMalus) + " Crowded"
+			});
 		}
 	}
 
