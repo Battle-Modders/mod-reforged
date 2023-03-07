@@ -40,6 +40,10 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 
+		local weapon = actor.getMainhandItem();
+		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
+			return;
+
 		if (_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt))
 		{
 			if (::Math.rand(1, 100) <= 50)
