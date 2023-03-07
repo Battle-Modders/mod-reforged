@@ -4,7 +4,7 @@
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.Zombie);
-		b.SurroundedBonus = 10;
+		// b.SurroundedBonus = 10;	// This is now controlled by them having 'Backstabber'
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToBleeding = true;
