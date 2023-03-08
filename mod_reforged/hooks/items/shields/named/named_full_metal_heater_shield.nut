@@ -4,11 +4,11 @@
 	local getValuesForRandomize = "getValuesForRandomize" in o ? o.getValuesForRandomize : null;
 	o.getValuesForRandomize <- function()
 	{
-		local ret = getValuesForRandomize != null ? getValuesForRandomize() : {};
+		local ret = getValuesForRandomize != null ? getValuesForRandomize() : this.named_shield.getValuesForRandomize();
 		local siparShield = ::new("scripts/items/shields/oriental/metal_round_shield");
-		ret.Condition <- siparShield.m.Condition;
-		ret.ConditionMax <- siparShield.m.ConditionMax;
-		ret.StaminaModifier <- -16;
+		ret.Condition = siparShield.m.Condition;
+		ret.ConditionMax = siparShield.m.ConditionMax;
+		ret.StaminaModifier = -16;
 
 		return ret;
 	}
