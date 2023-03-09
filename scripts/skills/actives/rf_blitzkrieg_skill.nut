@@ -92,11 +92,11 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 				{
 					ally.setFatigue(ally.getFatigue() + 10);
 					local effect = ::new("scripts/skills/effects/adrenaline_effect");
-					if (!bro.isTurnStarted() && !bro.isTurnDone())
+					if (!ally.isTurnStarted() && !ally.isTurnDone())
 					{
 						effect.m.TurnsLeft++;
 					}
-					bro.getSkills().add(effect);
+					ally.getSkills().add(effect);
 				}
 			}
 		}
