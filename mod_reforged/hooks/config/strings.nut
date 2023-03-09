@@ -1557,8 +1557,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When using a non-fencing sword, the [Action Point|Concept.ActionPoints] costs of sword skills is reduced by " + ::MSU.Text.colorGreen(1) + ".",
-				"Allows \'Kata Step\' to be usable even while holding something, e.g. a shield, in your offhand.",
-				"\'Kata Step\' costs " + ::MSU.Text.colorGreen(2) + " fewer [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorGreen(2) + " less [Fatigue|Concept.Fatigue], both down to a minimum of 0."
+				"Allows [Kata Step|Skill+rf_kata_step_skill] to be usable even while holding something, e.g. a shield, in your offhand.",
+				"[Kata Step|Skill+rf_kata_step_skill] costs " + ::MSU.Text.colorGreen(2) + " fewer [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorGreen(2) + " less [Fatigue|Concept.Fatigue], both down to a minimum of 0."
 			]
 		}],
 		Footer = ::MSU.Text.colorRed("You can only pick ONE perk from the Swordmaster perk group.")
