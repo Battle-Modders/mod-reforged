@@ -51,13 +51,20 @@ this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 			text = "Affected allies and you gain the \'Onslaught\' effect which grants " + ::MSU.Text.colorizeValue(10) + " Melee Skill, " + ::MSU.Text.colorizeValue(20) + " Initiative and one use of the \'Linebreaker\' skill with reduced Action Point and Fatigue Cost"
 		});
 
+		tooltip.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::MSU.Text.colorRed("Cannot be used more than once per combat (company-wide)")
+		});
+
 		if (this.m.IsSpent)
 		{
 			tooltip.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Cannot be used more than once per combat (company-wide)")
+				text = ::MSU.Text.colorRed("Has already been used by the company in this combat")
 			});
 		}
 
