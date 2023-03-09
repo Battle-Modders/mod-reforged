@@ -5,5 +5,6 @@
 		create();
 		this.m.Condition = 34;
 		this.m.ConditionMax = 34;
+		this.m.ReachIgnore = 3;
 	}
 });
