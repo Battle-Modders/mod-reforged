@@ -198,7 +198,8 @@
 			ConditionMax = baseItem.m.ConditionMax,
 			MeleeDefense = baseItem.m.MeleeDefense,
 			RangedDefense = baseItem.m.RangedDefense,
-			StaminaModifier = baseItem.m.StaminaModifier
+			StaminaModifier = baseItem.m.StaminaModifier,
+			ReachIgnore = baseItem.m.ReachIgnore
 		};
 	}
 
