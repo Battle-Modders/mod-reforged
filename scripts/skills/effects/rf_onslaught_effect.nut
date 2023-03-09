@@ -38,7 +38,7 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Gain one use of the \'Linebreaker\' skill with reduced Action Point and Fatigue Cost"
+				text = ::Reforged.Mod.Tooltips.parseString("Gain one use of the [Linebreaker|Skill+rf_line_breaker_skill] skill with reduced [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] Cost")
 			}
 		]);
 		

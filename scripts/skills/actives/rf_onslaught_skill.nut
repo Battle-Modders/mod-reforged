@@ -48,7 +48,7 @@ this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Affected allies and you gain the \'Onslaught\' effect which grants " + ::MSU.Text.colorizeValue(10) + " Melee Skill, " + ::MSU.Text.colorizeValue(20) + " Initiative and one use of the \'Linebreaker\' skill with reduced Action Point and Fatigue Cost"
+			text = ::Reforged.Mod.Tooltips.parseString("Affected allies and you gain the [Onslaught|Skill+rf_onslaught_effect] effect for one turn")
 		});
 
 		tooltip.push({
