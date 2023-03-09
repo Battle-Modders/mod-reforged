@@ -7,7 +7,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "special.rf_reach";
 		this.m.Name = "Reach";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Reach is a depiction of how far a character\'s attacks can reach, making melee combat easier against targets with shorter reach.\n\n[Melee skill|Concept.MeleeSkill] is increased when attacking opponents with shorter reach, and reduced against opponents with longer reach, by " + ::MSU.Text.colorGreen(::Reforged.Reach.BonusPerReach) + " per difference in reach. It only applies when attacking a target adjacent to you or up to 2 tiles away with nothing between you and the target.\n\nAfter a successful hit, the target\'s [Reach Advantage|Concept.ReachAdvantage] is lost until the attacker waits or ends their turn.\n\nReach grants no [Melee Skill|Concept.MeleeSkill] when attacking an opponent who has a shield. Characters who are rooted have their Reach halved. Those who are [stunned|Skill+stunned_effect], fleeing, or without a melee attack have no Reach.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Reach is a depiction of how far a character\'s attacks can reach, making melee combat easier against targets with shorter reach.\n\n[Melee skill|Concept.MeleeSkill] is increased when attacking opponents with shorter reach, and reduced against opponents with longer reach, by " + ::MSU.Text.colorGreen(::Reforged.Reach.BonusPerReach) + " per difference in reach. It only applies when attacking a target adjacent to you or up to 2 tiles away with nothing between you and the target.\n\nAfter a successful hit, the target\'s [Reach Advantage|Concept.ReachAdvantage] is lost until the attacker waits or ends their turn.\n\nShields can negate some or all of the target\'s [Reach Advantage|Concept.ReachAdvantage]. Characters who are rooted have their Reach halved. Those who are [stunned|Skill+stunned_effect], fleeing, or without a melee attack have no Reach.");
 		this.m.Icon = "skills/rf_reach_effect.png";
 		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast + 100;
@@ -77,7 +77,22 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 
 		local diff = _properties.getReach() - _targetEntity.getSkills().buildPropertiesForDefense(this.getContainer().getActor(), _skill).getReach();
 
-		if (diff == 0 || (diff > 0 && _targetEntity.isArmedWithShield()) || (diff < 0 && this.m.HitEnemies.find(_targetEntity.getID()) != null))
+		if (diff == 0)
+			return;
+
+		// Attacker has a reach advantage
+		if (diff > 0)
+		{
+			if (_targetEntity.isArmedWithShield()) diff = ::Math.max(0, diff - _targetEntity.getOffhandItem().getReachIgnore());
+		}
+		// Attacker has a reach disadvantage
+		else
+		{
+			if (this.m.HitEnemies.find(_targetEntity.getID()) != null)
+				diff = 0;
+		}
+
+		if (diff == 0)
 			return;
 
 		this.m.CurrBonus = ::Math.floor(::Reforged.Reach.BonusPerReach * diff);
