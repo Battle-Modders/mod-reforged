@@ -90,6 +90,9 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		{
 			if (this.m.HitEnemies.find(_targetEntity.getID()) != null)
 				diff = 0;
+
+			if (_properties.IsSpecializedInShields && this.getContainer().getActor().isArmedWithShield())
+				diff = ::Math.min(0, diff + this.getContainer().getActor().getOffhandItem().getReachIgnore());
 		}
 
 		if (diff == 0)
