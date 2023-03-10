@@ -8,9 +8,9 @@ this.rf_swordmaster_stance_meisterhau_skill <- ::inherit("scripts/skills/actives
 		this.m.ID = "actives.rf_swordmaster_stance_meisterhau";
 		this.m.Name = "Stance: Meisterhau";
 		this.m.Description = "Readying yourself for the master strikes known as the Meisterhäu allows you to strike and defend at the same time.";
-		this.m.Icon = "skills/rf_swordmaster__stance_meisterhau_skill.png";
-		this.m.IconDisabled = "skills/rf_swordmaster__stance_meisterhau_skill_bw.png";
-		this.m.Overlay = "rf_swordmaster__stance_meisterhau_skill";
+		this.m.Icon = "skills/rf_swordmaster_stance_meisterhau_skill.png";
+		this.m.IconDisabled = "skills/rf_swordmaster_stance_meisterhau_skill_bw.png";
+		this.m.Overlay = "rf_swordmaster_stance_meisterhau_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/riposte_01.wav",
 			"sounds/combat/riposte_02.wav",
