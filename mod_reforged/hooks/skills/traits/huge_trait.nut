@@ -22,8 +22,10 @@
 		return tooltip;
 	}
 
+	local onUpdate = o.onUpdate;
 	o.onUpdate <- function( _properties )
 	{
+		onUpdate(_properties);
 		_properties.Reach += 1;
 	}
 });
