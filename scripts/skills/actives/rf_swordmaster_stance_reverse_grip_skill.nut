@@ -97,7 +97,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 	{
 		this.rf_swordmaster_stance_abstract_skill.toggleOff();
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null && this.m.RemovedSkills.len() != 0)
+		if (weapon != null)
 		{
 			this.getContainer().getActor().getItems().unequip(weapon);
 			this.getContainer().getActor().getItems().equip(weapon);
