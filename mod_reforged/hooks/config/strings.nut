@@ -1368,10 +1368,9 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"This perk remains inert until level 11."
 				"Upon reaching level 11, it has a " + ::MSU.Text.colorGreen("50%") + " chance of being replaced with \'Realized Potential\' which will double this character\'s salary, increase all attributes by " + ::MSU.Text.colorGreen("+15") + ", unlock new perk groups, and refund all perk points, including the one spent on this perk.",
 				"If unsuccessful, it is replaced by \'Failed Potential\' which does nothing."
-				"The success chance is reduced by " + ::MSU.Text.colorRed("-10%") + " per perk point already spent before picking this perk. Only perks you spend perk points on are counted for this reduction."
 			]
 		}],
-		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
+		Footer = ::MSU.Text.colorRed("This perk cannot be picked after you have spent a perk point elsewhere. This perk cannot be refunded.")
  	}),
 	RF_ProximityThrowingSpecialist = ::UPD.getDescription({
  		Fluff = "\'Don\'t attack until you\'ve seen the whites of their eyes!\'",
