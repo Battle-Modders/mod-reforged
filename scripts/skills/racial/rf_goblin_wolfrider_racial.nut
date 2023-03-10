@@ -6,7 +6,7 @@ this.rf_goblin_wolfrider_racial <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Riding a Wolf";
 		this.m.Description = "This character is riding a wolf, which makes using weapons a little harder than usual.";
 		this.m.Icon = "";
-		this.m.Type = ::Const.SkillType.Racial | ::Const.SkillType.Perk;
+		this.m.Type = ::Const.SkillType.Racial | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
