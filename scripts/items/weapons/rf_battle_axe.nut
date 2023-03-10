@@ -6,8 +6,8 @@ this.rf_battle_axe <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ID = "weapon.rf_battle_axe";
 		this.m.Name = "Battle Axe";
 		this.m.Description = "A two-handed axe designed for versatile strikes.";
-		this.m.IconLarge = "weapons/melee/goblin_weapon_05.png"; // placeholder for Battle Axe art
-		this.m.Icon = "weapons/melee/goblin_weapon_05_70x70.png"; // placeholder for Battle Axe art
+		this.m.IconLarge = "weapons/melee/rf_battle_axe_01.png";
+		this.m.Icon = "weapons/melee/rf_battle_axe_01_70x70.png";
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
 		this.m.WeaponType = this.Const.Items.WeaponType.Axe;
@@ -16,7 +16,7 @@ this.rf_battle_axe <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
-		this.m.ArmamentIcon = "icon_goblin_weapon_05";
+		this.m.ArmamentIcon = "icon_rf_battle_axe_01";
 		this.m.Value = 1950;
 		this.m.ShieldDamage = 28;
 		this.m.Condition = 64.0;

@@ -1,5 +1,11 @@
 <brush name="gfx/rf_weapons.png" version="17">
 
+	<sprite id="icon_rf_battle_axe_01" offsetY="35" ic="FF374554" width="130" height="142" img="icon_rf_battle_axe_01.png" left="-65" right="13" top="-56" bottom="52" />
+	<sprite id="icon_rf_battle_axe_01_bloodied" offsetY="35" ic="FF374554" width="130" height="142" img="icon_rf_battle_axe_01_bloodied.png" left="-65" right="13" top="-56" bottom="52" />
+
+	<sprite id="icon_rf_battle_axe_named_01" offsetY="35" ic="FF374554" width="130" height="142" img="icon_rf_battle_axe_named_01.png" left="-65" right="13" top="-56" bottom="52" />
+	<sprite id="icon_rf_battle_axe_named_01_bloodied" offsetY="35" ic="FF374554" width="130" height="142" img="icon_rf_battle_axe_named_01_bloodied.png" left="-65" right="13" top="-56" bottom="52" />
+
 <sprite id="icon_rf_estoc_01" offsetY="35" ic="FF5B5F67" width="150" height="160" img="icon_rf_estoc_01.png" left="-54" right="22" top="-54" bottom="34" />
 <sprite id="icon_rf_estoc_01_bloodied" offsetY="35" ic="FF474B5B" width="150" height="160" img="icon_rf_estoc_01_bloodied.png" left="-54" right="22" top="-54" bottom="34" />
 
