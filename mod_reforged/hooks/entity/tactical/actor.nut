@@ -7,6 +7,23 @@
 		return handToHand != null && handToHand.isUsable();
 	}
 
+	// Complete overwrite of vanilla function to fix bug where buffs to fatigue also buff initiative for the same amount
+	o.getInitiative = function()
+	{
+		local initiative = this.getCurrentProperties().getInitiative();
+		initiative -= this.getFatigue() * this.getCurrentProperties().FatigueToInitiativeRate;	// Subtract Accumulated Fatigue from Initiative
+		initiative += ::Math.min(0, this.getInitiativeModifier());					// Subtract Burden from Initiative
+		return ::Math.floor(initiative);	// Vanilla does a round here but I argue that a consistent use of floor is better overall
+	}
+
+	// Items no longer apply their Fatigue Penalty directly. This is now only done when calling this function
+	// This rewrite also fixes the issue where StaminaMult was based of the stamina after gear. Now it only affects the stamina before gear
+	o.getFatigueMax = function()
+	{
+		local stamina = this.getCurrentProperties().getStamina();
+		return ::Math.floor(::Math.max(0, stamina + this.getStaminaModifier()));
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function()
 	{
@@ -134,5 +151,58 @@
 		this.m.CurrentProperties.StartSurroundCountAt = startSurroundCountAt;
 
 		return ::Math.max(0, count - startSurroundCountAt);
+	}
+
+// New Functions
+	// Returns the fatigue penalty inflicted onto the actor by all the items they wear (also known as [current] Weight)
+	// During onUpdateProperties this may not be correct if called with SkillOrder.Perk or below (Brawny and BagsAndBelts influence this)
+	o.getStaminaModifier <- function( _slots = null )
+	{
+		if (_slots == null)
+		{
+			 _slots = clone ::Const.ItemSlot;
+			 delete _slots.None;
+			 delete _slots.Free;
+			 delete _slots.COUNT;
+		}
+		else
+		{
+			if (typeof _slots == "integer") _slots = [_slots];
+		}
+
+		local ret = 0;
+
+		foreach (slot in _slots)
+		{
+			ret += this.getItems().getStaminaModifier(slot) * this.getCurrentProperties().StaminaModifierMult[slot];
+		}
+
+		return ret;
+	}
+
+	// Returns the current initiative penalty inflicted onto the actor by all the items they wear (also known as Burden)
+	// During onUpdateProperties this may not be correct if called with SkillOrder.Perk or below (Brawny, Skirmisher and BagsAndBelts influence this)
+	o.getInitiativeModifier <- function( _slots = null )
+	{
+		if (_slots == null)
+		{
+			 _slots = clone ::Const.ItemSlot;
+			 delete _slots.None;
+			 delete _slots.Free;
+			 delete _slots.COUNT;
+		}
+		else
+		{
+			if (typeof _slots == "integer") _slots = [_slots];
+		}
+
+		local ret = 0;
+
+		foreach (slot in _slots)
+		{
+			ret += this.getStaminaModifier(slot) * this.getCurrentProperties().InitiativeModifierMult[slot];
+		}
+
+		return ret;
 	}
 });
