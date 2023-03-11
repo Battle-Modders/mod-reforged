@@ -10,7 +10,7 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::new("scripts/skills/actives/shoot_bolt"));
+		this.addSkill(::new("scripts/skills/actives/shoot_stake"));
 
 		local reload = ::MSU.new("scripts/skills/actives/reload_bolt");
 		reload.m.IsHidden = this.m.IsLoaded;
