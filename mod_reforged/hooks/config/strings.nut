@@ -450,7 +450,7 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
  					"Damage from attacks to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorGreen("50%") + " and that to armor by " + ::MSU.Text.colorGreen("25%") + ".",
- 					"The bonus drops exponentially when wearing head and body armor with a total [Base Weight|Concept.Weight] above 15. The lighter your armor and helmet, the more you benefit.",
+ 					"The bonus drops exponentially when wearing head and body armor with a total Base [Weight|Concept.Weight] above 15. The lighter your armor and helmet, the more you benefit.",
  					"Cannot be picked if you have [Poise|Perk+perk_rf_poise]."
  				]
  			}]
@@ -608,7 +608,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The [Burden|Concept.Burden] from head and body armor is reduced by " + ::MSU.Text.colorRed("30%") + ".",
+				"The penalty to Initiative from the [Weight|Concept.Weight] of head and body armor is reduced by " + ::MSU.Text.colorRed("30%") + ".",
 				"At all times your [Initiative|Concept.Initiative] is reduced only by " + ::MSU.Text.colorGreen("50%") + " of accumulated [Fatigue|Concept.Fatigue], instead of all of it.",
 				"Stacks [multiplicatively|Concept.StackMultiplicatively] with the [Relentless|Perk+perk_relentless] perk."
 			]
@@ -1847,7 +1847,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The [Weight|Concept.Weight] from equipped items in your head, body, mainhand and offhand slots is reduced by " + ::MSU.Text.colorRed("20%") + "."
+				"The penalty to Maximum Fatigue from the [Weight|Concept.Weight] of equipped items in your head, body, mainhand and offhand slots is reduced by " + ::MSU.Text.colorRed("20%") + "."
 			]
 		}]
  	}),

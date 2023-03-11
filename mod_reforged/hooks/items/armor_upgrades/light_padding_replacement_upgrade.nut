@@ -7,7 +7,7 @@
         {
             if (entry.id != 14) continue;
             if (!("text" in entry) || entry.text.find("Maximum Fatigue") == null) continue;
-            entry.text = ::MSU.String.replace(entry.text, "penalty to Maximum Fatigue", "Base Weight");
+            entry.text = ::MSU.String.replace(entry.text, "penalty to Maximum Fatigue", "Weight");
         }
         return ret;
 	}

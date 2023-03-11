@@ -1,4 +1,16 @@
-// We replace any mentions of "Maximum Fatigue" in the tooltip with "Base Weight"
+::mods_hookBaseClass("items/item", function(o) {
+	o = o[o.SuperName];
+
+	o.m.StaminaModifier <- 0.0; // Vanilla is missing this in item.nut while containing a getStaminaModifier() function
+	o.m.InitiativeModifier <- null; // New field added by Reforged to separate stamina and initiative modifiers
+
+	o.getInitiativeModifier <- function()
+	{
+		return this.m.InitiativeModifier != null ? this.m.InitiativeModifier : this.getStaminaModifier();
+	}
+});
+
+// We replace any mentions of "Maximum Fatigue" in the tooltip with "Weight"
 ::mods_hookDescendants("items/item", function(o) {	// hookChildren doesn't catch everything. Nets and Gilders Shield overwrite the tooltip again
 	if ("getTooltip" in o)
 	{
@@ -15,7 +27,7 @@
 					entry.text.find("Maximum Fatigue [color=") != null
 				)
 				{
-					entry.text = ::Reforged.Mod.Tooltips.parseString("[Base Weight|Concept.Weight]: " + ::MSU.Text.colorRed(-this.getStaminaModifier()));
+					entry.text = ::Reforged.Mod.Tooltips.parseString("[Weight|Concept.Weight]: " + ::MSU.Text.colorRed(-this.getStaminaModifier()));
 					break;
 				}
 			}
