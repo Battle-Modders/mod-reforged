@@ -19,4 +19,17 @@
 
 		return ret;
 	}
+
+// New Functions
+	o.getMeleeDefenseBonus <- function()
+	{
+		local mult = (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields) ? 1.25 : 1.0;
+		return ::Math.floor(this.m.MeleeDefense * mult);
+	}
+
+	o.getRangedDefenseBonus <- function()
+	{
+		local mult = (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields) ? 1.25 : 1.0;
+		return ::Math.floor(this.m.RangedDefense * mult);
+	}
 });
