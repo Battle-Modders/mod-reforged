@@ -1,6 +1,6 @@
 this.perk_rf_wears_it_well <- ::inherit("scripts/skills/skill", {
 	m = {
-		FatPenReduction = 20
+		WeightMultiplier = 0.8
 	},
 	function create()
 	{
@@ -17,21 +17,9 @@ this.perk_rf_wears_it_well <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate(_properties)
 	{
-		local actor = this.getContainer().getActor();
-		local fat = actor.getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
-
-		local mainhand = actor.getMainhandItem();
-		if (mainhand != null)
-		{
-			fat += mainhand.getStaminaModifier();
-		}
-
-		local offhand = actor.getOffhandItem();
-		if (offhand != null)
-		{
-			fat += offhand.getStaminaModifier();
-		}
-
-		_properties.Stamina -= fat * this.m.FatPenReduction * 0.01;
+		_properties.FatigueModifierMult[::Const.ItemSlot.Mainhand] *= this.m.WeightMultiplier;
+		_properties.FatigueModifierMult[::Const.ItemSlot.Offhan] *= this.m.WeightMultiplier;
+		_properties.FatigueModifierMult[::Const.ItemSlot.Body] *= this.m.WeightMultiplier;
+		_properties.FatigueModifierMult[::Const.ItemSlot.Head] *= this.m.WeightMultiplier;
 	}
 });
