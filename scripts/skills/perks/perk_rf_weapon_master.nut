@@ -40,9 +40,14 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		local oneHandedCount = 0;
 		foreach (item in _items)
 		{
-			if (item == null || item.getSlotType() != ::Const.ItemSlot.Mainhand || item.isItemType(::Const.Items.ItemType.TwoHanded) || (!item.isItemType(::Const.Items.ItemType.MeleeWeapon) && !item.isWeaponType(::Const.Items.WeaponType.Throwing)))
+			if (item == null || item.getSlotType() != ::Const.ItemSlot.Mainhand || (!item.isItemType(::Const.Items.ItemType.MeleeWeapon) && !item.isWeaponType(::Const.Items.WeaponType.Throwing)))
 			{
 				continue;
+			}
+
+			if (item.isItemType(::Const.Items.ItemType.TwoHanded))
+			{
+				return null;
 			}
 
 			if (item.isItemType(::Const.Items.ItemType.OneHanded))
