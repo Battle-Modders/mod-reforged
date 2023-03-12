@@ -55,7 +55,7 @@
 
 		for (local i = 0; i < 6; i++)
 		{
-			if (_targetTile.hasdestTile(i))
+			if (_targetTile.hasNextTile(i))
 			{
 				local destTile = _targetTile.getNextTile(i);
 				if (destTile.IsEmpty)
