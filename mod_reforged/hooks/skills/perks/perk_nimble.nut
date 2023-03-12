@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/perks/perk_nimble", function(o) {
-	o.m.WeightThreshold <- 15;
+	o.m.StaminaModifierThreshold <- 15;
 	o.m.HitpointDamageMultiplier <- 0.50;
 	o.m.ArmorDamageMultiplier <- 0.25;
 
@@ -71,14 +71,14 @@
 	o.getHitpointsMult <- function()
 	{
 		local rawWeight = -1 * this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
-		rawWeight = ::Math.max(0, rawWeight - this.m.WeightThreshold);
+		rawWeight = ::Math.max(0, rawWeight - this.m.StaminaModifierThreshold);
 		return ::Math.minf(1.0, this.m.HitpointDamageMultiplier + ::Math.pow(rawWeight, 1.23) * 0.01);
 	}
 
 	o.getArmorMult <- function()
 	{
 		local rawWeight = -1 * this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
-		rawWeight = ::Math.max(0, rawWeight - this.m.WeightThreshold);
+		rawWeight = ::Math.max(0, rawWeight - this.m.StaminaModifierThreshold);
 		return ::Math.minf(1.0, this.m.ArmorDamageMultiplier + ::Math.pow(rawWeight, 1.23) * 0.01);
 	}
 });

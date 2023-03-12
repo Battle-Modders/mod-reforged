@@ -1,6 +1,6 @@
 this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 	m = {
-		WeightThreshold = 35,
+		StaminaModifierThreshold = 35,
 		HitpointDamageMultiplier = 0.70,
 		ArmorDamageMultiplier = 0.85
 	},
@@ -88,14 +88,14 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 	function getHitpointsMult()
 	{
 		local rawWeight = -1 * this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
-		rawWeight = ::Math.max(0, rawWeight - this.m.WeightThreshold);
+		rawWeight = ::Math.max(0, rawWeight - this.m.StaminaModifierThreshold);
 		return ::Math.minf(1.0, this.m.HitpointDamageMultiplier + ::Math.pow(rawWeight, 1.23) * 0.01);
 	}
 
 	function getArmorMult()
 	{
 		local rawWeight = -1 * this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
-		rawWeight = ::Math.max(0, rawWeight - this.m.WeightThreshold);
+		rawWeight = ::Math.max(0, rawWeight - this.m.StaminaModifierThreshold);
 		return ::Math.minf(1.0, this.m.ArmorDamageMultiplier + ::Math.pow(rawWeight, 1.23) * 0.01);
 	}
 });

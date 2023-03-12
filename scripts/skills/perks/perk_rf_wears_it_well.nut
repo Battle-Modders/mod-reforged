@@ -17,9 +17,14 @@ this.perk_rf_wears_it_well <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate(_properties)
 	{
-		_properties.FatigueModifierMult[::Const.ItemSlot.Mainhand] *= this.m.WeightMultiplier;
-		_properties.FatigueModifierMult[::Const.ItemSlot.Offhan] *= this.m.WeightMultiplier;
-		_properties.FatigueModifierMult[::Const.ItemSlot.Body] *= this.m.WeightMultiplier;
-		_properties.FatigueModifierMult[::Const.ItemSlot.Head] *= this.m.WeightMultiplier;
+		_properties.StaminaModifierMult[::Const.ItemSlot.Mainhand] *= this.m.WeightMultiplier;
+		_properties.StaminaModifierMult[::Const.ItemSlot.Offhand] *= this.m.WeightMultiplier;
+		_properties.StaminaModifierMult[::Const.ItemSlot.Body] *= this.m.WeightMultiplier;
+		_properties.StaminaModifierMult[::Const.ItemSlot.Head] *= this.m.WeightMultiplier;
+
+		_properties.InitiativeModifierMult[::Const.ItemSlot.Mainhand] *= this.m.WeightMultiplier;
+		_properties.InitiativeModifierMult[::Const.ItemSlot.Offhand] *= this.m.WeightMultiplier;
+		_properties.InitiativeModifierMult[::Const.ItemSlot.Body] *= this.m.WeightMultiplier;
+		_properties.InitiativeModifierMult[::Const.ItemSlot.Head] *= this.m.WeightMultiplier;
 	}
 });

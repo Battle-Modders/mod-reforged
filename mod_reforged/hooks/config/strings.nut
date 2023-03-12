@@ -259,7 +259,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
-					"The [Weight|Concept.Weight] from wearing armor and helmet is reduced by [color=" + ::Const.UI.Color.NegativeValue + "]30%[/color]."
+					"The penalty to Maximum Fatigue and Initiative from armor and helmet [Weight|Concept.Weight] is reduced by [color=" + ::Const.UI.Color.NegativeValue + "]30%[/color]."
 				]
  			}]
 	 	}),
@@ -1847,7 +1847,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The penalty to Maximum Fatigue from the [Weight|Concept.Weight] of equipped items in your head, body, mainhand and offhand slots is reduced by " + ::MSU.Text.colorRed("20%") + "."
+				"The penalty to Maximum Fatigue and Initiative from the [Weight|Concept.Weight] of equipped items in your head, body, mainhand and offhand slots is reduced by " + ::MSU.Text.colorRed("20%") + "."
 			]
 		}]
  	}),
