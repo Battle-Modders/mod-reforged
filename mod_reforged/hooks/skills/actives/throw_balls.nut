@@ -7,6 +7,7 @@
 	{
 		create();
 		this.m.FatigueCost = 12;
+		this.m.IsShieldRelevant = false;		// Bolas now ignore the defense bonus of shields as a new unique ability
 	}
 
 	o.getTooltip = function()
@@ -33,6 +34,13 @@
 				text = "[color=" + ::Const.UI.Color.NegativeValue + "]No spiked balls left[/color]"
 			});
 		}
+
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Ignores the bonus to Ranged Defense granted by shields"
+		});
 
 		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
