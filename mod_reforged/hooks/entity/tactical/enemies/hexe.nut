@@ -47,7 +47,7 @@
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
     		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_soul_link"));
     	}
     	this.getSkills().update()
 	}
