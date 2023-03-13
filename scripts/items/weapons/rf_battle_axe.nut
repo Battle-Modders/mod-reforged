@@ -18,7 +18,7 @@ this.rf_battle_axe <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_rf_battle_axe_01";
 		this.m.Value = 1950;
-		this.m.ShieldDamage = 28;
+		this.m.ShieldDamage = 26;
 		this.m.Condition = 64.0;
 		this.m.ConditionMax = 64.0;
 		this.m.StaminaModifier = -14;
