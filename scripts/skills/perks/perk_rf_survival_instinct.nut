@@ -87,7 +87,7 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill != null && _skill.isAttack() && _attacker != null && _attacker.getID() != this.getContainer().getActor().getID())
 		{
-			this.m.MissStacks += ::Math.min(this.m.MissStacksMax, this.m.MissStacks + 1);
+			this.m.MissStacks = ::Math.min(this.m.MissStacksMax, this.m.MissStacks + 1);
 		}
 	}
 
