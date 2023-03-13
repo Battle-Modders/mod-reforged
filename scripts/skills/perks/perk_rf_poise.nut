@@ -1,5 +1,10 @@
 this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		WeightThreshold = 35,
+		HitpointDamageMultiplier = 0.70,
+		ArmorDamageMultiplier = 0.85
+	},
+
 	function create()
 	{
 		this.m.ID = "perk.rf_poise";
@@ -15,69 +20,55 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.getContainer().hasSkill("perk.nimble") || (::Math.floor(this.getHitpointsDamage() * 100) >= 100 && ::Math.floor(this.getArmorDamage() * 100) >= 100);
+		return this.getContainer().hasSkill("perk.nimble") || (::Math.floor(this.getHitpointsMult() * 100) >= 100 && ::Math.floor(this.getArmorMult() * 100) >= 100);
 	}
 
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
-		local hpBonus = ::Math.round(this.getHitpointsDamage() * 100);
-		if (hpBonus < 100)
+		local hpMult = ::Math.round(this.getHitpointsMult() * 100);
+		if (hpMult < 100)
 		{
 			tooltip.push({
 				id = 6,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Damage to hitpoints from attacks is reduced by [color=" + ::Const.UI.Color.PositiveValue + "]" + (100-hpBonus) + "%[/color]"
+				icon = "ui/icons/health.png",
+				text = "Damage to hitpoints from attacks is reduced by " + ::MSU.colorGreen((100-hpMult) + "%")
 			});
 		}
-		local armorBonus = ::Math.round(this.getArmorDamage() * 100);
-		if (armorBonus < 100)
+		local armorMult = ::Math.round(this.getArmorMult() * 100);
+		if (armorMult < 100)
 		{
 			tooltip.push({
-				id = 6,
+				id = 7,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Damage to armor from attacks is reduced by [color=" + ::Const.UI.Color.PositiveValue + "]" + (100-armorBonus) + "%[/color]"
+				icon = "ui/icons/armor_body.png",
+				text = "Damage to armor from attacks is reduced by " + ::MSU.colorGreen((100-armorMult) + "%")
 			});
 		}
 
-		if (hpBonus >= 100 && armorBonus >= 100)
+		if (hpMult >= 100 && armorMult >= 100)
 		{
 			tooltip.push({
-				id = 6,
+				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]This character\'s body and head armor are too heavy to gain any benefit from poise[/color]"
+				text = ::MSU.Text.colorRed("This character\'s body and head armor are too heavy to gain any benefit from poise")
 			});
 		}
 
 		local actor = this.getContainer().getActor();
-		local maxHPString = ::Math.floor(actor.getHitpointsMax() / (hpBonus * 0.01));
-		local currHPString = ::Math.floor(actor.getHitpoints() / (hpBonus * 0.01));
+		local maxHPString = ::Math.floor(actor.getHitpointsMax() / (hpMult * 0.01));
+		local currHPString = ::Math.floor(actor.getHitpoints() / (hpMult * 0.01));
 
 		tooltip.push({
-			id = 6,
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::MSU.Text.colorGreen("Effective Hitpoints: ") + currHPString + " / " + maxHPString
 		});
 
 		return tooltip;
-	}
-
-	function getHitpointsDamage()
-	{
-		local fat = this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
-		fat = ::Math.min(0, fat + 35);
-		return ::Math.minf(1.0, 1.0 - 0.3 + this.Math.pow(this.Math.abs(fat), 1.23) * 0.01);
-	}
-
-	function getArmorDamage()
-	{
-		local fat = this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
-		fat = ::Math.min(0, fat + 35);
-		return ::Math.minf(1.0, 1.0 - 0.2 + this.Math.pow(this.Math.abs(fat), 1.23) * 0.01);
 	}
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
@@ -87,10 +78,24 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (!this.getContainer().hasSkill("perk.nimble"))
-		{
-			_properties.DamageReceivedRegularMult *= this.getHitpointsDamage();
-			_properties.DamageReceivedArmorMult *= this.getArmorDamage();
-		}
+		if (this.getContainer().hasSkill("perk.nimble")) return;
+
+		_properties.DamageReceivedRegularMult *= this.getHitpointsMult();
+		_properties.DamageReceivedArmorMult *= this.getArmorMult();
+
+	}
+
+	function getHitpointsMult()
+	{
+		local rawWeight = -1 * this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
+		rawWeight = ::Math.max(0, rawWeight - this.m.WeightThreshold);
+		return ::Math.minf(1.0, this.m.HitpointDamageMultiplier + ::Math.pow(rawWeight, 1.23) * 0.01);
+	}
+
+	function getArmorMult()
+	{
+		local rawWeight = -1 * this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
+		rawWeight = ::Math.max(0, rawWeight - this.m.WeightThreshold);
+		return ::Math.minf(1.0, this.m.ArmorDamageMultiplier + ::Math.pow(rawWeight, 1.23) * 0.01);
 	}
 });

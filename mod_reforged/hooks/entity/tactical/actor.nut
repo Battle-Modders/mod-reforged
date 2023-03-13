@@ -7,6 +7,22 @@
 		return handToHand != null && handToHand.isUsable();
 	}
 
+	// Complete overwrite of vanilla function to fix bug where buffs to fatigue also buff initiative for the same amount
+	o.getInitiative = function()
+	{
+		local initiative = this.getCurrentProperties().getInitiative();
+		initiative -= this.getFatigue() * this.getCurrentProperties().FatigueToInitiativeRate;	// Subtract Accumulated Fatigue from Initiative
+		initiative += ::Math.min(0, this.getInitiativeModifier());
+		return ::Math.floor(initiative);	// Vanilla does a round here but I argue that a consistent use of floor is better overall
+	}
+
+	// Items no longer apply their Fatigue Penalty directly. This is now only done when calling this function
+	// This rewrite also fixes the issue where StaminaMult was based off the stamina after gear. Now it only affects the stamina before gear
+	o.getFatigueMax = function()
+	{
+		return ::Math.floor(::Math.max(0, this.getCurrentProperties().getStamina() + this.getStaminaModifier()));
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function()
 	{
@@ -134,5 +150,41 @@
 		this.m.CurrentProperties.StartSurroundCountAt = startSurroundCountAt;
 
 		return ::Math.max(0, count - startSurroundCountAt);
+	}
+
+	// New Functions
+
+	// Returns the fatigue penalty inflicted onto the actor by all the items they wear
+	o.getStaminaModifier <- function( _slots = null )
+	{
+		local ret = 0;
+		foreach (slotIdx, _ in ::Const.ItemSlotSpaces)
+		{
+			if (_slots != null && _slots.find(slotIdx) == null) continue;
+
+			foreach (item in this.getItems().m.Items[slotIdx])
+			{
+				if (item != null && item != -1)
+					ret += item.getStaminaModifier() * this.getCurrentProperties().StaminaModifierMult[slotIdx];
+			}
+		}
+		return ret;
+	}
+
+	// Returns the current initiative penalty inflicted onto the actor by all the items they wear
+	o.getInitiativeModifier <- function( _slots = null )
+	{
+		local ret = 0;
+		foreach (slotIdx, _ in ::Const.ItemSlotSpaces)
+		{
+			if (_slots != null && _slots.find(slotIdx) == null) continue;
+
+			foreach (item in this.getItems().m.Items[slotIdx])
+			{
+				if (item != null && item != -1)
+					ret += item.getInitiativeModifier() * this.getCurrentProperties().InitiativeModifierMult[slotIdx];
+			}
+		}
+		return ret;
 	}
 });
