@@ -67,7 +67,14 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 
 	function canProcOntile( _tile )
 	{
-		return _tile.IsCorpseSpawned && _tile.Properties.get("Corpse").IsValidForOpportunist && this.getContainer().getActor().getAlliedFactions().find(_tile.Properties.get("Corpse").Faction) == null;
+		if (!_tile.IsCorpseSpawned) return false;
+
+		// TEMPORARY: The ("IsValidForOpportunist" in corpse) check is done because of an issue in MSU where onOtherActorDeath is only called via
+		// base actor.nut onDeath function and when a goblin_wolfrider dies and spawns a wolf corpse, it doesn't call the base onDeath function,
+		// which means that the event doesn't get called and therefore the IsValidForOpportunist key does not get added to the corpse.
+		// Once MSU implements a "hookLeaves" way to do onOtherActorDeath it should no longer be necessary. -- LordMidas
+		local corpse = _tile.Properties.get("Corpse");
+		return ("IsValidForOpportunist" in corpse) && corpse.IsValidForOpportunist && this.getContainer().getActor().getAlliedFactions().find(corpse.Faction) == null;
 	}
 
 	function onQueryTileTooltip( _tile, _tooltip )
