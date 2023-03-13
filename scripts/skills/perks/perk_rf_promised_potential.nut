@@ -72,10 +72,11 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 					"pgc.rf_weapon"
 				];
 
+				local exclude = ["pg.rf_talented", "pg.rf_tactician"];
+
 				foreach (categoryID in categories)
 				{
 					local category = ::DynamicPerks.PerkGroupCategories.findById(categoryID);
-					local exclude = ["pg.rf_talented"];
 					foreach (groupID in category.getGroups())
 					{
 						if (perkTree.hasPerkGroup(groupID)) exclude.push(groupID);
