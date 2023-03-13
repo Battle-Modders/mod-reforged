@@ -27,7 +27,7 @@
 			o.m.Icon = "skills/active_127.png";
 			o.m.IconDisabled = "skills/active_127_sw.png";
 			o.m.Overlay = "active_127";
-			o.m.ActionPointCost -= 1;
+			o.m.ActionPointCost += 1;
 		}));
 	}
 });
