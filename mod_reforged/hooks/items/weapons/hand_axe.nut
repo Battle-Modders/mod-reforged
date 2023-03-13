@@ -4,7 +4,7 @@
 	{
 		create();
 		this.m.Reach = 3;
-		this.m.ShieldDamage = 22;
+		this.m.ShieldDamage = 12;
 	}
 
 	o.onEquip = function()
