@@ -30,6 +30,12 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 				icon = "ui/icons/fatigue.png",
 				text = ::MSU.Text.colorRed("100%") + " more Fatigue built per tile traveled"
 			}
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::MSU.Text.colorRed("Will expire upon using any skill")
+			}
 		]);
 
 		return tooltip;
@@ -39,6 +45,11 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 	{
 		_properties.MovementAPCostAdditional -= 1;
 		_properties.MovementFatigueCostMult *= 2.0;
+	}
+
+	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		this.removeSelf();
 	}
 
 	function onTurnEnd()
