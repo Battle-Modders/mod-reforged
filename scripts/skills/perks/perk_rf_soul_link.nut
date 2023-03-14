@@ -62,7 +62,7 @@ this.perk_rf_soul_link <- ::inherit("scripts/skills/skill", {
 		this.m.TransferInfo = null;
 	}
 
-	function onDeath(_killer, _skill, tile, _fatalityType)	// Transferred damage should display after the death in the log
+	function onDeath( _fatalityType )	// Transferred damage should display after the death in the log
 	{
 		if (this.m.TransferInfo == null) return;
 		this.transferDamage(this.m.TransferInfo.Attacker, this.m.TransferInfo.Damage);
