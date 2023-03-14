@@ -14,7 +14,7 @@ this.pg_rf_shield <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.rf_phalanx"],
 				["perk.shield_expert"],
 				["perk.rf_line_breaker"],
-				[],
+				["perk.rf_rebuke"],
 				["perk.duelist"],
 				["perk.rf_weapon_master"]
 			]
