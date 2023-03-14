@@ -35,7 +35,7 @@
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_linebreaker"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
