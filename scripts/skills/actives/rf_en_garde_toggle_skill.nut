@@ -68,7 +68,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 	{
 		if (this.getContainer().getActor().m.IsMoving)
 		{
-			local meisterhau = this.getContainer().getSkillByID("actives.rf_swordmaster_versatile_swordsman_stance_meisterhau");
+			local meisterhau = this.getContainer().getSkillByID("actives.rf_swordmaster_stance_meisterhau");
 			if (meisterhau == null || !meisterhau.m.IsOn)
 			{
 				this.m.IsSpent = true;
