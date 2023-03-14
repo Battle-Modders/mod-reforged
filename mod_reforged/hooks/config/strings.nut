@@ -79,6 +79,7 @@
 	RF_Onslaught = "Onslaught",
 	RF_Rattle = "Rattle",
 	RF_RealizedPotential = "Realized Potential",
+	RF_Rebuke = "Rebuke",
 	RF_RisingStar = "Rising Star",
 	RF_Sanguinary = "Sanguinary",
 	RF_SavageStrength = "Savage Strength",
@@ -1404,6 +1405,16 @@ foreach (vanillaDesc in vanillaDescriptions)
 	RF_RealizedPotential = ::UPD.getDescription({
  		Fluff = "From rags to riches! This character has truly come a long way. Who was once a dreg of society is now a full-fledged mercenary. " + ::MSU.Text.colorGreen("All perk points have been refunded and attributes increased.") + ".",
 		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
+ 	}),
+ 	RF_Rebuke = ::UPD.getDescription({
+ 		Fluff = "Show \'em how it\'s done!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Gain the [Rebuke|Skill+rf_rebuke_effect] effect during combat which grants a " + ::MSU.Text.colorGreen("25%") + " chance to perform a free attack against an adjacent opponent who misses a melee attack against you.",
+				"When wielding a shield, the chance is increased by an additional " + ::MSU.Text.colorGreen("+10%") + "."
+			]
+		}]
  	}),
 	RF_RisingStar = ::UPD.getDescription({
  		Fluff = "Captain said take it slow and steady and I could become a legend someday!",
