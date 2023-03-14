@@ -1132,6 +1132,14 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_NailedIt,
 		Icon = "ui/perks/rf_nailed_it.png",
 		IconDisabled = "ui/perks/rf_nailed_it_sw.png",
+	},
+	{
+		ID = "perk.rf_rebuke",
+		Script = "scripts/skills/perks/perk_rf_rebuke",
+		Name = ::Const.Strings.PerkName.RF_Rebuke,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Rebuke,
+		Icon = "ui/perks/rf_rebuke.png",
+		IconDisabled = "ui/perks/rf_rebuke_sw.png",
 	}
 ]);
 

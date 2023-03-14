@@ -109,6 +109,9 @@
 	<sprite id="rf_rattled_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_rattle.png" />
 	<sprite id="rf_rattled_effect_mini" ic = "FF23165B" img="mini\rf_rattled_effect_mini.png" />
 
+	<sprite id="rf_rebuke_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_rebuke.png" />
+	<sprite id="rf_rebuke_effect_mini" ic = "FF23165B" img="mini\rf_rebuke_effect_mini.png" />
+
 	<sprite id="rf_return_favor_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_return_favor_effect.png" />
 	<sprite id="rf_return_favor_effect_mini" ic = "FF23165B" img="mini\rf_return_favor_effect_mini.png" />
 
