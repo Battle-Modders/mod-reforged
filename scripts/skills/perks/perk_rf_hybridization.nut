@@ -46,28 +46,27 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 
 		if (_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt))
 		{
-			if (::Math.rand(1, 100) <= 50)
+			local staggeredEffect = _targetEntity.getSkills().getSkillByID("effects.staggered");
+			if (staggeredEffect != null)
 			{
-				local staggeredEffect = _targetEntity.getSkills().getSkillByID("effects.staggered");
-				if (staggeredEffect != null && !_targetEntity.getCurrentProperties().IsImmuneToStun)
+				if (_targetEntity.getCurrentProperties().IsImmuneToStun) return;
+
+				local effect = ::new("scripts/skills/effects/stunned_effect");
+				_targetEntity.getSkills().add(effect);
+				effect.m.TurnsLeft = 1;
+				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
 				{
-					local effect = ::new("scripts/skills/effects/stunned_effect");
-					_targetEntity.getSkills().add(effect);
-					effect.m.TurnsLeft = 1;
-					if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-					{
-						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has stunned " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn");
-					}
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has stunned " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn");
 				}
-				else
+			}
+			else if (::Math.rand(1, 100) <= 50)
+			{
+				local effect = ::new("scripts/skills/effects/staggered_effect");
+				_targetEntity.getSkills().add(effect);
+				effect.m.TurnsLeft = 1;
+				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
 				{
-					local effect = ::new("scripts/skills/effects/staggered_effect");
-					_targetEntity.getSkills().add(effect);
-					effect.m.TurnsLeft = 1;
-					if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-					{
-						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has staggered " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn");
-					}
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has staggered " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn");
 				}
 			}
 		}
