@@ -4,7 +4,7 @@ this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_sprint";
 		this.m.Name = "Sprint";
-		this.m.Description = "Run Forrest run!";
+		this.m.Description = "Get to your destination as fast as possible!";
 		this.m.Icon = "skills/rf_sprint_skill.png";
 		this.m.IconDisabled = "skills/rf_sprint_skill_bw.png";
 		this.m.Overlay = "rf_sprint_skill";
