@@ -12,7 +12,7 @@ this.pg_rf_sword <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"default": [
 				[],
 				["perk.rf_exploit_opening"],
-				["perk.rf_fluid_weapon"],
+				[],
 				["perk.mastery.sword"],
 				["perk.rf_tempo"],
 				["perk.rf_kata"],
