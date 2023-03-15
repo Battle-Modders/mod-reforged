@@ -49,6 +49,16 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function onAdded()
+	{
+		this.getContainer().add(::new("scripts/skills/effects/rf_fluid_weapon_effect"));
+	}
+
+	function onRemoved()
+	{
+		this.getContainer().removeByID("effects.rf_fluid_weapon");
+	}
+
 	function getBonus()
 	{
 		return this.m.Stacks * this.m.BonusInitiative;
