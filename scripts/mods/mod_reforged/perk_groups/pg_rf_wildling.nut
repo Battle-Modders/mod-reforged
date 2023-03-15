@@ -13,10 +13,10 @@ this.pg_rf_wildling <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				["perk.pathfinder"],
+				["perk.rf_bestial_vigor"],
+				[],
 				[],
 				["perk.rf_savage_strength"],
-				[],
-				["perk.rf_bestial_vigor"],
 				[],
 				["perk.rf_feral_rage"]
 			]
