@@ -806,7 +806,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"An additional " + ::MSU.Text.colorRed("10%") + " of damage ignores armor."
+				"An additional " + ::MSU.Text.colorRed("10%") + " of damage ignores armor.",
+				"Attacks now apply the [Hemorrhaging Internally|Skill+rf_internal_hemorrhage_effect] effect that deals " + ::MSU.Text.colorGreen("20%") + " of the damage dealt to [Hitpoints|Concept.Hitpoints] in that attack as damage to the target at the end of their [turn|Concept.Turn]."
 			]
 		}]
  	}),

@@ -12,7 +12,7 @@ this.pg_rf_hammer <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"default": [
 				["perk.crippling_strikes"],
 				[],
-				["perk.rf_internal_hemorrhage"],
+				[],
 				["perk.mastery.hammer"],
 				[],
 				["perk.rf_deep_impact"],
