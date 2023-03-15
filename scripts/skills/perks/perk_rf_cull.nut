@@ -68,4 +68,15 @@ this.perk_rf_cull <- ::inherit("scripts/skills/skill", {
 			_targetEntity.kill(actor, _skill, ::Const.FatalityType.Decapitated);
 		}
 	}
+
+	function onUpdate(_properties)
+	{
+		if (this.getContainer().getActor().isDisarmed()) return;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Axe))
+		{
+			_properties.DamageRegularMax += ::Math.floor(weapon.m.RegularDamageMax * 0.1);
+		}
+	}
 });
