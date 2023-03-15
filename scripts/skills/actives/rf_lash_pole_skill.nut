@@ -1,0 +1,29 @@
+this.rf_lash_pole_skill <- ::inherit("scripts/skills/actives/lash_skill", {
+	m = {},
+	function create()
+	{
+		this.lash_skill.create();
+		this.m.ID = "actives.rf_lash_pole";
+		this.m.FatigueCost = 30;
+		this.m.MaxRange = 2;
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		this.lash_skill.onAnySkillUsed(_skill, _targetEntity, _properties);
+
+		if (_skill == this)
+		{
+			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInFlails && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			{
+				_properties.MeleeSkill += -15;
+				this.m.HitChanceBonus = -15;
+			}
+			else
+			{
+				this.m.HitChanceBonus = 0;
+			}
+		}
+	}
+});
+

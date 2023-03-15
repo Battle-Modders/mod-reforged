@@ -347,6 +347,23 @@ local vanillaDescriptions = [
 	 	})
 	},
 	{
+		ID = "perk.mastery.flail",
+		Key = "SpecFlail",
+		Description = ::UPD.getDescription({
+			Fluff = "Master flails and circumvent your opponent\'s shield.",
+			Requirement = "Flail",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Skills build up [color=" + ::Const.UI.Color.NegativeValue + "]25%[/color] less Fatigue.",
+					"Pound ignores an additional [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] of armor on head hits.",
+					"Thresh gains [color=" + ::Const.UI.Color.PositiveValue + "]+5%[/color] chance to hit.",
+					"Poleflails no longer have a penalty for attacking targets directly adjacent."
+				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.mastery.polearm",
 		Key = "SpecPolearm",
 		Description = ::UPD.getDescription({

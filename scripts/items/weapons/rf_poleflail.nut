@@ -37,14 +37,8 @@ this.rf_poleflail <- ::inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/flail_skill", function(o) {
-			o.m.MaxRange = 2;
-			o.m.FatigueCost += 2;
-		}));
-
-		this.addSkill(::MSU.new("scripts/skills/actives/lash_skill", function(o) {
-			o.m.MaxRange = 2;
-			o.m.FatigueCost += 5;
-		}));
+		this.addSkill(::new("scripts/skills/actives/rf_flail_pole_skill"));
+		this.addSkill(::new("scripts/skills/actives/rf_lash_pole_skill"));
 	}
 });
+
