@@ -1701,13 +1701,23 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Tempo = ::UPD.getDescription({
  		Fluff = "By keeping ahead of your opponent, you set the terms of engagement!",
- 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Every attack, hit or miss, against a target who acts after you in the current round increases your [Initiative|Concept.Initiative] by " + ::MSU.Text.colorGreen("+15") + ".",
-				"The bonus lasts over into your next [turn|Concept.Turn] but only until the first skill used or waiting that [turn|Concept.Turn]."
-			]
-		}]
+ 		Effects = [
+	 		{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"Every attack, hit or miss, against a target who acts after you in the current round increases your [Initiative|Concept.Initiative] by " + ::MSU.Text.colorGreen("+15") + ".",
+					"The bonus lasts over into your next [turn|Concept.Turn] but only until the first skill used or waiting that [turn|Concept.Turn]."
+				]
+			},
+			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"When wielding a sword, gain the [Fluid Weapon|Skill+rf_fluid_weapon_effect] effect which has the following effects:",
+					"[Initiative|Concept.Initiative] is increased by " + ::MSU.Text.colorGreen("35%") + " of the equipped sword\'s armor ignore damage percentage.",
+					"The [Fatigue|Concept.Fatigue] Cost of weapon skills is reduced by " + ::MSU.Text.colorGreen("20%") + " of the equipped sword\'s armor effectiveness."
+				]
+			}
+		]
  	}),
 	RF_TheRushOfBattle = ::UPD.getDescription({
  		Fluff = "\'It\'s not uncommon to make it to the end of the battle not remembering any details, just that you slew many men!\'",
