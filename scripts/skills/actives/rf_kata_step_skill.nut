@@ -158,7 +158,10 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		if (this.getContainer().getActor().isDisarmed()) return false;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || (!this.getContainer().getActor().isDoubleGrippingWeapon() && !weapon.isItemType(::Const.Items.ItemType.TwoHanded)))
+		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+			return false;
+
+		if (!this.getContainer().getActor().isDoubleGrippingWeapon() && !weapon.isItemType(::Const.Items.ItemType.TwoHanded))
 		{
 			local bladeDancerPerk = this.getContainer().getSkillByID("perk.rf_swordmaster_blade_dancer");
 			if (bladeDancerPerk == null || !bladeDancerPerk.isEnabled())
