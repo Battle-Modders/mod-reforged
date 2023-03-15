@@ -33,6 +33,11 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 		this.m.MaxRange = 0;
 	}
 
+	function isHidden()
+	{
+		return this.m.IsSpent;
+	}
+
 	function getTooltip()
 	{
 		local tooltip = this.skill.getDefaultUtilityTooltip();
