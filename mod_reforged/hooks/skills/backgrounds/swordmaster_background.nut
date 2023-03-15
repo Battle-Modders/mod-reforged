@@ -36,6 +36,13 @@
 				]
 			}
 		});
+
+		this.m.Excluded.extend([
+		    "trait.asthmatic",
+		    "trait.cocky"
+		]);
+
+		this.m.ExcludedTalents.push(::Const.Attributes.RangedDefense);
 	}
 
 	local onAdded = o.onAdded;
