@@ -79,7 +79,6 @@
 	    if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
 	    {
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fluid_weapon"));
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_tempo"));
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));

@@ -81,7 +81,6 @@
 	    {
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_splitter"));
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_heft"));
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
 	    	{
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
