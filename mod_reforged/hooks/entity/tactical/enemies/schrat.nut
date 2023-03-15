@@ -65,9 +65,6 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge + 1;
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_internal_hemorrhage", function(o) {
-			o.m.IsForceEnabled = true;
-		}));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_dent_armor", function(o) {
 			o.m.IsForceEnabled = true;
 		}));

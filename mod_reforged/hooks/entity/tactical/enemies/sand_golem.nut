@@ -41,7 +41,7 @@
     		o.m.IsForceEnabled = true;
 			o.m.IsForceMace = true;
     	}));
-    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_internal_hemorrhage"));
+    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_impact"));
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
