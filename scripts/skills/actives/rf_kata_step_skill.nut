@@ -208,7 +208,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	{
 		if (this.isEnabled() && _skill.isAttack() && _skill.getItem() != null &&
 			_skill.getItem().getID() == this.getContainer().getActor().getMainhandItem().getID() &&
-			!::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor())
+			::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor())
 			)
 		{
 			this.m.IsSpent = false;
