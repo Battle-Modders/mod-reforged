@@ -94,6 +94,8 @@ this.rf_fluid_weapon_effect <- ::inherit("scripts/skills/skill", {
 	function getInitiativeBonus()
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon == null) return 0;
+
 		local armorPen = weapon.m.DirectDamageMult + weapon.m.DirectDamageAdd;
 		return ::Math.floor(this.m.ArmorPenAsInit * armorPen * 100);
 	}
@@ -101,6 +103,8 @@ this.rf_fluid_weapon_effect <- ::inherit("scripts/skills/skill", {
 	function getFatigueReductionBonus()
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon == null) return 0;
+
 		return ::Math.floor(this.m.ArmorEffAsFatCostRed * weapon.m.ArmorDamageMult * 100);
 	}
 });
