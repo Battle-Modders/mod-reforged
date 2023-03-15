@@ -1712,9 +1712,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"When wielding a sword, gain the [Fluid Weapon|Skill+rf_fluid_weapon_effect] effect which has the following effects:",
-					"[Initiative|Concept.Initiative] is increased by " + ::MSU.Text.colorGreen("35%") + " of the equipped sword\'s armor ignore damage percentage.",
-					"The [Fatigue|Concept.Fatigue] Cost of weapon skills is reduced by " + ::MSU.Text.colorGreen("20%") + " of the equipped sword\'s armor effectiveness."
+					"When wielding a sword, gain the [Fluid Weapon|Skill+rf_fluid_weapon_effect] effect."
 				]
 			}
 		]
