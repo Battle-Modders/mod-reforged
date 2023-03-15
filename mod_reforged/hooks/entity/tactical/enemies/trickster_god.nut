@@ -41,7 +41,6 @@
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_dent_armor", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_internal_hemorrhage"));
 		this.m.Skills.add(::MSU.new("scripts/skills/effects/return_favor_effect", function(o) {
 			o.onTurnStart = function() {}; // don't remove on turn start i.e. make it permanent
 		}));
