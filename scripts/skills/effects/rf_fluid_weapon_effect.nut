@@ -52,6 +52,28 @@ this.rf_fluid_weapon_effect <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function getNestedTooltip()
+	{
+		if (this.getContainer().getActor().getID() != ::MSU.getDummyPlayer().getID())
+			return this.getTooltip();
+
+		local tooltip = this.skill.getTooltip();
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/initiative.png",
+			text = ::Reforged.Mod.Tooltips.parseString("[Initiative|Concept.Initiative] is increased by " + ::MSU.Text.colorGreen("35%") + " of the equipped sword\'s armor ignore percentage")
+		});
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/fatigue.png",
+			text = ::Reforged.Mod.Tooltips.parseString("[Fatigue|Concept.Fatigue] Cost of weapon skills is reduced by " + ::MSU.Text.colorGreen("20%") + " of the equipped sword\'s armor effectiveness")
+		});
+
+		return tooltip;
+	}
+
 	function isEnabled()
 	{
 		if (this.m.IsForceEnabled)
