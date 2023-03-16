@@ -60,7 +60,7 @@
 				local destTile = _targetTile.getNextTile(i);
 				if (destTile.IsEmpty)
 				{
-					if (destTile.getDistanceTo(myTile) == targetDistance - 1 && ::Math.abs(_targetTile.Level - tile.Level) <= 1)
+					if (destTile.getDistanceTo(myTile) == targetDistance - 1 && ::Math.abs(_targetTile.Level - destTile.Level) <= 1)
 					{
 						if (targetDistance == 2)
 						{
