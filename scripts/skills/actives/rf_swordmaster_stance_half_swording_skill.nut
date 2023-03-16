@@ -24,7 +24,7 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png"
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Removes[/color] all attack skills from the currently equipped sword and adds the [color=" + ::Const.UI.Color.PositiveValue + "]Stab[/color] and [color=" + ::Const.UI.Color.PositiveValue + "]Puncture[/color] skills"
+			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Removes[/color] all attack skills from the currently equipped sword and adds the [color=" + ::Const.UI.Color.PositiveValue + "]Stab[/color] and [color=" + ::Const.UI.Color.PositiveValue + "]Puncture[/color] skills. The Stab skill does + " + ::MSU.Text.colorRed("50%") + " reduced damage."
 		});
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
@@ -65,6 +65,9 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 			weapon.removeSkill(skill);
 		}
 
+		weapon.addSkill(::MSU.new("scripts/skills/actives/stab", function(o) {
+			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
+		}));
 		weapon.addSkill(::new("scripts/skills/actives/puncture"));
 	}
 
