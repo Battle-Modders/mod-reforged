@@ -55,29 +55,25 @@
 
 		for (local i = 0; i < 6; i++)
 		{
-			if (_targetTile.hasNextTile(i))
+			if (!_targetTile.hasNextTile(i)) continue;
+
+			local destTile = _targetTile.getNextTile(i);
+			if (!destTile.IsEmpty || destTile.getDistanceTo(myTile) != targetDistance - 1 || ::Math.abs(_targetTile.Level - destTile.Level) > 1)
+				continue;
+
+			if (targetDistance == 2)
 			{
-				local destTile = _targetTile.getNextTile(i);
-				if (destTile.IsEmpty)
+				if (::Math.abs(myTile.Level - destTile.Level) <= 1) return destTile;
+			}
+			else
+			{
+				for (local j = 0; j < 6; j++)
 				{
-					if (destTile.getDistanceTo(myTile) == targetDistance - 1 && ::Math.abs(_targetTile.Level - destTile.Level) <= 1)
-					{
-						if (targetDistance == 2)
-						{
-							if (::Math.abs(myTile.Level - destTile.Level) <= 1) return destTile;
-						}
-						else if (this.m.MaxRange == 3)
-						{
-							for (local j = 0; j < 6; j++)
-							{
-								if (destTile.getNextTile(j))
-								{
-									local adjacentTile = destTile.getNextTile(j);
-									if (adjacentTile.IsEmpty && myTile.getDistanceTo(adjacentTile) == 1 && ::Math.abs(myTile.Level - adjacentTile.Level) + ::Math.abs(adjacentTile.Level - destTile.Level) <= 1) return destTile;
-								}
-							}
-						}
-					}
+					if (!destTile.hasNextTile(j)) continue;
+
+					local adjacentTile = destTile.getNextTile(j);
+					if (adjacentTile.IsEmpty && myTile.getDistanceTo(adjacentTile) == 1 && ::Math.abs(myTile.Level - adjacentTile.Level) + ::Math.abs(adjacentTile.Level - destTile.Level) <= 1)
+						return destTile;
 				}
 			}
 		}
