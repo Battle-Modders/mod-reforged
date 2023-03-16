@@ -25,19 +25,15 @@ this.rf_lunge_charge_dummy_skill <- ::inherit("scripts/skills/actives/charge", {
 		if (!_targetTile.IsEmpty) return false;
 
 		local lunge = this.getContainer().getSkillByID("actives.lunge");
-
 		if (lunge == null) return false;
 
-		for (local i = 0; i< 6; i++)
+		for (local i = 0; i < 6; i++)
 		{
-			if (_targetTile.hasNextTile(i))
-			{
-				local tile = _targetTile.getNextTile(i);
-				if (tile.IsOccupiedByActor && lunge.verifyTargetAndRange(tile, _originTile) && lunge.getDestinationTile(tile).ID == _targetTile.ID)
-				{
-					return true;
-				}
-			}
+			if (!_targetTile.hasNextTile(i)) continue;
+
+			local lungeTargetTile = _targetTile.getNextTile(i);
+			if (lungeTargetTile.IsOccupiedByActor && lunge.verifyTargetAndRange(lungeTargetTile, _originTile) && lunge.getDestinationTile(lungeTargetTile).ID == _targetTile.ID)
+				return true;
 		}
 
 		return false;
