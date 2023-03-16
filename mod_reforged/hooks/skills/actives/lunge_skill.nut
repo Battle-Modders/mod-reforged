@@ -58,10 +58,10 @@
 			if (!_targetTile.hasNextTile(i)) continue;
 
 			local destTile = _targetTile.getNextTile(i);
-			if (!destTile.IsEmpty || destTile.getDistanceTo(myTile) != targetDistance - 1 || ::Math.abs(_targetTile.Level - destTile.Level) > 1)
+			if (!destTile.IsEmpty || destTile.getDistanceTo(myTile) > this.m.MaxRange - 1 || ::Math.abs(_targetTile.Level - destTile.Level) > 1)
 				continue;
 
-			if (targetDistance == 2)
+			if (this.m.MaxRange == 2)
 			{
 				if (::Math.abs(myTile.Level - destTile.Level) <= 1) return destTile;
 			}
