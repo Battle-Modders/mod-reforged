@@ -27,6 +27,13 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Removes[/color] all attack skills from the currently equipped sword and adds the [color=" + ::Const.UI.Color.PositiveValue + "]Stab[/color] and [color=" + ::Const.UI.Color.PositiveValue + "]Puncture[/color] skills. The Stab skill does + " + ::MSU.Text.colorRed("50%") + " reduced damage."
 		});
 
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/reach.png",
+			text = "Lose " + ::MSU.Text.colorRed("half") + " of your weapon\'s Reach"
+		});
+
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
 		{
 			tooltip.push({
@@ -40,6 +47,14 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 		this.addEnabledTooltip(tooltip);
 
 		return tooltip;
+	}
+
+	function onUpdate( _properties )
+	{
+		if (!this.m.IsOn) return;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon != null)	_properties.Reach -= ::Math.floor(weapon.getReach() * 0.5);
 	}
 
 	function isUsable()

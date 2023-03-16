@@ -28,6 +28,13 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Removes[/color] all skills from the currently equipped sword and adds the " + skillsString + " skills"
 		});
 
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/reach.png",
+			text = "You will lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s Reach"
+		});
+
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
 		{
 			tooltip.push({
@@ -57,6 +64,13 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		tooltip.push({
 			id = 10,
 			type = "text",
+			icon = "ui/icons/reach.png",
+			text = "Lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s Reach"
+		});
+
+		tooltip.push({
+			id = 10,
+			type = "text",
 			icon = "ui/icons/warning.png",
 			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a two-handed sword or a double-gripped one-handed sword[/color]"
 		});
@@ -64,6 +78,14 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		this.addEnabledTooltip(tooltip);
 
 		return tooltip;
+	}
+
+	function onUpdate( _properties )
+	{
+		if (!this.m.IsOn) return;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon != null) _properties.Reach -= ::Math.floor(weapon.getReach() * 0.3);
 	}
 
 	function isUsable()
