@@ -105,13 +105,21 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 
 		if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))
 		{
-			weapon.addSkill(::new("scripts/skills/actives/cudgel_skill"));
-			weapon.addSkill(::new("scripts/skills/actives/strike_down_skill"));
+			weapon.addSkill(::MSU.new("scripts/skills/actives/cudgel_skill", function(o) {
+				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
+			}));
+			weapon.addSkill(::MSU.new("scripts/skills/actives/strike_down_skill", function(o) {
+				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
+			}));
 		}
 		else
 		{
-			weapon.addSkill(::new("scripts/skills/actives/bash"));
-			weapon.addSkill(::new("scripts/skills/actives/knock_out"));
+			weapon.addSkill(::MSU.new("scripts/skills/actives/bash", function(o) {
+				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
+			}));
+			weapon.addSkill(::MSU.new("scripts/skills/actives/knock_out", function(o) {
+				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
+			}));
 		}
 	}
 
