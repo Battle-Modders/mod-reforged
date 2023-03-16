@@ -29,7 +29,7 @@
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Cleaver))
 		{
-			trees.push("pg.rf_cleaver");
+			trees.push("pg.rf_cleaver_enemy");
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow) || weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
 		{
@@ -45,7 +45,7 @@
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Hammer))
 		{
-			trees.push("pg.rf_hammer");
+			trees.push("pg.rf_hammer_enemy");
 		}
 		if (weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
 		{
