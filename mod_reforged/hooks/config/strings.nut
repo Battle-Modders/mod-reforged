@@ -960,7 +960,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Fencer = ::UPD.getDescription({
  		Fluff = "Master the art of fighting with a nimble sword.",
- 		Requirement = "Unarmed or weapon with Fatigue Penalty of 3 or less",
+ 		Requirement = "Fencing Sword",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
