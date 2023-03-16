@@ -42,7 +42,7 @@
 			text = "Ignores the bonus to Ranged Defense granted by shields"
 		});
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (this.getContainer().getActor().isEngagedInMelee())
 		{
 			ret.push({
 				id = 9,

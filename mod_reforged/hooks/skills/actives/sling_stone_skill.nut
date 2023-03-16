@@ -13,7 +13,7 @@
 			text = "Has a [color=" + ::Const.UI.Color.NegativeValue + "]100%[/color] chance to daze a target on a hit to the head"
 		});
 
-		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (this.getContainer().getActor().isEngagedInMelee())
 		{
 			ret.push({
 				id = 9,
