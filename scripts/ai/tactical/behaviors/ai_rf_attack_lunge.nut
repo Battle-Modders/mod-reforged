@@ -132,7 +132,7 @@ this.ai_rf_attack_lunge <- ::inherit("scripts/ai/tactical/behavior", {
 			local levelDifference = tile.Level - targetTile.Level;
 			local distanceFromTarget = tile.getDistanceTo(targetTile);
 			local zocs = tile.getZoneOfControlCountOtherThan(_entity.getAlliedFactions());
-			local tileScore = -distance * ::Const.AI.Behavior.EngageDistancePenaltyMult * (1.0 + ::Math.maxf(0.0, 1.0 - _entity.getActionPointsMax() / 9.0)) * (1.0 / this.getProperties().EngageFlankingMult) - letOthersGoScore;
+			local tileScore = -distanceFromTarget * ::Const.AI.Behavior.EngageDistancePenaltyMult * (1.0 + ::Math.maxf(0.0, 1.0 - _entity.getActionPointsMax() / 9.0)) * (1.0 / this.getProperties().EngageFlankingMult) - letOthersGoScore;
 			local scoreMult = 1.0;
 
 			tileScore = tileScore + targetValue * ::Const.AI.Behavior.EngageTargetValueMult;
@@ -281,7 +281,7 @@ this.ai_rf_attack_lunge <- ::inherit("scripts/ai/tactical/behavior", {
 
 			score = score * bestScoreMult;
 
-			return ::Const.AI.Behavior.Score.RFAttackLunge * score * this.getProperties().BehaviorMult[this.m.ID] * ::Math.minf(2.0, 1.0 / this.getProperties().OverallDefensivenessMult);
+			return ::Const.AI.Behavior.Score.RF_AttackLunge * score * this.getProperties().BehaviorMult[this.m.ID] * ::Math.minf(2.0, 1.0 / this.getProperties().OverallDefensivenessMult);
 		}
 
 		return ::Const.AI.Behavior.Score.Zero;
