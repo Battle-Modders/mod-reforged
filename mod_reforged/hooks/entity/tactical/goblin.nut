@@ -32,7 +32,7 @@
 		this.addSprite("helmet_damage");
 		local body_blood = this.addSprite("body_blood");
 		body_blood.Visible = false;
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+		// this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));	// Now only added onCombatStarted with a captain present
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));

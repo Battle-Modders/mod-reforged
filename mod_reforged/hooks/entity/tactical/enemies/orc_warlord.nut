@@ -56,7 +56,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+		// this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));	// Now only added onCombatStarted with a captain present
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;

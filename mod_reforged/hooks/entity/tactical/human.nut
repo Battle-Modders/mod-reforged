@@ -4,5 +4,6 @@
 	{
 		onInit();
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
+		this.getSkills().removeByID("effects.captain", true);	// silent removal without triggering a logInfo entry
 	}
 });

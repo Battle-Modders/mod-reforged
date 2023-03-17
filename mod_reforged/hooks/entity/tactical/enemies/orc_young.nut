@@ -54,7 +54,7 @@
 			this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+		// this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));	// Now only added onCombatStarted with a captain present
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;
