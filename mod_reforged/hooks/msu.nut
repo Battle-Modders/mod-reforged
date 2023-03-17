@@ -231,6 +231,7 @@
 });
 
 ::logInfo("Reforged::MSU -- adding onSkillsUpdated event");
+::logInfo("Reforged::MSU -- adding optional _silently parameter to removeByID function of skill_container");
 ::mods_hookNewObject("skills/skill_container", function(o) {
 	local update = o.update;
 	o.update = function()
@@ -258,6 +259,30 @@
 		}
 
 		if (shouldUpdate) this.update();
+	}
+
+	local removeByID = o.removeByID;
+	o.removeByID = function( _skillID, _silently = false )	// Removes a skill without printing a logInfo entry and without respecting IsUpdating
+	{
+		if (_silently == false) return removeByID(_skillID);
+
+		this.m.IsUpdating = true;
+		local isRemoved = false;
+		foreach (i, skill in this.m.Skills)
+		{
+			if (skill.getID() == _skillID && !skill.isGarbage())
+			{
+				skill.onRemoved();
+				skill.setContainer(null);
+				this.m.Skills.remove(i);
+				isRemoved = true;
+				// ::logWarning("Skill [" + skill.getName() + "] removed from [" + this.m.Actor.getName() + "].");
+				break;
+			}
+		}
+		this.m.IsUpdating = false;
+
+		if (isRemoved) this.update();
 	}
 });
 
