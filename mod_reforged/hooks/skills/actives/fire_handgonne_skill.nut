@@ -58,6 +58,8 @@
 			});
 		}
 
+		if (!this.getContainer().getActor().isPlacedOnMap()) return ret;		// Outside of battle we don't show these warnings
+
 		if (!this.getItem().isLoaded())
 		{
 			ret.push({

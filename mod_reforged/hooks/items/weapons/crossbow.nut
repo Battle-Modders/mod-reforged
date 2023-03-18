@@ -16,4 +16,6 @@
 		});
 		this.addSkill(reload);
 	}
+
+	::Reforged.Items.makeWeaponLoaded(q);
 });
