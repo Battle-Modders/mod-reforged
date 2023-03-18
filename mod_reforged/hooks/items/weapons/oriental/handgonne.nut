@@ -15,7 +15,6 @@
 		local reload = ::MSU.new("scripts/skills/actives/reload_handgonne_skill", function(o) {
 			o.m.FatigueCost += 2;
 		});
-		reload.m.IsHidden = this.m.IsLoaded;
 		this.addSkill(reload);
 	}
 });

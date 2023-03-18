@@ -13,7 +13,6 @@
 		this.addSkill(::new("scripts/skills/actives/shoot_stake"));
 
 		local reload = ::MSU.new("scripts/skills/actives/reload_bolt");
-		reload.m.IsHidden = this.m.IsLoaded;
 		this.addSkill(reload);
 	}
 });

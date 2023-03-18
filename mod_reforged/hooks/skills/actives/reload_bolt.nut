@@ -5,19 +5,19 @@
 		create();
 		this.m.IsRemovedAfterBattle = false;
 	}
-	// Overwrite vanilla function to remove the line which removes this skill upon being used
-	// Instead we set IsHidden to true and in shoot_bolt and shoot_stake we set its IsHidden to false
+
+	// Overwrite vanilla function to prevent removal of this skill
 	o.onUse = function( _user, _targetTile	)
 	{
 		this.consumeAmmo();
 		this.getItem().setLoaded(true);
-		this.m.IsHidden = true;
 		return true;
 	}
 
-	function onCombatFinished()
+	o.isHidden <- function()
 	{
-		this.skill.onCombatFinished();
-		this.m.IsHidden = true;
+		if (!this.getContainer().getActor().isPlacedOnMap()) return true;	// In the character screen this is always hidden
+
+		return this.getItem().isLoaded();
 	}
 });
