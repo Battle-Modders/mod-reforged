@@ -15,4 +15,7 @@
 		local reload = ::MSU.new("scripts/skills/actives/reload_bolt");
 		this.addSkill(reload);
 	}
+
+	::Reforged.Items.makeWeaponLoaded(o);
+
 });
