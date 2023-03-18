@@ -14,7 +14,7 @@ this.rf_bearded_blade_skill <- ::inherit("scripts/skills/skill", {
 			"sounds/combat/riposte_03.wav"
 		];
 		this.m.Type = ::Const.SkillType.Active;
-		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
+		this.m.Order = ::Const.SkillOrder.NonTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
