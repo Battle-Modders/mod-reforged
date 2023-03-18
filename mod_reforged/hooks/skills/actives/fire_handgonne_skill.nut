@@ -2,8 +2,7 @@
 	o.m.AdditionalAccuracy <- 10;
 	o.m.AdditionalHitChance <- -10;
 
-	// Overwrite vanilla function to set IsHidden of reload_handgonne_skill to false instead of adding the skill
-	// Necessary for custom skill costs for each weapon and for showing weapon skills in tooltip
+	// Overwrite vanilla function to prevent repeated adding of reload skill
 	o.onUse = function( _user, _targetTile	)
 	{
 		::Sound.play(this.m.SoundOnFire[this.Math.rand(0, this.m.SoundOnFire.len() - 1)], this.Const.Sound.Volume.Skill * this.m.SoundVolume, _user.getPos());
@@ -14,16 +13,11 @@
 		};
 		::Time.scheduleEvent(::TimeUnit.Virtual, 500, this.onDelayedEffect.bindenv(this), tag);
 		this.getItem().setLoaded(false);
-		local reload = this.getContainer().getSkillByID("actives.reload_handgonne");
-		if (reload != null)
-		{
-			reload.m.IsHidden = false;
-		}
 
 		return true;
 	}
 
-	// Overwrite the vanilla function to prevent removal of reload_bolt
+	// Overwrite the vanilla function to prevent removal of reload skill
 	o.onRemoved = function()
 	{
 	}

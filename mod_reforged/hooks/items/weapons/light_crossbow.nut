@@ -15,7 +15,6 @@
 		local reload = ::MSU.new("scripts/skills/actives/reload_bolt", function(o) {
 			o.m.FatigueCost -= 5;
 		});
-		reload.m.IsHidden = this.m.IsLoaded;
 		this.addSkill(reload);
 	}
 });

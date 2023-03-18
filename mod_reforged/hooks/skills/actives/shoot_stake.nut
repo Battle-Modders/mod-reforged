@@ -1,24 +1,15 @@
 ::mods_hookExactClass("skills/actives/shoot_stake", function(o) {
 	o.m.AdditionalAccuracy <- 10;
 	o.m.AdditionalHitChance <- -3;
-	
-	// Overwrite vanilla function to set the IsHidden of reload_bolt to false instead of adding it
-	// Because we have changed reload_bolt to no longer remove itself in its onUse and instead become Hidden
+
+	// Overwrite vanilla function to prevent repeated adding of reload skill
 	o.onUse = function( _user, _targetTile	)
 	{
-		local ret = this.attackEntity(_user, _targetTile.getEntity());
 		this.getItem().setLoaded(false);
-
-		local reload = this.getContainer().getSkillByID("actives.reload_bolt");
-		if (reload != null)
-		{
-			reload.m.IsHidden = false;
-		}
-
-		return ret;
+		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 
-	// Overwrite the vanilla function to prevent removal of reload_bolt
+	// Overwrite the vanilla function to prevent removal of reload skill
 	o.onRemoved = function()
 	{
 	}
