@@ -46,7 +46,7 @@ this.rf_inspiring_presence_buff_effect <- ::inherit("scripts/skills/skill", {
 		if (this.m.IsInEffect)
 		{
 			_properties.ActionPoints += this.m.BonusActionPoints;
-			
+
 			if (this.m.IsStartingTurn)
 			{
 				this.getContainer().getActor().setActionPoints(this.getContainer().getActor().getActionPointsMax() + this.m.BonusActionPoints);
@@ -73,9 +73,10 @@ this.rf_inspiring_presence_buff_effect <- ::inherit("scripts/skills/skill", {
 			if (!hasInspirer)
 			{
 				local inspiringPresence = ally.getSkills().getSkillByID("perk.inspiring_presence");
-				if (inspiringPresence != null && inspiringPresence.isEnabled())
+				if (inspiringPresence != null && inspiringPresence.isEnabled() && ally.getCurrentProperties().getBravery() > actor.getCurrentProperties().getBravery())
 				{
 					hasInspirer = true;
+					this.m.BonusActionPoints = inspiringPresence.m.BonusActionPoints;
 				}
 			}
 
