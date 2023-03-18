@@ -20,6 +20,7 @@ this.rf_inspiring_presence_buff_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
 		this.m.IsSerialized = false;
+		this.m.IsRemovedAfterBattle = true;		// This effect is only added during combats with a inspire person present
 	}
 
 	function isHidden()

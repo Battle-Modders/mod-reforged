@@ -47,5 +47,10 @@
 	// Overwrite the vanilla function to be empty.
 	o.onCombatStarted = function()
 	{
+		local allies = ::Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
+		foreach (ally in allies)
+		{
+			ally.getSkills().add(::new("scripts/skills/special/rf_inspiring_presence_buff_effect"));
+		}
 	}
 });
