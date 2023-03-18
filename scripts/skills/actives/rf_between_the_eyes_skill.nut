@@ -12,7 +12,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Overlay = "rf_between_the_eyes_skill";
 		this.m.SoundOnUse = [];
 		this.m.Type = ::Const.SkillType.Active;
-		this.m.Order = ::Const.SkillOrder.Last;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted + 50;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
