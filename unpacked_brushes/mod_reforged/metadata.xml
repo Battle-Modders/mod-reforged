@@ -103,6 +103,8 @@
 
 	<sprite id="rf_inspiring_presence_mini" ic = "FF23165B" img="mini\rf_inspiring_presence_mini.png" />
 
+	<sprite id="rf_nine_lives_effect_mini" ic = "FF23165B" img="mini\rf_nine_lives_effect_mini.png" />
+
 	<sprite id="rf_onslaught_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_onslaught.png" />
 	<sprite id="rf_onslaught_effect_mini" ic = "FF23165B" img="mini\rf_onslaught_effect_mini.png" />
 
