@@ -23,7 +23,7 @@ this.rf_covered_by_ally_effect <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if (!::MSU.isNull(this.m.CoverProvider) || _properties.IsRooted || _properties.IsStunned)
+		if (::MSU.isNull(this.m.CoverProvider) || _properties.IsRooted || _properties.IsStunned)
 		{
 			this.onRemoved();
 			this.removeSelf();
