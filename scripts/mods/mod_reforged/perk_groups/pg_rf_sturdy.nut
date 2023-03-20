@@ -21,7 +21,7 @@ this.pg_rf_sturdy <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.taunt"],
 				[],
 				[],
-				["perk.rf_retribution"],
+				[],
 				["perk.indomitable"]
 			]
 		};
