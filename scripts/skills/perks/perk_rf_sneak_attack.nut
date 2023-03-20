@@ -24,7 +24,7 @@ this.perk_rf_sneak_attack <- ::inherit("scripts/skills/skill", {
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.MeleeWeapon))
 		{
-			return weapon.getReach() <= 4 && this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) < -20;
+			return weapon.getReach() <= 4 && this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) >= -20;
 		}
 
 		return true;
