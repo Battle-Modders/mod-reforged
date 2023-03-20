@@ -41,6 +41,8 @@ this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
+		if (!this.isEnabled()) return;
+
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon != null && weapon.getReach() < 4)
 		{
