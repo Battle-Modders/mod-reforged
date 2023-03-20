@@ -1,5 +1,6 @@
 ::mods_hookExactClass("entity/tactical/actor", function(o) {
 	o.m.IsPerformingAttackOfOpportunity <- false;
+	o.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
 
 	o.isDisarmed <- function()
 	{
@@ -136,11 +137,31 @@
 		return ::Math.max(0, count - startSurroundCountAt);
 	}
 
+	local onRoundStart = o.onRoundStart;
+	o.onRoundStart = function()
+	{
+		this.m.IsWaitingTurn = false;
+		onRoundStart();
+	}
+
+	local isTurnDone = o.isTurnDone;
+	o.isTurnDone = function()
+	{
+		if (::Tactical.getNavigator().isTravelling(this)) return false;		// Copy&Paste of check from vanilla
+		return isTurnDone() || this.m.IsWaitingTurn;
+	}
+
+// New Functions:
 	o.getSurroundedBonus <- function( _targetEntity )
 	{
 		local surroundedCount = _targetEntity.getSurroundedCount();
 		local surroundBonus = surroundedCount * this.getCurrentProperties().SurroundedBonus * this.getCurrentProperties().SurroundedBonusMult;
 		surroundBonus -= surroundedCount * _targetEntity.getCurrentProperties().SurroundedDefense;
 		return surroundBonus;
+	}
+
+	o.setWaitTurn <- function( _bool )
+	{
+		this.m.IsWaitingTurn = _bool;
 	}
 });

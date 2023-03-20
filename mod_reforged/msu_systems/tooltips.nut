@@ -22,5 +22,10 @@
 	},
 	Contract = {
 		FocusOnObjective = ::MSU.Class.BasicTooltip("Click to focus", "Click to focus on the objectives for this contract")
+	},
+	Tactical = {
+		Button = {
+			WaitTurnAllButton = ::MSU.Class.BasicTooltip("Wait Round", "Have all your characters use \'Wait\' on their turn.")
+		}
 	}
 });
