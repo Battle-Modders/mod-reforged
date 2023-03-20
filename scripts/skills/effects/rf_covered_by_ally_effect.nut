@@ -4,7 +4,7 @@ this.rf_covered_by_ally_effect <- ::inherit("scripts/skills/skill", {
 	},
 	function setCoverProvider( _ally )
 	{
-		::MSU.asWeakTableRef(_ally);
+		this.m.CoverProvider = ::MSU.asWeakTableRef(_ally);
 	}
 
 	function create()
