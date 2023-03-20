@@ -49,7 +49,6 @@
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_retribution"));
     	}
 	}
 

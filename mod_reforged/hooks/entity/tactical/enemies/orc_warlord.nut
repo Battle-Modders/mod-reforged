@@ -112,10 +112,6 @@
 		if (ret)
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_retribution"));
-    		}
 		}
 
 		return ret;
