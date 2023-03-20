@@ -37,6 +37,7 @@ this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 			icon = "ui/icons/special.png",
 			text = "The next melee attack against an adjacent target will apply the Staggered effect"
 		});
+		return tooltip;
 	}
 
 	function onUpdate( _properties )
