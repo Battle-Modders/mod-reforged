@@ -258,12 +258,20 @@ local vanillaDescriptions = [
 		Key = "Indomitable",
 		Description = ::UPD.getDescription({
 	 		Fluff = "\'Mountains cannot be moved, nor taken down!\'",
-	 		Effects = [{
- 				Type = ::UPD.EffectType.Active,
- 				Description = [
- 					"Unlocks the [Indomitable|Skill+indomitable] skill that reduces incoming damage and grants immunity to being [stunned|Skill+stunned_effect], knocked back or grabbed."
- 				]
- 			}]
+	 		Effects = [
+		 		{
+	 				Type = ::UPD.EffectType.Active,
+	 				Description = [
+	 					"Unlocks the [Indomitable|Skill+indomitable] skill that reduces incoming damage and grants immunity to being [stunned|Skill+stunned_effect], knocked back or grabbed."
+	 				]
+	 			},
+	 			{
+	 				Type = ::UPD.EffectType.Passive,
+	 				Description = [
+	 					"During combat, gain the [Retribution|NullEntitySkill+rf_retribution_effect] effect."
+	 				]
+	 			}
+ 			]
 	 	}),
 	},
 	{
