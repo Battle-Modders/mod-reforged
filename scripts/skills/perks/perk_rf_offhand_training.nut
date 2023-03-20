@@ -49,6 +49,16 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function onAdded()
+	{
+		this.getContainer().add(::new("scripts/skills/effects/rf_trip_artist_effect"));
+	}
+
+	function onRemoved()
+	{
+		this.getContainer().removeByID("effects.rf_trip_artist");
+	}
+
 	function getItemActionCost( _items )
 	{
 		if (this.m.IsSpent)

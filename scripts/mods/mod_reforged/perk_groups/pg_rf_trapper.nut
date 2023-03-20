@@ -11,7 +11,7 @@ this.pg_rf_trapper <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				[],
-				["perk.rf_trip_artist"],
+				[],
 				[],
 				["perk.rf_offhand_training"],
 				["perk.rf_angler"],
