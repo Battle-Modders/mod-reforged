@@ -81,12 +81,15 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
+	// Make it impossible to swap the offhand item when IsSpent is true
 	function getItemActionCost( _items )
 	{
-		// Make it impossible to swap the offhand item
-		if (this.m.IsSpent && item.getSlotType() == ::Const.ItemSlot.Offhand)
+		if (!this.m.IsSpent) return null;
+
+		foreach (item in _items)
 		{
-			return 99;
+			if (item != null && item.getSlotType() == ::Const.ItemSlot.Offhand)
+				return 99;
 		}
 	}
 
