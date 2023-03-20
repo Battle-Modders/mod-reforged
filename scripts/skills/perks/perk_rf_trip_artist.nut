@@ -9,7 +9,7 @@ this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 		this.m.Name = ::Const.Strings.PerkName.RF_TripArtist;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_TripArtist;
 		this.m.Icon = "ui/perks/rf_trip_artist.png";
-		this.m.Type = ::Const.SkillType.Perk;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
