@@ -683,7 +683,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_BetweenTheRibs = ::UPD.getDescription({
  		Fluff = "Striking when an enemy is distracted allows this character to aim for the vulnerable bits!",
- 		Requirement = "Melee Piercing Attack",
+ 		Requirement = "Dagger",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
