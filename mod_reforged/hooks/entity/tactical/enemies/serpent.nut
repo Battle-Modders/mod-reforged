@@ -53,7 +53,7 @@
 		this.setSpriteOffset("arrow", this.createVec(0, 20));
 		this.m.Skills.add(this.new("scripts/skills/racial/serpent_racial"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber")); Replaced with ForceEnabled version
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(this.new("scripts/skills/actives/serpent_hook_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/serpent_bite_skill"));
@@ -62,7 +62,7 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge;
 		this.m.BaseProperties.MeleeDefense = 15;
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_between_the_ribs", function(o) {
+		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_backstabber", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_from_all_sides", function(o) {
