@@ -16,8 +16,6 @@
 			"pg.rf_spear": 0.75,
 			"pg.rf_sword": 0.8,
 			"pg.rf_ranged": 0
-
-            "pg.special.rf_professional": -1
 		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -27,6 +25,10 @@
 	                    [20, "pg.rf_laborer"],
 	                    [30, "pg.rf_raider"],
 	                    [50, "pg.rf_soldier"]
+	                ]),
+	                ::MSU.Class.WeightedContainer([
+	                    [10, "pg.special.rf_professional"],
+	                    [90, "DynamicPerks_NoPerkGroup"]
 	                ])
 				],
 				"pgc.rf_shared_1": [],
