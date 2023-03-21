@@ -1,6 +1,5 @@
 this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsSpent = false,
 		MasteryIDs = [
 			"perk.mastery.axe",
 			"perk.mastery.cleaver",
@@ -17,59 +16,13 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "perk.rf_weapon_master";
 		this.m.Name = ::Const.Strings.PerkName.RF_WeaponMaster;
-		this.m.Description = "This character is a master of One-Handed weapons and can swap one such weapon for another for free once per turn."
+		this.m.Description = "This character is a master of One-Handed weapons."
 		this.m.Icon = "ui/perks/rf_weapon_master.png";
-		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
-		this.m.ItemActionOrder = ::Const.ItemActionOrder.BeforeLast;
-	}
-
-	function isHidden()
-	{
-		return this.m.IsSpent || !this.getContainer().getActor().isPlacedOnMap() || !this.isEnabled();
-	}
-
-	function getItemActionCost( _items )
-	{
-		if (this.m.IsSpent)
-			return null;
-
-		local oneHandedCount = 0;
-		foreach (item in _items)
-		{
-			if (item == null || item.getSlotType() != ::Const.ItemSlot.Mainhand || (!item.isItemType(::Const.Items.ItemType.MeleeWeapon) && !item.isWeaponType(::Const.Items.WeaponType.Throwing)))
-			{
-				continue;
-			}
-
-			if (item.isItemType(::Const.Items.ItemType.TwoHanded))
-			{
-				return null;
-			}
-
-			if (item.isItemType(::Const.Items.ItemType.OneHanded))
-			{
-				oneHandedCount++;
-			}
-		}
-
-		if (oneHandedCount > 0)
-		{
-			return 0;
-		}
-
-		return null;
-	}
-
-	function onPayForItemAction( _skill, _items )
-	{
-		if (_skill == null || _skill.getID() != "perk.rf_target_practice")
-		{
-			this.m.IsSpent = true;
-		}
 	}
 
 	function isEnabled()
@@ -127,15 +80,33 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		_properties.IsSpecializedInThrowing = true;
 	}
 
+	function getWeaponSpecificPerkID( _weaponType )
+	{
+		switch (_weaponType)
+		{
+			case ::Const.Items.WeaponType.Axe: return "perk.rf_cull";
+			case ::Const.Items.WeaponType.Cleaver: return "perk.rf_bloodlust";
+			case ::Const.Items.WeaponType.Dagger: return "perk.rf_swift_stabs";
+			case ::Const.Items.WeaponType.Flail: return "perk.rf_whirling_death";
+			case ::Const.Items.WeaponType.Hammer: return "perk.rf_dent_armor";
+			case ::Const.Items.WeaponType.Mace: return "perk.rf_bone_breaker";
+			case ::Const.Items.WeaponType.Spear: return "perk.rf_two_for_one";
+			case ::Const.Items.WeaponType.Sword: return "perk.rf_en_garde";
+			case ::Const.Items.WeaponType.Throwing: return "perk.perk_rf_nailed_it";
+		}
+
+		return "";
+	}
+
 	function onEquip( _item )
 	{
 		local actor = this.getContainer().getActor();
-		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand || !this.isEnabled() || !::MSU.isKindOf(actor, "player") || actor.getBackground() == null)
+		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand || !this.isEnabled())
 			return;
 
-		local perkTree = actor.getPerkTree();
-		if (perkTree != null)
+		if (::MSU.isKindOf(actor, "player"))
 		{
+			local perkTree = actor.getPerkTree();
 			foreach (id in this.m.MasteryIDs)
 			{
 				if (perkTree.hasPerk(id))
@@ -147,33 +118,60 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 					}));
 				}
 			}
+
+			foreach (weaponType in ::Const.Items.WeaponType)
+			{
+				local perkID = this.getWeaponSpecificPerkID(weaponType);
+				if (_item.isWeaponType(weaponType) && perkTree.hasPerk(perkID))
+				{
+					this.getContainer().add(::MSU.new("scripts/skills/perks/" + ::String.replace(perkID, ".", "_"), function(o) {
+						o.m.IsSerialized = false;
+						o.m.IsRefundable = false;
+					}))
+				}
+			}
+		}
+		else
+		{
+			foreach (weaponType in ::Const.Items.WeaponType)
+			{
+				local perkID = this.getWeaponSpecificPerkID(weaponType);
+				if (_item.isWeaponType(weaponType))
+				{
+					this.getContainer().add(::MSU.new("scripts/skills/perks/" + ::String.replace(perkID, ".", "_"), function(o) {
+						o.m.IsSerialized = false;
+						o.m.IsRefundable = false;
+					}))
+				}
+			}
 		}
 	}
 
 	function onUnequip( _item )
 	{
 		local actor = this.getContainer().getActor();
-		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand || !this.isEnabled() || !::MSU.isKindOf(actor, "player") || actor.getBackground() == null)
+		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand || !this.isEnabled())
 			return;
 
-		local perkTree = actor.getPerkTree();
-		if (perkTree != null)
+		if (::MSU.isKindOf(actor, "player"))
 		{
+			local perkTree = actor.getPerkTree();
 			foreach (id in this.m.MasteryIDs)
 			{
 				if (perkTree.hasPerk(id)) this.getContainer().removeByStackByID(id, false);
 			}
+			foreach (weaponType in ::Const.Items.WeaponType)
+			{
+				local perkID = this.getWeaponSpecificPerkID(weaponType);
+				if (perkTree.hasPerk(perkID)) this.getContainer().removeByStackByID(perkID, false);
+			}
 		}
-	}
-
-	function onTurnStart()
-	{
-		this.m.IsSpent = false;
-	}
-
-	function onCombatFinished()
-	{
-		this.skill.onCombatFinished();
-		this.m.IsSpent = false;
+		else
+		{
+			foreach (weaponType in ::Const.Items.WeaponType)
+			{
+				this.getContainer().removeByStackByID(this.getWeaponSpecificPerkID(weaponType), false);
+			}
+		}
 	}
 });
