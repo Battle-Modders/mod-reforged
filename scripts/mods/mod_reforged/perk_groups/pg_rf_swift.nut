@@ -16,7 +16,7 @@ this.pg_rf_swift <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.rf_offhand_training"],
 				[],
 				["perk.duelist"],
-				["perk.rf_weapon_master"]
+				[]
 			]
 		};
 	}
