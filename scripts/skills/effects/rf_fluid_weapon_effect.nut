@@ -8,7 +8,7 @@ this.rf_fluid_weapon_effect <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.rf_fluid_weapon";
 		this.m.Name = "Fluid Weapon";
-		this.m.Description = "This weapon movements of this character are both graceful and fast.";
+		this.m.Description = "The weapon movements of this character are both graceful and fast.";
 		this.m.Icon = "ui/perks/rf_fluid_weapon.png";
 		// this.m.IconMini = "rf_fluid_weapon_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
