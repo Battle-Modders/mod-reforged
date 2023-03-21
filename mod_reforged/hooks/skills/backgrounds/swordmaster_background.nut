@@ -14,14 +14,17 @@
 			"pg.rf_tactician": 2,
 			"pg.rf_talented": 0,
 
-            "pg.special.rf_professional": -1,
             "pg.special.rf_fencer": -1
 		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					"pg.rf_soldier",
-					"pg.rf_swordmaster"
+					"pg.rf_swordmaster",
+					::MSU.Class.WeightedContainer([
+	                    [10, "pg.special.rf_professional"],
+	                    [90, "DynamicPerks_NoPerkGroup"]
+	                ])
 				],
 				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [
