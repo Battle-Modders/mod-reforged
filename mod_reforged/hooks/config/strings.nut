@@ -276,7 +276,7 @@ local vanillaDescriptions = [
 		 		{
 	 				Type = ::UPD.EffectType.Active,
 	 				Description = [
-	 					"Unlocks the [Indomitable|Skill+indomitable] skill that reduces incoming damage and grants immunity to being [stunned|Skill+stunned_effect], knocked back or grabbed."
+	 					"Unlocks the [Indomitable|Skill+indomitable] skill that reduces incoming damage and grants immunity to being [culled|Perk+perk_rf_cull], [stunned|Skill+stunned_effect], knocked back or grabbed."
 	 				]
 	 			},
 	 			{
