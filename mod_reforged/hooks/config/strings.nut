@@ -1729,7 +1729,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"When wielding a sword, gain the [Fluid Weapon|Skill+rf_fluid_weapon_effect] effect."
+					"When wielding a sword, gain the [Fluid Weapon|NullEntitySkill+rf_fluid_weapon_effect] effect."
 				]
 			}
 		]
