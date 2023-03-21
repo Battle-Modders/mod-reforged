@@ -1879,7 +1879,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Grants the bonuses of the weapon mastery perks for all One-Handed Melee and Throwing weapons whose perk groups this character has access to.",
-				"Once per [turn|Concept.Turn], switching from a One-Handed Melee or Throwing weapon to another costs no [Action Points|Concept.ActionPoints]. Does not stack with other free item swap skills."
+				"While a valid weapon is equipped, grants a [key perk|Misc.WeaponMasterPerks] from the weapon\'s perk group as long as this character has that perk in the perk tree."
 			]
 		}]
  	}),

@@ -21,6 +21,9 @@
 			Turn = ::MSU.Class.BasicTooltip("Turn", ::Reforged.Mod.Tooltips.parseString("Combat in battle brothers is turn-based. Each combat consists of a series of [rounds|Concept.Round]. During a round, characters act in turns. A character\'s position in the turn order is determined by the character\'s [Initiative|Concept.Initiative] relative to other characters.\n\n[Effects|Concept.StatusEffect] that last a certain number of turns last until the character has started or ended their turn that many times, depending on whether the [effect|Concept.StatusEffect] expires at the start or end of the turn respectively.")),
 			Round = ::MSU.Class.BasicTooltip("Round", ::Reforged.Mod.Tooltips.parseString("Combat in battle brothers is turn-based. Each combat consists of a series of rounds. During a round, characters act in [turns|Concept.Turn]. A round ends when all characters have ended their [turns|Concept.Turn].")),
 			ZoneOfControl = ::MSU.Class.BasicTooltip("Zone of Control", ::Reforged.Mod.Tooltips.parseString("Most melee characters exert Zone of Control on their surrounding tiles. Trying to move out of enemy Zone of Control will trigger one free attack from each controlling enemy until the first attack hit or every attack missed. A hit will cancel the movement.")),
+		},
+		Misc = {
+			WeaponMasterPerks = ::MSU.Class.BasicTooltip("Weapon Master Perks", ::Reforged.Mod.Tooltips.parseString("Gain the following perks for the respective weapon type:\n\n• Axe: [Cull|Perk+perk_rf_cull]\n• Cleaver: [Bloodlust|Perk+perk_rf_bloodlust]\n• Dagger: [Swift Stabs|Perk+perk_rf_swift_stabs]\n• Flail: [Whirling Death|Perk+perk_rf_whirling_death]\n• Hammer: [Dent Armor|Perk+perk_rf_dent_armor]\n• Mace: [Bone Breaker|Perk+perk_rf_bone_breaker]\n• Spear: [Two for One|Perk+perk_rf_two_for_one]\n• Sword: [En Garde|Perk+perk_rf_en_garde]\n• Throwing: [Nailed It|Perk+perk_rf_nailed_it]")),
 		}
 	},
 	AutoConcepts = [
