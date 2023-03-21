@@ -824,7 +824,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Maximum Damage is increased by " + ::MSU.Text.colorGreen("10%") + " of the Maximum Damage of the currently equipped axe.",
 				"Hits to the head will instantly kill a target that has less than " + ::MSU.Text.colorRed("33%") + " [Hitpoints|Concept.Hitpoints] remaining after the hit.",
 				"Ignores [Nine Lives|Perk+perk_nine_lives] on the target.",
-				"If killed via culling, [decapitates|Concept.Fatality] the target."
+				"If killed via culling, [decapitates|Concept.Fatality] the target.",
+				"Targets who have [Steel Brow|Perk+perk_steel_brow] or are under the effects of [Indomitable|NullEntitySkill+indomitable_effect] are immune to being culled."
 			]
 		}]
  	}),
