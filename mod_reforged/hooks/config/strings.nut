@@ -773,6 +773,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Attacks that do at least " + ::MSU.Text.colorRed(5) + " damage to [Hitpoints|Concept.Hitpoints] and apply a valid [status effect|Concept.StatusEffect] or are against characters with a valid [status effect|Concept.StatusEffect] have a chance to inflict an [injury|Concept.Injury]. This chance is " + ::MSU.Text.colorGreen("100%") + " for two-handed maces and " + ::MSU.Text.colorGreen("50%") + " for one-handed maces.",
 				"If the damage was sufficient to inflict an [injury|Concept.Injury], it inflicts an additional [injury|Concept.Injury].",
+				"In a single turn, cannot trigger more than once on the same target.",
 				"Valid status effects include: [stunned|Skill+stunned_effect], [netted|Skill+net_effect], [webbed|Skill+web_effect], [rooted|Skill+rooted_effect], [sleeping|Skill+sleeping_effect]."
 			]
 		}]
