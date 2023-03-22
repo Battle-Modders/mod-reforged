@@ -1,6 +1,7 @@
 this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsAttacking = false
+		IsAttacking = false,
+		SkillToChanceMult = 0.5
 	},
 	function create()
 	{
@@ -64,6 +65,27 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		}
 
 		return tooltip;
+	}
+
+	function getNestedTooltip()
+	{
+		if (this.getContainer().getActor().getID() != ::MSU.getDummyPlayer().getID())
+			return this.getTooltip();
+
+		local ret = this.skill.getDefaultTooltip();
+		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Perform your weapon\'s primary attack with additional chance to hit the head equal to " + ::MSU.Text.colorGreen((this.m.SkillToChanceMult * 100) + "%") + " of your [Melee Skill|Concept.MeleeSkill]")
+		});
+		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::MSU.Text.colorRed("Requires an attack which can exert Zone of Control")
+		});
+		return ret;
 	}
 
 	function onAfterUpdate( _properties )
@@ -132,7 +154,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 
 	function getBonus()
 	{
-		return ::Math.max(0, this.getContainer().getActor().getCurrentProperties().getMeleeSkill() * 0.5);
+		return ::Math.max(0, this.getContainer().getActor().getCurrentProperties().getMeleeSkill() * this.m.SkillToChanceMult);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

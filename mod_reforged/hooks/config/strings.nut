@@ -698,7 +698,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Between the Eyes|Skill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head equal to " + ::MSU.Text.colorGreen("50%") + " of your [Melee Skill|Concept.MeleeSkill]."
+				"Unlocks the [Between the Eyes|NullEntitySkill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head equal to " + ::MSU.Text.colorGreen("50%") + " of your [Melee Skill|Concept.MeleeSkill]."
 				"The [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] Cost of your primary melee attack is added to the costs of this skill.",
 			]
 		}]
