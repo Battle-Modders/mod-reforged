@@ -48,7 +48,7 @@ this.rf_covered_by_ally_effect <- ::inherit("scripts/skills/skill", {
 
 	function onTurnEnd()
 	{
-		if (::MSU.isNull(this.m.CoverProvider) || !this.m.CoverProvider.isPlacedOnMap() || _tile.getDistanceTo(this.m.CoverProvider.getTile()) > 1)
+		if (::MSU.isNull(this.m.CoverProvider) || !this.m.CoverProvider.isPlacedOnMap() || this.getContainer().getActor().getTile().getDistanceTo(this.m.CoverProvider.getTile()) > 1)
 		{
 			this.removeSelf();
 		}
