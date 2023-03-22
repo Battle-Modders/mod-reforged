@@ -21,7 +21,6 @@
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.RangedSkill, "pg.rf_bow", 3);
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.RangedSkill, "pg.rf_crossbow", 2);
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.RangedSkill, "pg.rf_throwing", 1.5);
-::DynamicPerks.TalentMultipliers.add(::Const.Attributes.RangedSkill, "pg.rf_ranged", 2);
 
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.MeleeDefense, "pg.rf_resilient", 1.2);
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.MeleeDefense, "pg.rf_trained", 1.2);
