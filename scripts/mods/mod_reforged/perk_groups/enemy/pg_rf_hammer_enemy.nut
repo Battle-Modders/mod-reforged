@@ -19,5 +19,6 @@ this.pg_rf_hammer_enemy <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				[]
 			]
 		};
+		this.m.IsIncludedInPerkTooltips = false;
 	}
 });

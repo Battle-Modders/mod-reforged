@@ -19,5 +19,6 @@ this.pg_rf_cleaver_enemy <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.rf_bloodlust"]
 			]
 		};
+		this.m.IsIncludedInPerkTooltips = false;
 	}
 });
