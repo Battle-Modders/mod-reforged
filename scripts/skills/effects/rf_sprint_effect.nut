@@ -24,12 +24,12 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 				icon = "ui/icons/action_points.png",
 				text = ::MSU.Text.colorGreen(-1) + " Action Points spent per tile traveled"
 			},
-			{
+			/*{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				text = ::MSU.Text.colorRed("100%") + " more Fatigue built per tile traveled"
-			}
+			},*/
 			{
 				id = 10,
 				type = "text",
@@ -44,7 +44,7 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		_properties.MovementAPCostAdditional -= 1;
-		_properties.MovementFatigueCostMult *= 2.0;
+		// _properties.MovementFatigueCostMult *= 2.0;
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )

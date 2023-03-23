@@ -20,7 +20,7 @@ this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.ActionPointCost = 0;
+		this.m.ActionPointCost = 1;
 		this.m.FatigueCost = 10;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
@@ -36,13 +36,13 @@ this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/action_points.png",
 				text = "Action Point cost for movement on all terrain will be reduced by " + ::MSU.Text.colorGreen(1)
-			},
+			}/*,
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				text = "Fatigue cost for movement on all terrain will be increased by " + ::MSU.Text.colorRed("100%")
-			}
+			}*/
 		]);
 
 		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
