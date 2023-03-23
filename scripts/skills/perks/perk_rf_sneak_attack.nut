@@ -73,16 +73,23 @@ this.perk_rf_sneak_attack <- ::inherit("scripts/skills/skill", {
 		if (_targetEntity == null || !this.isEnabled())
 			return;
 
+		local success = false;
 		if (!_skill.isRanged())
 		{
-			::MSU.Array.removeByValue(this.m.Enemies, _targetEntity.getID());
+			local idx = this.m.Enemies.find(_targetEntity.getID());
+			if (idx != null)
+			{
+				success = true;
+				this.m.Enemies.remove(idx);
+			}
 		}
 		else if (this.m.EnemiesHitWithRanged.find(_targetEntity.getID()) == null)
 		{
+			success = true;
 			this.m.EnemiesHitWithRanged.push(_targetEntity.getID());
 		}
 
-		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " performed a Sneak Attack");
+		if (success) ::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " performed a Sneak Attack");
 	}
 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
