@@ -6,7 +6,7 @@
 };
 
 ::mods_registerMod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
-::mods_queue(::Reforged.ID, "mod_msu(>=1.3.0-reforged.6), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_dynamic_perks(>=0.1.1), mod_upd, mod_stack_based_skills, !mod_legends", function() {
+::mods_queue(::Reforged.ID, "mod_msu(>=1.3.0-reforged.7), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_dynamic_perks(>=0.1.1), mod_upd, mod_stack_based_skills, !mod_legends", function() {
 	::Reforged.Mod <- ::MSU.Class.Mod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);	
 
 	::Reforged.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, ::Reforged.GitHubURL);
