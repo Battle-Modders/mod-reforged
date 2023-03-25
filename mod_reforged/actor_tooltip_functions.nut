@@ -243,6 +243,50 @@
     return itemList;
 }
 
+::Reforged.TacticalTooltip.getActiveSkills <- function( _actor, _startID )
+{
+	local ret = [];
+
+	local skills = _actor.getSkills().getAllSkillsOfType(::Const.SkillType.Active);
+
+	if (skills.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true)
+	{
+		::Reforged.TacticalTooltip.pushSectionName(ret, "Actives", _startID);
+		_startID++;
+	}
+
+	if (skills.len() < ::Reforged.Mod.ModSettings.getSetting("CollapseActivesWhenX").getValue())
+	{
+		foreach (skill in skills)
+		{
+			ret.push({
+	            id = _startID++,
+	            type = "text",
+	            icon = skill.getIcon(),
+	            text = format("%s (%s, %s)", ::Reforged.TacticalTooltip.getNestedSkillName(skill), ::MSU.Text.colorRed(skill.getActionPointCost()), ::MSU.Text.colorGreen(skill.getFatigueCost()))
+	        });
+		}
+	}
+	else
+	{
+		local entryText = "";
+        skills.sort(@(a,b) a.getName() <=> b.getName());
+        foreach (skill in skills)
+        {
+            entryText += ::Reforged.TacticalTooltip.getNestedSkillName(skill) + ", ";
+        }
+        if (entryText != "") entryText = entryText.slice(0, -2);
+
+        ret.push({
+            id = _startID,
+            type = "text",
+            text = entryText
+        });
+	}
+
+    return ret;
+}
+
 ::Reforged.TacticalTooltip.getSpacebars <- function( _amount )
 {
     local ret = "";
