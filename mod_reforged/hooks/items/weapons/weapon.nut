@@ -1,5 +1,6 @@
 ::mods_hookExactClass("items/weapons/weapon", function (o) {
 	o.m.Reach <- 1;
+	o.m.RequiredAmmoType <- ::Const.Items.AmmoType.None;
 
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
@@ -90,4 +91,35 @@
 	{
 		return this.m.Reach;
 	}
+
+	o.getRequiredAmmoType <- function()
+	{
+		if (this.m.RequiredAmmoType == ::Const.Items.AmmoType.None) return this.getAmmoID();
+		return this.m.RequiredAmmoType;
+	}
+
 });
+
+::mods_hookDescendants("items/weapons/weapon", function(o) {
+	if ("getAmmoID" in o)
+	{
+		local getAmmoID = o.getAmmoID;
+		o.getAmmoID = function()	// This will correct all current and most future Vanilla items and those coming from random mods
+		{
+			local ret = getAmmoID();
+			if (ret == "ammo.arrows")
+			{
+				return ::Const.Items.AmmoType.Arrows;
+			}
+			if (ret == "ammo.bolts")
+			{
+				return ::Const.Items.AmmoType.Bolts;
+			}
+			if (ret == "ammo.powder")
+			{
+				return ::Const.Items.AmmoType.Powder;
+			}
+			return ret;
+		}
+	}
+})
