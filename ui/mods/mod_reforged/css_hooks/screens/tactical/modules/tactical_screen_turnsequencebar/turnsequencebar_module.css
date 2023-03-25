@@ -1,5 +1,15 @@
 .turnsequencebar-module .top-container .buttons-container
 {
-	max-width: 8.4rem;
-	height: 9.4rem;
+	display: flex;
+	flex-direction: row-reverse;
+	flex-wrap: wrap;
+	width: 8.4rem;
+	height  : auto;
+}
+
+.turnsequencebar-module .buttons-container .l-button-container,
+.turnsequencebar-module .buttons-container .l-button
+{
+	position : static;
+	float    : none;
 }
