@@ -1606,7 +1606,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_SwordmasterBladeDancer = ::UPD.getDescription({
  		Fluff = "Let's Dance!",
- 		Requirement = "Non-hybrid Sword"
+ 		Requirement = "Sword"
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1619,7 +1619,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_SwordmasterGrappler = ::UPD.getDescription({
  		Fluff = "You have to fight for your place in this world.",
- 		Requirement = "Non-hybrid Sword"
+ 		Requirement = "Sword"
  		Effects = [
 	 		{
 				Type = ::UPD.EffectType.Active,
@@ -1646,7 +1646,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_SwordmasterJuggernaut = ::UPD.getDescription({
  		Fluff = "There\'s a fine line between bravery and stupidity.",
- 		Requirement = "Non-hybrid Two-Handed Sword"
+ 		Requirement = "Two-Handed Sword"
  		Effects = [
 	 		{
 				Type = ::UPD.EffectType.Passive,
@@ -1665,7 +1665,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_SwordmasterMetzger = ::UPD.getDescription({
  		Fluff = "A sword, too, can take someone\'s head off just fine!",
- 		Requirement = "Non-hybrid Southern Sword"
+ 		Requirement = "Southern Sword"
  		Effects = [
 	 		{
 				Type = ::UPD.EffectType.Passive,
@@ -1686,7 +1686,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
  	RF_SwordmasterPrecise = ::UPD.getDescription({
  		Fluff = "Let me show you how to thread a needle... blindfolded!",
- 		Requirement = "Non-hybrid Sword"
+ 		Requirement = "Sword"
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1698,7 +1698,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_SwordmasterReaper = ::UPD.getDescription({
  		Fluff = "Bring in the harvest!",
- 		Requirement = "Non-Hybrid Sword"
+ 		Requirement = "Sword"
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1709,7 +1709,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_SwordmasterVersatileSwordsman = ::UPD.getDescription({
  		Fluff = "King of all trades. Jack of none.",
- 		Requirement = "Non-hybrid Sword"
+ 		Requirement = "Sword"
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
