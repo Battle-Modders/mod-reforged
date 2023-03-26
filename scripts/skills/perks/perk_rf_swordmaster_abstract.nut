@@ -18,7 +18,7 @@ this.perk_rf_swordmaster_abstract <- ::inherit("scripts/skills/skill", {
 		if (this.getContainer().getActor().isDisarmed()) return false;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sword, true, true))
+		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sword))
 		{
 			return false;
 		}
@@ -34,7 +34,7 @@ this.perk_rf_swordmaster_abstract <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a non-hybrid sword[/color]"
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a sword[/color]"
 			});
 		}
 	}

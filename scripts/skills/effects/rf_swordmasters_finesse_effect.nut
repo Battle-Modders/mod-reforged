@@ -20,7 +20,7 @@ this.rf_swordmasters_finesse_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a Sword to be equipped. Hybrid weapons do not count.[/color]"
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a Sword to be equipped[/color]"
 			});
 		}
 		else
@@ -87,7 +87,7 @@ this.rf_swordmasters_finesse_effect <- ::inherit("scripts/skills/skill", {
 	function isEnabled()
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sword, true, true))
+		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sword))
 		{
 			return false;
 		}
