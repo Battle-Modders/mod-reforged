@@ -16,7 +16,9 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 		local ret = this.perk_rf_swordmaster_abstract.isEnabled();
 		if (ret)
 		{
-			if (!this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.RF_Southern))
+			local weapon = this.getContainer().getActor().getMainhandItem();
+			// If it's neither a southern sword nor a sword/cleaver hybrid
+			if (!weapon.isItemType(::Const.Items.ItemType.RF_Southern) && !weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
 				return false;
 		}
 
