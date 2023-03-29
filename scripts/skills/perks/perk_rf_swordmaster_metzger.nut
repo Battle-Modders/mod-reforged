@@ -68,7 +68,7 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 	function onUnequip( _item )
 	{
 		this.getContainer().removeByStackByID("perk.rf_sanguinary", false);
-		this.getContainer().removeByStackByID("perk.perk_rf_bloodbath", false);
+		this.getContainer().removeByStackByID("perk.rf_bloodbath", false);
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
