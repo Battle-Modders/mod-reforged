@@ -75,7 +75,8 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_targetEntity.isAlive() || _targetEntity.isDying() || !this.isEnabled()) return;
+		if (!_targetEntity.isAlive() || _targetEntity.isDying() || _skill.getID() == "actives.cleave" || !this.isEnabled())
+			return;
 
 		if (!_targetEntity.getCurrentProperties().IsImmuneToBleeding && _damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
 		{
