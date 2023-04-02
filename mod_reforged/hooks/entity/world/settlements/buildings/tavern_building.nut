@@ -32,6 +32,25 @@
 		return rumor;
 	}
 
+	local buildText = o.buildText;
+	o.buildText = function( _text )
+	{
+		// Switcheroo so that we only change the global 'buildTextFromTemplate' when used by the Tavern Building
+		local buildTextFromTemplate = ::buildTextFromTemplate;
+		::buildTextFromTemplate = function( _text, _vars )
+		{
+			this.adjustVars(_vars);
+			return buildTextFromTemplate(_text, _vars);
+		}
+
+		local ret = buildText(_text);
+
+		::buildTextFromTemplate = buildTextFromTemplate;
+
+		return ret;
+	}
+
+// New Functions
 	o.getLegendaryLocationForRumor <- function()
 	{
 		local bestLocation = null;
@@ -50,5 +69,43 @@
 			bestLocation = s;
 		}
 		return bestLocation;
+	}
+
+	// We add up 4 new variables for texts to be build with.
+	// Three are wrong distances, direction and terrain for the purpose of creating more interesting rumors.
+	// One is an indirect adjective for a legendary location if you don't wanna name it directly
+	o.adjustVars <- function( _vars )
+	{
+		foreach (var in _vars)
+		{
+			if (var[0] == "distance")
+			{
+				local wrongDistances = ::Const.Strings.Distance.filter(@(_idx, _val) _val != var[1]);
+				_vars.push([
+					"wrongDistance",
+					::MSU.Array.rand(wrongDistances)
+				]);
+			}
+			else if (var[0] == "direction")
+			{
+				local wrongDirections = ::Const.Strings.Direction8.filter(@(_idx, _val) _val != var[1]);
+				_vars.push([
+					"wrongDirection",
+					::MSU.Array.rand(wrongDirections)
+				]);
+			}
+			else if (var[0] == "terrain")
+			{
+				local wrongTerrains = ::Const.Strings.Terrain.filter(@(_idx, _val) _val != var[1]);
+				_vars.push([
+					"wrongTerrain",
+					::MSU.Array.rand(wrongTerrains)
+				]);
+			}
+		}
+		_vars.push([
+			"legendaryLocationAdjective",
+			::MSU.Array.rand(::Const.Strings.LegendaryLocationAdjective)
+		])
 	}
 });
