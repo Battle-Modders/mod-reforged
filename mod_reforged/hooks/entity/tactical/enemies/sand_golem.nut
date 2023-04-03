@@ -41,14 +41,9 @@
     		o.m.IsForceEnabled = true;
 			o.m.IsForceMace = true;
     	}));
-    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_impact"));
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
-			this.m.Skills.add(::MSU.new("scripts/skills/effects/return_favor_effect", function(o) {
-				o.onTurnStart = function() {}; // don't remove on turn start i.e. make it permanent
-			}));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
 		}
 	}

@@ -83,7 +83,6 @@
 		{
 			this.m.BaseProperties.MeleeDefense += 10;
 			this.m.BaseProperties.RangedDefense += 10;
-			this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 		}
 	}
 });

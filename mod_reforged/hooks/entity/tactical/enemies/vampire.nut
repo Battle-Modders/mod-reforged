@@ -79,7 +79,6 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/darkflight"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
 
 		// Reforged
@@ -87,7 +86,6 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 	    	this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
 	    	this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
 		}

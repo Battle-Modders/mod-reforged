@@ -68,15 +68,11 @@
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_from_all_sides", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_gaps"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
     		this.m.BaseProperties.Armor = [80, 80];
     		this.m.BaseProperties.ArmorMax = [80, 80];
     		this.m.Skills.add(::new("scripts/skills/perks/perk_adrenalin"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_colossus"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
     		this.m.Skills.add(::MSU.new("scripts/skills/effects/poison_coat_effect", function(o) {
 				o.m.Name = "Serpent venom";
 			}));
