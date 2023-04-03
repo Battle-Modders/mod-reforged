@@ -29,29 +29,27 @@
 		this.m.Skills.add(this.new("scripts/skills/racial/goblin_ambusher_racial"));
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
     		if (::Math.rand(1, 100) <= 25) this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
     	}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
-	{
-	    assignRandomEquipment();
+	// local assignRandomEquipment = o.assignRandomEquipment;
+	// o.assignRandomEquipment = function()
+	// {
+	//     assignRandomEquipment();
 
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 4);
-	    }
-	    else
-	    {
-	    	::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 3);
-	    }
-	}
+	//     if (::Reforged.Config.IsLegendaryDifficulty)
+	//     {
+	//     	::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 4);
+	//     }
+	//     else
+	//     {
+	//     	::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 3);
+	//     }
+	// }
 
 	local makeMiniboss = o.makeMiniboss;
 	o.makeMiniboss = function()

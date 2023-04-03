@@ -58,7 +58,7 @@
 		this.m.BaseProperties.IsAffectedByReach = false;
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
+			b.MeleeDefense += 5;
 		}
 		this.getSkills().update()
 	}

@@ -53,11 +53,11 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
-		if (::Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
 		}
-		else
+		elseif (::Math.rand(1, 100) <= 25)
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_flaming_arrows"));
 		}
