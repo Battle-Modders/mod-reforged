@@ -57,7 +57,7 @@
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
 		}
-		elseif (::Math.rand(1, 100) <= 25)
+		else if (::Math.rand(1, 100) <= 25)
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_flaming_arrows"));
 		}
