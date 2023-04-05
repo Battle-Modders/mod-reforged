@@ -95,11 +95,6 @@
 						R = 20,
 						P = 1.0,
 						S = "tools/throwing_net"
-					},
-					{
-						R = 20,
-						P = 1.0,
-						S = "tools/throwing_net"
 					}
 				]);
 				break;
