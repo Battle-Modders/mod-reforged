@@ -1,0 +1,187 @@
+<brush name="gfx/rf_entity.png" version="17">
+
+<!-- Armor of Davkul metadata
+ <sprite id="bust_body_81" offsetY="35" ic="FF33416C" width="104" height="142" img="entity\bodies\bust_body_81.png" top="-65" bottom="13" />
+ <sprite id="bust_body_81_damaged" offsetY="35" ic="FF2D3A66" width="104" height="142" img="entity\bodies\bust_body_81_damaged.png" top="-65" bottom="13" />
+ <sprite id="bust_body_81_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2C3961" width="191" height="185" img="entity\bodies\bust_body_81_dead.png" left="-94" right="68" top="-67" bottom="57" />
+ <sprite id="bust_body_81_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF454B50" width="191" height="185" img="entity\bodies\bust_body_81_dead_arrows.png" left="-28" right="20" top="-12" bottom="40" />
+ <sprite id="bust_body_81_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF131A29" width="191" height="185" img="entity\bodies\bust_body_81_dead_javelin.png" left="-15" right="27" top="-25" bottom="61" /> -->
+
+<!-- Coat of Plates metadata
+ <sprite id="bust_body_37" offsetY="35" ic="FF333741" width="104" height="142" img="entity\bodies\bust_body_37.png" left="-46" right="44" top="-53" bottom="13" />
+ <sprite id="bust_body_37_damaged" offsetY="35" ic="FF2E343E" width="104" height="142" img="entity\bodies\bust_body_37_damaged.png" top="-53" bottom="13" />
+ <sprite id="bust_body_37_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2B2F37" width="131" height="125" img="entity\bodies\bust_body_37_dead.png" top="-52" bottom="56" />
+ <sprite id="bust_body_37_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF42494D" width="131" height="124" img="entity\bodies\bust_body_37_dead_arrows.png" left="-30" right="26" top="-8" bottom="52" />
+ <sprite id="bust_body_37_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF1B233C" width="131" height="124" img="entity\bodies\bust_body_37_dead_javelin.png" left="3" right="29" top="12" bottom="62" /> -->
+
+ <sprite id="rf_brigandine_shirt" offsetY="35" ic="FF33416C" width="104" height="142" img="entity\bodies\rf_brigandine_shirt.png" top="-65" bottom="13" />
+ <sprite id="rf_brigandine_shirt_damaged" offsetY="35" ic="FF2D3A66" width="104" height="142" img="entity\bodies\rf_brigandine_shirt_damaged.png" top="-65" bottom="13" />
+ <sprite id="rf_brigandine_shirt_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2C3961" width="191" height="185" img="entity\bodies\rf_brigandine_shirt_dead.png" left="-94" right="68" top="-67" bottom="57" />
+ <sprite id="rf_brigandine_shirt_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF454B50" width="191" height="185" img="entity\bodies\rf_brigandine_shirt_dead_arrows.png" left="-28" right="20" top="-12" bottom="40" />
+ <sprite id="rf_brigandine_shirt_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF131A29" width="191" height="185" img="entity\bodies\rf_brigandine_shirt_dead_javelin.png" left="-15" right="27" top="-25" bottom="61" />
+
+ <sprite id="rf_brigandine_armor" offsetY="35" ic="FF3B4D5C" width="104" height="142" img="entity\bodies\rf_brigandine_armor.png" top="-65" bottom="13" />
+ <sprite id="rf_brigandine_armor_damaged" offsetY="35" ic="FF374856" width="104" height="142" img="entity\bodies\rf_brigandine_armor_damaged.png" top="-65" bottom="13" />
+ <sprite id="rf_brigandine_armor_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2A2E34" width="131" height="125" img="entity\bodies\rf_brigandine_armor_dead.png" top="-52" bottom="56" />
+ <sprite id="rf_brigandine_armor_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF454B50" width="131" height="124" img="entity\bodies\rf_brigandine_armor_dead_arrows.png" left="-30" right="26" top="-8" bottom="52" />
+ <sprite id="rf_brigandine_armor_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF141C29" width="131" height="124" img="entity\bodies\rf_brigandine_armor_dead_javelin.png" left="3" right="29" top="12" bottom="62" />
+
+ <sprite id="rf_brigandine_harness" offsetY="35" ic="FF1F2D46" width="104" height="142" img="entity\bodies\rf_brigandine_harness.png" top="-65" bottom="13" />
+ <sprite id="rf_brigandine_harness_damaged" offsetY="35" ic="FF455064" width="104" height="142" img="entity\bodies\rf_brigandine_harness_damaged.png" top="-65" bottom="13" />
+ <sprite id="rf_brigandine_harness_dead" offsetX="6" offsetY="10" f="64FE" ic="FF373F51" width="131" height="125" img="entity\bodies\rf_brigandine_harness_dead.png" top="-52" bottom="56" />
+ <sprite id="rf_brigandine_harness_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF474E53" width="131" height="114" img="entity\bodies\rf_brigandine_harness_dead_arrows.png" left="-30" right="26" top="-8" bottom="52" />
+ <sprite id="rf_brigandine_harness_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF131A2A" width="131" height="134" img="entity\bodies\rf_brigandine_harness_dead_javelin.png" left="3" right="29" top="12" bottom="62" />
+
+ <sprite id="rf_breastplate" offsetY="35" ic="FF33416C" width="104" height="142" img="entity\bodies\rf_breastplate.png" top="-65" bottom="13" />
+ <sprite id="rf_breastplate_damaged" offsetY="35" ic="FF2D3A66" width="104" height="142" img="entity\bodies\rf_breastplate_damaged.png" top="-65" bottom="13" />
+ <sprite id="rf_breastplate_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2C3961" width="191" height="185" img="entity\bodies\rf_breastplate_dead.png" left="-94" right="68" top="-67" bottom="57" />
+ <sprite id="rf_breastplate_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF454B50" width="191" height="185" img="entity\bodies\rf_breastplate_dead_arrows.png" left="-28" right="20" top="-12" bottom="40" />
+ <sprite id="rf_breastplate_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF131A29" width="191" height="185" img="entity\bodies\rf_breastplate_dead_javelin.png" left="-15" right="27" top="-25" bottom="61" />
+
+ <sprite id="rf_breastplate_armor" offsetY="35" ic="FF33416C" width="104" height="142" img="entity\bodies\rf_breastplate_armor.png" top="-65" bottom="13" />
+ <sprite id="rf_breastplate_armor_damaged" offsetY="35" ic="FF2D3A66" width="104" height="142" img="entity\bodies\rf_breastplate_armor_damaged.png" top="-65" bottom="13" />
+ <sprite id="rf_breastplate_armor_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2C3961" width="191" height="185" img="entity\bodies\rf_breastplate_armor_dead.png" top="-52" bottom="56" />
+ <sprite id="rf_breastplate_armor_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF454B50" width="191" height="185" img="entity\bodies\rf_breastplate_armor_dead_arrows.png" left="-30" right="26" top="-8" bottom="52" />
+ <sprite id="rf_breastplate_armor_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF131A29" width="191" height="185" img="entity\bodies\rf_breastplate_armor_dead_javelin.png" left="3" right="29" top="12" bottom="62" />
+
+ <sprite id="rf_breastplate_harness" offsetY="35" ic="FF4C709A" width="104" height="142" img="entity\bodies\rf_breastplate_harness.png" top="-65" bottom="13" />
+ <sprite id="rf_breastplate_harness_damaged" offsetY="35" ic="FF0E0E50" width="104" height="142" img="entity\bodies\rf_breastplate_harness_damaged.png" top="-65" bottom="13" />
+ <sprite id="rf_breastplate_harness_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2B2F37" width="131" height="125" img="entity\bodies\rf_breastplate_harness_dead.png" top="-52" bottom="56" />
+ <sprite id="rf_breastplate_harness_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF42494D" width="131" height="124" img="entity\bodies\rf_breastplate_harness_dead_arrows.png" left="-30" right="26" top="-8" bottom="52" />
+ <sprite id="rf_breastplate_harness_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF1B233C" width="131" height="124" img="entity\bodies\rf_breastplate_harness_dead_javelin.png" left="3" right="29" top="12" bottom="62" />
+
+ <sprite id="rf_reinforced_footman_armor" offsetY="35" ic="FF21283F" width="104" height="142" img="entity\bodies\rf_reinforced_footman_armor.png" left="-51" right="49" top="-52" bottom="14" />
+ <sprite id="rf_reinforced_footman_armor_damaged" offsetY="35" ic="FF1F263C" width="104" height="142" img="entity\bodies\rf_reinforced_footman_armor_damaged.png" left="-50" right="48" top="-52" bottom="14" />
+ <sprite id="rf_reinforced_footman_armor_dead" offsetX="6" offsetY="10" f="64FE" ic="FF1B2032" width="131" height="125" img="entity\bodies\rf_reinforced_footman_armor_dead.png" left="-57" right="59" />
+ <sprite id="rf_reinforced_footman_armor_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF43484E" width="131" height="124" img="entity\bodies\rf_reinforced_footman_armor_dead_arrows.png" left="-31" right="17" top="4" bottom="44" />
+ <sprite id="rf_reinforced_footman_armor_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF141C29" width="131" height="160" img="entity\bodies\rf_reinforced_footman_armor_dead_javelin.png" left="-12" right="32" top="-4" bottom="80" />
+
+ <sprite id="rf_kastenbrust_plate_harness" offsetY="35" ic="FF33416C" width="104" height="142" img="entity\bodies\rf_kastenbrust_plate_harness.png" top="-65" bottom="13" />
+ <sprite id="rf_kastenbrust_plate_harness_damaged" offsetY="35" ic="FF2D3A66" width="104" height="142" img="entity\bodies\rf_kastenbrust_plate_harness_damaged.png" top="-65" bottom="13" />
+ <sprite id="rf_kastenbrust_plate_harness_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2C3961" width="191" height="185" img="entity\bodies\rf_kastenbrust_plate_harness_dead.png" left="-94" right="68" top="-67" bottom="57" />
+ <sprite id="rf_kastenbrust_plate_harness_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF454B50" width="191" height="185" img="entity\bodies\rf_kastenbrust_plate_harness_dead_arrows.png" left="-28" right="20" top="-12" bottom="40" />
+ <sprite id="rf_kastenbrust_plate_harness_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF131A29" width="191" height="185" img="entity\bodies\rf_kastenbrust_plate_harness_dead_javelin.png" left="-15" right="27" top="-25" bottom="61" />
+
+ <sprite id="rf_foreign_plate_harness" offsetY="35" ic="FF33416C" width="104" height="142" img="entity\bodies\rf_foreign_plate_harness.png" top="-65" bottom="13" />
+ <sprite id="rf_foreign_plate_harness_damaged" offsetY="35" ic="FF2D3A66" width="104" height="142" img="entity\bodies\rf_foreign_plate_harness_damaged.png" top="-65" bottom="13" />
+ <sprite id="rf_foreign_plate_harness_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2C3961" width="191" height="185" img="entity\bodies\rf_foreign_plate_harness_dead.png" left="-94" right="68" top="-67" bottom="57" />
+ <sprite id="rf_foreign_plate_harness_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF454B50" width="191" height="185" img="entity\bodies\rf_foreign_plate_harness_dead_arrows.png" left="-28" right="20" top="-12" bottom="40" />
+ <sprite id="rf_foreign_plate_harness_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF131A29" width="191" height="185" img="entity\bodies\rf_foreign_plate_harness_dead_javelin.png" left="-15" right="27" top="-25" bottom="61" />
+
+ <sprite id="rf_heavy_plate_harness" offsetY="35" ic="FF33416C" width="104" height="142" img="entity\bodies\rf_heavy_plate_harness.png" top="-65" bottom="13" />
+ <sprite id="rf_heavy_plate_harness_damaged" offsetY="35" ic="FF2D3A66" width="104" height="142" img="entity\bodies\rf_heavy_plate_harness_damaged.png" top="-65" bottom="13" />
+ <sprite id="rf_heavy_plate_harness_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2C3961" width="191" height="185" img="entity\bodies\rf_heavy_plate_harness_dead.png" left="-94" right="68" top="-67" bottom="57" />
+ <sprite id="rf_heavy_plate_harness_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF454B50" width="191" height="185" img="entity\bodies\rf_heavy_plate_harness_dead_arrows.png" left="-28" right="20" top="-12" bottom="40" />
+ <sprite id="rf_heavy_plate_harness_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF131A29" width="191" height="185" img="entity\bodies\rf_heavy_plate_harness_dead_javelin.png" left="-15" right="27" top="-25" bottom="61" />
+
+<!-- Nasal Helmet Metadata
+ <sprite id="bust_helmet_01" offsetY="35" ic="FF373D47" width="104" height="142" img="entity\helmets\bust_helmet_01.png" left="-29" right="31" top="-29" bottom="53" />
+ <sprite id="bust_helmet_01_damaged" offsetY="35" ic="FF363C46" width="104" height="142" img="entity\helmets\bust_helmet_01_damaged.png" left="-29" right="31" top="-29" bottom="53" />
+ <sprite id="bust_helmet_01_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF373E47" width="131" height="125" img="entity\helmets\bust_helmet_01_dead.png" left="-48" right="22" top="-63" bottom="5" /> -->
+
+<!-- Padded Nasal Helmet Metadata
+ <sprite id="bust_helmet_02" offsetY="35" ic="FF4B5C6B" width="104" height="142" img="entity\helmets\bust_helmet_02.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="bust_helmet_02_damaged" offsetY="35" ic="FF485967" width="104" height="142" img="entity\helmets\bust_helmet_02_damaged.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="bust_helmet_02_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF495A69" width="131" height="125" img="entity\helmets\bust_helmet_02_dead.png" left="-47" right="27" top="-60" bottom="12" /> -->
+
+<!-- Nasal Helmet with Mail Metadata
+ <sprite id="bust_helmet_03" offsetY="35" ic="FF454850" width="104" height="142" img="entity\helmets\bust_helmet_03.png" left="-29" right="31" top="-31" bottom="53" />
+ <sprite id="bust_helmet_03_damaged" offsetY="35" ic="FF44474F" width="104" height="142" img="entity\helmets\bust_helmet_03_damaged.png" left="-29" right="31" top="-31" bottom="53" />
+ <sprite id="bust_helmet_03_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF484B54" width="131" height="125" img="entity\helmets\bust_helmet_03_dead.png" left="-47" right="19" top="-60" bottom="8" /> -->
+
+<!-- Kettle Hat with Mail Metadata
+  <sprite id="bust_helmet_10" offsetY="35" ic="FF41444B" width="104" height="142" img="entity\helmets\bust_helmet_10.png" left="-28" right="44" top="-29" bottom="51" />
+  <sprite id="bust_helmet_10_damaged" offsetY="35" ic="FF3C4047" width="104" height="142" img="entity\helmets\bust_helmet_10_damaged.png" left="-28" right="44" top="-29" bottom="51" />
+  <sprite id="bust_helmet_10_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF40444C" width="131" height="125" img="entity\helmets\bust_helmet_10_dead.png" left="-47" right="19" top="-60" bottom="8" /> -->
+
+<!-- Named Conic Faceguard with Helmet Metadata
+ <sprite id="bust_helmet_205" offsetY="35" ic="FF374052" width="140" height="248" img="entity\helmets\bust_helmet_205.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="bust_helmet_205_damaged" offsetY="35" ic="FF353D4F" width="140" height="248" img="entity\helmets\bust_helmet_205_damaged.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="bust_helmet_205_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\bust_helmet_205_dead.png" left="-84" right="28" top="-80" bottom="26" /> -->
+
+<!-- Heraldic Bascinet Metadata
+ <sprite id="bust_helmet_53" offsetY="35" ic="FF4B4E54" width="104" height="142" img="entity\helmets\bust_helmet_53.png" left="-45" right="41" top="-27" bottom="71" />
+ <sprite id="bust_helmet_53_damaged" offsetY="35" ic="FF45484D" width="104" height="142" img="entity\helmets\bust_helmet_53_damaged.png" left="-45" right="41" top="-27" bottom="71" />
+ <sprite id="bust_helmet_53_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF474A4F" width="191" height="159" img="entity\helmets\bust_helmet_53_dead.png" left="-56" right="20" top="-80" bottom="2" /> -->
+
+ <sprite id="rf_scale_helmet" offsetY="35" ic="FF373D47" width="104" height="142" img="entity\helmets\rf_scale_helmet.png" left="-29" right="31" top="-29" bottom="53" />
+ <sprite id="rf_scale_helmet_damaged" offsetY="35" ic="FF363C46" width="104" height="142" img="entity\helmets\rf_scale_helmet_damaged.png" left="-29" right="31" top="-29" bottom="53" />
+ <sprite id="rf_scale_helmet_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF373E47" width="131" height="125" img="entity\helmets\rf_scale_helmet_dead.png" left="-48" right="22" top="-63" bottom="5" />
+
+ <sprite id="rf_skull_cap" offsetY="35" ic="FF373D47" width="104" height="142" img="entity\helmets\rf_skull_cap.png" left="-29" right="31" top="-29" bottom="53" />
+ <sprite id="rf_skull_cap_damaged" offsetY="35" ic="FF363C46" width="104" height="142" img="entity\helmets\rf_skull_cap_damaged.png" left="-29" right="31" top="-29" bottom="53" />
+ <sprite id="rf_skull_cap_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF373E47" width="131" height="125" img="entity\helmets\rf_skull_cap_dead.png" left="-48" right="22" top="-63" bottom="5" />
+
+ <sprite id="rf_padded_scale_helmet" offsetY="35" ic="FF4B5C6B" width="104" height="142" img="entity\helmets\rf_padded_scale_helmet.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_padded_scale_helmet_damaged" offsetY="35" ic="FF485967" width="104" height="142" img="entity\helmets\rf_padded_scale_helmet_damaged.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_padded_scale_helmet_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF3B4250" width="191" height="185" img="entity\helmets\rf_padded_scale_helmet_dead.png" left="-56" right="24" top="-70" bottom="10" />
+
+ <sprite id="rf_skull_cap_with_rondels" offsetY="35" ic="FF374052" width="140" height="248" img="entity\helmets\rf_skull_cap_with_rondels.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="rf_skull_cap_with_rondels_damaged" offsetY="35" ic="FF353D4F" width="140" height="248" img="entity\helmets\rf_skull_cap_with_rondels_damaged.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="rf_skull_cap_with_rondels_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_skull_cap_with_rondels_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_padded_skull_cap" offsetY="35" ic="FF4B5C6B" width="104" height="142" img="entity\helmets\rf_padded_skull_cap.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_padded_skull_cap_damaged" offsetY="35" ic="FF485967" width="104" height="142" img="entity\helmets\rf_padded_skull_cap_damaged.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_padded_skull_cap_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF414C48" width="191" height="185" img="entity\helmets\rf_padded_skull_cap_dead.png" left="-57" right="21" top="-70" bottom="10" />
+
+ <sprite id="rf_sallet_helmet" offsetY="35" ic="FF373D47" width="104" height="142" img="entity\helmets\rf_sallet_helmet.png" left="-29" right="31" top="-29" bottom="53" />
+ <sprite id="rf_sallet_helmet_damaged" offsetY="35" ic="FF363C46" width="104" height="142" img="entity\helmets\rf_sallet_helmet_damaged.png" left="-29" right="31" top="-29" bottom="53" />
+ <sprite id="rf_sallet_helmet_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_sallet_helmet_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_padded_skull_cap_with_rondels" offsetY="35" ic="FF4B5C6B" width="104" height="142" img="entity\helmets\rf_padded_skull_cap_with_rondels.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_padded_skull_cap_with_rondels_damaged" offsetY="35" ic="FF485967" width="104" height="142" img="entity\helmets\rf_padded_skull_cap_with_rondels_damaged.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_padded_skull_cap_with_rondels_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_padded_skull_cap_with_rondels_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_padded_sallet_helmet" offsetY="35" ic="FF4B5C6B" width="104" height="142" img="entity\helmets\rf_padded_sallet_helmet.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_padded_sallet_helmet_damaged" offsetY="35" ic="FF485967" width="104" height="142" img="entity\helmets\rf_padded_sallet_helmet_damaged.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_padded_sallet_helmet_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_padded_sallet_helmet_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_half_closed_sallet" offsetY="35" ic="FF41444B" width="104" height="142" img="entity\helmets\rf_half_closed_sallet.png" left="-28" right="44" top="-29" bottom="51" />
+ <sprite id="rf_half_closed_sallet_damaged" offsetY="35" ic="FF3C4047" width="104" height="142" img="entity\helmets\rf_half_closed_sallet_damaged.png" left="-28" right="44" top="-29" bottom="51" />
+ <sprite id="rf_half_closed_sallet_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_half_closed_sallet_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_skull_cap_with_mail" offsetY="35" ic="FF454850" width="104" height="142" img="entity\helmets\rf_skull_cap_with_mail.png" left="-29" right="31" top="-31" bottom="53" />
+ <sprite id="rf_skull_cap_with_mail_damaged" offsetY="35" ic="FF44474F" width="104" height="142" img="entity\helmets\rf_skull_cap_with_mail_damaged.png" left="-29" right="31" top="-31" bottom="53" />
+ <sprite id="rf_skull_cap_with_mail_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF484C53" width="131" height="125" img="entity\helmets\rf_skull_cap_with_mail_dead.png" left="-53" right="19" top="-63" bottom="11" />
+
+ <sprite id="rf_conical_billed_helmet" offsetY="35" ic="FF374052" width="140" height="248" img="entity\helmets\rf_conical_billed_helmet.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="rf_conical_billed_helmet_damaged" offsetY="35" ic="FF353D4F" width="140" height="248" img="entity\helmets\rf_conical_billed_helmet_damaged.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="rf_conical_billed_helmet_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_conical_billed_helmet_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_sallet_helmet_with_mail" offsetY="35" ic="FF4B5C6B" width="104" height="142" img="entity\helmets\rf_sallet_helmet_with_mail.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_sallet_helmet_with_mail_damaged" offsetY="35" ic="FF485967" width="104" height="142" img="entity\helmets\rf_sallet_helmet_with_mail_damaged.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_sallet_helmet_with_mail_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_sallet_helmet_with_mail_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_padded_conical_billed_helmet" offsetY="35" ic="FF4B5C6B" width="104" height="142" img="entity\helmets\rf_padded_conical_billed_helmet.png" left="-30" right="36" top="-34" bottom="59" />
+ <sprite id="rf_padded_conical_billed_helmet_damaged" offsetY="35" ic="FF485967" width="104" height="142" img="entity\helmets\rf_padded_conical_billed_helmet_damaged.png" left="-30" right="36" top="-34" bottom="59" />
+ <sprite id="rf_padded_conical_billed_helmet_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_padded_conical_billed_helmet_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_sallet_helmet_with_bevor" offsetY="35" ic="FF4B5C6B" width="104" height="142" img="entity\helmets\rf_sallet_helmet_with_bevor.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_sallet_helmet_with_bevor_damaged" offsetY="35" ic="FF485967" width="104" height="142" img="entity\helmets\rf_sallet_helmet_with_bevor_damaged.png" left="-30" right="36" top="-34" bottom="54" />
+ <sprite id="rf_sallet_helmet_with_bevor_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_sallet_helmet_with_bevor_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_half_closed_sallet_with_mail" offsetY="35" ic="FF41444B" width="104" height="142" img="entity\helmets\rf_half_closed_sallet_with_mail.png" left="-28" right="44" top="-29" bottom="51" />
+ <sprite id="rf_half_closed_sallet_with_mail_damaged" offsetY="35" ic="FF3C4047" width="104" height="142" img="entity\helmets\rf_half_closed_sallet_with_mail_damaged.png" left="-28" right="44" top="-29" bottom="51" />
+ <sprite id="rf_half_closed_sallet_with_mail_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF40444C" width="131" height="125" img="entity\helmets\rf_half_closed_sallet_with_mail_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_closed_bascinet" offsetY="35" ic="FF4B4E54" width="104" height="142" img="entity\helmets\rf_closed_bascinet.png" left="-45" right="41" top="-27" bottom="71" />
+ <sprite id="rf_closed_bascinet_damaged" offsetY="35" ic="FF45484D" width="104" height="142" img="entity\helmets\rf_closed_bascinet_damaged.png" left="-45" right="41" top="-27" bottom="71" />
+ <sprite id="rf_closed_bascinet_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF343A48" width="191" height="159" img="entity\helmets\rf_closed_bascinet_dead.png" left="-46" right="30" top="-65" bottom="11" />
+
+ <sprite id="rf_half_closed_sallet_with_bevor" offsetY="35" ic="FF41444B" width="104" height="142" img="entity\helmets\rf_half_closed_sallet_with_bevor.png" left="-28" right="44" top="-29" bottom="51" />
+ <sprite id="rf_half_closed_sallet_with_bevor_damaged" offsetY="35" ic="FF3C4047" width="104" height="142" img="entity\helmets\rf_half_closed_sallet_with_bevor_damaged.png" left="-28" right="44" top="-29" bottom="51" />
+ <sprite id="rf_half_closed_sallet_with_bevor_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_half_closed_sallet_with_bevor_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_snubnose_bascinet_with_mail" offsetY="35" ic="FF374052" width="140" height="248" img="entity\helmets\rf_snubnose_bascinet_with_mail.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="rf_snubnose_bascinet_with_mail_damaged" offsetY="35" ic="FF353D4F" width="140" height="248" img="entity\helmets\rf_snubnose_bascinet_with_mail_damaged.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="rf_snubnose_bascinet_with_mail_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_snubnose_bascinet_with_mail_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_hounskull_bascinet_with_mail" offsetY="35" ic="FF374052" width="140" height="248" img="entity\helmets\rf_hounskull_bascinet_with_mail.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="rf_hounskull_bascinet_with_mail_damaged" offsetY="35" ic="FF353D4F" width="140" height="248" img="entity\helmets\rf_hounskull_bascinet_with_mail_damaged.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="rf_hounskull_bascinet_with_mail_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_hounskull_bascinet_with_mail_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+ <sprite id="rf_great_helm" offsetY="35" ic="FF374052" width="140" height="248" img="entity\helmets\rf_great_helm.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="rf_great_helm_damaged" offsetY="35" ic="FF353D4F" width="140" height="248" img="entity\helmets\rf_great_helm_damaged.png" left="-47" right="51" top="-27" bottom="103" />
+ <sprite id="rf_great_helm_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\rf_great_helm_dead.png" left="-84" right="28" top="-80" bottom="26" />
+
+</brush>
