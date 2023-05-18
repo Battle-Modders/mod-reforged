@@ -9,10 +9,9 @@
 		return onUse(_user, _targetTile);
 	}
 
-	local isUsable = o.isUsable;
-	o.isUsable = function()
+	o.isUsable <- function()
 	{
-		return isUsable() && this.m.TurnsRemaining == 0;
+		return this.skill.isUsable() && this.m.TurnsRemaining == 0;
 	}
 
 	o.onTurnEnd <- function()
