@@ -1,12 +1,56 @@
 ::mods_hookNewObject("ui/screens/tooltip/tooltip_events", function(o) {
+
+	// Refactor every occurence of "Max Fatigue" in any effect tooltips into "Stamina".
+	// Not good for overall performance: better would be going into each individual effect replacing the term there
+	local general_queryStatusEffectTooltipData = o.general_queryStatusEffectTooltipData;
+	o.general_queryStatusEffectTooltipData = function( _entityId, _statusEffectId )
+	{
+		local ret = general_queryStatusEffectTooltipData(_entityId, _statusEffectId)
+		if (ret == null) return ret;
+		foreach (entry in ret)
+		{
+			if (!("text" in entry)) continue;
+			entry.text = ::MSU.String.replace(entry.text, "Max Fatigue", "Stamina");
+		}
+		return ret;
+	}
+
 	local general_queryUIElementTooltipData = o.general_queryUIElementTooltipData;
 	o.general_queryUIElementTooltipData = function( _entityId, _elementId, _elementOwner )
 	{
-        local entity = (_entityId == null) ? null : ::Tactical.getEntityByID(_entityId);
-
-        if (entity == null) return general_queryUIElementTooltipData(_entityId, _elementId, _elementOwner);
-
         local ret = general_queryUIElementTooltipData(_entityId, _elementId, _elementOwner);
+
+        if (_elementId == "character-stats.Fatigue")
+        {
+			foreach (entry in ret)
+			{
+				if (entry.id != 2) continue;
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Fatigue is gained for every action, like moving or using skills, and when being hit in combat or dodging in melee. It is reduced at a fixed rate of 15 each turn or as much as necessary for a character to start every turn with 15 less than his [Stamina|Concept.MaximumFatigue].")
+				break;
+			}
+		}
+
+        if (_elementId == "character-stats.MaximumFatigue")
+        {
+			foreach (entry in ret)
+			{
+				if (entry.id == 1) entry.text = "Stamina"	// This is now its new name
+				if (entry.id == 2) entry.text = ::Reforged.Mod.Tooltips.parseString("Stamina is the amount of [Fatigue|Concept.Fatigue] a character can accumulate before being unable to take any more actions and having to recuperate. It is reduced by your [Weight|Concept.Weight].")
+			}
+        }
+
+        if (_elementId == "character-stats.Initiative")
+        {
+			foreach (entry in ret)
+			{
+				if (entry.id != 2) continue;
+				entry.text = ::Reforged.Mod.Tooltips.parseString("The higher this value, the earlier the position in the turn order. Initiative is reduced by your [Fatigue|Concept.Fatigue], as well as your [Burden|Concept.Burden]. In general, someone in light armor will act before someone in heavy armor, and someone fresh will act before someone fatigued.")
+				break;
+			}
+		}
+
+        local entity = (_entityId == null) ? null : ::Tactical.getEntityByID(_entityId);
+        if (entity == null) return ret;
 
         if (_elementId == "character-stats.MeleeSkill")
         {
