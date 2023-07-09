@@ -21,12 +21,26 @@
 		}
 	}
 
-
 	local setLoaded = ("setLoaded" in o) ? o.setLoaded : null;
 	o.setLoaded <- function( _loaded, _quiverItem = null )
 	{
 		if (setLoaded != null) setLoaded(_loaded);
+
+		if (this.m.IsLoaded == _loaded) return;		// We ignore any redundant calls of this function to prevent applying/removing the ammo effects multiple times
+
 		this.m.IsLoaded = _loaded;
+		if (this.getLoadedAmmunitionItem() != null)
+		{
+			if (this.isLoaded())
+			{
+				_quiverItem.addAmmoEffects(this);
+			}
+			else
+			{
+				_quiverItem.removeAmmoEffects(this);
+			}
+		}
+
 		this.m.LoadedAmmunitionItem = _quiverItem;
 	}
 
@@ -75,7 +89,42 @@
 		this.m.LoadedAmmunitionItem = null;		// Clear strong reference
 	}
 
-// New Functions
+	local onEquip = ("onEquip" in o) ? o.onEquip : null;	// In Vanilla this function always exists for loaded ranged weapons. But a/our mod may introduce weapons that do not have it
+	o.onEquip <- function()
+	{
+		if (onEquip == null)
+		{
+			this[parentName].onEquip();
+		}
+		else
+		{
+			onEquip();
+		}
+
+		if (this.isLoaded() && this.getLoadedAmmunitionItem() != null)
+		{
+			this.getLoadedAmmunitionItem().addAmmoEffects(this);
+		}
+	}
+
+	local onUnequip = ("onUnequip" in o) ? o.onUnequip : null;	// In Vanilla this function always exists for loaded ranged weapons. But a/our mod may introduce weapons that do not have it
+	o.onUnequip <- function()
+	{
+		if (onUnequip == null)
+		{
+			this[parentName].onUnequip();
+		}
+		else
+		{
+			onUnequip();
+		}
+
+		if (this.isLoaded() && this.getLoadedAmmunitionItem() != null)
+		{
+			this.getLoadedAmmunitionItem().removeAmmoEffects(this);
+		}
+	}
+
 	local onCombatStarted = ("onCombatStarted" in o) ? o.onCombatStarted : null;	// In Vanilla this base function is not used and does not exist but maybe some mod makes use of it
 	o.onCombatStarted <- function()
 	{

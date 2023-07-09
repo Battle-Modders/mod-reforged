@@ -1,8 +1,12 @@
 ::mods_hookExactClass("items/ammo/ammo", function(o)
 {
+	// public Variables
     o.m.AmmoTypeName <- "ammo_type_name";	// Must be overwritten with an actual informative name
     o.m.AmmoWeight <- 0.0;			// Every Ammo in this bag applies this value as a negative StaminaModifier
 	o.m.StaminaModifier <- 0;		// Flat StaminaModifier. In Vanilla this already exists on most other equipables
+
+	// private Variables
+	o.m.AmmoSkillPtrs = [];			// Array of weakrefs to skills: For keeping track of all skills added by this ammunition
 
     local create = o.create;
     o.create = function()
@@ -73,4 +77,38 @@
 	{
 		_properties.Stamina += this.getStaminaModifier();
     }
+
+// New Functions:
+
+	o.addAmmoSkill <- function( _skill, _loadedWeapon )
+	{
+		_skill.setItem(_loadedWeapon);
+		this.m.AmmoSkillPtrs.push(::MSU.asWeakTableRef(_skill));
+		this.getContainer().getActor().getSkills().add(_skill, this.m.AmmoSkillPtrs.len());
+	}
+
+	o.clearAmmoSkills <- function()
+	{
+		if (this.getContainer() == null || this.getContainer().getActor() == null || this.getContainer().getActor().isNull())
+		{
+			return;
+		}
+
+		foreach (skill in this.m.AmmoSkillPtrs)
+		{
+			this.getContainer().getActor().getSkills().remove(skill);
+		}
+
+		this.m.AmmoSkillPtrs = [];
+	}
+
+	// This is called by the ranged weapon when it is loaded equipped (with this ammunition)
+	o.addAmmoEffects <- function( _equippedWeaponReference ) {}
+
+	// This is called by the ranged weapon when it is unloaded or unequipped (while it was loaded with this ammunition)
+	o.removeAmmoEffects <- function( _equippedWeaponReference )
+	{
+		this.clearAmmoSkills():
+	}
+
 });
