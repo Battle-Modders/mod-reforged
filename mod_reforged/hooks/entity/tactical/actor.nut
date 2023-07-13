@@ -120,6 +120,16 @@
 		return __original(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
 
+	q.onRoundStart = @(__original) function()
+	{
+		if (this.isAlive() && ::Time.getRound() == 1)
+		{
+			this.getSkills().add(::new("scripts/skills/special/rf_first_turn_initiative"));
+		}
+
+		__original();
+	}
+
 	q.getSurroundedCount = @(__original) function()
 	{
 		local startSurroundCountAt = this.m.CurrentProperties.StartSurroundCountAt;
