@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/entity/world/settlement", function(q) {
+	q.m.LastVisited <- -1;
+
 	q.setOwner = @(__original) function( _owner )
 	{
 		__original(_owner);
@@ -197,5 +199,54 @@
 		}
 
 		return __original(_id, _list);
+	}
+
+	q.onEnter = @(__original) function()
+	{
+		local ret = __original();
+		this.m.LastVisited = ::World.getTime().Days;
+		return ret;
+	}
+
+	q.onSerialize = @(__original) function( _out )
+	{
+		this.getFlags().set("rf_LastVisited", this.m.LastVisited);
+		__original(_out);
+	}
+
+	q.onDeserialize = @(__original) function( _in )
+	{
+		__original(_in);
+		if (this.getFlags().has("rf_LastVisited")) this.m.LastVisited = this.getFlags().get("rf_LastVisited");
+	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.push({
+			id = 12,
+			type = "hint",
+			icon = "ui/icons/action_points.png",
+			text = this.getLastVisitedString()
+		});
+		return ret;
+	}
+
+// New Functions
+	q.getLastVisitedString <- function()
+	{
+		local ret = "Last visited: ";
+		if (this.isVisited() == false) return ret + "never";
+		if (this.m.LastVisited == -1) return ret + "unknown";	// This should only ever happen when loading old save games
+
+		local dayDifference = ::World.getTime().Days - this.m.LastVisited;
+		if (dayDifference == 0) return ret + "today";
+		if (dayDifference == 1) return ret + "1 day ago";
+		return ret + dayDifference + " days ago";
+	}
+
+	q.getLastVisited <- function()
+	{
+		return this.m.LastVisited;
 	}
 });
