@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/world/attached_location/militia_trainingcamp_location", function(o) {
+::mods_hookExactClass("entity/world/attached_location/fortified_outpost_location", function(o) {
 	local onUpdateShopList = o.onUpdateShopList;
 	o.onUpdateShopList = function( _id, _list )
 	{
@@ -19,14 +19,14 @@
 							S = "helmets/rf_padded_scale_helmet"
 						},
 						{
-							R = 80,
+							R = 85,
 							P = 1.0,
-							S = "weapons/rf_reinforced_wooden_poleflail"
+							S = "weapons/rf_battle_axe"
 						},
 						{
-							R = 80,
+							R = 85,
 							P = 1.0,
-							S = "weapons/two_handed_wooden_flail"
+							S = "weapons/rf_reinforced_wooden_poleflail"
 						}
 					]);
 				}
