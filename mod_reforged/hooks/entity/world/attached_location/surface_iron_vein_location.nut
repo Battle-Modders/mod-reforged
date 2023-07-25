@@ -4,7 +4,7 @@
 	{
 		switch (_id)
 		{
-			case "building.marketplace":
+			case "building.weaponsmith":
 				if (!this.getSettlement().isSouthern())
 				{
 					_list.extend([
