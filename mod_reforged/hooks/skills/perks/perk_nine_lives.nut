@@ -27,6 +27,13 @@
         if (proc) this.onProc();
 	}
 
+	local onCombatFinished = o.onCombatFinished;
+	o.onCombatFinished = function()
+	{
+		this.m.IsHidden = false;
+		onCombatFinished();
+	}
+
     // New function that is called after vanilla just applied the 11-15 hitpoints reset, removal of Dots and addition of the temporary nine_lives_effect
     o.onProc <- function()
     {
