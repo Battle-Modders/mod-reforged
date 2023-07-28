@@ -96,7 +96,7 @@
 			}
 			else if (var[0] == "terrain")
 			{
-				local wrongTerrains = ::Const.Strings.Terrain.filter(@(_idx, _val) _val != var[1]);
+				local wrongTerrains = ::Const.Strings.Terrain.filter(@(_idx, _val) (_val != var[1] && _val != ""));
 				_vars.push([
 					"wrongTerrain",
 					::MSU.Array.rand(wrongTerrains)
