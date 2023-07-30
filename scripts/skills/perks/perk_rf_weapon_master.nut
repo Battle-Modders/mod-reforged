@@ -92,7 +92,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			case ::Const.Items.WeaponType.Mace: return "perk.rf_bone_breaker";
 			case ::Const.Items.WeaponType.Spear: return "perk.rf_two_for_one";
 			case ::Const.Items.WeaponType.Sword: return "perk.rf_en_garde";
-			case ::Const.Items.WeaponType.Throwing: return "perk.perk_rf_nailed_it";
+			case ::Const.Items.WeaponType.Throwing: return "perk.rf_nailed_it";
 		}
 
 		return "";
