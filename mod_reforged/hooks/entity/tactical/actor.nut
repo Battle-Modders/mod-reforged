@@ -64,7 +64,12 @@
 				entry.text = " " + entry.value + " / " + entry.valueMax;
 			}
 
-			if (entry.id == 8)	// Replace Morale-Bar with Action-Point-Bar
+			else if (entry.id == 1 && entry.text == this.getName() && this.getTile() != "")
+			{
+				entry.text = this.getNameOnly() + "\n" + this.getTitle();
+			}
+
+			else if (entry.id == 8)	// Replace Morale-Bar with Action-Point-Bar
 			{
 				local turnsToGo = ::Tactical.TurnSequenceBar.getTurnsUntilActive(this.getID());
 
