@@ -15,7 +15,7 @@
 	o.create = function()
 	{
 		create();
-		// Todo add miniIcon
+		this.m.IconMini = "rf_anticipation_mini";
 
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on entities
 	}
