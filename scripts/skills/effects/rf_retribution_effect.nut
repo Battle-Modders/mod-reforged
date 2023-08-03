@@ -9,7 +9,7 @@ this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Retribution";
 		this.m.Description = "This character hits significantly harder after taking a hit.";
 		this.m.Icon = "ui/perks/rf_retribution.png";
-		this.m.IconMini = "rf_retribution_effect_mini";
+		this.m.IconMini = "";	// A mini-icon would be useful
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsActive = false;
