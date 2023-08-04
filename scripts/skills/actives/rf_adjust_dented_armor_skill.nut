@@ -36,7 +36,7 @@ this.rf_adjust_dented_armor_skill <- ::inherit("scripts/skills/skill", {
 
 		if (this.getContainer().getActor().isEngagedInMelee())
 		{
-			ret.push({
+			tooltip.push({
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
