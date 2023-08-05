@@ -30,7 +30,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "The next skill used has its Action Point cost [color=" + ::Const.UI.Color.PositiveValue + "]halved[/color] and Fatigue Cost reduced by [color=" + ::Const.UI.Color.PositiveValue + "]25%[/color]"
+			text = "The next skill used has its Action Point cost [color=" + ::Const.UI.Color.PositiveValue + "]halved[/color]"
 		});
 
 		tooltip.push({
@@ -57,7 +57,6 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				// ::Math.round to round up the subtraction because we want to emulate the behavior of _properties.IsSkillUseHalfCost
 				// whereby it rounds down the cost (due to integer division) after halving it.
 				skill.m.ActionPointCost -= ::Math.max(0, ::Math.min(skill.m.ActionPointCost - 1, ::Math.round(skill.m.ActionPointCost / 2.0)));
-				skill.m.FatigueCostMult *= 0.75;
 			}
 		}
 	}
@@ -69,7 +68,6 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
 				this.modifyPreviewField(skill, "ActionPointCost", 0, false);
-				this.modifyPreviewField(skill, "FatigueCostMult", 1, true);
 			}
 		}
 	}

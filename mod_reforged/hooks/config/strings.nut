@@ -1066,7 +1066,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"As long as your current [Fatigue|Concept.Fatigue] is below " + ::MSU.Text.colorRed("30%") + " of [Maximum Fatigue|Concept.MaximumFatigue] after gear, the [Action Point|Concept.ActionPoints] cost of the first skill used every [turn|Concept.Turn] is " + ::MSU.Text.colorGreen("halved") + " and its [Fatigue|Concept.Fatigue] Cost is reduced by " + ::MSU.Text.colorGreen("25%") + ".",
+				"As long as your current [Fatigue|Concept.Fatigue] is below " + ::MSU.Text.colorRed("30%") + " of [Maximum Fatigue|Concept.MaximumFatigue] after gear, the [Action Point|Concept.ActionPoints] cost of the first skill used every [turn|Concept.Turn] is " + ::MSU.Text.colorGreen("halved") + ".",
 				"Does not expire when using a skill with no [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost."
 			]
 		}]
