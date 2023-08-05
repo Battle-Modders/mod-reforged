@@ -21,7 +21,7 @@
 		local targetEntity = _targetTile.getEntity();
 		local ret = onUse( _user, _targetTile );
 
-		if (ret && targetEntity != null && targetEntity.isAlive() && !targetEntity.isDying() && this.getContainer().hasSkill("perk.shield_expert") && !targetEntity.getSkills().hasSkill("effects.staggered"))
+		if (ret && targetEntity != null && targetEntity.isAlive() && !targetEntity.isDying() && this.getContainer().hasSkill("perk.shield_expert"))
 		{
 			local effect = this.new("scripts/skills/effects/staggered_effect");
 			targetEntity.getSkills().add(effect);
