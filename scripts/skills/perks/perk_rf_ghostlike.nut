@@ -45,10 +45,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		local numAllies = ::Tactical.Entities.getAlliedActors(actor.getFaction(), actor.getTile(), 1, true);
 		local numEnemies = ::Tactical.Entities.getHostileActors(actor.getFaction(), actor.getTile(), 1, true);
 
-		if (numAllies >= numEnemies)
-		{
-			this.m.IsSpent = false;
-		}
+		this.m.IsSpent = numAllies >= numEnemies;
 	}
 
 	function onTurnStart()
