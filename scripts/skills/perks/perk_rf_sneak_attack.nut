@@ -94,7 +94,7 @@ this.perk_rf_sneak_attack <- ::inherit("scripts/skills/skill", {
 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
-		this.m.EnemiesHitWithRanged.push(_attacker.getID());
+		if (_attacker != null) this.m.EnemiesHitWithRanged.push(_attacker.getID());
 	}
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
