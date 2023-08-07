@@ -663,15 +663,9 @@ local vanillaDescriptions = [
 	 					"The drop in shield defense bonus at maximum [fatigue|Concept.Fatigue] is reduced from " + ::MSU.Text.colorRed("50%") + " to " + ::MSU.Text.colorRed("25%") + ".",
 	 					"Missed attacks against you no longer increase your [Fatigue|Concept.Fatigue]."
 	 				]
-	 			},
-	 			{
-	 				Type = ::UPD.EffectType.Active,
-	 				Description = [
-	 					"Unlocks the [Cover Ally|Skill+rf_cover_ally_skill] skill which allows you to target an ally to allow them to move 1 tile ignoring [Zone of Control|Concept.ZoneOfControl] on their [turn|Concept.Turn] while improving their position in the turn order in the next [round|Concept.Round]."
-	 				]
 	 			}
  			]
-	 	}),
+	 	})
 	},
 	{
 		ID = "perk.steel_brow",
