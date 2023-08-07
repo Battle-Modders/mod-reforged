@@ -4,10 +4,6 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 		SelfSkillMalus = -15,
 		SelfDefenseMalus = -15
 	},
-	function setAlly( _ally )
-	{
-		this.m.Ally = ::MSU.asWeakTableRef(_ally);
-	}
 
 	function create()
 	{
@@ -20,6 +16,14 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
+	}
+
+	function init( _target, _selfSkillMalus = -15, _selfDefenseMalus = -15)
+	{
+		this.m.Ally = ::MSU.asWeakTableRef(_target);
+		this.m.SelfSkillMalus = _selfSkillMalus;
+		this.m.SelfDefenseMalus = _selfDefenseMalus;
+		return this;
 	}
 
 	function getTooltip()
@@ -85,24 +89,13 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 		this.onRemoved();
 	}
 
-	function onTurnStart()
-	{
-		this.removeSelf();
-	}
-
 	function onRemoved()
 	{
 		this.m.IsHidden = true;
 		if (!::MSU.isNull(this.m.Ally) && this.m.Ally.isAlive())
 		{
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " is no longer providing cover to " + ::Const.UI.getColorizedEntityName(this.m.Ally));
-			local skill = this.m.Ally.getSkills().getSkillByID("effects.rf_covered_by_ally");
-
-			if (skill != null)
-			{
-				skill.setCoverProvider(null);
-				this.m.Ally.getSkills().remove(skill);
-			}
+			this.m.Ally.getSkills().removeByID("effects.rf_covered_by_ally");
 		}
 	}
 });

@@ -1,11 +1,9 @@
 this.rf_covered_by_ally_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		CoverProvider = null
+		CoverProvider = null,
+		MeleeDefenseBonus = 0,
+		InitiativeBonus = 0,
 	},
-	function setCoverProvider( _ally )
-	{
-		this.m.CoverProvider = ::MSU.asWeakTableRef(_ally);
-	}
 
 	function create()
 	{
@@ -21,16 +19,52 @@ this.rf_covered_by_ally_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = true;
 	}
 
+	function init( _provider, _meleeDefenseBonus = 0, _initiativeBonus = 0)
+	{
+		this.m.CoverProvider = ::MSU.asWeakTableRef(_provider);
+		this.m.MeleeDefenseBonus = _meleeDefenseBonus;
+		this.m.InitiativeBonus = _initiativeBonus;
+		return this;
+	}
+
+	function getTooltip()
+	{
+		local tooltip = this.skill.getTooltip();
+
+		if (this.m.MeleeDefenseBonus != 0)
+		{
+			tooltip.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = ::MSU.Text.colorizeValue(this.m.MeleeDefenseBonus) + " Melee Defense"
+			});
+		}
+
+		if (this.m.InitiativeBonus != 0)
+		{
+			tooltip.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = ::MSU.Text.colorizeValue(this.m.InitiativeBonus) + " Initiative"
+			});
+		}
+
+		return tooltip;
+	}
+
 	function onUpdate( _properties )
 	{
-		if (::MSU.isNull(this.m.CoverProvider) || _properties.IsRooted || _properties.IsStunned)
+		if (::MSU.isNull(this.m.CoverProvider))
 		{
 			this.onRemoved();
 			this.removeSelf();
 			return;
 		}
 
-		_properties.InitiativeForTurnOrderAdditional += 5000;
+		_properties.MeleeDefense += this.m.MeleeDefenseBonus;
+		_properties.Initiative += this.m.InitiativeBonus;
 	}
 
 	function onMovementFinished( _tile )
@@ -59,13 +93,7 @@ this.rf_covered_by_ally_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = true;
 		if (!::MSU.isNull(this.m.CoverProvider) && this.m.CoverProvider.isAlive())
 		{
-			local skill = this.m.CoverProvider.getSkills().getSkillByID("effects.rf_covering_ally");
-
-			if (skill != null)
-			{
-				skill.setAlly(null);
-				this.m.CoverProvider.getSkills().remove(skill);
-			}
+			this.m.CoverProvider.getSkills().removeByID("effects.rf_covering_ally");
 		}
 
 		this.getContainer().removeByID("actives.rf_move_under_cover");
