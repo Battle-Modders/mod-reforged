@@ -116,6 +116,7 @@
 	RF_FromAllSides = "From all Sides",
 	RF_FruitsOfLabor = "Fruits of Labor",
 	RF_Ghostlike = "Ghostlike",
+	RF_Guardian = "Guardian",
 	RF_HaleAndHearty = "Hale and Hearty",
 	RF_Heft = "Heft",
 	RF_HipShooter = "Hip Shooter",
@@ -1237,6 +1238,23 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"When the number of adjacent allies is greater than or equal to the number of adjacent enemies, you may ignore [Zone of Control|Concept.ZoneOfControl] for your next movement action."
 			]
 		}]
+ 	}),
+ 	RF_Guardian = ::UPD.getDescription({
+ 		Effects = [
+			{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Unlocks the [Cover Ally|Skill+rf_cover_ally_skill] skill which allows you to target an ally to allow them to move 1 tile ignoring [Zone of Control|Concept.ZoneOfControl] on their [turn|Concept.Turn] while improving their position in the turn order in the next [round|Concept.Round]."
+				]
+			},
+			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"The [Action Point|Concept.ActionPoints] cost of [Shield Wall|Skill+shieldwall] and [Cover Ally|Skill+rf_cover_ally_skill] is reduced by " + ::MSU.Text.colorGreen(1) + " while you are not engaged in melee",
+					"Using [Shield Wall|Skill+shieldwall] grants all adjacent allies that are not engaged in melee " + ::MSU.Text.colorizeValue(10) + " Ranged Defense until they wait or end their turn engaged in melee or not adjacent to you."
+				]
+			}
+		]
  	}),
 	RF_HaleAndHearty = ::UPD.getDescription({
  		Fluff = "Years of hard labor have given you a stamina like none other!",

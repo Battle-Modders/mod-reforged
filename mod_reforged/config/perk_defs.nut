@@ -1070,6 +1070,14 @@
 		IconDisabled = "ui/perks/rf_ghostlike_bw.png",
 	},
 	{
+		ID = "perk.rf_guardian",
+		Script = "scripts/skills/perks/perk_rf_guardian",
+		Name = ::Const.Strings.PerkName.RF_Guardian,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Guardian,
+		Icon = "ui/perks/rf_phalanx.png",
+		IconDisabled = "ui/perks/rf_phalanx_bw.png",
+	},
+	{
 		ID = "perk.rf_sneak_attack",
 		Script = "scripts/skills/perks/perk_rf_sneak_attack",
 		Name = ::Const.Strings.PerkName.RF_SneakAttack,
