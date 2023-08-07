@@ -661,7 +661,6 @@ local vanillaDescriptions = [
 	 				Description = [
 	 					"The shield defense bonus is increased by " + ::MSU.Text.colorGreen("25%") + ". This also applies to the additional defense bonus of the [Shieldwall|Skill+shieldwall] skill.",
 	 					"The drop in shield defense bonus at maximum [fatigue|Concept.Fatigue] is reduced from " + ::MSU.Text.colorRed("50%") + " to " + ::MSU.Text.colorRed("25%") + ".",
-	 					"The [Knock Back|Skill+knock_back] skill gains " + ::MSU.Text.colorGreen("+15%") + " chance to hit and now applies the [Staggered|Skill+staggered_effect] effect.",
 	 					"Missed attacks against you no longer increase your [Fatigue|Concept.Fatigue]."
 	 				]
 	 			},
@@ -1406,12 +1405,20 @@ foreach (vanillaDesc in vanillaDescriptions)
 	RF_LineBreaker = ::UPD.getDescription({
  		Fluff = "\'Make way for the bad guy!\'",
  		Requirement = "Shield",
- 		Effects = [{
-			Type = ::UPD.EffectType.Active,
-			Description = [
-				"Unlocks the [Line Breaker|Skill+rf_line_breaker_skill] skill which allows you to knock back an enemy and take their place, all in one action."
-			]
-		}]
+ 		Effects = [
+			{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Unlocks the [Line Breaker|Skill+rf_line_breaker_skill] skill which allows you to knock back an enemy and take their place, all in one action."
+				]
+			},
+			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"The [Knock Back|Skill+knock_back] skill gains " + ::MSU.Text.colorGreen("+15%") + " chance to hit and now applies the [Staggered|Skill+staggered_effect] effect",
+				]
+			}
+		]
  	}),
 	RF_Poise = ::UPD.getDescription({
  		Fluff = "Specialize in Medium Armor! Not as nimble as some but more lithe than others!",
