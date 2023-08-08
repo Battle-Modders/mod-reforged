@@ -72,7 +72,7 @@
 					if (!destTile.hasNextTile(j)) continue;
 
 					local adjacentTile = destTile.getNextTile(j);
-					if (adjacentTile.IsEmpty && myTile.getDistanceTo(adjacentTile) == 1 && ::Math.abs(myTile.Level - adjacentTile.Level) + ::Math.abs(adjacentTile.Level - destTile.Level) <= 1)
+					if (adjacentTile.IsEmpty && myTile.getDistanceTo(adjacentTile) <= 1 && ::Math.abs(myTile.Level - adjacentTile.Level) + ::Math.abs(adjacentTile.Level - destTile.Level) <= 1)
 						return destTile;
 				}
 			}
