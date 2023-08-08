@@ -53,6 +53,8 @@
 		local myTile = this.getContainer().getActor().getTile();
 		local targetDistance = _targetTile.getDistanceTo(myTile);
 
+		local destTiles = [];
+
 		for (local i = 0; i < 6; i++)
 		{
 			if (!_targetTile.hasNextTile(i)) continue;
@@ -61,22 +63,30 @@
 			if (!destTile.IsEmpty || destTile.getDistanceTo(myTile) > this.m.MaxRange - 1 || ::Math.abs(_targetTile.Level - destTile.Level) > 1)
 				continue;
 
-			if (this.m.MaxRange == 2)
+			// If a destination tile is adjacent to us, always choose that first
+			if (this.m.MaxRange == 2 || destTile.getDistanceTo(myTile) == 1)
 			{
 				if (::Math.abs(myTile.Level - destTile.Level) <= 1) return destTile;
 			}
 			else
 			{
+				// Destination tiles at a distance of 2 can only be chosen if they have an adjacent empty tile that is adjacent to myTile
+				// i.e. we have a clear path to the Destination tile AND along the path we never change height elevation more than once.
 				for (local j = 0; j < 6; j++)
 				{
 					if (!destTile.hasNextTile(j)) continue;
 
 					local adjacentTile = destTile.getNextTile(j);
-					if (adjacentTile.IsEmpty && myTile.getDistanceTo(adjacentTile) <= 1 && ::Math.abs(myTile.Level - adjacentTile.Level) + ::Math.abs(adjacentTile.Level - destTile.Level) <= 1)
-						return destTile;
-				}
+					if (adjacentTile.IsEmpty && myTile.getDistanceTo(adjacentTile) == 1 && ::Math.abs(myTile.Level - adjacentTile.Level) + ::Math.abs(adjacentTile.Level - destTile.Level) <= 1)
+						destTiles.push(destTile);
+				}				
 			}
 		}
+
+		// No valid destination tile at a distance of 1. So, therefore, choose 
+		// the first valid clockwise destination tile at a distance of 2.
+		if (destTiles.len() != 0)
+			return destTiles[0];
 	}
 
 	o.onVerifyTarget = function( _originTile, _targetTile )
