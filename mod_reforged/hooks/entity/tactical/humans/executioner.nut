@@ -103,7 +103,7 @@
 		if (ret)
 		{
 			this.m.Skills.removeByID("perk.reach_advantage");
-			b.MeleeDefense += 10;
+			this.m.BaseProperties.MeleeDefense += 10;
 
 			if (::Reforged.Config.IsLegendaryDifficulty)
 			{
