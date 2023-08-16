@@ -1,3 +1,9 @@
+
+// Tweaks of Vanilla values
+::Const.MoodChange.RecoveryPerHour = 0.0075;			// Minimum Recovery - In Vanilla this is 0.015
+::Const.MoodChange.RelativeRecoveryPerHour = 0.005;		// Relative Recovery - In Vanilla this is 0.01
+
+// New Values
 ::Const.CharacterProperties.PositiveMoraleCheckBravery <- [];
 ::Const.CharacterProperties.PositiveMoraleCheckBraveryMult <- [];
 ::Const.CharacterProperties.NegativeMoraleCheckBravery <- [];
