@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/shoot_bolt", function(q) {
-	q.m.AdditionalAccuracy = 15;
+	q.m.AdditionalAccuracy = 25;
 	q.m.AdditionalHitChance = -3;
 
 	// Overwrite vanilla function to prevent repeated adding of reload skill

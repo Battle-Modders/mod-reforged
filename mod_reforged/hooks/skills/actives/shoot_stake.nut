@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/shoot_stake", function(q) {
-	q.m.AdditionalAccuracy = 10;
+	q.m.AdditionalAccuracy = 20;
 	q.m.AdditionalHitChance = -3;
 
 	// Overwrite vanilla function to prevent repeated adding of reload skill

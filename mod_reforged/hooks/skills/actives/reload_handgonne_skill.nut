@@ -19,4 +19,11 @@
 
 		return this.getItem().isLoaded();
 	}
+
+	q.onUse = @(__original) function( _user, _targetTile )
+	{
+		local ret = __original(_user, _targetTile);
+		this.getContainer().add(::new("scripts/skills/effects/rf_reload_disorientation_effect"));
+		return ret;
+	}
 });

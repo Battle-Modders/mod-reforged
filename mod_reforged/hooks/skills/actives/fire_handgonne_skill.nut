@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/fire_handgonne_skill", function(q) {
-	q.m.AdditionalAccuracy = 10;
+	q.m.AdditionalAccuracy = 20;
 	q.m.AdditionalHitChance = -10;
 
 	// Overwrite vanilla function to prevent repeated adding of reload skill
