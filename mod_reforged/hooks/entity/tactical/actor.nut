@@ -136,6 +136,38 @@
 		return ::Math.max(0, count - startSurroundCountAt);
 	}
 
+	// Temporarily changes the getID function from the ammo item to instead return getAmmoType
+	// This is the alternative to re-/overwriting these two functions. The Vanilla function uses 'ammo.getID' which we can't fix otherwise
+    local hasRangedWeapon = o.hasRangedWeapon;
+    o.hasRangedWeapon = function()
+    {
+        local ammoItem = this.getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
+        if (ammoItem == null) return hasRangedWeapon();
+
+        local oldGetID = ammoItem.getID;
+        ammoItem.getID = ammoItem.getAmmoType;
+
+        local ret = hasRangedWeapon();
+
+        ammoItem.getID = oldGetID;
+        return ret;
+    }
+
+    local getRangedWeaponInfo = o.getRangedWeaponInfo;
+    o.getRangedWeaponInfo = function()
+    {
+        local ammoItem = this.getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
+        if (ammoItem == null) return getRangedWeaponInfo();
+
+        local oldGetID = ammoItem.getID;
+        ammoItem.getID = ammoItem.getAmmoType;
+
+        local ret = getRangedWeaponInfo();
+
+        ammoItem.getID = oldGetID;
+        return ret;
+    }
+
 	o.getSurroundedBonus <- function( _targetEntity )
 	{
 		local surroundedCount = _targetEntity.getSurroundedCount();

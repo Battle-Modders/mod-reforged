@@ -129,4 +129,6 @@
 	<sprite id="perk_rf_soul_link_mini" ic = "FF23165B" img="mini\rf_soul_link_mini.png" />
 
 	<sprite id="rf_projectile_flaming_arrow" ic = "FF23165B" img="projectiles\rf_projectile_flaming_arrow.png" />
+
+  	<sprite id="rf_bust_quality_quiver" offsetY="35" ic="FF23165B" width="104" height="142" img="ammo\rf_bust_quality_quiver.png" left="-38" right="-4" top="-25" bottom="37" />
 </brush>
