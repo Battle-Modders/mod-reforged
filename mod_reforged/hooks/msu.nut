@@ -269,4 +269,38 @@
 	}
 })
 
+::logInfo("Reforged::MSU -- adding getItemsByFunction and getItemsByFunctionAtSlot to item_container");
+::mods_hookNewObject("items/item_container", function(o) {
+	o.getItemsByFunction <- function( _function )
+	{
+		local ret = [];
+
+		for (local i = 0; i < ::Const.ItemSlot.COUNT; i++)
+		{
+			for (local j = 0; j < ::Const.ItemSlotSpaces[i]; j++)
+			{
+				local item = this.m.Items[i][j];
+				if (item != null && item != -1 && _function(item))
+					ret.push(item);
+			}
+		}
+
+		return ret;
+	}
+
+	o.getItemsByFunctionAtSlot <- function( _slot, _function )
+	{
+		local ret = [];
+
+		for (local i = 0; i < ::Const.ItemSlotSpaces[_slot]; i++)
+		{
+			local item = this.m.Items[_slot][i];
+			if (item != null && item != -1 && _function(item))
+				ret.push(item);
+		}
+
+		return ret;
+	}
+});
+
 ::logWarning("------ Reforged modifications to MSU Finished------");
