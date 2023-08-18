@@ -56,9 +56,14 @@
 
 	q.onAfterUpdate = @(__original) function( _properties )
 	{
+		local specializedInCrossbows = _properties.IsSpecializedInCrossbows;	// switcheroo start
+		_properties.IsSpecializedInCrossbows = false;	// We don't want vanilla to apply the armor pen bonus anymore
+
 		local additionalAccuracy = this.m.AdditionalAccuracy;
 		__original(_properties);
 		this.m.AdditionalAccuracy = additionalAccuracy;
+
+		_properties.IsSpecializedInCrossbows = specializedInCrossbows;	// switcheroo reset
 	}
 
 	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
