@@ -96,6 +96,14 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		{
 			local rebuke = ::new("scripts/skills/effects/rf_rebuke_effect");
 			rebuke.m.BaseChance += 10;
+			local onTurnStart = "onTurnStart" in rebuke ? rebuke.onTurnStart : null;
+			local parentName = rebuke.SuperName;
+			rebuke.onTurnStart <- function()
+			{
+				if (onTurnStart != null) onTurnStart();
+				else this[parentName].onTurnStart();
+				this.removeSelf();
+			}
 			return rebuke;
 		}
 	}
