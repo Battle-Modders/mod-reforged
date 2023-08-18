@@ -164,4 +164,8 @@
 	{
 		this.m.IsWaitingTurn = _bool;
 	}
+
+	o.onSetupEntity <- function()
+	{
+	}
 });
