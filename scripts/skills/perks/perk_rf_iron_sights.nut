@@ -1,6 +1,7 @@
 this.perk_rf_iron_sights <- ::inherit("scripts/skills/skill", {
 	m = {
-		Bonus = 25
+		BonusHitHeadChance = 25,
+		BonusArmorPen = 0.25
 	},
 	function create()
 	{
@@ -15,16 +16,26 @@ this.perk_rf_iron_sights <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function onUpdate( _properties )
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (this.getContainer().getActor().isDisarmed()) return;
+		if (!_skill.isAttack() || !_skill.isRanged() || _targetEntity == null) return;
 
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.RangedWeapon) &&
-			 (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow) || weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
-			)
+		local item = _skill.getItem();
+		if (item == null) return;
+
+		if (item.isWeaponType(::Const.Items.WeaponType.Crossbow) || item.isWeaponType(::Const.Items.WeaponType.Firearm))
 		{
-			_properties.HitChance[::Const.BodyPart.Head] += this.m.Bonus;
+			local myActor = this.getContainer().getActor();
+			local blockedTiles = ::Const.Tactical.Common.getBlockedTiles(myActor.getTile(), _targetEntity.getTile(), myActor.getFaction(), false);
+
+			if (blockedTiles.len() == 0)
+			{
+				_properties.DamageDirectAdd += this.m.BonusArmorPen;
+			}
+			else
+			{
+				_properties.HitChance[::Const.BodyPart.Head] += this.m.BonusHitHeadChance;
+			}
 		}
 	}
 });

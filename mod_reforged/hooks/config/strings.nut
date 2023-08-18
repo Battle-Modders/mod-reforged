@@ -1326,7 +1326,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Attacks have an additional " + ::MSU.Text.colorGreen("25%") + " chance to hit the head."
+				"Attacks against targets in cover have an additional " + ::MSU.Text.colorGreen("25%") + " chance to hit the head."
+				"An additional " + ::MSU.Text.colorGreen("25%") + " of damage inflicted ignore armor against targets not in cover."
 			]
 		}]
  	}),
