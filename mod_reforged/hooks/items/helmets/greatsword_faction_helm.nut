@@ -3,6 +3,6 @@
 	o.create = function()
 	{
 		create();
-		this.m.Value = 1300;
+		this.m.Value = 2000;
 	}
 });

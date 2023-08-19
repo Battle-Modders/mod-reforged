@@ -3,6 +3,8 @@
 	o.create = function()
 	{
 		create();
-		this.m.Value = 2500;
+		this.m.Value = 2900;
+		this.m.Condition = 260;
+		this.m.ConditionMax = 260;
 	}
 });
