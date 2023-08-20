@@ -69,6 +69,9 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 
 	function onUnequip( _item )
 	{
+		if (!this.isEnabled() || _item.getSlotType() != ::Const.ItemSlot.Mainhand)
+			return;
+
 		this.getContainer().removeByStackByID("perk.rf_sanguinary", false);
 		this.getContainer().removeByStackByID("perk.rf_bloodbath", false);
 	}
