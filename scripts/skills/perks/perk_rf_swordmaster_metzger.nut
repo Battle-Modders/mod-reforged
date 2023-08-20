@@ -1,5 +1,7 @@
 this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swordmaster_abstract", {
-	m = {},
+	m = {
+		IsCleaverWeaponTypeAdded = false
+	},
 	function create()
 	{
 		this.perk_rf_swordmaster_abstract.create();
@@ -55,6 +57,11 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 		if (!this.isEnabled() || _item.getSlotType() != ::Const.ItemSlot.Mainhand) return;
 
 		_item.addSkill(::new("scripts/skills/actives/decapitate"));
+		if (!_item.isWeaponType(::Const.Items.WeaponType.Cleaver))
+		{
+			_item.m.WeaponType = _item.m.WeaponType | ::Const.Items.WeaponType.Cleaver;
+			this.m.IsCleaverWeaponTypeAdded = true;
+		}
 
 		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_sanguinary", function(o) {
 			o.m.IsSerialized = false;
@@ -74,6 +81,11 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 
 		this.getContainer().removeByStackByID("perk.rf_sanguinary", false);
 		this.getContainer().removeByStackByID("perk.rf_bloodbath", false);
+		if (this.m.IsCleaverWeaponTypeAdded)
+		{
+			_item.m.WeaponType -= ::Const.Items.WeaponType.Cleaver;
+			this.m.IsCleaverWeaponTypeAdded = false;
+		}
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
