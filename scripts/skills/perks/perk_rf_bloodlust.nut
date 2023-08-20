@@ -39,8 +39,9 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		this.m.ActorFatigue = null;
+		this.m.BleedStacksBeforeAttack = 0;
 
-		if (_skill.isAttack() && !_skill.isRanged() && _targetEntity == null)
+		if (_skill.isAttack() && !_skill.isRanged() && _targetEntity != null)
 		{
 			this.m.BleedStacksBeforeAttack = _targetEntity.getSkills().getAllSkillsByID("effects.bleeding").len();
 		}
