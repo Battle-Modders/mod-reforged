@@ -9,6 +9,10 @@
 		this.m.DirectDamageAdd = 0.2;
 		this.m.ArmorDamageMult = 0.3;
 		this.m.ChanceToHitHead = -25;
+		this.m.FlipIconX = true;
+		this.m.FlipIconY = true;
+		this.m.FlipIconLargeX = true;
+		this.m.FlipIconLargeY = true;
 	}
 
 	o.onEquip = function()

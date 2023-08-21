@@ -5,6 +5,10 @@
 		create();
 		this.m.Reach = 4;
 		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.RF_Southern;
+		this.m.FlipIconX = true;
+		this.m.FlipIconY = true;
+		this.m.FlipIconLargeX = true;
+		this.m.FlipIconLargeY = true;
 	}
 
 	o.onEquip = function()
