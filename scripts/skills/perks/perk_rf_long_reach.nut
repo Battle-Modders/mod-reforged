@@ -7,7 +7,7 @@ this.perk_rf_long_reach <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_long_reach";
 		this.m.Name = ::Const.Strings.PerkName.RF_LongReach;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_LongReach;
-		this.m.Icon = "ui/perks/perk_rf_long_reach.png";
+		this.m.Icon = "ui/perks/rf_long_reach.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
