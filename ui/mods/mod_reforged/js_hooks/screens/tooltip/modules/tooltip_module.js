@@ -61,3 +61,20 @@ TooltipModule.prototype.setupUITooltip = function(_targetDIV, _data)
 
 	this.mContainer.css({ top: posTop });
 }
+
+Reforged.Hooks.TooltipModule_addAtmosphericImageDiv = TooltipModule.prototype.addAtmosphericImageDiv;
+TooltipModule.prototype.addAtmosphericImageDiv = function(_parentDIV, _data)
+{
+	if (!('image' in _data) || typeof(_data.image) !== 'string' || _data.image.length === 0) return null;	// Copied from Vanilla
+
+	var scaleString = Reforged.Asset.generateScaleCommand(_data.image);
+
+	var ret = Reforged.Hooks.TooltipModule_addAtmosphericImageDiv.call(this, _parentDIV, _data);
+
+	// var imageLayer = ret.find('.image-layer:first');
+	var image = ret.find('img:first');
+	image.css("transform", scaleString);
+
+	return ret;
+};
+
