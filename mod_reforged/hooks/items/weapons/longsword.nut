@@ -10,6 +10,8 @@
 		this.m.StaminaModifier = -8;
 		this.m.ChanceToHitHead = 10;
 		this.m.Value = 2000;
+		this.m.FlipIconY = true;
+		this.m.FlipIconLargeY = true;
 	}
 
 	o.onEquip = function()

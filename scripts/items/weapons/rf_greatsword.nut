@@ -31,6 +31,8 @@ this.rf_greatsword <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 10;
 		this.m.Reach = 6;
+		this.m.FlipIconY = true;
+		this.m.FlipIconLargeY = true;
 	}
 
 	function onEquip()

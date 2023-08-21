@@ -4,6 +4,8 @@
 	{
 		create();
 		this.m.Reach = 5;
+		this.m.FlipIconX = true;
+		this.m.FlipIconLargeY = true;
 	}
 
 	o.onEquip = function()

@@ -6,6 +6,8 @@
 		this.m.Name = "Zweihander";
 		this.m.Reach = 7;
 		this.m.ShieldDamage = 24;
+		this.m.FlipIconY = true;
+		this.m.FlipIconLargeY = true;
 	}
 
 	o.onEquip = function()

@@ -27,6 +27,8 @@ this.rf_battle_axe <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ArmorDamageMult = 1.25;
 		this.m.DirectDamageMult = 0.35;
 		this.m.Reach = 5;
+		this.m.FlipIconX = true;
+		this.m.FlipIconLargeX = true;
 	}
 
 	function onEquip()

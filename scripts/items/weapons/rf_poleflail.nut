@@ -31,6 +31,8 @@ this.rf_poleflail <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.DirectDamageMult = 0.3;
 		this.m.ChanceToHitHead = 10;
 		this.m.Reach = 5;
+		this.m.FlipIconX = true;
+		this.m.FlipIconLargeX = true;
 	}
 
 	function onEquip()

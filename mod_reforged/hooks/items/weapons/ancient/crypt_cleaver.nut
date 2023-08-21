@@ -5,6 +5,7 @@
 		create();
 		this.m.Reach = 5;
 		this.m.ShieldDamage = 18;
+		this.m.FlipIconLargeX = true;
 	}
 
 	o.onEquip = function()

@@ -4,5 +4,7 @@
 	{
 		create();
 		this.m.Reach = 7;
+		this.m.FlipIconX = true;
+		this.m.FlipIconLargeX = true;
 	}
 });

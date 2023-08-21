@@ -25,6 +25,8 @@ this.rf_kriegsmesser <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ArmorDamageMult = 1.0;
 		this.m.DirectDamageMult = 0.25;
 		this.m.Reach = 5;
+		this.m.FlipIconX = true;
+		this.m.FlipIconLargeX = true;
 	}
 
 	function onEquip()

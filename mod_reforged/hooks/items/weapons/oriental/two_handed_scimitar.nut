@@ -6,6 +6,8 @@
 		this.m.Reach = 5;
 		this.m.ShieldDamage = 16;
 		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.RF_Southern;
+		this.m.FlipIconX = true;
+		this.m.FlipIconLargeX = true;
 	}
 
 	o.onEquip = function()

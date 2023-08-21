@@ -26,6 +26,8 @@ this.rf_estoc <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.DirectDamageMult = 0.25;
 		this.m.DirectDamageAdd = 0.2;
 		this.m.Reach = 5;
+		this.m.FlipIconY = true;
+		this.m.FlipIconLargeY = true;
 	}
 
 	function onEquip()

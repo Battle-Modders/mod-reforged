@@ -29,6 +29,8 @@ this.rf_swordstaff <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.DirectDamageMult = 0.25;
 		this.m.Reach = 6;
 		this.m.ChanceToHitHead = 5;
+		this.m.FlipIconX = true;
+		this.m.FlipIconLargeX = true;
 	}
 
 	function onEquip()
