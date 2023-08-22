@@ -20,31 +20,31 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = ::MSU.Test.colorGreen("+15") + " Melee Skill"
+				text = ::MSU.Text.colorGreen("+15") + " Melee Skill"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Test.colorGreen("+10") + " Melee Defense"
+				text = ::MSU.Text.colorGreen("+10") + " Melee Defense"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Test.colorGreen("+10") + " Ranged Defense"
+				text = ::MSU.Text.colorGreen("+10") + " Ranged Defense"
 			},
 			{
 				id = 14,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::MSU.Test.colorGreen("+15") + " Resolve"
+				text = ::MSU.Text.colorGreen("+15") + " Resolve"
 			},
 			{
 				id = 15,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Test.colorGreen("+50") + " Initiative"
+				text = ::MSU.Text.colorGreen("+50") + " Initiative"
 			},
 			{
 				id = 10,
