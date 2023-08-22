@@ -103,13 +103,13 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 	{
 		this.resetBonus();
 
-		if (!this.isEnabled() || this.m.StartingTile == null || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		if (!this.isEnabled() || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 		{
 			return;
 		}
 
 		local actor = this.getContainer().getActor();
-		local distanceMoved = this.m.StartingTile.getDistanceTo(actor.getTile());		
+		local distanceMoved = this.m.StartingTile.getDistanceTo(actor.getTile());
 		local aoo = this.getContainer().getAttackOfOpportunity();
 
 		local mult = distanceMoved / this.m.BonusEveryXTiles;
@@ -203,9 +203,9 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 
 	function onResumeTurn()
 	{
-		this.m.StartingTile = this.getContainer().getActor().getTile();		
+		this.m.StartingTile = this.getContainer().getActor().getTile();
 		this.resetBonus();
-	} 
+	}
 
 	function onPayForItemAction( _skill, _items )
 	{
@@ -217,7 +217,7 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		this.m.StartingTile = this.getContainer().getActor().getTile();	
+		this.m.StartingTile = this.getContainer().getActor().getTile();
 		this.resetBonus();
 	}
 
@@ -230,12 +230,12 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 
 	function onTurnStart()
 	{
-		this.m.StartingTile = this.getContainer().getActor().getTile();		
+		this.m.StartingTile = this.getContainer().getActor().getTile();
 		this.resetBonus();
 	}
 
 	function onTurnEnd()
-	{	
+	{
 		this.m.StartingTile = null;
 		this.resetBonus();
 	}
