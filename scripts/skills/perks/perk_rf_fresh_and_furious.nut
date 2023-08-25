@@ -36,6 +36,13 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		tooltip.push({
 			id = 10,
 			type = "text",
+			icon = "ui/icons/fatigue.png",
+			text = "Fatigue threshold: " + ::Math.floor(0.3 * this.getContainer().getActor().getFatigueMax())
+		});
+
+		tooltip.push({
+			id = 10,
+			type = "text",
 			icon = "ui/icons/warning.png",
 			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Will expire upon using a skill with non-zero Action Point or Fatigue cost or when current Fatigue reaches 30% of Maximum Fatigue[/color]"
 		});
