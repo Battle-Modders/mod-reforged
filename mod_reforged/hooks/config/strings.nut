@@ -1410,7 +1410,6 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.OneTimeEffect,
 			Description = [
-				"This perk remains inert until level 11."
 				"Upon reaching level 11, it has a " + ::MSU.Text.colorGreen("50%") + " chance of being replaced with \'Realized Potential\' which will double this character\'s salary, increase all attributes by " + ::MSU.Text.colorGreen("+15") + ", unlock new perk groups, and refund all perk points, including the one spent on this perk.",
 				"If unsuccessful, it is replaced by \'Failed Potential\' which does nothing."
 			]
