@@ -1789,13 +1789,20 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_TraumaSurvivor = ::UPD.getDescription({
  		Fluff = "You\'ve been to hell, and back.",
- 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"[Resolve|Concept.Bravery] is increased by " + ::MSU.Text.colorGreen("50%") + " against negative morale checks.",
-				"If [Promised Potential|Perk+perk_rf_promised_potential] is a success, this perk becomes permanent and the perk point is refunded."
-			]
-		}],
+ 		Effects = [
+			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"[Resolve|Concept.Bravery] is increased by " + ::MSU.Text.colorGreen("50%") + " against negative morale checks."
+				]
+			},
+			{
+				Type = ::UPD.EffectType.OneTimeEffect,
+				Description = [
+					"If [Promised Potential|Perk+perk_rf_promised_potential] is a success, gain an additional perk point."
+				]
+			}
+		],
 		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
  	}),
 	RF_TripArtist = ::UPD.getDescription({
