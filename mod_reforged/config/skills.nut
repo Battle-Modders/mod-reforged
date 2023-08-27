@@ -12,58 +12,55 @@
 		}
 	}
 
-	function addPerkGroupOfEquippedWeapon( _entity, _maxTier = 7 )
+	function addPerkGroupOfWeapon( _entity, _weapon, _maxTier = 7 )
 	{
-		local weapon = _entity.getMainhandItem();
-		if (weapon == null) return;
-
 		local trees = [];
 
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
 		{
 			trees.push("pg.rf_axe");
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Bow))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Bow))
 		{
 			trees.push("pg.rf_bow");
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Cleaver))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Cleaver))
 		{
 			trees.push("pg.rf_cleaver_enemy");
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow) || weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow) || _weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
 		{
 			trees.push("pg.rf_crossbow");
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Dagger))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Dagger))
 		{
 			trees.push("pg.rf_dagger");
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Flail))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Flail))
 		{
 			trees.push("pg.rf_flail");
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Hammer))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Hammer))
 		{
 			trees.push("pg.rf_hammer_enemy");
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
 		{
 			trees.push("pg.rf_mace");
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Polearm))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Polearm))
 		{
 			trees.push("pg.rf_polearm");
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Spear))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Spear))
 		{
 			trees.push("pg.rf_spear");
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Sword))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Sword))
 		{
 			trees.push("pg.rf_sword");
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
 		{
 			trees.push("pg.rf_throwing");
 		}
@@ -74,58 +71,69 @@
 		this.addPerkGroup(_entity, ::MSU.Array.rand(trees), _maxTier);
 	}
 
-	function addMasteryOfEquippedWeapon( _entity )
+	function addPerkGroupOfEquippedWeapon( _entity, _maxTier = 7 )
 	{
 		local weapon = _entity.getMainhandItem();
-		if (weapon == null) return;
+		if (weapon != null) this.addPerkGroupOfWeapon(_entity, weapon, _maxTier);
+	}
 
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
+	function addMasteryOfWeapon( _entity, _weapon )
+	{
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_axe"));
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Bow))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Bow))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_bow"));
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Cleaver))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Cleaver))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_cleaver"));
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow) || weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow) || _weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_crossbow"));
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Dagger))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Dagger))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_dagger"));
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Flail))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Flail))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_flail"));
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Hammer))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Hammer))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_hammer"));
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_mace"));
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Polearm))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Polearm))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_polearm"));
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Spear))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Spear))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_spear"));
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Sword))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Sword))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_sword"));
 		}
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
+		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
 		{
 			_entity.getSkills().add(::new("scripts/skills/perks/perk_mastery_throwing"));
 		}
+	}
+
+	function addMasteryOfEquippedWeapon( _entity )
+	{
+		local weapon = _entity.getMainhandItem();
+		if (weapon != null) this.addMasteryOfWeapon(_entity, weapon);
+
+
 	}
 };
