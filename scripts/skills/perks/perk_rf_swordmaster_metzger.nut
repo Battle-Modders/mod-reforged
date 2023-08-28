@@ -32,7 +32,7 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 		local equippedItem = this.getContainer().getActor().getMainhandItem();
 		if (equippedItem != null) this.onEquip(equippedItem);
 
-		if (this.m.IsNew)
+		if (this.m.IsNew && ::MSU.isKindOf(this.getContainer().getActor(), "player"))
 		{
 			local perkTree = this.getContainer().getActor().getPerkTree();
 
