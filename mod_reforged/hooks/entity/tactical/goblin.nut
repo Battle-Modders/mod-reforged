@@ -51,4 +51,27 @@
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
 	}
+
+	local onDeath = o.onDeath;
+	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	{
+		if (_tile != null);
+		{
+			local loot = null;
+			if (this.isKindOf(this, "goblin_leader") || this.isKindOf(this, "goblin_shaman") || this.m.IsMiniboss)
+			{
+				loot = this.new("scripts/items/loot/goblin_rank_insignia_item.nut");
+				loot.drop(_tile);
+			}
+			else
+			{
+				loot = ::MSU.Class.WeightedContainer([
+					[1.0, "scripts/items/loot/goblin_carved_ivory_iconographs_item.nut"],
+					[0.5, "scripts/items/loot/goblin_minted_coins_item.nut"]
+		    	]).rollChance(20);
+		    	::new(loot).drop(_tile);
+			}
+			onDeath(_killer, _skill, _tile, _fatalityType);
+		}
+	}
 });

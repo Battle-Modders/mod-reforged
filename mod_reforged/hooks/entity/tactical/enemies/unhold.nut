@@ -66,4 +66,30 @@
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_formidable_approach"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
 	}
+
+	local onDeath = o.onDeath; // switcheroo function to replace loot drops with dummy object
+	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	{
+		local itemsToChange = [
+			"scripts/items/loot/deformed_valuables_item"
+		]
+		local new = ::new;
+		::new = function(_scriptName)
+		{
+			local item = new(_scriptName);
+			if (itemsToChange.find(_scriptName) != null)
+			{
+				item.drop <- @()null;
+			}
+			return item;
+		}
+		onDeath(_killer, _skill, _tile, _fatalityType);
+		::new = new;
+
+		if (_tile != null && this.Math.rand(1, 100) <= 25)
+		{
+			local loot = this.new("scripts/items/loot/deformed_valuables_item");
+			loot.drop(_tile);
+		}
+	}
 });

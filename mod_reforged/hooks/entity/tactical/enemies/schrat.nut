@@ -74,4 +74,38 @@
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bear_down"));
     	}
 	}
+
+	local onDeath = o.onDeath; // switcheroo function to replace loot drops with dummy object
+	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	{
+		local itemsToChange = [
+			"scripts/items/misc/ancient_wood_item",
+			"scripts/items/misc/glowing_resin_item",
+			"scripts/items/misc/heart_of_the_forest_item"
+		]
+		local new = ::new;
+		::new = function(_scriptName)
+		{
+			local item = new(_scriptName);
+			if (itemsToChange.find(_scriptName) != null)
+			{
+				item.drop <- @()null;
+			}
+			return item;
+		}
+		onDeath(_killer, _skill, _tile, _fatalityType);
+		::new = new;
+
+		if (_tile != null)
+		{
+			local loot = null;
+			loot = ::MSU.Class.WeightedContainer([ // new loot drops
+				[2.0, "scripts/items/misc/ancient_wood_item"],
+				[2.0, "scripts/items/misc/glowing_resin_item"],
+				[1.0, "scripts/items/misc/heart_of_the_forest_item"]
+	    	]).roll();
+
+			::new(loot).drop(_tile);
+		}
+	}
 });

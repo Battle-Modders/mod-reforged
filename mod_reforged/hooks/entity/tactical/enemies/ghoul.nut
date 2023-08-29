@@ -48,4 +48,44 @@
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
 		}
 	}
+
+	local onDeath = o.onDeath; // switcheroo function to replace loot drops with dummy object
+	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	{
+		local itemsToChange = [
+			"scripts/items/loot/growth_pearls_item"
+		]
+		local new = ::new;
+		::new = function(_scriptName)
+		{
+			local item = new(_scriptName);
+			if (itemsToChange.find(_scriptName) != null)
+			{
+				item.drop <- @()null;
+			}
+			return item;
+		}
+		onDeath(_killer, _skill, _tile, _fatalityType);
+		::new = new;
+
+		local chanceToRoll;
+		if (Size == 1)
+		{
+			chanceToRoll = 10;
+		}
+		else if (Size == 2)
+		{
+			chanceToRoll = 25;
+		}
+		else //Size == 3
+		{
+			chanceToRoll = 50;
+		}
+
+		if (_tile != null && this.Math.rand(1, 100) <= chanceToRoll)
+		{
+			local loot = this.new("scripts/items/loot/growth_pearls_item");
+			loot.drop(_tile);
+		}
+	}
 });

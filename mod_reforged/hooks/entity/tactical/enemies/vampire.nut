@@ -105,4 +105,15 @@
 	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
 	    }
 	}
+
+	local onDeath = o.onDeath;
+	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	{
+		if (_tile != null && ::Math.rand(1, 100) <= 20)
+		{
+			local loot = ::new("scripts/items/loot/signet_ring_item");
+			loot.drop(_tile);
+		}
+		onDeath(_killer, _skill, _tile, _fatalityType);
+	}
 });
