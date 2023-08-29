@@ -29,4 +29,15 @@
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_soul_link"));
     	}
 	}
+
+	local onDeath = o.onDeath;
+	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	{
+		if (_tile != null && ::Math.rand(1, 100) <= 67)
+		{
+			local loot = ::new("scripts/items/loot/signet_ring_item");
+			loot.drop(_tile);
+		}
+		onDeath(_killer, _skill, _tile, _fatalityType);
+	}
 });

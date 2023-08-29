@@ -85,4 +85,30 @@
 			this.m.BaseProperties.RangedDefense += 10;
 		}
 	}
+
+	local onDeath = o.onDeath; // switcheroo function to replace loot drops with dummy object
+	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	{
+		local itemsToChange = [
+			"scripts/items/loot/webbed_valuables_item"
+		]
+		local new = ::new;
+		::new = function(_scriptName)
+		{
+			local item = new(_scriptName);
+			if (itemsToChange.find(_scriptName) != null)
+			{
+				item.drop <- @()null;
+			}
+			return item;
+		}
+		onDeath(_killer, _skill, _tile, _fatalityType);
+		::new = new;
+
+		if (_tile != null && this.Math.rand(1, 100) <= 10)
+		{
+			local loot = this.new("scripts/items/loot/webbed_valuables_item");
+			loot.drop(_tile);
+		}
+	}
 });
