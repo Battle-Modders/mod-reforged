@@ -77,6 +77,14 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				this.modifyPreviewField(skill, "ActionPointCost", 0, false);
 			}
 		}
+
+		if (_movementTile != null && this.getContainer().getActor().getPreviewFatigue() >= 0.3 * this.getContainer().getActor().getFatigueMax())
+		{
+			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
+			{
+				this.modifyPreviewField(skill, "ActionPointCost", 0, false);
+			}
+		}
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
