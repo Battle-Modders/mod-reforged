@@ -51,4 +51,39 @@
     	}
     	this.getSkills().update()
 	}
+
+	local onDeath = o.onDeath; // switcheroo function to replace loot drops with dummy object
+	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	{
+		local itemsToChange = [
+			"scripts/items/loot/jade_broche_item"
+		]
+		local new = ::new;
+		::new = function(_scriptName)
+		{
+			local item = new(_scriptName);
+			if (itemsToChange.find(_scriptName) != null)
+			{
+				item.drop <- @()null;
+			}
+			return item;
+		}
+		onDeath(_killer, _skill, _tile, _fatalityType);
+		::new = new;
+
+		if (_tile != null);
+		{
+			local n = 1 + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0);
+
+			for (local i = 0; i < n; i++)
+			{
+				local loot = ::MSU.Class.WeightedContainer([ // new loot drops
+					[1.0, "scripts/items/loot/jade_broche_item"],
+					[1.3, "scripts/items/loot/signet_ring_item"]
+		    	]).rollChance(70);
+
+				if (loot != null) ::new(loot).drop(_tile);
+			}
+		}
+	}
 });

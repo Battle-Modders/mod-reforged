@@ -55,4 +55,32 @@
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fresh_and_furious"));
     	}
 	}
+
+	local onDeath = o.onDeath; // switcheroo function to replace loot drops with dummy object
+	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	{
+		local itemsToChange = [
+			"scripts/items/loot/sabertooth_item"
+		]
+		local new = ::new;
+		::new = function(_scriptName)
+		{
+			local item = new(_scriptName);
+			if (itemsToChange.find(_scriptName) != null)
+			{
+				item.drop <- @()null;
+			}
+			return item;
+		}
+		onDeath(_killer, _skill, _tile, _fatalityType);
+		::new = new;
+
+		local chanceToRoll = ::MSU.isKindOf(this, "hyena_high") ? 30 : 20;
+
+		if (_tile != null && ::Math.rand(1, 100) <= chanceToRoll)
+		{
+			local loot = ::new("scripts/items/loot/sabertooth_item");
+			loot.drop(_tile);
+		}
+	}
 });
