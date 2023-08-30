@@ -4,64 +4,132 @@
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.MasterArcher);
-		// b.DamageDirectMult = 1.25;
-		// b.IsSpecializedInBows = true;
 		b.Vision = 8;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_finesse"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_ghostlike"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/footwork")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
-
-		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_marksmanship"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
-    	}
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
 	o.assignRandomEquipment = function()
 	{
-	    assignRandomEquipment();
-
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	}
-
-	local makeMiniboss = o.makeMiniboss;
-	o.makeMiniboss = function()
-	{
-		local ret = makeMiniboss();
-		if (ret)
+		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fresh_and_furious"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_berserk"));
-    		}
+			local r = this.Math.rand(1, 2);
+
+			if (r == 1)
+			{
+				this.m.Items.equip(::new("scripts/items/weapons/war_bow"));
+				this.m.Items.equip(::new("scripts/items/ammo/quiver_of_arrows"));
+			}
+			else if (r == 2)
+			{
+				this.m.Items.equip(::new("scripts/items/weapons/heavy_crossbow"));
+				this.m.Items.equip(::new("scripts/items/ammo/quiver_of_bolts"));
+			}
 		}
 
-		return ret;
+		local sidearm = ::MSU.Class.WeightedContainer([
+    		[1, "scripts/items/weapons/falchion"],
+			[1, "scripts/items/weapons/hand_axe"],
+			[1, "scripts/items/weapons/rondel_dagger"],
+			[1, "scripts/items/weapons/scramasax"]
+    	]).roll();
+
+		this.m.Items.addToBag(::new(sidearm));
+
+		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
+		{
+			local armor = ::MSU.Class.WeightedContainer([
+	    		[1, "scripts/items/armor/thick_tunic"],
+				[1, "scripts/items/armor/padded_surcoat"],
+				[1, "scripts/items/armor/gambeson"]
+	    	]).roll();
+
+			this.m.Items.equip(::new(armor));
+		}
+
+		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
+		{
+			local helmet = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/helmets/hood"],
+				[1, "scripts/items/helmets/hunters_hat"]
+	    	]).rollChance(33);
+
+			if (helmet != null) this.m.Items.equip(::new(helmet));
+		}
+	}
+
+	o.makeMiniboss = function()
+	{
+		if (!this.actor.makeMiniboss())
+		{
+			return false;
+		}
+
+		this.getSprite("miniboss").setBrush("bust_miniboss");
+
+		if (this.Math.rand(1, 100) < 70)
+		{
+			local r = this.Math.rand(1, 2);
+			if (r == 1)
+			{
+				this.m.Items.equip(::new("scripts/items/weapons/named/named_warbow"));
+				this.m.Items.equip(::new("scripts/items/ammo/quiver_of_arrows"));
+			}
+			else if (r == 2)
+			{
+				this.m.Items.equip(::new("scripts/items/weapons/named/named_crossbow"));
+				this.m.Items.equip(::new("scripts/items/ammo/quiver_of_bolts"));
+			}
+		}
+		else
+		{
+			local armor = ::Reforged.ItemTable.NamedArmorNorthern.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax > 140) return 0.0;
+					return _weight;
+				}
+			})
+			this.m.Items.equip(::new(armor));
+		}
+
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
+		return true;
+	}
+
+	o.onSetupEntity <- function()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Bow))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
+			}
+			else //crossbow
+			{
+	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+	    		this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
+	    		this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
+			}
+		}
 	}
 });

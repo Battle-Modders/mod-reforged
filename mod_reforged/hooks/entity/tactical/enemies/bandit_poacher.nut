@@ -28,17 +28,60 @@
 		this.getSprite("helmet_damage").Saturation = 0.85;
 		this.getSprite("shield_icon").Saturation = 0.85;
 		this.getSprite("shield_icon").setBrightness(0.85);
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
 
 		// Reforged
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
+	}
 
-		if (::Reforged.Config.IsLegendaryDifficulty)
+	o.assignRandomEquipment = function()
+	{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_target_practice"));
+			if (::Math.rand(1, 100) < 50)
+			{
+				this.m.Items.equip(::new("scripts/items/weapons/short_bow"))
+				this.m.Items.equip(::new("scripts/items/ammo/quiver_of_arrows"))
+			}
+			else
+			{
+				this.m.Items.equip(::new("scripts/items/weapons/staff_sling"))
+			}
 		}
 
+		local sidearm = ::MSU.Class.WeightedContainer([
+    		[1, "scripts/items/weapons/knife"],
+			[1, "scripts/items/weapons/wooden_stick"]
+    	]).roll();
+
+		this.m.Items.addToBag(::new(sidearm));
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local armor = ::Reforged.ItemTable.BanditArmorBowman.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax > 20) return 0.0;
+					return _weight;
+				}
+			})
+			this.m.Items.equip(::new(armor));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 50)
+		{
+			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax > 20) return 0.0;
+					return _weight;
+				}
+			})
+			this.m.Items.equip(::new(helmet));
+		}
 	}
 });
