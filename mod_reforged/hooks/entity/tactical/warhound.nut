@@ -36,17 +36,5 @@
 
 		//Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium - 1;
-		b.Hitpoints += 10;
-		b.Bravery += 10;
-		b.MeleeSkill += 5;
-		b.DamageTotalMult *= 1.15;
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			b.MeleeDefense += 5;
-			b.RangedDefense += 5;
-			b.Initiative += 10;
-		}
-		this.getSkills().update()
 	}
 });
