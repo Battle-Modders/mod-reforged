@@ -4,16 +4,6 @@
        this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.BanditLeader);
-		// b.IsSpecializedInSwords = true;
-		// b.IsSpecializedInAxes = true;
-		// b.IsSpecializedInMaces = true;
-		// b.IsSpecializedInFlails = true;
-		// b.IsSpecializedInPolearms = true;
-		// b.IsSpecializedInThrowing = true;
-		// b.IsSpecializedInHammers = true;
-		// b.IsSpecializedInSpears = true;
-		// b.IsSpecializedInCleavers = true;
-		// b.IsSpecializedInDaggers = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -27,182 +17,174 @@
 		this.getSprite("helmet_damage").Saturation = 0.85;
 		this.getSprite("shield_icon").Saturation = 0.85;
 		this.getSprite("shield_icon").setBrightness(0.85);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
 
-		//Reforged
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_battle_fervor"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_onslaught"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_hold_steady"));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
-			o.m.IsForceEnabled = true;
-		}));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rally_the_troops", function(o) {
-			o.m.Cooldown = 3;
-		}));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_sergeant"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_throwing"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_proximity_throwing_specialist"));
 
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_battle_fervor"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_skirmisher"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exude_confidence"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_poise"));
-		}
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_sergeant"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_hold_steady"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_onslaught"));
+		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
+    		o.m.IsForceEnabled = true;
+    	}));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rally_the_troops"));
 	}
 
 	o.assignRandomEquipment = function()
 	{
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapons = [
-				"weapons/noble_sword",
-				"weapons/fighting_axe",
-				"weapons/warhammer",
-				"weapons/fighting_spear",
-				"weapons/winged_mace",
-				"weapons/arming_sword",
-				"weapons/military_cleaver"
-			];
+			local weapon = ::MSU.Class.WeightedContainer([
+	    		[1, "scripts/items/weapons/fighting_axe"],
+				[1, "scripts/items/weapons/noble_sword"],
+				[1, "scripts/items/weapons/warhammer"],
+				[1, "scripts/items/weapons/winged_mace"],
+				[1, "scripts/items/weapons/military_cleaver"],
+				[1, "scripts/items/weapons/fighting_spear"],
 
-			if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+				[1, "scripts/items/weapons/rf_kriegsmesser"],
+				[1, "scripts/items/weapons/rf_swordstaff"],
+				[1, "scripts/items/weapons/two_handed_flail"],
+				[1, "scripts/items/weapons/two_handed_flanged_mace"],
+				[1, "scripts/items/weapons/greatsword"]
+	    	]).roll();
+
+			this.m.Items.equip(::new(weapon));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			local shield = ::MSU.Class.WeightedContainer([
+				[1.0, "scripts/items/shields/heater_shield"],
+				[1.0, "scripts/items/shields/kite_shield"]
+			]).roll();
+
+			this.m.Items.equip(::new(shield));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local armor = ::Reforged.ItemTable.BanditArmorLeader.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax < 210 || conditionMax > 240) return 0.0;
+					return _weight;
+				}
+			})
+			this.m.Items.equip(::new(armor));
+		}
+
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			local helmet = ::Reforged.ItemTable.BanditHelmetLeader.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax < 180 || conditionMax > 230) return 0.0;
+					return _weight;
+				}
+			})
+			this.m.Items.equip(::new(helmet));
+		}
+	}
+
+	o.onSetupEntity <- function()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
 			{
-				weapons.extend([
-					"weapons/greatsword",
-					"weapons/greataxe",
-					"weapons/warbrand",
-
-					// Reforged
-					"weapons/rf_greatsword",
-					"weapons/rf_battle_axe",
-					"weapons/rf_swordstaff",
-					"weapons/rf_kriegsmesser"
-				]);
+				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
+		    	{
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_splitter"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_axe"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+		    	}
+		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+		    	{
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+		    	}
+		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
+		    	{
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_deep_impact"));
+		    	}
+		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
+		    	{
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_mace"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_concussive_strikes"));
+		    	}
+		    	else //cleaver or spear
+		    	{
+		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
+		    	}
 			}
-
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		}
-
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
-		{
-			local shields = [
-				"shields/wooden_shield",
-				"shields/heater_shield",
-				"shields/kite_shield"
-			];
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
-		}
-
-		if (this.Math.rand(1, 100) <= 35)
-		{
-			local weapons = [
-				"weapons/throwing_axe",
-				"weapons/javelin"
-			];
-			this.m.Items.addToBag(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		}
-
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
-		{
-			local armor = [
-				"armor/reinforced_mail_hauberk",
-				"armor/worn_mail_shirt",
-				"armor/patched_mail_shirt",
-				"armor/mail_shirt"
-			];
-
-			if (this.Const.DLC.Unhold)
+			else //Two Handed Weapon
 			{
-				armor.extend([
-					"armor/footman_armor",
-					"armor/leather_scale_armor",
-					"armor/light_scale_armor"
-				]);
+				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
+		    	{
+		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_flail"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_whirling_death"));
+		    	}
+		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
+		    	{
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_mace"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_concussive_strikes"));
+		    	}
+		    	else
+		    	{
+		    		switch (mainhandItem.getID())
+		    		{
+		    			case "weapon.rf_kriegsmesser":
+		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_cleaver"));
+		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+		    				break;
+		    			case "weapon.rf_swordstaff":
+		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
+		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_two_for_one"));
+		    				break;
+	    				case "weapon.greatsword":
+	    					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
+	    					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
+	    					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
+	    					break;
+		    		}
+		    	}
 			}
-
-			this.m.Items.equip(this.new("scripts/items/" + armor[this.Math.rand(0, armor.len() - 1)]));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
+		local attack = this.getSkills().getAttackOfOpportunity();
+		if (attack != null && attack.getBaseValue("ActionPointCost") <= 4)
 		{
-			local helmet = [
-				"helmets/closed_mail_coif",
-				"helmets/padded_kettle_hat",
-				"helmets/kettle_hat_with_closed_mail",
-				"helmets/kettle_hat_with_mail",
-				"helmets/padded_flat_top_helmet",
-				"helmets/nasal_helmet_with_mail",
-				"helmets/flat_top_with_mail",
-				"helmets/padded_nasal_helmet",
-				"helmets/bascinet_with_mail"
-			];
-			this.m.Items.equip(this.new("scripts/items/" + helmet[this.Math.rand(0, helmet.len() - 1)]));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+		}
+		else
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 		}
 
-      	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-
-		if (this.isArmedWithShield())
+		local offhandItem = this.getOffhandItem();
+		if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_line_breaker"));
 		}
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			local attack = this.getSkills().getAttackOfOpportunity();
-			if (attack != null && attack.isDuelistValid())
-			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-			}
-			else
-			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
-			}
-		}
-	}
-
-
-	local makeMiniboss = o.makeMiniboss;
-	o.makeMiniboss = function()
-	{
-		local ret = makeMiniboss();
-		if (ret)
-		{
-			this.m.Skills.removeByID("perk.underdog");
-
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_unstoppable"));
-
-			if (::Reforged.Config.IsLegendaryDifficulty)
-			{
-				local mainhandItem = this.getMainhandItem();
-
-				if (mainhandItem != null && mainhandItem.isItemType(this.Const.Items.ItemType.TwoHanded))
-				{
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
-				}
-
-				else
-				{
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_double_strike"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-				}
-			}
-		}
-
-		return ret;
 	}
 });

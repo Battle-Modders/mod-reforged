@@ -18,295 +18,106 @@
 		this.getSprite("shield_icon").Saturation = 0.85;
 		this.getSprite("shield_icon").setBrightness(0.85);
 
-		// if (!this.m.IsLow)
-		// {
-		// 	b.IsSpecializedInSwords = true;
-		// 	b.IsSpecializedInAxes = true;
-		// 	b.IsSpecializedInMaces = true;
-		// 	b.IsSpecializedInFlails = true;
-		// 	b.IsSpecializedInPolearms = true;
-		// 	b.IsSpecializedInThrowing = true;
-		// 	b.IsSpecializedInHammers = true;
-		// 	b.IsSpecializedInSpears = true;
-		// 	b.IsSpecializedInCleavers = true;
-
-		// 	if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
-		// 	{
-		// 		b.MeleeSkill += 5;
-		// 		b.RangedSkill += 5;
-		// 	}
-		// }
-
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); //Replaced with perk
-
-		//Reforged
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_momentum"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_throwing"));
-		}
 	}
 
 	o.assignRandomEquipment = function()
 	{
-		local r;
-
-		if (this.Math.rand(1, 100) <= 20)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			if (this.Const.DLC.Unhold)
-			{
-				r = this.Math.rand(0, 11);
+			local weapon = ::MSU.Class.WeightedContainer([
+	    		[1, "scripts/items/weapons/hand_axe"],
+				[1, "scripts/items/weapons/military_pick"],
+				[1, "scripts/items/weapons/morning_star"],
+				[1, "scripts/items/weapons/flail"],
 
-				if (r == 0)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
-				}
-				else if (r == 1)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/hooked_blade"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/pike"));
-				}
-				else if (r == 3)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
-				}
-				else if (r == 4)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/longaxe"));
-				}
-				else if (r == 5)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
-				}
-				else if (r == 6)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_wooden_flail"));
-				}
-				else if (r == 7)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_mace"));
-				}
-				else if (r == 8)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/longsword"));
-				}
+				[1, "scripts/items/weapons/longaxe"],
+				[1, "scripts/items/weapons/polehammer"]
+	    	]).roll();
 
-				//Reforged
-				else if (r == 9)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/rf_battle_axe"));
-				}
-				else if (r == 10)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/rf_greatsword"));
-				}
-				else if (r == 11)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/rf_reinforced_wooden_poleflail"));
-				}
-
-			}
-			else
-			{
-				r = this.Math.rand(0, 4);
-
-				if (r == 0)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
-				}
-				else if (r == 1)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/hooked_blade"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/pike"));
-				}
-				else if (r == 3)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
-				}
-				else if (r == 4)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/longaxe"));
-				}
-			}
-		}
-		else
-		{
-			r = this.Math.rand(2, 10);
-
-			if (r == 2)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/shortsword"));
-			}
-			else if (r == 3)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/hand_axe"));
-			}
-			else if (r == 4)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/boar_spear"));
-			}
-			else if (r == 5)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/morning_star"));
-			}
-			else if (r == 6)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/falchion"));
-			}
-			else if (r == 7)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/arming_sword"));
-			}
-			else if (r == 8)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/flail"));
-			}
-			else if (r == 9)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/scramasax"));
-			}
-			else if (r == 10)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/military_pick"));
-			}
-
-			if (this.Math.rand(1, 100) <= 75)
-			{
-				if (this.Math.rand(1, 100) <= 75)
-				{
-					this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
-				}
-				else
-				{
-					this.m.Items.equip(this.new("scripts/items/shields/kite_shield"));
-				}
-			}
+			this.m.Items.equip(::new(weapon));
 		}
 
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 35)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
-			if (this.Const.DLC.Unhold)
-			{
-				r = this.Math.rand(1, 3);
+			local shield = ::MSU.Class.WeightedContainer([
+				[1.0, "scripts/items/shields/wooden_shield"],
+				[1.0, "scripts/items/shields/kite_shield"],
+				[0.33, "scripts/items/shields/heater_shield"]
+			]).roll();
 
-				if (r == 1)
+			this.m.Items.equip(::new(shield));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
+				Apply = function ( _script, _weight )
 				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax < 115 || conditionMax > 150) return 0.0;
+					return _weight;
 				}
-				else if (r == 2)
+			})
+			this.m.Items.equip(::new(armor));
+		}
+
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
+				Apply = function ( _script, _weight )
 				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
+					if (_script == "scripts/items/helmets/kettle_hat") return _weight * 0.5;
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax < 80 || conditionMax > 140) return 0.0;
+					if (conditionMax > 125 || conditionMax <= 140) return _weight * 0.5;
+					return _weight;
 				}
-				else if (r == 3)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
-				}
-			}
-			else
-			{
-				r = this.Math.rand(1, 2);
+			})
+			this.m.Items.equip(::new(helmet));
+		}
+	}
 
-				if (r == 1)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
-				}
-			}
-		}
-
-		r = this.Math.rand(2, 7);
-		local armor;
-
-		if (r == 2)
+	o.onSetupEntity <- function()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
 		{
-			armor = this.new("scripts/items/armor/ragged_surcoat");
-		}
-		else if (r == 3)
-		{
-			armor = this.new("scripts/items/armor/padded_leather");
-		}
-		else if (r == 4)
-		{
-			armor = this.new("scripts/items/armor/worn_mail_shirt");
-		}
-		else if (r == 5)
-		{
-			armor = this.new("scripts/items/armor/patched_mail_shirt");
-		}
-		else if (r == 6)
-		{
-			armor = this.new("scripts/items/armor/worn_mail_shirt");
-		}
-		else if (r == 7)
-		{
-			armor = this.new("scripts/items/armor/patched_mail_shirt");
-		}
-
-		this.m.Items.equip(armor);
-
-		if (this.Math.rand(1, 100) <= 85)
-		{
-			local r = this.Math.rand(1, 5);
-
-			if (r == 1)
+			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
 			{
-				this.m.Items.equip(this.new("scripts/items/helmets/nasal_helmet"));
+				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
+		    	{
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_splitter"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_axe"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+		    	}
+		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
+		    	{
+		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
+		    	}
+		    	else
+		    	{
+		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
+		    	}
 			}
-			else if (r == 2)
+			else //Two Handed Weapon
 			{
-				this.m.Items.equip(this.new("scripts/items/helmets/dented_nasal_helmet"));
-			}
-			else if (r == 3)
-			{
-				this.m.Items.equip(this.new("scripts/items/helmets/nasal_helmet_with_rusty_mail"));
-			}
-			else if (r == 4)
-			{
-				this.m.Items.equip(this.new("scripts/items/helmets/rusty_mail_coif"));
-			}
-			else if (r == 5)
-			{
-				this.m.Items.equip(this.new("scripts/items/helmets/headscarf"));
+				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
+		    	{
+		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+		    	}
+		    	else //polehammer
+		    	{
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_dent_armor"));
+		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
+		    	}
 			}
 		}
-
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			if (this.isArmedWithShield())
-			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_line_breaker"));
-			}
-			else
-			{
-				if (this.getOffhandItem() == null)
-				{
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-				}
-				else
-				{
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-				}
-			}
-		}
-
 	}
 });

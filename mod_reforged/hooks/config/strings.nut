@@ -1,3 +1,33 @@
+::Const.Strings.EntityName.extend([
+	"Brigand Scoundrel",
+	"Brigand Robber",
+	"Brigand Hunter",
+	"Brigand Vandal",
+	"Brigand Pillager",
+	"Brigand Outlaw",
+	"Brigand Bandit",
+	"Brigand Highwayman",
+	"Brigand Marauder",
+	"Brigand Killer",
+	"Brigand Sharpshooter",
+	"Robber Baron"
+]);
+
+::Const.Strings.EntityNamePlural.extend([
+	"Brigand Scoundrels",
+	"Brigand Robbers",
+	"Brigand Hunters",
+	"Brigand Vandals",
+	"Brigand Pillagers",
+	"Brigand Outlaws",
+	"Brigand Bandits",
+	"Brigand Highwaymen",
+	"Brigand Marauders",
+	"Brigand Killers",
+	"Brigand Sharpshooters",
+	"Robber Barons"
+]);
+
 ::MSU.Table.merge(::Const.Strings.PerkName, {
 	RF_Alert = "Alert",
 	RF_Angler = "Angler",
