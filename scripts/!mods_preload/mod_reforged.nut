@@ -2,7 +2,8 @@
 	Version = "0.1.22",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
-	GitHubURL = "https://github.com/Battle-Modders/mod-reforged"
+	GitHubURL = "https://github.com/Battle-Modders/mod-reforged",
+	ItemTable = {}
 };
 
 ::mods_registerMod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
