@@ -62,4 +62,15 @@
 		}
 		this.getSkills().update()
 	}
+
+	local onDeath = o.onDeath;
+	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	{
+		if (_tile != null && ::Math.rand(1, 100) <= 20)
+		{
+			local loot = ::new("scripts/items/loot/rf_geist_tear_item");
+			loot.drop(_tile);
+		}
+		onDeath(_killer, _skill, _tile, _fatalityType);
+	}
 });
