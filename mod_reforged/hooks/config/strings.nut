@@ -470,6 +470,7 @@ local vanillaDescriptions = [
 	 				Type = ::UPD.EffectType.Passive,
 	 				Description = [
 	 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+						"Your main hand weapon starts each battle loaded if you have the correct ammunition equipped.",
 						"When you reload your weapon, gain the defenses of the best shield in your bag until the start of your next turn.",
 	 					"[Heavy crossbows|Item+heavy_crossbow] now require " + ::MSU.Text.colorRed("4") + ", [Action Points|Concept.ActionPoints] to [reload|Skill+reload_bolt], just like regular crossbows, allowing you to shoot, reload and move.",
 						"[Handgonnes|Item+handgonne] now require " + ::MSU.Text.colorRed("6") + " [Action Points|Concept.ActionPoints] to [reload|Skill+reload_handgonne_skill] and can be fired every turn instead of every other turn."

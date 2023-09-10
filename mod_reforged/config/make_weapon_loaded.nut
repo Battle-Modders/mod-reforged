@@ -77,28 +77,4 @@
 		// Since onCombatFinished is not called for many/most/all NPC's the use of LoadedAmmunitionItem may cause a memory leak
 		this.m.LoadedAmmunitionItem = null;		// Clear strong reference
 	}
-
-// New Functions
-	local onCombatStarted = ("onCombatStarted" in o) ? o.onCombatStarted : null;	// In Vanilla this base function is not used and does not exist but maybe some mod makes use of it
-	o.onCombatStarted <- function()
-	{
-		if (onCombatStarted == null)
-		{
-			this[parentName].onCombatStarted();
-		}
-		else
-		{
-			onCombatStarted();
-		}
-
-		if (this.isLoaded()) return;
-
-		local ammoItem = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
-		if (ammoItem == null) return;
-		if (ammoItem.getAmmo() == 0) return;
-		if (this.getRequiredAmmoType() != ammoItem.getAmmoType()) return;
-
-		this.setLoaded(true);
-		ammoItem.consumeAmmo();
-	}
 }

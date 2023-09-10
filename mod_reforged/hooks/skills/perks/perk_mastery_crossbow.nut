@@ -38,4 +38,26 @@
 			}
 		}
 	}
+
+	// Crossbow Mastery now automatically loads your weapon at the start of the combat
+	q.onCombatStarted = @(__original) function()
+	{
+		__original();
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon == null) return;
+
+		if ("IsLoaded" in weapon.m)		// This is currently our simple identifying factor for loaded weapons
+		{
+			if (weapon.isLoaded()) return;
+
+			local ammoItem = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
+			if (ammoItem == null) return;
+			if (ammoItem.getAmmo() == 0 && this.getContainer().getActor().isPlayerControlled()) return;	// NPCs are not required to have ammo in their quivers for this effect
+			if (weapon.getRequiredAmmoType() != ammoItem.getAmmoType()) return;
+
+			weapon.setLoaded(true);
+			ammoItem.consumeAmmo();
+		}
+	}
 });
