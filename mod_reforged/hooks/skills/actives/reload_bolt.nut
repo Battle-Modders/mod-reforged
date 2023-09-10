@@ -3,6 +3,7 @@
 	{
 		__original();
 		this.m.IsRemovedAfterBattle = false;
+		this.m.ActionPointCost = 5;	// In Vanilla this is 4
 	}
 
 	// Overwrite vanilla function to prevent removal of this skill

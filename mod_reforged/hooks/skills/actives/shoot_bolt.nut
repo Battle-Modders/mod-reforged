@@ -2,6 +2,12 @@
 	q.m.AdditionalAccuracy = 25;
 	q.m.AdditionalHitChance = -3;
 
+	q.create = @(__original) function()
+	{
+		__original();
+		this.m.ActionPointCost = 2;	// In Vanilla this is 3
+	}
+
 	// Overwrite vanilla function to prevent repeated adding of reload skill
 	q.onUse = @() function( _user, _targetTile	)
 	{

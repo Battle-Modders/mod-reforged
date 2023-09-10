@@ -1,6 +1,12 @@
 this.perk_rf_muscle_memory <- ::inherit("scripts/skills/skill", {
 	m = {
-		MaxBonus = 30
+		// Public
+		CrossbowRedution = 1,
+		HeavyCrossbowReduction = 2,
+		HandgonneReduction = 3,
+
+		// Const
+		MinimumAPCost = 1
 	},
 	function create()
 	{
@@ -18,16 +24,32 @@ this.perk_rf_muscle_memory <- ::inherit("scripts/skills/skill", {
 	function onAfterUpdate(_properties)
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Crossbow))
+		if (weapon == null) return;
+
+		if (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow))
 		{
-			_properties.RangedDamageMult *= 1.0 + ::Math.minf(this.m.MaxBonus * 0.01, ::Math.maxf(0, (_properties.RangedSkill - 90) * 0.01));
-		}
-		else
-		{
-			local reloadHandgonne = this.getContainer().getSkillByID("actives.reload_handgonne");
-			if (reloadHandgonne != null && reloadHandgonne.m.ActionPointCost > 1)
+			local reloadCrossbowSkill = this.getContainer().getSkillByID("actives.reload_bolt");
+			if (reloadCrossbowSkill != null)
 			{
-				reloadHandgonne.m.ActionPointCost -= 2;
+				// This differentiation is flawed and should be eventually replaced with some sort of Heavy-Tag on the crossbows
+				if (reloadCrossbowSkill.m.ActionPointCost <= 5)	// We are looking at a normal crossbow
+				{
+					reloadCrossbowSkill.m.ActionPointCost -= this.m.CrossbowRedution;
+				}
+				else	// We are looking at a heavy crossbow
+				{
+					reloadCrossbowSkill.m.ActionPointCost -= this.m.HeavyCrossbowReduction;
+				}
+				reloadCrossbowSkill.m.ActionPointCost = ::Math.max(this.m.MinimumAPCost, reloadCrossbowSkill.m.ActionPointCost);
+			}
+		}
+		else if (weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
+		{
+			local reloadHandgonneSkill = this.getContainer().getSkillByID("actives.reload_handgonne");
+			if (reloadHandgonneSkill != null)
+			{
+				reloadHandgonneSkill.m.ActionPointCost -= this.m.HandgonneReduction;
+				reloadHandgonneSkill.m.ActionPointCost = ::Math.max(this.m.MinimumAPCost, reloadHandgonneSkill.m.ActionPointCost);
 			}
 		}
 	}

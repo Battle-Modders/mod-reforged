@@ -3,6 +3,14 @@
 	{
 		__original();
 		this.m.IsRemovedAfterBattle = false;
+		this.m.ActionPointCost = 8;	// In Vanilla this is 9
+	}
+
+	q.onAfterUpdate = @(__original) function( _properties )
+	{
+		local oldActionPointCost = this.m.ActionPointCost;
+		__original(_properties);
+		this.m.ActionPointCost = oldActionPointCost;	// We prevent the action point cost from being manipulated by vanilla
 	}
 
 	// Overwrite vanilla function to prevent removal of this skill

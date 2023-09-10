@@ -1,12 +1,4 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_crossbow", function(q) {
-	q.onAfterUpdate = @(__original) function( _properties )
-	{
-		__original(_properties);
-		local reload = this.getContainer().getSkillByID("actives.reload_bolt");
-		if (reload != null && reload.m.ActionPointCost > 4 && reload.getBaseValue("ActionPointCost") > 4)
-			reload.m.ActionPointCost -= 1;
-	}
-
 	q.onAnySkillExecuted = @(__original) function( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		__original(_skill, _targetTile, _targetEntity, _forFree);

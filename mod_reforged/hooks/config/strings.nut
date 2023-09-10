@@ -472,8 +472,6 @@ local vanillaDescriptions = [
 	 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
 						"Your main hand weapon starts each battle loaded if you have the correct ammunition equipped.",
 						"When you reload your weapon, gain the defenses of the best shield in your bag until the start of your next turn.",
-	 					"[Heavy crossbows|Item+heavy_crossbow] now require " + ::MSU.Text.colorRed("4") + ", [Action Points|Concept.ActionPoints] to [reload|Skill+reload_bolt], just like regular crossbows, allowing you to shoot, reload and move.",
-						"[Handgonnes|Item+handgonne] now require " + ::MSU.Text.colorRed("6") + " [Action Points|Concept.ActionPoints] to [reload|Skill+reload_handgonne_skill] and can be fired every turn instead of every other turn."
 	 				]
 	 			}
  			]
@@ -1474,8 +1472,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The [Action Point|Concept.ActionPoints] Cost of reloading a Handgonne is reduced by " + ::MSU.Text.colorGreen(2) + ".",
-				"When using a crossbow, for each point of current [Ranged Skill|Concept.RangeSkill] above 90, damage is increased by " + ::MSU.Text.colorGreen("1%") + " up to a maximum of " + ::MSU.Text.colorGreen("30%") + "."
+				"The [Action Point|Concept.ActionPoints] Cost of reloading any normal Crossbow is reduced by " + ::MSU.Text.colorGreen(1) + ".",
+				"The [Action Point|Concept.ActionPoints] Cost of reloading a Heavy Crossbow is reduced by " + ::MSU.Text.colorGreen(2) + ".",
+				"The [Action Point|Concept.ActionPoints] Cost of reloading a Handgonne is reduced by " + ::MSU.Text.colorGreen(3) + ".",
 			]
 		}]
  	}),
