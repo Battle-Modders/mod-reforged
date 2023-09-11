@@ -8,13 +8,14 @@
 	o.m.UsesRemaining <- 2;
 
 	// Temp
-	o.m.TempDamageReduction <- 0.0;
+	o.m.TempDamageReduction <- 0.0;		// This is used to keep track of the current damage reduction so that it can be later displayed in the combat log
 	o.m.IsAboutToConsumeUse <- false;
 
 	local create = o.create;
 	o.create = function()
 	{
 		create();
+		this.m.Description = "Use your fast senses to anticipate attacks against you, taking reduced damage from the first few attacks each battle.";
 		this.m.IconMini = "rf_anticipation_mini";
 
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on entities
@@ -33,11 +34,6 @@
 	o.onCombatFinished <- function()
 	{
 		this.m.UsesRemaining = this.m.UsesMax;	// So that for the purposes of the tooltip everything looks good
-	}
-
-	o.getDescription <- function()
-	{
-		return ("Take reduced damage from the first " + ::MSU.Text.colorGreen(this.m.UsesMax) + " attacks you receive each battle. This reduction is dependant on your current Ranged Defense and the distance between the attacker and you");
 	}
 
 	o.getTooltip <- function()
@@ -86,12 +82,12 @@
 
 	o.onDamageReceived <- function( _attacker, _damageHitpoints, _damageArmor )
 	{
-		if (this.m.IsAboutToConsumeUse == false) return;	// We only consume one use for each registrated attack. Something like the vanilla three headed flail might otherwise use up all of this perks charges
+		if (this.m.IsAboutToConsumeUse == false) return;	// We only consume one use for each registered attack. But a single attack that deals damage multiple times will therefor have the damage of all instances reduced
 		this.m.IsAboutToConsumeUse = false;
 
 		local actor = this.getContainer().getActor();
 		this.m.UsesRemaining = ::Math.max(0, this.m.UsesRemaining - 1);
-		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated the attack of " + ::Const.UI.getColorizedEntityName(_attacker) + ", reducing its damage by " + ::MSU.Text.colorGreen(this.m.TempDamageReduction + "%"));
+		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated the attack of " + ::Const.UI.getColorizedEntityName(_attacker) + ", reducing damage received by " + ::MSU.Text.colorGreen(this.m.TempDamageReduction + "%"));
 	}
 
 
