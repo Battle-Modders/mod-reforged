@@ -74,8 +74,7 @@
 		}
 
 		this.m.TempDamageReduction = this.calculateDamageReduction(_attacker);	// We save this so that we can later display it in the combat log
-		local damageReceivedMultiplier = (1.0 - (this.m.TempDamageReduction / 100.0));
-		_properties.DamageReceivedTotalMult *= damageReceivedMultiplier;
+		_properties.DamageReceivedTotalMult *= (1.0 - (this.m.TempDamageReduction / 100.0));
 
 		this.m.IsAboutToConsumeUse = true;	// We need this variable because in "onDamageReceived" we have no information whether that was caused by an "attack"
 	}
