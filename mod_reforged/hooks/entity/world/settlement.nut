@@ -88,12 +88,12 @@
 				_list.extend([
 					{
 						R = 10,
-						P = 1.0,
+						P = 1.25,
 						S = "tools/throwing_net"
 					},
 					{
 						R = 20,
-						P = 1.0,
+						P = 1.25,
 						S = "tools/throwing_net"
 					}
 				]);
