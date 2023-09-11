@@ -195,7 +195,7 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
 					"Take reduced damage from the first " + ::MSU.Text.colorGreen(2) + " attacks you receive each battle.",
-					"This reduction is equal to your current [Ranged Defense|Concept.RangeDefense] + an additional " + ::MSU.Text.colorGreen("10%") + " for each tile between the attacker and you."
+					"This reduction is a percentage equal to your current [Ranged Defense|Concept.RangeDefense] plus an additional " + ::MSU.Text.colorGreen("10%") + " for each tile between the attacker and you."
 				]
  			}]
 	 	}),
