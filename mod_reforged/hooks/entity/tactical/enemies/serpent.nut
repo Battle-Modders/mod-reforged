@@ -91,7 +91,7 @@
 			local item = new(_scriptName);
 			if (itemsToChange.find(_scriptName) != null)
 			{
-				item.drop <- @()null;
+				item.drop <- @(...)null;
 			}
 			return item;
 		}
