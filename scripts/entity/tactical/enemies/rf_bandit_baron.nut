@@ -51,7 +51,6 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("shield_icon").setBrightness(0.85);
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));

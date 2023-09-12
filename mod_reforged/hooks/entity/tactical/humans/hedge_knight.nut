@@ -13,7 +13,6 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_heartless"));

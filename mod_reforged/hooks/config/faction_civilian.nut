@@ -8,7 +8,7 @@
 	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.HedgeKnight, {
-	Stamina = 200,
+	Stamina = 215,
 	MeleeSkill = 90,
 	FatigueRecoveryRate = 15
 });
