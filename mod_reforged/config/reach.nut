@@ -25,6 +25,9 @@
 
 		local tile1 = _actor1.getTile();
 		local tile2 = _actor2.getTile();
+		local distance = tile1.getDistanceTo(tile2);
+
+		if (distance > 2) return false;
 
 		if (tile1.getDistanceTo(tile2) > 1)
 		{
