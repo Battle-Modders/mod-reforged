@@ -18,10 +18,10 @@
 		this.getSprite("shield_icon").Saturation = 0.85;
 		this.getSprite("shield_icon").setBrightness(0.85);
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 	}
 
 	o.assignRandomEquipment = function()
@@ -91,10 +91,10 @@
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
 				{
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_splitter"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_axe"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_splitter"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
 				}
 				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
 				{
@@ -110,13 +110,13 @@
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
 				{
 					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 				}
 				else //polehammer
 				{
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_dent_armor"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_dent_armor"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_hammer"));
 				}
 			}
 		}

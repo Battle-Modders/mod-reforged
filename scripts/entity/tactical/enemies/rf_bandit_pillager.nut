@@ -12,7 +12,7 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Hairs = ::Const.Hair.UntidyMale;
 		this.m.HairColors = ::Const.HairColors.All;
 		this.m.Beards = ::Const.Beards.Raider;
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bandit_melee_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_melee_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -35,10 +35,10 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("shield_icon").Saturation = 0.85;
 		this.getSprite("shield_icon").setBrightness(0.85);
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 
 		if (::Math.rand(1, 100) <= 25)
 		{

@@ -30,9 +30,9 @@
 		this.setSpriteOffset("status_rooted", this.createVec(8, -15));
 		this.setSpriteOffset("status_stunned", this.createVec(0, -25));
 		this.setSpriteOffset("arrow", this.createVec(0, -25));
-		this.m.Skills.add(this.new("scripts/skills/actives/wardog_bite"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
+		this.m.Skills.add(::new("scripts/skills/actives/wardog_bite"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
 
 		//Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium - 1;

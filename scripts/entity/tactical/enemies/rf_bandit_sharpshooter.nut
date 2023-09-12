@@ -66,13 +66,13 @@ this.rf_bandit_sharpshooter <- this.inherit("scripts/entity/tactical/human", {
 		{
 			if (this.m.MyVariant == 0) // bow
 			{
-				this.m.Items.equip(this.new("scripts/items/weapons/hunting_bow"));
-				this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
+				this.m.Items.equip(::new("scripts/items/weapons/hunting_bow"));
+				this.m.Items.equip(::new("scripts/items/ammo/quiver_of_arrows"));
 			}
 			else // crossbow
 			{
-				this.m.Items.equip(this.new("scripts/items/weapons/crossbow"));
-				this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
+				this.m.Items.equip(::new("scripts/items/weapons/crossbow"));
+				this.m.Items.equip(::new("scripts/items/ammo/quiver_of_bolts"));
 			}
 		}
 

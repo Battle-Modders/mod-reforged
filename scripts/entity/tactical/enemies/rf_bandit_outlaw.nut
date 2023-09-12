@@ -10,7 +10,7 @@ this.rf_bandit_outlaw <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Hairs = ::Const.Hair.UntidyMale;
 		this.m.HairColors = ::Const.HairColors.All;
 		this.m.Beards = ::Const.Beards.Raider;
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bandit_melee_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_melee_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -33,10 +33,10 @@ this.rf_bandit_outlaw <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("shield_icon").Saturation = 0.85;
 		this.getSprite("shield_icon").setBrightness(0.85);
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )
@@ -105,7 +105,7 @@ this.rf_bandit_outlaw <- this.inherit("scripts/entity/tactical/human", {
 				{
 					case "weapon.rf_battle_axe":
 						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-						this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
 						break;
 					case "weapon.woodcutters_axe":
 						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
@@ -114,21 +114,21 @@ this.rf_bandit_outlaw <- this.inherit("scripts/entity/tactical/human", {
 			}
 			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
 			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 			}
 			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace) || mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
 			{
 				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 			}
 			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
 			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_from_all_sides"));
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_flail"));
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 			}
 		}
 	}

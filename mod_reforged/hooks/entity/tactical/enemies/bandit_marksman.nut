@@ -32,9 +32,9 @@
 		this.getSprite("shield_icon").Saturation = 0.85;
 		this.getSprite("shield_icon").setBrightness(0.85);
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 
 		this.m.MyVariant = ::Math.rand(0, 1); // 1 is crossbow
 	}
@@ -45,13 +45,13 @@
 		{
 			if (this.m.MyVariant == 0) // bow
 			{
-				this.m.Items.equip(this.new("scripts/items/weapons/hunting_bow"));
-				this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
+				this.m.Items.equip(::new("scripts/items/weapons/hunting_bow"));
+				this.m.Items.equip(::new("scripts/items/ammo/quiver_of_arrows"));
 			}
 			else // crossbow
 			{
-				this.m.Items.equip(this.new("scripts/items/weapons/crossbow"));
-				this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
+				this.m.Items.equip(::new("scripts/items/weapons/crossbow"));
+				this.m.Items.equip(::new("scripts/items/ammo/quiver_of_bolts"));
 			}
 		}
 
