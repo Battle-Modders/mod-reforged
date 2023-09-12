@@ -58,17 +58,17 @@ this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
 		}
 
 		if (this.m.MyVariant == 1) // Thrower
-        {
+		{
 			local throwingWeapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/javelin"],
+				[1, "scripts/items/weapons/javelin"],
 				[1, "scripts/items/weapons/throwing_axe"]
-	    	]).roll();
+			]).roll();
 
-	    	this.m.Items.equip(::new(throwingWeapon));
-        }
+			this.m.Items.equip(::new(throwingWeapon));
+		}
 
 		local weapon = ::MSU.Class.WeightedContainer([
-    		[1, "scripts/items/weapons/boar_spear"],
+			[1, "scripts/items/weapons/boar_spear"],
 			[1, "scripts/items/weapons/dagger"],
 			[1, "scripts/items/weapons/falchion"],
 			[1, "scripts/items/weapons/scramasax"],
@@ -77,7 +77,7 @@ this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
 			[1, "scripts/items/weapons/pike"],
 			[1, "scripts/items/weapons/reinforced_wooden_flail"],
 			[1, "scripts/items/weapons/warfork"]
-    	]).roll();
+		]).roll();
 
 		weapon = ::new(weapon);
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) // both hands free
@@ -148,31 +148,31 @@ this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
 		if (mainhandItem != null && !mainhandItem.isItemType(::Const.Items.ItemType.RangedWeapon)) // Rolled and equipped melee weapon. Did not roll throwing.
 		{
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear))
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Dagger))
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_dagger"));
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 2);
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-	    	}
-	    	else (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfWeapon(this, 3);
-	    	}
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Dagger))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_dagger"));
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 2);
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+			}
+			else (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
+			{
+				::Reforged.Skills.addPerkGroupOfWeapon(this, 3);
+			}
 		}
 
 		foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag)) // Check all bag slots for items. Melee weapon in bag or rolled a shield and added to bag.
@@ -180,36 +180,36 @@ this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
 			if (item.isItemType(::Const.Items.ItemType.MeleeWeapon))
 			{
 				if (item.isWeaponType(::Const.Items.WeaponType.Spear))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
-		    	}
-    	    	else if (item.isWeaponType(::Const.Items.WeaponType.Dagger))
-    	    	{
-    	    		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-    	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_dagger"));
-    	    	}
-    	    	else if (item.isWeaponType(::Const.Items.WeaponType.Sword))
-    	    	{
-    	    		::Reforged.Skills.addPerkGroupOfWeapon(this, item, 3);
-    	    	}
-    	    	else if (item.isWeaponType(::Const.Items.WeaponType.Cleaver))
-    	    	{
-    	    		::Reforged.Skills.addPerkGroupOfWeapon(this, item, 2);
-    	    	}
-    			else if (item.isWeaponType(::Const.Items.WeaponType.Polearm))
-    	    	{
-    	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
-    	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-    	    	}
-    	    	else (item.isWeaponType(::Const.Items.WeaponType.Flail))
-    	    	{
-    	    		::Reforged.Skills.addPerkGroupOfWeapon(this, item, 3);
-    	    	}
+				{
+					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
+				}
+				else if (item.isWeaponType(::Const.Items.WeaponType.Dagger))
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_dagger"));
+				}
+				else if (item.isWeaponType(::Const.Items.WeaponType.Sword))
+				{
+					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 3);
+				}
+				else if (item.isWeaponType(::Const.Items.WeaponType.Cleaver))
+				{
+					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 2);
+				}
+				else if (item.isWeaponType(::Const.Items.WeaponType.Polearm))
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+				}
+				else (item.isWeaponType(::Const.Items.WeaponType.Flail))
+				{
+					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 3);
+				}
 			}
 		}
 
 		local offhand = this.getOffhandItem();
-	    if (offhand == null || offhand.isItemType(::Const.Items.ItemType.Tool) && this.m.Items.getItemsByFunctionAtSlot(::Const.ItemSlot.Bag, @(item) item.isItemType(::Const.Items.ItemType.TwoHanded) || item.isItemType(::Const.Items.ItemType.Shield)).len() != 0) // offhand free or net AND does not have a two handed weapon or shield in the bag.
+		if (offhand == null || offhand.isItemType(::Const.Items.ItemType.Tool) && this.m.Items.getItemsByFunctionAtSlot(::Const.ItemSlot.Bag, @(item) item.isItemType(::Const.Items.ItemType.TwoHanded) || item.isItemType(::Const.Items.ItemType.Shield)).len() != 0) // offhand free or net AND does not have a two handed weapon or shield in the bag.
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
 		}

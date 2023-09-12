@@ -86,12 +86,12 @@ this.rf_bandit_hunter <- this.inherit("scripts/entity/tactical/human", {
 		}
 
 		local sidearm = ::MSU.Class.WeightedContainer([
-    		[1, "scripts/items/weapons/bludgeon"],
+			[1, "scripts/items/weapons/bludgeon"],
 			[1, "scripts/items/weapons/dagger"],
 			[1, "scripts/items/weapons/hatchet"],
 			[1, "scripts/items/weapons/reinforced_wooden_flail"],
 			[0.5, "scripts/items/weapons/shortsword"],
-    	]).roll();
+		]).roll();
 
 		this.m.Items.addToBag(::new(sidearm));
 
@@ -130,17 +130,17 @@ this.rf_bandit_hunter <- this.inherit("scripts/entity/tactical/human", {
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon.isWeaponType(::Const.Items.WeaponType.Bow))
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-    	}
-    	else if (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow))
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
-    	}
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		}
+		else if (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow))
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
+		}
 	}
 });
 

@@ -29,14 +29,14 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/hand_axe"],
+				[1, "scripts/items/weapons/hand_axe"],
 				[1, "scripts/items/weapons/military_pick"],
 				[1, "scripts/items/weapons/morning_star"],
 				[1, "scripts/items/weapons/flail"],
 
 				[1, "scripts/items/weapons/longaxe"],
 				[1, "scripts/items/weapons/polehammer"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}
@@ -90,34 +90,34 @@
 			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-		    	{
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_splitter"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_axe"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-		    	}
-		    	else
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-		    	}
+				{
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_splitter"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_axe"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
+				}
+				else
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
+				}
 			}
 			else //Two Handed Weapon
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		    	}
-		    	else //polehammer
-		    	{
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_dent_armor"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
-		    	}
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+				}
+				else //polehammer
+				{
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_dent_armor"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
+				}
 			}
 		}
 	}

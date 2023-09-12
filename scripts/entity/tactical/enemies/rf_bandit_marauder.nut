@@ -53,13 +53,13 @@ this.rf_bandit_marauder <- this.inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/rf_battle_axe"],
+				[1, "scripts/items/weapons/rf_battle_axe"],
 				[1, "scripts/items/weapons/rf_greatsword"],
 				[1, "scripts/items/weapons/two_handed_mace"],
 				[1, "scripts/items/weapons/two_handed_wooden_hammer"],
 				[1, "scripts/items/weapons/two_handed_wooden_flail"],
 				[1, "scripts/items/weapons/woodcutters_axe"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}
@@ -98,46 +98,46 @@ this.rf_bandit_marauder <- this.inherit("scripts/entity/tactical/human", {
 		if (mainhandItem != null)
 		{
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-	    	{
-	    		switch (mainhandItem.getID())
-	    		{
-	    			case "weapon.rf_battle_axe":
-	    				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
-	    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rebuke"));
-	    				break;
-	    			case "weapon.woodcutters_axe":
-	    				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    				this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-	    				this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-	    				this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
-	    				break;
-	    		}
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
-	    	{
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rebuke"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-	    	{
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_from_all_sides"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_flail"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_whirling_death"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    	}
+			{
+				switch (mainhandItem.getID())
+				{
+					case "weapon.rf_battle_axe":
+						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+						this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+						this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rebuke"));
+						break;
+					case "weapon.woodcutters_axe":
+						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+						this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+						this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+						this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
+						break;
+				}
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+			{
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rebuke"));
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
+			{
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_from_all_sides"));
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_flail"));
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_whirling_death"));
+				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
 		}
 	}
 

@@ -51,13 +51,13 @@ this.rf_bandit_vandal <- this.inherit("scripts/entity/tactical/human", {
 		{
 			local throwing = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/throwing_spear"]
-	    	]).rollChance(33);
+			]).rollChance(33);
 
 			if (throwing != null) this.m.Items.equip(::new(throwing));
 		}
 
 		local weapon = ::MSU.Class.WeightedContainer([
-    		[1, "scripts/items/weapons/boar_spear"],
+			[1, "scripts/items/weapons/boar_spear"],
 			[1, "scripts/items/weapons/falchion"],
 			[1, "scripts/items/weapons/flail"],
 			[1, "scripts/items/weapons/hand_axe"],
@@ -66,7 +66,7 @@ this.rf_bandit_vandal <- this.inherit("scripts/entity/tactical/human", {
 			[1, "scripts/items/weapons/scramasax"],
 
 			[1, "scripts/items/weapons/warbrand"]
-    	]).roll();
+		]).roll();
 		weapon = ::new(weapon);
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
@@ -120,28 +120,28 @@ this.rf_bandit_vandal <- this.inherit("scripts/entity/tactical/human", {
 		if (mainhandItem != null && mainhandItem.isItemType(::Const.Items.ItemType.MeleeWeapon)) //Rolled and equipped one handed melee weapon
 		{
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear))
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_whirling_death"));
-	    	}
-	    	else
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    	}
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_whirling_death"));
+			}
+			else
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+			}
 		}
 		else //Rolled two handed weapon and added to bag.
 		{
 			foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))
 			{
 				if (item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Sword))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
-		    	}
+				{
+					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
+				}
 			}
 		}
 	}

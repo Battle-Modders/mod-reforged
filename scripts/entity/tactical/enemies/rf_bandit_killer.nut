@@ -67,22 +67,22 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			if (this.m.MyVariant == 0) // Not regular throwing weapons
-	        {
+			{
 				local throwing = ::MSU.Class.WeightedContainer([
 					[1, "scripts/items/weapons/throwing_spear"]
-		    	]).rollChance(25);
+				]).rollChance(25);
 
 				if (throwing != null) this.m.Items.equip(::new(throwing));
-	    	}
-	    	else // Thrower
-	    	{
+			}
+			else // Thrower
+			{
 				local throwing = ::MSU.Class.WeightedContainer([
 					[1, "scripts/items/weapons/javelin"],
 					[1, "scripts/items/weapons/throwing_axe"]
-		    	]).roll();
+				]).roll();
 
-		    	this.m.Items.equip(::new(throwing));
-	    	}
+				this.m.Items.equip(::new(throwing));
+			}
 		}
 
 		local weapon = ::MSU.Class.WeightedContainer([
@@ -97,7 +97,7 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 			[1, "scripts/items/weapons/pike"],
 			[1, "scripts/items/weapons/spetum"],
 			[1, "scripts/items/weapons/warbrand"]
-    	]).roll();
+		]).roll();
 		weapon = ::new(weapon);
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) // both hands free
@@ -199,29 +199,29 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 					else
 					{
 						switch (weapon.getID())
-			    		{
-			    			case "weapon.billhook":
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_leverage"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-			    				break;
-			    			case "weapon.longsword":
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_kata"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-			    				break;
-			    			case "weapon.pike":
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_long_reach"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_through_the_gaps"));
-			    				break;
-			    			case "weapon.warbrand":
-			    				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-			    				break;
-			    		}
+						{
+							case "weapon.billhook":
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_leverage"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+								break;
+							case "weapon.longsword":
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_kata"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
+								break;
+							case "weapon.pike":
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_long_reach"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_through_the_gaps"));
+								break;
+							case "weapon.warbrand":
+								::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
+								break;
+						}
 					}
 				}
 			}
@@ -270,29 +270,29 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 					else
 					{
 						switch (item.getID())
-			    		{
-			    			case "weapon.billhook":
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_leverage"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-			    				break;
-			    			case "weapon.longsword":
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_kata"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-			    				break;
-			    			case "weapon.pike":
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_long_reach"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_through_the_gaps"));
-			    				break;
-			    			case "weapon.warbrand":
-			    				::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-			    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-			    				break;
-			    		}
+						{
+							case "weapon.billhook":
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_leverage"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+								break;
+							case "weapon.longsword":
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_kata"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
+								break;
+							case "weapon.pike":
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_long_reach"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_through_the_gaps"));
+								break;
+							case "weapon.warbrand":
+								::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+								this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
+								break;
+						}
 					}
 				}
 			}

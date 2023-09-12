@@ -62,10 +62,10 @@ this.rf_bandit_sharpshooter <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-	    if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			if (this.m.MyVariant == 0) // bow
-            {
+			{
 				this.m.Items.equip(this.new("scripts/items/weapons/hunting_bow"));
 				this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 			}
@@ -78,13 +78,13 @@ this.rf_bandit_sharpshooter <- this.inherit("scripts/entity/tactical/human", {
 
 		local sidearm = null;
 		if (this.m.MyVariant == 0) // bow
-        {
+		{
 			sidearm = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/falchion"],
 				[1, "scripts/items/weapons/hatchet"],
 				[1, "scripts/items/weapons/reinforced_wooden_flail"],
 				[1, "scripts/items/weapons/scramasax"]
-	    	]).roll();
+			]).roll();
 		}
 		else // crossbow
 		{
@@ -93,7 +93,7 @@ this.rf_bandit_sharpshooter <- this.inherit("scripts/entity/tactical/human", {
 				[1, "scripts/items/weapons/hand_axe"],
 				[1, "scripts/items/weapons/military_pick"],
 				[1, "scripts/items/weapons/morning_star"]
-	    	]).roll();
+			]).roll();
 		}
 
 		this.m.Items.addToBag(::new(sidearm));
@@ -107,7 +107,7 @@ this.rf_bandit_sharpshooter <- this.inherit("scripts/entity/tactical/human", {
 		{
 			local armor = null;
 			if (this.m.MyVariant == 0) // bow
-	        {
+			{
 				armor = ::Reforged.ItemTable.BanditArmorBowman.roll({
 					Apply = function ( _script, _weight )
 					{
@@ -174,14 +174,14 @@ this.rf_bandit_sharpshooter <- this.inherit("scripts/entity/tactical/human", {
 		{
 			if (this.m.MyVariant == 0) // bow
 			{
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hip_shooter"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hip_shooter"));
 			}
 			else // crossbow
 			{

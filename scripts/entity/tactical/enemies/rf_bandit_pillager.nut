@@ -1,6 +1,6 @@
 this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 	m = {
-        MyVariant = 0
+		MyVariant = 0
 	},
 	function create()
 	{
@@ -58,24 +58,24 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 		{
 			local weapon;
 			if (this.m.MyVariant == 0) // Two Handed
-            {
-            	weapon = ::MSU.Class.WeightedContainer([
-		    		[1, "scripts/items/weapons/goedendag"],
+			{
+				weapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/goedendag"],
 					[1, "scripts/items/weapons/two_handed_mace"],
 					[1, "scripts/items/weapons/two_handed_wooden_flail"],
 					[1, "scripts/items/weapons/two_handed_wooden_hammer"],
 					[1, "scripts/items/weapons/woodcutters_axe"]
-  	    		]).roll();
-            }
-            else // Shield
-            {
-            	weapon = ::MSU.Class.WeightedContainer([
-		    		[1, "scripts/items/weapons/hand_axe"],
+  				]).roll();
+			}
+			else // Shield
+			{
+				weapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/hand_axe"],
 					[1, "scripts/items/weapons/flail"],
 					[1, "scripts/items/weapons/military_pick"],
 					[1, "scripts/items/weapons/morning_star"]
-  	    		]).roll();
-            }
+  				]).roll();
+			}
 
 			this.m.Items.equip(::new(weapon));
 		}
@@ -83,9 +83,9 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && this.m.MyVariant == 1) // Shield
 		{
 			local shield = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/shields/wooden_shield"],
+				[1, "scripts/items/shields/wooden_shield"],
 				[0.33, "scripts/items/shields/kite_shield"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(shield));
 		}
@@ -127,43 +127,43 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 			if (this.m.MyVariant == 0) // Two Handed
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) //Goedendag
-		    	{
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_spear_advantage"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_mace"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-		    	{
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-		    	}
-		    	else // mace or hammer
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-		    	}
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_spear_advantage"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_mace"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+				}
+				else // mace or hammer
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+				}
 			}
 			else // Shield
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-		    	{
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
-		    	}
-		    	else // mace or hammer
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-		    	}
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
+				}
+				else // mace or hammer
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+				}
 			}
 		}
 	}

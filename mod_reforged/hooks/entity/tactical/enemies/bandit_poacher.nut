@@ -52,9 +52,9 @@
 		}
 
 		local sidearm = ::MSU.Class.WeightedContainer([
-    		[1, "scripts/items/weapons/knife"],
+			[1, "scripts/items/weapons/knife"],
 			[1, "scripts/items/weapons/wooden_stick"]
-    	]).roll();
+		]).roll();
 
 		this.m.Items.addToBag(::new(sidearm));
 

@@ -41,10 +41,10 @@
 
 	o.assignRandomEquipment = function()
 	{
-	    if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			if (this.m.MyVariant == 0) // bow
-            {
+			{
 				this.m.Items.equip(this.new("scripts/items/weapons/hunting_bow"));
 				this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 			}
@@ -60,7 +60,7 @@
 			[1, "scripts/items/weapons/reinforced_wooden_flail"],
 			[1, "scripts/items/weapons/falchion"],
 			[1, "scripts/items/weapons/scramasax"]
-    	]).roll();
+		]).roll();
 
 		this.m.Items.addToBag(::new(sidearm));
 
@@ -68,7 +68,7 @@
 		{
 			local shield = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/shields/wooden_shield"]
-	    	]).rollChance(66);
+			]).rollChance(66);
 
 			if (shield != null) this.m.Items.addToBag(::new(shield));
 		}
@@ -77,7 +77,7 @@
 		{
 			local armor = null;
 			if (this.m.MyVariant == 0) // bow
-            {
+			{
 				armor = ::Reforged.ItemTable.BanditArmorBowman.roll({
 					Apply = function ( _script, _weight )
 					{
@@ -145,12 +145,12 @@
 		{
 			if (this.m.MyVariant == 0) // bow
 			{
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 			}
 			else // crossbow
 			{

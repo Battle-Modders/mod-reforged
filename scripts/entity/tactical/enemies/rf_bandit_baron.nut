@@ -59,8 +59,8 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_blitzkrieg"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
-    		o.m.IsForceEnabled = true;
-    	}));
+			o.m.IsForceEnabled = true;
+		}));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rally_the_troops"));
 	}
 
@@ -78,9 +78,9 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/fighting_axe"],
-	    		[1, "scripts/items/weapons/military_cleaver"],
-	    		[1, "scripts/items/weapons/fighting_spear"],
+				[1, "scripts/items/weapons/fighting_axe"],
+				[1, "scripts/items/weapons/military_cleaver"],
+				[1, "scripts/items/weapons/fighting_spear"],
 				[1, "scripts/items/weapons/noble_sword"],
 				[1, "scripts/items/weapons/warhammer"],
 				[1, "scripts/items/weapons/winged_mace"],
@@ -90,7 +90,7 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 				[1, "scripts/items/weapons/two_handed_flail"],
 				[1, "scripts/items/weapons/two_handed_flanged_mace"],
 				[1, "scripts/items/weapons/greatsword"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}
@@ -193,83 +193,83 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-		    	{
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_splitter"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_axe"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_double_strike"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
-		    	{
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_double_strike"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
-		    	{
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_mace"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_concussive_strikes"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
-		    	}
+				{
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_splitter"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_axe"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_double_strike"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear))
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+				{
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_double_strike"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
+				{
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_mace"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_concussive_strikes"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
+				}
 			}
 			else //Two Handed Weapon
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_flail"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_whirling_death"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_flail_spinner"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
-		    	{
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_mace"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_concussive_strikes"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
-		    	}
-		    	else
-		    	{
-		    		switch (mainhandItem.getID())
-		    		{
-		    			case "weapon.rf_kriegsmesser":
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_cleaver"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
-		    				break;
-		    			case "weapon.rf_swordstaff":
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_two_for_one"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
-		    				break;
-	    				case "weapon.greatsword":
-	    					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-	    					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
-	    					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_kata"));
-	    					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
-	    				break;
-		    		}
-		    	}
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_flail"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_whirling_death"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_flail_spinner"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
+				{
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_mace"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_concussive_strikes"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
+				}
+				else
+				{
+					switch (mainhandItem.getID())
+					{
+						case "weapon.rf_kriegsmesser":
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_cleaver"));
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+							break;
+						case "weapon.rf_swordstaff":
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_two_for_one"));
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
+							break;
+						case "weapon.greatsword":
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_kata"));
+							this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
+						break;
+					}
+				}
 			}
 		}
 

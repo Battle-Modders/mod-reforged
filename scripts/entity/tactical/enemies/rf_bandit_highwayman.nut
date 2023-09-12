@@ -50,28 +50,28 @@ this.rf_bandit_highwayman <- this.inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/flail"],
+				[1, "scripts/items/weapons/flail"],
 				[1, "scripts/items/weapons/hand_axe"],
 				[1, "scripts/items/weapons/military_pick"],
 				[1, "scripts/items/weapons/morning_star"],
 
 				[1, "scripts/items/weapons/longaxe"],
 				[1, "scripts/items/weapons/polehammer"]
-	    	]).roll();
+			]).roll();
 
-		    weapon = ::new(weapon);
+			weapon = ::new(weapon);
 			this.m.Items.equip(weapon);
 
-	    	if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
-	    	{
-	    		local shield = ::MSU.Class.WeightedContainer([
-	    			[1, "scripts/items/shields/kite_shield"],
-	    			[1, "scripts/items/shields/heater_shield"]
-	    		]).roll();
+			if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
+			{
+				local shield = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/shields/kite_shield"],
+					[1, "scripts/items/shields/heater_shield"]
+				]).roll();
 
-	    		this.m.Items.equip(::new(shield));
-	    	}
-	    }
+				this.m.Items.equip(::new(shield));
+			}
+		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
@@ -109,44 +109,44 @@ this.rf_bandit_highwayman <- this.inherit("scripts/entity/tactical/human", {
 			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-		    	{
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_splitter"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-		    	}
-		    	else (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
-		    	}
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_splitter"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
+				}
+				else (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
+				}
 			}
 			else //two handed weapon
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
-		    	}
-		    	else //2h hammer
-		    	{
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_dent_armor"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_hammer"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_impact"));
-		    	}
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+					this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
+				}
+				else //2h hammer
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_dent_armor"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_hammer"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_impact"));
+				}
 			}
 		}
 
