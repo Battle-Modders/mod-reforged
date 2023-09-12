@@ -19,7 +19,6 @@
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/cudgel_skill", function(o) {
-			o.m.ActionPointCost -= 1;
 			o.m.DirectDamageMult = this.m.DirectDamageMult;
 		}.bindenv(this)));
 
