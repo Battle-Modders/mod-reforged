@@ -69,15 +69,15 @@
 		::new = new;
 
 		local chanceToRoll;
-		if (Size == 1)
+		if (this.m.Size == 1)
 		{
 			chanceToRoll = 10;
 		}
-		else if (Size == 2)
+		else if (this.m.Size == 2)
 		{
 			chanceToRoll = 25;
 		}
-		else //Size == 3
+		else // this.m.Size == 3
 		{
 			chanceToRoll = 50;
 		}
