@@ -1,5 +1,3 @@
-// We adjust the cost of Vanilla units already registered with the Dynamic Spawn Framework:
-
 /*	Figures Explanation
 figure_bandit_01 - Bandit Poacher
 figure_bandit_02 - Bandit Thug
