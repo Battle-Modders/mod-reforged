@@ -171,7 +171,7 @@ this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
 			}
 			else (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
 			{
-				::Reforged.Skills.addPerkGroupOfWeapon(this, 3);
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 			}
 		}
 
