@@ -3,7 +3,7 @@
 	Hitpoints = 80,
 	Stamina = 150,
 	MeleeDefense = 50,
-	RangedDefense = 50,
+	RangedDefense = 20,
 	Initiative = 150,
 	FatigueRecoveryRate = 15
 });
