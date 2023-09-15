@@ -28,17 +28,9 @@ this.perk_aura_abstract <- ::inherit("scripts/skills/skill", {
 		return this.m.AuraRange;
 	}
 
-	function onMovementFinished( _tile )
+	function onAdded()
 	{
-		local actor = this.getContainer().getActor();
-		foreach (faction in ::Tactical.Entities.getAllInstances())
-		{
-			foreach (receiver in faction)
-			{
-				if (this.validateAuraReceiver(receiver) && (this.m.AppliesToSelf || actor.getID() != receiver.getID()))
-					receiver.getSkills().update();
-			}
-		}
+		this.getContainer().registerAuraPerk(this);
 	}
 
 	function onSpawnEntity( _entity )
@@ -77,6 +69,7 @@ this.perk_aura_abstract <- ::inherit("scripts/skills/skill", {
 	function onRemoved()
 	{
 		this.unregisterFromAllReceivers();
+		this.getContainer().unregisterAuraPerk(this);
 	}
 
 	function unregisterFromAllReceivers()
