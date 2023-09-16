@@ -52,7 +52,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorRed(this.m.DamageReductionPerTile + "%") + " additional reduced damage received from all attacks for every tile distance between the attacker and you"
+				text = ::MSU.Text.colorRed(this.m.DamageReductionPerTile + "%") + " additional reduced damage received from all attacks for every tile between the attacker and you"
 			},
 			{
 				id = 15,
@@ -99,12 +99,15 @@
 	// returns a value between 0 and 100 indicitation the damage reduction in %
 	o.calculateDamageReduction <- function( _attacker = null )
 	{
-		local distanceToAttacker = 0;
-		if (_attacker != null) distanceToAttacker = _attacker.getTile().getDistanceTo(this.getContainer().getActor().getTile());
-
 		local damageReduction = this.m.DamageReductionBase;
 		damageReduction += ::Math.max(0, this.getContainer().getActor().getCurrentProperties().getRangedDefense());
-		damageReduction += distanceToAttacker * this.m.DamageReductionPerTile;
+
+		if (_attacker != null && _attacker.isPlacedOnMap() && this.getContainer().getActor().isPlacedOnMap())
+		{
+			// -1 because adjacent entities count as a distance of 1 but we want only the number of tiles between the entities
+			damageReduction += this.m.DamageReductionPerTile * (_attacker.getTile().getDistanceTo(this.getContainer().getActor().getTile()) - 1);
+		}
+
 		return ::Math.max(0, ::Math.min(100.0, damageReduction));
 	}
 });
