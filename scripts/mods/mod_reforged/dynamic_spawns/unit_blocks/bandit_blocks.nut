@@ -23,35 +23,35 @@ local unitBlocks = [
 		ID = "Bandit.Balanced",
 		UnitDefs = [
 			{ ID = "Unit.RF_BanditScoundrel",  StartingResourceMax = 250 },
-			{ ID = "Unit.RF_BanditVandal" },
-			{ ID = "Bandit.Raider" },
-			{ ID = "Unit.RF_BanditHighwayman", StartingResourceMin = 250 }
+			{ ID = "Unit.RF_BanditVandal", StartingResourceMin = 150 },
+			{ ID = "Bandit.Raider", StartingResourceMin = 200 },
+			{ ID = "Unit.RF_BanditHighwayman", StartingResourceMin = 300 }
 		]
 	},
 	{
 		ID = "Bandit.Fast",
 		UnitDefs = [
-			{ ID = "Unit.RF_BanditRobber" },
-			{ ID = "Unit.RF_BanditBandit" },
-			{ ID = "Unit.RF_BanditKiller", StartingResourceMin = 250 }
+			{ ID = "Unit.RF_BanditRobber", StartingResourceMin = 125 },
+			{ ID = "Unit.RF_BanditBandit", StartingResourceMin = 200 },
+			{ ID = "Unit.RF_BanditKiller", StartingResourceMin = 300 }
 		]
 	},
 	{
 		ID = "Bandit.Tough",
 		UnitDefs = [
-			{ ID = "Bandit.Thug", StartingResourceMax = 275 },
-			{ ID = "Unit.RF_BanditPillager" },
-			{ ID = "Unit.RF_BanditOutlaw" },
-			{ ID = "Unit.RF_BanditMarauder", StartingResourceMin = 250 }
+			{ ID = "Bandit.Thug", StartingResourceMin = 63, StartingResourceMax = 275 },
+			{ ID = "Unit.RF_BanditPillager", StartingResourceMin = 150 },
+			{ ID = "Unit.RF_BanditOutlaw", StartingResourceMin = 200 },
+			{ ID = "Unit.RF_BanditMarauder", StartingResourceMin = 300 }
 		]
 	},
 	{
 		ID = "Bandit.Ranged",
 		UnitDefs = [
 			{ ID = "Bandit.Poacher", StartingResourceMax = 250 },
-			{ ID = "Unit.RF_BanditHunter" },
-			{ ID = "Bandit.Marksman" },
-			{ ID = "Unit.RF_BanditSharpshooter", StartingResourceMin = 250 }
+			{ ID = "Unit.RF_BanditHunter", StartingResourceMin = 125 },
+			{ ID = "Bandit.Marksman", StartingResourceMin = 200 },
+			{ ID = "Unit.RF_BanditSharpshooter", StartingResourceMin = 300 }
 		]
 	},
 	{
@@ -73,7 +73,7 @@ local unitBlocks = [
 	{
 		ID = "Bandit.Boss",
 		UnitDefs = [
-			{ ID = "Bandit.Leader" },
+			{ ID = "Bandit.Leader", StartingResourceMin = 250 },
 			{ ID = "Unit.RF_BanditBaron" }
 		]
 	},
