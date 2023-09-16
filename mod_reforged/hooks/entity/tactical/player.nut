@@ -24,9 +24,12 @@
 		{
 			if (attribute == ::Const.Attributes.COUNT) continue;
 
-			local attributeMin = ::Const.AttributesLevelUp[attribute].Min + ::Math.min(this.m.Talents[attribute], 2);
+			local attributeMin = ::Const.AttributesLevelUp[attribute].Min;
+			if (this.m.Talents[attribute] >= 1) attributeMin++;
+			if (this.m.Talents[attribute] == 3) attributeMin++;
+
 			local attributeMax = ::Const.AttributesLevelUp[attribute].Max;
-			if (this.m.Talents[attribute] == 3) attributeMax += 1;
+			if (this.m.Talents[attribute] >= 2) attributeMax++;
 
 			local levelUpsRemaining = ::Math.max(::Const.XP.MaxLevelWithPerkpoints - this.getLevel() + this.getLevelUps(), 0);
 			local attributeValue = attributeName == "Fatigue" ? baseProperties["Stamina"] : baseProperties[attributeName]; // Thank you Overhype
@@ -117,6 +120,27 @@
 		{
 			this.fillTalentValues();
 			this.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
+		}
+	}
+
+	// Adjust attributes with 2 stars to also grant random stats instead of fixed stats each level-up
+	local fillAttributeLevelUpValues = o.fillAttributeLevelUpValues;
+	o.fillAttributeLevelUpValues = function( _amount, _maxOnly = false, _minOnly = false )
+	{
+		fillAttributeLevelUpValues(_amount, _maxOnly, _minOnly);
+
+		if (_amount == 0) return;
+		if (_maxOnly || _minOnly) return;	// Stars do not influence these level-ups
+
+		for (local i = 0; i != ::Const.Attributes.COUNT; i++)
+		{
+			if (this.m.Talents[i] == 2)
+			{
+				for (local j = 0; j < _amount; j++)
+				{
+					this.m.Attributes[i][j] += ::Math.rand(-1, 1);
+				}
+			}
 		}
 	}
 });
