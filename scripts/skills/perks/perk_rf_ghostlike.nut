@@ -1,6 +1,6 @@
 this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsSpent = true
+		IgnoresZOC = false
 	},
 	function create()
 	{
@@ -17,7 +17,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.IsSpent;
+		return !this.m.IgnoresZOC;
 	}
 
 	function getTooltip()
@@ -36,7 +36,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if (!this.m.IsSpent) _properties.IsImmuneToZoneOfControl = true;
+		if (this.m.IgnoresZOC) _properties.IsImmuneToZoneOfControl = true;
 	}
 
 	function updateSpent()
@@ -45,7 +45,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		local numAllies = ::Tactical.Entities.getAlliedActors(actor.getFaction(), actor.getTile(), 1, true);
 		local numEnemies = ::Tactical.Entities.getHostileActors(actor.getFaction(), actor.getTile(), 1, true);
 
-		this.m.IsSpent = !(numAllies >= numEnemies);
+		this.m.IgnoresZOC = numAllies >= numEnemies;
 	}
 
 	function onTurnStart()
@@ -66,6 +66,6 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.IsSpent = true;
+		this.m.IgnoresZOC = false;
 	}
 });
