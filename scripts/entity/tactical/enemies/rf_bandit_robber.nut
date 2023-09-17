@@ -155,6 +155,7 @@ this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_dagger"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 			}
 			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
 			{
