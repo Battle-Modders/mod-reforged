@@ -77,11 +77,12 @@
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/racial/vampire_racial"));
 		this.m.Skills.add(this.new("scripts/skills/actives/darkflight"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
 
 		// Reforged
+		b.RangedDefense += 15;
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 		if (::Reforged.Config.IsLegendaryDifficulty)

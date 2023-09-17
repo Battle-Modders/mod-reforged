@@ -58,8 +58,7 @@
 				o.onTurnStart = function() {}; // don't remove on turn start i.e. make it permanent
 			}));
 		}
-
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		b.RangedDefense += 10;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_dismantle"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_formidable_approach"));

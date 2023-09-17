@@ -34,7 +34,7 @@
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_wildmen_01");
 		this.m.Skills.add(this.new("scripts/skills/actives/barbarian_fury_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
@@ -47,12 +47,12 @@
 		// }
 
 		// Reforged
+		b.RangedDefense += 15;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
 			b.MeleeDefense += 10;
-			b.RangedDefense += 10;
 		}
 	}
 });

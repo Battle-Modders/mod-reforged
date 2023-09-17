@@ -43,10 +43,10 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/fake_drink_night_vision_skill"));
 
 		// Reforged
+		b.RangedDefense += 10;
 		this.m.BaseProperties.IsAffectedByReach = false;
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_soul_link"));
     	}
     	this.getSkills().update()

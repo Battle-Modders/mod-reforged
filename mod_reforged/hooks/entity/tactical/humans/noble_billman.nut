@@ -35,6 +35,7 @@
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
+    		b.RangedDefense += 10;
     		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));

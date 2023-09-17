@@ -38,7 +38,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/footwork")); // Replaced with perk
 
 		if (this.Const.DLC.Unhold)
@@ -47,6 +47,7 @@
 		}
 
 		// Reforged
+		b.RangedDefense += 10;
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Goblin;
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));

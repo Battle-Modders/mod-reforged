@@ -31,7 +31,7 @@
 		this.getSprite("socket").setBrush("bust_base_wildmen_01");
 		this.m.Skills.add(this.new("scripts/skills/actives/barbarian_fury_skill"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_adrenalin"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
@@ -43,6 +43,7 @@
 		// }
 
 		// Reforged
+		b.RangedDefense += 10;
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));

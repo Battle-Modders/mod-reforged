@@ -13,7 +13,7 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_nomads");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
@@ -32,6 +32,7 @@
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));
 
 		//Reforged
+		b.RangedDefense += 10;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
