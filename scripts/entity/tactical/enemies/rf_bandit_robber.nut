@@ -74,7 +74,6 @@ this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
 			[1, "scripts/items/weapons/scramasax"],
 
 			[1, "scripts/items/weapons/hooked_blade"],
-			[1, "scripts/items/weapons/pike"],
 			[1, "scripts/items/weapons/reinforced_wooden_flail"],
 			[1, "scripts/items/weapons/warfork"]
 		]).roll();
