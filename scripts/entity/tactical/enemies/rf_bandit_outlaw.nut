@@ -10,7 +10,7 @@ this.rf_bandit_outlaw <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Hairs = ::Const.Hair.UntidyMale;
 		this.m.HairColors = ::Const.HairColors.All;
 		this.m.Beards = ::Const.Beards.Raider;
-		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_melee_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_bandit_tough_agent");
 		this.m.AIAgent.setActor(this);
 	}
 

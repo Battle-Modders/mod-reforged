@@ -1,4 +1,12 @@
 ::mods_hookExactClass("entity/tactical/enemies/bandit_leader", function(o) {
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_bandit_leader_agent");
+		this.m.AIAgent.setActor(this);
+	}
+
     o.onInit = function()
     {
        this.human.onInit();
