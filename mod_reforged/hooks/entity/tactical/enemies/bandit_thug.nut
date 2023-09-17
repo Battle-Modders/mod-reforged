@@ -3,7 +3,7 @@
 	o.create = function()
 	{
 		create();
-		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandits/rf_bandit_tough_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_bandit_tough_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
