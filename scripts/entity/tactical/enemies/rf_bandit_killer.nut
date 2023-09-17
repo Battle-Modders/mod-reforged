@@ -173,11 +173,9 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 					}
 					else if (weapon.isWeaponType(::Const.Items.WeaponType.Dagger))
 					{
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sneak_attack"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swift_stabs"));
 					}
 					else //cleaver
 					{

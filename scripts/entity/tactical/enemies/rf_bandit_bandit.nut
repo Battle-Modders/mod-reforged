@@ -177,6 +177,7 @@ this.rf_bandit_bandit <- this.inherit("scripts/entity/tactical/human", {
 						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
 						this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sneak_attack"));
+						this.m.Skills.add(::new("scripts/skills/perks/rf_swift_stabs"));
 					}
 					else //sword or cleaver
 					{
