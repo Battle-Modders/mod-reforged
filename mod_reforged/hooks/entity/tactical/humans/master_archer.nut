@@ -10,7 +10,6 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));

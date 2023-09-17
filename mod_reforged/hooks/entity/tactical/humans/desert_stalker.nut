@@ -14,7 +14,7 @@
 		this.getSprite("socket").setBrush("bust_base_nomads");
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
@@ -29,6 +29,7 @@
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));
 
 		//Reforged
+		b.RangedDefense += 15;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));

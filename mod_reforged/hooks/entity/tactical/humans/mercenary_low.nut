@@ -21,11 +21,12 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
 
 		// Reforged
+		b.RangedDefense += 10;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		if (::Reforged.Config.IsLegendaryDifficulty)

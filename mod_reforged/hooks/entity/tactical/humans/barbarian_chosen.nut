@@ -44,7 +44,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/barbarian_fury_skill"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_adrenalin"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
@@ -66,6 +66,7 @@
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
 		{
+			b.RangedDefense += 10;
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bulwark"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));

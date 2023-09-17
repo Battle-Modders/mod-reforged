@@ -15,7 +15,7 @@
 ::MSU.Table.merge(::Const.Tactical.Actor.MasterArcher, {
 	Stamina = 150,
 	RangedSkill = 90,
-	RangedDefense = 30,
+	RangedDefense = 45,
 	Initiative = 150,
 	FatigueRecoveryRate = 15
 });

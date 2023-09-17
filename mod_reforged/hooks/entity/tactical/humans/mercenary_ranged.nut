@@ -27,6 +27,7 @@
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
 
 		// Reforged
+		b.RangedDefense += 10;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_dagger"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
@@ -34,7 +35,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+    		b.RangedDefense += 10;
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_marksmanship"));
     	}
 	}

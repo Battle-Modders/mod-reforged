@@ -24,7 +24,7 @@
 		}));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+    		b.RangedDefense += 10;
     		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_soul_link"));
     	}

@@ -25,7 +25,7 @@
 		}));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+    		b.RangedDefense += 10;
     		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
     	}
 	}

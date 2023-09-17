@@ -29,6 +29,7 @@
 		this.m.Skills.add(this.new("scripts/skills/racial/goblin_ambusher_racial"));
 
 		// Reforged
+		b.RangedDefense += 5;
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
