@@ -1,7 +1,5 @@
 this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
-	m = {
-		IgnoresZOC = false
-	},
+	m = {},
 	function create()
 	{
 		this.m.ID = "perk.rf_ghostlike";
@@ -13,11 +11,6 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
-	}
-
-	function isHidden()
-	{
-		return !this.m.IgnoresZOC;
 	}
 
 	function getTooltip()
@@ -36,36 +29,30 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if (this.m.IgnoresZOC) _properties.IsImmuneToZoneOfControl = true;
-	}
+		this.m.IsHidden = true;
 
-	function updateSpent()
-	{
 		local actor = this.getContainer().getActor();
-		local numAllies = ::Tactical.Entities.getAlliedActors(actor.getFaction(), actor.getTile(), 1, true).len();
-		local numEnemies = ::Tactical.Entities.getHostileActors(actor.getFaction(), actor.getTile(), 1, true).len();
+		if (actor.isPlacedOnMap())
+		{
+			local numAllies = 0;
+			local numEnemies = 0;
+			local myTile = actor.getTile();
+			foreach (faction in ::Tactical.Entities.getAllInstances())
+			{
+				foreach (otherActor in faction)
+				{
+					if (!otherActor.isPlacedOnMap() || otherActor.getTile().getDistanceTo(myTile) != 1)
+						continue;
 
-		this.m.IgnoresZOC = numAllies >= numEnemies;
-	}
-
-	function onTurnStart()
-	{
-		this.updateSpent();
-	}
-
-	function onResumeTurn()
-	{
-		this.updateSpent();
-	}
-
-	function onMovementFinished( _tile )
-	{
-		this.updateSpent();
-	}
-
-	function onCombatFinished()
-	{
-		this.skill.onCombatFinished();
-		this.m.IgnoresZOC = false;
+					if (otherActor.isAlliedWith(actor)) numAllies++;
+					else numEnemies++;
+				}
+			}
+			if (numAllies >= numEnemies)
+			{
+				_properties.IsImmuneToZoneOfControl = true;
+				this.m.IsHidden = false;
+			}
+		}
 	}
 });
