@@ -155,6 +155,29 @@
 	}
 
 // New Functions:
+	// Recover hitpoints up to the maximum and return the amount of hitpoints that were recovered
+	q.recoverHitpoints <- function( _hitpointsRecovered, _printLog = false )
+	{
+		if (_hitpointsRecovered <= 0.0) return 0;
+		if (this.getHitpoints() == this.getHitpointsMax()) return 0;
+
+		_hitpointsRecovered = ::Math.round(_hitpointsRecovered * this.getCurrentProperties().HitpointRecoveryMult);
+
+		// Never recover more hitpoints than the maximum hitpoints
+		_hitpointsRecovered = ::Math.min(_hitpointsRecovered, this.getHitpointsMax() - this.getHitpoints());
+
+		this.setHitpoints(this.getHitpoints() + _hitpointsRecovered);
+
+		if (_printLog && _hitpointsRecovered > 0 && this.isPlacedOnMap() && !this.isHiddenToPlayer())
+		{
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this) + " recovers " + ::MSU.Text.colorGreen(_hitpointsRecovered) + " Hitpoints");
+		}
+
+		this.onUpdateInjuryLayer();
+
+		return _hitpointsRecovered;
+	}
+
 	q.getSurroundedBonus <- function( _targetEntity )
 	{
 		local surroundedCount = _targetEntity.getSurroundedCount();

@@ -25,6 +25,8 @@ local getClone = ::Const.CharacterProperties.getClone;
 ::Const.CharacterProperties.OffensiveReachIgnore <- 0;
 ::Const.CharacterProperties.BonusPerReachAdvantage <- 0;
 
+::Const.CharacterProperties.HitpointRecoveryMult <- 1.0;
+
 ::Const.ProjectileType.FlamingArrow <- ::Const.ProjectileType.COUNT;
 ::Const.ProjectileType.COUNT += 1;
 ::Const.ProjectileDecals.push(clone ::Const.ProjectileDecals[::Const.ProjectileType.Arrow]);
