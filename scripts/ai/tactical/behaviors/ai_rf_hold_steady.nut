@@ -36,54 +36,52 @@ this.ai_rf_hold_steady <- ::inherit("scripts/ai/tactical/behavior", {
 
 		score = score * this.getFatigueScoreMult(this.m.Skill);
 		local myTile = _entity.getTile();
-		local allies = ::Tactical.Entities.getInstancesOfFaction(_entity.getFaction());
-		local enemies = ::Tactical.Entities.getHostileActors(_entity.getFaction());
 		local useScore = 0.0;
 		local numTargets = 0;
 
-		local relevantAllies = [];		
-
-		foreach( enemy in enemies )
+		foreach (ally in ::Tactical.Entities.getInstancesOfFaction(_entity.getFaction()))
 		{
-			if (!enemy.hasZoneOfControl())
-			{
-				continue;
-			}
-			
-			local bestTarget = this.queryBestMeleeTarget(enemy, null, allies).Target;			
-			if (bestTarget == null || bestTarget.getMoraleState() == ::Const.MoraleState.Fleeing || bestTarget.getTile().getDistanceTo(myTile) > 4 || bestTarget.getSkills().hasSkill("effects.rf_hold_steady"))
+			local allyTile = ally.getTile();
+			if (allyTile.getDistanceTo(myTile) > 4 || !ally.hasZoneOfControl() || ally.getSkills().hasSkill("effects.rf_hold_steady"))
 			{
 				continue;
 			}
 
-			local enemyAttack = enemy.getSkills().getAttackOfOpportunity();
-			if (!enemyAttack.verifyTargetAndRange(bestTarget.getTile(), enemy.getTile()))
+			local zocCount = allyTile.getZoneOfControlCountOtherThan(ally.getAlliedFactions());
+			if (zocCount < 2)
 			{
 				continue;
 			}
 
-			local hitChance = enemyAttack.getHitchance(bestTarget);
-
-			if (hitChance < 40 || hitChance > 90)
+			local allyAttack = ally.getSkills().getAttackOfOpportunity();
+			for (local i = 0; i < 6; i++)
 			{
-				continue;
-			}
+				if (!allyTile.hasNextTile(i)) continue;
 
-			if (relevantAllies.find(bestTarget.getID()) == null) 
-			{
-				relevantAllies.push(bestTarget.getID());
+				local nextTile = allyTile.getNextTile(i);
+				if (!nextTile.IsOccupiedByActor) continue;
+
+				local adjacentEntity = nextTile.getEntity();
+				if (adjacentEntity.isAlliedWith(ally) || !adjacentEntity.hasZoneOfControl()) continue;
+
+				local enemyHitChance = adjacentEntity.getSkills().getAttackOfOpportunity().getHitchance(ally);
+				if (enemyHitChance < 20) continue;
+
+				if (allyAttack.getHitchance(adjacentEntity) < enemyHitChance * 0.7)
+				{
+					numTargets++;
+					useScore += 40 * zocCount;
+					break;
+				}
 			}
-			
-			useScore = useScore + hitChance - 40;
 		}
 
-		if (relevantAllies.len() < 5)
+		if (numTargets < 3)
 		{
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		score = score * (useScore * 0.01);
-		return ::Const.AI.Behavior.Score.RF_HoldSteady * score;
+		return ::Const.AI.Behavior.Score.RF_HoldSteady * score * useScore * 0.01;
 	}
 
 	function onExecute( _entity )
