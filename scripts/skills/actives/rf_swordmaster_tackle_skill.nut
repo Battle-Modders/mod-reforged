@@ -22,7 +22,7 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsUsingHitchance = false;
 		this.m.ActionPointCost = 6;
-		this.m.FatigueCost = 25;
+		this.m.FatigueCost = 15;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 	}
@@ -36,6 +36,21 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger the target"
+		});
+
+		local attack = this.getContainer().getAttackOfOpportunity();
+		tooltip.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString(format("Perform a free [%s|Skill+%s] on the target", attack.getName(), split(::IO.scriptFilenameByHash(attack.ClassNameHash), "/").top()))
+		});
+
+		tooltip.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "If the attack is successful, exchange positions with the target"
 		});
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
@@ -94,16 +109,25 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 	{
 		local target = _targetTile.getEntity();
 		local userTile = _user.getTile();
+
 		target.getSkills().add(::new("scripts/skills/effects/staggered_effect"));
-
-		::Tactical.getNavigator().switchEntities(_user, target, null, null, 1.0);
-
-		if (userTile.IsVisibleForPlayer)
+		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " tackled and staggered " + ::Const.UI.getColorizedEntityName(target));
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has tackled and staggered " + ::Const.UI.getColorizedEntityName(target));
 		}
 
-		return true;
+		local aoo = this.getContainer().getAttackOfOpportunity();
+		local overlay = aoo.m.Overlay;
+		aoo.m.Overlay = "";
+		local success = aoo.useForFree(_targetTile);
+		aoo.m.Overlay = overlay;
+
+		if (success && target.isAlive())
+		{
+			::Tactical.getNavigator().switchEntities(_user, target, null, null, 1.0);
+		}
+
+		return success;
 	}
 
 });

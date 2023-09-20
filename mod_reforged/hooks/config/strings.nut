@@ -1668,21 +1668,19 @@ foreach (vanillaDesc in vanillaDescriptions)
 	 		{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Unlocks the [Kick|Skill+rf_swordmaster_kick_skill] skill which allows you to knock back and [stagger|Skill+staggered_effect] a target."
-					"When using a two-handed sword or double-gripping a one-handed sword, the [Action Point|Concept.ActionPoints] cost is reduced by " + ::MSU.Text.colorGreen(1) + " and the [Fatigue|Concept.Fatigue] Cost by " + ::MSU.Text.colorGreen(5) + "."
-
+					"Unlocks the [Kick|Skill+rf_swordmaster_kick_skill] skill which allows you to stagger a target, perform a free attack against them. If the attack is successful, the target is knocked back a tile."
 				]
 			},
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Unlocks the [Push Through|Skill+rf_swordmaster_push_through_skill] skill which allows you to knock back and stagger a target while moving into their tile in one action."
+					"Unlocks the [Push Through|Skill+rf_swordmaster_push_through_skill] skill which allows you to stagger a target and perform a free attack against them. If the attack is successful, the target is knocked back a tile and you move into their place."
 				]
 			},
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Unlocks the [Tackle|Skill+rf_swordmaster_tackle_skill] which allows you to exchange positions with and stagger an adjacent target."
+					"Unlocks the [Tackle|Skill+rf_swordmaster_tackle_skill] which allows you to stagger a target and perform a free attack against them. If the attack is successful you exchange positions with the target."
 				]
 			}
 		],
