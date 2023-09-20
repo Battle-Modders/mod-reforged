@@ -1,3 +1,15 @@
+
+		
+::Reforged.HooksMod.hook("scripts/ambitions/ambition", function(q) {
+	q.m.ButtonIcon <- "ui/icon/rf_default_ambition_icon.png";
+
+// New Functions
+	q.getButtonIcon <- function()
+	{
+		return this.m.ButtonIcon;
+	}
+});
+
 ::Reforged.QueueBucket.Late.push(function() {
 	::Reforged.HooksMod.hook("scripts/ambitions/ambition", function(q) {
 		q.getButtonTooltip = @(__original) function()

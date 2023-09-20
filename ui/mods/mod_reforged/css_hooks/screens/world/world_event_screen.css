@@ -1,0 +1,8 @@
+/* Restrict and Scale the height of Ambition-Icons to 50x50 pixels */
+.world-event-buttons .row.has-big-buttons .l-button img
+{
+	height: 5.0rem;
+	width: 5.0rem;
+    top: 1.0rem;
+    left: 1.0rem;
+}
