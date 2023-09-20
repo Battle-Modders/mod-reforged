@@ -19,7 +19,8 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 			"sounds/combat/knockback_hit_03.wav"
 		];
 		this.m.Order = ::Const.SkillOrder.Any;
-		this.m.FatigueCost = 25;
+		this.m.ActionPointCost = 6;
+		this.m.FatigueCost = 20;
 	}
 
 	function onAdded()
@@ -46,6 +47,21 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger the target"
+		});
+
+		local attack = this.getContainer().getAttackOfOpportunity();
+		tooltip.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString(format("Perform a free [%s|Skill+%s] on the target", attack.getName(), split(::IO.scriptFilenameByHash(attack.ClassNameHash), "/").top()))
+		});
+
+		tooltip.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "If the attack is successful, the target is pushed back a tile and you move into their position"
 		});
 
 		if (actor.getCurrentProperties().IsRooted || actor.getCurrentProperties().IsStunned)
@@ -77,17 +93,24 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 	{
 		local target = _targetTile.getEntity();
 
-		local ret = this.line_breaker.onUse(_user, _targetTile);
-		if (ret && target.isAlive())
+		target.getSkills().add(::new("scripts/skills/effects/staggered_effect"));
+		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{
-			target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
-			if (_targetTile.IsVisibleForPlayer)
-			{
-				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " has staggered " + ::Const.UI.getColorizedEntityName(target));
-			}
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has pushed through and staggered " + ::Const.UI.getColorizedEntityName(target));
 		}
 
-		return ret;
+		local aoo = this.getContainer().getAttackOfOpportunity();
+		local overlay = aoo.m.Overlay;
+		aoo.m.Overlay = "";
+		local success = aoo.useForFree(_targetTile);
+		aoo.m.Overlay = overlay;
+
+		if (success && target.isAlive())
+		{
+			this.line_breaker.onUse(_user, _targetTile);
+		}
+
+		return success;
 	}
 });
 
