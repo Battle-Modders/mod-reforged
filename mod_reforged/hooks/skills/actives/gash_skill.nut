@@ -4,6 +4,7 @@
 	{
 		create();
 		this.m.HitChanceBonus = 5;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Gash;
 	}
 
 	o.getTooltip = function()
