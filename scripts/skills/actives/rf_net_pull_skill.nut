@@ -33,6 +33,7 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 		this.m.MinRange = 2;
 		this.m.MaxRange = 2;
 		this.m.MaxLevelDifference = 1;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.KnockBack;
 	}
 
 	function getTooltip()
