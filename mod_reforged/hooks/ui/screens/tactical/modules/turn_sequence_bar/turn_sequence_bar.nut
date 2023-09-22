@@ -25,6 +25,23 @@
 		initNextRound();
 	}
 
+	// We replace the vanilla function for performance reason and because it is a simple function. We don't want to query an entitys skills twice for no reason.
+	o.convertEntityStatusEffectsToUIData = function( _entity )
+	{
+		if (!_entity.isPlayerControlled()) return null;
+
+		local result = [];
+		foreach (statusEffect in _entity.getSkills().query(::Const.SkillType.StatusEffect | ::Const.SkillType.PermanentInjury, false, true))
+		{
+			result.push({
+				id = statusEffect.getID(),
+				imagePath = statusEffect.getIcon()
+			});
+		}
+
+		return result;
+	}
+
 // New Functions:
 	o.onWaitTurnAllButtonPressed <- function()
 	{
