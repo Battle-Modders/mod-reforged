@@ -25,6 +25,7 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 		this.m.FatigueCost = 15;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.LineBreaker;
 	}
 
 	function getTooltip()

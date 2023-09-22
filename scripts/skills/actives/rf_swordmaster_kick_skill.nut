@@ -30,6 +30,7 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 		this.m.FatigueCost = 15;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.KnockBack;
 	}
 
 	function getTooltip()

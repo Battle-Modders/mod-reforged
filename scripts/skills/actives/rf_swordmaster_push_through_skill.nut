@@ -21,20 +21,7 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 15;
-	}
-
-	function onAdded()
-	{
-		local actor = this.getContainer().getActor();
-		if (actor.isPlayerControlled())	return;
-
-		local agent = actor.getAIAgent();
-
-		if (agent.findBehavior(::Const.AI.Behavior.ID.LineBreaker) == null)
-		{
-			agent.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_line_breaker"));
-			agent.finalizeBehaviors();
-		}
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.LineBreaker;
 	}
 
 	function getTooltip()
