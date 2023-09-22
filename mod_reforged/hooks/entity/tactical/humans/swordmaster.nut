@@ -3,7 +3,8 @@
         BladeDancer = 0,
         Metzger = 1,
         Reaper = 2,
-        Precise = 3
+        Precise = 3,
+        Grappler = 4
     };
 	o.m.MyArmorVariant <- 0;
 	o.m.MyVariant <- 0;
@@ -106,6 +107,7 @@
 	                break;
 
 	            case this.m.SwordmasterVariants.Reaper:
+	            case this.m.SwordmasterVariants.Grappler:
 	                weapon = ::MSU.Class.WeightedContainer([
 			    		[1, "scripts/items/weapons/rf_greatsword"],
 						[1, "scripts/items/weapons/warbrand"],
@@ -158,6 +160,7 @@
 	                break;
 
 	            case this.m.SwordmasterVariants.Reaper:
+	            case this.m.SwordmasterVariants.Grappler:
 	                weapon = ::MSU.Class.WeightedContainer([
 						[1, "scripts/items/weapons/named/named_warbrand"],
 						[1, "scripts/items/weapons/named/named_greatsword"]
@@ -317,6 +320,22 @@
 						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 					}
 	                break;
+
+	            case this.m.SwordmasterVariants.Grappler:
+	            	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_grappler"));
+	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_kata"));
+	            	local attack = this.getSkills().getAttackOfOpportunity();
+					if (attack != null && attack.getBaseValue("ActionPointCost") <= 4)
+					{
+						this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+					}
+					else
+					{
+						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+					}
+					break;
 	        }
         }
 
@@ -348,6 +367,7 @@
 	                break;
 
 	            case this.m.SwordmasterVariants.Reaper:
+	            case this.m.SwordmasterVariants.Grappler:
 	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_pattern_recognition"));
 	                break;
 	        }
