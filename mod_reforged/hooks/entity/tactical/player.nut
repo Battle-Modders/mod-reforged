@@ -126,12 +126,12 @@
 	{
 		fillAttributeLevelUpValues(_amount, _maxOnly, _minOnly);
 
-		if (_amount == 0) return;
+		if (_amount < 3) return;
 		if (_maxOnly || _minOnly) return;	// Stars do not influence these level-ups
 
 		for (local i = 0; i != ::Const.Attributes.COUNT; i++)
 		{
-			if (this.m.Talents[i] == 2 && _amount > 2)
+			if (this.m.Talents[i] == 2)
 			{
 				local indices = array(_amount);
 				indices.apply(@(val, idx) idx);
