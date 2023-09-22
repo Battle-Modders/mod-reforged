@@ -86,7 +86,7 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 		if (perk == null || !perk.isEnabled()) return false;
 
 		local actor = this.getContainer().getActor();
-		return this.skill.isUsable() && !actor.getCurrentProperties().IsRooted && !actor.getCurrentProperties().IsStunned;
+		return this.line_breaker.isUsable() && !actor.getCurrentProperties().IsRooted && !actor.getCurrentProperties().IsStunned;
 	}
 
 	function onUse( _user, _targetTile )
