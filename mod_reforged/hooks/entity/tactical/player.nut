@@ -24,12 +24,9 @@
 		{
 			if (attribute == ::Const.Attributes.COUNT) continue;
 
-			local attributeMin = ::Const.AttributesLevelUp[attribute].Min;
-			if (this.m.Talents[attribute] >= 1) attributeMin++;
-			if (this.m.Talents[attribute] == 3) attributeMin++;
-
+			local attributeMin = ::Const.AttributesLevelUp[attribute].Min + ::Math.min(this.m.Talents[attribute], 2);
 			local attributeMax = ::Const.AttributesLevelUp[attribute].Max;
-			if (this.m.Talents[attribute] >= 2) attributeMax++;
+			if (this.m.Talents[attribute] == 2) attributeMax++;
 
 			local levelUpsRemaining = ::Math.max(::Const.XP.MaxLevelWithPerkpoints - this.getLevel() + this.getLevelUps(), 0);
 			local attributeValue = attributeName == "Fatigue" ? baseProperties["Stamina"] : baseProperties[attributeName]; // Thank you Overhype
@@ -134,11 +131,23 @@
 
 		for (local i = 0; i != ::Const.Attributes.COUNT; i++)
 		{
-			if (this.m.Talents[i] == 2)
+			if (this.m.Talents[i] == 2 && _amount > 2)
 			{
-				for (local j = 0; j < _amount; j++)
+				local indices = array(_amount);
+				indices.apply(@(val, idx) idx);
+				local indicesToRandomize = array(::Math.rand(2, _amount));
+				if (indicesToRandomize.len() % 2 != 0) indicesToRandomize.pop(); // Ensure that we have an even number to randomize
+
+				for (local j = 0; j < indicesToRandomize.len(); j++)
 				{
-					this.m.Attributes[i][j] += ::Math.rand(-1, 1);
+					indicesToRandomize[j] = indices.remove(::Math.rand(0, indices.len() - 1));
+				}
+
+				local change = ::Math.rand(-1, 1);
+				foreach (idx in indicesToRandomize)
+				{
+					this.m.Attributes[i][idx] += change;
+					change *= -1;
 				}
 			}
 		}
