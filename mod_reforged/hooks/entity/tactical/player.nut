@@ -26,7 +26,7 @@
 
 			local attributeMin = ::Const.AttributesLevelUp[attribute].Min + ::Math.min(this.m.Talents[attribute], 2);
 			local attributeMax = ::Const.AttributesLevelUp[attribute].Max;
-			if (this.m.Talents[attribute] == 2) attributeMax++;
+			if (this.m.Talents[attribute] == 3) attributeMax++;
 
 			local levelUpsRemaining = ::Math.max(::Const.XP.MaxLevelWithPerkpoints - this.getLevel() + this.getLevelUps(), 0);
 			local attributeValue = attributeName == "Fatigue" ? baseProperties["Stamina"] : baseProperties[attributeName]; // Thank you Overhype
@@ -126,13 +126,16 @@
 	{
 		fillAttributeLevelUpValues(_amount, _maxOnly, _minOnly);
 
-		if (_amount < 3) return;
+		if (_amount < 2) return;
 		if (_maxOnly || _minOnly) return;	// Stars do not influence these level-ups
 
 		for (local i = 0; i != ::Const.Attributes.COUNT; i++)
 		{
 			if (this.m.Talents[i] == 2)
 			{
+				local targetValue = ::Math.maxf(::Const.AttributesLevelUp[i].Max * 0.833, ::Const.AttributesLevelUp[i].Max * 1.166);
+				local defaultLevelup = ::Math.round(targetValue / _amount);
+
 				local indices = array(_amount);
 				indices.apply(@(val, idx) idx);
 				local indicesToRandomize = array(::Math.rand(2, _amount));
