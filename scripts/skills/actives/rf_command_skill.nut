@@ -76,12 +76,7 @@ this.rf_command_skill <- this.inherit("scripts/skills/skill", {
 		local target = _targetTile.getEntity();
 		::Tactical.TurnSequenceBar.moveEntityToFront(target.getID());
 
-		local recoveredActionPoints = ::Math.min(target.getActionPointsMax() - target.getActionPoints(), this.m.ActionPointsRecovered);
-		if (recoveredActionPoints != 0)
-		{
-			target.setActionPoints(target.getActionPoints() + recoveredActionPoints);
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " recovers " + ::MSU.Text.colorGreen(recoveredActionPoints) + " Action Point(s)");
-		}
+		target.recoverActionPoints(this.m.ActionPointsRecovered);
 		target.getSkills().add(::new("scripts/skills/effects/rf_commanded_effect"));
 
 		this.spawnIcon("rf_command_effect", _targetTile);

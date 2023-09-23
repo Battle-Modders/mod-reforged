@@ -20,8 +20,7 @@ this.perk_rf_bloodbath <- ::inherit("scripts/skills/skill", {
 	{
 		if (!this.m.IsSpent && _fatalityType != ::Const.FatalityType.None && _killer != null && _killer.getID() == this.getContainer().getActor().getID() && _skill != null && !_skill.isRanged() && _skill.isAttack() && ::Tactical.TurnSequenceBar.isActiveEntity(_killer))
 		{
-			_killer.setActionPoints(::Math.min(_killer.getActionPointsMax(), _killer.getActionPoints() + this.m.RestoredActionPoints));
-			_killer.setDirty(true);
+			_killer.recoverActionPoints(this.m.RestoredActionPoints);
 			this.spawnIcon("perk_rf_bloodbath", _killer.getTile());
 			this.m.IsSpent = true;
 		}

@@ -124,8 +124,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 			local weapon = actor.getMainhandItem();
 
 			weapon.setAmmo(::Math.min(weapon.getAmmoMax(), weapon.getAmmo() + 1));
-			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
-			actor.setDirty(true);
+			actor.recoverActionPoints(4);
 			this.spawnIcon("perk_rf_opportunist", tile);
 			tile.Properties.get("Corpse").IsValidForOpportunist = false;
 

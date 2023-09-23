@@ -29,7 +29,7 @@ this.perk_rf_shield_splitter <- ::inherit("scripts/skills/skill", {
 		if (!::MSU.isNull(this.m.Shield) && this.m.Shield.isItemType(::Const.Items.ItemType.Shield) && this.m.Shield.getCondition() == 0)
 		{
 			local user = this.getContainer().getActor();
-			user.setActionPoints(::Math.min(user.getActionPointsMax(), user.getActionPoints() + this.m.APRestore));
+			user.recoverActionPoints(this.m.APRestore);
 			this.spawnIcon("perk_rf_shield_splitter", user.getTile());
 		}
 

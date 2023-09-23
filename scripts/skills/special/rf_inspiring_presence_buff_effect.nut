@@ -46,10 +46,10 @@ this.rf_inspiring_presence_buff_effect <- ::inherit("scripts/skills/skill", {
 		if (this.m.IsInEffect)
 		{
 			_properties.ActionPoints += this.m.BonusActionPoints;
-			
+
 			if (this.m.IsStartingTurn)
 			{
-				this.getContainer().getActor().setActionPoints(this.getContainer().getActor().getActionPointsMax() + this.m.BonusActionPoints);
+				this.getContainer().getActor().recoverActionPoints(this.m.BonusActionPoints, false, true);
 				this.m.IsStartingTurn = false;
 			}
 		}
