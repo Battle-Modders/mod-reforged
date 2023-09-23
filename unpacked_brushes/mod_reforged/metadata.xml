@@ -21,6 +21,8 @@
 	<sprite id="rf_bearded_blade_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_bearded_blade_skill.png" />
 	<sprite id="rf_blitzkrieg_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_blitzkrieg_skill.png" />
 	<sprite id="rf_bestial_vigor_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_bestial_vigor_skill.png" />
+	<sprite id="rf_command_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_command_skill.png" />
+	<sprite id="rf_command_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_command.png" />
 	<sprite id="rf_cover_ally_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_cover_ally_skill.png" />
 	<sprite id="rf_adjust_dented_armor_ally_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_adjust_dented_armor_ally_skill.png" />
 	<sprite id="rf_line_breaker_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_line_breaker_skill.png" />

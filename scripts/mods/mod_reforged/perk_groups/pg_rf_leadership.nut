@@ -16,7 +16,7 @@ this.pg_rf_leadership <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.rally_the_troops"],
 				["perk.fortified_mind"],
 				[],
-				[],
+				["perk.rf_command"],
 				[],
 				["perk.inspiring_presence"]
 			]

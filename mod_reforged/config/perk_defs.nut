@@ -216,6 +216,14 @@
 		IconDisabled = "ui/perks/rf_bolster_bw.png",
 	},
 	{
+		ID = "perk.rf_command",
+		Script = "scripts/skills/perks/perk_rf_command",
+		Name = ::Const.Strings.PerkName.RF_Command,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Command,
+		Icon = "ui/perks/rf_command.png",
+		IconDisabled = "ui/perks/rf_command_sw.png"
+	},
+	{
 		ID = "perk.rf_leverage",
 		Script = "scripts/skills/perks/perk_rf_leverage",
 		Name = ::Const.Strings.PerkName.RF_Leverage,

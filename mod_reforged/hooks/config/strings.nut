@@ -33,6 +33,7 @@
 	RF_Angler = "Angler",
 	RF_BattleFervor = "Battle Fervor",
 	RF_BackToBasics = "Back to Basics",
+	RF_Command = "Command",
 	RF_Skirmisher = "Skirmisher",
 	RF_Ballistics = "Ballistics",
 	RF_BearDown = "Bear Down",
@@ -789,6 +790,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+	RF_Command = ::UPD.getDescription({
+		Fluff = "\'You shall do it!\'",
+		Effects = [{
+			Type = ::UPD.EffectType.Active,
+			Description = [
+				"Unlocks the [Command|Skill+rf_command_skill] skill which allows you move allies forward in the turn order.",
+			]
+		}]
+	}),
 	RF_DeathDealer = ::UPD.getDescription({
  		Fluff = "Like wheat before a scythe!",
  		Requirement = "Melee AOE Attack",
