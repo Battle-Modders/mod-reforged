@@ -133,11 +133,11 @@
 		{
 			if (this.m.Talents[i] == 2)
 			{
-				local targetValue = ::Math.maxf(::Const.AttributesLevelUp[i].Max * 0.833, ::Const.AttributesLevelUp[i].Max * 1.166);
-				local defaultLevelup = ::Math.round(targetValue / _amount);
-
 				local indices = array(_amount);
-				indices.apply(@(val, idx) idx);
+				foreach (i, _ in indices)
+				{
+					indices[i] = i;
+				}
 				local indicesToRandomize = array(::Math.rand(2, _amount));
 				if (indicesToRandomize.len() % 2 != 0) indicesToRandomize.pop(); // Ensure that we have an even number to randomize
 
