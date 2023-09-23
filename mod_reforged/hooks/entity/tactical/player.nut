@@ -31,6 +31,14 @@
 			local levelUpsRemaining = ::Math.max(::Const.XP.MaxLevelWithPerkpoints - this.getLevel() + this.getLevelUps(), 0);
 			local attributeValue = attributeName == "Fatigue" ? baseProperties["Stamina"] : baseProperties[attributeName]; // Thank you Overhype
 
+			if (this.m.Talents[attribute] == 2)
+			{
+				foreach (value in this.m.Attributes[attribute])
+				{
+					attributeValue += value - attributeMax;
+				}
+			}
+
 			ret[attribute] <- [
 				attributeValue + attributeMin * levelUpsRemaining,
 				attributeValue + attributeMax * levelUpsRemaining
