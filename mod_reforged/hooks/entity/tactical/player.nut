@@ -146,19 +146,14 @@
 				{
 					indices[i] = i;
 				}
-				local indicesToRandomize = array(::Math.rand(2, _amount));
-				if (indicesToRandomize.len() % 2 != 0) indicesToRandomize.pop(); // Ensure that we have an even number to randomize
-
-				for (local j = 0; j < indicesToRandomize.len(); j++)
-				{
-					indicesToRandomize[j] = indices.remove(::Math.rand(0, indices.len() - 1));
-				}
+				local numIndicesToRandomize = ::Math.rand(2, _amount);
+				if (numIndicesToRandomize % 2 != 0) numIndicesToRandomize--; // Ensure that we have an even number to randomize
 
 				local change = ::Math.rand(-1, 1);
-				foreach (idx in indicesToRandomize)
+				for (local j = 0; j < numIndicesToRandomize; j++)
 				{
-					this.m.Attributes[i][idx] += change;
-					change *= -1;
+					this.m.Attributes[i][indices.remove(::Math.rand(0, indices.len() - 1))] += change;
+					change *= 1;
 				}
 			}
 		}
