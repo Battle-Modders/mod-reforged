@@ -59,31 +59,24 @@ this.rf_bandit_bandit <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		if (::Math.rand(1, 100) < 20 && (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)))
-		{
-			this.m.Items.equip(::new("scripts/items/tools/throwing_net"))
-		}
-
+		local throwing;
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			if (this.m.MyVariant == 0) // Not regular throwing weapons
 			{
-				local throwing = ::MSU.Class.WeightedContainer([
+				throwing = ::MSU.Class.WeightedContainer([
 					[1, "scripts/items/weapons/throwing_spear"]
 				]).rollChance(25);
-
-				if (throwing != null) this.m.Items.equip(::new(throwing));
 			}
 			else // Thrower
 			{
-				local throwing = ::MSU.Class.WeightedContainer([
+				throwing = ::MSU.Class.WeightedContainer([
 					[1, "scripts/items/weapons/javelin"],
 					[1, "scripts/items/weapons/throwing_axe"]
 				]).roll();
-
-				this.m.Items.equip(::new(throwing));
 			}
 		}
+		if (throwing != null) this.m.Items.equip(::new(throwing));
 
 		local weapon = ::MSU.Class.WeightedContainer([
 			[1, "scripts/items/weapons/boar_spear"],
@@ -98,19 +91,42 @@ this.rf_bandit_bandit <- this.inherit("scripts/entity/tactical/human", {
 			[1, "scripts/items/weapons/spetum"],
 			[1, "scripts/items/weapons/warbrand"]
 		]).roll();
-
 		weapon = ::new(weapon);
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) // both hands free
+
+		// You have a 20% chance of getting a throwing net
+		if (::Math.rand(1, 100) < 20)
 		{
-			this.m.Items.equip(weapon);
+			local net = ::new("scripts/items/tools/throwing_net");
+			if (!this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				this.m.Items.addToBag(net);
+			}
+			else
+			{
+				// If you have a throwing weapon or a one-handed weapon, then equip the net
+				// Otherwise add the net to bag
+				if (throwing != null) this.m.Items.equip(net);
+				else
+				{
+					if (weapon.isItemType(::Const.Items.ItemType.OneHanded)) this.m.Items.equip(net);
+					else this.m.Items.addToBag(net);
+				}
+			}
 		}
-		else if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && weapon.isItemType(::Const.Items.ItemType.OneHanded)) // mainhand free and rolled 1h melee weapon
+
+		if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 		{
-			this.m.Items.equip(weapon);
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+				this.m.Items.equip(weapon);
+			else
+				this.m.Items.addToBag(weapon);
 		}
-		else // cannot equip melee weapon to hands
+		else
 		{
-			this.m.Items.addToBag(weapon);
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+				this.m.Items.equip(weapon);
+			else
+				this.m.Items.addToBag(weapon);
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
