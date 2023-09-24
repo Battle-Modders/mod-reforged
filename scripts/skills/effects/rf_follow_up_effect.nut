@@ -83,12 +83,15 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 			return;
 		}
 
+		local user = this.getContainer().getActor();
 		local targetTile = _targetEntity.getTile();
+
+		if (!user.getTile().hasLineOfSightTo(targetTile, user.getCurrentProperties().getVision()))
+			return;
 
 		local attack = this.getContainer().getAttackOfOpportunity();
 		if (attack != null && attack.verifyTargetAndRange(targetTile, this.getContainer().getActor().getTile()))
 		{
-			local user = this.getContainer().getActor();
 			if (!user.isHiddenToPlayer() || targetTile.IsVisibleForPlayer)
 			{
 				this.getContainer().setBusy(true);
