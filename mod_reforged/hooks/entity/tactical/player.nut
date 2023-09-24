@@ -142,9 +142,9 @@
 			if (this.m.Talents[i] == 2)
 			{
 				local indices = array(_amount);
-				foreach (i, _ in indices)
+				foreach (j, _ in indices)
 				{
-					indices[i] = i;
+					indices[j] = j;
 				}
 				local numIndicesToRandomize = ::Math.rand(2, _amount);
 				if (numIndicesToRandomize % 2 != 0) numIndicesToRandomize--; // Ensure that we have an even number to randomize
