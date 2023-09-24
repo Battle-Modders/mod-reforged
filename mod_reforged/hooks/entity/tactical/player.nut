@@ -149,7 +149,7 @@
 				local numIndicesToRandomize = ::Math.rand(2, _amount);
 				if (numIndicesToRandomize % 2 != 0) numIndicesToRandomize--; // Ensure that we have an even number to randomize
 
-				local change = ::Math.rand(-1, 1);
+				local change = 1;
 				for (local j = 0; j < numIndicesToRandomize; j++)
 				{
 					this.m.Attributes[i][indices.remove(::Math.rand(0, indices.len() - 1))] += change;
