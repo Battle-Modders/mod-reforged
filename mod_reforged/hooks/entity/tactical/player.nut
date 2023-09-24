@@ -23,19 +23,26 @@
 		{
 			if (attribute == ::Const.Attributes.COUNT) continue;
 
-			local attributeMin = ::Const.AttributesLevelUp[attribute].Min;
-			if (this.m.Talents[attribute] >= 1) attributeMin++;
-			if (this.m.Talents[attribute] == 3) attributeMin++;
-
+			local attributeMin = ::Const.AttributesLevelUp[attribute].Min + ::Math.min(this.m.Talents[attribute], 2);
 			local attributeMax = ::Const.AttributesLevelUp[attribute].Max;
-			if (this.m.Talents[attribute] >= 2) attributeMax++;
+			if (this.m.Talents[attribute] == 3) attributeMax++;
 
 			local levelUpsRemaining = ::Math.max(::Const.XP.MaxLevelWithPerkpoints - this.getLevel() + this.getLevelUps(), 0);
 			local attributeValue = attributeName == "Fatigue" ? baseProperties["Stamina"] : baseProperties[attributeName]; // Thank you Overhype
 
+			// For each "randomized" level-up for 2-star talents, decrease min projection by 1 and increase max projection by 1
+			local attributeTotalMod = 0;
+			if (this.m.Talents[attribute] == 2)
+			{
+				foreach (value in this.m.Attributes[attribute])
+				{
+					if (value != attributeMax) attributeTotalMod++;
+				}
+			}
+
 			ret[attribute] <- [
-				attributeValue + attributeMin * levelUpsRemaining,
-				attributeValue + attributeMax * levelUpsRemaining
+				attributeValue - attributeTotalMod + attributeMin * levelUpsRemaining,
+				attributeValue + attributeTotalMod + attributeMax * levelUpsRemaining
 			];
 		}
 
@@ -127,16 +134,22 @@
 	{
 		__original(_amount, _maxOnly, _minOnly);
 
-		if (_amount == 0) return;
+		if (_amount < 2) return;
 		if (_maxOnly || _minOnly) return;	// Stars do not influence these level-ups
 
 		for (local i = 0; i != ::Const.Attributes.COUNT; i++)
 		{
 			if (this.m.Talents[i] == 2)
 			{
-				for (local j = 0; j < _amount; j++)
+				local indices = array(_amount);
+				foreach (j, _ in indices)
 				{
-					this.m.Attributes[i][j] += ::Math.rand(-1, 1);
+					indices[j] = j;
+				}
+				// Randomize half of the level-ups added
+				for (local j = 0; j < _amount / 2; j++)
+				{
+					this.m.Attributes[i][indices.remove(::Math.rand(0, indices.len() - 1))] += ::Math.rand(-1, 1);
 				}
 			}
 		}
