@@ -1,6 +1,7 @@
 this.rf_take_aim_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		DiversionMaxLevelDifference = null
+		DiversionMaxLevelDifference = null,
+		FireHandgonneSkill = null // WeakTableRef to allow us to hook the getAffectedTiles function
 	},
 	function create()
 	{
@@ -60,10 +61,116 @@ this.rf_take_aim_effect <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate(_properties)
 	{
-		local skill = this.getContainer().getSkillByID("actives.fire_handgonne");
-		if (skill != null)
+		local fireHandgonne = this.getContainer().getSkillByID("actives.fire_handgonne");
+		if (fireHandgonne == null)
+			return;
+
+		fireHandgonne.m.MaxRange += 1;
+
+		if (::MSU.isEqual(this.m.FireHandgonneSkill, fireHandgonne))
+			return;
+
+		this.m.FireHandgonneSkill = ::MSU.asWeakTableRef(fireHandgonne);
+
+		local getAffectedTiles = fireHandgonne.getAffectedTiles;
+		fireHandgonne.getAffectedTiles = function( _targetTile )
 		{
-			skill.m.MaxRange += 1;
+			// For targeting beyond 2 tiles keep normal behavior
+			if (_targetTile.getDistanceTo(this.getContainer().getActor().getTile()) != 2)
+				return getAffectedTiles(_targetTile);
+
+			local ret = [
+				_targetTile
+			];
+			local ownTile = this.getContainer().getActor().getTile();
+			local dir = ownTile.getDirectionTo(_targetTile);
+			local dist = ownTile.getDistanceTo(_targetTile);
+
+			if (_targetTile.hasNextTile(dir))
+			{
+				local forwardTile = _targetTile.getNextTile(dir);
+
+				if (::Math.abs(forwardTile.Level - ownTile.Level) <= this.m.MaxLevelDifference)
+				{
+					ret.push(forwardTile);
+				}
+
+				if (forwardTile.hasNextTile(dir))
+				{
+					forwardTile = forwardTile.getNextTile(dir);
+
+					if (::Math.abs(forwardTile.Level - ownTile.Level) <= this.m.MaxLevelDifference)
+					{
+						ret.push(forwardTile);
+					}
+				}
+			}
+
+			local left = dir - 1 < 0 ? 5 : dir - 1;
+
+			if (_targetTile.hasNextTile(left))
+			{
+				local forwardTile = _targetTile.getNextTile(left);
+
+				if (::Math.abs(forwardTile.Level - ownTile.Level) <= this.m.MaxLevelDifference)
+				{
+					ret.push(forwardTile);
+				}
+
+				if (forwardTile.hasNextTile(dir))
+				{
+					forwardTile = forwardTile.getNextTile(dir);
+
+					if (::Math.abs(forwardTile.Level - ownTile.Level) <= this.m.MaxLevelDifference)
+					{
+						ret.push(forwardTile);
+					}
+				}
+
+				if (forwardTile.hasNextTile(dir))
+				{
+					forwardTile = forwardTile.getNextTile(dir);
+
+					if (::Math.abs(forwardTile.Level - ownTile.Level) <= this.m.MaxLevelDifference)
+					{
+						ret.push(forwardTile);
+					}
+				}
+			}
+
+			local right = dir + 1 > 5 ? 0 : dir + 1;
+
+			if (_targetTile.hasNextTile(right))
+			{
+				local forwardTile = _targetTile.getNextTile(right);
+
+				if (::Math.abs(forwardTile.Level - ownTile.Level) <= this.m.MaxLevelDifference)
+				{
+					ret.push(forwardTile);
+				}
+
+				if (forwardTile.hasNextTile(dir))
+				{
+					forwardTile = forwardTile.getNextTile(dir);
+
+					if (::Math.abs(forwardTile.Level - ownTile.Level) <= this.m.MaxLevelDifference)
+					{
+						ret.push(forwardTile);
+					}
+				}
+
+				if (forwardTile.hasNextTile(dir))
+				{
+					forwardTile = forwardTile.getNextTile(dir);
+
+					if (::Math.abs(forwardTile.Level - ownTile.Level) <= this.m.MaxLevelDifference)
+					{
+						ret.push(forwardTile);
+					}
+				}
+			}
+
+			return ret;
 		}
 	}
 
