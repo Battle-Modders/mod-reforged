@@ -10,7 +10,7 @@ this.pg_rf_power <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.recover"],
+				[],
 				["perk.rf_vigorous_assault"],
 				["perk.rotation"],
 				["perk.rf_death_dealer"],

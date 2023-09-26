@@ -16,7 +16,7 @@ this.pg_rf_sturdy <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.recover"],
+				[],
 				["perk.steel_brow"],
 				["perk.taunt"],
 				[],
