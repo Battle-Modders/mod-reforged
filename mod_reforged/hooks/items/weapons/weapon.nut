@@ -1,5 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/weapon", function(q) {
 	q.m.Reach <- 1;
+	q.m.PoiseDamage <- 0;
 
 	q.getTooltip = @(__original) function()
 	{
@@ -80,11 +81,18 @@
 		if (this.isItemType(::Const.Items.ItemType.MeleeWeapon) && !this.getContainer().getActor().isDisarmed())
 		{
 			_properties.Reach += this.m.Reach;
+			_properties.PoiseDamage += this.getPoiseDamage();
 		}
 	}
 
+// New Functions
 	q.getReach <- function()
 	{
 		return this.m.Reach;
+	}
+
+	q.getPoiseDamage <- function()
+	{
+		return this.m.PoiseDamage;
 	}
 });
