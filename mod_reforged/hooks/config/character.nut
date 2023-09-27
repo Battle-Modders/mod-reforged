@@ -26,7 +26,7 @@ local getClone = ::Const.CharacterProperties.getClone;
 ::Const.CharacterProperties.BonusPerReachAdvantage <- 0;
 
 ::Const.CharacterProperties.IsImmuneToStunFromPoise <- false;
-::Const.CharacterProperties.PoiseMax <- 100;
+::Const.CharacterProperties.PoiseMax <- ::Reforged.Poise.Default.Default;
 ::Const.CharacterProperties.PoiseMult <- 1.0;
 ::Const.CharacterProperties.getPoiseMax <- function()
 {
