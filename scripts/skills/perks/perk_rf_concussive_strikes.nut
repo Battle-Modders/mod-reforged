@@ -58,7 +58,7 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 			{
 				local effect = ::new("scripts/skills/effects/dazed_effect");
 				_targetEntity.getSkills().add(effect);
-				effect.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+				effect.setTurns(2);
 				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
 				{
 					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed for " + effect.m.TurnsLeft + " turns");
@@ -69,7 +69,7 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 		{
 			local effect = ::new("scripts/skills/effects/dazed_effect");
 			_targetEntity.getSkills().add(effect);
-			effect.m.TurnsLeft = ::Math.max(1, 1 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+			effect.setTurns(1);
 			if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
 			{
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed for " + effect.m.TurnsLeft + " turns");
