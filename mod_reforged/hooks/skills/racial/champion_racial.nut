@@ -1,4 +1,12 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/champion_racial", function(q) {
+	q.m.PoiseMult <- 1.2;
+
+	q.onUpdate = @(__original) function( _properties )
+	{
+		__original(_properties);
+		_properties.PoiseMult *= this.m.PoiseMult;
+	}
+
 	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
@@ -57,11 +65,17 @@
                 icon = "ui/icons/initiative.png",
 				text = ::MSU.Text.colorGreen("15%") + " increased Initiative"
 			},
+			{
+				id = 15,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Poise is increased by " + ::MSU.Text.colorizeMult(this.m.PoiseMult, {AddSign = false})
+			},
 		]);
 		return ret;
 	}
 
-    // New Helper Functions. They mirrir the vanilla condition for whether to give additional defense or hitpoints to a champion
+    // New Helper Functions. They mirror the vanilla condition for whether to give additional defense or hitpoints to a champion
     q.getDefenseMultiplier <- function()
     {
         local defenseMult = 1.25;
