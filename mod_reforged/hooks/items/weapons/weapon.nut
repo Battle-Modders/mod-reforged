@@ -1,5 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/weapon", function(q) {
 	q.m.Reach <- 1;
+	q.m.PoiseDamage <- 0;
 
 	q.getTooltip = @(__original) function()
 	{
@@ -12,6 +13,16 @@
 				type = "text",
 				icon = "ui/icons/reach.png",
 				text = "Has a reach of " + this.m.Reach
+			});
+		}
+
+		if (this.getPoiseDamage() != 0)
+		{
+			tooltip.push({
+				id = 21,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("[Poise Damage|Concept.PoiseDamage]: " + this.getPoiseDamage()),
 			});
 		}
 
@@ -77,14 +88,25 @@
 	q.onUpdateProperties = @(__original) function( _properties )
 	{
 		__original(_properties);
-		if (this.isItemType(::Const.Items.ItemType.MeleeWeapon) && !this.getContainer().getActor().isDisarmed())
+		if (!this.getContainer().getActor().isDisarmed())
 		{
-			_properties.Reach += this.m.Reach;
+			_properties.PoiseDamage += this.getPoiseDamage();
+
+			if (this.isItemType(::Const.Items.ItemType.MeleeWeapon))
+			{
+				_properties.Reach += this.m.Reach;
+			}
 		}
 	}
 
+// New Functions
 	q.getReach <- function()
 	{
 		return this.m.Reach;
+	}
+
+	q.getPoiseDamage <- function()
+	{
+		return this.m.PoiseDamage;
 	}
 });

@@ -3,5 +3,6 @@
 	{
 		__original();
 		this.m.Reach = 3;
+		this.m.PoiseDamage = 120;
 	}
 });
