@@ -293,6 +293,22 @@ local vanillaDescriptions = [
 	 	}),
 	},
 	{
+		ID = "perk.mastery.mace",
+		Key = "SpecMace",
+		Description = ::UPD.getDescription({
+			Fluff = "Master maces to beat your opponents into submission, armored or not.",
+			Requirement = "Mace",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Skills build up " + ::MSU.Text.colorGreen("25%") + " less Fatigue.",
+					"[Poise Damage|Concept.PoiseDamage] is increased by 50% while wielding a mace.",
+					"The Polemace no longer has a penalty for attacking targets directly adjacent.",
+				],
+ 			}],
+	 	}),
+	},
+	{
 		ID = "perk.adrenaline",
 		Key = "Adrenaline",
 		Description = ::UPD.getDescription({
@@ -417,6 +433,21 @@ local vanillaDescriptions = [
  			}],
  			Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks that have a Base Maximum Range of 1 tile, with the exception of [Lunge|Skill+lunge_skill].")
 	 	})
+	},
+	{
+		ID = "perk.hold_out",
+		Key = "HoldOut",	// Current name is 'Resilient'
+		Description = ::UPD.getDescription({
+			Fluff = "Keep it together!",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"[Poise|Concept.Poise] is increased by " + ::MSU.Text.colorGreen("50%"),
+					"Any negative status effect with a finite duration (e.g. Bleeding, Charmed) has its duration reduced to " + ::MSU.Text.colorGreen(1) + " turn.",
+					"Status effects that have their effects grow weaker over several turns (e.g. Goblin Poison) are at their weakest state from the start."
+				]
+ 			}]
+	 	}),
 	},
 	{
 		ID = "perk.indomitable",
@@ -746,7 +777,6 @@ local vanillaDescriptions = [
  					"When attacking a target against whom you have a [Reach Disadvantage|Concept.ReachAdvantage], reduce this disadvantage by " + ::MSU.Text.colorGreen(1) + " if your [Initiative|Concept.Initiative] is higher than that of your target."
  					"[Brawny|Perk+perk_brawny] does not affect this perk.",
  					"Cannot be picked if you have [Poise|Perk+perk_rf_poise]."
-
  				]
  			}]
 	 	}),
@@ -826,8 +856,9 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"Hits to the head no longer cause critical damage to this character, which also lowers the risk of sustaining debilitating head [injuries|Concept.Injury] significantly."
- 					"Grants passive immunity against [Cull|Perk+perk_rf_cull]."
+ 					"Hits to the head no longer cause critical damage to this character, which also lowers the risk of sustaining debilitating head [injuries|Concept.Injury] significantly.",
+ 					"Hits to the head no longer cause this character to take increased Poise Damage.",
+ 					"Grants passive immunity against [Cull|Perk+perk_rf_cull].",
  				]
  			}]
 	 	}),
@@ -2263,9 +2294,10 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"At the end of your [turn|Concept.Turn], gain " + ::MSU.Text.colorGreen("half") + " of your remaining [Action Points|Concept.ActionPoints], rounded down, as additional [Action Points|Concept.ActionPoints] during your next [turn|Concept.Turn]."
-			]
-		}]
+				"At the end of your [turn|Concept.Turn], gain " + ::MSU.Text.colorGreen("half") + " of your remaining [Action Points|Concept.ActionPoints], rounded down, as additional [Action Points|Concept.ActionPoints] during your next [turn|Concept.Turn].",
+				"At the end of your [turn|Concept.Turn], gain " + ::MSU.Text.colorGreen("+10") + " Poise for every unspent [Action Point|Concept.ActionPoints] until the start of your next [turn|Concept.Turn].",
+			],
+		}],
  	}),
 	RF_VigorousAssault = ::UPD.getDescription({
  		Fluff = "You\'ve learned to use the very momentum of your movement as a weapon unto itself!",

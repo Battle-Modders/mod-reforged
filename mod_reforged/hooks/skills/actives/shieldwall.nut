@@ -2,14 +2,13 @@
 	q.getTooltip = @(__original) function()
 	{
 		local tooltip = __original();
-		tooltip.push(
-			{
-				id = 6,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Grants immunity to the next stun, but will be lost upon receiving the stun"
-			}
-		);
+
+		tooltip.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/sturdiness.png",
+			text = ::Reforged.Mod.Tooltips.parseString("[Poise|Concept.Poise] is increased by " + ::MSU.Text.colorizeMult(1.25))
+		});
 
 		tooltip.push({
 			id = 6,
