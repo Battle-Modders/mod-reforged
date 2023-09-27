@@ -16,5 +16,6 @@ this.rf_orc_racial <- ::inherit("scripts/skills/skill", {
 	function onAdded()
 	{
 		this.getContainer().add(::new("scripts/skills/traits/iron_jaw_trait"));
+		this.getContainer().getActor().m.BaseProperties.PoiseMax = ::Reforged.Config.Poise.Default.Orc;
 	}
 });
