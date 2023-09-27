@@ -51,7 +51,7 @@
 	]
 }
 
-::MSU.AfterQueue.add(::Reforged.ID, function() {
+::Reforged.QueueBucket.FirstWorldInit.push(function() {
 	foreach (concept in ::Reforged.NestedTooltips.AutoConcepts)
 	{
 		local desc = ::TooltipScreen.m.TooltipEvents.general_queryUIElementTooltipData(::MSU.getDummyPlayer().getID(), concept, null);

@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/helmets/conic_helmet_with_faceguard", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/helmets/conic_helmet_with_faceguard", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Condition = 290;
 		this.m.ConditionMax = 290;
 	}

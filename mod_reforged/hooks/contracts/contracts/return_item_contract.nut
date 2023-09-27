@@ -1,8 +1,7 @@
-::mods_hookExactClass("contracts/contracts/return_item_contract", function(o) {
-    local createStates = o.createStates;
-    o.createStates = function()
+::Reforged.HooksMod.hook("scripts/contracts/contracts/return_item_contract", function(q) {
+    q.createStates = @(__original) function()
     {
-        createStates();
+        __original();
         foreach (state in this.m.States)
         {
             if (state.ID != "Offer") continue;
@@ -16,10 +15,9 @@
         }
     }
 
-    local createScreens = o.createScreens;
-    o.createScreens = function()
+    q.createScreens = @(__original) function()
     {
-        createScreens();
+        __original();
         foreach (screen in this.m.Screens)
         {
             if (screen.ID != "CounterOffer1") continue;
@@ -33,10 +31,9 @@
         }
     }
 
-    local onPrepareVariables = o.onPrepareVariables;
-    o.onPrepareVariables = function( _vars )
+    q.onPrepareVariables = @(__original) function( _vars )
     {
-        onPrepareVariables(_vars);
+        __original(_vars);
         foreach (var in _vars)
         {
             if (var[0] != "bribe") continue;

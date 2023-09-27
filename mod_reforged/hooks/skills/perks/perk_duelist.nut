@@ -1,16 +1,16 @@
-::mods_hookExactClass("skills/perks/perk_duelist", function(o) {
-	o.onUpdate = function( _properties )
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_duelist", function(q) {
+	q.onUpdate = @(__original) function( _properties )
 	{
 		// Overwrite vanilla function to make it empty
 	}
 
-	o.isEnabled <- function()
+	q.isEnabled <- function()
 	{
 		local aoo = this.getContainer().getAttackOfOpportunity();
 		return aoo != null && aoo.isDuelistValid();
 	}
 
-	o.onAnySkillUsed <- function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed <- function( _skill, _targetEntity, _properties )
 	{
 		if (!_skill.isDuelistValid())
 			return;
@@ -39,7 +39,7 @@
 		}
 	}
 
-	o.onBeingAttacked <- function( _attacker, _skill, _properties )
+	q.onBeingAttacked <- function( _attacker, _skill, _properties )
 	{
 		if (_skill.isRanged() || _attacker.getTile().getDistanceTo(this.getContainer().getActor().getTile()) > 1 || !this.isEnabled())
 			return;

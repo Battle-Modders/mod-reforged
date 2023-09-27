@@ -1,12 +1,11 @@
-::mods_hookExactClass("items/weapons/military_cleaver", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/military_cleaver", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 4;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @(__original) function()
 	{
 		this.weapon.onEquip();
 

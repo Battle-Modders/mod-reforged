@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/helmets/reinforced_mail_coif", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/helmets/reinforced_mail_coif", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Value = 600;
 		this.m.StaminaModifier = -4;
 	}

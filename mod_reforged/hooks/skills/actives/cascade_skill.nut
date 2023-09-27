@@ -1,8 +1,8 @@
-::mods_hookExactClass("skills/actives/cascade_skill", function(o) {
-	o.m.RerollDamageMult <- 1.0;
-	o.m.IsAttacking <- false;	
+::Reforged.HooksMod.hook("scripts/skills/actives/cascade_skill", function(q) {
+	q.m.RerollDamageMult <- 1.0;
+	q.m.IsAttacking <- false;
 
-	o.onUse = function( _user, _targetTile )
+	q.onUse = @(__original) function( _user, _targetTile )
 	{
 		this.m.RerollDamageMult = 1.0;			
 		this.m.IsUsingHitchance = true;
@@ -33,12 +33,12 @@
 	}
 
 	// Set IsUsingHitChance to true before target hit so that the Nimble perk works properly
-	o.onBeforeTargetHit <- function( _skill, _targetEntity, _hitInfo )
+	q.onBeforeTargetHit <- function( _skill, _targetEntity, _hitInfo )
 	{
 		this.m.IsUsingHitchance = true;
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this && this.m.IsAttacking)
 		{

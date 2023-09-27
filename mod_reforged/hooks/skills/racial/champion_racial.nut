@@ -1,5 +1,5 @@
-::mods_hookExactClass("skills/racial/champion_racial", function(o) {
-	o.getTooltip <- function()
+::Reforged.HooksMod.hook("scripts/skills/racial/champion_racial", function(q) {
+	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -62,7 +62,7 @@
 	}
 
     // New Helper Functions. They mirrir the vanilla condition for whether to give additional defense or hitpoints to a champion
-    o.getDefenseMultiplier <- function()
+    q.getDefenseMultiplier <- function()
     {
         local defenseMult = 1.25;
         local b = this.getContainer().getActor().getBaseProperties();
@@ -70,7 +70,7 @@
         return defenseMult;
     }
 
-    o.getHitpointMult <- function()
+    q.getHitpointMult <- function()
     {
         local hitpointMult = 1.35;
         local b = this.getContainer().getActor().getBaseProperties();

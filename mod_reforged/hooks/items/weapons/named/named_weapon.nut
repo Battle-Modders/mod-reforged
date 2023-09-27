@@ -1,15 +1,13 @@
-::mods_hookExactClass("items/weapons/named/named_weapon", function(o) {
-	local onSerialize = o.onSerialize;
-	o.onSerialize = function( _out )
+::Reforged.HooksMod.hook("scripts/items/weapons/named/named_weapon", function(q) {
+	q.onSerialize = @(__original) function( _out )
 	{
-		onSerialize(_out);
+		__original(_out);
 		_out.writeI8(this.m.ChanceToHitHead);
 	}
 
-	local onDeserialize = o.onDeserialize;
-	o.onDeserialize = function( _in )
+	q.onDeserialize = @(__original) function( _in )
 	{
-		onDeserialize(_in);
+		__original(_in);
 		this.m.ChanceToHitHead = _in.readI8();
 	}
 });

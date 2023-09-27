@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/hedge_knight", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/hedge_knight", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -26,7 +26,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
 	}
 
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
 		{
@@ -65,7 +65,7 @@
 		}
 	}
 
-	o.makeMiniboss = function()
+	q.makeMiniboss = @(__original) function()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -117,7 +117,7 @@
 		return true;
 	}
 
-	o.onSetupEntity <- function()
+	q.onSetupEntity <- function()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)

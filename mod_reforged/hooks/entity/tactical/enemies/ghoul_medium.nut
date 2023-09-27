@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/ghoul_medium", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/ghoul_medium", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.ghoul.onInit();
 		this.grow(true);

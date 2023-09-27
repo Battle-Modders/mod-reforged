@@ -1,5 +1,5 @@
-::mods_hookExactClass("skills/perks/perk_coup_de_grace", function(o) {
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_coup_de_grace", function(q) {
+	q.onAnySkillUsed = @(__original) function ( _skill, _targetEntity, _properties )
 	{
 		if (_targetEntity == null || !_skill.isAttack())
 		{
@@ -12,7 +12,7 @@
 		}
 	}
 
-	o.onBeforeTargetHit = function( _skill, _targetEntity, _hitInfo )
+	q.onBeforeTargetHit = @(__original) function( _skill, _targetEntity, _hitInfo )
 	{
 		if (_skill.isAttack() && (_targetEntity.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury) || _targetEntity.getSkills().hasSkill("effects.sleeping") || _targetEntity.getSkills().hasSkill("effects.stunned") || _targetEntity.getSkills().hasSkill("effects.net") || _targetEntity.getSkills().hasSkill("effects.web") || _targetEntity.getSkills().hasSkill("effects.rooted")))
 		{

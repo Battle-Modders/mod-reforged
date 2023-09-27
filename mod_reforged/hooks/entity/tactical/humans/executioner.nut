@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/executioner", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/executioner", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -51,10 +51,9 @@
 		}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
 	    local aoo = this.getSkills().getAttackOfOpportunity();
@@ -96,10 +95,9 @@
 		}
 	}
 
-	local makeMiniboss = o.makeMiniboss;
-	o.makeMiniboss = function()
+	q.makeMiniboss = @(__original) function()
 	{
-		local ret = makeMiniboss();
+		local ret = __original();
 		if (ret)
 		{
 			this.m.Skills.removeByID("perk.reach_advantage");

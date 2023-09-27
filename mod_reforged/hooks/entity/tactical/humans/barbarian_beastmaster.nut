@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/barbarian_beastmaster", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/barbarian_beastmaster", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.human.onInit();
 		local tattoos = [

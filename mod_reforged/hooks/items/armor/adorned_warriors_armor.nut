@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/armor/adorned_warriors_armor", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/armor/adorned_warriors_armor", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Value = 3000;
 	}
 });

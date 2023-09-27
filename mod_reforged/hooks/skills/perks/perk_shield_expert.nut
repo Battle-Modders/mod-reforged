@@ -1,12 +1,12 @@
-::mods_hookExactClass("skills/perks/perk_shield_expert", function (o) {
-	local onAdded = ::mods_getMember(o, "onAdded");
-	::mods_override(o, "onAdded", function() {
-		onAdded();
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_shield_expert", function(q) {
+	q.onAdded = @(__original) function()
+	{
+		__original();
 		local shield = this.getContainer().getActor().getOffhandItem();
 		if (shield != null) this.onEquip(shield);
-	});
+	}
 
-	o.onEquip <- function( _item )
+	q.onEquip <- function( _item )
 	{
 		if (_item.isItemType(::Const.Items.ItemType.Shield) && _item.getID().find("buckler") == null)
 		{
@@ -14,10 +14,9 @@
 		}
 	}
 
-	local onUpdate = o.onUpdate;
-	o.onUpdate = function( _properties )
+	q.onUpdate = @(__original) function( _properties )
 	{
-		onUpdate(_properties);
+		__original(_properties);
 		if (this.getContainer().getActor().isArmedWithShield()) _properties.FatigueLossOnAnyAttackMult = 0.0;
 	}
 });

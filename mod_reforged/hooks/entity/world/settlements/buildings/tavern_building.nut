@@ -1,10 +1,9 @@
-::mods_hookExactClass("entity/world/settlements/buildings/tavern_building", function(o) {
+::Reforged.HooksMod.hook("scripts/entity/world/settlements/buildings/tavern_building", function(q) {
 
-	local getRumor = o.getRumor;
-	o.getRumor = function( _isPaidFor = false )
+	q.getRumor = @(__original) function( _isPaidFor = false )
 	{
 		local lastRumor = this.m.LastRumor;
-		local ret = getRumor(_isPaidFor);
+		local ret = __original(_isPaidFor);
 		if (this.m.RumorsGiven > 3) return ret;
 		if (ret == null) return ret;
 		if (ret == lastRumor) return ret;
@@ -32,8 +31,7 @@
 		return rumor;
 	}
 
-	local buildText = o.buildText;
-	o.buildText = function( _text )
+	q.buildText = @(__original) function( _text )
 	{
 		// Switcheroo so that we only change the global 'buildTextFromTemplate' when used by the Tavern Building
 		local buildTextFromTemplate = ::buildTextFromTemplate;
@@ -43,15 +41,15 @@
 			return buildTextFromTemplate(_text, _vars);
 		}
 
-		local ret = buildText(_text);
+		local ret = __original(_text);
 
-		::buildTextFromTemplate = buildTextFromTemplate;
+		::buildTextFromTemplate = __originalFromTemplate;
 
 		return ret;
 	}
 
 // New Functions
-	o.getLegendaryLocationForRumor <- function()
+	q.getLegendaryLocationForRumor <- function()
 	{
 		local bestLocation = null;
 		local bestDist = 9000;
@@ -74,7 +72,7 @@
 	// We add up 4 new variables for texts to be build with.
 	// Three are wrong distances, direction and terrain for the purpose of creating more interesting rumors.
 	// One is an indirect adjective for a legendary location if you don't wanna name it directly
-	o.adjustVars <- function( _vars )
+	q.adjustVars <- function( _vars )
 	{
 		foreach (var in _vars)
 		{

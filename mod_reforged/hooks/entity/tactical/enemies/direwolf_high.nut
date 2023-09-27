@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/direwolf_high", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/direwolf_high", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.direwolf.onInit();
 		local b = this.m.BaseProperties;

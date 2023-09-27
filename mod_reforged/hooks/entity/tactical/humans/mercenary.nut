@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/mercenary", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/mercenary", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -39,8 +39,7 @@
     	}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
 	    local r;
 

@@ -1,8 +1,7 @@
-::mods_hookExactClass("states/tactical_state", function(o) {
-    local showRetreatScreen = o.showRetreatScreen
-    o.showRetreatScreen = function ( _tag = null )
+::Reforged.HooksMod.hook("scripts/states/tactical_state", function(q) {
+    q.showRetreatScreen = @(__original) function ( _tag = null )
     {
         this.m.TacticalScreen.getTopbarOptionsModule().changeFleeButtonToWin();
-        return showRetreatScreen(_tag);
+        return __original(_tag);
     }
 });

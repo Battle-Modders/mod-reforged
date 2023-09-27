@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/weapons/longaxe", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/longaxe", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 6;
 		this.m.ShieldDamage = 32;
 	}

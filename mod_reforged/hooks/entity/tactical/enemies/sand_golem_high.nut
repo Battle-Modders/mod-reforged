@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/sand_golem_high", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/sand_golem_high", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.sand_golem.onInit();
 		this.grow(true);

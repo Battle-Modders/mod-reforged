@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/actives/puncture", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/actives/puncture", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Puncture;
 	}
 });

@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/goblin_wolfrider", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_wolfrider", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.goblin.onInit();
 		local b = this.m.BaseProperties;
@@ -65,10 +65,9 @@
     	}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
 	    this.m.Skills.removeByID("perk.rf_two_for_one");

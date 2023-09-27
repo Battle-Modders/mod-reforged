@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/goblin_ambusher", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_ambusher", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.goblin.onInit();
 		local b = this.m.BaseProperties;
@@ -37,10 +37,10 @@
     	}
 	}
 
-	// local assignRandomEquipment = o.assignRandomEquipment;
-	// o.assignRandomEquipment = function()
+	//
+	// q.assignRandomEquipment = @(__original) function()
 	// {
-	//     assignRandomEquipment();
+	//     __original();
 
 	//     if (::Reforged.Config.IsLegendaryDifficulty)
 	//     {
@@ -52,10 +52,9 @@
 	//     }
 	// }
 
-	local makeMiniboss = o.makeMiniboss;
-	o.makeMiniboss = function()
+	q.makeMiniboss = @(__original) function()
 	{
-		local ret = makeMiniboss();
+		local ret = __original();
 		if (ret)
 		{
 			this.m.Skills.removeByID("perk.overwhelm"); // revert vanilla

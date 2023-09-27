@@ -1,15 +1,12 @@
-::mods_hookBaseClass("skills/skill", function(o) {
-	o = o[o.SuperName];
-
-	o.isDuelistValid <- function()
+::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
+	q.isDuelistValid <- function()
 	{
 		return this.isAttack() && !this.isRanged() && this.getBaseValue("ActionPointCost") <= 4 && this.getBaseValue("MaxRange") == 1;
 	}
 
-	local getHitFactors = o.getHitFactors;
-	o.getHitFactors = function( _targetTile )
+	q.getHitFactors = @(__original) function( _targetTile )
 	{
-		local ret = getHitFactors(_targetTile);
+		local ret = __original(_targetTile);
 		for (local index = (ret.len() - 1); index >= 0; index--)	// We traverse it in reverse because we want to remove entries during the loop
 		{
 			switch (ret[index].text)

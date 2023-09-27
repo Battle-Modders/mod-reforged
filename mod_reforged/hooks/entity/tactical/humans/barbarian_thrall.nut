@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/barbarian_thrall", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/barbarian_thrall", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.human.onInit();
 		local tattoos = [
@@ -51,10 +51,9 @@
 		}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 2);
 	}
 });

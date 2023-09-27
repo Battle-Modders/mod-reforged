@@ -1,6 +1,6 @@
-::mods_hookExactClass("skills/effects/lone_wolf_effect", function (o) {
+::Reforged.HooksMod.hook("scripts/skills/effects/lone_wolf_effect", function(q) {
 	// The vanilla function but change distance to <=2 tiles instead of <=3
-	o.onUpdate = function( _properties )
+	q.onUpdate = @(__original) function( _properties )
 	{
 		if (!this.getContainer().getActor().isPlacedOnMap())
 		{

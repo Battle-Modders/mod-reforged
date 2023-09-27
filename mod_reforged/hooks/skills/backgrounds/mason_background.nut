@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/backgrounds/mason_background", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/mason_background", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_talented": 3,
 			"pg.rf_flail": 1.5,

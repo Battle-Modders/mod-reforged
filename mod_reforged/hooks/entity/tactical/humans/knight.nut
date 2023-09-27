@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/knight", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/knight", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -52,18 +52,16 @@
     	}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	}
 
-	local makeMiniboss = o.makeMiniboss;
-	o.makeMiniboss = function()
+	q.makeMiniboss = @(__original) function()
 	{
-		if (!this.actor.makeMiniboss())
+		if (!this.actor.__original())
 		{
 			return false;
 		}

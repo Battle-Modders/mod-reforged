@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/wardog", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/wardog", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;

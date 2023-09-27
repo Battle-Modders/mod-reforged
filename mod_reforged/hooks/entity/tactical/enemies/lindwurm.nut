@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/lindwurm", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/lindwurm", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;

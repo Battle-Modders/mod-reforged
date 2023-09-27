@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/weapons/named/named_greatsword", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/named/named_greatsword", function(q) {
+	q.create = @(__original) function()
 	{
 		this.m.BaseWeaponScript = "scripts/items/weapons/greatsword";
-		create();
+		__original();
 	}
 });

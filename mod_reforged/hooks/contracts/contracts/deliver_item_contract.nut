@@ -1,8 +1,7 @@
-::mods_hookExactClass("contracts/contracts/deliver_item_contract", function(o) {
-    local onPrepareVariables = o.onPrepareVariables;
-    o.onPrepareVariables = function( _vars )
+::Reforged.HooksMod.hook("scripts/contracts/contracts/deliver_item_contract", function(q) {
+    q.onPrepareVariables = @(__original) function( _vars )
     {
-        onPrepareVariables(_vars);
+        __original(_vars);
         foreach (var in _vars)
         {
             if (var[0] != "days") continue;

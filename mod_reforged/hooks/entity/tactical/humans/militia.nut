@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/militia", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/militia", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -22,10 +22,9 @@
     	}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    if (::Reforged.Config.IsLegendaryDifficulty)
 	    {

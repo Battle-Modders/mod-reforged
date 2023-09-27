@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/backgrounds/bowyer_background", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/bowyer_background", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_light_armor": 1.5,
 			"pg.rf_crossbow": 3,

@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/bandit_raider", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_raider", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -23,7 +23,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 	}
 
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -81,7 +81,7 @@
 		}
 	}
 
-	o.onSetupEntity <- function()
+	q.onSetupEntity <- function()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)

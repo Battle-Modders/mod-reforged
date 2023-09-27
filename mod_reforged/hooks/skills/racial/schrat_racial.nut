@@ -1,25 +1,24 @@
-::mods_hookExactClass("skills/racial/schrat_racial", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/racial/schrat_racial", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Name = "Schrat";
 		this.m.Icon = "ui/orientation/schrat_01_orientation.png";
 		this.m.IsHidden = false;
 	}
 
-	o.isHidden <- function()	// In Vanilla this skill is only shown while the Schrat has a shield
+	q.isHidden = @(__original) function()	// In Vanilla this skill is only shown while the Schrat has a shield
 	{
 		return this.skill.isHidden();
 	}
 
-	o.getName <- function()
+	q.getName <- function()
 	{
 		if (this.getContainer().getActor().isArmedWithShield()) return (this.skill.getName() + " (Shielded)");
 		return this.skill.getName();
 	}
 
-	o.getTooltip <- function()
+	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -54,7 +53,7 @@
 		return ret;
 	}
 
-	o.onAdded <- function()
+	q.onAdded <- function()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 
@@ -71,7 +70,7 @@
 		baseProperties.IsIgnoringArmorOnAttack = true;
 	}
 
-	o.onBeforeDamageReceived = function( _attacker, _skill, _hitInfo, _properties )
+	q.onBeforeDamageReceived = @(__original) function( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)
 		{
@@ -108,5 +107,5 @@
 
 	// We exported everything this function does into its own effect (rf_sapling_harvest).
 	// By overwriting this method we also nullify all other mods hooking into this before us but there is clean solution to this
-	o.onDamageReceived = function( _attacker, _damageHitpoints, _damageArmor ) {};
+	q.onDamageReceived = @(__original) function( _attacker, _damageHitpoints, _damageArmor ) {};
 });

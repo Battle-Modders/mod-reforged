@@ -1,10 +1,10 @@
-::mods_hookExactClass("skills/perks/perk_mastery_throwing", function (o) {
-	o.getHitchanceBonus <- function()
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_throwing", function(q) {
+	q.getHitchanceBonus <- function()
 	{
 		return ::Math.floor(0.20 * this.getContainer().getActor().getCurrentProperties().getMeleeSkill());
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
 	{
 		if (_targetEntity == null || !_skill.isRanged() || !_skill.m.IsWeaponSkill) return;
 
@@ -24,7 +24,7 @@
 		}
 	}
 
-	o.onQueryTooltip <- function( _skill, _tooltip )
+	q.onQueryTooltip <- function( _skill, _tooltip )
 	{
 		if (_skill.isRanged() && _skill.m.IsWeaponSkill)
 		{

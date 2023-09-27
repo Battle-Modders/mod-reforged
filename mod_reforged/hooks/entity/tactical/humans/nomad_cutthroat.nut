@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/nomad_cutthroat", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/nomad_cutthroat", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -47,10 +47,9 @@
     	}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    local weapon = this.getMainhandItem();
 	    if (weapon == null) return;

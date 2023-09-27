@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/bandit_poacher", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_poacher", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -36,7 +36,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
 	}
 
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{

@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/backgrounds/miner_background", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/miner_background", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_large": 2,
 			"pg.rf_sturdy": 0.165,

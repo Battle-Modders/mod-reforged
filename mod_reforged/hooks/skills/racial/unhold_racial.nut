@@ -1,15 +1,14 @@
-::mods_hookExactClass("skills/racial/unhold_racial", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/racial/unhold_racial", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Name = "Unhold";
 		this.m.Icon = "ui/orientation/unhold_01_orientation.png";
 		this.m.IsHidden = false;
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on the enemies
 	}
 
-	o.getTooltip <- function()
+	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -23,7 +22,7 @@
 		return ret;
 	}
 
-	o.onAdded <- function()
+	q.onAdded <- function()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 

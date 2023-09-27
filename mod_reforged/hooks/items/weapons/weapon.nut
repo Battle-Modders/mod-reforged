@@ -1,10 +1,9 @@
-::mods_hookExactClass("items/weapons/weapon", function (o) {
-	o.m.Reach <- 1;
+::Reforged.HooksMod.hook("scripts/items/weapons/weapon", function(q) {
+	q.m.Reach <- 1;
 
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
+	q.getTooltip = @(__original) function()
 	{
-		local tooltip = getTooltip();
+		local tooltip = __original();
 
 		if (this.isItemType(::Const.Items.ItemType.MeleeWeapon))
 		{
@@ -69,24 +68,22 @@
 		return tooltip;
 	}
 
-	local onEquip = o.onEquip;
-	o.onEquip = function()
+	q.onEquip = @(__original) function()
 	{
-		onEquip();
+		__original();
 		if (isWeaponType(::Const.Items.WeaponType.Sling)) this.addSkill(::new("scripts/skills/actives/rf_sling_item_dummy_skill"));
 	}
 
-	local onUpdateProperties = o.onUpdateProperties;
-	o.onUpdateProperties = function( _properties )
+	q.onUpdateProperties = @(__original) function( _properties )
 	{
-		onUpdateProperties(_properties);
+		__original(_properties);
 		if (this.isItemType(::Const.Items.ItemType.MeleeWeapon) && !this.getContainer().getActor().isDisarmed())
 		{
 			_properties.Reach += this.m.Reach;
 		}
 	}
 
-	o.getReach <- function()
+	q.getReach <- function()
 	{
 		return this.m.Reach;
 	}

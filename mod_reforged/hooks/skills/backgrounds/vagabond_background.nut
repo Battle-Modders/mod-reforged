@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/backgrounds/vagabond_background", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/vagabond_background", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_large": 0.66,
 			"pg.rf_leadership": 0.5,

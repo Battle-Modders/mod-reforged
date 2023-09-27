@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/orc_young", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/orc_young", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -68,10 +68,9 @@
     	}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    if (::Reforged.Config.IsLegendaryDifficulty)
 	    {

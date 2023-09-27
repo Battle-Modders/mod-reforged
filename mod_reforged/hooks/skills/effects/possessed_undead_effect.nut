@@ -1,12 +1,11 @@
-::mods_hookExactClass("skills/effects/possessed_undead_effect", function (o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/effects/possessed_undead_effect", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
         this.m.Description = "This character is possessed until the end of their turn."
 	}
 
-	o.getTooltip <- function()
+	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([

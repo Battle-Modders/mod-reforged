@@ -1,13 +1,12 @@
-::mods_hookExactClass("entity/tactical/enemies/bandit_leader", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_leader", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_bandit_leader_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
-    o.onInit = function()
+    q.onInit = @(__original) function()
     {
        this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -42,7 +41,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rally_the_troops"));
 	}
 
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -102,7 +101,7 @@
 		}
 	}
 
-	o.onSetupEntity <- function()
+	q.onSetupEntity <- function()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)

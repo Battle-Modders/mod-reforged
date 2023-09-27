@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_medium_polearm", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_medium_polearm", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.skeleton.onInit();
 		local b = this.m.BaseProperties;

@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/actives/throw_smoke_bomb_skill", function(o) {
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
+::Reforged.HooksMod.hook("scripts/skills/actives/throw_smoke_bomb_skill", function(q) {
+	q.getTooltip = @(__original) function()
 	{
-		local ret = getTooltip();
+		local ret = __original();
         foreach (index, entry in ret)
         {
 			// Vanilla has two entries with id 5. That's why we check for a phrase aswell

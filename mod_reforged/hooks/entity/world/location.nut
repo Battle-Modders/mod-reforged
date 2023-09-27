@@ -1,8 +1,7 @@
-::mods_hookExactClass("entity/world/location", function(o) {
-	local onLeave = o.onLeave;
-	o.onLeave = function()
+::Reforged.HooksMod.hook("scripts/entity/world/location", function(q) {
+	q.onLeave = @(__original) function()
 	{
-		onLeave();
+		__original();
 		::World.State.setPause(true);
 	}
 });

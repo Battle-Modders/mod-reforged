@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/oathbringer", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/oathbringer", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -45,7 +45,7 @@
     	}
 	}
 
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
 	   	if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
 		{
@@ -139,10 +139,9 @@
 		}
 	}
 
-	local makeMiniboss = o.makeMiniboss;
-	o.makeMiniboss = function()
+	q.makeMiniboss = @(__original) function()
 	{
-		local ret = makeMiniboss();
+		local ret = __original();
 		if (ret)
 		{
 			this.m.Skills.removeByID("perk.fearsome"); // revert vanilla

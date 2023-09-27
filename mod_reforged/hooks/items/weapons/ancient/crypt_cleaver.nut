@@ -1,13 +1,12 @@
-::mods_hookExactClass("items/weapons/ancient/crypt_cleaver", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/ancient/crypt_cleaver", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 5;
 		this.m.ShieldDamage = 18;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @(__original) function()
 	{
 		this.weapon.onEquip();
 

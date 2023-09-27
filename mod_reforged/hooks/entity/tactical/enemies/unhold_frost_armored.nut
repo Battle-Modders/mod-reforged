@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/unhold_frost_armored", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/unhold_frost_armored", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.unhold_frost.onInit();
 		this.getSprite("socket").setBrush("bust_base_wildmen_01");

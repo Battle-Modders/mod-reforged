@@ -94,12 +94,12 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		if (aoo != null)
 		{
 			this.m.DamageType = aoo.getDamageType().weakref();
-			this.m.ActionPointCost += aoo.m.ActionPointCost;
-			this.m.FatigueCost += aoo.m.FatigueCost;
-			this.m.FatigueCostMult = aoo.m.FatigueCostMult;
-			this.m.DirectDamageMult = aoo.m.DirectDamageMult;
-			this.m.MinRange = aoo.m.MinRange;
-			this.m.MaxRange = aoo.m.MaxRange;
+			this.m.ActionPointCost += aoq.m.ActionPointCost;
+			this.m.FatigueCost += aoq.m.FatigueCost;
+			this.m.FatigueCostMult = aoq.m.FatigueCostMult;
+			this.m.DirectDamageMult = aoq.m.DirectDamageMult;
+			this.m.MinRange = aoq.m.MinRange;
+			this.m.MaxRange = aoq.m.MaxRange;
 		}
 		else
 		{
@@ -140,14 +140,14 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local aoo = this.getContainer().getAttackOfOpportunity()
 
-		local overlay = aoo.m.Overlay;
-		aoo.m.Overlay = "";
+		local overlay = aoq.m.Overlay;
+		aoq.m.Overlay = "";
 
 		this.m.IsAttacking = true;
 		local ret = aoo.useForFree(_targetTile);
 		this.m.IsAttacking = false;
 
-		aoo.m.Overlay = overlay;
+		aoq.m.Overlay = overlay;
 
 		return ret;
 	}

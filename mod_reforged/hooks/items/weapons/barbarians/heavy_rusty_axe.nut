@@ -1,13 +1,12 @@
-::mods_hookExactClass("items/weapons/barbarians/heavy_rusty_axe", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/barbarians/heavy_rusty_axe", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 5;
 		this.m.ShieldDamage = 40;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @(__original) function()
 	{
 		this.weapon.onEquip();
 

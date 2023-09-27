@@ -1,19 +1,18 @@
-::mods_hookExactClass("items/weapons/short_bow", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/short_bow", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 0;
 		this.m.RangeMax = 6;
 		this.m.RangeIdeal = 6;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @(__original) function()
 	{
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/quick_shot", function(o) {
-			o.m.FatigueCost -= 2;
+			q.m.FatigueCost -= 2;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/aimed_shot", function(o) {

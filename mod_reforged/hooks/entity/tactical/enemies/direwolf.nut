@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/direwolf", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/direwolf", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -62,8 +62,8 @@
 		}
 	}
 
-	local onDeath = o.onDeath; // switcheroo function to replace loot drops with dummy object
-	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	// switcheroo function to replace loot drops with dummy object
+	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
 		local itemsToChange = [
 			"scripts/items/loot/sabertooth_item"
@@ -78,7 +78,7 @@
 			}
 			return item;
 		}
-		onDeath(_killer, _skill, _tile, _fatalityType);
+		__original(_killer, _skill, _tile, _fatalityType);
 		::new = new;
 
 		local chanceToRoll = ::MSU.isKindOf(this, "direwolf_high") ? 30 : 20;

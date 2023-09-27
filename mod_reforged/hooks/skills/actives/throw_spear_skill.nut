@@ -1,8 +1,8 @@
-::mods_hookExactClass("skills/actives/throw_spear_skill", function(o) {
-	o.m.AdditionalAccuracy <- 20;
-	o.m.AdditionalHitChance <- -15;
+::Reforged.HooksMod.hook("scripts/skills/actives/throw_spear_skill", function(q) {
+	q.m.AdditionalAccuracy <- 20;
+	q.m.AdditionalHitChance <- -15;
 
-	o.getTooltip = function()
+	q.getTooltip = @(__original) function()
 	{
 		local ret = this.skill.getDefaultTooltip();
 		local damage = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getShieldDamage();
@@ -28,7 +28,7 @@
 		return ret;
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{

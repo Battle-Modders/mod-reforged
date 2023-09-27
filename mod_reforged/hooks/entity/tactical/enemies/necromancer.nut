@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/necromancer", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/necromancer", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -30,14 +30,13 @@
     	}
 	}
 
-	local onDeath = o.onDeath;
-	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
 		if (_tile != null && ::Math.rand(1, 100) <= 67)
 		{
 			local loot = ::new("scripts/items/loot/signet_ring_item");
 			loot.drop(_tile);
 		}
-		onDeath(_killer, _skill, _tile, _fatalityType);
+		__original(_killer, _skill, _tile, _fatalityType);
 	}
 });

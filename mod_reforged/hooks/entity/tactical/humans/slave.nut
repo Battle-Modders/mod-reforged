@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/slave", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/slave", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -54,10 +54,9 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    if (::Reforged.Config.IsLegendaryDifficulty)
 	    {

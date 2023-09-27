@@ -1,10 +1,9 @@
-::mods_hookExactClass("ai/tactical/behaviors/ai_defend_riposte", function (o) {
-	o.m.PossibleSkills.push("actives.rf_bearded_blade");
+::Reforged.HooksMod.hook("scripts/ai/tactical/behaviors/ai_defend_riposte", function(q) {
+	q.m.PossibleSkills.push("actives.rf_bearded_blade");
 
-	local onEvaluate = o.onEvaluate;
-	o.onEvaluate = function( _entity )
+	q.onEvaluate = @(__original) function( _entity )
 	{
-		local score = onEvaluate(_entity);
+		local score = __original(_entity);
 		if (this.m.Skill != null && this.m.Skill.getID() == "actives.riposte")
 		{
 			// Don't use Riposte if you have the En Garde perk which can be used to trigger it for free

@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/weapons/greenskins/goblin_falchion", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/greenskins/goblin_falchion", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 3;
 		this.m.RegularDamage = 30;
 		this.m.RegularDamageMax = 35;
@@ -13,7 +12,7 @@
 		this.m.ConditionMax = 48.0;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @(__original) function()
 	{
 		this.weapon.onEquip();
 

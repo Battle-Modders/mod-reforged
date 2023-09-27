@@ -1,14 +1,13 @@
-::mods_hookExactClass("items/weapons/greatsword", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/greatsword", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Name = "Zweihander";
 		this.m.Reach = 7;
 		this.m.ShieldDamage = 24;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @(__original) function()
 	{
 		this.weapon.onEquip();
 

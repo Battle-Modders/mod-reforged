@@ -1,10 +1,9 @@
-::mods_hookExactClass("ui/screens/tactical/modules/turn_sequence_bar/turn_sequence_bar", function(o) {
-	o.m.IsWaitingRound <- false;	// Similar to IsSkippingRound but for the Wait Action
+::Reforged.HooksMod.hook("scripts/ui/screens/tactical/modules/turn_sequence_bar/turn_sequence_bar", function(q) {
+	q.m.IsWaitingRound <- false;	// Similar to IsSkippingRound but for the Wait Action
 
 	// In Vanilla this funtion is also called at the start of an actors turn if that actor is flagged with 'IsSkippingTurn' (aka End Round button presset)
 	// We manipulated some other function so it is now also called when that actors 'IsWaitingTurn' is true. So now we can redirect the wait behavior in here
-	local initNextTurn = o.initNextTurn;
-	o.initNextTurn = function( _force = false )
+	q.initNextTurn = @(__original) function( _force = false )
 	{
 		local activeEntity = this.getActiveEntity();
 		if (activeEntity != null && activeEntity.m.IsWaitingTurn)
@@ -14,19 +13,18 @@
 			return;
 		}
 
-		initNextTurn(_force);
+		__original(_force);
 	}
 
-	local initNextRound = o.initNextRound;
-	o.initNextRound = function()
+	q.initNextRound = @(__original) function()
 	{
 		this.m.JSHandle.call("setWaitTurnAllButtonVisible", true);
 		this.m.IsWaitingRound = false;
-		initNextRound();
+		__original();
 	}
 
 	// We replace the vanilla function for performance reason and because it is a simple function. We don't want to query an entitys skills twice for no reason.
-	o.convertEntityStatusEffectsToUIData = function( _entity )
+	q.convertEntityStatusEffectsToUIData = @(__original) function( _entity )
 	{
 		if (!_entity.isPlayerControlled()) return null;
 
@@ -43,10 +41,9 @@
 	}
 
 	// Vanilla Fix: this function does not remove entities that it pushes out of the turn sequence bar temporarily
-	local moveEntityToFront = o.moveEntityToFront;
-	o.moveEntityToFront = function( _entityId )
+	q.moveEntityToFront = @(__original) function( _entityId )
 	{
-		moveEntityToFront(_entityId);
+		__original(_entityId);
 
 		// This is an exact copy on how vanilla handles the 'function insertEntity'
 		if (this.m.CurrentEntities.len() > this.m.MaxVisibleEntities)
@@ -58,7 +55,7 @@
 	}
 
 // New Functions:
-	o.onWaitTurnAllButtonPressed <- function()
+	q.onWaitTurnAllButtonPressed <- function()
 	{
 		if (this.m.IsWaitingRound || this.getActiveEntity() == null || !this.getActiveEntity().isPlayerControlled())
 		{

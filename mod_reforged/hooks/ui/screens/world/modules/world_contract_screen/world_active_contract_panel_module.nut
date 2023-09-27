@@ -1,6 +1,6 @@
-::mods_hookExactClass("ui/screens/world/modules/world_contract_screen/world_active_contract_panel_module", function(o) {
-	o.m.SelectionClickedArray <- [];
-	o.onActiveContractDetailsClicked <- function()
+::Reforged.HooksMod.hook("scripts/ui/screens/world/modules/world_contract_screen/world_active_contract_panel_module", function(q) {
+	q.m.SelectionClickedArray <- [];
+	q.onActiveContractDetailsClicked <- function()
 	{
 		// Map size: 140 x 170 tiles
 		// This does not translate entirely to the Pos style distances, but 25000 radius covers the whole map
@@ -24,24 +24,21 @@
 		}
 	}
 
-	local updateContract = o.updateContract;
-	o.updateContract = function( _contract = null )
+	q.updateContract = @(__original) function( _contract = null )
 	{
 		this.m.SelectionClickedArray.clear();
-		return updateContract(_contract);
+		return __original(_contract);
 	}
 
-	local clearContract = o.clearContract;
-	o.clearContract = function()
+	q.clearContract = @(__original) function()
 	{
 		this.m.SelectionClickedArray.clear();
-		return clearContract();
+		return __original();
 	}
 
-	local onContractCancelled = o.onContractCancelled;
-	o.onContractCancelled = function()
+	q.onContractCancelled = @(__original) function()
 	{
 		this.m.SelectionClickedArray.clear();
-		return onContractCancelled();
+		return __original();
 	}
 })

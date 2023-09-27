@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/effects/indomitable_effect", function(o) {
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
+::Reforged.HooksMod.hook("scripts/skills/effects/indomitable_effect", function(q) {
+	q.getTooltip = @(__original) function()
 	{
-		local tooltip = getTooltip();
+		local tooltip = __original();
 		tooltip.push(
 			{
 				id = 6,

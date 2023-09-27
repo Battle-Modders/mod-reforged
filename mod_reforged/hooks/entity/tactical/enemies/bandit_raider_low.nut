@@ -1,7 +1,6 @@
-::mods_hookExactClass("entity/tactical/enemies/bandit_raider_low", function(o) {
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_raider_low", function(q) {
+	q.assignRandomEquipment = @(__original) function()
 	{
-		this.bandit_raider.assignRandomEquipment();
+		this.bandit_raider.__original();
 	}
 });

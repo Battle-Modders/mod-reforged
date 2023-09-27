@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/flying_skull", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/flying_skull", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);

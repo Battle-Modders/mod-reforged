@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/bounty_hunter", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/bounty_hunter", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -36,10 +36,9 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 
 		if (::Reforged.Config.IsLegendaryDifficulty)

@@ -1,5 +1,5 @@
-::mods_hookExactClass("skills/perks/perk_fast_adaption", function (o) {
-	o.onGetHitFactors <- function( _skill, _targetTile, _tooltip )
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_fast_adaption", function(q) {
+	q.onGetHitFactors <- function( _skill, _targetTile, _tooltip )
 	{
 		if (_skill.isAttack() && this.m.Stacks != 0)
 		{

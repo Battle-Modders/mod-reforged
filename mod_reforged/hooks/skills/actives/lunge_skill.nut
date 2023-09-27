@@ -1,21 +1,19 @@
-::mods_hookExactClass("skills/actives/lunge_skill", function (o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/actives/lunge_skill", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.HitChanceBonus = -20;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_AttackLunge;
 	}
 
-	o.isDuelistValid <- function()
+	q.isDuelistValid <- function()
 	{
 		return this.getBaseValue("ActionPointCost") <= 4;
 	}
 
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
+	q.getTooltip = @(__original) function()
 	{
-		local tooltip = getTooltip();
+		local tooltip = __original();
 		tooltip.insert(tooltip.len() - 1, {
 			id = 6,
 			type = "text",
@@ -25,21 +23,20 @@
 		return tooltip;
 	}
 
-	o.onAdded <- function()
+	q.onAdded <- function()
 	{
 		if (!this.getContainer().getActor().isPlayerControlled())
 			this.getContainer().add(this.new("scripts/skills/actives/rf_lunge_charge_dummy_skill"));
 	}
 
-	o.onRemoved <- function()
+	q.onRemoved <- function()
 	{
 		this.getContainer().removeByID("actives.rf_lunge_charge_dummy");
 	}
 
-	local onAnySkillUsed = o.onAnySkillUsed;
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
 	{
-		onAnySkillUsed(_skill, _targetEntity, _properties);
+		__original(_skill, _targetEntity, _properties);
 		if (_skill == this)
 		{
 			if (!this.getContainer().getActor().isPlayerControlled()) this.m.HitChanceBonus = 0;
@@ -48,7 +45,7 @@
 		}
 	}
 
-	o.getDestinationTile <- function( _targetTile )
+	q.getDestinationTile <- function( _targetTile )
 	{
 		local myTile = this.getContainer().getActor().getTile();
 		local targetDistance = _targetTile.getDistanceTo(myTile);
@@ -89,12 +86,12 @@
 			return destTiles[0];
 	}
 
-	o.onVerifyTarget = function( _originTile, _targetTile )
+	q.onVerifyTarget = @(__original) function( _originTile, _targetTile )
 	{
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && this.getDestinationTile(_targetTile) != null;
 	}
 
-	o.onUse = function( _user, _targetTile )
+	q.onUse = @(__original) function( _user, _targetTile )
 	{
 		local destTile = this.getDestinationTile(_targetTile);
 

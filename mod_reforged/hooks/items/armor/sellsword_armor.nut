@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/armor/sellsword_armor", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/armor/sellsword_armor", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.StaminaModifier = -30;
 	}
 });

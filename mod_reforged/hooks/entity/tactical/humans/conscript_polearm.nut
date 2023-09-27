@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/conscript_polearm", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/conscript_polearm", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.conscript.onInit();
 
@@ -16,10 +16,9 @@
 		}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 	    local weapon = this.getMainhandItem();
 
 	    if (weapon != null && weapon.isWeaponType(this.Const.Items.WeaponType.Mace))

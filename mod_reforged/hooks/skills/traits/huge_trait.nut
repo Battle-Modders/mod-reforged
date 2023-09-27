@@ -1,18 +1,16 @@
-::mods_hookExactClass("skills/traits/huge_trait", function (o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/traits/huge_trait", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_devious": 0.5,
 			"pg.rf_large": -1
 		};
 	}
 	
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
+	q.getTooltip = @(__original) function()
 	{
-		local tooltip = getTooltip();
+		local tooltip = __original();
 		tooltip.push({
 			id = 11,
 			type = "text",
@@ -22,10 +20,9 @@
 		return tooltip;
 	}
 
-	local onUpdate = o.onUpdate;
-	o.onUpdate <- function( _properties )
+	q.onUpdate = @(__original) function( _properties )
 	{
-		onUpdate(_properties);
+		__original(_properties);
 		_properties.Reach += 1;
 	}
 });

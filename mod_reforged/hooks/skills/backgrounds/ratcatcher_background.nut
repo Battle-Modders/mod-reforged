@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/backgrounds/ratcatcher_background", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/ratcatcher_background", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_devious": 5,
 			"pg.rf_large": 0.8,

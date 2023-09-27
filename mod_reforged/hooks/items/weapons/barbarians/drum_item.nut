@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/weapons/barbarians/drum_item", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/barbarians/drum_item", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 1;
 	}
 });

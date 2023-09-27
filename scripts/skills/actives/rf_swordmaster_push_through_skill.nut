@@ -87,10 +87,10 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 		}
 
 		local aoo = this.getContainer().getAttackOfOpportunity();
-		local overlay = aoo.m.Overlay;
-		aoo.m.Overlay = "";
+		local overlay = aoq.m.Overlay;
+		aoq.m.Overlay = "";
 		local success = aoo.useForFree(_targetTile);
-		aoo.m.Overlay = overlay;
+		aoq.m.Overlay = overlay;
 
 		if (success && target.isAlive())
 		{

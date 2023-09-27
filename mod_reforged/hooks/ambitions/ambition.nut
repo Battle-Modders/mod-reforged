@@ -1,10 +1,7 @@
-::mods_hookBaseClass("ambitions/ambition", function(o) {
-	o = o[o.SuperName];
-
-	local getButtonTooltip = o.getButtonTooltip;
-	o.getButtonTooltip = function()
+::Reforged.HooksMod.hook("scripts/ambitions/ambition", function(q) {
+	q.getButtonTooltip = @(__original) function()
 	{
-		local ret = getButtonTooltip();
+		local ret = __original();
 		if (this.getRenownOnSuccess() != 0)
 		{
 			ret.push({

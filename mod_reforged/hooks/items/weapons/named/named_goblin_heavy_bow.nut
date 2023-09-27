@@ -1,17 +1,16 @@
-::mods_hookExactClass("items/weapons/named/named_goblin_heavy_bow", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/named/named_goblin_heavy_bow", function(q) {
+	q.create = @(__original) function()
 	{
 		this.m.BaseWeaponScript = "scripts/items/weapons/greenskins/goblin_heavy_bow";
-		create();
+		__original();
 	}
 
-	o.onEquip = function()
+	q.onEquip = @(__original) function()
 	{
 		this.named_weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/quick_shot", function(o) {
-			o.m.FatigueCost -= 2;
+			q.m.FatigueCost -= 2;
 		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/aimed_shot", function(o) {

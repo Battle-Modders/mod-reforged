@@ -1,6 +1,5 @@
-::mods_hookNewObject("ai/tactical/agent", function (o) {
-	local addBehavior = o.addBehavior;
-	o.addBehavior = function( _behavior )
+::Reforged.HooksMod.hook("scripts/ai/tactical/agent", function(q) {
+	q.addBehavior = @(__original) function( _behavior )
 	{
 		local obj = this;
 		while ("SuperName" in obj)
@@ -12,6 +11,6 @@
 			obj = obj[obj.SuperName];
 		}
 
-		return addBehavior(_behavior);
+		return __original(_behavior);
 	}
 });

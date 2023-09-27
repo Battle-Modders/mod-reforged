@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/standard_bearer", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/standard_bearer", function(q) {
+	q.onInit = @(__original) function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;

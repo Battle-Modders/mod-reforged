@@ -1,8 +1,8 @@
-::mods_hookExactClass("skills/actives/quick_shot", function(o) {
-	o.m.AdditionalAccuracy <- 0;
-	o.m.AdditionalHitChance <- -4;
+::Reforged.HooksMod.hook("scripts/skills/actives/quick_shot", function(q) {
+	q.m.AdditionalAccuracy = 0;
+	q.m.AdditionalHitChance = -4;
 
-	o.getTooltip = function()
+	q.getTooltip = @(__original) function()
 	{
 		local ret = this.getRangedTooltip(this.skill.getDefaultTooltip());
 
@@ -40,15 +40,14 @@
 		return ret;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function( _properties )
+	q.onAfterUpdate = @(__original) function( _properties )
 	{
 		local additionalAccuracy = this.m.AdditionalAccuracy;
-		onAfterUpdate(_properties);
+		__original(_properties);
 		this.m.AdditionalAccuracy = additionalAccuracy;
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{

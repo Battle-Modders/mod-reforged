@@ -1,8 +1,7 @@
-::mods_hookExactClass("entity/tactical/human", function(o) {
-	local onInit = o.onInit;
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/human", function(q) {
+	q.onInit = @(__original) function()
 	{
-		onInit();
+		__original();
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
 	}
 });

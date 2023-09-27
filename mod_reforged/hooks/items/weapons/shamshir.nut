@@ -1,13 +1,12 @@
-::mods_hookExactClass("items/weapons/shamshir", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/shamshir", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 4;
 		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.RF_Southern;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @(__original) function()
 	{
 		this.weapon.onEquip();
 

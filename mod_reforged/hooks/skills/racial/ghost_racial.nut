@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/racial/ghost_racial", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/racial/ghost_racial", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Name = "Ghost";
 		this.m.Icon = "ui/orientation/ghost_01_orientation.png";
 		this.m.IsHidden = false;
@@ -10,7 +9,7 @@
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
 	}
 
-	o.getTooltip <- function()
+	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.push({
@@ -22,7 +21,7 @@
 		return ret;
 	}
 
-	o.onAdded <- function()
+	q.onAdded <- function()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 

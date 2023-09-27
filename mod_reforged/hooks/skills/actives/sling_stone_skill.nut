@@ -1,8 +1,8 @@
-::mods_hookExactClass("skills/actives/sling_stone_skill", function(o) {
-	o.m.AdditionalAccuracy <- 0;
-	o.m.AdditionalHitChance <- -5;
+::Reforged.HooksMod.hook("scripts/skills/actives/sling_stone_skill", function(q) {
+	q.m.AdditionalAccuracy = 0;
+	q.m.AdditionalHitChance = -5;
 
-	o.getTooltip = function()
+	q.getTooltip = @(__original) function()
 	{
 		local ret = this.getRangedTooltip(this.skill.getDefaultTooltip());
 
@@ -26,15 +26,14 @@
 		return ret;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function( _properties )
+	q.onAfterUpdate = @(__original) function( _properties )
 	{
 		local additionalAccuracy = this.m.AdditionalAccuracy;
-		onAfterUpdate(_properties);
+		__original(_properties);
 		this.m.AdditionalAccuracy = additionalAccuracy;
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{

@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/weapons/throwing_spear", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/throwing_spear", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 0;
 		this.m.ShieldDamage = 32;
 	}

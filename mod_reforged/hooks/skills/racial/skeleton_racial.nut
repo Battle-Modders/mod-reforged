@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/racial/skeleton_racial", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/racial/skeleton_racial", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Name = "Skeleton";
 		this.m.Icon = "ui/orientation/skeleton_01_orientation.png";
 		this.m.IsHidden = false;
@@ -10,7 +9,7 @@
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
 	}
 
-	o.getTooltip <- function()
+	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -36,7 +35,7 @@
 		return ret;
 	}
 
-	o.onAdded <- function()
+	q.onAdded <- function()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 
@@ -46,7 +45,7 @@
 		baseProperties.IsImmuneToPoison = true;
 	}
 
-	o.onBeforeDamageReceived = function( _attacker, _skill, _hitInfo, _properties )
+	q.onBeforeDamageReceived = @(__original) function( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)
 		{

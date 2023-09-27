@@ -1,12 +1,11 @@
-::mods_hookExactClass("items/weapons/named/named_two_handed_mace", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/named/named_two_handed_mace", function(q) {
+	q.create = @(__original) function()
 	{
 		this.m.BaseWeaponScript = "scripts/items/weapons/two_handed_flanged_mace";
-		create();
+		__original();
 	}
 
-	o.onEquip = function()
+	q.onEquip = @(__original) function()
 	{
 		this.named_weapon.onEquip();
 

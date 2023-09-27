@@ -1,11 +1,11 @@
-::mods_hookExactClass("skills/perks/perk_mastery_axe", function (o) {
-	o.onAdded <- function()
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_axe", function(q) {
+	q.onAdded <- function()
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon != null) this.onEquip(weapon);
 	}
 
-	o.onEquip <- function( _item )
+	q.onEquip <- function( _item )
 	{
 		if (_item.isItemType(::Const.Items.ItemType.Weapon) && _item.isWeaponType(::Const.Items.WeaponType.Axe))
 		{

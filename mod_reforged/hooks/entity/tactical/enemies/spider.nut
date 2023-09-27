@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/spider", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/spider", function(q) {
+	q.onInit = @(__original) function()
 	{
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);
@@ -86,8 +86,8 @@
 		}
 	}
 
-	local onDeath = o.onDeath; // switcheroo function to replace loot drops with dummy object
-	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	// switcheroo function to replace loot drops with dummy object
+	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
 		local itemsToChange = [
 			"scripts/items/loot/webbed_valuables_item"
@@ -102,7 +102,7 @@
 			}
 			return item;
 		}
-		onDeath(_killer, _skill, _tile, _fatalityType);
+		__original(_killer, _skill, _tile, _fatalityType);
 		::new = new;
 
 		if (_tile != null && this.Math.rand(1, 100) <= 10)
