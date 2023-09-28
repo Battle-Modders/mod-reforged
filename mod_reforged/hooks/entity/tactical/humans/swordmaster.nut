@@ -6,7 +6,7 @@
         Precise = 3,
         Grappler = 4
     };
-	q.m.MyArmorVariant <- 0;
+	q.m.MyArmorVariant <- 0; // 0 = Light Armor, 1 = Medium Armor
 	q.m.MyVariant <- 0;
 
 	q.onInit = @() function()
@@ -29,7 +29,23 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
 
 		this.m.MyVariant = ::MSU.Table.randValue(this.m.SwordmasterVariants);
-        this.m.MyArmorVariant = ::Math.rand(0, 1); // 0 = Light Armor, 1 = Medium Armor
+
+		switch(this.m.MyVariant)
+        {
+            case this.m.SwordmasterVariants.Precise: // light armor only
+            	this.MyArmorVariant = 0;
+                break;
+
+            case this.m.SwordmasterVariants.Reaper:  // medium armor only
+            case this.m.SwordmasterVariants.Grappler:
+            	this.MyArmorVariant = 1;
+                break;
+
+            case this.m.SwordmasterVariants.BladeDancer: // light or medium armor
+            case this.m.SwordmasterVariants.Metzger:
+            	this.m.MyArmorVariant = ::Math.rand(0, 1); // 0 = Light Armor, 1 = Medium Armor
+                break;
+        }
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -105,14 +121,20 @@
 			    	]).roll();
 	                break;
 
-	            case this.m.SwordmasterVariants.Reaper:
-	            case this.m.SwordmasterVariants.Grappler:
-	                weapon = ::MSU.Class.WeightedContainer([
-			    		[1, "scripts/items/weapons/rf_greatsword"],
-						[1, "scripts/items/weapons/warbrand"],
-						[1, "scripts/items/weapons/greatsword"]
-			    	]).roll();
-	                break;
+                case this.m.SwordmasterVariants.Reaper:
+                    weapon = ::MSU.Class.WeightedContainer([
+    		    		[1, "scripts/items/weapons/rf_greatsword"],
+    					[1, "scripts/items/weapons/warbrand"],
+    					[1, "scripts/items/weapons/greatsword"]
+    		    	]).roll();
+                    break;
+
+                case this.m.SwordmasterVariants.Grappler:
+                    weapon = ::MSU.Class.WeightedContainer([
+    					[1, "scripts/items/weapons/warbrand"],
+    					[1, "scripts/items/weapons/greatsword"]
+    		    	]).roll();
+                    break;
 	        }
        	 	this.m.Items.equip(::new(weapon));
   	 	}
@@ -159,12 +181,19 @@
 	                break;
 
 	            case this.m.SwordmasterVariants.Reaper:
-	            case this.m.SwordmasterVariants.Grappler:
 	                weapon = ::MSU.Class.WeightedContainer([
+	                	[1, "scripts/items/weapons/named/named_rf_greatsword"],
 						[1, "scripts/items/weapons/named/named_warbrand"],
 						[1, "scripts/items/weapons/named/named_greatsword"]
 			    	]).roll();
 	                break;
+
+                case this.m.SwordmasterVariants.Grappler:
+                    weapon = ::MSU.Class.WeightedContainer([
+    					[1, "scripts/items/weapons/named/named_warbrand"],
+    					[1, "scripts/items/weapons/named/named_greatsword"]
+    		    	]).roll();
+                    break;
 	        }
         	this.m.Items.equip(::new(weapon));
 		}
@@ -324,7 +353,8 @@
 	            	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_grappler"));
 	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_kata"));
+	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
+	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 	            	local attack = this.getSkills().getAttackOfOpportunity();
 					if (attack != null && attack.getBaseValue("ActionPointCost") <= 4)
 					{
