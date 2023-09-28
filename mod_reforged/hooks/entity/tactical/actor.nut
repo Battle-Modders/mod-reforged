@@ -150,7 +150,7 @@
 // New Functions:
 	q.getSurroundedBonus <- function( _targetEntity )
 	{
-		local surroundedCount = _targetEntity.__original();
+		local surroundedCount = _targetEntity.getSurroundedCount();
 		local surroundBonus = surroundedCount * this.getCurrentProperties().SurroundedBonus * this.getCurrentProperties().SurroundedBonusMult;
 		surroundBonus -= surroundedCount * _targetEntity.getCurrentProperties().SurroundedDefense;
 		return surroundBonus;

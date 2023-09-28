@@ -8,6 +8,6 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    this.vampire.__original();
+	    this.vampire.assignRandomEquipment();
 	}
 });

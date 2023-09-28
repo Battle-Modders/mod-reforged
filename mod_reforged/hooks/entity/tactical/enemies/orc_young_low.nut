@@ -8,6 +8,6 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    this.orc_young.__original();
+	    this.orc_young.assignRandomEquipment();
 	}
 });

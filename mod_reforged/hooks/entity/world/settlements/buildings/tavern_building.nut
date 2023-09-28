@@ -43,7 +43,7 @@
 
 		local ret = __original(_text);
 
-		::buildTextFromTemplate = __originalFromTemplate;
+		::buildTextFromTemplate = buildTextFromTemplate;
 
 		return ret;
 	}

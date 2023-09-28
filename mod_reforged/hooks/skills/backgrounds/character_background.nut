@@ -14,6 +14,7 @@
 		}];
 	}
 
+	// TODO: Currently this randomization is not persistent across game load. We need to serialize the hiring cost.
 	q.adjustHiringCostBasedOnEquipment = @(__original) function()
 	{
 		__original();
@@ -83,6 +84,7 @@
 });
 
 ::Reforged.HooksMod.hookTree("scripts/skills/backgrounds/character_background", function(q) {
+	// TODO: This q.contains check should be removed once Modern Hooks updates its hookTree handling
 	if (!q.contains("getTooltip"))
 		return;
 

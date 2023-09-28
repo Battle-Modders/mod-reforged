@@ -2,6 +2,6 @@
 	q.setupEntity = @(__original) function( _e, _t )
 	{
 		__original(_e, _t);
-		_e.getSkills().onSetupEntity();
+		_e.onSetupEntity();
 	}
 });

@@ -118,10 +118,10 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 		}
 
 		local aoo = this.getContainer().getAttackOfOpportunity();
-		local overlay = aoq.m.Overlay;
-		aoq.m.Overlay = "";
+		local overlay = aoo.m.Overlay;
+		aoo.m.Overlay = "";
 		local success = aoo.useForFree(_targetTile);
-		aoq.m.Overlay = overlay;
+		aoo.m.Overlay = overlay;
 
 		if (success && target.isAlive())
 		{

@@ -8,6 +8,6 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    this.goblin_ambusher.__original();
+	    this.goblin_ambusher.assignRandomEquipment();
 	}
 });

@@ -8,6 +8,6 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    this.orc_warrior.__original();
+	    this.orc_warrior.assignRandomEquipment();
 	}
 });

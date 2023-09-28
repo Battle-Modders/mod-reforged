@@ -1,4 +1,4 @@
-::mods_hookExactClass(::DynamicPerks.Class.PerkTree.slice(8), function(q) { // slice(8) to remove "scripts/"
+::Reforged.HooksMod.hook(::DynamicPerks.Class.PerkTree, function(q) {
 	q.addItemMultipliers = @(__original) function( _multipliers )
 	{
 		__original(_multipliers);
