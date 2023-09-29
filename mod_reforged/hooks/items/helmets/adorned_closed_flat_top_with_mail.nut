@@ -2,7 +2,6 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.Value = 2900;
 		this.m.Condition = 260;
 		this.m.ConditionMax = 260;
 	}
