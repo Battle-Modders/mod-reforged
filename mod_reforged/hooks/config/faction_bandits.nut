@@ -83,7 +83,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_BanditHunter <- {
-	XP = 225,
+	XP = 250,
 	ActionPoints = 9,
 	Hitpoints = 60,
 	Bravery = 50,
