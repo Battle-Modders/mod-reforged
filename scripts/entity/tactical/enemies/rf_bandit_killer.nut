@@ -140,6 +140,7 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 					return _weight;
 				},
 				Add = [
+					[1, "scripts/items/helmets/reinforced_mail_coif"],
 					[0.5, "scripts/items/helmets/nordic_helmet"]
 				]
 			})
