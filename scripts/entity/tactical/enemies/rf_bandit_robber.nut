@@ -26,6 +26,9 @@ this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_bandits");
+		local tattoo_head = this.actor.getSprite("tattoo_head");
+		tattoo_head.setBrush("warpaint_0" + ::Math.rand(2, 3) + "_head");	// Currently only two variants of warpaint exists, that's why they are hardcoded here
+		tattoo_head.Visible = true;
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = ::Math.rand(150, 255);
