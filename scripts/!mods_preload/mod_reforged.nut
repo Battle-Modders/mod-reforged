@@ -9,8 +9,7 @@
 	}
 };
 
-::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
-::Reforged.HooksMod.require(
+local requiredMods = [
 	"mod_msu >= 1.3.0-reforged.7",
 	"dlc_lindwurm",
 	"dlc_unhold",
@@ -22,12 +21,22 @@
 	"mod_item_tables",
 	"mod_upd",
 	"mod_stack_based_skills"
-);
+];
+
+::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
+::Reforged.HooksMod.require(requiredMods);
 ::Reforged.HooksMod.conflictWith(
 	"mod_legends"
 );
 
-::Reforged.HooksMod.queue(">mod_msu", ">mod_dynamic_perks", ">mod_dynamic_spawns", ">mod_item_tables", ">mod_upd", ">mod_stack_based_skills", function() {
+local queueLoadOrder = [];
+foreach (requirement in requiredMods)
+{
+	local idx = requirement.find(" ");
+	queueLoadOrder.push(">" + (idx == null ? requirement : requirement.slice(0, idx)));
+}
+
+::Reforged.HooksMod.queue(queueLoadOrder, function() {
 	::Reforged.Mod <- ::MSU.Class.Mod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);	
 
 	::Reforged.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, ::Reforged.GitHubURL);
@@ -71,7 +80,7 @@
 	}
 });
 
-::Reforged.HooksMod.queue(">mod_msu", ">mod_dynamic_perks", ">mod_dynamic_spawns", ">mod_item_tables", ">mod_upd", ">mod_stack_based_skills", function() {
+::Reforged.HooksMod.queue(queueLoadOrder, function() {
 	foreach (func in ::Reforged.QueueBucket.FirstWorldInit)
 	{
 		func();
