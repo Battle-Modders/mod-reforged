@@ -71,7 +71,7 @@
 	}
 });
 
-::Reforged.HooksMod.queue(">mod_msu", ">mod_dynamic_perks", ">mod_dynamic_spawns", ">mod_item_tables", ">mod_upd", ">mod_stack_based_skills",function() {
+::Reforged.HooksMod.queue(">mod_msu", ">mod_dynamic_perks", ">mod_dynamic_spawns", ">mod_item_tables", ">mod_upd", ">mod_stack_based_skills", function() {
 	foreach (func in ::Reforged.QueueBucket.FirstWorldInit)
 	{
 		func();
