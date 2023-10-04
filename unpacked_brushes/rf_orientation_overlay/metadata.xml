@@ -1,0 +1,15 @@
+<brush name="gfx/rf_orientation_overlay.png" version="17" b1="2" b3="0" b4="0" b5="0">
+	<sprite id="rf_bandit_thug_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_thug_orientation.png" />
+	<sprite id="rf_bandit_robber_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_robber_orientation.png" />
+	<sprite id="rf_bandit_hunter_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_hunter_orientation.png" />
+	<sprite id="rf_bandit_marksman_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_marksman_orientation.png" />
+	<sprite id="rf_bandit_raider_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_raider_orientation.png" />
+	<sprite id="rf_bandit_pillager_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_pillager_orientation.png" />
+	<sprite id="rf_bandit_outlaw_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_outlaw_orientation.png" />
+	<sprite id="rf_bandit_bandit_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_bandit_orientation.png" />
+	<sprite id="rf_bandit_highwayman_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_highwayman_orientation.png" />
+	<sprite id="rf_bandit_marauder_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_marauder_orientation.png" />
+	<sprite id="rf_bandit_killer_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_killer_orientation.png" />
+	<sprite id="rf_bandit_sharpshooter_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_sharpshooter_orientation.png" />
+	<sprite id="rf_bandit_baron_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_baron_orientation.png" />
+</brush>
