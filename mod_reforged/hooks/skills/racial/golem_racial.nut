@@ -1,15 +1,14 @@
-::mods_hookExactClass("skills/racial/golem_racial", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/racial/golem_racial", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Name = "Golem";
 		this.m.Icon = "ui/orientation/sand_golem_orientation.png";
 		this.m.IsHidden = false;
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on the enemies
 	}
 
-	o.getTooltip <- function()
+	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -35,7 +34,7 @@
 		return ret;
 	}
 
-	o.onAdded <- function()
+	q.onAdded <- function()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 
@@ -48,7 +47,7 @@
 		baseProperties.IsImmuneToStun = true;
 	}
 
-	o.onBeforeDamageReceived = function( _attacker, _skill, _hitInfo, _properties )
+	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
 	{
 		if (_skill != null && _skill.getID() == "actives.throw_golem")
 		{

@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/actives/taunt", function(o) {
-	local onVerifyTarget = o.onVerifyTarget;
-	o.onVerifyTarget = function( _originTile, _targetTile )
+::Reforged.HooksMod.hook("scripts/skills/actives/taunt", function(q) {
+	q.onVerifyTarget = @(__original) function( _originTile, _targetTile )
 	{
-		local ret = onVerifyTarget(_originTile, _targetTile);
+		local ret = __original(_originTile, _targetTile);
 		if (ret && _targetTile.getEntity().getSkills().hasSkill("effects.taunted"))	return false;
 		return ret;
 	}

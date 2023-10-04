@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/helmets/masked_kettle_helmet", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/helmets/masked_kettle_helmet", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Value = 1000;
 		this.m.Condition = 125;
 		this.m.ConditionMax = 125;

@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/helmets/steppe_helmet_with_mail", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/helmets/steppe_helmet_with_mail", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Value = 1500;
 		this.m.StaminaModifier = -11;
 	}

@@ -1,7 +1,7 @@
-::mods_hookExactClass("entity/tactical/enemies/bandit_marksman", function(o) {
-	o.m.MyVariant <- 0;
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_marksman", function(q) {
+	q.m.MyVariant <- 0;
 
-	o.onInit = function()
+	q.onInit = @() function()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -39,7 +39,7 @@
 		this.m.MyVariant = ::Math.rand(0, 1); // 1 is crossbow
 	}
 
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @() function()
 	{
 	    if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -138,7 +138,7 @@
 		}
 	}
 
-	o.onSetupEntity <- function()
+	q.onSetupEntity <- function()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)

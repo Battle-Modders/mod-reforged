@@ -1,20 +1,20 @@
-::mods_hookExactClass("skills/actives/shoot_bolt", function(o) {
-	o.m.AdditionalAccuracy <- 15;
-	o.m.AdditionalHitChance <- -3;
+::Reforged.HooksMod.hook("scripts/skills/actives/shoot_bolt", function(q) {
+	q.m.AdditionalAccuracy = 15;
+	q.m.AdditionalHitChance = -3;
 
 	// Overwrite vanilla function to prevent repeated adding of reload skill
-	o.onUse = function( _user, _targetTile	)
+	q.onUse = @() function( _user, _targetTile	)
 	{
 		this.getItem().setLoaded(false);
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 
 	// Overwrite the vanilla function to prevent removal of reload skill
-	o.onRemoved = function()
+	q.onRemoved = @() function()
 	{
 	}
 
-	o.getTooltip = function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.getRangedTooltip(this.skill.getDefaultTooltip());
 
@@ -52,15 +52,14 @@
 		return ret;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function( _properties )
+	q.onAfterUpdate = @(__original) function( _properties )
 	{
 		local additionalAccuracy = this.m.AdditionalAccuracy;
-		onAfterUpdate(_properties);
+		__original(_properties);
 		this.m.AdditionalAccuracy = additionalAccuracy;
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{

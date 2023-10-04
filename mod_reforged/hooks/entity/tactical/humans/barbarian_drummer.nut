@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/barbarian_drummer", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/barbarian_drummer", function(q) {
+	q.onInit = @() function()
 	{
 		this.human.onInit();
 		local tattoos = [
@@ -57,10 +57,9 @@
 		}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 		foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
 	    {

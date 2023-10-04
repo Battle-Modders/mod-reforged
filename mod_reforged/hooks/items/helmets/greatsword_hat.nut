@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/helmets/greatsword_hat", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/helmets/greatsword_hat", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Value = 1000;
 		this.m.Condition = 90;
 		this.m.ConditionMax = 90;

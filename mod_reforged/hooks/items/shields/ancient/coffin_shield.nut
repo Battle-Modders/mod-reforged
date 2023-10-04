@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/shields/ancient/coffin_shield", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/shields/ancient/coffin_shield", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Condition = 24;
 		this.m.ConditionMax = 24;
 		this.m.ReachIgnore = 3;

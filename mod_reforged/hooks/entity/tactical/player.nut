@@ -1,21 +1,20 @@
-::mods_hookExactClass("entity/tactical/player", function(o) {
+::Reforged.HooksMod.hook("scripts/entity/tactical/player", function(q) {
 
     // Player and Non-Player are now using the exact same tooltip-structure again because the only difference of the exact values for progressbar has been streamlined
     // This will make modding easier because now the elements for both types of tooltips have the same IDs
-    o.getTooltip = function ( _targetedWithSkill = null )
+    q.getTooltip = @(__original) function ( _targetedWithSkill = null )
     {
         return this.actor.getTooltip(_targetedWithSkill);
     }
 
-	local onInit = o.onInit;
-	o.onInit = function()
+	q.onInit = @(__original) function()
 	{
-		onInit();
+		__original();
 		this.getSkills().add(::new("scripts/skills/actives/rf_adjust_dented_armor_ally_skill"));
 		this.getSkills().add(::new("scripts/skills/special/rf_veteran_levels"));
 	}
 
-	o.getProjectedAttributes <- function()
+	q.getProjectedAttributes <- function()
 	{
 		local baseProperties = this.getBaseProperties();
 
@@ -43,12 +42,12 @@
 		return ret;
 	}
 
-	o.isHired <- function()
+	q.isHired <- function()
 	{
 		return this.getPlaceInFormation() != 255;
 	}
 
-	o.setStartValuesEx = function( _backgrounds, _addTraits = true )
+	q.setStartValuesEx = @() function( _backgrounds, _addTraits = true )
 	{
 		if (::isSomethingToSee() && ::World.getTime().Days >= 7)
 		{
@@ -124,10 +123,9 @@
 	}
 
 	// Adjust attributes with 2 stars to also grant random stats instead of fixed stats each level-up
-	local fillAttributeLevelUpValues = o.fillAttributeLevelUpValues;
-	o.fillAttributeLevelUpValues = function( _amount, _maxOnly = false, _minOnly = false )
+	q.fillAttributeLevelUpValues = @(__original) function( _amount, _maxOnly = false, _minOnly = false )
 	{
-		fillAttributeLevelUpValues(_amount, _maxOnly, _minOnly);
+		__original(_amount, _maxOnly, _minOnly);
 
 		if (_amount == 0) return;
 		if (_maxOnly || _minOnly) return;	// Stars do not influence these level-ups

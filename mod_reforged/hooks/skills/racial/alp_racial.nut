@@ -1,14 +1,13 @@
-::mods_hookExactClass("skills/racial/alp_racial", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/racial/alp_racial", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Name = "Alp";
 		this.m.Icon = "ui/orientation/alp_01_orientation.png";
 		this.m.IsHidden = false;
 	}
 
-	o.getTooltip <- function()
+	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -40,7 +39,7 @@
 		return ret;
 	}
 
-	o.onAdded <- function()
+	q.onAdded <- function()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 
@@ -52,7 +51,7 @@
 		baseProperties.IsImmuneToPoison = true;
 	}
 
-	o.onBeforeDamageReceived = function( _attacker, _skill, _hitInfo, _properties )
+	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)
 		{

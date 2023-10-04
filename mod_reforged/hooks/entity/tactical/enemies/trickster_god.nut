@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/trickster_god", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/trickster_god", function(q) {
+	q.onInit = @() function()
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -46,10 +46,9 @@
 		}));
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    // any skills that should be added based on equipment
 	}

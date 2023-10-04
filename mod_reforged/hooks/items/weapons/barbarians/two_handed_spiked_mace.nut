@@ -1,13 +1,12 @@
-::mods_hookExactClass("items/weapons/barbarians/two_handed_spiked_mace", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/barbarians/two_handed_spiked_mace", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 5;
 		this.m.ShieldDamage = 22;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @() function()
 	{
 		this.weapon.onEquip();
 

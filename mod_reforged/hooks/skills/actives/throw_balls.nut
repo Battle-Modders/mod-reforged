@@ -1,16 +1,15 @@
-::mods_hookExactClass("skills/actives/throw_balls", function(o) {
-	o.m.AdditionalAccuracy <- 20;
-	o.m.AdditionalHitChance <- -15;
+::Reforged.HooksMod.hook("scripts/skills/actives/throw_balls", function(q) {
+	q.m.AdditionalAccuracy <- 20;
+	q.m.AdditionalHitChance <- -15;
 
-	local create = o.create;
-	o.create = function()
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.FatigueCost = 12;
 		this.m.IsShieldRelevant = false;		// Bolas now ignore the defense bonus of shields as a new unique ability
 	}
 
-	o.getTooltip = function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.getRangedTooltip(this.skill.getDefaultTooltip());
 
@@ -55,7 +54,7 @@
 		return ret;
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{

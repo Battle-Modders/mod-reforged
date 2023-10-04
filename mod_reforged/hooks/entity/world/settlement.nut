@@ -1,6 +1,5 @@
-::mods_hookExactClass("entity/world/settlement", function(o) {
-	local onUpdateShopList = o.onUpdateShopList;
-	o.onUpdateShopList = function( _id, _list )
+::Reforged.HooksMod.hook("scripts/entity/world/settlement", function(q) {
+	q.onUpdateShopList = @(__original) function( _id, _list )
 	{
 		switch (_id)
 		{
@@ -185,6 +184,6 @@
 				break;
 		}
 
-		return onUpdateShopList(_id, _list);
+		return __original(_id, _list);
 	}
 });

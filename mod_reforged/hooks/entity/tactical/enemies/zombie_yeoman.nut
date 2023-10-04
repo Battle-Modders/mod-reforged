@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/zombie_yeoman", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/zombie_yeoman", function(q) {
+	q.onInit = @() function()
 	{
 	    this.zombie.onInit();
 		local b = this.m.BaseProperties;

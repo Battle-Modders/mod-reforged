@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/perks/perk_student", function (o) {
-    local create = o.create;
-    o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_student", function(q) {
+    q.create = @(__original) function()
     {
-        create();
+        __original();
         this.m.IsRefundable = false;
     }
 });

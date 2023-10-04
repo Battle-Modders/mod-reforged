@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/backgrounds/cultist_background", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/cultist_background", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_devious": 1.5,
 			"pg.rf_fast": 0,

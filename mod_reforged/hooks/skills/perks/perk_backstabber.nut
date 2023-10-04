@@ -1,15 +1,14 @@
-::mods_hookExactClass("skills/perks/perk_backstabber", function (o) {
-	o.m.IsForceEnabled <- false;
-	o.m.DamageBonusPerSurroundCount <- 0.05;
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_backstabber", function(q) {
+	q.m.IsForceEnabled <- false;
+	q.m.DamageBonusPerSurroundCount <- 0.05;
 
-	local create = o.create;
-    o.create = function()
+	q.create = @(__original) function()
     {
-        create();
+        __original();
         this.m.Icon = "ui/perks/perk_59.png";   // In vanilla it uses the 'Brawny' Icon but there it doesn't cause issues. However we list this perk in the tactical tooltip.
     }
 
-    o.isEnabled <- function()
+    q.isEnabled <- function()
 	{
 		if (this.m.IsForceEnabled)
 		{
@@ -27,7 +26,7 @@
 		return true;
 	}
 
-	o.onAnySkillUsed <- function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed <- function( _skill, _targetEntity, _properties )
 	{
 		if (_skill.isAttack() && _targetEntity != null && this.isEnabled() && !_targetEntity.getCurrentProperties().IsImmuneToSurrounding && !_targetEntity.isAlliedWith(this.getContainer().getActor()))
 		{

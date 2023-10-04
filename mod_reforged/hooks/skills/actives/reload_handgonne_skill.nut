@@ -1,20 +1,19 @@
-::mods_hookExactClass("skills/actives/reload_handgonne_skill", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/actives/reload_handgonne_skill", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.IsRemovedAfterBattle = false;
 	}
 
 	// Overwrite vanilla function to prevent removal of this skill
-	o.onUse = function( _user, _targetTile	)
+	q.onUse = @() function( _user, _targetTile	)
 	{
 		this.consumeAmmo();
 		this.getItem().setLoaded(true);
 		return true;
 	}
 
-	o.isHidden <- function()
+	q.isHidden <- function()
 	{
 		if (!this.getContainer().getActor().isPlacedOnMap()) return true;	// In the character screen this is always hidden
 

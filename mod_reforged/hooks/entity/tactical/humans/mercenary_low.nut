@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/mercenary_low", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/mercenary_low", function(q) {
+	q.onInit = @() function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -36,10 +36,9 @@
     	}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    if (::Reforged.Config.IsLegendaryDifficulty)
 	    {

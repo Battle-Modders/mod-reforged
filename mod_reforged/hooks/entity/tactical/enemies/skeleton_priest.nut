@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_priest", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_priest", function(q) {
+	q.onInit = @() function()
 	{
 	    this.skeleton.onInit();
 		this.getSprite("body").setBrush("bust_skeleton_body_02");

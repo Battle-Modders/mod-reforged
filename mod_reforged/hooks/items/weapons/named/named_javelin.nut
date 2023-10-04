@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/weapons/named/named_javelin", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/named/named_javelin", function(q) {
+	q.create = @(__original) function()
 	{
 		this.m.BaseWeaponScript = "scripts/items/weapons/javelin";
-		create();
+		__original();
 	}
 });

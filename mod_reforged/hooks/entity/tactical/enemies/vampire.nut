@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/vampire", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/vampire", function(q) {
+	q.onInit = @() function()
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -92,10 +92,9 @@
 		}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    if (::Reforged.Config.IsLegendaryDifficulty)
 	    {
@@ -107,14 +106,13 @@
 	    }
 	}
 
-	local onDeath = o.onDeath;
-	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
 		if (_tile != null && ::Math.rand(1, 100) <= 20)
 		{
 			local loot = ::new("scripts/items/loot/signet_ring_item");
 			loot.drop(_tile);
 		}
-		onDeath(_killer, _skill, _tile, _fatalityType);
+		__original(_killer, _skill, _tile, _fatalityType);
 	}
 });

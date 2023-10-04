@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/racial/vampire_racial", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/racial/vampire_racial", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Name = "Vampire";
 		this.m.Description = "";	// Vanilla has "TODO" written here. We don't want that to display
 		this.m.Icon = "/ui/orientation/vampire_01_orientation.png";
@@ -12,7 +11,7 @@
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
 	}
 
-	o.getTooltip <- function()
+	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -26,7 +25,7 @@
 		return ret;
 	}
 
-	o.onAdded <- function()
+	q.onAdded <- function()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 

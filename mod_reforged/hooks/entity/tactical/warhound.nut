@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/warhound", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/warhound", function(q) {
+	q.onInit = @() function()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;

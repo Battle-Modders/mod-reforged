@@ -1,10 +1,9 @@
-::mods_hookExactClass("items/shields/named/named_full_metal_heater_shield", function(o) {
-	o.m.BaseItemScript <- "scripts/items/shields/heater_shield";
+::Reforged.HooksMod.hook("scripts/items/shields/named/named_full_metal_heater_shield", function(q) {
+	q.m.BaseItemScript = "scripts/items/shields/heater_shield";
 
-	local getValuesForRandomize = "getValuesForRandomize" in o ? o.getValuesForRandomize : null;
-	o.getValuesForRandomize <- function()
+	q.getValuesForRandomize = @(__original) function()
 	{
-		local ret = getValuesForRandomize != null ? getValuesForRandomize() : this.named_shield.getValuesForRandomize();
+		local ret = __original()
 		local siparShield = ::new("scripts/items/shields/oriental/metal_round_shield");
 		ret.Condition = siparShield.m.Condition;
 		ret.ConditionMax = siparShield.m.ConditionMax;

@@ -3,11 +3,40 @@
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
 	GitHubURL = "https://github.com/Battle-Modders/mod-reforged",
-	ItemTable = {}
+	ItemTable = {},
+	QueueBucket = {
+		FirstWorldInit = []
+	}
 };
 
-::mods_registerMod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
-::mods_queue(::Reforged.ID, "mod_msu(>=1.3.0-reforged.7), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_dynamic_perks(>=0.1.1), mod_dynamic_spawns, mod_item_tables, mod_upd, mod_stack_based_skills, !mod_legends", function() {
+local requiredMods = [
+	"mod_msu >= 1.3.0-reforged.7",
+	"dlc_lindwurm",
+	"dlc_unhold",
+	"dlc_wildmen",
+	"dlc_desert",
+	"dlc_paladins",
+	"mod_dynamic_perks >= 0.1.1"
+	"mod_dynamic_spawns",
+	"mod_item_tables",
+	"mod_upd",
+	"mod_stack_based_skills"
+];
+
+::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
+::Reforged.HooksMod.require(requiredMods);
+::Reforged.HooksMod.conflictWith(
+	"mod_legends"
+);
+
+local queueLoadOrder = [];
+foreach (requirement in requiredMods)
+{
+	local idx = requirement.find(" ");
+	queueLoadOrder.push(">" + (idx == null ? requirement : requirement.slice(0, idx)));
+}
+
+::Reforged.HooksMod.queue(queueLoadOrder, function() {
 	::Reforged.Mod <- ::MSU.Class.Mod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);	
 
 	::Reforged.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, ::Reforged.GitHubURL);
@@ -50,3 +79,11 @@
 		::include(file);
 	}
 });
+
+::Reforged.HooksMod.queue(queueLoadOrder, function() {
+	foreach (func in ::Reforged.QueueBucket.FirstWorldInit)
+	{
+		func();
+	}
+	delete ::Reforged.QueueBucket;
+}, ::Hooks.QueueBucket.FirstWorldInit);

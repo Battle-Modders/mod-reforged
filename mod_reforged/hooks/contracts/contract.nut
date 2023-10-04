@@ -1,9 +1,6 @@
-::mods_hookBaseClass("contracts/contract", function(o)
+::Reforged.HooksMod.hook("scripts/contracts/contract", function(q)
 {
-	while(!("EmployerID" in o.m)) o = o[o.SuperName]; 	// find the base class
-
-	local getUICharacterImage = o.getUICharacterImage;
-	o.getUICharacterImage = function( _index = 0 )
+	q.getUICharacterImage = @(__original) function( _index = 0 )
 	{
 		if ((!("Characters" in this.m.ActiveScreen) || !this.m.ActiveScreen.Characters.len()) &&
 			(!("Banner" in this.m.ActiveScreen) || _index == 0) &&
@@ -25,7 +22,7 @@
 		}
 		else
 		{
-			return getUICharacterImage(_index);
+			return __original(_index);
 		}
 	}
 });

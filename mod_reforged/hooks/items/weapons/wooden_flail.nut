@@ -1,12 +1,11 @@
-::mods_hookExactClass("items/weapons/wooden_flail", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/wooden_flail", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 2;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @() function()
 	{
 		this.weapon.onEquip();
 

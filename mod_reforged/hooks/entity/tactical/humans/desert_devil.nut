@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/desert_devil", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/desert_devil", function(q) {
+	q.onInit = @() function()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -48,10 +48,9 @@
 		}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 		local weapon = this.getMainhandItem();
 
 		if (weapon != null && weapon.isItemType(this.Const.Items.ItemType.OneHanded))
@@ -71,10 +70,9 @@
 		}
 	}
 
-	local makeMiniboss = o.makeMiniboss;
-	o.makeMiniboss = function()
+	q.makeMiniboss = @(__original) function()
 	{
-		local ret = makeMiniboss();
+		local ret = __original();
 		if (ret)
 		{
 			this.m.BaseProperties.DamageDirectMult *= 0.8; //Reverts 1.25 bonus from vanilla

@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/orc_warrior", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/orc_warrior", function(q) {
+	q.onInit = @() function()
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -69,10 +69,9 @@
     	}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    local weapon = this.getMainhandItem();
 	    if (weapon == null) return;
@@ -98,10 +97,9 @@
 	    }
 	}
 
-	local makeMiniboss = o.makeMiniboss;
-	o.makeMiniboss = function()
+	q.makeMiniboss = @(__original) function()
 	{
-		local ret = makeMiniboss();
+		local ret = __original();
 		if (ret)
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));

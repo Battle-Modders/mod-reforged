@@ -1,13 +1,12 @@
-::mods_hookExactClass("items/weapons/bardiche", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/bardiche", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 5;
 		this.m.ShieldDamage = 32;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @() function()
 	{
 		this.weapon.onEquip();
 

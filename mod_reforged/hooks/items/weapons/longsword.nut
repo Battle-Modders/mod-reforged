@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/weapons/longsword", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/longsword", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 5;
 		this.m.RegularDamage = 50;
 		this.m.RegularDamageMax = 75;
@@ -12,7 +11,7 @@
 		this.m.Value = 2000;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @() function()
 	{
 		this.weapon.onEquip();
 

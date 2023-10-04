@@ -1,22 +1,21 @@
-::mods_hookExactClass("skills/perks/perk_inspiring_presence", function(o) {
-	o.m.IsForceEnabled <- false;
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_inspiring_presence", function(q) {
+	q.m.IsForceEnabled <- false;
 
-	local create = o.create;
-	o.create = function()
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Description = "This character has an inspiring presence on the battlefield.";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Icon = "ui/perks/rf_inspiring_presence.png";
 		this.m.IconMini = "rf_inspiring_presence_mini";
 	}
 
-	o.isHidden <- function()
+	q.isHidden <- function()
 	{
 		return !this.isEnabled();
 	}
 
-	o.getTooltip <- function()
+	q.getTooltip <- function()
 	{
 		local tooltip = this.skill.getTooltip();
 		tooltip.push({
@@ -28,7 +27,7 @@
 		return tooltip;
 	}
 
-	o.isEnabled <- function()
+	q.isEnabled <- function()
 	{
 		if (this.m.IsForceEnabled)
 		{
@@ -45,7 +44,7 @@
 	}
 
 	// Overwrite the vanilla function to be empty.
-	o.onCombatStarted = function()
+	q.onCombatStarted = @() function()
 	{
 	}
 });

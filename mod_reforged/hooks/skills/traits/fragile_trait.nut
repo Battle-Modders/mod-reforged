@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/traits/fragile_trait", function (o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/traits/fragile_trait", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_large": 0,
 			"pg.rf_resilient": 0.5

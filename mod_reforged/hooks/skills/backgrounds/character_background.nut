@@ -1,10 +1,10 @@
-::mods_hookExactClass("skills/backgrounds/character_background", function(o) {
-	o.isHired <- function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/character_background", function(q) {
+	q.isHired <- function()
 	{
 		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
 	}
 
-	o.getProjectedAttributesTooltip <- function()
+	q.getProjectedAttributesTooltip <- function()
 	{
 		return [{
 			id = 3,
@@ -14,18 +14,10 @@
 		}];
 	}
 
-	local getTooltip = "getTooltip" in o ? o.getTooltip : null;
-	o.getTooltip <- function()
+	// TODO: Currently this randomization is not persistent across game load. We need to serialize the hiring cost.
+	q.adjustHiringCostBasedOnEquipment = @(__original) function()
 	{
-		local ret = getTooltip == null ? this.skill.getTooltip() : getTooltip();
-		ret.extend(this.getProjectedAttributesTooltip());
-		return ret;
-	}
-
-	local adjustHiringCostBasedOnEquipment = o.adjustHiringCostBasedOnEquipment;
-	o.adjustHiringCostBasedOnEquipment = function()
-	{
-		adjustHiringCostBasedOnEquipment();
+		__original();
 		local actor = this.getContainer().getActor();
 		local hiringCost = actor.m.HiringCost;
 		local minimum = hiringCost * (1.0 - ::Reforged.Config.HiringCostVariance);
@@ -35,7 +27,7 @@
 		actor.m.HiringCost = hiringCost;
 	}
 
-	o.getPerkTreeTooltip <- function()
+	q.getPerkTreeTooltip <- function()
 	{
 		return {
 			id = 3,
@@ -44,10 +36,9 @@
 		};
 	}
 
-	local getGenericTooltip = o.getGenericTooltip;
-	o.getGenericTooltip = function()
+	q.getGenericTooltip = @(__original) function()
 	{
-		local ret = getGenericTooltip();
+		local ret = __original();
 		if (this.getContainer().getActor().isTryoutDone())
 		{
 			local perkTreeTooltip = this.getPerkTreeTooltip();
@@ -66,7 +57,7 @@
 		return ret;
 	}
 
-	o.getProjectedAttributesHTML <- function()
+	q.getProjectedAttributesHTML <- function()
 	{
 		local projection = this.getContainer().getActor().getProjectedAttributes();
 		local function formatString( _img, _attribute )
@@ -92,15 +83,15 @@
 	}
 });
 
-::mods_hookDescendants("skills/backgrounds/character_background", function(o) {
-	if ("getTooltip" in o)
+::Reforged.HooksMod.hookTree("scripts/skills/backgrounds/character_background", function(q) {
+	// TODO: This q.contains check should be removed once Modern Hooks updates its hookTree handling
+	if (!q.contains("getTooltip"))
+		return;
+
+	q.getTooltip = @(__original) function()
 	{
-		local getTooltip = o.getTooltip;
-		o.getTooltip <- function()
-		{
-			local ret = getTooltip();
-			ret.extend(this.getProjectedAttributesTooltip());
-			return ret;
-		}
+		local ret = __original();
+		ret.extend(this.getProjectedAttributesTooltip());
+		return ret;
 	}
 })

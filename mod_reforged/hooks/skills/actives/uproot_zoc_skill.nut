@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/actives/uproot_zoc_skill", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/actives/uproot_zoc_skill", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.SoundOnHitHitpoints = [
 			"sounds/combat/break_free_roots_00.wav",
 			"sounds/combat/break_free_roots_01.wav",
@@ -11,7 +10,7 @@
 		];
 	}
 
-	o.onTargetHit <- function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	q.onTargetHit <- function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (_skill == this && _targetEntity.isAlive())
 		{

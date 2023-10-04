@@ -1,14 +1,13 @@
-::mods_hookExactClass("items/weapons/oriental/two_handed_scimitar", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/oriental/two_handed_scimitar", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 5;
 		this.m.ShieldDamage = 16;
 		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.RF_Southern;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @() function()
 	{
 		this.weapon.onEquip();
 

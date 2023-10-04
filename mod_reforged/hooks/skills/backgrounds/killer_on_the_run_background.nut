@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/backgrounds/killer_on_the_run_background", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/killer_on_the_run_background", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_devious": 3,
 			"pg.rf_leadership": 0,

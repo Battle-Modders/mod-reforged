@@ -1,8 +1,7 @@
-::mods_hookExactClass(::DynamicPerks.Class.PerkTree.slice(8), function(o) { // slice(8) to remove "scripts/"
-	local addItemMultipliers = o.addItemMultipliers;
-	o.addItemMultipliers = function( _multipliers )
+::Reforged.HooksMod.hook(::DynamicPerks.Class.PerkTree, function(q) {
+	q.addItemMultipliers = @(__original) function( _multipliers )
 	{
-		addItemMultipliers(_multipliers);
+		__original(_multipliers);
 		local weapon = this.getActor().getMainhandItem();
 		if (weapon != null)
 		{

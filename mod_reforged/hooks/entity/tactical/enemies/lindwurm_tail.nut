@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/lindwurm_tail", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/lindwurm_tail", function(q) {
+	q.onInit = @() function()
 	{
 	    if (this.m.ParentID != 0)
 		{

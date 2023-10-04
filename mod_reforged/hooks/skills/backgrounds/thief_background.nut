@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/backgrounds/thief_background", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/thief_background", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_agile": 3,
 			"pg.rf_fast": 3,

@@ -1,6 +1,6 @@
-::mods_hookExactClass("skills/actives/line_breaker", function(o) {
+::Reforged.HooksMod.hook("scripts/skills/actives/line_breaker", function(q) {
 	// Fixes vanilla issue where Line Breaker cannot push characters off ledges
-	o.findTileToKnockBackTo = function( _userTile, _targetTile )
+	q.findTileToKnockBackTo = @() function( _userTile, _targetTile )
 	{
 		local getValidTileInDir = function( _dir )
 		{

@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/perks/perk_battle_flow", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_battle_flow", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Icon = "ui/perks/rf_battle_flow.png"
 	}
 });

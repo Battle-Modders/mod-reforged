@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/hyena_high", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/hyena_high", function(q) {
+	q.onInit = @() function()
 	{
 	    this.hyena.onInit();
 		local b = this.m.BaseProperties;

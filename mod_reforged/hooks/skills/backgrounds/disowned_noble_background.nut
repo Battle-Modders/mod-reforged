@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/backgrounds/disowned_noble_background", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/disowned_noble_background", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_devious": 1.5,
 			"pg.rf_leadership": 0,

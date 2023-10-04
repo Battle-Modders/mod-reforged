@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/traits/fearless_trait", function (o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/traits/fearless_trait", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_leadership": 5,
 			"pg.rf_unstoppable": 3

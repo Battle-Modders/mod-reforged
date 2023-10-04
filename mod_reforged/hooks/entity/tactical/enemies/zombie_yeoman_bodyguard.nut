@@ -1,15 +1,15 @@
-// ::mods_hookExactClass("entity/tactical/enemies/zombie_yeoman_bodyguard", function(o) {
-// 	o.onInit = function()
+// ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/zombie_yeoman_bodyguard", function(q) {
+// 	q.onInit = @(__original) function()
 // 	{
 // 	    // copy vanilla function contents completely
 // 	    // and replace skills except equipment based skills
 // 	    // NOTE: Remove the hook on onInit completely if unused
 // 	}
 
-// 	local assignRandomEquipment = o.assignRandomEquipment;
-// 	o.assignRandomEquipment = function()
+//
+// 	q.assignRandomEquipment = @(__original) function()
 // 	{
-// 	    assignRandomEquipment();
+// 	    __original();
 
 // 	    // any skills that should be added based on equipment
 // 	}

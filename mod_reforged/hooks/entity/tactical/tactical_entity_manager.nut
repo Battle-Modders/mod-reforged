@@ -1,8 +1,7 @@
-::mods_hookNewObject("entity/tactical/tactical_entity_manager", function(o) {
-	local setupEntity = o.setupEntity;
-	o.setupEntity = function( _e, _t )
+::Reforged.HooksMod.hook("scripts/entity/tactical/tactical_entity_manager", function(q) {
+	q.setupEntity = @(__original) function( _e, _t )
 	{
-		setupEntity(_e, _t);
+		__original(_e, _t);
 		_e.onSetupEntity();
 	}
 });

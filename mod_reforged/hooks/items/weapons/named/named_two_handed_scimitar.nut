@@ -1,12 +1,11 @@
-::mods_hookExactClass("items/weapons/named/named_two_handed_scimitar", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/named/named_two_handed_scimitar", function(q) {
+	q.create = @(__original) function()
 	{
 		this.m.BaseWeaponScript = "scripts/items/weapons/oriental/two_handed_scimitar";
-		create();
+		__original();
 	}
 
-	o.onEquip = function()
+	q.onEquip = @() function()
 	{
 		this.named_weapon.onEquip();
 

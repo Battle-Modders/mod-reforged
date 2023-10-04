@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/zombie_knight", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/zombie_knight", function(q) {
+	q.onInit = @() function()
 	{
 	    this.zombie.onInit();
 		local b = this.m.BaseProperties;
@@ -34,10 +34,9 @@
 		}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    this.m.Skills.add(::new("scripts/skills/perks/perk_nine_lives"));
 	    if (::Reforged.Config.IsLegendaryDifficulty)
@@ -68,10 +67,9 @@
     	}
 	}
 
-	local makeMiniboss = o.makeMiniboss;
-	o.makeMiniboss = function()
+	q.makeMiniboss = @(__original) function()
 	{
-		local ret = makeMiniboss();
+		local ret = __original();
 		if (ret)
 		{
 			// Vanilla also adds nine_lives but we don't remove that here

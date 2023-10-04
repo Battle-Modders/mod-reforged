@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/master_archer", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/master_archer", function(q) {
+	q.onInit = @() function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -25,7 +25,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 	}
 
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @() function()
 	{
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
 		{
@@ -74,7 +74,7 @@
 		}
 	}
 
-	o.makeMiniboss = function()
+	q.makeMiniboss = @() function()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -114,7 +114,7 @@
 		return true;
 	}
 
-	o.onSetupEntity <- function()
+	q.onSetupEntity <- function()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)

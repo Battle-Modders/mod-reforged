@@ -1,15 +1,14 @@
-::mods_hookExactClass("items/shields/shield", function(o) {
-	o.m.ReachIgnore <- 2; // By default it is 2 so we don't have to hook all shields to add this
+::Reforged.HooksMod.hook("scripts/items/shields/shield", function(q) {
+	q.m.ReachIgnore <- 2; // By default it is 2 so we don't have to hook all shields to add this
 
-	o.getReachIgnore <- function()
+	q.getReachIgnore <- function()
 	{
 		return this.m.ReachIgnore;
 	}
 
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
+	q.getTooltip = @(__original) function()
 	{
-		local ret = getTooltip();
+		local ret = __original();
 		ret.push({
 			id = 8,
 			type = "text",
@@ -21,13 +20,13 @@
 	}
 
 // New Functions
-	o.getMeleeDefenseBonus <- function()
+	q.getMeleeDefenseBonus <- function()
 	{
 		local mult = (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields) ? 1.25 : 1.0;
 		return ::Math.floor(this.m.MeleeDefense * mult);
 	}
 
-	o.getRangedDefenseBonus <- function()
+	q.getRangedDefenseBonus <- function()
 	{
 		local mult = (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields) ? 1.25 : 1.0;
 		return ::Math.floor(this.m.RangedDefense * mult);

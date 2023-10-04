@@ -1,15 +1,15 @@
-::mods_hookExactClass("entity/tactical/humans/swordmaster", function(o) {
-	o.m.SwordmasterVariants <- {
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/swordmaster", function(q) {
+	q.m.SwordmasterVariants <- {
         BladeDancer = 0,
         Metzger = 1,
         Reaper = 2,
         Precise = 3,
         Grappler = 4
     };
-	o.m.MyArmorVariant <- 0;
-	o.m.MyVariant <- 0;
+	q.m.MyArmorVariant <- 0;
+	q.m.MyVariant <- 0;
 
-	o.onInit = function()
+	q.onInit = @() function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -33,7 +33,7 @@
         this.m.MyArmorVariant = ::Math.rand(0, 1); // 0 = Light Armor, 1 = Medium Armor
 	}
 
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @() function()
 	{
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
 		{
@@ -119,7 +119,7 @@
   	 	}
 	}
 
-	o.makeMiniboss = function()
+	q.makeMiniboss = @() function()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -227,7 +227,7 @@
 		return true;
 	}
 
-	o.onSetupEntity <- function()
+	q.onSetupEntity <- function()
 	{
 		if (this.m.MyArmorVariant == 0) // light armor
 		{

@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/weapons/fencing_sword", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/fencing_sword", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 4;
 		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.RF_Fencing;
 		this.m.DirectDamageMult = 0.25;
@@ -11,7 +10,7 @@
 		this.m.ChanceToHitHead = -25;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @() function()
 	{
 		this.weapon.onEquip();
 

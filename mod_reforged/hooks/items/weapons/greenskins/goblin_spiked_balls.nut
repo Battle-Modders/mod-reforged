@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/weapons/greenskins/goblin_spiked_balls", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/greenskins/goblin_spiked_balls", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 0;
 	}
 });

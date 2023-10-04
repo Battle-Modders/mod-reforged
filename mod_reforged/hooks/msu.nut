@@ -111,12 +111,11 @@
 }
 
 ::logInfo("Reforged::MSU -- adding fix for onCombatStarted for AI");
-::mods_hookNewObject("entity/tactical/tactical_entity_manager", function(o) {
+::Reforged.HooksMod.hook("scripts/entity/tactical/tactical_entity_manager", function(q) {
 	// VANILLAFIX: http://battlebrothersgame.com/forums/topic/oncombatstarted-is-not-called-for-ai-characters/
-	local spawn = o.spawn;
-	o.spawn = function( _properties )
+	q.spawn = @(__original) function( _properties )
 	{
-		local ret = spawn(_properties);
+		local ret = __original(_properties);
 		foreach (i, faction in this.getAllInstances())
 		{
 			if (i != ::Const.Faction.Player)
@@ -137,10 +136,10 @@
 });
 
 ::logInfo("Reforged::MSU -- adding BaseWeaponScript for named_weapon");
-::mods_hookExactClass("items/weapons/named/named_weapon", function(o) {
-	o.m.BaseWeaponScript <- null;
+::Reforged.HooksMod.hook("scripts/items/weapons/named/named_weapon", function(q) {
+	q.m.BaseWeaponScript <- null;
 
-	o.getValuesForRandomize <- function()
+	q.getValuesForRandomize <- function()
 	{
 		if (this.m.BaseWeaponScript == null) return {};
 
@@ -179,7 +178,7 @@
 		};
 	}
 
-	o.setValuesBeforeRandomize <- function( _values )
+	q.setValuesBeforeRandomize <- function( _values )
 	{
 		foreach (key, value in _values)
 		{
@@ -187,19 +186,18 @@
 		}
 	}
 
-	local randomizeValues = o.randomizeValues;
-	o.randomizeValues <- function()
+	q.randomizeValues = @(__original) function()
 	{
 		this.setValuesBeforeRandomize(this.getValuesForRandomize());
-		randomizeValues();
+		__original();
 	}
 });
 
 ::logInfo("Reforged::MSU -- adding BaseItemScript for named_shield");
-::mods_hookExactClass("items/shields/named/named_shield", function(o) {
-	o.m.BaseItemScript <- null;
+::Reforged.HooksMod.hook("scripts/items/shields/named/named_shield", function(q) {
+	q.m.BaseItemScript <- null;
 
-	o.getValuesForRandomize <- function()
+	q.getValuesForRandomize <- function()
 	{
 		if (this.m.BaseItemScript == null) return {};
 
@@ -214,7 +212,7 @@
 		};
 	}
 
-	o.setValuesBeforeRandomize <- function( _values )
+	q.setValuesBeforeRandomize <- function( _values )
 	{
 		foreach (key, value in _values)
 		{
@@ -222,25 +220,23 @@
 		}
 	}
 
-	local randomizeValues = o.randomizeValues;
-	o.randomizeValues <- function()
+	q.randomizeValues = @(__original) function()
 	{
 		this.setValuesBeforeRandomize(this.getValuesForRandomize());
-		randomizeValues();
+		__original();
 	}
 });
 
 ::logInfo("Reforged::MSU -- adding onSkillsUpdated event");
-::mods_hookNewObject("skills/skill_container", function(o) {
-	local update = o.update;
-	o.update = function()
+::Reforged.HooksMod.hook("scripts/skills/skill_container", function(q) {
+	q.update = @(__original) function()
 	{
-		update();
+		__original();
 		if (!this.m.IsUpdating && this.getActor().isAlive())
 			this.onSkillsUpdated();
 	}
 
-	o.onSkillsUpdated <- function()
+	q.onSkillsUpdated <- function()
 	{
 		this.callSkillsFunctionWhenAlive("onSkillsUpdated", null, false);
 
@@ -261,17 +257,15 @@
 	}
 });
 
-::mods_hookBaseClass("skills/skill", function(o) {
-	o = o[o.SuperName];
-
-	o.onSkillsUpdated <- function()
+::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
+	q.onSkillsUpdated <- function()
 	{
 	}
 })
 
 ::logInfo("Reforged::MSU -- adding getItemsByFunction and getItemsByFunctionAtSlot to item_container");
-::mods_hookNewObject("items/item_container", function(o) {
-	o.getItemsByFunction <- function( _function )
+::Reforged.HooksMod.hook("scripts/items/item_container", function(q) {
+	q.getItemsByFunction <- function( _function )
 	{
 		local ret = [];
 
@@ -288,7 +282,7 @@
 		return ret;
 	}
 
-	o.getItemsByFunctionAtSlot <- function( _slot, _function )
+	q.getItemsByFunctionAtSlot <- function( _slot, _function )
 	{
 		local ret = [];
 

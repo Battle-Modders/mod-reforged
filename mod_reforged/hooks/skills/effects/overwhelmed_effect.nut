@@ -1,5 +1,5 @@
-::mods_hookExactClass("skills/effects/overwhelmed_effect", function(o) {
-	o.getTooltip = function()
+::Reforged.HooksMod.hook("scripts/skills/effects/overwhelmed_effect", function(q) {
+	q.getTooltip = @() function()
 	{
 		local tooltip = this.skill.getTooltip();
 
@@ -21,16 +21,15 @@
 		return tooltip;
 	}
 
-	o.onUpdate = function( _properties )
+	q.onUpdate = @() function( _properties )
 	{
 		_properties.MeleeSkillMult = ::Math.maxf(0.0, _properties.MeleeSkillMult - 0.1 * this.m.Count);
 		_properties.RangedSkillMult = ::Math.maxf(0.0, _properties.RangedSkillMult - 0.1 * this.m.Count);
 	}
 
-	local onRefresh  = o.onRefresh;
-	o.onRefresh = function()
+	q.onRefresh = @(__original) function()
 	{
-		onRefresh();
+		__original();
 		this.m.Count = ::Math.min(this.m.Count, 7);
 	}
 });

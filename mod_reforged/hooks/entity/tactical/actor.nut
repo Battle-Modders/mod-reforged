@@ -1,17 +1,16 @@
-::mods_hookExactClass("entity/tactical/actor", function(o) {
-	o.m.IsPerformingAttackOfOpportunity <- false;
-	o.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
+::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
+	q.m.IsPerformingAttackOfOpportunity <- false;
+	q.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
 
-	o.isDisarmed <- function()
+	q.isDisarmed <- function()
 	{
 		local handToHand = this.getSkills().getSkillByID("actives.hand_to_hand");
 		return handToHand != null && handToHand.isUsable();
 	}
 
-	local onInit = o.onInit;
-	o.onInit = function()
+	q.onInit = @(__original) function()
 	{
-		onInit();
+		__original();
 		this.getSkills().add(::new("scripts/skills/effects/rf_encumbrance_effect"));
 		this.getSkills().add(::new("scripts/skills/effects/rf_inspired_by_champion_effect"));
 		this.getSkills().add(::new("scripts/skills/effects/rf_immersive_damage_effect"));
@@ -38,19 +37,17 @@
 		}
 	}
 
-	local onAttackOfOpportunity = o.onAttackOfOpportunity;
-	o.onAttackOfOpportunity = function( _entity, _isOnEnter )
+	q.onAttackOfOpportunity = @(__original) function( _entity, _isOnEnter )
 	{
 		this.m.IsPerformingAttackOfOpportunity = true;
-		local ret = onAttackOfOpportunity(_entity, _isOnEnter);
+		local ret = __original(_entity, _isOnEnter);
 		this.m.IsPerformingAttackOfOpportunity = false;
 		return ret;
 	}
 
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function( _targetedWithSkill = null )
+	q.getTooltip = @(__original) function( _targetedWithSkill = null )
 	{
-		local ret = getTooltip(_targetedWithSkill);
+		local ret = __original(_targetedWithSkill);
 
 		if (this.isDiscovered() == false) return ret;
 		if (this.isHiddenToPlayer()) return ret;
@@ -99,8 +96,7 @@
 		return ret;
 	}
 
-	local checkMorale = o.checkMorale;
-	o.checkMorale = function( _change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
+	q.checkMorale = @(__original) function( _change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{
 		if (_change < 0)
 		{
@@ -113,16 +109,15 @@
 			this.getCurrentProperties().MoraleCheckBraveryMult[_type] *= this.getCurrentProperties().PositiveMoraleCheckBraveryMult[_type];
 		}
 
-		return checkMorale(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
+		return __original(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
 
-	local getSurroundedCount = o.getSurroundedCount;
-	o.getSurroundedCount = function()
+	q.getSurroundedCount = @(__original) function()
 	{
 		local startSurroundCountAt = this.m.CurrentProperties.StartSurroundCountAt;
 		this.m.CurrentProperties.StartSurroundCountAt = ::Const.CharacterProperties.StartSurroundCountAt;
 
-		local count = getSurroundedCount();
+		local count = __original();
 
 		foreach (enemy in ::Tactical.Entities.getHostileActors(this.getFaction(), this.getTile(), 2, true))
 		{
@@ -138,22 +133,22 @@
 		return ::Math.max(0, count - startSurroundCountAt);
 	}
 
-	local onRoundStart = o.onRoundStart;
-	o.onRoundStart = function()
+
+	q.onRoundStart = @(__original) function()
 	{
 		this.m.IsWaitingTurn = false;
-		onRoundStart();
+		__original();
 	}
 
-	local isTurnDone = o.isTurnDone;
-	o.isTurnDone = function()
+
+	q.isTurnDone = @(__original) function()
 	{
 		if (::Tactical.getNavigator().isTravelling(this)) return false;		// Copy&Paste of check from vanilla
-		return isTurnDone() || this.m.IsWaitingTurn;
+		return __original() || this.m.IsWaitingTurn;
 	}
 
 // New Functions:
-	o.getSurroundedBonus <- function( _targetEntity )
+	q.getSurroundedBonus <- function( _targetEntity )
 	{
 		local surroundedCount = _targetEntity.getSurroundedCount();
 		local surroundBonus = surroundedCount * this.getCurrentProperties().SurroundedBonus * this.getCurrentProperties().SurroundedBonusMult;
@@ -161,12 +156,12 @@
 		return surroundBonus;
 	}
 
-	o.setWaitTurn <- function( _bool )
+	q.setWaitTurn <- function( _bool )
 	{
 		this.m.IsWaitingTurn = _bool;
 	}
 
-	o.onSetupEntity <- function()
+	q.onSetupEntity <- function()
 	{
 	}
 });

@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/backgrounds/swordmaster_background", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/swordmaster_background", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_agile": 0.5,
 			"pg.rf_devious": 0,
@@ -48,8 +47,7 @@
 		this.m.ExcludedTalents.push(::Const.Attributes.RangedDefense);
 	}
 
-	local onAdded = o.onAdded;
-	o.onAdded <- function()
+	q.onAdded = @(__original) function()
 	{
 		if (this.m.IsNew)
 		{
@@ -58,10 +56,10 @@
 				o.m.IsRefundable = false;
 			}));
 		}
-		return onAdded();
+		return __original();
 	}
 
-	o.onBuildPerkTree <- function()
+	q.onBuildPerkTree <- function()
 	{
 		local perkTree = this.getContainer().getActor().getPerkTree();
 		local masteryPerks = [

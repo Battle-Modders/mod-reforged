@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/kraken", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/kraken", function(q) {
+	q.onInit = @() function()
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;

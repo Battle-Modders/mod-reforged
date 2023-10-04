@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/weapons/oriental/firelance", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/oriental/firelance", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 5;
 		// remove Firearm from type so it doesn't interact with systems that check for Firearm weapon type (e.g. weapon mastery)
 		// because this is primarily a spear with a secondary one-use firearm attack

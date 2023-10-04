@@ -1,12 +1,11 @@
-::mods_hookExactClass("items/accessory/warhound_item", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/accessory/warhound_item", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.StaminaModifier = -3;
 	}
 
-	o.getStaminaModifier <- function()
+	q.getStaminaModifier <- function()
 	{
 		return this.isUnleashed() ? 0 : this.accessory.getStaminaModifier();
 	}

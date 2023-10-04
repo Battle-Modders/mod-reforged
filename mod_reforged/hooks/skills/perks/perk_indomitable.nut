@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/perks/perk_indomitable", function (o) {
-	local onCombatStarted = "onCombatStarted" in o ? o.onCombatStarted : null;
-	o.onCombatStarted <- function()
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_indomitable", function(q) {
+	q.onCombatStarted = @(__original) function()
 	{
-		if (onCombatStarted != null) onCombatStarted();
+		__original();
 		this.getContainer().add(::new("scripts/skills/effects/rf_retribution_effect"));
 	}
 });

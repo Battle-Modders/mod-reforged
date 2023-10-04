@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/traits/bleeder_trait", function (o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/traits/bleeder_trait", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_resilient": 0.5
 		};

@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/effects/shieldwall_effect", function(o) {
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
+::Reforged.HooksMod.hook("scripts/skills/effects/shieldwall_effect", function(q) {
+	q.getTooltip = @(__original) function()
 	{
-		local tooltip = getTooltip();
+		local tooltip = __original();
 		tooltip.push(
 			{
 				id = 6,
@@ -15,7 +14,7 @@
 		return tooltip;
 	}		
 
-	o.onSkillsUpdated <- function()
+	q.onSkillsUpdated <- function()
 	{
 		local stun = this.getContainer().getSkillByID("effects.stunned");
 		if (stun != null)

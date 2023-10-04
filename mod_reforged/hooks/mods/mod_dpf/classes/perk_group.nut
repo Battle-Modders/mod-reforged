@@ -1,5 +1,5 @@
-::mods_hookExactClass(::DynamicPerks.Class.PerkGroup.slice(8), function(o) { // slice(8) to remove "scripts/"
-	o.getTooltip = function()
+::Reforged.HooksMod.hook(::DynamicPerks.Class.PerkGroup, function(q) {
+	q.getTooltip = @() function()
 	{
 		local ret = [
 			{

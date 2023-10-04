@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/hexe", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/hexe", function(q) {
+	q.onInit = @() function()
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -52,8 +52,8 @@
     	this.getSkills().update()
 	}
 
-	local onDeath = o.onDeath; // switcheroo function to replace loot drops with dummy object
-	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	// switcheroo function to replace loot drops with dummy object
+	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
 		local itemsToChange = [
 			"scripts/items/loot/jade_broche_item"
@@ -68,7 +68,7 @@
 			}
 			return item;
 		}
-		onDeath(_killer, _skill, _tile, _fatalityType);
+		__original(_killer, _skill, _tile, _fatalityType);
 		::new = new;
 
 		if (_tile != null);

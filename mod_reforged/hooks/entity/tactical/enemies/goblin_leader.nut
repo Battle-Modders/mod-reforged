@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/goblin_leader", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_leader", function(q) {
+	q.onInit = @() function()
 	{
 	    this.goblin.onInit();
 		local b = this.m.BaseProperties;

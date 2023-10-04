@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_heavy", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_heavy", function(q) {
+	q.onInit = @() function()
 	{
 	   	this.skeleton.onInit();
 		local b = this.m.BaseProperties;
@@ -33,10 +33,9 @@
     	}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 
 	    local weapon = this.getMainhandItem();
 	    if (weapon == null) return;
@@ -105,10 +104,9 @@
 	    }
 	}
 
-	local makeMiniboss = o.makeMiniboss;
-	o.makeMiniboss = function()
+	q.makeMiniboss = @(__original) function()
 	{
-		local ret = makeMiniboss();
+		local ret = __original();
 
 		if (ret)
 		{

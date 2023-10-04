@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/schrat", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/schrat", function(q) {
+	q.onInit = @() function()
 	{
 	    this.actor.onInit();
 		local clouds = this.Tactical.getWeather().createCloudSettings();
@@ -75,8 +75,8 @@
     	}
 	}
 
-	local onDeath = o.onDeath; // switcheroo function to replace loot drops with dummy object
-	o.onDeath = function( _killer, _skill, _tile, _fatalityType )
+	// switcheroo function to replace loot drops with dummy object
+	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
 		local itemsToChange = [
 			"scripts/items/misc/ancient_wood_item",
@@ -93,7 +93,7 @@
 			}
 			return item;
 		}
-		onDeath(_killer, _skill, _tile, _fatalityType);
+		__original(_killer, _skill, _tile, _fatalityType);
 		::new = new;
 
 		if (_tile != null)

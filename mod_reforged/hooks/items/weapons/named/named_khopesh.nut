@@ -1,12 +1,11 @@
-::mods_hookExactClass("items/weapons/named/named_khopesh", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/named/named_khopesh", function(q) {
+	q.create = @(__original) function()
 	{
 		this.m.BaseWeaponScript = "scripts/items/weapons/ancient/khopesh";
-		create();
+		__original();
 	}
 
-	o.onEquip = function()
+	q.onEquip = @() function()
 	{
 		this.named_weapon.onEquip();
 

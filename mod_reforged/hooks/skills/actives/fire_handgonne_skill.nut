@@ -1,9 +1,9 @@
-::mods_hookExactClass("skills/actives/fire_handgonne_skill", function(o) {
-	o.m.AdditionalAccuracy <- 10;
-	o.m.AdditionalHitChance <- -10;
+::Reforged.HooksMod.hook("scripts/skills/actives/fire_handgonne_skill", function(q) {
+	q.m.AdditionalAccuracy = 10;
+	q.m.AdditionalHitChance = -10;
 
 	// Overwrite vanilla function to prevent repeated adding of reload skill
-	o.onUse = function( _user, _targetTile	)
+	q.onUse = @() function( _user, _targetTile	)
 	{
 		::Sound.play(this.m.SoundOnFire[this.Math.rand(0, this.m.SoundOnFire.len() - 1)], this.Const.Sound.Volume.Skill * this.m.SoundVolume, _user.getPos());
 		local tag = {
@@ -18,11 +18,11 @@
 	}
 
 	// Overwrite the vanilla function to prevent removal of reload skill
-	o.onRemoved = function()
+	q.onRemoved = @() function()
 	{
 	}
 
-	o.getTooltip = function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getDefaultTooltip();
 		ret.push({
@@ -81,7 +81,7 @@
 		return ret;
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{

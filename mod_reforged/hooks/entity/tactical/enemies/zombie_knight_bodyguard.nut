@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/enemies/zombie_knight_bodyguard", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/zombie_knight_bodyguard", function(q) {
+	q.onInit = @() function()
 	{
 	    this.zombie_knight.onInit();
 		// local b = this.m.BaseProperties;

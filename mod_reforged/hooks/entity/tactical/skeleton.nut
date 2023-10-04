@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/skeleton", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/skeleton", function(q) {
+	q.onInit = @() function()
 	{
 	    this.actor.onInit();
 		local hairColor = this.Const.HairColors.Zombie[this.Math.rand(0, this.Const.HairColors.Zombie.len() - 1)];

@@ -1,7 +1,7 @@
-::mods_hookExactClass("skills/perks/perk_rally_the_troops", function(o) {
-	o.m.Cooldown <- 0;
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_rally_the_troops", function(q) {
+	q.m.Cooldown <- 0;
 
-	o.onAdded = function()
+	q.onAdded = @() function()
 	{
 		this.m.Container.add(::MSU.new("scripts/skills/actives/rally_the_troops", function(o) {
 			o.m.Cooldown = this.m.Cooldown;

@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/actives/shieldwall", function(o) {
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
+::Reforged.HooksMod.hook("scripts/skills/actives/shieldwall", function(q) {
+	q.getTooltip = @(__original) function()
 	{
-		local tooltip = getTooltip();
+		local tooltip = __original();
 		tooltip.push(
 			{
 				id = 6,
@@ -15,7 +14,7 @@
 		return tooltip;
 	}
 
-	o.onAfterUpdate <- function( _properties )
+	q.onAfterUpdate = @() function( _properties )
 	{
 		// Part of perk_rf_shield_sergeant functionality
 		local actor = this.getContainer().getActor();
@@ -35,7 +34,7 @@
 		}
 	}
 
-	o.onTurnStart <- function()
+	q.onTurnStart <- function()
 	{
 		// Part of perk_rf_shield_sergeant functionality
 		local actor = this.getContainer().getActor();
@@ -63,7 +62,7 @@
 		}
 	}
 
-	o.onTurnEnd <- function()
+	q.onTurnEnd <- function()
 	{
 		// Part of perk_rf_shield_sergeant functionality
 		this.onTurnStart();

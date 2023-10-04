@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/conscript", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/conscript", function(q) {
+	q.onInit = @() function()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -40,10 +40,9 @@
 		}
 	}
 
-	local assignRandomEquipment = o.assignRandomEquipment;
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @(__original) function()
 	{
-	    assignRandomEquipment();
+	    __original();
 	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 
 		if (::Reforged.Config.IsLegendaryDifficulty)

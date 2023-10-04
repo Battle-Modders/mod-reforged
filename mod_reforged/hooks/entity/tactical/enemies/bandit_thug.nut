@@ -1,13 +1,12 @@
-::mods_hookExactClass("entity/tactical/enemies/bandit_thug", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_thug", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_bandit_tough_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
-	o.onInit = function()
+	q.onInit = @() function()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -52,7 +51,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}
 
-	o.assignRandomEquipment = function()
+	q.assignRandomEquipment = @() function()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{

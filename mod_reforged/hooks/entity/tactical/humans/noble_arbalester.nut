@@ -1,5 +1,5 @@
-::mods_hookExactClass("entity/tactical/humans/noble_arbalester", function(o) {
-	o.onInit = function()
+::Reforged.HooksMod.hook("scripts/entity/tactical/humans/noble_arbalester", function(q) {
+	q.onInit = @() function()
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;

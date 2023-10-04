@@ -1,14 +1,13 @@
-::mods_hookExactClass("items/weapons/short_bow", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/short_bow", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Reach = 0;
 		this.m.RangeMax = 6;
 		this.m.RangeIdeal = 6;
 	}
 
-	o.onEquip = function()
+	q.onEquip = @() function()
 	{
 		this.weapon.onEquip();
 

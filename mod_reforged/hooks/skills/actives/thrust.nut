@@ -1,12 +1,11 @@
-::mods_hookExactClass("skills/actives/thrust", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/actives/thrust", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.HitChanceBonus = 10;
 	}
 
-	o.getTooltip = function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.getDefaultTooltip();
 		if (this.m.HitChanceBonus != 0)
@@ -21,7 +20,7 @@
 		return ret;
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{

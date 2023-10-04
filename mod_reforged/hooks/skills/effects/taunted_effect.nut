@@ -1,12 +1,11 @@
-::mods_hookExactClass("skills/effects/taunted_effect", function (o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/effects/taunted_effect", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
         this.m.Description = "This character is taunted by another character and is much more likely to engage and attack them.";
 	}
 
-	o.getTooltip <- function()
+	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
 
@@ -23,7 +22,7 @@
 		return ret;
 	}
 
-	o.getTauntedTarget <- function()	// New helper-function to get the taunter
+	q.getTauntedTarget <- function()	// New helper-function to get the taunter
 	{
 		return this.getContainer().getActor().getAIAgent().getForcedOpponent();
 	}

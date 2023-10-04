@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/backgrounds/companion_1h_southern_background", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/skills/backgrounds/companion_1h_southern_background", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_leadership": 0.75,
 			"pg.rf_bow": 0,

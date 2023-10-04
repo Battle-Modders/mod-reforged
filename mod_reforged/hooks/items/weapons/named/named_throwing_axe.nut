@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/weapons/named/named_throwing_axe", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/weapons/named/named_throwing_axe", function(q) {
+	q.create = @(__original) function()
 	{
 		this.m.BaseWeaponScript = "scripts/items/weapons/throwing_axe";
-		create();
+		__original();
 	}
 });

@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/perks/perk_quick_hands", function(o) {
-	local getItemActionCost = o.getItemActionCost;
-	o.getItemActionCost = function(_items)
+::Reforged.HooksMod.hook("scripts/skills/perks/perk_quick_hands", function(q) {
+	q.getItemActionCost = @(__original) function(_items)
 	{
 		local twoHandedItemsCount = 0;
 		foreach (item in _items)
@@ -21,6 +20,6 @@
 			return null;
 		}
 
-		return getItemActionCost(_items);
+		return __original(_items);
 	}
 });

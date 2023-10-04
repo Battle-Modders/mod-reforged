@@ -1,8 +1,7 @@
-::mods_hookExactClass("skills/actives/knock_back", function(o) {
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
+::Reforged.HooksMod.hook("scripts/skills/actives/knock_back", function(q) {
+	q.getTooltip = @(__original) function()
 	{
-		local tooltip = getTooltip();
+		local tooltip = __original();
 		if (this.getContainer().hasSkill("perk.shield_expert"))
 		{
 			tooltip.push({
@@ -15,11 +14,10 @@
 		return tooltip;
 	}
 
-	local onUse = o.onUse;
-	o.onUse = function( _user, _targetTile )
+	q.onUse = @(__original) function( _user, _targetTile )
 	{
 		local targetEntity = _targetTile.getEntity();
-		local ret = onUse( _user, _targetTile );
+		local ret = __original( _user, _targetTile );
 
 		if (ret && targetEntity != null && targetEntity.isAlive() && !targetEntity.isDying() && this.getContainer().hasSkill("perk.shield_expert"))
 		{

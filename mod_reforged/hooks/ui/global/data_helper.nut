@@ -1,9 +1,8 @@
-::mods_hookNewObject("ui/global/data_helper", function(o)
+::Reforged.HooksMod.hook("scripts/ui/global/data_helper", function(q)
 {
-	local convertEntityHireInformationToUIData = o.convertEntityHireInformationToUIData;
-	o.convertEntityHireInformationToUIData <- function( _entity )
+	q.convertEntityHireInformationToUIData = @(__original) function( _entity )
 	{
-		local ret = convertEntityHireInformationToUIData(_entity);
+		local ret = __original(_entity);
 		if (ret == null || _entity.getBackground() == null)
 			return ret;
 

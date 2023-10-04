@@ -1,7 +1,7 @@
-::mods_hookExactClass("items/accessory/falcon_item", function(o) {
-	o.m.InitiativeBonus <- 15;
+::Reforged.HooksMod.hook("scripts/items/accessory/falcon_item", function(q) {
+	q.m.InitiativeBonus <- 15;
 
-	o.onUpdateProperties <- function( _properties )
+	q.onUpdateProperties <- function( _properties )
 	{
 		this.accessory.onUpdateProperties(_properties);
 		if (!this.isReleased())
@@ -10,10 +10,9 @@
 		}
 	}
 
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
+	q.getTooltip = @(__original) function()
 	{
-		local ret = getTooltip();
+		local ret = __original();
 
 		if (!this.isReleased() && this.m.InitiativeBonus != 0)
 		{
