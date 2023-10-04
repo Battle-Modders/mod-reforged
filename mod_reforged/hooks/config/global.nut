@@ -22,17 +22,17 @@ local entityTypes = [
 
 local entityIcon = [
 	"bandit_thug_orientation",
+	"rf_bandit_robber_orientation",
+	"rf_bandit_hunter_orientation",
 	"bandit_raider_orientation",
-	"bandit_marksman_orientation",
-	"bandit_raider_orientation",
-	"bandit_raider_orientation",
-	"bandit_raider_orientation",
-	"bandit_raider_orientation",
-	"bandit_raider_orientation",
-	"bandit_raider_orientation",
-	"bandit_raider_orientation",
-	"bandit_marksman_orientation",
-	"bandit_leader_orientation"
+	"rf_bandit_pillager_orientation",
+	"rf_bandit_outlaw_orientation",
+	"rf_bandit_bandit_orientation",
+	"rf_bandit_highwayman_orientation",
+	"rf_bandit_marauder_orientation",
+	"rf_bandit_killer_orientation",
+	"rf_bandit_sharpshooter_orientation",
+	"rf_bandit_baron_orientation"
 ]
 
 foreach (entityType in entityTypes)
@@ -41,6 +41,9 @@ foreach (entityType in entityTypes)
 }
 
 ::Const.EntityIcon.extend(entityIcon);
+::Const.EntityIcon[::Const.EntityType.BanditThug] = "rf_bandit_thug_orientation";
+::Const.EntityIcon[::Const.EntityType.BanditRaider] = "rf_bandit_raider_orientation";
+::Const.EntityIcon[::Const.EntityType.BanditMarksman] = "rf_bandit_marksman_orientation";
 
 local getDefaultFaction = ::Const.EntityType.getDefaultFaction;
 ::Const.EntityType.getDefaultFaction = function( _id )
