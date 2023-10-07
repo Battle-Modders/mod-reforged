@@ -1501,7 +1501,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
  	}),
 	RF_RealizedPotential = ::UPD.getDescription({
- 		Fluff = "From rags to riches! This character has truly come a long way. Who was once a dreg of society is now a full-fledged mercenary. " + ::MSU.Text.colorGreen("All perk points have been refunded and attributes increased.") + ".",
+ 		Fluff = "From rags to riches! This character has truly come a long way. Who was once a dreg of society is now a full-fledged mercenary. " + ::MSU.Text.colorGreen("\n\nAll perk points have been refunded and attributes increased."),
 		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
  	}),
  	RF_Rebuke = ::UPD.getDescription({
