@@ -140,6 +140,7 @@ this.rf_bandit_vandal <- this.inherit("scripts/entity/tactical/human", {
 				if (item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Sword))
 				{
 					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
+					break;
 				}
 			}
 		}
