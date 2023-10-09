@@ -193,27 +193,27 @@ this.rf_bandit_sharpshooter <- this.inherit("scripts/entity/tactical/human", {
 				this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
+			}
+		}
 
-				foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))  //sidearm in bag
-				{
-					if (!item.isItemType(::Const.Items.ItemType.Weapon)) continue;
-					if (item.isWeaponType(::Const.Items.WeaponType.Flail))
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
-					}
-					else if (item.isWeaponType(::Const.Items.WeaponType.Axe))
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-					}
-					else if (item.isWeaponType(::Const.Items.WeaponType.Hammer))
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-					}
-					else //morning star
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-					}
-				}
+		foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))  //sidearm in bag
+		{
+			if (!item.isItemType(::Const.Items.ItemType.Weapon)) continue;
+			if (item.isWeaponType(::Const.Items.WeaponType.Flail))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
+			}
+			else if (item.isWeaponType(::Const.Items.WeaponType.Axe))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+			}
+			else if (item.isWeaponType(::Const.Items.WeaponType.Hammer))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+			}
+			else //morning star
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
 			}
 		}
 	}
