@@ -98,19 +98,19 @@ this.rf_bandit_marauder <- this.inherit("scripts/entity/tactical/human", {
 		{
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
 			{
-				switch (mainhandItem.getID())
+				local aoo = this.m.Skills.getAttackOfOpportunity();
+				if (aoo != null && aoo.getBaseValue("ActionPointCost") <= 4)
 				{
-					case "weapon.rf_battle_axe":
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
-						break;
-					case "weapon.woodcutters_axe":
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-						this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-						break;
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
+				}
+				else
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+					this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
 				}
 			}
 			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))

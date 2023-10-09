@@ -100,15 +100,15 @@ this.rf_bandit_outlaw <- this.inherit("scripts/entity/tactical/human", {
 		{
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
 			{
-				switch (mainhandItem.getID())
+				local aoo = this.m.Skills.getAttackOfOpportunity();
+				if (aoo != null && aoo.getBaseValue("ActionPointCost") <= 4)
 				{
-					case "weapon.rf_battle_axe":
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-						break;
-					case "weapon.woodcutters_axe":
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-						break;
+				}
+				else
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 				}
 			}
 			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
