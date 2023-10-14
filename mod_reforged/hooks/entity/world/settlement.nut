@@ -1,4 +1,16 @@
 ::Reforged.HooksMod.hook("scripts/entity/world/settlement", function(q) {
+	q.setOwner = @(__original) function( _owner )
+	{
+		__original(_owner);
+		this.adjustBannerOffset();
+	}
+
+	q.setActive = @(__original) function( _a, _burn = true )
+	{
+		__original(_a, _burn);
+		this.adjustBannerOffset();
+	}
+
 	q.onUpdateShopList = @(__original) function( _id, _list )
 	{
 		switch (_id)
