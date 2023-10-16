@@ -16,6 +16,9 @@
 
 	q.addXP = @(__original) function( _xp, _scale = true )
 	{
+		if (::Reforged.Config.XPOverride)
+			return;
+
 		while (this.m.Level >= ::Const.LevelXP.len())
 		{
 			::Const.LevelXP.push(::Const.LevelXP.top() + 4000 + 1000 * (::Const.LevelXP.len() - 11));
