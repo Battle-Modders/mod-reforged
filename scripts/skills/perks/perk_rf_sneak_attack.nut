@@ -8,13 +8,85 @@ this.perk_rf_sneak_attack <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "perk.rf_sneak_attack";
 		this.m.Name = ::Const.Strings.PerkName.RF_SneakAttack;
-		this.m.Description = ::Const.Strings.PerkDescription.RF_SneakAttack;
+		this.m.Description = "This character is ready to deliver a deadly surprise."
 		this.m.Icon = "ui/perks/rf_sneak_attack.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
+	}
+
+	function getTooltip()
+	{
+		local tooltip = this.skill.getTooltip();
+
+		if (this.getContainer().getActor().isArmedWithRangedWeapon())
+		{
+			tooltip.extend([
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "Against targets you have not previously attacked or who have not previously attacked you, gain:"
+				},
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/regular_damage.png",
+					text = ::MSU.Text.colorGreen("15%") + " increased damage"
+				},
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/direct_damage.png",
+					text = ::MSU.Text.colorGreen("+10%") + " armor penetration"
+				}
+			]);
+		}
+		else
+		{
+			tooltip.extend([
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "When you end your movement adjacent to an enemy, the next attack against that enemy gains:"
+				},
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/reach.png",
+					text = ::MSU.Text.colorGreen("+2") + " Reach"
+				},
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/regular_damage.png",
+					text = ::MSU.Text.colorGreen("25%") + " increased damage"
+				},
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/direct_damage.png",
+					text = ::MSU.Text.colorGreen("+20%") + " armor penetration"
+				}
+			]);
+		}
+
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::MSU.Text.colorRed("Will be lost upon swapping an item or waiting or ending your turn")
+		});
+
+		return tooltip;
+	}
+
+	function isHidden()
+	{
+		return !this.isEnabled();
 	}
 
 	function isEnabled()
