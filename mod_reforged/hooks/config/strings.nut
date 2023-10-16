@@ -1580,7 +1580,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Upon destroying a shield using the [Split Shield|Skill+split_shield] skill, with any weapon, " + ::MSU.Text.colorGreen(4) + " [Action Points|Concept.ActionPoints] are instantly restored.",
+				"Upon destroying a shield with a melee attack, " + ::MSU.Text.colorGreen(4) + " [Action Points|Concept.ActionPoints] are instantly restored.",
 			]
 		}]
  	}),
