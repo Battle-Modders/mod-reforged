@@ -1590,7 +1590,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When you enter a tile adjacent to an enemy, your next attack gains " + ::MSU.Text.colorGreen("+2") + " [Reach|Concept.Reach], has " + ::MSU.Text.colorGreen("+20%") + " armor penetration and deals " + ::MSU.Text.colorGreen("25%") + " increased damage."
-				"The effect is lost upon switching an item, waiting or ending your [turn|Concept.Turn], or using any skill.",
+				"The effect is lost upon swapping an item, waiting or ending your [turn|Concept.Turn].",
 				"Ranged attacks gain " + ::MSU.Text.colorGreen("+10%") + " armor penetration and " + ::MSU.Text.colorGreen("15%") + " increased damage against targets you have not previously attacked and who have not previously attacked you."
 				"When wielding a melee weapon requires a weapon with [Reach|Concept.Reach] of " + ::MSU.Text.colorRed(4) + " or less and a total penalty to [Fatigue|Concept.Fatigue] from head and body armor less than " + ::MSU.Text.colorRed(20) + ".",
 			]
