@@ -184,6 +184,30 @@
 
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
+		if ((::Const.Faction.Player in this.m.RF_DamageReceived) && this.m.RF_DamageReceived[::Const.Faction.Player].Total / this.m.RF_DamageReceived.Total >= 0.5)
+		{
+			// If player faction did at least 50% of total damage to this actor,
+			// we award the kill to the bro who did the most damage (for the purposes of loot drop)
+			// Note: This may have unintended consequences if someone expects `_killer` to be the actual killer.
+			local max = 0;
+			local killer;
+			foreach (broID, damage in this.m.RF_DamageReceived[::Const.Faction.Player])
+			{
+				if (broID == "Total") continue;
+				if (damage > max)
+				{
+					local entity = ::Tactical.getEntityByID(id);
+					if (entity != null && entity.isAlive())
+					{
+						max = damage;
+						killer = entity;
+					}
+				}
+			}
+			if (killer != null)
+				_killer = killer;
+		}
+
 		__original(_killer, _skill, _tile, _fatalityType);
 
 		// The following is an override of the XP gain system. We award XP based on ratio of total damage dealt to an entity.
