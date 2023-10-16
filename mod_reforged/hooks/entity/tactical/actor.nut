@@ -1,11 +1,18 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
 	q.m.IsPerformingAttackOfOpportunity <- false;
 	q.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
+	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
 
 	q.isDisarmed <- function()
 	{
 		local handToHand = this.getSkills().getSkillByID("actives.hand_to_hand");
 		return handToHand != null && handToHand.isUsable();
+	}
+
+	q.create = @(__original) function()
+	{
+		__original();
+		this.m.RF_DamageReceived = { Total = 0.0 };
 	}
 
 	q.onInit = @(__original) function()
@@ -163,5 +170,64 @@
 
 	q.onSetupEntity <- function()
 	{
+	}
+});
+
+::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
+	q.onActorKilled = @(__original) function( _actor, _tile, _skill )
+	{
+		local wasOverriding = ::Reforged.Config.XPOverride;
+		::Reforged.Config.XPOverride = true;
+		__original(_actor, _tile, _skill);
+		::Reforged.Config.XPOverride = wasOverriding;
+	}
+
+	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
+	{
+		__original(_killer, _skill, _tile, _fatalityType);
+
+		// The following is an override of the XP gain system. We award XP based on ratio of total damage dealt to an entity.
+
+		// - All factions who did damage share the XP gained from this actor's death.
+		// - The XP available to a faction is based on the percentage of total damage done by this faction.
+		// - This is divided into Killer XP and Group XP.
+		// - The brothers who did damage are considered "Killers". They share the Killer XP based on the
+		// percentage of damage done by each bro relative to other bros who did damage.
+		// - The group XP is then shared equally among all bros in the company.
+
+		local bros = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
+
+		if (::Const.Faction.Player in this.m.RF_DamageReceived)
+		{
+			local XPavailable = this.getXPValue() * this.m.RF_DamageReceived[::Const.Faction.Player].Total / this.m.RF_DamageReceived.Total;
+			local XPkiller = XPavailable * ::Const.XP.XPForKillerPct; // This will be divided among all bros who did damage. The rest will be divided equally among other bros.
+			local XPgroup = ::Math.max(1, ::Math.floor((XPavailable - XPkiller) / bros.len()));
+			local brosDamage = this.m.RF_DamageReceived[::Const.Faction.Player];
+
+			foreach (bro in bros)
+			{
+				if (bro.getID() in brosDamage)
+				{
+					bro.addXP(::Math.max(1, ::Math.round(XPkiller * brosDamage[bro.getID()] / brosDamage.Total))); // We use Math.round vs vanilla Math.floor so that the XPkiller is fully used instead of missing 1-2 xp
+				}
+
+				if (!bro.getCurrentProperties().IsAllyXPBlocked)
+				{
+					bro.addXP(XPgroup);
+				}
+			}
+		}
+
+		if (::Const.Faction.PlayerAnimals in this.m.RF_DamageReceived)
+		{
+			local XPgroup = (this.getXPValue() * this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total / this.m.RF_DamageReceived.Total) * (1.0 - ::Const.XP.XPForKillerPct);
+			XPgroup = ::Math.max(1, ::Math.floor(XPgroup / bros.len()));
+
+			foreach (bro in bros)
+			{
+				if (!bro.getCurrentProperties().IsAllyXPBlocked)
+					bro.addXP(XPgroup);
+			}
+		}
 	}
 });
