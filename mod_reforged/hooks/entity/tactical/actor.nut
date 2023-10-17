@@ -2,6 +2,7 @@
 	q.m.IsPerformingAttackOfOpportunity <- false;
 	q.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
 	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
+	q.m.LastAttacker <- null; // Set during this.onAttacked and used in places such as bleeding_effect to determine attacker
 
 	q.isDisarmed <- function()
 	{
@@ -42,6 +43,11 @@
 				this.m.ExcludedInjuries.extend(::Const.Injury.ExcludedInjuries.get(::Const.Injury.ExcludedInjuries.RF_Undead));
 			}
 		}
+	}
+
+	q.onAttacked = @(__original) function( _attacker )
+	{
+		this.m.LastAttacker = ::MSU.asWeakTableRef(_attacker);
 	}
 
 	q.onAttackOfOpportunity = @(__original) function( _entity, _isOnEnter )
