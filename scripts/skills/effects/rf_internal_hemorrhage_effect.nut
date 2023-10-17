@@ -27,7 +27,7 @@ this.rf_internal_hemorrhage_effect <- ::inherit("scripts/skills/skill", {
 		this.m.KilledString = "Bled to death";
 		this.m.Icon = "skills/status_effect_01.png";
 		this.m.IconMini = "status_effect_01_mini";
-		this.m.Overlay = "bleed";
+		this.m.Overlay = "status_effect_01";
 		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DamageOverTime;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
