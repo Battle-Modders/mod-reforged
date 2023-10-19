@@ -196,7 +196,7 @@
 				if (broID == "Total") continue;
 				if (damage > max)
 				{
-					local entity = ::Tactical.getEntityByID(id);
+					local entity = ::Tactical.getEntityByID(broID);
 					if (entity != null && entity.isAlive())
 					{
 						max = damage;
