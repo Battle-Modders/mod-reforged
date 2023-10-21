@@ -21,7 +21,7 @@
 		this.getSprite("socket").setBrush("bust_base_caravan");
 		this.getSprite("dirt").Visible = true;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));

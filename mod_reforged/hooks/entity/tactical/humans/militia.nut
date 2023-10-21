@@ -13,7 +13,6 @@
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced by perk
 
 	    // Reforged
-	    this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{

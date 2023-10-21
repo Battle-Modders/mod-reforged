@@ -19,7 +19,6 @@
 		this.getSprite("accessory_special").setBrush("bust_militia_band_01");
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{

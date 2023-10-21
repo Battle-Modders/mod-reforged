@@ -23,7 +23,6 @@
 		b.RangedDefense += 10;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_entrenched"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));

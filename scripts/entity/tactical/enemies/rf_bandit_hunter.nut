@@ -48,7 +48,6 @@ this.rf_bandit_hunter <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )

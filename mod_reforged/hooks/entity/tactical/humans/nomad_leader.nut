@@ -30,7 +30,7 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
 		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Now granted to all humans by default
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
@@ -40,7 +40,6 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rally_the_troops", function(o) {

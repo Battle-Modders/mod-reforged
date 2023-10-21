@@ -14,8 +14,6 @@
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced by perk
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
-
 		this.m.BaseProperties.Hitpoints += 10;
 		this.m.BaseProperties.Bravery += 20;
 		this.m.BaseProperties.Stamina += 10;

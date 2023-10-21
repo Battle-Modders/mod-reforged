@@ -30,7 +30,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Now granted to all humans by default
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 35)
@@ -39,7 +39,6 @@
 		// }
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
