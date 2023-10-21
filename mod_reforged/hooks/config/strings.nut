@@ -1458,11 +1458,12 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Momentum = ::UPD.getDescription({
  		Fluff = "\'Ye\'ve gotta get a running start!\'",
- 		Requirement = "Throwing Weapon",
+ 		Requirement = "Throwing Attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Throwing attacks do " + ::MSU.Text.colorGreen("5%") + " more damage and have their [Action Point|Concept.ActionPoints] cost reduced by " + ::MSU.Text.colorGreen(1) + " per tile moved before throwing."
+				"Gain " + ::MSU.Text.colorGreen("15%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional chance to hit.",
+				"Gain " + ::MSU.Text.colorGreen("10%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional damage per tile moved before throwing."
 			]
 		}]
  	}),
