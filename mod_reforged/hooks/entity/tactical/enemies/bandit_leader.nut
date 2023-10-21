@@ -30,7 +30,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
 
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_sergeant"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_hold_steady"));

@@ -26,12 +26,11 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/footwork")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));

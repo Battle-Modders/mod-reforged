@@ -40,7 +40,7 @@
 
 		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
@@ -51,7 +51,6 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
 		if (::Math.rand(1, 100) <= 25)
 		{

@@ -10,10 +10,9 @@
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
 		this.getSprite("accessory_special").setBrush("bust_militia_band_01");
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced by perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 	    // Reforged
-	    this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{

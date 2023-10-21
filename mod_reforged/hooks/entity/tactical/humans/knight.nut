@@ -30,11 +30,10 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));

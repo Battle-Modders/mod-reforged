@@ -34,7 +34,7 @@
 
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
 
 		this.m.MyVariant = ::Math.rand(0, 1); // 1 is crossbow
 	}

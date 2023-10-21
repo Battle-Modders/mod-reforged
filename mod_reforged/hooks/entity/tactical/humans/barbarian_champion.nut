@@ -49,7 +49,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 

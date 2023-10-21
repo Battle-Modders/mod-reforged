@@ -49,7 +49,6 @@ this.rf_bandit_sharpshooter <- this.inherit("scripts/entity/tactical/human", {
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 
 		this.m.MyVariant = ::Math.rand(0, 1); // 1 is Crossbow
 	}

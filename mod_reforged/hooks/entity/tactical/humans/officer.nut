@@ -26,11 +26,10 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced by perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced by perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_blitzkrieg"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));

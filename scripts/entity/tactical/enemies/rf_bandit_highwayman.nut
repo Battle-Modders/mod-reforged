@@ -34,7 +34,6 @@ this.rf_bandit_highwayman <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("shield_icon").setBrightness(0.85);
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 	}
 

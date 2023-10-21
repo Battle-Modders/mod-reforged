@@ -27,7 +27,6 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 
 		this.m.MyVariant = ::MSU.Table.randValue(this.m.SwordmasterVariants);
         this.m.MyArmorVariant = ::Math.rand(0, 1); // 0 = Light Armor, 1 = Medium Armor

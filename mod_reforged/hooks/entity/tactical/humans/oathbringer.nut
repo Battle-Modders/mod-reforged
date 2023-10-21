@@ -29,10 +29,9 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));

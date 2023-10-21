@@ -33,10 +33,9 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced as perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		//Reforged
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));

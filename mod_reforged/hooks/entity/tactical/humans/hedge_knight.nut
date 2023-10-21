@@ -19,7 +19,6 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_savage_strength"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));

@@ -29,13 +29,12 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/adrenaline_skill"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/footwork"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		//Reforged
 		b.RangedDefense += 10;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_kata", function(o) {o.m.IsForceEnabled = true;}));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_the_rush_of_battle"));

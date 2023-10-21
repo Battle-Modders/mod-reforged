@@ -22,13 +22,12 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rally_the_troops")); // Replaced by perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced by perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rally_the_troops", function(o) {
 			o.m.Cooldown = 3;
 		}));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 
 		this.m.BaseProperties.MeleeSkill += 10;
 		this.m.BaseProperties.RangedDefense += 10;

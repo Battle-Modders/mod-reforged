@@ -26,13 +26,12 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/footwork"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		//Reforged
 		b.RangedDefense += 15;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_small_target"));
 

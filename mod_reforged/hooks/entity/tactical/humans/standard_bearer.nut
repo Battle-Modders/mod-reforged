@@ -16,12 +16,10 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced by perk
 		this.m.Skills.add(this.new("scripts/skills/actives/rally_the_troops"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced by perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bolster"));
 

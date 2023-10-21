@@ -24,11 +24,10 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_phalanx"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));

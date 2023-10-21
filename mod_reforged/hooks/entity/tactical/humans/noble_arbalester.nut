@@ -14,12 +14,11 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill")); // Replaced with perk
+		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_entrenched"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
