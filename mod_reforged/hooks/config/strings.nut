@@ -538,8 +538,8 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
  					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
- 					"Gain " + ::MSU.Text.colorGreen("20%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional chance to hit.",
- 					"Damage is increased by " + ::MSU.Text.colorGreen("30%") + " when attacking at a distance of 2 tiles and by " + ::MSU.Text.colorGreen("20%") + " when attacking at a distance of 3 tiles."
+					"Throwing attacks have their [Action Point|Concept.ActionPoints] cost reduced by " + ::MSU.Text.colorGreen(1) + " per tile moved before throwing.",
+					"Swapping a throwing weapon with an empty throwing weapon or an empty slot becomes a free action once per turn."
  				]
  			}]
 	 	}),
