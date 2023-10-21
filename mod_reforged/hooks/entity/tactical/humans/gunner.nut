@@ -22,6 +22,7 @@
 		// Reforged
 		b.RangedDefense += 10;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_muscle_memory"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_entrenched"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
@@ -29,7 +30,6 @@
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{
     		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_muscle_memory"));
     		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
     	}
 	}
