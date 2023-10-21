@@ -2,7 +2,7 @@
     // We overwrite the vanilla behavior of that skill completely while replicating its effect pretty future proof
     q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
 	{
-        if (_skill.getItem() != null && _skill.getItem().isItemType(::Const.Items.ItemType.Weapon) && _skill.getItem().isWeaponType(::Const.Items.WeaponType.Firearm))    // This covers all kinds of firearms
+        if (_skill != null && _skill.getItem() != null && _skill.getItem().isItemType(::Const.Items.ItemType.Weapon) && _skill.getItem().isWeaponType(::Const.Items.WeaponType.Firearm))    // This covers all kinds of firearms
         {
             _properties.DamageReceivedRegularMult *= 0.66;
         }
