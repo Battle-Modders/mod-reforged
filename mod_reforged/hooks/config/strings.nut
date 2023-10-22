@@ -1016,7 +1016,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"Always start battles at Confident [morale|Concept.Morale].",
-					"Morale checks can never drop your [morale|Concept.Morale] below Confident for the first " + ::MSU.Text.colorGreen(5) + " rounds of battle (the entire battle if you have the [Determined+Skill+determined_trait] trait) and below Steady after that."
+					"Morale checks can never drop your [morale|Concept.Morale] below Confident for the first " + ::MSU.Text.colorGreen(5) + " rounds of battle (the entire battle if you have the [Determined|Skill+determined_trait] trait) and below Steady after that."
 				]
 			},
 			{
