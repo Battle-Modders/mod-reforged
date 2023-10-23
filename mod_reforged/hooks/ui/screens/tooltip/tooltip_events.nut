@@ -27,7 +27,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = ::Reforged.Mod.Tooltips.parseString("The character\'s level measures [experience|Concept.Experience] in battle. Characters rise in levels as they gain experience and are able to increase their [attributes|Concept.CharacterAttribute] and gain [perks|Concept.Perk] that make them better at the mercenary profession.\n\nBeyond the " + ::Const.XP.MaxLevelWithPerkpoints + "th character level, characters are veterans and gain perk points only every 4th level. They can still improve their attributes but the attribute gain per level is small.")
+						text = ::Reforged.Mod.Tooltips.parseString("The character\'s level measures [experience|Concept.Experience] in battle. Characters rise in levels as they gain experience and are able to increase their [attributes|Concept.CharacterAttribute] and gain [perks|Concept.Perk] that make them better at the mercenary profession.\n\nBeyond the " + ::Const.XP.MaxLevelWithPerkpoints + "th character level, characters are veterans and gain perk points " + (::Reforged.Config.VeteranPerksLevelStep == 1 ? "" : "only") + " every " + ::Reforged.Config.VeteranPerksLevelStep + "th level. They can still improve their attributes but the attribute gain per level is small.")
 					}
 				];
 		}
