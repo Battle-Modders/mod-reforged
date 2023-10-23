@@ -5,6 +5,7 @@
 	GitHubURL = "https://github.com/Battle-Modders/mod-reforged",
 	ItemTable = {},
 	QueueBucket = {
+		Late = [],
 		FirstWorldInit = []
 	}
 };
@@ -79,6 +80,13 @@ foreach (requirement in requiredMods)
 		::include(file);
 	}
 });
+
+::Reforged.HooksMod.queue(queueLoadOrder, function() {
+	foreach (func in ::Reforged.QueueBucket.Late)
+	{
+		func();
+	}
+}, ::Hooks.QueueBucket.Late);
 
 ::Reforged.HooksMod.queue(queueLoadOrder, function() {
 	foreach (func in ::Reforged.QueueBucket.FirstWorldInit)
