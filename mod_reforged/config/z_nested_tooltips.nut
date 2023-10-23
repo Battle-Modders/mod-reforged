@@ -48,6 +48,9 @@
 
 		"character-screen.left-panel-header-module.Experience",
 		"character-screen.left-panel-header-module.Level",
+
+		"assets.BusinessReputation",
+		"assets.MoralReputation"
 	]
 }
 
