@@ -66,15 +66,31 @@
 		}
 
 		// New Entries
-		if (!this.m.IsShieldRelevant && _targetTile.IsOccupiedByActor && _targetTile.getEntity().isArmedWithShield())
+		if (_targetTile.IsOccupiedByActor)
 		{
-			local shield = _targetTile.getEntity().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-			local bonus = (this.isRanged()) ? shield.getRangedDefenseBonus() : shield.getMeleeDefenseBonus();
-			if (bonus > 0)
+			local targetEntity = _targetTile.getEntity();
+			if (!this.m.IsShieldRelevant && targetEntity.isArmedWithShield())
 			{
+				local shield = targetEntity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+				local bonus = (this.isRanged()) ? shield.getRangedDefenseBonus() : shield.getMeleeDefenseBonus();
+				if (bonus > 0)
+				{
+					ret.push({
+						icon = "ui/tooltips/positive.png",
+						text = ::MSU.Text.colorGreen(bonus + "%") + " Ignores Shield",
+					});
+				}
+			}
+
+			if (!targetEntity.getCurrentProperties().IsImmuneToStun && this.m.IsStunningFromPoise)
+			{
+				local targetThresholdSkill = targetEntity.getSkills().getSkillByID("effects.poise");
+				local turnsStunnedBody = targetThresholdSkill.wouldStun(this.getContainer().getActor(), this, false);
+				local turnsStunnedHead = targetThresholdSkill.wouldStun(this.getContainer().getActor(), this, true);
+
 				ret.push({
 					icon = "ui/tooltips/positive.png",
-					text = ::MSU.Text.colorGreen(bonus + "%") + " Ignores Shield"
+					text = "Will stun for " + ::MSU.Text.colorGreen(turnsStunnedBody) + "/" + ::MSU.Text.colorGreen(turnsStunnedHead) + " turns",
 				});
 			}
 		}
