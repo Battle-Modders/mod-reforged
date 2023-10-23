@@ -18,7 +18,7 @@
 					id = 6,
 					type = "text",
 					icon = "ui/icons/ambition_tooltip.png",
-					text = ::MSU.Text.colorizeValue(this.getRenownOnSuccess()) + " Renown"
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getRenownOnSuccess()) + " [Renown|Concept.BusinessReputation]")
 				});
 			}
 			return ret;
