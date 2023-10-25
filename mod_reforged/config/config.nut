@@ -5,6 +5,11 @@
 	XPOverride = false, // Is set to true during actor.onActorKilled to prevent any xp gain via player.getXP function. Then set to false afterwards. This is to do our own override of XP gain system based on damage dealt ratios.
 	VeteranPerksLevelStep = 4, // During veteran character levels, a new perk point is gained every this many levels.
 
+	Player = {
+		DailyCostMultPerLevelRegular = 1.1,		// Exponential increase of daily cost for each level before max level
+		DailyCostMultPerLevelParagon = 1.03		// Exponential increase of daily cost for each level after max level
+	}
+
 	UI = {
 		WorldBannerYOffset = 50
 	}

@@ -1,7 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/character_background", function(q) {
+	q.m.CalculatedDailyCost <- 0;
+
 	q.isHired <- function()
 	{
 		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
+	}
+
+	q.onAdded = @(__original) function()
+	{
+		__original();
+		this.m.CalculatedDailyCost = this.calculateDailyCost();
 	}
 
 	q.getProjectedAttributesTooltip <- function()
@@ -12,6 +20,17 @@
 			text = "", // Needs text key or it'll be skipped
 			rawHTML = this.getProjectedAttributesHTML()
 		}];
+	}
+
+	// Overwrite to increase overall performance. The Wage for this background is no longer calculated newly during every update loop
+	q.onUpdate = @() function( _properties )
+	{
+		_properties.DailyWage = this.calculateDailyCost();
+
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getID() != "background.slave")
+		{
+			_properties.XPGainMult *= 0.9;
+		}
 	}
 
 	// TODO: Currently this randomization is not persistent across game load. We need to serialize the hiring cost.
@@ -59,6 +78,30 @@
 		ret += "</div>";
 
 		return ret;
+	}
+
+// MSU Functions
+	q.onUpdateLevel = @(__original) function()
+	{
+		__original();
+		this.m.CalculatedDailyCost = this.calculateDailyCost();	// While our internal DailyCost is only dependant on the brother level it is sufficient to calculate it here only
+	}
+
+// New Functions
+	q.calculateDailyCost <- function()
+	{
+		if (this.m.DailyCost == 0) return 0;
+
+		local dailyCost = ::Math.round(this.m.DailyCost * this.m.DailyCostMult);
+		local level = this.getContainer().getActor().getLevel();
+		dailyCost *= ::Math.pow(::Reforged.Config.Player.DailyCostMultPerLevelRegular, ::Math.min(::Const.XP.MaxLevelWithPerkpoints, level) - 1);
+
+		if (level > ::Const.XP.MaxLevelWithPerkpoints)
+		{
+			dailyCost *= ::Math.pow(::Reforged.Config.Player.DailyCostMultPerLevelParagon, level - ::Const.XP.MaxLevelWithPerkpoints);
+		}
+
+		return dailyCost;
 	}
 });
 
