@@ -39,8 +39,8 @@
 		__original();
 		local actor = this.getContainer().getActor();
 		local hiringCost = actor.m.HiringCost;
-		local minimum = hiringCost * (1.0 - ::Reforged.Config.HiringCostVariance);
-		local maximum = hiringCost * (1.0 + ::Reforged.Config.HiringCostVariance);
+		local minimum = hiringCost * (1.0 - ::Reforged.Config.Player.HiringCostVariance);
+		local maximum = hiringCost * (1.0 + ::Reforged.Config.Player.HiringCostVariance);
 		hiringCost = ::Reforged.Math.luckyRoll(minimum, maximum, hiringCost, ::Reforged.Config.HiringCostLuck);		// Randomizes this value an additional time for every 100 luck and picks the one closest to the original
 		hiringCost = ::Reforged.Math.ceil(hiringCost, -1);		// Makes sure this unsigned integer ends with a 0 one again
 		actor.m.HiringCost = hiringCost;
