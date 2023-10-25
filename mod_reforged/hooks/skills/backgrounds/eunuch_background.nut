@@ -2,6 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
+		this.m.BeardChance = 0;
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_devious": 1.5,
 			"pg.rf_tactician": 4,
