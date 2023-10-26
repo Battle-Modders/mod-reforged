@@ -9,7 +9,8 @@ this.rf_heavy_plate_harness <- this.inherit("scripts/items/armor/armor", {
 		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
-		this.m.Variant = 0;
+		this.m.Variant = 1;
+		this.m.VariantString = "rf_heavy_plate_harness"
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
@@ -17,14 +18,5 @@ this.rf_heavy_plate_harness <- this.inherit("scripts/items/armor/armor", {
 		this.m.Condition = 380;
 		this.m.ConditionMax = 380;
 		this.m.StaminaModifier = -44;
-	}
-
-	function updateVariant()
-	{
-		this.m.Sprite = "rf_heavy_plate_harness";
-		this.m.SpriteDamaged = "rf_heavy_plate_harness_damaged";
-		this.m.SpriteCorpse = "rf_heavy_plate_harness_dead";
-		this.m.IconLarge = "armor/inventory_rf_heavy_plate_harness.png";
-		this.m.Icon = "armor/icon_rf_heavy_plate_harness.png";
 	}
 });

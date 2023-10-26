@@ -10,7 +10,8 @@ this.rf_snubnose_bascinet_with_mail <- this.inherit("scripts/items/helmets/helme
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;
 		this.m.HideBeard = true;
-		this.m.Variant = 0;
+		this.m.Variant = 1;
+		this.m.VariantString = "rf_snubnose_bascinet_with_mail"
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
@@ -19,14 +20,5 @@ this.rf_snubnose_bascinet_with_mail <- this.inherit("scripts/items/helmets/helme
 		this.m.ConditionMax = 330;
 		this.m.StaminaModifier = -21;
 		this.m.Vision = -3;
-	}
-
-	function updateVariant()
-	{
-		this.m.Sprite = "rf_snubnose_bascinet_with_mail";
-		this.m.SpriteDamaged = "rf_snubnose_bascinet_with_mail_damaged";
-		this.m.SpriteCorpse = "rf_snubnose_bascinet_with_mail_dead";
-		this.m.IconLarge = "";
-		this.m.Icon = "helmets/inventory_rf_snubnose_bascinet_with_mail.png";
 	}
 });
