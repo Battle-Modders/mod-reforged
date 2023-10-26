@@ -9,7 +9,8 @@ this.rf_breastplate_harness <- this.inherit("scripts/items/armor/armor", {
 		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
-		this.m.Variant = 0;
+		this.m.Variant = 1;
+		this.m.VariantString = "rf_breastplate_harness"
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;

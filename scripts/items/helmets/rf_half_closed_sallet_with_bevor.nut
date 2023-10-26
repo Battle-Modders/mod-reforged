@@ -10,7 +10,8 @@ this.rf_half_closed_sallet_with_bevor <- this.inherit("scripts/items/helmets/hel
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;
 		this.m.HideBeard = true;
-		this.m.Variant = 0;
+		this.m.Variant = 1;
+		this.m.VariantString = "rf_half_closed_sallet_with_bevor"
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
@@ -19,14 +20,5 @@ this.rf_half_closed_sallet_with_bevor <- this.inherit("scripts/items/helmets/hel
 		this.m.ConditionMax = 315;
 		this.m.StaminaModifier = -20;
 		this.m.Vision = -3;
-	}
-
-	function updateVariant()
-	{
-		this.m.Sprite = "rf_half_closed_sallet_with_bevor";
-		this.m.SpriteDamaged = "rf_half_closed_sallet_with_bevor_damaged";
-		this.m.SpriteCorpse = "rf_half_closed_sallet_with_bevor_dead";
-		this.m.IconLarge = "";
-		this.m.Icon = "helmets/inventory_rf_half_closed_sallet_with_bevor.png";
 	}
 });

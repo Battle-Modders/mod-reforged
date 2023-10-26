@@ -9,7 +9,8 @@ this.rf_breastplate_armor <- this.inherit("scripts/items/armor/armor", {
 		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
-		this.m.Variant = 0;
+		this.m.Variant = 1;
+		this.m.VariantString = "rf_breastplate_armor"
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
@@ -17,14 +18,5 @@ this.rf_breastplate_armor <- this.inherit("scripts/items/armor/armor", {
 		this.m.Condition = 280;
 		this.m.ConditionMax = 280;
 		this.m.StaminaModifier = -32;
-	}
-
-	function updateVariant()
-	{
-		this.m.Sprite = "rf_breastplate_armor";
-		this.m.SpriteDamaged = "rf_breastplate_armor_damaged";
-		this.m.SpriteCorpse = "rf_breastplate_armor_dead";
-		this.m.IconLarge = "armor/inventory_rf_breastplate_armor.png";
-		this.m.Icon = "armor/icon_rf_breastplate_armor.png";
 	}
 });

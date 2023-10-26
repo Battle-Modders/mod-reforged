@@ -9,7 +9,8 @@ this.rf_reinforced_footman_armor <- this.inherit("scripts/items/armor/armor", {
 		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
-		this.m.Variant = 0;
+		this.m.Variant = 1;
+		this.m.VariantString = "rf_reinforced_footman_armor"
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
@@ -17,14 +18,5 @@ this.rf_reinforced_footman_armor <- this.inherit("scripts/items/armor/armor", {
 		this.m.Condition = 260;
 		this.m.ConditionMax = 260;
 		this.m.StaminaModifier = -32;
-	}
-
-	function updateVariant()
-	{
-		this.m.Sprite = "rf_reinforced_footman_armor";
-		this.m.SpriteDamaged = "rf_reinforced_footman_armor_damaged";
-		this.m.SpriteCorpse = "rf_reinforced_footman_armor_dead";
-		this.m.IconLarge = "armor/inventory_rf_reinforced_footman_armor.png";
-		this.m.Icon = "armor/icon_rf_reinforced_footman_armor.png";
 	}
 });

@@ -10,7 +10,8 @@ this.rf_great_helm <- this.inherit("scripts/items/helmets/helmet", {
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;
 		this.m.HideBeard = true;
-		this.m.Variant = 0;
+		this.m.Variant = 1;
+		this.m.VariantString = "rf_great_helm"
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
@@ -19,14 +20,5 @@ this.rf_great_helm <- this.inherit("scripts/items/helmets/helmet", {
 		this.m.ConditionMax = 360;
 		this.m.StaminaModifier = -26;
 		this.m.Vision = -4;
-	}
-
-	function updateVariant()
-	{
-		this.m.Sprite = "rf_great_helm";
-		this.m.SpriteDamaged = "rf_great_helm_damaged";
-		this.m.SpriteCorpse = "rf_great_helm_dead";
-		this.m.IconLarge = "";
-		this.m.Icon = "helmets/inventory_rf_great_helm.png";
 	}
 });
