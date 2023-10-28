@@ -14,6 +14,7 @@ local units = [
 	{
 		ID = "Unit.RF.ArmoredWardog",
 		Troop = "ArmoredWardog"
+		StartingResourceMin = 125
 	},
 	{
 		ID = "Unit.RF.StandardBearer",
