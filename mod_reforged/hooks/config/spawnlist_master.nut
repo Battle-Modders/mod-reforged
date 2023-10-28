@@ -1,11 +1,13 @@
 ::Const.World.Spawn.Troops.Wardog.Strength = 6;
 ::Const.World.Spawn.Troops.Wardog.Cost = 6;
+::Const.World.Spawn.Troops.ArmoredWardog.Strength = 8;
+::Const.World.Spawn.Troops.ArmoredWardog.Cost = 8;
 ::Const.World.Spawn.Troops.BanditThug.Strength = 12;
 ::Const.World.Spawn.Troops.BanditThug.Cost = 12;
 ::Const.World.Spawn.Troops.BanditMarksmanLOW.Strength = 12;
 ::Const.World.Spawn.Troops.BanditMarksmanLOW.Cost = 12;
-::Const.World.Spawn.Troops.BanditMarksman.Strength = 24;
-::Const.World.Spawn.Troops.BanditMarksman.Cost = 24;
+::Const.World.Spawn.Troops.BanditMarksman.Strength = 30;
+::Const.World.Spawn.Troops.BanditMarksman.Cost = 30;
 ::Const.World.Spawn.Troops.BanditRaiderWolf.Strength = 30;
 ::Const.World.Spawn.Troops.BanditRaiderWolf.Cost = 30;
 ::Const.World.Spawn.Troops.BanditRaider.Strength = 30;
@@ -64,7 +66,7 @@
 	RF_BanditOutlaw = {
 		ID = ::Const.EntityType.RF_BanditOutlaw,
 		Variant = 0,
-		Strength = 24,
+		Strength = 30,
 		Cost = 30,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_outlaw"

@@ -85,17 +85,17 @@ local units = [
 	{
 		ID = "Unit.RF.MasterArcher",
 		Troop = "MasterArcher",
-		StartingResourceMin = 286	// In Vanilla they appear in a group of 286 cost
+		StartingResourceMin = 320
 	},
 	{
 		ID = "Unit.RF.HedgeKnight",
 		Troop = "HedgeKnight",
-		StartingResourceMin = 286	// In Vanilla they appear in a group of 286 cost
+		StartingResourceMin = 320
 	},
 	{
 		ID = "Unit.RF.Swordmaster",
 		Troop = "Swordmaster",
-		StartingResourceMin = 286	// In Vanilla they appear in a group of 286 cost
+		StartingResourceMin = 320
 	}
 ]
 
