@@ -32,7 +32,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_personal_armor"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_sergeant"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_sergeant"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
 
 		if (::Reforged.Config.IsLegendaryDifficulty)
