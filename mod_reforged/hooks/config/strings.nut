@@ -134,6 +134,7 @@
 	RF_TakeAim = "Take Aim",
 	RF_TargetPractice = "Target Practice",
 	RF_Tempo = "Tempo",
+	RF_TerrifyingVisage = "Terrifying Visage",
 	RF_TheRushOfBattle = "The Rush of Battle",
 	RF_ThroughTheGaps = "Through the Gaps",
 	RF_ThroughTheRanks = "Through the Ranks",
@@ -1811,6 +1812,16 @@ foreach (vanillaDesc in vanillaDescriptions)
 			}
 		]
  	}),
+ 	RF_TerrifyingVisage = ::UPD.getDescription({
+ 		Fluff = "Gaze upon your death!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Each attack that does damage to [Hitpoints|Concept.Hitpoints] triggers a mental [morale check|Concept.Bravery] for the target. If the target fails the morale check, it gains the [Horrified|Skill+horrified_effect] effect."
+			]
+		}]
+ 	}),
+
 	RF_TheRushOfBattle = ::UPD.getDescription({
  		Fluff = "\'It\'s not uncommon to make it to the end of the battle not remembering any details, just that you slew many men!\'",
  		Effects = [{
