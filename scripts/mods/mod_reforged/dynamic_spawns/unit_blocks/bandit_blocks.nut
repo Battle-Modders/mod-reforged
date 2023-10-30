@@ -1,6 +1,7 @@
 local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.BanditBalanced",
+		DeterminesFigure = true,
 		UnitDefs = [
 			{ BaseID = "Unit.RF.RF_BanditScoundrel" },
 			{ BaseID = "Unit.RF.RF_BanditVandal" },
@@ -10,6 +11,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditFast",
+		DeterminesFigure = true,
 		UnitDefs = [
 			{ BaseID = "Unit.RF.RF_BanditRobber" },
 			{ BaseID = "Unit.RF.RF_BanditBandit" },
@@ -18,6 +20,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditTough",
+		DeterminesFigure = true,
 		UnitDefs = [
 			{ BaseID = "Unit.RF.BanditThug" },
 			{ BaseID = "Unit.RF.RF_BanditPillager" },
@@ -27,6 +30,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditRanged",
+		DeterminesFigure = true,
 		UnitDefs = [
 			{ BaseID = "Unit.RF.BanditPoacher" },
 			{ BaseID = "Unit.RF.RF_BanditHunter" },
@@ -36,6 +40,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditDog",
+		DeterminesFigure = true,
 		UnitDefs = [
 			{ BaseID = "Unit.RF.Wardog" },
 			{ BaseID = "Unit.RF.ArmoredWardog", StartingResourceMin = 125 }
@@ -43,6 +48,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditElite",
+		DeterminesFigure = true,
 		UnitDefs = ::MSU.Class.WeightedContainer([
 			[1, { BaseID = "Unit.RF.HumanMasterArcher" }],
 			[1, { BaseID = "Unit.RF.HumanHedgeKnight" }],
@@ -51,6 +57,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditBoss",
+		DeterminesFigure = true,
 		UnitDefs = [
 			{ BaseID = "Unit.RF.BanditLeader" },
 			{ BaseID = "Unit.RF.RF_BanditBaron" }
