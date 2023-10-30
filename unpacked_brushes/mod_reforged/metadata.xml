@@ -42,6 +42,7 @@
 	<sprite id="rf_swordmaster_kick_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_kick_skill.png" />
 	<sprite id="rf_swordmaster_push_through_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_push_through_skill.png" />
 	<sprite id="rf_great_cleave_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_great_cleave_skill.png" />
+	<sprite id="rf_cleaving_split_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_cleaving_split_skill.png" />
 
 	<sprite id="rf_arrow_to_the_knee_debuff_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_arrow_to_the_knee_debuff_effect.png" />
 	<sprite id="rf_arrow_to_the_knee_debuff_effect_mini" ic = "FF23165B" img="mini\rf_arrow_to_the_knee_debuff_effect_mini.png" />
