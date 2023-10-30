@@ -8,6 +8,7 @@
 	<sprite id="perk_rf_exude_confidence" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_exude_confidence.png" />
 	<sprite id="perk_rf_shield_splitter" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_shield_splitter.png" />
 	<sprite id="perk_rf_bolster" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_bolster.png" />
+	<sprite id="perk_rf_terrifying_visage" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_terrifying_visage.png" />
 
 	<sprite id="rf_sling_acid_flask_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sling_acid_flask_skill.png" />
 	<sprite id="rf_sling_daze_bomb_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sling_daze_bomb_skill.png" />
