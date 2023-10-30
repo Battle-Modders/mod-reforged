@@ -82,6 +82,9 @@
 	<sprite id="rf_vigilant_mini" ic = "FF23165B" img="mini\rf_vigilant_mini.png" />
 	<sprite id="rf_vigorous_assault_mini" ic = "FF23165B" img="mini\rf_vigorous_assault_mini.png" />
 	<sprite id="rf_vigorous_assault_barbarian_mini" ic = "FF23165B" img="mini\rf_vigorous_assault_barbarian_mini.png" />
+	<sprite id="rf_decanus_command_effect_mini" ic = "FF23165B" img="mini\rf_decanus_command_effect_mini.png" />
+	<sprite id="rf_centurion_command_effect_mini" ic = "FF23165B" img="mini\rf_centurion_command_effect_mini.png" />
+	<sprite id="rf_legatus_command_effect_mini" ic = "FF23165B" img="mini\rf_legatus_command_effect_mini.png" />
 
 	<sprite id="rf_bestial_vigor_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_bestial_vigor.png" />
 	<sprite id="rf_bestial_vigor_effect_mini" ic = "FF23165B" img="mini\rf_bestial_vigor_effect_mini.png" />
