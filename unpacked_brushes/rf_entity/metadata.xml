@@ -188,4 +188,14 @@
  <sprite id="bust_rf_great_helm_01_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\bust_rf_great_helm_01_dead.png" left="-84" right="28" top="-80" bottom="26" />
 
 <sprite id="bust_rf_vampire_head_01" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_rf_vampire_head_01.png" left="-17" right="27" top="-30" bottom="44" />
+
+<sprite id="bust_rf_vampire_blood_head_01_01" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_rf_vampire_blood_head_01_01.png" left="-17" right="27" top="-30" bottom="44" />
+<sprite id="bust_rf_vampire_blood_head_01_02" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_rf_vampire_blood_head_01_02.png" left="-17" right="27" top="-30" bottom="44" />
+<sprite id="bust_rf_vampire_blood_head_01_03" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_rf_vampire_blood_head_01_03.png" left="-17" right="27" top="-30" bottom="44" />
+<sprite id="bust_rf_vampire_blood_head_02_01" offsetY="35" ic="FF3E4C5A" width="104" height="142" img="entity\undead\bust_rf_vampire_blood_head_02_01.png" left="-17" right="29" top="-12" bottom="48" />
+<sprite id="bust_rf_vampire_blood_head_02_02" offsetY="35" ic="FF3E4C5A" width="104" height="142" img="entity\undead\bust_rf_vampire_blood_head_02_02.png" left="-17" right="29" top="-12" bottom="48" />
+<sprite id="bust_rf_vampire_blood_head_02_03" offsetY="35" ic="FF3E4C5A" width="104" height="142" img="entity\undead\bust_rf_vampire_blood_head_02_03.png" left="-17" right="29" top="-12" bottom="48" />
+<sprite id="bust_rf_vampire_blood_head_03_01" offsetY="35" ic="FF323E47" width="104" height="142" img="entity\undead\bust_rf_vampire_blood_head_03_01.png" left="-17" right="29" top="-14" bottom="48" />
+<sprite id="bust_rf_vampire_blood_head_03_02" offsetY="35" ic="FF323E47" width="104" height="142" img="entity\undead\bust_rf_vampire_blood_head_03_02.png" left="-17" right="29" top="-14" bottom="48" />
+<sprite id="bust_rf_vampire_blood_head_03_03" offsetY="35" ic="FF323E47" width="104" height="142" img="entity\undead\bust_rf_vampire_blood_head_03_03.png" left="-17" right="29" top="-14" bottom="48" />
 </brush>
