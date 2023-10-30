@@ -82,28 +82,11 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
 
 		// Reforged
-		b.RangedDefense += 15;
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-	    	this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-	    	this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
-		}
-	}
-
-	q.assignRandomEquipment = @(__original) function()
-	{
-	    __original();
-
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 7);
-	    }
-	    else
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-	    }
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bloodbath"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_head_hunter"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sanguinary"));
 	}
 
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
