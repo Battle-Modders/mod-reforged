@@ -41,6 +41,7 @@
 	<sprite id="rf_swordmaster_tackle_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_tackle_skill.png" />
 	<sprite id="rf_swordmaster_kick_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_kick_skill.png" />
 	<sprite id="rf_swordmaster_push_through_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_push_through_skill.png" />
+	<sprite id="rf_sword_stab_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sword_stab_skill.png" />
 	<sprite id="rf_great_cleave_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_great_cleave_skill.png" />
 	<sprite id="rf_cleaving_split_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_cleaving_split_skill.png" />
 
