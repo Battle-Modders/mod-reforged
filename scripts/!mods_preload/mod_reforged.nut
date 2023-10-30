@@ -67,6 +67,7 @@ foreach (requirement in requiredMods)
 	::MSU.AI.addBehavior("RF_Onslaught", "RF.Onslaught", ::Const.AI.Behavior.Order.BoostMorale, ::Const.AI.Behavior.Score.BoostMorale);
 	::MSU.AI.addBehavior("RF_KataStep", "RF.KataStep", ::Const.AI.Behavior.Order.Adrenaline, ::Const.AI.Behavior.Score.Attack);
 	::MSU.AI.addBehavior("RF_Blitzkrieg", "RF.Blitzkrieg", ::Const.AI.Behavior.Order.Rally, ::Const.AI.Behavior.Score.Rally);
+	::MSU.AI.addBehavior("RF_SanguineCurse", "RF.SanguineCurse", ::Const.AI.Behavior.Order.Hex, ::Const.AI.Behavior.Score.Hex);
 
 	::include("mod_reforged/hooks/config/strings.nut");
 

@@ -131,6 +131,10 @@
 
 	<sprite id="rf_swift_stabs_mini" ic = "FF23165B" img="mini\rf_swift_stabs_mini.png" />
 
+	<sprite id="rf_sanguine_curse_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sanguine_curse_skill.png" />
+	<sprite id="rf_sanguine_curse_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_sanguine_curse_effect.png" />
+	<sprite id="rf_sanguine_curse_effect_mini" ic = "FF23165B" img="mini\rf_sanguine_curse_effect_mini.png" />
+
 	<sprite id="rf_worn_down_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_wear_them_down.png" />
 	<sprite id="rf_worn_down_effect_mini" ic = "FF23165B" img="mini\rf_worn_down_effect_mini.png" />
 
