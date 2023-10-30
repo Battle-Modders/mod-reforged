@@ -91,5 +91,17 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(::new("scripts/skills/effects/rf_decanus_command_effect"));
+		this.m.Skills.add(::new("scripts/skills/effects/rf_centurion_command_effect"));
+		this.m.Skills.add(::new("scripts/skills/effects/rf_legatus_command_effect"));
+	}
+
+	function onSetupEntity()
+	{
+		local offhand = this.getOffhandItem();
+		if (offhand != null && offhand.isItemType(::Const.Items.ItemType.Shield))
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+		}
 	}
 });

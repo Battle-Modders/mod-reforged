@@ -12,4 +12,14 @@
 	<sprite id="rf_bandit_killer_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_killer_orientation.png" />
 	<sprite id="rf_bandit_sharpshooter_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_sharpshooter_orientation.png" />
 	<sprite id="rf_bandit_baron_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_bandit_baron_orientation.png" />
+
+	<sprite id="rf_skeleton_light_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_skeleton_light_orientation.png" />
+	<sprite id="rf_skeleton_light_elite_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_skeleton_light_elite_orientation.png" />
+	<sprite id="rf_skeleton_medium_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_skeleton_medium_orientation.png" />
+	<sprite id="rf_skeleton_medium_elite_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_skeleton_medium_elite_orientation.png" />
+	<sprite id="rf_skeleton_decanus_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_skeleton_decanus_orientation.png" />
+	<sprite id="rf_skeleton_centurion_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_skeleton_centurion_orientation.png" />
+	<sprite id="rf_skeleton_legatus_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_skeleton_legatus_orientation.png" />
+	<sprite id="rf_vampire_lord_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_vampire_lord_orientation.png" />
+	<sprite id="rf_skeleton_heavy_lesser_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_skeleton_heavy_lesser_orientation.png" />
 </brush>
