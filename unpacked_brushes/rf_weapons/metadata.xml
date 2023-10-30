@@ -42,4 +42,7 @@
 <sprite id="icon_rf_longsword_named_01" offsetY="35" ic="FF56575A" width="130" height="142" img="icon_rf_longsword_named_01.png" left="-62" right="34" top="-63" bottom="45" />
 <sprite id="icon_rf_longsword_named_01_bloodied" offsetY="35" ic="FF4D4E59" width="130" height="142" img="icon_rf_longsword_named_01_bloodied.png" left="-62" right="34" top="-63" bottom="45" />
 
+<sprite id="icon_rf_great_khopesh_01" offsetY="35" ic="FF343439" width="144" height="142" img="icon_rf_great_khopesh_01.png" left="-63" right="19" top="-64" bottom="62" />
+<sprite id="icon_rf_great_khopesh_01_bloodied" offsetY="35" ic="FF343439" width="144" height="142" img="icon_rf_great_khopesh_01_bloodied.png" left="-63" right="19" top="-64" bottom="62" />
+
 </brush>
