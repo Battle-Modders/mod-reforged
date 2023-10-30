@@ -13,6 +13,9 @@
  <sprite id="bust_body_37_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2B2F37" width="131" height="125" img="entity\bodies\bust_body_37_dead.png" top="-52" bottom="56" />
  <sprite id="bust_body_37_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF42494D" width="131" height="124" img="entity\bodies\bust_body_37_dead_arrows.png" left="-30" right="26" top="-8" bottom="52" />
  <sprite id="bust_body_37_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF1B233C" width="131" height="124" img="entity\bodies\bust_body_37_dead_javelin.png" left="3" right="29" top="12" bottom="62" /> -->
+ <sprite id="rf_ancient_cape" offsetY="35" ic="FF45627A" width="140" height="248" img="entity\undead\rf_ancient_cape.png" left="-53" right="47" top="-45" bottom="9" />
+ <sprite id="rf_ancient_cape_damaged" offsetY="35" ic="FF45627A" width="140" height="248" img="entity\undead\rf_ancient_cape_damaged.png" left="-53" right="47" top="-45" bottom="9" />
+ <sprite id="rf_ancient_cape_dead" offsetX="6" offsetY="10" f="64FD" ic="FF3C566E" width="191" height="185" img="entity\undead\rf_ancient_cape_dead.png" left="-51" right="53" top="-52" bottom="10" />
 
  <sprite id="bust_rf_brigandine_shirt_01" offsetY="35" ic="FF33416C" width="104" height="142" img="entity\bodies\bust_rf_brigandine_shirt_01.png" top="-65" bottom="13" />
  <sprite id="bust_rf_brigandine_shirt_01_damaged" offsetY="35" ic="FF2D3A66" width="104" height="142" img="entity\bodies\bust_rf_brigandine_shirt_01_damaged.png" top="-65" bottom="13" />
