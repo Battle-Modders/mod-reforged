@@ -187,4 +187,5 @@
  <sprite id="bust_rf_great_helm_01_damaged" offsetY="35" ic="FF353D4F" width="140" height="248" img="entity\helmets\bust_rf_great_helm_01_damaged.png" left="-47" right="51" top="-27" bottom="103" />
  <sprite id="bust_rf_great_helm_01_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF363F51" width="191" height="185" img="entity\helmets\bust_rf_great_helm_01_dead.png" left="-84" right="28" top="-80" bottom="26" />
 
+<sprite id="bust_rf_vampire_head_01" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_rf_vampire_head_01.png" left="-17" right="27" top="-30" bottom="44" />
 </brush>

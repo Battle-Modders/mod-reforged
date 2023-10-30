@@ -11,7 +11,7 @@
 			"bust_skeleton_body_03"
 		];
 		this.m.HeadSprites = [
-			"bust_skeleton_head_05",
+			::Math.rand(0, 1) == 1 ? "bust_skeleton_head_05" : "bust_rf_vampire_head_01",
 			"bust_skeleton_head_04",
 			"bust_skeleton_head_03"
 		];
