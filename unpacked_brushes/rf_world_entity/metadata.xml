@@ -1,0 +1,15 @@
+<brush name="gfx/rf_world_entity.png" version="17">
+  <sprite id="figure_rf_bandit_thug" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_thug.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_robber" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_robber.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_hunter" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_hunter.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_pillager" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_pillager.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_raider" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_raider.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_outlaw" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_outlaw.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_marksman" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_marksman.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_bandit" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_bandit.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_highwayman" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_highwayman.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_marauder" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_marauder.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_sharpshooter" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_sharpshooter.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_killer" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_killer.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_bandit_baron" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_baron.png" left="-18" right="22" top="-38" bottom="6" />
+</brush>
