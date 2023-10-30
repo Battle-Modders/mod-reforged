@@ -1,6 +1,8 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/vampire", function(q) {
 	q.m.HeadSprites <- null; // len 3 array of sprites, 0 = healthy, 1 = damaged, 2 = severely damaged
 	q.m.BodySprites <- null; // len 3 array of sprites, 0 = healthy, 1 = damaged, 2 = severely damaged
+	q.m.VampireBloodHeadSprites <- null; // Reference to an array in character_heads.nut
+	q.m.HasFed <- false;
 
 	q.create = @(__original) function()
 	{
@@ -15,6 +17,7 @@
 			"bust_skeleton_head_04",
 			"bust_skeleton_head_03"
 		];
+		this.m.VampireBloodHeadSprites = ::Const.RF_VampireBloodHead;
 	}
 
 	q.onInit = @() function()
@@ -63,6 +66,12 @@
 		local beard = this.addSprite("beard");
 		beard.setBrightness(0.7);
 		beard.varyColor(0.02, 0.02, 0.02);
+
+		local vampireBlood = this.addSprite("rf_vampire_blood_head");
+		vampireBlood.setBrush(::MSU.Array.rand(this.m.VampireBloodHeadSprites[0]));
+		vampireBlood.Visible = false;
+		this.addSprite("old_rf_vampire_blood_head");
+
 		local hair = this.addSprite("hair");
 		hair.Color = beard.Color;
 
@@ -112,6 +121,7 @@
 		local p = this.getHitpointsPct();
 		local bodyBrush = this.getSprite("body").getBrush().Name;
 		local headBrush = this.getSprite("head").getBrush().Name;
+		local vampire_blood_head_brush = this.getSprite("rf_vampire_blood_head").getBrush().Name;
 
 		if (p <= 0.33)
 		{
@@ -119,6 +129,8 @@
 			this.getSprite("body_injury").setBrush("bust_skeleton_body_03_injured");
 			this.getSprite("head").setBrush(this.m.HeadSprites[2]);
 			this.getSprite("injury").setBrush("bust_skeleton_head_03_injured");
+			if (this.m.VampireBloodHeadSprites[2].find(vampire_blood_head_brush) == null)
+				this.getSprite("rf_vampire_blood_head").setBrush(::MSU.Array.rand(this.m.VampireBloodHeadSprites[2]));
 		}
 		else if (p <= 0.66)
 		{
@@ -126,6 +138,8 @@
 			this.getSprite("body_injury").setBrush("bust_skeleton_body_04_injured");
 			this.getSprite("head").setBrush(this.m.HeadSprites[1]);
 			this.getSprite("injury").setBrush("bust_skeleton_head_04_injured");
+			if (this.m.VampireBloodHeadSprites[1].find(vampire_blood_head_brush) == null)
+				this.getSprite("rf_vampire_blood_head").setBrush(::MSU.Array.rand(this.m.VampireBloodHeadSprites[1]));
 		}
 		else
 		{
@@ -133,10 +147,13 @@
 			this.getSprite("body_injury").setBrush("bust_skeleton_body_05_injured");
 			this.getSprite("head").setBrush(this.m.HeadSprites[0]);
 			this.getSprite("injury").setBrush("bust_skeleton_head_05_injured");
+			if (this.m.VampireBloodHeadSprites[0].find(vampire_blood_head_brush) == null)
+				this.getSprite("rf_vampire_blood_head").setBrush(::MSU.Array.rand(this.m.VampireBloodHeadSprites[0]));
 		}
 
 		this.getSprite("body_injury").Visible = this.m.WasInjured;
 		this.getSprite("injury").Visible = this.m.WasInjured;
+		this.getSprite("rf_vampire_blood_head").Visible = this.m.HasFed;
 
 		if (bodyBrush != this.getSprite("body").getBrush().Name)
 		{
@@ -150,9 +167,22 @@
 			old_head.Alpha = 255;
 			old_head.setBrush(headBrush);
 			old_head.fadeOutAndHide(3000);
+			local old_vampire_blood_head = this.getSprite("old_rf_vampire_blood_head");
+			old_vampire_blood_head.Visible = true;
+			old_vampire_blood_head.Alpha = 255;
+			old_vampire_blood_head.setBrush(vampire_blood_head_brush);
+			old_vampire_blood_head.fadeOutAndHide(3000);
 		}
 
 		this.setDirty(true);
+	}
+
+	q.onFactionChanged = @(__original) function()
+	{
+		__original();
+		local flip = !this.isAlliedWithPlayer();
+		this.getSprite("rf_vampire_blood_head").setHorizontalFlipping(flip);
+		this.getSprite("old_rf_vampire_blood_head").setHorizontalFlipping(flip);
 	}
 
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )

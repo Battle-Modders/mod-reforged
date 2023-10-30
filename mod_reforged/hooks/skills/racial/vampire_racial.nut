@@ -33,4 +33,13 @@
 		baseProperties.IsAffectedByNight = false;
 		baseProperties.IsImmuneToPoison = true;
 	}
+
+	q.onTargetHit = @(__original) function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	{
+		if (_damageInflictedHitpoints > 0 && _skill != null && !_skill.isRanged())
+		{
+			this.getContainer().getActor().m.HasFed = true;
+		}
+		__original(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
+	}
 });
