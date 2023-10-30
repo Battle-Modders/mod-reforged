@@ -1,33 +1,103 @@
 local units = [
-// Skeletons
+	// Changes to DSF defined units
 	{
 		ID = "Unit.RF.SkeletonLight",
 		Troop = "SkeletonLight",
-		Figure = "figure_skeleton_01"      // Exclusive
+		Figure = "rf_figure_skeleton_light",
 	},
 	{
 		ID = "Unit.RF.SkeletonMedium",
 		Troop = "SkeletonMedium",
-		Figure = "figure_skeleton_02",
-		StartingResourceMin = 125
+		Figure = "rf_figure_skeleton_medium",
+		StartingResourceMin = 180
 	},
 	{
 		ID = "Unit.RF.SkeletonMediumPolearm",
 		Troop = "SkeletonMediumPolearm",
-		Figure = "figure_skeleton_02",
-		StartingResourceMin = 125
+		Figure = "rf_figure_skeleton_medium",
+		StartingResourceMin = 180
 	},
 	{
 		ID = "Unit.RF.SkeletonHeavy",
 		Troop = "SkeletonHeavy",
-		Figure = "figure_skeleton_03",
-		StartingResourceMin = 175
+		StartingResourceMin = 300
 	},
 	{
-		ID = "Unit.RF.SkeletonHeavyPolearm",
-		Troop = "SkeletonHeavyPolearm",
-		Figure = "figure_skeleton_03",
-		StartingResourceMin = 175
+		ID = "Unit.RF.SkeletonHeavyBodyguard",
+		Troop = "SkeletonHeavyBodyguard",
+		Figure = "figure_zombie_03"
+	},
+	{
+		ID = "Unit.RF.Vampire",
+		Troop = "Vampire",
+		StartingResourceMin = 220
+	},
+	{
+		ID = "Unit.RF.SkeletonPriest",
+		Troop = "SkeletonPriest",
+		StartingResourceMin = 225
+	},
+
+	//Reforged
+	{
+		ID = "Unit.RF.RF_SkeletonLightElite",
+		Troop = "RF_SkeletonLightElite",
+		Figure = "rf_figure_skeleton_light_elite",
+		StartingResourceMin = 120
+	},
+	{
+		ID = "Unit.RF.RF_SkeletonLightElitePolearm",
+		Troop = "RF_SkeletonLightElitePolearm",
+		Figure = "rf_figure_skeleton_light_elite",
+		StartingResourceMin = 120
+	},
+	{
+		ID = "Unit.RF.RF_SkeletonMediumElite",
+		Troop = "RF_SkeletonMediumElite",
+		Figure = "rf_figure_skeleton_medium_elite",
+		StartingResourceMin = 240
+	},
+	{
+		ID = "Unit.RF.RF_SkeletonMediumElitePolearm",
+		Troop = "RF_SkeletonMediumElitePolearm",
+		Figure = "rf_figure_skeleton_medium_elite",
+		StartingResourceMin = 240
+	},
+	{
+		ID = "Unit.RF.RF_SkeletonHeavyLesser",
+		Troop = "RF_SkeletonHeavyLesser",
+		Figure = "rf_figure_skeleton_heavy_lesser",
+		StartingResourceMin = 220
+	},
+	{
+		ID = "Unit.RF.RF_SkeletonHeavyLesserBodyguard",
+		Troop = "RF_SkeletonHeavyLesserBodyguard",
+		Figure = "rf_figure_skeleton_heavy_lesser",
+		StartingResourceMin = 220
+	},
+	{
+		ID = "Unit.RF.RF_VampireLord",
+		Troop = "RF_VampireLord",
+		Figure = "rf_figure_vampire_lord",
+		StartingResourceMin = 300
+	},
+	{
+		ID = "Unit.RF.RF_SkeletonDecanus",
+		Troop = "RF_SkeletonDecanus",
+		Figure = "rf_figure_skeleton_decanus",
+		StartingResourceMin = 150
+	},
+	{
+		ID = "Unit.RF.RF_SkeletonCenturion",
+		Troop = "RF_SkeletonCenturion",
+		Figure = "rf_figure_skeleton_centurion",
+		StartingResourceMin = 220
+	},
+	{
+		ID = "Unit.RF.RF_SkeletonLegatus",
+		Troop = "RF_SkeletonLegatus",
+		Figure = "rf_figure_skeleton_legatus",
+		StartingResourceMin = 270
 	},
 	{
 		ID = "Unit.RF.SkeletonPriest",
@@ -36,38 +106,41 @@ local units = [
 		StartingResourceMin = 225
 	},
 	{
-		ID = "Unit.RF.SkeletonPriestH",
+		ID = "Unit.RF.SkeletonPriestP",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
-		Cost = 40 + 30,
-		SubPartyDef = {ID = "SubPartyHonor"}
+		StartingResourceMin = 225,
+		Cost = 40 + 40,
+		SubPartyDef = {ID = "SubPartyPrae"}
+	},
+	{
+		ID = "Unit.RF.SkeletonPriestPP",
+		Troop = "SkeletonPriest",
+		Figure = "figure_skeleton_04",
+		StartingResourceMin = 250,
+		Cost = 40 + 40 + 40,
+		SubPartyDef = {ID = "SubPartyPraePrae"}
+	},
+	{
+		ID = "Unit.RF.SkeletonPriestPH",
+		Troop = "SkeletonPriest",
+		Figure = "figure_skeleton_04",
+		StartingResourceMin = 275,
+		Cost = 40 + 40 + 50,
+		SubPartyDef = {ID = "SubPartyPraeHonor"}
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestHH",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
-		Cost = 40 + 30 + 30,
-		SubPartyDef = {ID = "SubPartyHonorHonor"}
+		StartingResourceMin = 300,
+		Cost = 40 + 50 + 50,
+		SubPartyDef = {ID = "SubPartyHonor2"}
 	},
-
-// Bodyguards for Priests
-	{
-		ID = "Unit.RF.SkeletonHeavyBodyguard",
-		Troop = "SkeletonHeavyBodyguard",
-		Figure = "figure_zombie_03"
-	},
-
-// Vampire
-	{
-		ID = "Unit.RF.Vampire",
-		Troop = "Vampire",
-		Figure = "figure_vampire_02"       // Exclusive
-	}
-]
+];
 
 foreach (unitDef in units)
 {
-	if (!("Cost" in unitDef))
-		unitDef.Cost <- ::Const.World.Spawn.Troops[unitDef.Troop].Cost;
+	unitDef.Cost <- ::Const.World.Spawn.Troops[unitDef.Troop].Cost;
 	::DynamicSpawns.Public.registerUnit(unitDef);
 }

@@ -17,7 +17,17 @@ local entityTypes = [
 	"RF_BanditMarauder",
 	"RF_BanditKiller",
 	"RF_BanditSharpshooter",
-	"RF_BanditBaron"
+	"RF_BanditBaron",
+
+	"RF_SkeletonLightElite",
+	"RF_SkeletonLightElitePolearm",
+	"RF_SkeletonMediumElite",
+	"RF_SkeletonMediumElitePolearm",
+	"RF_SkeletonHeavyLesser",
+	"RF_SkeletonDecanus",
+	"RF_SkeletonCenturion",
+	"RF_SkeletonLegatus",
+	"RF_VampireLord"
 ]
 
 local entityIcon = [
@@ -33,6 +43,16 @@ local entityIcon = [
 	"rf_bandit_killer_orientation",
 	"rf_bandit_sharpshooter_orientation",
 	"rf_bandit_baron_orientation"
+
+	"rf_skeleton_light_elite_orientation",
+	"rf_skeleton_light_elite_orientation",
+	"rf_skeleton_medium_elite_orientation",
+	"rf_skeleton_medium_elite_orientation",
+	"rf_skeleton_heavy_lesser_orientation",
+	"rf_skeleton_decanus_orientation",
+	"rf_skeleton_centurion_orientation",
+	"rf_skeleton_legatus_orientation",
+	"rf_vampire_lord_orientation"
 ]
 
 foreach (entityType in entityTypes)
@@ -66,6 +86,15 @@ local getDefaultFaction = ::Const.EntityType.getDefaultFaction;
 			case ::Const.EntityType.RF_BanditSharpshooter:
 			case ::Const.EntityType.RF_BanditBaron:
 				return ::Const.FactionType.Bandits;
+
+			case ::Const.EntityType.RF_SkeletonLightElite:
+			case ::Const.EntityType.RF_SkeletonMediumElite:
+			case ::Const.EntityType.RF_SkeletonHeavyLesser:
+			case ::Const.EntityType.RF_SkeletonDecanus:
+			case ::Const.EntityType.RF_SkeletonCenturion:
+			case ::Const.EntityType.RF_SkeletonLegatus:
+			case ::Const.EntityType.RF_VampireLord:
+				return ::Const.FactionType.Undead;
 		}
 	}
 

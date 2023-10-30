@@ -1,3 +1,14 @@
+//Ancient Dead
+::Const.World.Spawn.Troops.SkeletonLight.Strength = 15;
+::Const.World.Spawn.Troops.SkeletonLight.Cost = 15;
+::Const.World.Spawn.Troops.SkeletonMedium.Strength = 30;
+::Const.World.Spawn.Troops.SkeletonMedium.Cost = 30;
+::Const.World.Spawn.Troops.SkeletonMediumPolearm.Strength = 30;
+::Const.World.Spawn.Troops.SkeletonMediumPolearm.Cost = 30;
+::Const.World.Spawn.Troops.SkeletonHeavy.Strength = 50;
+::Const.World.Spawn.Troops.SkeletonHeavy.Cost = 50;
+
+//Bandits
 ::Const.World.Spawn.Troops.Wardog.Strength = 6;
 ::Const.World.Spawn.Troops.Wardog.Cost = 6;
 ::Const.World.Spawn.Troops.ArmoredWardog.Strength = 8;
@@ -14,6 +25,8 @@
 ::Const.World.Spawn.Troops.BanditRaider.Cost = 30;
 ::Const.World.Spawn.Troops.BanditLeader.Strength = 40;
 ::Const.World.Spawn.Troops.BanditLeader.Cost = 40;
+
+//Civilian
 ::Const.World.Spawn.Troops.HedgeKnight.Strength = 45;
 ::Const.World.Spawn.Troops.HedgeKnight.Cost = 45;
 ::Const.World.Spawn.Troops.MasterArcher.Strength = 45;
@@ -23,6 +36,7 @@
 
 // Cost is handled in bandit_units.nut
 ::MSU.Table.merge(::Const.World.Spawn.Troops, {
+	// Bandits
 	RF_BanditScoundrel = {
 		ID = ::Const.EntityType.RF_BanditScoundrel,
 		Variant = 0,
@@ -118,5 +132,87 @@
 		Cost = 50,
 		Row = 2,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_baron"
-	}
+	},
+
+	// Ancient Dead
+	RF_SkeletonLightElite = {
+		ID = ::Const.EntityType.RF_SkeletonLightElite,
+		Variant = 0,
+		Strength = 20,
+		Cost = 20,
+		Row = 1,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_light_elite"
+	},
+	RF_SkeletonLightElitePolearm = {
+		ID = ::Const.EntityType.RF_SkeletonLightElitePolearm,
+		Variant = 0,
+		Strength = 20,
+		Cost = 20,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_light_elite_polearm"
+	},
+	RF_SkeletonMediumElite = {
+		ID = ::Const.EntityType.RF_SkeletonMediumElite,
+		Variant = 0,
+		Strength = 40,
+		Cost = 40,
+		Row = 1,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_medium_elite"
+	},
+	RF_SkeletonMediumElitePolearm = {
+		ID = ::Const.EntityType.RF_SkeletonMediumElite,
+		Variant = 0,
+		Strength = 40,
+		Cost = 40,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_medium_elite_polearm"
+	},
+	RF_SkeletonHeavyLesser = {
+		ID = ::Const.EntityType.RF_SkeletonHeavyLesser,
+		Variant = 0,
+		Strength = 40,
+		Cost = 40,
+		Row = 1,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_lesser"
+	},
+	RF_SkeletonHeavyLesserBodyguard = {
+		ID = ::Const.EntityType.RF_SkeletonHeavyLesser,
+		Variant = 0,
+		Strength = 40,
+		Cost = 40,
+		Row = 1,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_lesser_bodyguard"
+	},
+	RF_VampireLord = {
+		ID = ::Const.EntityType.RF_VampireLord,
+		Variant = 1,
+		Strength = 50,
+		Cost = 50,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_vampire_lord"
+	},
+	RF_SkeletonDecanus = {
+		ID = ::Const.EntityType.RF_SkeletonDecanus,
+		Variant = 0,
+		Strength = 32,
+		Cost = 32,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_decanus"
+	},
+	RF_SkeletonCenturion = {
+		ID = ::Const.EntityType.RF_SkeletonCenturion,
+		Variant = 0,
+		Strength = 44,
+		Cost = 44,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_centurion"
+	},
+	RF_SkeletonLegatus = {
+		ID = ::Const.EntityType.RF_SkeletonLegatus,
+		Variant = 1,
+		Strength = 50,
+		Cost = 50,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_legatus"
+	},
 });

@@ -12,4 +12,14 @@
   <sprite id="figure_rf_bandit_sharpshooter" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_sharpshooter.png" left="-18" right="22" top="-38" bottom="6" />
   <sprite id="figure_rf_bandit_killer" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_killer.png" left="-18" right="22" top="-38" bottom="6" />
   <sprite id="figure_rf_bandit_baron" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_baron.png" left="-18" right="22" top="-38" bottom="6" />
+
+  <sprite id="figure_rf_skeleton_light" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_skeleton_light.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_skeleton_light_elite" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_skeleton_light_elite.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_skeleton_medium" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_skeleton_medium.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_skeleton_medium_elite" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_skeleton_medium_elite.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_skeleton_decanus" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_skeleton_decanus.png" left="-18" right="22" top="-42" bottom="6" />
+  <sprite id="figure_rf_skeleton_centurion" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_skeleton_centurion.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_skeleton_legatus" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_skeleton_legatus.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_vampire_lord" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_vampire_lord.png" left="-18" right="22" top="-38" bottom="6" />
+  <sprite id="figure_rf_skeleton_heavy_lesser" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_skeleton_heavy_lesser.png" left="-18" right="22" top="-38" bottom="6" />
 </brush>

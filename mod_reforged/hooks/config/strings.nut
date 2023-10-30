@@ -10,7 +10,17 @@
 	"Brigand Marauder",
 	"Brigand Killer",
 	"Brigand Sharpshooter",
-	"Robber Baron"
+	"Robber Baron",
+
+	"Ancient Miles",
+	"Ancient Miles",
+	"Ancient Palatinus",
+	"Ancient Palatinus",
+	"Ancient Praetorian",
+	"Ancient Decanus",
+	"Ancient Centurion",
+	"Ancient Legatus",
+	"Necrosavant Lord",
 ]);
 
 ::Const.Strings.EntityNamePlural.extend([
@@ -25,7 +35,17 @@
 	"Brigand Marauders",
 	"Brigand Killers",
 	"Brigand Sharpshooters",
-	"Robber Barons"
+	"Robber Barons",
+
+	"Ancient Milites",
+	"Ancient Milites",
+	"Ancient Palatini",
+	"Ancient Palatini",
+	"Ancient Praetorians",
+	"Ancient Decani",
+	"Ancient Centurions",
+	"Ancient Legati",
+	"Necrosavant Lords",
 ]);
 
 ::MSU.Table.merge(::Const.Strings.PerkName, {
