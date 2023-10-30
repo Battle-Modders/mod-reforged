@@ -21,6 +21,7 @@ local unitBlocks = [
 	// },
 	{
 		ID = "Bandit.Balanced",
+		DeterminesFigure = true,
 		UnitDefs = [
 			{ ID = "Unit.RF_BanditScoundrel",  StartingResourceMax = 250 },
 			{ ID = "Unit.RF_BanditVandal", StartingResourceMin = 150 },
@@ -30,6 +31,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "Bandit.Fast",
+		DeterminesFigure = true,
 		UnitDefs = [
 			{ ID = "Unit.RF_BanditRobber", StartingResourceMin = 125 },
 			{ ID = "Unit.RF_BanditBandit", StartingResourceMin = 200 },
@@ -38,6 +40,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "Bandit.Tough",
+		DeterminesFigure = true,
 		UnitDefs = [
 			{ ID = "Bandit.Thug", StartingResourceMin = 63, StartingResourceMax = 275 },
 			{ ID = "Unit.RF_BanditPillager", StartingResourceMin = 150 },
@@ -47,6 +50,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "Bandit.Ranged",
+		DeterminesFigure = true,
 		UnitDefs = [
 			{ ID = "Bandit.Poacher", StartingResourceMax = 250 },
 			{ ID = "Unit.RF_BanditHunter", StartingResourceMin = 125 },
@@ -72,6 +76,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "Bandit.Boss",
+		DeterminesFigure = true,
 		UnitDefs = [
 			{ ID = "Bandit.Leader", StartingResourceMin = 250 },
 			{ ID = "Unit.RF_BanditBaron" }

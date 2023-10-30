@@ -42,7 +42,7 @@ local parties = [
 			{ ID = "Bandit.Tough", RatioMin = 0.00, RatioMax = 0.25},
 			{ ID = "Bandit.Ranged", RatioMin = 0.00, RatioMax = 0.35},
 			{ ID = "Bandit.Elite", RatioMin = 0.00, RatioMax = 0.35, StartingResourceMin = 320},
-			{ ID = "Bandit.Boss", RatioMin = 0.00, RatioMax = 0.11, StartingResourceMin = 180, DeterminesFigure = true}
+			{ ID = "Bandit.Boss", RatioMin = 0.00, RatioMax = 0.11, StartingResourceMin = 180}
 		]
 	},
 	{
