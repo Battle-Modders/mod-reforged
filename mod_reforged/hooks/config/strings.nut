@@ -49,8 +49,10 @@
 	RF_Bully = "Bully",
 	RF_Bulwark = "Bulwark",
 	RF_Finesse = "Finesse",
+	RF_Centurion = "Centurion",
 	RF_ConcussiveStrikes = "Concussive Strikes",
 	RF_Cull = "Cull",
+	RF_Decanus = "Decanus",
 	RF_DeepCuts = "Deep Cuts",
 	RF_DeepImpact = "Deep Impact",
 	RF_DentArmor = "Dent Armor",
@@ -88,6 +90,7 @@
 	RF_Kata = "Kata",
 	RF_Kingfisher = "Kingfisher",
 	RF_KingOfAllWeapons = "King of all Weapons",
+	RF_Legatus = "Legatus",
 	RF_Leverage = "Leverage",
 	RF_LineBreaker = "Line Breaker",
 	RF_Poise = "Poise",
@@ -862,6 +865,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+ 	RF_Centurion = ::UPD.getDescription({
+ 		Fluff = "Faster!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Triggers the [Centurion Command|Skill+rf_centurion_command_effect] effect for allied skeletons up to 6 tiles away.",
+			]
+		}]
+ 	}),
 	RF_ConcussiveStrikes = ::UPD.getDescription({
  		Fluff = "A strike to the head from this character means goodnight!",
  		Effects = [{
@@ -883,6 +895,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Ignores [Nine Lives|Perk+perk_nine_lives] on the target.",
 				"If killed via culling, [decapitates|Concept.Fatality] the target.",
 				"Targets who have [Steel Brow|Perk+perk_steel_brow] or are under the effects of [Indomitable|NullEntitySkill+indomitable_effect] are immune to being culled."
+			]
+		}]
+ 	}),
+ 	RF_Decanus = ::UPD.getDescription({
+ 		Fluff = "Fight in formation!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Triggers the [Decanus Command|Skill+rf_decanus_command_effect] effect for allied skeletons up to 4 tiles away.",
 			]
 		}]
  	}),
@@ -1282,6 +1303,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"When starting your [turn|Concept.Turn] with a Spear equipped, the first [Thrust|Skill+thrust] or [Prong|Skill+prong_skill] during your [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints] and builds no [Fatigue|Concept.Fatigue], but does " + ::MSU.Text.colorRed("25%") + " reduced Damage.",
 				"The effect is lost upon switching your weapon."
+			]
+		}]
+ 	}),
+ 	RF_Legatus = ::UPD.getDescription({
+ 		Fluff = "Conquer them all!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Triggers the [Legatus Command|Skill+rf_legatus_command_effect] effect for allied skeletons up to 8 tiles away.",
 			]
 		}]
  	}),
