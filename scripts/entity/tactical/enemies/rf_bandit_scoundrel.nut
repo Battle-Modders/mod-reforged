@@ -88,7 +88,7 @@ this.rf_bandit_scoundrel <- this.inherit("scripts/entity/tactical/human", {
 		{
 			local shield = ::MSU.Class.WeightedContainer([
 				[0.5, "scripts/items/shields/buckler_shield"],
-				[0.5 , "scripts/items/shields/wooden_shield"]
+				[0.5, "scripts/items/shields/wooden_shield"]
 			]).rollChance(33);
 
 			if (shield != null) this.m.Items.equip(::new(shield));
