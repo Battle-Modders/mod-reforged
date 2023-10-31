@@ -3,38 +3,32 @@ local units = [
 	{
 		ID = "Unit.SkeletonLight",
 		Troop = "SkeletonLight",
-		Figure = "figure_skeleton_01",      // Exclusive
-		Cost = 13
+		Figure = "figure_skeleton_01"      // Exclusive
 	},
 	{
 		ID = "Unit.SkeletonMedium",
 		Troop = "SkeletonMedium",
-		Figure = "figure_skeleton_02",
-		Cost = 20
+		Figure = "figure_skeleton_02"
 	},
 	{
 		ID = "Unit.SkeletonMediumPolearm",
 		Troop = "SkeletonMediumPolearm",
-		Figure = "figure_skeleton_02",
-		Cost = 25
+		Figure = "figure_skeleton_02"
 	},
 	{
 		ID = "Unit.SkeletonHeavy",
 		Troop = "SkeletonHeavy",
-		Figure = "figure_skeleton_03",
-		Cost = 35
+		Figure = "figure_skeleton_03"
 	},
 	{
 		ID = "Unit.SkeletonHeavyPolearm",
 		Troop = "SkeletonHeavyPolearm",
-		Figure = "figure_skeleton_03",
-		Cost = 35
+		Figure = "figure_skeleton_03"
 	},
 	{
 		ID = "Unit.SkeletonPriest",
 		Troop = "SkeletonPriest",
-		Figure = "figure_skeleton_04",
-		Cost = 40
+		Figure = "figure_skeleton_04"
 	},
 	{
 		ID = "Unit.SkeletonPriestH",
@@ -55,22 +49,19 @@ local units = [
 	{
 		ID = "Unit.SkeletonHeavyBodyguard",
 		Troop = "SkeletonHeavyBodyguard",
-		Figure = "figure_zombie_03",
-		Cost = 30
+		Figure = "figure_zombie_03"
 	},
 
 // Vampire
 	{
 		ID = "Unit.VampireLOW",
 		Troop = "VampireLOW",
-		Figure = "figure_vampire_01",       // Exclusive
-		Cost = 30
+		Figure = "figure_vampire_01"       // Exclusive
 	},
 	{
 		ID = "Unit.Vampire",
 		Troop = "Vampire",
-		Figure = "figure_vampire_02",       // Exclusive
-		Cost = 40
+		Figure = "figure_vampire_02"       // Exclusive
 	}
 ]
 

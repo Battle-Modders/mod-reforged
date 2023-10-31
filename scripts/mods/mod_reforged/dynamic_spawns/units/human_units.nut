@@ -3,42 +3,35 @@ local units = [
 	{
 		ID = "Unit.Peasant",
 		Troop = "Peasant",
-		Cost = 10,
 		Figure = "figure_civilian_01"
 	},
 	{
 		ID = "Unit.PeasantArmed",
 		Troop = "PeasantArmed",
-		Cost = 10,
 		Figure = "figure_civilian_01"
 	},
 	{
 		ID = "Unit.SouthernPeasant",
-		Troop = "SouthernPeasant",
-		Cost = 10
+		Troop = "SouthernPeasant"
 	},
 	{
 		ID = "Unit.CultistAmbush",
 		Troop = "CultistAmbush",
-		Cost = 15,
 		Figure = "figure_civilian_03"
 	},
 	{
 		ID = "Unit.NorthernSlave",
-		Troop = "NorthernSlave",
-		Cost = 7
+		Troop = "NorthernSlave"
 	},
 
 // Caravans
 	{
 		ID = "Unit.CaravanHand",
-		Troop = "CaravanHand",
-		Cost = 10
+		Troop = "CaravanHand"
 	},
 	{
 		ID = "Unit.CaravanGuard",
-		Troop = "CaravanGuard",
-		Cost = 14
+		Troop = "CaravanGuard"
 	},
 	{
 		ID = "Unit.CaravanDonkey",
@@ -50,13 +43,11 @@ local units = [
 // Militia
 	{
 		ID = "Unit.Militia",
-		Troop = "Militia",
-		Cost = 10
+		Troop = "Militia"
 	},
 	{
 		ID = "Unit.MilitiaRanged",
-		Troop = "MilitiaRanged",
-		Cost = 10
+		Troop = "MilitiaRanged"
 	},
 	{
 		ID = "Unit.MilitiaVeteran",
@@ -72,34 +63,28 @@ local units = [
 // Mercenaries
 	{
 		ID = "Unit.BountyHunter",
-		Troop = "BountyHunter",
-		Cost = 25
+		Troop = "BountyHunter"
 	},
 	{
 		ID = "Unit.BountyHunterRanged",
-		Troop = "BountyHunterRanged",
-		Cost = 20
+		Troop = "BountyHunterRanged"
 	},
 	{
 		ID = "Unit.Wardog",
-		Troop = "Wardog",
-		Cost = 8
+		Troop = "Wardog"
 	},
 
 	{
 		ID = "Unit.MercenaryLOW",
-		Troop = "MercenaryLOW",
-		Cost = 18
+		Troop = "MercenaryLOW"
 	},
 	{
 		ID = "Unit.Mercenary",
-		Troop = "Mercenary",
-		Cost = 25
+		Troop = "Mercenary"
 	},
 	{
 		ID = "Unit.MercenaryRanged",
-		Troop = "MercenaryRanged",
-		Cost = 25
+		Troop = "MercenaryRanged"
 	},
 	{
 		ID = "Unit.MasterArcher",

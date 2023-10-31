@@ -2,44 +2,36 @@ local units = [
 	{
 		ID = "Unit.NobleFootman",
 		Troop = "Footman",
-		Cost = 20
 	},
 	{
 		ID = "Unit.NobleBillman",
 		Troop = "Billman",
-		Cost = 15
 	},
 	{
 		ID = "Unit.NobleArbalester",
-		Troop = "Arbalester",
-		Cost = 20
+		Troop = "Arbalester"
 	},
 	{
 		ID = "Unit.NobleArmoredWardog",
-		Troop = "ArmoredWardog",
-		Cost = 8
+		Troop = "ArmoredWardog"
 	},
 	{
 		ID = "Unit.NobleStandardBearer",
 		Troop = "StandardBearer",
-		Cost = 20,
 		Figure = "figure_noble_02"
 	},
 	{
 		ID = "Unit.NobleSergeant",
 		Troop = "Sergeant",
-		Cost = 25,
 		Figure = "figure_noble_02"
 	},
 	{
 		ID = "Unit.NobleZweihander",
-		Troop = "Greatsword",
-		Cost = 25
+		Troop = "Greatsword"
 	},
 	{
 		ID = "Unit.NobleKnight",
 		Troop = "Knight",
-		Cost = 35,
 		Figure = "figure_noble_03"
 	},
 

@@ -2,45 +2,37 @@ local units = [
 	{
 		ID = "Unit.Conscript",
 		Troop = "Conscript",
-		Cost = 20,
 		Figure = "figure_southern_01"
 	},
 	{
 		ID = "Unit.Conscript_Polearm",
-		Troop = "ConscriptPolearm",
-		Cost = 15
+		Troop = "ConscriptPolearm"
 	},
 	{
 		ID = "Unit.Officer",
 		Troop = "Officer",
-		Cost = 25,
 		Figure = "figure_southern_02"
 	},
 	{
 		ID = "Unit.Gunner",
-		Troop = "Gunner",
-		Cost = 20
+		Troop = "Gunner"
 	},
 	{
 		ID = "Unit.Engineer",
-		Troop = "Engineer",
-		Cost = 10
+		Troop = "Engineer"
 	},
 	{
 		ID = "Unit.Mortar",
 		Troop = "Mortar",
-		Cost = 20,
 		SubPartyDef = {ID = "MortarEngineers"}
 	},
 	{
 		ID = "Unit.Assassin",
-		Troop = "Assassin",
-		Cost = 35
+		Troop = "Assassin"
 	},
 	{
 		ID = "Unit.Slave",
-		Troop = "Slave",
-		Cost = 7
+		Troop = "Slave"
 	},
 
 // Caravans

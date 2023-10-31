@@ -3,32 +3,27 @@ local units = [
 	{
 		ID = "Unit.Zombie",
 		Troop = "Zombie",
-		Figure = "figure_zombie_01",       // Exclusiv
-		Cost = 6
+		Figure = "figure_zombie_01"       // Exclusiv
 	},
 	{
 		ID = "Unit.ZombieYeoman",
 		Troop = "ZombieYeoman",
-		Figure = "figure_zombie_02",
-		Cost = 12
+		Figure = "figure_zombie_02"
 	},
 	{
 		ID = "Unit.ZombieNomad",
 		Troop = "ZombieNomad",
-		Figure = "figure_zombie_03",
-		Cost = 12
+		Figure = "figure_zombie_03"
 	},
 	{
 		ID = "Unit.FallenHero",     // Fallen Hero
 		Troop = "ZombieKnight",
-		Figure = "figure_zombie_03",
-		Cost = 24
+		Figure = "figure_zombie_03"
 	},
 	{
 		ID = "Unit.Necromancer",
 		Troop = "Necromancer",
-		Figure = ["figure_necromancer_01", "figure_necromancer_02"],    // In Vanilla 02 is only used for Scourge Spawns. But there they still use 01 randomly aswell
-		Cost = 30
+		Figure = ["figure_necromancer_01", "figure_necromancer_02"]    // In Vanilla 02 is only used for Scourge Spawns. But there they still use 01 randomly aswell
 	},
 
 // Necromancer with Bodyguards
@@ -88,28 +83,24 @@ local units = [
 	{
 		ID = "Unit.YeomanBodyguard",
 		Troop = "ZombieYeomanBodyguard",
-		Figure = "figure_zombie_02",
-		Cost = 12
+		Figure = "figure_zombie_02"
 	},
 	{
 		ID = "Unit.ZombieNomadBodyguard",
 		Troop = "ZombieNomadBodyguard",
-		Figure = "figure_zombie_03",
-		Cost = 12
+		Figure = "figure_zombie_03"
 	},
 	{
 		ID = "Unit.FallenHeroBodyguard",
 		Troop = "ZombieKnightBodyguard",
-		Figure = "figure_zombie_03",
-		Cost = 24
+		Figure = "figure_zombie_03"
 	},
 
 // Ghosts
 	{
 		ID = "Unit.Ghost",
 		Troop = "Ghost",
-		Figure = "figure_ghost_01",     // Exclusiv
-		Cost = 20
+		Figure = "figure_ghost_01"     // Exclusiv
 	},
 ]
 
