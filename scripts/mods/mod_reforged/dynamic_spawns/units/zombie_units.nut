@@ -8,7 +8,8 @@ local units = [
 	{
 		ID = "Unit.ZombieYeoman",
 		Troop = "ZombieYeoman",
-		Figure = "figure_zombie_02"
+		Figure = "figure_zombie_02",
+		StartingResourceMin = 75
 	},
 	{
 		ID = "Unit.ZombieNomad",
@@ -18,7 +19,8 @@ local units = [
 	{
 		ID = "Unit.FallenHero",     // Fallen Hero
 		Troop = "ZombieKnight",
-		Figure = "figure_zombie_03"
+		Figure = "figure_zombie_03",
+		StartingResourceMin = 200
 	},
 	{
 		ID = "Unit.Necromancer",
