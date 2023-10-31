@@ -1,11 +1,3 @@
-/*	Figures Explanation
-figure_bandit_01 - Bandit Poacher
-figure_bandit_02 - Bandit Thug
-figure_bandit_03 - Bandit Raider
-figure_bandit_04 - Bandit Leader
-*/
-
-// We add our new bandit units
 local units = [
 	{
 		ID = "Unit.RF_BanditScoundrel",
@@ -72,6 +64,7 @@ local units = [
 
 foreach (unitDef in units)
 {
-	unitDef.Cost <- ::Const.World.Spawn.Troops[unitDef.Troop].Cost;
+	if (!("Cost" in unitDef))
+		unitDef.Cost <- ::Const.World.Spawn.Troops[unitDef.Troop].Cost;
 	::DynamicSpawns.Public.registerUnit(unitDef);
 }

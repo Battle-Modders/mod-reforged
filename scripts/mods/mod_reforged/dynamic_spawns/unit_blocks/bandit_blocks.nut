@@ -1,85 +1,84 @@
 local unitBlocks = [
 	// {
-	// 	ID = "Bandit.Frontline",
+	// ID = "UnitBlock.BanditFrontline",
 	// 	UnitDefs = [
-	// 		{ ID = "Bandit.Scoundrel" },
-	// 		{ ID = "Bandit.Thug" },
-	// 		{ ID = "Bandit.Robber" },
-	// 		{ ID = "Bandit.RobberThrower" },
-	// 		{ ID = "Bandit.Vandal" },
-	// 		{ ID = "Bandit.Pillager" },
-	// 		{ ID = "Bandit.PillagerShield" },
-	// 		{ ID = "Bandit.Raider" },
-	// 		{ ID = "Bandit.Outlaw" },
-	// 		{ ID = "Bandit.Bandit" },
-	// 		{ ID = "Bandit.BanditThrower" },
-	// 		{ ID = "Bandit.Highwayman" },
-	// 		{ ID = "Bandit.Marauder" },
-	// 		{ ID = "Bandit.Killer" },
-	// 		{ ID = "Bandit.KillerThrower" }
+	// 		{ID = "UnitBlock.BanditScoundrel" },
+	// 		{ID = "UnitBlock.BanditThug" },
+	// 		{ID = "UnitBlock.BanditRobber" },
+	// 		{ID = "UnitBlock.BanditRobberThrower" },
+	// 		{ID = "UnitBlock.BanditVandal" },
+	// 		{ID = "UnitBlock.BanditPillager" },
+	// 		{ID = "UnitBlock.BanditPillagerShield" },
+	// 		{ID = "UnitBlock.BanditRaider" },
+	// 		{ID = "UnitBlock.BanditOutlaw" },
+	// 		{ID = "UnitBlock.BanditBandit" },
+	// 		{ID = "UnitBlock.BanditBanditThrower" },
+	// 		{ID = "UnitBlock.BanditHighwayman" },
+	// 		{ID = "UnitBlock.BanditMarauder" },
+	// 		{ID = "UnitBlock.BanditKiller" },
+	// 		{ID = "UnitBlock.BanditKillerThrower" }
 	// 	]
 	// },
 	{
-		ID = "Bandit.Balanced",
+		ID = "UnitBlock.BanditBalanced",
 		UnitDefs = [
-			{ ID = "Unit.RF_BanditScoundrel",  StartingResourceMax = 250 },
-			{ ID = "Unit.RF_BanditVandal", StartingResourceMin = 150 },
-			{ ID = "Bandit.Raider", StartingResourceMin = 200 },
-			{ ID = "Unit.RF_BanditHighwayman", StartingResourceMin = 300 }
+			{BaseID = "Unit.RF_BanditScoundrel",  StartingResourceMax = 250 },
+			{BaseID = "Unit.RF_BanditVandal", StartingResourceMin = 150 },
+			{BaseID = "Unit.BanditRaider", StartingResourceMin = 200 },
+			{BaseID = "Unit.RF_BanditHighwayman", StartingResourceMin = 300 }
 		]
 	},
 	{
-		ID = "Bandit.Fast",
+		ID = "UnitBlock.BanditFast",
 		UnitDefs = [
-			{ ID = "Unit.RF_BanditRobber", StartingResourceMin = 125 },
-			{ ID = "Unit.RF_BanditBandit", StartingResourceMin = 200 },
-			{ ID = "Unit.RF_BanditKiller", StartingResourceMin = 300 }
+			{BaseID = "Unit.RF_BanditRobber", StartingResourceMin = 125 },
+			{BaseID = "Unit.RF_BanditBandit", StartingResourceMin = 200 },
+			{BaseID = "Unit.RF_BanditKiller", StartingResourceMin = 300 }
 		]
 	},
 	{
-		ID = "Bandit.Tough",
+		ID = "UnitBlock.BanditTough",
 		UnitDefs = [
-			{ ID = "Bandit.Thug", StartingResourceMin = 63, StartingResourceMax = 275 },
-			{ ID = "Unit.RF_BanditPillager", StartingResourceMin = 150 },
-			{ ID = "Unit.RF_BanditOutlaw", StartingResourceMin = 200 },
-			{ ID = "Unit.RF_BanditMarauder", StartingResourceMin = 300 }
+			{BaseID = "Unit.BanditThug", StartingResourceMin = 63, StartingResourceMax = 275 },
+			{BaseID = "Unit.RF_BanditPillager", StartingResourceMin = 150 },
+			{BaseID = "Unit.RF_BanditOutlaw", StartingResourceMin = 200 },
+			{BaseID = "Unit.RF_BanditMarauder", StartingResourceMin = 300 }
 		]
 	},
 	{
-		ID = "Bandit.Ranged",
+		ID = "UnitBlock.BanditRanged",
 		UnitDefs = [
-			{ ID = "Bandit.Poacher", StartingResourceMax = 250 },
-			{ ID = "Unit.RF_BanditHunter", StartingResourceMin = 125 },
-			{ ID = "Bandit.Marksman", StartingResourceMin = 200 },
-			{ ID = "Unit.RF_BanditSharpshooter", StartingResourceMin = 300 }
+			{BaseID = "Unit.BanditPoacher", StartingResourceMax = 250 },
+			{BaseID = "Unit.RF_BanditHunter", StartingResourceMin = 125 },
+			{BaseID = "Unit.BanditMarksman", StartingResourceMin = 200 },
+			{BaseID = "Unit.RF_BanditSharpshooter", StartingResourceMin = 300 }
 		]
 	},
 	{
-		ID = "Bandit.Dogs",
+		ID = "UnitBlock.BanditDogs",
 		UnitDefs = [
-			{ ID = "Bandit.Wardog", StartingResourceMax = 250 }
+			{BaseID = "Unit.BanditWardog", StartingResourceMax = 250 }
 		]
 	},
 	{
-		ID = "Bandit.Elite",
+		ID = "UnitBlock.BanditElite",
 		StartingResourceMin = 350,
-		IsRandom = true,
+		UnitDefs = ::MSU.Class.WeightedContainer([
+			[1, {BaseID = "Unit.HumanMasterArcher" }],
+			[1, {BaseID = "Unit.HumanHedgeKnight" }],
+			[1, {BaseID = "Unit.HumanSwordmaster" }]
+		])
+	},
+	{
+		ID = "UnitBlock.BanditBoss",
 		UnitDefs = [
-			{ ID = "Human.MasterArcher" },
-			{ ID = "Human.HedgeKnight" },
-			{ ID = "Human.Swordmaster" }
+			{BaseID = "Unit.BanditLeader", StartingResourceMin = 250 },
+			{BaseID = "Unit.RF_BanditBaron" }
 		]
 	},
 	{
-		ID = "Bandit.Boss",
-		UnitDefs = [
-			{ ID = "Bandit.Leader", StartingResourceMin = 250 },
-			{ ID = "Unit.RF_BanditBaron" }
-		]
-	},
-	{
-		ID = "Bandit.DisguisedDirewolf",
-		UnitDefs = [{ ID = "Bandit.RaiderWolf" }]
+		ID = "UnitBlock.BanditDisguisedDirewolf",
+		UnitDefs = [{BaseID = "Unit.BanditRaiderWolf" }]
 	}
 ]
 

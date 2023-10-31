@@ -7,11 +7,11 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ ID = "Bandit.Balanced", RatioMin = 0.20, RatioMax = 0.70},
-			{ ID = "Bandit.Fast", RatioMin = 0.00, RatioMax = 0.40},
-			{ ID = "Bandit.Tough", RatioMin = 0.00, RatioMax = 0.40},
-			{ ID = "Bandit.Ranged", RatioMin = 0.00, RatioMax = 0.35},
-			{ ID = "Bandit.Dogs", RatioMin = 0.00, RatioMax = 0.20}
+			{ ID = "UnitBlock.BanditBalanced", RatioMin = 0.20, RatioMax = 0.70},
+			{ ID = "UnitBlock.BanditFast", RatioMin = 0.00, RatioMax = 0.40},
+			{ ID = "UnitBlock.BanditTough", RatioMin = 0.00, RatioMax = 0.40},
+			{ ID = "UnitBlock.BanditRanged", RatioMin = 0.00, RatioMax = 0.35},
+			{ ID = "UnitBlock.BanditDogs", RatioMin = 0.00, RatioMax = 0.20}
 		]
 	},
 	{
@@ -22,11 +22,11 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ ID = "Bandit.Balanced", RatioMin = 0.30, RatioMax = 0.70},
-			{ ID = "Bandit.Fast", RatioMin = 0.00, RatioMax = 0.30},
-			{ ID = "Bandit.Tough", RatioMin = 0.00, RatioMax = 0.30},
-			{ ID = "Bandit.Ranged", RatioMin = 0.00, RatioMax = 0.40},
-			{ ID = "Bandit.Dogs", RatioMin = 0.00, RatioMax = 0.20}
+			{ ID = "UnitBlock.BanditBalanced", RatioMin = 0.30, RatioMax = 0.70},
+			{ ID = "UnitBlock.BanditFast", RatioMin = 0.00, RatioMax = 0.30},
+			{ ID = "UnitBlock.BanditTough", RatioMin = 0.00, RatioMax = 0.30},
+			{ ID = "UnitBlock.BanditRanged", RatioMin = 0.00, RatioMax = 0.40},
+			{ ID = "UnitBlock.BanditDogs", RatioMin = 0.00, RatioMax = 0.20}
 		]
 	},
 	{
@@ -37,12 +37,12 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ ID = "Bandit.Balanced", RatioMin = 0.30, RatioMax = 0.70},
-			{ ID = "Bandit.Fast", RatioMin = 0.00, RatioMax = 0.25},
-			{ ID = "Bandit.Tough", RatioMin = 0.00, RatioMax = 0.25},
-			{ ID = "Bandit.Ranged", RatioMin = 0.00, RatioMax = 0.35},
-			{ ID = "Bandit.Elite", RatioMin = 0.00, RatioMax = 0.35, StartingResourceMin = 320},
-			{ ID = "Bandit.Boss", RatioMin = 0.00, RatioMax = 0.11, StartingResourceMin = 180, DeterminesFigure = true}
+			{ ID = "UnitBlock.BanditBalanced", RatioMin = 0.30, RatioMax = 0.70},
+			{ ID = "UnitBlock.BanditFast", RatioMin = 0.00, RatioMax = 0.25},
+			{ ID = "UnitBlock.BanditTough", RatioMin = 0.00, RatioMax = 0.25},
+			{ ID = "UnitBlock.BanditRanged", RatioMin = 0.00, RatioMax = 0.35},
+			{ ID = "UnitBlock.BanditElite", RatioMin = 0.00, RatioMax = 0.35, StartingResourceMin = 320},
+			{ ID = "UnitBlock.BanditBoss", RatioMin = 0.00, RatioMax = 0.11, StartingResourceMin = 180, DeterminesFigure = true}
 		]
 	},
 	{
@@ -53,12 +53,12 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ ID = "Bandit.Balanced", RatioMin = 0.40, RatioMax = 0.70},
-			{ ID = "Bandit.Fast", RatioMin = 0.00, RatioMax = 0.30},
-			{ ID = "Bandit.Tough", RatioMin = 0.00, RatioMax = 0.30},
-			{ ID = "Bandit.Ranged", RatioMin = 0.00, RatioMax = 0.25},
-			{ ID = "Bandit.Elite", RatioMin = 0.00, RatioMax = 0.35, StartingResourceMin = 320},
-			{ ID = "Bandit.Boss", RatioMin = 0.0, RatioMax = 0.11, StartingResourceMin = 180}
+			{ ID = "UnitBlock.BanditBalanced", RatioMin = 0.40, RatioMax = 0.70},
+			{ ID = "UnitBlock.BanditFast", RatioMin = 0.00, RatioMax = 0.30},
+			{ ID = "UnitBlock.BanditTough", RatioMin = 0.00, RatioMax = 0.30},
+			{ ID = "UnitBlock.BanditRanged", RatioMin = 0.00, RatioMax = 0.25},
+			{ ID = "UnitBlock.BanditElite", RatioMin = 0.00, RatioMax = 0.35, StartingResourceMin = 320},
+			{ ID = "UnitBlock.BanditBoss", RatioMin = 0.0, RatioMax = 0.11, StartingResourceMin = 180}
 		]
 	},
 	{
@@ -69,12 +69,12 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ ID = "Bandit.Balanced", RatioMin = 0.40, RatioMax = 0.70},
-			{ ID = "Bandit.Fast", RatioMin = 0.00, RatioMax = 0.30},
-			{ ID = "Bandit.Tough", RatioMin = 0.00, RatioMax = 0.30},
-			{ ID = "Bandit.Ranged", RatioMin = 0.00, RatioMax = 0.25},
-			{ ID = "Bandit.Elite", RatioMin = 0.00, RatioMax = 0.35, StartingResourceMin = 320},
-			{ ID = "Bandit.Boss", RatioMin = 0.01, RatioMax = 0.11}				// One boss is always guaranteed
+			{ ID = "UnitBlock.BanditBalanced", RatioMin = 0.40, RatioMax = 0.70},
+			{ ID = "UnitBlock.BanditFast", RatioMin = 0.00, RatioMax = 0.30},
+			{ ID = "UnitBlock.BanditTough", RatioMin = 0.00, RatioMax = 0.30},
+			{ ID = "UnitBlock.BanditRanged", RatioMin = 0.00, RatioMax = 0.25},
+			{ ID = "UnitBlock.BanditElite", RatioMin = 0.00, RatioMax = 0.35, StartingResourceMin = 320},
+			{ ID = "UnitBlock.BanditBoss", RatioMin = 0.01, RatioMax = 0.11}				// One boss is always guaranteed
 		]
 	},
 	{
@@ -85,7 +85,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ ID = "Bandit.DisguisedDirewolf" }
+			{ ID = "UnitBlock.BanditDisguisedDirewolf" }
 		]
 	}
 ]

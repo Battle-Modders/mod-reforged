@@ -1,0 +1,174 @@
+local units = [
+	{
+		ID = "Unit.BeastDirewolf",
+		Troop = "Direwolf",
+		Figure = "figure_werewolf_01",
+		Cost = 20
+	},
+	{
+		ID = "Unit.BeastDirewolfHIGH",
+		Troop = "DirewolfHIGH",
+		Figure = "figure_werewolf_01",
+		Cost = 25,
+		StartingResourceMin = 95		// In Vanilla this is 95
+	},
+	{
+		ID = "Unit.BeastGhoulLOW",
+		Troop = "GhoulLOW",
+		Figure = "figure_ghoul_01",
+		Cost = 9
+	},
+	{
+		ID = "Unit.BeastGhoul",
+		Troop = "Ghoul",
+		Figure = "figure_ghoul_01",
+		Cost = 19,
+		StartingResourceMin = 120	// In vanilla this is 120
+	},
+	{
+		ID = "Unit.BeastGhoulHIGH",
+		Troop = "GhoulHIGH",
+		Figure = "figure_ghoul_02",     // I don't know if a 'figure_ghoul_03' exists
+		Cost = 30,
+		StartingResourceMin = 150	// In vanilla this is 120
+	},
+	{
+		ID = "Unit.BeastLindwurm",
+		Troop = "Lindwurm",
+		Figure = "figure_lindwurm_01",
+		Cost = 90
+	},
+	{
+		ID = "Unit.BeastUnhold",
+		Troop = "Unhold",
+		Figure = "figure_unhold_01",
+		Cost = 50
+	},
+	{
+		ID = "Unit.BeastUnholdFrost",
+		Troop = "UnholdFrost",
+		Figure = "figure_unhold_02",
+		Cost = 60
+	},
+	{
+		ID = "Unit.BeastUnholdBog",
+		Troop = "UnholdBog",
+		Figure = "figure_unhold_03",
+		Cost = 50
+	},
+	{
+		ID = "Unit.BeastSpider",
+		Troop = "Spider",
+		Figure = "figure_spider_01",
+		Cost = 12
+	},
+	{
+		ID = "Unit.BeastAlp",
+		Troop = "Alp",
+		Figure = "figure_alp_01",
+		Cost = 30
+	},
+	{
+		ID = "Unit.BeastSchrat",
+		Troop = "Schrat",
+		Figure = "figure_schrat_01",
+		Cost = 70
+	},
+	{
+		ID = "Unit.BeastKraken",
+		Troop = "Kraken",
+		Cost = 200
+	},
+	{
+		ID = "Unit.BeastHyena",
+		Troop = "Hyena",
+		Figure = "figure_hyena_01",
+		Cost = 20
+	},
+	{
+		ID = "Unit.BeastHyenaHIGH",
+		Troop = "HyenaHIGH",
+		Figure = "figure_hyena_01",
+		Cost = 25,
+		StartingResourceMin = 125		// In Vanilla this is 125
+	},
+	{
+		ID = "Unit.BeastSerpent",
+		Troop = "Serpent",
+		Figure = "figure_serpent_01",
+		Cost = 20
+	},
+	{
+		ID = "Unit.BeastSandGolem",
+		Troop = "SandGolem",
+		Figure = "figure_golem_01",
+		Cost = 13
+	},
+	{
+		ID = "Unit.BeastSandGolemMEDIUM",
+		Troop = "SandGolemMEDIUM",
+		Figure = "figure_golem_01",
+		Cost = 42   // 35 in Vanilla, 3 Small Golems should cost slightly less than 1 Medium Golem because they always spend their first turn action morphing
+	},
+	{	// In Vanilla these never spawn naturally as part of the line-up
+		ID = "Unit.BeastSandGolemHIGH",
+		Troop = "SandGolemHIGH",
+		Figure = "figure_golem_02",    // I don't know if a 'figure_golem_03' exists
+		Cost = 129   // 70 in Vanilla, -!!-
+	}
+
+	// Possible Hexen
+	{
+		ID = "Unit.BeastHexe",      // Without Bodyguards
+		Troop = "Hexe",
+		Figure = "figure_hexe_01",
+		Cost = 50
+	},
+	{
+		ID = "Unit.BeastHexeOneSpider",
+		Troop = "Hexe",
+		Figure = "figure_hexe_01",
+		Cost = 50 + 12,
+		SubPartyDef = {ID = "SpiderBodyguards", HardMin = 1, HardMax = 1}
+	},
+	{
+		ID = "Unit.BeastHexeTwoSpider",
+		Troop = "Hexe",
+		Figure = "figure_hexe_01",
+		Cost = 50 + 12 + 12,
+		SubPartyDef = {ID = "SpiderBodyguards", HardMin = 2, HardMax = 2}
+	},
+	{
+		ID = "Unit.BeastHexeOneDirewolf",
+		Troop = "Hexe",
+		Figure = "figure_hexe_01",
+		Cost = 50 + 25,
+		SubPartyDef = {ID = "DirewolfBodyguards", HardMin = 1, HardMax = 1}
+	},
+	{
+		ID = "Unit.BeastHexeTwoDirewolf",
+		Troop = "Hexe",
+		Figure = "figure_hexe_01",
+		Cost = 50 + 25 + 25,
+		SubPartyDef = {ID = "DirewolfBodyguards", HardMin = 2, HardMax = 2}
+	},
+
+	// Bodyguards
+	{
+		ID = "Unit.BeastSpiderBodyguard",
+		Troop = "SpiderBodyguard",
+		Cost = 12
+	},
+	{
+		ID = "Unit.BeastDirewolfBodyguard",
+		Troop = "DirewolfBodyguard",
+		Cost = 25
+	}
+]
+
+foreach (unitDef in units)
+{
+	if (!("Cost" in unitDef))
+		unitDef.Cost <- ::Const.World.Spawn.Troops[unitDef.Troop].Cost;
+	::DynamicSpawns.Public.registerUnit(unitDef);
+}
