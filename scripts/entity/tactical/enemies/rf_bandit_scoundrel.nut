@@ -75,7 +75,7 @@ this.rf_bandit_scoundrel <- this.inherit("scripts/entity/tactical/human", {
 				[1, "scripts/items/weapons/hatchet"],
 				[0.33, "scripts/items/weapons/militia_spear"],
 				[1, "scripts/items/weapons/pickaxe"],
-				[1, "scripts/items/weapons/reinforced_wooden_flail"],
+				[0.33, "scripts/items/weapons/reinforced_wooden_flail"],
 				[0.2, "scripts/items/weapons/shortsword"],
 				[1, "scripts/items/weapons/wooden_flail"],
 				[1, "scripts/items/weapons/wooden_stick"]
