@@ -11,7 +11,8 @@ local units = [
 	{
 		ID = "Unit.Officer",
 		Troop = "Officer",
-		Figure = "figure_southern_02"
+		Figure = "figure_southern_02",
+		StartingResourceMin = 250 // In Vanilla they appear in a group of 250 cost
 	},
 	{
 		ID = "Unit.Gunner",
@@ -24,6 +25,7 @@ local units = [
 	{
 		ID = "Unit.Mortar",
 		Troop = "Mortar",
+		StartingResourceMin = 340, // In Vanilla they appear in a group of 340 cost
 		SubPartyDef = {ID = "MortarEngineers"}
 	},
 	{

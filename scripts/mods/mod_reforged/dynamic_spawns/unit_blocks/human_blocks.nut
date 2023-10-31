@@ -13,8 +13,7 @@ local unitBlocks = [
 			[1, { BaseID = "Unit.MasterArcher" }],
 			[1, { BaseID = "Unit.HedgeKnight" }],
 			[1, { BaseID = "Unit.Swordmaster" }]
-		]),
-		StartingResourceMin = 286	// In Vanilla MasterArcher appear in a group of 286 cost
+		])
 	},
 	{
 		ID = "UnitBlock.BountyHunter",
@@ -76,8 +75,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.MilitiaCaptain",
-		UnitDefs = [{ BaseID = "Unit.MilitiaCaptain" }],
-		StartingResourceMin = 144	// In Vanilla they appear in a group of 144 cost
+		UnitDefs = [{ BaseID = "Unit.MilitiaCaptain" }]
 	}
 ]
 

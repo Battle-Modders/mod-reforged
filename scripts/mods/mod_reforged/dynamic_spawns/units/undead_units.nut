@@ -8,27 +8,32 @@ local units = [
 	{
 		ID = "Unit.SkeletonMedium",
 		Troop = "SkeletonMedium",
-		Figure = "figure_skeleton_02"
+		Figure = "figure_skeleton_02",
+		StartingResourceMin = 125
 	},
 	{
 		ID = "Unit.SkeletonMediumPolearm",
 		Troop = "SkeletonMediumPolearm",
-		Figure = "figure_skeleton_02"
+		Figure = "figure_skeleton_02",
+		StartingResourceMin = 125
 	},
 	{
 		ID = "Unit.SkeletonHeavy",
 		Troop = "SkeletonHeavy",
-		Figure = "figure_skeleton_03"
+		Figure = "figure_skeleton_03",
+		StartingResourceMin = 175
 	},
 	{
 		ID = "Unit.SkeletonHeavyPolearm",
 		Troop = "SkeletonHeavyPolearm",
-		Figure = "figure_skeleton_03"
+		Figure = "figure_skeleton_03",
+		StartingResourceMin = 175
 	},
 	{
 		ID = "Unit.SkeletonPriest",
 		Troop = "SkeletonPriest",
-		Figure = "figure_skeleton_04"
+		Figure = "figure_skeleton_04",
+		StartingResourceMin = 225
 	},
 	{
 		ID = "Unit.SkeletonPriestH",

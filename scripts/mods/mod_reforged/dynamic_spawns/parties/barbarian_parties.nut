@@ -8,9 +8,9 @@ local parties = [
 		VisionMult = 1.0,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.BarbarianFrontline", 	RatioMin = 0.60, RatioMax = 1.00, DeterminesFigure = true },	// Vanilla: doesn't care about size
-			{ BaseID = "UnitBlock.BarbarianSupport", 	RatioMin = 0.00, RatioMax = 0.07, ReqPartySize = 10, StartingResourceMin = 200 },			// Vanilla: Start spawning in armies of 15+; At 24+ a second drummer spawns
+			{ BaseID = "UnitBlock.BarbarianSupport", 	RatioMin = 0.00, RatioMax = 0.07, ReqPartySize = 10 },			// Vanilla: Start spawning in armies of 15+; At 24+ a second drummer spawns
 			{ BaseID = "UnitBlock.BarbarianDog", 		RatioMin = 0.00, RatioMax = 0.15, ReqPartySize = 5 },		// Vanilla: Start spawning in armies of 6+
-			{ BaseID = "UnitBlock.BarbarianBeastmaster", RatioMin = 0.00, RatioMax = 0.10, ReqPartySize = 5, StartingResourceMin = 195 }		// Vanilla: Start spawning in armies of 7+ (singular case) but more like 9+
+			{ BaseID = "UnitBlock.BarbarianBeastmaster", RatioMin = 0.00, RatioMax = 0.10, ReqPartySize = 5 }		// Vanilla: Start spawning in armies of 7+ (singular case) but more like 9+
 		]
 	},
 	{

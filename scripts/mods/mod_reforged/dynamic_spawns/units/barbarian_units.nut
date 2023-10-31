@@ -17,7 +17,8 @@ local units = [
 	},
 	{
 		ID = "Unit.BarbarianDrummer",
-		Troop = "BarbarianDrummer"
+		Troop = "BarbarianDrummer",
+		StartingResourceMin = 200 // In Vanilla they start appearing in a group of 210 cost alongside 15 thralls
 	},
 	{
 		ID = "Unit.BarbarianKing",

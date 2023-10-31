@@ -9,8 +9,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.NomadLeader",
-		UnitDefs = [{ BaseID = "Unit.NomadLeader" }],
-		StartingResourceMin = 170	// In Vanilla they appear in a group of 170 cost
+		UnitDefs = [{ BaseID = "Unit.NomadLeader" }]
 	},
 	{
 		ID = "UnitBlock.NomadElite",
@@ -18,8 +17,7 @@ local unitBlocks = [
 			[1, { BaseID = "Unit.NomadExecutioner" }],
 			[1, { BaseID = "Unit.NomadDesertStalker" }],
 			[1, { BaseID = "Unit.NomadDesertDevil" }]
-		]),
-		StartingResourceMin = 350	// In Vanilla Executioner appear in a group of 350 cost
+		])
 	}
 ]
 

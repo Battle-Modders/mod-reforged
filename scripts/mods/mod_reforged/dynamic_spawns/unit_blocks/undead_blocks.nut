@@ -3,19 +3,20 @@ local unitBlocks = [
 			ID = "UnitBlock.UndeadFrontline",
 		UnitDefs = [
 			{ BaseID = "unit.SkeletonLight" },
-			{ BaseID = "unit.SkeletonMedium", StartingResourceMin = 125 },
-			{ BaseID = "unit.SkeletonHeavy", StartingResourceMin = 175 }
+			{ BaseID = "unit.SkeletonMedium" },
+			{ BaseID = "unit.SkeletonHeavy" }
 		]
 	},
 	{
 			ID = "UnitBlock.UndeadBackline",
 		UnitDefs = [
-			{ BaseID = "unit.SkeletonMediumPolearm", StartingResourceMin = 125 },
-			{ BaseID = "unit.SkeletonHeavyPolearm", StartingResourceMin = 175 }
+			{ BaseID = "unit.SkeletonMediumPolearm" },
+			{ BaseID = "unit.SkeletonHeavyPolearm" }
 		]
 	},
 	{
 			ID = "UnitBlock.UndeadBoss",
+			StartingResourceMin = 225
 		UnitDefs = [
 			{ BaseID = "unit.SkeletonPriestH" },
 			{ BaseID = "unit.SkeletonPriestHH" }

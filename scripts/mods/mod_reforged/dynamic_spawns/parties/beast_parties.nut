@@ -109,15 +109,15 @@ local parties = [
 			{ BaseID = "UnitBlock.Hexe" }    // This one has no Bodyguards, which is not perfect because sometimes the only Hexe spawns with bodyguards in vanilla
 		],
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.HexeWithBodyguard", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 300 },
+			{ BaseID = "UnitBlock.HexeWithBodyguard", RatioMin = 0.00, RatioMax = 0.13 },
 			{ BaseID = "UnitBlock.Spider", RatioMin = 0.00, RatioMax = 1.00 },
 			{ BaseID = "UnitBlock.Ghoul", RatioMin = 0.00, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.Schras", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 300 },
+			{ BaseID = "UnitBlock.Schrat", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 300 },
 			{ BaseID = "UnitBlock.Unhold", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 },
 			{ BaseID = "UnitBlock.UnholdBog", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 250 },
 			{ BaseID = "UnitBlock.Direwolf", RatioMin = 0.00, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.HexeBandit", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 },
-			{ BaseID = "UnitBlock.HexenBanditRanged", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 200 }
+			{ BaseID = "UnitBlock.HexeBandit", RatioMin = 0.00, RatioMax = 1.00 },
+			{ BaseID = "UnitBlock.HexenBanditRanged", RatioMin = 0.00, RatioMax = 0.13 }
 		]
 	},
 	{
@@ -131,13 +131,13 @@ local parties = [
 			{ BaseID = "UnitBlock.Hexe" }    // This one has no Bodyguards, which is not perfect because sometimes the only Hexe spawns with bodyguards in vanilla
 		],
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.HexeNoSpider", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 300 },
+			{ BaseID = "UnitBlock.HexeNoSpider", RatioMin = 0.00, RatioMax = 0.13 },
 			{ BaseID = "UnitBlock.Ghoul", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 80 },
 			{ BaseID = "UnitBlock.Schrat", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 300 },
 			{ BaseID = "UnitBlock.Unhold", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 },
 			{ BaseID = "UnitBlock.UnholdBog", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 250 },
 			{ BaseID = "UnitBlock.Direwolf", RatioMin = 0.00, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.HexeBandit", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 }
+			{ BaseID = "UnitBlock.HexeBandit", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{

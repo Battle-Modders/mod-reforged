@@ -17,21 +17,18 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.NobleSupport",
-		UnitDefs = [{ BaseID = "Unit.NobleStandardBearer" }],
-		StartingResourceMin = 200	// In Vanilla they appear in a group of 240 cost
+		UnitDefs = [{ BaseID = "Unit.NobleStandardBearer" }]
 	},
 	{
 		ID = "UnitBlock.NobleOfficer",
-		UnitDefs = [{ BaseID = "Unit.NobleSergeant" }],
-		StartingResourceMin = 200	// In Vanilla they appear in a group of 235 cost in noble caravans
+		UnitDefs = [{ BaseID = "Unit.NobleSergeant" }]
 	},
 	{
 		ID = "UnitBlock.NobleElite",
 		UnitDefs = ::MSU.Class.WeightedContainer([
 			[1, { BaseID = "Unit.NobleZweihander" }],
 			[1, { BaseID = "Unit.NobleKnight" }]
-		]),
-		StartingResourceMin = 325	// In Vanilla they appear in a group of 235 cost in noble caravans
+		])
 	},
 
 // Caravan

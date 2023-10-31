@@ -5,8 +5,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.BarbarianSupport",
-		UnitDefs = [{ BaseID = "Unit.BarbarianDrummer" }],
-		StartingResourceMin = 200	// In Vanilla they start appearing in a group of 210 cost alongside 15 thralls
+		UnitDefs = [{ BaseID = "Unit.BarbarianDrummer" }]
 
 	},
 	{

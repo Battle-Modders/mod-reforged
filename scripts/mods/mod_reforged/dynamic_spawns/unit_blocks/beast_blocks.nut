@@ -61,18 +61,22 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.HexeWithBodyguard",
+		StartingResourceMin = 300,
 		UnitDefs = [{ BaseID = "Unit.Hexe" }, { BaseID = "Unit.HexeOneSpider" }, { BaseID = "Unit.HexeTwoSpider" }, { BaseID = "Unit.HexeOneDirewolf" }, { BaseID = "Unit.HexeTwoDirewolf" }]
 	},
 	{
 		ID = "UnitBlock.HexeNoSpider",
+		StartingResourceMin = 300,
 		UnitDefs = [{ BaseID = "Unit.Hexe" }, { BaseID = "Unit.HexeOneDirewolf" }, { BaseID = "Unit.HexeTwoDirewolf" }]
 	},
 	{
 		ID = "UnitBlock.HexeBandit",    // Spawn in HexenFights
+		StartingResourceMin = 200,
 		UnitDefs = [{ BaseID = "Unit.BanditRaider" }]
 	},
 	{
 		ID = "UnitBlock.HexeBanditRanged",    // Spawn in HexenFights. In Vanilla they only ever spawn a single marksman alongside several raiders. Never more
+		StartingResourceMin = 200,
 		UnitDefs = [{ BaseID = "Unit.BanditMarksman" }]
 	},
 

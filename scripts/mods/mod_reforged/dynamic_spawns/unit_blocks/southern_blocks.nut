@@ -17,8 +17,7 @@ local unitBlocks = [
 	{
 			ID = "UnitBlock.Officer",
 		//UnitDefs = [{ BaseID = "Officer" }, { BaseID = "Officer++" }]
-		UnitDefs = [{ BaseID = "Unit.Officer" }],
-		StartingResourceMin = 250	// In Vanilla they appear in a group of 250 cost
+		UnitDefs = [{ BaseID = "Unit.Officer" }]
 	},
 	{
 			ID = "UnitBlock.SouthernRanged",
@@ -27,8 +26,7 @@ local unitBlocks = [
 	},
 	{
 			ID = "UnitBlock.Siege",
-		UnitDefs = [{ BaseID = "Unit.Mortar" }],
-		StartingResourceMin = 340	// In Vanilla they appear in a group of 340 cost
+		UnitDefs = [{ BaseID = "Unit.Mortar" }]
 	},
 	{
 			ID = "UnitBlock.Engineer",

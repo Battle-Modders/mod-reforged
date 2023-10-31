@@ -57,7 +57,8 @@ local units = [
 	{
 		ID = "Unit.MilitiaCaptain",
 		Troop = "MilitiaCaptain",
-		Cost = 20
+		Cost = 20,
+		StartingResourceMin = 144	// In Vanilla they appear in a group of 144 cost
 	},
 
 // Mercenaries
@@ -89,14 +90,17 @@ local units = [
 	{
 		ID = "Unit.MasterArcher",
 		Troop = "MasterArcher",
+		StartingResourceMin = 286	// In Vanilla MasterArcher appear in a group of 286 cost
 	},
 	{
 		ID = "Unit.HedgeKnight",
 		Troop = "HedgeKnight",
+		StartingResourceMin = 286	// In Vanilla MasterArcher appear in a group of 286 cost
 	},
 	{
 		ID = "Unit.Swordmaster",
 		Troop = "Swordmaster",
+		StartingResourceMin = 286	// In Vanilla MasterArcher appear in a group of 286 cost
 	}
 ]
 
