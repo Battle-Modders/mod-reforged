@@ -10,7 +10,7 @@ local unitBlocks = [
 
 	},
 	{
-		ID = "UnitBlock.BarbarianDogs",
+		ID = "UnitBlock.BarbarianDog",
 		UnitDefs = [{ BaseID = "Unit.BarbarianWarhound" }]
 	},
 	{
@@ -24,11 +24,11 @@ local unitBlocks = [
 	},
 
 	{
-		ID = "UnitBlock.BarbarianUnholds",
+		ID = "UnitBlock.BarbarianUnhold",
 		UnitDefs = [{ BaseID = "Unit.BarbarianUnhold" }]
 	},
 	{
-		ID = "UnitBlock.BarbarianUnholdsFrost",
+		ID = "UnitBlock.BarbarianUnholdFrost",
 		UnitDefs = [{ BaseID = "Unit.BarbarianUnholdFrost" }]
 	}
 ]

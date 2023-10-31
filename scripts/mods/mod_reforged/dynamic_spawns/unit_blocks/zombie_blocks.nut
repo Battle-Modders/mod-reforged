@@ -1,49 +1,49 @@
 local unitBlocks = [
 	{
 			ID = "UnitBlock.ZombieFrontline",
-		UnitDefs = [{ BaseID = "Unit.UndeadZombie" }, { BaseID = "Unit.UndeadZombieYeoman" }, { BaseID = "Unit.UndeadFallenHero" }]
+		UnitDefs = [{ BaseID = "Unit.Zombie" }, { BaseID = "Unit.ZombieYeoman" }, { BaseID = "Unit.FallenHero" }]
 	},
 	{
 			ID = "UnitBlock.ZombieLight",
-		UnitDefs = [{ BaseID = "Unit.UndeadZombie" }]
+		UnitDefs = [{ BaseID = "Unit.Zombie" }]
 	},
 	{
 			ID = "UnitBlock.ZombieElite",
-		UnitDefs = [{ BaseID = "Unit.UndeadFallenHero" }]
+		UnitDefs = [{ BaseID = "Unit.FallenHero" }]
 	},
 	{
 			ID = "UnitBlock.ZombieSouthern",
-		UnitDefs = [{ BaseID = "Unit.UndeadZombieNomad" }]
+		UnitDefs = [{ BaseID = "Unit.ZombieNomad" }]
 	},
 	{
-			ID = "UnitBlock.ZombieNecromancer",
-		UnitDefs = [{ BaseID = "Unit.UndeadNecromancer" }]
+			ID = "UnitBlock.Necromancer",
+		UnitDefs = [{ BaseID = "Unit.Necromancer" }]
 	},
 	{
-			ID = "UnitBlock.ZombieNecromancerWithBodyguards",
+			ID = "UnitBlock.NecromancerWithBodyguards",
 		UnitDefs = [
-			{ BaseID = "Unit.UndeadNecromancerY" },
-			{ BaseID = "Unit.UndeadNecromancerK" },
-			{ BaseID = "Unit.UndeadNecromancerYK" },
-			{ BaseID = "Unit.UndeadNecromancerKK" }
+			{ BaseID = "Unit.NecromancerY" },
+			{ BaseID = "Unit.NecromancerK" },
+			{ BaseID = "Unit.NecromancerYK" },
+			{ BaseID = "Unit.NecromancerKK" }
 		]
 	},
 	{
-			ID = "UnitBlock.ZombieNecromancerWithNomads",
+			ID = "UnitBlock.NecromancerWithNomads",
 		UnitDefs = [
-			{ BaseID = "Unit.UndeadNecromancerN" },
-			{ BaseID = "Unit.UndeadNecromancerNN" },
-			{ BaseID = "Unit.UndeadNecromancerNNN" }
+			{ BaseID = "Unit.NecromancerN" },
+			{ BaseID = "Unit.NecromancerNN" },
+			{ BaseID = "Unit.NecromancerNNN" }
 		]
 	},
 	{
-			ID = "UnitBlock.ZombieGhost",
-		UnitDefs = [{ BaseID = "Unit.UndeadGhost" }]
+			ID = "UnitBlock.Ghost",
+		UnitDefs = [{ BaseID = "Unit.Ghost" }]
 	},
 	{
-			ID = "UnitBlock.ZombieZombieNomadBodyguard",
+			ID = "UnitBlock.ZombieNomadBodyguard",
 		UnitDefs = [
-			{ BaseID = "Unit.UndeadZombieNomadBodyguard" }
+			{ BaseID = "Unit.ZombieNomadBodyguard" }
 		]
 	}
 ]

@@ -7,7 +7,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastDirewolves", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.Direwolf", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
@@ -18,7 +18,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastGhouls", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.Ghoul", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
@@ -29,7 +29,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastLindwurms", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.Lindwurm", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
@@ -40,7 +40,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastUnholds", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.Unholds", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
@@ -51,7 +51,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastUnholdsFrost", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.UnholdFrost", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
@@ -62,7 +62,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastUnholdsBog", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.UnholdBog", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
@@ -73,7 +73,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastSpiders", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.Spider", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
@@ -84,7 +84,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastAlps", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.Alp", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
@@ -95,7 +95,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastSchrats", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.Schrat", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
@@ -106,18 +106,18 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		StaticUnitDefs = [
-			{ BaseID = "UnitBlock.BeastHexe" }    // This one has no Bodyguards, which is not perfect because sometimes the only Hexe spawns with bodyguards in vanilla
+			{ BaseID = "UnitBlock.Hexe" }    // This one has no Bodyguards, which is not perfect because sometimes the only Hexe spawns with bodyguards in vanilla
 		],
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastHexenWithBodyguards", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 300 },
-			{ BaseID = "UnitBlock.BeastSpiders", RatioMin = 0.00, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.BeastGhouls", RatioMin = 0.00, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.BeastSchrats", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 300 },
-			{ BaseID = "UnitBlock.BeastUnholds", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 },
-			{ BaseID = "UnitBlock.BeastUnholdsBog", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 250 },
-			{ BaseID = "UnitBlock.BeastDirewolves", RatioMin = 0.00, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.BeastHexenBandits", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 },
-			{ BaseID = "UnitBlock.BeastHexenBanditsRanged", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 200 }
+			{ BaseID = "UnitBlock.HexeWithBodyguard", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 300 },
+			{ BaseID = "UnitBlock.Spider", RatioMin = 0.00, RatioMax = 1.00 },
+			{ BaseID = "UnitBlock.Ghoul", RatioMin = 0.00, RatioMax = 1.00 },
+			{ BaseID = "UnitBlock.Schras", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 300 },
+			{ BaseID = "UnitBlock.Unhold", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 },
+			{ BaseID = "UnitBlock.UnholdBog", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 250 },
+			{ BaseID = "UnitBlock.Direwolf", RatioMin = 0.00, RatioMax = 1.00 },
+			{ BaseID = "UnitBlock.HexeBandit", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 },
+			{ BaseID = "UnitBlock.HexenBanditRanged", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 200 }
 		]
 	},
 	{
@@ -128,16 +128,16 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		StaticUnitDefs = [
-			{ BaseID = "UnitBlock.BeastHexe" }    // This one has no Bodyguards, which is not perfect because sometimes the only Hexe spawns with bodyguards in vanilla
+			{ BaseID = "UnitBlock.Hexe" }    // This one has no Bodyguards, which is not perfect because sometimes the only Hexe spawns with bodyguards in vanilla
 		],
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastHexenNoSpiders", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 300 },
-			{ BaseID = "UnitBlock.BeastGhouls", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 80 },
-			{ BaseID = "UnitBlock.BeastSchrats", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 300 },
-			{ BaseID = "UnitBlock.BeastUnholds", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 },
-			{ BaseID = "UnitBlock.BeastUnholdsBog", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 250 },
-			{ BaseID = "UnitBlock.BeastDirewolves", RatioMin = 0.00, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.BeastHexenBandits", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 }
+			{ BaseID = "UnitBlock.HexeNoSpider", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 300 },
+			{ BaseID = "UnitBlock.Ghoul", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 80 },
+			{ BaseID = "UnitBlock.Schrat", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 300 },
+			{ BaseID = "UnitBlock.Unhold", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 },
+			{ BaseID = "UnitBlock.UnholdBog", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 250 },
+			{ BaseID = "UnitBlock.Direwolf", RatioMin = 0.00, RatioMax = 1.00 },
+			{ BaseID = "UnitBlock.HexeBandit", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 }
 		]
 	},
 	{
@@ -148,7 +148,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastHexenNoBodyguards", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.HexeNoBodyguard", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 
@@ -161,7 +161,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastHyenas", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.Hyena", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
@@ -172,7 +172,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastSerpents", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.Serpent", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
@@ -183,7 +183,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastSandGolems", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.SandGolem", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	}
 
@@ -191,13 +191,13 @@ local parties = [
 	{
 		ID = "SpiderBodyguards",
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastSpiderBodyguards"}
+			{ BaseID = "UnitBlock.SpiderBodyguard"}
 		]
 	},
 	{
 		ID = "DirewolfBodyguards",
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.BeastDirewolfBodyguards"}
+			{ BaseID = "UnitBlock.DirewolfBodyguard"}
 		]
 	}
 ]

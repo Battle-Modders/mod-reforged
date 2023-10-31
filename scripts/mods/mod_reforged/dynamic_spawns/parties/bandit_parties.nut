@@ -11,7 +11,7 @@ local parties = [
 			{ ID = "UnitBlock.BanditFast", RatioMin = 0.00, RatioMax = 0.40},
 			{ ID = "UnitBlock.BanditTough", RatioMin = 0.00, RatioMax = 0.40},
 			{ ID = "UnitBlock.BanditRanged", RatioMin = 0.00, RatioMax = 0.35},
-			{ ID = "UnitBlock.BanditDogs", RatioMin = 0.00, RatioMax = 0.20}
+			{ ID = "UnitBlock.BanditDog", RatioMin = 0.00, RatioMax = 0.20}
 		]
 	},
 	{
@@ -26,7 +26,7 @@ local parties = [
 			{ ID = "UnitBlock.BanditFast", RatioMin = 0.00, RatioMax = 0.30},
 			{ ID = "UnitBlock.BanditTough", RatioMin = 0.00, RatioMax = 0.30},
 			{ ID = "UnitBlock.BanditRanged", RatioMin = 0.00, RatioMax = 0.40},
-			{ ID = "UnitBlock.BanditDogs", RatioMin = 0.00, RatioMax = 0.20}
+			{ ID = "UnitBlock.BanditDog", RatioMin = 0.00, RatioMax = 0.20}
 		]
 	},
 	{

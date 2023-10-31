@@ -1,50 +1,50 @@
 local units = [
 // Skeletons
 	{
-		ID = "Unit.UndeadSkeletonLight",
+		ID = "Unit.SkeletonLight",
 		Troop = "SkeletonLight",
 		Figure = "figure_skeleton_01",      // Exclusive
 		Cost = 13
 	},
 	{
-		ID = "Unit.UndeadSkeletonMedium",
+		ID = "Unit.SkeletonMedium",
 		Troop = "SkeletonMedium",
 		Figure = "figure_skeleton_02",
 		Cost = 20
 	},
 	{
-		ID = "Unit.UndeadSkeletonMediumPolearm",
+		ID = "Unit.SkeletonMediumPolearm",
 		Troop = "SkeletonMediumPolearm",
 		Figure = "figure_skeleton_02",
 		Cost = 25
 	},
 	{
-		ID = "Unit.UndeadSkeletonHeavy",
+		ID = "Unit.SkeletonHeavy",
 		Troop = "SkeletonHeavy",
 		Figure = "figure_skeleton_03",
 		Cost = 35
 	},
 	{
-		ID = "Unit.UndeadSkeletonHeavyPolearm",
+		ID = "Unit.SkeletonHeavyPolearm",
 		Troop = "SkeletonHeavyPolearm",
 		Figure = "figure_skeleton_03",
 		Cost = 35
 	},
 	{
-		ID = "Unit.UndeadSkeletonPriest",
+		ID = "Unit.SkeletonPriest",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
 		Cost = 40
 	},
 	{
-		ID = "Unit.UndeadSkeletonPriestH",
+		ID = "Unit.SkeletonPriestH",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
 		Cost = 40 + 30,
 		SubPartyDef = {ID = "SubPartyHonor"}
 	},
 	{
-		ID = "Unit.UndeadSkeletonPriestHH",
+		ID = "Unit.SkeletonPriestHH",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
 		Cost = 40 + 30 + 30,
@@ -53,7 +53,7 @@ local units = [
 
 // Bodyguards for Priests
 	{
-		ID = "Unit.UndeadSkeletonHeavyBodyguard",
+		ID = "Unit.SkeletonHeavyBodyguard",
 		Troop = "SkeletonHeavyBodyguard",
 		Figure = "figure_zombie_03",
 		Cost = 30
@@ -61,13 +61,13 @@ local units = [
 
 // Vampire
 	{
-		ID = "Unit.UndeadVampireLOW",
+		ID = "Unit.VampireLOW",
 		Troop = "VampireLOW",
 		Figure = "figure_vampire_01",       // Exclusive
 		Cost = 30
 	},
 	{
-		ID = "Unit.UndeadVampire",
+		ID = "Unit.Vampire",
 		Troop = "Vampire",
 		Figure = "figure_vampire_02",       // Exclusive
 		Cost = 40

@@ -55,7 +55,7 @@ local unitBlocks = [
 		]
 	},
 	{
-		ID = "UnitBlock.BanditDogs",
+		ID = "UnitBlock.BanditDog",
 		UnitDefs = [
 			{BaseID = "Unit.BanditWardog", StartingResourceMax = 250 }
 		]

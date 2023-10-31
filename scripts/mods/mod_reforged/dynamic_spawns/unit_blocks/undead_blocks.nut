@@ -2,36 +2,36 @@ local unitBlocks = [
 	{
 			ID = "UnitBlock.UndeadFrontline",
 		UnitDefs = [
-			{ BaseID = "Unit.UndeadSkeletonLight" },
-			{ BaseID = "Unit.UndeadSkeletonMedium", StartingResourceMin = 125 },
-			{ BaseID = "Unit.UndeadSkeletonHeavy", StartingResourceMin = 175 }
+			{ BaseID = "unit.SkeletonLight" },
+			{ BaseID = "unit.SkeletonMedium", StartingResourceMin = 125 },
+			{ BaseID = "unit.SkeletonHeavy", StartingResourceMin = 175 }
 		]
 	},
 	{
 			ID = "UnitBlock.UndeadBackline",
 		UnitDefs = [
-			{ BaseID = "Unit.UndeadSkeletonMediumPolearm", StartingResourceMin = 125 },
-			{ BaseID = "Unit.UndeadSkeletonHeavyPolearm", StartingResourceMin = 175 }
+			{ BaseID = "unit.SkeletonMediumPolearm", StartingResourceMin = 125 },
+			{ BaseID = "unit.SkeletonHeavyPolearm", StartingResourceMin = 175 }
 		]
 	},
 	{
 			ID = "UnitBlock.UndeadBoss",
 		UnitDefs = [
-			{ BaseID = "Unit.UndeadSkeletonPriestH" },
-			{ BaseID = "Unit.UndeadSkeletonPriestHH" }
+			{ BaseID = "unit.SkeletonPriestH" },
+			{ BaseID = "unit.SkeletonPriestHH" }
 		]
 	},
 	{
-			ID = "UnitBlock.UndeadSkeletonHeavyBodyguard",
+			ID = "UnitBlock.SkeletonHeavyBodyguard",
 		UnitDefs = [
-			{ BaseID = "Unit.UndeadSkeletonHeavyBodyguard" }
+			{ BaseID = "unit.SkeletonHeavyBodyguard" }
 		]
 	},
 	{
-			ID = "UnitBlock.UndeadVampire",
+			ID = "UnitBlock.Vampire",
 		UnitDefs = [
-			{ BaseID = "Unit.UndeadVampireLOW" },
-			{ BaseID = "Unit.UndeadVampire" }
+			{ BaseID = "unit.VampireLOW" },
+			{ BaseID = "unit.Vampire" }
 		]
 	}
 ]

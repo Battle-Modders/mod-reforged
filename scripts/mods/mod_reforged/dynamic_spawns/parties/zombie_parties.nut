@@ -18,7 +18,7 @@ local parties = [
 		VisibilityMult = 0.75,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.ZombieGhost" }
+			{ BaseID = "UnitBlock.Ghost" }
 		]
 	},
 	{
@@ -42,7 +42,7 @@ local parties = [
 		VisionMult = 0.8,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.ZombieFrontline", 		RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true},
-			{ BaseID = "UnitBlock.ZombieGhost", 			RatioMin = 0.12, RatioMax = 0.35},
+			{ BaseID = "UnitBlock.Ghost", 			RatioMin = 0.12, RatioMax = 0.35},
 		]
 	},
 	{
@@ -54,8 +54,8 @@ local parties = [
 		VisionMult = 1.0,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.ZombieFrontline", 						RatioMin = 0.50, RatioMax = 1.00},
-			{ BaseID = "UnitBlock.ZombieGhost", 							RatioMin = 0.00, RatioMax = 0.20},
-			{ BaseID = "UnitBlock.ZombieNecromancerWithBodyguards", 		RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true},
+			{ BaseID = "UnitBlock.Ghost", 							RatioMin = 0.00, RatioMax = 0.20},
+			{ BaseID = "UnitBlock.NecromancerWithBodyguard", 		RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true},
 		]
 	},
 	{
@@ -67,7 +67,7 @@ local parties = [
 		VisionMult = 1.0,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.ZombieSouthern", 					RatioMin = 0.65, RatioMax = 1.00},
-			{ BaseID = "UnitBlock.ZombieNecromancerWithNomads", 		RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true},
+			{ BaseID = "UnitBlock.NecromancerWithNomad", 		RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true},
 			{ BaseID = "UnitBlock.ZombieElite", 						RatioMin = 0.00, RatioMax = 0.12, StartingResourceMin = 200},
 		]
 	},

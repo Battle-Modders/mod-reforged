@@ -1,44 +1,44 @@
 local units = [
 	{
-		ID = "Unit.SouthernConscript",
+		ID = "Unit.Conscript",
 		Troop = "Conscript",
 		Cost = 20,
 		Figure = "figure_southern_01"
 	},
 	{
-		ID = "Unit.SouthernConscript_Polearm",
+		ID = "Unit.Conscript_Polearm",
 		Troop = "ConscriptPolearm",
 		Cost = 15
 	},
 	{
-		ID = "Unit.SouthernOfficer",
+		ID = "Unit.Officer",
 		Troop = "Officer",
 		Cost = 25,
 		Figure = "figure_southern_02"
 	},
 	{
-		ID = "Unit.SouthernGunner",
+		ID = "Unit.Gunner",
 		Troop = "Gunner",
 		Cost = 20
 	},
 	{
-		ID = "Unit.SouthernEngineer",
+		ID = "Unit.Engineer",
 		Troop = "Engineer",
 		Cost = 10
 	},
 	{
-		ID = "Unit.SouthernMortar",
+		ID = "Unit.Mortar",
 		Troop = "Mortar",
 		Cost = 20,
 		SubPartyDef = {ID = "MortarEngineers"}
 	},
 	{
-		ID = "Unit.SouthernAssassin",
+		ID = "Unit.Assassin",
 		Troop = "Assassin",
 		Cost = 35
 	},
 	{
-		ID = "Unit.SouthernSlave",
+		ID = "Unit.Slave",
 		Troop = "Slave",
 		Cost = 7
 	},

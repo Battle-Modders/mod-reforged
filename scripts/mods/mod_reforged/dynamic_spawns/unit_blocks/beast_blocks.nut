@@ -1,89 +1,89 @@
 local unitBlocks = [
 	// Purebred Beasts
 	{
-		ID = "UnitBlock.BeastDirewolves",
-		UnitDefs = [{ BaseID = "Unit.BeastDirewolf" }, { BaseID = "Unit.BeastDirewolfHIGH" }]
+		ID = "UnitBlock.Direwolf",
+		UnitDefs = [{ BaseID = "Unit.Direwolf" }, { BaseID = "Unit.DirewolfHIGH" }]
 	},
 	{
-		ID = "UnitBlock.BeastGhoulLowOnly",
-		UnitDefs = [{ BaseID = "Unit.BeastGhoulLOW" }]
+		ID = "UnitBlock.GhoulLowOnly",
+		UnitDefs = [{ BaseID = "Unit.GhoulLOW" }]
 	},
 	{
-		ID = "UnitBlock.BeastGhouls",
-		UnitDefs = [{ BaseID = "Unit.BeastGhoulLOW" }, { BaseID = "Unit.BeastGhoul", StartingResourceMin = 125 }, { BaseID = "Unit.BeastGhoulHIGH", StartingResourceMin = 175 }]
+		ID = "UnitBlock.Ghoul",
+		UnitDefs = [{ BaseID = "Unit.GhoulLOW" }, { BaseID = "Unit.Ghoul", StartingResourceMin = 125 }, { BaseID = "Unit.GhoulHIGH", StartingResourceMin = 175 }]
 	},
 	{
-		ID = "UnitBlock.BeastLindwurms",
-		UnitDefs = [{ BaseID = "Unit.BeastLindwurm" }]
+		ID = "UnitBlock.Lindwurm",
+		UnitDefs = [{ BaseID = "Unit.Lindwurm" }]
 	},
 	{
-		ID = "UnitBlock.BeastUnholds",
-		UnitDefs = [{ BaseID = "Unit.BeastUnhold" }]
+		ID = "UnitBlock.Unhold",
+		UnitDefs = [{ BaseID = "Unit.Unhold" }]
 	},
 	{
-		ID = "UnitBlock.BeastUnholdsFrost",
-		UnitDefs = [{ BaseID = "Unit.BeastUnholdFrost" }]
+		ID = "UnitBlock.UnholdFrost",
+		UnitDefs = [{ BaseID = "Unit.UnholdFrost" }]
 	},
 	{
-		ID = "UnitBlock.BeastUnholdsBog",
-		UnitDefs = [{ BaseID = "Unit.BeastUnholdBog" }]
+		ID = "UnitBlock.UnholdBog",
+		UnitDefs = [{ BaseID = "Unit.UnholdBog" }]
 	},
 	{
-		ID = "UnitBlock.BeastSpiders",
-		UnitDefs = [{ BaseID = "Unit.BeastSpider" }]
+		ID = "UnitBlock.Spider",
+		UnitDefs = [{ BaseID = "Unit.Spider" }]
 	},
 	{
-		ID = "UnitBlock.BeastAlps",
-		UnitDefs = [{ BaseID = "Unit.BeastAlp" }]
+		ID = "UnitBlock.Alp",
+		UnitDefs = [{ BaseID = "Unit.Alp" }]
 	},
 	{
-		ID = "UnitBlock.BeastSchrats",
-		UnitDefs = [{ BaseID = "Unit.BeastSchrat" }]
+		ID = "UnitBlock.Schrat",
+		UnitDefs = [{ BaseID = "Unit.Schrat" }]
 	},
 	// Vanilla Kraken skipped at this point
 	{
-		ID = "UnitBlock.BeastHyenas",
-		UnitDefs = [{ BaseID = "Unit.BeastHyena" }, { BaseID = "Unit.BeastHyenaHIGH" }]
+		ID = "UnitBlock.Hyena",
+		UnitDefs = [{ BaseID = "Unit.Hyena" }, { BaseID = "Unit.HyenaHIGH" }]
 	},
 	{
-		ID = "UnitBlock.BeastSerpents",
-		UnitDefs = [{ BaseID = "Unit.BeastSerpent" }]
+		ID = "UnitBlock.Serpent",
+		UnitDefs = [{ BaseID = "Unit.Serpent" }]
 	},
 	{
-		ID = "UnitBlock.BeastSandGolems",
-		UnitDefs = [{ BaseID = "Unit.BeastSandGolem" }, { BaseID = "Unit.BeastSandGolemMEDIUM" }, { BaseID = "Unit.BeastSandGolemHIGH" }]
+		ID = "UnitBlock.SandGolem",
+		UnitDefs = [{ BaseID = "Unit.SandGolem" }, { BaseID = "Unit.SandGolemMEDIUM" }, { BaseID = "Unit.SandGolemHIGH" }]
 	},
 
 // Mixed Beasts
 	{
-		ID = "UnitBlock.BeastHexenNoBodyguards",
-		UnitDefs = [{ BaseID = "Unit.BeastHexe" }]
+		ID = "UnitBlock.HexeNoBodyguard",
+		UnitDefs = [{ BaseID = "Unit.Hexe" }]
 	},
 	{
-		ID = "UnitBlock.BeastHexenWithBodyguards",
-		UnitDefs = [{ BaseID = "Unit.BeastHexe" }, { BaseID = "Unit.BeastHexeOneSpider" }, { BaseID = "Unit.BeastHexeTwoSpider" }, { BaseID = "Unit.BeastHexeOneDirewolf" }, { BaseID = "Unit.BeastHexeTwoDirewolf" }]
+		ID = "UnitBlock.HexeWithBodyguard",
+		UnitDefs = [{ BaseID = "Unit.Hexe" }, { BaseID = "Unit.HexeOneSpider" }, { BaseID = "Unit.HexeTwoSpider" }, { BaseID = "Unit.HexeOneDirewolf" }, { BaseID = "Unit.HexeTwoDirewolf" }]
 	},
 	{
-		ID = "UnitBlock.BeastHexenNoSpiders",
-		UnitDefs = [{ BaseID = "Unit.BeastHexe" }, { BaseID = "Unit.BeastHexeOneDirewolf" }, { BaseID = "Unit.BeastHexeTwoDirewolf" }]
+		ID = "UnitBlock.HexeNoSpider",
+		UnitDefs = [{ BaseID = "Unit.Hexe" }, { BaseID = "Unit.HexeOneDirewolf" }, { BaseID = "Unit.HexeTwoDirewolf" }]
 	},
 	{
-		ID = "UnitBlock.BeastHexenBandits",    // Spawn in HexenFights
+		ID = "UnitBlock.HexeBandit",    // Spawn in HexenFights
 		UnitDefs = [{ BaseID = "Unit.BanditRaider" }]
 	},
 	{
-		ID = "UnitBlock.BeastHexenBanditsRanged",    // Spawn in HexenFights. In Vanilla they only ever spawn a single marksman alongside several raiders. Never more
+		ID = "UnitBlock.HexeBanditRanged",    // Spawn in HexenFights. In Vanilla they only ever spawn a single marksman alongside several raiders. Never more
 		UnitDefs = [{ BaseID = "Unit.BanditMarksman" }]
 	},
 
 // Bodyguards
 	{
-		ID = "UnitBlock.BeastSpiderBodyguards",
-		UnitDefs = [{ BaseID = "Unit.BeastSpiderBodyguard" }]
+		ID = "UnitBlock.SpiderBodyguard",
+		UnitDefs = [{ BaseID = "Unit.SpiderBodyguard" }]
 	},
 	{
-		ID = "UnitBlock.BeastDirewolfBodyguards",
-		UnitDefs = [{ BaseID = "Unit.BeastDirewolfBodyguard" }]
+		ID = "UnitBlock.DirewolfBodyguard",
+		UnitDefs = [{ BaseID = "Unit.DirewolfBodyguard" }]
 	}
 ]
 

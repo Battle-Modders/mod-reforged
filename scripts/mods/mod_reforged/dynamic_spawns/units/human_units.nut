@@ -1,47 +1,47 @@
 local units = [
 // Civilians
 	{
-		ID = "Unit.HumanPeasant",
+		ID = "Unit.Peasant",
 		Troop = "Peasant",
 		Cost = 10,
 		Figure = "figure_civilian_01"
 	},
 	{
-		ID = "Unit.HumanPeasantArmed",
+		ID = "Unit.PeasantArmed",
 		Troop = "PeasantArmed",
 		Cost = 10,
 		Figure = "figure_civilian_01"
 	},
 	{
-		ID = "Unit.HumanSouthernPeasant",
+		ID = "Unit.SouthernPeasant",
 		Troop = "SouthernPeasant",
 		Cost = 10
 	},
 	{
-		ID = "Unit.HumanCultistAmbush",
+		ID = "Unit.CultistAmbush",
 		Troop = "CultistAmbush",
 		Cost = 15,
 		Figure = "figure_civilian_03"
 	},
 	{
-		ID = "Unit.HumanSlave",
+		ID = "Unit.NorthernSlave",
 		Troop = "NorthernSlave",
 		Cost = 7
 	},
 
 // Caravans
 	{
-		ID = "Unit.HumanCaravanHand",
+		ID = "Unit.CaravanHand",
 		Troop = "CaravanHand",
 		Cost = 10
 	},
 	{
-		ID = "Unit.HumanCaravanGuard",
+		ID = "Unit.CaravanGuard",
 		Troop = "CaravanGuard",
 		Cost = 14
 	},
 	{
-		ID = "Unit.HumanCaravanDonkey",
+		ID = "Unit.CaravanDonkey",
 		Troop = "CaravanDonkey",
 		Cost = 10,      // 0 in Vanilla
 		Figure = "cart_02"
@@ -49,68 +49,68 @@ local units = [
 
 // Militia
 	{
-		ID = "Unit.HumanMilitia",
+		ID = "Unit.Militia",
 		Troop = "Militia",
 		Cost = 10
 	},
 	{
-		ID = "Unit.HumanMilitiaRanged",
+		ID = "Unit.MilitiaRanged",
 		Troop = "MilitiaRanged",
 		Cost = 10
 	},
 	{
-		ID = "Unit.HumanMilitiaVeteran",
+		ID = "Unit.MilitiaVeteran",
 		Troop = "MilitiaVeteran",
 		Cost = 15   // Vanilla 12
 	},
 	{
-		ID = "Unit.HumanMilitiaCaptain",
+		ID = "Unit.MilitiaCaptain",
 		Troop = "MilitiaCaptain",
 		Cost = 20
 	},
 
 // Mercenaries
 	{
-		ID = "Unit.HumanBountyHunter",
+		ID = "Unit.BountyHunter",
 		Troop = "BountyHunter",
 		Cost = 25
 	},
 	{
-		ID = "Unit.HumanBountyHunterRanged",
+		ID = "Unit.BountyHunterRanged",
 		Troop = "BountyHunterRanged",
 		Cost = 20
 	},
 	{
-		ID = "Unit.HumanWardog",
+		ID = "Unit.Wardog",
 		Troop = "Wardog",
 		Cost = 8
 	},
 
 	{
-		ID = "Unit.HumanMercenaryLOW",
+		ID = "Unit.MercenaryLOW",
 		Troop = "MercenaryLOW",
 		Cost = 18
 	},
 	{
-		ID = "Unit.HumanMercenary",
+		ID = "Unit.Mercenary",
 		Troop = "Mercenary",
 		Cost = 25
 	},
 	{
-		ID = "Unit.HumanMercenaryRanged",
+		ID = "Unit.MercenaryRanged",
 		Troop = "MercenaryRanged",
 		Cost = 25
 	},
 	{
-		ID = "Unit.HumanMasterArcher",
+		ID = "Unit.MasterArcher",
 		Troop = "MasterArcher",
 	},
 	{
-		ID = "Unit.HumanHedgeKnight",
+		ID = "Unit.HedgeKnight",
 		Troop = "HedgeKnight",
 	},
 	{
-		ID = "Unit.HumanSwordmaster",
+		ID = "Unit.Swordmaster",
 		Troop = "Swordmaster",
 	}
 ]

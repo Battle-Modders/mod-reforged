@@ -1,31 +1,31 @@
 local units = [
 // Zombies
 	{
-		ID = "Unit.UndeadZombie",
+		ID = "Unit.Zombie",
 		Troop = "Zombie",
 		Figure = "figure_zombie_01",       // Exclusiv
 		Cost = 6
 	},
 	{
-		ID = "Unit.UndeadZombieYeoman",
+		ID = "Unit.ZombieYeoman",
 		Troop = "ZombieYeoman",
 		Figure = "figure_zombie_02",
 		Cost = 12
 	},
 	{
-		ID = "Unit.UndeadZombieNomad",
+		ID = "Unit.ZombieNomad",
 		Troop = "ZombieNomad",
 		Figure = "figure_zombie_03",
 		Cost = 12
 	},
 	{
-		ID = "Unit.UndeadFallenHero",     // Fallen Hero
+		ID = "Unit.FallenHero",     // Fallen Hero
 		Troop = "ZombieKnight",
 		Figure = "figure_zombie_03",
 		Cost = 24
 	},
 	{
-		ID = "Unit.UndeadNecromancer",
+		ID = "Unit.Necromancer",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],    // In Vanilla 02 is only used for Scourge Spawns. But there they still use 01 randomly aswell
 		Cost = 30
@@ -33,28 +33,28 @@ local units = [
 
 // Necromancer with Bodyguards
 	{
-		ID = "Unit.UndeadNecromancerY",
+		ID = "Unit.NecromancerY",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		Cost = 30 + 12,
 		SubPartyDef = {ID = "SubPartyYeoman"}
 	},
 	{
-		ID = "Unit.UndeadNecromancerK",
+		ID = "Unit.NecromancerK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		Cost = 30 + 24,
 		SubPartyDef = {ID = "SubPartyKnight"}
 	},
 	{
-		ID = "Unit.UndeadNecromancerYK",
+		ID = "Unit.NecromancerYK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		Cost = 30 + 12 + 24,
 		SubPartyDef = {ID = "SubPartyYeomanKnight"}
 	},
 	{
-		ID = "Unit.UndeadNecromancerKK",
+		ID = "Unit.NecromancerKK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		Cost = 30 + 24 + 24,
@@ -63,21 +63,21 @@ local units = [
 
 // Necromancer with Nomad Bodyguards
 	{
-		ID = "Unit.UndeadNecromancerN",
+		ID = "Unit.NecromancerN",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		Cost = 30 + 12,
 		SubPartyDef = { BaseID = "SubPartyNomad", HardMin = 1, HardMax = 1 }
 	},
 	{
-		ID = "Unit.UndeadNecromancerNN",
+		ID = "Unit.NecromancerNN",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		Cost = 30 + 12 + 12,
 		SubPartyDef = { BaseID = "SubPartyNomad", HardMin = 2, HardMax = 2 }
 	},
 	{
-		ID = "Unit.UndeadNecromancerNNN",
+		ID = "Unit.NecromancerNNN",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		Cost = 30 + 12 + 12 + 12,
@@ -86,19 +86,19 @@ local units = [
 
 // Bodyguards for Necromancer
 	{
-		ID = "Unit.UndeadYeomanBodyguard",
+		ID = "Unit.YeomanBodyguard",
 		Troop = "ZombieYeomanBodyguard",
 		Figure = "figure_zombie_02",
 		Cost = 12
 	},
 	{
-		ID = "Unit.UndeadZombieNomadBodyguard",
+		ID = "Unit.ZombieNomadBodyguard",
 		Troop = "ZombieNomadBodyguard",
 		Figure = "figure_zombie_03",
 		Cost = 12
 	},
 	{
-		ID = "Unit.UndeadFallenHeroBodyguard",
+		ID = "Unit.FallenHeroBodyguard",
 		Troop = "ZombieKnightBodyguard",
 		Figure = "figure_zombie_03",
 		Cost = 24
@@ -106,7 +106,7 @@ local units = [
 
 // Ghosts
 	{
-		ID = "Unit.UndeadGhost",
+		ID = "Unit.Ghost",
 		Troop = "Ghost",
 		Figure = "figure_ghost_01",     // Exclusiv
 		Cost = 20
