@@ -1,7 +1,7 @@
 local parties = [
 	{
 		ID = "Noble",
-		HardMin = 5,
+		HardMin = 10,
 		DefaultFigure = "figure_noble_01",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
@@ -18,7 +18,7 @@ local parties = [
 	},
 	{
 		ID = "NobleCaravan",
-		HardMin = 7,
+		HardMin = 9,
 		DefaultFigure = "cart_01",
 		MovementSpeedMult = 0.5,
 		VisibilityMult = 1.0,

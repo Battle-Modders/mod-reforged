@@ -58,7 +58,7 @@ local parties = [
 	},
 	{
 		ID = "Mercenaries",
-		HardMin = 5,
+		HardMin = 8,
 		DefaultFigure = "figure_bandit_03",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
