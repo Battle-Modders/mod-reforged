@@ -3,7 +3,7 @@
 	{
 		__original();
 		this.m.Reach = 0;
-		this.addWeaponType(::Const.Items.WeaponType.Sling);
+		this.setWeaponType(::Const.Items.WeaponType.Sling | ::Const.Items.WeaponType.Throwing);
 	}
 
 	q.onEquip = @() function()
