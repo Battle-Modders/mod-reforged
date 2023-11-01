@@ -1,22 +1,22 @@
 local unitBlocks = [
 	{
-		ID = "UnitBlock.NomadFrontline",
-		UnitDefs = [{ BaseID = "Unit.NomadCutthroat" }, { BaseID = "Unit.NomadOutlaw" }]
+		ID = "UnitBlock.RF.NomadFrontline",
+		UnitDefs = [{ BaseID = "Unit.RF.NomadCutthroat" }, { BaseID = "Unit.RF.NomadOutlaw" }]
 	},
 	{
-		ID = "UnitBlock.NomadRanged",
-		UnitDefs = [{ BaseID = "Unit.NomadSlinger" }, { BaseID = "Unit.NomadArcher" }]
+		ID = "UnitBlock.RF.NomadRanged",
+		UnitDefs = [{ BaseID = "Unit.RF.NomadSlinger" }, { BaseID = "Unit.RF.NomadArcher" }]
 	},
 	{
-		ID = "UnitBlock.NomadLeader",
-		UnitDefs = [{ BaseID = "Unit.NomadLeader" }]
+		ID = "UnitBlock.RF.NomadLeader",
+		UnitDefs = [{ BaseID = "Unit.RF.NomadLeader" }]
 	},
 	{
-		ID = "UnitBlock.NomadElite",
+		ID = "UnitBlock.RF.NomadElite",
 		UnitDefs = ::MSU.Class.WeightedContainer([
-			[1, { BaseID = "Unit.NomadExecutioner" }],
-			[1, { BaseID = "Unit.NomadDesertStalker" }],
-			[1, { BaseID = "Unit.NomadDesertDevil" }]
+			[1, { BaseID = "Unit.RF.NomadExecutioner" }],
+			[1, { BaseID = "Unit.RF.NomadDesertStalker" }],
+			[1, { BaseID = "Unit.RF.NomadDesertDevil" }]
 		])
 	}
 ]

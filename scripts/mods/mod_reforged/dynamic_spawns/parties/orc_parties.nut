@@ -7,8 +7,8 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.OrcYoung", 	RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true},
-			{ BaseID = "UnitBlock.OrcWarrior", 	RatioMin = 0.00, RatioMax = 0.09, StartingResourceMin = 150}
+			{ BaseID = "UnitBlock.RF.OrcYoung", 	RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true},
+			{ BaseID = "UnitBlock.RF.OrcWarrior", 	RatioMin = 0.00, RatioMax = 0.09, StartingResourceMin = 150}
 		]
 	},
 	{	// This is currently the same as OrcRoamers. I couldn't spot differences in Vanilla
@@ -19,8 +19,8 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.OrcYoung", 	RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true},
-			{ BaseID = "UnitBlock.OrcWarrior", 	RatioMin = 0.00, RatioMax = 0.09, StartingResourceMin = 150}
+			{ BaseID = "UnitBlock.RF.OrcYoung", 	RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true},
+			{ BaseID = "UnitBlock.RF.OrcWarrior", 	RatioMin = 0.00, RatioMax = 0.09, StartingResourceMin = 150}
 		]
 	},
 	{
@@ -31,11 +31,11 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.OrcYoung", 	RatioMin = 0.15, RatioMax = 1.00, DeterminesFigure = true, StartingResourceMax = 250},
-			{ BaseID = "UnitBlock.OrcYoung", 	RatioMin = 0.00, RatioMax = 0.65, DeterminesFigure = true, StartingResourceMin = 250},	// Lategame Parties will have less Young in them
-			{ BaseID = "UnitBlock.OrcBerserker", RatioMin = 0.00, RatioMax = 0.45, DeterminesFigure = true, StartingResourceMin = 125},
-			{ BaseID = "UnitBlock.OrcWarrior", 	RatioMin = 0.00, RatioMax = 0.80, DeterminesFigure = true, StartingResourceMin = 150},
-			{ BaseID = "UnitBlock.OrcBoss", 		RatioMin = 0.00, RatioMax = 0.08, DeterminesFigure = true, StartingResourceMin = 210}		// Vanilla never spawns more than one Boss here
+			{ BaseID = "UnitBlock.RF.OrcYoung", 	RatioMin = 0.15, RatioMax = 1.00, DeterminesFigure = true, StartingResourceMax = 250},
+			{ BaseID = "UnitBlock.RF.OrcYoung", 	RatioMin = 0.00, RatioMax = 0.65, DeterminesFigure = true, StartingResourceMin = 250},	// Lategame Parties will have less Young in them
+			{ BaseID = "UnitBlock.RF.OrcBerserker", RatioMin = 0.00, RatioMax = 0.45, DeterminesFigure = true, StartingResourceMin = 125},
+			{ BaseID = "UnitBlock.RF.OrcWarrior", 	RatioMin = 0.00, RatioMax = 0.80, DeterminesFigure = true, StartingResourceMin = 150},
+			{ BaseID = "UnitBlock.RF.OrcBoss", 		RatioMin = 0.00, RatioMax = 0.08, DeterminesFigure = true, StartingResourceMin = 210}		// Vanilla never spawns more than one Boss here
 		]
 	},
 	{
@@ -46,10 +46,10 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.OrcYoung", 	RatioMin = 0.15, RatioMax = 1.00},
-			{ BaseID = "UnitBlock.OrcBerserker", RatioMin = 0.00, RatioMax = 0.45, StartingResourceMin = 125},
-			{ BaseID = "UnitBlock.OrcWarrior", 	RatioMin = 0.00, RatioMax = 0.80, StartingResourceMin = 150},
-			{ BaseID = "UnitBlock.OrcBoss", 		RatioMin = 0.00, RatioMax = 0.08, StartingResourceMin = 210}		// Vanilla never spawns more than one Boss here
+			{ BaseID = "UnitBlock.RF.OrcYoung", 	RatioMin = 0.15, RatioMax = 1.00},
+			{ BaseID = "UnitBlock.RF.OrcBerserker", RatioMin = 0.00, RatioMax = 0.45, StartingResourceMin = 125},
+			{ BaseID = "UnitBlock.RF.OrcWarrior", 	RatioMin = 0.00, RatioMax = 0.80, StartingResourceMin = 150},
+			{ BaseID = "UnitBlock.RF.OrcBoss", 		RatioMin = 0.00, RatioMax = 0.08, StartingResourceMin = 210}		// Vanilla never spawns more than one Boss here
 		]
 	},
 	{
@@ -60,10 +60,10 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.OrcYoung", 	RatioMin = 0.15, RatioMax = 0.80},
-			{ BaseID = "UnitBlock.OrcBerserker", RatioMin = 0.00, RatioMax = 0.50},
-			{ BaseID = "UnitBlock.OrcWarrior", 	RatioMin = 0.00, RatioMax = 0.80},
-			{ BaseID = "UnitBlock.OrcBoss", 		RatioMin = 0.01, RatioMax = 0.05}				// Vanilla never spawns more than one Boss here
+			{ BaseID = "UnitBlock.RF.OrcYoung", 	RatioMin = 0.15, RatioMax = 0.80},
+			{ BaseID = "UnitBlock.RF.OrcBerserker", RatioMin = 0.00, RatioMax = 0.50},
+			{ BaseID = "UnitBlock.RF.OrcWarrior", 	RatioMin = 0.00, RatioMax = 0.80},
+			{ BaseID = "UnitBlock.RF.OrcBoss", 		RatioMin = 0.01, RatioMax = 0.05}				// Vanilla never spawns more than one Boss here
 		]
 	},
 	{	// In Vanilla these never spawn OrcYoungLOW but here they do
@@ -74,7 +74,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.OrcYoung", 		DeterminesFigure = true }
+			{ BaseID = "UnitBlock.RF.OrcYoung", 		DeterminesFigure = true }
 		]
 	},
 	{	// In Vanilla these never spawn OrcYoungLOW but here they do
@@ -85,8 +85,8 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.OrcYoung", 		DeterminesFigure = true },
-			{ BaseID = "UnitBlock.OrcBerserker", 	DeterminesFigure = true }
+			{ BaseID = "UnitBlock.RF.OrcYoung", 		DeterminesFigure = true },
+			{ BaseID = "UnitBlock.RF.OrcBerserker", 	DeterminesFigure = true }
 		]
 	},
 	{
@@ -97,7 +97,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.OrcBerserker" }
+			{ BaseID = "UnitBlock.RF.OrcBerserker" }
 		]
 	}
 ]

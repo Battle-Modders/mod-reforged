@@ -1,45 +1,45 @@
 local units = [
 	{
-		ID = "Unit.Conscript",
+		ID = "Unit.RF.Conscript",
 		Troop = "Conscript",
 		Figure = "figure_southern_01"
 	},
 	{
-		ID = "Unit.Conscript_Polearm",
+		ID = "Unit.RF.Conscript_Polearm",
 		Troop = "ConscriptPolearm"
 	},
 	{
-		ID = "Unit.Officer",
+		ID = "Unit.RF.Officer",
 		Troop = "Officer",
 		Figure = "figure_southern_02",
 		StartingResourceMin = 250 // In Vanilla they appear in a group of 250 cost
 	},
 	{
-		ID = "Unit.Gunner",
+		ID = "Unit.RF.Gunner",
 		Troop = "Gunner"
 	},
 	{
-		ID = "Unit.Engineer",
+		ID = "Unit.RF.Engineer",
 		Troop = "Engineer"
 	},
 	{
-		ID = "Unit.Mortar",
+		ID = "Unit.RF.Mortar",
 		Troop = "Mortar",
 		StartingResourceMin = 340, // In Vanilla they appear in a group of 340 cost
 		SubPartyDef = {ID = "MortarEngineers"}
 	},
 	{
-		ID = "Unit.Assassin",
+		ID = "Unit.RF.Assassin",
 		Troop = "Assassin"
 	},
 	{
-		ID = "Unit.Slave",
+		ID = "Unit.RF.Slave",
 		Troop = "Slave"
 	},
 
 // Caravans
 	{
-		ID = "Unit.SouthernCaravanDonkey",
+		ID = "Unit.RF.SouthernCaravanDonkey",
 		Troop = "SouthernDonkey",
 		Figure = "cart_02",
 		Cost = 10      // 0 in Vanilla

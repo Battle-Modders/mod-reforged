@@ -1,36 +1,36 @@
 local units = [
 	{
-		ID = "Unit.GoblinSkirmisherLOW",
+		ID = "Unit.RF.GoblinSkirmisherLOW",
 		Troop = "GoblinSkirmisherLOW",
 		Figure = "figure_goblin_01"
 	},
 	{
-		ID = "Unit.GoblinSkirmisher",
+		ID = "Unit.RF.GoblinSkirmisher",
 		Troop = "GoblinSkirmisher",
 		Figure = "figure_goblin_01"
 	},
 	{
-		ID = "Unit.GoblinAmbusherLOW",
+		ID = "Unit.RF.GoblinAmbusherLOW",
 		Troop = "GoblinAmbusherLOW",
 		Figure = "figure_goblin_02"
 	},
 	{
-		ID = "Unit.GoblinAmbusher",
+		ID = "Unit.RF.GoblinAmbusher",
 		Troop = "GoblinAmbusher",
 		Figure = "figure_goblin_02"
 	},
 	{
-		ID = "Unit.GoblinWolfrider",
+		ID = "Unit.RF.GoblinWolfrider",
 		Troop = "GoblinWolfrider",
 		Figure = "figure_goblin_05"
 	},
 	{
-		ID = "Unit.GoblinOverseer",
+		ID = "Unit.RF.GoblinOverseer",
 		Troop = "GoblinOverseer",
 		Figure = "figure_goblin_04"
 	},
 	{
-		ID = "Unit.GoblinShaman",
+		ID = "Unit.RF.GoblinShaman",
 		Troop = "GoblinShaman",
 		Figure = "figure_goblin_03"
 	}

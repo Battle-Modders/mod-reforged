@@ -1,19 +1,19 @@
 local unitBlocks = [
 	{
-		ID = "UnitBlock.OrcYoung",
-		UnitDefs = [{ BaseID = "Unit.OrcYoungLOW" }, { BaseID = "Unit.OrcYoung" }]
+		ID = "UnitBlock.RF.OrcYoung",
+		UnitDefs = [{ BaseID = "Unit.RF.OrcYoungLOW" }, { BaseID = "Unit.RF.OrcYoung" }]
 	},
 	{
-		ID = "UnitBlock.OrcWarrior",
-		UnitDefs = [{ BaseID = "Unit.OrcWarriorLOW" }, { BaseID = "Unit.OrcWarrior" }]
+		ID = "UnitBlock.RF.OrcWarrior",
+		UnitDefs = [{ BaseID = "Unit.RF.OrcWarriorLOW" }, { BaseID = "Unit.RF.OrcWarrior" }]
 	},
 	{
-		ID = "UnitBlock.OrcBerserker",
-		UnitDefs = [{ BaseID = "Unit.OrcBerserker" }]
+		ID = "UnitBlock.RF.OrcBerserker",
+		UnitDefs = [{ BaseID = "Unit.RF.OrcBerserker" }]
 	},
 	{
-		ID = "UnitBlock.OrcBoss",
-		UnitDefs = [{ BaseID = "Unit.OrcWarlord" }],
+		ID = "UnitBlock.RF.OrcBoss",
+		UnitDefs = [{ BaseID = "Unit.RF.OrcWarlord" }],
 	}
 ]
 

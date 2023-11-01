@@ -1,46 +1,46 @@
 local unitBlocks = [
 	{
-			ID = "UnitBlock.SouthernFrontline",
+			ID = "UnitBlock.RF.SouthernFrontline",
 		//UnitDefs = [{ BaseID = "Conscript" }, { BaseID = "Conscript++" }]
-		UnitDefs = [{ BaseID = "Unit.Conscript" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Conscript" }]
 	},
 	{
-			ID = "UnitBlock.SouthernBackline",
+			ID = "UnitBlock.RF.SouthernBackline",
 		//UnitDefs = [{ BaseID = "Conscript_Polearm" }, { BaseID = "Conscript_Polearm++" }]
-		UnitDefs = [{ BaseID = "Unit.Conscript_Polearm" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Conscript_Polearm" }]
 	},
 	{
-			ID = "UnitBlock.Assassin",
+			ID = "UnitBlock.RF.Assassin",
 		// UnitDefs = [{ BaseID = "Assassin" }, { BaseID = "Assassin++" }]
-		UnitDefs = [{ BaseID = "Unit.Assassin" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Assassin" }]
 	},
 	{
-			ID = "UnitBlock.Officer",
+			ID = "UnitBlock.RF.Officer",
 		//UnitDefs = [{ BaseID = "Officer" }, { BaseID = "Officer++" }]
-		UnitDefs = [{ BaseID = "Unit.Officer" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Officer" }]
 	},
 	{
-			ID = "UnitBlock.SouthernRanged",
+			ID = "UnitBlock.RF.SouthernRanged",
 		//UnitDefs = [{ BaseID = "Gunner" }, { BaseID = "Gunner++" }]
-		UnitDefs = [{ BaseID = "Unit.Gunner" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Gunner" }]
 	},
 	{
-			ID = "UnitBlock.Siege",
-		UnitDefs = [{ BaseID = "Unit.Mortar" }]
+			ID = "UnitBlock.RF.Siege",
+		UnitDefs = [{ BaseID = "Unit.RF.Mortar" }]
 	},
 	{
-			ID = "UnitBlock.Engineer",
-		UnitDefs = [{ BaseID = "Unit.Engineer" }]
+			ID = "UnitBlock.RF.Engineer",
+		UnitDefs = [{ BaseID = "Unit.RF.Engineer" }]
 	},
 	{
-			ID = "UnitBlock.Slave",
-		UnitDefs = [{ BaseID = "Unit.Slave" }]
+			ID = "UnitBlock.RF.Slave",
+		UnitDefs = [{ BaseID = "Unit.RF.Slave" }]
 	},
 
 // Caravan
 	{
-	ID = "UnitBlock.SouthernCaravanDonkeys",
-		UnitDefs = [{ BaseID = "Unit.SouthernCaravanDonkey" }]
+	ID = "UnitBlock.RF.SouthernCaravanDonkeys",
+		UnitDefs = [{ BaseID = "Unit.RF.SouthernCaravanDonkey" }]
 	}
 ]
 

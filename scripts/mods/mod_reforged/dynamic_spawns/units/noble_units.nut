@@ -1,46 +1,46 @@
 local units = [
 	{
-		ID = "Unit.NobleFootman",
+		ID = "Unit.RF.NobleFootman",
 		Troop = "Footman",
 	},
 	{
-		ID = "Unit.NobleBillman",
+		ID = "Unit.RF.NobleBillman",
 		Troop = "Billman",
 	},
 	{
-		ID = "Unit.NobleArbalester",
+		ID = "Unit.RF.NobleArbalester",
 		Troop = "Arbalester"
 	},
 	{
-		ID = "Unit.NobleArmoredWardog",
+		ID = "Unit.RF.NobleArmoredWardog",
 		Troop = "ArmoredWardog"
 	},
 	{
-		ID = "Unit.NobleStandardBearer",
+		ID = "Unit.RF.NobleStandardBearer",
 		Troop = "StandardBearer",
 		Figure = "figure_noble_02",
 		StartingResourceMin = 200	// In Vanilla they appear in a group of 240 cost
 	},
 	{
-		ID = "Unit.NobleSergeant",
+		ID = "Unit.RF.NobleSergeant",
 		Troop = "Sergeant",
 		Figure = "figure_noble_02",
 		StartingResourceMin = 200	// In Vanilla they appear in a group of 235 cost in noble caravans
 	},
 	{
-		ID = "Unit.NobleZweihander",
+		ID = "Unit.RF.NobleZweihander",
 		Troop = "Greatsword",
 		StartingResourceMin = 325	// In Vanilla they appear in a group of 235 cost in noble caravans
 	},
 	{
-		ID = "Unit.NobleKnight",
+		ID = "Unit.RF.NobleKnight",
 		Troop = "Knight",
 		Figure = "figure_noble_03",
 		StartingResourceMin = 325	// In Vanilla they appear in a group of 235 cost in noble caravans
 	},
 
 	{   // This already exists under human_units but noble caravans use a different figure
-		ID = "Unit.NobleCaravanDonkey",
+		ID = "Unit.RF.NobleCaravanDonkey",
 		Troop = "CaravanDonkey",
 		Cost = 10,      // 0 in Vanilla
 		Figure = "cart_01"

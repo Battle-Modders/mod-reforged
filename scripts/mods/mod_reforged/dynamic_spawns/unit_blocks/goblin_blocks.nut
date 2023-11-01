@@ -1,28 +1,28 @@
 local unitBlocks = [
 	{
-		ID = "UnitBlock.GoblinFrontline",
+		ID = "UnitBlock.RF.GoblinFrontline",
 		UnitDefs =
 		[
-			{ BaseID = "Unit.GoblinSkirmisherLOW" },
-			{ BaseID = "Unit.GoblinSkirmisher" }
+			{ BaseID = "Unit.RF.GoblinSkirmisherLOW" },
+			{ BaseID = "Unit.RF.GoblinSkirmisher" }
 		]
 	},
 	{
-		ID = "UnitBlock.GoblinRanged",
+		ID = "UnitBlock.RF.GoblinRanged",
 		UnitDefs = [
-			{ BaseID = "Unit.GoblinAmbusherLOW" },
-			{ BaseID = "Unit.GoblinAmbusher" }
+			{ BaseID = "Unit.RF.GoblinAmbusherLOW" },
+			{ BaseID = "Unit.RF.GoblinAmbusher" }
 		]
 	},
 	{
-		ID = "UnitBlock.GoblinFlank",
-		UnitDefs = [{ BaseID = "Unit.GoblinWolfrider" }]
+		ID = "UnitBlock.RF.GoblinFlank",
+		UnitDefs = [{ BaseID = "Unit.RF.GoblinWolfrider" }]
 	},
 	{
-		ID = "UnitBlock.GoblinBoss",
+		ID = "UnitBlock.RF.GoblinBoss",
 		UnitDefs = ::MSU.Class.WeightedContainer([
-			[1, { BaseID = "Unit.GoblinOverseer" }],
-			[1, { BaseID = "Unit.GoblinShaman" }]
+			[1, { BaseID = "Unit.RF.GoblinOverseer" }],
+			[1, { BaseID = "Unit.RF.GoblinShaman" }]
 		])
 	}
 ]

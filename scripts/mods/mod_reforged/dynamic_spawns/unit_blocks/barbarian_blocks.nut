@@ -1,34 +1,34 @@
 local unitBlocks = [
 	{
-		ID = "UnitBlock.BarbarianFrontline",
-		UnitDefs = [{ BaseID = "Unit.BarbarianThrall" }, { BaseID = "Unit.BarbarianMarauder", StartingResourceMin = 125 }, { BaseID = "Unit.BarbarianChosen", StartingResourceMin = 200 }]
+		ID = "UnitBlock.RF.BarbarianFrontline",
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianThrall" }, { BaseID = "Unit.RF.BarbarianMarauder", StartingResourceMin = 125 }, { BaseID = "Unit.RF.BarbarianChosen", StartingResourceMin = 200 }]
 	},
 	{
-		ID = "UnitBlock.BarbarianSupport",
-		UnitDefs = [{ BaseID = "Unit.BarbarianDrummer" }]
+		ID = "UnitBlock.RF.BarbarianSupport",
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianDrummer" }]
 
 	},
 	{
-		ID = "UnitBlock.BarbarianDog",
-		UnitDefs = [{ BaseID = "Unit.BarbarianWarhound" }]
+		ID = "UnitBlock.RF.BarbarianDog",
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianWarhound" }]
 	},
 	{
-		ID = "UnitBlock.BarbarianBeastmaster",
-		UnitDefs = [{ BaseID = "Unit.BarbarianBeastmasterU" }, { BaseID = "Unit.BarbarianBeastmasterF" }, { BaseID = "Unit.BarbarianBeastmasterUU" }, { BaseID = "Unit.BarbarianBeastmasterFF" }],
+		ID = "UnitBlock.RF.BarbarianBeastmaster",
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianBeastmasterU" }, { BaseID = "Unit.RF.BarbarianBeastmasterF" }, { BaseID = "Unit.RF.BarbarianBeastmasterUU" }, { BaseID = "Unit.RF.BarbarianBeastmasterFF" }],
 		StartingResourceMin = 200	// In Vanilla they appear in a group of 195 cost
 	},
 	{
-		ID = "UnitBlock.BarbarianHunterFrontline",
-		UnitDefs = [{ BaseID = "Unit.BarbarianThrall" }]
+		ID = "UnitBlock.RF.BarbarianHunterFrontline",
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianThrall" }]
 	},
 
 	{
-		ID = "UnitBlock.BarbarianUnhold",
-		UnitDefs = [{ BaseID = "Unit.BarbarianUnhold" }]
+		ID = "UnitBlock.RF.BarbarianUnhold",
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianUnhold" }]
 	},
 	{
-		ID = "UnitBlock.BarbarianUnholdFrost",
-		UnitDefs = [{ BaseID = "Unit.BarbarianUnholdFrost" }]
+		ID = "UnitBlock.RF.BarbarianUnholdFrost",
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianUnholdFrost" }]
 	}
 ]
 

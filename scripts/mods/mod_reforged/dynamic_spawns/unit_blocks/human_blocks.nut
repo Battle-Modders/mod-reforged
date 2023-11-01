@@ -1,81 +1,81 @@
 local unitBlocks = [
 	{
-		ID = "UnitBlock.MercenaryFrontline",
-		UnitDefs = [{ BaseID = "Unit.MercenaryLOW" }, { BaseID = "Unit.Mercenary" }]
+		ID = "UnitBlock.RF.MercenaryFrontline",
+		UnitDefs = [{ BaseID = "Unit.RF.MercenaryLOW" }, { BaseID = "Unit.RF.Mercenary" }]
 	},
 	{
-		ID = "UnitBlock.MercenaryRanged",
-		UnitDefs = [{ BaseID = "Unit.MercenaryRanged" }]
+		ID = "UnitBlock.RF.MercenaryRanged",
+		UnitDefs = [{ BaseID = "Unit.RF.MercenaryRanged" }]
 	},
 	{
-		ID = "UnitBlock.MercenaryElite",
+		ID = "UnitBlock.RF.MercenaryElite",
 		UnitDefs = ::MSU.Class.WeightedContainer([
-			[1, { BaseID = "Unit.MasterArcher" }],
-			[1, { BaseID = "Unit.HedgeKnight" }],
-			[1, { BaseID = "Unit.Swordmaster" }]
+			[1, { BaseID = "Unit.RF.MasterArcher" }],
+			[1, { BaseID = "Unit.RF.HedgeKnight" }],
+			[1, { BaseID = "Unit.RF.Swordmaster" }]
 		])
 	},
 	{
-		ID = "UnitBlock.BountyHunter",
-		UnitDefs = [{ BaseID = "Unit.BountyHunter" }]
+		ID = "UnitBlock.RF.BountyHunter",
+		UnitDefs = [{ BaseID = "Unit.RF.BountyHunter" }]
 	},
 	{
-		ID = "UnitBlock.BountyHunterRanged",
-		UnitDefs = [{ BaseID = "Unit.BountyHunterRanged" }]
+		ID = "UnitBlock.RF.BountyHunterRanged",
+		UnitDefs = [{ BaseID = "Unit.RF.BountyHunterRanged" }]
 	},
 	{
-		ID = "UnitBlock.Wardog",
-		UnitDefs = [{ BaseID = "Unit.Wardog" }]
+		ID = "UnitBlock.RF.Wardog",
+		UnitDefs = [{ BaseID = "Unit.RF.Wardog" }]
 	},
 	{
-		ID = "UnitBlock.Slave",
-		UnitDefs = [{ BaseID = "Unit.Slave" }]
+		ID = "UnitBlock.RF.Slave",
+		UnitDefs = [{ BaseID = "Unit.RF.Slave" }]
 	},
 
 // Civilians
 	{
-		ID = "UnitBlock.CultistAmbush",
-		UnitDefs = [{ BaseID = "Unit.CultistAmbush" }]
+		ID = "UnitBlock.RF.CultistAmbush",
+		UnitDefs = [{ BaseID = "Unit.RF.CultistAmbush" }]
 	},
 	{
-		ID = "UnitBlock.Peasant",
-		UnitDefs = [{ BaseID = "Unit.Peasant" }]
+		ID = "UnitBlock.RF.Peasant",
+		UnitDefs = [{ BaseID = "Unit.RF.Peasant" }]
 	},
 	{
-		ID = "UnitBlock.SouthernPeasant",
-		UnitDefs = [{ BaseID = "Unit.SouthernPeasant" }]
+		ID = "UnitBlock.RF.SouthernPeasant",
+		UnitDefs = [{ BaseID = "Unit.RF.SouthernPeasant" }]
 	},
 	{
-		ID = "UnitBlock.PeasantArmed",
-		UnitDefs = [{ BaseID = "Unit.PeasantArmed" }]
+		ID = "UnitBlock.RF.PeasantArmed",
+		UnitDefs = [{ BaseID = "Unit.RF.PeasantArmed" }]
 	},
 
 // Caravans
 	{
-		ID = "UnitBlock.CaravanDonkey",
-		UnitDefs = [{ BaseID = "Unit.CaravanDonkey" }]
+		ID = "UnitBlock.RF.CaravanDonkey",
+		UnitDefs = [{ BaseID = "Unit.RF.CaravanDonkey" }]
 	},
 	{
-		ID = "UnitBlock.CaravanHand",
-		UnitDefs = [{ BaseID = "Unit.CaravanHand" }]
+		ID = "UnitBlock.RF.CaravanHand",
+		UnitDefs = [{ BaseID = "Unit.RF.CaravanHand" }]
 	},
 	{
-		ID = "UnitBlock.CaravanGuard",
-		UnitDefs = [{ BaseID = "Unit.CaravanGuard" }, { BaseID = "Unit.Mercenary" }]		// In Vanilla they also allow ranged mercenaries here
+		ID = "UnitBlock.RF.CaravanGuard",
+		UnitDefs = [{ BaseID = "Unit.RF.CaravanGuard" }, { BaseID = "Unit.RF.Mercenary" }]		// In Vanilla they also allow ranged mercenaries here
 	},
 
 // Militia
 	{
-		ID = "UnitBlock.MilitiaFrontline",
-		UnitDefs = [{ BaseID = "Unit.Militia" }, { BaseID = "Unit.MilitiaVeteran" }]
+		ID = "UnitBlock.RF.MilitiaFrontline",
+		UnitDefs = [{ BaseID = "Unit.RF.Militia" }, { BaseID = "Unit.RF.MilitiaVeteran" }]
 	},
 	{
-		ID = "UnitBlock.MilitiaRanged",
-		UnitDefs = [{ BaseID = "Unit.MilitiaRanged" }]
+		ID = "UnitBlock.RF.MilitiaRanged",
+		UnitDefs = [{ BaseID = "Unit.RF.MilitiaRanged" }]
 	},
 	{
-		ID = "UnitBlock.MilitiaCaptain",
-		UnitDefs = [{ BaseID = "Unit.MilitiaCaptain" }]
+		ID = "UnitBlock.RF.MilitiaCaptain",
+		UnitDefs = [{ BaseID = "Unit.RF.MilitiaCaptain" }]
 	}
 ]
 

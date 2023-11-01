@@ -1,61 +1,100 @@
 local units = [
 	{
-		ID = "Unit.RF_BanditScoundrel",
+		ID = "Unit.RF.BanditThug",
+		Troop = "BanditThug",
+		Figure = "figure_bandit_02",
+		Cost = 9
+	},
+	{
+		ID = "Unit.RF.Wardog",
+		Troop = "Wardog",
+		Cost = 10
+	},
+	{
+		ID = "Unit.RF.BanditPoacher",
+		Troop = "BanditMarksmanLOW",
+		Figure = "figure_bandit_01",
+		Cost = 12
+	},
+	{
+		ID = "Unit.RF.BanditMarksman",
+		Troop = "BanditMarksman",
+		Cost = 15
+	},
+	{
+		ID = "Unit.RF.BanditRaider",
+		Troop = "BanditRaider",
+		Figure = "figure_bandit_03",
+		Cost = 20
+	},
+	{
+		ID = "Unit.RF.BanditLeader",
+		Troop = "BanditLeader",
+		Figure = "figure_bandit_04",
+		Cost = 25
+	},
+	{
+		ID = "Unit.RF.BanditRaiderWolf",
+		Troop = "BanditRaiderWolf",
+		Cost = 25
+	}
+	{
+		ID = "Unit.RF.RF_BanditScoundrel",
 		Troop = "RF_BanditScoundrel",
 		Figure = "figure_bandit_02"
 	},
 	{
-		ID = "Unit.RF_BanditRobber",
+		ID = "Unit.RF.RF_BanditRobber",
 		Troop = "RF_BanditRobber",
 		Figure = "figure_bandit_03"
 	},
 	{
-		ID = "Unit.RF_BanditHunter",
+		ID = "Unit.RF.RF_BanditHunter",
 		Troop = "RF_BanditHunter",
 		Figure = "figure_bandit_03"
 	},
 	{
-		ID = "Unit.RF_BanditVandal",
+		ID = "Unit.RF.RF_BanditVandal",
 		Troop = "RF_BanditVandal",
 		Figure = "figure_bandit_03"
 	},
 	{
-		ID = "Unit.RF_BanditPillager",
+		ID = "Unit.RF.RF_BanditPillager",
 		Troop = "RF_BanditPillager",
 		Figure = "figure_bandit_03"
 	},
 	{
-		ID = "Unit.RF_BanditOutlaw",
+		ID = "Unit.RF.RF_BanditOutlaw",
 		Troop = "RF_BanditOutlaw",
 		Figure = "figure_bandit_03"
 	},
 	{
-		ID = "Unit.RF_BanditBandit",
+		ID = "Unit.RF.RF_BanditBandit",
 		Troop = "RF_BanditBandit",
 		Figure = "figure_bandit_03"
 	},
 	{
-		ID = "Unit.RF_BanditHighwayman",
+		ID = "Unit.RF.RF_BanditHighwayman",
 		Troop = "RF_BanditHighwayman",
 		Figure = "figure_bandit_03"
 	},
 	{
-		ID = "Unit.RF_BanditMarauder",
+		ID = "Unit.RF.RF_BanditMarauder",
 		Troop = "RF_BanditMarauder",
 		Figure = "figure_bandit_03"
 	},
 	{
-		ID = "Unit.RF_BanditSharpshooter",
+		ID = "Unit.RF.RF_BanditSharpshooter",
 		Troop = "RF_BanditSharpshooter",
 		Figure = "figure_bandit_03"
 	},
 	{
-		ID = "Unit.RF_BanditKiller",
+		ID = "Unit.RF.RF_BanditKiller",
 		Troop = "RF_BanditKiller",
 		Figure = "figure_bandit_03"
 	},
 	{
-		ID = "Unit.RF_BanditBaron",
+		ID = "Unit.RF.RF_BanditBaron",
 		Troop = "RF_BanditBaron",
 		Figure = "figure_bandit_04",
 		StartingResourceMin = 400

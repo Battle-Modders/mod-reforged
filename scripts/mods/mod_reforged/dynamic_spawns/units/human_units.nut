@@ -1,40 +1,40 @@
 local units = [
 // Civilians
 	{
-		ID = "Unit.Peasant",
+		ID = "Unit.RF.Peasant",
 		Troop = "Peasant",
 		Figure = "figure_civilian_01"
 	},
 	{
-		ID = "Unit.PeasantArmed",
+		ID = "Unit.RF.PeasantArmed",
 		Troop = "PeasantArmed",
 		Figure = "figure_civilian_01"
 	},
 	{
-		ID = "Unit.SouthernPeasant",
+		ID = "Unit.RF.SouthernPeasant",
 		Troop = "SouthernPeasant"
 	},
 	{
-		ID = "Unit.CultistAmbush",
+		ID = "Unit.RF.CultistAmbush",
 		Troop = "CultistAmbush",
 		Figure = "figure_civilian_03"
 	},
 	{
-		ID = "Unit.NorthernSlave",
+		ID = "Unit.RF.NorthernSlave",
 		Troop = "NorthernSlave"
 	},
 
 // Caravans
 	{
-		ID = "Unit.CaravanHand",
+		ID = "Unit.RF.CaravanHand",
 		Troop = "CaravanHand"
 	},
 	{
-		ID = "Unit.CaravanGuard",
+		ID = "Unit.RF.CaravanGuard",
 		Troop = "CaravanGuard"
 	},
 	{
-		ID = "Unit.CaravanDonkey",
+		ID = "Unit.RF.CaravanDonkey",
 		Troop = "CaravanDonkey",
 		Cost = 10,      // 0 in Vanilla
 		Figure = "cart_02"
@@ -42,20 +42,20 @@ local units = [
 
 // Militia
 	{
-		ID = "Unit.Militia",
+		ID = "Unit.RF.Militia",
 		Troop = "Militia"
 	},
 	{
-		ID = "Unit.MilitiaRanged",
+		ID = "Unit.RF.MilitiaRanged",
 		Troop = "MilitiaRanged"
 	},
 	{
-		ID = "Unit.MilitiaVeteran",
+		ID = "Unit.RF.MilitiaVeteran",
 		Troop = "MilitiaVeteran",
 		Cost = 15   // Vanilla 12
 	},
 	{
-		ID = "Unit.MilitiaCaptain",
+		ID = "Unit.RF.MilitiaCaptain",
 		Troop = "MilitiaCaptain",
 		Cost = 20,
 		StartingResourceMin = 144	// In Vanilla they appear in a group of 144 cost
@@ -63,42 +63,42 @@ local units = [
 
 // Mercenaries
 	{
-		ID = "Unit.BountyHunter",
+		ID = "Unit.RF.BountyHunter",
 		Troop = "BountyHunter"
 	},
 	{
-		ID = "Unit.BountyHunterRanged",
+		ID = "Unit.RF.BountyHunterRanged",
 		Troop = "BountyHunterRanged"
 	},
 	{
-		ID = "Unit.Wardog",
+		ID = "Unit.RF.Wardog",
 		Troop = "Wardog"
 	},
 
 	{
-		ID = "Unit.MercenaryLOW",
+		ID = "Unit.RF.MercenaryLOW",
 		Troop = "MercenaryLOW"
 	},
 	{
-		ID = "Unit.Mercenary",
+		ID = "Unit.RF.Mercenary",
 		Troop = "Mercenary"
 	},
 	{
-		ID = "Unit.MercenaryRanged",
+		ID = "Unit.RF.MercenaryRanged",
 		Troop = "MercenaryRanged"
 	},
 	{
-		ID = "Unit.MasterArcher",
+		ID = "Unit.RF.MasterArcher",
 		Troop = "MasterArcher",
 		StartingResourceMin = 286	// In Vanilla MasterArcher appear in a group of 286 cost
 	},
 	{
-		ID = "Unit.HedgeKnight",
+		ID = "Unit.RF.HedgeKnight",
 		Troop = "HedgeKnight",
 		StartingResourceMin = 286	// In Vanilla MasterArcher appear in a group of 286 cost
 	},
 	{
-		ID = "Unit.Swordmaster",
+		ID = "Unit.RF.Swordmaster",
 		Troop = "Swordmaster",
 		StartingResourceMin = 286	// In Vanilla MasterArcher appear in a group of 286 cost
 	}
