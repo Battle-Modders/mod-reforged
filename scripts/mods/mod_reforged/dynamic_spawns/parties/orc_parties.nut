@@ -32,7 +32,7 @@ local parties = [
 		VisionMult = 1.0,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.OrcYoung", 	RatioMin = 0.15, RatioMax = 1.00, DeterminesFigure = true, StartingResourceMax = 250},
-			{ BaseID = "UnitBlock.RF.OrcYoung", 	RatioMin = 0.00, RatioMax = 0.65, DeterminesFigure = true, StartingResourceMin = 250},	// Lategame Parties will have less Young in them
+			{ BaseID = "UnitBlock.RF.OrcYoung", 	RatioMin = 0.00, RatioMax = 0.65, DeterminesFigure = true, StartingResourceMin = 250},	// Lategame Parties will have fewer Young in them
 			{ BaseID = "UnitBlock.RF.OrcBerserker", RatioMin = 0.00, RatioMax = 0.45, DeterminesFigure = true, StartingResourceMin = 125},
 			{ BaseID = "UnitBlock.RF.OrcWarrior", 	RatioMin = 0.00, RatioMax = 0.80, DeterminesFigure = true, StartingResourceMin = 150},
 			{ BaseID = "UnitBlock.RF.OrcBoss", 		RatioMin = 0.00, RatioMax = 0.08, DeterminesFigure = true, StartingResourceMin = 210}		// Vanilla never spawns more than one Boss here
