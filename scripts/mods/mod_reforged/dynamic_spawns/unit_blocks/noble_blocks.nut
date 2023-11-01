@@ -1,33 +1,33 @@
 local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.NobleFrontline",
-		UnitDefs = [{ BaseID = "Unit.RF.NobleFootman" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Footman" }]
 	},
 	{
 		ID = "UnitBlock.RF.NobleBackline",
-		UnitDefs = [{ BaseID = "Unit.RF.NobleBillman" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Billman" }]
 	},
 	{
 		ID = "UnitBlock.RF.NobleRanged",
-		UnitDefs = [{ BaseID = "Unit.RF.NobleArbalester" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Arbalester" }]
 	},
 	{
 		ID = "UnitBlock.RF.NobleFlank",
-		UnitDefs = [{ BaseID = "Unit.RF.NobleArmoredWardog" }]
+		UnitDefs = [{ BaseID = "Unit.RF.ArmoredWardog" }]
 	},
 	{
 		ID = "UnitBlock.RF.NobleSupport",
-		UnitDefs = [{ BaseID = "Unit.RF.NobleStandardBearer" }]
+		UnitDefs = [{ BaseID = "Unit.RF.StandardBearer" }]
 	},
 	{
 		ID = "UnitBlock.RF.NobleOfficer",
-		UnitDefs = [{ BaseID = "Unit.RF.NobleSergeant" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Sergeant" }]
 	},
 	{
 		ID = "UnitBlock.RF.NobleElite",
 		UnitDefs = ::MSU.Class.WeightedContainer([
-			[1, { BaseID = "Unit.RF.NobleZweihander" }],
-			[1, { BaseID = "Unit.RF.NobleKnight" }]
+			[1, { BaseID = "Unit.RF.Greatsword" }],
+			[1, { BaseID = "Unit.RF.Knight" }]
 		])
 	},
 

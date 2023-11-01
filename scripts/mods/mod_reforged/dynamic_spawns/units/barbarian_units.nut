@@ -10,7 +10,7 @@ local units = [
 		Figure = "figure_wildman_02"
 	},
 	{
-		ID = "Unit.RF.BarbarianChosen",
+		ID = "Unit.RF.BarbarianChampion",
 		Troop = "BarbarianChampion",
 		Figure = "figure_wildman_03",
 		StartingResourceMin = 170
@@ -21,12 +21,12 @@ local units = [
 		StartingResourceMin = 200 // In Vanilla they start appearing in a group of 210 cost alongside 15 thralls
 	},
 	{
-		ID = "Unit.RF.BarbarianKing",
-		Troop = "BarbarianChosen",		// Weird Vanilla Naming Scheme
+		ID = "Unit.RF.BarbarianChosen",
+		Troop = "BarbarianChosen",		// This is the Barbarian King. Weird Vanilla Naming Scheme
 		Figure = "figure_wildman_06"
 	},
 	{
-		ID = "Unit.RF.BarbarianWarhound",
+		ID = "Unit.RF.Warhound",
 		Troop = "Warhound"
 	},
 	{

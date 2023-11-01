@@ -1,7 +1,7 @@
 local unitBlocks = [
 	{
 			ID = "UnitBlock.RF.ZombieFrontline",
-		UnitDefs = [{ BaseID = "Unit.RF.Zombie" }, { BaseID = "Unit.RF.ZombieYeoman" }, { BaseID = "Unit.RF.FallenHero" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Zombie" }, { BaseID = "Unit.RF.ZombieYeoman" }, { BaseID = "Unit.RF.ZombieKnight" }]
 	},
 	{
 			ID = "UnitBlock.RF.ZombieLight",
@@ -9,7 +9,7 @@ local unitBlocks = [
 	},
 	{
 			ID = "UnitBlock.RF.ZombieElite",
-		UnitDefs = [{ BaseID = "Unit.RF.FallenHero" }]
+		UnitDefs = [{ BaseID = "Unit.RF.ZombieKnight" }]
 	},
 	{
 			ID = "UnitBlock.RF.ZombieSouthern",

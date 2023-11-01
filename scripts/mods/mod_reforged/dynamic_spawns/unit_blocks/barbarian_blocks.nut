@@ -1,7 +1,7 @@
 local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.BarbarianFrontline",
-		UnitDefs = [{ BaseID = "Unit.RF.BarbarianThrall" }, { BaseID = "Unit.RF.BarbarianMarauder", StartingResourceMin = 125 }, { BaseID = "Unit.RF.BarbarianChosen", StartingResourceMin = 200 }]
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianThrall" }, { BaseID = "Unit.RF.BarbarianMarauder", StartingResourceMin = 125 }, { BaseID = "Unit.RF.BarbarianChampion", StartingResourceMin = 200 }]
 	},
 	{
 		ID = "UnitBlock.RF.BarbarianSupport",
@@ -10,7 +10,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BarbarianDog",
-		UnitDefs = [{ BaseID = "Unit.RF.BarbarianWarhound" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Warhound" }]
 	},
 	{
 		ID = "UnitBlock.RF.BarbarianBeastmaster",

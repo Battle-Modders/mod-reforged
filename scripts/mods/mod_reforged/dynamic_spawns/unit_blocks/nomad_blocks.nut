@@ -14,9 +14,9 @@ local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.NomadElite",
 		UnitDefs = ::MSU.Class.WeightedContainer([
-			[1, { BaseID = "Unit.RF.NomadExecutioner" }],
-			[1, { BaseID = "Unit.RF.NomadDesertStalker" }],
-			[1, { BaseID = "Unit.RF.NomadDesertDevil" }]
+			[1, { BaseID = "Unit.RF.Executioner" }],
+			[1, { BaseID = "Unit.RF.DesertStalker" }],
+			[1, { BaseID = "Unit.RF.DesertDevil" }]
 		])
 	}
 ]

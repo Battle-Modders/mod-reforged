@@ -17,7 +17,7 @@ local units = [
 		Figure = "figure_zombie_03"
 	},
 	{
-		ID = "Unit.RF.FallenHero",     // Fallen Hero
+		ID = "Unit.RF.ZombieKnight",     // Fallen Hero
 		Troop = "ZombieKnight",
 		Figure = "figure_zombie_03",
 		StartingResourceMin = 200
@@ -83,7 +83,7 @@ local units = [
 
 // Bodyguards for Necromancer
 	{
-		ID = "Unit.RF.YeomanBodyguard",
+		ID = "Unit.RF.ZombieYeomanBodyguard",
 		Troop = "ZombieYeomanBodyguard",
 		Figure = "figure_zombie_02"
 	},
@@ -93,7 +93,7 @@ local units = [
 		Figure = "figure_zombie_03"
 	},
 	{
-		ID = "Unit.RF.FallenHeroBodyguard",
+		ID = "Unit.RF.ZombieKnightBodyguard",
 		Troop = "ZombieKnightBodyguard",
 		Figure = "figure_zombie_03"
 	},
