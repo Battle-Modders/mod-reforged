@@ -7,7 +7,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Direwolf", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.Direwolf", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{
@@ -18,7 +18,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Ghoul", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.Ghoul", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{
@@ -29,7 +29,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Lindwurm", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.Lindwurm", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{
@@ -40,7 +40,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Unhold", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.Unhold", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{
@@ -51,7 +51,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.UnholdFrost", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.UnholdFrost", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{
@@ -62,7 +62,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.UnholdBog", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.UnholdBog", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{
@@ -73,7 +73,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Spider", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.Spider", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{
@@ -84,7 +84,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Alp", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.Alp", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{
@@ -95,7 +95,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Schrat", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.Schrat", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{
@@ -148,7 +148,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.HexeNoBodyguard", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.HexeNoBodyguard", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 
@@ -161,7 +161,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Hyena", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.Hyena", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{
@@ -172,7 +172,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Serpent", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.Serpent", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	},
 	{
@@ -183,7 +183,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.SandGolem", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.RF.SandGolem", RatioMin = 0.00, RatioMax = 1.00 }
 		]
 	}
 
@@ -191,13 +191,13 @@ local parties = [
 	{
 		ID = "SpiderBodyguards",
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.SpiderBodyguard"}
+			{ BaseID = "UnitBlock.RF.SpiderBodyguard" }
 		]
 	},
 	{
 		ID = "DirewolfBodyguards",
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.DirewolfBodyguard"}
+			{ BaseID = "UnitBlock.RF.DirewolfBodyguard" }
 		]
 	}
 ]

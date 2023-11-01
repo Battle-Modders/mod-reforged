@@ -39,7 +39,7 @@ local unitBlocks = [
 
 // Caravan
 	{
-	ID = "UnitBlock.RF.SouthernCaravanDonkeys",
+	ID = "UnitBlock.RF.SouthernCaravanDonkey",
 		UnitDefs = [{ BaseID = "Unit.RF.SouthernDonkey" }]
 	}
 ]

@@ -1,7 +1,7 @@
 local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.MercenaryFrontline",
-		UnitDefs = [{ BaseID = "Unit.RF.MercenaryLOW" }, { BaseID = "Unit.RF.Mercenary" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Mercenary" }]
 	},
 	{
 		ID = "UnitBlock.RF.MercenaryRanged",

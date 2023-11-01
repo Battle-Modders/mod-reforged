@@ -1,18 +1,8 @@
 local units = [
 	{
-		ID = "Unit.RF.GoblinSkirmisherLOW",
-		Troop = "GoblinSkirmisherLOW",
-		Figure = "figure_goblin_01"
-	},
-	{
 		ID = "Unit.RF.GoblinSkirmisher",
 		Troop = "GoblinSkirmisher",
 		Figure = "figure_goblin_01"
-	},
-	{
-		ID = "Unit.RF.GoblinAmbusherLOW",
-		Troop = "GoblinAmbusherLOW",
-		Figure = "figure_goblin_02"
 	},
 	{
 		ID = "Unit.RF.GoblinAmbusher",

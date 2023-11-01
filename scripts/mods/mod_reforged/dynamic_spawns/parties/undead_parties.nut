@@ -7,10 +7,10 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.UndeadFrontline", 	RatioMin = 0.50, RatioMax = 1.00, DeterminesFigure = true},
-			{ BaseID = "UnitBlock.RF.UndeadBackline", 	RatioMin = 0.00, RatioMax = 0.50, DeterminesFigure = true, ReqPartySize = 8},
-			{ BaseID = "UnitBlock.RF.UndeadBoss", 		RatioMin = 0.00, RatioMax = 0.10, DeterminesFigure = true, ReqPartySize = 15},
-			{ BaseID = "UnitBlock.RF.Vampire", 	RatioMin = 0.00, RatioMax = 0.11, DeterminesFigure = true, ReqPartySize = 18, StartingResourceMin = 225},
+			{ BaseID = "UnitBlock.RF.UndeadFrontline", RatioMin = 0.50, RatioMax = 1.00, DeterminesFigure = true },
+			{ BaseID = "UnitBlock.RF.UndeadBackline", RatioMin = 0.00, RatioMax = 0.50, DeterminesFigure = true, ReqPartySize = 8 },
+			{ BaseID = "UnitBlock.RF.UndeadBoss", RatioMin = 0.00, RatioMax = 0.10, DeterminesFigure = true, ReqPartySize = 15 },
+			{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.00, RatioMax = 0.11, DeterminesFigure = true, ReqPartySize = 18, StartingResourceMin = 225 },
 		]
 	},
 	{
@@ -21,7 +21,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Vampire", 	RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true}
+			{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true }
 		]
 	},
 	{
@@ -32,8 +32,8 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.UndeadFrontline", 	RatioMin = 0.60, RatioMax = 1.00},		// In Vanilla only LightSkeletons spawn here
-			{ BaseID = "UnitBlock.RF.Vampire", 	RatioMin = 0.15, RatioMax = 1.00, DeterminesFigure = true}
+			{ BaseID = "UnitBlock.RF.UndeadFrontline", RatioMin = 0.60, RatioMax = 1.00 },		// In Vanilla only LightSkeletons spawn here
+			{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.15, RatioMax = 1.00, DeterminesFigure = true }
 		]
 	},
 

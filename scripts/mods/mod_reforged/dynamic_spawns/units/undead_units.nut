@@ -59,11 +59,6 @@ local units = [
 
 // Vampire
 	{
-		ID = "Unit.RF.VampireLOW",
-		Troop = "VampireLOW",
-		Figure = "figure_vampire_01"       // Exclusive
-	},
-	{
 		ID = "Unit.RF.Vampire",
 		Troop = "Vampire",
 		Figure = "figure_vampire_02"       // Exclusive

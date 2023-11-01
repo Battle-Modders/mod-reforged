@@ -3,14 +3,12 @@ local unitBlocks = [
 		ID = "UnitBlock.RF.GoblinFrontline",
 		UnitDefs =
 		[
-			{ BaseID = "Unit.RF.GoblinSkirmisherLOW" },
 			{ BaseID = "Unit.RF.GoblinSkirmisher" }
 		]
 	},
 	{
 		ID = "UnitBlock.RF.GoblinRanged",
 		UnitDefs = [
-			{ BaseID = "Unit.RF.GoblinAmbusherLOW" },
 			{ BaseID = "Unit.RF.GoblinAmbusher" }
 		]
 	},

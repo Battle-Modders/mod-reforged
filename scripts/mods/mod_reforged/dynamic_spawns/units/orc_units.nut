@@ -1,10 +1,5 @@
 local units = [
 	{
-		ID = "Unit.RF.OrcYoungLOW",
-		Troop = "OrcYoungLOW",
-		Figure = "figure_orc_01"       // I assume this is OrcYoung without Armor and without Helmet
-	},
-	{
 		ID = "Unit.RF.OrcYoung",
 		Troop = "OrcYoung",
 		Figure = ["figure_orc_02", "figure_orc_06"]       // I assume this is OrcYoung only with Helmet (02) and OrcYoung only with Armor (06)
@@ -13,11 +8,6 @@ local units = [
 		ID = "Unit.RF.OrcBerserker",
 		Troop = "OrcBerserker",
 		Figure = "figure_orc_03"        // I'm sure this is OrcBerserker
-	},
-	{
-		ID = "Unit.RF.OrcWarriorLOW",
-		Troop = "OrcWarriorLOW",
-		Figure = "figure_orc_04"        // I'm sure this is OrcWarrior
 	},
 	{
 		ID = "Unit.RF.OrcWarrior",

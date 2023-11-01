@@ -74,11 +74,6 @@ local units = [
 		ID = "Unit.RF.Wardog",
 		Troop = "Wardog"
 	},
-
-	{
-		ID = "Unit.RF.MercenaryLOW",
-		Troop = "MercenaryLOW"
-	},
 	{
 		ID = "Unit.RF.Mercenary",
 		Troop = "Mercenary"
