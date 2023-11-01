@@ -40,7 +40,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.Unholds", RatioMin = 0.00, RatioMax = 1.00}
+			{ BaseID = "UnitBlock.Unhold", RatioMin = 0.00, RatioMax = 1.00}
 		]
 	},
 	{
