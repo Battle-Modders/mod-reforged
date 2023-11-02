@@ -3,5 +3,7 @@
 	{
 		this.m.BaseWeaponScript = "scripts/items/weapons/greatsword";
 		__original();
+		this.m.Variant = this.Math.rand(1, 4);
+		this.updateVariant();
 	}
 });
