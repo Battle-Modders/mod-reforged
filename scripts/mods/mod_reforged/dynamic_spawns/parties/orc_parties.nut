@@ -1,7 +1,7 @@
 local parties = [
 	{
 		ID = "OrcRoamers",
-		HardMin = 4,
+		HardMin = 6,
 		DefaultFigure = "figure_orc_01",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
@@ -13,7 +13,7 @@ local parties = [
 	},
 	{	// This is currently the same as OrcRoamers. I couldn't spot differences in Vanilla
 		ID = "OrcScouts",
-		HardMin = 4,
+		HardMin = 6,
 		DefaultFigure = "figure_orc_01",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
@@ -25,7 +25,7 @@ local parties = [
 	},
 	{
 		ID = "OrcRaiders",
-		HardMin = 5,
+		HardMin = 6,
 		DefaultFigure = "figure_orc_01",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
@@ -40,7 +40,7 @@ local parties = [
 	},
 	{
 		ID = "OrcDefenders",
-		HardMin = 4,
+		HardMin = 6,
 		DefaultFigure = "figure_orc_01",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
@@ -68,7 +68,7 @@ local parties = [
 	},
 	{	// In Vanilla these never spawn OrcYoungLOW but here they do
 		ID = "YoungOrcsOnly",
-		HardMin = 4,		// In Vanilla this is 2 when spawning Berserker only
+		HardMin = 6,		// In Vanilla this is 2 when spawning Berserker only
 		DefaultFigure = "figure_orc_01",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
@@ -79,7 +79,7 @@ local parties = [
 	},
 	{	// In Vanilla these never spawn OrcYoungLOW but here they do
 		ID = "YoungOrcsAndBerserkers",
-		HardMin = 3,		// In Vanilla this is 2 when spawning Berserker only
+		HardMin = 6,		// In Vanilla this is 2 when spawning Berserker only
 		DefaultFigure = "figure_orc_01",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
@@ -91,7 +91,7 @@ local parties = [
 	},
 	{
 		ID = "BerserkersOnly",
-		HardMin = 2,
+		HardMin = 4,
 		DefaultFigure = "figure_orc_03",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
