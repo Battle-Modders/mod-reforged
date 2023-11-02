@@ -33,7 +33,7 @@ local units = [
 		ID = "Unit.RF.NecromancerY",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 100,
+		StartingResourceMin = 100, // In Vanilla they appear in a group of 100 cost
 		Cost = 30 + 12,
 		SubPartyDef = {ID = "SubPartyYeoman"}
 	},
@@ -41,7 +41,7 @@ local units = [
 		ID = "Unit.RF.NecromancerK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 320,
+		StartingResourceMin = 320, // In Vanilla they appear in a group of 320 cost
 		Cost = 30 + 24,
 		SubPartyDef = {ID = "SubPartyKnight"}
 	},
@@ -49,7 +49,7 @@ local units = [
 		ID = "Unit.RF.NecromancerYK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 360,
+		StartingResourceMin = 360, // In Vanilla they appear in a group of 415 cost
 		Cost = 30 + 12 + 24,
 		SubPartyDef = {ID = "SubPartyYeomanKnight"}
 	},
@@ -57,7 +57,7 @@ local units = [
 		ID = "Unit.RF.NecromancerKK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 420,
+		StartingResourceMin = 420, // In Vanilla they appear in a group of 415 cost
 		Cost = 30 + 24 + 24,
 		SubPartyDef = {ID = "SubPartyKnightKnight"}
 	},

@@ -68,7 +68,7 @@ local parties = [
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.ZombieSouthern", RatioMin = 0.65, RatioMax = 1.00 },
 			{ BaseID = "UnitBlock.RF.NecromancerWithNomad", RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true },
-			{ BaseID = "UnitBlock.RF.ZombieElite", 	RatioMin = 0.00, RatioMax = 0.12, StartingResourceMin = 200 }
+			{ BaseID = "UnitBlock.RF.ZombieElite", 	RatioMin = 0.00, RatioMax = 0.12 }
 		]
 	},
 	{	// Only un-armored zombies

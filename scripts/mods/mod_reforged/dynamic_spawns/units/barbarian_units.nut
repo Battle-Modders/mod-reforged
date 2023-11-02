@@ -7,13 +7,14 @@ local units = [
 	{
 		ID = "Unit.RF.BarbarianMarauder",
 		Troop = "BarbarianMarauder",
-		Figure = "figure_wildman_02"
+		Figure = "figure_wildman_02",
+		StartingResourceMin = 125
 	},
 	{
 		ID = "Unit.RF.BarbarianChampion",
 		Troop = "BarbarianChampion",
 		Figure = "figure_wildman_03",
-		StartingResourceMin = 170
+		StartingResourceMin = 200
 	},
 	{
 		ID = "Unit.RF.BarbarianDrummer",
@@ -43,24 +44,28 @@ local units = [
 		ID = "Unit.RF.BarbarianBeastmasterU",
 		Troop = "BarbarianBeastmaster",	// Usually it's 1 Beastmaster for 1-2 Unholds. In one case vanilla spawns 3 Unholds for one Beastmaster. And in one case Vanilla spawns 3 Beastmaster for 4 Unholds. I would disregard these.
 		Cost = 15 + 55,
+		StartingResourceMin = 200, // In Vanilla they appear in a group of 195 cost
 		SubPartyDef = {ID = "OneUnhold"}
 	},
 	{
 		ID = "Unit.RF.BarbarianBeastmasterUU",
 		Troop = "BarbarianBeastmaster",	// Usually it's 1 Beastmaster for 1-2 Unholds. In one case vanilla spawns 3 Unholds for one Beastmaster. And in one case Vanilla spawns 3 Beastmaster for 4 Unholds. I would disregard these.
 		Cost = 15 + 55 + 55,
+		StartingResourceMin = 400, // In Vanilla they appear in a group of 400 cost
 		SubPartyDef = {ID = "TwoUnhold"}
 	},
 	{
 		ID = "Unit.RF.BarbarianBeastmasterF",
 		Troop = "BarbarianBeastmaster",	// Usually it's 1 Beastmaster for 1-2 Unholds. In one case vanilla spawns 3 Unholds for one Beastmaster. And in one case Vanilla spawns 3 Beastmaster for 4 Unholds. I would disregard these.
 		Cost = 15 + 75,
+		StartingResourceMin = 200, // In Vanilla they appear in a group of 195 cost
 		SubPartyDef = {ID = "OneFrostUnhold"}
 	},
 	{
 		ID = "Unit.RF.BarbarianBeastmasterFF",
 		Troop = "BarbarianBeastmaster",	// Usually it's 1 Beastmaster for 1-2 Unholds. In one case vanilla spawns 3 Unholds for one Beastmaster. And in one case Vanilla spawns 3 Beastmaster for 4 Unholds. I would disregard these.
 		Cost = 15 + 75 + 75,
+		StartingResourceMin = 430, // In Vanilla they appear in a group of 430 cost
 		SubPartyDef = {ID = "TwoFrostUnhold"}
 	}
 ]

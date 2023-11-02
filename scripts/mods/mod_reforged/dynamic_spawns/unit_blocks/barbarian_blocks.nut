@@ -1,7 +1,7 @@
 local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.BarbarianFrontline",
-		UnitDefs = [{ BaseID = "Unit.RF.BarbarianThrall" }, { BaseID = "Unit.RF.BarbarianMarauder", StartingResourceMin = 125 }, { BaseID = "Unit.RF.BarbarianChampion", StartingResourceMin = 200 }]
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianThrall" }, { BaseID = "Unit.RF.BarbarianMarauder" }, { BaseID = "Unit.RF.BarbarianChampion" }]
 	},
 	{
 		ID = "UnitBlock.RF.BarbarianSupport",
@@ -14,8 +14,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BarbarianBeastmaster",
-		UnitDefs = [{ BaseID = "Unit.RF.BarbarianBeastmasterU" }, { BaseID = "Unit.RF.BarbarianBeastmasterF" }, { BaseID = "Unit.RF.BarbarianBeastmasterUU" }, { BaseID = "Unit.RF.BarbarianBeastmasterFF" }],
-		StartingResourceMin = 200	// In Vanilla they appear in a group of 195 cost
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianBeastmasterU" }, { BaseID = "Unit.RF.BarbarianBeastmasterF" }, { BaseID = "Unit.RF.BarbarianBeastmasterUU" }, { BaseID = "Unit.RF.BarbarianBeastmasterFF" }]
 	},
 	{
 		ID = "UnitBlock.RF.BarbarianHunterFrontline",
