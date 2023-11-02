@@ -3,40 +3,33 @@ local units = [
 		ID = "Unit.RF.BanditThug",
 		Troop = "BanditThug",
 		Figure = "figure_bandit_02",
-		Cost = 9
 	},
 	{
 		ID = "Unit.RF.Wardog",
 		Troop = "Wardog",
-		Cost = 10
 	},
 	{
 		ID = "Unit.RF.BanditPoacher",
 		Troop = "BanditMarksmanLOW",
 		Figure = "figure_bandit_01",
-		Cost = 12
 	},
 	{
 		ID = "Unit.RF.BanditMarksman",
 		Troop = "BanditMarksman",
-		Cost = 15
 	},
 	{
 		ID = "Unit.RF.BanditRaider",
 		Troop = "BanditRaider",
 		Figure = "figure_bandit_03",
-		Cost = 20
 	},
 	{
 		ID = "Unit.RF.BanditLeader",
 		Troop = "BanditLeader",
 		Figure = "figure_bandit_04",
-		Cost = 25
 	},
 	{
 		ID = "Unit.RF.BanditRaiderWolf",
 		Troop = "BanditRaiderWolf",
-		Cost = 25
 	}
 	{
 		ID = "Unit.RF.RF_BanditScoundrel",

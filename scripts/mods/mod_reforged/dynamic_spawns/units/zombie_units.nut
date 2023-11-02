@@ -3,7 +3,7 @@ local units = [
 	{
 		ID = "Unit.RF.Zombie",
 		Troop = "Zombie",
-		Figure = "figure_zombie_01"       // Exclusiv
+		Figure = "figure_zombie_01"       // Exclusive
 	},
 	{
 		ID = "Unit.RF.ZombieYeoman",
@@ -102,7 +102,7 @@ local units = [
 	{
 		ID = "Unit.RF.Ghost",
 		Troop = "Ghost",
-		Figure = "figure_ghost_01"     // Exclusiv
+		Figure = "figure_ghost_01"     // Exclusive
 	},
 ]
 
