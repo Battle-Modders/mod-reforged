@@ -1,26 +1,26 @@
 local unitBlocks = [
 	{
-			ID = "UnitBlock.RF.ZombieFrontline",
+		ID = "UnitBlock.RF.ZombieFrontline",
 		UnitDefs = [{ BaseID = "Unit.RF.Zombie" }, { BaseID = "Unit.RF.ZombieYeoman" }, { BaseID = "Unit.RF.ZombieKnight" }]
 	},
 	{
-			ID = "UnitBlock.RF.ZombieLight",
+		ID = "UnitBlock.RF.ZombieLight",
 		UnitDefs = [{ BaseID = "Unit.RF.Zombie" }]
 	},
 	{
-			ID = "UnitBlock.RF.ZombieElite",
+		ID = "UnitBlock.RF.ZombieElite",
 		UnitDefs = [{ BaseID = "Unit.RF.ZombieKnight" }]
 	},
 	{
-			ID = "UnitBlock.RF.ZombieSouthern",
+		ID = "UnitBlock.RF.ZombieSouthern",
 		UnitDefs = [{ BaseID = "Unit.RF.ZombieNomad" }]
 	},
 	{
-			ID = "UnitBlock.RF.Necromancer",
+		ID = "UnitBlock.RF.Necromancer",
 		UnitDefs = [{ BaseID = "Unit.RF.Necromancer" }]
 	},
 	{
-			ID = "UnitBlock.RF.NecromancerWithBodyguards",
+		ID = "UnitBlock.RF.NecromancerWithBodyguards",
 		UnitDefs = [
 			{ BaseID = "Unit.RF.NecromancerY" },
 			{ BaseID = "Unit.RF.NecromancerK" },
@@ -29,7 +29,7 @@ local unitBlocks = [
 		]
 	},
 	{
-			ID = "UnitBlock.RF.NecromancerWithNomads",
+		ID = "UnitBlock.RF.NecromancerWithNomads",
 		UnitDefs = [
 			{ BaseID = "Unit.RF.NecromancerN" },
 			{ BaseID = "Unit.RF.NecromancerNN" },
@@ -37,11 +37,11 @@ local unitBlocks = [
 		]
 	},
 	{
-			ID = "UnitBlock.RF.Ghost",
+		ID = "UnitBlock.RF.Ghost",
 		UnitDefs = [{ BaseID = "Unit.RF.Ghost" }]
 	},
 	{
-			ID = "UnitBlock.RF.ZombieNomadBodyguard",
+		ID = "UnitBlock.RF.ZombieNomadBodyguard",
 		UnitDefs = [
 			{ BaseID = "Unit.RF.ZombieNomadBodyguard" }
 		]
