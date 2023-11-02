@@ -6,6 +6,8 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		UpgradeChance = 0.5,
+		IdealSize = 8,
 		UnitBlockDefs = [
 			{ ID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.20, RatioMax = 0.70 },
 			{ ID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.40 },
@@ -37,6 +39,8 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		UpgradeChance = 0.5,
+		IdealSize = 8,
 		UnitBlockDefs = [
 			{ ID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 0.70 },
 			{ ID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
@@ -68,6 +72,8 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		UpgradeChance = 0.5,
+		IdealSize = 8,
 		UnitBlockDefs = [
 			{ ID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 0.70 },
 			{ ID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.25 },
@@ -100,13 +106,15 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		UpgradeChance = 0.5,
+		IdealSize = 8,
 		UnitBlockDefs = [
 			{ ID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.40, RatioMax = 0.70 },
 			{ ID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
 			{ ID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.30 },
 			{ ID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.25 },
-			{ ID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.35, StartingResourceMin = 320 },
-			{ ID = "UnitBlock.RF.BanditBoss", RatioMin = 0.0, RatioMax = 0.11, StartingResourceMin = 180 }
+			{ ID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.35 },
+			{ ID = "UnitBlock.RF.BanditBoss", RatioMin = 0.0, RatioMax = 0.11 }
 		]
 
 		function getIdealSize()
@@ -132,12 +140,14 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		UpgradeChance = 0.5,
+		IdealSize = 8,
 		UnitBlockDefs = [
 			{ ID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.40, RatioMax = 0.70 },
 			{ ID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
 			{ ID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.30 },
 			{ ID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.25 },
-			{ ID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.35, StartingResourceMin = 320 },
+			{ ID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.35 },
 			{ ID = "UnitBlock.RF.BanditBoss", RatioMin = 0.01, RatioMax = 0.11 }				// One boss is always guaranteed
 		]
 
@@ -164,6 +174,8 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		UpgradeChance = 0.5,
+		IdealSize = 8,
 		UnitBlockDefs = [
 			{ ID = "UnitBlock.RF.BanditDisguisedDirewolf" }
 		]

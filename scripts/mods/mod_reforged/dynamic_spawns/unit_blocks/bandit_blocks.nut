@@ -38,7 +38,7 @@ local unitBlocks = [
 		ID = "UnitBlock.RF.BanditDog",
 		UnitDefs = [
 			{ BaseID = "Unit.RF.Wardog" },
-			{ BaseID = "Unit.RF.ArmoredWardog" }
+			{ BaseID = "Unit.RF.ArmoredWardog", StartingResourceMin = 125 }
 		]
 	},
 	{
