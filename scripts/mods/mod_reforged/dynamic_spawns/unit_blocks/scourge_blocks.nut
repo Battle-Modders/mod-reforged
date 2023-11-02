@@ -1,6 +1,6 @@
 local unitBlocks = [
 	{
-		ID = "UnitBlock.RF.ScourgeBoss",
+		ID = "UnitBlock.RF.ScourgeSupport",
 		StartingResourceMin = 350,
 		UnitDefs = ::MSU.Class.WeightedContainer([
 			[1, { BaseID = "Unit.RF.SkeletonPriestH" }],
