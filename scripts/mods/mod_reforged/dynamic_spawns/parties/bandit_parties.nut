@@ -16,7 +16,7 @@ local parties = [
 			{ ID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20 }
 		]
 
-		function getIdealSize()
+		function generateIdealSize()
 		{
 			if (StartingResources >= 300)
 			{
@@ -49,7 +49,7 @@ local parties = [
 			{ ID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20 }
 		]
 
-		function getIdealSize()
+		function generateIdealSize()
 		{
 			if (StartingResources >= 300)
 			{
@@ -83,7 +83,7 @@ local parties = [
 			{ ID = "UnitBlock.RF.BanditBoss", RatioMin = 0.00, RatioMax = 0.11, StartingResourceMin = 180, DeterminesFigure = true }
 		]
 
-		function getIdealSize()
+		function generateIdealSize()
 		{
 			if (StartingResources >= 300)
 			{
@@ -117,7 +117,7 @@ local parties = [
 			{ ID = "UnitBlock.RF.BanditBoss", RatioMin = 0.0, RatioMax = 0.11 }
 		]
 
-		function getIdealSize()
+		function generateIdealSize()
 		{
 			if (StartingResources >= 300)
 			{
@@ -151,7 +151,7 @@ local parties = [
 			{ ID = "UnitBlock.RF.BanditBoss", RatioMin = 0.01, RatioMax = 0.11 }				// One boss is always guaranteed
 		]
 
-		function getIdealSize()
+		function generateIdealSize()
 		{
 			if (StartingResources >= 300)
 			{
