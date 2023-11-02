@@ -33,6 +33,7 @@ local units = [
 		ID = "Unit.RF.NecromancerY",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
+		StartingResourceMin = 100,
 		Cost = 30 + 12,
 		SubPartyDef = {ID = "SubPartyYeoman"}
 	},
@@ -40,6 +41,7 @@ local units = [
 		ID = "Unit.RF.NecromancerK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
+		StartingResourceMin = 320,
 		Cost = 30 + 24,
 		SubPartyDef = {ID = "SubPartyKnight"}
 	},
@@ -47,6 +49,7 @@ local units = [
 		ID = "Unit.RF.NecromancerYK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
+		StartingResourceMin = 360,
 		Cost = 30 + 12 + 24,
 		SubPartyDef = {ID = "SubPartyYeomanKnight"}
 	},
@@ -54,6 +57,7 @@ local units = [
 		ID = "Unit.RF.NecromancerKK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
+		StartingResourceMin = 420,
 		Cost = 30 + 24 + 24,
 		SubPartyDef = {ID = "SubPartyKnightKnight"}
 	},
@@ -63,6 +67,7 @@ local units = [
 		ID = "Unit.RF.NecromancerN",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
+		StartingResourceMin = 110,
 		Cost = 30 + 12,
 		SubPartyDef = { BaseID = "SubPartyNomad", HardMin = 1, HardMax = 1 }
 	},
@@ -70,6 +75,7 @@ local units = [
 		ID = "Unit.RF.NecromancerNN",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
+		StartingResourceMin = 130,
 		Cost = 30 + 12 + 12,
 		SubPartyDef = { BaseID = "SubPartyNomad", HardMin = 2, HardMax = 2 }
 	},
@@ -77,6 +83,7 @@ local units = [
 		ID = "Unit.RF.NecromancerNNN",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
+		StartingResourceMin = 170,
 		Cost = 30 + 12 + 12 + 12,
 		SubPartyDef = { BaseID = "SubPartyNomad", HardMin = 3, HardMax = 3 }
 	}
