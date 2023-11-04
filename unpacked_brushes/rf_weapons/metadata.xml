@@ -36,4 +36,10 @@
 <sprite id="icon_rf_swordstaff_named_02" offsetY="35" ic="FF525A5E" width="130" height="142" img="icon_rf_swordstaff_named_02.png" left="-51" right="15" top="-65" bottom="61" />
 <sprite id="icon_rf_swordstaff_named_02_bloodied" offsetY="35" ic="FF4C535B" width="130" height="142" img="icon_rf_swordstaff_named_02_bloodied.png" left="-51" right="15" top="-65" bottom="61" />
 
+<sprite id="icon_named_greatsword_04" offsetY="35" ic="FF575759" width="130" height="142" img="icon_named_greatsword_04.png" left="-64" right="32" top="-61" bottom="49" />
+<sprite id="icon_named_greatsword_04_bloodied" offsetY="35" ic="FF4E4E54" width="130" height="142" img="icon_named_greatsword_04_bloodied.png" left="-64" right="32" top="-61" bottom="49" />
+
+<sprite id="icon_rf_longsword_named_01" offsetY="35" ic="FF56575A" width="130" height="142" img="icon_rf_longsword_named_01.png" left="-62" right="34" top="-63" bottom="45" />
+<sprite id="icon_rf_longsword_named_01_bloodied" offsetY="35" ic="FF4D4E59" width="130" height="142" img="icon_rf_longsword_named_01_bloodied.png" left="-62" right="34" top="-63" bottom="45" />
+
 </brush>

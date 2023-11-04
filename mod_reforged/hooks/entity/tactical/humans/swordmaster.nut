@@ -158,6 +158,7 @@
 	            case this.m.SwordmasterVariants.BladeDancer:
 	                weapon = ::MSU.Class.WeightedContainer([
 						[1, "scripts/items/weapons/named/named_sword"],
+						[1, "scripts/items/weapons/named/named_rf_longsword"],
 						[1, "scripts/items/weapons/named/named_warbrand"]
 			    	]).roll();
 	                break;
