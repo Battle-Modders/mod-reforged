@@ -58,7 +58,7 @@
 
  <sprite id="bust_rf_kastenbrust_plate_harness_01" offsetY="35" ic="FF33416C" width="104" height="142" img="entity\bodies\bust_rf_kastenbrust_plate_harness_01.png" top="-65" bottom="13" />
  <sprite id="bust_rf_kastenbrust_plate_harness_01_damaged" offsetY="35" ic="FF2D3A66" width="104" height="142" img="entity\bodies\bust_rf_kastenbrust_plate_harness_01_damaged.png" top="-65" bottom="13" />
- <sprite id="bust_rf_kastenbrust_plate_harness_01_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2C3961" width="191" height="185" img="entity\bodies\bust_rf_kastenbrust_plate_harness_01_dead.png" left="-94" right="68" top="-67" bottom="57" />
+ <sprite id="bust_rf_kastenbrust_plate_harness_01_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2C3961" width="191" height="185" img="entity\bodies\bust_rf_kastenbrust_plate_harness_01_dead.png" left="-94" right="68" top="-69" bottom="57" />
  <sprite id="bust_rf_kastenbrust_plate_harness_01_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF454B50" width="191" height="185" img="entity\bodies\bust_rf_kastenbrust_plate_harness_01_dead_arrows.png" left="-28" right="20" top="-12" bottom="40" />
  <sprite id="bust_rf_kastenbrust_plate_harness_01_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF131A29" width="191" height="185" img="entity\bodies\bust_rf_kastenbrust_plate_harness_01_dead_javelin.png" left="-15" right="27" top="-25" bottom="61" />
 
