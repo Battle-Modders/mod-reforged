@@ -105,3 +105,6 @@ foreach(characterName in ::Const.Strings.CharacterNames)
 
 // This removes all duplicate KnightNames. This is important because Vanilla has KnightNames that also exist as CharacterNames.
 ::Const.Strings.KnightNames = ::MSU.Array.removeDuplicates(::Const.Strings.KnightNames);
+
+// Remove The Robber Baron as a bandit leader name because we have a RobberBaron entity in Reforged
+::MSU.Array.removeByValue(::Const.Strings.BanditLeaderNames, "The Robber Baron");
