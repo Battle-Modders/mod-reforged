@@ -19,16 +19,6 @@
 ::Const.World.Spawn.Troops.Swordmaster.Strength = 45;
 ::Const.World.Spawn.Troops.Swordmaster.Cost = 45;
 
-::DynamicSpawns.Units.findById("Bandit.Wardog").m.Cost = 6;
-::DynamicSpawns.Units.findById("Bandit.Thug").m.Cost = 12;
-::DynamicSpawns.Units.findById("Bandit.Poacher").m.Cost = 12;
-::DynamicSpawns.Units.findById("Bandit.Marksman").m.Cost = 24;
-::DynamicSpawns.Units.findById("Bandit.Raider").m.Cost = 30;
-::DynamicSpawns.Units.findById("Bandit.Leader").m.Cost = 40;
-::DynamicSpawns.Units.findById("Human.MasterArcher").m.Cost = 45;
-::DynamicSpawns.Units.findById("Human.HedgeKnight").m.Cost = 45;
-::DynamicSpawns.Units.findById("Human.Swordmaster").m.Cost = 45;
-
 // Cost is handled in bandit_units.nut
 ::MSU.Table.merge(::Const.World.Spawn.Troops, {
 	RF_BanditScoundrel = {
