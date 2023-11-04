@@ -29,19 +29,19 @@ local units = [
 		ID = "Unit.RF.DesertStalker",
 		Troop = "DesertStalker",
 		Figure = "figure_nomad_05",
-		StartingResourceMin = 350	// In Vanilla Executioner appear in a group of 350 cost
+		StartingResourceMin = 350	// In Vanilla they appear in a group of 350 cost
 	},
 	{
 		ID = "Unit.RF.Executioner",
 		Troop = "Executioner",
 		Figure = "figure_nomad_05",
-		StartingResourceMin = 350	// In Vanilla Executioner appear in a group of 350 cost
+		StartingResourceMin = 350	// In Vanilla they appear in a group of 350 cost
 	},
 	{
 		ID = "Unit.RF.DesertDevil",
 		Troop = "DesertDevil",
 		Figure = "figure_nomad_05",
-		StartingResourceMin = 350	// In Vanilla Executioner appear in a group of 350 cost
+		StartingResourceMin = 350	// In Vanilla they appear in a group of 350 cost
 	}
 ]
 
