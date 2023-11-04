@@ -84,9 +84,8 @@
 ::MSU.Text.colorizeMult <- function( _value, _options = null )
 {
 	if (_options == null) _options = {};
+	if (!("AddSign" in _options)) _options.AddSign <- false;
 	_options.AddPercent <- true;
-	_options.AddSign <- false;
-	_options.CompareTo <- 0.0;
 	return this.colorizeValue((_value - 1.0) * 100, _options);
 }
 
