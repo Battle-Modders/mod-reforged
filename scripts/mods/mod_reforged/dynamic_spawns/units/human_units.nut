@@ -1,116 +1,101 @@
 local units = [
 // Civilians
-	// {
-	// 	ID = "Human.Peasant",
-	// 	Troop = "Peasant",
-	// 	Cost = 10,
-	// 	Figure = "figure_civilian_01"
-	// },
-	// {
-	// 	ID = "Human.PeasantArmed",
-	// 	Troop = "PeasantArmed",
-	// 	Cost = 10,
-	// 	Figure = "figure_civilian_01"
-	// },
-	// {
-	// 	ID = "Human.SouthernPeasant",
-	// 	Troop = "SouthernPeasant",
-	// 	Cost = 10
-	// },
-	// {
-	// 	ID = "Human.CultistAmbush",
-	// 	Troop = "CultistAmbush",
-	// 	Cost = 15,
-	// 	Figure = "figure_civilian_03"
-	// },
-	// {
-	// 	ID = "Human.Slave",
-	// 	Troop = "NorthernSlave",
-	// 	Cost = 7
-	// },
+	{
+		ID = "Unit.RF.Peasant",
+		Troop = "Peasant",
+		Figure = "figure_civilian_01"
+	},
+	{
+		ID = "Unit.RF.PeasantArmed",
+		Troop = "PeasantArmed",
+		Figure = "figure_civilian_01"
+	},
+	{
+		ID = "Unit.RF.SouthernPeasant",
+		Troop = "SouthernPeasant"
+	},
+	{
+		ID = "Unit.RF.CultistAmbush",
+		Troop = "CultistAmbush",
+		Figure = "figure_civilian_03"
+	},
+	{
+		ID = "Unit.RF.NorthernSlave",
+		Troop = "NorthernSlave"
+	},
 
 // Caravans
-	// {
-	// 	ID = "Human.CaravanHand",
-	// 	Troop = "CaravanHand",
-	// 	Cost = 10
-	// },
-	// {
-	// 	ID = "Human.CaravanGuard",
-	// 	Troop = "CaravanGuard",
-	// 	Cost = 14
-	// },
-	// {
-	// 	ID = "Human.CaravanDonkey",
-	// 	Troop = "CaravanDonkey",
-	// 	Cost = 10,      // 0 in Vanilla
-	// 	Figure = "cart_02"
-	// },
+	{
+		ID = "Unit.RF.CaravanHand",
+		Troop = "CaravanHand"
+	},
+	{
+		ID = "Unit.RF.CaravanGuard",
+		Troop = "CaravanGuard"
+	},
+	{
+		ID = "Unit.RF.CaravanDonkey",
+		Troop = "CaravanDonkey",
+		Cost = 10,      // 0 in Vanilla
+		Figure = "cart_02"
+	},
 
 // Militia
-	// {
-	// 	ID = "Human.Militia",
-	// 	Troop = "Militia",
-	// 	Cost = 10
-	// },
-	// {
-	// 	ID = "Human.MilitiaRanged",
-	// 	Troop = "MilitiaRanged",
-	// 	Cost = 10
-	// },
-	// {
-	// 	ID = "Human.MilitiaVeteran",
-	// 	Troop = "MilitiaVeteran",
-	// 	Cost = 15   // Vanilla 12
-	// },
-	// {
-	// 	ID = "Human.MilitiaCaptain",
-	// 	Troop = "MilitiaCaptain",
-	// 	Cost = 20
-	// },
+	{
+		ID = "Unit.RF.Militia",
+		Troop = "Militia"
+	},
+	{
+		ID = "Unit.RF.MilitiaRanged",
+		Troop = "MilitiaRanged"
+	},
+	{
+		ID = "Unit.RF.MilitiaVeteran",
+		Troop = "MilitiaVeteran",
+		Cost = 15   // Vanilla 12
+	},
+	{
+		ID = "Unit.RF.MilitiaCaptain",
+		Troop = "MilitiaCaptain",
+		Cost = 20,
+		StartingResourceMin = 144	// In Vanilla they appear in a group of 144 cost
+	},
 
 // Mercenaries
-	// {
-	// 	ID = "Human.BountyHunter",
-	// 	Troop = "BountyHunter",
-	// 	Cost = 25
-	// },
-	// {
-	// 	ID = "Human.BountyHunterRanged",
-	// 	Troop = "BountyHunterRanged",
-	// 	Cost = 20
-	// },
-	// {
-	// 	ID = "Human.ArmoredWardog",
-	// 	Troop = "ArmoredWardog",
-	// 	Cost = 9
-	// },
-	// {
-	// 	ID = "Human.MercenaryLOW",
-	// 	Troop = "MercenaryLOW",
-	// 	Cost = 18
-	// },
-	// {
-	// 	ID = "Human.Mercenary",
-	// 	Troop = "Mercenary",
-	// 	Cost = 25
-	// },
-	// {
-	// 	ID = "Human.MercenaryRanged",
-	// 	Troop = "MercenaryRanged",
-	// 	Cost = 25
-	// },
 	{
-		ID = "Human.MasterArcher",
-		Troop = "MasterArcher"
+		ID = "Unit.RF.BountyHunter",
+		Troop = "BountyHunter"
 	},
 	{
-		ID = "Human.HedgeKnight",
-		Troop = "HedgeKnight"
+		ID = "Unit.RF.BountyHunterRanged",
+		Troop = "BountyHunterRanged"
 	},
 	{
-		ID = "Human.Swordmaster",
-		Troop = "Swordmaster"
+		ID = "Unit.RF.Wardog",
+		Troop = "Wardog"
+	},
+	{
+		ID = "Unit.RF.Mercenary",
+		Troop = "Mercenary"
+	},
+	{
+		ID = "Unit.RF.MercenaryRanged",
+		Troop = "MercenaryRanged"
+	},
+	{
+		ID = "Unit.RF.MasterArcher",
+		Troop = "MasterArcher",
+		StartingResourceMin = 286	// In Vanilla they appear in a group of 286 cost
+	},
+	{
+		ID = "Unit.RF.HedgeKnight",
+		Troop = "HedgeKnight",
+		StartingResourceMin = 286	// In Vanilla they appear in a group of 286 cost
+	},
+	{
+		ID = "Unit.RF.Swordmaster",
+		Troop = "Swordmaster",
+		StartingResourceMin = 286	// In Vanilla they appear in a group of 286 cost
 	}
 ]
 
@@ -120,6 +105,7 @@ While there are ["figure_militia_01", "figure_militia_02"] it seems like they ar
 
 foreach (unitDef in units)
 {
-	unitDef.Cost <- ::Const.World.Spawn.Troops[unitDef.Troop].Cost;
+	if (!("Cost" in unitDef))
+		unitDef.Cost <- ::Const.World.Spawn.Troops[unitDef.Troop].Cost;
 	::DynamicSpawns.Public.registerUnit(unitDef);
 }
