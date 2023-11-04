@@ -116,7 +116,6 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 			this.m.Items.equip(::new(armor));
 		}
 
-
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = ::Reforged.ItemTable.BanditHelmetLeader.roll({
