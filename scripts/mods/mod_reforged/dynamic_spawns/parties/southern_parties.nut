@@ -24,7 +24,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 0.25,
 		StaticUnitDefs = [
-			{ BaseID = "UnitBlock.RF.SouthernCaravanDonkey" }
+			{ BaseID = "Unit.RF.SouthernDonkey" }
 		],
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.SouthernFrontline", RatioMin = 0.15, RatioMax = 1.00 },
@@ -43,7 +43,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 0.25,
 		StaticUnitDefs = [
-			{ BaseID = "UnitBlock.RF.SouthernCaravanDonkey" }
+			{ BaseID = "Unit.RF.SouthernDonkey" }
 		],
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.SouthernFrontline", RatioMin = 0.35, RatioMax = 1.00 },

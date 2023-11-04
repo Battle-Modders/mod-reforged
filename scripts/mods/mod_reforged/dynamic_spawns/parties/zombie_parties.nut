@@ -55,7 +55,7 @@ local parties = [
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.50, RatioMax = 1.00 },
 			{ BaseID = "UnitBlock.RF.Ghost", RatioMin = 0.00, RatioMax = 0.20 },
-			{ BaseID = "UnitBlock.RF.NecromancerWithBodyguard", RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true }
+			{ BaseID = "UnitBlock.RF.NecromancerWithBodyguards", RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true }
 		]
 	},
 	{
@@ -67,7 +67,7 @@ local parties = [
 		VisionMult = 1.0,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.ZombieSouthern", RatioMin = 0.65, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.RF.NecromancerWithNomad", RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true },
+			{ BaseID = "UnitBlock.RF.NecromancerWithNomads", RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true },
 			{ BaseID = "UnitBlock.RF.ZombieElite", 	RatioMin = 0.00, RatioMax = 0.12 }
 		]
 	},

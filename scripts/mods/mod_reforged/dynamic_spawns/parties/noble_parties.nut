@@ -24,7 +24,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 0.25,
 		StaticUnitDefs = [
-			{ BaseID = "UnitBlock.RF.HumanCaravanDonkey" }      // Makes it much easier to get a good ratio
+			{ BaseID = "Unit.RF.NobleCaravanDonkey" }      // Makes it much easier to get a good ratio
 		],
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.NobleFrontline", RatioMin = 0.35, RatioMax = 1.00 },
