@@ -1,4 +1,22 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/vampire", function(q) {
+	q.m.HeadSprites <- null; // len 3 array of sprites, 0 = healthy, 1 = damaged, 2 = severely damaged
+	q.m.BodySprites <- null; // len 3 array of sprites, 0 = healthy, 1 = damaged, 2 = severely damaged
+
+	q.create = @(__original) function()
+	{
+		__original();
+		this.m.BodySprites = [
+			"bust_skeleton_body_05",
+			"bust_skeleton_body_04",
+			"bust_skeleton_body_03"
+		];
+		this.m.HeadSprites = [
+			"bust_skeleton_head_05",
+			"bust_skeleton_head_04",
+			"bust_skeleton_head_03"
+		];
+	}
+
 	q.onInit = @() function()
 	{
 	    this.actor.onInit();
@@ -16,7 +34,7 @@
 		local hairColor = this.Const.HairColors.Zombie[this.Math.rand(0, this.Const.HairColors.Zombie.len() - 1)];
 		this.addSprite("socket").setBrush("bust_base_undead");
 		local body = this.addSprite("body");
-		body.setBrush("bust_skeleton_body_05");
+		body.setBrush(this.m.BodySprites[0]);
 		body.setHorizontalFlipping(true);
 		this.addSprite("old_body");
 		this.addSprite("body_injury").setBrush("bust_skeleton_body_05_injured");
@@ -29,7 +47,7 @@
 		}
 
 		local head = this.addSprite("head");
-		head.setBrush("bust_skeleton_head_05");
+		head.setBrush(this.m.HeadSprites[0]);
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		this.addSprite("old_head");
@@ -87,6 +105,54 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_head_hunter"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sanguinary"));
+	}
+
+	q.onUpdateInjuryLayer = @() function()
+	{
+		local p = this.getHitpointsPct();
+		local bodyBrush = this.getSprite("body").getBrush().Name;
+		local headBrush = this.getSprite("head").getBrush().Name;
+
+		if (p <= 0.33)
+		{
+			this.getSprite("body").setBrush(this.m.BodySprites[2]);
+			this.getSprite("body_injury").setBrush("bust_skeleton_body_03_injured");
+			this.getSprite("head").setBrush(this.m.HeadSprites[2]);
+			this.getSprite("injury").setBrush("bust_skeleton_head_03_injured");
+		}
+		else if (p <= 0.66)
+		{
+			this.getSprite("body").setBrush(this.m.BodySprites[1]);
+			this.getSprite("body_injury").setBrush("bust_skeleton_body_04_injured");
+			this.getSprite("head").setBrush(this.m.HeadSprites[1]);
+			this.getSprite("injury").setBrush("bust_skeleton_head_04_injured");
+		}
+		else
+		{
+			this.getSprite("body").setBrush(this.m.BodySprites[0]);
+			this.getSprite("body_injury").setBrush("bust_skeleton_body_05_injured");
+			this.getSprite("head").setBrush(this.m.HeadSprites[0]);
+			this.getSprite("injury").setBrush("bust_skeleton_head_05_injured");
+		}
+
+		this.getSprite("body_injury").Visible = this.m.WasInjured;
+		this.getSprite("injury").Visible = this.m.WasInjured;
+
+		if (bodyBrush != this.getSprite("body").getBrush().Name)
+		{
+			local old_body = this.getSprite("old_body");
+			old_body.Visible = true;
+			old_body.Alpha = 255;
+			old_body.setBrush(bodyBrush);
+			old_body.fadeOutAndHide(3000);
+			local old_head = this.getSprite("old_head");
+			old_head.Visible = true;
+			old_head.Alpha = 255;
+			old_head.setBrush(headBrush);
+			old_head.fadeOutAndHide(3000);
+		}
+
+		this.setDirty(true);
 	}
 
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
