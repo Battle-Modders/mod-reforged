@@ -87,7 +87,7 @@
 	_options.AddPercent <- true;
 	_options.AddSign <- false;
 	_options.CompareTo <- 0.0;
-	return this.colorizeValue(_value - 1.0, _options);
+	return this.colorizeValue((_value - 1.0) * 100, _options);
 }
 
 ::logInfo("Reforged::MSU -- adding ::MSU.Tile.getNeighbors");
