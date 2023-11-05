@@ -80,6 +80,15 @@
 	return this.colorizeValue(_value, _options);
 }
 
+::logInfo("Reforged::MSU -- adding ::MSU.Text.colorizeMult");
+::MSU.Text.colorizeMult <- function( _value, _options = null )
+{
+	if (_options == null) _options = {};
+	if (!("AddSign" in _options)) _options.AddSign <- false;
+	_options.AddPercent <- true;
+	return this.colorizeValue((_value - 1.0) * 100, _options);
+}
+
 ::logInfo("Reforged::MSU -- adding ::MSU.Tile.getNeighbors");
 ::MSU.Tile.getNeighbors <- function( _tile, _function = null )
 {
