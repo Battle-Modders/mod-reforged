@@ -41,19 +41,23 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function canProc( _attacker, _skill )
+	{
+		if (_skill.isRanged() || _skill.isIgnoringRiposte() || !_attacker.isAlive())
+			return false;
+
+		local actor = this.getContainer().getActor();
+		return _attacker.getTile().getDistanceTo(actor.getTile()) == 1 && !::Tactical.TurnSequenceBar.isActiveEntity(actor) &&
+				!actor.getCurrentProperties().IsRiposting && actor.hasZoneOfControl();
+	}
+
 	function onMissed( _attacker, _skill )
 	{
-		if (_skill.isRanged() || _skill.isIgnoringRiposte() || !_attacker.isAlive() ||
-			_attacker.getTile().getDistanceTo(this.getContainer().getActor().getTile()) > 1 ||
-			::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()) ||
-			this.getContainer().getActor().getCurrentProperties().IsRiposting ||
-			!this.getContainer().getActor().hasZoneOfControl() ||
-			::Math.rand(1, 100) > this.getChance()
-		)
+		if (!this.canProc(_attacker, _skill) || ::Math.rand(1, 100) > this.getChance())
 			return;
 
 		local info = {
-			Skill = this.getContainer().getAttackOfOpportunity(), // we know it won't be null because we do a hasZoneOfControl check earlier
+			Skill = this.getContainer().getAttackOfOpportunity(), // we know it won't be null because we do a hasZoneOfControl check in canProc
 			TargetTile = _attacker.getTile()
 		};
 		::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.onRiposte.bindenv(this), info);
