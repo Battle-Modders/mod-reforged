@@ -33,12 +33,12 @@
 		switch(this.m.MyVariant)
         {
             case this.m.SwordmasterVariants.Precise: // light armor only
-            	this.MyArmorVariant = 0;
+            	this.m.MyArmorVariant = 0;
                 break;
 
             case this.m.SwordmasterVariants.Reaper:  // medium armor only
             case this.m.SwordmasterVariants.Grappler:
-            	this.MyArmorVariant = 1;
+            	this.m.MyArmorVariant = 1;
                 break;
 
             case this.m.SwordmasterVariants.BladeDancer: // light or medium armor
