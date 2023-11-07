@@ -159,10 +159,10 @@
 				{
 					indices[j] = j;
 				}
-				// Randomize half of the level-ups added
+				// Randomize half of the level-ups added by -1 or +1
 				for (local j = 0; j < _amount / 2; j++)
 				{
-					this.m.Attributes[i][indices.remove(::Math.rand(0, indices.len() - 1))] += ::Math.rand(-1, 1);
+					this.m.Attributes[i][indices.remove(::Math.rand(0, indices.len() - 1))] += ::Math.rand(0, 1) == 0 ? -1 : 1;
 				}
 			}
 		}
