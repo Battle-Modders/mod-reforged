@@ -42,6 +42,9 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 
 	function getNestedTooltip()
 	{
+		if (this.getContainer().getActor().getID() != ::MSU.getDummyPlayer().getID())
+			return this.getTooltip();
+
 		return [
 			{
 				id = 1,
