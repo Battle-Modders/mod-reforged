@@ -94,11 +94,11 @@
 		if (verifySettingValue("TacticalTooltip_Attributes")) ret.extend(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
 		if (verifySettingValue("TacticalTooltip_Effects")) ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
 		if (verifySettingValue("TacticalTooltip_Perks")) ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
-		if (verifySettingValue("TacticalTooltip_EquippedItems")) ret.extend(::Reforged.TacticalTooltip.getTooltipEquippedItems(this, 400));
-		if (verifySettingValue("TacticalTooltip_BagItems")) ret.extend(::Reforged.TacticalTooltip.getTooltipBagItems(this, 400));
-		if (verifySettingValue("TacticalTooltip_ActiveSkills")) ret.extend(::Reforged.TacticalTooltip.getActiveSkills(this, 500));
+		if (verifySettingValue("TacticalTooltip_ActiveSkills")) ret.extend(::Reforged.TacticalTooltip.getActiveSkills(this, 400));
+		if (verifySettingValue("TacticalTooltip_EquippedItems")) ret.extend(::Reforged.TacticalTooltip.getTooltipEquippedItems(this, 500));
+		if (verifySettingValue("TacticalTooltip_BagItems")) ret.extend(::Reforged.TacticalTooltip.getTooltipBagItems(this, 600));
 
-		ret.extend(::Reforged.TacticalTooltip.getGroundItems(this, 500));
+		ret.extend(::Reforged.TacticalTooltip.getGroundItems(this, 700));
 
 		return ret;
 	}
