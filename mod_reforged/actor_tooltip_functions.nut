@@ -74,10 +74,8 @@
         statusEffects.sort(@(a,b) a.getName() <=> b.getName());
         foreach( statusEffect in statusEffects )
         {
-            entryText += ::Reforged.TacticalTooltip.getNestedSkillName(statusEffect);
-            entryText += ", ";
+            entryText += ::Reforged.TacticalTooltip.getNestedSkillImage(statusEffect);
         }
-        if (entryText.len() != 0) entryText = entryText.slice(0, -2);
 
         effectList.push({
             id = currentID,
@@ -129,10 +127,8 @@
             if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
                 if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
-            entryText += ::Reforged.TacticalTooltip.getNestedPerkName(perk);
-            entryText += ", ";
+            entryText += ::Reforged.TacticalTooltip.getNestedPerkImage(perk);
         }
-        if (entryText.len() != 0) entryText = entryText.slice(0, -2);
 
         perkList.push({
             id = currentID,
@@ -270,12 +266,10 @@
 	else
 	{
 		local entryText = "";
-        skills.sort(@(a,b) a.getName() <=> b.getName());
         foreach (skill in skills)
         {
-            entryText += ::Reforged.TacticalTooltip.getNestedSkillName(skill) + ", ";
+            entryText += ::Reforged.TacticalTooltip.getNestedSkillImage(skill);
         }
-        if (entryText != "") entryText = entryText.slice(0, -2);
 
         ret.push({
             id = _startID,
@@ -320,13 +314,19 @@
     });
 };
 
-// These two functions are temporary at this spot. They should be made into more global reforged functions because they will be needed in other places aswell
+// These four functions are temporary at this spot. They should be made into more global reforged functions because they will be needed in other places aswell
 ::Reforged.TacticalTooltip.getNestedPerkName <- function ( _perk, _displayName = null )
 {
     if (_displayName == null) _displayName = _perk.m.Name;
     local fileName = split(::IO.scriptFilenameByHash(_perk.ClassNameHash), "/").top();
     local nestedText = ::Reforged.Mod.Tooltips.parseString(format("[%s|%s]", _displayName, "Perk+" + fileName));
     return nestedText;
+}
+
+::Reforged.TacticalTooltip.getNestedPerkImage <- function ( _perk )
+{
+    local fileName = split(::IO.scriptFilenameByHash(_perk.ClassNameHash), "/").top();
+    return ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|%s]", _perk.m.Icon, "Perk+" + fileName));
 }
 
 // All other kinds of skills like effects and actives
@@ -336,4 +336,10 @@
     local fileName = split(::IO.scriptFilenameByHash(_skill.ClassNameHash), "/").top();
     local nestedText = ::Reforged.Mod.Tooltips.parseString(format("[%s|%s]", _displayName, "Skill+" + fileName));
     return nestedText;
+}
+
+::Reforged.TacticalTooltip.getNestedSkillImage <- function ( _skill )
+{
+    local fileName = split(::IO.scriptFilenameByHash(_skill.ClassNameHash), "/").top();
+    return ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|%s]", !_skill.isActive() || _skill.isAffordable() ? _skill.getIconColored() : _skill.getIconDisabled(), "Skill+" + fileName));
 }
