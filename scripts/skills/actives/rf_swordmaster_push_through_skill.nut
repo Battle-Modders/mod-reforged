@@ -94,10 +94,22 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 
 		if (success && target.isAlive())
 		{
-			this.line_breaker.onUse(_user, _targetTile);
+			local tag = {
+				User = _user,
+				TargetTile = _targetTile
+			}
+			// Doing this.line_breaker.onUse here directly doesn't work properly.
+			// The target gets knocked back by Linebreaker, but the attacker does not move to the target tile.
+			// Using scheduleEvent even with a delay of 1 is enough to make it work properly. No idea why.
+			::Time.scheduleEvent(::TimeUnit.Virtual, 1, this.onPushThrough.bindenv(this), tag);
 		}
 
 		return success;
+	}
+
+	function onPushThrough( _tag )
+	{
+		this.line_breaker.onUse(_tag.User, _tag.TargetTile);
 	}
 });
 
