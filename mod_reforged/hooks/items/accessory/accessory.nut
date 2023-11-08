@@ -26,7 +26,7 @@
 	{
 		// In vanilla, some accessories count as equipped while in the bag and manually call 'onEquip' in 'onPutIntoBag'
 		// Therefore, we exclude accessories in the bag so that their StaminaModifier isn't applied twice (once here and once via bag_fatigue skill)
-		if (this.getCurrentSlotType() != ::Const.SlotType.Bag)
+		if (this.getCurrentSlotType() != ::Const.ItemSlot.Bag)
 		{
 			_properties.Stamina += this.getStaminaModifier();
 		}
