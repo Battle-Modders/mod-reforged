@@ -42,7 +42,7 @@ local unitBlocks = [
 		DeterminesFigure = true,
 		UnitDefs = [
 			{ BaseID = "Unit.RF.Vampire" },
-			{ BaseID = "Unit.RF.RF_VampireLord", Hardmax = 1 }
+			{ BaseID = "Unit.RF.RF_VampireLord", HardMax = 1 }
 		]
 	},
 	{
