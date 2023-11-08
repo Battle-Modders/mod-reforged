@@ -56,6 +56,7 @@ this.rf_skeleton_legatus <- ::inherit("scripts/entity/tactical/rf_skeleton_comma
 		if (!this.actor.makeMiniboss())
 			return false;
 
+		this.getSprite("miniboss").setBrush("bust_miniboss");
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			this.m.Items.equip(::new("scripts/items/weapons/named/named_crypt_cleaver"));
