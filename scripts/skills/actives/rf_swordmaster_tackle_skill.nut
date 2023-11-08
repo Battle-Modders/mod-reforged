@@ -31,14 +31,6 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 	function getTooltip()
 	{
 		local tooltip = this.getDefaultUtilityTooltip();
-
-		tooltip.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger the target"
-		});
-
 		local attack = this.getContainer().getAttackOfOpportunity();
 		tooltip.push({
 			id = 7,
@@ -51,7 +43,7 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "If the attack is successful, exchange positions with the target"
+			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, the target is [stunned|Skill+stunned_effect] and you exchange positions with the target")
 		});
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
@@ -103,19 +95,13 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			return false;
 		}
 
-		return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsImmuneToKnockBackAndGrab && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
+		return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsImmuneToStun && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
 	}
 
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
 		local userTile = _user.getTile();
-
-		target.getSkills().add(::new("scripts/skills/effects/staggered_effect"));
-		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-		{
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has tackled and staggered " + ::Const.UI.getColorizedEntityName(target));
-		}
 
 		local aoo = this.getContainer().getAttackOfOpportunity();
 		local overlay = aoo.m.Overlay;
@@ -125,6 +111,11 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 
 		if (success && target.isAlive())
 		{
+			target.getSkills().add(::new("scripts/skills/effects/stunned_effect"));
+			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
+			{
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has tackled and stunned " + ::Const.UI.getColorizedEntityName(target));
+			}
 			::Tactical.getNavigator().switchEntities(_user, target, null, null, 1.0);
 		}
 

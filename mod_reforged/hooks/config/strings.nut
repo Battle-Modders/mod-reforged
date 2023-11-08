@@ -1741,7 +1741,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Unlocks the [Tackle|Skill+rf_swordmaster_tackle_skill] which allows you to stagger a target and perform a free attack against them. If the attack is successful you exchange positions with the target."
+					"Unlocks the [Tackle|Skill+rf_swordmaster_tackle_skill] which performs a free attack against the target. If the attack is successful, the target is [stunned|Skill+stunned_effect] and you exchange positions with the target."
 				]
 			}
 		],
