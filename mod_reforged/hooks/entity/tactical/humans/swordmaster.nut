@@ -39,6 +39,8 @@
             case this.m.SwordmasterVariants.Reaper:  // medium armor only
             case this.m.SwordmasterVariants.Grappler:
             	this.m.MyArmorVariant = 1;
+            	this.getAIAgent().m.Properties.BehaviorMult[::Const.AI.Behavior.ID.LineBreaker] = 10.0;
+            	this.getAIAgent().m.Properties.BehaviorMult[::Const.AI.Behavior.ID.KnockBack] = 10.0;
                 break;
 
             case this.m.SwordmasterVariants.BladeDancer: // light or medium armor
