@@ -122,5 +122,13 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 		return success;
 	}
 
+	// The existence of this function is expected by the ai_line_breaker behavior.
+	// We just need to return something non-null for it to work properly for ai_line_breaker behavior.
+	// If that behavior isn't used for this skill then this can/should be removed.
+	function findTileToKnockBackTo( _userTile, _targetTile )
+	{
+		return _targetTile;
+	}
+
 });
 
