@@ -17,15 +17,16 @@ local parties = [
 
 		function generateIdealSize( _isLocation = false )
 		{
-			if (StartingResources >= 300)
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 300)
 			{
 				return 14;
 			}
-			else if (StartingResources >= 216)
+			else if (startingResources >= 216)
 			{
 				return 12
 			}
-			else if (StartingResources >= 164)
+			else if (startingResources >= 164)
 			{
 				return 10;
 			}
@@ -53,15 +54,16 @@ local parties = [
 
 		function generateIdealSize( _isLocation = false )
 		{
-			if (StartingResources >= 300)
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 300)
 			{
 				return 14;
 			}
-			else if (StartingResources >= 216)
+			else if (startingResources >= 216)
 			{
 				return 12
 			}
-			else if (StartingResources >= 164)
+			else if (startingResources >= 164)
 			{
 				return 10;
 			}
@@ -90,15 +92,16 @@ local parties = [
 
 		function generateIdealSize( _isLocation = false )
 		{
-			if (StartingResources >= 300)
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 300)
 			{
 				return 14;
 			}
-			else if (StartingResources >= 216)
+			else if (startingResources >= 216)
 			{
 				return 12
 			}
-			else if (StartingResources >= 164)
+			else if (startingResources >= 164)
 			{
 				return 10;
 			}
@@ -127,15 +130,16 @@ local parties = [
 
 		function generateIdealSize( _isLocation = false )
 		{
-			if (StartingResources >= 300)
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 300)
 			{
 				return 14;
 			}
-			else if (StartingResources >= 216)
+			else if (startingResources >= 216)
 			{
 				return 12
 			}
-			else if (StartingResources >= 164)
+			else if (startingResources >= 164)
 			{
 				return 10;
 			}
@@ -164,15 +168,16 @@ local parties = [
 
 		function generateIdealSize( _isLocation = false )
 		{
-			if (StartingResources >= 300)
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 300)
 			{
 				return 14;
 			}
-			else if (StartingResources >= 216)
+			else if (startingResources >= 216)
 			{
 				return 12
 			}
-			else if (StartingResources >= 164)
+			else if (startingResources >= 164)
 			{
 				return 10;
 			}
