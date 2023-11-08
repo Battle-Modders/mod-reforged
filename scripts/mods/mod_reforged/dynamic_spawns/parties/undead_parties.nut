@@ -11,7 +11,7 @@ local parties = [
 				VisionMult = 1.0,
 				UpgradeChance = 0.5
 
-				function generateIdealSize()
+				function generateIdealSize( _isLocation = false )
 				{
 					local startingResources = this.getSpawnProcess().getStartingResources();
 					if (startingResources >= 350)
@@ -288,7 +288,7 @@ local parties = [
 				VisibilityMult = 1.0,
 				VisionMult = 1.0,
 
-				function generateIdealSize()
+				function generateIdealSize( _isLocation = false )
 				{
 					local startingResources = this.getSpawnProcess().getStartingResources();
 					if (startingResources >= 350)
@@ -379,7 +379,7 @@ local parties = [
 				VisibilityMult = 1.0,
 				VisionMult = 1.0,
 
-				function generateIdealSize()
+				function generateIdealSize( _isLocation = false )
 				{
 					local startingResources = this.getSpawnProcess().getStartingResources();
 					if (startingResources >= 350)
