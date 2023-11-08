@@ -8,11 +8,11 @@ local parties = [
 		VisionMult = 1.0,
 		UpgradeChance = 0.5,
 		UnitBlockDefs = [
-			{ ID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.20, RatioMax = 0.70 },
-			{ ID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.40 },
-			{ ID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.40 },
-			{ ID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.35 },
-			{ ID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20 }
+			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.20, RatioMax = 0.70 },
+			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.40 },
+			{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.40 },
+			{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.35 },
+			{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20 }
 		]
 
 		function generateIdealSize( _isLocation = false )
@@ -45,11 +45,11 @@ local parties = [
 		VisionMult = 1.0,
 		UpgradeChance = 0.5,
 		UnitBlockDefs = [
-			{ ID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 0.70 },
-			{ ID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
-			{ ID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.30 },
-			{ ID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40 },
-			{ ID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20 }
+			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 0.70 },
+			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
+			{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.30 },
+			{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40 },
+			{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20 }
 		]
 
 		function generateIdealSize( _isLocation = false )
@@ -82,12 +82,12 @@ local parties = [
 		VisionMult = 1.0,
 		UpgradeChance = 0.5,
 		UnitBlockDefs = [
-			{ ID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 0.70 },
-			{ ID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.25 },
-			{ ID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.25 },
-			{ ID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.35 },
-			{ ID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.35, StartingResourceMin = 320 },
-			{ ID = "UnitBlock.RF.BanditBoss", RatioMin = 0.00, RatioMax = 0.11, StartingResourceMin = 180, DeterminesFigure = true }
+			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 0.70 },
+			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.25 },
+			{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.25 },
+			{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.35 },
+			{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.35, StartingResourceMin = 320 },
+			{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.00, RatioMax = 0.11, StartingResourceMin = 180, DeterminesFigure = true }
 		]
 
 		function generateIdealSize( _isLocation = false )
@@ -120,12 +120,12 @@ local parties = [
 		VisionMult = 1.0,
 		UpgradeChance = 0.5,
 		UnitBlockDefs = [
-			{ ID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.40, RatioMax = 0.70 },
-			{ ID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
-			{ ID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.30 },
-			{ ID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.25 },
-			{ ID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.35 },
-			{ ID = "UnitBlock.RF.BanditBoss", RatioMin = 0.0, RatioMax = 0.11 }
+			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.40, RatioMax = 0.70 },
+			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
+			{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.30 },
+			{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.25 },
+			{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.35 },
+			{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.0, RatioMax = 0.11 }
 		]
 
 		function generateIdealSize( _isLocation = false )
@@ -158,12 +158,12 @@ local parties = [
 		VisionMult = 1.0,
 		UpgradeChance = 0.5,
 		UnitBlockDefs = [
-			{ ID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.40, RatioMax = 0.70 },
-			{ ID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
-			{ ID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.30 },
-			{ ID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.25 },
-			{ ID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.35 },
-			{ ID = "UnitBlock.RF.BanditBoss", RatioMin = 0.01, RatioMax = 0.11 }				// One boss is always guaranteed
+			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.40, RatioMax = 0.70 },
+			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
+			{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.30 },
+			{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.25 },
+			{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.35 },
+			{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.01, RatioMax = 0.11 }				// One boss is always guaranteed
 		]
 
 		function generateIdealSize( _isLocation = false )
@@ -196,7 +196,7 @@ local parties = [
 		VisionMult = 1.0,
 		UpgradeChance = 0.5,
 		UnitBlockDefs = [
-			{ ID = "UnitBlock.RF.BanditDisguisedDirewolf" }
+			{ BaseID = "UnitBlock.RF.BanditDisguisedDirewolf" }
 		],
 
 		function generateIdealSize( _isLocation = false )
