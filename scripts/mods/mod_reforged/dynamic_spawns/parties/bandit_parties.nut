@@ -190,10 +190,14 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UpgradeChance = 0.5,
-		IdealSize = 8,
 		UnitBlockDefs = [
 			{ ID = "UnitBlock.RF.BanditDisguisedDirewolf" }
-		]
+		],
+
+		function generateIdealSize()
+		{
+			return 8;
+		}
 	}
 ]
 
