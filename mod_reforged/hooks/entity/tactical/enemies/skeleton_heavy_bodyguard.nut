@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_heavy_bodyguard", function(q) {
 	q.onInit = @() function()
 	{
-	   this.skeleton.onInit();
+		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.SkeletonHeavy);
 		b.Initiative -= 50;
@@ -20,83 +20,78 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-    	}
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
 	}
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @() function()
 	{
-	    __original();
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			local weapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/ancient/ancient_sword"],
+	    		[1, "scripts/items/weapons/ancient/khopesh"],
+	    		[1, "scripts/items/weapons/ancient/warscythe"],
+	    		[1, "scripts/items/weapons/ancient/crypt_cleaver"],
+	    		[1, "scripts/items/weapons/ancient/rhomphaia"]
+	    	]).roll();
 
-	    local weapon = this.getMainhandItem();
-	    if (weapon == null) return;
+			this.m.Items.equip(::new(weapon));
+		}
 
-	    if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			this.m.Items.equip(::new("scripts/items/shields/ancient/tower_shield"));
+		}
 
-	    	local aoo = this.getSkills().getAttackOfOpportunity();
-	    	if (aoo != null && aoo.isDuelistValid())
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-	    	}
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local armor = ::MSU.Class.WeightedContainer([
+				[1.0, "scripts/items/armor/ancient/ancient_plate_harness"],
+				[1.0, "scripts/items/armor/ancient/ancient_plated_scale_hauberk"]
+			]).roll();
 
-	    	if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-	    	}
-	    	else
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-	    	}
+			this.m.Items.equip(::new(armor));
+		}
 
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-	    	}
-	    }
-	    else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sanguinary"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordlike"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bloodbath"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-	    	local aoo = this.getSkills().getAttackOfOpportunity();
-	    	if (aoo != null && aoo.isDuelistValid())
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-	    	}
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-	    	}
-	    }
-	    else if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-	    	}
-	    }
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_honorguard_helmet"));
+		}
+	}
 
-	    local offhand = this.getOffhandItem();
-	    if (offhand != null && offhand.isItemType(::Const.Items.ItemType.Shield))
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-	    }
+	q.onSetupEntity <- function()
+	{
+		local weapon = this.getMainhandItem();
+		if (weapon == null) return;
+
+		if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
+
+			if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
+			}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_kata"));
+			}
+		}
+		else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		}
+		else if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		}
 	}
 });

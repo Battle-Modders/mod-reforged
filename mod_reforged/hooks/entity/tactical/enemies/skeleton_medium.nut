@@ -16,19 +16,52 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
-    	}
 	}
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @() function()
 	{
-	    __original();
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			local weapon = ::MSU.Class.WeightedContainer([
+				[3, "scripts/items/weapons/ancient/ancient_sword"],
+	    		[1, "scripts/items/weapons/ancient/broken_ancient_sword"]
+	    	]).roll();
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
+			this.m.Items.equip(::new(weapon));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			local shield = ::MSU.Class.WeightedContainer([
+	    		[2, "scripts/items/shields/ancient/coffin_shield"],
+				[1, "scripts/items/shields/ancient/tower_shield"]
+	    	]).roll();
+
+			this.m.Items.equip(::new(shield));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local armor = ::MSU.Class.WeightedContainer([
+				[1.0, "scripts/items/armor/ancient/ancient_scale_harness"],
+				[1.0, "scripts/items/armor/ancient/ancient_breastplate"]
+			]).roll();
+
+			this.m.Items.equip(::new(armor));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_legionary_helmet"));
+		}
+	}
+
+	q.onSetupEntity <- function()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		}
 	}
 });

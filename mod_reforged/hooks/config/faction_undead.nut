@@ -1,3 +1,31 @@
+// Adjust Vanilla Actors
+::MSU.Table.merge(::Const.Tactical.Actor.SkeletonLight, {
+	XP = 175
+});
+::MSU.Table.merge(::Const.Tactical.Actor.SkeletonMedium, {
+	XP = 300,
+	Hitpoints = 65,
+	Bravery = 100,
+	MeleeSkill = 75,
+	MeleeDefense = 5,
+	RangedDefense = 5,
+	Initiative = 70
+});
+::MSU.Table.merge(::Const.Tactical.Actor.SkeletonHeavy, {
+	XP = 500,
+	ActionPoints = 9,
+	Hitpoints = 90,
+	Bravery = 120,
+	MeleeSkill = 90,
+	MeleeDefense = 20,
+	RangedDefense = 20,
+	Initiative = 80
+});
+::MSU.Table.merge(::Const.Tactical.Actor.SkeletonBoss, {
+	XP = 1000
+});
+
+
 // New Reforged Actors
 ::Const.Tactical.Actor.RF_SkeletonDecanus <- {
 	XP = 325,

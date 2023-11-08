@@ -23,14 +23,29 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
-    	}
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_gaps"));
+	}
+
+	q.assignRandomEquipment = @() function()
+	{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			this.m.Items.equip(::new("scripts/items/weapons/ancient/bladed_pike"));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local armor = ::MSU.Class.WeightedContainer([
+				[1.0, "scripts/items/armor/ancient/ancient_scale_harness"],
+				[1.0, "scripts/items/armor/ancient/ancient_breastplate"]
+			]).roll();
+
+			this.m.Items.equip(::new(armor));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_legionary_helmet"));
+		}
 	}
 });
