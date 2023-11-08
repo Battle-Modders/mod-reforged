@@ -4,6 +4,13 @@
 		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
 	}
 
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.extend(this.getProjectedAttributesTooltip());
+		return ret;
+	}
+
 	q.getProjectedAttributesTooltip <- function()
 	{
 		return [{
