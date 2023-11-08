@@ -16,17 +16,34 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-    	}
 	}
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @() function()
 	{
-	    __original();
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			local weapon = ::MSU.Class.WeightedContainer([
+	    		[1, "scripts/items/weapons/ancient/broken_ancient_sword"],
+				[1, "scripts/items/weapons/ancient/falx"],
+				[1, "scripts/items/weapons/ancient/ancient_spear"]
+	    	]).roll();
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+			this.m.Items.equip(::new(weapon));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			this.m.Items.equip(::new("scripts/items/shields/ancient/auxiliary_shield"));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			this.m.Items.equip(::new("scripts/items/armor/ancient/ancient_ripped_cloth"));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_household_helmet"));
+		}
 	}
 });

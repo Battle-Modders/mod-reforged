@@ -64,6 +64,8 @@ foreach (entityType in entityTypes)
 ::Const.EntityIcon[::Const.EntityType.BanditThug] = "rf_bandit_thug_orientation";
 ::Const.EntityIcon[::Const.EntityType.BanditRaider] = "rf_bandit_raider_orientation";
 ::Const.EntityIcon[::Const.EntityType.BanditMarksman] = "rf_bandit_marksman_orientation";
+::Const.EntityIcon[::Const.EntityType.SkeletonLight] = "rf_skeleton_light_orientation";
+::Const.EntityIcon[::Const.EntityType.SkeletonMedium] = "rf_skeleton_medium_orientation";
 
 local getDefaultFaction = ::Const.EntityType.getDefaultFaction;
 ::Const.EntityType.getDefaultFaction = function( _id )
