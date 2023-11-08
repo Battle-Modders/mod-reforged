@@ -19,7 +19,7 @@ local requiredMods = [
 	"dlc_desert",
 	"dlc_paladins",
 	"mod_dynamic_perks >= 0.2.0"
-	"mod_dynamic_spawns >= 0.2.0",
+	"mod_dynamic_spawns >= 0.2.1",
 	"mod_item_tables >= 0.1.1",
 	"mod_upd",
 	"mod_stack_based_skills >= 0.5.0"
