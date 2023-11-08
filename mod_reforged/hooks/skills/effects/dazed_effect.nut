@@ -11,16 +11,15 @@
 	// Initialize the TurnsLeft with a new value. Will always set the Turns to atleast 1. This function already exists for stunned_effect
 	q.setTurns <- function( _amount )
 	{
-		if (this.getContainer() == null)
+		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 		{
-		   this.m.TurnsLeft = _amount;
+		   this.m.TurnsLeft = ::Math.max(1, _amount);
 		}
 		else
 		{
-		   this.m.TurnsLeft = _amount + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration;
+		   this.m.TurnsLeft = ::Math.max(1, _amount + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		   this.updateSprite();
 		}
-		this.m.TurnsLeft = ::Math.max(1, this.m.TurnsLeft);
-		this.updateSprite();
 	}
 
 	q.updateSprite <- function()
