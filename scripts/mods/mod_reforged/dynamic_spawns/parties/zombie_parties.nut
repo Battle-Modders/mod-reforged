@@ -30,7 +30,7 @@ local parties = [
 		VisionMult = 0.8,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true },
-			{ BaseID = "UnitBlock.RF.BeastGhoulLowOnly", RatioMin = 0.10, RatioMax = 0.30 }
+			{ BaseID = "UnitBlock.RF.GhoulLowOnly", RatioMin = 0.10, RatioMax = 0.30 }
 		]
 	},
 	{
