@@ -11,17 +11,18 @@
 };
 
 local requiredMods = [
-	"mod_msu >= 1.3.0-reforged.7",
+	"mod_msu >= 1.3.0-reforged.10",
+	"mod_modern_hooks >= 0.4.0-reforged.1"
 	"dlc_lindwurm",
 	"dlc_unhold",
 	"dlc_wildmen",
 	"dlc_desert",
 	"dlc_paladins",
-	"mod_dynamic_perks >= 0.1.1"
-	"mod_dynamic_spawns",
-	"mod_item_tables",
+	"mod_dynamic_perks >= 0.2.0"
+	"mod_dynamic_spawns >= 0.2.0",
+	"mod_item_tables >= 0.1.1",
 	"mod_upd",
-	"mod_stack_based_skills"
+	"mod_stack_based_skills >= 0.5.0"
 ];
 
 ::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
