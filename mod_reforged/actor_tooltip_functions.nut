@@ -72,9 +72,20 @@
     {
         local entryText = "";
         statusEffects.sort(@(a,b) a.getName() <=> b.getName());
-        foreach( statusEffect in statusEffects )
+        if (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_CollapseAsText").getValue())
         {
-            entryText += ::Reforged.TacticalTooltip.getNestedSkillImage(statusEffect);
+        	foreach( statusEffect in statusEffects )
+	        {
+	            entryText += ::Reforged.TacticalTooltip.getNestedSkillName(statusEffect) + ", ";
+	        }
+	        if (entryText != "") entryText = entryText.slice(0, -2);
+        }
+        else
+        {
+        	foreach( statusEffect in statusEffects )
+	        {
+	            entryText += ::Reforged.TacticalTooltip.getNestedSkillImage(statusEffect);
+	        }
         }
 
         effectList.push({
@@ -122,12 +133,26 @@
     else
     {
         local entryText = "";
-        foreach( perk in perks )
+        if (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_CollapseAsText").getValue())
         {
-            if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
-                if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
+        	foreach( perk in perks )
+	        {
+	            if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
+	                if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
-            entryText += ::Reforged.TacticalTooltip.getNestedPerkImage(perk);
+	            entryText += ::Reforged.TacticalTooltip.getNestedPerkName(perk) + ", ";
+	        }
+	        if (entryText != "") entryText = entryText.slice(0, -2);
+        }
+        else
+        {
+        	foreach( perk in perks )
+	        {
+	            if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
+	                if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
+
+	            entryText += ::Reforged.TacticalTooltip.getNestedPerkImage(perk);
+	        }
         }
 
         perkList.push({
@@ -266,10 +291,21 @@
 	else
 	{
 		local entryText = "";
-        foreach (skill in skills)
-        {
-            entryText += ::Reforged.TacticalTooltip.getNestedSkillImage(skill);
-        }
+		if (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_CollapseAsText").getValue())
+		{
+			foreach (skill in skills)
+	        {
+	            entryText += ::Reforged.TacticalTooltip.getNestedSkillName(skill) + ", ";
+	        }
+	        if (entryText != "") entryText = entryText.slice(0, -2);
+		}
+		else
+		{
+			foreach (skill in skills)
+	        {
+	            entryText += ::Reforged.TacticalTooltip.getNestedSkillImage(skill);
+	        }
+		}
 
         ret.push({
             id = _startID,
