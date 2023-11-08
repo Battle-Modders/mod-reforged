@@ -87,10 +87,10 @@
 		{
 			__original();
 
-			// VanillaFix: Some vanilla skills for AI entities have IconDisabled same as Icon
+			// VanillaFix: Some vanilla skills for AI entities have IconDisabled same as Icon or are missing IconDisabled
 			// they are missing the _sw gfx in the game files. In Reforged we have created
 			// _sw variants of those gfx and therefore we fix the IconDisabled to use the _sw variant
-			if (this.m.Icon == this.m.IconDisabled)
+			if (this.m.Icon == this.m.IconDisabled || this.m.IconDisabled == "")
 			{
 				this.m.IconDisabled = ::String.replace(this.m.Icon, ".png", "_sw.png");
 			}
