@@ -102,14 +102,4 @@ this.rf_skeleton_heavy_lesser <- ::inherit("scripts/entity/tactical/skeleton", {
 			}
 		}
 	}
-
-	function makeMiniboss()
-	{
-		if (!this.skeleton.makeMiniboss())
-		{
-			return false;
-		}
-
-		this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
-	}
 });
