@@ -7,7 +7,12 @@
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
-		ret.extend(this.getProjectedAttributesTooltip());
+
+		local player = this.getContainer().getActor();
+		if (::Const.XP.MaxLevelWithPerkpoints - player.getLevel() + player.getLevelUps() > 0)
+		{
+			ret.extend(this.getProjectedAttributesTooltip());
+		}
 		return ret;
 	}
 
@@ -51,7 +56,12 @@
 			local perkTreeTooltip = this.getPerkTreeTooltip();
 			perkTreeTooltip.text = ::MSU.String.replace(perkTreeTooltip.text, "%name%", this.getContainer().getActor().getNameOnly());
 			ret.push(perkTreeTooltip);
-			ret.push(this.getProjectedAttributesTooltip());
+
+			local player = this.getContainer().getActor();
+			if (::Const.XP.MaxLevelWithPerkpoints - player.getLevel() + player.getLevelUps() > 0)
+			{
+				ret.extend(this.getProjectedAttributesTooltip());
+			}
 		}
 		else
 		{
@@ -98,7 +108,12 @@
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
-		ret.extend(this.getProjectedAttributesTooltip());
+
+		local player = this.getContainer().getActor();
+		if (::Const.XP.MaxLevelWithPerkpoints - player.getLevel() + player.getLevelUps() > 0)
+		{
+			ret.extend(this.getProjectedAttributesTooltip());
+		}
 		return ret;
 	}
 })
