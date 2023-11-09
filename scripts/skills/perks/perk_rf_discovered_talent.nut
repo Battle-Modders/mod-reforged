@@ -51,7 +51,7 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 			}
 
 			actor.m.Attributes.clear();
-			actor.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - actor.getLevel() + actor.m.LevelUps);
+			actor.fillAttributeLevelUpValues(this.getContainer().getActor().getParagonLevel() - actor.getLevel() + actor.m.LevelUps);
 
 			foreach (i, attributeLevelUps in attributes)
 			{
@@ -64,7 +64,7 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 		else
 		{
 			actor.m.Attributes.clear();
-			actor.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - actor.getLevel() + actor.m.LevelUps);
+			actor.fillAttributeLevelUpValues(this.getContainer().getActor().getParagonLevel() - actor.getLevel() + actor.m.LevelUps);
 		}
 
 		actor.m.LevelUps += 1;

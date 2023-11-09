@@ -9,10 +9,18 @@
 		local ret = __original();
 
 		local player = this.getContainer().getActor();
-		if (::Const.XP.MaxLevelWithPerkpoints - player.getLevel() + player.getLevelUps() > 0)
+		if (player.getParagonLevel() - player.getLevel() + player.getLevelUps() > 0)
 		{
 			ret.extend(this.getProjectedAttributesTooltip());
 		}
+
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = ::Reforged.Mod.Tooltips.parseString("[Paragon Level|Concept.ParagonLevel]: " + player.getParagonLevel())
+
+		});
 		return ret;
 	}
 
@@ -58,10 +66,17 @@
 			ret.push(perkTreeTooltip);
 
 			local player = this.getContainer().getActor();
-			if (::Const.XP.MaxLevelWithPerkpoints - player.getLevel() + player.getLevelUps() > 0)
+			if (player.getParagonLevel() - player.getLevel() + player.getLevelUps() > 0)
 			{
 				ret.extend(this.getProjectedAttributesTooltip());
 			}
+
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/xp_received.png",
+				text = ::Reforged.Mod.Tooltips.parseString("[Paragon Level|Concept.ParagonLevel]: " + player.getParagonLevel())
+			});
 		}
 		else
 		{
@@ -84,7 +99,7 @@
 			return format("<span class='attributePredictionItem'><img src='coui://%s'/> <span class='attributePredictionSingle'>%i</span> <span class='attributePredictionRange'>[%i - %i]</span></span>", _img, (min + max) / 2, min, max);
 		}
 
-		local ret = "<div class='attributePredictionHeader'>Projection of this character\'s base attribute ranges at level " + ::Const.XP.MaxLevelWithPerkpoints + ".</div>";
+		local ret = "<div class='attributePredictionHeader'>Projection of this character\'s base attribute ranges at level " + this.getContainer().getActor().getParagonLevel() + ".</div>";
 		ret += "<div class='attributePredictionContainer'>";
 		ret += formatString("gfx/ui/icons/health.png", ::Const.Attributes.Hitpoints);
 		ret += formatString("gfx/ui/icons/melee_skill.png", ::Const.Attributes.MeleeSkill);
@@ -110,10 +125,18 @@
 		local ret = __original();
 
 		local player = this.getContainer().getActor();
-		if (::Const.XP.MaxLevelWithPerkpoints - player.getLevel() + player.getLevelUps() > 0)
+		if (player.getParagonLevel() - player.getLevel() + player.getLevelUps() > 0)
 		{
 			ret.extend(this.getProjectedAttributesTooltip());
 		}
+
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = ::Reforged.Mod.Tooltips.parseString("[Paragon Level|Concept.ParagonLevel]: " + player.getParagonLevel())
+
+		});
 		return ret;
 	}
 })
