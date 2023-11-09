@@ -34,41 +34,10 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		local requiredLevelUpsSpent = this.getContainer().hasSkill("perk.gifted") ? 5 : 4;
-
-		if (actor.m.LevelUpsSpent < requiredLevelUpsSpent)
-		{
-			local startIndex = requiredLevelUpsSpent - actor.m.LevelUpsSpent;
-			local attributes = array(actor.m.Attributes.len());
-
-			foreach (i, attributeLevelUps in actor.m.Attributes)
-			{
-				attributes[i] = array(startIndex);
-				for (local j = 0; j < startIndex; j++)
-				{
-					attributes[i][j] = attributeLevelUps[j];
-				}
-			}
-
-			actor.m.Attributes.clear();
-			actor.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - actor.getLevel() + actor.m.LevelUps);
-
-			foreach (i, attributeLevelUps in attributes)
-			{
-				foreach (j, levelup in attributeLevelUps)
-				{
-					actor.m.Attributes[i][j] = levelup;
-				}
-			}
-		}
-		else
-		{
-			actor.m.Attributes.clear();
-			actor.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - actor.getLevel() + actor.m.LevelUps);
-		}
-
+		// Because of its perk requirement we guaranteed that there are no pending past level-ups which would otherwise be overwritten
+		actor.m.Attributes.clear();
+		actor.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - actor.getLevel() + 1);
 		actor.m.LevelUps += 1;
-		actor.fillAttributeLevelUpValues(1);
 
 		this.m.IsApplied = true;
 	}
