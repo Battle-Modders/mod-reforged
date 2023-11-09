@@ -16,7 +16,7 @@ this.pg_rf_talented <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.student"],
+				["perk.rf_student"],
 				[],
 				[],
 				["perk.rf_discovered_talent"],

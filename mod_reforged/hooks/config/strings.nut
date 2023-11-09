@@ -512,14 +512,13 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.OneTimeEffect,
  				Description = [
-					"At the eleventh character level, you gain an additional perk point and this perk becomes inert.",
-					"Playing the \'Manhunters\' origin, your indebted get the perk point refunded at the seventh character level."
+					"When you reach your [paragon level|Concept.ParagonLevel], gain an additional perk point and this perk becomes inert."
 				]
  			},
 			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Gain additional [color=" + ::Const.UI.Color.PositiveValue + "]20%[/color] experience from battle."
+					"Gain additional " + ::MSU.Text.colorGreen("20%") + " experience from battle."
 				]
 			}],
 			Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")	// This line is new, rest is the same

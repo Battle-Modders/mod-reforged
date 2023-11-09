@@ -1,5 +1,28 @@
 ::DynamicPerks.Perks.addPerks([
 	{
+		ID = "perk.rf_student",
+		Script = "scripts/skills/perks/perk_rf_student",
+		Name = ::Const.Strings.PerkName.Student,
+		Tooltip = ::Const.Strings.PerkDescription.Student,
+		Icon = "ui/perks/perk_21.png",
+		IconDisabled = "ui/perks/perk_21_sw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			if (_player.getLevel() >= _player.getParagonLevel())
+			{
+				_tooltip.push({
+					id = 3,
+					type = "hint",
+					icon = "ui/icons/icon_locked.png",
+					text = "Locked because this character has already reached their paragon level"
+				});
+				return false;
+			}
+
+			return true;
+		}
+	},
+	{
 		ID = "perk.rf_heft",
 		Script = "scripts/skills/perks/perk_rf_heft",
 		Name = ::Const.Strings.PerkName.RF_Heft,
