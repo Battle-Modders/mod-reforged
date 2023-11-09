@@ -12,7 +12,7 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "perk.rf_vigorous_assault";
 		this.m.Name = ::Const.Strings.PerkName.RF_VigorousAssault;
-		this.m.Description = "The momentum of this character\'s' movement lends to an easier and faster attack.";
+		this.m.Description = "The momentum of this character\'s movement lends to an easier and faster attack.";
 		this.m.Icon = "ui/perks/rf_vigorous_assault.png";
 		this.m.IconMini = "rf_vigorous_assault_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
