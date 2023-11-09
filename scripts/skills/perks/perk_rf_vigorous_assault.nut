@@ -24,8 +24,7 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		// Always show on AI entities so the player is not surprised
-		return this.getContainer().getActor().isPlayerControlled() && this.m.CurrAPBonus == 0 && this.m.CurrFatBonus == 0;
+		return this.m.CurrAPBonus == 0 && this.m.CurrFatBonus == 0;
 	}
 
 	function getTooltip()
