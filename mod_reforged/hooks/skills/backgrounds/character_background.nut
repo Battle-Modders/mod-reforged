@@ -13,6 +13,14 @@
 		{
 			ret.extend(this.getProjectedAttributesTooltip());
 		}
+
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = ::Reforged.Mod.Tooltips.parseString("[Paragon Level|Concept.ParagonLevel]: " + player.getParagonLevel())
+
+		});
 		return ret;
 	}
 
@@ -62,6 +70,13 @@
 			{
 				ret.extend(this.getProjectedAttributesTooltip());
 			}
+
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/xp_received.png",
+				text = ::Reforged.Mod.Tooltips.parseString("[Paragon Level|Concept.ParagonLevel]: " + player.getParagonLevel())
+			});
 		}
 		else
 		{
@@ -114,6 +129,14 @@
 		{
 			ret.extend(this.getProjectedAttributesTooltip());
 		}
+
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = ::Reforged.Mod.Tooltips.parseString("[Paragon Level|Concept.ParagonLevel]: " + player.getParagonLevel())
+
+		});
 		return ret;
 	}
 })

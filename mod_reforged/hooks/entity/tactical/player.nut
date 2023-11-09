@@ -1,4 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/player", function(q) {
+	q.m.ParagonLevel <- 0;
+
+	q.create = @(__original) function()
+	{
+		__original();
+        this.m.ParagonLevel = ::Const.XP.MaxLevelWithPerkpoints;	// Default value
+	}
 
     // Player and Non-Player are now using the exact same tooltip-structure again because the only difference of the exact values for progressbar has been streamlined
     // This will make modding easier because now the elements for both types of tooltips have the same IDs
@@ -166,5 +173,11 @@
 				}
 			}
 		}
+	}
+
+// New Functions
+	q.getParagonLevel <- function()
+	{
+		return this.m.ParagonLevel;
 	}
 });
