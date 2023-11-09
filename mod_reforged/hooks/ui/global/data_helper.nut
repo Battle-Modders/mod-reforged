@@ -48,4 +48,10 @@
 		}
 		return ret;
 	}
+
+	q.addCharacterToUIData = @(__original) function( _entity, _target )
+	{
+		__original(_entity, _target);
+		_target.paragonLevel <- _entity.getParagonLevel();
+	}
 })
