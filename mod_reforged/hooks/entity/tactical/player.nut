@@ -47,7 +47,7 @@
 			local attributeMax = ::Const.AttributesLevelUp[attribute].Max;
 			if (this.m.Talents[attribute] == 3) attributeMax++;
 
-			local levelUpsRemaining = ::Math.max(::Const.XP.MaxLevelWithPerkpoints - this.getLevel() + this.getLevelUps(), 0);
+			local levelUpsRemaining = ::Math.max(this.getContainer().getActor().getParagonLevel() - this.getLevel() + this.getLevelUps(), 0);
 			local attributeValue = attributeName == "Fatigue" ? baseProperties["Stamina"] : baseProperties[attributeName]; // Thank you Overhype
 
 			// For each "randomized" level-up for 2-star talents, decrease min projection by 1 and increase max projection by 1
@@ -145,7 +145,7 @@
 		if (_addTraits)
 		{
 			this.fillTalentValues();
-			this.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
+			this.fillAttributeLevelUpValues(this.getContainer().getActor().getParagonLevel() - 1);
 		}
 	}
 
