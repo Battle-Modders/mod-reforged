@@ -117,7 +117,7 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.UnholdBog", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 250 },
 			{ BaseID = "UnitBlock.RF.Direwolf", RatioMin = 0.00, RatioMax = 1.00 },
 			{ BaseID = "UnitBlock.RF.HexeBandit", RatioMin = 0.00, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.RF.HexenBanditRanged", RatioMin = 0.00, RatioMax = 0.13 }
+			{ BaseID = "UnitBlock.RF.HexeBanditRanged", RatioMin = 0.00, RatioMax = 0.13 }
 		]
 	},
 	{
