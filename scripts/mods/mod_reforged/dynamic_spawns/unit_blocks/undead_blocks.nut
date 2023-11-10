@@ -10,7 +10,7 @@ local unitBlocks = [
 		]
 	},
 	{
-		ID = "UnitBlock.RF_SkeletonBackline",
+		ID = "UnitBlock.RF.SkeletonBackline",
 		DeterminesFigure = true,
 		UnitDefs = [
 			{ BaseID = "Unit.RF.RF_SkeletonLightElitePolearm" },
