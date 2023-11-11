@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/throw_axe", function(q) {
-	q.m.AdditionalAccuracy = -20;
+	q.m.AdditionalAccuracy = 20;
 	q.m.AdditionalHitChance = -15;
 
 	q.create = @(__original) function()
