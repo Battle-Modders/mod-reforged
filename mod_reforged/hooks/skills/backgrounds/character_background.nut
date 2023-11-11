@@ -48,32 +48,6 @@
 		};
 	}
 
-	q.getGenericTooltip = @(__original) function()
-	{
-		local ret = __original();
-		if (this.getContainer().getActor().isTryoutDone())
-		{
-			local perkTreeTooltip = this.getPerkTreeTooltip();
-			perkTreeTooltip.text = ::MSU.String.replace(perkTreeTooltip.text, "%name%", this.getContainer().getActor().getNameOnly());
-			ret.push(perkTreeTooltip);
-
-			local player = this.getContainer().getActor();
-			if (::Const.XP.MaxLevelWithPerkpoints - player.getLevel() + player.getLevelUps() > 0)
-			{
-				ret.extend(this.getProjectedAttributesTooltip());
-			}
-		}
-		else
-		{
-			ret.push({
-				id = 3,
-				type = "description",
-				text =  ::MSU.Text.colorRed("Try out") + " this character to reveal " + ::MSU.Text.colorGreen("more") + " information!"
-			});
-		}
-		return ret;
-	}
-
 	q.getProjectedAttributesHTML <- function()
 	{
 		local projection = this.getContainer().getActor().getProjectedAttributes();
