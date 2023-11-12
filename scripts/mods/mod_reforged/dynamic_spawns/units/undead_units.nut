@@ -3,18 +3,18 @@ local units = [
 	{
 		ID = "Unit.RF.SkeletonLight",
 		Troop = "SkeletonLight",
-		Figure = "rf_figure_skeleton_light",
+		Figure = "figure_rf_skeleton_light",
 	},
 	{
 		ID = "Unit.RF.SkeletonMedium",
 		Troop = "SkeletonMedium",
-		Figure = "rf_figure_skeleton_medium",
+		Figure = "figure_rf_skeleton_medium",
 		StartingResourceMin = 180
 	},
 	{
 		ID = "Unit.RF.SkeletonMediumPolearm",
 		Troop = "SkeletonMediumPolearm",
-		Figure = "rf_figure_skeleton_medium",
+		Figure = "figure_rf_skeleton_medium",
 		StartingResourceMin = 180
 	},
 	{
@@ -42,61 +42,61 @@ local units = [
 	{
 		ID = "Unit.RF.RF_SkeletonLightElite",
 		Troop = "RF_SkeletonLightElite",
-		Figure = "rf_figure_skeleton_light_elite",
+		Figure = "figure_rf_skeleton_light_elite",
 		StartingResourceMin = 120
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonLightElitePolearm",
 		Troop = "RF_SkeletonLightElitePolearm",
-		Figure = "rf_figure_skeleton_light_elite",
+		Figure = "figure_rf_skeleton_light_elite",
 		StartingResourceMin = 120
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonMediumElite",
 		Troop = "RF_SkeletonMediumElite",
-		Figure = "rf_figure_skeleton_medium_elite",
+		Figure = "figure_rf_skeleton_medium_elite",
 		StartingResourceMin = 240
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonMediumElitePolearm",
 		Troop = "RF_SkeletonMediumElitePolearm",
-		Figure = "rf_figure_skeleton_medium_elite",
+		Figure = "figure_rf_skeleton_medium_elite",
 		StartingResourceMin = 240
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonHeavyLesser",
 		Troop = "RF_SkeletonHeavyLesser",
-		Figure = "rf_figure_skeleton_heavy_lesser",
+		Figure = "figure_rf_skeleton_heavy_lesser",
 		StartingResourceMin = 220
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonHeavyLesserBodyguard",
 		Troop = "RF_SkeletonHeavyLesserBodyguard",
-		Figure = "rf_figure_skeleton_heavy_lesser",
+		Figure = "figure_rf_skeleton_heavy_lesser",
 		StartingResourceMin = 220
 	},
 	{
 		ID = "Unit.RF.RF_VampireLord",
 		Troop = "RF_VampireLord",
-		Figure = "rf_figure_vampire_lord",
+		Figure = "figure_rf_vampire_lord",
 		StartingResourceMin = 300
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonDecanus",
 		Troop = "RF_SkeletonDecanus",
-		Figure = "rf_figure_skeleton_decanus",
+		Figure = "figure_skeleton_decanus",
 		StartingResourceMin = 150
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonCenturion",
 		Troop = "RF_SkeletonCenturion",
-		Figure = "rf_figure_skeleton_centurion",
+		Figure = "figure_skeleton_centurion",
 		StartingResourceMin = 220
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonLegatus",
 		Troop = "RF_SkeletonLegatus",
-		Figure = "rf_figure_skeleton_legatus",
+		Figure = "figure_skeleton_legatus",
 		StartingResourceMin = 270
 	},
 	{
