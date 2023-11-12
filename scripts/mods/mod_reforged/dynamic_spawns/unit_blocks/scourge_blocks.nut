@@ -4,8 +4,8 @@ local unitBlocks = [
 		UnitDefs = ::MSU.Class.WeightedContainer([
 			[1, { BaseID = "Unit.RF.SkeletonPriestPH" }],
 			[1, { BaseID = "Unit.RF.SkeletonPriestHH" }],
-			[1, { BaseID = "Undead.RF.NecromancerYK" }],
-			[1, { BaseID = "Undead.RF.NecromancerKK" }]
+			[1, { BaseID = "Unit.RF.NecromancerYK" }],
+			[1, { BaseID = "Unit.RF.NecromancerKK" }]
 		])
 	},
 ]
