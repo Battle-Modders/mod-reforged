@@ -122,21 +122,6 @@ local parties = [
 			}
 		]
 	}
-	{
-		ID = "SubPartyHonor",
-		HardMin = 1,
-		StaticUnitIDs = [
-			"Undead.SkeletonHeavyBodyguard"
-		]
-	},
-	{
-		ID = "SubPartyHonorHonor",
-		HardMin = 2,
-		StaticUnitIDs = [
-			"Undead.SkeletonHeavyBodyguard",
-			"Undead.SkeletonHeavyBodyguard"
-		]
-	}
 ]
 
 foreach(partyDef in parties)
