@@ -25,6 +25,7 @@
 ::Const.World.Spawn.Troops.BanditRaider.Cost = 30;
 ::Const.World.Spawn.Troops.BanditLeader.Strength = 40;
 ::Const.World.Spawn.Troops.BanditLeader.Cost = 40;
+::Const.World.Spawn.Troops.BanditLeader.Variant = 0;
 
 //Civilian
 ::Const.World.Spawn.Troops.HedgeKnight.Strength = 45;
