@@ -45,7 +45,7 @@ local parties = [
 					{ BaseID = "UnitBlock.RF.SkeletonBackline", RatioMin = 0.00, RatioMax = 0.40 },
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.00, RatioMax = 0.30 },
 					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.00, RatioMax = 0.30 },
-					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.0, StartingResourceMin = 180, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 375)
@@ -69,7 +69,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 33) this.spawnUnit();
 					    }
 					}},
-					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, StartingResourceMin = 250, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -92,7 +92,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 33) this.spawnUnit();
 					    }
 					}},
-					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, StartingResourceMin = 300, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -122,7 +122,7 @@ local parties = [
 				StartingResourceMin = 250,
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.80 },
-					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, StartingResourceMin = 250, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -142,7 +142,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
 					    }
 					}},
-					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, StartingResourceMin = 300, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -173,7 +173,7 @@ local parties = [
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.80 },
 					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.40 },
-					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, StartingResourceMin = 250, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -193,7 +193,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 20) this.spawnUnit();
 					    }
 					}},
-					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, StartingResourceMin = 300, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -223,7 +223,7 @@ local parties = [
 				StartingResourceMin = 250,
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 1.00 },
-					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, StartingResourceMin = 180, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -243,7 +243,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 20) this.spawnUnit();
 					    }
 					}},
-					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, StartingResourceMin = 300, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -304,7 +304,7 @@ local parties = [
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonFrontline", RatioMin = 0.01, RatioMax = 0.60 },
 					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.40, Hardmin = 3 },
-					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.0, StartingResourceMin = 180, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 375)
@@ -327,7 +327,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
 					    }
 					}},
-					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, StartingResourceMin = 250, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -350,7 +350,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
 					    }
 					}},
-					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, StartingResourceMin = 300, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -396,7 +396,7 @@ local parties = [
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.70 },
 					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.70, Hardmin = 3 },
-					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, StartingResourceMin = 250, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -416,7 +416,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 15) this.spawnUnit();
 					    }
 					}},
-					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, StartingResourceMin = 300, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -445,7 +445,7 @@ local parties = [
 					{ BaseID = "UnitBlock.RF.SkeletonFrontline", RatioMin = 0.01, RatioMax = 0.70 },
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.70 },
 					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.70, Hardmin = 3 },
-					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.0, StartingResourceMin = 180, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 300)
@@ -463,7 +463,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
 					    }
 					}},
-					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, StartingResourceMin = 250, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
@@ -485,7 +485,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
 					    }
 					}},
-					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, StartingResourceMin = 300, ReqPartySize = 6, function onBeforeSpawnStart() {
+					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
 					    if (res >= 450)
