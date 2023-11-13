@@ -226,24 +226,21 @@ local parties = [
 					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, StartingResourceMin = 180, ReqPartySize = 6, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
-					    if (res >= 375)
+					    if (res >= 450)
 					    {
-					        if (::Math.rand(1, 100) <= 80) this.spawnUnit();
-					        if (::Math.rand(1, 100) <= 20) this.spawnUnit();
+					        if (::Math.rand(1, 100) <= 50) this.spawnUnit();
+					    }
+					    else if (res >= 375)
+					    {
+					        if (::Math.rand(1, 100) <= 40) this.spawnUnit();
 					    }
 					    else if (res >= 300)
 					    {
-					        if (::Math.rand(1, 100) <= 70) this.spawnUnit();
-					        if (::Math.rand(1, 100) <= 15) this.spawnUnit();
+					        if (::Math.rand(1, 100) <= 30) this.spawnUnit();
 					    }
 					    else if (res >= 250)
 					    {
-					        if (::Math.rand(1, 100) <= 45) this.spawnUnit();
-					        if (::Math.rand(1, 100) <= 5) this.spawnUnit();
-					    }
-					    else
-					    {
-					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
+					        if (::Math.rand(1, 100) <= 20) this.spawnUnit();
 					    }
 					}},
 					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.0, StartingResourceMin = 300, ReqPartySize = 6, function onBeforeSpawnStart() {
