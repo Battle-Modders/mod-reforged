@@ -64,7 +64,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 55) this.spawnUnit();
 					        if (::Math.rand(1, 100) <= 11) this.spawnUnit();
 					    }
-					    else
+					    else if (res >= 180)
 					    {
 					        if (::Math.rand(1, 100) <= 33) this.spawnUnit();
 					    }
@@ -87,7 +87,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 55) this.spawnUnit();
 					        if (::Math.rand(1, 100) <= 11) this.spawnUnit();
 					    }
-					    else
+					    else if (res >= 250)
 					    {
 					        if (::Math.rand(1, 100) <= 33) this.spawnUnit();
 					    }
@@ -103,7 +103,7 @@ local parties = [
 					    {
 					        if (::Math.rand(1, 100) <= 66) this.spawnUnit();
 					    }
-					    else (res >= 300)
+					    else if (res >= 300)
 					    {
 					        if (::Math.rand(1, 100) <= 33) this.spawnUnit();
 					    }
@@ -137,7 +137,7 @@ local parties = [
 					    {
 					        if (::Math.rand(1, 100) <= 35) this.spawnUnit();
 					    }
-					    else
+					    else if (res >= 250)
 					    {
 					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
 					    }
@@ -153,7 +153,7 @@ local parties = [
 					    {
 					        if (::Math.rand(1, 100) <= 30) this.spawnUnit();
 					    }
-					    else (res >= 300)
+					    else if (res >= 300)
 					    {
 					        if (::Math.rand(1, 100) <= 20) this.spawnUnit();
 					    }
@@ -188,7 +188,7 @@ local parties = [
 					    {
 					        if (::Math.rand(1, 100) <= 30) this.spawnUnit();
 					    }
-					    else
+					    else if (res >= 250)
 					    {
 					        if (::Math.rand(1, 100) <= 20) this.spawnUnit();
 					    }
@@ -204,7 +204,7 @@ local parties = [
 					    {
 					        if (::Math.rand(1, 100) <= 30) this.spawnUnit();
 					    }
-					    else (res >= 300)
+					    else if (res >= 300)
 					    {
 					        if (::Math.rand(1, 100) <= 20) this.spawnUnit();
 					    }
@@ -254,7 +254,7 @@ local parties = [
 					    {
 					        if (::Math.rand(1, 100) <= 30) this.spawnUnit();
 					    }
-					    else (res >= 300)
+					    else if (res >= 300)
 					    {
 					        if (::Math.rand(1, 100) <= 20) this.spawnUnit();
 					    }
@@ -322,7 +322,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 45) this.spawnUnit();
 					        if (::Math.rand(1, 100) <= 5) this.spawnUnit();
 					    }
-					    else
+					    else if (res >= 180)
 					    {
 					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
 					    }
@@ -345,7 +345,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 45) this.spawnUnit();
 					        if (::Math.rand(1, 100) <= 5) this.spawnUnit();
 					    }
-					    else
+					    else if (res >= 250)
 					    {
 					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
 					    }
@@ -361,7 +361,7 @@ local parties = [
 					    {
 					        if (::Math.rand(1, 100) <= 40) this.spawnUnit();
 					    }
-					    else (res >= 300)
+					    else if (res >= 300)
 					    {
 					        if (::Math.rand(1, 100) <= 20) this.spawnUnit();
 					    }
@@ -411,7 +411,7 @@ local parties = [
 					    {
 					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
 					    }
-					    else
+					    else if (res >= 250)
 					    {
 					        if (::Math.rand(1, 100) <= 15) this.spawnUnit();
 					    }
@@ -427,7 +427,7 @@ local parties = [
 					    {
 					        if (::Math.rand(1, 100) <= 20) this.spawnUnit();
 					    }
-					    else (res >= 300)
+					    else if (res >= 300)
 					    {
 					        if (::Math.rand(1, 100) <= 10) this.spawnUnit();
 					    }
@@ -458,7 +458,7 @@ local parties = [
 					        if (::Math.rand(1, 100) <= 45) this.spawnUnit();
 					        if (::Math.rand(1, 100) <= 7) this.spawnUnit();
 					    }
-					    else
+					    else if (res >= 180)
 					    {
 					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
 					    }
@@ -480,7 +480,7 @@ local parties = [
 					    {
 					        if (::Math.rand(1, 100) <= 40) this.spawnUnit();
 					    }
-					    else
+					    else if (res >= 250)
 					    {
 					        if (::Math.rand(1, 100) <= 25) this.spawnUnit();
 					    }
@@ -496,7 +496,7 @@ local parties = [
 					    {
 					        if (::Math.rand(1, 100) <= 40) this.spawnUnit();
 					    }
-					    else (res >= 300)
+					    else if (res >= 300)
 					    {
 					        if (::Math.rand(1, 100) <= 20) this.spawnUnit();
 					    }
