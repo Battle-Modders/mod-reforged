@@ -144,7 +144,7 @@
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_light_elite"
 	},
 	RF_SkeletonLightElitePolearm = {
-		ID = ::Const.EntityType.RF_SkeletonLightElitePolearm,
+		ID = ::Const.EntityType.RF_SkeletonLightElite,
 		Variant = 0,
 		Strength = 20,
 		Cost = 20,

@@ -20,9 +20,7 @@ local entityTypes = [
 	"RF_BanditBaron",
 
 	"RF_SkeletonLightElite",
-	"RF_SkeletonLightElitePolearm",
 	"RF_SkeletonMediumElite",
-	"RF_SkeletonMediumElitePolearm",
 	"RF_SkeletonHeavyLesser",
 	"RF_SkeletonDecanus",
 	"RF_SkeletonCenturion",
@@ -45,8 +43,6 @@ local entityIcon = [
 	"rf_bandit_baron_orientation"
 
 	"rf_skeleton_light_elite_orientation",
-	"rf_skeleton_light_elite_orientation",
-	"rf_skeleton_medium_elite_orientation",
 	"rf_skeleton_medium_elite_orientation",
 	"rf_skeleton_heavy_lesser_orientation",
 	"rf_skeleton_decanus_orientation",
