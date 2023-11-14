@@ -19,7 +19,7 @@
 				"pgc.rf_shared_1": [
 					"pg.rf_resilient",
 					"pg.rf_unstoppable",
-					"pg.vicious"
+					"pg.rf_vicious"
 				],
 				"pgc.rf_weapon": [],
 				"pgc.rf_armor": [
