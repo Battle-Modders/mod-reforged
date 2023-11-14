@@ -119,7 +119,7 @@ local units = [
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 250,
 		Cost = 40 + 40 + 40,
-		SubPartyDef = {BaseID = "SubPartyPraePrae"}
+		SubPartyDef = {BaseID = "SubPartyPrae2"}
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestPH",
