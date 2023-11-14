@@ -4,18 +4,6 @@
 		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
 	}
 
-	q.getTooltip = @(__original) function()
-	{
-		local ret = __original();
-
-		local player = this.getContainer().getActor();
-		if (::Const.XP.MaxLevelWithPerkpoints - player.getLevel() + player.getLevelUps() > 0)
-		{
-			ret.extend(this.getProjectedAttributesTooltip());
-		}
-		return ret;
-	}
-
 	q.getProjectedAttributesTooltip <- function()
 	{
 		return [{
@@ -75,10 +63,6 @@
 });
 
 ::Reforged.HooksMod.hookTree("scripts/skills/backgrounds/character_background", function(q) {
-	// TODO: This q.contains check should be removed once Modern Hooks updates its hookTree handling
-	if (!q.contains("getTooltip"))
-		return;
-
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
