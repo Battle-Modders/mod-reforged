@@ -511,32 +511,32 @@ local parties = [
 	{
 		ID = "SubPartyPrae",
 		HardMin = 1,
-		StaticUnitIDs = [
-			"Unit.RF.RF_SkeletonHeavyLesserBodyguard"
+		StaticUnitDefs = [
+			{ BaseID = "Unit.RF.RF_SkeletonHeavyLesserBodyguard" }
 		]
 	},
 	{
 		ID = "SubPartyPrae2",
 		HardMin = 2,
-		StaticUnitIDs = [
-			"Unit.RF.RF_SkeletonHeavyLesserBodyguard",
-			"Unit.RF.RF_SkeletonHeavyLesserBodyguard"
+		StaticUnitDefs = [
+			{ BaseID = "Unit.RF.RF_SkeletonHeavyLesserBodyguard" },
+			{ BaseID = "Unit.RF.RF_SkeletonHeavyLesserBodyguard" }
 		]
 	},
 	{
 		ID = "SubPartyPraeHonor",
 		HardMin = 1,
-		StaticUnitIDs = [
-			"Unit.RF.RF_SkeletonHeavyLesserBodyguard",
-			"Unit.RF.SkeletonHeavyBodyguard"
+		StaticUnitDefs = [
+			{ BaseID = "Unit.RF.RF_SkeletonHeavyLesserBodyguard" },
+			{ BaseID = "Unit.RF.SkeletonHeavyBodyguard" }
 		]
 	},
 	{
 		ID = "SubPartyHonor2",
 		HardMin = 2,
-		StaticUnitIDs = [
-			"Unit.RF.SkeletonHeavyBodyguard",
-			"Unit.RF.SkeletonHeavyBodyguard"
+		StaticUnitDefs = [
+			{ BaseID = "Unit.RF.SkeletonHeavyBodyguard" },
+			{ BaseID = "Unit.RF.SkeletonHeavyBodyguard" }
 		]
 	},
 	// {
