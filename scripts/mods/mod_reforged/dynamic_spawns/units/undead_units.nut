@@ -84,19 +84,19 @@ local units = [
 	{
 		ID = "Unit.RF.RF_SkeletonDecanus",
 		Troop = "RF_SkeletonDecanus",
-		Figure = "figure_skeleton_decanus",
+		Figure = "figure_rf_skeleton_decanus",
 		StartingResourceMin = 150
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonCenturion",
 		Troop = "RF_SkeletonCenturion",
-		Figure = "figure_skeleton_centurion",
+		Figure = "figure_rf_skeleton_centurion",
 		StartingResourceMin = 220
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonLegatus",
 		Troop = "RF_SkeletonLegatus",
-		Figure = "figure_skeleton_legatus",
+		Figure = "figure_rf_skeleton_legatus",
 		StartingResourceMin = 270
 	},
 	{
