@@ -365,7 +365,7 @@
 {
     local fileName = split(::IO.scriptFilenameByHash(_perk.ClassNameHash), "/").top();
     local perkDef = ::Const.Perks.findById(_perk.getID());
-    return ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|%s]", perkDef != null ? perkDef.Icon : perk.getIcon(), "Perk+" + fileName));
+    return ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|%s]", perkDef != null ? perkDef.Icon : _perk.getIcon(), "Perk+" + fileName));
 }
 
 // All other kinds of skills like effects and actives
