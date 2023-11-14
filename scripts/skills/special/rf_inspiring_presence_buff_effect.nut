@@ -64,6 +64,9 @@ this.rf_inspiring_presence_buff_effect <- ::inherit("scripts/skills/skill", {
 		}
 
 		local actor = this.getContainer().getActor();
+		if (actor.getMoraleState() == ::Const.MoraleState.Fleeing || actor.getCurrentProperties().IsStunned)
+			return;
+
 		local allies = ::Tactical.Entities.getFactionActors(actor.getFaction(), actor.getTile(), 1, true);
 		local hasAdjacentEnemy = actorHasAdjacentEnemy(actor);
 		local hasInspirer = false;
