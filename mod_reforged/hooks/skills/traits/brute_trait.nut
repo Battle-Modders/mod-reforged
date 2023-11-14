@@ -13,4 +13,17 @@
 			"pg.rf_sword": 0.8
 		};
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		foreach(entry in ret)
+		{
+			if (entry.id == 10 && entry.icon == "ui/icons/chance_to_hit_head.png")
+			{
+				entry.text = "Melee Damage is increased by "::MSU.Text.colorGreen("+15%") + " on a hit to the head"
+			}
+		}
+		return ret;
+	}
 });

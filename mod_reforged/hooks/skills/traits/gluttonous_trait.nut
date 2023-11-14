@@ -8,4 +8,16 @@
 			"pg.rf_large": 2
 		};
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.push({
+			id = 5,
+			type = "text",
+			icon = "ui/icons/asset_daily_food.png",
+			text = "Requires " + ::MSU.Text.colorRed("+1") + " daily food"
+		})
+		return ret;
+	}
 });
