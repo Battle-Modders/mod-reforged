@@ -29,7 +29,6 @@ local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.SkeletonSupport",
 		DeterminesFigure = true,
-		IsRandom = true,
 		UnitDefs = [
 			{ BaseID = "Unit.RF.SkeletonPriestP", StartingResourceMax = 400 },
 			{ BaseID = "Unit.RF.SkeletonPriestPP" },
