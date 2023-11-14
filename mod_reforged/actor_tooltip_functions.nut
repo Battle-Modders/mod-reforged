@@ -119,10 +119,12 @@
             if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
                 if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
+            local perkDef = ::Const.Perks.findById(perk.getID());
+
             local perkEntry = {
                 id = currentID,
                 type = "text",
-                icon = perk.getIcon(),
+                icon = perkDef != null ? perkDef.Icon : perk.getIcon(),
                 text = ::Reforged.TacticalTooltip.getNestedPerkName(perk)
             };
             currentID++;
@@ -362,7 +364,8 @@
 ::Reforged.TacticalTooltip.getNestedPerkImage <- function ( _perk )
 {
     local fileName = split(::IO.scriptFilenameByHash(_perk.ClassNameHash), "/").top();
-    return ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|%s]", _perk.m.Icon, "Perk+" + fileName));
+    local perkDef = ::Const.Perks.findById(_perk.getID());
+    return ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|%s]", perkDef != null ? perkDef.Icon : perk.getIcon(), "Perk+" + fileName));
 }
 
 // All other kinds of skills like effects and actives
