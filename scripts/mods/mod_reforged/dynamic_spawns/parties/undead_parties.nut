@@ -306,7 +306,7 @@ local parties = [
 				}
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonFrontline", RatioMin = 0.01, RatioMax = 0.60 },
-					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.40, Hardmin = 3 },
+					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.40, HardMin = 3 },
 					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.0, StartingResourceMin = 180, ReqPartySize = 6, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
@@ -398,7 +398,7 @@ local parties = [
 
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.70 },
-					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.70, Hardmin = 3 },
+					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.70, HardMin = 3 },
 					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.0, StartingResourceMin = 250, ReqPartySize = 6, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
@@ -447,7 +447,7 @@ local parties = [
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonFrontline", RatioMin = 0.01, RatioMax = 0.70 },
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.70 },
-					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.70, Hardmin = 3 },
+					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.70, HardMin = 3 },
 					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.0, StartingResourceMin = 180, ReqPartySize = 6, function onBeforeSpawnStart() {
 					    base.onBeforeSpawnStart();
 					    local res = this.getSpawnProcess().getStartingResources();
