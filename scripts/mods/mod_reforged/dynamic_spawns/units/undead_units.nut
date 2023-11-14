@@ -111,7 +111,7 @@ local units = [
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 225,
 		Cost = 40 + 40,
-		SubPartyDef = {ID = "SubPartyPrae"}
+		SubPartyDef = {BaseID = "SubPartyPrae"}
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestPP",
@@ -119,7 +119,7 @@ local units = [
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 250,
 		Cost = 40 + 40 + 40,
-		SubPartyDef = {ID = "SubPartyPraePrae"}
+		SubPartyDef = {BaseID = "SubPartyPraePrae"}
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestPH",
@@ -127,7 +127,7 @@ local units = [
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 275,
 		Cost = 40 + 40 + 50,
-		SubPartyDef = {ID = "SubPartyPraeHonor"}
+		SubPartyDef = {BaseID = "SubPartyPraeHonor"}
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestHH",
@@ -135,7 +135,7 @@ local units = [
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 300,
 		Cost = 40 + 50 + 50,
-		SubPartyDef = {ID = "SubPartyHonor2"}
+		SubPartyDef = {BaseID = "SubPartyHonor2"}
 	},
 ];
 

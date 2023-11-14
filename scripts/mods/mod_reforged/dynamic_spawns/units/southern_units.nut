@@ -26,7 +26,7 @@ local units = [
 		ID = "Unit.RF.Mortar",
 		Troop = "Mortar",
 		StartingResourceMin = 340, // In Vanilla they appear in a group of 340 cost
-		SubPartyDef = {ID = "MortarEngineers"}
+		SubPartyDef = {BaseID = "MortarEngineers"}
 	},
 	{
 		ID = "Unit.RF.Assassin",

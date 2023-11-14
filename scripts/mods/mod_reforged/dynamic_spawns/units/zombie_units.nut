@@ -35,7 +35,7 @@ local units = [
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		StartingResourceMin = 100, // In Vanilla they appear in a group of 100 cost
 		Cost = 30 + 12,
-		SubPartyDef = {ID = "SubPartyYeoman"}
+		SubPartyDef = {BaseID = "SubPartyYeoman"}
 	},
 	{
 		ID = "Unit.RF.NecromancerK",
@@ -43,7 +43,7 @@ local units = [
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		StartingResourceMin = 320, // In Vanilla they appear in a group of 320 cost
 		Cost = 30 + 24,
-		SubPartyDef = {ID = "SubPartyKnight"}
+		SubPartyDef = {BaseID = "SubPartyKnight"}
 	},
 	{
 		ID = "Unit.RF.NecromancerYK",
@@ -51,7 +51,7 @@ local units = [
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		StartingResourceMin = 360, // In Vanilla they appear in a group of 415 cost
 		Cost = 30 + 12 + 24,
-		SubPartyDef = {ID = "SubPartyYeomanKnight"}
+		SubPartyDef = {BaseID = "SubPartyYeomanKnight"}
 	},
 	{
 		ID = "Unit.RF.NecromancerKK",
@@ -59,7 +59,7 @@ local units = [
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		StartingResourceMin = 420, // In Vanilla they appear in a group of 415 cost
 		Cost = 30 + 24 + 24,
-		SubPartyDef = {ID = "SubPartyKnightKnight"}
+		SubPartyDef = {BaseID = "SubPartyKnightKnight"}
 	},
 
 // Necromancer with Nomad Bodyguards
