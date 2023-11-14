@@ -1,3 +1,11 @@
+::Reforged.HooksMod.hook("scripts/skills/traits/loyal_trait", function(q) {
+	q.create = @(__original) function()
+	{
+		__original();
+		this.m.PerkTreeMultipliers = {
+			"pg.rf_devious": 0.5
+		};
+	}
 
 	q.getTooltip = @(__original) function()
 	{
