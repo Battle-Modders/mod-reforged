@@ -117,9 +117,7 @@ local parties = [
 	{	// The amount is set from outside
 		ID = "SubPartyNomad",
 		UnitBlockDefs = [
-			{
-				ID = "Zombie.ZombieNomadBodyguard"
-			}
+			{ BaseID = "UnitBlock.RF.ZombieNomadBodyguard" }
 		]
 	}
 ]
