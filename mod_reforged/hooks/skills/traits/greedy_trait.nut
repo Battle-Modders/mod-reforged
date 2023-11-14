@@ -7,4 +7,16 @@
 			"pg.rf_vicious": 2
 		};
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.push({
+			id = 5,
+			type = "text",
+			icon = "ui/icons/asset_money.png",
+			text = "Daily wage is increased by " + ::MSU.Text.colorRed("15%")
+		})
+		return ret;
+	}
 });
