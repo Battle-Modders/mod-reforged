@@ -44,20 +44,29 @@ TooltipModule.prototype.setupUITooltip = function(_targetDIV, _data)
 	var elementHeight   = _targetDIV.outerHeight(true);
 	var containerHeight = this.mContainer.outerHeight(true);
 	// By default we want the tooltips shown on top of the UI-Element
-	var posTop  = targetOffset.top - containerHeight - offsetY;
+	var offsets = {
+		top  : targetOffset.top - containerHeight - offsetY,
+		left : targetOffset.left
+	}
 
 	// If that would overflow the top of the screen, we instead display them below our cursor
-	if (posTop < 0)
+	if (offsets.top < 0)
 	{
-		posTop = targetOffset.top + elementHeight + offsetY;
+		offsets.top = targetOffset.top + elementHeight + offsetY;
 	}
 
-	// If that would overflow the bottom of the screen, we instead display it starting directly at the top of the screen, consequentially overlapping with our UI-Element and cursor
+	// If that would overflow the bottom of the screen, we instead display it starting directly at the top of the screen
 	var wnd = this.mParent; // $(window);
-	if ((posTop + containerHeight + offsetY) > wnd.height())
+	if ((offsets.top + containerHeight + offsetY) > wnd.height())
 	{
-		posTop = 10;
+		offsets.top = 10;
+
+		// We also move it to the left or right (depending on the half of the screen we're in) to make sure it's not overlapping the cursor
+		if (targetOffset.left > (wnd.width() / 2))
+			offsets.left -= this.mContainer.outerWidth(true);
+		else
+			offsets.left += _targetDIV.outerWidth(true);
 	}
 
-	this.mContainer.css({ top: posTop });
+	this.mContainer.css(offsets);
 }
