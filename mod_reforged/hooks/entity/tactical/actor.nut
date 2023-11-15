@@ -165,6 +165,31 @@
 		return __original() || this.m.IsWaitingTurn;
 	}
 
+	// Overwrite vanilla function. The logic is the same as vanilla except the following changes:
+	// Dying enemies only trigger positive morale check if the killer is null or belongs to my allied factions.
+	q.onOtherActorDeath = @() function( _killer, _victim, _skill )
+	{
+		if (!this.m.IsAlive || this.m.IsDying || _victim.getXPValue() <= 1)
+			return;
+
+		if (_victim.getFaction() == this.getFaction() && _victim.getCurrentProperties().TargetAttractionMult >= 0.5 && this.getCurrentProperties().IsAffectedByDyingAllies)
+		{
+			local difficulty = ::Const.Morale.AllyKilledBaseDifficulty - _victim.getXPValue() * ::Const.Morale.AllyKilledXPMult + ::Math.pow(_victim.getTile().getDistanceTo(this.getTile()), ::Const.Morale.AllyKilledDistancePow);
+			this.checkMorale(-1, difficulty, ::Const.MoraleCheckType.Default, "", true);
+		}
+		else if (this.getAlliedFactions().find(_victim.getFaction()) == null && (_killer == null || this.getAlliedFactions().find(_killer.getFaction()) != null))
+		{
+			local difficulty = ::Const.Morale.EnemyKilledBaseDifficulty + _victim.getXPValue() * ::Const.Morale.EnemyKilledXPMult - ::Math.pow(_victim.getTile().getDistanceTo(this.getTile()), ::Const.Morale.EnemyKilledDistancePow);
+
+			if (_killer != null && _killer.isAlive() && _killer.getID() == this.getID())
+			{
+				difficulty += ::Const.Morale.EnemyKilledSelfBonus;
+			}
+
+			this.checkMorale(1, difficulty);
+		}
+	}
+
 // New Functions:
 	q.getSurroundedBonus <- function( _targetEntity )
 	{
