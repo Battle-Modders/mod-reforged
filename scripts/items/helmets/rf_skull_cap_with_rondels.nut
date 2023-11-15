@@ -15,7 +15,7 @@ this.rf_skull_cap_with_rondels <- this.inherit("scripts/items/helmets/helmet", {
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
-		this.m.Value = 1200;
+		this.m.Value = 1000;
 		this.m.Condition = 130;
 		this.m.ConditionMax = 130;
 		this.m.StaminaModifier = -6;
