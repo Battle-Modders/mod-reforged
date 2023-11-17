@@ -137,3 +137,70 @@ local getDefaultFaction = ::Const.EntityType.getDefaultFaction;
 
 	return ret;
 }
+
+// The lowest two difficulties are now the same
+::Const.Difficulty.EnemyMult[0] = ::Const.Difficulty.EnemyMult[1];
+::Const.Difficulty.EnemyMult[2] += 0.05;
+::Const.Difficulty.NPCDamageMult <- [
+	0.9,
+	1.0,
+	1.0
+]
+::Const.Difficulty.generateTooltipInfo <- function( _tooltip, _difficulty )
+{
+	if (::Const.Difficulty.XPMult[_difficulty] != 1.0)
+	{
+		_tooltip.push({
+			id = 4,
+			type = "text",
+			icon = "ui/icons/xp_received.png",
+			text = ::MSU.Text.colorizeMult(::Const.Difficulty.XPMult[_difficulty], {AddSign = true}) + " Global Experience gained"
+		})
+	}
+
+	if (_difficulty == ::Const.Difficulty.Easy)
+	{
+		_tooltip.push({
+			id = 3,
+			type = "text",
+			icon = "ui/icons/melee_skill.png",
+			text = "Your characters have " + ::MSU.Text.colorGreen("+5%") + " chance to hit"
+		})
+		_tooltip.push({
+			id = 3,
+			type = "text",
+			icon = "ui/icons/melee_defense.png",
+			text = "Attacks against your characters have " + ::MSU.Text.colorRed("-5%") + " chance to hit"
+		})
+	}
+
+	if (::Const.Difficulty.NPCDamageMult[_difficulty] != 1.0)
+	{
+		_tooltip.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/regular_damage.png",
+			text = ::MSU.Text.colorizeMult(::Const.Difficulty.NPCDamageMult[_difficulty], {AddSign = true}) + " Damage dealt by all other characters"
+		})
+	}
+
+	if (::Const.Difficulty.RetreatDefenseBonus[_difficulty] != 0)
+	{
+		_tooltip.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/melee_defense.png",
+			text = ::MSU.Text.colorizeValue(::Const.Difficulty.RetreatDefenseBonus[_difficulty]) + " Melee Defense during Auto-Retreat"
+		})
+	}
+
+	if (::Const.Difficulty.EnemyMult[_difficulty] != 1.0)
+	{
+		_tooltip.push({
+			id = 5,
+			type = "text",
+			icon = "ui/icons/camp.png",
+			text = ::MSU.Text.colorizeMult(::Const.Difficulty.EnemyMult[_difficulty], {AddSign = true}) + " Enemy Party Resources"
+		})
+	}
+}

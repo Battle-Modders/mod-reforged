@@ -44,6 +44,15 @@
 		}
 	}
 
+	q.onAfterInit = @(__original) function()
+	{
+		__original();
+		if (this.getType() != ::Const.EntityType.Player)
+		{
+			this.m.BaseProperties.DamageTotalMult *= ::Const.Difficulty.NPCDamageMult[::World.Assets.getCombatDifficulty()];
+		}
+	}
+
 	q.onAttackOfOpportunity = @(__original) function( _entity, _isOnEnter )
 	{
 		this.m.IsPerformingAttackOfOpportunity = true;
