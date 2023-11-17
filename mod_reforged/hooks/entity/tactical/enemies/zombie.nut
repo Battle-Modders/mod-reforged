@@ -115,11 +115,12 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("arms_icon").setBrightness(0.85);
 		this.getSprite("status_rooted").Scale = 0.55;
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
+		// this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 
 		// Reforged
+		this.m.BaseProperties.MeleeSkill += 5;		// To offset the loss of double grip
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bear_down"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_wear_them_down"));
