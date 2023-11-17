@@ -1,3 +1,24 @@
+local generateBanditIdealSize = function( _spawnProcess, _isLocation = false )
+{
+	local startingResources = _spawnProcess.getStartingResources();
+	if (startingResources >= 300)
+	{
+		return 14;
+	}
+	else if (startingResources >= 216)
+	{
+		return 12
+	}
+	else if (startingResources >= 164)
+	{
+		return 10;
+	}
+	else
+	{
+		return 8;
+	}
+}
+
 local parties = [
 	{
 		ID = "BanditRoamers", // Spawn from patrol contract and send bandit raomers action.
@@ -15,25 +36,9 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20 }
 		]
 
-		function generateIdealSize( _isLocation = false )
+		generateIdealSize( _isLocation = false )
 		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 300)
-			{
-				return 14;
-			}
-			else if (startingResources >= 216)
-			{
-				return 12
-			}
-			else if (startingResources >= 164)
-			{
-				return 10;
-			}
-			else
-			{
-				return 8;
-			}
+			return generateBanditIdealSize(this.getSpawnProcess(), _isLocation);
 		}
 	},
 	{
@@ -54,23 +59,7 @@ local parties = [
 
 		function generateIdealSize( _isLocation = false )
 		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 300)
-			{
-				return 14;
-			}
-			else if (startingResources >= 216)
-			{
-				return 12
-			}
-			else if (startingResources >= 164)
-			{
-				return 10;
-			}
-			else
-			{
-				return 8;
-			}
+			return generateBanditIdealSize(this.getSpawnProcess(), _isLocation);
 		}
 	},
 	{
@@ -92,23 +81,7 @@ local parties = [
 
 		function generateIdealSize( _isLocation = false )
 		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 300)
-			{
-				return 14;
-			}
-			else if (startingResources >= 216)
-			{
-				return 12
-			}
-			else if (startingResources >= 164)
-			{
-				return 10;
-			}
-			else
-			{
-				return 8;
-			}
+			return generateBanditIdealSize(this.getSpawnProcess(), _isLocation);
 		}
 	},
 	{
@@ -130,23 +103,7 @@ local parties = [
 
 		function generateIdealSize( _isLocation = false )
 		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 300)
-			{
-				return 14;
-			}
-			else if (startingResources >= 216)
-			{
-				return 12
-			}
-			else if (startingResources >= 164)
-			{
-				return 10;
-			}
-			else
-			{
-				return 8;
-			}
+			return generateBanditIdealSize(this.getSpawnProcess(), _isLocation);
 		}
 	},
 	{
@@ -168,23 +125,7 @@ local parties = [
 
 		function generateIdealSize( _isLocation = false )
 		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 300)
-			{
-				return 14;
-			}
-			else if (startingResources >= 216)
-			{
-				return 12
-			}
-			else if (startingResources >= 164)
-			{
-				return 10;
-			}
-			else
-			{
-				return 8;
-			}
+			return generateBanditIdealSize(this.getSpawnProcess(), _isLocation);
 		}
 	},
 	{
