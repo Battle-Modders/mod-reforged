@@ -6,7 +6,6 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UpgradeChance = 0.5,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.20, RatioMax = 0.70 },
 			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.40 },
@@ -43,7 +42,6 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UpgradeChance = 0.5,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 0.70 },
 			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
@@ -80,7 +78,6 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UpgradeChance = 0.5,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 0.70 },
 			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.25 },
@@ -118,7 +115,6 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UpgradeChance = 0.5,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.40, RatioMax = 0.70 },
 			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
@@ -156,7 +152,6 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UpgradeChance = 0.5,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.40, RatioMax = 0.70 },
 			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30 },
@@ -194,7 +189,6 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UpgradeChance = 0.5,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BanditDisguisedDirewolf" }
 		],
