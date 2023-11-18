@@ -8,8 +8,7 @@ local parties = [
 				DefaultFigure = "figure_skeleton_01",
 				MovementSpeedMult = 0.9,
 				VisibilityMult = 1.0,
-				VisionMult = 1.0,
-				UpgradeChance = 0.5
+				VisionMult = 1.0
 
 				function generateIdealSize( _isLocation = false )
 				{
@@ -118,7 +117,6 @@ local parties = [
 				MovementSpeedMult = 0.9,
 				VisibilityMult = 1.0,
 				VisionMult = 1.0,
-				UpgradeChance = 0.5,
 				StartingResourceMin = 250,
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.80 },
@@ -168,7 +166,6 @@ local parties = [
 				MovementSpeedMult = 0.9,
 				VisibilityMult = 1.0,
 				VisionMult = 1.0,
-				UpgradeChance = 0.5,
 				StartingResourceMin = 250,
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.80 },
@@ -219,7 +216,6 @@ local parties = [
 				MovementSpeedMult = 0.9,
 				VisibilityMult = 1.0,
 				VisionMult = 1.0,
-				UpgradeChance = 0.5,
 				StartingResourceMin = 250,
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 1.00 },
