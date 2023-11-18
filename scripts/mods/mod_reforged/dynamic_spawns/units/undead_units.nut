@@ -38,7 +38,7 @@ local units = [
 		StartingResourceMin = 225
 	},
 
-	//Reforged
+	//New in Reforged
 	{
 		ID = "Unit.RF.RF_SkeletonLightElite",
 		Troop = "RF_SkeletonLightElite",

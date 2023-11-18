@@ -35,7 +35,9 @@ local units = [
 	{
 		ID = "Unit.RF.BanditRaiderWolf",
 		Troop = "BanditRaiderWolf",
-	}
+	},
+
+	//New in Reforged
 	{
 		ID = "Unit.RF.RF_BanditScoundrel",
 		Troop = "RF_BanditScoundrel",
