@@ -189,7 +189,9 @@
 		Strength = 50,
 		Cost = 50,
 		Row = 2,
-		Script = "scripts/entity/tactical/enemies/rf_vampire_lord"
+		Script = "scripts/entity/tactical/enemies/rf_vampire_lord",
+		NameList = ::Const.Strings.RF_VampireLordNames,
+		TitleList = ::Const.Strings.RF_VampireLordTitles
 	},
 	RF_SkeletonDecanus = {
 		ID = ::Const.EntityType.RF_SkeletonDecanus,
