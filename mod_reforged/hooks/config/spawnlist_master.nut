@@ -131,7 +131,9 @@
 		Strength = 50,
 		Cost = 50,
 		Row = 2,
-		Script = "scripts/entity/tactical/enemies/rf_bandit_baron"
+		Script = "scripts/entity/tactical/enemies/rf_bandit_baron",
+		NameList = this.Const.Strings.BanditLeaderNames,
+		TitleList = null
 	},
 
 	// Ancient Dead
