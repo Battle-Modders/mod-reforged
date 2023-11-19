@@ -1,3 +1,15 @@
+::Const.Strings.RF_AncientDeadCommanderTitles <- [
+	"the Returned",
+	"the Restorator",
+	"the Ancient",
+	"the Destroyer",
+	"the Herald",
+	"the Unearthed",
+	"the Honored",
+	"the Defender",
+	"the Glorious",
+	"the Favored"
+];
 ::Const.Strings.CharacterNames.extend([
     "Agnar",
     "Alard",
