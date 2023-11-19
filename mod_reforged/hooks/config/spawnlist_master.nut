@@ -213,6 +213,8 @@
 		Strength = 50,
 		Cost = 50,
 		Row = 2,
-		Script = "scripts/entity/tactical/enemies/rf_skeleton_legatus"
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_legatus",
+		NameList = ::Const.Strings.AncientDeadNames,
+		TitleList = ::Const.Strings.RF_AncientDeadCommanderTitles
 	},
 });
