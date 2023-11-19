@@ -1,3 +1,37 @@
+::Const.Strings.RF_VampireLordNames <- [
+	"Cynfael",
+	"Duradel",
+	"Auberon",
+	"Lestat",
+	"Ichabod",
+	"Mortas",
+	"Draven",
+	"Dregan",
+	"Zadimus"
+	"Malachi",
+	"Davorin",
+	"Raphael",
+	"Melchior"
+	"Vladimir",
+	"Zaros",
+	"Orpheus"
+];
+::Const.Strings.RF_VampireLordTitles <- [
+	"the Impaler",
+	"the Immortal",
+	"the Everliving",
+	"the Bloodletter",
+	"the Deathless",
+	"the Crimson"
+	"the Scourge",
+	"the Nightmare",
+	"the Terror",
+	"the Devil",
+	"the Fiend",
+	"the Demon",
+	"the Sadist",
+	"the Vicious"
+];
 ::Const.Strings.RF_AncientDeadCommanderTitles <- [
 	"the Returned",
 	"the Restorator",
