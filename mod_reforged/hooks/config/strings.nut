@@ -13,8 +13,6 @@
 	"Robber Baron",
 
 	"Ancient Miles",
-	"Ancient Miles",
-	"Ancient Palatinus",
 	"Ancient Palatinus",
 	"Ancient Praetorian",
 	"Ancient Decanus",
@@ -38,8 +36,6 @@
 	"Robber Barons",
 
 	"Ancient Milites",
-	"Ancient Milites",
-	"Ancient Palatini",
 	"Ancient Palatini",
 	"Ancient Praetorians",
 	"Ancient Decani",
