@@ -19,6 +19,17 @@
 	"Ancient Centurion",
 	"Ancient Legatus",
 	"Necrosavant Lord",
+
+	"Heavy Footman",
+	"Halberdier",
+	"Arbalester",
+	"Herald",
+	"Marshal",
+	"Man at Arms",
+	"Fencer",
+	"Anointed Knight",
+	"Squire",
+	"Herald\'s Bodyguard"
 ]);
 
 ::Const.Strings.EntityNamePlural.extend([
@@ -42,6 +53,17 @@
 	"Ancient Centurions",
 	"Ancient Legati",
 	"Necrosavant Lords",
+
+	"Heavy Footmen",
+	"Halberdiers",
+	"Arbalesters",
+	"Heralds",
+	"Marshals",
+	"Men at Arms",
+	"Fencers",
+	"Anointed Knights",
+	"Squires",
+	"Herald\'s Bodyguard"
 ]);
 
 ::MSU.Table.merge(::Const.Strings.PerkName, {
@@ -114,6 +136,7 @@
 	RF_ManOfSteel = "Man of Steel",
 	RF_Marksmanship = "Marksmanship",
 	RF_Menacing = "Menacing",
+	RF_Mentor = "Mentor",
 	RF_Momentum = "Momentum",
 	RF_MuscleMemory = "Muscle Memory",
 	RF_NailedIt = "Nailed It",
@@ -1398,6 +1421,16 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Lower the [Resolve|Concept.Bravery] of adjacent enemies by " + ::MSU.Text.colorRed("-10") + "."
+			]
+		}]
+ 	}),
+ 	RF_Mentor = ::UPD.getDescription({
+ 		Fluff = "I shall guide you to greatness!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"The student of this character gains the [Mentor\'s Presence|NullEntitySkill+rf_mentors_presence_effect] effect.",
+				"If the student dies, this character will immediately recover " + ::MSU.Text.colorGreen("50%") + " of built [Fatigue|Concept.Fatigue] and gain the [Adrenaline|Skill+adrenaline_effect] effect."
 			]
 		}]
  	}),

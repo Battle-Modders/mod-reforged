@@ -1,10 +1,31 @@
-::Reforged.HooksMod.hook("scripts/entity/tactical/humans/knight", function(q) {
-	q.onInit = @() function()
+this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
+	m = {},
+	function create()
 	{
-	    this.human.onInit();
+		this.m.Type = ::Const.EntityType.RF_KnightAnointed;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.RF_KnightAnointed.XP;
+		this.m.Name = this.generateName();
+		this.m.IsGeneratingKillName = false;
+		this.human.create();
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.CommonMale;
+		this.m.HairColors = ::Const.HairColors.Young;
+		this.m.Beards = ::Const.Beards.Tidy;
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/military_melee_agent");
+		this.m.AIAgent.setActor(this);
+	}
+
+	function generateName()
+	{
+		return ::String.replace(::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)], "Sir", "Lord");
+	}
+
+	function onInit()
+	{
+		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(::Const.Tactical.Actor.Knight);
-		b.TargetAttractionMult = 1.0;
+		b.setValues(::Const.Tactical.Actor.RF_KnightAnointed);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -14,15 +35,18 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_mentor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_mentor", function(o) {
+			o.m.MaxStudents = 2;
+		}));
 	}
 
-	q.assignRandomEquipment = @() function()
+	function assignRandomEquipment()
 	{
-	    local banner = ::Tactical.State.isScenarioMode() ? ::World.FactionManager.getFaction(this.getFaction()).getBanner() : this.getFaction();
+		local banner = ::Tactical.State.isScenarioMode() ? ::World.FactionManager.getFaction(this.getFaction()).getBanner() : this.getFaction();
 		banner = 3; // TODO: This is for testing purposes in combat simulator. Should be removed before release.
 		this.m.Surcoat = banner;
 		if (::Math.rand(1, 100) <= 90)
@@ -54,35 +78,28 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
-				[1, "scripts/items/armor/coat_of_plates"],
-				[1, "scripts/items/armor/coat_of_scales"]
+				[1, "scripts/items/armor/rf_breastplate_harness"],
+				[1, "scripts/items/armor/rf_foreign_plate_harness"]
 			]).roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local script = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/helmets/full_helm"],
-				[1, "scripts/items/helmets/rf_visored_bascinet"],
-				[1, "scripts/items/helmets/faction_helm"]
-			]).roll();
-
-			local helmet = ::new(script);
-			if (script == "scripts/items/helmets/faction_helm")
-				helmet.setVariant(banner);
-
-			this.m.Items.equip(helmet);
+			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+				[1, "scripts/items/helmets/rf_snubnose_bascinet_with_mail"],
+				[1, "scripts/items/helmets/rf_hounskull_bascinet_with_mail"]
+			]).roll()));
 		}
 	}
 
-	q.onSetupEntity <- function()
+	function onSetupEntity()
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
+			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
 			if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
 			}
@@ -95,15 +112,21 @@
 			{
 				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Mace))
+			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_mace"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
 			}
 		}
+
+		local offhand = this.getOffhandItem();
+		if (offhand != null && offhand.isItemType(::Const.Items.ItemType.Shield))
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+		}
 	}
 
-	q.makeMiniboss = @() function()
+	function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -158,3 +181,4 @@
 		return true;
 	}
 });
+

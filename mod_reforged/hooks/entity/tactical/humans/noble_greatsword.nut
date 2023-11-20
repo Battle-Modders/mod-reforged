@@ -3,59 +3,125 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Greatsword);
-		// b.IsSpecializedInSwords = true;
-		// b.IsSpecializedInAxes = true;
-		// b.IsSpecializedInMaces = true;
-		// b.IsSpecializedInFlails = true;
-		// b.IsSpecializedInPolearms = true;
-		// b.IsSpecializedInThrowing = true;
-		// b.IsSpecializedInHammers = true;
-		// b.IsSpecializedInSpears = true;
-		// b.IsSpecializedInCleavers = true;
+		b.setValues(::Const.Tactical.Actor.Greatsword);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
-		// Reforged
-		b.RangedDefense += 10;
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_kata"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_tempo"));
-    	}
 	}
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @() function()
 	{
-	    __original();
+	    local banner = ::Tactical.State.isScenarioMode() ? ::World.FactionManager.getFaction(this.getFaction()).getBanner() : this.getFaction();
+		banner = 3; // TODO: This is for testing purposes in combat simulator. Should be removed before release.
+		this.m.Surcoat = banner;
+		if (::Math.rand(1, 100) <= 50)
+		{
+			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
+		}
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			this.m.Items.equip(::new("scripts/items/weapons/greatsword"));
+		}
+
+		if (this.m.IsMiniboss)
+		{
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+			{
+				this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+					[1, "scripts/items/armor/rf_brigandine_harness"],
+					[1, "scripts/items/armor/rf_breastplate_armor"]
+				]).roll()));
+			}
+
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+			{
+				this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+					[1, "scripts/items/helmets/rf_padded_sallet_helmet"],
+					[1, "scripts/items/helmets/barbute_helmet"],
+					[1, "scripts/items/helmets/rf_half_closed_sallet"]
+				]).roll()));
+			}
+		}
+		else
+		{
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+			{
+				this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+					[1, "scripts/items/armor/reinforced_mail_hauberk"],
+					[1, "scripts/items/armor/scale_armor"]
+				]).roll()));
+			}
+
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+			{
+				local helmet = ::new("scripts/items/helmets/greatsword_faction_helm");
+				helmet.setVariant(banner);
+				this.m.Items.equip(helmet);
+			}
+		}
+	}
+
+	q.onSetupEntity <- function()
+	{
+		local weapon = this.getMainhandItem();
+		if (weapon != null)
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		}
+	}
+
+	function makeMiniboss()
+	{
+		if (!this.actor.makeMiniboss())
+		{
+			return false;
+		}
+
+		this.getSprite("miniboss").setBrush("bust_miniboss");
+
+		local r = ::Math.rand(1, 100);
+		if (r <= 40)
+		{
+			this.m.Items.equip(this.new("scripts/items/weapons/named/named_greatsword"));
+		}
+		else if (r <= 70)
+		{
+			local armor = ::Reforged.ItemTable.NamedArmorNoble.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax < 205 || conditionMax > 270) return 0.0;
+					return _weight;
+				}
+			})
+			this.m.Items.equip(::new(armor));
+		}
+		else
+		{
+			local helmet = ::Reforged.ItemTable.NamedHelmetNoble.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax < 200 || conditionMax > 270) return 0.0;
+					return _weight;
+				}
+			})
+			this.m.Items.equip(::new(helmet));
+		}
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+
+		return true;
 	}
 });

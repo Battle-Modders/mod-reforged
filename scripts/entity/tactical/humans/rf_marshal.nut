@@ -1,36 +1,47 @@
-::Reforged.HooksMod.hook("scripts/entity/tactical/humans/noble_sergeant", function(q) {
-	q.onInit = @() function()
+this.rf_marshal <- ::inherit("scripts/entity/tactical/human" {
+	m = {},
+	function create()
 	{
-	    this.human.onInit();
+		this.m.Type = ::Const.EntityType.RF_Marshal;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.RF_Marshal.XP;
+		this.human.create();
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.CommonMale;
+		this.m.HairColors = ::Const.HairColors.Young;
+		this.m.Beards = ::Const.Beards.Tidy;
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/military_melee_agent");
+		this.m.AIAgent.setActor(this);
+	}
+
+	function onInit()
+	{
+		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(::Const.Tactical.Actor.Sergeant);
+		b.setValues(::Const.Tactical.Actor.RF_Marshal);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
-		this.getSprite("accessory_special").setBrush("sergeant_trophy");
+		this.getSprite("accessory_special").setBrush("rf_marshal_trophy");
 
-		if (::Math.rand(1, 100) <= 33)
-		{
-			local suffix = ::MSU.Array.rand([1, 2, 4]);
-			local sprite = this.getSprite("permanent_injury_" + suffix);
-			sprite.setBrush("permanent_injury_0" + suffix);
-			sprite.Visible = true;
-		}
-
-		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_blitzkrieg"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
 	}
 
-	q.assignRandomEquipment = @() function()
+	function assignRandomEquipment()
 	{
-	    local banner = ::Tactical.State.isScenarioMode() ? ::World.FactionManager.getFaction(this.getFaction()).getBanner() : this.getFaction();
+		local banner = ::Tactical.State.isScenarioMode() ? ::World.FactionManager.getFaction(this.getFaction()).getBanner() : this.getFaction();
 		banner = 3; // TODO: This is for testing purposes in combat simulator. Should be removed before release.
 		this.m.Surcoat = banner;
 		if (::Math.rand(1, 100) <= 80)
@@ -45,28 +56,37 @@
 				[1, "scripts/items/weapons/military_cleaver"],
 				[1, "scripts/items/weapons/warhammer"],
 				[1, "scripts/items/weapons/winged_mace"],
-				[1, "scripts/items/weapons/arming_sword"],
-				[1, "scripts/items/weapons/rf_battle_axe"],
-				[1, "scripts/items/weapons/rf_kriegsmesser"]
+				[1, "scripts/items/weapons/noble_sword"]
 			]).roll()));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			local shield = ::new(::MSU.Class.WeightedContainer([
+				[1, "scripts/items/shields/faction_kite_shield"],
+				[1, "scripts/items/shields/faction_heater_shield"]
+			]).roll());
+
+			shield.setFaction(banner);
+			this.m.Items.equip(shield);
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local script = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/armor/mail_hauberk"],
-				[1, "scripts/items/armor/reinforced_mail_hauberk"]
-			]).roll();
+			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+				[1, "scripts/items/armor/rf_brigandine_shirt"],
+				[1, "scripts/items/armor/rf_breastplate"],
+				[1, "scripts/items/armor/rf_brigandine_armor"]
+			]).roll()));
+		}
 
-			local armor = ::new(script);
-			if (script == "scripts/items/armor/mail_hauberk")
-				armor.setVariant(28);
-
-			this.m.Items.equip(armor);
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			this.m.Items.equip(::new("scripts/items/helmets/greatsword_hat"));
 		}
 	}
 
-	q.onSetupEntity <- function()
+	function onSetupEntity()
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
@@ -85,3 +105,4 @@
 		}
 	}
 });
+

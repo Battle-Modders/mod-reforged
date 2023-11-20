@@ -16,7 +16,7 @@ this.rf_halberd <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_rf_halberd_01";
-		this.m.Value = 1400;
+		this.m.Value = 2500;
 		this.m.ShieldDamage = 0;
 		this.m.Condition = 84.0;
 		this.m.ConditionMax = 84.0;

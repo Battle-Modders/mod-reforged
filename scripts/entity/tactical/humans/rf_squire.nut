@@ -1,22 +1,40 @@
-::Reforged.HooksMod.hook("scripts/entity/tactical/humans/noble_footman", function(q) {
-	q.onInit = @() function()
+this.rf_squire <- ::inherit("scripts/entity/tactical/human" {
+	m = {},
+	function create()
 	{
-	    this.human.onInit();
+		this.m.Type = ::Const.EntityType.RF_Squire;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.RF_Squire.XP;
+		this.human.create();
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.CommonMale;
+		this.m.HairColors = ::Const.HairColors.Young;
+		this.m.Beards = ::Const.Beards.Tidy;
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/military_melee_agent");
+		this.m.AIAgent.setActor(this);
+	}
+
+	function onInit()
+	{
+		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(::Const.Tactical.Actor.Footman);
+		b.setValues(::Const.Tactical.Actor.RF_Squire);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
 
+		this.getSprite("accessory_special").setBrush("bust_militia_band_01");
+
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_fast_adaption"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
+		this.m.Skills.add(::new("scripts/skills/effects/rf_mentors_presence_effect"));
 	}
 
-	q.assignRandomEquipment = @() function()
+	function assignRandomEquipment()
 	{
 		local banner = ::Tactical.State.isScenarioMode() ? ::World.FactionManager.getFaction(this.getFaction()).getBanner() : this.getFaction();
 		banner = 3; // TODO: This is for testing purposes in combat simulator. Should be removed before release.
@@ -29,10 +47,10 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/military_pick"],
 				[1, "scripts/items/weapons/arming_sword"],
 				[1, "scripts/items/weapons/flail"],
-				[1, "scripts/items/weapons/morning_star"]
+				[1, "scripts/items/weapons/morning_star"],
+				[1, "scripts/items/weapons/military_pick"],
 			]).roll()));
 		}
 
@@ -49,16 +67,8 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local script = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/armor/mail_hauberk"],
-				[1, "scripts/items/armor/mail_shirt"],
-				[1, "scripts/items/armor/basic_mail_shirt"]
-			]).roll();
-
-			local armor = ::new(script);
-			if (script == "scripts/items/armor/mail_hauberk")
-				armor.setVariant(28);
-
+			local armor = ::new("scripts/items/armor/mail_hauberk");
+			armor.setVariant(28);
 			this.m.Items.equip(armor);
 		}
 
@@ -69,33 +79,21 @@
 			{
 				helmet = ::new(::MSU.Class.WeightedContainer([
 					[1, "scripts/items/helmets/kettle_hat"],
-					[1, "scripts/items/helmets/padded_kettle_hat"],
-					[1, "scripts/items/helmets/rf_skull_cap"],
-					[1, "scripts/items/helmets/rf_skull_cap_with_rondels"],
-					[1, "scripts/items/helmets/rf_padded_skull_cap"],
-					[1, "scripts/items/helmets/rf_padded_skull_cap_with_rondels"]
+					[1, "scripts/items/helmets/padded_kettle_hat"]
 				]).roll());
 			}
 			else if (banner <= 7)
 			{
 				helmet = ::new(::MSU.Class.WeightedContainer([
 					[1, "scripts/items/helmets/flat_top_helmet"],
-					[1, "scripts/items/helmets/padded_flat_top_helmet"],
-					[1, "scripts/items/helmets/rf_skull_cap"],
-					[1, "scripts/items/helmets/rf_skull_cap_with_rondels"],
-					[1, "scripts/items/helmets/rf_padded_skull_cap"],
-					[1, "scripts/items/helmets/rf_padded_skull_cap_with_rondels"]
+					[1, "scripts/items/helmets/padded_flat_top_helmet"]
 				]).roll());
 			}
 			else
 			{
 				helmet = ::new(::MSU.Class.WeightedContainer([
 					[1, "scripts/items/helmets/nasal_helmet"],
-					[1, "scripts/items/helmets/padded_nasal_helmet"],
-					[1, "scripts/items/helmets/rf_skull_cap"],
-					[1, "scripts/items/helmets/rf_skull_cap_with_rondels"],
-					[1, "scripts/items/helmets/rf_padded_skull_cap"],
-					[1, "scripts/items/helmets/rf_padded_skull_cap_with_rondels"]
+					[1, "scripts/items/helmets/padded_nasal_helmet"]
 				]).roll());
 			}
 
@@ -104,28 +102,30 @@
 		}
 	}
 
-	q.onSetupEntity <- function()
+	function onSetupEntity()
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
 			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
 			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Mace))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
 			}
 			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_dent_armor"));
 			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
+			else if (weapon.isWeaponType(::Const.Items.WeaponType.Mace))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
+			}
+			else if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 			}
 		}
 	}
 });
+
