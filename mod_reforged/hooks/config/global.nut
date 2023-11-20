@@ -25,7 +25,18 @@ local entityTypes = [
 	"RF_SkeletonDecanus",
 	"RF_SkeletonCenturion",
 	"RF_SkeletonLegatus",
-	"RF_VampireLord"
+	"RF_VampireLord",
+
+	"RF_FootmanHeavy",
+	"RF_BillmanHeavy",
+	"RF_ArbalesterHeavy",
+	"RF_Herald",
+	"RF_Marshal",
+	"RF_ManAtArms",
+	"RF_Fencer",
+	"RF_KnightAnointed",
+	"RF_Squire",
+	"RF_HeraldsBodyguard"
 ]
 
 local entityIcon = [
@@ -49,6 +60,17 @@ local entityIcon = [
 	"rf_skeleton_centurion_orientation",
 	"rf_skeleton_legatus_orientation",
 	"rf_vampire_lord_orientation"
+
+	"rf_footman_heavy_orientation",
+	"rf_billman_heavy_orientation",
+	"rf_arbalester_heavy_orientation",
+	"rf_herald_orientation",
+	"rf_marshal_orientation",
+	"rf_man_at_arms_orientation",
+	"rf_fencer_orientation",
+	"rf_knight_anointed_orientation",
+	"rf_squire_orientation",
+	"rf_heralds_bodyguard_orientation"
 ]
 
 foreach (entityType in entityTypes)
@@ -56,12 +78,17 @@ foreach (entityType in entityTypes)
 	::Const.EntityType[entityType] <- ++highestID;
 }
 
+::Const.Strings.EntityName[::Const.EntityType.Arbalester] = "Crossbowman";
+::Const.Strings.EntityNamePlural[::Const.EntityType.Arbalester] = "Crossbowmen";
+
 ::Const.EntityIcon.extend(entityIcon);
 ::Const.EntityIcon[::Const.EntityType.BanditThug] = "rf_bandit_thug_orientation";
 ::Const.EntityIcon[::Const.EntityType.BanditRaider] = "rf_bandit_raider_orientation";
 ::Const.EntityIcon[::Const.EntityType.BanditMarksman] = "rf_bandit_marksman_orientation";
 ::Const.EntityIcon[::Const.EntityType.SkeletonLight] = "rf_skeleton_light_orientation";
 ::Const.EntityIcon[::Const.EntityType.SkeletonMedium] = "rf_skeleton_medium_orientation";
+::Const.EntityIcon[::Const.EntityType.StandardBearer] = "rf_standard_bearer_orientation";
+::Const.EntityIcon[::Const.EntityType.Sergeant] = "rf_sergeant_orientation";
 
 local getDefaultFaction = ::Const.EntityType.getDefaultFaction;
 ::Const.EntityType.getDefaultFaction = function( _id )
@@ -93,6 +120,18 @@ local getDefaultFaction = ::Const.EntityType.getDefaultFaction;
 			case ::Const.EntityType.RF_SkeletonLegatus:
 			case ::Const.EntityType.RF_VampireLord:
 				return ::Const.FactionType.Undead;
+
+			case ::Const.EntityType.RF_FootmanHeavy:
+			case ::Const.EntityType.RF_BillmanHeavy:
+			case ::Const.EntityType.RF_ArbalesterHeavy:
+			case ::Const.EntityType.RF_Herald:
+			case ::Const.EntityType.RF_Marshal:
+			case ::Const.EntityType.RF_ManAtArms:
+			case ::Const.EntityType.RF_Fencer:
+			case ::Const.EntityType.RF_KnightAnointed:
+			case ::Const.EntityType.RF_Squire:
+			case ::Const.EntityType.RF_HeraldsBodyguard:
+				return ::Const.FactionType.NobleHouse;
 		}
 	}
 

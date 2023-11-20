@@ -76,6 +76,7 @@
 	<sprite id="rf_fresh_and_furious_mini" ic = "FF23165B" img="mini\rf_fresh_and_furious_mini.png" />
 	<sprite id="rf_king_of_all_weapons_mini" ic = "FF23165B" img="mini\rf_king_of_all_weapons_mini.png" />
 	<sprite id="rf_man_of_steel_mini" ic = "FF23165B" img="mini\rf_man_of_steel_mini.png" />
+	<sprite id="rf_mentors_presence_effect_mini" ic = "FF23165B" img="mini\rf_mentors_presence_effect_mini.png" />
 	<sprite id="rf_pattern_recognition_mini" ic = "FF23165B" img="mini\rf_pattern_recognition_mini.png" />
 	<sprite id="rf_phalanx_mini" ic = "FF23165B" img="mini\rf_phalanx_mini.png" />
 	<sprite id="rf_strength_in_numbers_mini" ic = "FF23165B" img="mini\rf_strength_in_numbers_mini.png" />

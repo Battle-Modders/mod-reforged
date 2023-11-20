@@ -22,4 +22,17 @@
 	<sprite id="rf_skeleton_legatus_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_skeleton_legatus_orientation.png" />
 	<sprite id="rf_vampire_lord_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_vampire_lord_orientation.png" />
 	<sprite id="rf_skeleton_heavy_lesser_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_skeleton_heavy_lesser_orientation.png" />
+
+	<sprite id="rf_arbalester_heavy_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_arbalester_heavy_orientation.png" />
+	<sprite id="rf_billman_heavy_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_billman_heavy_orientation.png" />
+	<sprite id="rf_fencer_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_fencer_orientation.png" />
+	<sprite id="rf_footman_heavy_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_footman_heavy_orientation.png" />
+	<sprite id="rf_herald_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_herald_orientation.png" />
+	<sprite id="rf_knight_anointed_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_knight_anointed_orientation.png" />
+	<sprite id="rf_man_at_arms_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_man_at_arms_orientation.png" />
+	<sprite id="rf_marshal_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_marshal_orientation.png" />
+	<sprite id="rf_heralds_bodyguard_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_heralds_bodyguard_orientation.png" />
+	<sprite id="rf_sergeant_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_sergeant_orientation.png" />
+	<sprite id="rf_squire_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_squire_orientation.png" />
+	<sprite id="rf_standard_bearer_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_standard_bearer_orientation.png" />
 </brush>
