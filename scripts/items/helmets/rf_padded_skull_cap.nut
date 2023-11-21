@@ -18,7 +18,7 @@ this.rf_padded_skull_cap <- this.inherit("scripts/items/helmets/helmet", {
 		this.m.Value = 1200;
 		this.m.Condition = 140;
 		this.m.ConditionMax = 140;
-		this.m.StaminaModifier = -5;
+		this.m.StaminaModifier = -7;
 		this.m.Vision = -1;
 	}
 });
