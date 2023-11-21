@@ -24,6 +24,7 @@ this.rf_command_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 20;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 3;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_Command;
 	}
 
 	function getTooltip()
