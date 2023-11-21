@@ -60,7 +60,7 @@
 
 	q.makeMiniboss = @(__original) function()
 	{
-		if (!this.actor.__original())
+		if (!this.actor.makeMiniboss())
 		{
 			return false;
 		}
