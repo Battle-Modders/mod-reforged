@@ -48,6 +48,9 @@
 	<sprite id="rf_poleaxe_impale_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_poleaxe_impale_skill.png" />
 	<sprite id="rf_poleaxe_strike_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_poleaxe_strike_skill.png" />
 	<sprite id="rf_poleaxe_hew_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_poleaxe_hew_skill.png" />
+	<sprite id="rf_halberd_impale_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_halberd_impale_skill.png" />
+	<sprite id="rf_halberd_sunder_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_halberd_sunder_skill.png" />
+	<sprite id="rf_halberd_demolish_armor_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_halberd_demolish_armor_skill.png" />
 
 	<sprite id="rf_arrow_to_the_knee_debuff_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_arrow_to_the_knee_debuff_effect.png" />
 	<sprite id="rf_arrow_to_the_knee_debuff_effect_mini" ic = "FF23165B" img="mini\rf_arrow_to_the_knee_debuff_effect_mini.png" />

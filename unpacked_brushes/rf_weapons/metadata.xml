@@ -48,4 +48,7 @@
 <sprite id="icon_rf_poleaxe_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icon_rf_poleaxe_01.png" left="-62" right="22" top="-64" bottom="54" />
 <sprite id="icon_rf_poleaxe_01_bloodied" offsetY="35" ic="FF4E5860" width="104" height="142" img="icon_rf_poleaxe_01_bloodied.png" left="-62" right="22" top="-64" bottom="54" />
 
+<sprite id="icon_rf_halberd_01" offsetX = "-2" offsetY="35" ic="FF3D3945" width="130" height="142" img="icon_rf_halberd_01.png" left="-62" right="20" top="-62" bottom="86" />
+<sprite id="icon_rf_halberd_01_bloodied" offsetX = "-2" offsetY="35" ic="FF3D3945" width="130" height="142" img="icon_rf_halberd_01_bloodied.png" left="-62" right="20" top="-62" bottom="86" />
+
 </brush>
