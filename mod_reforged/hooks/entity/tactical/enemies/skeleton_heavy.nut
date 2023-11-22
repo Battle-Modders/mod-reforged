@@ -78,7 +78,7 @@
 		this.m.Items.equip(::new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate", function(o) {
+		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_intimidate", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
 		return true;
