@@ -122,6 +122,14 @@ this.ai_rf_cover_ally <- ::inherit("scripts/ai/tactical/behavior", {
 		local weapon = _entity.getMainhandItem();
 		if (weapon != null && (weapon.isItemType(::Const.Items.ItemType.RangedWeapon) || weapon.getRangeMax() > 1))
 		{
+			foreach (skill in _entity.getSkills().getAllSkillsOfType(::Const.SkillType.Active))
+			{
+				if (!skill.isRanged() && skill.getMaxRange() == 1)
+				{
+					return ret;
+				}
+			}
+
 			for (local i = 0; i < 6; i++)
 			{
 				if (myTile.hasNextTile(i))
