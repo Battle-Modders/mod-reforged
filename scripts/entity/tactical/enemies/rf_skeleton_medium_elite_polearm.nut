@@ -20,7 +20,6 @@ this.rf_skeleton_medium_elite_polearm <- ::inherit("scripts/entity/tactical/enem
 		b.Initiative -= 20;
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_gaps"));
 	}
 
 	function assignRandomEquipment()

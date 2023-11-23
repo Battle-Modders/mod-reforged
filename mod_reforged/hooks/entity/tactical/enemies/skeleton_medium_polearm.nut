@@ -23,7 +23,6 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_gaps"));
 	}
 
 	q.assignRandomEquipment = @() function()

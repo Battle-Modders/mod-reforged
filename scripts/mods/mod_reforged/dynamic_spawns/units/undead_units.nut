@@ -85,31 +85,31 @@ local units = [
 		ID = "Unit.RF.RF_SkeletonDecanus",
 		Troop = "RF_SkeletonDecanus",
 		Figure = "figure_rf_skeleton_decanus",
-		StartingResourceMin = 150
+		StartingResourceMin = 180
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonCenturion",
 		Troop = "RF_SkeletonCenturion",
 		Figure = "figure_rf_skeleton_centurion",
-		StartingResourceMin = 220
+		StartingResourceMin = 250
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonLegatus",
 		Troop = "RF_SkeletonLegatus",
 		Figure = "figure_rf_skeleton_legatus",
-		StartingResourceMin = 270
+		StartingResourceMin = 300
 	},
 	{
 		ID = "Unit.RF.SkeletonPriest",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
-		StartingResourceMin = 225
+		StartingResourceMin = 300
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestP",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
-		StartingResourceMin = 225,
+		StartingResourceMin = 300,
 		Cost = 40 + 40,
 		SubPartyDef = {BaseID = "SubPartyPrae"}
 	},
@@ -117,7 +117,7 @@ local units = [
 		ID = "Unit.RF.SkeletonPriestPP",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
-		StartingResourceMin = 250,
+		StartingResourceMin = 325,
 		Cost = 40 + 40 + 40,
 		SubPartyDef = {BaseID = "SubPartyPrae2"}
 	},
@@ -125,7 +125,7 @@ local units = [
 		ID = "Unit.RF.SkeletonPriestPH",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
-		StartingResourceMin = 275,
+		StartingResourceMin = 350,
 		Cost = 40 + 40 + 50,
 		SubPartyDef = {BaseID = "SubPartyPraeHonor"}
 	},
@@ -133,7 +133,7 @@ local units = [
 		ID = "Unit.RF.SkeletonPriestHH",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
-		StartingResourceMin = 300,
+		StartingResourceMin = 375,
 		Cost = 40 + 50 + 50,
 		SubPartyDef = {BaseID = "SubPartyHonor2"}
 	},

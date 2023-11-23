@@ -23,7 +23,6 @@ this.rf_skeleton_centurion <- ::inherit("scripts/entity/tactical/rf_skeleton_com
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_centurion"));
 
 		this.getSprite("rf_cape").setBrush("rf_ancient_cape");

@@ -106,7 +106,6 @@
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
 		}
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
