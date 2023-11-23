@@ -158,7 +158,7 @@
 				this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
 			}
