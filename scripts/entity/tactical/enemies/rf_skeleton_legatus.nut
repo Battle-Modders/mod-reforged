@@ -22,7 +22,6 @@ this.rf_skeleton_legatus <- ::inherit("scripts/entity/tactical/rf_skeleton_comma
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_legatus"));
 
