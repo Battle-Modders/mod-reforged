@@ -98,6 +98,11 @@
 							S = "helmets/rf_skull_cap_with_mail"
 						},
 						{
+							R = 60,
+							P = 1.0,
+							S = "helmets/rf_closed_bascinet"
+						},
+						{
 							R = 70,
 							P = 1.0,
 							S = "helmets/rf_conical_billed_helmet"
@@ -121,11 +126,6 @@
 							R = 70,
 							P = 1.0,
 							S = "helmets/rf_half_closed_sallet_with_mail"
-						},
-						{
-							R = 75,
-							P = 1.0,
-							S = "helmets/rf_closed_bascinet"
 						},
 						{
 							R = 80,
