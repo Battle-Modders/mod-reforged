@@ -19,13 +19,13 @@ local units = [
 		ID = "Unit.RF.Ghoul",
 		Troop = "Ghoul",
 		Figure = "figure_ghoul_01",
-		StartingResourceMin = 120	// In vanilla this is 120
+		StartingResourceMin = 150	// In vanilla this is 120
 	},
 	{
 		ID = "Unit.RF.GhoulHIGH",
 		Troop = "GhoulHIGH",
 		Figure = "figure_ghoul_02",     // I don't know if a 'figure_ghoul_03' exists
-		StartingResourceMin = 150	// In vanilla this is 120
+		StartingResourceMin = 220	// In vanilla this is 120
 	},
 	{
 		ID = "Unit.RF.Lindwurm",
