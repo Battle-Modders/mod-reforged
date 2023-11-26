@@ -75,22 +75,31 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/fighting_axe"],
-				[1, "scripts/items/weapons/military_cleaver"],
-				[1, "scripts/items/weapons/fighting_spear"],
-				[1, "scripts/items/weapons/noble_sword"],
-				[1, "scripts/items/weapons/warhammer"],
-				[1, "scripts/items/weapons/winged_mace"],
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				local weapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/rf_kriegsmesser"],
+					[1, "scripts/items/weapons/rf_swordstaff"],
+					[1, "scripts/items/weapons/two_handed_flail"],
+					[1, "scripts/items/weapons/two_handed_flanged_mace"],
+					[1, "scripts/items/weapons/greatsword"]
+				]).roll();
 
-				[1, "scripts/items/weapons/rf_kriegsmesser"],
-				[1, "scripts/items/weapons/rf_swordstaff"],
-				[1, "scripts/items/weapons/two_handed_flail"],
-				[1, "scripts/items/weapons/two_handed_flanged_mace"],
-				[1, "scripts/items/weapons/greatsword"]
-			]).roll();
+				this.m.Items.equip(::new(weapon));
+			}
+			else
+			{
+				local weapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/fighting_axe"],
+					[1, "scripts/items/weapons/military_cleaver"],
+					[1, "scripts/items/weapons/fighting_spear"],
+					[1, "scripts/items/weapons/noble_sword"],
+					[1, "scripts/items/weapons/warhammer"],
+					[1, "scripts/items/weapons/winged_mace"],
+				]).roll();
 
-			this.m.Items.equip(::new(weapon));
+				this.m.Items.equip(::new(weapon));
+			}
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
@@ -147,7 +156,22 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 		local r = ::Math.rand(1, 100);
 		if (r <= 25)
 		{
-			this.m.Items.equip(::new("scripts/items/" + ::Const.Items.NamedMeleeWeapons[::Math.rand(0, ::Const.Items.NamedMeleeWeapons.len() - 1)]));
+			local weapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/named/named_axe"],
+				[1, "scripts/items/weapons/named/named_cleaver"],
+				[1, "scripts/items/weapons/named/named_spear"],
+				[1, "scripts/items/weapons/named/named_sword"],
+				[1, "scripts/items/weapons/named/named_hammer"],
+				[1, "scripts/items/weapons/named/named_mace"],
+
+				[1, "scripts/items/weapons/named/named_rf_kriegsmesser"],
+				[1, "scripts/items/weapons/named/named_rf_swordstaff"],
+				[1, "scripts/items/weapons/named/named_two_handed_flail"],
+				[1, "scripts/items/weapons/named/named_two_handed_mace"],
+				[1, "scripts/items/weapons/named/named_greatsword"]
+			]).roll();
+
+			this.m.Items.equip(::new(weapon));
 		}
 		else if (r <= 45)
 		{
