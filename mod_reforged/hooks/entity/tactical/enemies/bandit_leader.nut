@@ -45,22 +45,31 @@
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/fighting_axe"],
-				[1, "scripts/items/weapons/noble_sword"],
-				[1, "scripts/items/weapons/warhammer"],
-				[1, "scripts/items/weapons/winged_mace"],
-				[1, "scripts/items/weapons/military_cleaver"],
-				[1, "scripts/items/weapons/fighting_spear"],
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				local weapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/rf_kriegsmesser"],
+					[1, "scripts/items/weapons/rf_swordstaff"],
+					[1, "scripts/items/weapons/two_handed_flail"],
+					[1, "scripts/items/weapons/two_handed_flanged_mace"],
+					[1, "scripts/items/weapons/greatsword"]
+				]).roll();
 
-				[1, "scripts/items/weapons/rf_kriegsmesser"],
-				[1, "scripts/items/weapons/rf_swordstaff"],
-				[1, "scripts/items/weapons/two_handed_flail"],
-				[1, "scripts/items/weapons/two_handed_flanged_mace"],
-				[1, "scripts/items/weapons/greatsword"]
-	    	]).roll();
+				this.m.Items.equip(::new(weapon));
+			}
+			else
+			{
+				local weapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/fighting_axe"],
+					[1, "scripts/items/weapons/military_cleaver"],
+					[1, "scripts/items/weapons/fighting_spear"],
+					[1, "scripts/items/weapons/noble_sword"],
+					[1, "scripts/items/weapons/warhammer"],
+					[1, "scripts/items/weapons/winged_mace"],
+				]).roll();
 
-			this.m.Items.equip(::new(weapon));
+				this.m.Items.equip(::new(weapon));
+			}
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
@@ -99,6 +108,73 @@
 			})
 			this.m.Items.equip(::new(helmet));
 		}
+	}
+
+	q.makeMiniboss = @() function()
+	{
+		if (!this.actor.makeMiniboss())
+		{
+			return false;
+		}
+
+		this.getSprite("miniboss").setBrush("bust_miniboss");
+
+		local r = ::Math.rand(1, 100);
+		if (r <= 25)
+		{
+			local weapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/named/named_axe"],
+				[1, "scripts/items/weapons/named/named_cleaver"],
+				[1, "scripts/items/weapons/named/named_spear"],
+				[1, "scripts/items/weapons/named/named_sword"],
+				[1, "scripts/items/weapons/named/named_hammer"],
+				[1, "scripts/items/weapons/named/named_mace"],
+
+				[1, "scripts/items/weapons/named/named_rf_kriegsmesser"],
+				[1, "scripts/items/weapons/named/named_rf_swordstaff"],
+				[1, "scripts/items/weapons/named/named_two_handed_flail"],
+				[1, "scripts/items/weapons/named/named_two_handed_mace"],
+				[1, "scripts/items/weapons/named/named_greatsword"]
+			]).roll();
+
+			this.m.Items.equip(::new(weapon));
+		}
+		else if (r <= 50)
+		{
+			local shields = clone ::Const.Items.NamedShields;
+			shields.extend([
+				"shields/named/named_bandit_kite_shield",
+				"shields/named/named_bandit_heater_shield"
+			]);
+			this.m.Items.equip(::new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
+		}
+		else if (r <= 75)
+		{
+			local armor = ::Reforged.ItemTable.NamedArmorNorthern.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax < 210 || conditionMax > 260) return 0.0;
+					return _weight;
+				}
+			})
+			this.m.Items.equip(::new(armor));
+		}
+		else
+		{
+			local helmet = ::Reforged.ItemTable.NamedHelmetNorthern.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax < 210 || conditionMax > 265) return 0.0;
+					return _weight;
+				}
+			})
+			this.m.Items.equip(::new(helmet));
+		}
+
+		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
+		return true;
 	}
 
 	q.onSetupEntity <- function()
