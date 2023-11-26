@@ -58,6 +58,24 @@ this.rf_vampire_lord <- ::inherit("scripts/entity/tactical/enemies/vampire", {
 	{
 		this.m.Items.equip(::new("scripts/items/helmets/rf_vampire_lord_helmet"));
 		this.m.Items.equip(::new("scripts/items/armor/rf_vampire_lord_armor"));
-		this.m.Items.equip(::new("scripts/items/weapons/rf_great_khopesh"));
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			this.m.Items.equip(::new("scripts/items/weapons/rf_great_khopesh"));
+		}
+	}
+
+	function makeMiniboss()
+	{
+		if (!this.actor.makeMiniboss())
+		{
+			return false;
+		}
+
+		this.m.Items.equip(::new("scripts/items/weapons/named/named_crypt_cleaver"));
+
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_unstoppable"));
+		return true;
 	}
 });
