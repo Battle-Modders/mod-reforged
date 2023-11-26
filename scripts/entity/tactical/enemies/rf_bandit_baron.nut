@@ -173,7 +173,7 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 
 			this.m.Items.equip(::new(weapon));
 		}
-		else if (r <= 45)
+		else if (r <= 50)
 		{
 			this.m.Items.equip(::new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
