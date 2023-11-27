@@ -19,7 +19,7 @@
 <sprite id="icon_rf_kriegsmesser_named_01_bloodied" offsetY="35" ic="FF56565E" width="104" height="142" img="icon_rf_kriegsmesser_named_01_bloodied.png" left="-52" right="10" />
 
 <sprite id="icon_rf_poleflail_01" offsetY="35" ic="FF727272" width="104" height="142" img="icon_rf_poleflail_01.png" left="-72" right="18" top="-51" bottom="58" />
-<sprite id="icon_rf_poleflail_01_bloodied" offsetY="35" ic="FF5E5E66" width="104" height="142" img="icon_rf_poleflail_01_bloodied.png" left="-52" right="32" top="-62" bottom="40" />
+<sprite id="icon_rf_poleflail_01" offsetY="35" ic="FF727272" width="104" height="142" img="icon_rf_poleflail_01.png" left="-72" right="18" top="-51" bottom="58" />
 
 <sprite id="icon_rf_poleflail_named_01" offsetY="35" ic="FF394046" width="150" height="160" img="icon_rf_poleflail_named_01.png" left="-67" right="17" top="-54" bottom="46" />
 <sprite id="icon_rf_poleflail_named_01_bloodied" offsetY="35" ic="FF353B45" width="150" height="160" img="icon_rf_poleflail_named_01_bloodied.png" left="-67" right="17" top="-54" bottom="46" />
