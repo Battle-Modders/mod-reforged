@@ -23,7 +23,7 @@ local parties = [
 			}
 			else if (startingResources >= 216)
 			{
-				return 12
+				return 12;
 			}
 			else if (startingResources >= 164)
 			{
@@ -59,7 +59,7 @@ local parties = [
 			}
 			else if (startingResources >= 216)
 			{
-				return 12
+				return 12;
 			}
 			else if (startingResources >= 164)
 			{
@@ -96,7 +96,7 @@ local parties = [
 			}
 			else if (startingResources >= 216)
 			{
-				return 12
+				return 12;
 			}
 			else if (startingResources >= 164)
 			{
@@ -133,7 +133,7 @@ local parties = [
 			}
 			else if (startingResources >= 216)
 			{
-				return 12
+				return 12;
 			}
 			else if (startingResources >= 164)
 			{
@@ -170,7 +170,7 @@ local parties = [
 			}
 			else if (startingResources >= 216)
 			{
-				return 12
+				return 12;
 			}
 			else if (startingResources >= 164)
 			{
