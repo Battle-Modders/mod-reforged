@@ -95,7 +95,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		if (this.getContainer().getActor().isDisarmed()) return false;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing) || weapon.getAmmoMax() == 0)
+		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
 		{
 			return false;
 		}
