@@ -5,7 +5,7 @@ this.rf_sallet_helmet_with_bevor <- this.inherit("scripts/items/helmets/helmet",
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_sallet_helmet_with_bevor";
 		this.m.Name = "Sallet Helmet with Bevor";
-		this.m.Description = "A well-made sallet helmet paired with a finely crafted bevor helmet. An expensive piece offering excellent protection.";
+		this.m.Description = "A well-made sallet helmet paired with a finely crafted bevor. An expensive piece offering excellent protection.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;

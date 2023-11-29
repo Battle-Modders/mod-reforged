@@ -5,7 +5,7 @@ this.rf_snubnose_bascinet_with_mail <- this.inherit("scripts/items/helmets/helme
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_snubnose_bascinet_with_mail";
 		this.m.Name = "Snubnose Bascinet with Mail";
-		this.m.Description = "This bascinet with snubnose visor provides phenomanal defense and coverage. Some of the best protection crowns can buy.";
+		this.m.Description = "This bascinet with snubnose visor provides phenomenal defense and coverage. Some of the best protection crowns can buy.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;
