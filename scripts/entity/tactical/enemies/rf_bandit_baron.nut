@@ -147,11 +147,6 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
-		local shields = clone ::Const.Items.NamedShields;
-		shields.extend([
-			"shields/named/named_bandit_kite_shield",
-			"shields/named/named_bandit_heater_shield"
-		]);
 
 		local r = ::Math.rand(1, 100);
 		if (r <= 25)
@@ -175,6 +170,11 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 		}
 		else if (r <= 50)
 		{
+			local shields = clone ::Const.Items.NamedShields;
+			shields.extend([
+				"shields/named/named_bandit_kite_shield",
+				"shields/named/named_bandit_heater_shield"
+			]);
 			this.m.Items.equip(::new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 		else if (r <= 75)
