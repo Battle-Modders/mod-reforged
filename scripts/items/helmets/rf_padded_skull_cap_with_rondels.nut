@@ -5,7 +5,7 @@ this.rf_padded_skull_cap_with_rondels <- this.inherit("scripts/items/helmets/hel
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_padded_skull_cap_with_rondels";
 		this.m.Name = "Padded Skull Cap with Rondels";
-		this.m.Description = "A skull cap with rondels overlaying a padded aketon hat.";
+		this.m.Description = "A skull cap with rondels overlaying a padded aketon cap.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;

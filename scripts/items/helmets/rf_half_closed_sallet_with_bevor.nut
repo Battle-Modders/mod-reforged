@@ -5,7 +5,7 @@ this.rf_half_closed_sallet_with_bevor <- this.inherit("scripts/items/helmets/hel
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_half_closed_sallet_with_bevor";
 		this.m.Name = "Half Closed Sallet with Bevor";
-		this.m.Description = "A finely crafted half-closed Sallet paired with an equally finely crafted bevor helmet. An expensive piece only seen on the most wealthy of knights.";
+		this.m.Description = "A finely crafted half-closed sallet helmet paired with an equally finely crafted bevor. An expensive piece only seen on the most wealthy.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;
