@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/states/world_state", function(q) {
-	// Add functionality to allow using %factionname% in entity names which is to be replaced by that character's faction's name
+	// Add functionality to allow using more vars in troop names e.g. for champions
     q.startScriptedCombat = @(__original) function( _properties = null, _isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true )
     {
     	if (_properties != null)

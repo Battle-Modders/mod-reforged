@@ -1,4 +1,4 @@
-// Add functionality to allow using %factionname% in champion names which is to be replaced by that character's faction's name
+// Add functionality to allow using more vars in troop names e.g. for champions
 ::Const.World.Common.RF_generateNameVars <- function( _troop )
 {
 	return [
@@ -7,7 +7,7 @@
 	];
 }
 
-// Add functionality to allow using %factionname% in entity names which is to be replaced by that character's faction's name
+// Add functionality to allow using more vars in troop names e.g. for champions
 local addTroop = ::Const.World.Common.addTroop;
 ::Const.World.Common.addTroop = function( _party, _troop, _updateStrength = true, _minibossify = 0 )
 {
@@ -16,7 +16,7 @@ local addTroop = ::Const.World.Common.addTroop;
     return ret;
 }
 
-// Add functionality to allow using %factionname% in entity names which is to be replaced by that character's faction's name
+// Add functionality to allow using more vars in troop names e.g. for champions
 local addUnitsToCombat = ::Const.World.Common.addUnitsToCombat;
 ::Const.World.Common.addUnitsToCombat = function( _into, _partyList, _resources, _faction, _minibossify = 0 )
 {
