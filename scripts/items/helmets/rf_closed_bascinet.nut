@@ -10,7 +10,7 @@ this.rf_closed_bascinet <- this.inherit("scripts/items/helmets/helmet", {
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;
 		this.m.HideBeard = true;
-		this.m.Variant = 1;
+		this.m.Variant = ::Math.rand(1, 6);
 		this.m.VariantString = "rf_closed_bascinet"
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
@@ -20,5 +20,38 @@ this.rf_closed_bascinet <- this.inherit("scripts/items/helmets/helmet", {
 		this.m.ConditionMax = 300;
 		this.m.StaminaModifier = -19;
 		this.m.Vision = -3;
+	}
+
+	function onPaint( _color )
+	{
+		switch (_color)
+		{
+			case ::Const.Items.Paint.None:
+				this.m.Variant = 1;
+				break;
+
+			case ::Const.Items.Paint.Black:
+				this.m.Variant = 2;
+				break;
+
+			case ::Const.Items.Paint.WhiteBlue:
+				this.m.Variant = 3;
+				break;
+
+			case ::Const.Items.Paint.WhiteGreenYellow:
+				this.m.Variant = 4;
+				break;
+
+			case ::Const.Items.Paint.OrangeRed:
+				this.m.Variant = 5;
+				break;
+
+			case ::Const.Items.Paint.Red:
+				this.m.Variant = 6;
+				break;
+		}
+
+		this.updateVariant();
+		this.updateAppearance();
 	}
 });
