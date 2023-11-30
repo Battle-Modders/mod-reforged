@@ -7,8 +7,11 @@
 
 ::Hooks.registerJS("ui/mods/mod_reforged/reforged_js_connection.js");
 ::include("mod_reforged/ui/reforged_js_connection");
-::Reforged.UI.JSConnection <- ::new("mod_reforged/ui/reforged_js_connection");
-::MSU.UI.registerConnection(::Reforged.UI.JSConnection);
+
+::Reforged.QueueBucket.AfterHooks.push(function() {
+	::Reforged.UI.JSConnection <- ::new("mod_reforged/ui/reforged_js_connection");
+	::MSU.UI.registerConnection(::Reforged.UI.JSConnection);
+});
 
 local lateJS = [
 	"ui/mods/mod_reforged/js_hooks/screens/menu/modules/main_menu/main_menu_module"
