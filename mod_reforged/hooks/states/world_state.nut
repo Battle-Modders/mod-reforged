@@ -6,7 +6,7 @@
     	{
     		foreach (entity in _properties.Entities)
     		{
-    			entity.Name = ::Const.World.Common.RF_generateName(entity.Name, entity.Faction);
+    			entity.Name = ::buildTextFromTemplate(entity.Name, ::Const.World.Common.RF_generateNameVars(entity));
     		}
     	}
 
