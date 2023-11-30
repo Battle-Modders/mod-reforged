@@ -128,6 +128,11 @@
 							S = "helmets/rf_half_closed_sallet_with_mail"
 						},
 						{
+							R = 75,
+							P = 1.0,
+							S = "helmets/rf_visored_bascinet"
+						},
+						{
 							R = 80,
 							P = 1.0,
 							S = "helmets/rf_half_closed_sallet_with_bevor"
