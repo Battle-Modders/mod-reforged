@@ -13,6 +13,7 @@ local unitBlocks = [
 		ID = "UnitBlock.RF.BanditFast",
 		DeterminesFigure = true,
 		UnitDefs = [
+			{ BaseID = "Unit.RF.RF_BanditRobber" }, // added for balanced spawns and upgrading compared to Balanced, Tough and Ranged
 			{ BaseID = "Unit.RF.RF_BanditRobber" },
 			{ BaseID = "Unit.RF.RF_BanditBandit" },
 			{ BaseID = "Unit.RF.RF_BanditKiller" }
@@ -60,7 +61,7 @@ local unitBlocks = [
 		DeterminesFigure = true,
 		UnitDefs = [
 			{ BaseID = "Unit.RF.BanditLeader" },
-			{ BaseID = "Unit.RF.RF_BanditBaron" }
+			{ BaseID = "Unit.RF.RF_BanditBaron", HardMax = 1 }
 		]
 	},
 	{

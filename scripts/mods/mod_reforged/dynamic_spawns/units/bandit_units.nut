@@ -29,8 +29,7 @@ local units = [
 	{
 		ID = "Unit.RF.BanditLeader",
 		Troop = "BanditLeader",
-		Figure = "figure_bandit_04", // Vanilla bandit leader figure
-		StartingResourceMin = 225
+		Figure = "figure_bandit_04" // Vanilla bandit leader figure
 	},
 	{
 		ID = "Unit.RF.BanditRaiderWolf",
