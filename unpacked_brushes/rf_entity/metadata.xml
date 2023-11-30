@@ -207,6 +207,10 @@
  <sprite id="bust_rf_great_helm_01_damaged" offsetY="35" ic="FF464950" width="104" height="142" img="entity\helmets\bust_rf_great_helm_01_damaged.png" left="-28" right="32" top="-29" bottom="59" />
  <sprite id="bust_rf_great_helm_01_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF444850" width="131" height="125" img="entity\helmets\bust_rf_great_helm_01_dead.png" left="-51" right="19" top="-63" bottom="3" />
 
+ <sprite id="bust_rf_visored_bascinet_01" offsetY="35" ic="FF464950" width="104" height="142" img="entity\helmets\bust_rf_visored_bascinet_01.png" left="-28" right="34" top="-29" bottom="59" />
+ <sprite id="bust_rf_visored_bascinet_01_damaged" offsetY="35" ic="FF464950" width="104" height="142" img="entity\helmets\bust_rf_visored_bascinet_01_damaged.png" left="-28" right="34" top="-29" bottom="59" />
+ <sprite id="bust_rf_visored_bascinet_01_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF444850" width="131" height="125" img="entity\helmets\bust_rf_visored_bascinet_01_dead.png" left="-51" right="19" top="-63" bottom="3" />
+
 <sprite id="bust_rf_vampire_head_01" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_rf_vampire_head_01.png" left="-17" right="27" top="-30" bottom="44" />
 
 <sprite id="bust_rf_vampire_blood_head_01_01" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_rf_vampire_blood_head_01_01.png" left="-17" right="27" top="-30" bottom="44" />
