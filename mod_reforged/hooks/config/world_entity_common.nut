@@ -1,10 +1,17 @@
 // Add functionality to allow using more vars in troop names e.g. for champions
 ::Const.World.Common.RF_getTroopNameTemplateVars <- function( _troop )
 {
-	return [
-		"factionname",
-		::World.FactionManager.getFaction(_troop.Faction).getName()
-	];
+	local ret = [];
+	local faction = ::World.FactionManager.getFaction(_troop.Faction);
+	if (faction != null)
+	{
+		ret.push([
+			"factionname",
+			faction.getName()
+		]);
+	}
+
+	return ret;
 }
 
 // Add functionality to allow using more vars in troop names e.g. for champions
