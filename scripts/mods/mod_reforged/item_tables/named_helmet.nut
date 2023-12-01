@@ -12,5 +12,5 @@
 
 foreach (script in ::Const.Items.NamedHelmets)
 {
-	::Reforged.ItemTable.NamedHelmet.add(script, 1);
+	::Reforged.ItemTable.NamedHelmet.add("scripts/items/" + script, 1);
 }

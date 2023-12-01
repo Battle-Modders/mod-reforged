@@ -4,5 +4,5 @@
 
 foreach (script in ::Const.Items.NamedSouthernHelmets)
 {
-	::Reforged.ItemTable.NamedHelmetSouthern.add(script, 1);
+	::Reforged.ItemTable.NamedHelmetSouthern.add("scripts/items/" + script, 1);
 }
