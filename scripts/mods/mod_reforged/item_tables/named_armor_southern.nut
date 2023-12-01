@@ -1,6 +1,4 @@
-::Reforged.ItemTable.NamedArmorSouthern <- ::ItemTables.Class.ItemTable([
-	[1, "scripts/items/armor/named/named_golden_lamellar_armor"]
-]);
+::Reforged.ItemTable.NamedArmorSouthern <- ::ItemTables.Class.ItemTable();
 
 foreach (script in ::Const.Items.NamedSouthernArmors)
 {

@@ -1,6 +1,4 @@
-::Reforged.ItemTable.NamedHelmetSouthern <- ::ItemTables.Class.ItemTable([
-	[1, "scripts/items/helmets/named/named_steppe_helmet_with_mail"]
-]);
+::Reforged.ItemTable.NamedHelmetSouthern <- ::ItemTables.Class.ItemTable();
 
 foreach (script in ::Const.Items.NamedSouthernHelmets)
 {
