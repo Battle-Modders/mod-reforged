@@ -116,7 +116,7 @@
  <sprite id="bust_rf_skull_cap_01_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF373E47" width="131" height="125" img="entity\helmets\bust_rf_skull_cap_01_dead.png" left="-48" right="22" top="-63" bottom="5" />
 
  <sprite id="bust_rf_padded_scale_helmet_01" offsetY="35" ic="FF4B5C6B" width="104" height="142" img="entity\helmets\bust_rf_padded_scale_helmet_01.png" left="-30" right="36" top="-34" bottom="58" />
- <sprite id="bust_rf_padded_scale_helmet_01_damaged" offsetY="35" ic="FF4B5C6B" width="104" height="142" img="entity\helmets\bust_rf_padded_sallet_helmet_01_damaged.png" left="-30" right="36" top="-34" bottom="58" />
+ <sprite id="bust_rf_padded_scale_helmet_01_damaged" offsetY="35" ic="FF4B5C6B" width="104" height="142" img="entity\helmets\bust_rf_padded_scale_helmet_01_damaged.png" left="-30" right="36" top="-34" bottom="58" />
  <sprite id="bust_rf_padded_scale_helmet_01_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF495A69" width="131" height="125" img="entity\helmets\bust_rf_padded_scale_helmet_01_dead.png" left="-51" right="27" top="-60" bottom="12" />
 
  <sprite id="bust_rf_skull_cap_with_rondels_01" offsetY="35" ic="FF373D47" width="104" height="142" img="entity\helmets\bust_rf_skull_cap_with_rondels_01.png" left="-29" right="31" top="-29" bottom="53" />
