@@ -140,7 +140,7 @@ this.rf_bandit_sharpshooter <- this.inherit("scripts/entity/tactical/human", {
 					{
 						if (_script == "scripts/items/helmets/open_leather_cap") return _weight * 0.5;
 						local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-						if (conditionMax < 30 || conditionMax > 80) return 0.0;
+						if (conditionMax < 30 || conditionMax > 70) return 0.0;
 						if (conditionMax >= 30 || conditionMax < 40) return _weight * 0.0;
 						return _weight;
 					},

@@ -7,7 +7,6 @@
 	[1, "scripts/items/helmets/full_leather_cap"],
 	[1, "scripts/items/helmets/full_aketon_cap"],
 	[1, "scripts/items/helmets/rusty_mail_coif"],
-	[1, "scripts/items/helmets/mail_coif"],
 	[1, "scripts/items/helmets/rf_scale_helmet"],
 	[1, "scripts/items/helmets/nasal_helmet"],
 	[1, "scripts/items/helmets/dented_nasal_helmet"],
