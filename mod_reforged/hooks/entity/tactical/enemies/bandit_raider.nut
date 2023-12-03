@@ -72,7 +72,7 @@
 				{
 					if (_script == "scripts/items/helmets/kettle_hat") return _weight * 0.5;
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 80 || conditionMax > 140) return 0.0;
+					if (conditionMax < 90 || conditionMax > 140) return 0.0;
 					if (conditionMax > 125 || conditionMax <= 140) return _weight * 0.5;
 					return _weight;
 				}

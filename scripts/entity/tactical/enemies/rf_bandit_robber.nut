@@ -132,8 +132,7 @@ this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 20 || conditionMax > 80) return 0.0;
-					if (conditionMax > 70 || conditionMax <= 80) return _weight * 0.5;
+					if (conditionMax < 20 || conditionMax > 70) return 0.0;
 					return _weight;
 				}
 			})
