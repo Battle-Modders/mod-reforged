@@ -142,7 +142,7 @@
 		Variant = 0,
 		Strength = 20,
 		Cost = 20,
-		Row = 1,
+		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_light_elite"
 	},
 	RF_SkeletonLightElitePolearm = {
@@ -150,7 +150,7 @@
 		Variant = 0,
 		Strength = 20,
 		Cost = 20,
-		Row = 2,
+		Row = 1,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_light_elite_polearm"
 	},
 	RF_SkeletonMediumElite = {
@@ -158,7 +158,7 @@
 		Variant = 0,
 		Strength = 40,
 		Cost = 40,
-		Row = 1,
+		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_medium_elite"
 	},
 	RF_SkeletonMediumElitePolearm = {
@@ -166,7 +166,7 @@
 		Variant = 0,
 		Strength = 40,
 		Cost = 40,
-		Row = 2,
+		Row = 1,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_medium_elite_polearm"
 	},
 	RF_SkeletonHeavyLesser = {
@@ -182,7 +182,7 @@
 		Variant = 0,
 		Strength = 40,
 		Cost = 40,
-		Row = 1,
+		Row = 2,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_lesser_bodyguard"
 	},
 	RF_VampireLord = {
