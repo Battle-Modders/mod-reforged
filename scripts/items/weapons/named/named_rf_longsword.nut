@@ -32,8 +32,7 @@ this.named_rf_longsword <- ::inherit("scripts/items/weapons/named/named_weapon",
 		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 1;
-			o.setStunChance(this.m.StunChance);
-		}.bindenv(this)));
+		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/riposte"));
 	}
