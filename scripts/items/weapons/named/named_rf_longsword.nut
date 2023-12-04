@@ -17,7 +17,7 @@ this.named_rf_longsword <- ::inherit("scripts/items/weapons/named/named_weapon",
 	{
 		this.m.IconLarge = "weapons/melee/rf_longsword_named_0" + this.m.Variant + ".png";
 		this.m.Icon = "weapons/melee/rf_longsword_named_0" + this.m.Variant + "_70x70.png";
-		this.m.ArmamentIcon = "rf_longsword_named_0" + this.m.Variant;
+		this.m.ArmamentIcon = "icon_rf_longsword_named_0" + this.m.Variant;
 	}
 
 	function onEquip()
