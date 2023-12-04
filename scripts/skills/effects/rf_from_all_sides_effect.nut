@@ -65,6 +65,7 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 	function onRefresh()
 	{
 		this.spawnIcon("rf_from_all_sides_effect", this.getContainer().getActor().getTile());
+		this.getContainer().update();
 	}
 
 	function getMalus()

@@ -67,10 +67,9 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 		if (effect == null)
 		{
 			effect = ::new("scripts/skills/effects/rf_from_all_sides_effect");
-		}		
-
-		_targetEntity.getSkills().add(effect);
+		}
 
 		effect.proc(_hitInfo);
+		_targetEntity.getSkills().add(effect);
 	}
 });
