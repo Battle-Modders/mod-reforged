@@ -12,6 +12,10 @@
 			"pg.rf_sturdy": 0.25,
 			"pg.rf_tactician": 2,
 			"pg.rf_talented": 0,
+			"pg.rf_bow": 0,
+			"pg.rf_crossbow": 0,
+			"pg.rf_throwing": 0,
+			"pg.rf_ranged": 0
 
             "pg.special.rf_fencer": -1
 		};
