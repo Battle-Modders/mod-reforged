@@ -453,7 +453,7 @@
 		Name = ::Const.Strings.PerkName.RF_DiscoveredTalent,
 		Tooltip = ::Const.Strings.PerkDescription.RF_DiscoveredTalent,
 		Icon = "ui/perks/rf_discovered_talent.png",
-		IconDisabled = "ui/perks/rf_discovered_talent_bw.png",
+		IconDisabled = "ui/perks/rf_discovered_talent_sw.png",
 	},
 	{
 		ID = "perk.rf_survival_instinct",
