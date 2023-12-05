@@ -9,7 +9,7 @@ this.rf_brigandine_shirt <- this.inherit("scripts/items/armor/armor", {
 		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
-		this.m.Variant = 1;
+		this.m.Variant = ::Math.rand(1, 5);
 		this.m.VariantString = "rf_brigandine_shirt"
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
