@@ -139,6 +139,7 @@ local units = [
 
 foreach (unitDef in units)
 {
-	unitDef.Cost <- ::Const.World.Spawn.Troops[unitDef.Troop].Cost;
+	if (!("Cost" in unitDef))
+		unitDef.Cost <- ::Const.World.Spawn.Troops[unitDef.Troop].Cost;
 	::DynamicSpawns.Public.registerUnit(unitDef);
 }
