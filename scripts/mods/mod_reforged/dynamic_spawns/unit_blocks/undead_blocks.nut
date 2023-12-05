@@ -13,6 +13,7 @@ local unitBlocks = [
 		ID = "UnitBlock.RF.SkeletonBackline",
 		DeterminesFigure = true,
 		UnitDefs = [
+			{ BaseID = "Unit.RF.RF_SkeletonLightElitePolearm" },  // added for balanced spawns and upgrading compared to Frontline
 			{ BaseID = "Unit.RF.RF_SkeletonLightElitePolearm" },
 			{ BaseID = "Unit.RF.SkeletonMediumPolearm" },
 			{ BaseID = "Unit.RF.RF_SkeletonMediumElitePolearm" }
@@ -34,6 +35,14 @@ local unitBlocks = [
 			{ BaseID = "Unit.RF.SkeletonPriestPP" },
 			{ BaseID = "Unit.RF.SkeletonPriestPH" },
 			{ BaseID = "Unit.RF.SkeletonPriestHH" }
+		]
+	},
+	{
+		ID = "UnitBlock.RF.VampireOnly",  // VampireOnly party created to solve Vampire Lords always spawning at certain resource intervals
+		DeterminesFigure = true,
+		UnitDefs = [
+			{ BaseID = "Unit.RF.Vampire" },
+			{ BaseID = "Unit.RF.RF_VampireLord", Cost = ::Const.World.Spawn.Troops.Vampire.Cost * 2, HardMax = 1 }
 		]
 	},
 	{

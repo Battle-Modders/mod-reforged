@@ -29,8 +29,7 @@ local units = [
 	},
 	{
 		ID = "Unit.RF.Vampire",
-		Troop = "Vampire",
-		StartingResourceMin = 220
+		Troop = "Vampire"
 	},
 	{
 		ID = "Unit.RF.SkeletonPriest",
@@ -90,8 +89,7 @@ local units = [
 	{
 		ID = "Unit.RF.RF_SkeletonCenturion",
 		Troop = "RF_SkeletonCenturion",
-		Figure = "figure_rf_skeleton_centurion",
-		StartingResourceMin = 250
+		Figure = "figure_rf_skeleton_centurion"
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonLegatus",
