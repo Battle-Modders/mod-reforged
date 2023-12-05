@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/vampire_racial", function(q) {
+	q.m.HasFed <- false; // used in Reforged in the vampire entity to set its blood head sprites
+
 	q.create = @(__original) function()
 	{
 		__original();
@@ -38,7 +40,7 @@
 	{
 		if (_damageInflictedHitpoints > 0 && _skill != null && !_skill.isRanged())
 		{
-			this.getContainer().getActor().m.HasFed = true;
+			this.m.HasFed = true;
 		}
 		__original(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
 	}

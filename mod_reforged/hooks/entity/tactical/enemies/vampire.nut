@@ -2,7 +2,6 @@
 	q.m.HeadSprites <- null; // len 3 array of sprites, 0 = healthy, 1 = damaged, 2 = severely damaged
 	q.m.BodySprites <- null; // len 3 array of sprites, 0 = healthy, 1 = damaged, 2 = severely damaged
 	q.m.VampireBloodHeadSprites <- null; // Reference to an array in character_heads.nut
-	q.m.HasFed <- false;
 
 	q.create = @(__original) function()
 	{
@@ -153,7 +152,8 @@
 
 		this.getSprite("body_injury").Visible = this.m.WasInjured;
 		this.getSprite("injury").Visible = this.m.WasInjured;
-		this.getSprite("rf_vampire_blood_head").Visible = this.m.HasFed;
+		local racial = this.getSkills().getSkillByID("racial.vampire");
+		this.getSprite("rf_vampire_blood_head").Visible = racial != null && racial.m.HasFed;
 
 		if (bodyBrush != this.getSprite("body").getBrush().Name)
 		{
