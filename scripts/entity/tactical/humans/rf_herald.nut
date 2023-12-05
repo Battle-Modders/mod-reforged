@@ -65,7 +65,7 @@ this.rf_herald <- ::inherit("scripts/entity/tactical/human" {
 
 	function assignRandomEquipment()
 	{
-		local banner = ::Tactical.State.isScenarioMode() ? ::World.FactionManager.getFaction(this.getFaction()).getBanner() : this.getFaction();
+		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
 		this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		this.getSprite("rf_surcoat_adornment").setBrush("bust_body_noble_0" + ::MSU.Array.rand([1, 3, 9]));

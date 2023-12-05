@@ -34,7 +34,7 @@ this.rf_arbalester_heavy <- ::inherit("scripts/entity/tactical/human" {
 
 	function assignRandomEquipment()
 	{
-		local banner = ::Tactical.State.isScenarioMode() ? ::World.FactionManager.getFaction(this.getFaction()).getBanner() : this.getFaction();
+		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
 		if (::Math.rand(1, 100) <= 80)
 		{
