@@ -66,6 +66,8 @@ this.rf_schrat_small_root_skill <- ::inherit("scripts/skills/skill", {
 		targetEntity.getSkills().add(breakFree);
 		targetEntity.raiseRootsFromGround("bust_roots", "bust_roots_back");
 
+		::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has rooted " + ::Const.UI.getColorizedEntityName(targetEntity));
+
 		this.getContainer().getActor().kill(this.getContainer().getActor(), this);
 
 		return true;
