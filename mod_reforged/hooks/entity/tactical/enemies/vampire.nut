@@ -153,7 +153,7 @@
 		this.getSprite("body_injury").Visible = this.m.WasInjured;
 		this.getSprite("injury").Visible = this.m.WasInjured;
 		local racial = this.getSkills().getSkillByID("racial.vampire");
-		this.getSprite("rf_vampire_blood_head").Visible = racial != null && racial.m.HasFed;
+		this.getSprite("rf_vampire_blood_head").Visible = racial != null && racial.m.RF_HasFed;
 
 		if (bodyBrush != this.getSprite("body").getBrush().Name)
 		{
