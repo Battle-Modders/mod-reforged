@@ -57,6 +57,7 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 			return;
 
 		local info = {
+			User = this.getContainer().getActor(),
 			Skill = this.getContainer().getAttackOfOpportunity(), // we know it won't be null because we do a hasZoneOfControl check in canProc
 			TargetTile = _attacker.getTile()
 		};
@@ -72,6 +73,12 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 	function onRiposte( _info )
 	{
 		if (!this.getContainer().getActor().isAlive() || this.m.RiposteSkillCounter == ::Const.SkillCounter)
+			return;
+
+		if (!_info.User.getTile().hasLineOfSightTo(_info.TargetTile, _info.User.getCurrentProperties().getVision()))
+			return;
+
+		if (!_info.Skill.verifyTargetAndRange(_info.TargetTile, _info.User.getTile()))
 			return;
 
 		this.m.RiposteSkillCounter = ::Const.SkillCounter;
