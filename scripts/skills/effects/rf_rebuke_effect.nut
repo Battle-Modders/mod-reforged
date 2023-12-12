@@ -48,6 +48,10 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 			return false;
 
 		local actor = this.getContainer().getActor();
+		local hookedShield = actor.getSkills().getSkillByID("effects.rf_hooked_shield_effect");
+		if (hookedShield != null && !hookedShield.isHidden())
+			return false;
+
 		if (_attacker.getTile().getDistanceTo(actor.getTile()) > 1 || ::Tactical.TurnSequenceBar.isActiveEntity(actor) || actor.getCurrentProperties().IsRiposting || !actor.hasZoneOfControl())
 		{
 			return false;

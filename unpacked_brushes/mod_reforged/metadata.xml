@@ -51,6 +51,10 @@
 	<sprite id="rf_halberd_impale_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_halberd_impale_skill.png" />
 	<sprite id="rf_halberd_sunder_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_halberd_sunder_skill.png" />
 	<sprite id="rf_halberd_demolish_armor_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_halberd_demolish_armor_skill.png" />
+	<sprite id="rf_hook_shield_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_hook_shield_skill.png" />
+
+	<sprite id="rf_hooked_shield_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_hooked_shield_effect.png" />
+	<sprite id="rf_hooked_shield_effect_mini" ic = "FF23165B" img="mini\rf_hooked_shield_effect_mini.png" />
 
 	<sprite id="rf_arrow_to_the_knee_debuff_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_arrow_to_the_knee_debuff_effect.png" />
 	<sprite id="rf_arrow_to_the_knee_debuff_effect_mini" ic = "FF23165B" img="mini\rf_arrow_to_the_knee_debuff_effect_mini.png" />

@@ -425,6 +425,12 @@ local vanillaDescriptions = [
 	 				Description = [
 	 					"Unlocks the [Bearded Blade|Skill+rf_bearded_blade_skill] skill which allows you to disarm your opponents during an attack or when they miss attacks against you."
 	 				]
+	 			},
+	 			{
+	 				Type = ::UPD.EffectType.Active,
+	 				Description = [
+	 					"Unlocks the [Hook Shield|Skill+rf_hook_shield_skill] skill which allows you to reduce the effectiveness of your target\'s shield."
+	 				]
 	 			}
  			]
 	 	})
