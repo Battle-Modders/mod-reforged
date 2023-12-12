@@ -1,7 +1,9 @@
 this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsForceEnabled = false,
-		Stacks = 0
+		IsInEffect = false,
+		ReachBonus = 3,
+		TargetsAffected = []
 	},
 	function create()
 	{
@@ -18,7 +20,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.Stacks == 0;
+		return !this.m.IsInEffect;
 	}
 
 	function getTooltip()
@@ -28,8 +30,33 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = ::MSU.Text.colorizeValue(this.m.Stacks) + " Reach"
+			text = ::MSU.Text.colorizeValue(this.m.ReachBonus) + " Reach"
 		});
+
+		local enemyList = [];
+		foreach (entity in this.m.TargetsAffected)
+		{
+			if (entity.isAlive())
+			{
+				enemyList.push({
+					id = 10,
+					type = "text",
+					icon = "ui/orientation/" + entity.getOverlayImage() + ".png",
+					text = entity.getName()
+				});
+			}
+		}
+
+		if (enemyList.len() != 0)
+		{
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/reach.png",
+				text = ::MSU.Text.colorizeValue(this.m.ReachBonus) + " Reach against attacks from:"
+				children = enemyList
+			});
+		}
 
 		return tooltip;
 	}
@@ -51,25 +78,58 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_skill.isAttack() && !_skill.isRanged() && _targetEntity != null)
+		if (_skill.isAttack() && !_skill.isRanged() && _skill.isAOE() && _targetEntity != null)
 		{
-			this.m.Stacks += _skill.isAOE() ? 3 : 1;
+			this.m.IsInEffect = true;
+		}
+	}
+
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	{
+		if (_targetEntity.isAlive() && _skill.isAttack() && !_skill.isRanged() && _skill.isAOE())
+		{
+			this.m.TargetsAffected.push(::MSU.asWeakTableRef(_targetEntity));
+		}
+	}
+
+	function onTargetMissed( _skill, _targetEntity )
+	{
+		if (_skill.isAttack() && !_skill.isRanged() && _skill.isAOE())
+		{
+			this.m.TargetsAffected.push(::MSU.asWeakTableRef(_targetEntity));
+		}
+	}
+
+	function onBeingAttacked( _attacker, _skill, _properties )
+	{
+		if (this.m.IsInEffect)
+		{
+			foreach (entity in this.m.TargetsAffected)
+			{
+				if (::MSU.isEqual(_attacker, entity))
+				{
+					_properties.Reach += this.m.ReachBonus;
+				}
+			}
 		}
 	}
 
 	function onUpdate( _properties )
 	{
-		_properties.Reach += this.m.Stacks;
+		if (this.m.IsInEffect)
+			_properties.Reach += this.m.ReachBonus;
 	}
 
 	function onTurnStart()
 	{
-		this.m.Stacks = 0;
+		this.m.IsInEffect = false;
+		this.m.TargetsAffected.clear();
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished()
-		this.m.Stacks = 0;
+		this.m.IsInEffect = false;
+		this.m.TargetsAffected.clear();
 	}
 });

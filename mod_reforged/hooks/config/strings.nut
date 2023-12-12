@@ -1709,11 +1709,12 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_SweepingStrikes = ::UPD.getDescription({
  		Fluff = "Keep your enemies at bay with the sweeping swings of your weapon!",
- 		Requirement = "Weapon with a [Reach|Concept.Reach] of 3 or greater"
+ 		Requirement = "Melee [AOE|Concept.AOE] attack"
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Attacks, hit or miss, increase your [Reach|Concept.Reach] by " + ::MSU.Text.colorGreen("+3") + " for AOE attacks, and " + ::MSU.Text.colorGreen("+1") + " for regular attacks until the start of your next [turn|Concept.Turn].",
+				"AOE attacks, hit or miss, increase your [Reach|Concept.Reach] by " + ::MSU.Text.colorGreen("+3") + ". The affected targets' [Reach|Concept.Reach] is reduced by " + ::MSU.Text.colorGreen("-3") + " for their attacks against you.",
+				"The [effect|Concept.StatusEffect] lasts until the start of your next [turn|Concept.Turn]."
 			]
 		}]
  	}),
