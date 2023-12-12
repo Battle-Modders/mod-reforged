@@ -5,7 +5,8 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 		MissStacksMax = 5,
 		HitStacksMax = 2,
 		BonusPerMiss = 2,
-		BonusPerHit = 5
+		BonusPerHit = 5,
+		IsGettingHit = false
 	},
 	function create()
 	{
@@ -77,10 +78,17 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
+		this.m.IsGettingHit = false;
 		if (_skill != null && _skill.isAttack() && _attacker != null && _attacker.getID() != this.getContainer().getActor().getID())
 		{
-			this.m.HitStacks = ::Math.min(this.m.HitStacksMax, this.m.HitStacks + 1);
+			this.m.IsGettingHit = true;
 		}
+	}
+
+	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
+	{
+		if (this.m.IsGettingHit)
+			this.m.HitStacks = ::Math.min(this.m.HitStacksMax, this.m.HitStacks + 1);
 	}
 
 	function onMissed( _attacker, _skill )
