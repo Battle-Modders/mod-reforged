@@ -114,7 +114,15 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 			bonus += ::Math.max(1, ::Reforged.Reach.BonusPerReach - i);
 		}
 
-		this.m.CurrBonus = diff < 0 ? -bonus : bonus;
+		if (diff > 0)
+		{
+			this.m.CurrBonus = bonus + diff * _properties.BonusPerReachAdvantage;
+		}
+		else
+		{
+			this.m.CurrBonus = bonus - diff * targetProperties.BonusPerReachAdvantage;
+		}
+
 		_properties.MeleeSkill += this.m.CurrBonus;
 	}
 

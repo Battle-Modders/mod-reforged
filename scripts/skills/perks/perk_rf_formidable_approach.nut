@@ -1,6 +1,6 @@
 this.perk_rf_formidable_approach <- ::inherit("scripts/skills/skill", {
 	m = {
-		ReachBonus = 2,
+		BonusPerReachAdvantage = 2,
 		Enemies = []
 	},
 	function create()
@@ -36,7 +36,7 @@ this.perk_rf_formidable_approach <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill.isAttack() && !_skill.isRanged() && _targetEntity != null && this.hasEnemy(_targetEntity))
 		{
-			_properties.Reach += this.m.ReachBonus;
+			_properties.BonusPerReachAdvantage += this.m.BonusPerReachAdvantage;
 		}
 	}
 
@@ -44,8 +44,13 @@ this.perk_rf_formidable_approach <- ::inherit("scripts/skills/skill", {
 	{
 		if (!_skill.isRanged() && this.hasEnemy(_attacker))
 		{
-			_properties.Reach += this.m.ReachBonus;
+			_properties.BonusPerReachAdvantage += this.m.BonusPerReachAdvantage;
 		}
+	}
+
+	function onUpdate( _properties )
+	{
+		_properties.Reach += 1;
 	}
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )

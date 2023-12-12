@@ -1193,8 +1193,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Your [Reach|Concept.Reach] is increased by " + ::MSU.Text.colorGreen("+2") + " against enemies in your [Zone of Control|Concept.ZoneOfControl], until they hit you.",
-				"After being hit the effect expires, but is reset if the [Zone of Control|Concept.ZoneOfControl] is broken."
+				"Gain " + ::MSU.Text.colorGreen("+1") + " [Reach|Concept.Reach].",
+				"The bonus from each point of [Reach Advantage|Concept.ReachAdvantage] you have is increased by " + ::MSU.Text.colorGreen("+2") + ", without diminishing returns, against enemies in your [Zone of Control|Concept.ZoneOfControl], until they hit you. After being hit this effect expires, but is reset if the [Zone of Control|Concept.ZoneOfControl] is broken."
 			]
 		}]
  	}),
