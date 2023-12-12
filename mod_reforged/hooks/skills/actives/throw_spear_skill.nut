@@ -32,8 +32,8 @@
 	{
 		if (_skill == this)
 		{
-			_properties.RangedSkill += 20;
-			_properties.HitChanceAdditionalWithEachTile -= 10;
+			_properties.RangedSkill += this.m.AdditionalAccuracy;
+			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 
 			if (_targetEntity != null)
 			{
