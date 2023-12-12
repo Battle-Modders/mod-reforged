@@ -7,7 +7,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "special.rf_reach";
 		this.m.Name = "Reach";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Reach is a depiction of how far a character\'s attacks can reach, making melee combat easier against targets with shorter reach.\n\n[Melee skill|Concept.MeleeSkill] is increased when attacking opponents with shorter reach, and reduced against opponents with longer reach, by " + ::MSU.Text.colorGreen(::Reforged.Reach.BonusPerReach) + " per difference in reach. It only applies when attacking a target adjacent to you or up to 2 tiles away with nothing between you and the target.\n\nAfter a successful hit, the target\'s [Reach Advantage|Concept.ReachAdvantage] is lost until the attacker waits or ends their turn.\n\nShields can negate some or all of the target\'s [Reach Advantage|Concept.ReachAdvantage]. Characters who are rooted have their Reach halved. Those without an [attack of opportunity|Concept.ZoneOfControl] have no Reach.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Reach is a depiction of how far a character\'s attacks can reach, making melee combat easier against targets with shorter reach.\n\n[Melee skill|Concept.MeleeSkill] is increased when attacking opponents with shorter reach, and reduced against opponents with longer reach. Reach has diminishing returns, starting at " + ::Reforged.Reach.BonusPerReach + " and dropping by 1 to a minimum of 1. It only applies when attacking a target adjacent to you or up to 2 tiles away with nothing between you and the target.\n\nAfter a successful hit, the target\'s [Reach Advantage|Concept.ReachAdvantage] is lost until the attacker waits or ends their turn.\n\nShields can negate some or all of the target\'s [Reach Advantage|Concept.ReachAdvantage]. Characters who are rooted have their Reach halved. Those without an [attack of opportunity|Concept.ZoneOfControl] have no Reach.");
 		this.m.Icon = "skills/rf_reach_effect.png";
 		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast + 100;
@@ -101,7 +101,14 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		if (diff == 0)
 			return;
 
-		this.m.CurrBonus = ::Math.floor(::Reforged.Reach.BonusPerReach * diff);
+		local bonus = 0;
+		local absDiff = ::Math.abs(diff);
+		for (local i = 0; i < absDiff; i++)
+		{
+			bonus += ::Math.max(1, ::Reforged.Reach.BonusPerReach - i);
+		}
+
+		this.m.CurrBonus = diff < 0 ? -bonus : bonus;
 		_properties.MeleeSkill += this.m.CurrBonus;
 	}
 
