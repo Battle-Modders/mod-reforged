@@ -1040,7 +1040,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When wielding a sword, if you have not moved from your position during your [turn|Concept.Turn], use [Riposte|Skill+riposte] freely at the end of your [turn|Concept.Turn] if your weapon has [Riposte|Skill+riposte].",
-				"If your weapon does not have [Riposte|Skill+riposte] and is two-handed, gain the [Rebuke|Skill+rf_rebuke_effect] effect, with an additional chance of " + ::MSU.Text.colorGreen("+10%") + " for returning a missed attack, instead until the start of your next [turn|Concept.Turn].",
+				"If your weapon does not have [Riposte|Skill+riposte] and is two-handed, gain the [Rebuke|Skill+rf_rebuke_effect] effect, with an additional chance of " + ::MSU.Text.colorGreen("+15%") + " for returning a missed attack, instead until the start of your next [turn|Concept.Turn]. The attacks triggered from this [Rebuke|Skill+rf_rebuke_effect] do not build [Fatigue|Concept.Fatigue].",
 				"Does not build any [Fatigue|Concept.Fatigue] or cost any [Action Points|Concept.ActionPoints] but only triggers if you have at least " + ::MSU.Text.colorRed(15) + " [Fatigue|Concept.Fatigue] remaining."
 			]
 		}]

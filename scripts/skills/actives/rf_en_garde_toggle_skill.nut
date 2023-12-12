@@ -95,7 +95,8 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		else if (this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded))
 		{
 			local rebuke = ::new("scripts/skills/effects/rf_rebuke_effect");
-			rebuke.m.BaseChance += 10;
+			rebuke.m.BaseChance += 15;
+			rebuke.m.BuildsFatigue = false;
 			local onTurnStart = "onTurnStart" in rebuke ? rebuke.onTurnStart : null;
 			local parentName = rebuke.SuperName;
 			rebuke.onTurnStart <- function()
