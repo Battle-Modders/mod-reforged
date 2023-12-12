@@ -7,14 +7,31 @@ this.perk_rf_rising_star <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "perk.rf_rising_star";
 		this.m.Name = ::Const.Strings.PerkName.RF_RisingStar;
-		this.m.Description = ::Const.Strings.PerkDescription.RF_RisingStar;
+		this.m.Description = "This character is a destined for greatness.";
 		this.m.Icon = "ui/perks/rf_rising_star.png";
-		this.m.Type = ::Const.SkillType.Perk;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
 		this.m.IsRefundable = false;
+	}
+
+	function isHidden()
+	{
+		return this.m.StartLevel + this.m.LevelsRequiredForPerk < this.getContainer().getActor().getLevel();
+	}
+
+	function getTooltip()
+	{
+		local ret = this.skill.getTooltip();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Will gain 2 [perk points|Concept.Perk] at [level|Concept.Level] " + (this.m.StartLevel + this.m.LevelsRequiredForPerk))
+		});
+		return ret;
 	}
 
 	function onUpdate( _properties )
