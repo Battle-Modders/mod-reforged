@@ -416,7 +416,6 @@ local vanillaDescriptions = [
 	 				Type = ::UPD.EffectType.Passive,
 	 				Description = [
 	 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
-	 					"[Split Shield|Skill+split_shield] damage to shields is increased by " + ::MSU.Text.colorGreen("50%") + " when used with axes."
 	 					"[Round Swing|Skill+round_swing] gains " + ::MSU.Text.colorGreen("+5%") + " chance to hit."
 	 					"The [Longaxe|Item+longaxe] no longer has a penalty for attacking targets directly adjacent.",
 	 				]
