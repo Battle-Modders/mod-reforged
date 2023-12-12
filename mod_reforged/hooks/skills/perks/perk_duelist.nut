@@ -6,6 +6,14 @@
 		{
 			_properties.Reach += 2;
 		}
+		else
+		{
+			local shield = this.getContainer().getActor().getOffhandItem();
+			if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield))
+			{
+				_properties.OffensiveReachIgnore += shield.getReachIgnore();
+			}
+		}
 	}
 
 	q.isEnabled <- function()

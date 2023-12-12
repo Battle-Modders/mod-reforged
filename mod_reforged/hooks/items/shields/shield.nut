@@ -67,6 +67,7 @@
 		_properties.MeleeDefense += ::Math.floor(this.getMeleeDefense() * mult);
 		_properties.RangedDefense += ::Math.floor(this.getRangedDefense() * mult);
 		_properties.Stamina += this.getStaminaModifier();
+		_properties.DefensiveReachIgnore += this.getReachIgnore();
 	}
 
 // New Functions

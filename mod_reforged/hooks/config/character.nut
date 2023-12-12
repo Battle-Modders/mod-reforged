@@ -29,7 +29,8 @@ local getClone = ::Const.CharacterProperties.getClone;
 	return ::Math.floor(this.Reach * this.ReachMult);
 }
 ::Const.CharacterProperties.IsAffectedByReach <- true;
-::Const.CharacterProperties.ReachIgnore <- 0;
+::Const.CharacterProperties.DefensiveReachIgnore <- 0;
+::Const.CharacterProperties.OffensiveReachIgnore <- 0;
 ::Const.CharacterProperties.BonusPerReachAdvantage <- 0;
 
 ::Const.ProjectileType.FlamingArrow <- ::Const.ProjectileType.COUNT;

@@ -88,7 +88,7 @@
 	{
 		if (!this.isHidden() && _targetEntity != null && _skill.isAttack() && !_skill.isRanged() && _targetEntity.getInitiative() < this.getContainer().getActor().getInitiative())
 		{
-			_properties.ReachIgnore += 1;
+			_properties.OffensiveReachIgnore += 1;
 		}
 	}
 });

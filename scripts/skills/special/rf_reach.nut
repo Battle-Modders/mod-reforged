@@ -88,9 +88,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		// Attacker has a reach advantage
 		if (diff > 0)
 		{
-			diff = ::Math.max(0, diff - targetProperties.ReachIgnore);
-			if (diff > 0 && _targetEntity.isArmedWithShield())
-				diff = ::Math.max(0, diff - _targetEntity.getOffhandItem().getReachIgnore());
+			diff = ::Math.max(0, diff - targetProperties.DefensiveReachIgnore);
 		}
 		// Attacker has a reach disadvantage
 		else
@@ -98,10 +96,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 			if (this.m.HitEnemies.find(_targetEntity.getID()) != null)
 				diff = 0;
 
-			diff = ::Math.min(0, diff + _properties.ReachIgnore);
-
-			if (diff < 0 && this.getContainer().getActor().isArmedWithShield() && this.getContainer().hasSkill("perk.duelist"))
-				diff = ::Math.min(0, diff + this.getContainer().getActor().getOffhandItem().getReachIgnore());
+			diff = ::Math.min(0, diff + _properties.OffensiveReachIgnore);
 		}
 
 		if (diff == 0)

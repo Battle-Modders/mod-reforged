@@ -20,7 +20,7 @@
 		if (_targetEntity != null && _skill.isAttack() && !_skill.isRanged())
 		{
 			local armor = this.getContainer().getActor().getArmor(::Const.BodyPart.Head) + this.getContainer().getActor().getArmor(::Const.BodyPart.Body);
-			_properties.ReachIgnore += this.getReachIgnore();
+			_properties.OffensiveReachIgnore += this.getReachIgnore();
 		}
 	}
 
