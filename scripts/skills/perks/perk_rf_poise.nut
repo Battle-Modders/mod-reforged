@@ -52,6 +52,13 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
+		tooltip.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/reach.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Ignore 1 [Reach Disadvantage|Concept.ReachAdvantage] when attacking a target with lower [Initiative|Concept.Initiative] than yours")
+		});
+
 		local actor = this.getContainer().getActor();
 		local maxHPString = ::Math.floor(actor.getHitpointsMax() / (hpBonus * 0.01));
 		local currHPString = ::Math.floor(actor.getHitpoints() / (hpBonus * 0.01));
@@ -91,6 +98,14 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 		{
 			_properties.DamageReceivedRegularMult *= this.getHitpointsDamage();
 			_properties.DamageReceivedArmorMult *= this.getArmorDamage();
+		}
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (!this.isHidden() && _targetEntity != null && _skill.isAttack() && !_skill.isRanged() && _targetEntity.getInitiative() < this.getContainer().getActor().getInitiative())
+		{
+			_properties.ReachIgnore += 1;
 		}
 	}
 });

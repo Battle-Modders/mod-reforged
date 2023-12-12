@@ -210,6 +210,21 @@ local vanillaDescriptions = [
 	 	}),
 	},
 	{
+		ID = "perk.battle_forged",
+		Key = "BattleForged",
+		Description = ::UPD.getDescription({
+			Fluff = "Specialize in heavy armor!",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Armor damage taken is reduced by a percentage equal to [color=" + ::Const.UI.Color.PositiveValue + "]5%[/color] of the current total armor value of both body and head armor.",
+					"When attacking a target against whom you have a [Reach Disadvantage|Concept.ReachDisadvantage], reduce this disadvantage by 1 for every 300 current combined head and body armor durability you have."
+					"Does not affect damage from mental attacks or status effects."
+				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.rotation",
 		Key = "Rotation",
 		Description = ::UPD.getDescription({
@@ -569,6 +584,7 @@ local vanillaDescriptions = [
  					"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorGreen("50%") + " and that to armor by " + ::MSU.Text.colorGreen("25%") + ".",
  					"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 15. The lighter your armor and helmet, the more you benefit.",
  					"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
+ 					"When attacking a target against whom you have a [Reach Disadvantage|Concept.ReachAdvantage], reduce this disadvantage by " + ::MSU.Text.colorGreen(1) + " if your [Concept.Initiative] is higher than that of your target."
  					"[Brawny|Perk+perk_brawny] does not affect this perk.",
  					"Cannot be picked if you have [Poise|Perk+perk_rf_poise]."
 
@@ -1381,6 +1397,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorRed("30%") + " and to Armor by " + ::MSU.Text.colorRed("20%") + ".",
 				"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 35.",
+				"When attacking a target against whom you have a [Reach Disadvantage|Concept.ReachAdvantage], reduce this disadvantage by " + ::MSU.Text.colorGreen(1) + " if your [Concept.Initiative] is higher than that of your target."
 				"[Brawny|Perk+perk_brawny] does not affect this perk.",
 				"Cannot be picked if you have [Nimble|Perk+perk_nimble]."
 			]
