@@ -10,7 +10,7 @@ this.pg_rf_axe <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.rf_shield_splitter"],
+				[],
 				[],
 				[],
 				["perk.mastery.axe"],

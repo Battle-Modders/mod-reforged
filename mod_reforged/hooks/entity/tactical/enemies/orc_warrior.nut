@@ -78,7 +78,6 @@
 
 	    if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
 	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_splitter"));
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
 	    	if (::Reforged.Config.IsLegendaryDifficulty)
 	    	{

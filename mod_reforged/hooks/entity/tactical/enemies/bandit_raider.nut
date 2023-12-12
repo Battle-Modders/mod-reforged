@@ -91,7 +91,6 @@
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
 		    	{
 		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_splitter"));
 		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_axe"));
 		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
 		    	}

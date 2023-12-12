@@ -245,7 +245,6 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 			}
 			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_splitter"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
 			}
