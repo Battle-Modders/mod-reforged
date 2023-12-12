@@ -100,7 +100,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 
 			diff = ::Math.min(0, diff + _properties.ReachIgnore);
 
-			if (diff < 0 && _properties.IsSpecializedInShields && this.getContainer().getActor().isArmedWithShield())
+			if (diff < 0 && this.getContainer().getActor().isArmedWithShield() && this.getContainer().hasSkill("perk.duelist"))
 				diff = ::Math.min(0, diff + this.getContainer().getActor().getOffhandItem().getReachIgnore());
 		}
 

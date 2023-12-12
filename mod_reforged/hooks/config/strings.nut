@@ -365,7 +365,8 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
  					"Additional damage ignores armor. This bonus is " + ::MSU.Text.colorGreen("25%") + " for one-handed weapons, " + ::MSU.Text.colorGreen("35%") + " for one-handed weapon with shield, and " + ::MSU.Text.colorGreen("15%") + " for two-handed weapons.",
- 					"Gain " + ::MSU.Text.colorGreen("+2") + " [Reach|Concept.Reach] when engaged with a single enemy, and " + ::MSU.Text.colorGreen("+1") + " when engaged with a maximum of 2 enemies."
+ 					"Gain " + ::MSU.Text.colorGreen("+2") + " [Reach|Concept.Reach] when using two-handed weapons.",
+ 					"Shields now also negate the [Reach Advantage|Concept.ReachAdvantage] of the target when attacking."
  				]
  			}],
  			Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks with a [Base|Concept.BaseAttribute] [Action Point|Concept.ActionPoints] cost of 4 or less that are either [Lunge|Skill+lunge_skill] or have a Base Maximum Range of 1 tile.")
@@ -660,7 +661,6 @@ local vanillaDescriptions = [
 	 					"The shield defense bonus is increased by " + ::MSU.Text.colorGreen("25%") + ". This also applies to the additional defense bonus of the [Shieldwall|Skill+shieldwall] skill.",
 	 					"The drop in shield defense bonus at maximum [fatigue|Concept.Fatigue] is reduced from " + ::MSU.Text.colorRed("50%") + " to " + ::MSU.Text.colorRed("25%") + ".",
 	 					"The [Knock Back|Skill+knock_back] skill gains " + ::MSU.Text.colorGreen("+15%") + " chance to hit and now applies the [Staggered|Skill+staggered_effect] effect.",
-	 					"Shields now also negate the [Reach Advantage|Concept.ReachAdvantage] of the target when attacking.",
 	 					"Missed attacks against you no longer increase your [Fatigue|Concept.Fatigue]."
 	 				]
 	 			},
