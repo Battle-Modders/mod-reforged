@@ -2,16 +2,15 @@
 	q.m.AdditionalAccuracy <- 20;
 	q.m.AdditionalHitChance <- -15;
 
+	q.create = @(__original) function()
+	{
+		__original();
+		this.m.Description = "Hurl a throwing spear at a target to inflict devastating damage. Can not be used while engaged in melee."; // Remove the part about damaging shields
+	}
+
 	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getDefaultTooltip();
-		local damage = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getShieldDamage();
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/shield_damage.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage + "[/color] damage to shields"
-		});
 
 		ret.extend(this.getRangedTooltip());
 
@@ -33,25 +32,15 @@
 		if (_skill == this)
 		{
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
-
-			if (_targetEntity != null)
-			{
-				local shield = _targetEntity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-
-				if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield))
-				{
-					this.m.IsUsingHitchance = false;
-				}
-				else
-				{
-					this.m.IsUsingHitchance = true;
-				}
-			}
-			else
-			{
-				this.m.IsUsingHitchance = true;
-			}
+			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;			
 		}
+	}
+
+	// Remove the part about damaging the shield
+	q.onUse = @() function( _user, _targetTile )
+	{
+		local ret = this.attackEntity(_user, _targetTile.getEntity());
+		_user.getItems().unequip(_user.getMainhandItem());
+		return true;
 	}
 });
