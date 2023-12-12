@@ -349,7 +349,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"Additional damage ignores armor. This bonus is " + ::MSU.Text.colorGreen("25%") + " for one-handed weapons and " + ::MSU.Text.colorGreen("15%") + " for two-handed weapons.",
+ 					"Additional damage ignores armor. This bonus is " + ::MSU.Text.colorGreen("25%") + " for one-handed weapons, " + ::MSU.Text.colorGreen("35%") + " for one-handed weapon with shield, and " + ::MSU.Text.colorGreen("15%") + " for two-handed weapons.",
  					"Gain " + ::MSU.Text.colorGreen("+2") + " [Reach|Concept.Reach] when engaged with a single enemy, and " + ::MSU.Text.colorGreen("+1") + " when engaged with a maximum of 2 enemies."
  				]
  			}],

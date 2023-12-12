@@ -19,6 +19,10 @@
 		if (weapon == null || weapon.isItemType((::Const.Items.ItemType.OneHanded)))
 		{
 			_properties.DamageDirectAdd += 0.25;
+			if (this.getContainer().getActor().isArmedWithShield())
+			{
+				_properties.DamageDirectAdd += 0.1;
+			}
 		}
 		else
 		{
