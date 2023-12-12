@@ -658,7 +658,7 @@ local vanillaDescriptions = [
 	 				Type = ::UPD.EffectType.Passive,
 	 				Description = [
 	 					"The shield defense bonus is increased by " + ::MSU.Text.colorGreen("25%") + ". This also applies to the additional defense bonus of the [Shieldwall|Skill+shieldwall] skill.",
-	 					"Shield damage received is reduced by " + ::MSU.Text.colorRed("50%") + " to a minimum of 1.",
+	 					"The drop in shield defense bonus at maximum [fatigue|Concept.Fatigue] is reduced from " + ::MSU.Text.colorRed("50%") + " to " + ::MSU.Text.colorRed("25%") + ".",
 	 					"The [Knock Back|Skill+knock_back] skill gains " + ::MSU.Text.colorGreen("+15%") + " chance to hit and now applies the [Staggered|Skill+staggered_effect] effect.",
 	 					"Shields now also negate the [Reach Advantage|Concept.ReachAdvantage] of the target when attacking.",
 	 					"Missed attacks against you no longer increase your [Fatigue|Concept.Fatigue]."
