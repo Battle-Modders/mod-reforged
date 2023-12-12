@@ -2,8 +2,8 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.Condition = 34;
-		this.m.ConditionMax = 34;
+		this.m.Condition = 170;
+		this.m.ConditionMax = 170;
 		this.m.ReachIgnore = 3;
 	}
 });

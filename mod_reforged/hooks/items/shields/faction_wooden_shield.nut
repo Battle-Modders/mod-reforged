@@ -2,7 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.Condition = 30;
-		this.m.ConditionMax = 30;
+		this.m.Condition = 130;
+		this.m.ConditionMax = 130;
 	}
 });
