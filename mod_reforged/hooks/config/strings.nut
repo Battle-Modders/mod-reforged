@@ -1589,8 +1589,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain the [Rebuke|Skill+rf_rebuke_effect] effect during combat which grants a " + ::MSU.Text.colorGreen("25%") + " chance to perform a free attack against an adjacent opponent who misses a melee attack against you.",
-				"When wielding a shield, the chance is increased by an additional " + ::MSU.Text.colorGreen("+10%") + "."
+				"Gain the [Rebuke|Skill+rf_rebuke_effect] effect during combat which grants a " + ::MSU.Text.colorGreen("25%") + " chance to perform an attack against an adjacent opponent who misses a melee attack against you. This attack costs no [Action Points|Concept.ActionPoints] but builds [Fatigue|Concept.Fatigue] and can only trigger if you have enough [Fatigue|Concept.Fatigue] remaining.",
+				"When wielding a shield, the chance is increased by an additional " + ::MSU.Text.colorGreen("+15%") + " and the attack does not build or require any [Fatigue|Concept.Fatigue]."
 			]
 		}]
  	}),

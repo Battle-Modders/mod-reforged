@@ -1,7 +1,8 @@
 this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 	m = {
 		BaseChance = 25,
-		ChanceBonusShield = 10,
+		ChanceBonusShield = 15,
+		BuildsFatigue = true,
 		RiposteSkillCounter = 0
 	},
 	function create()
@@ -47,8 +48,17 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 			return false;
 
 		local actor = this.getContainer().getActor();
-		return _attacker.getTile().getDistanceTo(actor.getTile()) == 1 && !::Tactical.TurnSequenceBar.isActiveEntity(actor) &&
-				!actor.getCurrentProperties().IsRiposting && actor.hasZoneOfControl();
+		if (_attacker.getTile().getDistanceTo(actor.getTile()) > 1 || ::Tactical.TurnSequenceBar.isActiveEntity(actor) || actor.getCurrentProperties().IsRiposting || !actor.hasZoneOfControl())
+		{
+			return false;
+		}
+
+		if (this.m.BuildsFatigue && !actor.isArmedWithShield() && actor.getFatigueMax() - actor.getFatigue() < this.getContainer().getAttackOfOpportunity().getFatigueCost())
+		{
+			return false;
+		}
+
+		return true;
 	}
 
 	function onMissed( _attacker, _skill )
@@ -82,6 +92,9 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 			return;
 
 		this.m.RiposteSkillCounter = ::Const.SkillCounter;
+		if (this.m.BuildsFatigue && !_info.User.isArmedWithShield())
+			_info.User.setFatigue(::Math.max(_info.User.getFatigueMax(), _info.User.getFatigue() + _info.Skill.getFatigueCost()));
+
 		_info.Skill.useForFree(_info.TargetTile);
 	}
 });
