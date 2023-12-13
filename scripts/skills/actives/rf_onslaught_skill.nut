@@ -10,7 +10,11 @@ this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/rf_onslaught_skill.png";
 		this.m.IconDisabled = "skills/rf_onslaught_skill_bw.png";
 		this.m.Overlay = "rf_onslaught_skill";
-		this.m.SoundOnUse = [];
+		this.m.SoundOnUse = [
+			"sounds/combat/onslaughtv9_01.wav",
+			"sounds/combat/onslaughtv9_02.wav",
+			"sounds/combat/onslaughtv9_03.wav"
+		];
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
