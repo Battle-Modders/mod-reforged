@@ -35,13 +35,11 @@ this.rf_swordstaff <- ::inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 
-		local prong = ::MSU.new("scripts/skills/actives/prong_skill");
+		this.addSkill(::new("scripts/skills/actives/overhead_strike"));
 
+		local prong = ::new("scripts/skills/actives/prong_skill");
+		prong.m.IsIgnoredAsAOO = true;
 		this.addSkill(prong);
-
-		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike", function(o) {
-			o.m.IsIgnoredAsAOO = true;
-		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/spearwall", function(o) {
 			o.m.ActionPointCost += 2;

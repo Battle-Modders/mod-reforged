@@ -24,12 +24,11 @@ this.named_rf_swordstaff <- ::inherit("scripts/items/weapons/named/named_weapon"
 	{
 		this.named_weapon.onEquip()
 
-		local prong = ::new("scripts/skills/actives/prong_skill");
-		this.addSkill(prong);
+		this.addSkill(::new("scripts/skills/actives/overhead_strike"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike", function(o) {
-			o.m.IsIgnoredAsAOO = true;
-		}));
+		local prong = ::new("scripts/skills/actives/prong_skill");
+		prong.m.IsIgnoredAsAOO = true;
+		this.addSkill(prong);
 
 		this.addSkill(::MSU.new("scripts/skills/actives/spearwall", function(o) {
 			o.m.ActionPointCost += 2;
