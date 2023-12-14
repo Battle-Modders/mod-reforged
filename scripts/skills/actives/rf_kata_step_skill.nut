@@ -24,7 +24,6 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.IsDisengagement = true;
 		this.m.ActionPointCost = 0;
 		this.m.FatigueCost = 0;
 		this.m.MinRange = 1;
