@@ -1,7 +1,8 @@
 this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 	m = {		
 		TargetTile = null,
-		TargetActor = null,
+		Reason = "", // Printed if VerboseMode is true
+		MaxPathLength = 3,
 		PossibleSkills = [
 			"actives.rf_kata_step",
 			"actives.rf_move_under_cover"
@@ -12,15 +13,41 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 	{
 		this.m.ID = ::Const.AI.Behavior.ID.RF_KataStep;
 		this.m.Order = ::Const.AI.Behavior.Order.RF_KataStep;
-		// this.m.IsThreaded = true;		
+		this.m.IsThreaded = true;
 		this.behavior.create();
+	}
+
+	// Pick the cheapest skill as opposed to vanilla weighted random choice
+	function selectSkill( _possibleSkills )
+	{
+		local ret;
+		local apCost = 999;
+		local fatCost = 999;
+		local skills = this.getAgent().getActor().getSkills();
+		foreach (id in _possibleSkills)
+		{
+			local skill = skills.getSkillByID(id);
+			if (skill == null || !skill.isUsable() || !skill.isAffordable())
+				continue;
+
+			local ap = skill.getActionPointCost() * 3; // * 3 is similar to how vanilla weighs AP cost
+			local fat = skill.getFatigueCost();
+			if (ap < apCost && fat < fatCost)
+			{
+				ret = skill;
+				apCost = ap;
+				fatCost = fat;
+			}
+		}
+
+		return ret;
 	}
 
 	function onEvaluate( _entity )
 	{
 		this.m.TargetTile = null;
-		this.m.TargetActor = null;
 		this.m.Skill = null;
+		this.m.Reason = "";
 		local time = ::Time.getExactTime();
 
 		if (_entity.getMoraleState() == ::Const.MoraleState.Fleeing)
@@ -40,7 +67,11 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		local attackSkill = _entity.getSkills().getAttackOfOpportunity();
+		// Don't use a disengagement skill if not in ZoC. In that case the entity can just use a regular movement action
+		if (this.m.Skill.isDisengagement() && _entity.getTile().getZoneOfControlCountOtherThan(_entity.getAlliedFactions()) == 0)
+		{
+			return ::Const.AI.Behavior.Score.Zero;
+		}
 
 		local targets = this.queryTargetsInMeleeRange(this.m.Skill.getMinRange(), this.m.Skill.getMaxRange() + 1, this.m.Skill.getMaxLevelDifference());
 		if (targets.len() == 0)
@@ -51,487 +82,269 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 		local score = this.getProperties().BehaviorMult[this.m.ID];
 		score *= this.getFatigueScoreMult(this.m.Skill);
 
-		local myTile = _entity.getTile();		
-		local knownAllies = this.getAgent().getKnownAllies();
-		local lungeSkill = _entity.getSkills().getSkillByID("actives.lunge");
-		local canEngarde = false;
+		local myTile = _entity.getTile();
+		local paths = [
+			{
+				Tiles = [myTile],
+				AlliesEvaluated = [],
+				BasePath = null,
+				Score = 1.0,
+				ScoreMult = 1.25 + (this.m.Skill.getFatigueCost() * 0.01), // Prefer staying in my tile unless there is a good reason to move
+				Reason = ""
+			}
+		];
+
+		local pathLength = 2;
+		local aoo = _entity.getSkills().getAttackOfOpportunity();
+		if (aoo != null)
+		{
+			local entityAP = _entity.getActionPoints();
+			local entityFat = _entity.getFatigueMax() - _entity.getFatigue();
+			local APCostPerStep = this.m.Skill.getActionPointCost() + aoo.getActionPointCost();
+			local fatCostPerStep = this.m.Skill.getFatigueCost() + aoo.getFatigueCost();
+			while (pathLength < this.m.MaxPathLength && APCostPerStep * pathLength < entityAP && fatCostPerStep * pathLength < entityFat)
+			{
+				pathLength++;
+			}
+		}
+
+		paths.extend(this.getPaths(myTile, null, pathLength));
+
+		if (paths.len() == 1)
+		{
+			if (::Const.AI.VerboseMode)
+				::logInfo("* Nowhere to go with " this.m.Skill.getName());
+			return ::Const.AI.Behavior.Score.Zero;
+		}
+
 		local engarde = _entity.getSkills().getSkillByID("actives.rf_en_garde_toggle");
 		if (engarde != null && engarde.pickSkill() != null)
 		{
-			canEngarde = true;
+			paths[0].ScoreMult *= 1.5; // Prefer staying in my tile if I have En Garde available
 		}
 
-		local evaluateTarget = function( _target, _startingTile )
+		local bodyguardSkill = _entity.getSkills().getSkillByID("special.rf_bodyguard");
+		local isBodyguard = bodyguardSkill != null && !::MSU.isNull(bodyguardSkill.getVIP()) && bodyguardSkill.getVIP().isAlive() && bodyguardSkill.getVIP().isPlacedOnMap();
+
+		local activeSkills = _entity.getSkills().getAllSkillsOfType(::Const.SkillType.Active);
+		local vision = _entity.getCurrentProperties().getVision();
+		local enemies = this.getAgent().getKnownOpponents();
+		local knownAllies  = this.getAgent().getKnownAllies();
+
+		foreach (pathIdx, path in paths)
 		{
-			if (::Const.AI.VerboseMode)
+			if (this.isAllottedTimeReached(time))
 			{
-				this.logInfo("Evaluating target " + _target.getName() + " considering starting tile to be " + _startingTile.ID);
-			}			
-			local ret = [];
-			local targetTile = _target.getTile();
-			local isTargetInEnemyZoneOfControl = targetTile.hasZoneOfControlOtherThan(_target.getAlliedFactions());
-			local isTargetArmedWithRangedWeapon = !isTargetInEnemyZoneOfControl && this.isRangedUnit(_target);
-			local isTargetFleeing = _target.getMoraleState() == ::Const.MoraleState.Fleeing;
-			local engagementsDeclared = (_target.getAIAgent().getEngagementsDeclared(_entity) + _target.getTile().getZoneOfControlCount(_entity.getFaction()) * 2) * ::Const.AI.Behavior.EngageAlreadyEngagedPenaltyMult * this.getProperties().EngageTargetAlreadyBeingEngagedMult;
-			local letOthersGoScore = 0.0;
-			local lockDownValue = 1.0;
-
-			local targetValue = this.getProperties().IgnoreTargetValueOnEngage ? 0.5 : this.queryTargetValue(_entity, _target);
-
-			if (lungeSkill != null && lungeSkill.onVerifyTarget(_startingTile, targetTile) && lungeSkill.isInRange(targetTile, _startingTile))
-			{
-				local lungeValue = this.getProperties().IgnoreTargetValueOnEngage ? 0.5 : this.queryTargetValue(_entity, _target, lungeSkill);				
-				if (lungeValue > targetValue)
-				{
-					if (::Const.AI.VerboseMode)
-					{
-						this.logInfo("Better to engage " + _target.getName() + " with Lunge. Lunge Value: " + lungeValue + " vs Target Value: " + targetValue);
-					}
-					if (_startingTile.isSameTileAs(myTile))
-					{
-						return ret;
-					}
-					else 
-					{
-						ret.push({
-							Tile = _target.getTile(),
-							Actor = _target,
-							TargetValue = lungeValue,
-							TileScore = 50,
-							ScoreMult = 2
-						});
-
-						return ret;
-					}
-				}
+				yield null;
+				time = ::Time.getExactTime();
 			}
 
-			local potentialTiles = [];
-			if (_startingTile.isSameTileAs(myTile) && targetTile.getDistanceTo(_startingTile) == 1)
+			if (::Reforged.Mod.Debug.isEnabled("ai"))
+				::logWarning(format("* Evaluating path: %i", pathIdx))
+
+			if (path.BasePath != null)
 			{
-				potentialTiles.push(_startingTile);
+				path.Score = path.BasePath.Score;
+				path.ScoreMult = path.BasePath.ScoreMult;
+				path.AlliesEvaluated = clone path.BasePath.AlliesEvaluated;
+				path.Reason = path.BasePath.Reason;
+				if (::Reforged.Mod.Debug.isEnabled("ai"))
+					::logInfo(format("* Copying path score from path %i", paths.find(path.BasePath)));
 			}
 
-			// These are for AI VerboseMode
-			local tilesToEvaluate = [];
-			local ignoredTiles = [];
-
-			for (local i = 0; i < 6; i++)
+			local tile = path.Tiles.top();
+			if (::Reforged.Mod.Debug.isEnabled("ai"))
 			{
-				if (targetTile.hasNextTile(i))
-				{
-					local nextTile = targetTile.getNextTile(i);	
-				
-					if (nextTile.IsEmpty && this.m.Skill.onVerifyTarget(_startingTile, nextTile) && this.m.Skill.isInRange(nextTile, _startingTile))
-					{
-						potentialTiles.push(nextTile);
-						if (::Const.AI.VerboseMode)
-						{
-							tilesToEvaluate.push(nextTile);
-						}
-					}
-					else if (::Const.AI.VerboseMode)
-					{
-						ignoredTiles.push(nextTile);
-					}
-				}
-			}
-
-			if (::Const.AI.VerboseMode)
-			{
-				local text = tilesToEvaluate.len() > 0 ? "Tiles to evaluate: " : "Tiles to evaluate: None  ";
-				foreach (tile in tilesToEvaluate)
-				{
-					text += tile.ID + ", ";
-				}
-				::logInfo(text.slice(0, -2));
-				if (ignoredTiles.len() != 0)
-				{
-					local text = "Ignored Tiles: ";
-					foreach (tile in ignoredTiles)
-					{
-						text += tile.ID + ", ";
-					}
-					::logInfo(text.slice(0, -2));
-					ignoredTiles.clear();
-				}
-			}
-
-			if (potentialTiles.len() == 0 || (potentialTiles.len() == 1 && potentialTiles[0].isSameTileAs(myTile)))
-			{
-				return ret;
-			}
-
-			foreach (tile in potentialTiles)
-			{
-				if (::Const.AI.VerboseMode)
-				{
-					this.logInfo("Evaluating tile " + tile.ID + " for Kata use against target " + _target.getName());
-				}
-
-				if (tile == null)
-				{
-					continue;
-				}
-
-				if (attackSkill == null || !attackSkill.onVerifyTarget(tile, targetTile) || !attackSkill.isInRange(targetTile, tile))
-				{
-					if (::Const.AI.VerboseMode)
-					{
-						ignoredTiles.push(tile);
-					}
-					continue;
-				}
-
-				if (targetTile.getZoneOfControlCount(_entity.getFaction()) == 0 && !isTargetArmedWithRangedWeapon && !isTargetFleeing && engagementsDeclared == 0)
-				{
-					foreach( ally in knownAllies )
-					{
-						if (ally.getCurrentProperties().TargetAttractionMult <= 1.0 && !this.isRangedUnit(ally))
-						{
-							continue;
-						}
-
-						local d = this.queryActorTurnsNearTarget(_target, ally.getTile(), _target);
-
-						if (d.Turns <= 1.0)
-						{
-							lockDownValue = lockDownValue * (::Const.AI.Behavior.EngageMeleeProtectPriorityTargetMult * this.getProperties().EngageLockDownTargetMult);
-						}
-					}
-				}
-
-				if (this.getProperties().IgnoreTargetValueOnEngage)
-				{
-					letOthersGoScore = letOthersGoScore + ::Math.abs(_startingTile.SquareCoords.Y - targetTile.SquareCoords.Y) * 20.0;
-					local myDistanceToTarget = _startingTile.getDistanceTo(targetTile);
-					local targets = this.getAgent().getKnownAllies();
-
-					foreach( ally in targets )
-					{
-						if (ally.getMoraleState() == ::Const.MoraleState.Fleeing || ally.getCurrentProperties().RangedSkill > ally.getCurrentProperties().MeleeSkill || ally.getTile().hasZoneOfControlOtherThan(ally.getAlliedFactions()))
-						{
-							continue;
-						}
-
-						if (ally.getTile().getDistanceTo(targetTile) < myDistanceToTarget)
-						{
-							letOthersGoScore = letOthersGoScore + 2.0;
-						}
-					}
-				}
+				if (tile.isSameTileAs(myTile))
+					::logWarning(format("* - Evaluating my own tile"));
 				else
-				{
-					local myDistanceToTarget = _startingTile.getDistanceTo(targetTile);
-					local targets = this.getAgent().getKnownAllies();
+					::logWarning(format("* - Evaluating tile: with ID %i in direction: %s from previous tile", tile.ID, path.BasePath == null ? ::Const.Strings.Direction[myTile.getDirectionTo(tile)] : ::Const.Strings.Direction[path.BasePath.Tiles.top().getDirectionTo(tile)]));
+			}
 
-					foreach( ally in targets )
+			foreach (ally in knownAllies)
+			{
+				if (path.AlliesEvaluated.find(ally.getID()) != null)
+					continue;
+
+				local allyTile = ally.getTile();
+
+				if (isBodyguard && ::MSU.isEqual(bodyguardSkill.getVIP(), ally) && allyTile.getDistanceTo(tile) == 1)
+				{
+					path.ScoreMult *= 1000; // Prefer a path that keeps you next to the VIP.
+					path.AlliesEvaluated.push(ally.getID());
+					break;
+				}
+
+				if (allyTile.getDistanceTo(tile) > 1 || (ally.getCurrentProperties().TargetAttractionMult <= 1.0 && !this.isRangedUnit(ally)))
+					continue;
+
+				path.AlliesEvaluated.push(ally.getID());
+
+				foreach (enemy in enemies)
+				{
+					if (enemy.Actor.getMoraleState() != ::Const.MoraleState.Fleeing && !enemy.Actor.getTile().getZoneOfControlCountOtherThan(_entity.getAlliedFactions()) == 0 && !this.isRangedUnit(enemy.Actor) && this.queryActorTurnsNearTarget(enemy.Actor, allyTile, enemy.Actor) <= 1.0)
 					{
-						if (ally.getMoraleState() == ::Const.MoraleState.Fleeing || ally.getCurrentProperties().RangedSkill > ally.getCurrentProperties().MeleeSkill || ally.getTile().hasZoneOfControlOtherThan(ally.getAlliedFactions()))
-						{
-							continue;
-						}
-
-						if (ally.getTile().getDistanceTo(targetTile) < myDistanceToTarget)
-						{
-							letOthersGoScore = letOthersGoScore + 0.5;
-						}
-					}
-				}
-
-				local levelDifference = tile.Level - targetTile.Level;
-				local distance = tile.getDistanceTo(_startingTile);
-				local distanceFromTarget = tile.getDistanceTo(targetTile);
-				local zocs = tile.getZoneOfControlCountOtherThan(_entity.getAlliedFactions());
-				local tileScore = -distance * ::Const.AI.Behavior.EngageDistancePenaltyMult * (1.0 + ::Math.maxf(0.0, 1.0 - _entity.getActionPointsMax() / 9.0)) * (1.0 / this.getProperties().EngageFlankingMult) - letOthersGoScore;
-				local scoreMult = 1.0;
-
-				tileScore = tileScore + targetValue * ::Const.AI.Behavior.EngageTargetValueMult;
-
-				tileScore = tileScore + ::Const.AI.Behavior.EngageWithSkillBonus;
-
-				if (engagementsDeclared != 0)
-				{
-					tileScore = tileScore - engagementsDeclared;
-				}
-
-				if (!isTargetInEnemyZoneOfControl)
-				{
-					scoreMult = scoreMult * (::Const.AI.Behavior.EngageLockdownMult * lockDownValue);
-				}
-
-				tileScore = tileScore + levelDifference * ::Const.AI.Behavior.EngageTerrainLevelBonus * this.getProperties().EngageOnGoodTerrainBonusMult;
-				tileScore = tileScore + tile.TVTotal * ::Const.AI.Behavior.EngageTVValueMult * this.getProperties().EngageOnGoodTerrainBonusMult;
-
-				if (zocs > 0)
-				{
-					tileScore = tileScore - zocs * ::Const.AI.Behavior.EngageMultipleOpponentsPenalty * this.getProperties().EngageTargetMultipleOpponentsMult;
-
-					if (zocs > 1 && this.getProperties().EngageTargetMultipleOpponentsMult != 0.0)
-					{
-						scoreMult = scoreMult * ::Math.pow(1.0 / (::Const.AI.Behavior.EngageTargetMultipleOpponentsMult * this.getProperties().EngageTargetMultipleOpponentsMult), zocs);
-					}
-				}
-
-				local spearwallMult = this.querySpearwallValueForTile(_entity, tile);
-
-
-				if (tile.isSameTileAs(myTile) && canEngarde)
-				{
-					if (::Const.AI.VerboseMode)
-					{
-						this.logInfo("Increasing score of my tile as I have En Garde available");
-					}
-					tileScore += 10 + ::Const.AI.Behavior.EngageTerrainLevelBonus * this.getProperties().EngageOnGoodTerrainBonusMult;
-				}
-
-				local isSkillUsable = !tile.isSameTileAs(_startingTile);
-
-				if (isSkillUsable && this.m.Skill.isSpearwallRelevant())
-				{
-					tileScore = tileScore - ::Const.AI.Behavior.EngageSpearwallTargetPenalty * spearwallMult;
-				}
-
-				if (this.getProperties().EngageEnemiesInLinePreference > 1)
-				{
-					for( local d = 0; d < 6; d++ )
-					{
-						if (tile.hasNextTile(d))
-						{
-							local nextTile = tile.getNextTile(d);
-
-							for( local k = 0; k < this.getProperties().EngageEnemiesInLinePreference - 1; k++ )
-							{
-								if (!nextTile.hasNextTile(d))
-								{
-									break;
-								}
-
-								nextTile = nextTile.getNextTile(d);
-
-								if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && !nextTile.getEntity().isAlliedWith(_entity))
-								{
-									local v = this.queryTargetValue(_entity, nextTile.getEntity());
-									tileScore = tileScore + v * ::Const.AI.Behavior.EngageLineTargetValueMult * this.getProperties().TargetPriorityAoEMult;
-								}
-							}
-						}
-					}
-				}
-
-				if (tile.IsBadTerrain)
-				{
-					local mult = isTargetArmedWithRangedWeapon ? 0.5 : 1.0;
-					tileScore = tileScore - ::Const.AI.Behavior.EngageBadTerrainPenalty * this.getProperties().EngageOnBadTerrainPenaltyMult * mult;
-				}
-
-				if (this.hasNegativeTileEffect(tile, _entity) || tile.Properties.IsMarkedForImpact)
-				{
-					tileScore = tileScore - ::Const.AI.Behavior.EngageBadTerrainEffectPenalty * this.getProperties().EngageOnBadTerrainPenaltyMult;
-				}
-
-				if (this.getProperties().OverallFormationMult != 0)
-				{
-					local allies = this.queryAllyMagnitude(tile, ::Const.AI.Behavior.EngageAllyFormationMaxDistance);
-					local formationValue = 0.0;
-
-					if (allies.Allies != 0)
-					{
-						formationValue = ::Math.pow(allies.Allies * allies.AverageDistanceScore * (allies.Magnetism / allies.Allies) * this.getProperties().OverallFormationMult * 0.5, this.getProperties().OverallFormationMult * 0.5) * ::Const.AI.Behavior.EngageFormationBonus;
-					}
-
-					tileScore = tileScore + formationValue;
-				}
-
-				ret.push({
-					Tile = tile,
-					Actor = _target,
-					TargetValue = targetValue,
-					TileScore = tileScore,
-					ScoreMult = scoreMult
-				});
-
-				if (::Const.AI.VerboseMode)
-				{
-					if (ignoredTiles.len() != 0)
-					{
-						local text = "From Tile " + tile.ID + ", ignoring tiles ";
-						foreach (tile in ignoredTiles)
-						{
-							text += tile.ID + ", ";
-						}
-						::logInfo(text.slice(0, -2) + " as we won\'t be able to use " + attackSkill.getName() + " against them from those tiles");
-						ignoredTiles.clear();
+						// These two operations calculate the average of the old and new ScoreMult
+						path.ScoreMult += ::Const.AI.Behavior.EngageMeleeProtectPriorityTargetMult * this.getProperties().EngageLockDownTargetMult;
+						path.ScoreMult *= 0.5;
 					}
 				}
 			}
 
-			return ret;
-		}
-
-		local potentialDestinations = [];
-
-		if (::Const.AI.VerboseMode)
-		{
-			this.logInfo("My tile is " + myTile.ID);
-		}
-
-		foreach (target in targets)
-		{
-			// if (this.isAllottedTimeReached(time))
-			// {
-			// 	yield null;
-			// 	time = ::Time.getExactTime();
-			// }
-
-			if (::Const.AI.VerboseMode)
+			foreach (skill in activeSkills)
 			{
-				this.logInfo("Evaluating target " + target.getName());
-			}
+				if (!skill.isAttack() || skill.isRanged())
+					continue;
 
-			local evaluation = evaluateTarget(target, myTile);
-			if (evaluation.len() > 0)
-			{
-				potentialDestinations.extend(evaluation);
-			}
-		}
+				if (::Reforged.Mod.Debug.isEnabled("ai"))
+					::logInfo(format("* Evaluating skill: %s", skill.getName()))
 
-		if (potentialDestinations.len() == 0)
-		{
-			return ::Const.AI.Behavior.Score.Zero;
-		}
-
-		if ((this.m.Skill.getActionPointCost() + attackSkill.getActionPointCost() <= _entity.getActionPoints()) && this.m.Skill.getFatigueCost() + attackSkill.getFatigueCost() + _entity.getFatigue() <= _entity.getFatigueMax())
-		{
-			foreach (dest in potentialDestinations)
-			{
-				// if (this.isAllottedTimeReached(time))
-				// {
-				// 	yield null;
-				// 	time = ::Time.getExactTime();
-				// }
-
-				if (!dest.Tile.isSameTileAs(myTile))
+				foreach (target in this.queryTargetsInMeleeRange(skill.getMinRange(), skill.getMaxRange(), skill.getMaxLevelDifference(), tile))
 				{
-					local extendedTargets = this.queryTargetsInMeleeRange(this.m.Skill.getMinRange(), this.m.Skill.getMaxRange() + 1, this.m.Skill.getMaxLevelDifference(), dest.Tile);
-					local furtherDestinations = [];
-					foreach (t in extendedTargets)
+					local targetTile = target.getTile();
+
+					if (::Reforged.Mod.Debug.isEnabled("ai"))
+						::logInfo(format("* --- Evaluating target: %s with ID %i in direction %s from that tile", target.getName(), target.getID(), ::Const.Strings.Direction[tile.getDirectionTo(targetTile)]));
+
+					if (!skill.verifyTargetAndRange(targetTile, tile) || !tile.hasLineOfSightTo(targetTile, vision))
 					{
-						if (::Const.AI.VerboseMode)
-						{
-							this.logInfo("Evaluating extended target " + t.getName() + " from primary target " + dest.Actor.getName());
-						}
-						local evaluation = evaluateTarget(t, dest.Tile);
-						if (evaluation.len() > 0)
-						{
-							furtherDestinations.extend(evaluation);
-						}
-					}
-
-					if (furtherDestinations.len() > 0)
-					{
-						furtherDestinations.sort(this.onSortByScore);
-						local d = furtherDestinations[0];
-						if (!d.Tile.isSameTileAs(myTile) && !d.Tile.isSameTileAs(dest.Tile))
-						{
-							if (::Const.AI.VerboseMode)
-							{
-								local text = "Increasing score of Kata against " + dest.Actor.getName() + " to tile " + dest.Tile.ID + " for future ";
-								if (d.TileScore == 999) text += "Lunge towards " + d.Actor.getName();
-								else text += "Kata towards " + d.Actor.getName() + " to tile " + d.Tile.ID;
-								this.logInfo(text);
-							}
-							dest.TileScore += d.TileScore;
-						}
-					}
-				}
-			}
-		}
-
-		potentialDestinations.sort(this.onSortByScore);
-
-		if (::Const.AI.VerboseMode)
-		{
-			foreach (dest in potentialDestinations)
-			{
-				this.logInfo("* Possible target : " + dest.Actor.getName() +
-							 " at distance:" + dest.Actor.getTile().getDistanceTo(myTile) +
-							 ". TargetValue is: " + dest.TargetValue +
-							 ". Fromm tile : " + dest.Tile.ID +
-							 ", with TileScore: " + dest.TileScore);
-			}
-		}
-
-		local bestTarget;
-		local bestScoreMult = 1.0;
-		local actorTargeted;
-
-		// if (this.isAllottedTimeReached(time))
-		// {
-		// 	yield null;
-		// 	time = ::Time.getExactTime();
-		// }
-
-		if (!potentialDestinations[0].Tile.isSameTileAs(myTile))
-		{
-			bestTarget = potentialDestinations[0].Tile;
-			bestScoreMult = potentialDestinations[0].ScoreMult;
-			actorTargeted = potentialDestinations[0].Actor;
-		}
-		else
-		{
-			if (::Const.AI.VerboseMode)
-			{
-				this.logInfo("Kata Step: Returning 0 because best target is: " + potentialDestinations[0].Actor.getName() + " from tile " + potentialDestinations[0].Tile.ID + " with Kata not usable on that tile");
-			}
-			return ::Const.AI.Behavior.Score.Zero;
-		}
-
-		if (bestTarget != null && bestTarget.ID != myTile.ID)
-		{
-			if (this.m.Skill.isSpearwallRelevant() && this.getProperties().PreferCarefulEngage && this.getProperties().EngageAgainstSpearwallMult != 0.0 && _entity.isAbleToWait() && this.querySpearwallValueForTile(_entity, bestTarget) != 0.0)
-			{
-				local allies = this.getAgent().getKnownAllies();
-
-				foreach( ally in allies )
-				{
-					// if (this.isAllottedTimeReached(time))
-					// {
-					// 	yield null;
-					// 	time = ::Time.getExactTime();
-					// }
-
-					if (ally.isTurnDone() || ally.getMoraleState() == ::Const.MoraleState.Fleeing || ally.getCurrentProperties().IsRooted || ally.getCurrentProperties().IsStunned || ally.getTile().hasZoneOfControlOtherThan(ally.getAlliedFactions()) || ally.getTile().getDistanceTo(bestTarget) > 5)
-					{
+						if (::Reforged.Mod.Debug.isEnabled("ai"))
+							::logInfo(format("* %s won\'t be usable on target from this tile - Skipping!", skill.getName()));
 						continue;
 					}
 
-					if (ally.isArmedWithShield())
+					if (::Reforged.Mod.Debug.isEnabled("ai"))
+						::logInfo(format("* Current path score: %f", path.Score))
+
+					local levelDifference = tile.Level - targetTile.Level;
+					local zocs = tile.getZoneOfControlCountOtherThan(_entity.getAlliedFactions());
+					local targetScore = this.getProperties().IgnoreTargetValueOnEngage ? 0.5 : this.queryTargetValue(_entity, target, skill) * ::Const.AI.Behavior.EngageTargetValueMult;
+					local targetScoreMult = 1.0;
+
+					targetScore += levelDifference * ::Const.AI.Behavior.EngageTerrainLevelBonus * this.getProperties().EngageOnGoodTerrainBonusMult;
+					targetScore += tile.TVTotal * ::Const.AI.Behavior.EngageTVValueMult * this.getProperties().EngageOnGoodTerrainBonusMult;
+
+					if (zocs > 0)
 					{
-						return ::Const.AI.Behavior.Score.Zero;
+						targetScore -= zocs * ::Const.AI.Behavior.EngageMultipleOpponentsPenalty * this.getProperties().EngageTargetMultipleOpponentsMult;
+
+						if (zocs > 1 && skill.isAOE() && this.getProperties().EngageTargetMultipleOpponentsMult != 0.0)
+						{
+							targetScoreMult = ::Math.pow(1.0 / (::Const.AI.Behavior.EngageTargetMultipleOpponentsMult * this.getProperties().EngageTargetMultipleOpponentsMult), zocs);
+						}
 					}
+
+					local spearwallMult = this.querySpearwallValueForTile(_entity, tile);
+					if (!tile.isSameTileAs(myTile) && this.m.Skill.isSpearwallRelevant())
+					{
+						targetScore -= ::Const.AI.Behavior.EngageSpearwallTargetPenalty * spearwallMult;
+					}
+
+					if (skill.isAOE() && this.getProperties().EngageEnemiesInLinePreference > 1)
+					{
+						for (local d = 0; d < 6; d++)
+						{
+							if (!tile.hasNextTile(d))
+								continue;
+
+							local nextTile = tile.getNextTile(d);
+
+							for (local k = 0; k < this.getProperties().EngageEnemiesInLinePreference - 1; k++)
+							{
+								if (!nextTile.hasNextTile(d))
+									break;
+
+								nextTile = nextTile.getNextTile(d);
+								if (!nextTile.IsOccupiedByActor)
+									continue;
+
+								local lineEntity = nextTile.getEntity();
+								if (lineEntity.isAttackable() && !lineEntity.isAlliedWith(_entity))
+									targetScore += this.queryTargetValue(_entity, lineEntity, skill) * ::Const.AI.Behavior.EngageLineTargetValueMult * this.getProperties().TargetPriorityAoEMult;
+							}
+						}
+					}
+
+					if (tile.IsBadTerrain)
+					{
+						targetScore -= ::Const.AI.Behavior.EngageBadTerrainPenalty * this.getProperties().EngageOnBadTerrainPenaltyMult;
+					}
+
+					if (this.hasNegativeTileEffect(tile, _entity) || tile.Properties.IsMarkedForImpact)
+					{
+						targetScore -= ::Const.AI.Behavior.EngageBadTerrainEffectPenalty * this.getProperties().EngageOnBadTerrainPenaltyMult;
+					}
+
+					if (this.getProperties().OverallFormationMult != 0)
+					{
+						local allies = this.queryAllyMagnitude(tile, ::Const.AI.Behavior.EngageAllyFormationMaxDistance);
+						local formationValue = 0.0;
+
+						if (allies.Allies != 0)
+						{
+							formationValue = ::Math.pow(allies.Allies * allies.AverageDistanceScore * (allies.Magnetism / allies.Allies) * this.getProperties().OverallFormationMult * 0.5, this.getProperties().OverallFormationMult * 0.5) * ::Const.AI.Behavior.EngageFormationBonus;
+						}
+
+						targetScore += formationValue;
+					}
+
+					targetScore *= targetScoreMult;
+
+					if (::Const.AI.VerboseMode)
+					{
+						if (::Reforged.Mod.Debug.isEnabled("ai"))
+							::logInfo("* targetScore: " + targetScore);
+						if (targetScore > path.Score)
+						{
+							path.Reason <- skill.getName() + " against " + target.getName() + " in " + tile.getDistanceTo(myTile) + " steps";
+						}
+					}
+
+					path.Score = ::Math.maxf(path.Score, targetScore);
 				}
 			}
 
-			this.m.TargetTile = bestTarget;
-			this.m.TargetActor = actorTargeted;
+			if (::Reforged.Mod.Debug.isEnabled("ai"))
+				::logInfo(format("* Score: %f, ScoreMult: %f, Total Path Score: %f", path.Score, path.ScoreMult, path.Score * path.ScoreMult))
 
-			if (!this.getProperties().IgnoreTargetValueOnEngage && actorTargeted != null)
-			{
-				score = score * (1.0 + this.queryTargetValue(_entity, actorTargeted));
-			}
-
-			score = score * bestScoreMult;
-
-			return ::Const.AI.Behavior.Score.RF_KataStep * score * this.getProperties().BehaviorMult[this.m.ID] * ::Math.minf(2.0, 1.0 / this.getProperties().OverallDefensivenessMult);
+			path.Score *= path.ScoreMult;
 		}
 
-		if (::Const.AI.VerboseMode)
+		if (::Reforged.Mod.Debug.isEnabled("ai"))
 		{
-			this.logInfo("Kata Step: Returning 0 because it is best to stay on my tile.");
+			::logInfo("SelectedSkill: " + this.m.Skill.getName());
+			foreach (i, path in paths)
+			{
+				local str = "Path " + i + ": ";
+				if (path.BasePath != null)
+				{
+					str += "BasePath : " + paths.find(path.BasePath) + " | ";
+				}
+				foreach (i, tile in path.Tiles)
+				{
+					if (tile.isSameTileAs(myTile))
+						str += "myTile, ";
+					else
+						str += ::Const.Strings.Direction[(i == 0 ? myTile : path.Tiles[i - 1]).getDirectionTo(tile)] + ", ";
+				}
+				::logInfo(str + "Score: " + path.Score);
+			}
 		}
 
-		return ::Const.AI.Behavior.Score.Zero;
+		paths.sort(@(a, b) a.Score <=> b.Score);
+		local bestPath = paths.top();
+
+		if (bestPath.Tiles[0].isSameTileAs(myTile))
+		{
+			if (::Const.AI.VerboseMode)
+				::logInfo("* KataStep: It is best to stay on my tile.");
+			return ::Const.AI.Behavior.Score.Zero;
+		}
+
+		this.m.Reason = bestPath.Reason;
+		this.m.TargetTile = bestPath.Tiles[0];
+
+		return ::Const.AI.Behavior.Score.RF_KataStep * score * bestPath.Score * ::Math.minf(2.0, 1.0 / this.getProperties().OverallDefensivenessMult);
 	}
 
 	function onExecute( _entity )
@@ -547,10 +360,9 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 		{
 			if (::Const.AI.VerboseMode)
 			{
-				this.logInfo("* " + _entity.getName() + ": Using " + this.m.Skill.getName() + " against " + this.m.TargetActor.getName() + "!");
+				::logInfo("* " + _entity.getName() + ": Using " + this.m.Skill.getName() + " for " + this.m.Reason + "!");
 			}
 
-			local dist = _entity.getTile().getDistanceTo(this.m.TargetTile);
 			this.m.Skill.use(this.m.TargetTile);
 
 			if (_entity.isAlive() && (!_entity.isHiddenToPlayer() || this.m.TargetTile.IsVisibleForPlayer))
@@ -560,23 +372,43 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 			}
 
 			this.m.TargetTile = null;
-			this.m.TargetActor = null;
+			this.m.Reason = "";
 		}
 
 		return true;
 	}
 
-	function onSortByScore( _a, _b )
+	function getPaths( _originTile, _basePath, _maxLength = 2 )
 	{
-		if (_a.TileScore > _b.TileScore)
+		local ret = [];
+
+		for (local i = 0; i < 6; i++)
 		{
-			return -1;
-		}
-		else if (_a.TileScore < _b.TileScore)
-		{
-			return 1;
+			if (!_originTile.hasNextTile(i))
+				continue;
+
+			local nextTile = _originTile.getNextTile(i);
+			if ((_basePath != null && _basePath.Tiles.find(nextTile) != null) || !this.m.Skill.verifyTargetAndRange(nextTile, _originTile))
+				continue;
+
+			local tiles = _basePath == null ? [] : clone _basePath.Tiles;
+			tiles.push(nextTile);
+
+			local path = {
+				Tiles = tiles,
+				AlliesEvaluated = [],
+				BasePath = _basePath,
+				Score = 1.0,
+				ScoreMult = 1.0,
+				Reason = ""
+			};
+			ret.push(path);
+
+			// If you put 0 here then the total path length ends up being _maxLength + 1
+			if (_maxLength > 1)
+				ret.extend(this.getPaths(nextTile, path, _maxLength - 1));
 		}
 
-		return 0;
+		return ret;
 	}
 });
