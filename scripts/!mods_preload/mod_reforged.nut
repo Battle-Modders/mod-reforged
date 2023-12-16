@@ -91,6 +91,8 @@ foreach (requirement in requiredMods)
 	::Reforged.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, ::Reforged.GitHubURL);
 	::Reforged.Mod.Registry.setUpdateSource(::MSU.System.Registry.ModSourceDomain.GitHub);
 
+	::Reforged.Mod.Debug.setFlag("ai", false);
+
 	::include("mod_reforged/hooks/msu.nut");
 	::include("mod_reforged/ui/load.nut");
 
