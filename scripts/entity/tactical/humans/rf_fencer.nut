@@ -58,7 +58,7 @@ this.rf_fencer <- ::inherit("scripts/entity/tactical/human" {
 		{
 			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 			{
-				this.m.Items.equip(::new("scripts/items/armor/noble_mail"));
+				this.m.Items.equip(::new("scripts/items/armor/noble_mail_armor"));
 			}
 
 			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
