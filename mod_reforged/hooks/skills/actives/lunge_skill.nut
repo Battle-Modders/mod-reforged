@@ -23,17 +23,6 @@
 		return tooltip;
 	}
 
-	q.onAdded <- function()
-	{
-		if (!this.getContainer().getActor().isPlayerControlled())
-			this.getContainer().add(this.new("scripts/skills/actives/rf_lunge_charge_dummy_skill"));
-	}
-
-	q.onRemoved <- function()
-	{
-		this.getContainer().removeByID("actives.rf_lunge_charge_dummy");
-	}
-
 	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
 	{
 		__original(_skill, _targetEntity, _properties);
