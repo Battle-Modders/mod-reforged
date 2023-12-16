@@ -119,7 +119,7 @@ this.rf_fencer <- ::inherit("scripts/entity/tactical/human" {
 		}
 		else if (r <= 70)
 		{
-			local armor = ::Reforged.ItemTable.NamedArmorNoble.roll({
+			local armor = ::Reforged.ItemTable.NamedArmorNorthern.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
@@ -131,7 +131,7 @@ this.rf_fencer <- ::inherit("scripts/entity/tactical/human" {
 		}
 		else
 		{
-			local helmet = ::Reforged.ItemTable.NamedHelmetNoble.roll({
+			local helmet = ::Reforged.ItemTable.NamedHelmetNorthern.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
