@@ -45,10 +45,19 @@
 		}
 	}
 
-	q.getDestinationTile <- function( _targetTile )
+	q.getDestinationTile <- function( _targetTile, _originTile = null )
 	{
+		if (_originTile == null)
+			_originTile = this.getContainer().getActor().getTile();
+
 		local myTile = this.getContainer().getActor().getTile();
-		local targetDistance = _targetTile.getDistanceTo(myTile);
+
+		local function isTileEmpty( _tile )
+		{
+			// myTile is always considered empty because if _originTile is not the same as myTile
+			// then we are calculating usability of Lunge from a different tile after having moved from myTile
+			return _tile.IsEmpty || _tile.isSameTileAs(myTile);
+		}
 
 		local destTiles = [];
 
@@ -57,24 +66,25 @@
 			if (!_targetTile.hasNextTile(i)) continue;
 
 			local destTile = _targetTile.getNextTile(i);
-			if (!destTile.IsEmpty || destTile.getDistanceTo(myTile) > this.m.MaxRange - 1 || ::Math.abs(_targetTile.Level - destTile.Level) > 1)
+
+			if (!isTileEmpty(destTile) || destTile.getDistanceTo(_originTile) > this.m.MaxRange - 1 || ::Math.abs(_targetTile.Level - destTile.Level) > 1)
 				continue;
 
 			// If a destination tile is adjacent to us, always choose that first
-			if (this.m.MaxRange == 2 || destTile.getDistanceTo(myTile) == 1)
+			if (this.m.MaxRange == 2 || destTile.getDistanceTo(_originTile) == 1)
 			{
-				if (::Math.abs(myTile.Level - destTile.Level) <= 1) return destTile;
+				if (::Math.abs(_originTile.Level - destTile.Level) <= 1) return destTile;
 			}
 			else
 			{
-				// Destination tiles at a distance of 2 can only be chosen if they have an adjacent empty tile that is adjacent to myTile
+				// Destination tiles at a distance of 2 can only be chosen if they have an adjacent empty tile that is adjacent to _originTile
 				// i.e. we have a clear path to the Destination tile AND along the path we never change height elevation more than once.
 				for (local j = 0; j < 6; j++)
 				{
 					if (!destTile.hasNextTile(j)) continue;
 
 					local adjacentTile = destTile.getNextTile(j);
-					if (adjacentTile.IsEmpty && myTile.getDistanceTo(adjacentTile) == 1 && ::Math.abs(myTile.Level - adjacentTile.Level) + ::Math.abs(adjacentTile.Level - destTile.Level) <= 1)
+					if (isTileEmpty(adjacentTile) && _originTile.getDistanceTo(adjacentTile) == 1 && ::Math.abs(_originTile.Level - adjacentTile.Level) + ::Math.abs(adjacentTile.Level - destTile.Level) <= 1)
 						destTiles.push(destTile);
 				}				
 			}
@@ -88,7 +98,7 @@
 
 	q.onVerifyTarget = @() function( _originTile, _targetTile )
 	{
-		return this.skill.onVerifyTarget(_originTile, _targetTile) && this.getDestinationTile(_targetTile) != null;
+		return this.skill.onVerifyTarget(_originTile, _targetTile) && this.getDestinationTile(_targetTile, _originTile) != null;
 	}
 
 	q.onUse = @() function( _user, _targetTile )
