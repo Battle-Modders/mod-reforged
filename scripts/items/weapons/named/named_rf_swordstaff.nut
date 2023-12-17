@@ -24,14 +24,10 @@ this.named_rf_swordstaff <- ::inherit("scripts/items/weapons/named/named_weapon"
 	{
 		this.named_weapon.onEquip()
 
-		local prong = ::MSU.new("scripts/skills/actives/prong_skill", function(o) {
-			o.m.FatigueCost += 2;
-		});
-
+		local prong = ::new("scripts/skills/actives/prong_skill");
 		this.addSkill(prong);
 
 		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike", function(o) {
-			o.m.FatigueCost += 2;
 			o.m.IsIgnoredAsAOO = true;
 		}));
 
