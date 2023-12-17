@@ -5,7 +5,8 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 		MaxPathLength = 3,
 		PossibleSkills = [
 			"actives.rf_kata_step",
-			"actives.rf_move_under_cover"
+			"actives.rf_move_under_cover",
+			"actives.footwork"
 		],
 		Skill = null
 	},
@@ -75,6 +76,9 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 
 		local score = this.getProperties().BehaviorMult[this.m.ID];
 		score *= this.getFatigueScoreMult(this.m.Skill);
+		local fatCost = this.m.Skill.getFatigueCost();
+		if (fatCost != 0) // Don't spam Footwork (or other such high cost skills), as this behavior has a rather high score so we reduce score for such skills specifically
+			score *= 1.0 / fatCost;
 
 		local myTile = _entity.getTile();
 		local paths = [
@@ -83,7 +87,7 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 				AlliesEvaluated = [],
 				BasePath = null,
 				Score = 1.0,
-				ScoreMult = 1.25, // Prefer staying in my tile unless there is a good reason to move
+				ScoreMult = 1.25 + (fatCost * 0.01), // Prefer staying in my tile unless there is a good reason to move
 				Reason = ""
 			}
 		];
