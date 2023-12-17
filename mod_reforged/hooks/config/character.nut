@@ -1,15 +1,7 @@
-::Const.CharacterProperties.PositiveMoraleCheckBravery <- [];
-::Const.CharacterProperties.PositiveMoraleCheckBraveryMult <- [];
-::Const.CharacterProperties.NegativeMoraleCheckBravery <- [];
-::Const.CharacterProperties.NegativeMoraleCheckBraveryMult <- [];
-
-foreach (moraleCheckType in ::Const.MoraleCheckType)
-{
-	::Const.CharacterProperties.PositiveMoraleCheckBravery.push(0);
-	::Const.CharacterProperties.PositiveMoraleCheckBraveryMult.push(1.0);
-	::Const.CharacterProperties.NegativeMoraleCheckBravery.push(0);
-	::Const.CharacterProperties.NegativeMoraleCheckBraveryMult.push(1.0);
-}
+::Const.CharacterProperties.PositiveMoraleCheckBravery <- array(::Const.MoraleCheckType.len(), 0);
+::Const.CharacterProperties.PositiveMoraleCheckBraveryMult <- array(::Const.MoraleCheckType.len(), 1.0);
+::Const.CharacterProperties.NegativeMoraleCheckBravery <- array(::Const.MoraleCheckType.len(), 0);
+::Const.CharacterProperties.NegativeMoraleCheckBraveryMult <- array(::Const.MoraleCheckType.len(), 1.0);
 
 local getClone = ::Const.CharacterProperties.getClone;
 ::Const.CharacterProperties.getClone = function()
