@@ -21,7 +21,7 @@ this.perk_rf_terrifying_visage <- ::inherit("scripts/skills/skill", {
 		}
 
 		this.spawnIcon("perk_rf_terrifying_visage", _targetEntity.getTile());
-		if (!_targetEntity.checkMorale(-1, 0, ::Const.MoraleCheckType.MentalAttack))
+		if (_targetEntity.checkMorale(-1, 0, ::Const.MoraleCheckType.MentalAttack))
 		{
 			_targetEntity.getSkills().add(::new("scripts/skills/effects/horrified_effect"));
 
