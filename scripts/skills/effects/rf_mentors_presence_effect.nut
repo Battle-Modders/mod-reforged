@@ -165,8 +165,11 @@ this.rf_mentors_presence_effect <- ::inherit("scripts/skills/skill", {
 		if (::MSU.isNull(this.m.Mentor))
 			return;
 
-		local actor = this.getContainer().getActor()
-		actor.setMoraleState(::Math.max(::Const.MoraleState.Confident, actor.getMoraleState()));
-		this.spawnIcon("rf_mentors_presence_effect", actor.getTile());
+		local actor = this.getContainer().getActor();
+		if (actor.getMoraleState() < ::Const.MoraleState.Confident)
+		{
+			actor.setMoraleState(::Const.MoraleState.Confident);
+			this.spawnIcon("rf_mentors_presence_effect", actor.getTile());
+		}
 	}
 });
