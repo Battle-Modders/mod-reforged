@@ -1,5 +1,12 @@
 this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
-	m = {},
+	m = {
+		HelmetAdornment = {
+			Sprite = "",
+			SpriteDamaged = "",
+			SpriteDead = "",
+			IsDamaged = false
+		}
+	},
 	function create()
 	{
 		this.m.Type = ::Const.EntityType.RF_HeraldsBodyguard;
@@ -77,9 +84,9 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
 		this.human.onDeath(_killer, _skill, _tile, _fatalityType);
-		if (_tile != null)
+		if (_tile != null && this.m.HelmetAdornment.SpriteDead != "")
 		{
-			local decal = _tile.spawnDetail(this.getSprite("rf_helmet_adornment").getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped, false, ::Const.Combat.HumanCorpseOffset);
+			local decal = _tile.spawnDetail(this.m.HelmetAdornment.SpriteDead, ::Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped, false, ::Const.Combat.HumanCorpseOffset);
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
 		}
@@ -88,13 +95,13 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 	function onDamageReceived( _attacker, _skill, _hitInfo )
 	{
 		local ret = this.human.onDamageReceived(_attacker, _skill, _hitInfo);
-		if (this.isAlive() && this.isPlacedOnMap())
+		if (!this.m.HelmetAdornment.IsDamaged && this.isAlive() && this.isPlacedOnMap())
 		{
 			local helmet = this.getHeadItem();
-			if (helmet != null && helmet.getCondition() / helmet.getConditionMax() <= ::Const.Combat.ShowDamagedArmorThreshold)
+			if (helmet != null && helmet.getCondition() / helmet.getConditionMax() <= ::Const.Combat.ShowDamagedArmorThreshold && this.m.HelmetAdornment.SpriteDamaged != "")
 			{
-				local sprite = this.getSprite("rf_helmet_adornment");
-				this.getSprite("rf_helmet_adornment").setBrush(sprite.Name + "_damaged");
+				this.m.HelmetAdornment.IsDamaged = true;
+				this.getSprite("rf_helmet_adornment").setBrush(this.m.HelmetAdornment.SpriteDamaged);
 			}
 		}
 		return ret;
@@ -105,7 +112,10 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
 		this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
-		this.getSprite("rf_helmet_adornment").setBrush("faction_helmet_2_0" + banner);
+		this.m.HelmetAdornment.Sprite = "faction_helmet_2_0" + banner;
+		this.m.HelmetAdornment.SpriteDamaged = this.m.HelmetAdornment.Sprite + "_damaged";
+		this.m.HelmetAdornment.SpriteDead = this.m.HelmetAdornment.Sprite + "_dead";
+		this.getSprite("rf_helmet_adornment").setBrush(this.m.HelmetAdornment.Sprite);
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
