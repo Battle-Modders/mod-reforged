@@ -112,7 +112,7 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
 		this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
-		this.m.HelmetAdornment.Sprite = "faction_helmet_2_0" + banner;
+		this.m.HelmetAdornment.Sprite = "faction_helmet_2_" + (banner < 10 ? "0" + banner : banner);
 		this.m.HelmetAdornment.SpriteDamaged = this.m.HelmetAdornment.Sprite + "_damaged";
 		this.m.HelmetAdornment.SpriteDead = this.m.HelmetAdornment.Sprite + "_dead";
 		this.getSprite("rf_helmet_adornment").setBrush(this.m.HelmetAdornment.Sprite);
