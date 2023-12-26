@@ -19,7 +19,8 @@ local addTroop = ::Const.World.Common.addTroop;
 ::Const.World.Common.addTroop = function( _party, _troop, _updateStrength = true, _minibossify = 0 )
 {
     local ret = addTroop(_party, _troop, _updateStrength, _minibossify);
-    ret.Name = ::buildTextFromTemplate(ret.Name, this.RF_getTroopNameTemplateVars(ret));
+    if (troop.Name != "")
+    	ret.Name = ::buildTextFromTemplate(ret.Name, this.RF_getTroopNameTemplateVars(ret));
     return ret;
 }
 
@@ -32,7 +33,7 @@ local addUnitsToCombat = ::Const.World.Common.addUnitsToCombat;
 	{
 		// There are certain cases in vanilla where unit.Name doesn't exist
 		// for example the knights added directly to the battle in decisive_battle_contract
-		if ("Name" in unit)
+		if (("Name" in unit) && unit.Name != "")
 			unit.Name = ::buildTextFromTemplate(unit.Name, this.RF_getTroopNameTemplateVars(unit));
 	}
 	return ret;

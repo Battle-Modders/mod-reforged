@@ -6,7 +6,7 @@
     	{
     		foreach (entity in _properties.Entities)
     		{
-    			if ("Name" in entity)
+    			if (("Name" in entity) && entity.Name != "")
     				entity.Name = ::buildTextFromTemplate(entity.Name, ::Const.World.Common.RF_getTroopNameTemplateVars(entity));
     		}
     	}
