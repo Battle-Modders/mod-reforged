@@ -63,7 +63,7 @@
 	"Fencers",
 	"Anointed Knights",
 	"Squires",
-	"Herald\'s Bodyguard"
+	"Herald\'s Bodyguards"
 ]);
 
 ::MSU.Table.merge(::Const.Strings.PerkName, {
