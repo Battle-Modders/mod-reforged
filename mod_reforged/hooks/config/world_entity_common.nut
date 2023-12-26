@@ -30,7 +30,10 @@ local addUnitsToCombat = ::Const.World.Common.addUnitsToCombat;
 	local ret = addUnitsToCombat(_into, _partyList, _resources, _faction, _minibossify);
 	foreach (unit in _into)
 	{
-		unit.Name = ::buildTextFromTemplate(unit.Name, this.RF_getTroopNameTemplateVars(unit));
+		// There are certain cases in vanilla where unit.Name doesn't exist
+		// for example the knights added directly to the battle in decisive_battle_contract
+		if ("Name" in unit)
+			unit.Name = ::buildTextFromTemplate(unit.Name, this.RF_getTroopNameTemplateVars(unit));
 	}
 	return ret;
 }
