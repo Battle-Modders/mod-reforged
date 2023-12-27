@@ -96,8 +96,11 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 
 	function onVerifyTarget( _originTile, _targetTile )
 	{
+		if (!_targetTile.IsOccupiedByActor)
+			return false;
+
 		local targetEntity = _targetTile.getEntity();
-		return targetEntity != null && targetEntity.isArmedWithShield() && !targetEntity.getSkills().hasSkill("effects.shieldwall") && !targetEntity.getSkills().hasSkill("effects.rf_hooked_shield") && this.skill.onVerifyTarget(_originTile, _targetTile);
+		return targetEntity.isArmedWithShield() && this.skill.onVerifyTarget(_originTile, _targetTile) && !targetEntity.getSkills().hasSkill("effects.shieldwall") && !targetEntity.getSkills().hasSkill("effects.rf_hooked_shield");
 	}
 
 	function onUse( _user, _targetTile )
