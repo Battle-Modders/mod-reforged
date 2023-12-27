@@ -6,7 +6,7 @@ this.rf_halberd_sunder_skill <- ::inherit("scripts/skills/actives/strike_skill",
 		this.m.Name = "Sunder";
 		this.m.Icon = "skills/rf_halberd_sunder_skill.png";
 		this.m.IconDisabled = "skills/rf_halberd_sunder_skill_sw.png";
-		this.m.Overlay = "skills/rf_halberd_sunder_skill";
+		this.m.Overlay = "rf_halberd_sunder_skill";
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 25;
 	}

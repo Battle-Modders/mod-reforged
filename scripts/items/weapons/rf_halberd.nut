@@ -42,7 +42,7 @@ this.rf_halberd <- ::inherit("scripts/items/weapons/weapon", {
 		this.addSkill(::MSU.new("scripts/skills/actives/demolish_armor_skill", function(o) {
 			o.m.Icon = "skills/rf_halberd_demolish_armor_skill.png";
 			o.m.IconDisabled = "skills/rf_halberd_demolish_armor_skill_sw.png";
-			o.m.Overlay = "skills/rf_halberd_demolish_armor_skill";
+			o.m.Overlay = "rf_halberd_demolish_armor_skill";
 		}));
 	}
 });
