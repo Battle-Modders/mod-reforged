@@ -19,7 +19,7 @@ local addTroop = ::Const.World.Common.addTroop;
 ::Const.World.Common.addTroop = function( _party, _troop, _updateStrength = true, _minibossify = 0 )
 {
     local ret = addTroop(_party, _troop, _updateStrength, _minibossify);
-    if (troop.Name != "")
+    if (ret.Name != "")
     	ret.Name = ::buildTextFromTemplate(ret.Name, this.RF_getTroopNameTemplateVars(ret));
     return ret;
 }
