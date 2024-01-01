@@ -71,6 +71,7 @@
 	RF_Angler = "Angler",
 	RF_BattleFervor = "Battle Fervor",
 	RF_BackToBasics = "Back to Basics",
+	RF_CalculatedStrikes = "Calculated Strikes"
 	RF_Command = "Command",
 	RF_Skirmisher = "Skirmisher",
 	RF_Ballistics = "Ballistics",
@@ -860,6 +861,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Active,
 			Description = [
 				"Unlocks the [Command|Skill+rf_command_skill] skill which allows you move allies forward in the turn order.",
+			]
+		}]
+	}),
+	RF_CalculatedStrikes = ::UPD.getDescription({
+		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " against anyone who\'s turn has not started yet."
+				"[Initiative|Concept.Initiative] is reduced by " + ::MSU.Text.colorRed("20%") + "."
 			]
 		}]
 	}),
