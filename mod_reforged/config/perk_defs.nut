@@ -112,6 +112,14 @@
 		IconDisabled = "ui/perks/rf_small_target_bw.png",
 	},
 	{
+		ID = "perk.rf_second_wind",
+		Script = "scripts/skills/perks/perk_rf_second_wind",
+		Name = ::Const.Strings.PerkName.RF_SecondWind,
+		Tooltip = ::Const.Strings.PerkDescription.RF_SecondWind,
+		Icon = "ui/perks/rf_second_wind.png",
+		IconDisabled = "ui/perks/rf_second_wind_sw.png",
+	},
+	{
 		ID = "perk.rf_flail_spinner",
 		Script = "scripts/skills/perks/perk_rf_flail_spinner",
 		Name = ::Const.Strings.PerkName.RF_FlailSpinner,

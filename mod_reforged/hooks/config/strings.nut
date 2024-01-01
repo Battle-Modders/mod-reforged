@@ -156,6 +156,7 @@
 	RF_RisingStar = "Rising Star",
 	RF_Sanguinary = "Sanguinary",
 	RF_SavageStrength = "Savage Strength",
+	RF_SecondWind = "Second Wind",
 	RF_ShieldSergeant = "Shield Sergeant",
 	RF_SmallTarget = "Small Target",
 	RF_ShieldSplitter = "Shield Splitter",
@@ -1720,7 +1721,16 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"The [Fatigue|Concept.Fatigue] Cost of weapon skills is reduced by " + ::MSU.Text.colorRed("25%") + "."
 			]
 		}]
- 	}),
+	}),
+	RF_SecondWind = ::UPD.getDescription({
+		Fluff = "I\'m not done yet.",
+		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"When you use \'Wait\', recover [Action Points|Concept.ActionPoints] until you have " + ::MSU.Text.colorGreen("4") + " [Action Points|Concept.ActionPoints].",
+			]
+		}],
+	}),
 	RF_ShieldSergeant = ::UPD.getDescription({
  		Fluff = "Lock and Shield",
  		Effects = [{
