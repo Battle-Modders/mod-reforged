@@ -909,6 +909,14 @@
 		}
 	},
 	{
+		ID = "perk.rf_tricksters_purses",
+		Script = "scripts/skills/perks/perk_rf_tricksters_purses",
+		Name = ::Const.Strings.PerkName.RF_TrickstersPurses,
+		Tooltip = ::Const.Strings.PerkDescription.RF_TrickstersPurses,
+		Icon = "ui/perks/rf_tricksters_purses.png",
+		IconDisabled = "ui/perks/rf_tricksters_purses_sw.png",
+	},
+	{
 		ID = "perk.battle_flow",
 		Script = "scripts/skills/perks/perk_battle_flow",
 		Name = ::Const.Strings.PerkName.BattleFlow,
