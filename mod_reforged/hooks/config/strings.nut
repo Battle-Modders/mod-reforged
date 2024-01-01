@@ -71,6 +71,7 @@
 	RF_Angler = "Angler",
 	RF_BattleFervor = "Battle Fervor",
 	RF_BackToBasics = "Back to Basics",
+	RF_CalculatedStrikes = "Calculated Strikes",
 	RF_Command = "Command",
 	RF_Skirmisher = "Skirmisher",
 	RF_Ballistics = "Ballistics",
@@ -962,6 +963,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Unlocks the [Command|Skill+rf_command_skill] skill which allows you move allies forward in the turn order.",
 			]
 		}]
+	}),
+	RF_CalculatedStrikes = ::UPD.getDescription({
+		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Deal " + ::MSU.Text.colorGreen("20%") + " more damage against anyone who has not started their [turn|Concept.Turn] yet in the current [round|Concept.Round]."
+				"[Initiative|Concept.Initiative] is reduced by " + ::MSU.Text.colorRed("20%") + ".",
+			]
+		}],
 	}),
 	RF_DeathDealer = ::UPD.getDescription({
  		Fluff = "Like wheat before a scythe!",

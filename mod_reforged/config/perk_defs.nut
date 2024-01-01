@@ -6,7 +6,15 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_Heft,
 		Icon = "ui/perks/rf_heft.png",
 		IconDisabled = "ui/perks/rf_heft_bw.png",
-	}
+	},
+	{
+		ID = "perk.rf_calculated_strikes",
+		Script = "scripts/skills/perks/perk_rf_calculated_strikes",
+		Name = ::Const.Strings.PerkName.RF_CalculatedStrikes,
+		Tooltip = ::Const.Strings.PerkDescription.RF_CalculatedStrikes,
+		Icon = "ui/perks/rf_calculated_strikes.png",
+		IconDisabled = "ui/perks/rf_calculated_strikes_sw.png",
+	},
 	{
 		ID = "perk.rf_cull",
 		Script = "scripts/skills/perks/perk_rf_cull",
