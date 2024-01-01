@@ -110,6 +110,7 @@
 	RF_FlailSpinner = "Flail Spinner",
 	RF_FlamingArrows = "Flaming Arrows",
 	RF_FluidWeapon = "Fluid Weapon",
+	RF_FluidFighter = "Fluid Fighter",
 	RF_FollowUp = "Follow Up",
 	RF_FormidableApproach = "Formidable Approach",
 	RF_FreshAndFurious = "Fresh and Furious",
@@ -1177,6 +1178,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+	RF_FluidFighter = ::UPD.getDescription({
+		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Once per turn, when using any skill that costs Action Points, reduces the Action Points of all other skills by 1 until the end of this round."
+				"This effect can\'t reduce the Action Points of skills below 2."
+			]
+		}]
+	}),
 	RF_FollowUp = ::UPD.getDescription({
  		Fluff = "\'When your buddy\'s hittin\' \'em, you hit \'em too!\'",
  		Requirement = "Melee Attack",
