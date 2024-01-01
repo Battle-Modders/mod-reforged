@@ -120,6 +120,7 @@
 	RF_Ghostlike = "Ghostlike",
 	RF_HaleAndHearty = "Hale and Hearty",
 	RF_Heft = "Heft",
+	RF_TrickstersPurses = "Trickster\'s Purses",
 	RF_HipShooter = "Hip Shooter",
 	RF_HoldSteady = "Hold Steady",
 	RF_Hybridization = "Hybridization",
@@ -1416,6 +1417,22 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+	RF_TrickstersPurses = ::UPD.getDescription({
+		Effects = [
+			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"Unlock two extra [bag slots|Concept.BagSlots].",
+				],
+			},
+			{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Unlocks the [Pocket Sand|Skill+rf_pocket_sand_skill] skill which allows you to store sand in your empty [bag slots|Concept.BagSlots] to distract nearby enemies with.",
+				],
+			},
+		],
+	}),
 	RF_HipShooter = ::UPD.getDescription({
  		Fluff = "They shall cower in the shade of your arrows!",
  		Requirement = "Bow",
