@@ -72,6 +72,7 @@
 	RF_BattleFervor = "Battle Fervor",
 	RF_BackToBasics = "Back to Basics",
 	RF_CalculatedStrikes = "Calculated Strikes",
+	RF_CheapTrick = "Cheap Trick",
 	RF_Command = "Command",
 	RF_Skirmisher = "Skirmisher",
 	RF_Ballistics = "Ballistics",
@@ -971,6 +972,14 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Deal " + ::MSU.Text.colorGreen("20%") + " more damage against anyone who has not started their [turn|Concept.Turn] yet in the current [round|Concept.Round]."
 				"[Initiative|Concept.Initiative] is reduced by " + ::MSU.Text.colorRed("20%") + ".",
+			]
+		}],
+	}),
+	RF_CheapTrick = ::UPD.getDescription({
+		Effects = [{
+			Type = ::UPD.EffectType.Active,
+			Description = [
+				"Unlocks the [Cheap Trick|NullEntitySkill+rf_cheap_trick_skill] skill which increases the hitchance of your next attack but reduces its damage.",
 			]
 		}],
 	}),
