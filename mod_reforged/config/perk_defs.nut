@@ -16,6 +16,14 @@
 		IconDisabled = "ui/perks/rf_calculated_strikes_sw.png",
 	},
 	{
+		ID = "perk.rf_cheap_trick",
+		Script = "scripts/skills/perks/perk_rf_cheap_trick",
+		Name = ::Const.Strings.PerkName.RF_CheapTrick,
+		Tooltip = ::Const.Strings.PerkDescription.RF_CheapTrick,
+		Icon = "ui/perks/rf_cheap_trick.png",
+		IconDisabled = "ui/perks/rf_cheap_trick_sw.png",
+	},
+	{
 		ID = "perk.rf_cull",
 		Script = "scripts/skills/perks/perk_rf_cull",
 		Name = ::Const.Strings.PerkName.RF_Cull,
