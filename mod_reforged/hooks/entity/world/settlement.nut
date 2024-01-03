@@ -223,12 +223,17 @@
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
-		ret.push({
-			id = 12,
-			type = "hint",
-			icon = "ui/icons/action_points.png",
-			text = this.getLastVisitedString()
-		});
+
+		if (::Reforged.Mod.ModSettings.getSetting("World_ShowLastVisited").getValue())
+		{
+			ret.push({
+				id = 12,
+				type = "hint",
+				icon = "ui/icons/action_points.png",
+				text = this.getLastVisitedString()
+			});
+		}
+
 		return ret;
 	}
 

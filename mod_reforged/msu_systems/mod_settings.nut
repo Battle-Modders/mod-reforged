@@ -4,6 +4,8 @@ legendaryDifficulty.getData().NewCampaign <- true;
 legendaryDifficulty.addAfterChangeCallback(function( _oldValue ) {
 	::Reforged.Config.IsLegendaryDifficulty = this.getValue();
 });
+generalPage.addBooleanSetting("World_ShowLastVisited", true, "Display Last Visited for Settlements", "Add a line in the tooltip for settlements that shows you when you last visited it.");
+
 
 local tacticalTooltipPage = ::Reforged.Mod.ModSettings.addPage("Tactical Tooltips");
 
