@@ -59,6 +59,12 @@
 		if (this.isDiscovered() == false) return ret;
 		if (this.isHiddenToPlayer()) return ret;
 
+		local function verifySettingValue( _settingID )
+		{
+			local value = ::Reforged.Mod.ModSettings.getSetting(_settingID).getValue();
+			return (value == "All" || (value == "Player Only" && this.isPlayerControlled()) || (value == "AI Only" && !this.isPlayerControlled()));
+		}
+
 		// Adjust existing progressbars displayed by Vanilla
 		for (local index = (ret.len() - 1); index >= 0; index--)	// we move through it backwards to safely remove entries during it
 		{
@@ -69,7 +75,15 @@
 				entry.text = " " + entry.value + " / " + entry.valueMax;
 			}
 
-			if (entry.id == 8)	// Replace Morale-Bar with Action-Point-Bar
+			else if (entry.id == 1 && entry.text == this.getName() && this.getTile() != "")
+			{
+				if (verifySettingValue("TacticalTooltip_SeparateNameTitle"))
+				{
+					entry.text = this.getNameOnly() + "\n" + this.getTitle();
+				}
+			}
+
+			else if (entry.id == 8)	// Replace Morale-Bar with Action-Point-Bar
 			{
 				local turnsToGo = ::Tactical.TurnSequenceBar.getTurnsUntilActive(this.getID());
 
@@ -83,12 +97,6 @@
 
 			// Remove all vanilla generated effect entries but possible also most mod-generated entries
 			if (entry.id >= 100) ret.remove(index);
-		}
-
-		local function verifySettingValue( _settingID )
-		{
-			local value = ::Reforged.Mod.ModSettings.getSetting(_settingID).getValue();
-			return value != "None" && (value == "All" || (value == "Player Only" && this.isPlayerControlled()) || (value == "AI Only" && !this.isPlayerControlled()))
 		}
 
 		if (verifySettingValue("TacticalTooltip_Attributes")) ret.extend(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
