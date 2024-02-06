@@ -1,5 +1,7 @@
 this.perk_rf_line_breaker <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		KnockBackMeleeSkillBonus = 15
+	},
 	function create()
 	{
 		this.m.ID = "perk.rf_line_breaker";
@@ -11,6 +13,14 @@ this.perk_rf_line_breaker <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_skill.getID() == "actives.knock_back")
+		{
+			_properties.MeleeSkill += this.m.KnockBackMeleeSkillBonus;
+		}
 	}
 
 	function onAdded()

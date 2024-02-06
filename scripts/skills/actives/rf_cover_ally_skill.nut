@@ -1,10 +1,15 @@
 this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		TargetMeleeDefenseBonus = 10,
+		TargetInitiativeBonus = 15,
+		SelfDefenseMalus = -15,
+		SelfSkillMalus = -15
+	},
 	function create()
 	{
 		this.m.ID = "actives.rf_cover_ally";
 		this.m.Name = "Cover Ally";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Cover an adjacent ally, allowing them to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] on their turn. Your Melee Skill, Melee Defense, Ranged Skill, and Ranged Defense will be reduced while providing cover, and if you get stunned or rooted or are no longer adjacent to the target, the cover will be lost.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Cover an adjacent ally, allowing them to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] on their turn and increasing their Melee Defense and Initiative. \nYour Melee Skill, Melee Defense, Ranged Skill, and Ranged Defense will be reduced while providing cover, and if you get stunned or rooted or are no longer adjacent to the target, the cover will be lost.");
 		this.m.Icon = "skills/rf_cover_ally_skill.png";
 		this.m.IconDisabled = "skills/rf_cover_ally_skill_bw.png";
 		this.m.Overlay = "rf_cover_ally_skill";
@@ -41,10 +46,16 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 				text = ::Reforged.Mod.Tooltips.parseString("Grants the Move Under Cover skill to the target which allows moving " + ::MSU.Text.colorGreen(1) + " tile ignoring [Zone of Control|Concept.ZoneOfControl]")
 			},
 			{
-				id = 7,
+				id = 8,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "If the target stays adjacent to you until the start of the next round, their turn order is calculated with " + ::MSU.Text.colorGreen("+5000") + " Initiative"
+				icon = "ui/icons/melee_defense.png",
+				text = "Grants " + ::MSU.Text.colorizeValue(this.m.TargetMeleeDefenseBonus) + " Melee Defense to the target"
+			},
+			{
+				id = 9,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = "Grants " + ::MSU.Text.colorizeValue(this.m.TargetInitiativeBonus) + " Initiative to the target"
 			}
 		]);
 
@@ -87,7 +98,13 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 
 		local target = _targetTile.getEntity();
 
-		return this.getContainer().getActor().isAlliedWith(target) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && !target.getSkills().hasSkill("effects.rf_covered_by_ally") && !target.getSkills().hasSkill("effects.rf_covering_ally");
+		if (target.getSkills().hasSkill("effects.rf_covered_by_ally")) return false;
+		if (target.getSkills().hasSkill("effects.rf_covering_ally")) return false;
+
+		if (target.getCurrentProperties().IsStunned || target.getCurrentProperties().IsRooted) return false;
+		if (!this.getContainer().getActor().isAlliedWith(target)) return false;
+
+		return true;
 	}
 
 	function onUse( _user, _targetTile )
@@ -105,11 +122,11 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 		}
 
 		local coveredByAllyEffect = ::new("scripts/skills/effects/rf_covered_by_ally_effect");
-		coveredByAllyEffect.setCoverProvider(_user);
+		coveredByAllyEffect.init(_user, this.m.TargetMeleeDefenseBonus, this.m.TargetInitiativeBonus);
 		target.getSkills().add(coveredByAllyEffect);
 
 		local coveringAllyEffect = ::new("scripts/skills/effects/rf_covering_ally_effect");
-		coveringAllyEffect.setAlly(target);
+		coveringAllyEffect.init(target, this.m.SelfSkillMalus, this.m.SelfDefenseMalus);
 		_user.getSkills().add(coveringAllyEffect);
 
 		return true;

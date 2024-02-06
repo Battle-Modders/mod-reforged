@@ -116,6 +116,7 @@
 	RF_FromAllSides = "From all Sides",
 	RF_FruitsOfLabor = "Fruits of Labor",
 	RF_Ghostlike = "Ghostlike",
+	RF_Guardian = "Guardian",
 	RF_HaleAndHearty = "Hale and Hearty",
 	RF_Heft = "Heft",
 	RF_HipShooter = "Hip Shooter",
@@ -659,18 +660,11 @@ local vanillaDescriptions = [
 	 				Description = [
 	 					"The shield defense bonus is increased by " + ::MSU.Text.colorGreen("25%") + ". This also applies to the additional defense bonus of the [Shieldwall|Skill+shieldwall] skill.",
 	 					"The drop in shield defense bonus at maximum [fatigue|Concept.Fatigue] is reduced from " + ::MSU.Text.colorRed("50%") + " to " + ::MSU.Text.colorRed("25%") + ".",
-	 					"The [Knock Back|Skill+knock_back] skill gains " + ::MSU.Text.colorGreen("+15%") + " chance to hit and now applies the [Staggered|Skill+staggered_effect] effect.",
 	 					"Missed attacks against you no longer increase your [Fatigue|Concept.Fatigue]."
-	 				]
-	 			},
-	 			{
-	 				Type = ::UPD.EffectType.Active,
-	 				Description = [
-	 					"Unlocks the [Cover Ally|Skill+rf_cover_ally_skill] skill which allows you to target an ally to allow them to move 1 tile ignoring [Zone of Control|Concept.ZoneOfControl] on their [turn|Concept.Turn] while improving their position in the turn order in the next [round|Concept.Round]."
 	 				]
 	 			}
  			]
-	 	}),
+	 	})
 	},
 	{
 		ID = "perk.steel_brow",
@@ -1237,6 +1231,23 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+ 	RF_Guardian = ::UPD.getDescription({
+ 		Effects = [
+			{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Unlocks the [Cover Ally|Skill+rf_cover_ally_skill] skill which allows you to target an ally to allow them to move 1 tile ignoring [Zone of Control|Concept.ZoneOfControl] on their [turn|Concept.Turn] while improving their position in the turn order in the next [round|Concept.Round]."
+				]
+			},
+			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"The [Action Point|Concept.ActionPoints] cost of [Shield Wall|Skill+shieldwall] and [Cover Ally|Skill+rf_cover_ally_skill] is reduced by " + ::MSU.Text.colorGreen(1) + " while you are not engaged in melee",
+					"Using [Shield Wall|Skill+shieldwall] grants all adjacent allies that are not engaged in melee " + ::MSU.Text.colorizeValue(10) + " Ranged Defense until they wait or end their turn engaged in melee or not adjacent to you."
+				]
+			}
+		]
+ 	}),
 	RF_HaleAndHearty = ::UPD.getDescription({
  		Fluff = "Years of hard labor have given you a stamina like none other!",
  		Effects = [{
@@ -1388,12 +1399,20 @@ foreach (vanillaDesc in vanillaDescriptions)
 	RF_LineBreaker = ::UPD.getDescription({
  		Fluff = "\'Make way for the bad guy!\'",
  		Requirement = "Shield",
- 		Effects = [{
-			Type = ::UPD.EffectType.Active,
-			Description = [
-				"Unlocks the [Line Breaker|Skill+rf_line_breaker_skill] skill which allows you to knock back an enemy and take their place, all in one action."
-			]
-		}]
+ 		Effects = [
+			{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Unlocks the [Line Breaker|Skill+rf_line_breaker_skill] skill which allows you to knock back an enemy and take their place, all in one action."
+				]
+			},
+			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"The [Knock Back|Skill+knock_back] skill gains " + ::MSU.Text.colorGreen("+15%") + " chance to hit and now applies the [Staggered|Skill+staggered_effect] effect",
+				]
+			}
+		]
  	}),
 	RF_Poise = ::UPD.getDescription({
  		Fluff = "Specialize in Medium Armor! Not as nimble as some but more lithe than others!",
