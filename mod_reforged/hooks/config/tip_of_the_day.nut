@@ -19,7 +19,7 @@ for (local index = (::Const.TipOfTheDay.len() - 1); index >= 0; index--)
 }
 
 ::Const.TipOfTheDay.extend([
-    "You can interact with towns while on a caravan mission.",
+    "You can enter towns while on a caravan mission; even if they are 2 tiles away.",
     "The Mod Options have a lot of customizations regarding quality of life.",
     "Morale Checks are harder for every adjacent enemy and easier for every adjacent ally.",
     "Click on an active contract to focus on its target on the world map, if it is known to you.",
