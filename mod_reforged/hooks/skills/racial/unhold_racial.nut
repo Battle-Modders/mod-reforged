@@ -30,6 +30,7 @@
 
 		baseProperties.IsImmuneToDisarm = true;
 		baseProperties.IsImmuneToRotation = true;
+		baseProperties.PoiseMax = ::Reforged.Config.Poise.Default.Unhold;
 	}
 
 	// The recovered amount is now being capped by the recoverHitpoints function instead of here. That will make it better against recovery debuffs

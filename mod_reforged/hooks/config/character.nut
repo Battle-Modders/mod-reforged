@@ -26,6 +26,20 @@ local getClone = ::Const.CharacterProperties.getClone;
 ::Const.CharacterProperties.BonusPerReachAdvantage <- 0;
 
 ::Const.CharacterProperties.HitpointRecoveryMult <- 1.0;
+::Const.CharacterProperties.IsImmuneToStunFromPoise <- false;
+::Const.CharacterProperties.PoiseMax <- 100;
+::Const.CharacterProperties.PoiseMult <- 1.0;
+::Const.CharacterProperties.getPoiseMax <- function()
+{
+	return ::Math.floor(this.PoiseMax * this.PoiseMult);
+}
+::Const.CharacterProperties.PoiseDamage <- 0.0;
+::Const.CharacterProperties.PoiseDamageMult <- 1.0;
+::Const.CharacterProperties.getPoiseDamage <- function()
+{
+	return ::Math.floor(this.PoiseDamage * this.PoiseDamageMult);
+}
+
 
 ::Const.ProjectileType.FlamingArrow <- ::Const.ProjectileType.COUNT;
 ::Const.ProjectileType.COUNT += 1;
