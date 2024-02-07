@@ -538,8 +538,8 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
  					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
- 					"Gain " + ::MSU.Text.colorGreen("20%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional chance to hit.",
- 					"Damage is increased by " + ::MSU.Text.colorGreen("30%") + " when attacking at a distance of 2 tiles and by " + ::MSU.Text.colorGreen("20%") + " when attacking at a distance of 3 tiles."
+					"Throwing attacks have their [Action Point|Concept.ActionPoints] cost reduced by " + ::MSU.Text.colorGreen(1) + " per tile moved before throwing.",
+					"Swapping a throwing weapon with an empty throwing weapon or an empty slot becomes a free action once per turn."
  				]
  			}]
 	 	}),
@@ -1477,11 +1477,12 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Momentum = ::UPD.getDescription({
  		Fluff = "\'Ye\'ve gotta get a running start!\'",
- 		Requirement = "Throwing Weapon",
+ 		Requirement = "Throwing Attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Throwing attacks do " + ::MSU.Text.colorGreen("5%") + " more damage and have their [Action Point|Concept.ActionPoints] cost reduced by " + ::MSU.Text.colorGreen(1) + " per tile moved before throwing."
+				"Gain " + ::MSU.Text.colorGreen("15%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional chance to hit.",
+				"Gain " + ::MSU.Text.colorGreen("10%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional damage per tile moved before throwing."
 			]
 		}]
  	}),
@@ -1498,13 +1499,14 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
  	}),
  	RF_NailedIt = ::UPD.getDescription({
- 		Fluff = "\'One javelin to the head will take \'em right out!\'",
+ 		Fluff = "\'They shouldn't have come that close.'",
  		Requirement = "Ranged attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorGreen("+25%") + " chance to hit the head at a distance of 2 tiles. For every tile beyond that, this bonus is reduced by " + ::MSU.Text.colorRed("-5%") + ".",
-				"The penalty to hitchance from obstructed line of sight is reduced by " + ::MSU.Text.colorGreen("50%") + " at a distance of 2 tiles."
+				"Gain " + ::MSU.Text.colorGreen("+20%") + " chance to hit the head at a distance of 2 tiles.",
+				"Damage is increased by " + ::MSU.Text.colorGreen("25%") + " when attacking at a distance of 3 or less tiles."
+				"The penalty to hitchance from obstructed line of sight is reduced by " + ::MSU.Text.colorGreen("50%") + " at a distance of 3 or less tiles."
 			]
 		}]
  	}),
