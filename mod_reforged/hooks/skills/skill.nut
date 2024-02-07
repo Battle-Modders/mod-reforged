@@ -82,7 +82,7 @@
 				}
 			}
 
-			if (!targetEntity.getCurrentProperties().IsImmuneToStun && this.m.CanStun)
+			if (!targetEntity.getCurrentProperties().IsImmuneToStun && this.m.IsStunningFromPoise)
 			{
 				local targetThresholdSkill = targetEntity.getSkills().getSkillByID("effects.stun_threshold");
 				local turnsStunnedBody = targetThresholdSkill.wouldStun(this.getContainer().getActor(), this, false);
