@@ -31,70 +31,29 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 			text = "Current Encumbrance Level: [color=" + ::Const.UI.Color.NegativeValue + "]" + level + "[/color]"
 		});
 
-		switch (level)
+		local fatigueBuildUp += this.getFatigueOnTurnStart(level);
+		if (fatigueBuildUp)
 		{
-			case 1:
-				tooltip.push({
-					id = 10,
-					type = "text",
-					icon = "ui/icons/fatigue.png",
-					text = "[color=" + ::Const.UI.Color.NegativeValue + "]+1[/color] Fatigue at the start of every turn"
-				});
-				break;
-
-			case 2:
-				tooltip.extend([
-					{
-						id = 10,
-						type = "text",
-						icon = "ui/icons/fatigue.png",
-						text = "[color=" + ::Const.UI.Color.NegativeValue + "]+2[/color] Fatigue at the start of every turn"
-					},
-					{
-						id = 10,
-						type = "text",
-						icon = "ui/icons/fatigue.png",
-						text = "[color=" + ::Const.UI.Color.NegativeValue + "]+1[/color] Fatigue built per tile traveled"
-					},
-				]);
-				break;
-
-			case 3:
-				tooltip.extend([
-					{
-						id = 10,
-						type = "text",
-						icon = "ui/icons/fatigue.png",
-						text = "[color=" + ::Const.UI.Color.NegativeValue + "]+2[/color] Fatigue at the start of every turn"
-					},
-					{
-						id = 10,
-						type = "text",
-						icon = "ui/icons/fatigue.png",
-						text = "[color=" + ::Const.UI.Color.NegativeValue + "]+3[/color] Fatigue built per tile traveled"
-					},
-				]);
-				break;
-
-			default:
-				tooltip.extend([
-					{
-						id = 10,
-						type = "text",
-						icon = "ui/icons/fatigue.png",
-						text = "[color=" + ::Const.UI.Color.NegativeValue + "]+3[/color] Fatigue at the start of every turn"
-					},
-					{
-						id = 10,
-						type = "text",
-						icon = "ui/icons/fatigue.png",
-						text = "[color=" + ::Const.UI.Color.NegativeValue + "]+3[/color] Fatigue built per tile traveled"
-					},
-				]);
-				break;
+			tooltip.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = ::MSU.Text.colorRed("+" + fatigueBuildUp) + " Fatigue at the start of every turn"
+			});
 		}
 
-		return tooltip;		
+		local travelCost = this.getMovementFatigueCostModifier(level);
+		if (travelCost)
+		{
+			tooltip.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = ::MSU.Text.colorRed("+" + travelCost) + " Fatigue built per tile traveled"
+			});
+		}
+
+		return tooltip;
 	}
 
 	function getEncumbranceLevel()
@@ -125,51 +84,52 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 		return 0;
 	}
 
+	function getMovementFatigueCostModifier( _encumbranceLevel )
+	{
+		switch (_encumbranceLevel)
+		{
+			case 0:	// Not a valid level
+			case 1:	// Level 1
+				return 0;
+
+			case 2:	// Level 2
+				return 1;
+
+			case 3:	// Level 3
+				return 3;
+
+			default:	// Level 4+
+				return 3;
+		}
+	}
+
+	function getFatigueOnTurnStart( _encumbranceLevel )
+	{
+		switch (_encumbranceLevel)
+		{
+			case 0:	// Not a valid level for this effect
+				return 0;
+
+			case 1:	// Level 1
+				return 1;
+
+			case 2:	// Level 2
+			case 3:	// Level 3
+				return 2;
+
+			default:	// Level 4+
+				return 3;
+		}
+	}
+
 	function onUpdate( _properties )
 	{
-		switch (this.getEncumbranceLevel())
-		{
-			case 0:
-			case 1:
-				return;
-
-			case 2:
-				_properties.MovementFatigueCostAdditional += 1;
-				break;
-
-			case 3:
-				_properties.MovementFatigueCostAdditional += 3;
-				break;
-
-			default:
-				_properties.MovementFatigueCostAdditional += 3;
-				break;
-		}
+		_properties.MovementFatigueCostAdditional += this.getMovementFatigueCostModifier(this.getEncumbranceLevel());
 	}
 
 	function onTurnStart()
 	{
-		local fatigue;
-		switch (this.getEncumbranceLevel())
-		{
-			case 0:
-				return;
-
-			case 1:
-				fatigue = 1;
-				break;
-
-			case 2:
-			case 3:
-				fatigue = 2;
-				break;
-
-			default:
-				fatigue = 3;
-				break;
-		}
-
 		local actor = this.getContainer().getActor();
-		actor.setFatigue(::Math.min(actor.getFatigueMax(), actor.getFatigue() + fatigue));
+		actor.setFatigue(::Math.min(actor.getFatigueMax(), actor.getFatigue() + this.getFatigueOnTurnStart(this.getEncumbranceLevel())));
 	}
 });
