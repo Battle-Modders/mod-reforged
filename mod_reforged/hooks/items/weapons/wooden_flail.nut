@@ -2,6 +2,8 @@
 	q.create = @(__original) function()
 	{
 		__original();
+		this.m.RegularDamage += 5;
+		this.m.RegularDamageMax += 5;
 		this.m.Reach = 2;
 	}
 
