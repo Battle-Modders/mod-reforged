@@ -241,12 +241,20 @@ local vanillaDescriptions = [
 		ID = "perk.footwork",
 		Key = "Footwork",
 		Description = ::UPD.getDescription({
-	 		Effects = [{
- 				Type = ::UPD.EffectType.Active,
- 				Description = [
-					"Unlocks the [Footwork|Skill+footwork] skill which allows you to leave a [Zone of Control|Concept.ZoneOfControl] without triggering free attacks."
-				]
- 			}]
+			Effects = [
+				{
+					Type = ::UPD.EffectType.Active,
+					Description = [
+						"Unlocks the [Footwork|Skill+footwork] skill which allows you to leave a [Zone of Control|Concept.ZoneOfControl] without triggering free attacks.",
+					]
+				},
+				{
+					Type = ::UPD.EffectType.Active,
+					Description = [
+						"Unlocks the [Sprint|Skill+rf_sprint_skill] skill that allows you to travel longer distances during your [turn|Concept.Turn]."
+					]
+				}
+			]
 	 	}),
 	},
 	{
@@ -642,12 +650,6 @@ local vanillaDescriptions = [
 	 					"Changing height levels also has no additional [Action Point|Concept.ActionPoints] cost anymore."
 	 				]
 	 			},
-	 			{
-	 				Type = ::UPD.EffectType.Active,
-	 				Description = [
-	 					"Unlocks the [Sprint|Skill+rf_sprint_skill] skill that allows you to travel longer distances during your [turn|Concept.Turn]."
-	 				]
-	 			}
  			]
 	 	}),
 	},
