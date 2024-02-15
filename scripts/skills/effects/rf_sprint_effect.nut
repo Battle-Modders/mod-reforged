@@ -1,5 +1,7 @@
 this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		FatigueMult = 1.0
+	},
 	function create()
 	{
 		this.m.ID = "effects.rf_sprint";
@@ -17,26 +19,29 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 	{
 		local tooltip = this.skill.getTooltip();
 
-		tooltip.extend([
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/action_points.png",
-				text = ::MSU.Text.colorGreen(-1) + " Action Points spent per tile traveled"
-			},
-			{
-				id = 10,
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/action_points.png",
+			text = ::MSU.Text.colorGreen(-1) + " Action Points spent per tile traveled"
+		});
+
+		if (this.m.FatigueMult != 1.0)
+		{
+			tooltip.push({
+				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorRed("100%") + " more Fatigue built per tile traveled"
-			}
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Will expire upon using any skill")
-			}
-		]);
+				text = ::MSU.Text.colorizeMult(this.m.FatigueMult, {InvertColor = true, AddSign = true}) + " Fatigue built per tile traveled"
+			});
+		}
+
+		tooltip.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::MSU.Text.colorRed("Will expire upon using any skill")
+		});
 
 		return tooltip;
 	}
@@ -44,7 +49,7 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		_properties.MovementAPCostAdditional -= 1;
-		_properties.MovementFatigueCostMult *= 2.0;
+		_properties.MovementFatigueCostMult *= this.m.FatigueMult;
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )

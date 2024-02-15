@@ -1,5 +1,7 @@
 this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		FatigueMult = 2
+	},
 	function create()
 	{
 		this.m.ID = "actives.rf_sprint";
@@ -30,25 +32,27 @@ this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local tooltip = this.skill.getDefaultUtilityTooltip();
 
-		tooltip.extend([
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/action_points.png",
-				text = "Action Point cost for movement on all terrain will be reduced by " + ::MSU.Text.colorGreen(1)
-			},
-			{
-				id = 10,
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/action_points.png",
+			text = "Action Point cost for movement on all terrain will be reduced by " + ::MSU.Text.colorGreen(1)
+		});
+
+		if (this.m.FatigueMult != 1.0)
+		{
+			tooltip.push({
+				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue cost for movement on all terrain will be increased by " + ::MSU.Text.colorRed("100%")
-			}
-		]);
+				text = "Fatigue cost for movement on all terrain will be increased by " + ::MSU.Text.colorizeMult(this.m.FatigueMult, {InvertColor = true})
+			});
+		}
 
 		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
 		{
 			tooltip.push({
-				id = 10,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorRed("Cannot be used while rooted")
@@ -65,7 +69,9 @@ this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		this.getContainer().add(::new("scripts/skills/effects/rf_sprint_effect"));
+		local sprintEffect = ::new("scripts/skills/effects/rf_sprint_effect");
+		sprintEffect.m.FatigueMult = this.m.FatigueMult;
+		this.getContainer().add(sprintEffect);
 		return true;
 	}
 });
