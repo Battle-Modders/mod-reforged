@@ -25,7 +25,7 @@
 	// Overwrite to increase overall performance. The Wage for this background is no longer calculated newly during every update loop
 	q.onUpdate = @() function( _properties )
 	{
-		_properties.DailyWage = this.calculateDailyCost();
+		_properties.DailyWage = this.m.CalculatedDailyCost;
 
 		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getID() != "background.slave")
 		{
