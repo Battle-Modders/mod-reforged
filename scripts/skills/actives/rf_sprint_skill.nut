@@ -1,6 +1,6 @@
 this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 	m = {
-		FatigueMult = 2
+		FatigueMult = 1.5
 	},
 	function create()
 	{
