@@ -89,6 +89,7 @@
 	RF_Finesse = "Finesse",
 	RF_Centurion = "Centurion",
 	RF_ConcussiveStrikes = "Concussive Strikes",
+	RF_Copycat = "Copycat",
 	RF_Cull = "Cull",
 	RF_Decanus = "Decanus",
 	RF_DeepCuts = "Deep Cuts",
@@ -943,7 +944,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Hits to the head with two-handed maces apply the [Stunned|Skill+stunned_effect] for 1 [turn|Concept.Turn], and if the target is immune to being [stunned|Skill+stunned_effect], apply [Dazed|Skill+dazed_effect] for 1 [turn|Concept.Turn]."
 			]
 		}]
- 	}),
+	}),
+	RF_Copycat = ::UPD.getDescription({
+		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Gain the access to the active non-item skills of every adjacent ally"
+			]
+		}]
+	}),
 	RF_Cull = ::UPD.getDescription({
  		Fluff = "A strike to the head from this character means goodnight!",
  		Requirement = "Axe",
