@@ -24,6 +24,12 @@
 			::Const.LevelXP.push(::Const.LevelXP.top() + 4000 + 1000 * (::Const.LevelXP.len() - 11));
 		}
 
+		// Temporary buff to vanilla drill sergeant until our Retinue Rework
+		if (("State" in ::World) && ::World.State != null && _scale && ::World.Retinue.hasFollower("follower.drill_sergeant"))
+		{
+			_xp *= ::Math.maxf(1.0, 1.1666 - 0.0166 * (this.m.Level - 1));		// 1.166666 is the exact multiplier to make a 1.2 multiplier into 1.4
+		}
+
 		return __original(_xp, _scale);
 	}
 
