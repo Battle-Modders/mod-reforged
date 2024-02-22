@@ -184,12 +184,12 @@
 				_list.extend([
 					{
 						R = 10,
-						P = 1.25,
+						P = 3.0,
 						S = "tools/throwing_net"
 					},
 					{
 						R = 20,
-						P = 1.25,
+						P = 3.0,
 						S = "tools/throwing_net"
 					}
 				]);
