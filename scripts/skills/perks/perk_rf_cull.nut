@@ -44,7 +44,7 @@ this.perk_rf_cull <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_bodyPart != ::Const.BodyPart.Head || !_skill.isAttack() || !this.isEnabled() || !_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.getSkills().hasSkill("effects.indomitable") || _targetEntity.getSkills().hasSkill("perk.steel_brow"))
+		if (_damageInflictedHitpoints == 0 || _bodyPart != ::Const.BodyPart.Head || !_skill.isAttack() || !this.isEnabled() || !_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.getSkills().hasSkill("effects.indomitable") || _targetEntity.getSkills().hasSkill("perk.steel_brow"))
 		{
 			return;
 		}
