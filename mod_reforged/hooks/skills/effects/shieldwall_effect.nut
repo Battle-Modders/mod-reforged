@@ -19,7 +19,18 @@
 		});
 
 		return tooltip;
-	}		
+	}
+
+	q.onUpdate = @(__original) function( _properties )	// Overwritten because the defense is no longer added here but instead handled within the shield.nut
+	{
+		_properties.ShieldDefenseMult * 2.0;
+
+		if (this.getContainer().getActor().getCurrentProperties().IsProficientWithShieldSkills)	// This is a Oathtaker-Only calculation
+		{
+			_properties.MeleeDefense += 5;
+			_properties.RangedDefense += 5;
+		}
+	}
 
 	q.onSkillsUpdated <- function()
 	{

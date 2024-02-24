@@ -38,13 +38,13 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-::Math.floor(shield.getMeleeDefenseBonus() * 0.75)) + " [Melee Defense|Concept.MeleeDefense] from equipped shield")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-::Math.floor(shield.getMeleeDefense() * 3)) + " [Melee Defense|Concept.MeleeDefense] from equipped shield")
 			});
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-::Math.floor(shield.getRangedDefenseBonus() * 0.75)) + " [Melee Defense|Concept.RangeDefense] from equipped shield")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-::Math.floor(shield.getRangedDefense() * 3)) + " [Melee Defense|Concept.RangeDefense] from equipped shield")
 			});
 		}
 		ret.push({
@@ -86,23 +86,7 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if (!this.isHidden())
-		{
-			local shield = this.getContainer().getActor().getOffhandItem();
-			_properties.MeleeDefense -= ::Math.floor(shield.getMeleeDefenseBonus() * 0.75);
-			_properties.RangedDefense -= ::Math.floor(shield.getRangedDefenseBonus() * 0.75);
-		}
-	}
-
-	// Add the defenses back for skills that ignore shield because we don't want them to double dip
-	function onBeingAttacked( _attacker, _skill, _properties )
-	{
-		if (!_skill.m.IsShieldRelevant && !this.isHidden())
-		{
-			local shield = this.getContainer().getActor().getOffhandItem();
-			_properties.MeleeDefense += ::Math.floor(shield.getMeleeDefenseBonus() * 0.75);
-			_properties.RangedDefense += ::Math.floor(shield.getRangedDefenseBonus() * 0.75);
-		}
+		_properties.ShieldDefenseMult *= 0.25;
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
@@ -121,7 +105,7 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 			return;
 
 		local shield = this.getContainer().getActor().getOffhandItem();
-		local bonus = _skill.isRanged() ? ::Math.floor(shield.getRangedDefenseBonus() * 0.75) : ::Math.floor(shield.getMeleeDefenseBonus() * 0.75);
+		local bonus = _skill.isRanged() ? ::Math.floor(shield.getRangedDefense() * 3) : ::Math.floor(shield.getMeleeDefense() * 3);
 		_tooltip.push({
 			icon = "ui/tooltips/positive.png",
 			text = ::MSU.Text.colorGreen(bonus + "% ") + this.getName()

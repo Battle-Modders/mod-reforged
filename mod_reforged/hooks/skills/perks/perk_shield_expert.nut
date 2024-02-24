@@ -8,6 +8,11 @@
 		if (shield != null) this.onEquip(shield);
 	}
 
+	q.onUpdate = @() function( _properties )
+	{
+		_properties.ShieldDefenseMult * 1.25;
+	}
+
 	q.onEquip <- function( _item )
 	{
 		if (_item.isItemType(::Const.Items.ItemType.Shield) && _item.getID().find("buckler") == null)
