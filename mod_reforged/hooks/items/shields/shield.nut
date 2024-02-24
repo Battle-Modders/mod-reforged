@@ -33,24 +33,24 @@
 		return ret;
 	}
 
-	q.getMeleeDefense = @(__original) function()
+	q.getMeleeDefense = @(__original) function( _isScaled = true )
 	{
-		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
+		if (!_isScaled || ::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 			return __original();
 
 		local actor = this.getContainer().getActor();
-		local mult = 1.0 - (actor.getFatigue() / actor.getFatigueMax()) * (actor.getCurrentProperties().IsSpecializedInShields ? 0.25 : 0.5);
-		return ::Math.floor(__original() * mult);
+
+		return ::Math.floor(__original() * actor.getCurrentProperties().ShieldDefenseMult);
 	}
 
-	q.getRangedDefense = @(__original) function()
+	q.getRangedDefense = @(__original) function( _isScaled = true )
 	{
-		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
+		if (!_isScaled || ::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 			return __original();
 
 		local actor = this.getContainer().getActor();
-		local mult = 1.0 - (actor.getFatigue() / actor.getFatigueMax()) * (actor.getCurrentProperties().IsSpecializedInShields ? 0.25 : 0.5);
-		return ::Math.floor(__original() * mult);
+
+		return ::Math.floor(__original() * actor.getCurrentProperties().ShieldDefenseMult);
 	}
 
 	// We hook it to use getMeleeDefense(), getRangedDefense(), getStaminaModifier() instead of
