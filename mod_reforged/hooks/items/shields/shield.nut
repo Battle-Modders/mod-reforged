@@ -33,24 +33,48 @@
 		return ret;
 	}
 
-	q.getMeleeDefense = @(__original) function( _isScaled = true )
+	q.getMeleeDefense = @(__original) function( _isScaled = true, _respectShieldIgnore = true )
 	{
 		if (!_isScaled || ::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 			return __original();
 
 		local actor = this.getContainer().getActor();
+		local mult = actor.getCurrentProperties().ShieldDefenseMult;
+		if (mult < 0.0)
+		{
+			if (_respectShieldIgnore)
+			{
+				mult = 0.0;	// a negative mult means that the defense is ignored
+			}
+			else	// _respectShieldIgnore is only ever false when we want to display how much defense a character would have had if their shield was functioning normally/is not ignored
+			{
+				mult = ::Math.abs(mult);
+			}
+		}
 
-		return ::Math.floor(__original() * actor.getCurrentProperties().ShieldDefenseMult);
+		return ::Math.floor(__original() * mult);
 	}
 
-	q.getRangedDefense = @(__original) function( _isScaled = true )
+	q.getRangedDefense = @(__original) function( _isScaled = true, _respectShieldIgnore = true )
 	{
 		if (!_isScaled || ::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 			return __original();
 
-		local actor = this.getContainer().getActor();
+			local actor = this.getContainer().getActor();
+			local mult = actor.getCurrentProperties().ShieldDefenseMult;
+			if (mult < 0.0)
+			{
+				if (_respectShieldIgnore)
+				{
+					mult = 0.0;	// a negative mult means that the defense is ignored
+				}
+				else
+				{
+					mult = ::Math.abs(mult);
+				}
+			}
 
-		return ::Math.floor(__original() * actor.getCurrentProperties().ShieldDefenseMult);
+			return ::Math.floor(__original() * mult);
 	}
 
 	// We hook it to use getMeleeDefense(), getRangedDefense(), getStaminaModifier() instead of

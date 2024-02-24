@@ -70,10 +70,15 @@
 		// New Entries
 		if (!this.m.IsShieldRelevant && _targetTile.IsOccupiedByActor && _targetTile.getEntity().isArmedWithShield())
 		{
-			ret.push({
-				icon = "ui/tooltips/positive.png",
-				text = "Ignores Shield"
-			});
+			local shield = _targetTile.getEntity().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+			local ignoredBonus = (this.isRanged()) ? shield.getRangedDefense(true, false) : shield.getMeleeDefense(true, false);
+			if (ignoredBonus > 0)
+			{
+				ret.push({
+					icon = "ui/tooltips/positive.png",
+					text = ::MSU.Text.colorGreen(ignoredBonus + "%") + " Ignores Shield"
+				});
+			}
 		}
 
 		return ret;
@@ -138,7 +143,7 @@
 		{
 			if (!_skill.m.IsShieldRelevant)
 			{
-				_properties.ShieldDefenseMult = 0.0;	// Attacks that ignore Shields now instead set the ShieldDefenseMult of the target to 0;
+				_properties.ShieldDefenseMult = -1.0 * ::Math.abs(_properties.ShieldDefenseMult);	// Attacks that ignore Shields now instead set the ShieldDefenseMult of the target to a negative value;
 			}
 
 			// Switcheroo
