@@ -1,4 +1,9 @@
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
+	// Temporary variable for switcheroo
+	q.m.oldIsShieldRelevant <- null;
+	q.m.executingGetHitchance <- false;
+	q.m.executingAttackEntityFirstHalf <- false;	// Used for a IsShieldRelevant switcheroo
+
 	q.isDuelistValid <- function()
 	{
 		return this.isAttack() && !this.isRanged() && this.getBaseValue("ActionPointCost") <= 4 && this.getBaseValue("MaxRange") == 1;
@@ -78,6 +83,41 @@
 
 		return ret;
 	}
+
+	q.attackEntity = @(__original) function( _user, _targetEntity, _allowDiversion = true )
+	{
+		this.m.executingAttackEntityFirstHalf = true;
+
+		return __original(_user, _targetEntity, _allowDiversion);
+	}
+
+	q.isUsingHitChance = @(__original) function()
+	{
+		if (this.m.oldIsShieldRelevant != null)
+		{
+			this.m.IsShieldRelevant = this.m.oldIsShieldRelevant;	// Revert Switcheroo early (no need to do it at the end of attackEntity) so that vanilla behavior like diverting and shield damage taken work correctly
+			this.m.oldIsShieldRelevant = null;
+		}
+		this.m.executingAttackEntityFirstHalf = false;	// The "first half" in our case ends with the call of isUsingHitChance
+
+		return __original();
+	}
+
+	q.getHitchance = @(__original) function( _targetEntity )
+	{
+		this.m.executingGetHitchance = true;
+
+		local ret = __original(_targetEntity);
+
+		if (this.m.oldIsShieldRelevant != null)
+		{
+			this.m.IsShieldRelevant = this.m.oldIsShieldRelevant;	// Revert Switcheroo
+			this.m.oldIsShieldRelevant = null;
+		}
+
+		this.m.executingGetHitchance = false;
+		return ret;
+	}
 });
 
 ::Reforged.HooksMod.hookTree("scripts/skills/skill", function(q) {
@@ -94,6 +134,21 @@
 			{
 				this.m.IconDisabled = ::String.replace(this.m.Icon, ".png", "_sw.png");
 			}
+		}
+	}
+
+	q.onBeingAttacked = @(__original) function( _attacker, _skill, _properties )
+	{
+		if (this.m.executingAttackEntityFirstHalf || this.m.executingGetHitchance)	// We only want to switcheroo during these two specific functions to prevent collateral
+		{
+			if (!_skill.m.IsShieldRelevant)
+			{
+				_properties.ShieldDefenseMult = 0.0;	// Attacks that ignore Shields now instead set the ShieldDefenseMult of the target to 0;
+			}
+
+			// Switcheroo
+			oldIsShieldRelevant = _skill.m.IsShieldRelevant;
+			_skill.m.IsShieldRelevant = true;	// We prevent vanilla from changing hitchance calculations from this variable being on false
 		}
 	}
 });
