@@ -6,4 +6,16 @@
 			"pg.rf_devious": 2
 		};
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.push({
+			id = 5,
+			type = "text",
+			icon = "ui/icons/asset_money.png",
+			text = "Chance to desert on low mood is increased by " + ::MSU.Text.colorRed("100%")
+		})
+		return ret;
+	}
 });
