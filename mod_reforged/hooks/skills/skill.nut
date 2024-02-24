@@ -70,15 +70,10 @@
 		// New Entries
 		if (!this.m.IsShieldRelevant && _targetTile.IsOccupiedByActor && _targetTile.getEntity().isArmedWithShield())
 		{
-			local shield = _targetTile.getEntity().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-			local bonus = (this.isRanged()) ? shield.getRangedDefenseBonus() : shield.getMeleeDefenseBonus();
-			if (bonus > 0)
-			{
-				ret.push({
-					icon = "ui/tooltips/positive.png",
-					text = ::MSU.Text.colorGreen(bonus + "%") + " Ignores Shield"
-				});
-			}
+			ret.push({
+				icon = "ui/tooltips/positive.png",
+				text = "Ignores Shield"
+			});
 		}
 
 		return ret;

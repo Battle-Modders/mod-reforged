@@ -71,15 +71,4 @@
 	}
 
 // New Functions
-	q.getMeleeDefenseBonus <- function()
-	{
-		local mult = (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields) ? 1.25 : 1.0;
-		return ::Math.floor(this.getMeleeDefense() * mult);
-	}
-
-	q.getRangedDefenseBonus <- function()
-	{
-		local mult = (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields) ? 1.25 : 1.0;
-		return ::Math.floor(this.getRangedDefense() * mult);
-	}
 });
