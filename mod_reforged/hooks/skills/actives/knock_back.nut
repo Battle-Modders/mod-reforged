@@ -1,8 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/knock_back", function(q) {
 	q.getTooltip = @(__original) function()
 	{
+		// Switcheroo to prevent vanilla skill from gaining hitchance from shield expert
+		local p = this.getContainer().getActor().getCurrentProperties();
+		local oldValue = p.IsSpecializedInShields;
+		p.IsSpecializedInShields = false;
+
 		local tooltip = __original();
-		if (this.getContainer().hasSkill("perk.shield_expert"))
+		p.IsSpecializedInShields = oldValue;	// Revert Switcheroo
+
+		if (this.getContainer().hasSkill("perk.rf_line_breaker"))
 		{
 			tooltip.push({
 				id = 7,
@@ -11,22 +18,18 @@
 				text = "Will stagger the target if successfully knocked back"
 			});
 		}
+
 		return tooltip;
 	}
 
-	q.onUse = @(__original) function( _user, _targetTile )
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
 	{
-		local targetEntity = _targetTile.getEntity();
-		local ret = __original( _user, _targetTile );
+		// Switcheroo to prevent vanilla skill from gaining hitchance from shield expert
+		local oldValue = _properties.IsSpecializedInShields;
+		_properties.IsSpecializedInShields = false;
 
-		if (ret && targetEntity != null && targetEntity.isAlive() && !targetEntity.isDying() && this.getContainer().hasSkill("perk.shield_expert"))
-		{
-			local effect = this.new("scripts/skills/effects/staggered_effect");
-			targetEntity.getSkills().add(effect);
-			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-			{
-				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has staggered " + ::Const.UI.getColorizedEntityName(targetEntity) + " for " + effect.m.TurnsLeft + " turns");
-			}
-		}
+		__original(_skill, _targetEntity, _properties);
+
+		_properties.IsSpecializedInShields = oldValue;	// Revert Switcheroo
 	}
 });
