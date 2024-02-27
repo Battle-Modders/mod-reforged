@@ -154,6 +154,28 @@
 		return __original() || this.m.IsWaitingTurn;
 	}
 
+	q.onOtherActorDeath = @(__original) function( _killer, _victim, _skill )
+	{
+		local AllyKilledXPMult = ::Const.Morale.AllyKilledXPMult;
+		local EnemyKilledXPMult = ::Const.Morale.EnemyKilledXPMult;
+		local mult = _victim.getXPValue() / this.getXPValue();
+		::Const.Morale.AllyKilledXPMult *= mult
+		::Const.Morale.EnemyKilledXPMult *= mult;
+
+		__original(_killer, _victim, _skill);
+
+		::Const.Morale.AllyKilledXPMult = AllyKilledXPMult;
+		::Const.Morale.EnemyKilledXPMult = EnemyKilledXPMult;
+	}
+
+	q.onOtherActorFleeing = @(__original) function( _actor )
+	{
+		local AllyFleeingXPMult = ::Const.Morale.AllyFleeingXPMult;
+		::Const.Morale.AllyFleeingXPMult *= _actor.getXPValue() / this.getXPValue();
+		__original(_actor);
+		::Const.Morale.AllyKilledXPMult = AllyKilledXPMult;
+	}
+
 // New Functions:
 	q.getSurroundedBonus <- function( _targetEntity )
 	{
