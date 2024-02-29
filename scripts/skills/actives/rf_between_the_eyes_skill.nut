@@ -22,7 +22,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsWeaponSkill = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.ActionPointCost = 1;
-		this.m.FatigueCost = 20;
+		this.m.FatigueCost = 10;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 	}
