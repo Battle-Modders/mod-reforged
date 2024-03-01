@@ -12,6 +12,7 @@
 		__original();
 		this.getSkills().add(::new("scripts/skills/actives/rf_adjust_dented_armor_ally_skill"));
 		this.getSkills().add(::new("scripts/skills/special/rf_veteran_levels"));
+		this.getSkills().add(::new("scripts/skills/perks/perk_rf_copycat"));
 	}
 
 	q.addXP = @(__original) function( _xp, _scale = true )
