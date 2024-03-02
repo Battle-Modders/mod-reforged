@@ -1,6 +1,7 @@
 this.rf_worn_down_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		FatigueEffectIncrease = 10
+		FatigueCostMult = 1.1,
+		InitiativeMult = 0.9,
 	},
 	function create()
 	{
@@ -23,14 +24,14 @@ this.rf_worn_down_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]" + (1.0 + this.m.FatigueEffectIncrease * 0.01) + "%[/color] increased Fatigue built"
+			text = ::MSU.Text.colorizeMult(this.m.FatigueCostMult, {InvertColor = true}) + " increased Fatigue built"
 		});
 
 		tooltip.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/initiative.png",
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]" + (1.0 + this.m.FatigueEffectIncrease * 0.01) + "%[/color] reduced Initiative"
+			text = ::MSU.Text.colorizeMult(this.m.InitiativeMult) + " reduced Initiative"
 		});
 
 		return tooltip;
@@ -38,8 +39,8 @@ this.rf_worn_down_effect <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.FatigueEffectMult *= 1.0 + this.m.FatigueEffectIncrease * 0.01;
-		_properties.InitiativeMult *= 1.0 - this.m.FatigueEffectIncrease * 0.01;
+		_properties.FatigueEffectMult *= this.m.FatigueCostMult;
+		_properties.InitiativeMult *= this.m.InitiativeMult;
 	}
 
 	function onTurnEnd()
