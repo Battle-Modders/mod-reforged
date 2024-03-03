@@ -267,10 +267,55 @@
 });
 
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
+	q.m.ParentSkill <- null;
+	q.m.ChildSkills <- [];
+
+	q.onRemoved = @(__original) function()
+	{
+		__original();
+		this.clearChilds();
+	}
+
+// New Functions
 	q.onSkillsUpdated <- function()
 	{
 	}
-})
+
+	q.setParent <- function( _parentSkill )
+	{
+		if (_parentSkill == null)
+		{
+			this.m.ParentSkill = null;
+		}
+		else
+		{
+			this.m.ParentSkill = ::MSU.asWeakTableRef(_parentSkill);
+		}
+	}
+
+	q.getParent <- function()
+	{
+		return this.m.ParentSkill;
+	}
+
+	q.addChild <- function( _childSkill )
+	{
+		this.m.ChildSkills.push(::MSU.asWeakTableRef(_childSkill));
+		this.getContainer().add(_childSkill, this.m.ChildSkills.len());
+		_childSkill.setParent(this);
+	}
+
+	q.clearChilds <- function()
+	{
+		foreach (childSkill in this.m.ChildSkills)
+		{
+			if (childSkill != null)
+			{
+				this.getContainer().remove(childSkill);
+			}
+		}
+	}
+});
 
 ::logInfo("Reforged::MSU -- adding getItemsByFunction and getItemsByFunctionAtSlot to item_container");
 ::Reforged.HooksMod.hook("scripts/items/item_container", function(q) {
