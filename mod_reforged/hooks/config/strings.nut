@@ -668,7 +668,6 @@ local vanillaDescriptions = [
 		Key = "Overwhelm",
 		Description = ::UPD.getDescription({
 	 		Fluff = "Learn to take advantage of your high [Initiative|Concept.Initiative] and prevent the enemy from attacking effectively by overwhelming them with your attacks!",
-	 		Requirement = "Melee Attack",
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
