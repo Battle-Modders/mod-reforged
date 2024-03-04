@@ -1,6 +1,6 @@
 this.perk_rf_bulwark <- ::inherit("scripts/skills/skill", {
 	m = {
-		ArmorPercentageAsBonus = 2
+		ArmorPercentageAsBonus = 5
 	},
 	function create()
 	{
