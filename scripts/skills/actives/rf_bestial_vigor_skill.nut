@@ -96,5 +96,6 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.skill.onCombatFinished();
 		this.m.IsSpent = false;
+		this.m.IsBonusActive = false;
 	}
 });
