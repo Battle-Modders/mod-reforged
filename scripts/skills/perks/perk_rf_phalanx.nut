@@ -15,7 +15,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return !this.getContainer().getActor().isPlacedOnMap() || this.getCount() == 0;
+		return this.getCount() == 0;
 	}
 
 	function getTooltip()
