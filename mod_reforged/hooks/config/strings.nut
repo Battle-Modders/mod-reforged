@@ -1071,7 +1071,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"At the start of your [turn|Concept.Turn], improve the Morale state of adjacent allies by " + ::MSU.Text.colorGreen(1) + " as long as their Morale state is lower than yours."
+				"At the start of your [turn|Concept.Turn], if you have at least Steady morale, improve the Morale state of adjacent allies by " + ::MSU.Text.colorGreen(1) + " as long as their Morale state is lower than yours."
 			]
 		}]
  	}),
