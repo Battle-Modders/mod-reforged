@@ -84,9 +84,9 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 	function getBonus( _opponentID )
 	{
 		local bonus = 0;
-		for (local i = 1; i <= this.m.Opponents[_opponentID]; i++)
+		for (local i = 0; i < this.m.Opponents[_opponentID]; i++)
 		{
-			bonus += bonus >= 10 ? 1 : i;
+			bonus += bonus >= 15 ? 1 : 3;
 		}
 		return bonus;
 	}
