@@ -87,6 +87,7 @@
 	RF_Bully = "Bully",
 	RF_Bulwark = "Bulwark",
 	RF_Finesse = "Finesse",
+	RF_CalculatedStrikes = "Calculated Strikes",
 	RF_Centurion = "Centurion",
 	RF_ConcussiveStrikes = "Concussive Strikes",
 	RF_Cull = "Cull",
@@ -922,6 +923,16 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"[Fatigue|Concept.Fatigue] cost of skills is reduced by " + ::MSU.Text.colorRed("20%") + "."
+			]
+		}]
+ 	}),
+ 	RF_CalculatedStrikes = ::UPD.getDescription({
+ 		Fluff = "Take your time, but make it count!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"[Initiative|Concept.Initiative] is reduced by " + ::MSU.Text.colorRed("20%") + ".",
+				"Damage is increased by " + ::MSU.Text.colorGreen("20%") + " against targets who act after you in the current [round|Concept.Round]."
 			]
 		}]
  	}),
