@@ -66,6 +66,14 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (_skill.isAttack())
+		{
+			this.m.Stacks = ::Math.min(this.m.MaxStacks, this.m.Stacks + 1);
+		}
+	}
+
 	function getBonus()
 	{
 		return this.m.Stacks * this.m.BonusPerStack;
