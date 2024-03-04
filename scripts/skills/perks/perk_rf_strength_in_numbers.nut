@@ -1,7 +1,7 @@
 this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 	m = {
-		BonusPerAdjacentAlly = 2,
-		MaxResolveBonus = 20
+		SkillBonus = 2,
+		ResolveBonus = 5
 	},
 	function create()
 	{
@@ -19,14 +19,14 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return !this.getContainer().getActor().isPlacedOnMap() || (this.getBonus() == 0 && this.getResolveBonus() == 0);
+		return !this.getContainer().getActor().isPlacedOnMap() || (this.getSkillBonus() == 0 && this.getResolveBonus() == 0);
 	}
 
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
 
-		local bonus = this.getBonus();
+		local bonus = this.getSkillBonus();
 		if (bonus > 0)
 		{
 			tooltip.extend([
@@ -71,27 +71,14 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function getBonus()
+	function getSkillBonus()
 	{
-		return ::Tactical.Entities.getFactionActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true).len() * this.m.BonusPerAdjacentAlly;
+		return ::Tactical.Entities.getFactionActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true).len() * this.m.SkillBonus;
 	}
 
 	function getResolveBonus()
 	{
-		local actor = this.getContainer().getActor();
-		local others = ::Tactical.Entities.getAllInstancesAsArray();
-
-		local count = 0;
-		foreach (o in others)
-		{
-			if (o.isAlliedWith(actor))
-			{
-				count++;
-			}
-		}
-
-		// Subtract 1 to remove self from the count
-		return ::Math.min(this.m.MaxResolveBonus, count - 1);
+		return ::Tactical.Entities.getFactionActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true).len() * this.m.ResolveBonus;
 	}
 
 	function onUpdate( _properties )
@@ -101,13 +88,13 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 			return;
 		}
 
-		local bonus = this.getBonus();
+		local bonus = this.getSkillBonus();
 		if (bonus > 0)
 		{
-			_properties.MeleeSkill += this.getBonus();
-			_properties.RangedSkill += this.getBonus();
-			_properties.MeleeDefense += this.getBonus();
-			_properties.RangedDefense += this.getBonus();			
+			_properties.MeleeSkill += bonus;
+			_properties.RangedSkill += bonus;
+			_properties.MeleeDefense += bonus;
+			_properties.RangedDefense += bonus;
 		}
 
 		_properties.Bravery += this.getResolveBonus();

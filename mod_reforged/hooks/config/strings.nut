@@ -1714,8 +1714,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorGreen("+2") + " [Melee Skill|Concept.MeleeSkill], [Ranged Skill|Concept.RangeSkill], Melee  Defense and [Ranged Defense|Concept.RangeDefense] for each adjacent ally.",
-				"Gain " + ::MSU.Text.colorGreen("+1") + " [Resolve|Concept.Bravery] for each ally on the battlefield, up to a maximum of " + ::MSU.Text.colorGreen("+20") + "."
+				"For each adjacent ally, gain " + ::MSU.Text.colorGreen("+2") + " [Melee Skill|Concept.MeleeSkill], [Ranged Skill|Concept.RangeSkill], Melee  Defense and [Ranged Defense|Concept.RangeDefense] and " + ::MSU.Text.colorGreen("+5") + " [Resolve|Concept.Bravery].",
 			]
 		}]
  	}),
