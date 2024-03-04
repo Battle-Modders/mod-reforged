@@ -1554,11 +1554,11 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
  	}),
 	RF_Professional = ::UPD.getDescription({
- 		Fluff = "You\'re a professional, experienced fighter, able to wield many weapons in many styles!",
+ 		Fluff = "You\'re a professional, experienced fighter!",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain the [Shield Expert|Perk+perk_shield_expert], [Duelist|Perk+perk_duelist], [Weapon Master|Perk+perk_rf_weapon_master], [Death Dealer|Perk+perk_rf_death_dealer], and [Formidable Approach|Perk+perk_rf_formidable_approach] perks."
+				"Gain the first two [perks|Concept.Perk] in a random melee perk group that you have access to."
 			]
 		}]
  	}),
