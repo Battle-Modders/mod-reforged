@@ -425,7 +425,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"With no ally within 2 tiles of distance, gain a " + ::MSU.Text.colorGreen("+15%") + " bonus to [Melee Skill|Concept.MeleeSkill], [Ranged Skill|Concept.RangeSkill], [Melee Defense|Concept.MeleeDefense], [Ranged Defense|Concept.RangeDefense], and [Resolve|Concept.Bravery]."
+ 					"With no adjacent ally of your faction, gain a " + ::MSU.Text.colorGreen("+15%") + " bonus to [Melee Skill|Concept.MeleeSkill], [Ranged Skill|Concept.RangeSkill], [Melee Defense|Concept.MeleeDefense], [Ranged Defense|Concept.RangeDefense], and [Resolve|Concept.Bravery]."
  				]
  			}]
 	 	}),
