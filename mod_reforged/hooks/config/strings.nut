@@ -86,6 +86,7 @@
 	RF_Bulwark = "Bulwark",
 	RF_Finesse = "Finesse",
 	RF_Centurion = "Centurion",
+	RF_Combo = "Combo",
 	RF_ConcussiveStrikes = "Concussive Strikes",
 	RF_Cull = "Cull",
 	RF_Decanus = "Decanus",
@@ -927,6 +928,17 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Triggers the [Centurion Command|Skill+rf_centurion_command_effect] effect for allied skeletons up to 6 tiles away.",
+			]
+		}]
+ 	}),
+ 	RF_Combo = ::UPD.getDescription({
+ 		Fluff = "The good old one-two.",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Using any skill that costs [Action Points|Concept.ActionPoints], reduces the [Action Point|Concept.ActionPoints] cost of all other skills by " + ::MSU.Text.colorGreen("1") + " to a minimum of 3.",
+				"The effect refreshes with each skill used.",
+				"Using Wait causes the effect to expire."
 			]
 		}]
  	}),
