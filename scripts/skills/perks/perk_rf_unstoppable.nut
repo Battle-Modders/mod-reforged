@@ -1,16 +1,13 @@
 this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 	m = {
 		Stacks = 0,
-		SkillBonusPerStack = 5,
-		MaxStacks = 10,
-		Distance = 0,
-		APBonusBefore = 0
+		MaxStacks = 5
 	},
 	function create()
 	{
 		this.m.ID = "perk.rf_unstoppable";
 		this.m.Name = ::Const.Strings.PerkName.RF_Unstoppable;
-		this.m.Description = "This character\'s attacks seem to not miss at all.";
+		this.m.Description = "This character is like a boulder rolling down a hill. Unstoppable!";
 		this.m.Icon = "ui/perks/rf_unstoppable.png";
 		this.m.IconMini = "rf_unstoppable_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
@@ -30,6 +27,16 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 		return this.m.Stacks == 0;
 	}
 
+	function getAPBonus()
+	{
+		return this.m.Stacks;
+	}
+
+	function getInitiativeBonus()
+	{
+		return this.m.Stacks * 10;
+	}
+
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
@@ -37,78 +44,53 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 		tooltip.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.getSkillBonus() + "[/color] Melee Skill"
+			icon = "ui/icons/action_points.png",
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getAPBonus()) + " [Action Points|Concept.ActionPoints]")
 		});
 
-		local APBonus = this.getAPBonus();
-		if (APBonus > 0)
-		{
-			tooltip.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/action_points.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + APBonus + "[/color] Action Point(s)"
-			});
-		}
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/initiative.png",
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getInitiativeBonus()) + " [Initiative|Concept.Initiative]")
+		});
 
 		return tooltip;
 	}
 
-	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
+	function onTurnEnd()
 	{
-		this.m.Distance = 0;
-		this.m.APBonusBefore = this.getAPBonus();
+		if (this.m.Stacks >= this.m.MaxStacks)
+			return;
 
-		if (_skill.isAttack() && !_targetEntity.isAlliedWith(this.getContainer().getActor()))
-		{
-			this.m.Distance = _targetEntity.getTile().getDistanceTo(this.getContainer().getActor().getTile());
-		}
-	}
-
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
 		local actor = this.getContainer().getActor();
-		if (_skill.isAttack() && ::Tactical.TurnSequenceBar.isActiveEntity(actor) &&!_targetEntity.isAlliedWith(actor))
+		if (actor.getActionPoints() <= actor.getActionPointsMax() / 2)
 		{
-			this.m.Stacks = ::Math.minf(this.m.MaxStacks, this.m.Stacks + (this.m.Distance > 1 ? 0.5 : 1));
-			actor.setActionPoints(actor.getActionPoints() + this.getAPBonus() - this.m.APBonusBefore);
+			this.m.Stacks++;
 		}
 	}
 
-	function onTargetMissed( _skill, _targetEntity )
+	function onWaitTurn()
 	{
-		if (_skill.isAttack() && !_targetEntity.isAlliedWith(this.getContainer().getActor()))
-		{
-			this.m.Stacks = ::Math.floor(this.m.Stacks / 2);
-		}
+		this.m.Stacks = 0;
 	}
 
-	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_attacker != null && _attacker.getID() != this.getContainer().getActor().getID())
-		{
-			this.m.Stacks = ::Math.floor(this.m.Stacks / 2);
-		}
-	}
-
-	function getSkillBonus()
-	{
-		return ::Math.floor(this.m.Stacks) * this.m.SkillBonusPerStack;
-	}
-
-	function getAPBonus()
-	{
-		if (this.m.Stacks == 10) return 3;
-		if (this.m.Stacks >= 6) return 2;
-		if (this.m.Stacks >= 3) return 1;
-		return 0;
+		if (_skill.getID() == "actives.recover")
+			this.m.Stacks = 0;
 	}
 
 	function onUpdate( _properties )
 	{
-		_properties.MeleeSkill += this.getSkillBonus();
+		if (_properties.IsStunned || _properties.IsRooted || this.getContainer().hasSkill("effects.staggered"))
+		{
+			this.m.Stacks = 0;
+			return;
+		}
+
 		_properties.ActionPoints += this.getAPBonus();
+		_properties.Initiative += this.getInitiativeBonus();
 	}
 
 	function onCombatStarted()
