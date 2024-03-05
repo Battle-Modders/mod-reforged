@@ -197,20 +197,6 @@
 
 local vanillaDescriptions = [
 	{
-		ID = "perk.backstabber",
-		Key = "Backstabber",
-		Description = ::UPD.getDescription({
-			Fluff = "Honor doesn\'t win you fights, stabbing the enemy where it hurts does.",
-	 		Effects = [{
- 				Type = ::UPD.EffectType.Passive,
- 				Description = [
-					"The bonus to hitchance in melee is doubled to [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] for each ally surrounding and distracting your target.",
-					"Daggers do " + ::MSU.Text.colorGreen("5%") + " increased damage per character [surrounding|Concept.Surrounding] the target."
-				]
- 			}]
-	 	}),
-	},
-	{
 		ID = "perk.battle_forged",
 		Key = "BattleForged",
 		Description = ::UPD.getDescription({
