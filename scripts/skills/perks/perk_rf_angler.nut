@@ -15,9 +15,10 @@ this.perk_rf_angler <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_skill.getID() == "actives.throw_net" && !_forFree)
+		if (_skill.getID() == "actives.throw_net")
 		{
-			_targetEntity.getSkills().getSkillByID("actives.break_free").m.ChanceBonus -= 20;
+			local breakFreeSkill = _targetEntity.getSkills().getSkillByID("actives.break_free");
+			breakFreeSkill.setBaseValue("ActionPointCost", ::Math.floor(breakFreeSkill.getBaseValue("ActionPointCost") * 1.5));
 		}
 	}
 
