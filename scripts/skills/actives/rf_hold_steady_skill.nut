@@ -10,7 +10,7 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/rf_hold_steady_skill.png";
 		this.m.IconDisabled = "skills/rf_hold_steady_skill_bw.png";
 		this.m.Overlay = "rf_hold_steady_skill";
-		this.m.SoundOnUse = [];
+		this.m.SoundOnUse = ["sounds/combat/holdsteadyv3_01.wav"];
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

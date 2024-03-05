@@ -11,7 +11,7 @@ this.rf_command_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/rf_command_skill.png";
 		this.m.IconDisabled = "skills/rf_command_skill_sw.png";
 		this.m.Overlay = "rf_command_skill";
-		this.m.SoundOnUse = [];
+		this.m.SoundOnUse = ["sounds/combat/commandv6_02.wav"];
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
