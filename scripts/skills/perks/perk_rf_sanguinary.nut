@@ -1,8 +1,9 @@
 this.perk_rf_sanguinary <- ::inherit("scripts/skills/skill", {
 	m = {
-		FatigueCostRefundPercentage = 25,
-		IsHitHandlingComplete = true,
-		WasBleeding = false
+		IsForceEnabled = false,
+		RequiresWeapon = true,
+		IsSpent = true,
+		RestoredActionPoints = 3
 	},
 	function create()
 	{
@@ -17,78 +18,35 @@ this.perk_rf_sanguinary <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	function isEnabled()
 	{
-		_properties.FatalityChanceMult *= 1.5;
-	}
+		if (this.m.IsForceEnabled || !this.m.RequiresWeapon)
+			return true;
 
-	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		this.m.IsHitHandlingComplete = false;
-	}
+		if (this.getContainer().getActor().isDisarmed())
+			return false;
 
-	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
-	{
-		if (this.isAttackValid(_skill, this.getContainer().getActor(), _targetEntity)) this.m.WasBleeding = _targetEntity.getSkills().hasSkill("effects.bleeding");
-	}
-
-	// Handles cases where target is already bleeding before the hit
-	// Note: Cannot use this function to check for bleeding applied by the attack's onUse function if
-	// the bleeding is applied after attackEntity e.g. vanilla cleave skill
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (this.m.IsHitHandlingComplete || !this.isAttackValid(_skill, this.getContainer().getActor(), _targetEntity))
-			return;
-
-		if (_targetEntity.isAlive() && this.m.WasBleeding)
-		{
-			local actor = this.getContainer().getActor();
-			if (actor.getMoraleState() < ::Const.MoraleState.Steady && actor.getMoraleState() != ::Const.MoraleState.Fleeing)
-			{
-				actor.setMoraleState(actor.getMoraleState() + 1);
-				this.spawnIcon("perk_rf_sanguinary", actor.getTile());
-			}
-
-			this.m.IsHitHandlingComplete = true;
-		}
-	}
-
-	// Handles cases where Bleeding is applied by the attack e.g. during cleave skill's onUse function
-	// Note: Is unable to handle bleeding applied by "scheduledEvent" attacks
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		if (this.m.IsHitHandlingComplete || !this.isAttackValid(_skill, this.getContainer().getActor(), _targetEntity))
-			return;
-
-		if (_targetEntity.isAlive() && _targetEntity.getSkills().hasSkill("effects.bleeding"))
-		{
-			local actor = this.getContainer().getActor();
-			if (actor.getMoraleState() < ::Const.MoraleState.Steady && actor.getMoraleState() != ::Const.MoraleState.Fleeing)
-			{
-				actor.setMoraleState(actor.getMoraleState() + 1);
-				this.spawnIcon("perk_rf_sanguinary", actor.getTile());
-			}
-
-			this.m.IsHitHandlingComplete = true;
-		}
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Cleaver);
 	}
 
 	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )
 	{
-		if (_fatalityType != ::Const.FatalityType.None && _skill != null && _killer != null && _killer.getID() == this.getContainer().getActor().getID() && this.isAttackValid(_skill, _killer, _victim))
-		{
-			local fatigueCostRefund = ::Math.floor(_skill.m.FatigueCost * this.m.FatigueCostRefundPercentage * 0.01);
-			_killer.setFatigue(::Math.max(0, _killer.getFatigue() - fatigueCostRefund));
-			if (_killer.getMoraleState() < ::Const.MoraleState.Confident && _killer.getMoraleState() != ::Const.MoraleState.Fleeing)
-			{
-				_killer.setMoraleState(::Const.MoraleState.Confident);
-				_skill.spawnIcon("perk_rf_sanguinary", _killer.getTile());
-			}
-		}
+		if (!this.m.IsSpent || _fatalityType == ::Const.FatalityType.None || _killer == null || _killer.getID() != this.getContainer().getActor().getID() || !_killer.isPlacedOnMap() || !::Tactical.TurnSequenceBar.isActiveEntity(_killer))
+			return;
+
+		if (_skill == null || !_skill.isAttack() || (!this.m.RequiresWeapon && !_skill.m.IsWeaponSkill) || !this.isEnabled())
+			return;
+
+		_killer.setActionPoints(::Math.min(_killer.getActionPointsMax(), _killer.getActionPoints() + this.m.RestoredActionPoints));
+		_killer.setDirty(true);
+		this.spawnIcon("perk_rf_sanguinary", _killer.getTile());
+		this.m.IsSpent = true;
 	}
 
-	function isAttackValid( _skill, _attacker, _targetEntity )
+	// Ensures that it cannot trigger more than once per attack (e.g. even if you kill multiple opponents in an AOE attack)
+	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		return !_skill.isRanged() && _skill.isAttack() && ::Tactical.TurnSequenceBar.isActiveEntity(_attacker) && _targetEntity != null && !_targetEntity.isAlliedWith(_attacker);
+		this.m.IsSpent = false;
 	}
 });

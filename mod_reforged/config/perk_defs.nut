@@ -48,14 +48,6 @@
 		IconDisabled = "ui/perks/rf_bloodlust_bw.png",
 	},
 	{
-		ID = "perk.rf_bloodbath",
-		Script = "scripts/skills/perks/perk_rf_bloodbath",
-		Name = ::Const.Strings.PerkName.RF_Bloodbath,
-		Tooltip = ::Const.Strings.PerkDescription.RF_Bloodbath,
-		Icon = "ui/perks/rf_bloodbath.png",
-		IconDisabled = "ui/perks/rf_bloodbath_bw.png",
-	},
-	{
 		ID = "perk.rf_take_aim",
 		Script = "scripts/skills/perks/perk_rf_take_aim",
 		Name = ::Const.Strings.PerkName.RF_TakeAim,
