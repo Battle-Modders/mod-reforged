@@ -98,6 +98,7 @@
 	RF_DentArmor = "Dent Armor",
 	RF_DiscoveredTalent = "Discovered Talent",
 	RF_Dismantle = "Dismantle",
+	RF_Dismemberment = "Dismemberment",
 	RF_DoubleStrike = "Double Strike",
 	RF_EnGarde = "En Garde",
 	RF_Entrenched = "Entrenched",
@@ -1041,6 +1042,16 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Every successful hit applies the [Dismantled Armor|Skill+rf_dismantled_effect] effect which causes the target to receive a stacking " + ::MSU.Text.colorRed("+15%") + " additional damage ignoring armor from all sources for the remainder of the combat."
+			]
+		}]
+ 	}),
+ 	RF_Dismemberment = ::UPD.getDescription({
+ 		Fluff = "Welcome to the chopping block!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Axes always inflict the heaviest possible [injuries|Concept.InjuryTemporary].",
+				"[Injuries|Concept.InjuryTemporary] inflicted by axes trigger negative [morale checks|Concept.Morale] on the target for every 25 current [Resolve|Concept.Bravery] you have."
 			]
 		}]
  	}),
