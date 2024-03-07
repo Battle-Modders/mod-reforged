@@ -97,6 +97,7 @@
 	RF_DiscoveredTalent = "Discovered Talent",
 	RF_Dismantle = "Dismantle",
 	RF_DoubleStrike = "Double Strike",
+	RF_DynamicDuo = "Dynamic Duo",
 	RF_EnGarde = "En Garde",
 	RF_Entrenched = "Entrenched",
 	RF_ExploitOpening = "Exploit Opening",
@@ -1030,6 +1031,18 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"A successful hit increases the damage of your next attack(s) by " + ::MSU.Text.colorRed("20%") + ".",
 				"The effect is lost upon moving, swapping an item, using any skill except a single-target attack, missing an attack, or waiting or ending your [turn|Concept.Turn]."
+			]
+		}]
+ 	}),
+ 	RF_DynamicDuo = ::UPD.getDescription({
+ 		Fluff = "You\'ve learned that you fight best with a buddy to watch your back!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Allows you to choose another member of your company as your partner. You will remain partners until one of you dies or leaves the company. Gain strong bonuses in combat when adjacent to your partner, with no other ally next to you or your partner.",
+				"Gain the [Shuffle|Skill+rf_dynamic_duo_shuffle_skill] skill that allows you to swap places with your partner once per turn for free.",
+				"Resolve and Initiative are increased by " + ::MSU.Text.colorGreen("+20") + ".",
+				"Gain " + ::MSU.Text.colorGreen("+10") + " [Melee Skill|Concept.MeleeSkill] against enemies that attack your partner, and " + ::MSU.Text.colorGreen("+10") + " [Melee Defense|Concept.MeleeDefense] against enemies attacked by your partner, for one turn."
 			]
 		}]
  	}),
