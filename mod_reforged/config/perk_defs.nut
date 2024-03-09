@@ -1132,6 +1132,14 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_Rebuke,
 		Icon = "ui/perks/rf_rebuke.png",
 		IconDisabled = "ui/perks/rf_rebuke_sw.png",
+	},
+	{
+		ID = "perk.rf_trick_shooter",
+		Script = "scripts/skills/perks/perk_rf_trick_shooter",
+		Name = ::Const.Strings.PerkName.RF_TrickShooter,
+		Tooltip = ::Const.Strings.PerkDescription.RF_TrickShooter,
+		Icon = "ui/perks/rf_trick_shooter.png",
+		IconDisabled = "ui/perks/rf_trick_shooter_sw.png",
 	}
 ]);
 
