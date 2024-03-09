@@ -2132,12 +2132,13 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
  	}),
 	RF_WhirlingDeath = ::UPD.getDescription({
- 		Fluff = "Use the arc of your flailhead to target weak spots in your opponents' armor!",
+ 		Fluff = "Create a whirlwind of death with the spinning head of your flail!",
  		Requirement = "Flail",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"An additional random " + ::MSU.Text.colorGreen("0-25%") + " of damage ignores armor."
+				"Every attack with flails increases your current Reach by " + ::MSU.Text.colorGreen("+1") + " until your next turn.",
+				"When you move in an enemy\'s [Zone of Control|Concept.ZoneOfControl] or an enemy moves in yours, as long as your current Reach is higher than your enemy\'s, you have a " + ::MSU.Text.colorGreen("33%") + " chance to perform a free attack against them.",
 			]
 		}]
  	}),
