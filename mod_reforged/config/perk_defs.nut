@@ -1140,6 +1140,14 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_TrickShooter,
 		Icon = "ui/perks/rf_trick_shooter.png",
 		IconDisabled = "ui/perks/rf_trick_shooter_sw.png",
+	},
+	{
+		ID = "perk.rf_mauler",
+		Script = "scripts/skills/perks/perk_rf_mauler",
+		Name = ::Const.Strings.PerkName.RF_Mauler,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Mauler,
+		Icon = "ui/perks/rf_mauler.png",
+		IconDisabled = "ui/perks/rf_mauler_sw.png",
 	}
 ]);
 

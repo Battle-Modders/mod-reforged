@@ -134,6 +134,7 @@
 	RF_LongReach = "Long Reach",
 	RF_ManOfSteel = "Man of Steel",
 	RF_Marksmanship = "Marksmanship",
+	RF_Mauler = "Mauler",
 	RF_Menacing = "Menacing",
 	RF_Mentor = "Mentor",
 	RF_Momentum = "Momentum",
@@ -1442,6 +1443,17 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Armor penetrating damage received is reduced by " + ::MSU.Text.colorGreen("10%") + " of the current durability of the armor piece hit."
+			]
+		}]
+ 	}),
+ 	RF_Mauler = ::UPD.getDescription({
+ 		Fluff = "Flesh is the canvas on which you paint!",
+ 		Requirement = "Cleaver",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Attacks from cleavers apply an additional stack of [Bleeding|Skill+bleeding_effect] on the target.",
+				"When attacking a target which already has at least 3 stacks of [Bleeding|Skill+bleeding_effect], you have a " + ::MSU.Text.colorGreen("33%") + " chance to apply an injury. If the attack already applied an injury, this applies an additional injury."
 			]
 		}]
  	}),
