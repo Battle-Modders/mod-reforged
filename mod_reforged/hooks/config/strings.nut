@@ -181,6 +181,7 @@
 	RF_ThroughTheGaps = "Through the Gaps",
 	RF_ThroughTheRanks = "Through the Ranks",
 	RF_TraumaSurvivor = "Trauma Survivor",
+	RF_TrickShooter = "Trick Shooter",
 	RF_TripArtist = "Trip Artist",
 	RF_TwoForOne = "Two for One",
 	RF_Unstoppable = "Unstoppable",
@@ -1974,6 +1975,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 			}
 		],
 		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
+ 	}),
+ 	RF_TrickShooter = ::UPD.getDescription({
+ 		Fluff = "Learn to shoot hot and fast!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Gain the [Hip Shooter|Perk+perk_rf_hip_shooter] and [Flaming Arrows|Perk+perk_rf_flaming_arrows] perks.",
+			]
+		}]
  	}),
 	RF_TripArtist = ::UPD.getDescription({
  		Fluff = "\'Let me take you on a trip to the floor.\'",
