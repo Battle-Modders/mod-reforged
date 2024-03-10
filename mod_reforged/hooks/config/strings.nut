@@ -294,9 +294,10 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Active,
  				Description = [
-					"Unlocks the [Adrenaline|Skill+adrenaline_skill] skill which puts you first in the [turn|Concept.Turn] order for the next [round|Concept.Round], to have another [turn|Concept.Turn] before your enemies do."
+					"Unlocks the [Adrenaline|Skill+adrenaline_skill] skill which puts you first in the [turn|Concept.Turn] order for the next [round|Concept.Round], to have another [turn|Concept.Turn] before your enemies do.",
+					"Under the effects of [adrenaline|Skill+adrenaline_effect] you cannot receive and are not affected by [temporary injuries|Concept.InjuryTemporary]."
 				]
- 			}]
+ 			}],
 	 	}),
 	},
 	{
