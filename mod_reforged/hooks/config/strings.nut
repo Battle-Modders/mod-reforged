@@ -305,7 +305,8 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Active,
  				Description = [
-					"Unlocks the [Taunt|Skill+taunt] skill which makes the targeted opponent take offensive actions instead of defensive ones, and attack the taunting character over another, potentially more vulnerable one."
+					"Unlocks the [Taunt|Skill+taunt] skill which makes the targeted opponent take offensive actions instead of defensive ones, and attack the taunting character over another, potentially more vulnerable one.",
+					"When used on an adjacent target, reduces its [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by " + ::MSU.Text.colorGreen("20%") + " of the user's [Resolve|Concept.Bravery]."
 				]
  			}]
 	 	}),
