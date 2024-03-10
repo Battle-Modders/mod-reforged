@@ -81,12 +81,26 @@
 }
 
 ::logInfo("Reforged::MSU -- adding ::MSU.Text.colorizeMult");
-::MSU.Text.colorizeMult <- function( _value, _options = null )
+::MSU.Text.colorizeMult <- function( _value, _options = null )		// will turn values like 1.45 into a formatted and colored 45%
 {
 	if (_options == null) _options = {};
 	if (!("AddSign" in _options)) _options.AddSign <- false;
 	_options.AddPercent <- true;
 	return this.colorizeValue((_value - 1.0) * 100, _options);
+}
+
+::logInfo("Reforged::MSU -- adding ::MSU.Text.colorizeFraction");
+::MSU.Text.colorizeFraction <- function( _value, _options = null )	// will turn values like 0.2 into a formatted and colored 20%
+{
+	if (_value < 0)
+	{
+		throw ::MSU.Exception.InvalidValue(_value);
+	}
+
+	if (_options == null) _options = {};
+	if (!("AddSign" in _options)) _options.AddSign <- false;
+	_options.AddPercent <- true;
+	return this.colorizeValue(_value * 100, _options);
 }
 
 ::logInfo("Reforged::MSU -- adding ::MSU.Tile.getNeighbors");
