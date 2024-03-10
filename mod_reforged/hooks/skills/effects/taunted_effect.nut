@@ -2,12 +2,12 @@
 	q.create = @(__original) function()
 	{
 		__original();
-        this.m.Description = "This character is taunted by another character and is much more likely to engage and attack them.";
+		this.m.Description = "This character is taunted by another character and is much more likely to engage and attack them.";
 	}
 
-	q.getTooltip <- function()
+	q.getTooltip = @(__original) function()
 	{
-		local ret = this.skill.getTooltip();
+		local ret = __original();
 
 		if (this.getTauntedTarget() != null)
 		{
@@ -22,7 +22,8 @@
 		return ret;
 	}
 
-	q.getTauntedTarget <- function()	// New helper-function to get the taunter
+// New Functions
+	q.getTauntedTarget <- function()
 	{
 		return this.getContainer().getActor().getAIAgent().getForcedOpponent();
 	}
