@@ -124,6 +124,7 @@
 	RF_HipShooter = "Hip Shooter",
 	RF_HoldSteady = "Hold Steady",
 	RF_Hybridization = "Hybridization",
+	RF_Supporter = "Supporter",
 	InspiringPresence = "Inspiring Presence",
 	RF_InternalHemorrhage = "Internal Hemorrhage",
 	RF_Intimidate = "Intimidate",
@@ -1466,6 +1467,23 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+	RF_Supporter = ::UPD.getDescription({
+		Fluff = "I\'ve got your back!",
+		Effects = [
+			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"Once per [turn|Concept.Turn], after you use a skill targeting an adjacent ally, recover " + ::MSU.Text.colorGreen("2") + " [Action Points|Concept.ActionPoints]."
+				]
+			},
+			{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Gain the [Encourage|Skill+rf_encourage_skill] skill that allows you to increase the [Morale|Concept.Morale] of an ally."
+				]
+			}
+		]
+	}),
 	InspiringPresence = ::UPD.getDescription({
  		Fluff = "Standing next to the company\'s banner inspires your men to go beyond their limits!",
  		Requirement = "Banner",
