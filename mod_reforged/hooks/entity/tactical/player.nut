@@ -16,7 +16,7 @@
 
 	q.addXP = @(__original) function( _xp, _scale = true )
 	{
-		if (::Reforged.Config.XPOverride)
+		if (::Reforged.Config.Player.XPOverride)
 			return;
 
 		while (this.m.Level >= ::Const.LevelXP.len())

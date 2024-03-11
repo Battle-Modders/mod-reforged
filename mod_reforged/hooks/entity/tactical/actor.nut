@@ -176,10 +176,10 @@
 ::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
 	q.onActorKilled = @(__original) function( _actor, _tile, _skill )
 	{
-		local wasOverriding = ::Reforged.Config.XPOverride;
-		::Reforged.Config.XPOverride = true;
+		local wasOverriding = ::Reforged.Config.Player.XPOverride;
+		::Reforged.Config.Player.XPOverride = true;
 		__original(_actor, _tile, _skill);
-		::Reforged.Config.XPOverride = wasOverriding;
+		::Reforged.Config.Player.XPOverride = wasOverriding;
 	}
 
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )

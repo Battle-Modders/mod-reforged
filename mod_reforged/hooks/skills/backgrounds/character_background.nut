@@ -1,7 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/character_background", function(q) {
+	q.m.CalculatedDailyCost <- 0;
+
 	q.isHired <- function()
 	{
 		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
+	}
+
+	q.onAdded = @(__original) function()
+	{
+		__original();
+		this.m.CalculatedDailyCost = this.calculateDailyCost();
 	}
 
 	q.getProjectedAttributesTooltip <- function()
@@ -14,14 +22,25 @@
 		}];
 	}
 
+	// Overwrite to increase overall performance. The Wage for this background is no longer calculated newly during every update loop
+	q.onUpdate = @() function( _properties )
+	{
+		_properties.DailyWage = this.m.CalculatedDailyCost;
+
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getID() != "background.slave")
+		{
+			_properties.XPGainMult *= 0.9;
+		}
+	}
+
 	// TODO: Currently this randomization is not persistent across game load. We need to serialize the hiring cost.
 	q.adjustHiringCostBasedOnEquipment = @(__original) function()
 	{
 		__original();
 		local actor = this.getContainer().getActor();
 		local hiringCost = actor.m.HiringCost;
-		local minimum = hiringCost * (1.0 - ::Reforged.Config.HiringCostVariance);
-		local maximum = hiringCost * (1.0 + ::Reforged.Config.HiringCostVariance);
+		local minimum = hiringCost * (1.0 - ::Reforged.Config.Player.HiringCostVariance);
+		local maximum = hiringCost * (1.0 + ::Reforged.Config.Player.HiringCostVariance);
 		hiringCost = ::Reforged.Math.luckyRoll(minimum, maximum, hiringCost, ::Reforged.Config.HiringCostLuck);		// Randomizes this value an additional time for every 100 luck and picks the one closest to the original
 		hiringCost = ::Reforged.Math.ceil(hiringCost, -1);		// Makes sure this unsigned integer ends with a 0 one again
 		actor.m.HiringCost = hiringCost;
@@ -59,6 +78,30 @@
 		ret += "</div>";
 
 		return ret;
+	}
+
+// MSU Functions
+	q.onUpdateLevel = @(__original) function()
+	{
+		__original();
+		this.m.CalculatedDailyCost = this.calculateDailyCost();	// While our internal DailyCost is only dependant on the brother level it is sufficient to calculate it here only
+	}
+
+// New Functions
+	q.calculateDailyCost <- function()
+	{
+		if (this.m.DailyCost == 0) return 0;
+
+		local dailyCost = ::Math.round(this.m.DailyCost * this.m.DailyCostMult);
+		local level = this.getContainer().getActor().getLevel();
+		dailyCost *= ::Math.pow(::Reforged.Config.Player.DailyCostMultPerLevelRegular, ::Math.min(::Const.XP.MaxLevelWithPerkpoints, level) - 1);
+
+		if (level > ::Const.XP.MaxLevelWithPerkpoints)
+		{
+			dailyCost *= ::Math.pow(::Reforged.Config.Player.DailyCostMultPerLevelParagon, level - ::Const.XP.MaxLevelWithPerkpoints);
+		}
+
+		return dailyCost;
 	}
 });
 
