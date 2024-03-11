@@ -21,7 +21,7 @@ this.pg_rf_large <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				[],
 				[],
 				[],
-				[],
+				["perk.rf_second_wind"],
 				[]
 			]
 		};
