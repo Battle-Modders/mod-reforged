@@ -925,6 +925,14 @@
 		IconDisabled = "ui/perks/rf_alert_bw.png",
 	},
 	{
+		ID = "perk.rf_supporter",
+		Script = "scripts/skills/perks/perk_rf_supporter",
+		Name = ::Const.Strings.PerkName.RF_Supporter,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Supporter,
+		Icon = "ui/perks/rf_supporter.png",
+		IconDisabled = "ui/perks/rf_supporter_sw.png"
+	},
+	{
 		ID = "perk.inspiring_presence",
 		Script = "scripts/skills/perks/perk_inspiring_presence",
 		Name = ::Const.Strings.PerkName.InspiringPresence,
