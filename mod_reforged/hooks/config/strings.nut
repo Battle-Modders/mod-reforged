@@ -118,6 +118,7 @@
 	RF_Ghostlike = "Ghostlike",
 	RF_HaleAndHearty = "Hale and Hearty",
 	RF_Heft = "Heft",
+	RF_HiddenPockets = "Hidden Pockets"
 	RF_HipShooter = "Hip Shooter",
 	RF_HoldSteady = "Hold Steady",
 	RF_Hybridization = "Hybridization",
@@ -289,7 +290,19 @@ local vanillaDescriptions = [
  			}]
 	 	}),
 	},
-
+	{
+		ID = "perk.bags_and_belts",
+		Key = "BagsAndBelts",
+		Description = ::UPD.getDescription({
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Unlock two extra [Bag Slots|Concept.BagSlots].",
+					"Items placed in bags no longer apply a penalty to [Maximum Fatigue|Concept.MaximumFatigue], except for two-handed weapons."
+				]
+ 			}]
+	 	}),
+	},
 	{
 		ID = "perk.taunt",
 		Key = "Taunt",
@@ -1257,6 +1270,20 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+	RF_HiddenPockets = ::UPD.getDescription({
+		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Unlock two extra [Bag Slots|Concept.BagSlots]."
+			]
+		},
+		{
+			Type = ::UPD.EffectType.Active,
+			Description = [
+				"Unlocks the [Pocket Sand|Skill+rf_pocket_sand_skill] skill which allows you to store sand in your empty bag slots to distract nearby enemies with."
+			]
+		}]
+	}),
 	RF_HipShooter = ::UPD.getDescription({
  		Fluff = "They shall cower in the shade of your arrows!",
  		Requirement = "Bow",
