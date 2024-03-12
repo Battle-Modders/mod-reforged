@@ -1,8 +1,12 @@
 this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 	m = {
+		RequiredWeaponType = ::Const.Items.WeaponType.Sword,
 		BonusInitiative = 15,
+		InitiativeForTurnOrderMult = 1.5,
 		Stacks = 0,
-		IsPrimed = false,
+		HasCarriedOverInitiative = false, // Is used to carry over initiative bonus from one turn to the next
+		APRecovery = 2,
+		AttacksRemaining = 2,
 		SkillCount = 0,
 		LastTargetID = 0
 	},
@@ -22,41 +26,44 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.Stacks == 0;
+		return this.m.Stacks == 0 && this.m.AttacksRemaining == 0;
 	}
 
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
 
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/initiative.png",
-			text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.getBonus() + "[/color] Initiative"
-		});
+		if (this.m.Stacks != 0)
+		{
+			tooltip.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getBonus()) + " [Initiative|Concept.Initiative]")
+			});
+		}
 
-		if (this.m.IsPrimed)
+		if (this.m.AttacksRemaining > 0)
+		{
+			tooltip.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/action_points.png",
+				text = ::Reforged.Mod.Tooltips.parseString("The next " + this.m.AttacksRemaining + " attack(s), if successful, against a target that acts after you in this [round|Concept.Round] will recover " + ::MSU.Text.colorGreen(this.m.APRecovery) + " [Action Points|Concept.ActionPoints]")
+			});
+		}
+
+		if (this.m.HasCarriedOverInitiative)
 		{
 			tooltip.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("This bonus has been carried over from the previous turn and will expire after using a skill or upon waiting or ending this turn")
+				text = ::MSU.Text.colorRed("The Initiative bonus has been carried over from the previous turn and will expire after using a skill or upon waiting or ending this turn")
 			});
 		}
 
 		return tooltip;
-	}
-
-	function onAdded()
-	{
-		this.getContainer().add(::new("scripts/skills/effects/rf_fluid_weapon_effect"));
-	}
-
-	function onRemoved()
-	{
-		this.getContainer().removeByID("effects.rf_fluid_weapon");
 	}
 
 	function getBonus()
@@ -66,10 +73,10 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 	function gainStackIfApplicable( _skill, _targetEntity )
 	{
-		if (this.m.IsPrimed)
+		if (this.m.HasCarriedOverInitiative)
 		{
 			this.m.Stacks = 0;
-			this.m.IsPrimed = false;
+			this.m.HasCarriedOverInitiative = false;
 		}
 
 		if (!_skill.isAttack() || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()) || _targetEntity.isTurnDone() || _targetEntity.isTurnStarted())
@@ -90,55 +97,115 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		this.gainStackIfApplicable(_skill, _targetEntity);		
+		if (!this.isSkillValid(_skill))
+			return;
+
+		if (this.m.AttacksRemaining > 0 && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		{
+			this.m.AttacksRemaining--;
+			if (!_targetEntity.isTurnDone() && !_targetEntity.isTurnStarted())
+			{
+				local actor = this.getContainer().getActor();
+				actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + this.m.APRecovery));
+			}
+		}
+
+		this.gainStackIfApplicable(_skill, _targetEntity);
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
 	{
+		if (!this.isSkillValid(_skill))
+			return;
+
 		this.gainStackIfApplicable(_skill, _targetEntity);
+		if (this.m.AttacksRemaining > 0 && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+			this.m.AttacksRemaining--;
+	}
+
+	// Lose all bonus upon equipping an invalid weapon
+	function onEquip( _item )
+	{
+		if (this.m.RequiredWeaponType == null || !_item.isItemType(::Const.Items.ItemType.Weapon))
+			return;
+
+		if (!_item.isWeaponType(this.m.RequiredWeaponType))
+		{
+			this.m.AttacksRemaining = 0;
+			this.m.Stacks = 0;
+			this.m.HasCarriedOverInitiative = false;
+		}
 	}
 
 	function onUpdate( _properties )
 	{
+		if (this.m.RequiredWeaponType != null)
+		{
+			if (this.getContainer().getActor().isDisarmed())
+				return;
+
+			local weapon = this.getContainer().getActor().getMainhandItem();
+			if (weapon == null || !weapon.isWeaponType(this.m.RequiredWeaponType))
+				return;
+		}
+
 		_properties.Initiative += this.getBonus();
+		_properties.InitiativeForTurnOrderMult *= this.m.InitiativeForTurnOrderMult;
 	}
 
 	function onTurnStart()
 	{
+		this.m.AttacksRemaining = 2;
 		if (this.m.Stacks > 0)
 		{
-			this.m.IsPrimed = true;
+			this.m.HasCarriedOverInitiative = true;
 		}
 	}
 
 	function onTurnEnd()
 	{
-		if (this.m.IsPrimed)
+		this.m.AttacksRemaining = 0;
+		if (this.m.HasCarriedOverInitiative)
 		{
 			this.m.Stacks = 0;
-			this.m.IsPrimed = false;
+			this.m.HasCarriedOverInitiative = false;
 		}
 	}
 
 	function onWaitTurn()
 	{
-		if (this.m.IsPrimed)
+		this.m.AttacksRemaining = 0;
+		if (this.m.HasCarriedOverInitiative)
 		{
 			this.m.Stacks = 0;
-			this.m.IsPrimed = false;
+			this.m.HasCarriedOverInitiative = false;
 		}
 	}
 
 	function onCombatStarted()
 	{
 		this.m.Stacks = 0;
-		this.m.IsPrimed = false;
+		this.m.AttacksRemaining = 2;
+		this.m.HasCarriedOverInitiative = false;
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
 		this.m.Stacks = 0;
-		this.m.IsPrimed = false;
+		this.m.AttacksRemaining = 0;
+		this.m.HasCarriedOverInitiative = false;
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (_skill.isRanged() || !_skill.isAttack())
+			return false;
+
+		if (this.m.RequiredWeaponType == null)
+			return true;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });
