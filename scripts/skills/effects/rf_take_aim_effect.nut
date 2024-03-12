@@ -8,7 +8,7 @@ this.rf_take_aim_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.rf_take_aim";
 		this.m.Name = "Taking Aim";
 		this.m.Description = "This character is expending significant effort into taking a better aim.";
-		this.m.Icon = "ui/perks/rf_take_aim.png";
+		this.m.Icon = "skills/rf_take_aim_effect.png";
 		this.m.IconMini = "rf_take_aim_effect_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Any;
