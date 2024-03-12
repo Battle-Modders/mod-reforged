@@ -15,6 +15,15 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
+	function isEnabled()
+	{
+		if (this.getContainer().getActor().isDisarmed())
+			return false;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Throwing);
+	}
+
 	function onUpdate( _properties )
 	{
 		local bonus = ::Math.floor(this.getContainer().getActor().getBaseProperties().getRangedSkill() * this.m.Bonus * 0.01);
@@ -23,80 +32,23 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 		_properties.MeleeDefense += bonus;
 	}
 
-	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill.getID() == "actives.throw_spear")
+		if (_targetEntity != null && _skill.m.IsWeaponSkill && this.isEnabled())
 		{
-			this.getContainer().getActor().getMainhandItem().m.ShieldDamage *= 1.5;
-		}
-	}
-
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (!_targetEntity.isAlive() || !_skill.isRanged() || !_skill.m.IsWeaponSkill)
-		{
-			return;
-		}
-
-		local actor = this.getContainer().getActor();
-
-		local weapon = actor.getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
-			return;
-
-		if (_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt))
-		{
-			local staggeredEffect = _targetEntity.getSkills().getSkillByID("effects.staggered");
-			if (staggeredEffect != null)
-			{
-				if (_targetEntity.getCurrentProperties().IsImmuneToStun) return;
-
-				local effect = ::new("scripts/skills/effects/stunned_effect");
-				_targetEntity.getSkills().add(effect);
-				effect.m.TurnsLeft = 1;
-				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-				{
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has stunned " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn");
-				}
-			}
-			else if (::Math.rand(1, 100) <= 50)
-			{
-				local effect = ::new("scripts/skills/effects/staggered_effect");
-				_targetEntity.getSkills().add(effect);
-				effect.m.TurnsLeft = 1;
-				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-				{
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has staggered " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn");
-				}
-			}
-		}
-		else if (_skill.getDamageType().contains(::Const.Damage.DamageType.Piercing))
-		{
-			if (::Math.rand(1, 100) <= 50)
-			{
-				local effect = ::new("scripts/skills/effects/rf_arrow_to_the_knee_debuff_effect");
-				_targetEntity.getSkills().add(effect);
-				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-				{
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has impaled " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turns");
-				}
-			}
-		}
-		else if (_skill.getDamageType().contains(::Const.Damage.DamageType.Cutting))
-		{
-			_targetEntity.getSkills().add(::new("scripts/skills/effects/overwhelmed_effect"));
+			_properties.RangedSkill += ::Math.floor(this.getContainer().getActor().getCurrentProperties().getMeleeSkill() * 0.2);
 		}
 	}
 
 	function onQueryTooltip( _skill, _tooltip )
 	{
-		if (_skill.getID() == "actives.throw_spear")
+		if (_skill.isRanged() && _skill.m.IsWeaponSkill && this.isEnabled())
 		{
 			_tooltip.push({
 				id = 10,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Does " + ::MSU.Text.colorGreen("50%") + " increased damage to shields due to " + this.getName()
+				icon = "ui/icons/hitchance.png",
+				text = "Has " + ::MSU.Text.colorizePercentage(this.getHitchanceBonus()) + " chance to hit due to " + this.getName()
 			});
 		}
 	}
