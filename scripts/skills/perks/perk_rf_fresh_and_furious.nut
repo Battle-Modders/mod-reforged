@@ -1,7 +1,9 @@
 this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsUsingFreeSkill = false,
-		IsSpent = true
+		IsSpent = true,
+		RequiresRecover = false,
+		FatigueThreshold = 0.3
 	},
 	function create()
 	{
@@ -45,7 +47,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 
 	function isEnabled()
 	{
-		return this.getContainer().getActor().getFatigue() < 0.3 * this.getContainer().getActor().getFatigueMax();
+		return !this.m.RequiresRecover && this.getContainer().getActor().getFatigue() < this.m.FatigueThreshold * this.getContainer().getActor().getFatigueMax();
 	}
 
 	function onAfterUpdate( _properties )
@@ -83,16 +85,23 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		this.m.IsSpent = !this.m.IsUsingFreeSkill;
+
+		if (_skill.getID() == "actives.recover")
+			this.m.RequiresRecover = false;
 	}
 
 	function onTurnStart()
 	{
 		this.m.IsSpent = false;
+
+		if (this.getContainer().getActor().getFatigue() >= this.m.FatigueThreshold * this.getContainer().getActor().getFatigueMax())
+			this.m.RequiresRecover = true;
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
 		this.m.IsSpent = true;
+		this.m.RequiresRecover = false;
 	}
 });
