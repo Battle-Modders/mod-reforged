@@ -8,4 +8,14 @@
 			_properties.ThresholdToInflictInjuryMult *= 0.75;
 		}
 	}
+
+	function onAdded()
+	{
+		this.getContainer().add(::new("scripts/skills/actives/rf_kata_step_skill"));
+	}
+
+	function onRemoved()
+	{
+		this.getContainer().removeByID("actives.rf_kata_step");
+	}
 });
