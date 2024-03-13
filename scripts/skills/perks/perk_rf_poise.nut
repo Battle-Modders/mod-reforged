@@ -15,7 +15,7 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.getContainer().hasSkill("perk.nimble") || (::Math.floor(this.getHitpointsDamage() * 100) >= 100 && ::Math.floor(this.getArmorDamage() * 100) >= 100);
+		return (::Math.floor(this.getHitpointsDamage() * 100) >= 100 && ::Math.floor(this.getArmorDamage() * 100) >= 100);
 	}
 
 	function getTooltip()
@@ -94,11 +94,8 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (!this.getContainer().hasSkill("perk.nimble"))
-		{
-			_properties.DamageReceivedRegularMult *= this.getHitpointsDamage();
-			_properties.DamageReceivedArmorMult *= this.getArmorDamage();
-		}
+		_properties.DamageReceivedRegularMult *= this.getHitpointsDamage();
+		_properties.DamageReceivedArmorMult *= this.getArmorDamage();
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
