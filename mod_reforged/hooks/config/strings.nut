@@ -416,7 +416,7 @@ local vanillaDescriptions = [
 		 		{
 	 				Type = ::UPD.EffectType.Passive,
 	 				Description = [
-	 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+	 					"Skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue].",
 	 					"[Round Swing|Skill+round_swing] gains " + ::MSU.Text.colorGreen("+5%") + " chance to hit."
 	 					"The [Longaxe|Item+longaxe] no longer has a penalty for attacking targets directly adjacent.",
 	 				]
@@ -446,7 +446,7 @@ local vanillaDescriptions = [
 		 		{
 	 				Type = ::UPD.EffectType.Passive,
 	 				Description = [
-	 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+	 					"Skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue].",
 	 					"View range and maximum shooting range with bows is increased by " + ::MSU.Text.colorGreen("+1") + "."
 	 				]
 	 			},
@@ -469,7 +469,7 @@ local vanillaDescriptions = [
 		 		{
 	 				Type = ::UPD.EffectType.Passive,
 	 				Description = [
-	 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+	 					"Skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue].",
 	 					"An additional " + ::MSU.Text.colorGreen("20%") + " of damage inflicted with crossbows ignores armor.",
 	 					"[Heavy crossbows|Item+heavy_crossbow] now require " + ::MSU.Text.colorRed("4") + ", [Action Points|Concept.ActionPoints] to [reload|Skill+reload_bolt], just like regular crossbows, allowing you to shoot, reload and move.",
 						"[Handgonnes|Item+handgonne] now require " + ::MSU.Text.colorRed("6") + " [Action Points|Concept.ActionPoints] to [reload|Skill+reload_handgonne_skill] and can be fired every turn instead of every other turn."
@@ -487,7 +487,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
-					"Skills build up [color=" + ::Const.UI.Color.NegativeValue + "]25%[/color] less Fatigue.",
+					"Skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue].",
 					"Pound ignores an additional [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] of armor on head hits.",
 					"Thresh gains [color=" + ::Const.UI.Color.PositiveValue + "]+5%[/color] chance to hit.",
 					"Poleflails no longer have a penalty for attacking targets directly adjacent."
@@ -504,7 +504,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+ 					"Skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue].",
  					"All skills with two-handed weapons, with a range of 2 tiles, having an [Action Point|Concept.ActionPoints] cost of " + ::MSU.Text.colorRed("6") + " have their [Action Point|Concept.ActionPoints] cost reduced to " + ::MSU.Text.colorRed("5") + ".",
  					"Polearms no longer have a penalty for attacking targets directly adjacent."
  				]
@@ -520,7 +520,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+ 					"Skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue].",
  					"The [Action Point|Concept.ActionPoints] cost of [Spearwall|Skill+spearwall] is reduced by " + ::MSU.Text.colorGreen("1") + ".",
  					"[Spearwall|Skill+spearwall] is no longer disabled once an opponent manages to overcome it. Instead, [Spearwall|Skill+spearwall] can still be used and continues to give free attacks on any further opponent attempting to enter the [Zone of Control|Concept.ZoneOfControl]",
  					"The [Spetum|Item+spetum] and [Warfork|Item+warfork] no longer have a penalty for attacking targets directly adjacent."
@@ -537,7 +537,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+ 					"Skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue].",
  					"Gain " + ::MSU.Text.colorGreen("20%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional chance to hit.",
  					"Damage is increased by " + ::MSU.Text.colorGreen("30%") + " when attacking at a distance of 2 tiles and by " + ::MSU.Text.colorGreen("20%") + " when attacking at a distance of 3 tiles."
  				]
@@ -622,7 +622,7 @@ local vanillaDescriptions = [
 		 		{
 	 				Type = ::UPD.EffectType.Passive,
 	 				Description = [
-	 					"[Action Point|Concept.ActionPoints] costs for movement on all terrain is reduced by " + ::MSU.Text.colorRed("-1") + " to a minimum of 2 [Action Points|Concept.ActionPoints] per tile, and [Fatigue|Concept.Fatigue] cost is reduced to half.",
+	 					"[Action Point|Concept.ActionPoints] costs for movement on all terrain is reduced by " + ::MSU.Text.colorGreen("1") + " to a minimum of 2 [Action Points|Concept.ActionPoints] per tile, and [Fatigue|Concept.Fatigue] cost is reduced to half.",
 	 					"Changing height levels also has no additional [Action Point|Concept.ActionPoints] cost anymore."
 	 				]
 	 			},
@@ -749,7 +749,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The penalty to [Initiative|Concept.Initiative] from head and body armor is reduced by " + ::MSU.Text.colorRed("30%") + ".",
+				"The penalty to [Initiative|Concept.Initiative] from head and body armor is reduced by " + ::MSU.Text.colorGreen("30%") + ".",
 				"At all times your [Initiative|Concept.Initiative] is reduced only by " + ::MSU.Text.colorGreen("50%") + " of accumulated [Fatigue|Concept.Fatigue], instead of all of it.",
 				"Stacks [multiplicatively|Concept.StackMultiplicatively] with the [Relentless|Perk+perk_relentless] perk."
 			]
@@ -921,7 +921,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"[Fatigue|Concept.Fatigue] cost of skills is reduced by " + ::MSU.Text.colorRed("20%") + "."
+				"[Fatigue|Concept.Fatigue] cost of skills is reduced by " + ::MSU.Text.colorGreen("20%") + "."
 			]
 		}]
  	}),
@@ -1125,7 +1125,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Skills build up " + ::MSU.Text.colorRed("20%") + " less [Fatigue|Concept.Fatigue] and gain " + ::MSU.Text.colorGreen("+10%") + " chance to hit.",
+				"Skills build up " + ::MSU.Text.colorGreen("20%") + " less [Fatigue|Concept.Fatigue] and gain " + ::MSU.Text.colorGreen("+10%") + " chance to hit.",
 				"When using a one-handed fencing sword, the [Action Point|Concept.ActionPoints] costs of [Sword Thrust|Skill+rf_sword_thrust_skill], [Riposte|Skill+riposte] and [Lunge|Skill+lunge_skill] are reduced by " + ::MSU.Text.colorGreen(1) + ".",
 				"When using a two-handed fencing sword, the range of [Lunge|Skill+lunge_skill] is increased by " + ::MSU.Text.colorGreen(1) + " tile."
 			]
@@ -1400,7 +1400,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorRed("30%") + " and to Armor by " + ::MSU.Text.colorRed("20%") + ".",
+				"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorGreen("30%") + " and to Armor by " + ::MSU.Text.colorGreen("20%") + ".",
 				"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 35.",
 				"When attacking a target against whom you have a [Reach Disadvantage|Concept.ReachAdvantage], reduce this disadvantage by " + ::MSU.Text.colorGreen(1) + " if your [Concept.Initiative] is higher than that of your target."
 				"[Brawny|Perk+perk_brawny] does not affect this perk.",
@@ -2072,7 +2072,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The penalty to [Maximum Fatigue|Concept.MaximumFatigue] and [Initiative|Concept.Initiative] from equipped items in your head, body, mainhand and offhand slots is reduced by " + ::MSU.Text.colorRed("20%") + ". Stacks with [Brawny|Perk+perk_brawny]."
+				"The penalty to [Maximum Fatigue|Concept.MaximumFatigue] and [Initiative|Concept.Initiative] from equipped items in your head, body, mainhand and offhand slots is reduced by " + ::MSU.Text.colorGreen("20%") + ". Stacks with [Brawny|Perk+perk_brawny]."
 			]
 		}]
  	}),
