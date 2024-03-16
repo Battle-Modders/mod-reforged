@@ -56,6 +56,7 @@
 	{
 		local ret = __original(_targetedWithSkill);
 
+		if (!this.isPlacedOnMap() || !this.isAlive() || this.isDying()) return ret;
 		if (this.isDiscovered() == false) return ret;
 		if (this.isHiddenToPlayer()) return ret;
 
