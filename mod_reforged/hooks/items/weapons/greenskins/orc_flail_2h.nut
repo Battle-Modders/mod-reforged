@@ -3,6 +3,7 @@
 	{
 		__original();
 		this.m.Reach = 5;
+		this.m.PoiseDamage = 40;
 	}
 
 	q.onEquip = @() function()

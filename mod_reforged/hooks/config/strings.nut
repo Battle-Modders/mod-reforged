@@ -263,6 +263,22 @@ local vanillaDescriptions = [
 	 	}),
 	},
 	{
+		ID = "perk.mastery.mace",
+		Key = "SpecMace",
+		Description = ::UPD.getDescription({
+			Fluff = "Master maces to beat your opponents into submission, armored or not.",
+			Requirement = "Mace",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Skills build up " + ::MSU.Text.colorGreen("25%") + " less Fatigue.",
+					"[Poise Damage|Concept.PoiseDamage] is increased by 50% while wielding a mace."
+					"The Polemace no longer has a penalty for attacking targets directly adjacent."
+				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.adrenaline",
 		Key = "Adrenaline",
 		Description = ::UPD.getDescription({
@@ -371,6 +387,21 @@ local vanillaDescriptions = [
  			}],
  			Footer = ::MSU.Text.colorRed("This perk ONLY works with melee attacks with a [Base|Concept.BaseAttribute] [Action Point|Concept.ActionPoints] cost of 4 or less that are either [Lunge|Skill+lunge_skill] or have a Base Maximum Range of 1 tile.")
 	 	})
+	},
+	{
+		ID = "perk.hold_out",
+		Key = "HoldOut",	// Current name is 'Resilient'
+		Description = ::UPD.getDescription({
+			Fluff = "Keep it together!",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"[Poise|Concept.Poise] is increased by " + ::MSU.Text.colorGreen("50%"),
+					"Any negative status effect with a finite duration (e.g. Bleeding, Charmed) has its duration reduced to " + ::MSU.Text.colorGreen(1) + " turn.",
+					"Status effects that have their effects grow weaker over several turns (e.g. Goblin Poison) are at their weakest state from the start."
+				]
+ 			}]
+	 	}),
 	},
 	{
 		ID = "perk.indomitable",
@@ -593,7 +624,6 @@ local vanillaDescriptions = [
  					"When attacking a target against whom you have a [Reach Disadvantage|Concept.ReachAdvantage], reduce this disadvantage by " + ::MSU.Text.colorGreen(1) + " if your [Concept.Initiative] is higher than that of your target."
  					"[Brawny|Perk+perk_brawny] does not affect this perk.",
  					"Cannot be picked if you have [Poise|Perk+perk_rf_poise]."
-
  				]
  			}]
 	 	}),
@@ -682,6 +712,7 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
  					"Hits to the head no longer cause critical damage to this character, which also lowers the risk of sustaining debilitating head [injuries|Concept.Injury] significantly."
+ 					"Hits to the head no longer cause this character to take increased Poise Damage."
  					"Grants passive immunity against [Cull|Perk+perk_rf_cull]."
  				]
  			}]

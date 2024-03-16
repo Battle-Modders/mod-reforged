@@ -28,5 +28,6 @@
 
 		baseProperties.IsImmuneToDisarm = true;
 		baseProperties.IsImmuneToRotation = true;
+		baseProperties.PoiseMax = ::Reforged.Config.Poise.Default.Unhold;
 	}
 });

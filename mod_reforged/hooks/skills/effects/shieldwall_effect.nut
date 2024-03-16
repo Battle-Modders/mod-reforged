@@ -1,15 +1,16 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/shieldwall_effect", function(q) {
+	q.m.PoiseMult <- 1.25;
+
 	q.getTooltip = @(__original) function()
 	{
 		local tooltip = __original();
-		tooltip.push(
-			{
-				id = 6,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Immune to the next stun, but will be lost upon receiving the stun"
-			}
-		);
+
+		tooltip.push({
+			id = 8,
+			type = "text",
+			icon = "ui/icons/sturdiness.png",
+			text = ::Reforged.Mod.Tooltips.parseString("[Poise|Concept.Poise] is increased by " + ::MSU.Text.colorizeMult(this.m.PoiseMult))
+		});
 
 		tooltip.push({
 			id = 6,
@@ -19,15 +20,16 @@
 		});
 
 		return tooltip;
-	}		
+	}
 
-	q.onSkillsUpdated <- function()
+	q.onUpdate = @(__original) function( _properties )
 	{
-		local stun = this.getContainer().getSkillByID("effects.stunned");
-		if (stun != null)
+		__original(_properties);
+
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		if (item.isItemType(::Const.Items.ItemType.Shield) && item.getCondition() > 0)
 		{
-			stun.removeSelf();
-			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " shakes off the stun but loses " + this.getName());
+			_properties.PoiseMult *= this.m.PoiseMult;
 		}
 	}
 });
