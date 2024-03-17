@@ -12,7 +12,7 @@ this.pg_rf_leadership <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				[],
+				["perk.rf_inspire"],
 				["perk.rally_the_troops"],
 				["perk.fortified_mind"],
 				[],

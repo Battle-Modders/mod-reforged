@@ -918,6 +918,14 @@
 		IconDisabled = "ui/perks/rf_alert_bw.png",
 	},
 	{
+		ID = "perk.rf_inspire",
+		Script = "scripts/skills/perks/perk_rf_inspire",
+		Name = ::Const.Strings.PerkName.RF_Inspire,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Inspire,
+		Icon = "ui/perks/rf_inspire.png",
+		IconDisabled = "ui/perks/rf_inspire_sw.png",
+	},
+	{
 		ID = "perk.inspiring_presence",
 		Script = "scripts/skills/perks/perk_inspiring_presence",
 		Name = ::Const.Strings.PerkName.InspiringPresence,

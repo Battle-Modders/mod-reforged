@@ -121,6 +121,7 @@
 	RF_HipShooter = "Hip Shooter",
 	RF_HoldSteady = "Hold Steady",
 	RF_Hybridization = "Hybridization",
+	RF_Inspire = "Inspire",
 	InspiringPresence = "Inspiring Presence",
 	RF_InternalHemorrhage = "Internal Hemorrhage",
 	RF_Intimidate = "Intimidate",
@@ -1290,6 +1291,20 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+	RF_Inspire = ::UPD.getDescription({
+		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Once per turn, after you use a skill targeting an adjacent ally, recover " + ::MSU.Text.colorGreen("2") + " [Action Points|Concept.ActionPoints]."
+			]
+		},
+		{
+			Type = ::UPD.EffectType.Active,
+			Description = [
+				"Gain the [Inspire|Skill+rf_inspire_skill] skill that triggers a positive morale check for an ally within 3 tiles with a bonus of 10% of your [Resolve|Concept.Bravery]. The same ally can only be inspired one time per turn."
+			]
+		}]
+	}),
 	InspiringPresence = ::UPD.getDescription({
  		Fluff = "Standing next to the company\'s banner inspires your men to go beyond their limits!",
  		Requirement = "Banner",
