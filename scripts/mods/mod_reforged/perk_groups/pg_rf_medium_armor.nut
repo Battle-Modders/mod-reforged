@@ -11,8 +11,8 @@ this.pg_rf_medium_armor <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				[],
-				["perk.dodge"],
 				["perk.rf_skirmisher"],
+				["perk.dodge"],
 				[],
 				[],
 				["perk.rf_poise"],
