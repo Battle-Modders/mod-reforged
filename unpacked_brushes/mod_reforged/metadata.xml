@@ -164,4 +164,6 @@
 	<sprite id="rf_black_eye_injury_mini" ic = "FF23165B" img="mini\rf_black_eye_injury_mini.png" />
 	<sprite id="rf_dislocated_jaw_injury" ic = "FF23165B" img="..\..\gfx\ui\injury\rf_dislocated_jaw_injury.png" />
 	<sprite id="rf_dislocated_jaw_injury_mini" ic = "FF23165B" img="mini\rf_dislocated_jaw_injury_mini.png" />
+	<sprite id="rf_heatstroke_injury" ic = "FF23165B" img="..\..\gfx\ui\injury\rf_heatstroke_injury.png" />
+	<sprite id="rf_heatstroke_injury_mini" ic = "FF23165B" img="mini\rf_heatstroke_injury_mini.png" />
 </brush>
