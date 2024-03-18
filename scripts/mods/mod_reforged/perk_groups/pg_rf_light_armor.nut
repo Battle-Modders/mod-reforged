@@ -11,8 +11,8 @@ this.pg_rf_light_armor <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				[],
-				["perk.dodge"],
 				["perk.relentless"],
+				["perk.dodge"],
 				[],
 				[],
 				["perk.nimble"],
