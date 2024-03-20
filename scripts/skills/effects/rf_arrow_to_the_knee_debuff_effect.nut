@@ -2,7 +2,6 @@ this.rf_arrow_to_the_knee_debuff_effect <- ::inherit("scripts/skills/skill", {
 	m = {
 		StartingTurnsLeft = 2
 		TurnsLeft = 2
-		DefenseAdd = -5,
 		MovementAPCostAdditional = 2
 	},
 	function create()
@@ -23,26 +22,12 @@ this.rf_arrow_to_the_knee_debuff_effect <- ::inherit("scripts/skills/skill", {
 	{
 		local tooltip = this.skill.getTooltip();
 
-		tooltip.extend([
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorRed(this.m.DefenseAdd) + " Melee Defense"
-			},
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorRed(this.m.DefenseAdd) + " Ranged Defense"
-			},
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/action_points.png",
-				text = ::MSU.Text.colorRed(this.m.MovementAPCostAdditional) + " additional Action Points per tile moved"
-			}
-		]);
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/action_points.png",
+			text = ::MSU.Text.colorRed(this.m.MovementAPCostAdditional) + " additional Action Points per tile moved"
+		});
 
 		return tooltip;
 	}
@@ -54,8 +39,6 @@ this.rf_arrow_to_the_knee_debuff_effect <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.MeleeDefense += this.m.DefenseAdd;
-		_properties.RangedDefense += this.m.DefenseAdd;
 		_properties.MovementAPCostAdditional += this.m.MovementAPCostAdditional;
 	}
 
