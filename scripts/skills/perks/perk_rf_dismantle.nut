@@ -1,5 +1,8 @@
 this.perk_rf_dismantle <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		IsForceEnabled = false,
+		RequiresWeapon = true
+	},
 	function create()
 	{
 		this.m.ID = "perk.rf_dismantle";
@@ -13,12 +16,26 @@ this.perk_rf_dismantle <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
+	function isEnabled()
+	{
+		if (this.m.IsForceEnabled || !this.m.RequiresWeapon)
+			return true;
+
+		if (this.getContainer().getActor().isDisarmed())
+			return false;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Hammer);
+	}
+
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.getArmor(_bodyPart) == 0 || _targetEntity.isAlliedWith(this.getContainer().getActor()) || !_skill.isAttack())
-		{
+		if (!_targetEntity.isAlive() || _damageInflictedArmor == 0 || _targetEntity.getArmor(_bodyPart) == 0 || !_skill.isAttack() || !this.isEnabled() || !this.validateDamageType(_skill) || !this.validateWeaponRequirement(_skill))
 			return;
-		}
+
+		local armorPiece = _bodyPart == ::Const.BodyPart.Head ? _targetEntity.getHeadItem() : _targetEntity.getBodyItem();
+		if (armorPiece == null)
+			return;
 
 		local effect = _targetEntity.getSkills().getSkillByID("effects.rf_dismantled");
 		if (effect == null)
@@ -26,15 +43,27 @@ this.perk_rf_dismantle <- ::inherit("scripts/skills/skill", {
 			effect = ::new("scripts/skills/effects/rf_dismantled_effect");
 		}
 
+		local count = this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded) ? 2 : 1;
+
 		if (_bodyPart == ::Const.BodyPart.Body)
 		{
-			effect.m.BodyHitCount += 1;
+			effect.m.BodyHitCount += count;
 		}
 		else
 		{
-			effect.m.HeadHitCount += 1;
+			effect.m.HeadHitCount += count;
 		}
 
 		_targetEntity.getSkills().add(effect);
+	}
+
+	function validateDamageType( _skill )
+	{
+		return this.m.IsForceEnabled || _skill.getDamageType().contains(::Const.Damage.DamageType.Blunt);
+	}
+
+	function validateWeaponRequirement( _skill )
+	{
+		return _skill.m.IsWeaponSkill || !this.m.RequiresWeapon || this.m.IsForceEnabled;
 	}
 });
