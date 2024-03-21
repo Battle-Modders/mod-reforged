@@ -169,14 +169,14 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 
 		if (_entity.isAlive())
 		{
-			this.getContainer().getSkillByID("actives.throw_net").useForFree(_tag.TargetTile);
+			_tag.Attacker.getSkills().getSkillByID("actives.throw_net").useForFree(_tag.TargetTile);
 			_entity.getSkills().add(::new("scripts/skills/effects/staggered_effect"));
 		}
 	}
 
 	function onHookingComplete( _entity, _tag )
 	{
-		this.getContainer().getSkillByID("actives.throw_net").useForFree(_tag.TargetTile);
+		_tag.Attacker.getSkills().getSkillByID("actives.throw_net").useForFree(_tag.TargetTile);
 		_entity.getSkills().add(::new("scripts/skills/effects/staggered_effect"));
 		_tag.Attacker.setDirty(true);
 	}
