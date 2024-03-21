@@ -4,7 +4,7 @@
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.TwoHanded))
 		{
-			_properties.Reach += 2;
+			_properties.Reach += 1;
 		}
 		else
 		{
