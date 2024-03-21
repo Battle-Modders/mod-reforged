@@ -1,5 +1,7 @@
 this.rf_heraldic_cape_upgrade <- ::inherit("scripts/items/armor_upgrades/armor_upgrade", {
-	m = {},
+	m = {
+		ResolveModifier = 5
+	},
 	function create()
 	{
 		this.armor_upgrade.create();
@@ -37,20 +39,25 @@ this.rf_heraldic_cape_upgrade <- ::inherit("scripts/items/armor_upgrades/armor_u
 			id = 14,
 			type = "text",
 			icon = "ui/icons/armor_body.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Durability"
+			text = ::MSU.Text.colorizeValue(this.m.ConditionModifier) + " Durability"
 		});
 		result.push({
-			id = 14,
+			id = 15,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Resolve"
+			text = ::MSU.Text.colorizeValue(this.m.ResolveModifier) + " Resolve"
 		});
-		result.push({
-			id = 14,
-			type = "text",
-			icon = "ui/icons/fatigue.png",
-			text = "[color=" + this.Const.UI.Color.NegativeValue + "]-1[/color] Maximum Fatigue"
-		});
+
+		if (this.m.StaminaModifier != 0)
+		{
+			result.push({
+				id = 16,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = ::MSU.Text.colorizeValue(-1 * this.m.StaminaModifier) + " Maximum Fatigue"
+			});
+		}
+
 		return result;
 	}
 
@@ -60,14 +67,14 @@ this.rf_heraldic_cape_upgrade <- ::inherit("scripts/items/armor_upgrades/armor_u
 			id = 14,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Resolve"
+			text = ::MSU.Text.colorizeValue(this.m.ResolveModifier) + " Resolve"
 		});
 	}
 
 	function onUpdateProperties( _properties )
 	{
 		this.armor_upgrade.onUpdateProperties(_properties);
-		_properties.Bravery += 5;
+		_properties.Bravery += this.m.ResolveModifier;
 	}
 });
 
