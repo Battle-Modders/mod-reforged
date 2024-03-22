@@ -1,5 +1,7 @@
 this.perk_rf_bear_down <- ::inherit("scripts/skills/skill", {
 	m = {
+		IsForceEnabled = false,
+		RequiresWeapon = true,
 		ValidEffects = [
 			"effects.stunned",
 			"effects.dazed",
@@ -24,12 +26,24 @@ this.perk_rf_bear_down <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
+	function isEnabled()
+	{
+		if (this.m.IsForceEnabled || !this.m.RequiresWeapon)
+			return true;
+
+		if (this.getContainer().getActor().isDisarmed())
+			return false;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Mace);
+	}
+
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_targetEntity != null && _targetEntity.getSkills().getSkillsByFunction((@(s) this.m.ValidEffects.find(s.getID()) != null).bindenv(this)).len() != 0)
 		{
-			_properties.MeleeSkill += 10;
-			_properties.HitChance[::Const.BodyPart.Head] += 20;
+			_properties.HitChance[::Const.BodyPart.Head] += 33;
+			_properties.ThresholdToInflictInjuryMult *= 0.66;
 		}
 	}
 
