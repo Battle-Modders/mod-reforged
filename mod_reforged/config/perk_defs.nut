@@ -430,6 +430,21 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_DiscoveredTalent,
 		Icon = "ui/perks/rf_discovered_talent.png",
 		IconDisabled = "ui/perks/rf_discovered_talent_sw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			if (_player.getPerkPointsSpent() > 0)
+			{
+				_tooltip.push({
+					id = 3,
+					type = "hint",
+					icon = "ui/icons/icon_locked.png",
+					text = "Locked because this character has already spent a perk point"
+				});
+				return false;
+			}
+
+			return true;
+		}
 	},
 	{
 		ID = "perk.rf_survival_instinct",

@@ -173,4 +173,11 @@
 			}
 		}
 	}
+
+	q.setAttributeLevelUpValues = @(__original) function( _v )
+	{
+		__original(_v);
+		local discoveredTalent = this.getSkills().getSkillByID("perk.rf_discovered_talent");
+		if (discoveredTalent != null) discoveredTalent.addStars();
+	}
 });
