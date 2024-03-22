@@ -1007,11 +1007,11 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.OneTimeEffect,
 			Description = [
-				"Gain " + ::MSU.Text.colorGreen(1) + " star in the [talents|Concept.Talent] of all [attributes|Concept.CharacterAttribute].",
-				"Then instantly gain a levelup to increase this character\'s [attributes|Concept.CharacterAttribute] with normal rolls with [talents|Concept.Talent].",
+				"Every time you spend a level-up, gain between " + ::MSU.Text.colorGreen(1) + " and " + ::MSU.Text.colorGreen(3) + " [talent|Concept.Talent] stars in a random attribute in which you have fewer than 3 stars.",
+				"Can only trigger once per attribute and cannot increase the number of [talent|Concept.Talent] stars in an attribute beyond 3.",
 			]
 		}],
-		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
+		Footer = ::MSU.Text.colorRed("This perk cannot be picked after you have spent a perk point elsewhere. This perk cannot be refunded.")
  	}),
 	RF_Dismantle = ::UPD.getDescription({
  		Fluff = "Strip them of their protection while they still wear it!",
