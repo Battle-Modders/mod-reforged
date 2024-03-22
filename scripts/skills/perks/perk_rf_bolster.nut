@@ -1,6 +1,7 @@
 this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false
+		IsForceEnabled = false,
+		RequiresWeapon = true
 	},
 	function create()
 	{
@@ -17,22 +18,19 @@ this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 
 	function isEnabled()
 	{
-		if (this.m.IsForceEnabled) return true;
+		if (this.m.IsForceEnabled || !this.m.RequiresWeapon)
+			return true;
 
-		if (this.getContainer().getActor().isDisarmed()) return false;
+		if (this.getContainer().getActor().isDisarmed())
+			return false;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || weapon.getReach() < 6)
-		{
-			return false;
-		}
-
-		return true;
+		return weapon != null && weapon.getReach() >= 6;
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_targetEntity != null && this.getContainer().getActor().isPlacedOnMap() && !this.getContainer().getActor().isEngagedInMelee() && _skill.isAttack() && !_skill.isRanged() && (this.m.IsForceEnabled || _skill.m.IsWeaponSkill) && this.isEnabled())
+		if (_targetEntity != null && this.getContainer().getActor().isPlacedOnMap() && !this.getContainer().getActor().isEngagedInMelee() && _skill.isAttack() && !_skill.isRanged() && (!this.m.RequiresWeapon || _skill.m.IsWeaponSkill) && this.isEnabled())
 		{
 			local allies = ::Tactical.Entities.getFactionActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true);
 			foreach (ally in allies)
