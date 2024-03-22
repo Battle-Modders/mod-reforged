@@ -40,16 +40,6 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		this.procIfApplicable(_skill, _targetEntity, _hitInfo);
-	}
-
-	function onTargetMissed( _skill, _targetEntity )
-	{
-		this.procIfApplicable(_skill, _targetEntity);
-	}
-
-	function procIfApplicable( _skill, _targetEntity, _hitInfo = null)
-	{
 		if (!_skill.isAttack() || _targetEntity.isAlliedWith(this.getContainer().getActor()) || !this.isEnabled() || (!_skill.m.IsWeaponSkill && !this.m.IsForceEnabled))
 		{
 			return;
