@@ -38,25 +38,25 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.m.RageStacks + "[/color] Damage in Melee"
+				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.m.RageStacks + "%[/color] increased melee damage"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "Only receive [color=" + ::Const.UI.Color.PositiveValue + "]" + (100 - ::Math.min(70, 2 * this.m.RageStacks)) + "%[/color] of incoming damage"
+				text = "Only receive [color=" + ::Const.UI.Color.PositiveValue + "]" + (100 - ::Math.min(70, 3 * this.m.RageStacks)) + "%[/color] of incoming damage"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.m.RageStacks + "[/color] Resolve"
+				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + (this.m.RageStacks * 2) + "[/color] Resolve"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.m.RageStacks + "[/color] Initiative"
+				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + (this.m.RageStacks * 2) + "[/color] Initiative"
 			},
 			{
 				id = 13,
@@ -65,34 +65,6 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + this.m.RageStacks + "[/color] Melee Defense"
 			}
 		]);
-
-		local str = "";
-
-		if (this.m.RageStacks >= 5)
-		{
-			tooltip.push({
-				id = 13,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]33%[/color] chance to resist physical status effects such as Staggered, " + (this.m.RageStacks < 7 ? "Stunned, " : "") + "Distracted, and Withered"
-			});
-
-			str += "[color=" + ::Const.UI.Color.PositiveValue + "]Immune[/color] to being Dazed";
-		}
-		if (this.m.RageStacks >= 7)
-		{
-			str += this.m.RageStacks < 10 ? " or Stunned" : ", Stunned, Knocked Back or Grabbed"
-		}
-
-		if (str != "")
-		{
-			tooltip.push({
-				id = 13,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = str
-			});
-		}
 
 		return tooltip;
 	}
@@ -111,50 +83,28 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.DamageReceivedTotalMult *= ::Math.maxf(0.3, 1.0 - 0.02 * this.m.RageStacks);
-		_properties.Bravery += this.m.RageStacks;		
-		_properties.Initiative += this.m.RageStacks;
+		_properties.DamageReceivedTotalMult *= ::Math.maxf(0.3, 1.0 - 0.03 * this.m.RageStacks);
+		_properties.Bravery += this.m.RageStacks * 2;
+		_properties.Initiative += this.m.RageStacks * 2;
 		_properties.MeleeDefense -= this.m.RageStacks;
-		if (this.m.RageStacks >= 5)
-		{
-			_properties.IsImmuneToDaze = true;
-			_properties.IsResistantToPhysicalStatuses = true;
-		}
-		if (this.m.RageStacks >= 8)
-		{
-			_properties.IsImmuneToStun = true;
-		}
-		if (this.m.RageStacks >= 10)
-		{
-			_properties.IsImmuneToKnockBackAndGrab = true;
-		}
-	}
-
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (!_skill.isRanged())
-		{
-			_properties.DamageRegularMin += this.m.RageStacks;
-			_properties.DamageRegularMax += this.m.RageStacks;
-		}
+		_properties.MeleeDamageMult *= 1.0 + 0.03 * this.m.RageStacks;
 	}
 
 	function onTurnStart()
 	{
-		this.m.RageStacks = ::Math.max(0, this.m.RageStacks - 2);
+		this.m.RageStacks = ::Math.max(0, this.m.RageStacks - 1);
 	}
 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
-		this.addRage(1);
+		this.addRage(2);
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (!_skill.isRanged() && _targetEntity.isAlive() && !_targetEntity.isDying() && _targetEntity.getTile().getDistanceTo(this.getContainer().getActor().getTile()) == 1)
 		{
-			local rage = _skill.getBaseValue("ActionPointCost") > 4 ? 2 : 1;
-			this.addRage(rage);
+			this.addRage(2);
 		}
 	}
 
