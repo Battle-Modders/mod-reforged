@@ -850,12 +850,11 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
  	RF_Bloodlust = ::UPD.getDescription({
  		Fluff = "When surrounded by carnage, you feel revitalized and right at home!",
- 		Requirement = "Melee Attack",
+ 		Requirement = "Cleaver",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"During your [turn|Concept.Turn], every successful attack reduces current [Fatigue|Concept.Fatigue] by " + ::MSU.Text.colorGreen("5%") + " per stack of [Bleeding|Skill+bleeding_effect] on the target and increases [Fatigue Recovery|Concept.FatigueRecovery] by " + ::MSU.Text.colorGreen("+1") + " for one [turn|Concept.Turn] per stack of [Bleeding|Skill+bleeding_effect] on the target.",
-				"[Bleeding|Skill+bleeding_effect] inflicted by the attack, or killing a target, also counts towards the bonus."
+				"After inflicting a fatality, [Resolve|Concept.Bravery] and [Initiative|Concept.Initiative] are increased by " + ::MSU.Text.colorGreen("50%") + " and skills build up " + ::MSU.Text.colorGreen("50%") + " less [Fatigue|Concept.Fatigue]. These effects are reduced by " + ::MSU.Text.colorRed("-25%") + " every [turn|Concept.Turn] until another fatality."
 			]
 		}]
  	}),

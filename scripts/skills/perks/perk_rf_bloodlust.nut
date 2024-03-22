@@ -1,16 +1,15 @@
 this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 	m = {
-		BleedStacksBeforeAttack = 0,
-		FatigueRecoveryStacks = 0,		
-		FatigueReductionPercentage = 5,
-		ActorFatigue = null,
-		DidHit = false
+		IsForceEnabled = false,
+		RequiresWeapon = true,
+		Stacks = 0,
+		MultPerStack = 0.25
 	},
 	function create()
 	{
 		this.m.ID = "perk.rf_bloodlust";
 		this.m.Name = ::Const.Strings.PerkName.RF_Bloodlust;
-		this.m.Description = "This character gains increased vigor when next to bleeding enemies.";
+		this.m.Description = "This character gains increased vigor when inflicting fatalities.";
 		this.m.Icon = "ui/perks/rf_bloodlust.png";
 		this.m.IconMini = "rf_bloodlust_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
@@ -22,82 +21,90 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.FatigueRecoveryStacks == 0;
+		return this.m.Stacks == 0 || !this.isEnabled();
 	}
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
+		local ret = this.skill.getTooltip();
+
+		local mult = 1.0 + (this.m.Stacks * this.m.MultPerStack);
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/resolve.png",
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(mult) + " increased [Resolve|Concept.Bravery]")
+		});
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/initiative.png",
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(mult) + " increased [Initiative|Concept.Initiative]")
+		});
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.m.FatigueRecoveryStacks + "[/color] Fatigue Recovery on the next turn"
+			text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorizeMult(2.0 - mult, {InvertColor = true}) + " less [Fatigue Cost|Concept.Fatigue]")
 		});
-		return tooltip;
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/tooltips/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("These effects are reduced by -" + (this.m.MultPerStack * 100) "% every [turn|Concept.Turn] until another fatality")
+		});
+		return ret;
 	}
 
-	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function isEnabled()
 	{
-		this.m.ActorFatigue = null;
-		this.m.BleedStacksBeforeAttack = 0;
-		this.m.DidHit = false;
+		if (this.m.IsForceEnabled || !this.m.RequiresWeapon)
+			return true;
 
-		if (_skill.isAttack() && !_skill.isRanged() && _targetEntity != null)
+		if (this.getContainer().getActor().isDisarmed())
+			return false;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Cleaver);
+	}
+
+	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )
+	{
+		if (_fatalityType != ::Const.FatalityType.None && _killer != null && _killer.getID() == this.getContainer().getActor().getID() && this.isEnabled())
 		{
-			this.m.BleedStacksBeforeAttack = _targetEntity.getSkills().getAllSkillsByID("effects.bleeding").len();
+			this.m.Stacks = 2;
 		}
-	}
-
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		this.m.DidHit = true;
-	}
-
-	// We need to do it like this in two split functions i.e. onAnySkillExecuted and onTargetKilled:
-	// onAnySkillExecuted is used for counting the bleed stacks applied during the attack e.g. cleave skill's onUse function
-	// onTargetKilled is used separately to handle situations where the attack is delayed e.g. Lunge, and onAnySkillExecuted runs before the target actually gets killed
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		local actor = this.getContainer().getActor();
-		if (!this.m.DidHit || !_skill.isAttack() || _skill.isRanged() || _targetEntity == null || _targetEntity.isAlliedWith(actor) || !::Tactical.TurnSequenceBar.isActiveEntity(actor))
-			return;
-
-		local bleedCount = _targetEntity.isAlive() ? _targetEntity.getSkills().getAllSkillsByID("effects.bleeding").len() : this.m.BleedStacksBeforeAttack;
-
-		this.m.FatigueRecoveryStacks += bleedCount;
-
-		if (this.m.ActorFatigue == null) this.m.ActorFatigue = actor.getFatigue();
-
-		actor.setFatigue(::Math.max(0, this.m.ActorFatigue - this.m.ActorFatigue * (bleedCount * this.m.FatigueReductionPercentage * 0.01)));
-	}
-
-	function onTargetKilled( _targetEntity, _skill )
-	{
-		local actor = this.getContainer().getActor();
-		if (_skill == null || !_skill.isAttack() || _skill.isRanged() || _targetEntity.isAlliedWith(actor) || !::Tactical.TurnSequenceBar.isActiveEntity(actor))
-			return;
-
-		this.m.FatigueRecoveryStacks += 1;
-
-		if (this.m.ActorFatigue == null) this.m.ActorFatigue = actor.getFatigue();
-
-		actor.setFatigue(::Math.max(0, this.m.ActorFatigue - this.m.ActorFatigue * (this.m.FatigueReductionPercentage * 0.01)));
 	}
 
 	function onUpdate( _properties )
 	{
-		_properties.FatigueRecoveryRate += this.m.FatigueRecoveryStacks;
+		if (this.m.Stacks == 0 || !this.isEnabled())
+			return;
+
+		local mult = this.m.MultPerStack * this.m.Stacks;
+		_properties.BraveryMult *= 1.0 + mult;
+		_properties.InitiativeMult *= 1.0 + mult;
 	}
 
-	function onTurnStart()
+	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueRecoveryStacks = 0;
+		if (this.m.Stacks == 0 || !this.isEnabled())
+			return;
+
+		foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
+		{
+			skill.m.FatigueCostMult *= 1.0 - (this.m.MultPerStack * this.m.Stacks);
+		}
+	}
+
+	function onTurnEnd()
+	{
+		this.m.Stacks--;
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.FatigueRecoveryStacks = 0;
+		this.m.Stacks = 0;
 	}
 });
