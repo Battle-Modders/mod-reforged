@@ -188,6 +188,7 @@
 	RF_TripArtist = "Trip Artist",
 	RF_TwoForOne = "Two for One",
 	RF_Unstoppable = "Unstoppable",
+	RF_Vanquisher = "Vanquisher",
 	RF_Retribution = "Retribution",
 	RF_VengefulSpite = "Vengeful Spite",
 	RF_Vigilant = "Vigilant",
@@ -2036,6 +2037,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Attacks at 2 tiles range only grant a stack after two successful hits.",
 				"You lose half of the stacks if you miss an attack or if you get hit.",
 				"Cannot have more than 10 stacks."
+			]
+		}]
+ 	}),
+ 	RF_Vanquisher = ::UPD.getDescription({
+ 		Fluff = "Who\'s next?",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Active,
+			Description = [
+				"Unlocks the [Gain Ground|Skill+rf_gain_ground_skill] skill which, immediately after killing a target, allows you to move into their tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of movement.",
 			]
 		}]
  	}),
