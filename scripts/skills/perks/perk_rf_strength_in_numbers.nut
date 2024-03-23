@@ -73,12 +73,12 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 
 	function getSkillBonus()
 	{
-		return ::Tactical.Entities.getFactionActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true).len() * this.m.SkillBonus;
+		return ::Tactical.Entities.getAlliedActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true).len() * this.m.SkillBonus;
 	}
 
 	function getResolveBonus()
 	{
-		return ::Tactical.Entities.getFactionActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true).len() * this.m.ResolveBonus;
+		return ::Tactical.Entities.getAlliedActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true).len() * this.m.ResolveBonus;
 	}
 
 	function onUpdate( _properties )
