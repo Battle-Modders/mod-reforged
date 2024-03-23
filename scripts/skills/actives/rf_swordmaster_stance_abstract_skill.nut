@@ -46,7 +46,7 @@ this.rf_swordmaster_stance_abstract_skill <- ::inherit("scripts/skills/actives/r
 	function toggleOn()
 	{
 		this.m.IsOn = true;
-		foreach (skill in this.getContainer().getSkillsByFunction(@(skill) ::MSU.isKindOf(skill, "rf_swordmaster_stance_abstract")))
+		foreach (skill in this.getContainer().getSkillsByFunction(@(skill) ::MSU.isKindOf(skill, "rf_swordmaster_stance_abstract_skill")))
 		{
 			if (skill != this) skill.toggleOff();
 		}
