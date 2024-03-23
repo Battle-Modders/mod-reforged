@@ -22,12 +22,12 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 	{
 		local tooltip = this.rf_swordmaster_stance_abstract_skill.getTooltip();
 
-		local skillsString = this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded) ? "[color=" + ::Const.UI.Color.PositiveValue + "]Cudgel[/color] and [color=" + ::Const.UI.Color.PositiveValue + "]Strike Down[/color]" : "[color=" + ::Const.UI.Color.PositiveValue + "]Bash[/color] and [color=" + ::Const.UI.Color.PositiveValue + "]Knock Out[/color]";
+		local skillsString = this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded) ? "[Cudgel|Skill+cudgel_skill] and [Strike Down|Skill+strike_down_skill]" : "[Bash|Skill+bash] and [Knock Out|Skill+knock_out]";
 		tooltip.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png"
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Removes[/color] all skills from the currently equipped sword and adds the " + skillsString + " skills"
+			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Removes[/color] all skills from the currently equipped sword and adds the " + ::Reforged.Mod.Tooltips.parseString(skillsString) + " skills"
 		});
 
 		tooltip.push({
@@ -41,7 +41,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			id = 10,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = "You will lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s Reach"
+			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s [Reach|Concept.Reach]")
 		});
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
@@ -81,7 +81,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			id = 10,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = "Lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s Reach"
+			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s [Reach|Concept.Reach]")
 		});
 
 		tooltip.push({
