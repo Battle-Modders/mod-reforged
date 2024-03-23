@@ -111,6 +111,9 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 
 	function toggleOn()
 	{
+		if (this.m.IsOn)
+			return;
+
 		this.rf_swordmaster_stance_abstract_skill.toggleOn();
 		local weapon = this.getContainer().getActor().getMainhandItem();
 
@@ -153,24 +156,25 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 
 	function onUnequip( _item )
 	{
-		if (_item.getSlotType() == ::Const.SlotType.Mainhand && this.m.IsMaceWeaponTypeAdded)
-		{
-			_item.m.WeaponType -= ::Const.Items.WeaponType.Mace;
-			this.m.IsMaceWeaponTypeAdded = false;
-		}
+		if (this.m.IsOn && _item.getSlotType() == ::Const.ItemSlot.Mainhand)
+			this.toggleOff();
 	}
 
 	function toggleOff()
 	{
+		if (!this.m.IsOn)
+			return;
+
 		this.rf_swordmaster_stance_abstract_skill.toggleOff();
-
 		this.getContainer().removeByStackByID("perk.rf_concussive_strikes");
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null)
+		if (this.m.IsMaceWeaponTypeAdded)
 		{
-			this.getContainer().getActor().getItems().unequip(weapon);
-			this.getContainer().getActor().getItems().equip(weapon);
+			local weapon = this.getContainer().getActor().getMainhandItem();
+			if (weapon != null)
+			{
+				weapon.m.WeaponType -= ::Const.Items.WeaponType.Mace;
+				this.m.IsMaceWeaponTypeAdded = false;
+			}
 		}
 	}
 
