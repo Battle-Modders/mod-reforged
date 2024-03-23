@@ -14,7 +14,7 @@ this.pg_rf_spear <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				[],
 				[],
 				["perk.mastery.spear"],
-				["perk.rf_two_for_one"],
+				[],
 				["perk.rf_through_the_gaps"],
 				["perk.rf_king_of_all_weapons"]
 			]
