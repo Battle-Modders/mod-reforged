@@ -212,6 +212,21 @@ local vanillaDescriptions = [
 	 	}),
 	},
 	{
+		ID = "perk.bullseye",
+		Key = "Bullseye",
+		Description = ::UPD.getDescription({
+			Fluff = "Nailed it!",
+			Requirement = "Ranged Weapon",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"The penalty to hitchance when shooting at a target you have no clear line of shooting to is reduced from " + ::MSU.Text.colorRed("75%") + " to " + ::MSU.Text.colorRed("50%") + ".",
+					"Against targets who are not in cover, an additional " + ::MSU.Text.colorGreen("+25%") + " of damage ignores armor."
+				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.rotation",
 		Key = "Rotation",
 		Description = ::UPD.getDescription({
