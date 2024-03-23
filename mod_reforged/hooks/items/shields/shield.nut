@@ -20,7 +20,7 @@
 			id = 8,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The defense values drop linearly as you build [Fatigue|Concept.Fatigue] up to " + ::MSU.Text.colorRed((maxReduction * 100) + "%") + " at maximum [Fatigue|Concept.Fatigue]")
+			text = ::Reforged.Mod.Tooltips.parseString("Except when using [Shieldwall|Skill+shieldwall], the defense values drop linearly as you build [Fatigue|Concept.Fatigue] up to " + ::MSU.Text.colorRed((maxReduction * 100) + "%") + " at maximum [Fatigue|Concept.Fatigue]")
 		});
 
 		ret.push({
@@ -35,7 +35,7 @@
 
 	q.getMeleeDefense = @(__original) function()
 	{
-		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
+		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()) || this.getContainer().getActor().getSkills().hasSkill("effects.shieldwall"))
 			return __original();
 
 		local actor = this.getContainer().getActor();
@@ -45,7 +45,7 @@
 
 	q.getRangedDefense = @(__original) function()
 	{
-		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
+		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()) || this.getContainer().getActor().getSkills().hasSkill("effects.shieldwall"))
 			return __original();
 
 		local actor = this.getContainer().getActor();
