@@ -288,14 +288,6 @@
 		IconDisabled = "ui/perks/rf_wear_them_down_bw.png",
 	},
 	{
-		ID = "perk.rf_fluid_weapon",
-		Script = "scripts/skills/perks/perk_rf_fluid_weapon",
-		Name = ::Const.Strings.PerkName.RF_FluidWeapon,
-		Tooltip = ::Const.Strings.PerkDescription.RF_FluidWeapon,
-		Icon = "ui/perks/rf_fluid_weapon.png",
-		IconDisabled = "ui/perks/rf_fluid_weapon_bw.png",
-	},
-	{
 		ID = "perk.rf_sweeping_strikes",
 		Script = "scripts/skills/perks/perk_rf_sweeping_strikes",
 		Name = ::Const.Strings.PerkName.RF_SweepingStrikes,

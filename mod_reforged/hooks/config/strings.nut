@@ -109,7 +109,6 @@
 	RF_FeralRage = "Feral Rage",
 	RF_FlailSpinner = "Flail Spinner",
 	RF_FlamingArrows = "Flaming Arrows",
-	RF_FluidWeapon = "Fluid Weapon",
 	RF_FollowUp = "Follow Up",
 	RF_FormidableApproach = "Formidable Approach",
 	RF_FreshAndFurious = "Fresh and Furious",
@@ -1188,17 +1187,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"A successful [Aimed Shot|Skill+aimed_shot] will now light the target tile on fire for 2 rounds and trigger an additional morale check for the target and adjacent enemies."
-			]
-		}]
- 	}),
-	RF_FluidWeapon = ::UPD.getDescription({
- 		Fluff = "A well-balanced sword is like an extension of yourself!",
- 		Requirement = "Sword",
- 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"[Initiative|Concept.Initiative] is increased by " + ::MSU.Text.colorGreen("35%") + " of the equipped sword\'s armor ignore damage percentage.",
-				"The [Fatigue|Concept.Fatigue] Cost of weapon skills is reduced by " + ::MSU.Text.colorGreen("20%") + " of the equipped sword\'s armor effectiveness."
 			]
 		}]
  	}),
