@@ -15,45 +15,85 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_death_dealer", function(o) {
-			o.m.IsSerialized = false;
-			o.m.IsRefundable = false;
-		}));
-		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_shield_expert", function(o) {
-			o.m.IsSerialized = false;
-			o.m.IsRefundable = false;
-		}));
-		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_formidable_approach", function(o) {
-			o.m.IsSerialized = false;
-			o.m.IsRefundable = false;
-		}));
-		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_duelist", function(o) {
-			o.m.IsSerialized = false;
-			o.m.IsRefundable = false;
-		}));
-		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_weapon_master", function(o) {
-			o.m.IsSerialized = false;
-			o.m.IsRefundable = false;
-		}));
+		local chosenPerkGroupID;
 
-		if (this.m.IsNew)
+		local actor = this.getContainer().getActor();
+		if (actor.getFlags().has("RF_ProfessionalPerkGroupID"))
 		{
-			local perkTree = this.getContainer().getActor().getPerkTree();
+			chosenPerkGroupID = actor.getFlags().get("RF_ProfessionalPerkGroupID");
+		}
+		else
+		{
+			local perkGroups = [
+				"pg.rf_axe",
+				"pg.rf_cleaver",
+				"pg.rf_dagger",
+				"pg.rf_hammer",
+				"pg.rf_mace",
+				"pg.rf_polearm",
+				"pg.rf_spear",
+				"pg.rf_sword"
+			];
 
-			perkTree.addPerk("perk.rf_death_dealer", 2);
-			perkTree.addPerk("perk.shield_expert", 3);
-			perkTree.addPerk("perk.rf_formidable_approach", 3);
-			perkTree.addPerk("perk.duelist", 6);
-			perkTree.addPerk("perk.rf_weapon_master", 7);
+			local options = [];
+			foreach (pg in perkGroups)
+			{
+				if (actor.getPerkTree().hasPerkGroup(pg))
+				{
+					options.push(pg);
+				}
+			}
+
+			if (options.len() == 0)
+				return;
+
+			chosenPerkGroupID = ::MSU.Array.rand(options);
+
+			actor.getFlags().set("RF_ProfessionalPerkGroupID", chosenPerkGroupID);
+		}
+
+		local perkIDs = [];
+		foreach (row in ::DynamicPerks.PerkGroups.findById(chosenPerkGroupID).getTree())
+		{
+			foreach (perkID in row)
+			{
+				perkIDs.push(perkID);
+			}
+		}
+
+		if (perkIDs.len() > 2)
+			perkIDs = perkIDs.slice(0, 2);
+
+		foreach (id in perkIDs)
+		{
+			this.getContainer().add(::MSU.new(actor.getPerkTree().getPerk(id).Script, function(o) {
+				o.m.IsSerialized = false;
+				o.m.IsRefundable = false;
+			}));
 		}
 	}
 
 	function onRemoved()
 	{
-		this.getContainer().removeByStackByID("perk.rf_death_dealer", false);
-		this.getContainer().removeByStackByID("perk.shield_expert", false);
-		this.getContainer().removeByStackByID("perk.rf_formidable_approach", false);
-		this.getContainer().removeByStackByID("perk.duelist", false);
-		this.getContainer().removeByStackByID("perk.rf_weapon_master", false);
+		local actor = this.getContainer().getActor();
+		local chosenPerkGroupID = actor.getFlags().get("RF_ProfessionalPerkGroupID");
+		actor.getFlags().remove("RF_ProfessionalPerkGroupID");
+
+		local perkIDs = [];
+		foreach (row in ::DynamicPerks.PerkGroups.findById(chosenPerkGroupID).getTree())
+		{
+			foreach (perkID in row)
+			{
+				perkIDs.push(perkID);
+			}
+		}
+
+		if (perkIDs.len() > 2)
+			perkIDs = perkIDs.slice(0, 2);
+
+		foreach (id in perkIDs)
+		{
+			this.getContainer().removeByStackByID(id, false);
+		}
 	}
 });
