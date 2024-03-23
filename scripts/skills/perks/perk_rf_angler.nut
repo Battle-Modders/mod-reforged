@@ -24,6 +24,12 @@ this.perk_rf_angler <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onAdded()
+	{
+		local offhand = this.getContainer().getActor().getOffhandItem();
+		if (offhand != null) this.onEquip(offhand);
+	}
+
 	function onEquip( _item )
 	{
 		if (_item.getSlotType() == ::Const.ItemSlot.Offhand && this.getContainer().hasSkill("actives.throw_net"))
