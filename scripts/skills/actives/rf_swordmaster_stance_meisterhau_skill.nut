@@ -39,6 +39,22 @@ this.rf_swordmaster_stance_meisterhau_skill <- ::inherit("scripts/skills/actives
 		return tooltip;
 	}
 
+	function toggleOn()
+	{
+		this.rf_swordmaster_stance_abstract_skill.toggleOn();
+		this.getContainer().add(::new("scripts/skills/actives/rf_swordmaster_tackle_skill"));
+		this.getContainer().add(::new("scripts/skills/actives/rf_swordmaster_kick_skill"));
+		this.getContainer().add(::new("scripts/skills/actives/rf_swordmaster_push_through_skill"));
+	}
+
+	function toggleOff()
+	{
+		this.rf_swordmaster_stance_abstract_skill.toggleOff();
+		this.getContainer().removeByID("actives.rf_swordmaster_tackle");
+		this.getContainer().removeByID("actives.rf_swordmaster_kick");
+		this.getContainer().removeByID("actives.rf_swordmaster_push_through");
+	}
+
 	function onCombatStarted()
 	{
 		this.rf_swordmaster_stance_abstract_skill.onCombatStarted();
