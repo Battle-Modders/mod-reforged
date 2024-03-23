@@ -70,12 +70,20 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 		}
 	}
 
+	function onUnequip( _item )
+	{
+		if (this.m.IsOn && _item.getSlotType() == ::Const.ItemSlot.Mainhand)
+			this.toggleOff();
+	}
+
 	function toggleOn()
 	{
+		if (this.m.IsOn)
+			return;
+
 		this.rf_swordmaster_stance_abstract_skill.toggleOn();
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		local skills = weapon.getSkills();
-		foreach (skill in skills)
+		foreach (skill in weapon.getSkills())
 		{
 			weapon.removeSkill(skill);
 		}
@@ -84,17 +92,6 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 		}));
 		weapon.addSkill(::new("scripts/skills/actives/puncture"));
-	}
-
-	function toggleOff()
-	{
-		this.rf_swordmaster_stance_abstract_skill.toggleOff();
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null)
-		{
-			this.getContainer().getActor().getItems().unequip(weapon);
-			this.getContainer().getActor().getItems().equip(weapon);
-		}
 	}
 
 	function onCombatFinished()
