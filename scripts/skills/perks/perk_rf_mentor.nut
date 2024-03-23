@@ -67,6 +67,9 @@ this.perk_rf_mentor <- ::inherit("scripts/skills/skill", {
 	function onStudentDeath( _fatalityType )
 	{
 		local actor = this.getContainer().getActor();
+		if (actor.getMoraleState() == ::Const.MoraleState.Fleeing || actor.getCurrentProperties().IsStunned)
+			return;
+
 		local adrenaline = ::new("scripts/skills/effects/adrenaline_effect");
 		if (!actor.isTurnStarted() && !actor.isTurnDone())
 		{
