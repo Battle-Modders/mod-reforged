@@ -24,6 +24,20 @@ this.perk_rf_cull <- ::inherit("scripts/skills/skill", {
 		return this.getContainer().getActor().isPlayerControlled();
 	}
 
+	function onAdded()
+	{
+		local equippedItem = this.getContainer().getActor().getMainhandItem();
+		if (equippedItem != null) this.onEquip(equippedItem);
+	}
+
+	function onEquip( _item )
+	{
+		if (_item.isItemType(::Const.Items.ItemType.MeleeWeapon) && _item.isWeaponType(::Const.Items.WeaponType.Axe))
+		{
+			_item.addSkill(::new("scripts/skills/actives/rf_between_the_eyes_skill"));
+		}
+	}
+
 	function isEnabled()
 	{
 		if (this.m.IsForceEnabled)
