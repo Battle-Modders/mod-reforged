@@ -18,6 +18,13 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Grants immunity against [Hook Shield|Skill+rf_hook_shield_skill]")
 		});
 
+		tooltip.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Disables the penalty to shield defenses from built [Fatigue|Concept.Fatigue]")
+		});
+
 		return tooltip;
 	}
 
