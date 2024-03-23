@@ -47,12 +47,6 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 				perkTree.addPerk("perk.rf_realized_potential", 1);
 				this.getContainer().add(::new("scripts/skills/perks/perk_rf_realized_potential"));
 
-				if (this.getContainer().hasSkill("perk.rf_trauma_survivor"))
-				{
-					actor.m.PerkPoints++;
-					actor.m.PerkPointsSpent--;
-				}
-
 				local b = actor.getBaseProperties();
 				b.DailyWageMult *= 2;
 				b.MeleeSkill += this.m.StatBoost;
