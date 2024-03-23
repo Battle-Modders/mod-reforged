@@ -562,6 +562,23 @@ local vanillaDescriptions = [
 	 	}),
 	},
 	{
+		ID = "perk.mastery.mace",
+		Key = "SpecMace",
+		Description = ::UPD.getDescription({
+			Fluff = "Master maces to beat your opponents into submission, armored or not.",
+			Requirement = "Mace",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+					"Gain the [Bear Down|Perk+perk_rf_bear_down] perk."
+					"[Knock Out|Skill+knock_out], [Knock Over|Skill+knock_over_skill] and [Strike Down|Skill+strike_down_skill] have a " + ::MSU.Text.colorGreen("100%") + " chance to [stun|Skill+stunned_effect] the target if not immune.",
+					"The Polemace no longer has a penalty for attacking targets directly adjacent."
+				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.mastery.polearm",
 		Key = "SpecPolearm",
 		Description = ::UPD.getDescription({
