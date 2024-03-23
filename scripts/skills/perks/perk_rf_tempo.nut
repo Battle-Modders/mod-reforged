@@ -1,8 +1,10 @@
 this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 	m = {
 		BonusInitiative = 15,
+		InitiativeForTurnOrderMult = 1.5,
 		Stacks = 0,
 		IsPrimed = false,
+		APRecovery = [], // Is populated during onTurnStart using resetAPRecovery function
 		SkillCount = 0,
 		LastTargetID = 0
 	},
@@ -22,19 +24,32 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.Stacks == 0;
+		return this.m.Stacks == 0 && this.m.APRecovery.len() == 0;
 	}
 
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
 
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/initiative.png",
-			text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.getBonus() + "[/color] Initiative"
-		});
+		if (this.m.Stacks != 0)
+		{
+			tooltip.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getBonus()) + " [Initiative|Concept.Initiative]")
+			});
+		}
+
+		if (this.m.APRecovery.len() != 0)
+		{
+			tooltip.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/action_points.png",
+				text = ::Reforged.Mod.Tooltips.parseString("The next attack, if successful, against a target that acts after you in this [round|Concept.Round] will recover " + ::MSU.Text.colorGreen(this.m.APRecovery[0]) + " [Action Points|Concept.ActionPoints]")
+			});
+		}
 
 		if (this.m.IsPrimed)
 		{
@@ -42,21 +57,11 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("This bonus has been carried over from the previous turn and will expire after using a skill or upon waiting or ending this turn")
+				text = ::MSU.Text.colorRed("The Initiative bonus has been carried over from the previous turn and will expire after using a skill or upon waiting or ending this turn")
 			});
 		}
 
 		return tooltip;
-	}
-
-	function onAdded()
-	{
-		this.getContainer().add(::new("scripts/skills/effects/rf_fluid_weapon_effect"));
-	}
-
-	function onRemoved()
-	{
-		this.getContainer().removeByID("effects.rf_fluid_weapon");
 	}
 
 	function getBonus()
@@ -90,7 +95,13 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		this.gainStackIfApplicable(_skill, _targetEntity);		
+		if (this.m.APRecovery.len() != 0 && _skill.isAttack() && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()) && !_targetEntity.isTurnDone() && !_targetEntity.isTurnStarted())
+		{
+			local actor = this.getContainer().getActor();
+			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + this.m.APRecovery.remove(0)));
+		}
+
+		this.gainStackIfApplicable(_skill, _targetEntity);
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
@@ -101,10 +112,12 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		_properties.Initiative += this.getBonus();
+		_properties.InitiativeForTurnOrderMult *= this.m.InitiativeForTurnOrderMult;
 	}
 
 	function onTurnStart()
 	{
+		this.resetAPRecovery();
 		if (this.m.Stacks > 0)
 		{
 			this.m.IsPrimed = true;
@@ -113,6 +126,7 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 	function onTurnEnd()
 	{
+		this.m.APRecovery.clear();
 		if (this.m.IsPrimed)
 		{
 			this.m.Stacks = 0;
@@ -122,6 +136,7 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 	function onWaitTurn()
 	{
+		this.m.APRecovery.clear();
 		if (this.m.IsPrimed)
 		{
 			this.m.Stacks = 0;
@@ -140,5 +155,11 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 		this.skill.onCombatFinished();
 		this.m.Stacks = 0;
 		this.m.IsPrimed = false;
+		this.m.APRecover.clear();
+	}
+
+	function resetAPRecovery()
+	{
+		this.m.APRecovery = [2, 1];
 	}
 });

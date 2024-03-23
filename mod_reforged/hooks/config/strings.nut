@@ -109,7 +109,6 @@
 	RF_FeralRage = "Feral Rage",
 	RF_FlailSpinner = "Flail Spinner",
 	RF_FlamingArrows = "Flaming Arrows",
-	RF_FluidWeapon = "Fluid Weapon",
 	RF_FollowUp = "Follow Up",
 	RF_FormidableApproach = "Formidable Approach",
 	RF_FreshAndFurious = "Fresh and Furious",
@@ -1166,17 +1165,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
-	RF_FluidWeapon = ::UPD.getDescription({
- 		Fluff = "A well-balanced sword is like an extension of yourself!",
- 		Requirement = "Sword",
- 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"[Initiative|Concept.Initiative] is increased by " + ::MSU.Text.colorGreen("35%") + " of the equipped sword\'s armor ignore damage percentage.",
-				"The [Fatigue|Concept.Fatigue] Cost of weapon skills is reduced by " + ::MSU.Text.colorGreen("20%") + " of the equipped sword\'s armor effectiveness."
-			]
-		}]
- 	}),
 	RF_FollowUp = ::UPD.getDescription({
  		Fluff = "\'When your buddy\'s hittin\' \'em, you hit \'em too!\'",
  		Requirement = "Melee Attack",
@@ -1898,18 +1886,14 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Tempo = ::UPD.getDescription({
  		Fluff = "By keeping ahead of your opponent, you set the terms of engagement!",
+ 		Requirement = "Sword",
  		Effects = [
 	 		{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Every attack, hit or miss, against a target who acts after you in the current round increases your [Initiative|Concept.Initiative] by " + ::MSU.Text.colorGreen("+15") + ".",
-					"The bonus lasts over into your next [turn|Concept.Turn] but only until the first skill used or waiting that [turn|Concept.Turn]."
-				]
-			},
-			{
-				Type = ::UPD.EffectType.Passive,
-				Description = [
-					"When wielding a sword, gain the [Fluid Weapon|NullEntitySkill+rf_fluid_weapon_effect] effect."
+					"Your [Initiative|Concept.Initiative] is considered " + ::MSU.Text.colorGreen("50%") + " higher for calculating your [turn order|Concept.Turn].",
+					"Every hit or miss against a target who acts after you in the current round increases your [Initiative|Concept.Initiative] by " + ::MSU.Text.colorGreen("+15") + ". This bonus lasts over into your next [turn|Concept.Turn] but only until the first skill used or waiting that [turn|Concept.Turn].",
+					"The first two hits against opponents who act after you in the current [round|Concept.Round] recover " + ::MSU.Text.colorGreen("2") + " and " + ::MSU.Text.colorGreen("1") + " [Action Points|Concept.ActionPoints] respectively. Misses increment the counter, but do not recover any [Action Points|Concept.ActionPoints].",
 				]
 			}
 		]
