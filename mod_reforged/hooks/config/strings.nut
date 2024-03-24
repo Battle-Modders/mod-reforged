@@ -1015,10 +1015,11 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Dismantle = ::UPD.getDescription({
  		Fluff = "Strip them of their protection while they still wear it!",
+ 		Requirement = "Hammer and Blunt Damage",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Every successful hit applies the [Dismantled Armor|Skill+rf_dismantled_effect] effect which causes the target to receive a stacking " + ::MSU.Text.colorRed("+15%") + " additional damage ignoring armor from all sources for the remainder of the combat."
+				"Every successful hit that does some damage to an armor piece applies the [Dismantled Armor|Skill+rf_dismantled_effect] effect which causes the target to receive a stacking " + ::MSU.Text.colorGreen("15%") + " increased damage ignoring armor from all sources for the remainder of the combat. This is increased to " + ::MSU.Text.colorGreen("30%") + " per hit for two-handed hammers."
 			]
 		}]
  	}),
@@ -2048,12 +2049,11 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_WeaponMaster = ::UPD.getDescription({
  		Fluff = "You\'ve learned well that weapons are like tools, tailor-made to accomplish specific tasks. Therefore, you carry a small arsenal, ready to handle any situation!",
- 		Requirement = "One-Handed Melee or Throwing Weapon",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Grants the bonuses of the weapon mastery perks for all One-Handed Melee and Throwing weapons whose perk groups this character has access to.",
-				"While a valid weapon is equipped, grants a [key perk|Misc.WeaponMasterPerks] from the weapon\'s perk group as long as this character has that perk in the perk tree."
+				"When using a weapon whose complete perk group you have access to, if you have the first, second or third [perk|Concept.Perk] unlocked in another weapon\'s perk group, gain the corresponding [perk|Concept.Perk] in your equipped weapon\'s perk group.",
+				"For this [perk|Concept.Perk] the weapon type of hybrid weapons is the alphabetically first one."
 			]
 		}]
  	}),
