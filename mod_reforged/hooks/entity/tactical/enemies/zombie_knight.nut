@@ -67,6 +67,15 @@
     	}
 	}
 
+	q.onResurrected = @(__original) function( _info)
+	{
+		__original(_info);
+		if (!_info.IsHeadAttached)
+		{
+			this.getSkills().add(::new("scripts/skills/perks/perk_rf_headless"));
+		}
+	}
+
 	q.makeMiniboss = @(__original) function()
 	{
 		local ret = __original();

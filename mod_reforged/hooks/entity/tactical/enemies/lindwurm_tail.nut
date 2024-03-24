@@ -65,6 +65,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;
+		this.getSkills().add(::new("scripts/skills/perks/rf_perk_headless"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 		if (::Reforged.Config.IsLegendaryDifficulty)
     	{

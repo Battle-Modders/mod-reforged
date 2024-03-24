@@ -29,6 +29,7 @@
 
 		//Reforged
 		this.m.BaseProperties.IsAffectedByReach = false;
+		this.getSkills().add(::new("scripts/skills/perks/rf_perk_headless"));
 		this.getSkills().update()
 	}
 });

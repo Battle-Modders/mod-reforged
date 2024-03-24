@@ -37,6 +37,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall + 1;
+		this.getSkills().add(::new("scripts/skills/perks/rf_perk_headless"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_concussive_strikes", function(o) {
     		o.m.IsForceEnabled = true;
 			o.m.IsForceMace = true;
