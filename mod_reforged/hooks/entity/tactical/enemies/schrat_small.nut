@@ -38,6 +38,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall;
+		this.getSkills().add(::new("scripts/skills/perks/rf_perk_headless"));
 		this.m.Skills.add(this.new("scripts/skills/actives/rf_schrat_small_root_skill"));
 	}
 });

@@ -34,6 +34,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge;
+		this.getSkills().add(::new("scripts/skills/perks/rf_perk_headless"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 	}
 });
