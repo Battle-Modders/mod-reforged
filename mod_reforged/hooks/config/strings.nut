@@ -2003,11 +2003,11 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_TargetPractice = ::UPD.getDescription({
  		Fluff = "Time in training has allowed you to come up with an efficient way to organize your ammo, while increasing your accuracy!",
+ 		Requirement = "Bow",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Swapping quivers or bags of ammo never costs any [Action Points|Concept.ActionPoints].",
-				"Ranged attacks gain " + ::MSU.Text.colorGreen("+10%") + " chance to hit against enemies wielding ranged weapons or enemies with none of their allies adjacent to them."
+				"Ranged attacks gain " + ::MSU.Text.colorGreen("+10%") + " chance to hit against enemies wielding ranged weapons or enemies not in cover."
 			]
 		}]
  	}),
