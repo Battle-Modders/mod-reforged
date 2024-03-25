@@ -4,7 +4,6 @@ this.perk_rf_entrenched <- ::inherit("scripts/skills/skill", {
 		BonusPerStack = 2,
 		MaxStacks = 5,
 		Stacks = 0,
-		IsSpent = false
 	},
 	function create()
 	{
@@ -57,17 +56,6 @@ this.perk_rf_entrenched <- ::inherit("scripts/skills/skill", {
 			}
 		]);
 
-		if (!this.m.IsSpent)
-		{
-			tooltip.push(
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Can swap between two ranged weapons this turn at no Action Point cost"
-			});
-		}
-
 		return tooltip;
 	}
 
@@ -115,45 +103,8 @@ this.perk_rf_entrenched <- ::inherit("scripts/skills/skill", {
 		}		
 	}
 
-	function getItemActionCost( _items )
-	{
-		if (this.m.IsSpent || this.m.Stacks == 0 || !this.isEnabled())
-		{
-			return null;
-		}
-
-		local rangedCount = 0;
-
-		foreach (item in _items)
-		{
-			if (item != null && item.getSlotType() == ::Const.ItemSlot.Mainhand && item.isItemType(::Const.Items.ItemType.RangedWeapon))
-			{
-				rangedCount++;
-			}
-		}
-
-		if (rangedCount == 2)
-		{
-			return 0;
-		}
-
-		return null;
-	}
-
-	function onPayForItemAction( _skill, _items )
-	{
-		if (_skill != null && _skill.getID() == "perk.rf_target_practice")
-		{
-			return;
-		}
-
-		this.m.IsSpent = true;
-	}
-
 	function onTurnStart()
 	{
-		this.m.IsSpent = false;
-
 		if (this.isEnabled())
 		{
 			this.m.Stacks = ::Math.min(this.m.MaxStacks, this.m.Stacks + 1);
