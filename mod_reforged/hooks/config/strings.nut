@@ -1181,7 +1181,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When standing adjacent to an ally wielding a melee weapon who is not engaged in melee, gain " + ::MSU.Text.colorGreen("+7") + " [Ranged Skill|Concept.RangeSkill], [Ranged Defense|Concept.RangeDefense], and [Resolve|Concept.Bravery]. The bonus increases by " + ::MSU.Text.colorGreen("+2") + " every [turn|Concept.Turn] up to a maximum of " + ::MSU.Text.colorGreen("+15") + " as long as you continue to start your [turn|Concept.Turn] adjacent to any ally wielding a melee weapon who is not engaged in melee.",
-				"While entrenched, swapping between two ranged weapons becomes a free action once per [turn|Concept.Turn]."
 			]
 		}]
  	}),
