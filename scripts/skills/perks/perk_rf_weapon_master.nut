@@ -1,51 +1,18 @@
 this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 	m = {
-		MasteryIDs = [
-			"perk.mastery.axe",
-			"perk.mastery.cleaver",
-			"perk.mastery.dagger",
-			"perk.mastery.flail",
-			"perk.mastery.hammer",
-			"perk.mastery.mace",
-			"perk.mastery.spear",
-			"perk.mastery.sword",
-			"perk.mastery.throwing"
-		]
+		PerksAdded = []
 	},
 	function create()
 	{
 		this.m.ID = "perk.rf_weapon_master";
 		this.m.Name = ::Const.Strings.PerkName.RF_WeaponMaster;
-		this.m.Description = "This character is a master of One-Handed weapons."
+		this.m.Description = "This character is skilled in the use of various weapons."
 		this.m.Icon = "ui/perks/rf_weapon_master.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
-	}
-
-	function isEnabled()
-	{
-		local weapon = this.getContainer().getActor().getMainhandItem();
-
-		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.OneHanded) ||
-			(!weapon.isItemType(::Const.Items.ItemType.MeleeWeapon) && !weapon.isWeaponType(::Const.Items.WeaponType.Throwing)))
-		{
-			return false;
-		}
-
-		foreach (skill in this.m.MasteryIDs)
-		{
-			if (this.getContainer().hasSkill(skill)) return true;
-		}
-
-		foreach (skill in this.getContainer().m.SkillsToAdd)
-		{
-			if (!skill.isGarbage() && this.m.MasteryIDs.find(skill.getID()) != null) return true;
-		}
-
-		return false;
 	}
 
 	function onAdded()
@@ -64,114 +31,89 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onUpdate( _properties )
-	{
-		if (!this.isEnabled() || ::MSU.isKindOf(this.getContainer().getActor(), "player"))
-			return;
-
-		_properties.IsSpecializedInAxes = true;
-		_properties.IsSpecializedInCleavers = true;
-		_properties.IsSpecializedInDaggers = true;
-		_properties.IsSpecializedInFlails = true;
-		_properties.IsSpecializedInHammers = true;
-		_properties.IsSpecializedInMaces = true;
-		_properties.IsSpecializedInSpears = true;
-		_properties.IsSpecializedInSwords = true;
-		_properties.IsSpecializedInThrowing = true;
-	}
-
-	function getWeaponSpecificPerkID( _weaponType )
-	{
-		switch (_weaponType)
-		{
-			case ::Const.Items.WeaponType.Axe: return "perk.rf_cull";
-			case ::Const.Items.WeaponType.Cleaver: return "perk.rf_bloodlust";
-			case ::Const.Items.WeaponType.Dagger: return "perk.rf_swift_stabs";
-			case ::Const.Items.WeaponType.Flail: return "perk.rf_whirling_death";
-			case ::Const.Items.WeaponType.Hammer: return "perk.rf_dent_armor";
-			case ::Const.Items.WeaponType.Mace: return "perk.rf_bone_breaker";
-			case ::Const.Items.WeaponType.Spear: return "perk.rf_two_for_one";
-			case ::Const.Items.WeaponType.Sword: return "perk.rf_en_garde";
-			case ::Const.Items.WeaponType.Throwing: return "perk.rf_nailed_it";
-		}
-
-		return "";
-	}
-
 	function onEquip( _item )
 	{
-		local actor = this.getContainer().getActor();
-		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand || !this.isEnabled())
+		if (!_item.isItemType(::Const.Items.ItemType.Weapon))
 			return;
 
-		if (::MSU.isKindOf(actor, "player"))
-		{
-			local perkTree = actor.getPerkTree();
-			foreach (id in this.m.MasteryIDs)
-			{
-				if (perkTree.hasPerk(id))
-				{
-					local script = "scripts/skills/perks/" + ::String.replace(id, ".", "_");
-					this.getContainer().add(::MSU.new(script, function(o) {
-						o.m.IsSerialized = false;
-						o.m.IsRefundable = false;
-					}));
-				}
-			}
+		local hasFirstPerk = false;
+		local hasSecondPerk = false;
+		local hasThirdPerk = false;
 
-			foreach (weaponType in ::Const.Items.WeaponType)
+		foreach (groupID in ::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon").getGroups())
+		{
+			foreach (i, row in ::DynamicPerks.PerkGroups.findById(groupID).getTree())
 			{
-				local perkID = this.getWeaponSpecificPerkID(weaponType);
-				if (_item.isWeaponType(weaponType) && perkTree.hasPerk(perkID))
-				{
-					this.getContainer().add(::MSU.new("scripts/skills/perks/" + ::String.replace(perkID, ".", "_"), function(o) {
-						o.m.IsSerialized = false;
-						o.m.IsRefundable = false;
-					}))
-				}
+				if (row.len() == 0)
+					continue;
+
+				local perkID = row[0];
+				if (!this.getContainer().hasSkill(perkID))
+						continue;
+
+				if (i < 3)
+					hasFirstPerk = true;
+				else if (i == 3)
+					hasSecondPerk = true;
+				else
+					hasThirdPerk = true;
 			}
+		}
+
+		if (!hasFirstPerk && !hasSecondPerk && !hasThirdPerk)
+			return;
+
+		local pg;
+		local perkTree = this.getContainer().getActor().getPerkTree();
+
+		if (_item.isItemType(::Const.Items.ItemType.RangedWeapon))
+		{
+			if (_item.isWeaponType(::Const.Items.WeaponType.Bow) && perkTree.hasPerkGroup("pg.rf_bow"))					pg = "pg.rf_bow";
+			else if (_item.isWeaponType(::Const.Items.WeaponType.Crossbow) && perkTree.hasPerkGroup("pg.rf_crossbow"))	pg = "pg.rf_crossbow";
+			else if (_item.isWeaponType(::Const.Items.WeaponType.Firearm) && perkTree.hasPerkGroup("pg.rf_crossbow"))	pg = "pg.rf_crossbow";
 		}
 		else
 		{
-			foreach (weaponType in ::Const.Items.WeaponType)
-			{
-				local perkID = this.getWeaponSpecificPerkID(weaponType);
-				if (_item.isWeaponType(weaponType))
-				{
-					this.getContainer().add(::MSU.new("scripts/skills/perks/" + ::String.replace(perkID, ".", "_"), function(o) {
-						o.m.IsSerialized = false;
-						o.m.IsRefundable = false;
-					}))
-				}
-			}
+			if (_item.isWeaponType(::Const.Items.WeaponType.Axe) && perkTree.hasPerkGroup("pg.rf_axe")) 				pg = "pg.rf_axe";
+			else if (_item.isWeaponType(::Const.Items.WeaponType.Cleaver) && perkTree.hasPerkGroup("pg.rf_cleaver"))	pg = "pg.rf_cleaver";
+			else if (_item.isWeaponType(::Const.Items.WeaponType.Dagger) && perkTree.hasPerkGroup("pg.rf_dagger"))		pg = "pg.rf_dagger";
+			else if (_item.isWeaponType(::Const.Items.WeaponType.Flail) && perkTree.hasPerkGroup("pg.rf_flail"))		pg = "pg.rf_flail";
+			else if (_item.isWeaponType(::Const.Items.WeaponType.Hammer) && perkTree.hasPerkGroup("pg.rf_hammer"))		pg = "pg.rf_hammer";
+			else if (_item.isWeaponType(::Const.Items.WeaponType.Mace) && perkTree.hasPerkGroup("pg.rf_mace"))			pg = "pg.rf_mace";
+			else if (_item.isWeaponType(::Const.Items.WeaponType.Polearm) && perkTree.hasPerkGroup("pg.rf_polearm"))	pg = "pg.rf_polearm";
+			else if (_item.isWeaponType(::Const.Items.WeaponType.Spear) && perkTree.hasPerkGroup("pg.rf_spear"))		pg = "pg.rf_spear";
+			else if (_item.isWeaponType(::Const.Items.WeaponType.Sword) && perkTree.hasPerkGroup("pg.rf_sword"))		pg = "pg.rf_sword";
+		}
+
+		if (pg == null)
+			return;
+
+		foreach (i, row in ::DynamicPerks.PerkGroups.findById(pg).getTree())
+		{
+			if (row.len() == 0 || (i < 3 && !hasFirstPerk) || (i == 3 && !hasSecondPerk) || (i > 3 && !hasThirdPerk))
+				continue;
+
+			local perkID = row[0];
+
+			this.m.PerksAdded.push(perkID);
+			this.getContainer().add(::MSU.new(::Const.Perks.findById(perkID).Script, function(o) {
+				o.m.IsSerialized = false;
+				o.m.IsRefundable = false;
+			}));
 		}
 	}
 
 	function onUnequip( _item )
 	{
-		local actor = this.getContainer().getActor();
-		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand || !this.isEnabled())
+		if (!_item.isItemType(::Const.Items.ItemType.Weapon))
 			return;
 
-		if (::MSU.isKindOf(actor, "player"))
+		foreach (perkID in this.m.PerksAdded)
 		{
-			local perkTree = actor.getPerkTree();
-			foreach (id in this.m.MasteryIDs)
-			{
-				if (perkTree.hasPerk(id)) this.getContainer().removeByStackByID(id, false);
-			}
-			foreach (weaponType in ::Const.Items.WeaponType)
-			{
-				local perkID = this.getWeaponSpecificPerkID(weaponType);
-				if (perkTree.hasPerk(perkID)) this.getContainer().removeByStackByID(perkID, false);
-			}
+			this.getContainer().removeByStackByID(perkID, false);
 		}
-		else
-		{
-			foreach (weaponType in ::Const.Items.WeaponType)
-			{
-				this.getContainer().removeByStackByID(this.getWeaponSpecificPerkID(weaponType), false);
-			}
-		}
+
+		this.m.PerksAdded.clear();
 	}
 });
+

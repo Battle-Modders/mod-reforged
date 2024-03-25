@@ -2048,12 +2048,10 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_WeaponMaster = ::UPD.getDescription({
  		Fluff = "You\'ve learned well that weapons are like tools, tailor-made to accomplish specific tasks. Therefore, you carry a small arsenal, ready to handle any situation!",
- 		Requirement = "One-Handed Melee or Throwing Weapon",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Grants the bonuses of the weapon mastery perks for all One-Handed Melee and Throwing weapons whose perk groups this character has access to.",
-				"While a valid weapon is equipped, grants a [key perk|Misc.WeaponMasterPerks] from the weapon\'s perk group as long as this character has that perk in the perk tree."
+				"When you equip a weapon whose perk group you have access to, gain the first, second, or third perk in that weapon\'s perk group if you have the corresponding perk in another weaopon\'s perk group, regardless of its tier.",
 			]
 		}]
  	}),
