@@ -15,7 +15,7 @@ this.pg_rf_cleaver <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				[],
 				["perk.mastery.cleaver"],
 				["perk.rf_swordlike"],
-				["perk.rf_bloodbath"],
+				[],
 				["perk.rf_bloodlust"]
 			]
 		};
