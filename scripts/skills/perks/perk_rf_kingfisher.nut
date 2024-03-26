@@ -2,6 +2,7 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsForceEnabled = false,
 		Chance = 0,
+		NetEffect = null,
 		IsSpent = false
 	},
 	function create()
@@ -21,7 +22,7 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 	{
 		if (this.m.IsForceEnabled) return true;
 
-		return this.getContainer().hasSkill("actives.throw_net");
+		return this.getContainer().hasSkill("actives.throw_net") != null; // Ignores hidden skills so while this IsSpent, it will be false
 	}
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
@@ -35,82 +36,92 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_targetEntity.isAlive())
+		if (!_targetEntity.isAlive() || ::Math.rand(1, 100) > this.m.Chance || !this.getContainer().getActor().isPlacedOnMap() || !_targetEntity.isPlacedOnMap())
 			return;
 
-		if (::Math.rand(1, 100) <= this.m.Chance)
+		local throwNetSkill = this.getContainer().getSkillByID("actives.throw_net");
+		if (!throwNetSkill.onVerifyTarget(this.getContainer().getActor().getTile(), _targetEntity.getTile()))
+			return;
+
+		local netItemScript = ::IO.scriptFilenameByHash(this.getContainer().getActor().getOffhandItem().ClassNameHash);
+
+		throwNetSkill.useForFree(_targetEntity.getTile());
+
+		local replacementNet = ::new(netItemScript)
+
+		this.getContainer().getActor().getItems().equip(replacementNet); // the original net is unequipped during use of throw net skill, so we equip a "new" net of the same type
+		foreach (skill in replacementNet.m.SkillPtrs)
 		{
-			this.setSpent(true);
-
-			local self = this;
-			_targetEntity.getSkills().add(::MSU.new("scripts/skills/effects/net_effect", function(o) {
-				o.m.KingfisherPerk <- ::MSU.asWeakTableRef(self);
-				o.onRemoved <- function()
-				{
-					if (!::MSU.isNull(this.m.KingfisherPerk))
-					{
-						this.m.KingfisherPerk.setSpent(false);
-					}
-				}
-				o.onDeath <- function( _fatalityType )
-				{
-					this.onRemoved();
-				}
-			}));
-
-			_targetEntity.getSkills().add(::MSU.new("scripts/skills/actives/break_free_skill", function(o) {
-				o.m.Icon = "skills/active_74.png";
-				o.m.IconDisabled = "skills/active_74_sw.png";
-				o.m.Overlay = "active_74";
-				o.setChanceBonus(999);
-				o.m.SoundOnUse = [
-					"sounds/combat/break_free_net_01.wav",
-					"sounds/combat/break_free_net_02.wav",
-					"sounds/combat/break_free_net_03.wav"
-				];
-			}));
-
-			local isReinforced = this.getContainer().getSkillByID("actives.throw_net").m.IsReinforced;
-			local effect = ::Tactical.spawnSpriteEffect(isReinforced ? "bust_net_02" : "bust_net", this.createColor("#ffffff"), _targetEntity.getTile(), 0, 10, 1.0, _targetEntity.getSprite("status_rooted").Scale, 100, 100, 0);
-			local flip = !_targetEntity.isAlliedWithPlayer();
-			effect.setHorizontalFlipping(flip);
-			::Time.scheduleEvent(::TimeUnit.Real, 200, this.onNetSpawn.bindenv(this), {
-				TargetEntity = _targetEntity,
-				IsReinforced = isReinforced
-			});
+			// the skill isn't added to the skill_container yet, because we are within the onTargetHit function, so it goes to SkillsToAdd
+			// so we can't get it via container.getSkillByID, instead we find it by iterating over the skills of the item
+			if (skill.getID() == "actives.throw_net")
+			{
+				skill.m.IsHidden = true;
+				break;
+			}
 		}
+
+		local netEffect = _targetEntity.getSkills().getSkillByID("effects.net");
+		netEffect.m.KingfisherPerk <- ::MSU.asWeakTableRef(this);
+		local onRemoved = netEffect.onRemoved;
+		netEffect.onRemoved = function()
+		{
+			onRemoved();
+			if (!::MSU.isNull(this.m.KingfisherPerk))
+			{
+				this.m.KingfisherPerk.setSpent(false);
+			}
+		}
+		local onDeath = netEffect.onDeath;
+		netEffect.onDeath = function( _fatalityType )
+		{
+			onDeath();
+			this.onRemoved();
+		}
+
+		this.m.NetEffect = ::MSU.asWeakTableRef(netEffect);
+
+		_targetEntity.getSkills().getSkillByID("actives.break_free").setChanceBonus(999);
+
+		this.setSpent(true);
 	}
 
-	// Make it impossible to swap the offhand item when IsSpent is true
-	function getItemActionCost( _items )
+	function onUpdate( _properties )
 	{
-		if (!this.m.IsSpent) return null;
+		if (!this.m.IsSpent && this.isEnabled())
+			_properties.Reach += 2;
+	}
 
-		foreach (item in _items)
+	function onMovementFinished( _tile )
+	{
+		// Lose the net if you end up at any tile more than 1 distance away from the target you have trapped
+		if (this.m.IsSpent && !::MSU.isNull(this.m.NetEffect) && this.m.NetEffect.getContainer().getActor().getTile().getDistanceTo(_tile) > 1)
 		{
-			if (item != null && item.getSlotType() == ::Const.ItemSlot.Offhand)
-				return 99;
+			this.m.NetEffect.m.KingfisherPerk = null;
+			this.setSpent(false);
+			this.getContainer().getActor().getItems().unequip(this.getContainer().getActor().getOffhandItem());
 		}
 	}
 
 	function setSpent( _isSpent )
 	{
 		this.m.IsSpent = _isSpent;
+
+		if (!_isSpent)
+			this.m.NetEffect = null;
+
+		local net = this.getContainer().getActor().getOffhandItem();
+		if (net != null)
+			net.m.IsChangeableInBattle = !_isSpent;
+
 		local throwNetSkill = this.getContainer().getSkillByID("actives.throw_net");
 		if (throwNetSkill != null)
-		{
 			throwNetSkill.m.IsHidden = _isSpent;
-		}
 	}
 
-	function onNetSpawn( _data )
+	function onCombatFinished()
 	{
-		local rooted = _data.TargetEntity.getSprite("status_rooted");
-		rooted.setBrush(_data.IsReinforced ? "bust_net_02" : "bust_net");
-		rooted.Visible = true;
-		local rooted_back = _data.TargetEntity.getSprite("status_rooted_back");
-		rooted_back.setBrush(_data.IsReinforced ? "bust_net_back_02" : "bust_net_back");
-		rooted_back.Visible = true;
-		_data.TargetEntity.setDirty(true);
+		this.skill.onCombatFinished();
+		this.setSpent(false);
 	}
 });
