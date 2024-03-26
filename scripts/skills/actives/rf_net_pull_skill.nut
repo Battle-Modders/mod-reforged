@@ -51,6 +51,12 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 			icon = "ui/icons/special.png",
 			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to net on a hit"
 		});
+		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger on a hit"
+		});
 		return ret;
 	}
 
@@ -103,7 +109,7 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 
 	function onVerifyTarget( _originTile, _targetTile )
 	{
-		return this.skill.onVerifyTarget(_originTile, _targetTile) && !_targetTile.getEntity().getCurrentProperties().IsRooted && _targetTile.getEntity().getCurrentProperties().IsImmuneToKnockBackAndGrab && this.getPulledToTile(_originTile, _targetTile) != null;
+		return this.skill.onVerifyTarget(_originTile, _targetTile) && !_targetTile.getEntity().getCurrentProperties().IsRooted && !_targetTile.getEntity().getCurrentProperties().IsImmuneToKnockBackAndGrab && this.getPulledToTile(_originTile, _targetTile) != null;
 	}
 
 	function onUse( _user, _targetTile )
@@ -162,12 +168,16 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 		_entity.onDamageReceived(_tag.Attacker, _tag.Skill, _tag.HitInfo);
 
 		if (_entity.isAlive())
-			this.getContainer().getSkillByID("actives.throw_net").onUse(_tag.Attacker, _tag.TargetTile);
+		{
+			_tag.Attacker.getSkills().getSkillByID("actives.throw_net").useForFree(_tag.TargetTile);
+			_entity.getSkills().add(::new("scripts/skills/effects/staggered_effect"));
+		}
 	}
 
 	function onHookingComplete( _entity, _tag )
 	{
-		this.getContainer().getSkillByID("actives.throw_net").onUse(_tag.Attacker, _tag.TargetTile);
+		_tag.Attacker.getSkills().getSkillByID("actives.throw_net").useForFree(_tag.TargetTile);
+		_entity.getSkills().add(::new("scripts/skills/effects/staggered_effect"));
 		_tag.Attacker.setDirty(true);
 	}
 });
