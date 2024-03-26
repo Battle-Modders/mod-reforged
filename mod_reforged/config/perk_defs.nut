@@ -16,6 +16,14 @@
 		IconDisabled = "ui/perks/rf_cull_bw.png",
 	},
 	{
+		ID = "perk.rf_decisive",
+		Script = "scripts/skills/perks/perk_rf_decisive",
+		Name = ::Const.Strings.PerkName.RF_Decisive,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Decisive,
+		Icon = "ui/perks/rf_entrenched.png",	// TODO
+		IconDisabled = "ui/perks/rf_entrenched_bw.png",	// TODO
+	},
+	{
 		ID = "perk.rf_flaming_arrows",
 		Script = "scripts/skills/perks/perk_rf_flaming_arrows",
 		Name = ::Const.Strings.PerkName.RF_FlamingArrows,

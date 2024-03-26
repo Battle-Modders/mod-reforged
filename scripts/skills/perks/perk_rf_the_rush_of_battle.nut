@@ -38,7 +38,7 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 		tooltip.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/melee_skill.png",
+			icon = "ui/icons/fatigue.png",
 			text = "Skills build up [color=" + ::Const.UI.Color.PositiveValue + "]" + bonus + "%[/color] less Fatigue"
 		});
 

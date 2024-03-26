@@ -91,6 +91,7 @@
 	RF_ConcussiveStrikes = "Concussive Strikes",
 	RF_Cull = "Cull",
 	RF_Decanus = "Decanus",
+	RF_Decisive = "Decisive",
 	RF_DeepCuts = "Deep Cuts",
 	RF_DeepImpact = "Deep Impact",
 	RF_DentArmor = "Dent Armor",
@@ -966,6 +967,19 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
  	}),
+	RF_Decisive = ::UPD.getDescription({
+		Fluff = "There is no time to wait!",
+		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Gain a stack of decisiveness whenever you end your turn without having used \'Wait\', up to a maximum of 3.",
+				::MSU.Text.colorGreen("+15") + " Resolve while you have atleast 1 stack.",
+				::MSU.Text.colorGreen("-15%") + " Fatigue Cost for skills while you have atleast 2 stacks.",
+				::MSU.Text.colorGreen("+15%") + " Damage while you have atleast 3 stacks.",
+				"You lose all stacks if you use \'Wait\'",
+			]
+		}]
+	}),
 	RF_DeepCuts = ::UPD.getDescription({
  		Fluff = "You know the best whetstone techniques to get your cutting edge wickedly sharp!",
  		Requirement = "Cutting Damage",
