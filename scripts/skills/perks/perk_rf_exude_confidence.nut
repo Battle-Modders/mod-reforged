@@ -16,7 +16,7 @@ this.perk_rf_exude_confidence <- ::inherit("scripts/skills/skill", {
 	function onTurnStart()
 	{
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || actor.getMoraleState() == ::Const.MoraleState.Fleeing || actor.getMoraleState() == ::Const.MoraleState.Ignore)
+		if (!actor.isPlacedOnMap() || actor.getMoraleState() < ::Const.MoraleState.Steady || actor.getMoraleState() == ::Const.MoraleState.Ignore)
 		{
 			return;
 		}

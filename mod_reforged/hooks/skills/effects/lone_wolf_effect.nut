@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/lone_wolf_effect", function(q) {
-	// The vanilla function but change distance to <=2 tiles instead of <=3
+	// The vanilla function but change distance to <=1 tiles instead of <=3
 	q.onUpdate = @() function( _properties )
 	{
 		if (!this.getContainer().getActor().isPlacedOnMap())
@@ -20,7 +20,7 @@
 				continue;
 			}
 
-			if (ally.getTile().getDistanceTo(myTile) <= 2)
+			if (ally.getTile().getDistanceTo(myTile) <= 1)
 			{
 				isAlone = false;
 				break;

@@ -196,20 +196,6 @@
 
 local vanillaDescriptions = [
 	{
-		ID = "perk.backstabber",
-		Key = "Backstabber",
-		Description = ::UPD.getDescription({
-			Fluff = "Honor doesn\'t win you fights, stabbing the enemy where it hurts does.",
-	 		Effects = [{
- 				Type = ::UPD.EffectType.Passive,
- 				Description = [
-					"The bonus to hitchance in melee is doubled to [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] for each ally surrounding and distracting your target.",
-					"Daggers do " + ::MSU.Text.colorGreen("5%") + " increased damage per character [surrounding|Concept.Surrounding] the target."
-				]
- 			}]
-	 	}),
-	},
-	{
 		ID = "perk.battle_forged",
 		Key = "BattleForged",
 		Description = ::UPD.getDescription({
@@ -220,6 +206,21 @@ local vanillaDescriptions = [
 					"Armor damage taken is reduced by a percentage equal to [color=" + ::Const.UI.Color.PositiveValue + "]5%[/color] of the current total armor value of both body and head armor.",
 					"When attacking a target against whom you have a [Reach Disadvantage|Concept.ReachDisadvantage], reduce this disadvantage by 1 for every 300 current combined head and body armor durability you have."
 					"Does not affect damage from mental attacks or status effects."
+				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.bullseye",
+		Key = "Bullseye",
+		Description = ::UPD.getDescription({
+			Fluff = "Nailed it!",
+			Requirement = "Ranged Weapon",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"The penalty to hitchance when shooting at a target you have no clear line of shooting to is reduced from " + ::MSU.Text.colorRed("75%") + " to " + ::MSU.Text.colorRed("50%") + ".",
+					"Against targets who are not in cover, an additional " + ::MSU.Text.colorGreen("+25%") + " of damage ignores armor."
 				]
  			}]
 	 	}),
@@ -365,7 +366,7 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
  					"Additional damage ignores armor. This bonus is " + ::MSU.Text.colorGreen("25%") + " for one-handed weapons, " + ::MSU.Text.colorGreen("35%") + " for one-handed weapon with shield, and " + ::MSU.Text.colorGreen("15%") + " for two-handed weapons.",
- 					"Gain " + ::MSU.Text.colorGreen("+2") + " [Reach|Concept.Reach] when using two-handed weapons.",
+ 					"Gain " + ::MSU.Text.colorGreen("+1") + " [Reach|Concept.Reach] when using two-handed weapons.",
  					"Shields now also negate the [Reach Advantage|Concept.ReachAdvantage] of the target when attacking."
  				]
  			}],
@@ -401,7 +402,7 @@ local vanillaDescriptions = [
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"With no ally within 2 tiles of distance, gain a " + ::MSU.Text.colorGreen("+15%") + " bonus to [Melee Skill|Concept.MeleeSkill], [Ranged Skill|Concept.RangeSkill], [Melee Defense|Concept.MeleeDefense], [Ranged Defense|Concept.RangeDefense], and [Resolve|Concept.Bravery]."
+ 					"With no adjacent ally of your faction, gain a " + ::MSU.Text.colorGreen("+15%") + " bonus to [Melee Skill|Concept.MeleeSkill], [Ranged Skill|Concept.RangeSkill], [Melee Defense|Concept.MeleeDefense], [Ranged Defense|Concept.RangeDefense], and [Resolve|Concept.Bravery]."
  				]
  			}]
 	 	}),
@@ -460,6 +461,23 @@ local vanillaDescriptions = [
 	 	})
 	},
 	{
+		ID = "perk.mastery.cleaver",
+		Key = "SpecCleaver",
+		Description = ::UPD.getDescription({
+			Fluff = "Master cleavers to inflict gruesome wounds.",
+			Requirement = "Cleaver",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+					"Gain the [Bloodlust|Perk+perk_rf_bloodlust] perk.",
+					"Attacks from cleavers apply an additional stack of [Bleeding|Skill+bleeding_effect].",
+					"[Disarm|Skill+disarm_skill] only has half the penalty to hit."
+				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.mastery.crossbow",
 		Key = "SpecCrossbow",
 		Description = ::UPD.getDescription({
@@ -488,9 +506,27 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
 					"Skills build up [color=" + ::Const.UI.Color.NegativeValue + "]25%[/color] less Fatigue.",
+					"Gain the [From all Sides|Perk+rf_from_all_sides] perk.",
 					"Pound ignores an additional [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] of armor on head hits.",
 					"Thresh gains [color=" + ::Const.UI.Color.PositiveValue + "]+5%[/color] chance to hit.",
 					"Poleflails no longer have a penalty for attacking targets directly adjacent."
+				]
+ 			}]
+	 	}),
+	},
+	{
+		ID = "perk.mastery.mace",
+		Key = "SpecMace",
+		Description = ::UPD.getDescription({
+			Fluff = "Master maces to beat your opponents into submission, armored or not.",
+			Requirement = "Mace",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+					"Gain the [Bear Down|Perk+perk_rf_bear_down] perk."
+					"[Knock Out|Skill+knock_out], [Knock Over|Skill+knock_over_skill] and [Strike Down|Skill+strike_down_skill] have a " + ::MSU.Text.colorGreen("100%") + " chance to [stun|Skill+stunned_effect] the target if not immune.",
+					"The Polemace no longer has a penalty for attacking targets directly adjacent."
 				]
  			}]
 	 	}),
@@ -505,6 +541,7 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
  					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+ 					"Gain the [Bolster|Perk+perk_rf_bolster] perk."
  					"All skills with two-handed weapons, with a range of 2 tiles, having an [Action Point|Concept.ActionPoints] cost of " + ::MSU.Text.colorRed("6") + " have their [Action Point|Concept.ActionPoints] cost reduced to " + ::MSU.Text.colorRed("5") + ".",
  					"Polearms no longer have a penalty for attacking targets directly adjacent."
  				]
@@ -603,7 +640,6 @@ local vanillaDescriptions = [
 		Key = "Overwhelm",
 		Description = ::UPD.getDescription({
 	 		Fluff = "Learn to take advantage of your high [Initiative|Concept.Initiative] and prevent the enemy from attacking effectively by overwhelming them with your attacks!",
-	 		Requirement = "Melee Attack",
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
@@ -910,7 +946,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorGreen("2%") + " of your combined head and body armor durability as [Resolve|Concept.Bravery].",
+				"Gain " + ::MSU.Text.colorGreen("5%") + " of your combined head and body armor durability as [Resolve|Concept.Bravery].",
 				"This bonus is doubled against negative morale checks except mental attacks."
 			]
 		}]
@@ -1051,7 +1087,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When standing adjacent to an ally wielding a melee weapon who is not engaged in melee, gain " + ::MSU.Text.colorGreen("+7") + " [Ranged Skill|Concept.RangeSkill], [Ranged Defense|Concept.RangeDefense], and [Resolve|Concept.Bravery]. The bonus increases by " + ::MSU.Text.colorGreen("+2") + " every [turn|Concept.Turn] up to a maximum of " + ::MSU.Text.colorGreen("+15") + " as long as you continue to start your [turn|Concept.Turn] adjacent to any ally wielding a melee weapon who is not engaged in melee.",
-				"While entrenched, swapping between two ranged weapons becomes a free action once per [turn|Concept.Turn]."
 			]
 		}]
  	}),
@@ -1070,7 +1105,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"At the start of your [turn|Concept.Turn], improve the Morale state of adjacent allies by " + ::MSU.Text.colorGreen(1) + " as long as their Morale state is lower than yours."
+				"At the start of your [turn|Concept.Turn], if you have at least Steady morale, improve the Morale state of adjacent allies by " + ::MSU.Text.colorGreen(1) + " as long as their Morale state is lower than yours."
 			]
 		}]
  	}),
@@ -1097,7 +1132,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"Always start battles at Confident [morale|Concept.Morale].",
-					"Morale checks can never drop your [morale|Concept.Morale] below Confident for the first " + ::MSU.Text.colorGreen(5) + " rounds of battle (the entire battle if you have the [Determined|Skill+determined_trait] trait) and below Steady after that."
+					::MSU.Text.colorGreen("50%") + " increased [Resolve|Concept.Resolve] against negative morale checks."
 				]
 			},
 			{
@@ -1213,9 +1248,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Successful hits from Flails progressively reduce the target's [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by a stacking " + ::MSU.Text.colorRed(-3) + " for one [turn|Concept.Turn].",
+				"Successful hits from Flails progressively reduce the target's [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by a stacking " + ::MSU.Text.colorRed(-5) + " for one [turn|Concept.Turn].",
 				"The effect is doubled if the attacks hit the head.",
-				"Missed attacks reduce the target\'s defenses by " + ::MSU.Text.colorRed(-1) + " instead."
 			]
 		}]
  	}),
@@ -1325,7 +1359,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Attacks have an additional " + ::MSU.Text.colorGreen("25%") + " chance to hit the head."
+				"Attacks have an additional " + ::MSU.Text.colorGreen("25%") + " chance to hit the head.",
+				"Headshots from firearms now apply the [Shellshocked|Skill+shellshocked_effect] effect."
 			]
 		}]
  	}),
@@ -1616,7 +1651,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain the [Rebuke|Skill+rf_rebuke_effect] effect during combat which grants a " + ::MSU.Text.colorGreen("25%") + " chance to perform an attack against an adjacent opponent who misses a melee attack against you. This attack costs no [Action Points|Concept.ActionPoints] but builds [Fatigue|Concept.Fatigue] and can only trigger if you have enough [Fatigue|Concept.Fatigue] remaining.",
+				"Gain the [Rebuke|Skill+rf_rebuke_effect] effect during combat which grants a " + ::MSU.Text.colorGreen("25%") + " chance to perform an attack against an adjacent opponent who misses a melee attack against you. This attack costs no [Action Points|Concept.ActionPoints] but can only trigger if you have enough [Fatigue|Concept.Fatigue] to afford it. A resolve check is triggered for you, and if successful, the attack builds no [Fatigue|Concept.Fatigue].",
 				"When wielding a shield, the chance is increased by an additional " + ::MSU.Text.colorGreen("+15%") + " and the attack does not build or require any [Fatigue|Concept.Fatigue]."
 			]
 		}]
@@ -1934,7 +1969,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Whenever you are attacked, hit or miss, gain a stacking " + ::MSU.Text.colorGreen("+5") + " [Initiative|Concept.Initiative] and " + ::MSU.Text.colorGreen("+5%") + " reduction to the [Fatigue|Concept.Fatigue] Cost of skills during your next [turn|Concept.Turn], up to a maximum of " + ::MSU.Text.colorGreen("+25") + " and " + ::MSU.Text.colorGreen("+25%") + " respectively."
+				"Whenever you attack or are attacked, hit or miss, gain a stacking " + ::MSU.Text.colorGreen("+5") + " [Initiative|Concept.Initiative] and " + ::MSU.Text.colorGreen("+5%") + " reduction to the [Fatigue|Concept.Fatigue] Cost of skills during your next [turn|Concept.Turn], up to a maximum of " + ::MSU.Text.colorGreen("+25") + " and " + ::MSU.Text.colorGreen("+25%") + " respectively."
 			]
 		}]
  	}),

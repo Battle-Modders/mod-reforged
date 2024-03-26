@@ -3,7 +3,7 @@
 	{
 		__original();
 		this.m.Reach = 5;
-		this.m.RegularDamage = 50;
+		this.m.RegularDamage = 60;
 		this.m.RegularDamageMax = 75;
 		this.m.ArmorDamageMult = 0.8;
 		this.m.StaminaModifier = -8;

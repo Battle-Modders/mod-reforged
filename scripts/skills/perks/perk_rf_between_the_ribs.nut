@@ -1,7 +1,7 @@
 this.perk_rf_between_the_ribs <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsForceEnabled = false,
-		DamageBonusPerSurroundCount = 0.05
+		DamageBonusPerSurroundCount = 0.1
 	},
 	function create()
 	{
@@ -38,7 +38,9 @@ this.perk_rf_between_the_ribs <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill.isAttack() && _targetEntity != null && this.isEnabled() && !_targetEntity.getCurrentProperties().IsImmuneToSurrounding && !_targetEntity.isAlliedWith(this.getContainer().getActor()))
 		{
-			_properties.DamageTotalMult *= 1.0 + (this.m.DamageBonusPerSurroundCount * _targetEntity.getSurroundedCount());
+			local mult = 1.0 + (this.m.DamageBonusPerSurroundCount * _targetEntity.getSurroundedCount());
+			_properties.DamageRegularMult *= mult;
+			_properties.DamageDirectMult *= mult;
 		}
 
 	}
