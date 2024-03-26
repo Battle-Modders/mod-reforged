@@ -1772,7 +1772,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When using a non-fencing sword, the [Action Point|Concept.ActionPoints] costs of sword skills is reduced by " + ::MSU.Text.colorGreen(1) + ".",
+				"Gain additional [Initiative|Concept.Initiative] equal to the armor ignore percentage of your equipped sword.",
+				"When using a non-fencing sword, the [Action Point|Concept.ActionPoints] costs of non-AOE skills is reduced by " + ::MSU.Text.colorGreen(1) + " and these skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue].",
 				"Allows [Kata Step|Skill+rf_kata_step_skill] to be usable even while holding something, e.g. a shield, in your offhand.",
 				"[Kata Step|Skill+rf_kata_step_skill] costs " + ::MSU.Text.colorGreen(2) + " fewer [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorGreen(2) + " less [Fatigue|Concept.Fatigue], both down to a minimum of 0."
 			]
@@ -1808,12 +1809,6 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Fluff = "There\'s a fine line between bravery and stupidity.",
  		Requirement = "Two-Handed Sword"
  		Effects = [
-	 		{
-				Type = ::UPD.EffectType.Passive,
-				Description = [
-					"Each single-target attack additionally does an attack on a random adjacent enemy to the target with " + ::MSU.Text.colorRed("50%") + " reduced damage."
-				]
-			},
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
@@ -1825,20 +1820,20 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_SwordmasterMetzger = ::UPD.getDescription({
  		Fluff = "A sword, too, can take someone\'s head off just fine!",
- 		Requirement = "Southern Sword or a Sword/Cleaver Hybrid"
+ 		Requirement = "Sword"
  		Effects = [
 	 		{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Adds the [Decapitate|Skill+decapitate] skill to southern swords.",
-					"Grants the [Sanguinary|Perk+perk_rf_sanguinary] and [Bloodbath|Perk+perk_rf_bloodbath] perks for free as long as a valid weapon is equipped.",
-					"Attacks inflict [Bleeding|Skill+bleeding_effect] on the target for " + ::MSU.Text.colorRed(10) + " damage."
+					"Gain the [Decapitate|Skill+decapitate] skill with swords.",
+					"Gain all the perks of the Cleaver perk group when using a sword. Swords now additionally qualify as Cleavers for you for the purposes of these perks.",
+					"Attacks from swords inflict [Bleeding|Skill+bleeding_effect] on the target."
 				]
 			},
 			{
 				Type = ::UPD.EffectType.OneTimeEffect,
 				Description = [
-					"Adds the Cleaver perk group to this character\'s perk tree, except the perks which require a Cleaver."
+					"Adds the Cleaver perk group to this character\'s perk tree."
 				]
 			}
 		],
@@ -1850,7 +1845,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The bonuses of [Swordmaster\'s Finesse|Skill+rf_swordmasters_finesse_effect] are doubled."
+				"Gain " + ::MSU.Text.colorGreen("+1") + " [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense] and " + ::MSU.Text.colorGreen("+1%") + " additional damage ignoring armor per character level."
 				"While wielding a fencing type sword an additional " + ::MSU.Text.colorGreen("25%") + " of damage ignores armor."
 			]
 		}],
@@ -1875,8 +1870,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Unlocks three stances which can be switched to during combat for a small [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost to gain different effects that last as long as the stance is kept."
 				"The [Half-Swording|Skill+rf_swordmaster_stance_half_swording_skill] stance which allows you to [puncture|Skill+puncture] your opponents.",
-				"The [Reverse Grip|Skill+rf_swordmaster_stance_reverse_grip_skill] stance which allows you to use your sword like a mace.",
-				"The [Meisterhau|Skill+rf_swordmaster_stance_meisterhau_skill] stance which allows you to move and still benefit from [En Garde|Perk+perk_rf_en_garde]."
+				"The [Reverse Grip|Skill+rf_swordmaster_stance_reverse_grip_skill] stance which allows you to use your sword like a mace and grants the [Concussive Strikes|Perk+perk_rf_concussive_strikes] [perk|Concept.Perk].",
+				"The [Meisterhau|Skill+rf_swordmaster_stance_meisterhau_skill] stance which allows you to move and still benefit from [En Garde|Perk+perk_rf_en_garde] and gain the ability to use the [Kick|Skill+rf_swordmaster_kick_skill], [Push Through|Skill+rf_swordmaster_push_through_skill] and [Tackle|Skill+rf_swordmaster_tackle_skill] skills."
 			]
 		}],
 		Footer = ::MSU.Text.colorRed("You can only pick ONE perk from the Swordmaster perk group.")

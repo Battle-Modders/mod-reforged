@@ -1,6 +1,5 @@
 this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordmaster_active_abstract", {
 	m = {
-		IsSpent = false,
 		IsCharging = false,
 		DamageMultBonus = 0.5
 	},
@@ -86,16 +85,6 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			});
 		}
 
-		if (this.m.IsSpent)
-		{
-			tooltip.push({
-				id = 7,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Only usable once per turn[/color]"
-			});
-		}
-
 		return tooltip;
 	}
 
@@ -114,7 +103,7 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 
 	function isUsable()
 	{
-		return !this.m.IsSpent && this.rf_swordmaster_active_abstract.isUsable() && this.isEnabled() &&	!this.getContainer().getActor().isEngagedInMelee();
+		return this.rf_swordmaster_active_abstract.isUsable() && this.isEnabled() &&	!this.getContainer().getActor().isEngagedInMelee();
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
@@ -156,14 +145,8 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 		return true;
 	}
 
-	function onTurnStart()
-	{
-		this.m.IsSpent = false;
-	}
-
 	function onUse( _user, _targetTile )
 	{
-		this.m.IsSpent = true;
 		_user.getSkills().add(::new("scripts/skills/effects/indomitable_effect"));
 
 		local tag = {

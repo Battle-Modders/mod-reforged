@@ -24,14 +24,14 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png"
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Removes[/color] all attack skills from the currently equipped sword and adds the [color=" + ::Const.UI.Color.PositiveValue + "]Stab[/color] and [color=" + ::Const.UI.Color.PositiveValue + "]Puncture[/color] skills. The Stab skill does " + ::MSU.Text.colorRed("50%") + " reduced damage."
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Removes") + " all attack skills from the currently equipped sword and adds the [Stab|Skill+stab] and [Puncture|Skill+puncture] skills. The Stab skill does " + ::MSU.Text.colorRed("50%") + " reduced damage.")
 		});
 
 		tooltip.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = "Lose " + ::MSU.Text.colorRed("half") + " of your weapon\'s Reach"
+			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorRed("half") + " of your weapon\'s [Reach|Concept.Reach]")
 		});
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
@@ -70,12 +70,20 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 		}
 	}
 
+	function onUnequip( _item )
+	{
+		if (this.m.IsOn && _item.getSlotType() == ::Const.ItemSlot.Mainhand)
+			this.toggleOff();
+	}
+
 	function toggleOn()
 	{
+		if (this.m.IsOn)
+			return;
+
 		this.rf_swordmaster_stance_abstract_skill.toggleOn();
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		local skills = weapon.getSkills();
-		foreach (skill in skills)
+		foreach (skill in weapon.getSkills())
 		{
 			weapon.removeSkill(skill);
 		}
@@ -84,17 +92,6 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 		}));
 		weapon.addSkill(::new("scripts/skills/actives/puncture"));
-	}
-
-	function toggleOff()
-	{
-		this.rf_swordmaster_stance_abstract_skill.toggleOff();
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null)
-		{
-			this.getContainer().getActor().getItems().unequip(weapon);
-			this.getContainer().getActor().getItems().equip(weapon);
-		}
 	}
 
 	function onCombatFinished()

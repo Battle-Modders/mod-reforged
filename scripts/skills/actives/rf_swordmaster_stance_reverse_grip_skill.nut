@@ -1,5 +1,7 @@
 this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/actives/rf_swordmaster_stance_abstract_skill", {
-	m = {},
+	m = {
+		IsMaceWeaponTypeAdded = false
+	},
 	function create()
 	{
 		this.rf_swordmaster_stance_abstract_skill.create();
@@ -20,19 +22,26 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 	{
 		local tooltip = this.rf_swordmaster_stance_abstract_skill.getTooltip();
 
-		local skillsString = this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded) ? "[color=" + ::Const.UI.Color.PositiveValue + "]Cudgel[/color] and [color=" + ::Const.UI.Color.PositiveValue + "]Strike Down[/color]" : "[color=" + ::Const.UI.Color.PositiveValue + "]Bash[/color] and [color=" + ::Const.UI.Color.PositiveValue + "]Knock Out[/color]";
+		local skillsString = this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded) ? "[Cudgel|Skill+cudgel_skill] and [Strike Down|Skill+strike_down_skill]" : "[Bash|Skill+bash] and [Knock Out|Skill+knock_out]";
 		tooltip.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png"
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Removes[/color] all skills from the currently equipped sword and adds the " + skillsString + " skills"
+			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Removes[/color] all skills from the currently equipped sword and adds the " + ::Reforged.Mod.Tooltips.parseString(skillsString) + " skills"
 		});
 
 		tooltip.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = "You will lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s Reach"
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Concussive Strikes|Perk+perk_rf_concussive_strikes] perk")
+		});
+
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/reach.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s [Reach|Concept.Reach]")
 		});
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
@@ -65,7 +74,14 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			id = 10,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = "Lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s Reach"
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Concussive Strikes|Perk+perk_rf_concussive_strikes] perk")
+		});
+
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/reach.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s [Reach|Concept.Reach]")
 		});
 
 		tooltip.push({
@@ -95,8 +111,23 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 
 	function toggleOn()
 	{
+		if (this.m.IsOn)
+			return;
+
 		this.rf_swordmaster_stance_abstract_skill.toggleOn();
 		local weapon = this.getContainer().getActor().getMainhandItem();
+
+		if (!weapon.isWeaponType(::Const.Items.WeaponType.Mace))
+		{
+			weapon.m.WeaponType = weapon.m.WeaponType | ::Const.Items.WeaponType.Mace;
+			this.m.IsMaceWeaponTypeAdded = true;
+		}
+
+		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_concussive_strikes", function(o) {
+			o.m.IsRefundable = false;
+			o.m.IsSerialized = false;
+		}));
+
 		local skills = weapon.getSkills();
 		foreach (skill in skills)
 		{
@@ -123,14 +154,27 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		}
 	}
 
+	function onUnequip( _item )
+	{
+		if (this.m.IsOn && _item.getSlotType() == ::Const.ItemSlot.Mainhand)
+			this.toggleOff();
+	}
+
 	function toggleOff()
 	{
+		if (!this.m.IsOn)
+			return;
+
 		this.rf_swordmaster_stance_abstract_skill.toggleOff();
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null)
+		this.getContainer().removeByStackByID("perk.rf_concussive_strikes");
+		if (this.m.IsMaceWeaponTypeAdded)
 		{
-			this.getContainer().getActor().getItems().unequip(weapon);
-			this.getContainer().getActor().getItems().equip(weapon);
+			local weapon = this.getContainer().getActor().getMainhandItem();
+			if (weapon != null)
+			{
+				weapon.m.WeaponType -= ::Const.Items.WeaponType.Mace;
+				this.m.IsMaceWeaponTypeAdded = false;
+			}
 		}
 	}
 

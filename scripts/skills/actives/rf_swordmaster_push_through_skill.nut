@@ -18,7 +18,6 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 			"sounds/combat/knockback_hit_02.wav",
 			"sounds/combat/knockback_hit_03.wav"
 		];
-		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 15;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.LineBreaker;
