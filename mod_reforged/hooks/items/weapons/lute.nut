@@ -13,6 +13,10 @@
 
 		this.addSkill(::MSU.new("scripts/skills/actives/knock_out", function(o) {
 			o.m.FatigueCost -= 10;
+			o.m.IsFromLute = true;
+			o.m.Icon = "skills/active_88.png";
+			o.m.IconDisabled = "skills/active_88_sw.png";
+			o.m.Overlay = "active_88";
 		}));
 	}
 });
