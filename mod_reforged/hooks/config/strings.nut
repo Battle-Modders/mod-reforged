@@ -182,7 +182,6 @@
 	RF_ThroughTheRanks = "Through the Ranks",
 	RF_TraumaSurvivor = "Trauma Survivor",
 	RF_TripArtist = "Trip Artist",
-	RF_TwoForOne = "Two for One",
 	RF_Unstoppable = "Unstoppable",
 	RF_Retribution = "Retribution",
 	RF_VengefulSpite = "Vengeful Spite",
@@ -523,6 +522,7 @@ local vanillaDescriptions = [
  					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
  					"The [Action Point|Concept.ActionPoints] cost of [Spearwall|Skill+spearwall] is reduced by " + ::MSU.Text.colorGreen("1") + ".",
  					"[Spearwall|Skill+spearwall] is no longer disabled once an opponent manages to overcome it. Instead, [Spearwall|Skill+spearwall] can still be used and continues to give free attacks on any further opponent attempting to enter the [Zone of Control|Concept.ZoneOfControl]",
+ 					"When starting your [turn|Concept.Turn] with a Spear equipped, the first [Thrust|Skill+thrust] or [Prong|Skill+prong_skill] during your [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints] and builds no [Fatigue|Concept.Fatigue], but does " + ::MSU.Text.colorRed("25%") + " reduced damage.",
  					"The [Spetum|Item+spetum] and [Warfork|Item+warfork] no longer have a penalty for attacking targets directly adjacent."
  				]
  			}]
@@ -1360,8 +1360,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When starting your [turn|Concept.Turn] with a Spear equipped, the first [Thrust|Skill+thrust] or [Prong|Skill+prong_skill] during your [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints] and builds no [Fatigue|Concept.Fatigue], but does " + ::MSU.Text.colorRed("25%") + " reduced Damage.",
-				"The effect is lost upon switching your weapon."
+				"The [Action Point|Concept.ActionPoints] cost of [Thrust|Skill+thrust] and [Prong|Skill+prong_skill] is reduced by " + ::MSU.Text.colorGreen(1) + ".",
+				"During your turn, the first [Thrust|Skill+thrust] or [Prong|Skill+prong_skill] always targets the body part with the lowest armor.",
 			]
 		}]
  	}),
@@ -1983,17 +1983,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"The first successful melee attack every [turn|Concept.Turn] against an adjacent target will apply the [staggered|Skill+staggered_effect] effect.",
 				"When wielding a weapon with a [Reach|Concept.Reach] of less than 4, gain the difference in [Reach|Concept.Reach] up to 4."
-			]
-		}]
- 	}),
-	RF_TwoForOne = ::UPD.getDescription({
- 		Fluff = "Practice in spear-handling has taught you to strike in the most efficient way possible!",
- 		Requirement = "Spear",
- 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"The [Action Point|Concept.ActionPoints] cost of [Thrust|Skill+thrust] and [Prong|Skill+prong_skill] is reduced by " + ::MSU.Text.colorGreen(1) + ".",
-				"When double-gripping one-handed spears, the range of [Thrust|Skill+thrust] is increased to " + ::MSU.Text.colorGreen(2) + " tiles. When used at this range, it does " + ::MSU.Text.colorRed("20%") + " reduced damage, has no bonus chance to hit, and has " + ::MSU.Text.colorRed("-20%") + " chance to hit per character between you and the target."
 			]
 		}]
  	}),
