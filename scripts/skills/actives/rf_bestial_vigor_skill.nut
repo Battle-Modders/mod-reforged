@@ -78,7 +78,8 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		actor.setFatigue(actor.getFatigue() * this.m.FatigueRecoveredPercentage * 0.01);
-		actor.setActionPoints(actor.getActionPoints() + this.m.ActionPointsGained);
+
+		actor.recoverActionPoints(this.m.ActionPointsGained, true, true);
 
 		return true;
 	}

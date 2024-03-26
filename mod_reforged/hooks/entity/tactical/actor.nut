@@ -172,6 +172,30 @@
 	q.onSetupEntity <- function()
 	{
 	}
+
+	q.recoverActionPoints <- function( _amount, _printLog = true, _canExceedMaximum = false )
+	{
+		if (_amount <= 0) return;
+
+		local oldActionPoints = this.getActionPoints();
+
+		if (_canExceedMaximum)
+		{
+			this.setActionPoints(this.getActionPoints() + _amount);
+		}
+		else
+		{
+			this.setActionPoints(::Math.min(this.getActionPointsMax(), this.getActionPoints() + _amount));
+		}
+
+		local recoveredActionPoints = this.getActionPoints() - oldActionPoints;
+		if (_printLog && recoveredActionPoints > 0)
+		{
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this) + " recovers " + ::MSU.Text.colorGreen(recoveredActionPoints) + " Action Points");
+		}
+
+		return recoveredActionPoints;
+	}
 });
 
 ::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
