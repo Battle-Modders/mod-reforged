@@ -104,10 +104,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 
 	function onPayForItemAction(_skill, _items)
 	{
-		if (_skill != null && _skill.getID() != "perk.rf_target_practice")
-		{
-			this.m.IsSpent = true;
-		}
+		this.m.IsSpent = true;
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )

@@ -16,11 +16,21 @@ this.perk_rf_target_practice <- ::inherit("scripts/skills/skill", {
 		this.m.ItemActionOrder = ::Const.ItemActionOrder.First;
 	}
 
+	function isEnabled()
+	{
+		if (this.getContainer().getActor().isDisarmed())
+			return false;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Bow);
+	}
+
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (!_skill.isRanged() || _targetEntity == null) return;
+		if (_targetEntity == null || !_skill.isRanged() || !_skill.m.IsWeaponSkill || !this.isEnabled())
+			return;
 
-		if (_targetEntity.isArmedWithRangedWeapon() || ::Tactical.Entities.getAlliedActors(_targetEntity.getFaction(), _targetEntity.getTile(), 1, true).len() == 0)
+		if (_targetEntity.isArmedWithRangedWeapon() || ::Const.Tactical.Common.getBlockedTiles(this.getContainer().getActor().getTile(), _targetEntity.getTile(), this.getContainer().getActor().getFaction()).len() == 0);
 		{
 			_properties.RangedSkill += this.m.RangedSkillBonus;
 		}
@@ -28,28 +38,16 @@ this.perk_rf_target_practice <- ::inherit("scripts/skills/skill", {
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
+		if (!_skill.isRanged() || !_skill.m.IsWeaponSkill || !this.isEnabled())
+			return;
+
 		local targetEntity = _targetTile.getEntity();
-		if (_skill.isRanged() && targetEntity != null && (targetEntity.isArmedWithRangedWeapon() || ::Tactical.Entities.getAlliedActors(targetEntity.getFaction(), targetEntity.getTile(), 1, true).len() == 0))
+		if (targetEntity != null && (targetEntity.isArmedWithRangedWeapon() || ::Const.Tactical.Common.getBlockedTiles(this.getContainer().getActor().getTile(), targetEntity.getTile(), this.getContainer().getActor().getFaction()).len() == 0))
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
 				text = "[color=" + ::Const.UI.Color.PositiveValue + "]" + this.m.RangedSkillBonus + "%[/color] " + this.getName()
 			});
 		}
-	}
-
-	function getItemActionCost( _items )
-	{
-		local count = 0;
-
-		foreach (item in _items)
-		{
-			if (item != null && item.isItemType(::Const.Items.ItemType.Ammo) && item.getSlotType() == ::Const.ItemSlot.Ammo)
-			{
-				count++;
-			}
-		}
-
-		return count == 2 ? 0 : null;
 	}
 });
