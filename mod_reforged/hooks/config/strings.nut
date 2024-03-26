@@ -238,6 +238,20 @@ local vanillaDescriptions = [
 	 	}),
 	},
 	{
+		ID = "perk.fearsome",
+		Key = "Fearsome",
+		Description = ::UPD.getDescription({
+			Fluff = "Make them scatter and flee!",
+	 		Effects = [{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"Reduce the hitpoint threshold for triggering [Morale Checks|Concept.Morale] with your attacks to 1.",
+					"Increase the penalty of those checks by " + ::MSU.Text.colorGreen("20%") + " of your [Resolve|Concept.Resolve]"
+				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.footwork",
 		Key = "Footwork",
 		Description = ::UPD.getDescription({
