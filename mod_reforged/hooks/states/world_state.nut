@@ -13,4 +13,30 @@
 
     	return __original(_properties, _isPlayerInitiated, _isCombatantsVisible, _allowFormationPicking);
     }
+
+	q.onMouseInput = @(__original) function( _mouse )
+	{
+		local ret = __original(_mouse);
+		if (ret == false)	// If the original function wasn't able to process the mouseclick we try to do that with increased interaction range
+		{
+			local isEscorting = this.m.EscortedEntity != null && !this.m.EscortedEntity.isNull();
+			if (isEscorting && _mouse.getState() == 1 && !this.isInCameraMovementMode() && !this.m.WasInCameraMovementMode)
+			{
+				foreach (entity in ::World.getAllEntitiesAndOneLocationAtPos(::World.getCamera().screenToWorld(_mouse.getX(), _mouse.getY()), 1.0))
+				{
+					if (entity.isParty()) continue;
+					if (!entity.isEnterable()) continue;
+					if (!entity.isAlliedWithPlayer()) continue;
+
+					if (this.m.Player.getDistanceTo(entity) <= 200)		// Vanilla uses ::Const.World.CombatSettings.CombatPlayerDistance here which equals to 100 by default
+					{
+						this.enterLocation(entity);
+						return true;
+					}
+				}
+			}
+		}
+
+		return ret;
+	}
 });
