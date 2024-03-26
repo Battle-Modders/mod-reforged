@@ -1,4 +1,3 @@
-
 ::Reforged.HooksMod.hook("scripts/items/tools/holy_water_item", function(q) {
 	q.onPutIntoBag <- function()
     {
