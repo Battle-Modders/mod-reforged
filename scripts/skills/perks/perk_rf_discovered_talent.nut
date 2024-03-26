@@ -1,6 +1,6 @@
 this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsApplied = false
+		AttributesRolled = []
 	},
 	function create()
 	{
@@ -16,66 +16,53 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 		this.m.IsRefundable = false;
 	}
 
-	function onAdded()
+	// Is called from player.setAttributeLevelUpValues
+	function addStars()
 	{
-		if (this.m.IsApplied || !this.getContainer().getActor().isPlayerControlled() || !::MSU.isKindOf(this.getContainer().getActor(), "player"))
-		{
-			return;
-		}
-
 		local actor = this.getContainer().getActor();
-
-		local talents = actor.getTalents();
-		for (local i = 0; i < talents.len(); i++)
+		local potential = [];
+		foreach (attribute in ::Const.Attributes)
 		{
-			if (talents[i] < 3)
-			{
-				talents[i] += 1;
-			}
+			if (attribute != ::Const.Attributes.COUNT && actor.getTalents()[attribute] < 3 && this.m.AttributesRolled.find(attribute) == null)
+				potential.push(attribute);
 		}
 
-		local requiredLevelUpsSpent = this.getContainer().hasSkill("perk.gifted") ? 5 : 4;
+		if (potential.len() == 0)
+			return;
 
-		if (actor.m.LevelUpsSpent < requiredLevelUpsSpent)
+		local choice = ::MSU.Array.rand(potential);
+		local toAdd = ::MSU.Class.WeightedContainer([
+			[70, 1],
+			[20, 2],
+			[10, 3]
+		]).roll();
+
+		actor.getTalents()[choice] = ::Math.min(3, actor.getTalents()[choice] + toAdd);
+
+		actor.m.Attributes.clear();
+		actor.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - actor.getLevel() + actor.m.LevelUps);
+
+		this.m.AttributesRolled.push(choice);
+	}
+
+	function onSerialize( _out )
+	{
+		this.skill.onSerialize(_out);
+		_out.writeU8(this.m.AttributesRolled.len());
+		foreach (attribute in this.m.AttributesRolled)
 		{
-			local startIndex = requiredLevelUpsSpent - actor.m.LevelUpsSpent;
-			local attributes = array(actor.m.Attributes.len());
-
-			foreach (i, attributeLevelUps in actor.m.Attributes)
-			{
-				attributes[i] = array(startIndex);
-				for (local j = 0; j < startIndex; j++)
-				{
-					attributes[i][j] = attributeLevelUps[j];
-				}
-			}
-
-			actor.m.Attributes.clear();
-			actor.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - actor.getLevel() + actor.m.LevelUps);
-
-			foreach (i, attributeLevelUps in attributes)
-			{
-				foreach (j, levelup in attributeLevelUps)
-				{
-					actor.m.Attributes[i][j] = levelup;
-				}
-			}
+			_out.writeU8(attribute);
 		}
-		else
-		{
-			actor.m.Attributes.clear();
-			actor.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - actor.getLevel() + actor.m.LevelUps);
-		}
-
-		actor.m.LevelUps += 1;
-		actor.fillAttributeLevelUpValues(1);
-
-		this.m.IsApplied = true;
 	}
 
 	function onDeserialize(_in)
 	{
 		this.skill.onDeserialize(_in);
-		this.m.IsApplied = true;
+		local len = _in.readU8();
+		this.m.AttributesRolled = array(len);
+		for (local i = 0; i < len; i++)
+		{
+			this.m.AttributesRolled[i] = _in.readU8();
+		}
 	}
 });
