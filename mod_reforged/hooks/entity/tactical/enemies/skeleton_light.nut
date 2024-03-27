@@ -1,3 +1,4 @@
+// Ancient Auxiliary
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_light", function(q) {
 	q.onInit = @() function()
 	{
