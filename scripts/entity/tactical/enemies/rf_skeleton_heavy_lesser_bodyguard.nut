@@ -1,3 +1,4 @@
+// Ancient Praetorian
 this.rf_skeleton_heavy_lesser_bodyguard <- ::inherit("scripts/entity/tactical/enemies/rf_skeleton_heavy_lesser", {
 	m = {},
 	function create()

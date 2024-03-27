@@ -1,3 +1,4 @@
+// Ancient Palatinus
 this.rf_skeleton_medium_elite_polearm <- ::inherit("scripts/entity/tactical/enemies/rf_skeleton_medium_elite", {
 	m = {},
 	function create()

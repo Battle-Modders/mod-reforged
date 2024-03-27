@@ -1,3 +1,4 @@
+// Ancient Miles
 this.rf_skeleton_light_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 	m = {},
 	function create()

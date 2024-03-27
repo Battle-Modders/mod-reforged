@@ -1,3 +1,4 @@
+// Ancient Honor Guard
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_heavy_bodyguard", function(q) {
 	q.onInit = @() function()
 	{

@@ -1,3 +1,4 @@
+// Ancient Priest
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_priest", function(q) {
 	q.onInit = @() function()
 	{

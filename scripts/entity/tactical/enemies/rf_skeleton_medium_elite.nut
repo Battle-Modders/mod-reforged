@@ -1,3 +1,4 @@
+// Ancient Palatinus
 this.rf_skeleton_medium_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 	m = {},
 	function create()
