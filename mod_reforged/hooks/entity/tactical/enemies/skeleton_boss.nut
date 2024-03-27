@@ -1,3 +1,4 @@
+// The Conqueror
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_boss", function(q) {
 	q.onInit = @() function()
 	{

@@ -1,3 +1,4 @@
+// Ancient Miles
 this.rf_skeleton_light_elite_polearm <- ::inherit("scripts/entity/tactical/enemies/rf_skeleton_light_elite", {
 	m = {},
 	function create()

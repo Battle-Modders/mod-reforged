@@ -1,3 +1,4 @@
+// Ancient Praetorian
 this.rf_skeleton_heavy_lesser <- ::inherit("scripts/entity/tactical/skeleton", {
 	m = {},
 	function create()

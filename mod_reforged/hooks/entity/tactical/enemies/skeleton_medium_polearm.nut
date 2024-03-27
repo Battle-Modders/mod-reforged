@@ -1,3 +1,4 @@
+// Ancient Legionary
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_medium_polearm", function(q) {
 	q.onInit = @() function()
 	{
