@@ -4,6 +4,7 @@
 		__original();
 		this.m.Reach = 5;
 		this.m.ShieldDamage = 18;
+		this.m.DirectDamageAdd = 0.05; // Brings the total to 30%
 	}
 
 	q.onEquip = @() function()
