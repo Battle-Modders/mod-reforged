@@ -8,7 +8,7 @@
 		this.m.ArmorDamageMult = 0.8;
 		this.m.StaminaModifier = -8;
 		this.m.ChanceToHitHead = 10;
-		this.m.Value = 2000;
+		this.m.Value = 2400;
 	}
 
 	q.onEquip = @() function()
@@ -16,7 +16,6 @@
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/slash", function(o) {
-			o.m.FatigueCost += 2;
 			o.m.DirectDamageMult = this.m.DirectDamageMult;
 		}.bindenv(this)));
 
