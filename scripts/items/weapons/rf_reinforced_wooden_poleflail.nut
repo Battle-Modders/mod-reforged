@@ -30,7 +30,7 @@ this.rf_reinforced_wooden_poleflail <- ::inherit("scripts/items/weapons/weapon",
 		this.m.ArmorDamageMult = 0.8;
 		this.m.DirectDamageMult = 0.3;
 		this.m.ChanceToHitHead = 10;
-		this.m.Reach = 5;
+		this.m.Reach = 6;
 	}
 
 	function onEquip()
