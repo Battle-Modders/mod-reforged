@@ -23,10 +23,11 @@ this.rf_great_khopesh <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.Condition = 48.0;
 		this.m.ConditionMax = 48.0;
 		this.m.StaminaModifier = -16;
-		this.m.RegularDamage = 75;
-		this.m.RegularDamageMax = 90;
+		this.m.RegularDamage = 85;
+		this.m.RegularDamageMax = 100;
 		this.m.ArmorDamageMult = 1.25;
 		this.m.DirectDamageMult = 0.25;
+		this.m.DirectDamageAdd = 0.05; // Brings the total to 30%
 		this.m.ChanceToHitHead = 10;
 		this.m.Reach = 6;
 	}
