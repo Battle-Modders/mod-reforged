@@ -4,7 +4,8 @@ this.rf_lash_pole_skill <- ::inherit("scripts/skills/actives/lash_skill", {
 	{
 		this.lash_skill.create();
 		this.m.ID = "actives.rf_lash_pole";
-		this.m.FatigueCost = 30;
+		this.m.ActionPointCost = 5;
+		this.m.FatigueCost = 25;
 		this.m.MaxRange = 2;
 	}
 
