@@ -4,6 +4,7 @@ this.rf_flail_pole_skill <- ::inherit("scripts/skills/actives/flail_skill", {
 	{
 		this.flail_skill.create();
 		this.m.ID = "actives.rf_flail_pole";
+		this.m.ActionPointCost = 5;
 		this.m.FatigueCost = 15;
 		this.m.MaxRange = 2;
 	}
