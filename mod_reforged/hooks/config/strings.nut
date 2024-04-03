@@ -799,10 +799,11 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_BearDown = ::UPD.getDescription({
  		Fluff = "\'Give their \'ed a nice knock, then move in for the kill!\'",
+ 		Requirement = "Mace",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorGreen("+10") + " [Melee Skill|Concept.MeleeSkill] and [Ranged Skill|Concept.RangeSkill], and " + ::MSU.Text.colorGreen("+20%") + " chance to hit the head when attacking a [rattled|Skill+rf_rattled_effect], [stunned|Skill+stunned_effect], [dazed|Skill+dazed_effect], [netted|Skill+net_effect], [sleeping|Skill+sleeping_effect], [staggered|Skill+staggered_effect], [webbed|Skill+web_effect], or [rooted|Skill+rooted_effect] target."
+				"Gain " + ::MSU.Text.colorGreen("+15%") + " chance to hit the head and " + ::MSU.Text.colorGreen("33%") + " reduced threshold to inflict injuries when attacking a [rattled|Skill+rf_rattled_effect], [stunned|Skill+stunned_effect], [dazed|Skill+dazed_effect], [netted|Skill+net_effect], [sleeping|Skill+sleeping_effect], [staggered|Skill+staggered_effect], [webbed|Skill+web_effect], or [rooted|Skill+rooted_effect] target."
 			]
 		}]
  	}),
