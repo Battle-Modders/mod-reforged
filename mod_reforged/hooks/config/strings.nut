@@ -1151,7 +1151,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Attacks have a " + ::MSU.Text.colorGreen("50%") + " chance to perform a free extra attack of the same type with " + ::MSU.Text.colorRed("50%") + " reduced damage."
+				"During your turn, attacks have a " + ::MSU.Text.colorGreen("50%") + " chance to perform a free extra attack of the same type with " + ::MSU.Text.colorRed("50%") + " reduced damage."
 			]
 		}]
  	}),
