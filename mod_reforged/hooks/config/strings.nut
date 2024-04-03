@@ -935,11 +935,12 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_ConcussiveStrikes = ::UPD.getDescription({
  		Fluff = "A strike to the head from this character means goodnight!",
+ 		Requirement = "Mace and Blunt Damage"
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Hits to the head with any weapon apply the [Dazed|Skill+dazed_effect] effect for 1 [turn|Concept.Turn]. This duration is increased to 2 [turns|Concept.Turn] for one-handed maces.",
-				"Hits to the head with two-handed maces apply the [Stunned|Skill+stunned_effect] for 1 [turn|Concept.Turn], and if the target is immune to being [stunned|Skill+stunned_effect], apply [Dazed|Skill+dazed_effect] for 1 [turn|Concept.Turn]."
+				"Hits to the head with one-handed maces apply the [Dazed|Skill+dazed_effect] effect for 1 [turn|Concept.Turn] and if the target is already [dazed|Skill+dazed_effect], apply [Stunned|Skill+stunned_effect] for one [turn|Concept.Turn].",
+				"Hits to the head with two-handed maces apply the [Stunned|Skill+stunned_effect] for 1 [turn|Concept.Turn].",
 			]
 		}]
  	}),
