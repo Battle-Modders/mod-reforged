@@ -6,6 +6,7 @@
 
 	// Private
 	q.m.UsesRemaining <- 2;
+	q.m.CanRecoverUse <- false;
 
 	// Temp
 	q.m.TempDamageReduction <- 0.0;		// This is used to keep track of the current damage reduction so that it can be later displayed in the combat log
@@ -33,6 +34,22 @@
 	q.onCombatFinished <- function()
 	{
 		this.m.UsesRemaining = this.m.UsesMax;	// So that for the purposes of the tooltip everything looks good
+	}
+
+	q.onTurnStarted = @(__original) function()
+	{
+		__original();
+		if (this.m.CanRecoverUse && this.m.UsesRemaining == 0)
+			this.m.UsesRemaining = 1;
+
+		this.m.CanRecoverUse = true;
+	}
+
+	// MSU function
+	q.onAnySkillExecuted = @(__original) function( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		__original(_skill, _targetTile, _targetEntity, _forFree);
+		this.m.CanRecoverUse = false;
 	}
 
 	q.getTooltip <- function()
@@ -80,6 +97,8 @@
 
 	q.onDamageReceived <- function( _attacker, _damageHitpoints, _damageArmor )
 	{
+		this.m.CanRecoverUse = false;
+
 		if (this.m.IsAboutToConsumeUse == false) return;	// We only consume one use for each registered attack. But a single attack that deals damage multiple times will therefor have the damage of all instances reduced
 		this.m.IsAboutToConsumeUse = false;
 
