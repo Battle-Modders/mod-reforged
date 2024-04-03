@@ -71,6 +71,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			if (_item.isWeaponType(::Const.Items.WeaponType.Bow) && perkTree.hasPerkGroup("pg.rf_bow"))					pg = "pg.rf_bow";
 			else if (_item.isWeaponType(::Const.Items.WeaponType.Crossbow) && perkTree.hasPerkGroup("pg.rf_crossbow"))	pg = "pg.rf_crossbow";
 			else if (_item.isWeaponType(::Const.Items.WeaponType.Firearm) && perkTree.hasPerkGroup("pg.rf_crossbow"))	pg = "pg.rf_crossbow";
+			else if (_item.isWeaponType(::Const.Items.WeaponType.Throwing) && perkTree.hasPerkGroup("pg.rf_throwing"))	pg = "pg.rf_throwing";
 		}
 		else
 		{
