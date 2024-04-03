@@ -16,7 +16,7 @@ this.pg_rf_pauper <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				[],
 				[],
 				[],
-				["perk.rf_trauma_survivor"],
+				[],
 				[],
 				[]
 			]

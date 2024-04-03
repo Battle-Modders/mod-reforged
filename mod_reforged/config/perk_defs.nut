@@ -502,14 +502,6 @@
 		IconDisabled = "ui/perks/rf_failed_potential_bw.png",
 	},
 	{
-		ID = "perk.rf_trauma_survivor",
-		Script = "scripts/skills/perks/perk_rf_trauma_survivor",
-		Name = ::Const.Strings.PerkName.RF_TraumaSurvivor,
-		Tooltip = ::Const.Strings.PerkDescription.RF_TraumaSurvivor,
-		Icon = "ui/perks/rf_trauma_survivor.png",
-		IconDisabled = "ui/perks/rf_trauma_survivor_bw.png",
-	},
-	{
 		ID = "perk.rf_man_of_steel",
 		Script = "scripts/skills/perks/perk_rf_man_of_steel",
 		Name = ::Const.Strings.PerkName.RF_ManOfSteel,

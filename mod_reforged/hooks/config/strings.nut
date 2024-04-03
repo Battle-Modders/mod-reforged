@@ -178,8 +178,7 @@
 	RF_TerrifyingVisage = "Terrifying Visage",
 	RF_TheRushOfBattle = "The Rush of Battle",
 	RF_ThroughTheGaps = "Through the Gaps",
-	RF_ThroughTheRanks = "Through the Ranks",
-	RF_TraumaSurvivor = "Trauma Survivor",
+	RF_ThroughTheRanks = "Through the Ranks",	
 	RF_TrickShooter = "Trick Shooter",
 	RF_TripArtist = "Trip Artist",
 	RF_TwoForOne = "Two for One",
@@ -2001,24 +2000,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Ranged attacks have a " + ::MSU.Text.colorGreen("50%") + " reduced chance to inflict friendly fire."
 			]
 		}]
- 	}),
-	RF_TraumaSurvivor = ::UPD.getDescription({
- 		Fluff = "You\'ve been to hell, and back.",
- 		Effects = [
-			{
-				Type = ::UPD.EffectType.Passive,
-				Description = [
-					"[Resolve|Concept.Bravery] is increased by " + ::MSU.Text.colorGreen("50%") + " against negative morale checks."
-				]
-			},
-			{
-				Type = ::UPD.EffectType.OneTimeEffect,
-				Description = [
-					"If [Promised Potential|Perk+perk_rf_promised_potential] is a success, gain an additional perk point."
-				]
-			}
-		],
-		Footer = ::MSU.Text.colorRed("This perk cannot be refunded.")
  	}),
  	RF_TrickShooter = ::UPD.getDescription({
  		Fluff = "Learn to shoot hot and fast!",
