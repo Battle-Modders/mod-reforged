@@ -1327,9 +1327,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Successful hits from Flails progressively reduce the target's [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by a stacking " + ::MSU.Text.colorRed(-3) + " for one [turn|Concept.Turn].",
+				"Successful hits from Flails progressively reduce the target's [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by a stacking " + ::MSU.Text.colorRed(-5) + " for one [turn|Concept.Turn].",
 				"The effect is doubled if the attacks hit the head.",
-				"Missed attacks reduce the target\'s defenses by " + ::MSU.Text.colorRed(-1) + " instead."
 			]
 		}]
  	}),
