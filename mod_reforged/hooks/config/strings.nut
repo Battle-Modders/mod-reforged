@@ -594,6 +594,33 @@ local vanillaDescriptions = [
 	 	}),
 	},
 	{
+		ID = "perk.mastery.sword",
+		Key = "SpecSword",
+		Description = ::UPD.getDescription({
+			Fluff = "Master the art of swordfighting and using your opponent\'s mistakes to your advantage.",
+			Requirement = "Sword",
+	 		Effects = [
+		 		{
+	 				Type = ::UPD.EffectType.Passive,
+	 				Description = [
+						"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+						"Riposte no longer has a penalty to hitchance.",
+						"Gash has a " + ::MSU.Text.colorRed("50%") + " lower threshold to inflict injuries.",
+						"Split and Swing no longer have a penalty to hitchance and gain " + ::MSU.Text.colorGreen("+5%") + " chance to hit."
+					]
+	 			},
+	 			{
+					Type = ::UPD.EffectType.Active,
+					Description = [
+						"Unlocks the [Kata Step|Skill+rf_kata_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of movement.",
+						"The target tile for the movement must be adjacent to an enemy.",
+						"Only works with Two-Handed swords or with One-Handed swords with the offhand free."
+					]
+				}
+ 			]
+	 	}),
+	},
+	{
 		ID = "perk.mastery.throwing",
 		Key = "SpecThrowing",
 		Description = ::UPD.getDescription({
