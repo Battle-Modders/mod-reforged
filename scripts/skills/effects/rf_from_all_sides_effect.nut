@@ -1,9 +1,7 @@
 this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		HitStacks = 0,
-		MissStacks = 0,
-		MalusForHit = 3,
-		MalusForMiss = 1
+		Stacks = 0,
+		MalusPerStack = 5,
 	},
 	function create()
 	{
@@ -21,9 +19,7 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 
 	function getName()
 	{
-		if (this.m.HitStacks + this.m.MissStacks == 0) return this.m.Name;
-
-		return this.m.Name + " (x" + (this.m.HitStacks + this.m.MissStacks) + ")";
+		return this.m.Stacks == 1 ? this.m.Name : this.m.Name + " (x" + (this.m.Stacks) + ")";
 	}
 
 	function getTooltip()
@@ -52,14 +48,7 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 
 	function proc( _hitInfo = null )
 	{
-		if (_hitInfo == null)
-		{
-			this.m.MissStacks += 1;
-		}
-		else
-		{
-			this.m.HitStacks += _hitInfo.BodyPart == ::Const.BodyPart.Head ? 2 : 1;
-		}
+		this.m.Stacks += _hitInfo.BodyPart == ::Const.BodyPart.Head ? 2 : 1;
 	}
 
 	function onRefresh()
@@ -70,7 +59,7 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 
 	function getMalus()
 	{
-		return this.m.HitStacks * this.m.MalusForHit + this.m.MissStacks * this.m.MalusForMiss;
+		return this.m.Stacks * this.m.MalusPerStack;
 	}
 
 	function onUpdate( _properties )
