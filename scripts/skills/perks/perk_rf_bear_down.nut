@@ -1,5 +1,8 @@
 this.perk_rf_bear_down <- ::inherit("scripts/skills/skill", {
 	m = {
+		ChanceToHitHeadModifier = 15,
+		ThresholdToInflictInjuryMult = 0.66,
+		IsForceEnabled = false,
 		ValidEffects = [
 			"effects.stunned",
 			"effects.dazed",
@@ -26,21 +29,36 @@ this.perk_rf_bear_down <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_targetEntity != null && _targetEntity.getSkills().getSkillsByFunction((@(s) this.m.ValidEffects.find(s.getID()) != null).bindenv(this)).len() != 0)
+		if (_targetEntity == null || !this.isSkillValid(_skill))
+			return;
+
+		if (_targetEntity.getSkills().getSkillsByFunction((@(s) this.m.ValidEffects.find(s.getID()) != null).bindenv(this)).len() != 0)
 		{
-			_properties.MeleeSkill += 10;
-			_properties.HitChance[::Const.BodyPart.Head] += 20;
+			_properties.HitChance[::Const.BodyPart.Head] += this.m.ChanceToHitHeadModifier;
+			_properties.ThresholdToInflictInjuryMult *= this.m.ThresholdToInflictInjuryMult;
 		}
 	}
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
-		if (_targetTile.getEntity() != null && _targetTile.getEntity().getSkills().getSkillsByFunction((@(s) this.m.ValidEffects.find(s.getID()) != null).bindenv(this)).len() != 0)
+		if (_targetTile.getEntity() != null && this.isSkillValid(_skill) && _targetTile.getEntity().getSkills().getSkillsByFunction((@(s) this.m.ValidEffects.find(s.getID()) != null).bindenv(this)).len() != 0)
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
 				text = this.getName()
 			});
 		}
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (_skill.isRanged() || !_skill.isAttack())
+			return false;
+
+		if (this.m.IsForceEnabled)
+			return true;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Mace);
 	}
 });
