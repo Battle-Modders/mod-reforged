@@ -21,10 +21,10 @@ this.rf_two_handed_falchion <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ConditionMax = 56.0;
 		this.m.StaminaModifier = -8;
 		this.m.RegularDamage = 45;
-		this.m.RegularDamageMax = 60;
+		this.m.RegularDamageMax = 65;
 		this.m.ArmorDamageMult = 1.0;
 		this.m.DirectDamageMult = 0.25;
-		this.m.Reach = 5;
+		this.m.Reach = 4;
 	}
 
 	function onEquip()
@@ -32,11 +32,15 @@ this.rf_two_handed_falchion <- ::inherit("scripts/items/weapons/weapon", {
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/cleave", function(o) {
-			o.m.FatigueCost += 3;
+			o.m.FatigueCost -= 1;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/decapitate"));
+		this.addSkill(::MSU.new("scripts/skills/actives/decapitate", function(o) {
+			o.m.FatigueCost -= 2;
+		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/riposte"));
+		this.addSkill(::MSU.new("scripts/skills/actives/riposte", function(o) {
+			o.m.FatigueCost -= 3;
+		}));
 	}
 });
