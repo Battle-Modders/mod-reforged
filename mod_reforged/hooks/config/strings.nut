@@ -159,7 +159,6 @@
 	RF_ShieldSergeant = "Shield Sergeant",
 	RF_SmallTarget = "Small Target",
 	RF_ShieldSplitter = "Shield Splitter",
-	RF_SneakAttack = "Sneak Attack",
 	RF_SpearAdvantage = "Spear Advantage",
 	RF_StrengthInNumbers = "Strength in Numbers",
 	RF_SurvivalInstinct = "Survival Instinct",
@@ -1230,10 +1229,12 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
  	RF_Ghostlike = ::UPD.getDescription({
  		Fluff = "Blink and you\'ll miss me.",
+ 		Requirement = "Weapon with up to 4 Reach and Head and Body Armor weight up to 20"
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When the number of adjacent allies is greater than or equal to the number of adjacent enemies, you may ignore [Zone of Control|Concept.ZoneOfControl] for your next movement action."
+				"When you end your movement adjacent to an enemy, the next attack against that enemy deals " + ::MSU.Text.colorGreen("25%") + " increased damage and " + ::MSU.Text.colorGreen("+20%") + " damage ignoring armor. This bonus expires upon any action other than an attack."
 			]
 		}]
  	}),
@@ -1688,18 +1689,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Upon destroying a shield with a melee attack, " + ::MSU.Text.colorGreen(4) + " [Action Points|Concept.ActionPoints] are instantly restored.",
-			]
-		}]
- 	}),
-	RF_SneakAttack = ::UPD.getDescription({
- 		Fluff = "\'If you can see me, you\'re already dead.\'",
- 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"When you enter a tile adjacent to an enemy, your next attack gains " + ::MSU.Text.colorGreen("+2") + " [Reach|Concept.Reach], has " + ::MSU.Text.colorGreen("+20%") + " armor penetration and deals " + ::MSU.Text.colorGreen("25%") + " increased damage."
-				"The effect is lost upon swapping an item, waiting or ending your [turn|Concept.Turn].",
-				"Ranged attacks gain " + ::MSU.Text.colorGreen("+10%") + " armor penetration and " + ::MSU.Text.colorGreen("15%") + " increased damage against targets you have not previously attacked and who have not previously attacked you."
-				"When wielding a melee weapon requires a weapon with [Reach|Concept.Reach] of " + ::MSU.Text.colorRed(4) + " or less and a total penalty to [Fatigue|Concept.Fatigue] from head and body armor less than " + ::MSU.Text.colorRed(20) + ".",
 			]
 		}]
  	}),

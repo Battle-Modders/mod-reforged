@@ -1,5 +1,10 @@
 this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		IsForceEnabled = false,
+		WeaponReach = 4,
+		ArmorStaminaModifier = -20
+		Enemies = []
+	},
 	function create()
 	{
 		this.m.ID = "perk.rf_ghostlike";
@@ -13,24 +18,73 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
+	function isHidden()
+	{
+		return this.m.Enemies.len() == 0 && !this.getContainer().getActor().getCurrentProperties().IsImmuneToZoneOfControl;
+	}
+
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The next movement will ignore [Zone of Control|Concept.ZoneOfControl]")
-		});
+		if (this.getContainer().getActor().getCurrentProperties().IsImmuneToZoneOfControl)
+		{
+			ret.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("The next movement will ignore [Zone of Control|Concept.ZoneOfControl]")
+			});
+		}
 
-		return tooltip;
+		if (this.m.Enemies.len() != 0)
+		{
+			ret.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::MSU.Text.colorGreen("25%") + " increased damage and " + ::MSU.Text.colorGreen("+20%") + " damage ignoring armor against:"
+			});
+
+			foreach (enemy in this.m.Enemies)
+			{
+				local enemy = ::Tactical.getEntityByID(enemy);
+				if (enemy == null || !enemy.isPlacedOnMap() || !enemy.isAlive())
+					continue;
+
+				ret.push({
+					id = 10,
+					type = "text",
+					icon = "ui/orientation/" + enemy.getOverlayImage() + ".png",
+					text = enemy.getName()
+				});
+			}
+
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::MSU.Text.colorRed("The damage bonus will be lost upon swapping an item or waiting or ending your turn")
+			});
+		}
+
+		return ret;
+	}
+
+	function isEnabled()
+	{
+		if (this.m.IsForceEnabled)
+			return true;
+
+		if (this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) >= this.m.ArmorStaminaModifier)
+			return false;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return weapon == null || weapon.getReach() <= this.m.WeaponReach;
 	}
 
 	function onUpdate( _properties )
 	{
-		this.m.IsHidden = true;
-
 		local actor = this.getContainer().getActor();
 		if (actor.isPlacedOnMap())
 		{
@@ -51,8 +105,84 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 			if (numAllies >= numEnemies)
 			{
 				_properties.IsImmuneToZoneOfControl = true;
-				this.m.IsHidden = false;
 			}
 		}
+	}
+
+	function onMovementStarted( _tile, _numTiles )
+	{
+		this.m.Enemies.clear();
+	}
+
+	function onMovementFinished( _tile )
+	{
+		foreach (tile in ::MSU.Tile.getNeighbors(_tile))
+		{
+			if (tile.IsOccupiedByActor && !tile.getEntity().isAlliedWith(this.getContainer().getActor()))
+			{
+				this.m.Enemies.push(tile.getEntity().getID());
+			}
+		}
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_targetEntity == null || !this.isEnabled())
+			return;
+
+		if (this.m.Enemies.find(_targetEntity.getID()) != null)
+		{
+			_properties.DamageDirectAdd += 0.2;
+			_properties.DamageTotalMult *= 1.25;
+		}
+	}
+
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (_targetEntity == null)
+			return;
+
+		local idx = this.m.Enemies.find(_targetEntity.getID());
+		if (idx != null)
+			this.m.Enemies.remove(idx);
+	}
+
+	function onGetHitFactors( _skill, _targetTile, _tooltip )
+	{
+		if (!this.isEnabled())
+			return;
+
+		local targetEntity = _targetTile.getEntity();
+		if (targetEntity == null)
+			return;
+
+		if (this.m.Enemies.find(targetEntity.getID()) != null)
+		{
+			_tooltip.push({
+				icon = "ui/tooltips/positive.png",
+				text = this.getName()
+			});
+		}
+	}
+
+	function onPayForItemAction( _skill, _items )
+	{
+		this.m.Enemies.clear();
+	}
+
+	function onWaitTurn()
+	{
+		this.m.Enemies.clear();
+	}
+
+	function onTurnEnd()
+	{
+		this.m.Enemies.clear();
+	}
+
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		this.m.Enemies.clear();
 	}
 });
