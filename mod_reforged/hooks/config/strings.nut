@@ -520,6 +520,31 @@ local vanillaDescriptions = [
 	 	}),
 	},
 	{
+		ID = "perk.mastery.hammer",
+		Key = "SpecHammer",
+		Description = ::UPD.getDescription({
+			Fluff = "Master hammers and fighting against heavily armored opponents.",
+			Requirement = "Hammer",
+	 		Effects = [
+		 		{
+	 				Type = ::UPD.EffectType.Passive,
+	 				Description = [
+						"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+						"[Destroy Armor|Skill+crush_armor] and [Demolish Armor|Skill+demolish_armor_skill] inflict " + ::MSU.Text.colorGreen("33%") + " more damage against armor and apply the [Dented Armor|Skill+rf_dented_armor_effect] effect.",
+						"[Shatter|Skill+shatter_skill] gains " + ::MSU.Text.colorGreen("+5%") + " chance to hit.",
+						"The [Polehammer|Item+polehammer] no longer has a penalty for attacking targets directly adjacent."
+					]
+	 			},
+	 			{
+	 				Type = ::UPD.EffectType.Active,
+	 				Description = [
+						"When using two-handed hammers gain the [Pummel|Skill+rf_pummel_skill] skill.",
+					]
+	 			}
+	 		]
+	 	}),
+	},
+	{
 		ID = "perk.mastery.polearm",
 		Key = "SpecPolearm",
 		Description = ::UPD.getDescription({
