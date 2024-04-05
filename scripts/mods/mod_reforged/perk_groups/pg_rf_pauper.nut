@@ -22,8 +22,10 @@ this.pg_rf_pauper <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			]
 		};
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_devious": 1.5,
-			"pg.rf_talented": 0
+			"pg.special.rf_discovered_talent": 0,
+			"pg.special.rf_gifted": 0,
+			"pg.special.rf_rising_star": 0,
+			"pg.special.rf_student": 0
 		};
 	}
 });

@@ -4,24 +4,19 @@
 		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_agile": 0.5,
-			"pg.rf_devious": 0,
 			"pg.rf_fast": 0.5,
-			"pg.rf_large": 1,
-			"pg.rf_leadership": 0,
-			"pg.rf_sturdy": 2,
+			"pg.special.rf_leadership": 0,
 			"pg.rf_tactician": 0,
-			"pg.rf_talented": 0,
-			"pg.rf_unstoppable": 2,
-			"pg.rf_vicious": 2,
-			"pg.rf_bow": 0,
-			"pg.rf_crossbow": 0,
+			"pg.rf_vigorous": 2,
 			"pg.rf_dagger": 0,
-			"pg.rf_polearm": 9,
+			"pg.rf_polearm": 0,
 			"pg.rf_spear": 0,
 
-            "pg.special.rf_professional": -1,
             "pg.special.rf_man_of_steel": -1
 		};
+
+		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);
+
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [

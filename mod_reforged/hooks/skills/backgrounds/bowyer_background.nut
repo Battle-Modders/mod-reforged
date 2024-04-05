@@ -4,9 +4,11 @@
 		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_light_armor": 1.5,
-			"pg.rf_crossbow": 3,
-			"pg.rf_throwing": 2
+			"pg.rf_heavy_armor": 0
 		};
+
+		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.RangedBackground);
+
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [],

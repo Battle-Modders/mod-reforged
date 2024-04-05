@@ -3,9 +3,9 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 0.25,
-			"pg.rf_fast": 0.25,
-			"pg.rf_tactician": 0
+			"pg.special.rf_leadership": 0,
+			"pg.rf_tactician": 0,
+			"pg.rf_unstoppable": 0
 		};
 	}
 });

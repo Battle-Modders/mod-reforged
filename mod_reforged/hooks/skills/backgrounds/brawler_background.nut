@@ -3,12 +3,12 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_leadership": 3,
-			"pg.rf_unstoppable": 2,
-			"pg.rf_bow": 0,
-			"pg.rf_crossbow": 0,
-			"pg.rf_ranged": 0
+			"pg.special.rf_leadership": 3,
+			"pg.rf_unstoppable": 2
 		};
+
+		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);
+
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [

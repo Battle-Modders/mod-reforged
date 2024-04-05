@@ -1,4 +1,4 @@
-::Reforged.HooksMod.hook("scripts/skills/traits/short_sighted_trait", function(q) {
+::Reforged.HooksMod.hook("scripts/skills/traits/night_blind_trait", function(q) {
 	q.create = @(__original) function()
 	{
 		__original();

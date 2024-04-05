@@ -22,6 +22,7 @@ this.pg_rf_noble <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			]
 		};
 		this.m.PerkTreeMultipliers = {
+			"pg.rf_tactician": 2,
 			"pg.rf_trained": 1.5
 		};
 	}

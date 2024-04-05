@@ -30,6 +30,6 @@ this.pg_rf_trained <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 
 	function getSelfMultiplier( _perkTree )
 	{
-		return 0.75;
+		return 0.5;
 	}
 });

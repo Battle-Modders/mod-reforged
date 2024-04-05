@@ -3,7 +3,10 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_talented": 10
+			"pg.special.rf_discovered_talent": 2,
+			"pg.special.rf_gifted": 2,
+			"pg.special.rf_rising_star": 2,
+			"pg.special.rf_student": 2
 		};
 	}
 });

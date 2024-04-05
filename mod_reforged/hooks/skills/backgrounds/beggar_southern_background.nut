@@ -3,10 +3,12 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_leadership": 0,
-			"pg.rf_tactician": 0,
-			"pg.rf_talented": 0
+			"pg.special.rf_leadership": 0,
+			"pg.rf_tactician": 0
 		};
+
+		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
+
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
@@ -14,7 +16,12 @@
 				],
 				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [],
-				"pgc.rf_armor": [],
+				"pgc.rf_armor": [
+					::MSU.Class.WeightedContainer([
+					    [50, "pg.rf_light_armor"],
+					    [50, "pg.rf_medium_armor"]
+					])
+				],
 				"pgc.rf_fighting_style": []
 			}
 		});

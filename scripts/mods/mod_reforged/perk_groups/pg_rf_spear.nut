@@ -23,6 +23,6 @@ this.pg_rf_spear <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 
 	function getSelfMultiplier( _perkTree )
 	{
-		return 1.33;
+		return 1.2;
 	}
 });

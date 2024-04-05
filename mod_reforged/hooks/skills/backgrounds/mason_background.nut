@@ -3,11 +3,14 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_talented": 3,
 			"pg.rf_flail": 1.5,
 			"pg.rf_hammer": 2,
-			"pg.rf_mace": 1.5
+			"pg.rf_mace": 1.5,
+			"pg.special.rf_student": 2
 		};
+
+		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
+
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [

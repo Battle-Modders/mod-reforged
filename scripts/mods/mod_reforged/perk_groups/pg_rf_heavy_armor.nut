@@ -23,6 +23,6 @@ this.pg_rf_heavy_armor <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 
 	function getSelfMultiplier( _perkTree )
 	{
-		return 0.5;
+		return 0.33;
 	}
 });
