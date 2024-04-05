@@ -3,16 +3,16 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 1.5,
-			"pg.rf_fast": 1.5,
-			"pg.rf_leadership": 0,
+			"pg.special.rf_leadership": 0,
 			"pg.rf_tactician": 0,
 			"pg.rf_shield": 0
 		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [],
-				"pgc.rf_shared_1": [],
+				"pgc.rf_shared_1": [
+					"pg.rf_agile",
+				],
 				"pgc.rf_weapon": [
 					"pg.rf_bow",
 					"pg.rf_crossbow",

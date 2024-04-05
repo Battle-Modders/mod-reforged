@@ -20,4 +20,9 @@ this.pg_rf_crossbow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			]
 		};
 	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		return 0.5;
+	}
 });

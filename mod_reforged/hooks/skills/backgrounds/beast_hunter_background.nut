@@ -4,11 +4,9 @@
 		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_agile": 1.2,
-			"pg.rf_devious": 1.5,
 			"pg.rf_fast": 1.2,
-			"pg.rf_talented": 4,
-			"pg.rf_vicious": 2,
-			"pg.rf_dagger": 2
+			"pg.rf_trained": 2,
+			"pg.rf_vicious": 2
 		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {

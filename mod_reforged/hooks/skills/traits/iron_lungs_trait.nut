@@ -1,4 +1,4 @@
-::Reforged.HooksMod.hook("scripts/skills/traits/strong_trait", function(q) {
+::Reforged.HooksMod.hook("scripts/skills/traits/iron_lungs_trait", function(q) {
 	q.create = @(__original) function()
 	{
 		__original();

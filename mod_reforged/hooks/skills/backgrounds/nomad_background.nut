@@ -3,15 +3,17 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_devious": 1.5,
 			"pg.rf_tactician": 3,
-			"pg.rf_talented": 2,
 			"pg.rf_trained": 1.4,
 			"pg.rf_unstoppable": 1.5,
 			"pg.rf_vicious": 1.5,
-			"pg.rf_spear": 0.75,
-			"pg.rf_sword": 0.8
+			"pg.rf_bow": 0,
+			"pg.rf_crossbow": 0,
+			"pg.rf_ranged": 0.5
 		};
+
+		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeSpecialist);
+
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [

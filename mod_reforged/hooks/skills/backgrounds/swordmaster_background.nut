@@ -4,18 +4,10 @@
 		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_agile": 0.5,
-			"pg.rf_devious": 0,
 			"pg.rf_fast": 0.5,
-			"pg.rf_large": 0.25,
-			"pg.rf_leadership": 15,
-			"pg.rf_resilient": 1.5,
-			"pg.rf_sturdy": 0.25,
+			"pg.rf_strong": 0.25,
+			"pg.rf_vigorous": 0.25,
 			"pg.rf_tactician": 2,
-			"pg.rf_talented": 0,
-			"pg.rf_bow": 0,
-			"pg.rf_crossbow": 0,
-			"pg.rf_throwing": 0,
-			"pg.rf_ranged": 0
 
             "pg.special.rf_fencer": -1
 		};
@@ -24,20 +16,18 @@
 				"pgc.rf_exclusive_1": [
 					"pg.rf_soldier",
 					"pg.rf_swordmaster",
-					::MSU.Class.WeightedContainer([
-	                    [10, "pg.special.rf_professional"],
-	                    [90, "DynamicPerks_NoPerkGroup"]
-	                ])
 				],
 				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [
 					"pg.rf_sword"
 				],
 				"pgc.rf_armor": [
+					"pg.rf_light_armor",
 					"pg.rf_medium_armor"
 				],
 				"pgc.rf_fighting_style": [
 					"pg.rf_power",
+					"pg.rf_shield",
 					"pg.rf_swift"
 				]
 			}
@@ -55,7 +45,6 @@
 	{
 		if (this.m.IsNew)
 		{
-			this.getContainer().add(::new("scripts/skills/effects/rf_swordmasters_finesse_effect"));
 			this.getContainer().add(::MSU.new("scripts/skills/perks/perk_mastery_sword", function(o) {
 				o.m.IsRefundable = false;
 			}));
@@ -66,7 +55,8 @@
 	q.onBuildPerkTree <- function()
 	{
 		local perkTree = this.getContainer().getActor().getPerkTree();
-		local masteryPerks = [
+		local perksToRemove = [
+			"perk.rf_professional",
 			"perk.mastery.axe",
 			"perk.mastery.bow",
 			"perk.mastery.cleaver",
@@ -79,7 +69,7 @@
 			"perk.mastery.spear",
 			"perk.mastery.throwing",
 		];
-		foreach (perk in masteryPerks)
+		foreach (perk in perksToRemove)
 		{
 			if (perkTree.hasPerk(perk)) perkTree.removePerk(perk);
 		}

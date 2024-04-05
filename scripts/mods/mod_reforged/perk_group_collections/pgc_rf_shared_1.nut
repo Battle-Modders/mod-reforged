@@ -12,7 +12,7 @@ this.pgc_rf_shared_1 <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 			"pg.rf_devious",
 			"pg.rf_fast",
 			"pg.rf_large",
-			"pg.rf_leadership",
+			"pg.special.rf_leadership",
 			"pg.rf_resilient",
 			"pg.rf_sturdy",
 			"pg.rf_tactician",

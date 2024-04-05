@@ -30,6 +30,6 @@ this.pg_special_rf_marksmanship <- ::inherit(::DynamicPerks.Class.SpecialPerkGro
 
 		local talents = _perkTree.getActor().getTalents();
 
-		return talents.len() == 0 || talents[::Const.Attributes.RangedSkill] < 2 ? 0 : talents[::Const.Attributes.RangedSkill];
+		return talents.len() == 0 ? 0 : talents[::Const.Attributes.RangedSkill];
 	}
 });

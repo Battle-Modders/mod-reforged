@@ -3,8 +3,7 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_resilient": 2,
-			"pg.rf_unstoppable": 3
+			"pg.rf_unstoppable": -1
 		};
 	}
 });

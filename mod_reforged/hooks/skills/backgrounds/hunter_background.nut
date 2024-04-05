@@ -5,9 +5,8 @@
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_agile": 1.5,
 			"pg.rf_fast": 1.5,
-			"pg.rf_leadership": 0,
+			"pg.special.rf_leadership": 0,
 			"pg.rf_tactician": 0,
-			"pg.rf_talented": 3,
 			"pg.rf_shield": 0
 		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({

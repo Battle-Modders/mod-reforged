@@ -3,7 +3,9 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.fast": 1.5
+			"pg.rf_fast": 1.5,
+			"pg.rf_trained": 0.5,
+			"pg.rf_shield": 0
 		};
 	}
 });

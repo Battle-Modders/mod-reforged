@@ -3,7 +3,7 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"perk.rf_marksmanship": 3
+			"pg.special.rf_marksmanship": 3
 		};
 	}
 });

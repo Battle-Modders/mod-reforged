@@ -9,7 +9,7 @@ this.pg_special_rf_man_of_steel <- ::inherit(::DynamicPerks.Class.SpecialPerkGro
 		this.m.FlavorText = [
 			"Is tough as if made of steel!"
 		];
-		this.m.Chance = 25;
+		this.m.Chance = 10;
 		this.m.Trees = {
 			"default": [
 				[],

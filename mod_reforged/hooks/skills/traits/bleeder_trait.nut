@@ -4,7 +4,7 @@
 		__original();
 		this.m.Description = "This character is prone to bleeding and will do so more than most others."; // "more than" as opposed to vanilla "longer than"
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_resilient": 0.5
+			"pg.rf_vigorous": 0
 		};
 	}
 

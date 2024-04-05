@@ -3,17 +3,18 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_leadership": 10,
-			"pg.rf_resilient": 3,
-			"pg.rf_sturdy": 3,
+			"pg.special.rf_leadership": 10,
+			"pg.rf_vigorous": 3,
 			"pg.rf_vicious": 3,
-			"pg.rf_bow": 0,
+			"pg.rf_heavy_armor": 0,
 			"pg.rf_crossbow": 0,
 			"pg.rf_power": 2,
-			"pg.rf_ranged": 0,
 			"pg.rf_shield": 0,
 			"pg.rf_swift": 2
 		};
+
+		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
+
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [],

@@ -20,5 +20,9 @@ this.pg_rf_laborer <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				[]
 			]
 		};
+		this.m.PerkTreeMultipliers = {
+			"pg.rf_strong": 1.5,
+			"pg.rf_vigorous": 1.5
+		};
 	}
 });

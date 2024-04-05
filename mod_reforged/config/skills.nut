@@ -1,4 +1,28 @@
 ::Reforged.Skills <- {
+	PerkTreeMultipliers = {
+		MeleeOnly = {
+			"pg.rf_bow": 0,
+			"pg.rf_crossbow": 0,
+			"pg.rf_throwing": 0,
+			"pg.rf_ranged": 0
+		},
+		MeleeSpecialist = {
+			"pg.rf_spear": 0.8,
+			"pg.rf_sword": 0.9
+		},
+		MeleeBackground = {
+			"pg.rf_bow": 0,
+			"pg.rf_crossbow": 0.8,
+			"pg.rf_ranged": 0.33
+		},
+		RangedBackground = {
+			"pg.rf_bow": 6,
+			"pg.rf_crossbow": 4,
+			"pg.rf_throwing": 2,
+			"pg.rf_ranged": 1.5
+		}
+	},
+
 	function addPerkGroup( _entity, _perkGroupID, _maxTier = 7 )
 	{
 		foreach (i, row in ::DynamicPerks.PerkGroups.findById(_perkGroupID).getTree())

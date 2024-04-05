@@ -3,14 +3,13 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_trained": 0.5,
+			"pg.rf_trained": 0,
 			"pg.rf_axe": 1.5,
-			"pg.rf_cleaver": 0.66,
 			"pg.rf_flail": 2,
-			"pg.rf_hammer": 0.66,
 			"pg.rf_mace": 1.5,
-			"pg.rf_spear": 0.5,
-			"pg.rf_sword": 0.8
+			"pg.rf_spear": 0,
+			"pg.rf_sword": 0.9,
+			"pg.special.rf_back_to_basics": 0
 		};
 	}
 
