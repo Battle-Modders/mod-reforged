@@ -1,10 +1,10 @@
 //Ancient Dead
 ::Const.World.Spawn.Troops.SkeletonLight.Strength = 15;
-::Const.World.Spawn.Troops.SkeletonLight.Cost = 15;
-::Const.World.Spawn.Troops.SkeletonMedium.Strength = 30;
-::Const.World.Spawn.Troops.SkeletonMedium.Cost = 30;
-::Const.World.Spawn.Troops.SkeletonMediumPolearm.Strength = 30;
-::Const.World.Spawn.Troops.SkeletonMediumPolearm.Cost = 30;
+::Const.World.Spawn.Troops.SkeletonLight.Cost = 12;
+::Const.World.Spawn.Troops.SkeletonMedium.Strength = 28;
+::Const.World.Spawn.Troops.SkeletonMedium.Cost = 28;
+::Const.World.Spawn.Troops.SkeletonMediumPolearm.Strength = 28;
+::Const.World.Spawn.Troops.SkeletonMediumPolearm.Cost = 28;
 ::Const.World.Spawn.Troops.SkeletonHeavy.Strength = 50;
 ::Const.World.Spawn.Troops.SkeletonHeavy.Cost = 50;
 
@@ -13,15 +13,15 @@
 ::Const.World.Spawn.Troops.Wardog.Cost = 6;
 ::Const.World.Spawn.Troops.ArmoredWardog.Strength = 8;
 ::Const.World.Spawn.Troops.ArmoredWardog.Cost = 8;
-::Const.World.Spawn.Troops.BanditThug.Strength = 12;
-::Const.World.Spawn.Troops.BanditThug.Cost = 12;
+::Const.World.Spawn.Troops.BanditThug.Strength = 9;
+::Const.World.Spawn.Troops.BanditThug.Cost = 9;
 ::Const.World.Spawn.Troops.BanditMarksmanLOW.Strength = 12;
 ::Const.World.Spawn.Troops.BanditMarksmanLOW.Cost = 12;
 ::Const.World.Spawn.Troops.BanditMarksman.Strength = 30;
 ::Const.World.Spawn.Troops.BanditMarksman.Cost = 25;
 ::Const.World.Spawn.Troops.BanditRaiderWolf.Strength = 30;
 ::Const.World.Spawn.Troops.BanditRaiderWolf.Cost = 30;
-::Const.World.Spawn.Troops.BanditRaider.Strength = 25;
+::Const.World.Spawn.Troops.BanditRaider.Strength = 28;
 ::Const.World.Spawn.Troops.BanditRaider.Cost = 25;
 ::Const.World.Spawn.Troops.BanditLeader.Strength = 40;
 ::Const.World.Spawn.Troops.BanditLeader.Cost = 40;
@@ -61,8 +61,8 @@
 	RF_BanditRobber = {
 		ID = ::Const.EntityType.RF_BanditRobber,
 		Variant = 0,
-		Strength = 18,
-		Cost = 16,
+		Strength = 20,
+		Cost = 18,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_robber"
 	},
@@ -77,7 +77,7 @@
 	RF_BanditVandal = {
 		ID = ::Const.EntityType.RF_BanditVandal,
 		Variant = 0,
-		Strength = 24,
+		Strength = 20,
 		Cost = 18,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_vandal"
@@ -85,7 +85,7 @@
 	RF_BanditPillager = {
 		ID = ::Const.EntityType.RF_BanditPillager,
 		Variant = 0,
-		Strength = 24,
+		Strength = 20,
 		Cost = 18,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_pillager"
@@ -93,7 +93,7 @@
 	RF_BanditOutlaw = {
 		ID = ::Const.EntityType.RF_BanditOutlaw,
 		Variant = 0,
-		Strength = 30,
+		Strength = 28,
 		Cost = 25,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_outlaw"
@@ -101,7 +101,7 @@
 	RF_BanditBandit = {
 		ID = ::Const.EntityType.RF_BanditBandit,
 		Variant = 0,
-		Strength = 30,
+		Strength = 28,
 		Cost = 25,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_bandit"
@@ -169,16 +169,16 @@
 	RF_SkeletonMediumElite = {
 		ID = ::Const.EntityType.RF_SkeletonMediumElite,
 		Variant = 0,
-		Strength = 40,
-		Cost = 40,
+		Strength = 36,
+		Cost = 36,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_medium_elite"
 	},
 	RF_SkeletonMediumElitePolearm = {
 		ID = ::Const.EntityType.RF_SkeletonMediumElite,
 		Variant = 0,
-		Strength = 40,
-		Cost = 40,
+		Strength = 36,
+		Cost = 36,
 		Row = 1,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_medium_elite_polearm"
 	},

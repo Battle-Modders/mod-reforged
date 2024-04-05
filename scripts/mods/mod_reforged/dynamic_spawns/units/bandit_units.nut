@@ -2,8 +2,7 @@ local units = [
 	{
 		ID = "Unit.RF.BanditThug",
 		Troop = "BanditThug",
-		Figure = "figure_rf_bandit_thug",
-		StartingResourceMin = 63 // 7 Scoundrels worth or resource
+		Figure = "figure_rf_bandit_thug"
 	},
 	{
 		ID = "Unit.RF.Wardog",
@@ -46,7 +45,7 @@ local units = [
 		ID = "Unit.RF.RF_BanditRobber",
 		Troop = "RF_BanditRobber",
 		Figure = "figure_rf_bandit_robber",
-		StartingResourceMin = 90
+		StartingResourceMin = 100
 	},
 	{
 		ID = "Unit.RF.RF_BanditHunter",
