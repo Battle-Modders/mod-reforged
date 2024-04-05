@@ -27,11 +27,6 @@
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-		}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -39,10 +34,6 @@
 	    __original();
 
 	    this.m.Skills.add(::new("scripts/skills/perks/perk_nine_lives"));
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-	    }
 
 	    local weapon = this.getMainhandItem();
 	    if (weapon == null) return;
@@ -52,18 +43,10 @@
     	if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
     	{
     		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-    		if (::Reforged.Config.IsLegendaryDifficulty)
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-    		}
     	}
     	else
     	{
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-    		if (::Reforged.Config.IsLegendaryDifficulty)
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-    		}
     	}
 	}
 
@@ -74,11 +57,6 @@
 		{
 			// Vanilla also adds nine_lives but we don't remove that here
 			this.m.Skills.removeByID("perk.hold_out");
-
-			if (::Reforged.Config.IsLegendaryDifficulty)
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
-			}
 		}
 
 		return ret;

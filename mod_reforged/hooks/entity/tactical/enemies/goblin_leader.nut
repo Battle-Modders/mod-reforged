@@ -23,14 +23,5 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_muscle_memory"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
-    	}
 	}
 });

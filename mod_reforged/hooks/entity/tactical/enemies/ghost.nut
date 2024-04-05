@@ -56,10 +56,6 @@
 
 		// Reforged
 		this.m.BaseProperties.IsAffectedByReach = false;
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			b.MeleeDefense += 5;
-		}
 		this.getSkills().update()
 	}
 

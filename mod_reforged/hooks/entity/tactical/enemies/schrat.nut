@@ -68,11 +68,6 @@
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_dent_armor", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bear_down"));
-    	}
 	}
 
 	// switcheroo function to replace loot drops with dummy object

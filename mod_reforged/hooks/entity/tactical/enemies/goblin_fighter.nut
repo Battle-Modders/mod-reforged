@@ -78,7 +78,6 @@
 		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
 		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
 		    		this.m.BaseProperties.DamageDirectMult = 1.25;
-		    		if (::Reforged.Config.IsLegendaryDifficulty)
 		    	}
 			}
 		}

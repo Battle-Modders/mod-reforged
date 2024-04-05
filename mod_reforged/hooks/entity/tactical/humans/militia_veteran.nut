@@ -25,32 +25,12 @@
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.BaseProperties.Hitpoints += 10;
-			this.m.BaseProperties.Bravery += 10;
-			this.m.BaseProperties.Stamina += 15;
-			this.m.BaseProperties.MeleeSkill += 5;
-			this.m.BaseProperties.RangedSkill += 5;
-			this.m.BaseProperties.MeleeDefense += 10;
-			this.m.BaseProperties.RangedDefense += 10;
-			this.m.BaseProperties.Initiative += 10;
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
-
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-	    }
-	    else
-	    {
 	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    }
 
 	    if (this.isArmedWithShield())
 	    {

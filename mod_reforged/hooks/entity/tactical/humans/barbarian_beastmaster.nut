@@ -49,10 +49,5 @@
 		// Reforged
 		b.RangedDefense += 15;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			b.MeleeDefense += 10;
-		}
 	}
 });

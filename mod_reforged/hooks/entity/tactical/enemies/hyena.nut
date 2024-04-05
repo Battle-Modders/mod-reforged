@@ -45,15 +45,6 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium - 1;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.BaseProperties.MeleeSkill += 10;
-    		this.m.BaseProperties.MeleeDefense += 10;
-    		this.m.BaseProperties.RangedDefense += 10;
-    		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_dismantle"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fresh_and_furious"));
-    	}
 	}
 
 	// switcheroo function to replace loot drops with dummy object

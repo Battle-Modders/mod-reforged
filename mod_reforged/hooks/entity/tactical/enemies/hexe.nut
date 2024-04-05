@@ -45,10 +45,6 @@
 		// Reforged
 		b.RangedDefense += 10;
 		this.m.BaseProperties.IsAffectedByReach = false;
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_soul_link"));
-    	}
     	this.getSkills().update()
 	}
 

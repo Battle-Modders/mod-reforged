@@ -41,10 +41,5 @@
     		o.m.IsForceEnabled = true;
 			o.m.IsForceMace = true;
     	}));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
-		}
 	}
 });

@@ -21,10 +21,5 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
-    	}
 	}
 });

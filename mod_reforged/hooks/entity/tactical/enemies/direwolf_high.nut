@@ -19,11 +19,5 @@
 
 		// Reforged
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_double_strike"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_unstoppable"));
-		}
 	}
 });
