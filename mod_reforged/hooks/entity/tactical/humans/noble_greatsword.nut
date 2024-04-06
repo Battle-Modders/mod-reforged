@@ -13,10 +13,10 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -118,7 +118,6 @@
 			})
 			this.m.Items.equip(::new(helmet));
 		}
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 
 		return true;

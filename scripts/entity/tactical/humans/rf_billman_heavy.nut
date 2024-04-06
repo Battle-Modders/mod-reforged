@@ -26,11 +26,8 @@ this.rf_billman_heavy <- ::inherit("scripts/entity/tactical/human" {
 		this.getSprite("socket").setBrush("bust_base_military");
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bolster"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 	}
 
@@ -120,11 +117,20 @@ this.rf_billman_heavy <- ::inherit("scripts/entity/tactical/human" {
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
 			if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_flail_spinner"));
+				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
+			}
+			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
+			{
+				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+			}
+			else if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
 			}
 		}
 	}

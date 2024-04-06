@@ -1,19 +1,24 @@
 // Adjust Vanilla Actors
 ::MSU.Table.merge(::Const.Tactical.Actor.Footman, {
-	XP = 300
+	XP = 300,
+	RangedDefense = 0
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Billman, {
 	XP = 300,
 	Stamina = 100,
+	MeleeSkill = 75,
 	Initiative = 100
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Arbalester, {
-	XP = 300
+	XP = 300,
+	RangedSkill = 70,
+	RangedDefense = 10
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Greatsword, {
-	XP = 450,
-	MeleeSkill = 85,
+	XP = 475,
 	Stamina = 115,
+	MeleeSkill = 85,
+	RangedDefense = 0,
 	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Sergeant, {
@@ -30,8 +35,8 @@
 	XP = 600,
 	Bravery = 100,
 	Stamina = 150,
-	Hitpoints = 120,
 	Initiative = 110,
+	RangedDefense = 0,
 	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Noble, {
@@ -48,7 +53,7 @@
 	MeleeSkill = 75,
 	RangedSkill = 50,
 	MeleeDefense = 15,
-	RangedDefense = 10,
+	RangedDefense = 0,
 	Initiative = 120,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
@@ -64,7 +69,7 @@
 	Hitpoints = 80,
 	Bravery = 70,
 	Stamina = 120,
-	MeleeSkill = 75,
+	MeleeSkill = 80,
 	RangedSkill = 50,
 	MeleeDefense = 10,
 	RangedDefense = 10,
@@ -97,7 +102,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_ManAtArms <- {
-	XP = 450,
+	XP = 475,
 	ActionPoints = 9,
 	Hitpoints = 90,
 	Bravery = 70,
@@ -105,7 +110,7 @@
 	MeleeSkill = 85,
 	RangedSkill = 50,
 	MeleeDefense = 20,
-	RangedDefense = 5,
+	RangedDefense = 0,
 	Initiative = 110,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
@@ -124,7 +129,7 @@
 	MeleeSkill = 85,
 	RangedSkill = 50,
 	MeleeDefense = 20,
-	RangedDefense = 10,
+	RangedDefense = 0,
 	Initiative = 130,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
@@ -154,7 +159,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_Marshal <- {
-	XP = 500,
+	XP = 550,
 	ActionPoints = 9,
 	Hitpoints = 150,
 	Bravery = 100,
@@ -178,10 +183,10 @@
 	Hitpoints = 150,
 	Bravery = 120,
 	Stamina = 170,
-	MeleeSkill = 100,
+	MeleeSkill = 90,
 	RangedSkill = 60,
 	MeleeDefense = 25,
-	RangedDefense = 10,
+	RangedDefense = 0,
 	Initiative = 120,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
@@ -200,7 +205,7 @@
 	MeleeSkill = 90,
 	RangedSkill = 60,
 	MeleeDefense = 20,
-	RangedDefense = 10,
+	RangedDefense = 0,
 	Initiative = 130,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
@@ -219,7 +224,7 @@
 	MeleeSkill = 65,
 	RangedSkill = 50,
 	MeleeDefense = 10,
-	RangedDefense = 5,
+	RangedDefense = 0,
 	Initiative = 120,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,

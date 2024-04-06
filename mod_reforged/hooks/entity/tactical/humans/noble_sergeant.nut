@@ -18,12 +18,12 @@
 			sprite.setBrush("permanent_injury_0" + suffix);
 			sprite.Visible = true;
 		}
-
-		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
 	}
@@ -70,16 +70,13 @@
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword) || weapon.isWeaponType(::Const.Items.WeaponType.Axe) || weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
 			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer) || weapon.isWeaponType(::Const.Items.WeaponType.Mace))
+			else
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
+				::Reforged.Skills.addMasteryOfEquippedWeapon(this, 4);
 			}
 		}
 	}
