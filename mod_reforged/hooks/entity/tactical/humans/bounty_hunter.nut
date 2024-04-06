@@ -19,7 +19,7 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
 		// this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect")); // Replaced as perk
@@ -39,31 +39,5 @@
 	{
 	    __original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
-
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-
-			if (this.isArmedWithShield())
-			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-			}
-			else if (this.m.Skills.hasSkill("actives.throw_net"))
-			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_angler"));
-			}
-			else if (this.getOffhandItem() == null)
-			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-			}
-			else
-			{
-				local weapon = this.getMainhandItem();
-				if (weapon != null && weapon.isItemType(this.Const.Items.ItemType.TwoHanded))
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-			}
-		}
 	}
 });

@@ -36,9 +36,9 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/barbarian_fury_skill"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 30)
@@ -47,14 +47,8 @@
 		// }
 
 		// Reforged
-		b.RangedDefense += 10;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
-			b.MeleeDefense += 10;
-		}
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()

@@ -18,11 +18,11 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_southern");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		// this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect")); // Replaced with perk
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/footwork")); // Replaced with perk
@@ -35,18 +35,8 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_colossus"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fresh_and_furious"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fruits_of_labor"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -70,20 +60,13 @@
 	    {
 	    	if (weapon.getRangeMax() == 2) this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 	    	if (weapon.isAoE()) this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-	    	if (weapon.isItemType(::Const.Items.ItemType.TwoHanded) && weapon.isWeaponType(::Const.Items.WeaponType.Mace))
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
-	    	}
 	    }
 
 	    foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
 	    {
 	    	if (item.isItemType(::Const.Items.ItemType.RangedWeapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
 	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_momentum"));
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_proximity_throwing_specialist"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_opportunist"));
 	    		break;
 	    	}
 	    }

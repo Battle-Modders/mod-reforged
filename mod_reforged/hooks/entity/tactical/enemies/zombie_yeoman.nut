@@ -26,9 +26,5 @@
 		this.m.Skills.update();
 
 		// Reforged
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
-		}
 	}
 });

@@ -46,14 +46,14 @@
 		// 	}
 		// }
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
+		this.m.Skills.add(::new("scripts/skills/actives/throw_dirt_skill"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
 		// {
@@ -62,26 +62,12 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
-    	}
+    	this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
-
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-	    }
-	    else
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    }
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}
 });

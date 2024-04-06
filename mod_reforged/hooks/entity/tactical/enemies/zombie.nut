@@ -121,13 +121,6 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bear_down"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_wear_them_down"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_colossus"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-    	}
 	}
 });

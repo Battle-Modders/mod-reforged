@@ -46,35 +46,22 @@
 		this.setSpriteOffset("status_rooted", this.createVec(0, 16));
 		this.setSpriteOffset("status_stunned", this.createVec(-5, 30));
 		this.setSpriteOffset("arrow", this.createVec(-5, 30));
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
-		this.m.Skills.add(this.new("scripts/skills/actives/warcry"));
-		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+		this.m.Skills.add(::new("scripts/skills/special/double_grip"));
+		this.m.Skills.add(::new("scripts/skills/actives/hand_to_hand_orc"));
+		this.m.Skills.add(::new("scripts/skills/actives/warcry"));
+		this.m.Skills.add(::new("scripts/skills/actives/line_breaker"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battering_ram"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_stalwart"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_bash"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+		this.m.Skills.add(::new("scripts/skills/effects/captain_effect"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;
 		this.m.Skills.add(::new("scripts/skills/racial/rf_orc_racial"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bulwark"));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
-			o.m.IsForceEnabled = true;
-		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -85,23 +72,6 @@
 	    if (weapon == null) return;
 
 	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-
-	    if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
-    		}
-	    }
-	    else
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-    		}
-	    }
 	}
 
 	q.makeMiniboss = @(__original) function()
@@ -109,7 +79,7 @@
 		local ret = __original();
 		if (ret)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
 		}
 
 		return ret;

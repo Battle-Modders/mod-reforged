@@ -32,7 +32,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/barbarian_fury_skill"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_adrenalin"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
@@ -43,17 +43,12 @@
 		// }
 
 		// Reforged
-		b.RangedDefense += 10;
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-		}
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 2);
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 	}
 });

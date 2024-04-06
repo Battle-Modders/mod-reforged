@@ -14,33 +14,17 @@
 
 	    // Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.BaseProperties.Hitpoints += 10;
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    }
-	    else
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 2);
-	    }
 
 	    if (this.isArmedWithShield())
     	{
     		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
-    		if (::Reforged.Config.IsLegendaryDifficulty)
-		    {
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-		    }
     	}
 	}
 });
