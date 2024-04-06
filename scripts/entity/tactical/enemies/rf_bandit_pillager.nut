@@ -38,7 +38,7 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 
-		if (::Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 20)
 		{
 			this.m.MyVariant = 1; // Shield
 		}
@@ -80,12 +80,7 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && this.m.MyVariant == 1) // Shield
 		{
-			local shield = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/shields/wooden_shield"],
-				[0.33, "scripts/items/shields/kite_shield"]
-			]).roll();
-
-			this.m.Items.equip(::new(shield));
+			this.m.Items.equip(::new("scripts/items/shields/wooden_shield"))
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
@@ -94,26 +89,25 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 95 || conditionMax > 130) return 0.0;
+					if (conditionMax < 50 || conditionMax > 55) return 0.0;
 					return _weight;
-				}
+				},
+				Add = [[1, "scripts/items/armor/thick_tunic"]]
 			})
 			this.m.Items.equip(::new(armor));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 25)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 20)
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
-				Exclude = ["scripts/items/helmets/kettle_hat"],
+			local helmet = ::Reforged.ItemTable.BanditHelmetTough.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 45 || conditionMax > 115) return 0.0;
+					if (conditionMax < 20 || conditionMax > 40) return 0.0;
 					return _weight;
-				},
-				Add = [[0.5, "scripts/items/helmets/nasal_helmet_with_rusty_mail"]]
+				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 	}
 
@@ -122,54 +116,13 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			if (this.m.MyVariant == 0) // Two Handed
-			{
-				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) //Goedendag
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_spear_advantage"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_mace"));
-				}
-				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
-				}
-				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-				}
-				else // mace or hammer
-				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-				}
-			}
-			else // Shield
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
-				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-				}
-				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
-				}
-				else // mace or hammer
-				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-				}
-			}
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 		}
-	}
 
-	function onSkillsUpdated()
-	{
-		this.human.onSkillsUpdated();
-		if (!::MSU.isNull(this.m.Skills)) this.m.Skills.removeByID("actives.rf_bearded_blade");
+		if (this.m.MyVariant == 1) // Shield
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
+		}
 	}
 });
 

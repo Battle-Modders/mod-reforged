@@ -47,18 +47,35 @@ this.rf_bandit_highwayman <- this.inherit("scripts/entity/tactical/human", {
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
+			local throwing = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/throwing_spear"]
+			]).rollChance(33);
+
+			if (throwing != null) this.m.Items.equip(::new(throwing));
+		}
+
 			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/flail"],
-				[1, "scripts/items/weapons/hand_axe"],
+	    		[1, "scripts/items/weapons/arming_sword"],
+	    		[1, "scripts/items/weapons/boar_spear"],
+	    		[1, "scripts/items/weapons/flail"],
+	    		[1, "scripts/items/weapons/hand_axe"],
 				[1, "scripts/items/weapons/military_pick"],
 				[1, "scripts/items/weapons/morning_star"],
+				[1, "scripts/items/weapons/scramasax"],
 
 				[1, "scripts/items/weapons/longaxe"],
 				[1, "scripts/items/weapons/polehammer"]
 			]).roll();
-
 			weapon = ::new(weapon);
-			this.m.Items.equip(weapon);
+
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+			{
+				this.m.Items.equip(weapon);
+			}
+			else
+			{
+				this.m.Items.addToBag(weapon);
+			}
 
 			if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 			{
@@ -69,7 +86,6 @@ this.rf_bandit_highwayman <- this.inherit("scripts/entity/tactical/human", {
 
 				this.m.Items.equip(::new(shield));
 			}
-		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
@@ -77,12 +93,12 @@ this.rf_bandit_highwayman <- this.inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 140 || conditionMax > 190) return 0.0;
+					if (conditionMax < 150 || conditionMax > 190) return 0.0;
 					if (conditionMax > 170 || conditionMax <= 190) return _weight * 0.5;
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
@@ -91,10 +107,11 @@ this.rf_bandit_highwayman <- this.inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 115 || conditionMax > 150) return 0.0;
+					if (conditionMax < 130 || conditionMax > 180) return 0.0;
+					if (conditionMax > 170 || conditionMax <= 180) return _weight * 0.5;
 					return _weight;
-				}
-			})
+				},
+				Add = [[0.5, "scripts/items/helmets/rf_padded_skull_cap"]]})
 			this.m.Items.equip(::new(helmet));
 		}
 	}
@@ -106,43 +123,21 @@ this.rf_bandit_highwayman <- this.inherit("scripts/entity/tactical/human", {
 		{
 			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
 			{
-				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+				this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
+			}
+			else // two handed weapon
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
 				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
-				}
-				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 				}
 				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
 				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-				}
-				else (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
-				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
-				}
-			}
-			else //two handed weapon
-			{
-				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-					this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
-				}
-				else //2h hammer
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_dent_armor"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_hammer"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_impact"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 				}
 			}
 		}
@@ -151,7 +146,6 @@ this.rf_bandit_highwayman <- this.inherit("scripts/entity/tactical/human", {
 		if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
 		}
 	}
 });

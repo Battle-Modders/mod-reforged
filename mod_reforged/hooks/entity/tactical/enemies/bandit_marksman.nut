@@ -1,6 +1,4 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_marksman", function(q) {
-	q.m.MyVariant <- 0;
-
 	q.onInit = @() function()
 	{
 		this.human.onInit();
@@ -32,109 +30,56 @@
 		this.getSprite("shield_icon").Saturation = 0.85;
 		this.getSprite("shield_icon").setBrightness(0.85);
 
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
-
-		this.m.MyVariant = ::Math.rand(0, 1); // 1 is crossbow
 	}
 
 	q.assignRandomEquipment = @() function()
 	{
 	    if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-		{
-			if (this.m.MyVariant == 0) // bow
-            {
-				this.m.Items.equip(this.new("scripts/items/weapons/hunting_bow"));
-				this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-			}
-			else // crossbow
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/crossbow"));
-				this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-			}
-		}
+	    {
+	    	local r = ::Math.rand(1, 2);
 
-		local sidearm = ::MSU.Class.WeightedContainer([
-			[1, "scripts/items/weapons/dagger"],
-			[1, "scripts/items/weapons/reinforced_wooden_flail"],
-			[1, "scripts/items/weapons/falchion"],
-			[1, "scripts/items/weapons/scramasax"]
-    	]).roll();
+	    	if (r == 1)
+	    	{
+	    		this.m.Items.equip(::new("scripts/items/weapons/hunting_bow"));
+	    		this.m.Items.equip(::new("scripts/items/ammo/quiver_of_arrows"));
+	    	}
+	    	else
+	    	{
+	    		this.m.Items.equip(::new("scripts/items/weapons/crossbow"));
+	    		this.m.Items.equip(::new("scripts/items/ammo/quiver_of_bolts"));
+	    	}
+	    }
 
-		this.m.Items.addToBag(::new(sidearm));
-
-		if (this.m.MyVariant == 1) // crossbow
-		{
-			local shield = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/shields/wooden_shield"]
-	    	]).rollChance(66);
-
-			if (shield != null) this.m.Items.addToBag(::new(shield));
-		}
+	    this.m.Items.addToBag(::new("scripts/items/weapons/dagger"));
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = null;
-			if (this.m.MyVariant == 0) // bow
-            {
-				armor = ::Reforged.ItemTable.BanditArmorBowman.roll({
-					Apply = function ( _script, _weight )
-					{
-						local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-						if (conditionMax < 50 || conditionMax > 70) return 0.0;
-						return _weight;
-					}
-				})
-			}
-			else // crossbow
-			{
-				armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
-					Apply = function ( _script, _weight )
-					{
-						local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-						if (conditionMax < 65 || conditionMax > 115) return 0.0;
-						return _weight;
-					}
-				})
-			}
-			this.m.Items.equip(::new(armor));
+			local armor = ::Reforged.ItemTable.BanditArmorBowman.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax < 50 || conditionMax > 70) return 0.0;
+					return _weight;
+				}
+			})
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = null;
-			if (this.m.MyVariant == 0  && ::Math.rand(1, 100) >= 15) // bow
-			{
-				helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
-					Apply = function ( _script, _weight )
-					{
-						local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-						if (conditionMax < 30 || conditionMax > 80) return 0.0;
-						return _weight;
-					},
-					Add = [
-						[0.2, "scripts/items/helmets/hunters_hat"],
-						[0.2, "scripts/items/helmets/feathered_hat"]
-					]
-				})
-			}
-			else // crossbow
-			{
-				helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
-					Exclude = [
-						"scripts/items/helmets/dented_nasal_helmet"
-					],
-					Apply = function ( _script, _weight )
-					{
-						local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-						if (conditionMax < 50 || conditionMax > 115) return 0.0;
-						if (conditionMax > 105 || conditionMax <= 115) return _weight * 0.5;
-						return _weight;
-					}
-				})
-			}
-			this.m.Items.equip(::new(helmet));
+			local helmet = ::Reforged.ItemTable.BanditHelmetBowman.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax < 30 || conditionMax > 70) return 0.0;
+					return _weight;
+				}
+			})
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 	}
 
@@ -143,25 +88,7 @@
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			if (this.m.MyVariant == 0) // bow
-			{
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
-		    	this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-			}
-			else // crossbow
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_entrenched"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
-			}
+		    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 		}
 	}
 

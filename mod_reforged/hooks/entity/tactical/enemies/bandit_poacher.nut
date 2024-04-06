@@ -32,7 +32,6 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -63,11 +62,11 @@
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax > 20) return 0.0;
+					if (conditionMax > 35) return 0.0;
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 50)
@@ -80,7 +79,7 @@
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 	}
 });
