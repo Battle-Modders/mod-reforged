@@ -20,8 +20,10 @@ this.rf_skeleton_decanus <- ::inherit("scripts/entity/tactical/rf_skeleton_comma
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_decanus"));
 
 		this.getSprite("rf_cape").setBrush("rf_ancient_cape");
@@ -57,7 +59,8 @@ this.rf_skeleton_decanus <- ::inherit("scripts/entity/tactical/rf_skeleton_comma
 	function onSetupEntity()
 	{
 		this.rf_skeleton_commander.onSetupEntity();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 4);
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_tempo"));
 	}
 });
 

@@ -18,8 +18,6 @@ this.rf_skeleton_light_elite_polearm <- ::inherit("scripts/entity/tactical/enemi
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
 		b.Initiative -= 20;
-
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 	}
 
 	function assignRandomEquipment()
@@ -27,7 +25,7 @@ this.rf_skeleton_light_elite_polearm <- ::inherit("scripts/entity/tactical/enemi
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-				[2, "scripts/items/weapons/ancient/broken_bladed_pike"],
+				[1, "scripts/items/weapons/ancient/broken_bladed_pike"],
 				[1, "scripts/items/weapons/ancient/bladed_pike"],
 			]).roll();
 			this.m.Items.equip(::new(weapon));
@@ -45,6 +43,16 @@ this.rf_skeleton_light_elite_polearm <- ::inherit("scripts/entity/tactical/enemi
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_household_helmet"));
+		}
+	}
+
+	function onSetupEntity()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null && mainhandItem.isItemType(::Const.Items.ItemType.MeleeWeapon)) // melee weapon equipped
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+			this.m.Skills.removeByID("perk.rf_bolster");
 		}
 	}
 });

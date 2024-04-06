@@ -29,7 +29,12 @@
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			this.m.Items.equip(::new("scripts/items/weapons/ancient/bladed_pike"));
+			local weapon = ::MSU.Class.WeightedContainer([
+				[3, "scripts/items/weapons/ancient/bladed_pike"],
+	    		[1, "scripts/items/weapons/ancient/warscythe"]
+	    	]).roll();
+
+			this.m.Items.equip(::new(weapon));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
@@ -45,6 +50,27 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_legionary_helmet"));
+		}
+	}
+
+	q.onSetupEntity <- function()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+
+			switch (mainhandItem.getID())
+    		{
+    			case "weapon.bladed_pike":
+    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_follow_up"));
+    				this.m.Skills.removeByID("perk.rf_bolster");
+    				break;
+    			case  "weapon.rf_warscythe":
+    				this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
+    				this.m.Skills.removeByID("perk.rf_bolster");
+    				break;
+    		}
 		}
 	}
 });

@@ -20,9 +20,10 @@ this.rf_skeleton_legatus <- ::inherit("scripts/entity/tactical/rf_skeleton_comma
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_decisive"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigilant"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_legatus"));
 
 		this.getSprite("rf_cape").setBrush("rf_ancient_cape");
@@ -56,9 +57,26 @@ this.rf_skeleton_legatus <- ::inherit("scripts/entity/tactical/rf_skeleton_comma
 			return false;
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
+
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			this.m.Items.equip(::new("scripts/items/weapons/named/named_crypt_cleaver"));
+			local weapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/named/named_bladed_pike"],
+				[1, "scripts/items/weapons/named/named_warscythe"]
+			]).roll();
+			this.m.Items.equip(::new(weapon));
+		}
+
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_inspiring_presence"));
+		return true;
+	}
+
+	function onSetupEntity()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		}
 	}
 });
