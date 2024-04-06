@@ -25,15 +25,12 @@
 ::MSU.Table.merge(::Const.Tactical.Actor.HedgeKnight, {
 	XP = 550,
 	MeleeSkill = 90,
-	RangedSkill = 50,
 	RangedDefense = 0,
-	Initiative = 105,
 	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.MasterArcher, {
 	XP = 550,
 	RangedSkill = 90,
 	RangedDefense = 45,
-	Initiative = 150,
 	FatigueRecoveryRate = 15
 });

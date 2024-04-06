@@ -20,13 +20,13 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_finesse"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 
 		this.m.MyVariant = ::MSU.Table.randValue(this.m.SwordmasterVariants);
 
@@ -105,15 +105,13 @@
 			    	]).roll();
 	                break;
 
+                case this.m.SwordmasterVariants.Grappler:
+                	weapon = "scripts/items/weapons/greatsword";
+                    break;
+
 	            case this.m.SwordmasterVariants.Metzger:
-					if (this.m.MyArmorVariant == 0) // light armor
-					{
 						weapon = "scripts/items/weapons/shamshir";
-					}
-					else // medium armor
-					{
-						weapon = "scripts/items/weapons/rf_kriegsmesser";
-					}
+						this.m.Items.equip(::new("scripts/items/shields/southern_light_shield"));
 	                break;
 
 	            case this.m.SwordmasterVariants.Precise:
@@ -126,13 +124,6 @@
                 case this.m.SwordmasterVariants.Reaper:
                     weapon = ::MSU.Class.WeightedContainer([
     		    		[1, "scripts/items/weapons/rf_greatsword"],
-    					[1, "scripts/items/weapons/warbrand"],
-    					[1, "scripts/items/weapons/greatsword"]
-    		    	]).roll();
-                    break;
-
-                case this.m.SwordmasterVariants.Grappler:
-                    weapon = ::MSU.Class.WeightedContainer([
     					[1, "scripts/items/weapons/warbrand"],
     					[1, "scripts/items/weapons/greatsword"]
     		    	]).roll();
@@ -165,15 +156,13 @@
 			    	]).roll();
 	                break;
 
+                case this.m.SwordmasterVariants.Grappler:
+               		weapon = "scripts/items/weapons/named/named_greatsword";
+                    break;
+
 	            case this.m.SwordmasterVariants.Metzger:
-					if (this.m.MyArmorVariant == 0) // light armor
-					{
 						weapon = "scripts/items/weapons/named/named_shamshir";
-					}
-					else // medium armor
-					{
-						 weapon = "scripts/items/weapons/named/named_rf_kriegsmesser";
-					}
+						this.m.Items.equip(::new("scripts/items/shields/southern_light_shield"));
 	                break;
 
 	            case this.m.SwordmasterVariants.Precise:
@@ -190,13 +179,6 @@
 						[1, "scripts/items/weapons/named/named_greatsword"]
 			    	]).roll();
 	                break;
-
-                case this.m.SwordmasterVariants.Grappler:
-                    weapon = ::MSU.Class.WeightedContainer([
-    					[1, "scripts/items/weapons/named/named_warbrand"],
-    					[1, "scripts/items/weapons/named/named_greatsword"]
-    		    	]).roll();
-                    break;
 	        }
         	this.m.Items.equip(::new(weapon));
 		}
@@ -225,7 +207,7 @@
 					}
 				})
             }
-        	this.m.Items.equip(::new(armor));
+        	if (armor != null) this.m.Items.equip(::new(armor));
         }
 		else // named helmet
 		{
@@ -252,9 +234,8 @@
 					}
 				})
 			}
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
-
 		return true;
 	}
 
@@ -262,112 +243,57 @@
 	{
 		if (this.m.MyArmorVariant == 0) // light armor
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
 		}
 		else // medium armor
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_skirmisher"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_poise"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
 		}
 
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 			switch(this.m.MyVariant)
 	        {
 	            case this.m.SwordmasterVariants.BladeDancer:
-		            this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_kata"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
+	         	   this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
+	         	   this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+		           this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
 
 					switch (mainhandItem.getID())
 		    		{
-		    			case "weapon.rf_greatsword":
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
-		    				break;
 		    			case "weapon.warbrand":
 		    			case "weapon.named_warbrand":
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
+		    				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
 		    				break;
 		    		}
-			    	if (this.m.Skills.hasSkill("actives.riposte")) //longsword and noble sword
-					{
-						this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-						this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
-					}
-					else //greatsword and warbrand
-					{
-						this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-					}
                 	break;
 
-	            case this.m.SwordmasterVariants.Metzger:
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_metzger"));
+	            case this.m.SwordmasterVariants.Grappler:
+	            this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+	            	this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+	            	this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
+	            	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_versatile_swordsman"));
+					break;
 
-					switch (mainhandItem.getID())
-		    		{
-		    			case "weapon.shamshir":
-		    			case "weapon.named_shamshir":
-		    				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		    				break;
-		    			case  "weapon.rf_kriegsmesser":
-		    			case  "weapon.named_rf_kriegsmesser":
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_kata"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		    				break;
-		    		}
-	                break;
+	            case this.m.SwordmasterVariants.Metzger:
+	            	this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+    				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_metzger"));
+    				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
 
 	            case this.m.SwordmasterVariants.Precise:
-			    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-			    	this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-			    	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_fencer"));
-			    	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_precise"));
+			    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fencer"));
+			    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_precise"));
 	                break;
 
 	            case this.m.SwordmasterVariants.Reaper:
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
-			    	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_reaper"));
-			    	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-
-			    	local attack = this.getSkills().getAttackOfOpportunity();
-					if (attack != null && attack.getBaseValue("ActionPointCost") <= 4)
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-					}
-					else
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-					}
+		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+			    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_reaper"));
+			    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 	                break;
-
-	            case this.m.SwordmasterVariants.Grappler:
-	            	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_grappler"));
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-	            	local attack = this.getSkills().getAttackOfOpportunity();
-					if (attack != null && attack.getBaseValue("ActionPointCost") <= 4)
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-					}
-					else
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-					}
-					break;
 	        }
         }
 
@@ -375,33 +301,16 @@
         {
 			switch(this.m.MyVariant)
 	        {
-	            case this.m.SwordmasterVariants.BladeDancer:
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_pattern_recognition"));
-	                break;
-
 	            case this.m.SwordmasterVariants.Metzger:
-	            	local mainhandItem = this.getMainhandItem();
-		            switch (mainhandItem.getID())
-		    		{
-		            	case "weapon.shamshir":
-		            	case "weapon.named_shamshir":
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordlike"));
-		    				break;
-		    			case  "weapon.rf_kriegsmesser":
-		    			case  "weapon.named_rf_kriegsmesser":
-		    				this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
-		    				break;
-		            }
+		    		this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
 	                break;
-
-	            case this.m.SwordmasterVariants.Precise:
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_pattern_recognition"));
-	                break;
-
-	            case this.m.SwordmasterVariants.Reaper:
+	            case this.m.SwordmasterVariants.BladeDancer:
 	            case this.m.SwordmasterVariants.Grappler:
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_pattern_recognition"));
+	            case this.m.SwordmasterVariants.Precise:
+	            case this.m.SwordmasterVariants.Reaper:
+	            	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 	                break;
+
 	        }
         }
 	}
