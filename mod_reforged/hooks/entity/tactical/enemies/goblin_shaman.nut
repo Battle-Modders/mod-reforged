@@ -23,10 +23,5 @@
 		this.m.Skills.add(::MSU.new("scripts/skills/actives/root_skill", function(o) {
 			o.m.Cooldown = 3;
 		}));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    	}
 	}
 });

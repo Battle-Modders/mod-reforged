@@ -38,13 +38,7 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall + 1;
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_concussive_strikes", function(o) {
-    		o.m.IsForceEnabled = true;
-			o.m.IsForceMace = true;
+    		o.m.RequiredWeaponType = null;
     	}));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
-		}
 	}
 });

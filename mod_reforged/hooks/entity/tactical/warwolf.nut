@@ -50,11 +50,6 @@
 		b.RangedDefense += 5;
 		b.DamageTotalMult *= 1.15;
 
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			b.Hitpoints += 10;
-			b.MeleeSkill += 5;
-		}
 		this.getSkills().update()
 	}
 });

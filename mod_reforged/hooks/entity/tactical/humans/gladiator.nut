@@ -35,18 +35,8 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_colossus"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fresh_and_furious"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fruits_of_labor"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -55,35 +45,27 @@
 
 	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
-	    local aoo = this.m.Skills.getAttackOfOpportunity();
-	    if (aoo != null && aoo.isDuelistValid())
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-	    }
-	    else
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    }
-
 	    local weapon = this.getMainhandItem();
 	    if (weapon != null)
 	    {
+	    	if (::Reforged.Items.isDuelistValid(weapon))
+	    	{
+	    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+	    	}
+	    	else
+	    	{
+	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+	    	}
+
 	    	if (weapon.getRangeMax() == 2) this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 	    	if (weapon.isAoE()) this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-	    	if (weapon.isItemType(::Const.Items.ItemType.TwoHanded) && weapon.isWeaponType(::Const.Items.WeaponType.Mace))
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
-	    	}
 	    }
 
 	    foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
 	    {
 	    	if (item.isItemType(::Const.Items.ItemType.RangedWeapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
 	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_momentum"));
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_proximity_throwing_specialist"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_opportunist"));
 	    		break;
 	    	}
 	    }

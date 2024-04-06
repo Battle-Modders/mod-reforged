@@ -46,9 +46,5 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium - 1;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		}
 	}
 });

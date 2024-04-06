@@ -14,6 +14,8 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_heartless"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
@@ -22,7 +24,6 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_savage_strength"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -97,7 +98,7 @@
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 		else
 		{
@@ -109,7 +110,7 @@
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_man_of_steel"));
@@ -121,25 +122,7 @@
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-	    	{
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_flail"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
-	    	{
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_deep_impact"));
-	    	}
-	    	else //mace
-	    	{
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_mace"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bone_breaker"));
-	    	}
+	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
 	    	if (mainhandItem.isAoE())
 	    	{

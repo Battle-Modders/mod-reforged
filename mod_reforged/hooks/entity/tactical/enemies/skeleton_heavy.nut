@@ -25,9 +25,10 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
 	}
 
@@ -36,9 +37,7 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/ancient/ancient_sword"],
 	    		[1, "scripts/items/weapons/ancient/khopesh"],
-	    		[1, "scripts/items/weapons/ancient/warscythe"],
 	    		[1, "scripts/items/weapons/ancient/crypt_cleaver"],
 	    		[1, "scripts/items/weapons/ancient/rhomphaia"]
 	    	]).roll();
@@ -77,43 +76,17 @@
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = this.Const.Items.NamedUndeadWeapons;
 		this.m.Items.equip(::new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_intimidate", function(o) {
-			o.m.IsForceEnabled = true;
-		}));
 		return true;
 	}
 
 	q.onSetupEntity <- function()
 	{
 		local weapon = this.getMainhandItem();
-		if (weapon == null) return;
-
-		if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+		if (weapon != null)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
-
-			if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
-			}
-			else
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_kata"));
-			}
-		}
-		else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-		}
-		else if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		}
 	}
 });

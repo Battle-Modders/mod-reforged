@@ -50,16 +50,6 @@
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_from_all_sides", function(o) {
     		o.m.IsForceEnabled = true;
     	}));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			b.MeleeSkill += 10;
-			b.MeleeDefense += 10;
-			b.RangedDefense += 10;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_fresh_and_furious"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
-		}
 	}
 
 	// switcheroo function to replace loot drops with dummy object

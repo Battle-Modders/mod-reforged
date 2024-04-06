@@ -26,7 +26,7 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
+		// this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect")); Replaced with perk
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
 		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
@@ -39,6 +39,7 @@
 		// }
 
 		// Reforged
+		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
@@ -46,19 +47,8 @@
 			o.m.Cooldown = 3;
 		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_lone_wolf"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -83,9 +73,7 @@
 	    {
 	    	if (item.isItemType(::Const.Items.ItemType.RangedWeapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
 	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_momentum"));
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_proximity_throwing_specialist"));
 	    		break;
 	    	}
 	    }
@@ -99,11 +87,6 @@
 			this.m.Skills.removeByID("perk.underdog");
 			this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
-    		}
 		}
 
 		return ret;

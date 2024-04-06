@@ -54,22 +54,12 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/racial/rf_goblin_wolfrider_racial"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_kata", function(o) {
-			o.m.IsForceEnabled = true;
-		}));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-	    this.m.Skills.removeByID("perk.rf_two_for_one");
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}
 });

@@ -50,46 +50,37 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_devastating_strikes"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
 		// Reforged
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exude_confidence"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_feral_rage"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_unstoppable"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			b.RangedDefense += 10;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bulwark"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
-		}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
+		__original();
+		local weapon = this.getMainhandItem();
+		if (weapon != null)
 		{
-			local weapon = this.getMainhandItem();
-			if (weapon != null && weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
+			if (weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
 			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cull"));
 			}
 			else
 			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_double_strike"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_mauler"));
 			}
 		}
 	}

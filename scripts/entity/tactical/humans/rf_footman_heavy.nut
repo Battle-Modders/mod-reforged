@@ -116,26 +116,7 @@ this.rf_footman_heavy <- ::inherit("scripts/entity/tactical/human" {
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Mace))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_impact"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_dent_armor"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_impact"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
-			}
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 		}
 	}
 });

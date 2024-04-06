@@ -74,13 +74,6 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -90,14 +83,7 @@
 	    local weapon = this.getMainhandItem();
 	    if (weapon == null) return;
 
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 7);
-	    }
-	    else
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-	    }
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
 
 	    if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 	    {

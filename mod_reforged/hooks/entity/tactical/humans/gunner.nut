@@ -26,12 +26,6 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_entrenched"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_muscle_memory"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()

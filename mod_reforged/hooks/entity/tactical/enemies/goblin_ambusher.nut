@@ -30,27 +30,7 @@
 
 		// Reforged
 		b.RangedDefense += 5;
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
-    		if (::Math.rand(1, 100) <= 25) this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
-    	}
 	}
-
-	//
-	// q.assignRandomEquipment = @(__original) function()
-	// {
-	//     __original();
-
-	//     if (::Reforged.Config.IsLegendaryDifficulty)
-	//     {
-	//     	::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 4);
-	//     }
-	//     else
-	//     {
-	//     	::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 3);
-	//     }
-	// }
 
 	q.makeMiniboss = @(__original) function()
 	{
@@ -63,11 +43,6 @@
 
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hip_shooter"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fresh_and_furious"));
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_marksmanship"));
-    		}
 		}
 
 		return ret;

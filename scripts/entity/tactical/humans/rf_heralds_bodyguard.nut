@@ -55,8 +55,6 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigilant"));
 		this.m.Skills.add(::MSU.new("scripts/skills/special/rf_bodyguard", function(o) { // TODO: Probably need a better way of doing this (hopefully when onCombatStart is available for AI actors) - Midas
@@ -163,18 +161,16 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 
 			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_grappler"));
 			}
 			else if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_between_the_eyes"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cull"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 			}
 
 			if (weapon.getID() == "weapon.rf_poleaxe")

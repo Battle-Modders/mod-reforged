@@ -69,16 +69,15 @@ this.rf_bandit_scoundrel <- this.inherit("scripts/entity/tactical/human", {
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/butchers_cleaver"],
-				[1, "scripts/items/weapons/bludgeon"],
-				[0.33, "scripts/items/weapons/dagger"],
+				[1, "scripts/items/weapons/dagger"],
 				[1, "scripts/items/weapons/knife"],
-				[1, "scripts/items/weapons/hatchet"],
-				[0.33, "scripts/items/weapons/militia_spear"],
-				[1, "scripts/items/weapons/pickaxe"],
-				[0.33, "scripts/items/weapons/reinforced_wooden_flail"],
-				[0.2, "scripts/items/weapons/shortsword"],
+				[1, "scripts/items/weapons/militia_spear"],
+				[1, "scripts/items/weapons/shortsword"],
 				[1, "scripts/items/weapons/wooden_flail"],
-				[1, "scripts/items/weapons/wooden_stick"]
+				[1, "scripts/items/weapons/wooden_stick"],
+
+				[1, "scripts/items/weapons/pitchfork"],
+				[1, "scripts/items/weapons/rf_reinforced_wooden_poleflail"],
 			]).roll();
 
 			this.m.Items.equip(::new(weapon));
@@ -87,8 +86,8 @@ this.rf_bandit_scoundrel <- this.inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local shield = ::MSU.Class.WeightedContainer([
-				[0.5, "scripts/items/shields/buckler_shield"],
-				[0.5, "scripts/items/shields/wooden_shield"]
+				[1, "scripts/items/shields/buckler_shield"],
+				[1, "scripts/items/shields/wooden_shield"]
 			]).rollChance(33);
 
 			if (shield != null) this.m.Items.equip(::new(shield));
@@ -101,31 +100,28 @@ this.rf_bandit_scoundrel <- this.inherit("scripts/entity/tactical/human", {
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
 					if (conditionMax > 65) return 0.0;
-					if (conditionMax > 55) return _weight * 0.5;
 					return _weight;
 				},
 				Add = [
-					[0.2, "scripts/items/armor/monk_robe"],
-					[0.4, "scripts/items/armor/apron"],
-					[0.2, "scripts/items/armor/butcher_apron"]
+					[1, "scripts/items/armor/monk_robe"],
+					[0.5, "scripts/items/armor/apron"]
 				]
 			})
 			this.m.Items.equip(::new(armor));
 		}
 
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 30)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 50)
 		{
 			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax > 45) return 0.0;
-					if (conditionMax > 40) return _weight * 0.5;
+					if (conditionMax > 40) return 0.0;
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 	}
 });

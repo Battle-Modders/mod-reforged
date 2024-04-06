@@ -20,18 +20,6 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
-    		local skill = ::MSU.Class.WeightedContainer([
-    			[25, "scripts/skills/perks/perk_rf_eyes_up"],
-    			[25, "scripts/skills/perks/perk_rf_flaming_arrows"],
-    			[50, ""]
-    		]).roll();
-
-    		if (skill != "") this.m.Skills.add(::new(skill));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()

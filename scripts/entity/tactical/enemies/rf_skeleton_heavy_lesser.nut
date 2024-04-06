@@ -23,8 +23,10 @@ this.rf_skeleton_heavy_lesser <- ::inherit("scripts/entity/tactical/skeleton", {
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 	}
 
 	function assignRandomEquipment()
@@ -32,9 +34,7 @@ this.rf_skeleton_heavy_lesser <- ::inherit("scripts/entity/tactical/skeleton", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/ancient/ancient_sword"],
 				[1, "scripts/items/weapons/ancient/khopesh"],
-				[1, "scripts/items/weapons/ancient/warscythe"],
 				[1, "scripts/items/weapons/ancient/crypt_cleaver"],
 				[1, "scripts/items/weapons/ancient/rhomphaia"]
 			]).roll();
@@ -68,38 +68,7 @@ this.rf_skeleton_heavy_lesser <- ::inherit("scripts/entity/tactical/skeleton", {
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-				if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-				}
-				else
-				{
-					local aoo = this.m.Skills.getAttackOfOpportunity();
-					if (aoo != null && aoo.getActionPointCost() <= 4)
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_kata"));
-					}
-					else
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
-					}
-				}
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-			}
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		}
 	}
 });

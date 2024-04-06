@@ -62,7 +62,9 @@ this.rf_bandit_vandal <- this.inherit("scripts/entity/tactical/human", {
 			[1, "scripts/items/weapons/military_pick"],
 			[1, "scripts/items/weapons/morning_star"],
 			[1, "scripts/items/weapons/scramasax"],
+			[1, "scripts/items/weapons/shortsword"],
 
+			[1, "scripts/items/weapons/rf_two_handed_falchion"],
 			[1, "scripts/items/weapons/warbrand"]
 		]).roll();
 		weapon = ::new(weapon);
@@ -79,10 +81,11 @@ this.rf_bandit_vandal <- this.inherit("scripts/entity/tactical/human", {
 		if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 		{
 			local shield = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/shields/wooden_shield"]
-			]).rollChance(60);
+				[3, "scripts/items/shields/wooden_shield"],
+				[1, "scripts/items/shields/kite_shield"]
+			]).roll();
 
-			if (shield != null) this.m.Items.equip(::new(shield));
+			this.m.Items.equip(::new(shield));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
@@ -91,54 +94,41 @@ this.rf_bandit_vandal <- this.inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 80 || conditionMax > 115) return 0.0;
+					if (conditionMax < 65 || conditionMax > 95) return 0.0;
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 20)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) >= 20)
 		{
 			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 40 || conditionMax > 115) return 0.0;
+					if (conditionMax < 40 || conditionMax > 90) return 0.0;
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 	}
 
 	function onSetupEntity()
 	{
 		local mainhandItem = this.getMainhandItem();
-		if (mainhandItem != null && mainhandItem.isItemType(::Const.Items.ItemType.MeleeWeapon)) //Rolled and equipped one handed melee weapon
+		if (mainhandItem != null && mainhandItem.isItemType(::Const.Items.ItemType.MeleeWeapon)) // melee weapon equipped
 		{
-			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-			}
-			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_whirling_death"));
-			}
-			else
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-			}
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 		}
-		else //Rolled two handed weapon and added to bag.
+		else // melee weapon in bag
 		{
 			foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))
 			{
-				if (item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Sword))
+				if (item.isItemType(::Const.Items.ItemType.Weapon))
 				{
-					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
+					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 3);
 					break;
 				}
 			}

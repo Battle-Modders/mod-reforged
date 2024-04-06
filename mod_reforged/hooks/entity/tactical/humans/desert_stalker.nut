@@ -32,16 +32,7 @@
 		b.RangedDefense += 15;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_small_target"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_marksmanship"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-		}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -57,12 +48,6 @@
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_finesse"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_fresh_and_furious"));
-
-			if (::Reforged.Config.IsLegendaryDifficulty)
-			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_entrenched"));
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
-			}
 		}
 
 		return ret;

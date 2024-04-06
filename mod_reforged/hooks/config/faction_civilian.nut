@@ -1,21 +1,36 @@
 // Adjust Vanilla Actors
+::MSU.Table.merge(::Const.Tactical.Actor.CaravanGuard, {
+	RangedDefense = 0
+});
+::MSU.Table.merge(::Const.Tactical.Actor.BountyHunter, {
+	RangedDefense = 0,
+	FatigueRecoveryRate = 15
+});
+::MSU.Table.merge(::Const.Tactical.Actor.Mercenary, {
+	FatigueRecoveryRate = 15
+});
+::MSU.Table.merge(::Const.Tactical.Actor.Oathbringer, {
+	RangedDefense = 0,
+	FatigueRecoveryRate = 15
+});
 ::MSU.Table.merge(::Const.Tactical.Actor.Swordmaster, {
+	XP = 550,
 	Hitpoints = 80,
-	Stamina = 150,
-	MeleeDefense = 50,
+	Stamina = 130,
+	MeleeDefense = 60,
 	RangedDefense = 20,
-	Initiative = 150,
+	Initiative = 130,
 	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.HedgeKnight, {
-	Stamina = 215,
+	XP = 550,
 	MeleeSkill = 90,
+	RangedDefense = 0,
 	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.MasterArcher, {
-	Stamina = 150,
+	XP = 550,
 	RangedSkill = 90,
 	RangedDefense = 45,
-	Initiative = 150,
 	FatigueRecoveryRate = 15
 });

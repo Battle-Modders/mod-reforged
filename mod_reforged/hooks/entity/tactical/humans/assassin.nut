@@ -15,7 +15,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
 		// this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect")); // Replaced with perk
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_adrenalin"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
@@ -28,17 +28,8 @@
 		//Reforged
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_double_strike"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sneak_attack"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_fresh_and_furious"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_ghostlike"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-		}
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
     }
 
     q.assignRandomEquipment = @(__original) function()

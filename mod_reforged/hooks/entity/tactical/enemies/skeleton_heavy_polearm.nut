@@ -25,12 +25,6 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()

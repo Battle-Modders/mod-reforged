@@ -73,30 +73,10 @@ this.rf_squire <- ::inherit("scripts/entity/tactical/human" {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet;
-			if (banner <= 4)
-			{
-				helmet = ::new(::MSU.Class.WeightedContainer([
-					[1, "scripts/items/helmets/kettle_hat"],
-					[1, "scripts/items/helmets/padded_kettle_hat"]
-				]).roll());
-			}
-			else if (banner <= 7)
-			{
-				helmet = ::new(::MSU.Class.WeightedContainer([
-					[1, "scripts/items/helmets/flat_top_helmet"],
-					[1, "scripts/items/helmets/padded_flat_top_helmet"]
-				]).roll());
-			}
-			else
-			{
-				helmet = ::new(::MSU.Class.WeightedContainer([
-					[1, "scripts/items/helmets/nasal_helmet"],
-					[1, "scripts/items/helmets/padded_nasal_helmet"]
-				]).roll());
-			}
-
-			helmet.setPlainVariant();
+			local helmet = ::new(::MSU.Class.WeightedContainer([
+				[1, "scripts/items/helmets/sallet_helmet"],
+				[1, "scripts/items/helmets/rf_sallet_helmet"]
+			]).roll());
 			this.m.Items.equip(helmet);
 		}
 	}
@@ -106,24 +86,7 @@ this.rf_squire <- ::inherit("scripts/entity/tactical/human" {
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
-
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_dent_armor"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Mace))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-			}
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 		}
 	}
 });

@@ -27,8 +27,9 @@
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_cleaver"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_formidable_approach"));
-
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_emperor")); TODO: Later when a framework for aura skills is available
 	}
 });

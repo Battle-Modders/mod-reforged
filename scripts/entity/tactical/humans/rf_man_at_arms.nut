@@ -29,9 +29,6 @@ this.rf_man_at_arms <- ::inherit("scripts/entity/tactical/human" {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigilant"));
 	}
 
 	function assignRandomEquipment()
@@ -102,72 +99,25 @@ this.rf_man_at_arms <- ::inherit("scripts/entity/tactical/human" {
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword) && weapon.isWeaponType(::Const.Items.WeaponType.Spear))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_between_the_eyes"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_tempo"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_spear"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
 			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+			else
 			{
-				if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver)) // Sword/Cleaver hybrid
-				{
-					::Reforged.Skills.addPerkGroup(this, "pg.rf_sword", 4);
-					this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-				}
-				else if (weapon.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_spear"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_two_for_one"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_gaps"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-				}
-				else
-				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-				}
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Mace))
+
+			if (::Reforged.Items.isDuelistValid(weapon))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
+			else
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_impact"));
-			}
-			if (this.m.IsMiniboss)
-			{
-				if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cull"));
-				}
-				else if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-				{
-					if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver)) // Sword/Cleaver hybrid
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordlike"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bloodlust"));
-					}
-					else if (weapon.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
-					}
-					else
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
-					}
-				}
-				else if (weapon.isWeaponType(::Const.Items.WeaponType.Mace))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bone_breaker"));
-				}
-				else if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_flail_spinner"));
-				}
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 			}
 		}
 	}
@@ -205,7 +155,7 @@ this.rf_man_at_arms <- ::inherit("scripts/entity/tactical/human" {
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 		else
 		{
@@ -217,8 +167,10 @@ this.rf_man_at_arms <- ::inherit("scripts/entity/tactical/human" {
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
+
 		return true;
 	}
 });

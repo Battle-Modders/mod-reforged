@@ -46,7 +46,7 @@
 		// 	}
 		// }
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
@@ -62,26 +62,12 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
-    	}
+    	this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
-
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-	    }
-	    else
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    }
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}
 });

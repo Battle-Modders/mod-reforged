@@ -12,9 +12,6 @@
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bolster"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -30,7 +27,8 @@
 		{
 			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/billhook"],
-				[1, "scripts/items/weapons/pike"]
+				[1, "scripts/items/weapons/pike"],
+				[1, "scripts/items/weapons/rf_poleflail"]
 			]).roll()));
 		}
 
@@ -85,8 +83,7 @@
 			else
 			{
 				helmet = ::new(::MSU.Class.WeightedContainer([
-					[1, "scripts/items/helmets/headscarf"],
-					[2, "scripts/items/helmets/aketon_cap"],
+					[1, "scripts/items/helmets/aketon_cap"],
 					[1, "scripts/items/helmets/full_aketon_cap"]
 				]).roll());
 			}

@@ -61,7 +61,6 @@ this.rf_arbalester_heavy <- ::inherit("scripts/entity/tactical/human" {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = ::new(::MSU.Class.WeightedContainer([
-				[1, "scripts/items/helmets/aketon_cap"],
 				[1, "scripts/items/helmets/full_aketon_cap"],
 				[1, "scripts/items/helmets/mail_coif"],
 				[1, "scripts/items/helmets/rf_skull_cap"],
@@ -78,7 +77,7 @@ this.rf_arbalester_heavy <- ::inherit("scripts/entity/tactical/human" {
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		}
 	}
 });

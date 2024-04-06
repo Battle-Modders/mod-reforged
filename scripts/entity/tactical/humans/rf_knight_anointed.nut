@@ -42,6 +42,7 @@ this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_mentor", function(o) {
 			o.m.MaxStudents = 2;
 		}));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 	}
 
 	function assignRandomEquipment()
@@ -96,32 +97,7 @@ this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-			}
-		}
-
-		local offhand = this.getOffhandItem();
-		if (offhand != null && offhand.isItemType(::Const.Items.ItemType.Shield))
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		}
 	}
 
@@ -160,7 +136,7 @@ this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 		else
 		{
@@ -172,7 +148,7 @@ this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));

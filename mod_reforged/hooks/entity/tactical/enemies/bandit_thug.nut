@@ -71,8 +71,8 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local shield = ::MSU.Class.WeightedContainer([
-				[0.5 , "scripts/items/shields/wooden_shield"],
-				[0.5, "scripts/items/shields/buckler_shield"]
+				[1, "scripts/items/shields/wooden_shield"],
+				[1, "scripts/items/shields/buckler_shield"]
 			]).rollChance(33);
 
 			if (shield != null) this.m.Items.equip(::new(shield));
@@ -84,27 +84,29 @@
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 35 || conditionMax > 90) return 0.0;
-					if (conditionMax >= 35 || conditionMax < 50) return _weight * 0.5;
-					if (conditionMax >= 80 || conditionMax <= 90) return _weight * 0.5;
+					if (conditionMax < 10 || conditionMax > 10) return 0.0;
 					return _weight;
-				}
+				},
+				Add = [
+					[2, "scripts/items/armor/leather_wraps"],
+					[1, "scripts/items/armor/thick_tunic"],
+					[0.5, "scripts/items/armor/butcher_apron"]
+				]
 			})
 			this.m.Items.equip(::new(armor));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 30)
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetTough.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax > 70) return 0.0;
-					if (conditionMax > 50 || conditionMax <= 70) return _weight * 0.5;
+					if (conditionMax > 45) return 0.0;
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 	}
 });

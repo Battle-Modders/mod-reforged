@@ -27,25 +27,42 @@
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/hand_axe"],
-				[1, "scripts/items/weapons/military_pick"],
-				[1, "scripts/items/weapons/morning_star"],
-				[1, "scripts/items/weapons/flail"],
+			local throwing = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/throwing_spear"]
+			]).rollChance(33);
 
-				[1, "scripts/items/weapons/longaxe"],
-				[1, "scripts/items/weapons/polehammer"]
-	    	]).roll();
-
-			this.m.Items.equip(::new(weapon));
+			if (throwing != null) this.m.Items.equip(::new(throwing));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		local weapon = ::MSU.Class.WeightedContainer([
+    		[1, "scripts/items/weapons/arming_sword"],
+    		[1, "scripts/items/weapons/boar_spear"],
+    		[1, "scripts/items/weapons/falchion"],
+    		[1, "scripts/items/weapons/flail"],
+    		[1, "scripts/items/weapons/hand_axe"],
+			[1, "scripts/items/weapons/military_pick"],
+			[1, "scripts/items/weapons/morning_star"],
+			[1, "scripts/items/weapons/scramasax"],
+
+			[1, "scripts/items/weapons/longaxe"],
+			[1, "scripts/items/weapons/polehammer"]
+    	]).roll();
+		weapon = ::new(weapon);
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			this.m.Items.equip(weapon);
+		}
+		else
+		{
+			this.m.Items.addToBag(weapon);
+		}
+
+		if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 		{
 			local shield = ::MSU.Class.WeightedContainer([
 				[1.0, "scripts/items/shields/wooden_shield"],
-				[1.0, "scripts/items/shields/kite_shield"],
-				[0.33, "scripts/items/shields/heater_shield"]
+				[1.0, "scripts/items/shields/kite_shield"]
 			]).roll();
 
 			this.m.Items.equip(::new(shield));
@@ -57,11 +74,11 @@
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 115 || conditionMax > 150) return 0.0;
+					if (conditionMax < 105 || conditionMax > 140) return 0.0;
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 
 
@@ -70,12 +87,14 @@
 			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
 				Apply = function ( _script, _weight )
 				{
-					if (_script == "scripts/items/helmets/kettle_hat") return _weight * 0.5;
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 90 || conditionMax > 140) return 0.0;
-					if (conditionMax > 125 || conditionMax <= 140) return _weight * 0.5;
+					if (conditionMax < 105 || conditionMax > 125) return 0.0;
 					return _weight;
-				}
+				},
+				Add = [
+					[0.5, "scripts/items/helmets/rf_skull_cap"],
+					[1, "scripts/items/helmets/nasal_helmet_with_rusty_mail"]
+				]
 			})
 			this.m.Items.equip(::new(helmet));
 		}
@@ -84,39 +103,26 @@
 	q.onSetupEntity <- function()
 	{
 		local mainhandItem = this.getMainhandItem();
-		if (mainhandItem != null)
+		if (mainhandItem != null && mainhandItem.isItemType(::Const.Items.ItemType.MeleeWeapon)) // melee weapon equipped
 		{
-			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		}
+		else // melee waepon in bag
+		{
+			foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))
 			{
-				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-		    	{
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_axe"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		    	}
-		    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-		    	}
-		    	else
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-		    	}
+				if (item.isItemType(::Const.Items.ItemType.Weapon))
+				{
+					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
+					break;
+				}
 			}
-			else //Two Handed Weapon
-			{
-				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-		    	{
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		    	}
-		    	else //polehammer
-		    	{
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_dent_armor"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
-		    	}
-			}
+		}
+
+		local offhandItem = this.getOffhandItem();
+		if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 		}
 	}
 });

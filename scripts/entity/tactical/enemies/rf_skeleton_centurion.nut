@@ -20,9 +20,10 @@ this.rf_skeleton_centurion <- ::inherit("scripts/entity/tactical/rf_skeleton_com
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_combo"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_centurion"));
 
 		this.getSprite("rf_cape").setBrush("rf_ancient_cape");
@@ -38,8 +39,8 @@ this.rf_skeleton_centurion <- ::inherit("scripts/entity/tactical/rf_skeleton_com
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = ::MSU.Class.WeightedContainer([
-				[3, "scripts/items/armor/ancient/ancient_scale_coat"],
-				[2, "scripts/items/armor/ancient/ancient_plated_mail_hauberk"]
+				[2, "scripts/items/armor/ancient/ancient_plated_mail_hauberk"],
+				[3, "scripts/items/armor/ancient/ancient_scale_coat"]
 			]).roll();
 			this.m.Items.equip(::new(armor));
 		}
@@ -47,6 +48,15 @@ this.rf_skeleton_centurion <- ::inherit("scripts/entity/tactical/rf_skeleton_com
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_legionary_helmet"));
+		}
+	}
+
+	function onSetupEntity()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 		}
 	}
 });

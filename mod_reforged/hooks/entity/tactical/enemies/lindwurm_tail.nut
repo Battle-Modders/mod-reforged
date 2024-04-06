@@ -66,9 +66,5 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-    	}
 	}
 });

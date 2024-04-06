@@ -23,9 +23,8 @@ this.rf_skeleton_light_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 	}
 
 	function assignRandomEquipment()
@@ -42,7 +41,11 @@ this.rf_skeleton_light_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
-			this.m.Items.equip(::new("scripts/items/shields/ancient/auxiliary_shield"));
+			local shield = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/shields/ancient/auxiliary_shield"],
+				[2, "scripts/items/shields/ancient/coffin_shield"]
+			]).roll();
+			this.m.Items.equip(::new(shield));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
@@ -57,6 +60,19 @@ this.rf_skeleton_light_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_household_helmet"));
+		}
+	}
+
+	function onSetupEntity()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+			{
+				this.m.Skills.removeByID("actives.rf_kata_step_skill");
+			}
 		}
 	}
 });

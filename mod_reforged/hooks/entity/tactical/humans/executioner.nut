@@ -19,7 +19,7 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_nomads");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
@@ -38,16 +38,7 @@
 		//Reforged
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bulwark"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_personal_armor"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_unstoppable"));
-		}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -55,43 +46,27 @@
 	    __original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
-	    local aoo = this.getSkills().getAttackOfOpportunity();
 	    local weapon = this.getMainhandItem();
-
-	    if (aoo != null && aoo.isDuelistValid())
+	    if (weapon != null)
 	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+	    	if (::Reforged.Items.isDuelistValid(weapon))
+	    	{
+	    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+	    	}
+	    	else
+	    	{
+	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+	    	}
 
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
+	    	if (weapon.isAoE())
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
+			}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_small_target"));
 			}
 	    }
-
-	    else
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    }
-
-	    if (weapon.isAoE())
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-
-			if (::Reforged.Config.IsLegendaryDifficulty)
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-			}
-		}
-
-		else
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_small_target"));
-
-			if (::Reforged.Config.IsLegendaryDifficulty)
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_impact"));
-			}
-		}
 	}
 
 	q.makeMiniboss = @(__original) function()
@@ -101,12 +76,6 @@
 		{
 			this.m.Skills.removeByID("perk.reach_advantage");
 			this.m.BaseProperties.MeleeDefense += 10;
-
-			if (::Reforged.Config.IsLegendaryDifficulty)
-			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
-			}
 		}
 
 		return ret;
