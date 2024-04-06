@@ -60,11 +60,5 @@
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_flaming_arrows"));
 		}
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
-    	}
 	}
 });

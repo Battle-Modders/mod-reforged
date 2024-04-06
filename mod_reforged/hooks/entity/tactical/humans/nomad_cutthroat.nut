@@ -39,27 +39,11 @@
 		// }
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
-
-	    local weapon = this.getMainhandItem();
-	    if (weapon == null) return;
-
-	    if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 2);
-	    }
-	    else
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 1);
-	    }
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 	}
 });

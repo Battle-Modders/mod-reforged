@@ -18,7 +18,7 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
@@ -29,13 +29,7 @@
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
-		b.RangedDefense += 10;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
-    	}
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -253,40 +247,30 @@
 			this.m.Items.equip(this.new(helmets[this.Math.rand(1, helmets.len() - 1)]));
 		}
 
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 7);
-	    }
-	    else
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-	    }
-
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	    if (this.isArmedWithShield())
 	    {
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 	    }
 
-	    local aoo = this.m.Skills.getAttackOfOpportunity();
-	    if (aoo != null && aoo.isDuelistValid())
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-	    }
-	    else
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    }
+        local weapon = this.getMainhandItem();
+        if (weapon != null)
+        {
+        	if (::Reforged.Items.isDuelistValid(weapon))
+        	{
+        		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+        	}
+        	else
+        	{
+        		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+        	}
+        }
 
 	    foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
 	    {
 	    	if (item.isItemType(::Const.Items.ItemType.RangedWeapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
 	    	{
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_proximity_throwing_specialist"));
-	    		if (::Reforged.Config.IsLegendaryDifficulty)
-			    {
-			    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_opportunist"));
-			    }
 	    		break;
 	    	}
 	    }

@@ -16,7 +16,6 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_finesse"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_ghostlike"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
@@ -49,7 +48,7 @@
 			[1, "scripts/items/weapons/scramasax"]
     	]).roll();
 
-		this.m.Items.addToBag(::new(sidearm));
+		if (sidearm != null) this.m.Items.addToBag(::new(sidearm));
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
 		{
@@ -106,7 +105,7 @@
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
@@ -118,16 +117,7 @@
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Bow))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
-			}
-			else //crossbow
-			{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
-			}
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
 		}
 	}
 });

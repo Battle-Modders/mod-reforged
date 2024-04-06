@@ -25,15 +25,12 @@
 		this.getSprite("shield_icon").Saturation = 0.85;
 		this.getSprite("shield_icon").setBrightness(0.85);
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_shield_sergeant"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_hold_steady"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
     		o.m.IsForceEnabled = true;
@@ -48,6 +45,7 @@
 			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 			{
 				local weapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/longsword"],
 					[1, "scripts/items/weapons/rf_kriegsmesser"],
 					[1, "scripts/items/weapons/rf_swordstaff"],
 					[1, "scripts/items/weapons/two_handed_flail"],
@@ -61,8 +59,8 @@
 			{
 				local weapon = ::MSU.Class.WeightedContainer([
 					[1, "scripts/items/weapons/fighting_axe"],
-					[1, "scripts/items/weapons/military_cleaver"],
 					[1, "scripts/items/weapons/fighting_spear"],
+					[1, "scripts/items/weapons/military_cleaver"],
 					[1, "scripts/items/weapons/noble_sword"],
 					[1, "scripts/items/weapons/warhammer"],
 					[1, "scripts/items/weapons/winged_mace"],
@@ -92,7 +90,7 @@
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 
 
@@ -106,7 +104,7 @@
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 	}
 
@@ -130,6 +128,7 @@
 				[1, "scripts/items/weapons/named/named_hammer"],
 				[1, "scripts/items/weapons/named/named_mace"],
 
+				[1, "scripts/items/weapons/named/named_rf_longsword"],
 				[1, "scripts/items/weapons/named/named_rf_kriegsmesser"],
 				[1, "scripts/items/weapons/named/named_rf_swordstaff"],
 				[1, "scripts/items/weapons/named/named_two_handed_flail"],
@@ -139,7 +138,7 @@
 
 			this.m.Items.equip(::new(weapon));
 		}
-		else if (r <= 50)
+		else if (r <= 45)
 		{
 			local shields = clone ::Const.Items.NamedShields;
 			shields.extend([
@@ -158,7 +157,7 @@
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 		else
 		{
@@ -170,10 +169,10 @@
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		return true;
 	}
 
@@ -182,79 +181,39 @@
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
+	  		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
 	    	{
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_axe"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
-	    	{
-	    		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
+	    		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver)) // Sword/Cleaver hybrid
 	    		{
-	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+	    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
     				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_two_for_one"));
-	    		}
-	    		else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver)) // Sword/Cleaver hybrid
-	    		{
-	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_cleaver"));
     				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
 	    		}
-	    		else if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded)) // One-handed sword
+	    		else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
 	    		{
-	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+	    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+	    			::Reforged.Skills.addPerkGroup(this, "pg.rf_spear");
 	    		}
-	    		else // Two-handed sword
+	    		else
 	    		{
-	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
+	    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	    		}
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
-	    	{
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_deep_impact"));
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
-	    	{
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_mace"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_concussive_strikes"));
-	    	}
-	    	else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_flail"));
-	    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_whirling_death"));
-	    	}
-	    	else
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 7);
-	    	}
-		}
+    		}
 
-		local attack = this.getSkills().getAttackOfOpportunity();
-		if (attack != null && attack.getBaseValue("ActionPointCost") <= 4)
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-		}
-		else
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+    		if (::Reforged.Items.isDuelistValid(mainhandItem))
+    		{
+    			this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+    		}
+    		else
+    		{
+    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+    		}
 		}
 
 		local offhandItem = this.getOffhandItem();
 		if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_line_breaker"));
 		}
 	}
 });

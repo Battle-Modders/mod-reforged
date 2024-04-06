@@ -70,16 +70,13 @@
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword) || weapon.isWeaponType(::Const.Items.WeaponType.Axe) || weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword, true, true))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer) || weapon.isWeaponType(::Const.Items.WeaponType.Mace))
+			else
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 			}
 		}
 	}

@@ -79,11 +79,6 @@
 	    this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall;
 	    this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.BaseProperties.MeleeDefense += 10;
-			this.m.BaseProperties.RangedDefense += 10;
-		}
 	}
 
 	// switcheroo function to replace loot drops with dummy object

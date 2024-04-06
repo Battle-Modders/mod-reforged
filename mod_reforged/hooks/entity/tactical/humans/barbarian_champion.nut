@@ -47,33 +47,42 @@
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
 		// Reforged
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			b.RangedDefense += 10;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_battle_fervor"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
-		}
+		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
+	    local weapon = this.getMainhandItem();
+	    if (weapon != null)
+	    {
+	    	if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
+		    {
+		    	this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		    	this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
+		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cull"));
+		    }
+		    else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
+		    {
+		    	this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
+		    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_mauler"));
+		    }
+		    else
+		    {
+		    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		    }
+	    }
 
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-		}
 	}
 });

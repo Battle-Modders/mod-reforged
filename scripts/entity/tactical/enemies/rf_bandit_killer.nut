@@ -36,17 +36,12 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("shield_icon").setBrightness(0.85);
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_momentum"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hybridization"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
 
 		this.m.MyVariant = ::Math.rand(0, 1); // 1 is thrower
 	}
@@ -104,7 +99,7 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 		{
 			this.m.Items.equip(weapon);
 		}
-		else if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && weapon.isItemType(::Const.Items.ItemType.OneHanded)) // offhand free and rolled 1h melee weapon
+		else if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && weapon.isItemType(::Const.Items.ItemType.OneHanded)) // rolled 1h melee weapon
 		{
 			this.m.Items.equip(weapon);
 		}
@@ -119,11 +114,11 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 95 || conditionMax > 150) return 0.0;
+					if (conditionMax < 115 || conditionMax > 140) return 0.0;
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
@@ -136,10 +131,11 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 105 || conditionMax > 140) return 0.0;
+					if (conditionMax < 105 || conditionMax > 125) return 0.0;
 					return _weight;
 				},
 				Add = [
+					[0.5, "scripts/items/helmets/rf_skull_cap"],
 					[1, "scripts/items/helmets/reinforced_mail_coif"],
 					[0.5, "scripts/items/helmets/nordic_helmet"]
 				]
@@ -157,145 +153,45 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 		}
 
 		local weapon = this.getMainhandItem();
-		if (weapon != null)
+		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.MeleeWeapon))
 		{
-			if (weapon.isItemType(::Const.Items.ItemType.MeleeWeapon)) //melee weapon equipped and not in bag
+			foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))  //primary weapon in bag and not equipped
 			{
-				if (weapon.isItemType(::Const.Items.ItemType.OneHanded)) //melee weapon equipped and one handed
+				if (item.isItemType(::Const.Items.ItemType.MeleeWeapon))
 				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-					if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-					{
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-					}
-					else if (weapon.isWeaponType(::Const.Items.WeaponType.Spear))
-					{
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
-					}
-					else if (weapon.isWeaponType(::Const.Items.WeaponType.Dagger))
-					{
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sneak_attack"));
-					}
-					else //cleaver
-					{
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-					}
-				}
-				else //melee weapon equipped and two handed
-				{
-					if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
-					{
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
-					}
-					else if (weapon.isWeaponType(::Const.Items.WeaponType.Spear))
-					{
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
-					}
-					else
-					{
-						switch (weapon.getID())
-						{
-							case "weapon.billhook":
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-								break;
-							case "weapon.longsword":
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_kata"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-								break;
-							case "weapon.pike":
-								this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_gaps"));
-								break;
-							case "weapon.warbrand":
-								::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-								this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-								break;
-						}
-					}
+					weapon = item;
+					break;
 				}
 			}
 		}
 
-		foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))  //primary weapon in bag and not equipped
+		if (weapon != null)
 		{
-			if (item.isItemType(::Const.Items.ItemType.MeleeWeapon))
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Dagger))
 			{
-				if (item.isItemType(::Const.Items.ItemType.OneHanded)) //one handed
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-					if (item.isWeaponType(::Const.Items.WeaponType.Sword))
-					{
-						::Reforged.Skills.addPerkGroupOfWeapon(this, item, 6);
-					}
-					else if (item.isWeaponType(::Const.Items.WeaponType.Spear))
-					{
-						::Reforged.Skills.addPerkGroupOfWeapon(this, item);
-					}
-					else if (item.isWeaponType(::Const.Items.WeaponType.Dagger))
-					{
-						::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sneak_attack"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swift_stabs"));
-					}
-					else //cleaver
-					{
-						::Reforged.Skills.addPerkGroupOfWeapon(this, item, 5);
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-					}
-				}
-				else //two handed
-				{
-					if (item.isWeaponType(::Const.Items.WeaponType.Flail))
-					{
-						::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_concussive_strikes"));
-					}
-					else if (item.isWeaponType(::Const.Items.WeaponType.Spear))
-					{
-						::Reforged.Skills.addPerkGroupOfWeapon(this, item);
-					}
-					else
-					{
-						switch (item.getID())
-						{
-							case "weapon.billhook":
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-								break;
-							case "weapon.longsword":
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_kata"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-								break;
-							case "weapon.pike":
-								this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_gaps"));
-								break;
-							case "weapon.warbrand":
-								::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
-								this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-								this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-								break;
-						}
-					}
-				}
+				this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 			}
+			switch (weapon.getID())
+			{
+				case "weapon.pike":
+					this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
+					break;
+			}
+
+			if (::Reforged.Items.isDuelistValid(weapon))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+		}
+
+		if (this.m.MyVariant == 1) // Thrower
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_opportunist"));
 		}
 	}
 });
-

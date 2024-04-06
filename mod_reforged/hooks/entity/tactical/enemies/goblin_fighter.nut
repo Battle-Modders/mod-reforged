@@ -36,14 +36,6 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_kata", function(o) {
-			o.m.IsForceEnabled = true;
-		}));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_proximity_throwing_specialist"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -55,26 +47,14 @@
 	    {
 	    	if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 	    	{
-	    		if (::Reforged.Config.IsLegendaryDifficulty)
-	    		{
-	    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5)
-	    		}
-	    		else
-	    		{
-	    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4)
-	    		}
+	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4)
 	    	}
 	    	else
 	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bolster"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
+	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3)
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-	    		if (::Reforged.Config.IsLegendaryDifficulty)
-	    		{
-	    			this.m.BaseProperties.DamageDirectMult = 1.25;
-	    		}
 	    	}
-	    }
+		}
 	}
 
 	q.makeMiniboss = @(__original) function()
@@ -85,8 +65,6 @@
 			this.m.Skills.removeByID("perk.nine_lives"); // revert vanilla
 			// Rest from vanilla: Nimble, Dodge, Relentless
 
-			this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-
 			local weapon = this.getMainhandItem();
 			if (weapon != null)
 			{
@@ -94,26 +72,13 @@
 		    	{
 		    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
-		    		if (::Reforged.Config.IsLegendaryDifficulty)
-		    		{
-		    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-		    		}
 		    	}
 		    	else
 		    	{
 		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
 		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
 		    		this.m.BaseProperties.DamageDirectMult = 1.25;
-		    		if (::Reforged.Config.IsLegendaryDifficulty)
-		    		{
-		    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fresh_and_furious"));
-		    		}
 		    	}
-			}
-
-			if (::Reforged.Config.IsLegendaryDifficulty && this.m.Skills.hasSkill("actives.throw_net"))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_angler"));
 			}
 		}
 

@@ -79,26 +79,7 @@
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Mace))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_mace"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-			}
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		}
 	}
 
@@ -137,7 +118,7 @@
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 		else
 		{
@@ -149,7 +130,7 @@
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));

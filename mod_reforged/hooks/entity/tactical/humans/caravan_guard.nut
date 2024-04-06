@@ -27,11 +27,6 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_phalanx"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_throwing"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_strength_in_numbers"));
-		}
 	}
 
 	q.assignRandomEquipment = @(__original) function()

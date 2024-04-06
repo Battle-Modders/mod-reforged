@@ -53,14 +53,4 @@
 		// Reforged
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 	}
-
-	q.assignRandomEquipment = @(__original) function()
-	{
-	    __original();
-
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 1);
-	    }
-	}
 });

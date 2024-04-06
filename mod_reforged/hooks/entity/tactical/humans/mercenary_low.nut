@@ -28,25 +28,12 @@
 		// Reforged
 		b.RangedDefense += 10;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
-
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-	    }
-	    else
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    }
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 
 	    if (this.isArmedWithShield())
 	    {

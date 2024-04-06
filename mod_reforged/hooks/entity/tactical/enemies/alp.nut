@@ -37,10 +37,6 @@
 
 		//Reforged
 		this.m.BaseProperties.IsAffectedByReach = false;
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		}
 		this.getSkills().update()
     }
 });

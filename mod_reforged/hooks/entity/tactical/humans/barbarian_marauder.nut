@@ -45,10 +45,10 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_adrenalin"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
@@ -58,26 +58,29 @@
 		// }
 
 		// Reforged
-		b.RangedDefense += 10;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
-		}
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		__original();
 		local weapon = this.getMainhandItem();
-
-		if (weapon != null && weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
+		if (weapon != null)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_throwing"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_momentum"));
+			if (weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
+			}
+			else
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+			}
+
+			if (weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
+			}
 		}
 	}
 });

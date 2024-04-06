@@ -16,7 +16,9 @@
 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -62,7 +64,15 @@
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Dagger))
+			{
+				::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger");
+			}
+			else
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+				this.m.Skills.removeByID("actives.rf_kata_step_skill");
+			}
 		}
 	}
 });

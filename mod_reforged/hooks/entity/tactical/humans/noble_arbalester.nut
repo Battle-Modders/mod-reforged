@@ -10,7 +10,7 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
-
+		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
@@ -45,8 +45,6 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local script = ::MSU.Class.WeightedContainer([
-				[1, ""],
-				[1, "scripts/items/helmets/headscarf"],
 				[1, "scripts/items/helmets/aketon_cap"],
 				[1, "scripts/items/helmets/full_aketon_cap"],
 				[1, "scripts/items/helmets/mail_coif"],

@@ -60,25 +60,116 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;
 		this.m.Skills.add(::new("scripts/skills/racial/rf_orc_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-    	}
 	}
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @() function()
 	{
-	    __original();
+		local r;
+		local weapon;
 
-	    if (::Reforged.Config.IsLegendaryDifficulty)
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
-	    }
-	    else
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	    }
+		if (this.Math.rand(1, 100) <= 25)
+		{
+			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/orc_javelin"));
+		}
+
+		if (this.Math.rand(1, 100) <= 75)
+		{
+			if (this.Math.rand(1, 100) <= 50)
+			{
+				local r = this.Math.rand(1, 2);
+
+				if (r == 1)
+				{
+					weapon = this.new("scripts/items/weapons/greenskins/orc_axe");
+				}
+				else if (r == 2)
+				{
+					weapon = this.new("scripts/items/weapons/greenskins/orc_cleaver");
+				}
+			}
+			else
+			{
+				local r = this.Math.rand(1, 2);
+
+				if (r == 1)
+				{
+					weapon = this.new("scripts/items/weapons/greenskins/orc_wooden_club");
+				}
+				else if (r == 2)
+				{
+					weapon = this.new("scripts/items/weapons/greenskins/orc_metal_club");
+				}
+			}
+		}
+		else
+		{
+			r = this.Math.rand(1, 2);
+
+			// if (r == 1)
+			// {
+			// 	weapon = this.new("scripts/items/weapons/greenskins/goblin_falchion");
+			// }
+			if (r == 1)
+			{
+				weapon = this.new("scripts/items/weapons/hatchet");
+			}
+			else
+			{
+				weapon = this.new("scripts/items/weapons/morning_star");
+			}
+		}
+
+		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		{
+			this.m.Items.equip(weapon);
+		}
+		else
+		{
+			this.m.Items.addToBag(weapon);
+		}
+
+		if (this.Math.rand(1, 100) <= 50)
+		{
+			this.m.Items.equip(this.new("scripts/items/shields/greenskins/orc_light_shield"));
+		}
+
+		r = this.Math.rand(1, 5);
+
+		if (r == 1)
+		{
+			this.m.Items.equip(this.new("scripts/items/armor/greenskins/orc_young_very_light_armor"));
+		}
+		else if (r == 2)
+		{
+			this.m.Items.equip(this.new("scripts/items/armor/greenskins/orc_young_light_armor"));
+		}
+		else if (r == 3)
+		{
+			this.m.Items.equip(this.new("scripts/items/armor/greenskins/orc_young_medium_armor"));
+		}
+		else if (r == 4)
+		{
+			this.m.Items.equip(this.new("scripts/items/armor/greenskins/orc_young_heavy_armor"));
+		}
+
+		r = this.Math.rand(1, 4);
+
+		if (r == 1)
+		{
+			this.m.Items.equip(this.new("scripts/items/helmets/greenskins/orc_young_light_helmet"));
+		}
+		else if (r == 2)
+		{
+			this.m.Items.equip(this.new("scripts/items/helmets/greenskins/orc_young_medium_helmet"));
+		}
+		else if (r == 3)
+		{
+			this.m.Items.equip(this.new("scripts/items/helmets/greenskins/orc_young_heavy_helmet"));
+		}
+	}
+
+	q.onSetupEntity = @() function()
+	{
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 	}
 });

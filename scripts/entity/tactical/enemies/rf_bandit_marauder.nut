@@ -1,6 +1,6 @@
 this.rf_bandit_marauder <- this.inherit("scripts/entity/tactical/human", {
 	m = {
-		IsLow = false
+		MyVariant = 0
 	},
 	function create()
 	{
@@ -38,6 +38,11 @@ this.rf_bandit_marauder <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
+
+		if (::Math.rand(1, 100) <= 20)
+		{
+			this.m.MyVariant = 1; // Shield
+		}
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )
@@ -50,16 +55,35 @@ this.rf_bandit_marauder <- this.inherit("scripts/entity/tactical/human", {
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/rf_battle_axe"],
-				[1, "scripts/items/weapons/rf_greatsword"],
-				[1, "scripts/items/weapons/two_handed_mace"],
-				[1, "scripts/items/weapons/two_handed_wooden_hammer"],
-				[1, "scripts/items/weapons/two_handed_wooden_flail"],
-				[1, "scripts/items/weapons/woodcutters_axe"]
-			]).roll();
+			local weapon;
+			if (this.m.MyVariant == 0) // Two Handed
+			{
+				weapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/rf_battle_axe"],
+					[0.5, "scripts/items/weapons/rf_greatsword"],
+					[1, "scripts/items/weapons/two_handed_mace"],
+					[1, "scripts/items/weapons/two_handed_wooden_hammer"],
+					[1, "scripts/items/weapons/two_handed_wooden_flail"]
+				]).roll();
 
 			this.m.Items.equip(::new(weapon));
+			}
+			else // Shield
+			{
+				weapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/hand_axe"],
+					[1, "scripts/items/weapons/flail"],
+					[1, "scripts/items/weapons/military_pick"],
+					[1, "scripts/items/weapons/morning_star"]
+					]).roll();
+			}
+
+			this.m.Items.equip(::new(weapon));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && this.m.MyVariant == 1) // Shield
+		{
+			this.m.Items.equip(::new("scripts/items/shields/wooden_shield"))
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
@@ -68,25 +92,24 @@ this.rf_bandit_marauder <- this.inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 170 || conditionMax > 210) return 0.0;
+					if (conditionMax < 80 || conditionMax > 95) return 0.0;
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(armor));
+			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetTough.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 140 || conditionMax > 180) return 0.0;
-					if (conditionMax >= 140 || conditionMax < 150) return _weight * 0.5;
+					if (conditionMax < 70 || conditionMax > 90) return 0.0;
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 	}
 
@@ -95,54 +118,18 @@ this.rf_bandit_marauder <- this.inherit("scripts/entity/tactical/human", {
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
 			{
-				local aoo = this.m.Skills.getAttackOfOpportunity();
-				if (aoo != null && aoo.getBaseValue("ActionPointCost") <= 4)
-				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
-				}
-				else
-				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-					this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-				}
+				this.m.Skills.removeByID("actives.rf_kata_step_skill");
 			}
-			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+
+			if (this.m.MyVariant == 1) // Shield
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-			}
-			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 5);
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-			}
-			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-			}
-			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Flail))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_flail"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_whirling_death"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
 			}
 		}
-	}
-
-	function onSkillsUpdated()
-	{
-		this.human.onSkillsUpdated();
-		if (!::MSU.isNull(this.m.Skills)) this.m.Skills.removeByID("actives.rf_bearded_blade");
 	}
 });
 

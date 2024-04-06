@@ -23,8 +23,10 @@ this.rf_skeleton_medium_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 	}
 
 	function assignRandomEquipment()
@@ -57,6 +59,10 @@ this.rf_skeleton_medium_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 	function onSetupEntity()
 	{
 		this.skeleton.onSetupEntity();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger");
+		}
 	}
 });

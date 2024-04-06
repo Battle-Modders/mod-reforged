@@ -3,7 +3,6 @@
 	[1, "scripts/items/armor/sackcloth"],
 	[1, "scripts/items/armor/leather_wraps"],
 	[1, "scripts/items/armor/leather_tunic"],
-	[1, "scripts/items/armor/thick_tunic"],
 	[1, "scripts/items/armor/padded_surcoat"],
 	[1, "scripts/items/armor/ragged_surcoat"],
 	[1, "scripts/items/armor/gambeson"],
@@ -16,7 +15,6 @@
 	[1, "scripts/items/armor/leather_scale_armor"],
 	[1, "scripts/items/armor/mail_hauberk"],
 	[1, "scripts/items/armor/light_scale_armor"],
-	[1, "scripts/items/armor/footman_armor"],
-	[1, "scripts/items/armor/reinforced_mail_hauberk"]
+	[1, "scripts/items/armor/footman_armor"]
 ]);
 

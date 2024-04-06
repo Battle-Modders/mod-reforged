@@ -50,26 +50,13 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
 		// Reforged
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
-
-		if (::Reforged.Config.IsLegendaryDifficulty)
-		{
-			this.m.Skills.removeByID("perk.sundering_strikes");
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_skirmisher"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-		}
-	}
-
-	q.assignRandomEquipment = @(__original) function()
-	{
-	    __original();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
 	}
 });

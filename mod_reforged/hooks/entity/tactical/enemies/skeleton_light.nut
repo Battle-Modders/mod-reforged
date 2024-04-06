@@ -16,7 +16,8 @@
 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -45,6 +46,15 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_household_helmet"));
+		}
+	}
+
+	q.onSetupEntity = @() function()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null && mainhandItem.isItemType(::Const.Items.ItemType.MeleeWeapon)) // melee weapon equipped
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 		}
 	}
 });

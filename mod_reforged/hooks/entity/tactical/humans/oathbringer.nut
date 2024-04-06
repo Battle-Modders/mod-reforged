@@ -35,13 +35,6 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bulwark"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-    	}
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -124,17 +117,14 @@
 		if (weapon == null) return;
 
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-		local aoo = this.m.Skills.getAttackOfOpportunity();
-		if (aoo != null)
+
+		if (::Reforged.Items.isDuelistValid(weapon))
 		{
-			if (aoo.isDuelistValid())
-			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-			}
-			else
-			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_man_of_steel"));
-			}
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+		}
+		else
+		{
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_man_of_steel"));
 		}
 	}
 
@@ -147,10 +137,6 @@
 
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bulwark"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fresh_and_furious"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
-    		}
 		}
 
 		return ret;

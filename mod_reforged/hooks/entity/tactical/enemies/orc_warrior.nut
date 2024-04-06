@@ -60,40 +60,13 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;
 		this.m.Skills.add(::new("scripts/skills/racial/rf_orc_racial"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bulwark"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
-
-	    local weapon = this.getMainhandItem();
-	    if (weapon == null) return;
-
-	    if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_axe"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
-	    	}
-	    }
-	    else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordlike"));
-	    	}
-	    }
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 	}
 
 	q.makeMiniboss = @(__original) function()
@@ -101,14 +74,7 @@
 		local ret = __original();
 		if (ret)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
-	    	if (::Reforged.Config.IsLegendaryDifficulty)
-    		{
-    			this.m.Skills.removeByID("perk.perk_rf_personal_armor");
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
-    		}
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
 		}
 
 		return ret;

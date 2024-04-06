@@ -27,9 +27,6 @@ this.rf_billman_heavy <- ::inherit("scripts/entity/tactical/human" {
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bolster"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 	}
@@ -46,9 +43,9 @@ this.rf_billman_heavy <- ::inherit("scripts/entity/tactical/human" {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/rf_halberd"],
 				[1, "scripts/items/weapons/polehammer"],
-				[1, "scripts/items/weapons/rf_poleflail"],
-				[1, "scripts/items/weapons/rf_halberd"]
+				[1, "scripts/items/weapons/rf_voulge"]
 			]).roll()));
 		}
 
@@ -120,11 +117,16 @@ this.rf_billman_heavy <- ::inherit("scripts/entity/tactical/human" {
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_flail_spinner"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
+			}
+			else
+			{
+				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 			}
 		}
 	}

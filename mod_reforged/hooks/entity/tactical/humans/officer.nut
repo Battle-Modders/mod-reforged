@@ -36,26 +36,17 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_bolster", function(o) {
-			o.m.IsForceEnabled = true;
+			o.m.RequiredWeaponType = null;
+			o.m.RequiredWeaponReach = 1;
 		}));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bulwark"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_personal_armor"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rally_the_troops", function(o) {
 			o.m.Cooldown = 3;
 		}));
-		if (::Reforged.Config.IsLegendaryDifficulty)
-    	{
-    		this.m.Skills.removeByID("perk.rf_personal_armor");
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_fortified_mind"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
-    	}
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -74,18 +65,7 @@
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 		}
 
-	    if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_tempo"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-	    }
-	    else
-	    {
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	    }
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
 	    if (this.isArmedWithShield())
 	    {

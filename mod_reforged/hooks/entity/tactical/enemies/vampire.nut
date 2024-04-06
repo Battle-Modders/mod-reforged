@@ -104,13 +104,11 @@
 		this.m.Skills.add(this.new("scripts/skills/racial/vampire_racial"));
 		this.m.Skills.add(this.new("scripts/skills/actives/darkflight"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes")); // replaced by enemy cleaver perk group
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bloodbath"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_head_hunter"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sanguinary"));
 	}
@@ -193,5 +191,14 @@
 			loot.drop(_tile);
 		}
 		__original(_killer, _skill, _tile, _fatalityType);
+	}
+
+	q.onSetupEntity = @() function()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		}
 	}
 });
