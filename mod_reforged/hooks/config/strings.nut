@@ -484,6 +484,23 @@ local vanillaDescriptions = [
 	 	})
 	},
 	{
+		ID = "perk.mastery.cleaver",
+		Key = "SpecCleaver",
+		Description = ::UPD.getDescription({
+			Fluff = "Master cleavers to inflict gruesome wounds.",
+			Requirement = "Cleaver",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+					"Gain the [Bloodlust|Perk+perk_rf_bloodlust] perk.",
+					"Attacks from cleavers apply an additional stack of [Bleeding|Skill+bleeding_effect].",
+					"[Disarm|Skill+disarm_skill] only has half the penalty to hit."
+				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.mastery.crossbow",
 		Key = "SpecCrossbow",
 		Description = ::UPD.getDescription({
