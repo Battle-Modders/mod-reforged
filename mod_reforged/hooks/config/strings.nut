@@ -1998,12 +1998,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"During your [turn|Concept.Turn], every successful attack provides a stacking bonus to [Melee Skill|Concept.MeleeSkill] and [Action Points|Concept.ActionPoints].",
-				"Each stack increases [Melee Skill|Concept.MeleeSkill] by " + ::MSU.Text.colorGreen("+5") + ".",
-				"Your [Action Points|Concept.ActionPoints] are increased by a total of " + ::MSU.Text.colorGreen("+1") + " at 3 stacks, " + ::MSU.Text.colorGreen("+2") + " at 6 stacks and " + ::MSU.Text.colorGreen("+3") + " at 10 stacks.",
-				"Attacks at 2 tiles range only grant a stack after two successful hits.",
-				"You lose half of the stacks if you miss an attack or if you get hit.",
-				"Cannot have more than 10 stacks."
+				"Whenever you end your [turn|Concept.Turn] with half or fewer of your [Action Points|Concept.ActionPoints] remaining, gain a stack, up to a maximum of 5 stacks.",
+				"Each stack increases [Action Points|Concept.ActionPoints] by " + ::MSU.Text.colorGreen("+1") + " and [Initiative|Concept.Initiative] by " + ::MSU.Text.colorGreen("+10") + ".",
+				"All the stacks are lost if you end your [turn|Concept.Turn] with more than half of your [Action Points|Concept.ActionPoints] remaining, use Wait or [Recover|Skill+recover_skill], or get [Stunned|Skill+stunned_effect], Rooted or [Staggered|Skill+staggered_effect]."
 			]
 		}]
  	}),
