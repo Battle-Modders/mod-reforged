@@ -7,7 +7,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 		this.m.Description = "This character is highly skilled in fighting in a shielded formation and gains bonuses when adjacent to allies with shields.";
 		this.m.Icon = "ui/perks/rf_phalanx.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		this.m.Order = ::Const.SkillOrder.Perk;
+		this.m.Order = ::Const.SkillOrder.BeforeLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
@@ -21,12 +21,24 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
+
 		tooltip.push({
-			id = 6,
+			id = 10,
 			type = "text",
 			icon = "ui/icons/rf_reach.png",
 			text = ::MSU.Text.colorizeValue(this.getCount()) + " Reach when attacking or defending in melee"
 		});
+
+		if (this.hasAdjacentShieldwall())
+		{
+			tooltip.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("[Shieldwall|Skill+shieldwall_effect] will not expire at the start of your [turn|Concept.Turn] as you are next to an ally with [Shieldwall|Skill+shieldwall_effect]")
+			});
+		}
+
 		return tooltip;
 	}
 
@@ -43,6 +55,21 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 		if (_skill.isAttack() && !_skill.isRanged())
 		{
 			_properties.Reach += this.getCount();
+		}
+	}
+
+	function onTurnStart()
+	{
+		if (this.hasAdjacentShieldwall())
+		{
+			foreach (skill in this.getContainer().m.Skills)
+			{
+				if (skill.getID() == "effects.shieldwall")
+				{
+					skill.m.IsGarbage = false; // Because Phalanx skill order is after Shieldwall effect, so we retroactively set it to not be garbage
+					return;
+				}
+			}
 		}
 	}
 
@@ -86,5 +113,35 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 				text = this.getName()
 			});
 		}
+	}
+
+	function onQueryTooltip( _skill, _tooltip )
+	{
+		if (_skill.getID() == "effects.shieldwall" && this.hasAdjacentShieldwall())
+		{
+			_tooltip.push({
+				id = 15,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Will not expire as you have [Phalanx|Perk+perk_rf_phalanx] and are next to an ally with [Shieldwall|Skill+shieldwall_effect]")
+			});
+		}
+	}
+
+	function hasAdjacentShieldwall()
+	{
+		local actor = this.getContainer().getActor();
+		local myTile = actor.getTile();
+		for (local i = 0; i < 6; i++)
+		{
+			if (!myTile.hasNextTile(i))
+				continue;
+
+			local nextTile = myTile.getNextTile(i);
+			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAlliedWith(actor) && nextTile.getEntity().getSkills().hasSkill("effects.shieldwall"))
+				return true;
+		}
+
+		return false;
 	}
 });
