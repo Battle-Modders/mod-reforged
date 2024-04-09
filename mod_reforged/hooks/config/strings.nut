@@ -479,6 +479,22 @@ local vanillaDescriptions = [
 	 	})
 	},
 	{
+		ID = "perk.mastery.dagger",
+		Key = "SpecDagger",
+		Description = ::UPD.getDescription({
+			Fluff = "Master swift and deadly daggers.",
+			Requirement = "Dagger",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
+					"Attacks from daggers against targets who act after you in the current [round|Concept.Round] ignore all of the target\'s [reach advantage|Concept.ReachAdvantage].",
+					"[Stab|Skill+stab], [Puncture|Skill+puncture] and [Deathblow|Skill+deathblow_skill] have a reduced [Action Point|Concept.ActionPoints] cost to allow for an additional attack each turn.",
+				]
+ 			}]
+	 	}),
+	},
+	{
 		ID = "perk.mastery.flail",
 		Key = "SpecFlail",
 		Description = ::UPD.getDescription({
