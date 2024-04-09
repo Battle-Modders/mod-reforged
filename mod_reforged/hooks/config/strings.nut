@@ -1538,8 +1538,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When equipped with a shield, gain " + ::MSU.Text.colorGreen("+1") + " [Reach|Concept.Reach] per adjacent ally also equipped with a shield up to a maximum of " + ::MSU.Text.colorGreen("+2") + ".",
-				"Bucklers do not count as shields for this perk."
+				"When equipped with a shield, gain " + ::MSU.Text.colorGreen("+1") + " [Reach|Concept.Reach] per adjacent ally also equipped with a shield up to a maximum of " + ::MSU.Text.colorGreen("+2") + ". Does not work with bucklers.",
+				"[Shieldwall|Skill+shieldwall_effect] does not expire at the start of your [turn|Concept.Turn] if an adjacent ally is also using [Shieldwall|Skill+shieldwall_effect]."
 			]
 		}]
  	}),
