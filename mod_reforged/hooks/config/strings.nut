@@ -1599,11 +1599,11 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Rattle = ::UPD.getDescription({
  		Fluff = "Rattle your enemies to their bones to weaken them!",
- 		Requirement = "Blunt Damage",
+ 		Requirement = "Hammer and Blunt Damage",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Every attack, which is either from a mace or does at least " + ::MSU.Text.colorRed(10) + " damage, applies the [Rattled|Skill+rf_rattled_effect] effect for one [turn|Concept.Turn]."
+				"Every hit applies the [Rattled|Skill+rf_rattled_effect] effect for one [turn|Concept.Turn]."
 			]
 		}]
  	}),
