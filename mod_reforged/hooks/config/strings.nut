@@ -1348,10 +1348,10 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"While holding a [net|Item+throwing_net], every successful melee attack against an adjacent target has a chance to net the target without expending your currently held [net|Item+throwing_net]. The chance is equal to the hit chance of the attack.",
-				"You cannot use or swap this [net|Item+throwing_net] until the enemy escapes or dies.",
-				"The [net effect|Skill+net_effect] can be broken out of with 100% effectiveness",
-				"Does not benefit from [Angler|Perk+perk_rf_angler]."
+				"While holding a [net|Item+throwing_net], every successful melee attack against an adjacent target has a chance to [net|Skill+net_effect] the target without expending your currently held [net|Item+throwing_net]. The chance is equal to the hit chance of the attack.",
+				"You cannot use or swap this [net|Item+throwing_net] until the target breaks free or dies. If you move more than 1 tile away from the target, the target remains [netted|Skill+net_effect] but you lose the [net|Item+throwing_net].",
+				"The [net effect|Skill+net_effect] can be broken out of with 100% effectiveness.",
+				"Gain " + ::MSU.Text.colorGreen("+2") + " [Reach|Concept.Reach] while holding a [net|Item+throwing_net] and not currently [netting|Skill+net_effect] a target.",
 			]
 		}]
  	}),
