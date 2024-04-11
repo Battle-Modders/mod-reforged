@@ -24,6 +24,20 @@ this.perk_rf_cull <- ::inherit("scripts/skills/skill", {
 		return this.getContainer().getActor().isPlayerControlled();
 	}
 
+	function onAdded()
+	{
+		local equippedItem = this.getContainer().getActor().getMainhandItem();
+		if (equippedItem != null) this.onEquip(equippedItem);
+	}
+
+	function onEquip( _item )
+	{
+		if (_item.isItemType(::Const.Items.ItemType.MeleeWeapon) && _item.isWeaponType(::Const.Items.WeaponType.Axe))
+		{
+			_item.addSkill(::new("scripts/skills/actives/rf_between_the_eyes_skill"));
+		}
+	}
+
 	function isEnabled()
 	{
 		if (this.m.IsForceEnabled)
@@ -66,17 +80,6 @@ this.perk_rf_cull <- ::inherit("scripts/skills/skill", {
 			}
 			::logDebug("[" + actor.getName() + "] is going to Cull target [" + _targetEntity.getName() + "] with skill [" + _skill.getName() + "]");
 			_targetEntity.kill(actor, _skill, ::Const.FatalityType.Decapitated);
-		}
-	}
-
-	function onUpdate(_properties)
-	{
-		if (this.getContainer().getActor().isDisarmed()) return;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Axe))
-		{
-			_properties.DamageRegularMax += ::Math.floor(weapon.m.RegularDamageMax * 0.1);
 		}
 	}
 });
