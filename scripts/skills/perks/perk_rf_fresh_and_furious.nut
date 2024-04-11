@@ -28,18 +28,30 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 	{
 		local tooltip = this.skill.getTooltip();
 
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "The next skill used has its Action Point cost [color=" + ::Const.UI.Color.PositiveValue + "]halved[/color]"
-		});
+		if (this.m.RequiresRecover)
+		{
+			tooltip.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::MSU.Text.colorRed("Disabled until this character uses [Recover|Skill+recover]")
+			});
+		}
+		else
+		{
+			tooltip.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "The next non-free skill used has its Action Point cost [color=" + ::Const.UI.Color.PositiveValue + "]halved[/color]"
+			});
+		}
 
 		tooltip.push({
-			id = 10,
+			id = 12,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Will expire upon using a skill with non-zero Action Point or Fatigue cost or when current Fatigue reaches 30% of Maximum Fatigue[/color]"
+			text = ::Reforged.Mod.Tooltips.parseString("Becomes disabled when starting a turn with " + ::MSU.Text.colorizeFraction(this.m.FatigueThreshold) + " or more [Fatigue|Concept.Fatigue] built")
 		});
 
 		return tooltip;
@@ -47,12 +59,12 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 
 	function isEnabled()
 	{
-		return !this.m.RequiresRecover && this.getContainer().getActor().getFatigue() < this.m.FatigueThreshold * this.getContainer().getActor().getFatigueMax();
+		return this.getContainer().getActor().getFatigue() < this.m.FatigueThreshold * this.getContainer().getActor().getFatigueMax();
 	}
 
 	function onAfterUpdate( _properties )
 	{
-		if (!this.m.IsSpent && this.isEnabled())
+		if (!this.m.IsSpent && !this.m.RequiresRecover && this.isEnabled())
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
@@ -87,7 +99,11 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		this.m.IsSpent = !this.m.IsUsingFreeSkill;
 
 		if (_skill.getID() == "actives.recover")
+		{
 			this.m.RequiresRecover = false;
+			if (this.isEnabled())
+				this.m.Icon = ::Const.Perks.findById(this.getID()).Icon;
+		}
 	}
 
 	function onTurnStart()
@@ -95,7 +111,10 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		this.m.IsSpent = false;
 
 		if (this.getContainer().getActor().getFatigue() >= this.m.FatigueThreshold * this.getContainer().getActor().getFatigueMax())
+		{
 			this.m.RequiresRecover = true;
+			this.m.Icon = ::Const.Perks.findById(this.getID()).IconDisabled;
+		}
 	}
 
 	function onCombatFinished()
