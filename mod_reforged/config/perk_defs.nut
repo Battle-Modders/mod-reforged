@@ -1078,14 +1078,6 @@
 		IconDisabled = "ui/perks/rf_shield_splitter_bw.png",
 	},
 	{
-		ID = "perk.rf_between_the_eyes",
-		Script = "scripts/skills/perks/perk_rf_between_the_eyes",
-		Name = ::Const.Strings.PerkName.RF_BetweenTheEyes,
-		Tooltip = ::Const.Strings.PerkDescription.RF_BetweenTheEyes,
-		Icon = "ui/perks/rf_between_the_eyes.png",
-		IconDisabled = "ui/perks/rf_between_the_eyes_bw.png",
-	},
-	{
 		ID = "perk.rf_exude_confidence",
 		Script = "scripts/skills/perks/perk_rf_exude_confidence",
 		Name = ::Const.Strings.PerkName.RF_ExudeConfidence,
