@@ -9,6 +9,21 @@
 		this.m.Description = "With the second hand free, this character can adopt a more versatile fighting style or get a firm double grip on his weapon to inflict additional damage."
 	}
 
+	// Overwrite vanilla function to allow double-gripping with southern swords with offhand item with the perk_rf_en_garde perk
+	q.canDoubleGrip = @() function()
+	{
+		local actor = this.getContainer().getActor();
+		local weapon = actor.getMainhandItem();
+		if (weapon == null || !weapon.isDoubleGrippable())
+			return false;
+
+		local offhand = actor.getOffhandItem();
+		if (offhand == null)
+			return true;
+
+		return offhand.getStaminaModifier() > -10 && weapon.isItemType(::Const.Items.ItemType.RF_Southern) && weapon.isWeaponType(::Const.Items.WeaponType.Sword) && this.getContainer().hasSkill("perk.rf_en_garde");
+	}
+
 	q.applyBonusOnUpdate <- function( _properties )
 	{
 		switch (this.m.CurrWeaponType)
