@@ -56,14 +56,6 @@
 		IconDisabled = "ui/perks/rf_bloodbath_bw.png",
 	},
 	{
-		ID = "perk.rf_take_aim",
-		Script = "scripts/skills/perks/perk_rf_take_aim",
-		Name = ::Const.Strings.PerkName.RF_TakeAim,
-		Tooltip = ::Const.Strings.PerkDescription.RF_TakeAim,
-		Icon = "ui/perks/rf_take_aim.png",
-		IconDisabled = "ui/perks/rf_take_aim_bw.png",
-	},
-	{
 		ID = "perk.rf_entrenched",
 		Script = "scripts/skills/perks/perk_rf_entrenched",
 		Name = ::Const.Strings.PerkName.RF_Entrenched,
