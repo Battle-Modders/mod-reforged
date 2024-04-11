@@ -45,6 +45,9 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 
 	function isEnabled()
 	{
+		if (this.getContainer().getActor().isDisarmed())
+			return false;
+
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sword))
 		{
