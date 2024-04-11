@@ -935,7 +935,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_ConcussiveStrikes = ::UPD.getDescription({
  		Fluff = "A strike to the head from this character means goodnight!",
- 		Requirement = "Mace and Blunt Damage"
+ 		Requirement = "Mace and Blunt Attack"
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
