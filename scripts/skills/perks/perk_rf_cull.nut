@@ -38,27 +38,9 @@ this.perk_rf_cull <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function isEnabled()
-	{
-		if (this.m.IsForceEnabled)
-		{
-			return true;
-		}
-
-		if (this.getContainer().getActor().isDisarmed()) return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Axe))
-		{
-			return false;
-		}
-
-		return true;
-	}
-
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_damageInflictedHitpoints == 0 || _bodyPart != ::Const.BodyPart.Head || !_skill.isAttack() || !this.isEnabled() || !_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.getSkills().hasSkill("effects.indomitable") || _targetEntity.getSkills().hasSkill("perk.steel_brow"))
+		if (_damageInflictedHitpoints == 0 || _bodyPart != ::Const.BodyPart.Head || !_targetEntity.isAlive() || !this.isSkillValid(_skill) || _targetEntity.getSkills().hasSkill("effects.indomitable") || _targetEntity.getSkills().hasSkill("perk.steel_brow"))
 		{
 			return;
 		}
@@ -81,5 +63,17 @@ this.perk_rf_cull <- ::inherit("scripts/skills/skill", {
 			::logDebug("[" + actor.getName() + "] is going to Cull target [" + _targetEntity.getName() + "] with skill [" + _skill.getName() + "]");
 			_targetEntity.kill(actor, _skill, ::Const.FatalityType.Decapitated);
 		}
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (_skill.isRanged() || !_skill.isAttack())
+			return false;
+
+		if (this.m.IsForceEnabled)
+			return true;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Axe);
 	}
 });
