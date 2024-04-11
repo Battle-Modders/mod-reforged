@@ -52,11 +52,10 @@
 		return ret;
 	}
 
-	q.onAfterUpdate = @(__original) function( _properties )
+	// Overwrite vanilla function to remove changing of this.m.AdditionalAccuracy and this.m.DirectDamageMult
+	q.onAfterUpdate = @() function( _properties )
 	{
-		local additionalAccuracy = this.m.AdditionalAccuracy;
-		__original(_properties);
-		this.m.AdditionalAccuracy = additionalAccuracy;
+		this.m.FatigueCostMult = _properties.IsSpecializedInCrossbows ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
