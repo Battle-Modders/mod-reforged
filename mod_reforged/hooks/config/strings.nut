@@ -173,7 +173,6 @@
  	RF_SwordmasterPrecise = "Precise",
 	RF_SwordmasterReaper = "Reaper",
 	RF_SwordmasterVersatileSwordsman = "Versatile Swordsman",
-	RF_TakeAim = "Take Aim",
 	RF_TargetPractice = "Target Practice",
 	RF_Tempo = "Tempo",
 	RF_TerrifyingVisage = "Terrifying Visage",
@@ -1897,16 +1896,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}],
 		Footer = ::MSU.Text.colorRed("You can only pick ONE perk from the Swordmaster perk group.")
- 	}),
-	RF_TakeAim = ::UPD.getDescription({
- 		Fluff = "You\'ve learned the value of taking time with your shots when the situation calls for it!",
- 		Requirement = "Crossbow or Handgonne",
- 		Effects = [{
-			Type = ::UPD.EffectType.Active,
-			Description = [
-				"Unlocks the [Take Aim|Skill+rf_take_aim_skill] skill which allows you to target opponents behind obstacles with a [crossbow|Item+crossbow], or hit more targets with a [handgonne|Item+handgonne]."
-			]
-		}]
  	}),
 	RF_TargetPractice = ::UPD.getDescription({
  		Fluff = "Time in training has allowed you to come up with an efficient way to organize your ammo, while increasing your accuracy!",
