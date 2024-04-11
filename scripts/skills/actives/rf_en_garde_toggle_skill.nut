@@ -1,7 +1,7 @@
 this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsOn = true,
-		IsSpent = false,
+		HasMoved = false,
 		FatigueRequired = 15
 	},
 	function create()
@@ -61,18 +61,15 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 
 	function onTurnStart()
 	{
-		this.m.IsSpent = false;
+		this.m.HasMoved = false;
 	}
 
-	function onUpdate( _properties )
+	function onMovementFinished( _tile )
 	{
-		if (this.getContainer().getActor().m.IsMoving)
+		local meisterhau = this.getContainer().getSkillByID("actives.rf_swordmaster_stance_meisterhau");
+		if (meisterhau == null || !meisterhau.m.IsOn)
 		{
-			local meisterhau = this.getContainer().getSkillByID("actives.rf_swordmaster_stance_meisterhau");
-			if (meisterhau == null || !meisterhau.m.IsOn)
-			{
-				this.m.IsSpent = true;
-			}
+			this.m.HasMoved = true;
 		}
 	}
 
@@ -83,7 +80,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 
 	function pickSkill()
 	{
-		if (this.m.IsSpent || !this.isEnabled()) return null;
+		if (!this.isEnabled()) return null;
 
 		if (this.getContainer().getActor().getFatigueMax() - this.getContainer().getActor().getFatigue() < this.m.FatigueRequired) return null;
 
@@ -111,7 +108,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 
 	function onTurnEnd()
 	{
-		if (this.m.IsSpent || !this.m.IsOn)
+		if (!this.m.IsOn)
 		{
 			return;
 		}
@@ -136,6 +133,10 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 				{
 					::Sound.play(this.m.ReturnFavorSounds[::Math.rand(0, this.m.ReturnFavorSounds.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, actor.getPos());
 				}
+			}
+			if (this.m.HasMoved)
+			{
+				actor.setFatigue(::Math.min(actor.getFatigueMax(), actor.getFatigue() + this.m.FatigueRequired));
 			}
 		}
 	}
