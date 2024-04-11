@@ -935,16 +935,23 @@ foreach (vanillaDesc in vanillaDescriptions)
 	RF_Cull = ::UPD.getDescription({
  		Fluff = "A strike to the head from this character means goodnight!",
  		Requirement = "Axe",
- 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Maximum Damage is increased by " + ::MSU.Text.colorGreen("10%") + " of the Maximum Damage of the currently equipped axe.",
-				"Hits to the head which inflict at least 1 damage to [Hitpoints|Concept.Hitpoints] will instantly kill a target that has less than " + ::MSU.Text.colorRed("33%") + " [Hitpoints|Concept.Hitpoints] remaining after the hit.",
-				"Ignores [Nine Lives|Perk+perk_nine_lives] on the target.",
-				"If killed via culling, [decapitates|Concept.Fatality] the target.",
-				"Targets who have [Steel Brow|Perk+perk_steel_brow] or are under the effects of [Indomitable|NullEntitySkill+indomitable_effect] are immune to being culled."
-			]
-		}]
+ 		Effects = [
+	 		{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"Hits to the head which inflict at least 1 damage to [Hitpoints|Concept.Hitpoints] will instantly kill a target that has less than " + ::MSU.Text.colorRed("33%") + " [Hitpoints|Concept.Hitpoints] remaining after the hit.",
+					"If killed via culling, ignores [Nine Lives|Perk+perk_nine_lives] on the target and performs a decapitation fatality.",
+					"Targets who have [Steel Brow|Perk+perk_steel_brow] or are under the effects of [Indomitable|NullEntitySkill+indomitable_effect] are immune to being culled."
+				]
+			},
+			{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Unlocks the [Between the Eyes|NullEntitySkill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head.",
+					"The [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of your primary melee attack is added to the costs of this skill."
+				]
+			}
+		]
  	}),
  	RF_Decanus = ::UPD.getDescription({
  		Fluff = "Fight in formation!",
