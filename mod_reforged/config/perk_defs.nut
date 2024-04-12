@@ -1155,6 +1155,14 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_Dismemberment,
 		Icon = "ui/perks/rf_dismemberment.png",
 		IconDisabled = "ui/perks/rf_dismemberment_sw.png",
+	},
+	{
+		ID = "perk.rf_vanquisher",
+		Script = "scripts/skills/perks/perk_rf_vanquisher",
+		Name = ::Const.Strings.PerkName.RF_Vanquisher,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Vanquisher,
+		Icon = "ui/perks/rf_vanquisher.png",
+		IconDisabled = "ui/perks/rf_vanquisher_sw.png",
 	}
 ]);
 

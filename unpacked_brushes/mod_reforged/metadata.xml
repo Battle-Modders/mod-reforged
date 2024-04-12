@@ -51,6 +51,7 @@
 	<sprite id="rf_halberd_sunder_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_halberd_sunder_skill.png" />
 	<sprite id="rf_halberd_demolish_armor_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_halberd_demolish_armor_skill.png" />
 	<sprite id="rf_hook_shield_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_hook_shield_skill.png" />
+	<sprite id="rf_gain_ground_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_gain_ground_skill.png" />
 
 	<sprite id="rf_hooked_shield_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_hooked_shield_effect.png" />
 	<sprite id="rf_hooked_shield_effect_mini" ic = "FF23165B" img="mini\rf_hooked_shield_effect_mini.png" />
