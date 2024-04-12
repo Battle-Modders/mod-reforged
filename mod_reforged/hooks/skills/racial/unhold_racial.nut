@@ -29,4 +29,17 @@
 		baseProperties.IsImmuneToDisarm = true;
 		baseProperties.IsImmuneToRotation = true;
 	}
+
+	q.onTurnStart = @(__original) function()
+	{
+		__original();
+		local bleed = this.getContainer().getSkillByID("effects.bleeding");
+		if (bleed != null)
+		{
+			bleed.m.Stacks /= 2;
+			if (bleed.m.Stacks == 0)
+				bleed.removeSelf();
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " had some of his bleeding wounds close");
+		}
+	}
 });
