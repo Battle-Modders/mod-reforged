@@ -711,13 +711,13 @@ foreach (vanillaDesc in vanillaDescriptions)
  			{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
- 					"Enemies have a " + ::MSU.Text.colorRed("-20%") + " chance to break from from nets you throw."
+ 					"Enemies [netted|Skill+net_effect] by you have a " + ::MSU.Text.colorRed("50%") + " increased [Action Point|Concept.ActionPoints] cost for using the [Break Free|Skill+break_free_skill] skill."
  				]
  			},
  			{
  				Type = ::UPD.EffectType.Active,
  				Description = [
- 					"Unlocks the [Net Pull|Skill+rf_net_pull_skill] skill that allows you to pull a target and net it, but does not gain the passive " + ::MSU.Text.colorRed("-20%") + " chance to break free."
+ 					"Unlocks the [Net Pull|Skill+rf_net_pull_skill] skill that allows you to pull a target and [net|Skill+net_effect] it."
  				]
  			}
  		]
