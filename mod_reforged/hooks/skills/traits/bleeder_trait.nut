@@ -2,8 +2,23 @@
 	q.create = @(__original) function()
 	{
 		__original();
+		this.m.Description = "This character is prone to bleeding and will do so more than most others."; // "more than" as opposed to vanilla "longer than"
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_resilient": 0.5
 		};
+	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		foreach (entry in ret)
+		{
+			if (entry.id == 10)
+			{
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Will receive " + ::MSU.Text.colorRed("double") + " damage from [Bleeding|Skill+bleeding_effect]");
+				break;
+			}
+		}
+		return ret;
 	}
 });
