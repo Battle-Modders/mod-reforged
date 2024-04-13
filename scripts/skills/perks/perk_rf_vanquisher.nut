@@ -34,7 +34,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon taking any action other than a skill usage")
+			text = "Will expire upon taking any action other than a skill usage"
 		});
 		return ret;
 	}
