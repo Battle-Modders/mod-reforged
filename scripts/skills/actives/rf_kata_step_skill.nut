@@ -201,8 +201,8 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 			local myTile = actor.getTile();
 			if (myTile != null)
 			{
-				this.m.FatigueCost = ::Math.max(0, (actor.getFatigueCosts()[myTile.Type] + _properties.MovementAPCostAdditional) * _properties.MovementAPCostMult);
-				this.m.ActionPointCost = ::Math.max(0, (actor.getActionPointCosts()[myTile.Type] + _properties.MovementFatigueCostAdditional - 2) * _properties.MovementFatigueCostMult);
+				this.m.FatigueCost = ::Math.max(0, (actor.getFatigueCosts()[myTile.Type] + _properties.MovementFatigueCostAdditional) * _properties.MovementFatigueCostMult);
+				this.m.ActionPointCost = ::Math.max(0, (actor.getActionPointCosts()[myTile.Type] + _properties.MovementAPCostAdditional - 2) * _properties.MovementAPCostMult);
 			}
 		}
 	}
