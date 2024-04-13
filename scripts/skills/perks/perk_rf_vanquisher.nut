@@ -68,10 +68,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 	{
 		if (this.m.IsInEffect)
 		{
-			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
-			{
-				skill.m.ActionPointCost = ::Math.max(1, skill.m.ActionPointCost * 0.5);
-			}
+			_properties.IsSkillUseHalfCost = true;
 		}
 	}
 
@@ -81,7 +78,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
-				this.modifyPreviewField(skill, "ActionPointCost", 0, false);
+				this.modifyPreviewProperty(skill, "IsSkillUseHalfCost", this.getContainer().getActor().getCurrentProperties().IsSkillUseHalfCost, false);
 			}
 		}
 		// Gain Ground can only be used on a valid tile
@@ -89,7 +86,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
-				this.modifyPreviewField(skill, "ActionPointCost", -1 * ::Math.max(0, skill.m.ActionPointCost * 0.5), false);
+				this.modifyPreviewProperty(skill, "IsSkillUseHalfCost", true, false);
 			}
 		}
 	}
