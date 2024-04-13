@@ -57,7 +57,11 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 
 	function onMovementFinished( _tile )
 	{
-		this.m.IsInEffect = this.isTileValid(_tile);
+		if (this.isTileValid(_tile))
+		{
+			this.m.IsInEffect = true;
+			this.spawnIcon("perk_rf_vanquisher", _tile);
+		}
 	}
 
 	function onAfterUpdate( _properties )
