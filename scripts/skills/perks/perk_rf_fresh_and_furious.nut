@@ -4,6 +4,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		IsSpent = true,
 		RequiresRecover = false,
 		FatigueThreshold = 0.3
+		IconMiniBackup = ""
 	},
 	function create()
 	{
@@ -12,6 +13,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		this.m.Description = "This character is exceptionally fast when not fatigued.";
 		this.m.Icon = "ui/perks/rf_fresh_and_furious.png";
 		this.m.IconMini = "rf_fresh_and_furious_mini";
+		this.m.IconMiniBackup = this.m.IconMini;
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsActive = false;
@@ -21,7 +23,12 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.IsSpent || !this.isEnabled();
+		return this.m.IsSpent;
+	}
+
+	function getName()
+	{
+		return this.m.RequiresRecover ? this.m.Name + " (Disabled)" : this.m.Name;
 	}
 
 	function getTooltip()
@@ -109,11 +116,13 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		if (this.isEnabled())
 		{
 			this.m.Icon = ::Const.Perks.findById(this.getID()).Icon;
+			this.m.IconMini = this.m.IconMiniBackup;
 		}
 		else
 		{
 			this.m.RequiresRecover = true;
 			this.m.Icon = ::Const.Perks.findById(this.getID()).IconDisabled;
+			this.m.IconMini = "";
 		}
 	}
 
