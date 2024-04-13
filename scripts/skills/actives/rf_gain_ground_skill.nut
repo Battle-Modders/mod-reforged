@@ -34,33 +34,20 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_KataStep;
 	}
 
+	function getCostString()
+	{
+		if (this.getContainer().getActor().isPlacedOnMap())
+			return this.skill.getCostString();
+
+		local ret = "Costs " + (this.m.APCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.APCostModifier, {InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
+		ret += (this.m.FatigueCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCostModifier, {InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
+		return ::Reforged.Mod.Tooltips.parseString(ret);
+	}
+
 	function getTooltip()
 	{
-		local ret = this.skill.getTooltip();
-		local actor = this.getContainer().getActor();
-
-		if (!actor.isPlacedOnMap())
-		{
-			costString += "Costs " + (this.m.APCostModifier == 0 ? "the same" : ::MSU.Text.colorizeValue(this.m.APCostModifier, {InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
-			costString += (this.m.FatigueCostModifier == 0 ? "the same" : ::MSU.Text.colorizeValue(this.m.FatigueCostModifier, {InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
-
-			ret.push({
-				id = 3,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString(costString)
-			});
-		}
-		else
-		{
-			ret.push({
-				id = 3,
-				type = "text",
-				text = this.getCostString()
-			});
-		}
-
-		if (actor.getCurrentProperties().IsRooted)
+		local ret = this.skill.getDefaultUtilityTooltip();
+		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
 		{
 			ret.push({
 				id = 10,
