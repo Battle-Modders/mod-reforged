@@ -1556,7 +1556,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	RF_Professional = ::UPD.getDescription({
  		Fluff = "You\'re a professional, experienced fighter!",
  		Effects = [{
-			Type = ::UPD.EffectType.Passive,
+			Type = ::UPD.EffectType.OneTimeEffect,
 			Description = [
 				"Gain the first two [perks|Concept.Perk] in a random melee perk group that you have access to."
 			]
