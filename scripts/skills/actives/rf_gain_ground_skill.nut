@@ -1,6 +1,6 @@
 this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	m = {
-		ValidTile = null
+		ValidTiles = []
 	},
 	function create()
 	{
@@ -65,7 +65,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (this.m.ValidTile == null)
+		if (this.m.ValidTiles.len() == 0)
 		{
 			ret.push({
 				id = 11,
@@ -80,15 +80,15 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return this.m.ValidTile != null && this.skill.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted;
+		return this.m.ValidTiles.len() != 0 && this.skill.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted;
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
 	{
-		return _targetTile.IsEmpty && _targetTile.isSameTileAs(this.m.ValidTile) && this.skill.onVerifyTarget(_originTile, _targetTile);
+		return this.isTileValid(_targetTile) && this.skill.onVerifyTarget(_originTile, _targetTile);
 	}
 
-	function onAfterUpdate ( _properties )
+	function onAfterUpdate( _properties )
 	{
 		this.m.FatigueCost = 0;
 		this.m.ActionPointCost = 0;
@@ -105,50 +105,63 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		::Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
-		this.m.ValidTile = null;
+		this.m.ValidTiles.clear();
 		return true;
 	}
 
 	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )
 	{
 		if (_deathTile != null && _killer.getID() == this.getContainer().getActor().getID() && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
-			this.m.ValidTile = _deathTile;
+			this.m.ValidTiles.push(_deathTile);
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (_skill != this)
-			this.m.ValidTile = null;
+			this.m.ValidTiles.clear();
 	}
 
 	function onPayForItemAction( _skill, _items )
 	{
-		this.m.ValidTile = null;
+		this.m.ValidTiles.clear();
 	}
 
 	function onWaitTurn()
 	{
-		this.m.ValidTile = null;
+		this.m.ValidTiles.clear();
 	}
 
 	function onTurnStart()
 	{
-		this.m.ValidTile = null;
+		this.m.ValidTiles.clear();
 	}
 
 	function onTurnEnd()
 	{
-		this.m.ValidTile = null;
+		this.m.ValidTiles.clear();
 	}
 
 	function onMovementFinished( _tile )
 	{
-		this.m.ValidTile = null;
+		this.m.ValidTiles.clear();
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.ValidTile = null;
+		this.m.ValidTiles.clear();
+	}
+
+	function isTileValid( _tile )
+	{
+		if (_tile == null || !_tile.IsEmpty)
+			return false;
+
+		foreach (t in this.m.ValidTiles)
+		{
+			if (_tile.isSameTileAs(t))
+				return true;
+		}
+		return false;
 	}
 });
