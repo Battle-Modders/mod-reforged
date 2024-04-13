@@ -64,11 +64,6 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function isEnabled()
-	{
-		return this.getContainer().getActor().getFatigue() < this.m.FatigueThreshold * this.getContainer().getActor().getFatigueMax();
-	}
-
 	function onAfterUpdate( _properties )
 	{
 		if (!this.m.IsSpent && !this.m.RequiresRecover)
@@ -113,7 +108,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.IsSpent = false;
 
-		if (this.isEnabled())
+		if (this.getContainer().getActor().getFatigue() < this.m.FatigueThreshold * this.getContainer().getActor().getFatigueMax())
 		{
 			this.m.Icon = ::Const.Perks.findById(this.getID()).Icon;
 			this.m.IconMini = this.m.IconMiniBackup;
