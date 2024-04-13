@@ -28,7 +28,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Skills cost " + ::MSU.Text.colorGreen("half") + " [Action Points|Concept.ActionPoints]")
+			text = ::Reforged.Mod.Tooltips.parseString("The next skill used costs " + ::MSU.Text.colorGreen("half") + " [Action Points|Concept.ActionPoints]")
 		});
 		ret.push({
 			id = 11,
