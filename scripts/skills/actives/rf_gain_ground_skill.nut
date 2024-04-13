@@ -1,6 +1,8 @@
 this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		ValidTiles = []
+		APCostModifier = -2,
+		FatigueCostModifier = 0
 	},
 	function create()
 	{
@@ -39,11 +41,14 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 
 		if (!actor.isPlacedOnMap())
 		{
+			costString += "Costs " + (this.m.APCostModifier == 0 ? "the same" : ::MSU.Text.colorizeValue(this.m.APCostModifier, {InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
+			costString += (this.m.FatigueCostModifier == 0 ? "the same" : ::MSU.Text.colorizeValue(this.m.FatigueCostModifier, {InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
+
 			ret.push({
 				id = 3,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Costs " + ::MSU.Text.colorGreen(2) + " fewer [Action Points|Concept.ActionPoints] and builds [Fatigue|Concept.Fatigue] equal to the movement cost of the starting tile")
+				text = ::Reforged.Mod.Tooltips.parseString(costString)
 			});
 		}
 		else
@@ -97,8 +102,8 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 		if (actor.isPlacedOnMap())
 		{
 			local myTile = actor.getTile();
-			this.m.FatigueCost = ::Math.max(0, (actor.getFatigueCosts()[myTile.Type] + _properties.MovementFatigueCostAdditional) * _properties.MovementFatigueCostMult);
-			this.m.ActionPointCost = ::Math.max(0, (actor.getActionPointCosts()[myTile.Type] + _properties.MovementAPCostAdditional - 2) * _properties.MovementAPCostMult);
+			this.m.FatigueCost = ::Math.max(0, (actor.getFatigueCosts()[myTile.Type] + _properties.MovementFatigueCostAdditional + this.m.FatigueCostModifier) * _properties.MovementFatigueCostMult);
+			this.m.ActionPointCost = ::Math.max(0, (actor.getActionPointCosts()[myTile.Type] + _properties.MovementAPCostAdditional + this.m.APCostModifier) * _properties.MovementAPCostMult);
 		}
 	}
 
