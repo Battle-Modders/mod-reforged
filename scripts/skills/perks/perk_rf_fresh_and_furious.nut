@@ -64,7 +64,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		if (!this.m.IsSpent && !this.m.RequiresRecover && this.isEnabled())
+		if (!this.m.IsSpent && !this.m.RequiresRecover)
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
