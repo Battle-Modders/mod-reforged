@@ -34,7 +34,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Disabled until this character uses [Recover|Skill+recover]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Disabled until this character uses [Recover|Skill+recover]"))
 			});
 		}
 		else
@@ -43,7 +43,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The next non-free skill used has its Action Point cost [color=" + ::Const.UI.Color.PositiveValue + "]halved[/color]"
+				text = ::Reforged.Mod.Tooltips.parseString("The next non-free skill used has its [Action Point|Concept.ActionPoints] cost " + ::MSU.Text.colorGreen("halved"))
 			});
 		}
 
@@ -99,18 +99,18 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		this.m.IsSpent = !this.m.IsUsingFreeSkill;
 
 		if (_skill.getID() == "actives.recover")
-		{
 			this.m.RequiresRecover = false;
-			if (this.isEnabled())
-				this.m.Icon = ::Const.Perks.findById(this.getID()).Icon;
-		}
 	}
 
 	function onTurnStart()
 	{
 		this.m.IsSpent = false;
 
-		if (this.getContainer().getActor().getFatigue() >= this.m.FatigueThreshold * this.getContainer().getActor().getFatigueMax())
+		if (this.isEnabled())
+		{
+			this.m.Icon = ::Const.Perks.findById(this.getID()).Icon;
+		}
+		else
 		{
 			this.m.RequiresRecover = true;
 			this.m.Icon = ::Const.Perks.findById(this.getID()).IconDisabled;
