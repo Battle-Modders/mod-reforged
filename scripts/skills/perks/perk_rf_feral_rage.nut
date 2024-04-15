@@ -1,6 +1,13 @@
 this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 	m = {
-		RageStacks = 0
+		RageStacks = 0,
+		RageStacksPerTurn = -1,
+		PerStackBraveryModifier = 2,
+		PerStackInitiativeModifier = 2,
+		PerStackMeleeDefenseModifier = -1,
+		PerStackDamageMult = 0.03,
+		PerStackDamageReductionMult = 0.03,
+		MaxDamageReductionMult = 0.3
 	},
 	function create()
 	{
@@ -38,31 +45,31 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.m.RageStacks + "%[/color] increased melee damage"
+				text = ::MSU.Text.colorizeMult(this.m.RageStacks * this.m.PerStackDamageMult) + " increased melee damage"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "Only receive [color=" + ::Const.UI.Color.PositiveValue + "]" + (100 - ::Math.min(70, 3 * this.m.RageStacks)) + "%[/color] of incoming damage"
+				text = ::MSU.Text.colorizeMult(::Math.maxf(this.m.MaxDamageReductionMult, 1.0 - this.m.RageStacks * this.m.PerStackDamageReductionMult), {InvertColor = true}) + " reduced damage received"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + (this.m.RageStacks * 2) + "[/color] Resolve"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RageStacks * this.m.PerStackBraveryModifier) + " [Resolve|Concept.Bravery]")
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + (this.m.RageStacks * 2) + "[/color] Initiative"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RageStacks * this.m.PerStackInitiativeModifier) + " [Initiative|Concept.Initiative]")
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + this.m.RageStacks + "[/color] Melee Defense"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RageStacks * this.m.PerStackMeleeDefenseModifier) + " [Melee Defense|Concept.MeleeDefense]")
 			}
 		]);
 
@@ -83,16 +90,16 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.DamageReceivedTotalMult *= ::Math.maxf(0.3, 1.0 - 0.03 * this.m.RageStacks);
-		_properties.Bravery += this.m.RageStacks * 2;
-		_properties.Initiative += this.m.RageStacks * 2;
-		_properties.MeleeDefense -= this.m.RageStacks;
-		_properties.MeleeDamageMult *= 1.0 + 0.03 * this.m.RageStacks;
+		_properties.DamageReceivedTotalMult *= ::Math.maxf(this.m.MaxDamageReductionMult, 1.0 - this.m.PerStackDamageReductionMult * this.m.RageStacks);
+		_properties.Bravery += this.m.RageStacks * this.m.PerStackBraveryModifier;
+		_properties.Initiative += this.m.RageStacks * this.m.PerStackInitiativeModifier;
+		_properties.MeleeDefense += this.m.RageStacks * this.m.PerStackMeleeDefenseModifier;
+		_properties.MeleeDamageMult *= 1.0 + this.m.RageStacks * this.m.PerStackDamageMult;
 	}
 
 	function onTurnStart()
 	{
-		this.m.RageStacks = ::Math.max(0, this.m.RageStacks - 1);
+		this.m.RageStacks = ::Math.max(0, this.m.RageStacks + this.m.RageStacksPerTurn);
 	}
 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
