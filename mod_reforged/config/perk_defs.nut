@@ -1179,6 +1179,54 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_Vanquisher,
 		Icon = "ui/perks/rf_vanquisher.png",
 		IconDisabled = "ui/perks/rf_vanquisher_sw.png",
+	},
+	{
+		ID = "perk.rf_mentor",
+		Script = "scripts/skills/perks/perk_rf_mentor",
+		Name = ::Const.Strings.PerkName.RF_Mentor,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Mentor,
+		Icon = "ui/perks/rf_mentor.png",
+		IconDisabled = "ui/perks/rf_mentor_sw.png"
+	},
+	{
+		ID = "perk.rf_centurion",
+		Script = "scripts/skills/perks/perk_rf_centurion",
+		Name = ::Const.Strings.PerkName.RF_Centurion,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Centurion,
+		Icon = "ui/perks/rf_centurion.png",
+		IconDisabled = "ui/perks/rf_centurion_sw.png"
+	},
+	{
+		ID = "perk.rf_decanus",
+		Script = "scripts/skills/perks/perk_rf_decanus",
+		Name = ::Const.Strings.PerkName.RF_Decanus,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Decanus,
+		Icon = "ui/perks/rf_decanus.png",
+		IconDisabled = "ui/perks/rf_decanus_sw.png"
+	},
+	{
+		ID = "perk.rf_legatus",
+		Script = "scripts/skills/perks/perk_rf_legatus",
+		Name = ::Const.Strings.PerkName.RF_Legatus,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Legatus,
+		Icon = "ui/perks/rf_legatus.png",
+		IconDisabled = "ui/perks/rf_legatus_sw.png"
+	},
+	{
+		ID = "perk.rf_soul_link",
+		Script = "scripts/skills/perks/perk_rf_soul_link",
+		Name = ::Const.Strings.PerkName.RF_SoulLink,
+		Tooltip = ::Const.Strings.PerkDescription.RF_SoulLink,
+		Icon = "ui/perks/rf_soul_link.png",
+		IconDisabled = "ui/perks/rf_soul_link_sw.png"
+	},
+	{
+		ID = "perk.rf_terrifying_visage",
+		Script = "scripts/skills/perks/perk_rf_terrifying_visage",
+		Name = ::Const.Strings.PerkName.RF_TerrifyingVisage,
+		Tooltip = ::Const.Strings.PerkDescription.RF_TerrifyingVisage,
+		Icon = "ui/perks/rf_terrifying_visage.png",
+		IconDisabled = "ui/perks/rf_terrifying_visage_sw.png"
 	}
 ]);
 
