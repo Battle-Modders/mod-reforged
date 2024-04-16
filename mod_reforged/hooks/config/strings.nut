@@ -163,7 +163,8 @@
 	RF_SecondWind = "Second Wind",
 	RF_ShieldSergeant = "Shield Sergeant",
 	RF_SmallTarget = "Small Target",
-	RF_ShieldSplitter = "Shield Splitter",
+	RF_ShieldSplitter = "Shield Splitter",	
+	RF_SoulLink = "Soul Link",	
 	RF_StrengthInNumbers = "Strength in Numbers",
 	RF_SurvivalInstinct = "Survival Instinct",
 	RF_SweepingStrikes = "Sweeping Strikes",
@@ -1884,6 +1885,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Upon destroying a shield with a melee attack, " + ::MSU.Text.colorGreen(4) + " [Action Points|Concept.ActionPoints] are instantly restored.",
+			]
+		}]
+ 	}),
+ 	RF_SoulLink = ::UPD.getDescription({
+ 		Fluff = "Till death do us part!",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Link your soul with adjacent allies redirecting a portion of all incoming damage to [Hitpoints|Concept.Hitpoints] to a random adjacent ally. Does not work with allies that also have this perk."
 			]
 		}]
  	}),
