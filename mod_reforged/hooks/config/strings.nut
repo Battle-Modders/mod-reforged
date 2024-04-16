@@ -510,7 +510,8 @@ local vanillaDescriptions = [
 					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
 					"Gain the [Bloodlust|Perk+perk_rf_bloodlust] perk.",
 					"Attacks from cleavers apply an additional stack of [Bleeding|Skill+bleeding_effect].",
-					"[Disarm|Skill+disarm_skill] only has half the penalty to hit."
+					"[Disarm|Skill+disarm_skill] only has half the penalty to hit.",
+					"[Gouge|Skill+rf_gouge_skill] has a " + ::MSU.Text.colorRed("50%") + " lower [threshold|Concept.InjuryThreshold] to inflict [injuries|Concept.InjuryTemporary]."
 				]
  			}]
 	 	}),
