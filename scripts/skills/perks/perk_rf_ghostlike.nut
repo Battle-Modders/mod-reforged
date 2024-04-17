@@ -2,7 +2,9 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsForceEnabled = false, // true ignores weapon reach and armor weight requirements
 		WeaponReach = 4,
-		ArmorStaminaModifier = -20
+		ArmorStaminaModifier = -20,
+		DamageTotalMult = 1.25,
+		DirectDamageModifier = 0.2,
 		Enemies = []
 	},
 	function create()
@@ -30,7 +32,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		if (this.getContainer().getActor().getCurrentProperties().IsImmuneToZoneOfControl)
 		{
 			ret.push({
-				id = 6,
+				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("The next movement will ignore [Zone of Control|Concept.ZoneOfControl]")
@@ -40,10 +42,10 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		if (this.m.Enemies.len() != 0)
 		{
 			ret.push({
-				id = 6,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::MSU.Text.colorGreen("25%") + " increased damage and " + ::MSU.Text.colorGreen("+20%") + " damage ignoring armor against:"
+				text = ::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " more damage and " + ::MSU.Text.colorizeFraction(this.m.DirectDamageModifier, {AddSign = true}) + " damage ignoring armor against:"
 			});
 
 			foreach (enemy in this.m.Enemies)
@@ -53,7 +55,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 					continue;
 
 				ret.push({
-					id = 10,
+					id = 12,
 					type = "text",
 					icon = "ui/orientation/" + enemy.getOverlayImage() + ".png",
 					text = enemy.getName()
@@ -61,7 +63,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 			}
 
 			ret.push({
-				id = 10,
+				id = 13,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorRed("The damage bonus will be lost upon swapping an item or waiting or ending your turn")
@@ -132,8 +134,8 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 		if (this.m.Enemies.find(_targetEntity.getID()) != null)
 		{
-			_properties.DamageDirectAdd += 0.2;
-			_properties.DamageTotalMult *= 1.25;
+			_properties.DamageDirectAdd += this.m.DirectDamageModifier;
+			_properties.DamageTotalMult *= this.m.DamageTotalMult;
 		}
 	}
 
