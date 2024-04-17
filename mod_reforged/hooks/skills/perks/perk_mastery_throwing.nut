@@ -1,16 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_throwing", function(q) {
-	q.isEnabled <- function()
-	{
-		if (this.getContainer().getActor().isDisarmed())
-			return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		return weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Throwing);
-	}
-
 	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
 	{
-		if (_targetEntity == null || !_skill.isRanged() || !_skill.m.IsWeaponSkill || !this.isEnabled())
+		if (_targetEntity == null || !this.isSkillValid(_skill))
 			return;
 
 		local distance = _targetEntity.getTile().getDistanceTo(this.getContainer().getActor().getTile());
@@ -28,10 +19,8 @@
 	{
 		__original(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
 
-		if (!_targetEntity.isAlive() || !_skill.isRanged() || !_skill.m.IsWeaponSkill || !this.isEnabled())
-		{
+		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
 			return;
-		}
 
 		local actor = this.getContainer().getActor();
 
@@ -77,5 +66,14 @@
 		{
 			_targetEntity.getSkills().add(::new("scripts/skills/effects/overwhelmed_effect"));
 		}
+	}
+
+	q.isSkillValid <- function( _skill )
+	{
+		if (!_skill.isRanged() || !_skill.isAttack())
+			return false;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Throwing);
 	}
 });
