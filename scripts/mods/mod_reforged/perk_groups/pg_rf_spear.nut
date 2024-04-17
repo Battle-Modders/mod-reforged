@@ -10,7 +10,7 @@ this.pg_rf_spear <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.rf_spear_advantage"],
+				[],
 				[],
 				[],
 				["perk.mastery.spear"],

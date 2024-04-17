@@ -270,14 +270,6 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_LongReach,
 		Icon = "ui/perks/rf_long_reach.png",
 		IconDisabled = "ui/perks/rf_long_reach_bw.png",
-	}
-	{
-		ID = "perk.rf_spear_advantage",
-		Script = "scripts/skills/perks/perk_rf_spear_advantage",
-		Name = ::Const.Strings.PerkName.RF_SpearAdvantage,
-		Tooltip = ::Const.Strings.PerkDescription.RF_SpearAdvantage,
-		Icon = "ui/perks/rf_spear_advantage.png",
-		IconDisabled = "ui/perks/rf_spear_advantage_bw.png",
 	},
 	{
 		ID = "perk.rf_through_the_gaps",
