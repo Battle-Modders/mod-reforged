@@ -78,7 +78,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		if (this.m.IsForceEnabled)
 			return true;
 
-		if (this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) >= this.m.ArmorStaminaModifier)
+		if (this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) < this.m.ArmorStaminaModifier)
 			return false;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
