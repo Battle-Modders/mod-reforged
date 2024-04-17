@@ -183,7 +183,6 @@
 	RF_ThroughTheRanks = "Through the Ranks",	
 	RF_TrickShooter = "Trick Shooter",
 	RF_TripArtist = "Trip Artist",
-	RF_TwoForOne = "Two for One",
 	RF_Unstoppable = "Unstoppable",
 	RF_Vanquisher = "Vanquisher",
 	RF_Retribution = "Retribution",
@@ -2101,17 +2100,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"The first successful melee attack every [turn|Concept.Turn] against an adjacent target will apply the [staggered|Skill+staggered_effect] effect.",
 				"When wielding a weapon with a [Reach|Concept.Reach] of less than 4, gain the difference in [Reach|Concept.Reach] up to 4."
-			]
-		}]
- 	}),
-	RF_TwoForOne = ::UPD.getDescription({
- 		Fluff = "Practice in spear-handling has taught you to strike in the most efficient way possible!",
- 		Requirement = "Spear",
- 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"The [Action Point|Concept.ActionPoints] cost of [Thrust|Skill+thrust] and [Prong|Skill+prong_skill] is reduced by " + ::MSU.Text.colorGreen(1) + ".",
-				"When double-gripping one-handed spears, the range of [Thrust|Skill+thrust] is increased to " + ::MSU.Text.colorGreen(2) + " tiles. When used at this range, it does " + ::MSU.Text.colorRed("20%") + " reduced damage, has no bonus chance to hit, and has " + ::MSU.Text.colorRed("-20%") + " chance to hit per character between you and the target."
 			]
 		}]
  	}),

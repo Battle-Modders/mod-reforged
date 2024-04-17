@@ -288,14 +288,6 @@
 		IconDisabled = "ui/perks/rf_through_the_gaps_bw.png",
 	},
 	{
-		ID = "perk.rf_two_for_one",
-		Script = "scripts/skills/perks/perk_rf_two_for_one",
-		Name = ::Const.Strings.PerkName.RF_TwoForOne,
-		Tooltip = ::Const.Strings.PerkDescription.RF_TwoForOne,
-		Icon = "ui/perks/rf_two_for_one.png",
-		IconDisabled = "ui/perks/rf_two_for_one_bw.png",
-	},
-	{
 		ID = "perk.rf_king_of_all_weapons",
 		Script = "scripts/skills/perks/perk_rf_king_of_all_weapons",
 		Name = ::Const.Strings.PerkName.RF_KingOfAllWeapons,
