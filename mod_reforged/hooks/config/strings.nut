@@ -162,7 +162,6 @@
 	RF_ShieldSergeant = "Shield Sergeant",
 	RF_SmallTarget = "Small Target",
 	RF_ShieldSplitter = "Shield Splitter",
-	RF_SpearAdvantage = "Spear Advantage",
 	RF_StrengthInNumbers = "Strength in Numbers",
 	RF_SurvivalInstinct = "Survival Instinct",
 	RF_SweepingStrikes = "Sweeping Strikes",
@@ -1841,17 +1840,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Upon destroying a shield with a melee attack, " + ::MSU.Text.colorGreen(4) + " [Action Points|Concept.ActionPoints] are instantly restored.",
-			]
-		}]
- 	}),
-	RF_SpearAdvantage = ::UPD.getDescription({
- 		Fluff = "Stick \'em with the pointy end.",
- 		Requirement = "Spear",
- 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Every successful hit against an opponent increases your [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense] against that opponent by " + ::MSU.Text.colorGreen("+5") + " up to a maximum of " + ::MSU.Text.colorGreen("+20") + ".",
-				"This bonus does not expire on its own but is lost upon taking damage from that opponent."
 			]
 		}]
  	}),
