@@ -1,6 +1,7 @@
 this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 	m = {
-		Bonus = 10
+		RangedSkillToMeleeMult = 0.1,
+		MeleeSkillToRangedMult = 0.2
 	},
 	function create()
 	{
@@ -26,8 +27,7 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		local bonus = ::Math.floor(this.getContainer().getActor().getBaseProperties().getRangedSkill() * this.m.Bonus * 0.01);
-
+		local bonus = this.getMeleeBonus();
 		_properties.MeleeSkill += bonus;
 		_properties.MeleeDefense += bonus;
 	}
@@ -36,7 +36,7 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 	{
 		if (_targetEntity != null && _skill.m.IsWeaponSkill && this.isEnabled())
 		{
-			_properties.RangedSkill += ::Math.floor(this.getContainer().getActor().getCurrentProperties().getMeleeSkill() * 0.2);
+			_properties.RangedSkill += this.getRangedBonus();
 		}
 	}
 
@@ -48,9 +48,19 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has " + ::MSU.Text.colorizePercentage(this.getHitchanceBonus()) + " chance to hit due to " + this.getName()
+				text = ::Reforged.Mod.Tooltips.parseString(format("Has %s chance to hit due to [%s|Skill+%s]", ::MSU.Text.colorizePercentage(this.getRangedBonus()), this.getName(), split(::IO.scriptFilenameByHash(this.ClassName), "/").top()))
 			});
 		}
+	}
+
+	function getMeleeBonus()
+	{
+		return ::Math.floor(this.getContainer().getActor().getBaseProperties().getRangedSkill() * this.m.RangedSkillToMeleeMult);
+	}
+
+	function getRangedBonus()
+	{
+		return ::Math.floor(this.getContainer().getActor().getCurrentProperties().getMeleeSkill() * this.m.MeleeSkillToRangedMult);
 	}
 });
 
