@@ -92,11 +92,12 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 		local success = aoo.useForFree(_targetTile);
 		aoo.m.Overlay = overlay;
 
-		if (success && target.isAlive())
+		if (success)
 		{
 			local tag = {
 				User = _user,
-				TargetTile = _targetTile
+				TargetTile = _targetTile,
+				TargetEntity = target
 			}
 			// Doing this.line_breaker.onUse here directly doesn't work properly.
 			// The target gets knocked back by Linebreaker, but the attacker does not move to the target tile.
@@ -109,7 +110,10 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 
 	function onPushThrough( _tag )
 	{
-		this.line_breaker.onUse(_tag.User, _tag.TargetTile);
+		if (_tag.TargetEntity.isAlive())
+			this.line_breaker.onUse(_tag.User, _tag.TargetTile);
+		else
+			::Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, null, null, false);
 	}
 });
 
