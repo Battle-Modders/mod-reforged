@@ -45,13 +45,13 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = ::MSU.Text.colorizeMult(this.m.RageStacks * this.m.PerStackDamageMult) + " increased melee damage"
+				text = ::MSU.Text.colorizeMult(1.0 + this.m.RageStacks * this.m.PerStackDamageMult) + " more melee damage"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorizeMult(::Math.maxf(this.m.MaxDamageReductionMult, 1.0 - this.m.RageStacks * this.m.PerStackDamageReductionMult), {InvertColor = true}) + " reduced damage received"
+				text = ::MSU.Text.colorizeMult(::Math.maxf(this.m.MaxDamageReductionMult, 1.0 - this.m.RageStacks * this.m.PerStackDamageReductionMult), {InvertColor = true}) + " less damage received"
 			},
 			{
 				id = 12,
