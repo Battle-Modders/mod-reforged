@@ -1,6 +1,6 @@
 this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
+		IsForceEnabled = false, // true ignores weapon reach and armor weight requirements
 		WeaponReach = 4,
 		ArmorStaminaModifier = -20
 		Enemies = []
