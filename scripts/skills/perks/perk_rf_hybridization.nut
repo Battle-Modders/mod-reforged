@@ -16,15 +16,6 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function isEnabled()
-	{
-		if (this.getContainer().getActor().isDisarmed())
-			return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		return weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Throwing);
-	}
-
 	function onUpdate( _properties )
 	{
 		local bonus = this.getMeleeBonus();
@@ -34,7 +25,7 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_targetEntity != null && _skill.m.IsWeaponSkill && this.isEnabled())
+		if (_targetEntity != null && this.isSkillValid(_skill))
 		{
 			_properties.RangedSkill += this.getRangedBonus();
 		}
@@ -42,10 +33,10 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 
 	function onQueryTooltip( _skill, _tooltip )
 	{
-		if (_skill.isRanged() && _skill.m.IsWeaponSkill && this.isEnabled())
+		if (this.isSkillValid(_skill))
 		{
 			_tooltip.push({
-				id = 10,
+				id = 15,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
 				text = ::Reforged.Mod.Tooltips.parseString(format("Has %s chance to hit due to [%s|Skill+%s]", ::MSU.Text.colorizePercentage(this.getRangedBonus()), this.getName(), split(::IO.scriptFilenameByHash(this.ClassName), "/").top()))
@@ -61,6 +52,15 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 	function getRangedBonus()
 	{
 		return ::Math.floor(this.getContainer().getActor().getCurrentProperties().getMeleeSkill() * this.m.MeleeSkillToRangedMult);
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (!_skill.isRanged() || _skill.isAttack())
+			return false;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Throwing);
 	}
 });
 
