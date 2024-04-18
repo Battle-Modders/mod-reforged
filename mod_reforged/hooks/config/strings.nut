@@ -78,7 +78,6 @@
 	RF_BestialVigor = "Bestial Vigor",
 	RF_BetweenTheRibs = "Between the Ribs",
 	RF_Blitzkrieg = "Blitzkrieg",
-	RF_Bloodbath = "Bloodbath",
 	RF_Bloodlust = "Bloodlust",
 	RF_DeathDealer = "Death Dealer",
 	RF_Bolster = "Bolster",
@@ -836,17 +835,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Active,
 			Description = [
 				"Unlocks the [Blitzkrieg|Skill+rf_blitzkrieg_skill] skill which allows you and the rest of your company to go first in the next round of combat."
-			]
-		}]
- 	}),
-	RF_Bloodbath = ::UPD.getDescription({
- 		Fluff = "There\'s something about removing someone\'s head that just makes you want to do it again!",
- 		Requirement = "Melee Attack",
- 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"[Fatalities|Concept.Fatality] instantly restore " + ::MSU.Text.colorGreen(3) + " [Action Points|Concept.ActionPoints].",
-				"Can trigger multiple times per [turn|Concept.Turn], but only once per attack."
 			]
 		}]
  	}),
@@ -1670,13 +1658,12 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Sanguinary = ::UPD.getDescription({
  		Fluff = "Fountain of Blood!",
- 		Requirement = "Melee Attack",
+ 		Requirement = "Cleaver and Cutting Attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The chance to inflict [fatalities|Concept.Fatality] is increased by " + ::MSU.Text.colorGreen("50%") + ".",
-				"[Fatalities|Concept.Fatality] refund " + ::MSU.Text.colorGreen("25%") + " of the Base [Fatigue|Concept.Fatigue] Cost of the skill used.",
-				"During your [turn|Concept.Turn], every successful attack that applies [Bleeding|Skill+bleeding_effect], or is against an already [bleeding|Skill+bleeding_effect] target, improves your [Morale|Concept.Morale] by one level up to a maximum of Steady, and [fatalities|Concept.Fatality] instantly set the [Morale|Concept.Morale] to Confident."
+				"[Fatalities|Concept.Fatality] instantly restore " + ::MSU.Text.colorGreen(3) + " [Action Points|Concept.ActionPoints].",
+				"Can trigger multiple times per [turn|Concept.Turn], but only once per attack."
 			]
 		}]
  	}),
