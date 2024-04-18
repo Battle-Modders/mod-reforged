@@ -1142,12 +1142,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain stacking rage during combat. You gain 1 stack for getting hit, 3 for making a kill, 1 for every successful hit against an adjacent target with a skill with a base [Action Point|Concept.ActionPoints] cost of 4 or less and 2 for greater.",
-				"You lose 2 rage at the start of every [turn|Concept.Turn].",
-				"Each stack of rage increases [Resolve|Concept.Bravery], [Initiative|Concept.Initiative], and Damage by " + ::MSU.Text.colorGreen("+1") + ", lowers [Melee Defense|Concept.MeleeDefense] by " + ::MSU.Text.colorRed("-1") + ", and reduces incoming damage by " + ::MSU.Text.colorGreen("2%") + ".",
-				"At 5 stacks, gain immunity to being [Dazed|Skill+dazed_effect] and a " + ::MSU.Text.colorGreen("33%") + " chance to resist physical [status effects|Concept.StatusEffect] such as [staggered|Skill+staggered_effect], [distracted|Skill+distracted_effect] and [withered|Skill+withered_effect].",
-				"At 7 stacks, additionally gain immunity to being [Stunned|Skill+stunned_effect].",
-				"At 10 stacks, additionally gain immunity to being knocked back, grabbed or swallowed."
+				"Gain stacking rage during combat. You gain 2 rage for getting hit, 3 for making a kill, and 1 for every successful hit against an adjacent target. You lose 1 rage at the start of every [turn|Concept.Turn].",
+				"Each stack of rage increases [Resolve|Concept.Bravery] and [Initiative|Concept.Initiative] by " + ::MSU.Text.colorGreen("+2") + " and Melee Damage by " + ::MSU.Text.colorGreen("3%") + ". Each stack lowers [Melee Defense|Concept.MeleeDefense] by " + ::MSU.Text.colorRed("-1") + " and lowers damage received by " + ::MSU.Text.colorGreen("3%") + ", up to a maximum of 70%.",
 			]
 		}]
  	}),
