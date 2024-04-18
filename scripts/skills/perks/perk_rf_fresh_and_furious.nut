@@ -71,20 +71,25 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
-				// ::Math.round to round up the subtraction because we want to emulate the behavior of _properties.IsSkillUseHalfCost
-				// whereby it rounds down the cost (due to integer division) after halving it.
-				skill.m.ActionPointCost -= ::Math.max(0, ::Math.min(skill.m.ActionPointCost - 1, ::Math.round(skill.m.ActionPointCost / 2.0)));
+				skill.m.ActionPointCost = ::Math.max(1, skill.m.ActionPointCost / 2);
 			}
 		}
 	}
 
-	function onAffordablePreview( _skill, _movementTile )
+	function onAfterUpdatePreview( _properties, _previewedSkill, _previewedMovement )
 	{
-		if (_skill != null && _skill.getActionPointCost() != 0 && _skill.getFatigueCost() != 0)
+		if (this.m.IsSpent || this.m.RequiresRecover)
+			return;
+
+		// Use comparison of PreviewActionPoints vs ActionPoints and PreviewFatigue vs Fatigue to check if _previewedSkill is free to use
+		// We cannot use _previewedSkill.getActionPointCost() because we are in an update loop and there
+		// may be changes to the actor after this skill which may cause that function to return different value later
+		local actor = this.getContainer().getActor();
+		if (_previewedMovement != null || (actor.getPreviewActionPoints() == actor.getActionPoints() && actor.getPreviewFatigue() == actor.getFatigue()))
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
-				this.modifyPreviewField(skill, "ActionPointCost", 0, false);
+				skill.m.ActionPointCost = ::Math.max(1, skill.m.ActionPointCost / 2);
 			}
 		}
 	}

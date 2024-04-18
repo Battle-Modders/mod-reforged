@@ -144,9 +144,9 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAffordablePreview( _skill, _movementTile )
+	function onAfterUpdatePreview( _properties, _previewedSkill, _previewedMovement )
 	{
-		this.modifyPreviewField(this, "FatigueCost", 15, false);
+		this.m.FatigueCost = 15;
 	}
 
 	function onUse( _user, _targetTile )
