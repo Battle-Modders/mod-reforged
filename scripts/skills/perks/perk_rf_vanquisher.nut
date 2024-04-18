@@ -72,22 +72,12 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAffordablePreview( _skill, _movementTile )
+	function onAfterUpdatePreview( _properties, _previewedSkill, _previewedMovement )
 	{
-		if (this.m.IsInEffect)
-		{
-			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
-			{
-				this.modifyPreviewProperty(skill, "IsSkillUseHalfCost", this.getContainer().getActor().getCurrentProperties().IsSkillUseHalfCost, false);
-			}
-		}
 		// Gain Ground can only be used on a valid tile
-		else if ((_skill != null && _skill.getID() == "actives.rf_gain_ground") || (_movementTile != null && this.isTileValid(_movementTile)))
+		if ((_previewedSkill != null && _previewedSkill.getID() == "actives.rf_gain_ground") || (_previewedMovement != null && this.isTileValid(_previewedMovement.End)))
 		{
-			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
-			{
-				this.modifyPreviewProperty(skill, "IsSkillUseHalfCost", true, false);
-			}
+			_properties.IsSkillUseHalfCost = true;
 		}
 	}
 
