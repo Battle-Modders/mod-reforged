@@ -1439,7 +1439,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Attacks have an additional " + ::MSU.Text.colorGreen("25%") + " chance to hit the head."
+				"Attacks have an additional " + ::MSU.Text.colorGreen("25%") + " chance to hit the head.",
+				"Headshots from firearms apply the [Shellshocked|Skill+shellshocked_effect] effect except on characters with " + ::Const.MoraleStateName[::Const.MoraleState.Ignore] + " [morale|Concept.Morale]."
 			]
 		}]
  	}),
