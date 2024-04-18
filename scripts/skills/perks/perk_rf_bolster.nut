@@ -1,6 +1,7 @@
 this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false
+		RequiredWeaponType = null,
+		RequiredWeaponReach = 6
 	},
 	function create()
 	{
@@ -15,38 +16,33 @@ this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function isEnabled()
-	{
-		if (this.m.IsForceEnabled) return true;
-
-		if (this.getContainer().getActor().isDisarmed()) return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || weapon.getReach() < 6)
-		{
-			return false;
-		}
-
-		return true;
-	}
-
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_targetEntity != null && this.getContainer().getActor().isPlacedOnMap() && !this.getContainer().getActor().isEngagedInMelee() && _skill.isAttack() && !_skill.isRanged() && (this.m.IsForceEnabled || _skill.m.IsWeaponSkill) && this.isEnabled())
+		local actor = this.getContainer().getActor();
+		if (!actor.isPlacedOnMap() || actor.isEngagedInMelee() || !this.isSkillValid(_skill))
+			return;
+
+		foreach (ally in ::Tactical.Entities.getFactionActors(actor.getFaction(), actor.getTile(), 1, true))
 		{
-			local allies = ::Tactical.Entities.getFactionActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true);
-			foreach (ally in allies)
+			local moraleState = ally.getMoraleState();
+			if (moraleState < ::Const.MoraleState.Confident)
 			{
-				local moraleState = ally.getMoraleState();
-				if (moraleState < ::Const.MoraleState.Confident)
-				{
-					ally.checkMorale(1, ::Const.Morale.RallyBaseDifficulty);
-					if (ally.getMoraleState() > moraleState)
-					{
-						this.spawnIcon("perk_rf_bolster", ally.getTile());
-					}
-				}
+				ally.checkMorale(1, ::Const.Morale.RallyBaseDifficulty);
+				if (ally.getMoraleState() > moraleState)
+					this.spawnIcon("perk_rf_bolster", ally.getTile());
 			}
 		}
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (_skill.isRanged() || !_skill.isAttack())
+			return false;
+
+		local weapon = _skill.getItem();
+		if (::MSU.isNull(weapon))
+			return this.m.RequiredWeaponType == null;
+
+		return weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.getReach() >= this.m.RequiredWeaponReach && (this.m.RequiredWeaponType == null || weapon.isWeaponType(this.m.RequiredWeaponType));
 	}
 });
