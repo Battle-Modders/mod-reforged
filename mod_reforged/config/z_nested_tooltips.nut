@@ -18,6 +18,7 @@
 			FatigueRecovery = ::MSU.Class.BasicTooltip("Fatigue Recovery", ::Reforged.Mod.Tooltips.parseString("At the start of every turn the [Fatigue|Concept.Fatigue] of a character is reduced by a certain amount. This is known as Fatigue Recovery.\n\nBy default the Fatigue Recovery of player characters is 15, whereas enemies, depending on the enemy type, may have a much higher Fatigue Recovery.\n\nFatigue Recovery may be affected by [perks|Concept.Perk], [traits|Concept.Trait], [status effects|Concept.StatusEffect] and [injuries|Concept.Injury].")),
 			AOE = ::MSU.Class.BasicTooltip("Area of Effect", ::Reforged.Mod.Tooltips.parseString("Area of Effect (AOE) skills target multiple tiles with their effects instead of only a single tile.")),
 			Fatality = ::MSU.Class.BasicTooltip("Fatality", ::Reforged.Mod.Tooltips.parseString("Fatalities are special forms of death which depict a certain gruesomeness beyond the ordinary. Fatalities include:\n- Decapitation - removing the target\'s head.\n- Disembowelment - opening up the target\'s belly to spill the guts.\n- Smashing - smashing the target\'s head into bits.")),
+			Talent = ::MSU.Class.BasicTooltip("Talent", ::Reforged.Mod.Tooltips.parseString("A Talent is a property of some [Attributes|Concept.CharacterAttribute] of a character and can range from 1 to 3. Talents modifiy the minimum and maximum amount of [attributes|Concept.CharacterAttribute] that can be allocated during each level up.")),
 			Turn = ::MSU.Class.BasicTooltip("Turn", ::Reforged.Mod.Tooltips.parseString("Combat in battle brothers is turn-based. Each combat consists of a series of [rounds|Concept.Round]. During a round, characters act in turns. A character\'s position in the turn order is determined by the character\'s [Initiative|Concept.Initiative] relative to other characters.\n\n[Effects|Concept.StatusEffect] that last a certain number of turns last until the character has started or ended their turn that many times, depending on whether the [effect|Concept.StatusEffect] expires at the start or end of the turn respectively.")),
 			Round = ::MSU.Class.BasicTooltip("Round", ::Reforged.Mod.Tooltips.parseString("Combat in battle brothers is turn-based. Each combat consists of a series of rounds. During a round, characters act in [turns|Concept.Turn]. A round ends when all characters have ended their [turns|Concept.Turn].")),
 			ZoneOfControl = ::MSU.Class.BasicTooltip("Zone of Control", ::Reforged.Mod.Tooltips.parseString("Most melee characters exert Zone of Control on their surrounding tiles. Trying to move out of enemy Zone of Control will trigger one free attack from each controlling enemy until the first attack hit or every attack missed. A hit will cancel the movement.")),
@@ -44,7 +45,6 @@
 		"character-stats.ChanceToHitHead",
 		"character-stats.Initiative",
 		"character-stats.Bravery",
-		"character-stats.Talent",
 
 		"character-screen.left-panel-header-module.Experience",
 		"character-screen.left-panel-header-module.Level",
