@@ -1,6 +1,6 @@
 this.perk_rf_family_pride <- ::inherit("scripts/skills/skill", {
 	m = {
-		RoundsThreshold = 5	
+		BraveryMult = 1.5
 	},
 	function create()
 	{
@@ -27,8 +27,8 @@ this.perk_rf_family_pride <- ::inherit("scripts/skills/skill", {
 		tooltip.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Morale checks cannot drop this character\'s morale below [color=" + ::Const.UI.Color.PositiveValue + "]" + ::Const.MoraleStateName[this.getMinMoraleState()] + "[/color]"
+			icon = "ui/icons/bravery.png",
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.BraveryMult) + " increased [Resolve|Concept.Bravery] against negative [morale checks|Concept.Morale]")
 		});
 
 		return tooltip;
@@ -40,18 +40,13 @@ this.perk_rf_family_pride <- ::inherit("scripts/skills/skill", {
 		this.getContainer().removeByID("trait.dastard");
 	}
 
+	function onUpdate( _properties )
+	{
+		_properties.NegativeMoraleCheckBraveryMult *= this.m.BraveryMult;
+	}
+
 	function onCombatStarted()
 	{
 		this.getContainer().getActor().setMoraleState(::Const.MoraleState.Confident);
-	}
-
-	function getMinMoraleState()
-	{
-		if (this.getContainer().hasSkill("trait.determined"))
-		{
-			return ::Const.MoraleState.Confident;
-		}
-
-		return ::Time.getRound() > this.m.RoundsThreshold ? ::Const.MoraleState.Steady : ::Const.MoraleState.Confident;
 	}
 });
