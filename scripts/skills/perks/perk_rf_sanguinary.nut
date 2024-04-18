@@ -1,7 +1,7 @@
 this.perk_rf_sanguinary <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false, // true removes weapon and damage type requirement
-		RequiresWeapon = true,
+		RequiredWeaponType = ::Const.Items.WeaponType.Cleaver,
+		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
 		IsSpent = true,
 		RestoredActionPoints = 3
 	},
@@ -39,19 +39,13 @@ this.perk_rf_sanguinary <- ::inherit("scripts/skills/skill", {
 
 	function isSkillValid( _skill )
 	{
-		if (_skill.isRanged() || !_skill.isAttack())
+		if (_skill.isRanged() || !_skill.isAttack() || (this.m.RequiredDamageType != null && !_skill.getDamageType().contains(::Const.Damage.DamageType.Cutting)))
 			return false;
 
-		if (this.m.IsForceEnabled)
-			return true;
-
-		if (!_skill.getDamageType().contains(::Const.Damage.DamageType.Cutting))
-			return false;
-
-		if (!this.m.RequiresWeapon)
+		if (this.m.RequiredWeaponType == null)
 			return true;
 
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Cleaver);
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });
