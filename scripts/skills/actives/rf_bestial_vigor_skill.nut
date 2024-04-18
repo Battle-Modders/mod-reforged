@@ -1,6 +1,6 @@
 this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 	m = {
-		FatigueRecoveredPercentage = 100,
+		FatigueRecoveredFraction = 1.0,
 		ActionPointsGained = 3,
 		IsSpent = false,
 		IsBonusActive = false
@@ -47,7 +47,7 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Current Fatigue is reduced by " + ::MSU.Text.colorizePercentage(this.m.FatigueRecoveredPercentage)
+				text = "Current Fatigue is reduced by " + ::MSU.Text.colorizeFraction(this.m.FatigueRecoveredFraction)
 			},
 			{
 				id = 10,
@@ -77,7 +77,7 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsBonusActive = true;
 
 		local actor = this.getContainer().getActor();
-		actor.setFatigue(actor.getFatigue() * (1.0 - this.m.FatigueRecoveredPercentage * 0.01));
+		actor.setFatigue(actor.getFatigue() * (1.0 - this.m.FatigueRecoveredFraction));
 		actor.setActionPoints(actor.getActionPoints() + this.m.ActionPointsGained);
 
 		return true;
