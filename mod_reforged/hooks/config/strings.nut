@@ -1229,12 +1229,12 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
  	RF_Ghostlike = ::UPD.getDescription({
  		Fluff = "Blink and you\'ll miss me.",
- 		Requirement = "Melee Weapon with up to 4 Reach and Head and Body Armor weight up to 20"
+ 		Requirement = "Body Armor weight up to 20"
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When the number of adjacent allies is greater than or equal to the number of adjacent enemies, you may ignore [Zone of Control|Concept.ZoneOfControl] for your next movement action."
-				"When you end your movement adjacent to an enemy, the next attack against that enemy deals " + ::MSU.Text.colorGreen("25%") + " increased damage and " + ::MSU.Text.colorGreen("+20%") + " damage ignoring armor. This bonus expires upon any action other than an attack."
+				"When wielding a melee weapon with up to 4 [Reach|Concept.Reach] when you end your movement adjacent to an enemy, the next attack against that enemy deals " + ::MSU.Text.colorGreen("25%") + " more damage and " + ::MSU.Text.colorGreen("+20%") + " damage ignoring armor. This bonus expires upon any action other than an attack."
 			]
 		}]
  	}),

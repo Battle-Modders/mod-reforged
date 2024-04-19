@@ -1,6 +1,5 @@
 this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false, // true ignores weapon reach and armor weight requirements
 		WeaponReach = 4,
 		ArmorStaminaModifier = -20,
 		DamageTotalMult = 1.25,
@@ -73,21 +72,28 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isEnabled()
+	function hasValidStaminaModifier()
 	{
-		if (this.m.IsForceEnabled)
-			return true;
+		return this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) >= this.m.ArmorStaminaModifier;
+	}
 
-		if (this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) < this.m.ArmorStaminaModifier)
+	function isZOCIgnoreEnabled()
+	{
+		return this.hasValidStaminaModifier();
+	}
+
+	function isDamageEnabled()
+	{
+		if (!this.hasValidStaminaModifier())
 			return false;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		return weapon == null || weapon.getReach() <= this.m.WeaponReach;
+		return weapon == null || (weapon.isItemType(::Const.Items.ItemType.MeleeWeapon) && weapon.getReach() <= this.m.WeaponReach);
 	}
 
 	function onUpdate( _properties )
 	{
-		if (!this.isEnabled())
+		if (!this.isZOCIgnoreEnabled())
 			return;
 
 		local actor = this.getContainer().getActor();
@@ -121,7 +127,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 	function onMovementFinished( _tile )
 	{
-		if (!this.isEnabled())
+		if (!this.isDamageEnabled())
 			return;
 
 		foreach (tile in ::MSU.Tile.getNeighbors(_tile))
@@ -135,7 +141,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_targetEntity == null || !this.isEnabled())
+		if (_targetEntity == null || !this.isDamageEnabled())
 			return;
 
 		if (this.m.Enemies.find(_targetEntity.getID()) != null)
@@ -157,7 +163,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
-		if (!this.isEnabled())
+		if (!this.isDamageEnabled())
 			return;
 
 		local targetEntity = _targetTile.getEntity();
