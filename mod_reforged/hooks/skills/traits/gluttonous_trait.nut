@@ -15,7 +15,7 @@
 		local ret = __original();
 
 		ret.push({
-			id = 5,
+			id = 10,
 			type = "text",
 			icon = "ui/icons/asset_daily_food.png",
 			text = "Consumes " + ::MSU.Text.colorNegative("+1") + " food daily"
