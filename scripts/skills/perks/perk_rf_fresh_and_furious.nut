@@ -81,11 +81,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		if (this.m.IsSpent || this.m.RequiresRecover)
 			return;
 
-		// Use comparison of PreviewActionPoints vs ActionPoints and PreviewFatigue vs Fatigue to check if _previewedSkill is free to use
-		// We cannot use _previewedSkill.getActionPointCost() because we are in an update loop and there
-		// may be changes to the actor after this skill which may cause that function to return different value later
-		local actor = this.getContainer().getActor();
-		if (_previewedMovement != null || (actor.getPreviewActionPoints() == actor.getActionPoints() && actor.getPreviewFatigue() == actor.getFatigue()))
+		if (_previewedMovement != null || (_previewedSkill.getActionPointCost() == 0 && _previewedSkill.getFatigueCost() == 0))
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
