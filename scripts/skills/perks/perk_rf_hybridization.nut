@@ -82,13 +82,17 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 
 	function onQueryTooltip( _skill, _tooltip )
 	{
-		if (this.isSkillValid(_skill))
+		if (!this.isSkillValid(_skill))
+			return;
+
+		local rangedBonus = this.getRangedBonus();
+		if (rangedBonus != 0)
 		{
 			_tooltip.push({
 				id = 15,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("Has %s chance to hit due to [%s|Skill+%s]", ::MSU.Text.colorizePercentage(this.getRangedBonus()), this.getName(), split(::IO.scriptFilenameByHash(this.ClassName), "/").top()))
+				text = ::Reforged.Mod.Tooltips.parseString(format("Has %s chance to hit due to [%s|Skill+%s]", ::MSU.Text.colorizePercentage(rangedBonus), this.getName(), split(::IO.scriptFilenameByHash(this.ClassName), "/").top()))
 			});
 		}
 	}
