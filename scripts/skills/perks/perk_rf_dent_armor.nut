@@ -1,9 +1,8 @@
 this.perk_rf_dent_armor <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
-		IsForceTwoHanded = false,
-		ChanceOneHanded = 33,
-		ChanceTwoHanded = 66
+		RequiredDamageType = ::Const.Damage.DamageType.Blunt,
+		RequiredArmorMax = 250
+		Chance = 66
 	},
 	function create()
 	{
@@ -18,45 +17,20 @@ this.perk_rf_dent_armor <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function isEnabled()
-	{
-		if (this.m.IsForceEnabled)
-		{
-			return true;
-		}
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if(weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
-		{
-			return false;
-		}
-
-		return true;
-	}
-
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		local actor = this.getContainer().getActor();
-		if (!_skill.isAttack() || !_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.isAlliedWith(actor) ||
-			(!_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt) && !this.m.IsForceEnabled) ||
-			!this.isEnabled())
-		{
+		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
 			return;
-		}
 
 		local targetArmorItem = _bodyPart == ::Const.BodyPart.Head ? _targetEntity.getHeadItem() : _targetEntity.getBodyItem();
-		if (targetArmorItem == null || targetArmorItem.getArmorMax() <= 200)
-		{
+		if (targetArmorItem == null || targetArmorItem.getArmorMax() <= this.m.RequiredArmorMax || ::Math.rand(1, 100) > this.m.Chance)
 			return;
-		}
 
-		local weapon = actor.getMainhandItem();
-		local isTwoHanded = this.m.IsForceTwoHanded || (weapon != null && weapon.isItemType(::Const.Items.ItemType.TwoHanded));
+		_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_dented_armor_effect"));
+	}
 
-		local roll = ::Math.rand(1, 100);
-		if (roll <= this.m.ChanceOneHanded || (isTwoHanded && roll <= this.m.ChanceTwoHanded))
-		{
-			_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_dented_armor_effect"));
-		}
+	function isSkillValid( _skill )
+	{
+		return _skill.isAttack() && (this.m.RequiredDamageType == null || _skill.getDamageType().contains(this.m.RequiredDamageType));
 	}
 });

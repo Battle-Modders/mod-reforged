@@ -1006,14 +1006,11 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_DentArmor = ::UPD.getDescription({
  		Fluff = "\'Can\'t fight if they can\'t walk.\'",
- 		Requirement = "Hammer and Blunt Damage",
+ 		Requirement = "Blunt Damage",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Successful attacks have a chance to apply the [Dented Armor|Skill+rf_dented_armor_effect] effect for the remainder of the combat.",
-				"The chance is " + ::MSU.Text.colorRed("66%") + " for two-handed hammers and " + ::MSU.Text.colorGreen("33%") + " for one-handed hammers.",
-				"Only works when attacks hit an armor item with a maximum durability of at least 200.",
-				"The affected target, or their allies, can use the [Adjust Armor|Skill+rf_adjust_dented_armor_skill] skill, when not engaged in melee, to remove the effect."
+				"Successful attacks have a " + ::MSU.Text.colorGreen("66%") + " chance to apply the [Dented Armor|Skill+rf_dented_armor_effect] effect."
 			]
 		}]
  	}),
