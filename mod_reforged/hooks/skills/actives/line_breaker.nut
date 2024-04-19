@@ -1,4 +1,23 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/line_breaker", function(q) {
+	// Vanilla does not have a tooltip function for this skill.
+	q.getTooltip = @() function()
+	{
+		local ret = this.getDefaultUtilityTooltip();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Pushes back the target and moves you into their position"
+		});
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorRed("10") + " extra [fatigue|Concept.Fatigue]")
+		});
+		return ret;
+	}
+
 	// Fixes vanilla issue where Line Breaker cannot push characters off ledges
 	q.findTileToKnockBackTo = @() function( _userTile, _targetTile )
 	{
