@@ -91,9 +91,13 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		this.m.IsInEffect = false;
 		if (_skill.isAttack())
 			this.m.ValidTiles.clear();
+	}
+
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		this.m.IsInEffect = false;
 	}
 
 	function onPayForItemAction( _skill, _items )
