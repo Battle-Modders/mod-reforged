@@ -1,6 +1,8 @@
 this.rf_dented_armor_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		ActionPointMalus = 2
+		MeleeSkillMult = 0.9,
+		RangedSkillMult = 0.9,
+		DamageTotalMult = 0.8
 	},
 	function create()
 	{
@@ -18,15 +20,39 @@ this.rf_dented_armor_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/action_points.png",
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + this.m.ActionPointMalus + "[/color] Action Points"
-		});
+		local ret = this.skill.getTooltip();
 
-		return tooltip;
+		if (this.m.MeleeSkillMult != 1.0)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/melee_skill.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.MeleeSkillMult) + " [Melee Skill|Concept.MeleeSkill]")
+			});
+		}
+
+		if (this.m.RangedSkillMult != 1.0)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/ranged_skill.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.RangedSkillMult) + " [Ranged Skill|Concept.RangeSkill]")
+			});
+		}
+
+		if (this.m.DamageTotalMult != 1.0)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/regular_damage.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " less damage dealt")
+			});
+		}
+
+		return ret;
 	}
 
 	function onAdded()
@@ -41,6 +67,8 @@ this.rf_dented_armor_effect <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.ActionPoints -= 2;
+		_properties.MeleeSkillMult *= this.m.MeleeSkillMult;
+		_properties.RangedSkillMult *= this.m.RangedSkillMult;
+		_properties.DamageTotalMult *= this.m.DamageTotalMult;
 	}
 });
