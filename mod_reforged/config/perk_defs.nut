@@ -1148,6 +1148,14 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_Combo,
 		Icon = "ui/perks/rf_combo.png",
 		IconDisabled = "ui/perks/rf_combo_sw.png",
+	},
+	{
+		ID = "perk.rf_dismemberment",
+		Script = "scripts/skills/perks/perk_rf_dismemberment",
+		Name = ::Const.Strings.PerkName.RF_Dismemberment,
+		Tooltip = ::Const.Strings.PerkDescription.RF_Dismemberment,
+		Icon = "ui/perks/rf_dismemberment.png",
+		IconDisabled = "ui/perks/rf_dismemberment_sw.png",
 	}
 ]);
 

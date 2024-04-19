@@ -95,6 +95,7 @@
 	RF_DentArmor = "Dent Armor",
 	RF_DiscoveredTalent = "Discovered Talent",
 	RF_Dismantle = "Dismantle",
+	RF_Dismemberment = "Dismemberment",
 	RF_DoubleStrike = "Double Strike",
 	RF_EnGarde = "En Garde",
 	RF_Entrenched = "Entrenched",
@@ -1035,6 +1036,17 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Every successful hit that does damage to an armor piece applies the [Dismantled Armor|Skill+rf_dismantled_effect] effect which causes the target to receive a stacking " + ::MSU.Text.colorRed("15%") + " increased damage ignoring armor through that armor piece from all sources for the remainder of the combat. This is increased to " + ::MSU.Text.colorRed("30%") + " per hit for two-handed hammers."
+			]
+		}]
+ 	}),
+ 	RF_Dismemberment = ::UPD.getDescription({
+ 		Fluff = "Welcome to the chopping block!",
+ 		Requirement = "Axe",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"When inflicting an [injury|Concept.InjuryTemporary] with an attack, if you meet the [threshold|Concept.InjuryThreshold] for the lowest possible injury, instead inflict one with the highest [threshold|Concept.InjuryThreshold].",
+				"This injury triggers morale checks on the target for every " + ::MSU.Text.colorGreen("25") + " [Resolve|Concept.Bravery] you have."
 			]
 		}]
  	}),
