@@ -51,6 +51,18 @@
 		if (this.isDiscovered() == false) return ret;
 		if (this.isHiddenToPlayer()) return ret;
 
+		if (this.m.IsActingEachTurn && !this.m.IsTurnDone && this.isWaitActionSpent())
+		{
+			foreach (entry in ret)
+			{
+				if (entry.id == 4)
+				{
+					entry.text += " (Has Waited)";
+					break;
+				}
+			}
+		}
+
 		// Adjust existing progressbars displayed by Vanilla
 		for (local index = (ret.len() - 1); index >= 0; index--)	// we move through it backwards to safely remove entries during it
 		{
