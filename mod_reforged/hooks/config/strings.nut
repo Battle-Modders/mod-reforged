@@ -1283,6 +1283,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Gain " + ::MSU.Text.colorGreen("10%") + " of your Base [Ranged Skill|Concept.RangeSkill] as additional [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense].",
 				"Throwing attacks gain " + ::MSU.Text.colorGreen("20%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional chance to hit."
+				"Can switch to or from a throwing weapon for free once per [turn|Concept.Turn]."
 			]
 		}]
  	}),
