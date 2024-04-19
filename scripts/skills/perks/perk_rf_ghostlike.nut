@@ -87,6 +87,9 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
+		if (!this.isEnabled())
+			return;
+
 		local actor = this.getContainer().getActor();
 		if (actor.isPlacedOnMap())
 		{
@@ -118,6 +121,9 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 	function onMovementFinished( _tile )
 	{
+		if (!this.isEnabled())
+			return;
+
 		foreach (tile in ::MSU.Tile.getNeighbors(_tile))
 		{
 			if (tile.IsOccupiedByActor && !tile.getEntity().isAlliedWith(this.getContainer().getActor()))
