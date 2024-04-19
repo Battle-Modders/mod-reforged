@@ -2030,7 +2030,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	 		{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Unlocks the [Gain Ground|Skill+rf_gain_ground_skill] skill which, immediately after killing a target, allows you to move into their tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of movement.",
+					"Unlocks the [Gain Ground|Skill+rf_gain_ground_skill] skill which, immediately after killing an adjacent target, allows you to move into their tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of movement.",
 				]
 			}
 		]

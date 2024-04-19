@@ -63,7 +63,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorRed("Can only be used immediately after killing a target")
+				text = ::MSU.Text.colorRed("Can only be used immediately after killing an adjacent target")
 			});
 		}
 
@@ -103,7 +103,11 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 
 	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )
 	{
-		if (_deathTile != null && _killer.getID() == this.getContainer().getActor().getID() && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		if (_deathTile == null)
+			return;
+
+		local actor = this.getContainer().getActor();
+		if (actor.isPlacedOnMap() && _killer.getID() == actor.getID() && ::Tactical.TurnSequenceBar.isActiveEntity(actor) && actor.getTile().getDistanceTo(_deathTile) == 1)
 			this.m.ValidTiles.push(_deathTile);
 	}
 
