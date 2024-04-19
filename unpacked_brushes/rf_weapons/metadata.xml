@@ -51,4 +51,7 @@
 <sprite id="icon_rf_halberd_01" offsetX = "-2" offsetY="35" ic="FF3D3945" width="130" height="142" img="icon_rf_halberd_01.png" left="-62" right="20" top="-62" bottom="86" />
 <sprite id="icon_rf_halberd_01_bloodied" offsetX = "-2" offsetY="35" ic="FF3D3945" width="130" height="142" img="icon_rf_halberd_01_bloodied.png" left="-62" right="20" top="-62" bottom="86" />
 
+<sprite id="icon_rf_two_handed_falchion_01" offsetY="35" ic="FF5B5F67" width="150" height="160" img="icon_rf_two_handed_falchion_01.png" left="-54" right="22" top="-54" bottom="34" />
+<sprite id="icon_rf_two_handed_falchion_01_bloodied" offsetY="35" ic="FF5B5F67" width="150" height="160" img="icon_rf_two_handed_falchion_01_bloodied.png" left="-54" right="22" top="-54" bottom="34" />
+
 </brush>
