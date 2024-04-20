@@ -1229,7 +1229,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
  	RF_Ghostlike = ::UPD.getDescription({
  		Fluff = "Blink and you\'ll miss me.",
- 		Requirement = "Body Armor weight up to 20"
+ 		Requirement = "Total armor weight up to 20"
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
