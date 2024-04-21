@@ -1,6 +1,6 @@
 this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsSpent = false,
+		IsSpent = true,
 		RangedSkillToMeleeMult = 0.1,
 		MeleeSkillToRangedMult = 0.2
 	},
