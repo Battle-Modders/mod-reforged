@@ -28,7 +28,7 @@ this.rf_black_eye_injury <- this.inherit("scripts/skills/injury/injury", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = ::MSU.Text.colorRed(this.m.VisionModifier) + " Vision"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed(this.m.VisionModifier) + " [Vision|Concept.SightDistance]")
 			});
 		}
 
