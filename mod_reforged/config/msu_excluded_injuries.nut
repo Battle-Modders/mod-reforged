@@ -17,7 +17,9 @@
 		"injury.grazed_neck",
 		"injury.cut_throat",
 		"injury.crushed_windpipe",
-		"injury.inhaled_flames"
+		"injury.inhaled_flames",
+		"injury.rf_heat_stroke",
+		"injury.rf_black_eye",
 	]
 );
 
@@ -34,6 +36,7 @@
 		"injury.pierced_side",
 		"injury.pierced_arm_muscles",
 		"injury.stabbed_guts",
+		"injury.rf_dislocated_jaw",
 	],
 	[
 		::Const.Injury.ExcludedInjuries.RF_Undead
