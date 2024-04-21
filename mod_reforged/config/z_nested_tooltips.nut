@@ -55,6 +55,7 @@ local getThresholdForInjury = function( _script )
 		"character-stats.Initiative",
 		"character-stats.Bravery",
 		"character-stats.Talent",
+		"character-stats.SightDistance"
 
 		"character-screen.left-panel-header-module.Experience",
 		"character-screen.left-panel-header-module.Level",
