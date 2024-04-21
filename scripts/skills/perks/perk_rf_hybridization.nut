@@ -57,6 +57,9 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 
 	function getItemActionCost( _items )
 	{
+		if (this.m.IsSpent)
+			return null;
+
 		foreach (item in _items)
 		{
 			if (item != null && item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
