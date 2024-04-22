@@ -20,7 +20,7 @@ this.pg_rf_devious <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.backstabber"],
 				[],
 				["perk.rf_ghostlike"],
-				["perk.rf_sneak_attack"],
+				[],
 				[],
 				[]
 			]

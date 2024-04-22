@@ -1,5 +1,11 @@
 this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		WeaponReach = 4,
+		ArmorStaminaModifier = -20,
+		DamageTotalMult = 1.25,
+		DirectDamageModifier = 0.2,
+		Enemies = []
+	},
 	function create()
 	{
 		this.m.ID = "perk.rf_ghostlike";
@@ -13,23 +19,82 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
+	function isHidden()
+	{
+		return this.m.Enemies.len() == 0 && !this.getContainer().getActor().getCurrentProperties().IsImmuneToZoneOfControl;
+	}
+
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The next movement will ignore [Zone of Control|Concept.ZoneOfControl]")
-		});
+		if (this.getContainer().getActor().getCurrentProperties().IsImmuneToZoneOfControl)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("The next movement will ignore [Zone of Control|Concept.ZoneOfControl]")
+			});
+		}
 
-		return tooltip;
+		if (this.m.Enemies.len() != 0)
+		{
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " more damage and " + ::MSU.Text.colorizeFraction(this.m.DirectDamageModifier, {AddSign = true}) + " damage ignoring armor against:"
+			});
+
+			foreach (enemy in this.m.Enemies)
+			{
+				local enemy = ::Tactical.getEntityByID(enemy);
+				if (enemy == null || !enemy.isPlacedOnMap() || !enemy.isAlive())
+					continue;
+
+				ret.push({
+					id = 12,
+					type = "text",
+					icon = "ui/orientation/" + enemy.getOverlayImage() + ".png",
+					text = enemy.getName()
+				});
+			}
+
+			ret.push({
+				id = 13,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::MSU.Text.colorRed("The damage bonus will be lost upon swapping an item or waiting or ending your turn")
+			});
+		}
+
+		return ret;
+	}
+
+	function hasValidStaminaModifier()
+	{
+		return this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) >= this.m.ArmorStaminaModifier;
+	}
+
+	function isZOCIgnoreEnabled()
+	{
+		return this.hasValidStaminaModifier();
+	}
+
+	function isDamageEnabled()
+	{
+		if (!this.hasValidStaminaModifier())
+			return false;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return weapon == null || (weapon.isItemType(::Const.Items.ItemType.MeleeWeapon) && weapon.getReach() <= this.m.WeaponReach);
 	}
 
 	function onUpdate( _properties )
 	{
-		this.m.IsHidden = true;
+		if (!this.isZOCIgnoreEnabled())
+			return;
 
 		local actor = this.getContainer().getActor();
 		if (actor.isPlacedOnMap())
@@ -51,8 +116,87 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 			if (numAllies >= numEnemies)
 			{
 				_properties.IsImmuneToZoneOfControl = true;
-				this.m.IsHidden = false;
 			}
 		}
+	}
+
+	function onMovementStarted( _tile, _numTiles )
+	{
+		this.m.Enemies.clear();
+	}
+
+	function onMovementFinished( _tile )
+	{
+		if (!this.isDamageEnabled())
+			return;
+
+		foreach (tile in ::MSU.Tile.getNeighbors(_tile))
+		{
+			if (tile.IsOccupiedByActor && !tile.getEntity().isAlliedWith(this.getContainer().getActor()))
+			{
+				this.m.Enemies.push(tile.getEntity().getID());
+			}
+		}
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_targetEntity == null || !this.isDamageEnabled())
+			return;
+
+		if (this.m.Enemies.find(_targetEntity.getID()) != null)
+		{
+			_properties.DamageDirectAdd += this.m.DirectDamageModifier;
+			_properties.DamageTotalMult *= this.m.DamageTotalMult;
+		}
+	}
+
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (_targetEntity == null)
+			return;
+
+		local idx = this.m.Enemies.find(_targetEntity.getID());
+		if (idx != null)
+			this.m.Enemies.remove(idx);
+	}
+
+	function onGetHitFactors( _skill, _targetTile, _tooltip )
+	{
+		if (!this.isDamageEnabled())
+			return;
+
+		local targetEntity = _targetTile.getEntity();
+		if (targetEntity == null)
+			return;
+
+		if (this.m.Enemies.find(targetEntity.getID()) != null)
+		{
+			_tooltip.push({
+				icon = "ui/tooltips/positive.png",
+				text = this.getName()
+			});
+		}
+	}
+
+	function onPayForItemAction( _skill, _items )
+	{
+		this.m.Enemies.clear();
+	}
+
+	function onWaitTurn()
+	{
+		this.m.Enemies.clear();
+	}
+
+	function onTurnEnd()
+	{
+		this.m.Enemies.clear();
+	}
+
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		this.m.Enemies.clear();
 	}
 });

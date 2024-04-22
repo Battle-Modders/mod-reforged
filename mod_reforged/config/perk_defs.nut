@@ -1046,14 +1046,6 @@
 		IconDisabled = "ui/perks/rf_ghostlike_bw.png",
 	},
 	{
-		ID = "perk.rf_sneak_attack",
-		Script = "scripts/skills/perks/perk_rf_sneak_attack",
-		Name = ::Const.Strings.PerkName.RF_SneakAttack,
-		Tooltip = ::Const.Strings.PerkDescription.RF_SneakAttack,
-		Icon = "ui/perks/rf_sneak_attack.png",
-		IconDisabled = "ui/perks/rf_sneak_attack_bw.png",
-	},
-	{
 		ID = "perk.rf_shield_splitter",
 		Script = "scripts/skills/perks/perk_rf_shield_splitter",
 		Name = ::Const.Strings.PerkName.RF_ShieldSplitter,
