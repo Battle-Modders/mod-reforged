@@ -1,17 +1,8 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_throwing", function(q) {
-	q.getHitchanceBonus <- function()
-	{
-		return ::Math.floor(0.20 * this.getContainer().getActor().getCurrentProperties().getMeleeSkill());
-	}
-
 	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
 	{
-		if (_targetEntity == null || !_skill.isRanged() || !_skill.m.IsWeaponSkill) return;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing)) return;
-
-		_properties.RangedSkill += this.getHitchanceBonus();
+		if (_targetEntity == null || !this.isSkillValid(_skill))
+			return;
 
 		local distance = _targetEntity.getTile().getDistanceTo(this.getContainer().getActor().getTile());
 		if (distance <= 2)
@@ -24,20 +15,65 @@
 		}
 	}
 
-	q.onQueryTooltip <- function( _skill, _tooltip )
+	q.onTargetHit = @(__original) function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_skill.isRanged() && _skill.m.IsWeaponSkill)
+		__original(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
+
+		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
+			return;
+
+		local actor = this.getContainer().getActor();
+
+		if (_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt))
 		{
-			local weapon = this.getContainer().getActor().getMainhandItem();
-			if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
+			local staggeredEffect = _targetEntity.getSkills().getSkillByID("effects.staggered");
+			if (staggeredEffect != null)
 			{
-				_tooltip.push({
-					id = 10,
-					type = "text",
-					icon = "ui/icons/hitchance.png",
-					text = "Has " + ::MSU.Text.colorizePercentage(this.getHitchanceBonus()) + " chance to hit due to " + this.getName()
-				});
+				if (_targetEntity.getCurrentProperties().IsImmuneToStun) return;
+
+				local effect = ::new("scripts/skills/effects/stunned_effect");
+				_targetEntity.getSkills().add(effect);
+				effect.m.TurnsLeft = 1;
+				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
+				{
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has stunned " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn");
+				}
+			}
+			else if (::Math.rand(1, 100) <= 50)
+			{
+				local effect = ::new("scripts/skills/effects/staggered_effect");
+				_targetEntity.getSkills().add(effect);
+				effect.m.TurnsLeft = 1;
+				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
+				{
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has staggered " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn");
+				}
 			}
 		}
+		else if (_skill.getDamageType().contains(::Const.Damage.DamageType.Piercing))
+		{
+			if (::Math.rand(1, 100) <= 50)
+			{
+				local effect = ::new("scripts/skills/effects/rf_arrow_to_the_knee_debuff_effect");
+				_targetEntity.getSkills().add(effect);
+				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
+				{
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has impaled " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turns");
+				}
+			}
+		}
+		else if (_skill.getDamageType().contains(::Const.Damage.DamageType.Cutting))
+		{
+			_targetEntity.getSkills().add(::new("scripts/skills/effects/overwhelmed_effect"));
+		}
+	}
+
+	q.isSkillValid <- function( _skill )
+	{
+		if (!_skill.isRanged() || !_skill.isAttack())
+			return false;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Throwing);
 	}
 });

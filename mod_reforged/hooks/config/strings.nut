@@ -562,8 +562,8 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
  					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
- 					"Gain " + ::MSU.Text.colorGreen("20%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional chance to hit.",
- 					"Damage is increased by " + ::MSU.Text.colorGreen("30%") + " when attacking at a distance of 2 tiles and by " + ::MSU.Text.colorGreen("20%") + " when attacking at a distance of 3 tiles."
+ 					"Damage is increased by " + ::MSU.Text.colorGreen("30%") + " when attacking at a distance of 2 tiles and by " + ::MSU.Text.colorGreen("20%") + " when attacking at a distance of 3 tiles.",
+ 					"Hits from throwing attacks now apply certain debuffs on the target. Piercing type attacks have a " + ::MSU.Text.colorGreen("50%") + " chance to inflict the \'Arrow to the Knee\' effect. Cutting type attacks always apply the [Overwhelmed|Skill+overwhelmed_effect] effect. Blunt type attacks have a " + ::MSU.Text.colorGreen("50%") + " chance to inflict [staggered|Skill+staggered_effect] and if the target is already [staggered|Skill+staggered_effect], " + ::MSU.Text.colorGreen("100%") + " chance to inflict [stunned|Skill+stunned_effect].",
  				]
  			}]
 	 	}),
@@ -1295,11 +1295,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorGreen("10%") + " of your Base [Ranged Skill|Concept.RangeSkill] as additional [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense]."
-				"Piercing type throwing attacks have a " + ::MSU.Text.colorGreen("50%") + " chance to inflict the \'Arrow to the Knee\' effect.",
-				"Cutting type throwing attacks always apply the [Overwhelmed|Skill+overwhelmed_effect] effect.",
-				"Blunt type throwing attacks have a " + ::MSU.Text.colorGreen("50%") + " chance to inflict [staggered|Skill+staggered_effect] and if the target is already [staggered|Skill+staggered_effect], " + ::MSU.Text.colorGreen("100%") + " chance to inflict [stunned|Skill+stunned_effect].",
-				"[Throwing Spear|Item+throwing_spear] does " + ::MSU.Text.colorGreen("50%") + " increased damage to shields."
+				"Gain " + ::MSU.Text.colorGreen("10%") + " of your Base [Ranged Skill|Concept.RangeSkill] as additional [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense].",
+				"Throwing attacks gain " + ::MSU.Text.colorGreen("20%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional chance to hit."
+				"Can switch to or from a throwing weapon for free once per [turn|Concept.Turn]."
 			]
 		}]
  	}),
