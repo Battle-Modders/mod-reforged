@@ -1,0 +1,40 @@
+name: Check Commit Message Prefixes
+on:
+	pull_request:
+		types: [opened, synchronize]
+
+jobs:
+	check_commit_messages:
+		runs_on:
+		steps:
+			- name: Checkout Code
+			  uses: actions/checkout@v3
+
+			- name: Validate Commit Messages
+			  run:
+				# Define the allowed prefixes
+				allowed_prefixes=("feat:" "refactor:" "fix:")
+
+				# Get the commit messages in the PR
+				commit_messages=$(git log origin/main..HEAD --pretty=format:"%s")
+
+				# Check each commit message
+				invalid_commits = 0
+				for msg in $commit_messages; do
+					valid = 0
+					for prefix in "${allowed_prefixes[@]}"; do
+						if [[ $msg == $prefix* ]]; then
+							valid = 1
+							break
+						fi
+					done
+					if [[ $valid -eq 0 ]]; then
+						echo "Invalid commit message: $msg"
+						invalid_commits=1
+					fi
+				done
+
+				# If any invalid commit messages are found, fail the check
+				if [[ $invalid_commits -eq 1 ]]; then
+					exit 1
+				fi
