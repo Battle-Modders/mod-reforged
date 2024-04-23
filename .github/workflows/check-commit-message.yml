@@ -1,0 +1,58 @@
+# Check Commit Message Prefixes
+#
+# This GitHub Actions workflow checks the commit messages of pull requests to ensure they start with one of the allowed prefixes.
+# If any commit message does not adhere to these prefixes, the workflow fails and prevents merging until corrected.
+
+name: Check Commit Message Prefixes
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  check_commit_messages:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1  # Fetch only the latest commit of the default branch (main or development)
+
+      - name: Validate Commit Messages
+        run: |
+          # Define the allowed prefixes
+          allowed_prefixes=("feat:" "refactor:" "fix:" "balance:" "ci:" "tests:" "docs:")
+
+          # Fetch the latest state of the base branch (the branch into which the PR is being merged)
+          git fetch origin ${{ github.base_ref }}
+
+          # Get the commit messages in the PR that are not in the base branch
+          # Note: chatgpt noted this line as not efficient and suggested a replacement but that didn't work. If performance is rally an issue, we need to revisit this
+          commit_messages=$(git log origin/${{ github.base_ref }}..HEAD --pretty=format:"%s")
+
+          # Check each commit message
+          invalid_commits=0
+          while IFS= read -r msg; do
+            # Skip merge commits
+            if [[ $msg == Merge* ]]; then
+              continue
+            fi
+
+            valid=0
+            # Check if the commit message starts with any of the allowed prefixes
+            for prefix in "${allowed_prefixes[@]}"; do
+              if [[ $msg == $prefix* ]]; then
+                valid=1
+                break
+              fi
+            done
+            if [[ $valid -eq 0 ]]; then
+              echo "Invalid commit message: $msg"
+              invalid_commits=1
+            fi
+          done <<< "$commit_messages"
+
+          # If any invalid commit messages are found, fail the check
+          if [[ $invalid_commits -eq 1 ]]; then
+            exit 1
+          fi
