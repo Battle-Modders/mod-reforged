@@ -183,6 +183,7 @@
 	RF_TripArtist = "Trip Artist",
 	RF_TwoForOne = "Two for One",
 	RF_Unstoppable = "Unstoppable",
+	RF_Vanquisher = "Vanquisher",
 	RF_Retribution = "Retribution",
 	RF_VengefulSpite = "Vengeful Spite",
 	RF_Vigilant = "Vigilant",
@@ -2016,6 +2017,23 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Cannot have more than 10 stacks."
 			]
 		}]
+ 	}),
+ 	RF_Vanquisher = ::UPD.getDescription({
+ 		Fluff = "Who\'s next?",
+ 		Effects = [
+ 			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"Immediately after making a kill, if you move into the tile of the killed target, the [Action Point|Concept.ActionPoints] cost of the next skill used is " + ::MSU.Text.colorGreen("halved") + "."
+				]
+			},
+	 		{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Unlocks the [Gain Ground|Skill+rf_gain_ground_skill] skill which, immediately after killing an adjacent target, allows you to move into their tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of movement.",
+				]
+			}
+		]
  	}),
 	RF_Retribution = ::UPD.getDescription({
  		Fluff = "Revenge is a dish best served with a vengeance.",
