@@ -108,13 +108,15 @@
 	{
 		if (_change < 0)
 		{
-			this.getCurrentProperties().MoraleCheckBravery[_type] += this.getCurrentProperties().NegativeMoraleCheckBravery[_type];
-			this.getCurrentProperties().MoraleCheckBraveryMult[_type] *= this.getCurrentProperties().NegativeMoraleCheckBraveryMult[_type];
+			local p = this.getCurrentProperties();
+			p.MoraleCheckBravery[_type] += p.NegativeMoraleCheckBravery[_type];
+			p.MoraleCheckBraveryMult[_type] *= p.NegativeMoraleCheckBraveryMult[_type];
 		}
 		else if (_change > 0)
 		{
-			this.getCurrentProperties().MoraleCheckBravery[_type] += this.getCurrentProperties().PositiveMoraleCheckBravery[_type];
-			this.getCurrentProperties().MoraleCheckBraveryMult[_type] *= this.getCurrentProperties().PositiveMoraleCheckBraveryMult[_type];
+			local p = this.getCurrentProperties();
+			p.MoraleCheckBravery[_type] += p.PositiveMoraleCheckBravery[_type];
+			p.MoraleCheckBraveryMult[_type] *= p.PositiveMoraleCheckBraveryMult[_type];
 		}
 
 		local ret = __original(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
