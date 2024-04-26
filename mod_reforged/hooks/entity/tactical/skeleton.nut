@@ -96,7 +96,7 @@
 		this.m.Skills.add(::new("scripts/skills/effects/rf_legatus_command_effect"));
 	}
 
-	function onSetupEntity()
+	q.onSetupEntity = @() function()
 	{
 		local offhand = this.getOffhandItem();
 		if (offhand != null && offhand.isItemType(::Const.Items.ItemType.Shield))
