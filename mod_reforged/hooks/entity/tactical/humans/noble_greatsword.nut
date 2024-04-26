@@ -80,7 +80,7 @@
 		}
 	}
 
-	function makeMiniboss()
+	q.makeMiniboss = @() function()
 	{
 		if (!this.actor.makeMiniboss())
 		{
