@@ -117,7 +117,13 @@
 			this.getCurrentProperties().MoraleCheckBraveryMult[_type] *= this.getCurrentProperties().PositiveMoraleCheckBraveryMult[_type];
 		}
 
-		return __original(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
+		local ret = __original(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
+
+		// This is the most secure way to revert the changes to MoraleCheckBravery and MoraleCheckBraveryMult.
+		// Reverting them manually has edge cases where you may or may not want to revert them depending on whether an update already happened.
+		this.m.Skills.update();
+
+		return ret;
 	}
 
 	q.getSurroundedCount = @(__original) function()
