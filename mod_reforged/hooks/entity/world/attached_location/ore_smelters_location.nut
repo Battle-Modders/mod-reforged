@@ -26,6 +26,11 @@
 							R = 50,
 							P = 1.0,
 							S = "weapons/rf_swordstaff"
+						},
+						{
+							R = 50,
+							P = 1.0,
+							S = "weapons/rf_voulge"
 						}
 					]);
 				}

@@ -128,6 +128,11 @@
 						S = "weapons/rf_greatsword"
 					},
 					{
+						R = 60,
+						P = 1.0,
+						S = "weapons/rf_voulge"
+					},
+					{
 						R = 70,
 						P = 1.0,
 						S = "weapons/rf_reinforced_wooden_poleflail"
