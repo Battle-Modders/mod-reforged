@@ -265,7 +265,7 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Active,
  				Description = [
 					"Unlocks the [Rally|Skill+rally_the_troops] skill which can raise [morale|Concept.Morale] of all nearby allies to a steady level.",
-					"The higher the [Resolve|Concept.Resolve] of the character using this skill, the higher the chance to succeed."
+					"The higher the [Resolve|Concept.Bravery] of the character using this skill, the higher the chance to succeed."
 				]
  			}]
 	 	}),

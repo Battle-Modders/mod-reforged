@@ -35,7 +35,7 @@ this.rf_legatus_command_effect <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ResolveBonus) + " [Resolve|Concept.Resolve]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ResolveBonus) + " [Resolve|Concept.Bravery]")
 			}
 		]);
 

@@ -63,7 +63,7 @@ this.rf_mentors_presence_effect <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.BraveryAdd) + " [Resolve|Concept.Resolve]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.BraveryAdd) + " [Resolve|Concept.Bravery]")
 			}
 		]);
 
