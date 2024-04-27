@@ -27,7 +27,8 @@
 		{
 			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/billhook"],
-				[1, "scripts/items/weapons/pike"]
+				[1, "scripts/items/weapons/pike"],
+				[1, "scripts/items/weapons/rf_poleflail"]
 			]).roll()));
 		}
 
