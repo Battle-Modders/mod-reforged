@@ -113,6 +113,11 @@
 			case "building.weaponsmith":
 				_list.extend([
 					{
+						R = 50,
+						P = 1.0,
+						S = "weapons/rf_two_handed_falchion"
+					},
+					{
 						R = 60,
 						P = 1.0,
 						S = "weapons/rf_kriegsmesser"

@@ -10,8 +10,13 @@
 						{
 							R = 70,
 							P = 1.0,
-							S = "weapons/rf_battle_axe"
+							S = "weapons/rf_two_handed_falchion"
 						},
+						{
+							R = 70,
+							P = 1.0,
+							S = "weapons/rf_battle_axe"
+						}
 					]);
 				}
 				break;
