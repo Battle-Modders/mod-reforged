@@ -30,6 +30,16 @@
 					{
 						R = 80,
 						P = 1.0,
+						S = "armor/rf_reinforced_footman_armor"
+					},
+					{
+						R = 80,
+						P = 1.0,
+						S = "armor/rf_breastplate"
+					},
+					{
+						R = 80,
+						P = 1.0,
 						S = "armor/rf_brigandine_shirt"
 					},
 					{
@@ -38,19 +48,9 @@
 						S = "armor/rf_brigandine_armor"
 					},
 					{
-						R = 80,
-						P = 1.0,
-						S = "armor/rf_breastplate"
-					},
-					{
 						R = 85,
 						P = 1.0,
 						S = "armor/rf_breastplate_armor"
-					},
-					{
-						R = 80,
-						P = 1.0,
-						S = "armor/rf_reinforced_footman_armor"
 					},
 					{
 						R = 50,
@@ -113,16 +113,6 @@
 			case "building.weaponsmith":
 				_list.extend([
 					{
-						R = 80,
-						P = 1.0,
-						S = "weapons/rf_battle_axe"
-					},
-					{
-						R = 80,
-						P = 1.0,
-						S = "weapons/rf_estoc"
-					},
-					{
 						R = 60,
 						P = 1.0,
 						S = "weapons/rf_kriegsmesser"
@@ -133,14 +123,24 @@
 						S = "weapons/rf_greatsword"
 					},
 					{
-						R = 80,
-						P = 1.0,
-						S = "weapons/rf_poleflail"
-					},
-					{
 						R = 70,
 						P = 1.0,
 						S = "weapons/rf_reinforced_wooden_poleflail"
+					},
+					{
+						R = 80,
+						P = 1.0,
+						S = "weapons/rf_battle_axe"
+					},
+					{
+						R = 80,
+						P = 1.0,
+						S = "weapons/rf_estoc"
+					},
+					{
+						R = 80,
+						P = 1.0,
+						S = "weapons/rf_poleflail"
 					},
 					{
 						R = 80,
@@ -153,14 +153,19 @@
 			case "building.weaponsmith_oriental":
 				_list.extend([
 					{
-						R = 85,
+						R = 80,
 						P = 1.0,
-						S = "weapons/rf_battle_axe"
+						S = "weapons/rf_swordstaff"
 					},
 					{
 						R = 80,
 						P = 1.0,
 						S = "weapons/rf_estoc"
+					},
+					{
+						R = 85,
+						P = 1.0,
+						S = "weapons/rf_battle_axe"
 					},
 					{
 						R = 85,
@@ -171,11 +176,6 @@
 						R = 90,
 						P = 1.0,
 						S = "weapons/rf_reinforced_wooden_poleflail"
-					},
-					{
-						R = 80,
-						P = 1.0,
-						S = "weapons/rf_swordstaff"
 					}
 				]);
 				break;
