@@ -17,6 +17,7 @@ this.rf_bone_platings_effect <- ::inherit("scripts/skills/skill", {
 		{
 			_properties.DamageReceivedTotalMult = 0.0;
 			::Tactical.EventLog.logEx("All damage was absorbed (" + this.getName() + ")");
+			::Sound.play(::MSU.Array.rand(::Const.Sound.ArmorBoneImpact), ::Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
 			this.removeSelf();
 		}
 	}
