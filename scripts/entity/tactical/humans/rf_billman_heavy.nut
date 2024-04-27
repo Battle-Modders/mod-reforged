@@ -43,9 +43,9 @@ this.rf_billman_heavy <- ::inherit("scripts/entity/tactical/human" {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/polehammer"],
-				[1, "scripts/items/weapons/rf_poleflail"],
-				[1, "scripts/items/weapons/rf_halberd"]
+				[1, "scripts/items/weapons/rf_halberd"],
+				[1, "scripts/items/weapons/rf_polehammer"],
+				[1, "scripts/items/weapons/rf_voulge"]
 			]).roll()));
 		}
 
@@ -117,20 +117,16 @@ this.rf_billman_heavy <- ::inherit("scripts/entity/tactical/human" {
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
-			{
-				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
-			{
-				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
+			}
+			else
+			{
+				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 			}
 		}
 	}
