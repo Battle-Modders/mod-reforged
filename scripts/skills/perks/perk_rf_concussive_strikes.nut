@@ -1,7 +1,7 @@
 this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
-		RequiresWeapon = true,
+		RequiredWeaponType = ::Const.Items.WeaponType.Mace,
+		RequiredDamageType = ::Const.Damage.DamageType.Blunt,
 		IsForceTwoHanded = false
 	},
 	function create()
@@ -73,19 +73,13 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 
 	function isSkillValid( _skill )
 	{
-		if (!_skill.isAttack())
+		if (!_skill.isAttack() || (this.m.RequiredDamageType != null && !_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt)))
 			return false;
 
-		if (this.m.IsForceEnabled)
-			return true;
-
-		if (!_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt))
-			return false;
-
-		if (!this.m.RequiresWeapon)
+		if (!this.m.RequiredWeaponType == null)
 			return true;
 
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Mace);
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });
