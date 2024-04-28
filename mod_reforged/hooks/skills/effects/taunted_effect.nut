@@ -7,6 +7,11 @@
 		this.m.Description = "This character is taunted by another character and is much more likely to engage and attack them.";
 	}
 
+	q.isHidden = @() function()
+	{
+		return this.getTauntSource() != null;
+	}
+
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
