@@ -28,24 +28,24 @@ this.rf_dented_armor_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.MeleeSkillMult) + " [Melee Skill|Concept.MeleeSkill]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.MeleeSkillMult) + " less [Melee Skill|Concept.MeleeSkill]")
 			});
 		}
 
 		if (this.m.RangedSkillMult != 1.0)
 		{
 			ret.push({
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.RangedSkillMult) + " [Ranged Skill|Concept.RangeSkill]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.RangedSkillMult) + " less [Ranged Skill|Concept.RangeSkill]")
 			});
 		}
 
 		if (this.m.DamageTotalMult != 1.0)
 		{
 			ret.push({
-				id = 10,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " less damage dealt")
