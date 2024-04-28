@@ -28,16 +28,13 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 
 		if (isTwoHanded)
 		{
-			if (!_targetEntity.getCurrentProperties().IsImmuneToStun)
+			if (!_targetEntity.getCurrentProperties().IsImmuneToStun && !_targetEntity.getSkills().hasSkill("effects.stunned"))
 			{
-				if (!_targetEntity.getSkills().hasSkill("effects.stunned"))
-				{
-					_targetEntity.getSkills().add(::new("scripts/skills/effects/stunned_effect"));
+				_targetEntity.getSkills().add(::new("scripts/skills/effects/stunned_effect"));
 
-					if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-					{
-						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has stunned " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for one turn");
-					}
+				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
+				{
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has stunned " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for one turn");
 				}
 			}
 		}
@@ -45,16 +42,13 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 		{
 			if (_targetEntity.getSkills().hasSkill("effects.dazed"))
 			{
-				if (!_targetEntity.getCurrentProperties().IsImmuneToStun)
+				if (!_targetEntity.getCurrentProperties().IsImmuneToStun && !_targetEntity.getSkills().hasSkill("effects.stunned"))
 				{
-					if (!_targetEntity.getSkills().hasSkill("effects.stunned"))
-					{
-						_targetEntity.getSkills().add(::new("scripts/skills/effects/stunned_effect"));
+					_targetEntity.getSkills().add(::new("scripts/skills/effects/stunned_effect"));
 
-						if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-						{
-							::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has stunned " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for one turn");
-						}
+					if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
+					{
+						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has stunned " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for one turn");
 					}
 				}
 			}
