@@ -58,7 +58,8 @@
 // New Functions
 	q.getTauntSource <- function()
 	{
-		return this.getContainer().getActor().getAIAgent().getForcedOpponent();
+		local ret = this.getContainer().getActor().getAIAgent().getForcedOpponent();
+		return !::MSU.isNull(ret) && ret.isAlive() ? ret : null;
 	}
 
 	q.getMeleeDefenseModifier <- function()
