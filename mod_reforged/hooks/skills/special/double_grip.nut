@@ -7,6 +7,9 @@
 	{
 		__original();
 		this.m.Description = "With the second hand free, this character can adopt a more versatile fighting style or get a firm double grip on his weapon to inflict additional damage."
+		// Set the order to be as early as possible so that it runs before all perks and items
+		// (primarily because of the fact that it applies Dazed in onTargetHit and other skills may check for the presence of dazed effect)
+		this.m.Order = ::Const.SkillOrder.First;
 	}
 
 	// Overwrite vanilla function to allow double-gripping with southern swords with offhand item with the perk_rf_en_garde perk
