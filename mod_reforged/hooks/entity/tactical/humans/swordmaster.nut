@@ -314,4 +314,21 @@
 	        }
         }
 	}
+
+	q.onSkillsUpdated = @(__original) function()
+	{
+		__original();
+		if (this.m.MyVariant == this.m.SwordmasterVariants.BladeDancer)
+		{
+			local weapon = this.getMainhandItem();
+			if (weapon != null)
+			{
+				foreach (skill in weapon.getSkills())
+				{
+					if (skill.isAOE())
+					skill.m.IsUsable = false;
+				}
+			}
+		}
+	}
 });
