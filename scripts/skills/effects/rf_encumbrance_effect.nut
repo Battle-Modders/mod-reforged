@@ -31,8 +31,8 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 			text = "Current Encumbrance Level: [color=" + ::Const.UI.Color.NegativeValue + "]" + level + "[/color]"
 		});
 
-		local fatigueBuildUp += this.getFatigueOnTurnStart(level);
-		if (fatigueBuildUp)
+		local fatigueBuildUp = this.getFatigueOnTurnStart(level);
+		if (fatigueBuildUp != 0)
 		{
 			tooltip.push({
 				id = 10,
@@ -43,7 +43,7 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 		}
 
 		local travelCost = this.getMovementFatigueCostModifier(level);
-		if (travelCost)
+		if (travelCost != 0)
 		{
 			tooltip.push({
 				id = 10,
