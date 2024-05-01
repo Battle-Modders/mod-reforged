@@ -320,4 +320,16 @@
 	}
 });
 
+::logInfo("Reforged::MSU -- adding ::MSU.Array.removeValues");
+::MSU.Array.removeValues <- function( _array, _values )
+{
+	for (local i = _array.len() - 1; i > 0; i--)
+	{
+		if (_values.find(_array[i]) != null)
+		{
+			_array.remove(i);
+		}
+	}
+}
+
 ::logWarning("------ Reforged modifications to MSU Finished------");
