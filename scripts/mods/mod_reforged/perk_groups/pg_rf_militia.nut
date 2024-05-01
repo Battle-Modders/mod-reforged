@@ -12,7 +12,7 @@ this.pg_rf_militia <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				[],
+				["perk.rf_phalanx"],
 				["perk.rf_strength_in_numbers"],
 				[],
 				[],

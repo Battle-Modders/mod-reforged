@@ -12,11 +12,11 @@ this.pg_rf_trapper <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"default": [
 				[],
 				[],
-				[],
-				["perk.rf_offhand_training"],
 				["perk.rf_angler"],
+				["perk.rf_offhand_training"],
+				["perk.rf_kingfisher"],
 				[],
-				["perk.rf_kingfisher"]
+				[]
 			]
 		};
 	}

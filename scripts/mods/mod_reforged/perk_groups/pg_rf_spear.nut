@@ -10,13 +10,13 @@ this.pg_rf_spear <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				[],
+				["perk.rf_through_the_gaps"],
 				[],
 				[],
 				["perk.mastery.spear"],
 				[],
-				["perk.rf_through_the_gaps"],
-				["perk.rf_king_of_all_weapons"]
+				["perk.rf_king_of_all_weapons"],
+				[]
 			]
 		};
 	}

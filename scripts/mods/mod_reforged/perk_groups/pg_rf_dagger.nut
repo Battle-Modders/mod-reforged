@@ -10,12 +10,12 @@ this.pg_rf_dagger <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.rf_featherweight"],
-				["perk.backstabber"],
+				["perk.rf_between_the_ribs"],
+				[],
 				[],
 				["perk.mastery.dagger"],
-				["perk.rf_double_strike"],
-				["perk.overwhelm"],
+				[],
+				[],
 				["perk.rf_swift_stabs"]
 			]
 		};

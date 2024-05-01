@@ -11,11 +11,11 @@ this.pg_rf_ranged <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				[],
-				["perk.bullseye"],
 				["perk.rf_entrenched"],
+				["perk.bullseye"],
 				[],
-				[],
-				[],
+				["perk.rf_nailed_it"],
+				["perk.overwhelm"],
 				[]
 			]
 		};

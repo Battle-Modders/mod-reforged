@@ -19,9 +19,9 @@ this.pg_rf_agile <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.pathfinder"],
 				["perk.anticipation"],
 				[],
-				[],
+				["perk.rf_death_dealer"],
 				["perk.footwork"],
-				["perk.rf_fresh_and_furious"],
+				["perk.head_hunter"],
 				["perk.battle_flow"]
 			]
 		};

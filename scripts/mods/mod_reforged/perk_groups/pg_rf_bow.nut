@@ -14,9 +14,9 @@ this.pg_rf_bow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				[],
 				[],
 				["perk.mastery.bow"],
-				["perk.rf_flaming_arrows"],
-				["perk.rf_eyes_up"],
-				["perk.rf_hip_shooter"]
+				[],
+				[],
+				["perk.rf_trick_shooter"]
 			]
 		};
 		this.m.PerkTreeMultipliers = {

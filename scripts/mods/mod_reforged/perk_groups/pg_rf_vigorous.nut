@@ -1,10 +1,10 @@
-this.pg_rf_resilient <- ::inherit(::DynamicPerks.Class.PerkGroup, {
+this.pg_rf_vigorous <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 	m = {},
 	function create()
 	{
-		this.m.ID = "pg.rf_resilient";
-		this.m.Name = "Resilent";
-		this.m.Icon = "ui/perk_groups/rf_resilient.png";
+		this.m.ID = "pg.rf_vigorous";
+		this.m.Name = "Vigorous";
+		this.m.Icon = "ui/perk_groups/rf_vigorous.png";
 		this.m.FlavorText = [
 			"is unnaturally resilient",
 			"is stubbornly resilient",
@@ -19,10 +19,10 @@ this.pg_rf_resilient <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.nine_lives"],
 				["perk.hold_out"],
 				["perk.fortified_mind"],
+				["perk.rf_decisive"],
 				[],
-				[],
-				[],
-				[]
+				["perk.rf_fresh_and_furious"],
+				["perk.indomitable"]
 			]
 		};
 		this.m.PerkTreeMultipliers = {

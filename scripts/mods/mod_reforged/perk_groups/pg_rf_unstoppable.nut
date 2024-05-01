@@ -16,12 +16,12 @@ this.pg_rf_unstoppable <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				["perk.adrenaline"],
-				[],
+				["perk.coup_de_grace"],
 				[],
 				["perk.rf_the_rush_of_battle"],
 				["perk.lone_wolf"],
 				["perk.rf_unstoppable"],
-				["perk.killing_frenzy"]
+				[]
 			]
 		};
 	}

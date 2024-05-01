@@ -10,11 +10,11 @@ this.pg_rf_mace <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.rf_rattle"],
 				[],
-				["perk.rf_bear_down"],
-				["perk.mastery.mace"],
 				["perk.rf_concussive_strikes"],
+				[],
+				["perk.mastery.mace"],
+				[],
 				[],
 				["perk.rf_bone_breaker"]
 			]

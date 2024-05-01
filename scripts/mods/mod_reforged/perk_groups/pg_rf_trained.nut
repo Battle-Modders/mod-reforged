@@ -17,13 +17,13 @@ this.pg_rf_trained <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.fast_adaption"],
 				[],
+				["perk.quick_hands"],
 				["perk.rotation"],
 				["perk.rf_vigilant"],
 				["perk.underdog"],
 				["perk.rf_finesse"],
-				[]
+				["perk.rf_weapon_master"]
 			]
 		};
 	}
