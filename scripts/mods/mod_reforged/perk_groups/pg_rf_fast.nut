@@ -19,10 +19,10 @@ this.pg_rf_fast <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.rf_survival_instinct"],
 				["perk.quick_hands"],
 				["perk.relentless"],
-				[],
-				[],
+				["perk.rf_dynamic_duo"],
+				["perk.rf_combo"],
 				["perk.overwhelm"],
-				[]
+				["perk.rf_calculated_strikes"]
 			]
 		};
 		this.m.PerkTreeMultipliers = {

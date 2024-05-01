@@ -10,11 +10,11 @@ this.pg_rf_swift <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.pathfinder"],
+				["perk.fast_adaption"],
 				["perk.rf_vigorous_assault"],
 				[],
 				["perk.rf_offhand_training"],
-				[],
+				["perk.rf_double_strike"],
 				["perk.duelist"],
 				[]
 			]

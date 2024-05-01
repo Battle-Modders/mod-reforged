@@ -10,13 +10,13 @@ this.pg_rf_throwing <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.rf_momentum"],
+				[],
 				[],
 				["perk.rf_hybridization"],
 				["perk.mastery.throwing"],
 				["perk.rf_opportunist"],
 				[],
-				["perk.rf_nailed_it"]
+				[]
 			]
 		};
 	}

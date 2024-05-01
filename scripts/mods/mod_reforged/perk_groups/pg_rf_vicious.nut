@@ -16,12 +16,12 @@ this.pg_rf_vicious <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.crippling_strikes"],
-				["perk.coup_de_grace"],
-				["perk.taunt"],
+				["perk.rf_small_target"],
+				["perk.backstabber"],
 				[],
-				["perk.berserk"],
 				["perk.rf_battle_fervor"],
+				["perk.berserk"],
+				[],
 				["perk.fearsome"]
 			]
 		};

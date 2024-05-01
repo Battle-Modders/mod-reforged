@@ -17,8 +17,8 @@ this.pg_rf_wildling <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				[],
 				[],
 				["perk.rf_savage_strength"],
-				[],
-				["perk.rf_feral_rage"]
+				["perk.rf_feral_rage"],
+				[]
 			]
 		};
 		this.m.PerkTreeMultipliers = {

@@ -1,10 +1,10 @@
-this.pg_rf_large <- ::inherit(::DynamicPerks.Class.PerkGroup, {
+this.pg_rf_tough <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 	m = {},
 	function create()
 	{
-		this.m.ID = "pg.rf_large";
-		this.m.Name = "Large";
-		this.m.Icon = "ui/perk_groups/rf_large.png";
+		this.m.ID = "pg.rf_tough";
+		this.m.Name = "Tough";
+		this.m.Icon = "ui/perk_groups/rf_tough.png";
 		this.m.FlavorText = [
 			"is large",
 			"is large and hulking",
@@ -18,11 +18,11 @@ this.pg_rf_large <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"default": [
 				["perk.colossus"],
 				["perk.steel_brow"],
+				["perk.taunt"],
 				[],
-				[],
-				[],
-				[],
-				[]
+				["perk.rf_vanquisher"],
+				["perk.rf_second_wind"],
+				["perk.killing_frenzy"]
 			]
 		};
 		this.m.PerkTreeMultipliers = {

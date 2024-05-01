@@ -12,7 +12,7 @@ this.pg_rf_laborer <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				["perk.rf_fruits_of_labor"],
-				["perk.bags_and_belts"],
+				[],
 				[],
 				[],
 				["perk.rf_wears_it_well"],

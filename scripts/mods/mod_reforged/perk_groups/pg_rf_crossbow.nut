@@ -15,7 +15,7 @@ this.pg_rf_crossbow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				[],
 				["perk.mastery.crossbow"],
 				["perk.rf_iron_sights"],
-				["perk.rf_muscle_memory"],
+				[],
 				[]
 			]
 		};

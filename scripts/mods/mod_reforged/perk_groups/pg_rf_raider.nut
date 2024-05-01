@@ -12,11 +12,11 @@ this.pg_rf_raider <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				["perk.rf_menacing"],
-				[],
-				[],
-				[],
-				[],
 				["perk.rf_bully"],
+				[],
+				[],
+				[],
+				[],
 				[]
 			]
 		};

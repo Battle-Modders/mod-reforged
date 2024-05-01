@@ -10,7 +10,7 @@ this.pg_rf_shield <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				[],
+				["perk.rf_exploit_opening"],
 				["perk.rf_phalanx"],
 				["perk.shield_expert"],
 				["perk.rf_line_breaker"],

@@ -42,7 +42,7 @@
 		}
 		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Hammer))
 		{
-			trees.push("pg.rf_hammer_enemy");
+			trees.push("pg.rf_hammer");
 		}
 		if (_weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
 		{

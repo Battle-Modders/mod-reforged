@@ -11,11 +11,11 @@ this.pg_rf_sword <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				[],
-				["perk.rf_exploit_opening"],
 				[],
-				["perk.mastery.sword"],
 				["perk.rf_tempo"],
-				["perk.rf_kata"],
+				["perk.mastery.sword"],
+				[],
+				[],
 				["perk.rf_en_garde"]
 			]
 		};
