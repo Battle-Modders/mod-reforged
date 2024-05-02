@@ -35,4 +35,27 @@
 				return _category.getMin() + 1;
 		}
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/hitchance.png",
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorGreen("+10%") + " chance to hit with [Woodcutter\'s Axe|Item+woodcutters_axe] and [Hatchet|Item+hatchet]")
+		});
+		return ret;
+	}
+
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	{
+		__original(_skill, _targetEntity, _properties);
+
+		local weapon = _skill.getItem();
+		if (weapon != null && (weapon.getID() == "weapon.woodcutters_axe" || weapon.getID() == "weapon.hatchet"))
+		{
+			_properties.MeleeSkill += 10;
+		}
+	}
 });

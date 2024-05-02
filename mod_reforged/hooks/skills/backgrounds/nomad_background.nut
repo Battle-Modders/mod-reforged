@@ -35,4 +35,61 @@
 				return _category.getMin() + 1;
 		}
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Can use the [Throw Dirt|Skill+throw_dirt_skill] skill once per [turn|Concept.Turn]")
+		});
+		return ret;
+	}
+
+	q.onAdded = @(__original) function()
+	{
+		__original();
+		this.getContainer().add(::new("scripts/skills/actives/throw_dirt_skill"));
+	}
+
+	q.onRemoved = @(__original) function()
+	{
+		__original();
+		this.getContainer().removeByID("actives.throw_dirt");
+	}
+
+	q.onAnySkillExecuted = @(__original) function( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		__original(_skill, _targetTile, _targetEntity, _forFree);
+		if (_skill.getID() == "actives.throw_dirt")
+		{
+			_skill.m.IsUsable = false;
+		}
+	}
+
+	q.onTurnStart = @(__original) function()
+	{
+		__original();
+		local throwDirt = this.getContainer().getSkillByID("actives.throw_dirt");
+		if (throwDirt != null)
+		{
+			throwDirt.m.IsUsable = true;
+		}
+	}
+
+	q.onQueryTooltip = @(__original) function( _skill, _tooltip )
+	{
+		__original(_skill, _tooltip);
+		if (_skill.getID() == "actives.throw_dirt" && !_skill.m.IsUsable)
+		{
+			_tooltip.push({
+				id = 20,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Can only be used once per [turn|Concept.Turn]"))
+			});
+		}
+	}
 });
