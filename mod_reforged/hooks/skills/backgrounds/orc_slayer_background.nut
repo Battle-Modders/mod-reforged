@@ -39,4 +39,16 @@
 			}
 		});
 	}
+
+	q.getPerkGroupCollectionMin = @() function( _collection )
+	{
+		switch (_category.getID())
+		{
+			case "pgc.rf_shared_1":
+				return _category.getMin() + 1;
+
+			case "pgc.rf_weapon":
+				return _category.getMin() + 3;
+		}
+	}
 });
