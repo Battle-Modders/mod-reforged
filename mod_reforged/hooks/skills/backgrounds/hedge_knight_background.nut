@@ -35,4 +35,16 @@
 			}
 		});
 	}
+
+	q.getPerkGroupCollectionMin = @() function( _collection )
+	{
+		switch (_category.getID())
+		{
+			case "pgc.rf_weapon":
+				return _category.getMin() + 2;
+
+			case "pgc.rf_fighting_style":
+				return _category.getMin() + 1;
+		}
+	}
 });

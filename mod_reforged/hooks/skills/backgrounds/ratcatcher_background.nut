@@ -27,4 +27,13 @@
 			}
 		});
 	}
+
+	q.getPerkGroupCollectionMin = @() function( _collection )
+	{
+		switch (_category.getID())
+		{
+			case "pgc.rf_armor":
+				return _category.getMin() - 1;
+		}
+	}
 });
