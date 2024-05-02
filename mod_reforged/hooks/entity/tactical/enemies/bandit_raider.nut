@@ -34,29 +34,29 @@
 			if (throwing != null) this.m.Items.equip(::new(throwing));
 		}
 
-			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/arming_sword"],
-	    		[1, "scripts/items/weapons/boar_spear"],
-	    		[1, "scripts/items/weapons/falchion"],
-	    		[1, "scripts/items/weapons/flail"],
-	    		[1, "scripts/items/weapons/hand_axe"],
-				[1, "scripts/items/weapons/military_pick"],
-				[1, "scripts/items/weapons/morning_star"],
-				[1, "scripts/items/weapons/scramasax"],
+		local weapon = ::MSU.Class.WeightedContainer([
+    		[1, "scripts/items/weapons/arming_sword"],
+    		[1, "scripts/items/weapons/boar_spear"],
+    		[1, "scripts/items/weapons/falchion"],
+    		[1, "scripts/items/weapons/flail"],
+    		[1, "scripts/items/weapons/hand_axe"],
+			[1, "scripts/items/weapons/military_pick"],
+			[1, "scripts/items/weapons/morning_star"],
+			[1, "scripts/items/weapons/scramasax"],
 
-				[1, "scripts/items/weapons/longaxe"],
-				[1, "scripts/items/weapons/polehammer"]
-	    	]).roll();
-			weapon = ::new(weapon);
+			[1, "scripts/items/weapons/longaxe"],
+			[1, "scripts/items/weapons/polehammer"]
+    	]).roll();
+		weapon = ::new(weapon);
 
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-			{
-				this.m.Items.equip(weapon);
-			}
-			else
-			{
-				this.m.Items.addToBag(weapon);
-			}
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			this.m.Items.equip(weapon);
+		}
+		else
+		{
+			this.m.Items.addToBag(weapon);
+		}
 
 		if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 		{

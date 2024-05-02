@@ -45,16 +45,16 @@
 		body_blood.Visible = false;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
-		this.m.Skills.add(::new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(::new("scripts/skills/actives/hand_to_hand_orc"));
-		this.m.Skills.add(::new("scripts/skills/actives/charge"));
+		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
+		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
+		this.m.Skills.add(this.new("scripts/skills/actives/charge"));
 
 		if (this.Const.DLC.Unhold)
 		{
-			this.m.Skills.add(::new("scripts/skills/actives/wake_ally_skill"));
+			this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
 		}
 
-		this.m.Skills.add(::new("scripts/skills/effects/captain_effect"));
+		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;
@@ -166,7 +166,10 @@
 		{
 			this.m.Items.equip(this.new("scripts/items/helmets/greenskins/orc_young_heavy_helmet"));
 		}
+	}
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+	q.onSetupEntity = @() function()
+	{
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 	}
 });

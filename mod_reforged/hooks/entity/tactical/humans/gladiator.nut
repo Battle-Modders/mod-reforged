@@ -18,11 +18,11 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_southern");
-		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		// this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect")); // Replaced with perk
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/footwork")); // Replaced with perk

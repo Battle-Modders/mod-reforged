@@ -21,24 +21,24 @@
 		this.getSprite("socket").setBrush("bust_base_nomads");
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_devastating_strikes"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
-		this.m.Skills.add(::new("scripts/skills/actives/throw_dirt_skill"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		//Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -47,27 +47,28 @@
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
 	    local aoo = this.getSkills().getAttackOfOpportunity();
-	    local weapon = this.getMainhandItem();
 
 	    if (aoo != null && aoo.isDuelistValid())
 	    {
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 	    }
-
 	    else
 	    {
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 	    }
 
-	    if (weapon.isAoE())
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-		}
-
-		else
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_small_target"));
-		}
+	    local weapon = this.getMainhandItem();
+	    if (weapon != null)
+	    {
+	    	if (weapon.isAoE())
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
+			}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_small_target"));
+			}
+	    }
 	}
 
 	q.makeMiniboss = @(__original) function()

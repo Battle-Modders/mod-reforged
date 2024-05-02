@@ -32,11 +32,11 @@ this.rf_vampire_lord <- ::inherit("scripts/entity/tactical/enemies/vampire", {
 		this.m.BaseProperties.ActionPoints = 9;
 		this.m.Skills.getSkillByID("actives.darkflight").setBaseValue("ActionPointCost", 3);
 
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_terrifying_visage"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_head_hunter"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_nine_lives"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sanguinary"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_terrifying_visage"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
 		this.m.Skills.add(::new("scripts/skills/actives/rf_sanguine_curse_skill"));
 	}

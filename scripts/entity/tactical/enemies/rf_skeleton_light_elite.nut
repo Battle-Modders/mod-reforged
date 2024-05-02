@@ -65,7 +65,7 @@ this.rf_skeleton_light_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 	function onSetupEntity()
 	{
 		local mainhandItem = this.getMainhandItem();
-		if (mainhandItem != null && mainhandItem.isItemType(::Const.Items.ItemType.MeleeWeapon)) // melee weapon equipped
+		if (mainhandItem != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))

@@ -20,9 +20,9 @@ this.rf_skeleton_decanus <- ::inherit("scripts/entity/tactical/rf_skeleton_comma
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_decanus"));
 

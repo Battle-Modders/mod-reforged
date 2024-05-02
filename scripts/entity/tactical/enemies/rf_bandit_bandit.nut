@@ -141,38 +141,38 @@ this.rf_bandit_bandit <- this.inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-			function onSetupEntity()
+	function onSetupEntity()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null && !mainhandItem.isItemType(::Const.Items.ItemType.RangedWeapon)) // Rolled and equipped melee weapon. Did not roll throwing.
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Dagger))
 			{
-				local mainhandItem = this.getMainhandItem();
-				if (mainhandItem != null && !mainhandItem.isItemType(::Const.Items.ItemType.RangedWeapon)) // Rolled and equipped melee weapon. Did not roll throwing.
-				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-					if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Dagger))
-					{
-						this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-					}
-				}
+				this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
+			}
+		}
 
-				foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag)) // Check all bag slots for items. Melee weapon in bag
+		foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag)) // Check all bag slots for items. Melee weapon in bag
+		{
+			if (item.isItemType(::Const.Items.ItemType.MeleeWeapon))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+				if (item.isWeaponType(::Const.Items.WeaponType.Dagger))
 				{
-					if (item.isItemType(::Const.Items.ItemType.MeleeWeapon))
-					{
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-						if (item.isWeaponType(::Const.Items.WeaponType.Dagger))
-						{
-							this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-							this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
-							this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-						}
-					}
-				}
-
-				if (this.m.MyVariant == 1) // Thrower
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 				}
 			}
-		});
+		}
+
+		if (this.m.MyVariant == 1) // Thrower
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
+		}
+	}
+});
 

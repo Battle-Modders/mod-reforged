@@ -53,8 +53,8 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 		this.getSprite("socket").setBrush("bust_base_military");
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigilant"));
 		this.m.Skills.add(::MSU.new("scripts/skills/special/rf_bodyguard", function(o) { // TODO: Probably need a better way of doing this (hopefully when onCombatStart is available for AI actors) - Midas

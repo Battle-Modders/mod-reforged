@@ -70,7 +70,7 @@
 			else
 			{
 				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-				this.getContainer().removeByID("actives.rf_kata_step_skill");
+				this.m.Skills.removeByID("actives.rf_kata_step_skill");
 			}
 		}
 	}

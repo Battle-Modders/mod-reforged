@@ -26,8 +26,8 @@ this.rf_billman_heavy <- ::inherit("scripts/entity/tactical/human" {
 		this.getSprite("socket").setBrush("bust_base_military");
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 	}
 

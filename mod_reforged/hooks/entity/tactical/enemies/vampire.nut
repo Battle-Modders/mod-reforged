@@ -193,13 +193,12 @@
 		__original(_killer, _skill, _tile, _fatalityType);
 	}
 
-	q.onSetupEntity <- function()
+	q.onSetupEntity = @() function()
 	{
 		local mainhandItem = this.getMainhandItem();
-		if (mainhandItem != null && mainhandItem.isItemType(::Const.Items.ItemType.MeleeWeapon))
+		if (mainhandItem != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		}
-
 	}
 });

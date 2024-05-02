@@ -49,7 +49,7 @@ this.rf_skeleton_light_elite_polearm <- ::inherit("scripts/entity/tactical/enemi
 	function onSetupEntity()
 	{
 		local mainhandItem = this.getMainhandItem();
-		if (mainhandItem != null && mainhandItem.isItemType(::Const.Items.ItemType.MeleeWeapon)) // melee weapon equipped
+		if (mainhandItem != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 			this.m.Skills.removeByID("perk.rf_bolster");

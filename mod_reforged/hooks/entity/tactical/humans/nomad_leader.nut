@@ -21,17 +21,17 @@
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(150, 255);
-		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
 		// this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect")); Replaced with perk
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
-		this.m.Skills.add(::new("scripts/skills/actives/throw_dirt_skill"));
+		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
-		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
 		// {

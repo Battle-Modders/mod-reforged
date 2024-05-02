@@ -1,7 +1,7 @@
 this.rf_bandit_outlaw <- this.inherit("scripts/entity/tactical/human", {
 	m = {
 		MyVariant = 0
-		},
+	},
 	function create()
 	{
 		this.m.Type = ::Const.EntityType.RF_BanditOutlaw;

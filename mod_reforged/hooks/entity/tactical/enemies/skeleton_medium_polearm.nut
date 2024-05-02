@@ -53,24 +53,22 @@
 		}
 	}
 
-	q.onSetupEntity <- function()
+	q.onSetupEntity = @() function()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+			this.m.Skills.removeByID("perk.rf_bolster");
 
-			switch (mainhandItem.getID())
-    		{
-    			case "weapon.bladed_pike":
-    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_follow_up"));
-    				this.m.Skills.removeByID("perk.rf_bolster");
-    				break;
-    			case  "weapon.rf_warscythe":
-    				this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-    				this.m.Skills.removeByID("perk.rf_bolster");
-    				break;
-    		}
+			if (mainhandItem.isAoE())
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
+			}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
+			}
 		}
 	}
 });

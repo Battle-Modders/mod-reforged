@@ -50,7 +50,7 @@
 		wolf_bite.setRestrained(true);
 		wolf_bite.m.ActionPointCost = 0;
 		this.m.Skills.add(wolf_bite);
-		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/racial/rf_goblin_wolfrider_racial"));

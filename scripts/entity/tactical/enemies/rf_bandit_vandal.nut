@@ -122,7 +122,7 @@ this.rf_bandit_vandal <- this.inherit("scripts/entity/tactical/human", {
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 		}
-		else // melee waepon in bag
+		else // melee weapon in bag
 		{
 			foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))
 			{
