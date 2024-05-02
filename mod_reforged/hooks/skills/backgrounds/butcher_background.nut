@@ -34,4 +34,27 @@
 				return _category.getMin() - 1;
 		}
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/hitchance.png",
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorGreen("+10%") + " chance to hit with [Butcher\'s Cleaver|Item+butchers_cleaver]")
+		});
+		return ret;
+	}
+
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	{
+		__original(_skill, _targetEntity, _properties);
+
+		local weapon = _skill.getItem();
+		if (weapon != null && weapon.getID() == "weapon.butchers_cleaver")
+		{
+			_properties.MeleeSkill += 10;
+		}
+	}
 });

@@ -33,4 +33,28 @@
 				return _category.getMin() + 1;
 		}
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Has the [Family Pride|Perk+perk_rf_family_pride] perk permanently for free")
+		});
+		return ret;
+	}
+
+	q.onAdded = @(__original) function()
+	{
+		__original();
+		if (this.m.IsNew)
+		{
+			this.getPerkTree().addPerkGroup("pg.rf_noble");
+			this.getSkills().add(::MSU.new("scripts/skills/perks/perk_rf_family_pride", function(o) {
+				o.m.IsRefundable = false;
+			}));
+		}
+	}
 });

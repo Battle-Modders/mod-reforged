@@ -30,4 +30,34 @@
 				return _category.getMin() - 1;
 		}
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/hitchance.png",
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorGreen("+10%") + " chance to hit with [Pitchfork|Item+pitchfork] and " + ::MSU.Text.colorGreen("+5%") + " chance to hit with [Hooked Blade|Item+hooked_blade]")
+		});
+		return ret;
+	}
+
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	{
+		__original(_skill, _targetEntity, _properties);
+
+		local weapon = _skill.getItem();
+		if (weapon != null)
+		{
+			if (weapon.getID() == "weapon.pitchfork")
+			{
+				_properties.MeleeSkill += 10;
+			}
+			else if (weapon.getID() == "weapon.hooked_blade")
+			{
+				_properties.MeleeSkill += 5;
+			}
+		}
+	}
 });
