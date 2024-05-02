@@ -1936,12 +1936,6 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Fluff = "There\'s a fine line between bravery and stupidity.",
  		Requirement = "Two-Handed Sword"
  		Effects = [
-	 		{
-				Type = ::UPD.EffectType.Passive,
-				Description = [
-					"Each single-target attack additionally does an attack on a random adjacent enemy to the target with " + ::MSU.Text.colorRed("50%") + " reduced damage."
-				]
-			},
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
