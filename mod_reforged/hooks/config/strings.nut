@@ -314,7 +314,19 @@ local vanillaDescriptions = [
  			}]
 	 	}),
 	},
-
+	{
+		ID = "perk.bags_and_belts",
+		Key = "BagsAndBelts",
+		Description = ::UPD.getDescription({
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Unlock two extra [bag slots|Concept.BagSlots].",
+					"Items placed in [bags|Concept.BagSlots] no longer apply a penalty to [Maximum Fatigue|Concept.MaximumFatigue], except for two-handed weapons.",
+				],
+ 			}],
+	 	}),
+	},
 	{
 		ID = "perk.taunt",
 		Key = "Taunt",
