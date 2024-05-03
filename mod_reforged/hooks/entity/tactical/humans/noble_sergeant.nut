@@ -71,14 +71,16 @@
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-			{
-				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
-			}
-			else
-			{
-				::Reforged.Skills.addMasteryOfEquippedWeapon(this, 4);
-			}
+			switch (weapon.getID())
+    		{
+    			case "weapon.arming_sword":
+    				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
+    				break;
+
+				default
+					::Reforged.Skills.addMasteryOfEquippedWeapon(this, 4);
+					break;
+    		}
 		}
 	}
 });
