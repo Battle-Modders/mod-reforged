@@ -19,7 +19,7 @@ for (local index = (::Const.TipOfTheDay.len() - 1); index >= 0; index--)
 }
 
 ::Const.TipOfTheDay.extend([
-	"Reforged: Reforged: While on a caravan mission, you can enter towns up to 2 tiles away instead of only on the same tile.",
+	"Reforged: While on a caravan mission, you can enter towns up to 2 tiles away instead of only on the same tile.",
     "The Mod Options have a lot of customizations regarding quality of life.",
     "Morale Checks are harder for every adjacent enemy and easier for every adjacent ally.",
     "Click on an active contract to focus on its target on the world map, if it is known to you.",
