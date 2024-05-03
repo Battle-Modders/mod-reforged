@@ -66,19 +66,19 @@ local getThresholdForInjury = function( _script )
 
 	function getNestedPerkName( _obj )
 	{
-		return format("[%s|Perk+%s]", ::Const.Perks.findById(_obj.getID()).Name, split(::IO.scriptFilenameByHash(_obj.ClassNameHash, "/")).top());
+		return format("[%s|Perk+%s]", ::Const.Perks.findById(_obj.getID()).Name, split(::IO.scriptFilenameByHash(_obj.ClassNameHash), "/").top());
 	}
 
 	function getNestedSkillName( _obj )
 	{
 		// We use `.m.Name` instead of `getName()` because some skills (e.g. status effects)
 		// modify the name during getName() e.g. to add info about the number of stacks
-		return format("[%s|Skill+%s]", _obj.m.Name, split(::IO.scriptFilenameByHash(_obj.ClassNameHash, "/")).top());
+		return format("[%s|Skill+%s]", _obj.m.Name, split(::IO.scriptFilenameByHash(_obj.ClassNameHash), "/").top());
 	}
 
 	function getNestedItemName( _obj )
 	{
-		return format("[%s|Item+%s]", _obj.getName(), split(::IO.scriptFilenameByHash(_obj.ClassNameHash, "/")).top());
+		return format("[%s|Item+%s]", _obj.getName(), split(::IO.scriptFilenameByHash(_obj.ClassNameHash), "/").top());
 	}
 }
 
