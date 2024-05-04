@@ -99,7 +99,7 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 		{
 			this.m.Items.equip(weapon);
 		}
-		else if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && weapon.isItemType(::Const.Items.ItemType.OneHanded)) // offhand free and rolled 1h melee weapon
+		else if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && weapon.isItemType(::Const.Items.ItemType.OneHanded)) // rolled 1h melee weapon
 		{
 			this.m.Items.equip(weapon);
 		}
@@ -140,7 +140,8 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 					[0.5, "scripts/items/helmets/nordic_helmet"]
 				]
 			})
-			this.m.Items.equip(::new(helmet));		}
+			this.m.Items.equip(::new(helmet));
+		}
 	}
 
 	function onSetupEntity()
@@ -152,67 +153,41 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 		}
 
 		local weapon = this.getMainhandItem();
-		if (weapon != null)
+		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.MeleeWeapon))
 		{
-			if (weapon.isItemType(::Const.Items.ItemType.MeleeWeapon)) //melee weapon equipped and not in bag
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
-				if (weapon.isWeaponType(::Const.Items.WeaponType.Dagger))
-				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-					this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-				}
-				switch (weapon.getID())
-				{
-					case "weapon.pike":
-						this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
-						break;
-				}
-
-				local attack = this.getSkills().getAttackOfOpportunity();
-				if (attack != null && attack.getBaseValue("ActionPointCost") <= 4)
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-				}
-				else
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-				}
-			}
-
 			foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))  //primary weapon in bag and not equipped
 			{
 				if (item.isItemType(::Const.Items.ItemType.MeleeWeapon))
 				{
-					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
-					if (weapon.isWeaponType(::Const.Items.WeaponType.Dagger))
-					{
-						::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-						this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-						this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-					}
-					switch (weapon.getID())
-					{
-						case "weapon.pike":
-							this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
-							break;
-					}
-
-					local copy = ::new(::IO.scriptFilenameByHash(item.ClassNameHash));  // create copy of melee weapon in bag on a dummy player and check for attack of opportunity
-					::MSU.getDummyPlayer().equip(copy);
-					if (::MSU.getDummyPlayer().getSkills().getAttackOfOpportunity().getBaseValue("ActionPointCost") <= 4)
-					{
-					  this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-					}
-					::MSU.getDummyPlayer().unequip(copy);
+					weapon = item;
+					break;
 				}
 			}
 		}
+
+		if (weapon != null)
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Dagger))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
+			}
+			switch (weapon.getID())
+			{
+				case "weapon.pike":
+					this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
+					break;
+			}
+
+			if (::Reforged.Items.isDuelistValid(weapon))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+		}
+
 		if (this.m.MyVariant == 1) // Thrower
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
@@ -220,4 +195,3 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 		}
 	}
 });
-
