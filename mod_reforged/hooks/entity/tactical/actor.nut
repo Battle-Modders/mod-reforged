@@ -2,12 +2,6 @@
 	q.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
 	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
 
-	q.isDisarmed <- function()
-	{
-		local handToHand = this.getSkills().getSkillByID("actives.hand_to_hand");
-		return handToHand != null && handToHand.isUsable();
-	}
-
 	q.create = @(__original) function()
 	{
 		__original();
