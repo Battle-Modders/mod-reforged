@@ -202,6 +202,14 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 							this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
 							break;
 					}
+
+					local copy = ::new(::IO.scriptFilenameByHash(item.ClassNameHash));  // create copy of melee weapon in bag on a dummy player and check for attack of opportunity
+					::MSU.getDummyPlayer().equip(copy);
+					if (::MSU.getDummyPlayer().getSkills().getAttackOfOpportunity().getBaseValue("ActionPointCost") <= 4)
+					{
+					  this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+					}
+					::MSU.getDummyPlayer().unequip(copy);
 				}
 			}
 		}
