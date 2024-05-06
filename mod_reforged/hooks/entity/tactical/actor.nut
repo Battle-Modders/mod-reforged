@@ -1,6 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
 	q.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
 	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
+	q.m.RF_RealKiller <- null; // Store the real killer here before switching _killer in onDeath for loot purposes. This is used to fix MSU onDeathWithInfo and onOtherActorDeath functions to have the correct killer
 
 	q.isDisarmed <- function()
 	{
@@ -194,6 +195,9 @@
 
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
+		// Store the real killer here before switching _killer for loot purposes. This is used to fix MSU onDeathWithInfo and onOtherActorDeath functions to have the correct killer
+		this.m.RF_RealKiller = _killer;
+
 		if ((::Const.Faction.Player in this.m.RF_DamageReceived) && this.m.RF_DamageReceived[::Const.Faction.Player].Total / this.m.RF_DamageReceived.Total >= 0.5)
 		{
 			// If player faction did at least 50% of total damage to this actor,
@@ -219,6 +223,8 @@
 		}
 
 		__original(_killer, _skill, _tile, _fatalityType);
+
+		this.m.RF_RealKiller = null;
 
 		// The following is an override of the XP gain system. We award XP based on ratio of total damage dealt to an entity.
 
