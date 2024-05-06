@@ -207,7 +207,7 @@
 		// Store the real killer here before switching _killer for loot purposes. This is used to fix MSU onDeathWithInfo and onOtherActorDeath functions to have the correct killer
 		this.m.RF_RealKiller = _killer;
 
-		if ((::Const.Faction.Player in this.m.RF_DamageReceived) && this.m.RF_DamageReceived[::Const.Faction.Player].Total / this.m.RF_DamageReceived.Total >= 0.5)
+		if (_killer != null && _killer.getFaction() != ::Const.Faction.Player && (::Const.Faction.Player in this.m.RF_DamageReceived) && this.m.RF_DamageReceived[::Const.Faction.Player].Total / this.m.RF_DamageReceived.Total >= 0.5)
 		{
 			// If player faction did at least 50% of total damage to this actor,
 			// we award the kill to the bro who did the most damage (for the purposes of loot drop)
