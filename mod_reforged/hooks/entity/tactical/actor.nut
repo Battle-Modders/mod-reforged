@@ -207,13 +207,20 @@
 		// Store the real killer here before switching _killer for loot purposes. This is used to fix MSU onDeathWithInfo and onOtherActorDeath functions to have the correct killer
 		this.m.RF_RealKiller = _killer;
 
-		if (_killer != null && _killer.getFaction() != ::Const.Faction.Player && (::Const.Faction.Player in this.m.RF_DamageReceived) && this.m.RF_DamageReceived[::Const.Faction.Player].Total / this.m.RF_DamageReceived.Total >= 0.5)
+		if (_killer != null && _killer.getFaction() != ::Const.Faction.Player && _killer.getFaction() != ::Const.Faction.PlayerAnimals)
 		{
-			// If _killer isn't already a player character AND the player faction did at least 50% of total damage to this actor,
-			// we set the _killer to null to ensure that the loot properly drops from this actor.
+			local playerRelevantDamage = 0.0;
+			if (::Const.Faction.Player in this.m.RF_DamageReceived)
+				playerRelevantDamage += this.m.RF_DamageReceived[::Const.Faction.Player].Total;
+			if (::Const.Faction.PlayerAnimals in this.m.RF_DamageReceived)
+				playerRelevantDamage +=  this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total;
+
+			// If _killer isn't already a player character or player animal AND the player + player animals did at least 50%
+			// of total damage to this actor, we set the _killer to null to ensure that the loot properly drops from this actor.
 			// This is because vanilla drops loot if _killer is null or belongs to Player or PlayerAnimals faction
 			// Warning: This will break any mod that hooks the original onDeath and expects _killer to represent the actual killer
-			_killer = null;
+			if (playerRelevantDamage / this.m.RF_DamageReceived.Total >= 0.5)
+				_killer = null;
 		}
 
 		__original(_killer, _skill, _tile, _fatalityType);
