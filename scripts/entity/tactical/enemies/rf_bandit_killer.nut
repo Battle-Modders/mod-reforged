@@ -155,9 +155,9 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 		local weapon = this.getMainhandItem();
 		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.MeleeWeapon))
 		{
-			foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))  //primary weapon in bag and not equipped
+			foreach (weapon in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))  //primary weapon in bag and not equipped
 			{
-				if (item.isItemType(::Const.Items.ItemType.MeleeWeapon))
+				if (weapon.isItemType(::Const.Items.ItemType.MeleeWeapon))
 				{
 					weapon = item;
 					break;
