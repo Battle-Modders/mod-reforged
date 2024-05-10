@@ -22,13 +22,16 @@
 		return aoo != null && aoo.isDuelistValid();
 	}
 
-	q.onAnySkillUsed <- function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
 	{
 		if (!_skill.isDuelistValid())
 			return;
 
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || weapon.isItemType((::Const.Items.ItemType.OneHanded)))
+		local weapon = _skill.getItem();
+		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.Weapon) || !::Reforged.Items.isDuelistValid(weapon))
+			return;
+
+		if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 		{
 			_properties.DamageDirectAdd += 0.25;
 			if (this.getContainer().getActor().isArmedWithShield())
