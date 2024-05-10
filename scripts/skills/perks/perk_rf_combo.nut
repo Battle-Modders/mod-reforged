@@ -50,28 +50,11 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		if (this.m.UsedSkillID == "")
-			return;
-
-		foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
+		local actor = this.getContainer().getActor();
+		local usedSkillID = this.m.UsedSkillID;
+		if (actor.isPreviewing() && actor.getPreviewSkill() != null)
 		{
-			if (skill.getID() != this.m.UsedSkillID && skill.m.ActionPointCost > 3)
-			{
-				skill.m.ActionPointCost -= 1;
-			}
-		}
-	}
-
-	function onAfterUpdatePreview( _properties, _previewedSkill, _previewedMovement )
-	{
-		local usedSkillID = "";
-		if (_previewedMovement != null)
-		{
-			usedSkillID = this.m.UsedSkillID;
-		}
-		else if (_previewedSkill.getActionPointCost() != 0)
-		{
-			usedSkillID = _previewedSkill.getID();
+			usedSkillID = actor.getPreviewSkill().getID();
 		}
 
 		if (usedSkillID != "")

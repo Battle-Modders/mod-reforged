@@ -67,25 +67,16 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		if (!this.m.IsSpent && !this.m.RequiresRecover)
-		{
-			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
-			{
-				skill.m.ActionPointCost = ::Math.max(1, skill.m.ActionPointCost / 2);
-			}
-		}
-	}
-
-	function onAfterUpdatePreview( _properties, _previewedSkill, _previewedMovement )
-	{
 		if (this.m.IsSpent || this.m.RequiresRecover)
 			return;
 
-		if (_previewedMovement != null || (_previewedSkill.getActionPointCost() == 0 && _previewedSkill.getFatigueCost() == 0))
+		local actor = this.getContainer().getActor();
+		if (!actor.isPreviewing() || actor.getPreviewMovement() != null || (actor.getPreviewSkill().getActionPointCost() == 0 && actor.getPreviewSkill().getFatigueCost() == 0))
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
-				skill.m.ActionPointCost = ::Math.max(1, skill.m.ActionPointCost / 2);
+				if (skill.m.ActionPointCost > 1)
+					skill.m.ActionPointCost /= 2;
 			}
 		}
 	}
