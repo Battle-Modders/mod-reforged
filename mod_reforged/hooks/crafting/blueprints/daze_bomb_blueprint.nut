@@ -2,6 +2,6 @@
 	q.onCraft = @(__original) function( _stash )
 	{
 		__original(_stash);
-		_stash.add(::new("scripts/items/tools/daze_bomb_item")); // crafting gives one additional yield over vanilla
+		_stash.add(::new(::IO.scriptFilenameByHash(this.m.PreviewCraftable.ClassNameHash))); // crafting gives one additional yield over vanilla
 	}
 });
