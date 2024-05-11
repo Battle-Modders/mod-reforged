@@ -108,32 +108,32 @@ local units = [
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 300,
-		Cost = 40 + 40,
-		SubPartyDef = {BaseID = "SubPartyPrae"}
+		Cost = 40,
+		SubPartyDef = {BaseID = "SubPartyPrae", IsUsingTopPartyResources = false}
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestPP",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 325,
-		Cost = 40 + 40 + 40,
-		SubPartyDef = {BaseID = "SubPartyPrae2"}
+		Cost = 40,
+		SubPartyDef = {BaseID = "SubPartyPrae2", IsUsingTopPartyResources = false}
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestPH",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 350,
-		Cost = 40 + 40 + 50,
-		SubPartyDef = {BaseID = "SubPartyPraeHonor"}
+		Cost = 40,
+		SubPartyDef = {BaseID = "SubPartyPraeHonor", IsUsingTopPartyResources = false}
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestHH",
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 375,
-		Cost = 40 + 50 + 50,
-		SubPartyDef = {BaseID = "SubPartyHonor2"}
+		Cost = 40,
+		SubPartyDef = {BaseID = "SubPartyHonor2", IsUsingTopPartyResources = false}
 	},
 ];
 
