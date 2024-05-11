@@ -166,20 +166,24 @@
 	}
 
 	// Overwrite vanilla function. The logic is the same as vanilla except the following changes:
+	// Scale the strength of the morale checks with the ratio of the victim's XP value to my XP value.
 	// Dying enemies only trigger positive morale check if the killer is null or belongs to my allied factions.
 	q.onOtherActorDeath = @() function( _killer, _victim, _skill )
 	{
 		if (!this.m.IsAlive || this.m.IsDying || _victim.getXPValue() <= 1)
 			return;
 
+		// In Reforged we add this to scale the morale checks
+		local xpRatioMult = _victim.getXPValue() / ::Math.maxf(1, this.getXPValue());
+
 		if (_victim.getFaction() == this.getFaction() && _victim.getCurrentProperties().TargetAttractionMult >= 0.5 && this.getCurrentProperties().IsAffectedByDyingAllies)
 		{
-			local difficulty = ::Const.Morale.AllyKilledBaseDifficulty - _victim.getXPValue() * ::Const.Morale.AllyKilledXPMult + ::Math.pow(_victim.getTile().getDistanceTo(this.getTile()), ::Const.Morale.AllyKilledDistancePow);
+			local difficulty = ::Const.Morale.AllyKilledBaseDifficulty - _victim.getXPValue() * ::Const.Morale.AllyKilledXPMult * xpRatioMult + ::Math.pow(_victim.getTile().getDistanceTo(this.getTile()), ::Const.Morale.AllyKilledDistancePow);
 			this.checkMorale(-1, difficulty, ::Const.MoraleCheckType.Default, "", true);
 		}
 		else if (this.getAlliedFactions().find(_victim.getFaction()) == null && (_killer == null || this.getAlliedFactions().find(_killer.getFaction()) != null))
 		{
-			local difficulty = ::Const.Morale.EnemyKilledBaseDifficulty + _victim.getXPValue() * ::Const.Morale.EnemyKilledXPMult - ::Math.pow(_victim.getTile().getDistanceTo(this.getTile()), ::Const.Morale.EnemyKilledDistancePow);
+			local difficulty = ::Const.Morale.EnemyKilledBaseDifficulty + _victim.getXPValue() * ::Const.Morale.EnemyKilledXPMult * xpRatioMult - ::Math.pow(_victim.getTile().getDistanceTo(this.getTile()), ::Const.Morale.EnemyKilledDistancePow);
 
 			if (_killer != null && _killer.isAlive() && _killer.getID() == this.getID())
 			{
@@ -188,6 +192,20 @@
 
 			this.checkMorale(1, difficulty);
 		}
+	}
+
+	// Overwrite vanilla function. The logic is the same as vanilla except the following changes:
+	// Scale the strength of the morale checks with the ratio of the fleeing ally's XP value to my XP value.
+	q.onOtherActorFleeing = @() function( _actor )
+	{
+		if (!this.m.IsAlive || this.m.IsDying || !this.m.CurrentProperties.IsAffectedByFleeingAllies)
+			return;
+
+		// In Reforged we add this to scale the morale checks
+		local xpRatioMult = _actor.getXPValue() / ::Math.maxf(1, this.getXPValue());
+
+		local difficulty = ::Const.Morale.AllyFleeingBaseDifficulty - _actor.getXPValue() * ::Const.Morale.AllyFleeingXPMult * xpRatioMult + ::Math.pow(_actor.getTile().getDistanceTo(this.getTile()), ::Const.Morale.AllyFleeingDistancePow);
+		this.checkMorale(-1, difficulty);
 	}
 
 // New Functions:
