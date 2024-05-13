@@ -59,6 +59,9 @@
 	<sprite id="rf_pummel_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_pummel_skill.png" />
 	<sprite id="rf_gouge_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_gouge_skill.png" />
 	<sprite id="rf_voulge_cleave_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_voulge_cleave_skill.png" />
+	<sprite id="rf_dynamic_duo_shuffle_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_dynamic_duo_shuffle_skill.png" />
+
+	<sprite id="rf_dynamic_duo_partner_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_dynamic_duo.png" />
 
 	<sprite id="rf_hooked_shield_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_hooked_shield_effect.png" />
 	<sprite id="rf_hooked_shield_effect_mini" ic = "FF23165B" img="mini\rf_hooked_shield_effect_mini.png" />

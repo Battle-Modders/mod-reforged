@@ -100,6 +100,7 @@
 	RF_Dismantle = "Dismantle",
 	RF_Dismemberment = "Dismemberment",
 	RF_DoubleStrike = "Double Strike",
+	RF_DynamicDuo = "Dynamic Duo",
 	RF_EnGarde = "En Garde",
 	RF_Entrenched = "Entrenched",
 	RF_ExploitOpening = "Exploit Opening",
@@ -1208,6 +1209,25 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"The effect is lost upon moving, swapping an item, using any skill except a single-target attack, missing an attack, or waiting or ending your [turn|Concept.Turn]."
 			]
 		}]
+ 	}),
+ 	RF_DynamicDuo = ::UPD.getDescription({
+ 		Fluff = "You\'ve learned that you fight best with a buddy to watch your back!",
+ 		Effects = [
+ 			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"Allows you to choose another member of your company as your partner. You will remain partners until one of you dies or leaves the company. Gain the following bonuses when there is no ally next to you or your partner.",
+					"[Resolve|Concept.Bravery] and [Initiative|Concept.Initiative] are increased by " + ::MSU.Text.colorGreen("+20") + ".",
+					"Gain " + ::MSU.Text.colorGreen("+10") + " [Melee Skill|Concept.MeleeSkill] against enemies that attack your partner, and " + ::MSU.Text.colorGreen("+10") + " [Melee Defense|Concept.MeleeDefense] against enemies attacked by your partner, for one [turn|Concept.Turn]."
+				]
+			},
+			{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Gain the [Shuffle|Skill+rf_dynamic_duo_shuffle_skill] skill that allows you to swap places with your partner once per [turn|Concept.Turn] for free.",
+				]
+			}
+		]
  	}),
 	RF_EnGarde = ::UPD.getDescription({
  		Fluff = "You\'ve become so well-practiced with a blade that attacking and defending are done congruously!",
