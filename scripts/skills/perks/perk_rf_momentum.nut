@@ -76,26 +76,41 @@ this.perk_rf_momentum <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		if (!this.isEnabled())
-			return;
-
-		local actor = this.getContainer().getActor();
-		local tilesMoved = this.m.TilesMovedThisTurn;
-		if (actor.isPreviewing())
-		{
-			if (actor.getPreviewSkill() != null)
-				return;
-
-			tilesMoved += actor.getPreviewMovement().End.getDistanceTo(actor.getTile());
-		}
-
-		if (tilesMoved > 0)
+		if (this.isEnabled() && this.m.TilesMovedThisTurn > 0)
 		{
 			foreach (skill in this.getContainer().getActor().getMainhandItem().getSkills())
 			{
 				if (skill.isAttack() && skill.isRanged())
 				{
 					skill.m.ActionPointCost -= ::Math.max(0, ::Math.min(skill.m.ActionPointCost - 1, this.m.TilesMovedThisTurn));
+				}
+			}
+		}
+	}
+
+	function onAffordablePreview( _skill, _movementTile )
+	{
+		if (!this.isEnabled()) return;
+
+		if (_skill != null)
+		{
+			foreach (skill in this.getContainer().getActor().getMainhandItem().getSkills())
+			{
+				if (skill.isAttack() && skill.isRanged())
+				{
+					this.modifyPreviewField(skill, "ActionPointCost", 0, false);
+				}
+			}
+		}
+
+		if (_movementTile != null)
+		{
+			local bonus = this.m.TilesMovedThisTurn + _movementTile.getDistanceTo(this.getContainer().getActor().getTile());
+			foreach (skill in this.getContainer().getActor().getMainhandItem().getSkills())
+			{
+				if (skill.isAttack() && skill.isRanged())
+				{
+					this.modifyPreviewField(skill, "ActionPointCost", ::Math.min(skill.m.ActionPointCost - 1, bonus) * -1, false);
 				}
 			}
 		}
