@@ -101,7 +101,7 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 	function onAfterUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.isPreviewing() && actor.getPreviewSkill() != null)
+		if (actor.isPreviewing() && actor.getPreviewSkill() != null) // The effect of this skill expires upon using any skill, so we reflect that in the preview
 			return;
 
 		this.resetBonus();
