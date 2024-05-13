@@ -627,6 +627,7 @@ local vanillaDescriptions = [
  					"Skills build up " + ::MSU.Text.colorRed("25%") + " less [Fatigue|Concept.Fatigue].",
  					"The [Action Point|Concept.ActionPoints] cost of [Spearwall|Skill+spearwall] is reduced by " + ::MSU.Text.colorGreen("1") + ".",
  					"[Spearwall|Skill+spearwall] is no longer disabled once an opponent manages to overcome it. Instead, [Spearwall|Skill+spearwall] can still be used and continues to give free attacks on any further opponent attempting to enter the [Zone of Control|Concept.ZoneOfControl]",
+ 					"When starting your [turn|Concept.Turn] with a spear equipped, the first spear attack during your [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints] and builds no [Fatigue|Concept.Fatigue], but does " + ::MSU.Text.colorRed("25%") + " less damage. Expires upon switching your weapon.",
  					"The [Spetum|Item+spetum] and [Warfork|Item+warfork] no longer have a penalty for attacking targets directly adjacent."
  				]
  			}]
@@ -1494,8 +1495,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When starting your [turn|Concept.Turn] with a Spear equipped, the first [Thrust|Skill+thrust] or [Prong|Skill+prong_skill] during your [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints] and builds no [Fatigue|Concept.Fatigue], but does " + ::MSU.Text.colorRed("25%") + " reduced Damage.",
-				"The effect is lost upon switching your weapon."
+				"The [Action Point|Concept.ActionPoints] cost of spear attacks is reduced by " + ::MSU.Text.colorGreen(1) + ".",
+				"During your turn, the first attack from a spear deals " + ::MSU.Text.colorGreen("25%") + " more damage."
 			]
 		}]
  	}),
