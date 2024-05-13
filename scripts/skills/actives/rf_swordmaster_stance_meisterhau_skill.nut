@@ -30,13 +30,36 @@ this.rf_swordmaster_stance_meisterhau_skill <- ::inherit("scripts/skills/actives
 		tooltip.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/special.png"
-			text = "Moving from your position no longer disables the En Garde perk"
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Triggering [En Garde|Skill+perk_rf_en_garde] no longer builds [Fatigue|Concept.Fatigue] after having moved from your position")
+		});
+
+		tooltip.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Kick|Skill+rf_swordmaster_kick_skill], [Tackle|Skill+rf+swordmaster_tackle_skill] and [Push Through|Skill+rf+swordmaster_push_through_skill] skills")
 		});
 
 		this.addEnabledTooltip(tooltip);
 
 		return tooltip;
+	}
+
+	function toggleOn()
+	{
+		this.rf_swordmaster_stance_abstract_skill.toggleOn();
+		this.getContainer().add(::new("scripts/skills/actives/rf_swordmaster_tackle_skill"));
+		this.getContainer().add(::new("scripts/skills/actives/rf_swordmaster_kick_skill"));
+		this.getContainer().add(::new("scripts/skills/actives/rf_swordmaster_push_through_skill"));
+	}
+
+	function toggleOff()
+	{
+		this.rf_swordmaster_stance_abstract_skill.toggleOff();
+		this.getContainer().removeByID("actives.rf_swordmaster_tackle");
+		this.getContainer().removeByID("actives.rf_swordmaster_kick");
+		this.getContainer().removeByID("actives.rf_swordmaster_push_through");
 	}
 
 	function onCombatStarted()
