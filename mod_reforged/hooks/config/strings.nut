@@ -1953,20 +1953,20 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_SwordmasterMetzger = ::UPD.getDescription({
  		Fluff = "A sword, too, can take someone\'s head off just fine!",
- 		Requirement = "Southern Sword or a Sword/Cleaver Hybrid"
+ 		Requirement = "Sword"
  		Effects = [
 	 		{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Adds the [Decapitate|Skill+decapitate] skill to southern swords.",
-					"Grants the [Sanguinary|Perk+perk_rf_sanguinary] and [Bloodbath|Perk+perk_rf_bloodbath] perks for free as long as a valid weapon is equipped.",
-					"Attacks inflict [Bleeding|Skill+bleeding_effect] on the target for " + ::MSU.Text.colorRed(10) + " damage."
+					"Gain the [Decapitate|Skill+decapitate] skill with swords.",
+					"Gain all the perks of the Cleaver perk group when using a sword. Swords now additionally qualify as Cleavers for you for the purposes of these perks.",
+					"Attacks from swords inflict [Bleeding|Skill+bleeding_effect] on the target."
 				]
 			},
 			{
 				Type = ::UPD.EffectType.OneTimeEffect,
 				Description = [
-					"Adds the Cleaver perk group to this character\'s perk tree, except the perks which require a Cleaver."
+					"Adds the Cleaver perk group to this character\'s perk tree."
 				]
 			}
 		],
