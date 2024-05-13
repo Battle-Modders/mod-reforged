@@ -43,28 +43,12 @@
 		if (spearwall != null && spearwall.m.ActionPointCost > 0)
 			spearwall.m.ActionPointCost -= 1;
 
-		if (!this.m.IsSpent)
-		{
-			foreach (skill in this.getContainer().m.Skills)
-			{
-				if (this.isSkillValid(skill))
-				{
-					skill.m.ActionPointCost = 0;
-					skill.m.FatigueCostMult *= 0;
-				}
-			}
-		}
-	}
+		if (this.m.IsSpent)
+			return;
 
-	q.onAfterUpdatePreview = @() function( _properties, _previewedSkill, _previewedMovement )
-	{
-		local spearwall = this.getContainer().getSkillByID("actives.spearwall");
-		if (spearwall != null && spearwall.m.ActionPointCost > 0)
-			spearwall.m.ActionPointCost -= 1;
+		local actor = this.getContainer().getActor();
 
-		// The reduction of the attack skill should only apply when previewing a movement
-		// instead of a skill usage because it expires upon using a skill
-		if (!this.m.IsSpent && _previewedMovement != null)
+		if (!actor.isPreviewing() || actor.getPreviewMovement() != null || !this.isSkillValid(actor.getPreviewSkill()))
 		{
 			foreach (skill in this.getContainer().m.Skills)
 			{
