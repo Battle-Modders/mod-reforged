@@ -1,5 +1,7 @@
 this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/actives/rf_swordmaster_stance_abstract_skill", {
-	m = {},
+	m = {
+		IsMaceWeaponTypeAdded = false
+	},
 	function create()
 	{
 		this.rf_swordmaster_stance_abstract_skill.create();
@@ -26,6 +28,13 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			type = "text",
 			icon = "ui/icons/special.png"
 			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Removes[/color] all skills from the currently equipped sword and adds the " + skillsString + " skills"
+		});
+
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/reach.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Concussive Strikes|Perk+perk_rf_concussive_strikes] perk")
 		});
 
 		tooltip.push({
@@ -62,7 +71,14 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		});
 
 		tooltip.push({
-			id = 10,
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Concussive Strikes|Perk+perk_rf_concussive_strikes] perk")
+		});
+
+		tooltip.push({
+			id = 12,
 			type = "text",
 			icon = "ui/icons/reach.png",
 			text = "Lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s Reach"
@@ -97,6 +113,18 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 	{
 		this.rf_swordmaster_stance_abstract_skill.toggleOn();
 		local weapon = this.getContainer().getActor().getMainhandItem();
+
+		if (!weapon.isWeaponType(::Const.Items.WeaponType.Mace))
+		{
+			weapon.m.WeaponType = weapon.m.WeaponType | ::Const.Items.WeaponType.Mace;
+			this.m.IsMaceWeaponTypeAdded = true;
+		}
+
+		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_concussive_strikes", function(o) {
+			o.m.IsRefundable = false;
+			o.m.IsSerialized = false;
+		}));
+
 		local skills = weapon.getSkills();
 		foreach (skill in skills)
 		{
@@ -123,9 +151,21 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		}
 	}
 
+	function onUnequip( _item )
+	{
+		if (_item.getSlotType() == ::Const.SlotType.Mainhand && this.m.IsMaceWeaponTypeAdded)
+		{
+			_item.m.WeaponType -= ::Const.Items.WeaponType.Mace;
+			this.m.IsMaceWeaponTypeAdded = false;
+		}
+	}
+
 	function toggleOff()
 	{
 		this.rf_swordmaster_stance_abstract_skill.toggleOff();
+
+		this.getContainer().removeByStackByID("perk.rf_concussive_strikes");
+
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon != null)
 		{

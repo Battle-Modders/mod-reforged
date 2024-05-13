@@ -2092,10 +2092,10 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks three stances which can be switched to during combat for a small [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost to gain different effects that last as long as the stance is kept."
+				"Unlocks three stances which can be switched to during combat for a small [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost to gain different effects that last as long as the stance is kept.",
 				"The [Half-Swording|Skill+rf_swordmaster_stance_half_swording_skill] stance which allows you to [puncture|Skill+puncture] your opponents.",
-				"The [Reverse Grip|Skill+rf_swordmaster_stance_reverse_grip_skill] stance which allows you to use your sword like a mace.",
-				"The [Meisterhau|Skill+rf_swordmaster_stance_meisterhau_skill] stance which allows you to move and still benefit from [En Garde|Perk+perk_rf_en_garde]."
+				"The [Reverse Grip|Skill+rf_swordmaster_stance_reverse_grip_skill] stance which allows you to use your sword like a mace and grants the [Concussive Strikes|Perk+perk_rf_concussive_strikes] [perk|Concept.Perk].",
+				"The [Meisterhau|Skill+rf_swordmaster_stance_meisterhau_skill] stance which allows you to move and still benefit from [En Garde|Perk+perk_rf_en_garde] and gain the ability to use the [Kick|Skill+rf_swordmaster_kick_skill], [Push Through|Skill+rf_swordmaster_push_through_skill] and [Tackle|Skill+rf_swordmaster_tackle_skill] skills."
 			]
 		}],
 		Footer = ::MSU.Text.colorRed("You can only pick ONE perk from the Swordmaster perk group.")
