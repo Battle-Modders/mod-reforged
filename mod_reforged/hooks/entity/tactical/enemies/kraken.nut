@@ -52,7 +52,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
 		local myTile = this.getTile();
 
-		for( local i = 0; i < numTentacles; i = ++i )
+		for( local i = 0; i < 8; i = ++i )
 		{
 			local mapSize = this.Tactical.getMapSize();
 
