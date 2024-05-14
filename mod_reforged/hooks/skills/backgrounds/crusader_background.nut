@@ -40,13 +40,13 @@
 
 	q.getPerkGroupCollectionMin = @() function( _collection )
 	{
-		switch (_category.getID())
+		switch (_collection.getID())
 		{
 			case "pgc.rf_shared_1":
-				return _category.getMin() + 1;
+				return _collection.getMin() + 1;
 
 			case "pgc.rf_weapon":
-				return _category.getMin() + 2;
+				return _collection.getMin() + 2;
 		}
 	}
 });

@@ -43,13 +43,13 @@
 
 	q.getPerkGroupCollectionMin = @() function( _collection )
 	{
-		switch (_category.getID())
+		switch (_collection.getID())
 		{
 			case "pgc.rf_weapon":
 				return 1; // We only want this background to have the Sword perk group
 
 			case "pgc.rf_fighting_style":
-				return _category.getMin() + 1;
+				return _collection.getMin() + 1;
 		}
 	}
 

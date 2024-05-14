@@ -38,13 +38,13 @@
 
 	q.getPerkGroupCollectionMin = @() function( _collection )
 	{
-		switch (_category.getID())
+		switch (_collection.getID())
 		{
 			case "pgc.rf_weapon":
-				return _category.getMin() + 2;
+				return _collection.getMin() + 2;
 
 			case "pgc.rf_fighting_style":
-				return _category.getMin() + 1;
+				return _collection.getMin() + 1;
 		}
 	}
 });
