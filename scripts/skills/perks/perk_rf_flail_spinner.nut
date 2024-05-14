@@ -56,20 +56,7 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 						}
 
 						perk.m.IsSpinningFlail = true;
-
-						local isAbleToDie = targetEntity.m.IsAbleToDie;
-						if (!user.isPlayerControlled())
-						{
-							targetEntity.m.IsAbleToDie = false;
-						}
-
 						_skill.useForFree(_targetTile);
-
-						if (!user.isPlayerControlled())
-						{
-							targetEntity.m.IsAbleToDie = isAbleToDie;
-						}
-
 						perk.m.IsSpinningFlail = false;
 					}
 
@@ -84,19 +71,7 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 					this.logDebug("[" + user.getName() + "] is Spinning The Flail on target [" + targetEntity.getName() + "] with skill [" + _skill.getName() + "]");
 					this.m.IsSpinningFlail = true;
 
-					local isAbleToDie = targetEntity.m.IsAbleToDie;
-					if (!user.isPlayerControlled())
-					{
-						targetEntity.m.IsAbleToDie = false;
-					}
-
 					_skill.useForFree(_targetTile);
-
-					if (!user.isPlayerControlled())
-					{
-						targetEntity.m.IsAbleToDie = isAbleToDie;
-					}
-
 					this.m.IsSpinningFlail = false;
 				}
 			}

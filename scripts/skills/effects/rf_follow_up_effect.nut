@@ -105,15 +105,10 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 							::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " is Following Up");
 						}
 
-						local isAbleToDie = _targetEntity.m.IsAbleToDie;
-						_targetEntity.m.IsAbleToDie = false;
-
 						_effect.m.IsProccing = true;
 						attack.useForFree(targetTile);
 						_effect.m.ProcCount++;
 						_effect.m.IsProccing = false;
-
-						_targetEntity.m.IsAbleToDie = isAbleToDie;
 					}
 
 					this.getContainer().setBusy(false);
@@ -125,15 +120,10 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 				{
 					::logDebug("[" + user.getName() + "] is Following Up with skill [" + attack.getName() + "] on target [" + _targetEntity.getName() + "]");
 
-					local isAbleToDie = _targetEntity.m.IsAbleToDie;
-					_targetEntity.m.IsAbleToDie = false;
-
 					this.m.IsProccing = true;
 					attack.useForFree(targetTile);
 					this.m.ProcCount++;
 					this.m.IsProccing = false;
-
-					_targetEntity.m.IsAbleToDie = isAbleToDie;
 				}
 			}
 		}
