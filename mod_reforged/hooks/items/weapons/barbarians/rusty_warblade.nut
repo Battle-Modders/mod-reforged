@@ -3,7 +3,6 @@
 	{
 		__original();
 		this.m.Reach = 5;
-		this.m.ShieldDamage = 26;
 		this.m.ArmorDamageMult = 1.3;
 		this.m.RegularDamage = 70;
 		this.m.RegularDamageMax = 90;

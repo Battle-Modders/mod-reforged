@@ -4,7 +4,6 @@
 		__original();
 		this.m.Name = "Zweihander";
 		this.m.Reach = 7;
-		this.m.ShieldDamage = 24;
 	}
 
 	q.onEquip = @() function()
