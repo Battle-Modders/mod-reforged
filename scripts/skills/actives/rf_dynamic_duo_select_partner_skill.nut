@@ -9,12 +9,10 @@ this.rf_dynamic_duo_select_partner_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IconDisabled = "skills/rf_dynamic_duo_select_partner_skill_sw.png";
 		// this.m.Overlay = "rf_dynamic_duo_select_partner_skill"; // No need to spawn an overlay for this skill.
 		this.m.Type = ::Const.SkillType.Active;
-		this.m.Order = ::Const.SkillOrder.NonTargeted;
+		this.m.Order = ::Const.SkillOrder.NonTargeted; // We want it to appear after other "more useful" skills
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
-		this.m.IsStacking = false;
-		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsUsingHitchance = false;
 		this.m.ActionPointCost = 0;

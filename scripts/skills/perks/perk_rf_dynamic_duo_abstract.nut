@@ -16,9 +16,6 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_dynamic_duo.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isEnabled()
@@ -28,7 +25,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		local partner = this.m.PartnerSkill.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || !partner.isPlacedOnMap())
+		if (!actor.isPlacedOnMap() || !partner.isPlacedOnMap() || !partner.getFaction() != actor.getFaction())
 			return false;
 
 		local myTile = actor.getTile();
@@ -36,31 +33,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 		if (myTile.getDistanceTo(partnerTile) > 1)
 			return false;
 
-		for (local i = 0; i < 6; i++)
-		{
-			if (myTile.hasNextTile(i))
-			{
-				local nextTile = myTile.getNextTile(i);
-				if (nextTile.IsOccupiedByActor)
-				{
-					local entity = nextTile.getEntity();
-					if (entity.getFaction() == actor.getFaction() && entity.getID() != partner.getID())
-						return false;
-				}
-			}
-			if (partnerTile.hasNextTile(i))
-			{
-				local nextTile = partnerTile.getNextTile(i);
-				if (nextTile.IsOccupiedByActor)
-				{
-					local entity = nextTile.getEntity();
-					if (entity.getFaction() == actor.getFaction() && entity.getID() != actor.getID())
-						return false;
-				}
-			}
-		}
-
-		return true;
+		return ::Tactical.Entities.getFactionActors(actor.getFaction(), myTile, 1, true).len() == 1 && ::Tactical.Entities.getFactionActors(partner.getFaction(), partnerTile, 1, true).len() == 1;
 	}
 
 	function isHidden()

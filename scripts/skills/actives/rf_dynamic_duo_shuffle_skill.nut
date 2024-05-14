@@ -19,8 +19,6 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
-		this.m.IsStacking = false;
-		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsUsingHitchance = false;
 		this.m.ActionPointCost = 0;
@@ -37,7 +35,7 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 		if (partner != null)
 		{
 			ret.push({
-				id = 9,
+				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Partner: " + partner.getName()
@@ -47,20 +45,30 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
 		{
 			ret.push({
-				id = 9,
+				id = 20,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Cannot be used while rooted[/color]"
+				text = ::MSU.Text.colorRed("Cannot be used while rooted")
 			});
 		}
 
 		if (this.m.IsSpent)
 		{
 			ret.push({
-				id = 9,
+				id = 21,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Cannot be used more than once per turn[/color]"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Cannot be used more than once per [turn|Concept.Turn]"))
+			});
+		}
+
+		if (::MSU.isNull(this.m.DynamicDuoPerk.getPartner()) || !this.m.DynamicDuoPerk.getPartner().isPlacedOnMap())
+		{
+			ret.push({
+				id = 22,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = ::MSU.Text.colorRed("Can only be used when next to your partner")
 			});
 		}
 
@@ -74,7 +82,15 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return !this.m.IsSpent && this.skill.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted;
+		if (this.m.IsSpent || this.getContainer().getActor().getCurrentProperties().IsRooted || !this.skill.isUsable())
+			return false;
+
+		local partner = this.m.DynamicDuoPerk.getPartner();
+		if (::MSU.isNull(partner) || !partner.isPlacedOnMap())
+			return false;
+
+		local actor = this.getContainer().getActor();
+		return actor.isPlacedOnMap() && actor.getTile().getDistanceTo(partner.getTile()) == 1;
 	}
 
 	function onTurnStart()
@@ -85,24 +101,22 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 	function onVerifyTarget( _originTile, _targetTile )
 	{
 		if (!_targetTile.IsOccupiedByActor)
-		{
 			return false;
-		}
 
 		local target = _targetTile.getEntity();
-
-		if (!target.isAlliedWith(this.getContainer().getActor()))
-		{
+		if (this.m.DynamicDuoPerk.getPartner().getID() != target.getID() || !target.isAlliedWith(this.getContainer().getActor()))
 			return false;
-		}
 
-		return this.skill.onVerifyTarget(_originTile, _targetTile) && this.m.DynamicDuoPerk.getPartner().getID() == target.getID() && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
+		local tp = target.getCurrentProperties();
+		if (tp.IsStunned || tp.IsRooted || !tp.IsMovable || tp.IsImmuneToRotation)
+			return false;
+
+		return this.skill.onVerifyTarget(_originTile, _targetTile);
 	}
 
 	function onUse( _user, _targetTile )
 	{
-		local target = _targetTile.getEntity();
-		this.Tactical.getNavigator().switchEntities(_user, target, null, null, 1.0);
+		::Tactical.getNavigator().switchEntities(_user, _targetTile.getEntity(), null, null, 1.0);
 		this.m.IsSpent = true;
 		return true;
 	}
