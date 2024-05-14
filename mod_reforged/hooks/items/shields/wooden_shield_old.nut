@@ -1,4 +1,4 @@
-::Reforged.HooksMod.hook("scripts/items/shields/greenskins/goblin_heavy_shield", function(q) {
+::Reforged.HooksMod.hook("scripts/items/shields/wooden_shield_old", function(q) {
 	q.create = @(__original) function()
 	{
 		__original();
