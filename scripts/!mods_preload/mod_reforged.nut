@@ -54,7 +54,14 @@ foreach (requirement in requiredMods)
 			// This is because vanilla drops loot if _killer is null or belongs to Player or PlayerAnimals faction.
 			// Warning: This will break any mod that hooks the original onDeath and expects _killer to represent the actual killer
 			if (playerRelevantDamage / this.m.RF_DamageReceived.Total >= 0.5)
+			{
 				_killer = null;
+			}
+			// Otherwise set the killer to the dying entity itself, so loot doesn't spawn for the player
+			else if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
+			{
+				_killer = this;
+			}
 
 			__original(_killer, _skill, _tile, _fatalityType);
 		}
