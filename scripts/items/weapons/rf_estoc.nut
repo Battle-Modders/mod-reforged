@@ -25,6 +25,7 @@ this.rf_estoc <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ArmorDamageMult = 0.3;
 		this.m.DirectDamageMult = 0.25;
 		this.m.DirectDamageAdd = 0.35; // Brings the total to 60%
+		this.m.ChanceToHitHead = -25;
 		this.m.Reach = 5;
 	}
 
