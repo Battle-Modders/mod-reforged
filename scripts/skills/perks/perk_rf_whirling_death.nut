@@ -166,4 +166,3 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Flail);
 	}
 });
-
