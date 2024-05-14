@@ -1,10 +1,3 @@
-local generalPage = ::Reforged.Mod.ModSettings.addPage("General");
-local legendaryDifficulty = generalPage.addBooleanSetting("LegendaryDifficulty", true, "Legendary Difficulty");
-legendaryDifficulty.getData().NewCampaign <- true;
-legendaryDifficulty.addAfterChangeCallback(function( _oldValue ) {
-	::Reforged.Config.IsLegendaryDifficulty = this.getValue();
-});
-
 local tacticalTooltipPage = ::Reforged.Mod.ModSettings.addPage("Tactical Tooltips");
 
 tacticalTooltipPage.addEnumSetting("TacticalTooltip_Attributes", "All", ["All", "AI Only", "Player Only", "None"], "Show Attributes", "Show attributes such as Melee Skill, Melee Defense etc. for entities in the Tactical Tooltip.");
