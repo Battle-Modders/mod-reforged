@@ -11,9 +11,9 @@
 
 		local copy = ::new(::IO.scriptFilenameByHash(_weapon.ClassNameHash));
 		local player = ::MSU.getDummyPlayer();
-		player.equip(copy);
+		player.getItems().equip(copy);
 		local ret = isSkillValid(player.getSkills().getAttackOfOpportunity());
-		player.unequip(copy);
+		player.getItems().unequip(copy);
 		return ret;
 	}
 
@@ -24,9 +24,9 @@
 
 		local copy = ::new(::IO.scriptFilenameByHash(_item.ClassNameHash));
 		local player = ::MSU.getDummyPlayer();
-		player.equip(copy);
+		player.getItems().equip(copy);
 		local ret = copy.getSkills();
-		player.unequip(copy);
+		player.getItems().unequip(copy);
 		return ret;
 	}
 };
