@@ -8,6 +8,7 @@ this.pgc_rf_exclusive_1 <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 		this.m.Min = 0;
 		this.m.TooltipPrefix = "%name%";
 		this.m.Groups = [
+			"pg.rf_knave",
 			"pg.rf_laborer",
 			"pg.rf_militia",
 			"pg.rf_noble",

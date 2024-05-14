@@ -5,7 +5,7 @@ this.pgc_rf_weapon <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 		this.m.ID = "pgc.rf_weapon";
 		this.m.Name = "Weapon";
 		this.m.OrderOfAssignment = 3;
-		this.m.Min = 4;
+		this.m.Min = 3;
 		this.m.TooltipPrefix = "Has an aptitude for";
 		this.m.Groups = [
 			"pg.rf_axe",
