@@ -736,7 +736,7 @@ local vanillaDescriptions = [
  					"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorGreen("50%") + " and that to armor by " + ::MSU.Text.colorGreen("25%") + ".",
  					"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 15. The lighter your armor and helmet, the more you benefit.",
  					"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
- 					"When attacking a target against whom you have a [Reach Disadvantage|Concept.ReachAdvantage], reduce this disadvantage by " + ::MSU.Text.colorGreen(1) + " if your [Concept.Initiative] is higher than that of your target."
+ 					"When attacking a target against whom you have a [Reach Disadvantage|Concept.ReachAdvantage], reduce this disadvantage by " + ::MSU.Text.colorGreen(1) + " if your [Initiative|Concept.Initiative] is higher than that of your target."
  					"[Brawny|Perk+perk_brawny] does not affect this perk.",
  					"Cannot be picked if you have [Poise|Perk+perk_rf_poise]."
 
