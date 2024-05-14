@@ -1345,7 +1345,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Active,
 			Description = [
 				"Unlocks the [Follow Up|Skill+rf_follow_up_skill] skill which allows you to attack enemies who are hit by your allies during your allies' [turn|Concept.Turn].",
-				"Attacks from Follow Up are non-lethal i.e. they cannot kill the target."
 			]
 		}]
  	}),
