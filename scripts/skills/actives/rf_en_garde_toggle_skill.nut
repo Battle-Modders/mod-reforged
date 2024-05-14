@@ -144,9 +144,12 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAffordablePreview( _skill, _movementTile )
+	function onAfterUpdate( _properties )
 	{
-		this.modifyPreviewField(this, "FatigueCost", 15, false);
+		// During preview set the fatigue cost so that the player knows if their previewed action
+		// will still allow en garde to trigger afterward
+		if (this.getContainer().getActor().isPreviewing())
+			this.m.FatigueCost = this.m.FatigueRequired;
 	}
 
 	function onUse( _user, _targetTile )

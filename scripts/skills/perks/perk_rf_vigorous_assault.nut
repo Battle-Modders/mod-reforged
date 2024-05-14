@@ -100,6 +100,10 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
+		local actor = this.getContainer().getActor();
+		if (actor.isPreviewing() && actor.getPreviewSkill() != null) // The effect of this skill expires upon using any skill, so we reflect that in the preview
+			return;
+
 		this.resetBonus();
 
 		if (!this.isEnabled() || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
@@ -107,8 +111,7 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 			return;
 		}
 
-		local actor = this.getContainer().getActor();
-		local distanceMoved = this.m.StartingTile.getDistanceTo(actor.getTile());
+		local distanceMoved = this.m.StartingTile.getDistanceTo(actor.isPreviewing() ? actor.getPreviewMovement().End : actor.getTile());
 		local aoo = this.getContainer().getAttackOfOpportunity();
 
 		local mult = distanceMoved / this.m.BonusEveryXTiles;
@@ -166,31 +169,6 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 		if (this.getContainer().getActor().isPlacedOnMap())
 		{
 			this.m.StartingTile = this.getContainer().getActor().getTile();
-		}
-	}
-
-	function onAffordablePreview( _skill, _movementTile )
-	{
-		if (!this.isEnabled()) return;
-
-		if (_skill != null)
-		{
-			foreach (skill in this.getContainer().getSkillsByFunction(@(skill) skill.isAttack()))
-	        {
-	            this.modifyPreviewField(skill, "ActionPointCost", 0, false);
-	            this.modifyPreviewField(skill, "FatigueCostMult", 1, true);
-	        }
-		}
-
-		if (_movementTile != null)
-		{
-			local bonus = this.m.StartingTile.getDistanceTo(_movementTile) / this.m.BonusEveryXTiles;
-
-	        foreach (skill in this.getContainer().getSkillsByFunction(@(skill) skill.isAttack()))
-	        {
-	            this.modifyPreviewField(skill, "ActionPointCost", -1 * ::Math.max(0, ::Math.min(skill.m.ActionPointCost - 1, bonus)), false);
-	            this.modifyPreviewField(skill, "FatigueCostMult", 1 - this.m.FatCostReduction * bonus * 0.01, true);
-	        }
 		}
 	}
 

@@ -66,20 +66,15 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		if (this.m.IsInEffect)
+		local actor = this.getContainer().getActor();
+		local isValid = this.m.IsInEffect;
+		if (actor.isPreviewing())
 		{
-			foreach (skill in this.getContainer().m.Skills)
-			{
-				if (!skill.isGarbage() && skill.m.ActionPointCost > 1)
-					skill.m.ActionPointCost /= 2;
-			}
+			// Gain Ground can only be used on a valid tile
+			isValid = (actor.getPreviewMovement() != null && !this.isTileValid(actor.getPreviewMovement().End)) || (actor.getPreviewSkill() != null && actor.getPreviewSkill().getID() != "actives.rf_gain_ground");
 		}
-	}
 
-	function onAfterUpdatePreview( _properties, _previewedSkill, _previewedMovement )
-	{
-		// Gain Ground can only be used on a valid tile
-		if ((_previewedSkill != null && _previewedSkill.getID() == "actives.rf_gain_ground") || (_previewedMovement != null && this.isTileValid(_previewedMovement.End)))
+		if (isValid)
 		{
 			foreach (skill in this.getContainer().m.Skills)
 			{
