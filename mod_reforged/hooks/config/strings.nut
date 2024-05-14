@@ -2247,7 +2247,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Every attack with flails increases your current [Reach|Concept.Reach] by " + ::MSU.Text.colorGreen("+1") + " until your next turn.",
+				"Every attack with flails increases your current [Reach|Concept.Reach] by " + ::MSU.Text.colorGreen("+1") + " until your next [turn|Concept.Turn].",
 				"With two-handed flails, when attacking a target who has lower current [Reach|Concept.Reach] than you, gain " + ::MSU.Text.colorGreen("+10%") + " chance to hit the head per difference in current [Reach|Concept.Reach] between you and the target.",
 				"During your [turn|Concept.Reach], when attacking with one-handed flails, perform a free extra attack with " + ::MSU.Text.colorRed("50%") + " less damage against a different adjacent enemy who has lower current [Reach|Concept.Reach] than you.",
 				"Does not take into account abilities which ignore or modify [Reach|Concept.Reach] during an attack."
