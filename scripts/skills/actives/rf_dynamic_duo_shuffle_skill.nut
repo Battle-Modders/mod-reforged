@@ -31,8 +31,19 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
+		local actor = this.getContainer().getActor();
 		local partner = this.m.DynamicDuoPerk.getPartner();
-		if (partner != null)
+
+		if (::MSU.isNull(partner))
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "No partner"
+			});
+		}
+		else
 		{
 			ret.push({
 				id = 10,
@@ -40,12 +51,34 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 				icon = "ui/icons/special.png",
 				text = "Partner: " + partner.getName()
 			});
+
+			if (actor.isPlacedOnMap())
+			{
+				if (!partner.isPlacedOnMap())
+				{
+					ret.push({
+						id = 20,
+						type = "text",
+						icon = "ui/tooltips/warning.png",
+						text = ::MSU.Text.colorRed("Requires your partner to be present on the battlefield")
+					});
+				}
+				else if (actor.getTile().getDistanceTo(partner.getTile()) != 1)
+				{
+					ret.push({
+						id = 21,
+						type = "text",
+						icon = "ui/tooltips/warning.png",
+						text = ::MSU.Text.colorRed("Requires your partner to be next to you")
+					});
+				}
+			}
 		}
 
-		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
+		if (actor.getCurrentProperties().IsRooted)
 		{
 			ret.push({
-				id = 20,
+				id = 22,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
 				text = ::MSU.Text.colorRed("Cannot be used while rooted")
@@ -55,20 +88,10 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 		if (this.m.IsSpent)
 		{
 			ret.push({
-				id = 21,
+				id = 23,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Cannot be used more than once per [turn|Concept.Turn]"))
-			});
-		}
-
-		if (::MSU.isNull(this.m.DynamicDuoPerk.getPartner()) || !this.m.DynamicDuoPerk.getPartner().isPlacedOnMap())
-		{
-			ret.push({
-				id = 22,
-				type = "text",
-				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorRed("Can only be used when next to your partner")
 			});
 		}
 
