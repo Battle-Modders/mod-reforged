@@ -1,5 +1,10 @@
 this.perk_rf_swordmaster_blade_dancer <- ::inherit("scripts/skills/perks/perk_rf_swordmaster_abstract", {
-	m = {},
+	m = {
+		WeaponSkillAPCostModifier = -1,
+		WeaponSkillFatigueCostMult  = 0.75,
+		KataStepAPCostModifier = -2,
+		KataStepFatigueCostModifier = -2
+	},
 	function create()
 	{
 		this.perk_rf_swordmaster_abstract.create();
@@ -9,24 +14,41 @@ this.perk_rf_swordmaster_blade_dancer <- ::inherit("scripts/skills/perks/perk_rf
 		this.m.Icon = "ui/perks/rf_swordmaster_blade_dancer.png";
 	}
 
+	function getInitiativeBonus()
+	{
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return weapon == null ? 0 : 100 * (weapon.m.DirectDamageMult + weapon.m.DirectDamageAdd);
+	}
+
+	function onUpdate( _properties )
+	{
+		if (this.isEnabled())
+			_properties.Initiative += this.getInitiativeBonus();
+	}
+
 	function onAfterUpdate( _properties )
 	{
-		if (!this.isEnabled()) return;
+		if (!this.isEnabled())
+			return;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (!weapon.isItemType(::Const.Items.ItemType.RF_Fencing))
 		{
 			foreach (skill in weapon.getSkills())
 			{
-				skill.m.ActionPointCost = ::Math.max(0, skill.m.ActionPointCost - 1);
+				if (!skill.isAOE())
+				{
+					skill.m.ActionPointCost = ::Math.max(0, skill.m.ActionPointCost + this.m.WeaponSkillAPCostModifier);
+					skill.m.FatigueCostMult *= this.m.WeaponSkillFatigueCostMult;
+				}
 			}
 		}
 
 		local kataStep = this.getContainer().getSkillByID("actives.rf_kata_step")
 		if (kataStep != null)
 		{
-			kataStep.m.ActionPointCost = ::Math.max(0, kataStep.m.ActionPointCost - 2);
-			kataStep.m.FatigueCost = ::Math.max(0, kataStep.m.FatigueCost - 2);
+			kataStep.m.ActionPointCost = ::Math.max(0, kataStep.m.ActionPointCost + this.m.KataStepAPCostModifier);
+			kataStep.m.FatigueCost = ::Math.max(0, kataStep.m.FatigueCost + this.m.KataStepFatigueCostModifier);
 		}
 	}
 });
