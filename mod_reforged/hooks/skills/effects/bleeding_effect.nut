@@ -93,18 +93,19 @@
 				i++;
 			}
 
-			local hitInfo = clone ::Const.Tactical.HitInfo;
-			hitInfo.DamageDirect = 1.0;
-			hitInfo.BodyPart = ::Const.BodyPart.Body;
-			hitInfo.BodyDamageMult = 1.0;
-			hitInfo.FatalityChanceMult = 0.0;
 			foreach (d in damage)
 			{
 				// Stop applying damage if this skill was removed e.g. by triggering Nine Lives.
 				if (this.isGarbage())
 					return;
 
-				hitInfo.DamageRegular = this.getDamage();
+				local hitInfo = clone ::Const.Tactical.HitInfo;
+				hitInfo.DamageDirect = 1.0;
+				hitInfo.BodyPart = ::Const.BodyPart.Body;
+				hitInfo.BodyDamageMult = 1.0;
+				hitInfo.FatalityChanceMult = 0.0;
+				hitInfo.DamageRegular = d;
+
 				actor.onDamageReceived(actor, this, hitInfo);
 			}
 		}
