@@ -29,7 +29,7 @@ this.rf_dynamic_duo_select_partner_skill <- ::inherit("scripts/skills/skill", {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorRed("The selected character will remain your partner until one of you dies or leaves the company")
+			text = "The selected character will remain your partner until one of you dies or leaves the company"
 		});
 		return ret;
 	}
