@@ -82,11 +82,6 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 	{
 		if (this.m.IsSpinningFlail)
 		{
-			if (!this.getContainer().getActor().isPlayerControlled())
-			{
-				_properties.DamageTotalMult *= 1.25;
-			}
-
 			_properties.DamageTotalMult *= this.m.DamageMult;
 		}
 	}
