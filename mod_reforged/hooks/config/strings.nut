@@ -1991,7 +1991,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When using a non-fencing sword, the [Action Point|Concept.ActionPoints] costs of sword skills is reduced by " + ::MSU.Text.colorGreen(1) + ".",
+				"Gain additional [Initiative|Concept.Initiative] equal to the armor ignore percentage of your equipped sword.",
+				"When using a non-fencing sword, the [Action Point|Concept.ActionPoints] costs of non-AOE skills is reduced by " + ::MSU.Text.colorGreen(1) + " and these skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue].",
 				"Allows [Kata Step|Skill+rf_kata_step_skill] to be usable even while holding something, e.g. a shield, in your offhand.",
 				"[Kata Step|Skill+rf_kata_step_skill] costs " + ::MSU.Text.colorGreen(2) + " fewer [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorGreen(2) + " less [Fatigue|Concept.Fatigue], both down to a minimum of 0."
 			]
