@@ -229,7 +229,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
-		if (_skill.isAttack() && !_skill.isRanged() && _targetTile.IsOccupiedByActor && this.hasEntityForAttackBonus(_targetTile.getEntity()))
+		if (this.m.MeleeSkillModifier != 0 && _skill.isAttack() && !_skill.isRanged() && _targetTile.IsOccupiedByActor && this.hasEntityForAttackBonus(_targetTile.getEntity()))
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
@@ -240,7 +240,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 
 	function onGetHitFactorsAsTarget( _skill, _targetTile, _tooltip )
 	{
-		if (_skill.isAttack() && !_skill.isRanged() && this.hasEntityForDefenseBonus(_skill.getContainer().getActor()))
+		if (this.m.MeleeDefenseModifier != 0 && _skill.isAttack() && !_skill.isRanged() && this.hasEntityForDefenseBonus(_skill.getContainer().getActor()))
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/negative.png",
