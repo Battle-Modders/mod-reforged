@@ -1235,6 +1235,14 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_TerrifyingVisage,
 		Icon = "ui/perks/rf_terrifying_visage.png",
 		IconDisabled = "ui/perks/rf_terrifying_visage_sw.png"
+	},
+	{
+		ID = "perk.rf_dynamic_duo",
+		Script = "scripts/skills/perks/perk_rf_dynamic_duo",
+		Name = ::Const.Strings.PerkName.RF_DynamicDuo,
+		Tooltip = ::Const.Strings.PerkDescription.RF_DynamicDuo,
+		Icon = "ui/perks/rf_dynamic_duo.png",
+		IconDisabled = "ui/perks/rf_dynamic_duo_sw.png"
 	}
 ]);
 
