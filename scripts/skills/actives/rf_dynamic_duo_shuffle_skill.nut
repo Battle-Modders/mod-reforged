@@ -7,7 +7,7 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_dynamic_duo_shuffle";
 		this.m.Name = "Shuffle";
-		this.m.Description = "Once per turn, switch places with your partner for free, provided neither you nor your partner is stunned or rooted.";
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Once per turn, switch places with your partner for free, provided neither you nor your partner is [stunned|Skill+stunned_effect] or rooted.");
 		this.m.Icon = "skills/rf_dynamic_duo_shuffle_skill.png";
 		this.m.IconDisabled = "skills/rf_dynamic_duo_shuffle_skill_sw.png";
 		this.m.Overlay = "rf_dynamic_duo_shuffle_skill";
