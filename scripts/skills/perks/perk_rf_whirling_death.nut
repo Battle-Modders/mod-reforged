@@ -50,7 +50,7 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 			_properties.DamageTotalMult *= this.m.DamageTotalMult;
 
 		local weapon = _skill.getItem();
-		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.TwoHanded))
+		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.TwoHanded) && this.isSkillValid(_skill))
 		{
 			local reachDiff = this.getContainer().getActor().getCurrentProperties().getReach() - _targetEntity.getCurrentProperties().getReach();
 			if (reachDiff > 0)
