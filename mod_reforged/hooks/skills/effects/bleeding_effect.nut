@@ -96,7 +96,7 @@
 			foreach (d in damage)
 			{
 				// Stop applying damage if this skill was removed e.g. by triggering Nine Lives.
-				if (this.isGarbage())
+				if (this.isGarbage() || !actor.isAlive() || actor.isDying())
 					return;
 
 				local hitInfo = clone ::Const.Tactical.HitInfo;
