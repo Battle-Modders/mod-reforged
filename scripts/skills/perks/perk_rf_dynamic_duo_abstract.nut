@@ -14,6 +14,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 		this.m.Name = ::Const.Strings.PerkName.RF_DynamicDuo;
 		this.m.Description = "Instead of fighting in a larger formation, this character has trained to fight as a duo and gains bonuses while there is only one nearby ally."
 		this.m.Icon = "ui/perks/rf_dynamic_duo.png";
+		this.m.IconMini = "rf_dynamic_duo_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

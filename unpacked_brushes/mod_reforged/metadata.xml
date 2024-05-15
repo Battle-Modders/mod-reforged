@@ -85,6 +85,7 @@
 
 	<sprite id="rf_mentors_presence_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_mentors_presence_effect.png" />
 
+	<sprite id="rf_dynamic_duo_mini" ic = "FF23165B" img="mini\rf_dynamic_duo_mini.png" />
 	<sprite id="rf_decisive_mini" ic = "FF23165B" img="mini\rf_decisive_mini.png" />
 	<sprite id="rf_feral_rage_mini" ic = "FF23165B" img="mini\rf_feral_rage_mini.png" />
 	<sprite id="rf_exploit_opening_mini" ic = "FF23165B" img="mini\rf_exploit_opening_mini.png" />
