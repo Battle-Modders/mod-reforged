@@ -81,7 +81,7 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_targetEntity.isAlive() || _targetEntity.isDying() || _skill.getID() == "actives.cleave" || !this.isEnabled())
+		if (!_targetEntity.isAlive() || _targetEntity.isDying() || !this.isSkillValid(_skill) || !this.isEnabled())
 			return;
 
 		if (!_targetEntity.getCurrentProperties().IsImmuneToBleeding && _damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
@@ -92,5 +92,23 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 
 			_targetEntity.getSkills().add(effect);
 		}
+	}
+
+	function onQueryTooltip( _skill, _tooltip )
+	{
+		if (this.isSkillValid(_skill) && this.isEnabled())
+		{
+			_tooltip.push({
+				id = 100,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Applies [Bleeding|Skill+bleeding_effect] due to " + ::Reforged.NestedTooltips.getNestedPerkName(this))
+			});
+		}
+	}
+
+	function isSkillValid( _skill )
+	{
+		return _skill.isAttack() && _skill.m.IsWeaponSkill && _skill.getID() != "actives.cleave";
 	}
 });
