@@ -19,12 +19,6 @@ this.rf_dynamic_duo_partner_effect <- ::inherit("scripts/skills/perks/perk_rf_dy
 		}
 	}
 
-	function onRemoved()
-	{
-		this.perk_rf_dynamic_duo_abstract.onRemoved();
-		this.setPartnerSkill(null);
-	}
-
 	function onDeserialize( _in )
 	{
 		this.perk_rf_dynamic_duo_abstract.onDeserialize(_in);
