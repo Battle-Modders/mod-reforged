@@ -121,6 +121,12 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsSpent = false;
 	}
 
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		this.m.IsSpent = false;
+	}
+
 	function onVerifyTarget( _originTile, _targetTile )
 	{
 		if (!_targetTile.IsOccupiedByActor)
