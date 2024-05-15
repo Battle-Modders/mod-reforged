@@ -40,7 +40,7 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "No partner"
+				text = ::MSU.Text.colorRed("Requires a partner")
 			});
 		}
 		else
