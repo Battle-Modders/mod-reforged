@@ -26,7 +26,7 @@
 				foreach (entity in ::World.getAllEntitiesAndOneLocationAtPos(::World.getCamera().screenToWorld(_mouse.getX(), _mouse.getY()), 1.0))
 				{
 
-					if (!::MSU.isKindOf(_s, "settlement")) continue;
+					if (!::MSU.isKindOf(entity, "settlement")) continue;
 					if (!entity.isEnterable()) continue;
 					if (!entity.isAlliedWithPlayer()) continue;
 
