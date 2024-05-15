@@ -127,7 +127,7 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 			{
 				if (target.isAlive())
 				{
-					this.logDebug("[" + user.getName() + "] is attacking [" + target.getName() + "] with skill [" + _skill.getName() + "] due to " + _perk.m.Name);
+					::logDebug("[" + user.getName() + "] is attacking [" + target.getName() + "] with skill [" + _skill.getName() + "] due to " + _perk.m.Name);
 					if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 					{
 						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " has " + _perk.m.Name);
@@ -145,7 +145,7 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 		{
 			if (target.isAlive())
 			{
-				this.logDebug("[" + user.getName() + "] is attacking [" + target.getName() + "] with skill [" + _skill.getName() + "] due to " + this.m.Name);
+				::logDebug("[" + user.getName() + "] is attacking [" + target.getName() + "] with skill [" + _skill.getName() + "] due to " + this.m.Name);
 
 				this.m.IsPerformingExtraAttack = true;
 				_skill.useForFree(targetTile);
@@ -163,6 +163,6 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 			return true;
 
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Flail);
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });
