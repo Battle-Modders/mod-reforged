@@ -3,7 +3,6 @@
 	q.m.StacksThisTurn <- 1;
 	q.m.StacksForMoraleCheck <- 3;
 	q.m.MaxMalusMult <- 0.5;
-	q.m.MalusMultPerStack <- 0.05;
 
 	q.create = @(__original) function()
 	{
@@ -21,18 +20,33 @@
 			icon = "ui/icons/regular_damage.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Receive " + ::MSU.Text.colorRed(this.getDamage()) + " damage per [turn|Concept.Turn]")
 		});
-		ret.push({
-			id = 11,
-			type = "text",
-			icon = "ui/icons/bravery.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.getMalusMult()) + " less [Resolve|Concept.Bravery]")
-		});
-		ret.push({
-			id = 12,
-			type = "text",
-			icon = "ui/icons/initiative.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.getMalusMult()) + " less [Initiative|Concept.Initiative]")
-		});
+
+		if (this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID())
+		{
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/bravery.png",
+				text = ::Reforged.Mod.Tooltips.parseString("[Initiative|Concept.Initiative] and [Resolve|Concept.Bravery] are reduced per stack, up to a maximum of " + ::MSU.Text.colorizeMult(this.m.MaxMalusMult) + ". The reduction per stack is more for characters with lower current [Hitpoints|Concept.Hitpoints]")
+			});
+		}
+		else
+		{
+			local malusMult = this.getMalusMult();
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/bravery.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(malusMult) + " less [Resolve|Concept.Bravery]")
+			});
+			ret.push({
+				id = 12,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(malusMult) + " less [Initiative|Concept.Initiative]")
+			});
+		}
+
 		ret.push({
 			id = 13,
 			type = "text",
@@ -54,7 +68,7 @@
 
 	q.getMalusMult <- function()
 	{
-		return 1.0 - ::Math.minf(this.m.MaxMalusMult, this.m.Stacks * this.m.MalusMultPerStack);
+		return 1.0 - ::Math.minf(this.m.MaxMalusMult, 5 * this.m.Stacks.tofloat() / this.getContainer().getActor().getHitpoints());
 	}
 
 	q.getDamage <- function()
