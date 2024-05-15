@@ -571,24 +571,7 @@
 		Name = ::Const.Strings.PerkName.RF_WeaponMaster,
 		Tooltip = ::Const.Strings.PerkDescription.RF_WeaponMaster,
 		Icon = "ui/perks/rf_weapon_master.png",
-		IconDisabled = "ui/perks/rf_weapon_master_bw.png",
-		function verifyPrerequisites( _player, _tooltip )
-		{
-			foreach (s in _player.getSkills().m.Skills)
-			{
-				local id = s.getID();
-				if (!s.isGarbage() && id != "perk.mastery.bow" && id != "perk.mastery.crossbow" && id != "perk.mastery.polearm" && id.find("perk.mastery.") != null)
-					return true;
-			}
-
-			_tooltip.push({
-				id = 3,
-				type = "hint",
-				icon = "ui/icons/icon_locked.png",
-				text = "Locked until at least one melee weapon mastery perk other than Polearm Mastery is picked"
-			});
-			return false;
-		}
+		IconDisabled = "ui/perks/rf_weapon_master_bw.png"
 	},
 	{
 		ID = "perk.rf_bully",
