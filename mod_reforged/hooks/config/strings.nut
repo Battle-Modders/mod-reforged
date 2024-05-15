@@ -2063,7 +2063,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The bonuses of [Swordmaster\'s Finesse|Skill+rf_swordmasters_finesse_effect] are doubled."
+				"Gain " + ::MSU.Text.colorGreen("+1") + " [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense] and " + ::MSU.Text.colorGreen("+1%") + " additional damage ignoring armor per character level.",
 				"While wielding a fencing type sword an additional " + ::MSU.Text.colorGreen("25%") + " of damage ignores armor."
 			]
 		}],
