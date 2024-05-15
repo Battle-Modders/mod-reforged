@@ -47,7 +47,15 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (this.m.IsPerformingExtraAttack)
-			_properties.DamageTotalMult *= this.m.DamageTotalMult;
+		{
+			// We don't apply our damage reduction for the extra attack during the Flail Spinner attack. This solves the issue of double-dipping
+			// damage reduction for when both this perk and Flail Spinner trigger during an attack for entities not visible to the player
+			local flailSpinner = this.getContainer().getSkillByID("perk.rf_flail_spinner")
+			if (flailSpinner == null || !flailSpinner.m.IsSpinningFlail)
+			{
+				_properties.DamageTotalMult *= this.m.DamageTotalMult;
+			}
+		}
 
 		local weapon = _skill.getItem();
 		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.TwoHanded) && this.isSkillValid(_skill))
