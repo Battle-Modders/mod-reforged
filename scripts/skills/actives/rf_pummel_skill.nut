@@ -35,7 +35,7 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed(this.m.RequiredWeaponType == null ? "Requires an attack that exerts zone of control" : "Requires a two-handed " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower())
+				text = ::MSU.Text.colorRed(this.m.RequiredWeaponType == null ? "Requires an attack that exerts zone of control" : "Requires an attack from a two-handed " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower())
 			});
 		}
 		else
@@ -46,21 +46,21 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString(format("Perform a free [%s|Skill+%s] on the target", attack.getName(), split(::IO.scriptFilenameByHash(attack.ClassNameHash), "/").top()))
 			});
-
-			ret.push({
-				id = 11,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, [stagger|Skill+staggered_effect] the target")
-			});
-
-			ret.push({
-				id = 12,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, automatically use [Line Breaker|Skill+line_breaker] for free on the target")
-			});
 		}
+
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, [stagger|Skill+staggered_effect] the target")
+		});
+
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, automatically use [Line Breaker|Skill+line_breaker] for free on the target")
+		});
 
 		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
 		{
