@@ -42,7 +42,7 @@ this.rf_cheap_trick_skill <- ::inherit("scripts/skills/skill", {
 			ret.push({
 				id = 11,
 				type = "text",
-				icon = "ui/icons/damage_regular.png",
+				icon = "ui/icons/regular_damage.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizeMult(this.m.DamageRegularMult ) + " less damage with your next attack"),
 			});
 		}
