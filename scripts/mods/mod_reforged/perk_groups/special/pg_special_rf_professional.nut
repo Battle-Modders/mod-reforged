@@ -12,13 +12,13 @@ this.pg_special_rf_professional <- ::inherit(::DynamicPerks.Class.SpecialPerkGro
 		this.m.Chance = 0;
 		this.m.Trees = {
 			"default": [
+				["perk.rf_professional"],
 				[],
 				[],
 				[],
 				[],
 				[],
-				[],
-				["perk.rf_professional"]
+				[]
 			]
 		};
 	}
