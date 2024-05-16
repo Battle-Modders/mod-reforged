@@ -6,6 +6,8 @@
 			"pg.rf_vigorous": 0.5,
 			"pg.rf_unstoppable": 0,
 			"pg.rf_vicious": 0,
+
+			"pg.special.rf_leadership": -1
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
@@ -13,9 +15,7 @@
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [],
-				"pgc.rf_shared_1": [
-					"pg.special.rf_leadership"
-				],
+				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [],
 				"pgc.rf_armor": [
 					"pg.rf_light_armor",
