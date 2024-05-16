@@ -92,7 +92,7 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 	{
 		foreach (item in _items)
 		{
-			if (_item != null && _item.getSlotType() == ::Const.ItemSlot.Mainhand)
+			if (item != null && item.getSlotType() == ::Const.ItemSlot.Mainhand)
 			{
 				this.m.Stacks = 0;
 				return;
