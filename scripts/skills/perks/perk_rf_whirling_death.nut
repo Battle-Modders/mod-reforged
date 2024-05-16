@@ -57,12 +57,15 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		local weapon = _skill.getItem();
-		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.TwoHanded) && this.isSkillValid(_skill))
+		if (_targetEntity != null && this.isSkillValid(_skill))
 		{
-			local reachDiff = this.getContainer().getActor().getCurrentProperties().getReach() - _targetEntity.getCurrentProperties().getReach();
-			if (reachDiff > 0)
-				_properties.HitChance[::Const.BodyPart.Head] += reachDiff * this.m.ChanceToHitHeadPerReachDiff;
+			local weapon = _skill.getItem();
+			if (weapon != null && weapon.isItemType(::Const.Items.ItemType.TwoHanded))
+			{
+				local reachDiff = this.getContainer().getActor().getCurrentProperties().getReach() - _targetEntity.getCurrentProperties().getReach();
+				if (reachDiff > 0)
+					_properties.HitChance[::Const.BodyPart.Head] += reachDiff * this.m.ChanceToHitHeadPerReachDiff;
+			}
 		}
 	}
 
