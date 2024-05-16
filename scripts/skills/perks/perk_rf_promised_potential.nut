@@ -66,7 +66,7 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 					"pgc.rf_weapon"
 				];
 
-				local exclude = ["pg.rf_talented", "pg.rf_tactician"];
+				local exclude = ["pg.rf_tactician"];
 
 				foreach (categoryID in categories)
 				{

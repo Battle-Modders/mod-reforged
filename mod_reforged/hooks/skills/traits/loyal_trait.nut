@@ -2,9 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_devious": 0.5
-		};
+		this.m.PerkTreeMultipliers = {};
 	}
 
 	q.getTooltip = @(__original) function()
