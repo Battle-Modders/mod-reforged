@@ -76,7 +76,11 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 			this.m.Stacks++;
 
 			if (::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
-				this.doExtraAttack(_skill, _targetTile);
+			{
+				local weapon = _skill.getItem();
+				if (weapon == null || weapon.isItemType(::Const.Items.ItemType.OneHanded))
+					this.doExtraAttack(_skill, _targetTile);
+			}
 		}
 	}
 
