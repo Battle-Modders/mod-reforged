@@ -59,7 +59,7 @@ this.rf_encourage_skill <- this.inherit("scripts/skills/skill", {
 
 		local target = _targetTile.getEntity();
 		local actor = this.getContainer().getActor();
-		return actor.getFaction() == target.getFaction() && target.getMoraleState() < actor.getMoraleState() && this.__canbeEncouraged(target);
+		return actor.getFaction() == target.getFaction() && target.getMoraleState() < actor.getMoraleState() && this.__canBeEncouraged(target);
 	}
 
 	function onUse( _user, _targetTile )
