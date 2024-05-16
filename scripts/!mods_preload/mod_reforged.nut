@@ -19,7 +19,7 @@ local requiredMods = [
 	"dlc_wildmen",
 	"dlc_desert",
 	"dlc_paladins",
-	"mod_dynamic_perks >= 0.2.3"
+	"mod_dynamic_perks >= 0.2.4"
 	"mod_dynamic_spawns >= 0.3.3",
 	"mod_item_tables >= 0.1.1",
 	"mod_upd",
