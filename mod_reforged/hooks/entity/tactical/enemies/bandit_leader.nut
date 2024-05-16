@@ -35,7 +35,9 @@
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
     		o.m.IsForceEnabled = true;
     	}));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rally_the_troops"));
+		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rally_the_troops", function(o) {
+			o.m.Cooldown = 3;
+		}));
 	}
 
 	q.assignRandomEquipment = @() function()
