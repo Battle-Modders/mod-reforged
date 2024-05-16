@@ -910,7 +910,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Once per [turn|Concept.Turn], making a kill reduces current [Fatigue|Concept.Fatigue] by " + ::MSU.Text.colorGreen("15%") + " of [Base|Concept.BaseAttribute] [Maximum Fatigue|Concept.MaximumFatigue]."
+				"Once per [turn|Concept.Turn], killing an opponent reduces current [Fatigue|Concept.Fatigue] by " + ::MSU.Text.colorGreen("15%") + " of [Base|Concept.BaseAttribute] [Maximum Fatigue|Concept.MaximumFatigue]."
 			]
 		}]
  	}),
@@ -1072,7 +1072,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
  	}),
  	RF_Combo = ::UPD.getDescription({
- 		Fluff = "The good old one-two.",
+ 		Fluff = "The good ole' one-two.",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -2194,7 +2194,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Immediately after making a kill, if you move into the tile of the killed target, the [Action Point|Concept.ActionPoints] cost of the next skill used is " + ::MSU.Text.colorGreen("halved") + "."
+					"Immediately upon killing an opponent, if you move into the tile of the killed target, the [Action Point|Concept.ActionPoints] cost of the next skill used is " + ::MSU.Text.colorGreen("halved") + "."
 				]
 			},
 	 		{
