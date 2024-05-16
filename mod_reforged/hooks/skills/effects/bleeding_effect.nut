@@ -71,7 +71,7 @@
 		return 1.0 - ::Math.minf(this.m.MaxMalusMult, 5 * this.m.Stacks.tofloat() / this.getContainer().getActor().getHitpoints());
 	}
 
-	q.getDamage <- function()
+	q.getDamage = @() function()
 	{
 		local ret = this.getContainer().hasSkill("trait.bleeder") ? this.m.Stacks * 2 : 1;
 		return this.getContainer().hasSkill("effects.hyena_potion") ? ::Math.floor(ret * 0.5) : ret;
