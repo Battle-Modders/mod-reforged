@@ -2,6 +2,7 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 	m = {
 		// Config
 		ResolveModifier = 15,	// Gained with 1+ stacks
+		InitiativeModifier = 15, // Gained with 1+ stacks
 		FatigueCostMult = 0.85,		// Gained with 2+ stacks
 		DamageMult = 1.15,		// Gained with 3+ stacks
 		AttractionMult = 1.1,	// Gained with 3+ stacks
@@ -49,11 +50,22 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
+		local initiativeModifier = this.getInitiativeModifier();
+		if (initiativeModifier != 0)
+		{
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(initiativeModifier) + " [Initiative|Concept.Initiative]")
+			});
+		}
+
 		local fatigueMult = this.getFatigueMult();
 		if (fatigueMult != 1.0)
 		{
 			ret.push({
-				id = 11,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorizeMult(fatigueMult, {InvertColor = true}) + " less [Fatigue|Concept.Fatigue]")
@@ -64,7 +76,7 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 		if (damageMult != 1.0)
 		{
 			ret.push({
-				id = 12,
+				id = 13,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
 				text = "Deal " + ::MSU.Text.colorizeMult(damageMult) + " more damage"
@@ -123,6 +135,11 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 	function getResolveModifier()
 	{
 		return this.m.Stacks >= 1 ? this.m.ResolveModifier : 0;
+	}
+
+	function getInitiativeModifier()
+	{
+		return this.m.Stacks >= 1 ? this.m.InitiativeModifier : 0;
 	}
 
 	function getFatigueMult()
