@@ -2,6 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
+		this.m.StaminaModifier = -9; // Vanilla is -10.
 		this.m.Condition = 80;
 		this.m.ConditionMax = 80;
 	}
