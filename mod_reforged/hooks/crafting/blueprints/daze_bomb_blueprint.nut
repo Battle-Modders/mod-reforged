@@ -1,4 +1,4 @@
-::Reforged.HooksMod.hook("scripts/items/crafting/blueprints/daze_bomb_blueprint", function(q) {
+::Reforged.HooksMod.hook("scripts/crafting/blueprints/daze_bomb_blueprint", function(q) {
 	q.onCraft = @(__original) function( _stash )
 	{
 		__original(_stash);
