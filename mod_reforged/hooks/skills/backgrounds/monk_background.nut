@@ -6,6 +6,7 @@
 			"pg.rf_vigorous": 0.5,
 			"pg.rf_unstoppable": 0,
 			"pg.rf_vicious": 0,
+			"pg.rf_heavy_armor": 0.5,
 
 			"pg.special.rf_leadership": -1
 		};
@@ -17,10 +18,7 @@
 				"pgc.rf_exclusive_1": [],
 				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [],
-				"pgc.rf_armor": [
-					"pg.rf_light_armor",
-					"pg.rf_medium_armor"
-				],
+				"pgc.rf_armor": [],
 				"pgc.rf_fighting_style": []
 			}
 		});
