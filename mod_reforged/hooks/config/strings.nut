@@ -1259,7 +1259,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Whenever an opponent misses a Melee attack against you, gain " + ::MSU.Text.colorGreen("+10%") + " chance to hit against them, or ignore their shield, whichever is greater, for your next attack."
-				"Unlocks the [Riposte|Skill+riposte] skill on southern curved swords such as the [Shamshir|Item+shamshir], [Saif|Item+saif], and [Scimitar|Item+scimitar]."
 			]
 		}]
  	}),
