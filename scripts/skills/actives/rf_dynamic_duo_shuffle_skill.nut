@@ -32,7 +32,7 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 		local ret = this.skill.getDefaultUtilityTooltip();
 
 		local actor = this.getContainer().getActor();
-		local partner = this.m.DynamicDuoPerk.getPartner();
+		local partner = ::MSU.isNull(this.m.DynamicDuoPerk) ? null : this.m.DynamicDuoPerk.getPartner();
 
 		if (::MSU.isNull(partner))
 		{
