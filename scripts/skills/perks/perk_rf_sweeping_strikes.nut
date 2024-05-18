@@ -36,7 +36,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 		local enemyList = [];
 		foreach (entity in this.m.TargetsAffected)
 		{
-			if (entity.isAlive())
+			if (!::MSU.isNull(entity) && entity.isAlive())
 			{
 				enemyList.push({
 					id = 10,
