@@ -162,7 +162,7 @@ this.rf_mentors_presence_effect <- ::inherit("scripts/skills/skill", {
 
 	function onTurnStart()
 	{
-		if (::MSU.isNull(this.m.Mentor) || this.m.Mentor.getMoraleState() == ::Const.MoraleState.Fleeing)
+		if (::MSU.isNull(this.m.Mentor) || this.m.Mentor.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing)
 			return;
 
 		local actor = this.getContainer().getActor();
