@@ -66,6 +66,19 @@ foreach (requirement in requiredMods)
 			__original(_killer, _skill, _tile, _fatalityType);
 		}
 	});
+
+	::Reforged.HooksMod.hook("scripts/items/shields/shield", function(q) {
+		// Hook the vanilla function so that ShieldExpert does not reduce damage to shields.
+		// We do this in Early bucket so that subsequent hooks on this function are not affected
+		q.applyShieldDamage = @(__original) function( _damage, _playHitSound = true )
+		{
+			// We double the damage because ShieldExpert reduces it by half
+			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields)
+				_damage *= 2;
+
+			__original(_damage, _playHitSound);
+		}
+	});
 }, ::Hooks.QueueBucket.Early);
 
 ::Reforged.HooksMod.queue(queueLoadOrder, function() {
