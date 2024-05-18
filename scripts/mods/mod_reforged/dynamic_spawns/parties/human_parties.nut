@@ -95,8 +95,8 @@ local parties = [
 		],
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.17, RatioMax = 0.20, ReqPartySize = 6 },      // Vanilla: Second Donkey starts spawning at 7+
-			{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.35, RatioMax = 0.80 },
-			{ BaseID = "UnitBlock.RF.CaravanGuard", RatioMin = 0.15, RatioMax = 0.55 }
+			{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.35, RatioMax = 0.80, DeterminesFigure = false },
+			{ BaseID = "UnitBlock.RF.CaravanGuard", RatioMin = 0.15, RatioMax = 0.55, DeterminesFigure = false }
 		]
 	},
 	{
@@ -112,7 +112,7 @@ local parties = [
 		],
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.15, RatioMax = 0.35, ReqPartySize = 5 },   // Vanilla: Third donkey spawns at 6+
-			{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.50, RatioMax = 1.00 }
+			{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.50, RatioMax = 1.00, DeterminesFigure = false }
 		]
 	}
 ]
