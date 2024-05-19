@@ -107,7 +107,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 			return;
 
 		local actor = this.getContainer().getActor();
-		if (actor.isPlacedOnMap() && _killer.getID() == actor.getID() && ::Tactical.TurnSequenceBar.isActiveEntity(actor) && actor.getTile().getDistanceTo(_deathTile) == 1)
+		if (actor.isPlacedOnMap() && _killer != null && _killer.getID() == actor.getID() && ::Tactical.TurnSequenceBar.isActiveEntity(actor) && actor.getTile().getDistanceTo(_deathTile) == 1)
 			this.m.ValidTiles.push(_deathTile);
 	}
 

@@ -51,7 +51,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 
 	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )
 	{
-		if (_deathTile != null && _killer.getID() == this.getContainer().getActor().getID() && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		if (_deathTile != null && _killer != null && _killer.getID() == this.getContainer().getActor().getID() && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 			this.m.ValidTiles.push(_deathTile);
 	}
 
