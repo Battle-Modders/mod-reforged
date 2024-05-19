@@ -42,7 +42,7 @@ this.perk_rf_family_pride <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.NegativeMoraleCheckBraveryMult *= this.m.BraveryMult;
+		// _properties.NegativeMoraleCheckBraveryMult *= this.m.BraveryMult;
 	}
 
 	function onCombatStarted()
