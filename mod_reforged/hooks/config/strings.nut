@@ -2112,8 +2112,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	 		{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Your [Initiative|Concept.Initiative] is considered " + ::MSU.Text.colorGreen("50%") + " higher for calculating your [turn order|Concept.Turn].",
-					"Every hit or miss against a target who acts after you in the current round increases your [Initiative|Concept.Initiative] by " + ::MSU.Text.colorGreen("+15") + ". This bonus lasts over into your next [turn|Concept.Turn] but only until the first skill used or waiting that [turn|Concept.Turn].",
+					"Every hit or miss against any target increases your [Initiative|Concept.Initiative] by " + ::MSU.Text.colorGreen("+15") + ". This bonus lasts over into your next [turn|Concept.Turn] but only until the first skill used or waiting that [turn|Concept.Turn].",
 					"The first two hits against opponents who act after you in the current [round|Concept.Round] recover " + ::MSU.Text.colorGreen("2") + " [Action Points|Concept.ActionPoints] each. Missed attacks or attacks against invalid targets increment the counter, but do not recover any [Action Points|Concept.ActionPoints].",
 				]
 			}

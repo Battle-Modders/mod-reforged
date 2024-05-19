@@ -2,7 +2,6 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredWeaponType = ::Const.Items.WeaponType.Sword,
 		BonusInitiative = 15,
-		InitiativeForTurnOrderMult = 1.5,
 		Stacks = 0,
 		HasCarriedOverInitiative = false, // Is used to carry over initiative bonus from one turn to the next
 		APRecovery = 2,
@@ -79,7 +78,7 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 			this.m.HasCarriedOverInitiative = false;
 		}
 
-		if (!_skill.isAttack() || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()) || _targetEntity.isTurnDone() || _targetEntity.isTurnStarted())
+		if (!_skill.isAttack() || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 		{
 			return;
 		}
@@ -150,7 +149,6 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 		}
 
 		_properties.Initiative += this.getBonus();
-		_properties.InitiativeForTurnOrderMult *= this.m.InitiativeForTurnOrderMult;
 	}
 
 	function onTurnStart()
