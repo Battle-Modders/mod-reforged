@@ -10,7 +10,6 @@
 		this.weapon.onEquip();
 
 		this.addSkill(::MSU.new("scripts/skills/actives/bash", function(o) {
-			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 3;
 		}));
 
