@@ -564,7 +564,7 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
 					"Skills build up [color=" + ::Const.UI.Color.NegativeValue + "]25%[/color] less Fatigue.",
-					"Gain the [From all Sides|Perk+rf_from_all_sides] perk.",
+					"Gain the [From all Sides|Perk+perk_rf_from_all_sides] perk.",
 					"Pound ignores an additional [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] of armor on head hits.",
 					"Thresh gains [color=" + ::Const.UI.Color.PositiveValue + "]+5%[/color] chance to hit.",
 					"Poleflails no longer have a penalty for attacking targets directly adjacent."
@@ -1621,7 +1621,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorRed("30%") + " and to Armor by " + ::MSU.Text.colorRed("20%") + ".",
 				"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 35.",
-				"When attacking a target against whom you have a [Reach Disadvantage|Concept.ReachAdvantage], reduce this disadvantage by " + ::MSU.Text.colorGreen(1) + " if your [Concept.Initiative] is higher than that of your target."
+				"When attacking a target against whom you have a [Reach Disadvantage|Concept.ReachAdvantage], reduce this disadvantage by " + ::MSU.Text.colorGreen(1) + " if your [Initiative|Concept.Initiative] is higher than that of your target."
 				"[Brawny|Perk+perk_brawny] does not affect this perk.",
 				"Cannot be picked if you have [Nimble|Perk+perk_nimble]."
 			]

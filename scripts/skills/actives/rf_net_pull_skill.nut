@@ -55,7 +55,7 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorGreen("100%") " chance to [stagger|Skill+staggered_effect] on a hit")
+			text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorGreen("100%") + " chance to [stagger|Skill+staggered_effect] on a hit")
 		});
 		return ret;
 	}
