@@ -564,6 +564,7 @@ local vanillaDescriptions = [
  				Type = ::UPD.EffectType.Passive,
  				Description = [
 					"Skills build up [color=" + ::Const.UI.Color.NegativeValue + "]25%[/color] less Fatigue.",
+					"[Lash|Skill+lash_skill] and [Hail|Skill+hail_skill] ignore the defense bonus of shields.",
 					"Gain the [From all Sides|Perk+perk_rf_from_all_sides] perk.",
 					"Pound ignores an additional [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] of armor on head hits.",
 					"Thresh gains [color=" + ::Const.UI.Color.PositiveValue + "]+5%[/color] chance to hit.",
