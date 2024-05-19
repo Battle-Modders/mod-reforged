@@ -1,7 +1,5 @@
 this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
-	m = {
-		MyVariant = 0
-	},
+	m = {},
 	function create()
 	{
 		this.m.Type = ::Const.EntityType.RF_BanditPillager;
@@ -37,11 +35,6 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
-
-		if (::Math.rand(1, 100) <= 20)
-		{
-			this.m.MyVariant = 1; // Shield
-		}
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )
@@ -54,33 +47,15 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon;
-			if (this.m.MyVariant == 0) // Two Handed
-			{
-				weapon = ::MSU.Class.WeightedContainer([
-					[1, "scripts/items/weapons/goedendag"],
-					[1, "scripts/items/weapons/two_handed_mace"],
-					[1, "scripts/items/weapons/two_handed_wooden_flail"],
-					[1, "scripts/items/weapons/two_handed_wooden_hammer"],
-					[1, "scripts/items/weapons/woodcutters_axe"]
-  				]).roll();
-			}
-			else // Shield
-			{
-				weapon = ::MSU.Class.WeightedContainer([
-					[1, "scripts/items/weapons/hand_axe"],
-					[1, "scripts/items/weapons/flail"],
-					[1, "scripts/items/weapons/military_pick"],
-					[1, "scripts/items/weapons/morning_star"]
-  				]).roll();
-			}
+			local weapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/goedendag"],
+				[1, "scripts/items/weapons/two_handed_mace"],
+				[1, "scripts/items/weapons/two_handed_wooden_flail"],
+				[1, "scripts/items/weapons/two_handed_wooden_hammer"],
+				[1, "scripts/items/weapons/woodcutters_axe"]
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
-		}
-
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && this.m.MyVariant == 1) // Shield
-		{
-			this.m.Items.equip(::new("scripts/items/shields/wooden_shield"))
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
@@ -117,11 +92,6 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 		if (mainhandItem != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
-		}
-
-		if (this.m.MyVariant == 1) // Shield
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
 		}
 	}
 });
