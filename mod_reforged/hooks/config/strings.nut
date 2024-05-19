@@ -1747,9 +1747,9 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Every time an opponent attacks you or you attack an opponent, gain stacking " + ::MSU.Text.colorGreen("+3") + "[Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense] against that opponent for the remainder of the combat.",
+				"Every time an opponent attacks you or you attack an opponent, gain a stacking " + ::MSU.Text.colorGreen("+3") + " [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense] against that opponent for the remainder of the combat.",
 				"Once the total bonus reaches " + ::MSU.Text.colorGreen(15) + ", all subsequent attacks increase it by " + ::MSU.Text.colorGreen("+1") + " only.",
-				"Only works with dealing or receiving melee attacks."
+				"Only works when dealing or receiving melee attacks."
 			]
 		}]
  	}),
