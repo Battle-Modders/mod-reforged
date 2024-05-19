@@ -233,6 +233,7 @@ local vanillaDescriptions = [
 		ID = "perk.rotation",
 		Key = "Rotation",
 		Description = ::UPD.getDescription({
+			Fluff = "And they say mercenaries can\'t dance.",
 	 		Effects = [{
  				Type = ::UPD.EffectType.Active,
  				Description = [
@@ -260,6 +261,7 @@ local vanillaDescriptions = [
 		ID = "perk.footwork",
 		Key = "Footwork",
 		Description = ::UPD.getDescription({
+			Fluff = "Slip right from an opponent\'s grasp!",
 			Effects = [
 				{
 					Type = ::UPD.EffectType.Active,
@@ -321,6 +323,7 @@ local vanillaDescriptions = [
 		ID = "perk.bags_and_belts",
 		Key = "BagsAndBelts",
 		Description = ::UPD.getDescription({
+			Fluff = "Preparedness is the key to victory.",
 	 		Effects = [{
  				Type = ::UPD.EffectType.Passive,
  				Description = [
@@ -334,6 +337,7 @@ local vanillaDescriptions = [
 		ID = "perk.taunt",
 		Key = "Taunt",
 		Description = ::UPD.getDescription({
+			Fluff = "Look at this filly fiddler!",
 	 		Effects = [{
  				Type = ::UPD.EffectType.Active,
  				Description = [
@@ -827,6 +831,33 @@ local vanillaDescriptions = [
  			}]
 	 	}),
 	},
+	{
+		ID = "perk.nine_lives",
+		Key = "NineLives",
+		Description = ::UPD.getDescription({
+			Fluff = "Curiosity may have killed the cat but it sure took awhile.",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"Once per battle, upon receiving a killing blow, survive instead with a few hitpoints left and have all damage over time effects (e.g. bleeding, poisoned) cured.",
+					"When this effect triggeres, gain increased stats until your next turn"
+				]
+ 			}]
+	 	})
+	},
+	{
+		ID = "perk.brawny",
+		Key = "Brawny",
+		Description = ::UPD.getDescription({
+			Fluff = "Wear your armor like a tortoise wears its shell.",
+	 		Effects = [{
+ 				Type = ::UPD.EffectType.Passive,
+ 				Description = [
+					"The fatigue and initiative penalty from wearing armor and helmet is reduced by [color=" + ::Const.UI.Color.NegativeValue + "]30%[/color]."
+				]
+ 			}]
+	 	})
+	}
 ];
 
 foreach (vanillaDesc in vanillaDescriptions)
@@ -984,6 +1015,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
 	}),
 	RF_CalculatedStrikes = ::UPD.getDescription({
+		Fluff = "Take your time and strike true!",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -993,6 +1025,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}],
 	}),
 	RF_CheapTrick = ::UPD.getDescription({
+		Fluff = "Fighting dirty? We call that winning.",
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
@@ -1094,7 +1127,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
  	}),
 	RF_Cull = ::UPD.getDescription({
- 		Fluff = "A strike to the head from this character means goodnight!",
+ 		Fluff = "Cull the weak!",
  		Requirement = "Axe",
  		Effects = [
 	 		{
@@ -1201,7 +1234,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
  	}),
 	RF_DoubleStrike = ::UPD.getDescription({
- 		Fluff = "Here, take another one!",
+ 		Fluff = "Here, have another!",
  		Requirement = "Melee Attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
