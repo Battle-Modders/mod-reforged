@@ -116,7 +116,7 @@
 
 			if (this.m.IsStunningFromPoise)
 			{
-				if ("StunChance" in this.m)
+				if (::MSU.isIn("StunChance", this.m))
 				{
 					this.m.StunChance = 0;	// Skills that now use the Composure system should no longer use the StunChance
 				}
@@ -162,13 +162,15 @@
 
 	q.onUse = @(__original) function( _user, _targetTile )
 	{
-		local actor = this.getContainer().getActor();
 		if (this.m.IsStunningFromPoise)
 		{
+			local actor = this.getContainer().getActor();
+
 			local oldMaceSpec = actor.getCurrentProperties().IsSpecializedInMaces;
 			actor.getCurrentProperties().IsSpecializedInMaces = false;	// This will disable all vanilla StunChance based stuns
 			local ret = __original(_user, _targetTile);
 			actor.getCurrentProperties().IsSpecializedInMaces = oldMaceSpec;
+
 			return ret;
 		}
 		else

@@ -1,6 +1,8 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
+	// Private
 	q.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
 	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
+	q.m.InversePoise <- 0;			// This is the inverse of Poise and counts upwards instead of downwards as Poise damage is received
 
 	q.isDisarmed <- function()
 	{
@@ -221,6 +223,28 @@
 	}
 
 // New Functions:
+/*
+Internally we calculate the current threshold inversely. That makes it much cleaner in code to handle increases and reduction of PoiseMax.
+Our intended behavior is that a change in PoiseMax also changes the Poise of that character by the same amount:
+
+The PoiseMax is purely handled in the Properties while the current Poise is handled in this skill.
+It is much cleaner when a change to PoiseMax can solely focus on changing variables in Properties.
+*/
+	q.getPoise <- function()
+	{
+		return this.getCurrentProperties().getPoiseMax() - this.m.InversePoise;
+	}
+
+	q.addPoise <- function( _additionalPoise )
+	{
+		this.m.InversePoise -= _additionalPoise;
+	}
+
+	q.resetPoise <- function()
+	{
+		this.m.InversePoise = 0;
+	}
+
 	q.getSurroundedBonus <- function( _targetEntity )
 	{
 		local surroundedCount = _targetEntity.getSurroundedCount();

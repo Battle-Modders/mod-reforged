@@ -1,18 +1,7 @@
-/*
-Internally we calculate the current threshold inversely. That makes it much cleaner in code to handle increases and reduction of PoiseMax.
-Our intended behavior is that a change in PoiseMax also changes the Poise of that character by the same amount:
-
-The PoiseMax is purely handled in the Properties while the current Poise is handled in this skill.
-It is much cleaner when a change to PoiseMax can solely focus on changing variables in Properties.
-*/
-
 this.rf_poise_effect <- ::inherit("scripts/skills/skill", {
 	m = {
 		// Config
 		HeadshotMult = 1.5,	// multiplier for incoming poise damage on a hit to the head (unless steelbrow was learned)
-
-		// Private
-		InversePoise = 0,	// This is the inverse of Poise and counts upwards instead of downwards as Poise damaged is received
 	},
 
 	function create()
@@ -29,63 +18,48 @@ this.rf_poise_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = false;
 	}
 
-	function getTooltip()
-	{
-		local tooltip = this.skill.getTooltip();
-		return tooltip;
-	}
-
 	function getName()
 	{
 		if (::MSU.isNull(this.getContainer())) return this.m.Name;
 
-		local properties = this.getContainer().getActor().getCurrentProperties();
-		local suffix = properties.IsImmuneToStunFromPoise ? " (Immune)" : " (" + this.getPoise(properties) + " / " + properties.getPoiseMax() + ")";
+		local actor = this.getContainer().getActor();
+		local properties = actor.getCurrentProperties();
+		local suffix = properties.IsImmuneToStunFromPoise ? " (Immune)" : " (" + actor.getPoise() + " / " + properties.getPoiseMax() + ")";
 
 		return this.m.Name + suffix;
 	}
 
 	function onTurnStart()
 	{
-		this.resetPoise();
+		this.getContainer().getActor().resetPoise();
 	}
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
 		if (_skill == null || !_skill.m.IsDamagingPoise) return;
 
-		local attackPower = this.calculatePoiseDamage(_attacker, _skill, _hitInfo.BodyPart == ::Const.BodyPart.Head);
+		local attackPower = this.__calculatePoiseDamage(_attacker, _skill, _hitInfo.BodyPart == ::Const.BodyPart.Head);
 		if (attackPower == 0) return;
 
 		this.onPoiseDamageReceived(_attacker, _skill, attackPower, true, _properties);
 	}
 
 // New Functions
-	function getPoise( _properties = null )
-	{
-		if (_properties == null) _properties = this.getContainer().getActor().getCurrentProperties();
-
-		return _properties.getPoiseMax() - this.m.InversePoise;
-	}
-
-	function resetPoise()
-	{
-		this.m.InversePoise = 0;
-	}
-
+	// Is called automatically when receiving attacks which damage poise
 	// Can be called manually from the outside, e.g. by charge skills that do not use attacks
-	// Returns the amount of turns that the target was stunned. Can be used to apply other effects/behaviors when called manually
+	// Returns the amount of turns that the target was stunned, so it can be used to additionally apply other effects/behaviors when called manually
 	function onPoiseDamageReceived( _attacker, _skill, _attackPower, _printLog = true, _properties = null )
 	{
-		this.m.InversePoise += _attackPower;
+		local actor = this.getContainer().getActor();
+		actor.addPoise(-1 * _attackPower);
 
 		local turnsStunned = 0;
-		if (_skill.m.IsStunningFromPoise)
+		if (_skill != null && _skill.m.IsStunningFromPoise)
 		{
-			if (_properties == null) _properties = this.getContainer().getActor().getCurrentProperties();
+			if (_properties == null) _properties = actor.getCurrentProperties();
 
-			turnsStunned = this.calculateTurnsStunned(_properties.getPoiseMax());
-			if (turnsStunned == 0) return;
+			turnsStunned = this.__calculateTurnsStunned(_properties.getPoiseMax());
+			if (turnsStunned == 0) return 0;
 
 			local stunnedEffect = this.getContainer().getSkillByID("effects.stunned");
 			if (stunnedEffect == null)
@@ -97,46 +71,47 @@ this.rf_poise_effect <- ::inherit("scripts/skills/skill", {
 			stunnedEffect.setTurns(turnsStunned);
 			if (_printLog)
 			{
-				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_attacker) + " has stunned " + ::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " for " + ::MSU.Text.colorGreen(turnsStunned) + " turn");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_attacker) + " has stunned " + ::Const.UI.getColorizedEntityName(actor) + " for " + ::MSU.Text.colorGreen(turnsStunned) + " turn");
 			}
 
-			this.resetPoise();
+			this.getContainer().getActor().resetPoise();
 		}
 
 		return turnsStunned;
 	}
 
-	// Returns, for how long we are being stunned right now (1 parameter) or would be, if given a simulated attack power
-	function calculateTurnsStunned( _PoiseMax, _simulatedAttackPower = 0 )	// _simulatedAttackPower is only used here when simulating whether something would stun
+	// Returns amount of turns that a target would be stunned. Is used for tooltips predicting this
+	function wouldStun( _attacker, _skill, _bodyPart)
 	{
-		if (this.m.ReversePoise + _simulatedAttackPower < _PoiseMax) return 0;
-		if (this.m.ReversePoise + _simulatedAttackPower < (_PoiseMax * 2)) return 1;
+		local poiseDamage = this.__calculatePoiseDamage(_attacker, _skill, _bodyPart);
+		if (poiseDamage == 0) return 0;
+
+		local myProperties = this.getContainer().buildPropertiesForDefense(_attacker, _skill);
+		return this.__calculateTurnsStunned(myProperties.getPoiseMax(), poiseDamage);
+	}
+
+	// Returns, for how long we are being stunned right now (1 parameter) or would be, if given a simulated attack power
+	function __calculateTurnsStunned( _PoiseMax, _simulatedAttackPower = 0 )	// _simulatedAttackPower is only used here when simulating whether something would stun
+	{
+		local actor = this.getContainer().getActor();
+		if (actor.getPoise() - _simulatedAttackPower > 0) return 0;
+		if (actor.getPoise() - _simulatedAttackPower > -1 * _PoiseMax) return 1;
 		return 2;
 	}
 
-	function calculatePoiseDamage( _attacker, _skill, _isHeadshot)
+	function __calculatePoiseDamage( _attacker, _skill, _bodyPart)
 	{
 		if (!_skill.m.IsDamagingPoise) return 0;
 
 		local poiseDamage = _attacker.getSkills().buildPropertiesForUse(_skill, null).getPoiseDamage();
 		if (poiseDamage == 0) return;
 
-		if (_isHeadshot && !this.getContainer().hasSkill("perk.steel_brow"))
+		if (_bodyPart == ::Const.BodyPart.Head && !this.getContainer().hasSkill("perk.steel_brow"))
 		{
 			poiseDamage *= this.m.HeadshotMult;
 		}
 		poiseDamage = ::Math.floor(poiseDamage);
 
 		return poiseDamage;
-	}
-
-	// Returns amount of turns that a target would be stunned. Is used for tooltips predicting this
-	function wouldStun( _attacker, _skill, _isHeadshot)
-	{
-		local poiseDamage = this.calculatePoiseDamage(_attacker, _skill, _isHeadshot);
-		if (poiseDamage == 0) return 0;
-
-		local myProperties = this.getContainer().buildPropertiesForDefense(_attacker, _skill);
-		return this.calculateTurnsStunned(myProperties.getPoiseMax(), poiseDamage);
 	}
 });
