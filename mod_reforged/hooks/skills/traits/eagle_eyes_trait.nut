@@ -1,4 +1,4 @@
-::Reforged.HooksMod.hook("scripts/skills/traits/drunkard_trait", function(q) {
+::Reforged.HooksMod.hook("scripts/skills/traits/eagle_eyes_trait", function(q) {
 	q.create = @(__original) function()
 	{
 		__original();
