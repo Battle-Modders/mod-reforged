@@ -207,6 +207,23 @@
 		this.checkMorale(-1, difficulty);
 	}
 
+	q.onAttackOfOpportunity = @(__original) function( _entity, _isOnEnter )
+	{
+		local oldMovementType = _entity.m.CurrentMovementType;
+
+		local ret = __original(_entity, _isOnEnter);
+
+		if (ret && _isOnEnter)
+		{
+			// Any of those two flags will prevent spearwall-like ZOC checks from pushing the attacker back
+			if (_entity.getCurrentProperties().IsImmuneIsOnToEnterPushback || !this.getCurrentProperties().IsSpearwallPushingBack)
+			{
+				_entity.setCurrentMovementType(oldMovementType);
+				return false;	// The attack happend but we still don't return false so that hopefully the .exe backend will not push the incoming entity back
+			}
+		}
+	}
+
 // New Functions:
 	q.getSurroundedBonus <- function( _targetEntity )
 	{
