@@ -5,7 +5,7 @@
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_agile": 1.2,
 			"pg.rf_fast": 1.2,
-			"pg.rf_strong": 0.8,
+			"pg.rf_tough": 0.8,
 			"pg.rf_vigorous": 0.75,
 			"pg.special.student": 2
 		};

@@ -5,7 +5,7 @@
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_agile": 0.5,
 			"pg.rf_fast": 0.5,
-			"pg.rf_strong": 0.5,
+			"pg.rf_tough": 0.5,
 			"pg.special.rf_leadership": 0,
 			"pg.rf_vigorous": 0.5,
 			"pg.rf_tactician": 10,

@@ -4,7 +4,7 @@
 		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.special.rf_leadership": 0.5,
-			"pg.rf_strong": 0.5,
+			"pg.rf_tough": 0.5,
 			"pg.rf_unstoppable": 0.5
 		};
 

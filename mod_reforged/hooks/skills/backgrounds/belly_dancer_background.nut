@@ -6,7 +6,7 @@
 			"pg.rf_agile": 2,
 			"pg.rf_fast": 2,
 			"pg.special.rf_leadership": 0,
-			"pg.rf_strong": 0.66,
+			"pg.rf_tough": 0.66,
 			"pg.rf_vicious": 2,
 			"pg.rf_vigorous": 0.66,
 			"pg.rf_flail": 0.75,

@@ -1,4 +1,4 @@
-::DynamicPerks.TalentMultipliers.add(::Const.Attributes.Hitpoints, "pg.rf_strong", 1.2);
+::DynamicPerks.TalentMultipliers.add(::Const.Attributes.Hitpoints, "pg.rf_tough", 1.2);
 
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.Bravery, "pg.special.rf_leadership", 2.0);
 
@@ -15,7 +15,7 @@
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.MeleeSkill, "pg.rf_hammer", 1.15);
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.MeleeSkill, "pg.rf_mace", 1.15);
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.MeleeSkill, "pg.rf_polearm", 1.15);
-::DynamicPerks.TalentMultipliers.add(::Const.Attributes.MeleeSkill, "pg.rf_sword", 1.15);
+::DynamicPerks.TalentMultipliers.add(::Const.Attributes.MeleeSkill, "pg.rf_sword", 1.1);
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.MeleeSkill, "pg.rf_bow", 0.8);
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.MeleeSkill, "pg.rf_crossbow", 0.8);
 ::DynamicPerks.TalentMultipliers.add(::Const.Attributes.MeleeSkill, "pg.rf_ranged", 0.5);
