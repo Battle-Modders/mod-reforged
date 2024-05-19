@@ -26,7 +26,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		local partner = this.m.PartnerSkill.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || !partner.isPlacedOnMap() || !partner.getFaction() != actor.getFaction())
+		if (!actor.isPlacedOnMap() || !partner.isPlacedOnMap() || partner.getFaction() != actor.getFaction())
 			return false;
 
 		local myTile = actor.getTile();
