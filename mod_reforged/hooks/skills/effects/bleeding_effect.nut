@@ -32,7 +32,7 @@
 		}
 		else
 		{
-			local malusMult = this.getMalusMult();
+			local malusMult = ::Math.round(this.getMalusMult() * 100) / 100.0;
 			ret.push({
 				id = 11,
 				type = "text",
