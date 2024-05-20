@@ -1123,7 +1123,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Using any skill that costs [Action Points|Concept.ActionPoints], reduces the [Action Point|Concept.ActionPoints] cost of all other skills by " + ::MSU.Text.colorGreen("1") + " to a minimum of 3.",
 				"The effect refreshes with each skill used.",
-				"Using Wait causes the effect to expire."
+				"Using [Wait|Concept.Wait] causes the effect to expire."
 			]
 		}]
  	}),
@@ -1173,11 +1173,11 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain a stack whenever you end your [turn|Concept.Turn] without having used \'Wait\', up to a maximum of 3 stacks.",
+				"Gain a stack whenever you end your [turn|Concept.Turn] without having used [Wait|Concept.Wait], up to a maximum of 3 stacks.",
 				"Gain " + ::MSU.Text.colorGreen("+15") + " [Resolve|Concept.Bravery] and [Initiative|Concept.Initiative] while you have at least 1 stack.",
 				"Skills build up " + ::MSU.Text.colorGreen("15%") + " less [Fatigue|Concept.Fatigue] while you have at least 2 stacks.",
 				"Deal " + ::MSU.Text.colorGreen("15%") + " more damage while you have 3 stacks.",
-				"You lose all stacks if you use \'Wait\'."
+				"You lose all stacks if you use [Wait|Concept.Wait]."
 			]
 		}]
 	}),
@@ -1924,7 +1924,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When you use \'Wait\', recover [Action Points|Concept.ActionPoints] until you have " + ::MSU.Text.colorGreen("4") + " [Action Points|Concept.ActionPoints].",
+				"When you use [Wait|Concept.Wait], recover [Action Points|Concept.ActionPoints] until you have " + ::MSU.Text.colorGreen("4") + " [Action Points|Concept.ActionPoints].",
 			]
 		}],
 	}),
@@ -2218,7 +2218,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Whenever you end your [turn|Concept.Turn] with half or fewer of your [Action Points|Concept.ActionPoints] remaining, gain a stack, up to a maximum of 5 stacks.",
 				"Each stack increases [Action Points|Concept.ActionPoints] by " + ::MSU.Text.colorGreen("+1") + " and [Initiative|Concept.Initiative] by " + ::MSU.Text.colorGreen("+10") + ".",
-				"All the stacks are lost if you end your [turn|Concept.Turn] with more than half of your [Action Points|Concept.ActionPoints] remaining, use Wait or [Recover|Skill+recover_skill], or get [Stunned|Skill+stunned_effect], Rooted or [Staggered|Skill+staggered_effect]."
+				"All the stacks are lost if you end your [turn|Concept.Turn] with more than half of your [Action Points|Concept.ActionPoints] remaining, use [Wait|Concept.Wait] or [Recover|Skill+recover_skill], or get [Stunned|Skill+stunned_effect], Rooted or [Staggered|Skill+staggered_effect]."
 			]
 		}]
  	}),

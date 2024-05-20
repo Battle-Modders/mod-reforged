@@ -43,7 +43,7 @@ this.rf_cheap_trick_effect <- ::inherit("scripts/skills/skill", {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using \'Wait\' or ending the [turn|Concept.Turn]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using [Wait|Concept.Wait] or ending the [turn|Concept.Turn]"),
 		});
 
 		return ret;
