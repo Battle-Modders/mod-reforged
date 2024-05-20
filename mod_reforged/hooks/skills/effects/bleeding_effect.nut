@@ -68,7 +68,7 @@
 
 	q.getMalusMult <- function()
 	{
-		return 1.0 - ::Math.minf(this.m.MaxMalusMult, 5 * this.m.Stacks.tofloat() / this.getContainer().getActor().getHitpoints());
+		return 1.0 - ::Math.minf(this.m.MaxMalusMult, 2 * this.m.Stacks.tofloat() / this.getContainer().getActor().getHitpoints());
 	}
 
 	q.getDamage = @() function()
