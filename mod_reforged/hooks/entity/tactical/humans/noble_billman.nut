@@ -52,7 +52,6 @@
 						[1, "scripts/items/helmets/mail_coif"],
 						[1, "scripts/items/helmets/kettle_hat"],
 						[1, "scripts/items/helmets/padded_kettle_hat"],
-						[1, "scripts/items/helmets/kettle_hat_with_mail"],
 						[1, "scripts/items/helmets/rf_skull_cap"],
 						[1, "scripts/items/helmets/rf_skull_cap_with_rondels"]
 					]).roll());
@@ -63,7 +62,6 @@
 						[1, "scripts/items/helmets/mail_coif"],
 						[1, "scripts/items/helmets/flat_top_helmet"],
 						[1, "scripts/items/helmets/padded_flat_top_helmet"],
-						[1, "scripts/items/helmets/flat_top_with_mail"],
 						[1, "scripts/items/helmets/rf_skull_cap"],
 						[1, "scripts/items/helmets/rf_skull_cap_with_rondels"]
 					]).roll());
@@ -74,7 +72,6 @@
 						[1, "scripts/items/helmets/mail_coif"],
 						[1, "scripts/items/helmets/nasal_helmet"],
 						[1, "scripts/items/helmets/padded_nasal_helmet"],
-						[1, "scripts/items/helmets/nasal_helmet_with_mail"],
 						[1, "scripts/items/helmets/rf_skull_cap"],
 						[1, "scripts/items/helmets/rf_skull_cap_with_rondels"]
 					]).roll());
