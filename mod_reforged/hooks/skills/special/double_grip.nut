@@ -37,7 +37,7 @@
 				break;
 
 			case ::Const.Items.WeaponType.Cleaver:
-				_properties.MeleeDamageMult *= 1.4;
+				_properties.MeleeDamageMult *= 1.3;
 				break;
 
 			case ::Const.Items.WeaponType.Dagger:
@@ -102,7 +102,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorGreen("40%") + " increased damage"
+					text = ::MSU.Text.colorGreen("30%") + " increased damage"
 				});
 				break;
 
