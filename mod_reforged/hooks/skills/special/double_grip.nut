@@ -195,7 +195,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = ::Reforged.Mod.Tooltips.parseString("[Thrust|Skill+thrust] can be used up to " + ::MSU.Text.colorGreen("2") + " tiles away at " + ::MSU.Text.colorRed("25%") + " reduced damage")
+					text = ::Reforged.Mod.Tooltips.parseString("[Thrust|Skill+thrust] can be used up to " + ::MSU.Text.colorGreen("2") + " tiles away but has " + ::MSU.Text.colorRed("-40%") + " chance to hit if there is something between you and your target")
 				});
 				break;
 
@@ -276,9 +276,26 @@
 	{
 		__original(_skill, _targetEntity, _properties);
 
-		if (_targetEntity != null && this.m.CurrWeaponType == ::Const.Items.WeaponType.Spear && _skill.getID() == "actives.thrust" && _targetEntity.getTile().getDistanceTo(this.getContainer().getActor().getTile()) > 1)
+		if (_targetEntity != null && this.m.CurrWeaponType == ::Const.Items.WeaponType.Spear && _skill.getID() == "actives.thrust")
 		{
-			_properties.DamageTotalMult *= 0.75;
+			local myTile = this.getContainer().getActor().getTile();
+			local targetTile = _targetEntity.getTile();
+
+			if (myTile.getDistanceTo(targetTile) != 2)
+				return;
+
+			// Drop MeleeSkill if there is a non-empty tile between me and the target
+			foreach (tile in ::MSU.Tile.getNeighbors(myTile).filter(@(_, t) t.IsEmpty))
+			{
+				for (local i = 0; i < 6; i++)
+				{
+					if (tile.hasNextTile(i) && targetTile.isSameTileAs(tile.getNextTile(i)))
+					{
+						_properties.MeleeSkill -= 40;
+						return;
+					}
+				}
+			}
 		}
 	}
 
