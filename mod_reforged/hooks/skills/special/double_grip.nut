@@ -40,10 +40,6 @@
 				_properties.MeleeDamageMult *= 1.3;
 				break;
 
-			case ::Const.Items.WeaponType.Dagger:
-				_properties.MeleeDamageMult *= 1.2;
-				break;
-
 			case ::Const.Items.WeaponType.Flail:
 				_properties.HitChanceMult[::Const.BodyPart.Head] += 0.1;
 				_properties.DamageDirectAdd += 0.2;
@@ -296,6 +292,11 @@
 					}
 				}
 			}
+		}
+
+		if (_skill.getID() != "actives.puncture" && this.m.CurrWeaponType == ::Const.Items.WeaponType.Dagger)
+		{
+			_properties.MeleeDamageMult *= 1.2;
 		}
 	}
 
