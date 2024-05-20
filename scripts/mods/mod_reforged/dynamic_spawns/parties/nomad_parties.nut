@@ -1,7 +1,7 @@
 local parties = [
 	{
 		ID = "NomadRoamers",
-		HardMin = 6,
+		HardMin = 4,
 		DefaultFigure = "figure_nomad_01",  // Icon for Cutthroats
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
