@@ -19,7 +19,7 @@ this.rf_halberd_impale_skill <- ::inherit("scripts/skills/actives/impale", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/armor_damage.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Has " + ::MSU.Text.colorizeMult(this.m.DamageArmorMultAdd, {AddSign = true}) + " [armor effectiveness|Concept.CrushingDamage]")
+			text = ::Reforged.Mod.Tooltips.parseString("Has " + ::MSU.Text.colorizeValue(this.m.DamageArmorMultAdd * 100, {AddPercent = true}) + " [armor effectiveness|Concept.CrushingDamage]")
 		});
 		return ret;
 	}
