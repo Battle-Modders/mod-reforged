@@ -285,7 +285,7 @@
 				return;
 
 			// Drop MeleeSkill if there is a non-empty tile between me and the target
-			foreach (tile in ::MSU.Tile.getNeighbors(myTile).filter(@(_, t) t.IsEmpty))
+			foreach (tile in ::MSU.Tile.getNeighbors(myTile).filter(@(_, t) !t.IsEmpty))
 			{
 				for (local i = 0; i < 6; i++)
 				{
