@@ -1052,14 +1052,6 @@
 		IconDisabled = "ui/perks/rf_line_breaker_bw.png",
 	},
 	{
-		ID = "perk.rf_proximity_throwing_specialist",
-		Script = "scripts/skills/perks/perk_rf_proximity_throwing_specialist",
-		Name = ::Const.Strings.PerkName.RF_ProximityThrowingSpecialist,
-		Tooltip = ::Const.Strings.PerkDescription.RF_ProximityThrowingSpecialist,
-		Icon = "ui/perks/rf_proximity_throwing_specialist.png",
-		IconDisabled = "ui/perks/rf_proximity_throwing_specialist_bw.png",
-	},
-	{
 		ID = "perk.rf_ghostlike",
 		Script = "scripts/skills/perks/perk_rf_ghostlike",
 		Name = ::Const.Strings.PerkName.RF_Ghostlike,

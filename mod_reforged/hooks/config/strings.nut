@@ -154,7 +154,6 @@
 	RF_PowerShot = "Power Shot",
 	RF_Professional = "Professional",
 	RF_PromisedPotential = "Promised Potential",
- 	RF_ProximityThrowingSpecialist = "Proximity Specialist",
 	RF_Onslaught = "Onslaught",
 	RF_Rattle = "Rattle",
 	RF_RealizedPotential = "Realized Potential",
@@ -1802,16 +1801,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}],
 		Footer = ::MSU.Text.colorRed("This perk cannot be picked after you have spent a perk point elsewhere. This perk cannot be refunded.")
- 	}),
-	RF_ProximityThrowingSpecialist = ::UPD.getDescription({
- 		Fluff = "\'Don\'t attack until you\'ve seen the whites of their eyes!\'",
- 		Requirement = "Ranged attack",
- 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Ranged attacks ignore an additional " + ::MSU.Text.colorGreen("25%") + " of the target\'s armor when attacking at a distance of 2 tiles."
-			]
-		}]
  	}),
 	RF_Onslaught = ::UPD.getDescription({
  		Fluff = "Break their ranks, break their backs, break them all!",
