@@ -79,7 +79,11 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 			{
 				local weapon = _skill.getItem();
 				if (weapon == null || weapon.isItemType(::Const.Items.ItemType.OneHanded))
-					this.doExtraAttack(_skill, _targetTile);
+				{
+					local flailSpinner = this.getContainer().getSkillByID("perk.rf_flail_spinner");
+					if (flailSpinner == null || !flailSpinner.m.IsSpinningFlail)
+						this.doExtraAttack(_skill, _targetTile);
+				}
 			}
 		}
 	}
