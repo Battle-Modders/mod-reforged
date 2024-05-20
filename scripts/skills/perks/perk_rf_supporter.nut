@@ -45,7 +45,7 @@ this.perk_rf_supporter <- this.inherit("scripts/skills/skill", {
 		}
 
 		local actor = this.getContainer().getActor();
-		if (actor.getFaction() == _targetEntity.getFaction())
+		if (actor.getFaction() == _targetEntity.getFaction() && actor.getID() != _targetEntity.getID())
 		{
 			if (actor.getTile().getDistanceTo(_targetTile) <= this.m.MinDistanceAPRecovery)
 			{
