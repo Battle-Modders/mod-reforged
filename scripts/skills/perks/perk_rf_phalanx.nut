@@ -29,7 +29,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getCount()) + " [Reach|Concept.Reach] when attacking or defending in melee")
 		});
 
-		if (this.hasAdjacentShieldwall())
+		if (this.hasAdjacentShieldwall() || this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID())
 		{
 			tooltip.push({
 				id = 11,
@@ -131,6 +131,9 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 	function hasAdjacentShieldwall()
 	{
 		local actor = this.getContainer().getActor();
+		if (!actor.isPlacedOnMap())
+			return false;
+
 		local myTile = actor.getTile();
 		for (local i = 0; i < 6; i++)
 		{
