@@ -3,7 +3,7 @@ this.pg_rf_always_1 <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 	function create()
 	{
 		this.m.ID = "pg.rf_always_1";
-		this.m.Name = "General Perks";
+		this.m.Name = "General";
 		this.m.FlavorText = [
 			""
 		];
