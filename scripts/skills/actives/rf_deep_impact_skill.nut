@@ -24,6 +24,7 @@ this.rf_deep_impact_skill <- ::inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 30;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.KnockOut;
 	}
 
 	function getCostString()
