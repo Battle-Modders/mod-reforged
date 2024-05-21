@@ -50,13 +50,11 @@
 				break;
 
 			case ::Const.Items.WeaponType.Hammer:
-				_properties.Reach -= 1;
-				_properties.MeleeDamageMult *= 1.4;
+				_properties.MeleeDamageMult *= 1.25;
 				break;
 
 			case ::Const.Items.WeaponType.Mace:
-				_properties.Reach -= 1;
-				_properties.MeleeDamageMult *= 1.25;
+				_properties.MeleeDamageMult *= 1.15;
 				break;
 
 			case ::Const.Items.WeaponType.Spear:
@@ -66,7 +64,6 @@
 				break;
 
 			case ::Const.Items.WeaponType.Sword:
-				_properties.Reach -= 1;
 				_properties.MeleeDamageMult *= 1.1;
 				_properties.DamageDirectAdd += 0.2;
 				break;
@@ -140,14 +137,14 @@
 				ret.push({
 					id = 7,
 					type = "text",
-					icon = "ui/icons/reach.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("-1") + " [Reach|Concept.Reach]")
+					icon = "ui/icons/regular_damage.png",
+					text = ::MSU.Text.colorGreen("25%") + " increased damage"
 				});
 				ret.push({
 					id = 7,
 					type = "text",
-					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorGreen("40%") + " increased damage"
+					icon = "ui/icons/fatigue.png",
+					text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue]")
 				});
 				break;
 
@@ -155,14 +152,8 @@
 				ret.push({
 					id = 7,
 					type = "text",
-					icon = "ui/icons/reach.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("-1") + " [Reach|Concept.Reach]")
-				});
-				ret.push({
-					id = 7,
-					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorGreen("25%") + " increased damage"
+					text = ::MSU.Text.colorGreen("15%") + " increased damage"
 				});
 				ret.push({
 					id = 7,
@@ -200,12 +191,6 @@
 				break;
 
 			case ::Const.Items.WeaponType.Sword:
-				ret.push({
-					id = 7,
-					type = "text",
-					icon = "ui/icons/reach.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("-1") + " [Reach|Concept.Reach]")
-				});
 				ret.push({
 					id = 7,
 					type = "text",
@@ -269,6 +254,15 @@
 			local thrust = this.getContainer().getSkillByID("actives.thrust");
 			if (thrust != null)
 				thrust.m.MaxRange += 1;
+		}
+		else if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Hammer)
+		{
+			foreach (skill in this.getContainer().getActor().getMainhandItem().getSkills())
+			{
+				// We drop the actual FatigueCost instead of FatigueCostMult because skills do a hard-coded setting of FatigueCostMult
+				// inside their onAfterUpdate (which is very unfortunate, but yes), and double_grip has an earlier skill order
+				skill.m.FatigueCost = ::Math.max(1, skill.m.FatigueCost * 0.75);
+			}
 		}
 	}
 
