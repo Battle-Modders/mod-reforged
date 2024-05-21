@@ -1,6 +1,6 @@
 this.rf_dismantled_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		DamageIncrease = 15,
+		DamageIncrease = 20,
 		BodyHitCount = 0,
 		HeadHitCount = 0
 	},

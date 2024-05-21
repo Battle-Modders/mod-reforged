@@ -1,7 +1,6 @@
 this.perk_rf_dismantle <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
-		RequiresWeapon = true
+		RequiredWeaponType = ::Const.Items.WeaponType.Axe
 	},
 	function create()
 	{
@@ -18,29 +17,17 @@ this.perk_rf_dismantle <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_targetEntity.isAlive() || _damageInflictedArmor == 0 || _targetEntity.getArmor(_bodyPart) == 0 || !this.isSkillValid(_skill))
-			return;
-
-		local armorPiece = _bodyPart == ::Const.BodyPart.Head ? _targetEntity.getHeadItem() : _targetEntity.getBodyItem();
-		if (armorPiece == null)
+		if (!_targetEntity.isAlive() || _damageInflictedArmor == 0 || !this.isSkillValid(_skill) || ::Math.rand(1, 100) > _damageInflictedArmor.tofloat() / _targetEntity.getArmor(_bodyPart))
 			return;
 
 		local effect = _targetEntity.getSkills().getSkillByID("effects.rf_dismantled");
 		if (effect == null)
-		{
 			effect = ::new("scripts/skills/effects/rf_dismantled_effect");
-		}
 
-		local count = this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded) ? 2 : 1;
-
-		if (_bodyPart == ::Const.BodyPart.Body)
-		{
-			effect.m.BodyHitCount += count;
-		}
+		if (_bodyPart == ::Const.BodyPart.Head)
+			effect.m.HeadHitCount++;
 		else
-		{
-			effect.m.HeadHitCount += count;
-		}
+			effect.m.BodyHitCount++;
 
 		_targetEntity.getSkills().add(effect);
 	}
@@ -50,16 +37,10 @@ this.perk_rf_dismantle <- ::inherit("scripts/skills/skill", {
 		if (!_skill.isAttack())
 			return false;
 
-		if (this.m.IsForceEnabled)
-			return true;
-
-		if (!_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt))
-			return false;
-
-		if (!this.m.RequiresWeapon)
+		if (this.m.RequiredWeaponType == null)
 			return true;
 
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Hammer);
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });

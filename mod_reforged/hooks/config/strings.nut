@@ -1214,11 +1214,12 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Dismantle = ::UPD.getDescription({
  		Fluff = "Strip them of their protection while they still wear it!",
- 		Requirement = "Hammer and Blunt Damage",
+ 		Requirement = "Axe",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Every successful hit that does damage to an armor piece applies the [Dismantled Armor|Skill+rf_dismantled_effect] effect which causes the target to receive a stacking " + ::MSU.Text.colorRed("15%") + " increased damage ignoring armor through that armor piece from all sources for the remainder of the combat. This is increased to " + ::MSU.Text.colorRed("30%") + " per hit for two-handed hammers."
+				"Every successful hit has a chance to apply the [Dismantled Armor|Skill+rf_dismantled_effect] effect, which causes the target to receive a stacking " + ::MSU.Text.colorRed("+20%") + " damage received ignoring armor on the body part hit for the remainder of the combat.",
+				"The chance is equal to the ratio of armor damage inflicted to remaining armor on the body part hit."
 			]
 		}]
  	}),
