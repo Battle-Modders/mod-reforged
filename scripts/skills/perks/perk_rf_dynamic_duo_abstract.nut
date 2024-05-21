@@ -186,7 +186,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
-		if (_skill.isAttack() && !_skill.isRanged() && this.isEnabled())
+		if (_attacker != null && _skill != null && _skill.isAttack() && !_skill.isRanged() && this.isEnabled())
 		{
 			this.m.PartnerSkill.addEntityForAttackBonus(::MSU.asWeakTableRef(_attacker));
 		}
