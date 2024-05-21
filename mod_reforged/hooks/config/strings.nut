@@ -1194,12 +1194,11 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
  	RF_DeepImpact = ::UPD.getDescription({
  		Fluff = "\'Roll out the barrel, feel it in your bones!\'",
- 		Requirement = "Blunt Damage",
+ 		Requirement = "Hammer and Blunt Attack",
  		Effects = [{
-			Type = ::UPD.EffectType.Passive,
+			Type = ::UPD.EffectType.Active,
 			Description = [
-				"An additional " + ::MSU.Text.colorRed("10%") + " of damage ignores armor.",
-				"Attacks now apply the [Hemorrhaging Internally|Skill+rf_internal_hemorrhage_effect] effect that deals " + ::MSU.Text.colorGreen("20%") + " of the damage dealt to [Hitpoints|Concept.Hitpoints] in that attack as damage to the target at the end of their [turn|Concept.Turn]."
+				"Unlocks the [Deep Impact|Skill+rf_deep_impact_skill] skill which allows you to debilitate a target, reducing its damage output."
 			]
 		}]
  	}),

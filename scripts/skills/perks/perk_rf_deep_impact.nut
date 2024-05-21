@@ -1,7 +1,7 @@
 this.perk_rf_deep_impact <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
-		PercentageOfDamage = 20
+		RequiredWeaponType = ::Const.Items.WeaponType.Hammer,
+		RequiredDamageType = ::Const.Damage.DamageType.Blunt
 	},
 	function create()
 	{
@@ -16,48 +16,39 @@ this.perk_rf_deep_impact <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	function onEquip( _item )
 	{
-		if (_skill.isAttack() && (_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt) || this.m.IsForceEnabled))
-		{
-			_properties.DamageDirectAdd += 0.1;
-		}
-	}
-
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (!_targetEntity.isAlive() || _targetEntity.isDying() || !_skill.isAttack() || (!_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt) && !this.m.IsForceEnabled))
-		{
+		if (this.m.RequiredWeaponType == null || !_item.isItemType(::Const.Items.ItemType.Weapon) || !_item.isWeaponType(this.m.RequiredWeaponType))
 			return;
-		}
 
-		if (!_targetEntity.getCurrentProperties().IsImmuneToBleeding && _damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
+		local self = this;
+		_item.addSkill(::MSU.new("scripts/skills/actives/rf_deep_impact_skill", function(o) {
+			o.m.RequiredWeaponType = self.m.RequiredWeaponType;
+			o.m.RequiredDamageType = self.m.RequiredDamageType;
+		}));
+	}
+
+	function onAdded()
+	{
+		if (this.m.RequiredWeaponType == null)
 		{
-			local hemorrhageDamage = ::Math.floor(_damageInflictedHitpoints * this.m.PercentageOfDamage * 0.01);
-			if (hemorrhageDamage >= 1)
-			{
-				local actor = this.getContainer().getActor();
-				local effect = ::new("scripts/skills/effects/rf_internal_hemorrhage_effect");
-				if (actor.getFaction() == ::Const.Faction.Player || actor.getFaction() == ::Const.Faction.PlayerAnimals)
-				{
-					effect.setAttacker(actor);
-				}
-				effect.setDamage(hemorrhageDamage);
-				_targetEntity.getSkills().add(effect);
-			}
+			local self = this;
+			this.getContainer().add(::MSU.new("scripts/skills/actives/rf_deep_impact_skill", function(o) {
+				o.m.RequiredWeaponType = self.m.RequiredWeaponType;
+				o.m.RequiredDamageType = self.m.RequiredDamageType;
+			}));
+		}
+		else
+		{
+			local weapon = this.getContainer().getActor().getMainhandItem();
+			if (weapon != null)
+				this.onEquip(weapon);
 		}
 	}
 
-	function onQueryTooltip( _skill, _tooltip )
+	function onRemoved()
 	{
-		if (_skill.isAttack() && (_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt) || this.m.IsForceEnabled))
-		{
-			_tooltip.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Inflicts internal hemorrhage for [color=" + ::Const.UI.Color.DamageValue + "]" + this.m.PercentageOfDamage + "%[/color] of the damage dealt to Hitpoints"
-			});
-		}
+		if (this.m.RequiredWeaponType == null)
+			this.getContainer().removeByID("actives.rf_deep_impact");
 	}
 });

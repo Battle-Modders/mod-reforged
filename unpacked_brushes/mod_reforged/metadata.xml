@@ -61,6 +61,10 @@
 	<sprite id="rf_gouge_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_gouge_skill.png" />
 	<sprite id="rf_voulge_cleave_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_voulge_cleave_skill.png" />
 	<sprite id="rf_dynamic_duo_shuffle_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_dynamic_duo_shuffle_skill.png" />
+	<sprite id="rf_deep_impact_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_deep_impact_skill.png" />
+
+	<sprite id="rf_deep_impact_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_deep_impact.png" />
+	<sprite id="rf_deep_impact_effect_mini" ic = "FF23165B" img="mini\rf_deep_impact_mini.png" />
 
 	<sprite id="rf_dynamic_duo_partner_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\rf_dynamic_duo.png" />
 
