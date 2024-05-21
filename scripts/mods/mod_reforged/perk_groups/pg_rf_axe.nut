@@ -16,7 +16,7 @@ this.pg_rf_axe <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.mastery.axe"],
 				[],
 				[],
-				["perk.rf_cull"]
+				["perk.rf_dismantle"]
 			]
 		};
 	}
