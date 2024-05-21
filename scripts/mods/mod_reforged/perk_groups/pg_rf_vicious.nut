@@ -18,7 +18,7 @@ this.pg_rf_vicious <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"default": [
 				["perk.rf_small_target"],
 				["perk.backstabber"],
-				[],
+				["perk.rf_between_the_eyes"],
 				["perk.rf_battle_fervor"],
 				["perk.berserk"],
 				[],
