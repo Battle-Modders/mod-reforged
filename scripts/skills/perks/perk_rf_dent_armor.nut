@@ -1,7 +1,7 @@
 this.perk_rf_dent_armor <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredDamageType = ::Const.Damage.DamageType.Blunt,
-		RequiredArmorMax = 250
+		RequiredArmorMax = 210
 		Chance = 66
 	},
 	function create()

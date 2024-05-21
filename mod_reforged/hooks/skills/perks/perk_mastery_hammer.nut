@@ -3,7 +3,7 @@
 		"actives.demolish_armor",
 		"actives.crush_armor"
 	];
-	q.m.MinArmorToDent <- 250;
+	q.m.MinArmorToDent <- 210;
 
 	q.onTargetHit = @(__original) function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
