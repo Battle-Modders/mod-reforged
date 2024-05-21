@@ -19,7 +19,7 @@ this.perk_rf_rising_star <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.StartLevel + this.m.LevelsRequiredForPerk < this.getContainer().getActor().getLevel();
+		return this.m.StartLevel + this.m.LevelsRequiredForPerk <= this.getContainer().getActor().getLevel();
 	}
 
 	function getTooltip()
