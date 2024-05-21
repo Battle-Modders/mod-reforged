@@ -73,7 +73,7 @@
 
 	q.getDamage = @() function()
 	{
-		local ret = this.getContainer().hasSkill("trait.bleeder") ? this.m.Stacks * 2 : 1;
+		local ret = this.getContainer().hasSkill("trait.bleeder") ? this.m.Stacks * 2 : this.m.Stacks;
 		return this.getContainer().hasSkill("effects.hyena_potion") ? ::Math.floor(ret * 0.5) : ret;
 	}
 
