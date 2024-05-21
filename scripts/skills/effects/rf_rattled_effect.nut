@@ -1,12 +1,12 @@
 this.rf_rattled_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		DefenseAdd = -10
+		ReachModifier = -2
 	},
 	function create()
 	{
 		this.m.ID = "effects.rf_rattled";
 		this.m.Name = "Rattled";
-		this.m.Description = "This character has been rattled to the bones making it harder to defend against further attacks.";
+		this.m.Description = "This character has been rattled to the bones making it harder to fight effectively.";
 		this.m.Icon = "ui/perks/rf_rattle.png";
 		this.m.IconMini = "rf_rattled_effect_mini";
 		this.m.Overlay = "rf_rattled_effect";
@@ -22,8 +22,8 @@ this.rf_rattled_effect <- ::inherit("scripts/skills/skill", {
 		tooltip.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/melee_defense.png",
-			text = ::MSU.Text.colorizeValue(this.m.DefenseAdd) + " Melee Defense"
+			icon = "ui/icons/reach.png",
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ReachModifier) + " [Reach|Concept.Reach]")
 		});
 		
 		return tooltip;
@@ -31,7 +31,7 @@ this.rf_rattled_effect <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.MeleeDefense += this.m.DefenseAdd;
+		_properties.Reach += this.m.ReachModifier;
 	}
 	
 	function onTurnEnd()
