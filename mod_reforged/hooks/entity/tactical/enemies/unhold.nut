@@ -52,7 +52,9 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_dismantle"));
+		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_dismantle", function(o) {
+			o.m.RequiredWeaponType = null;
+		}));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_formidable_approach"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
 	}
