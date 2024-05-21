@@ -78,6 +78,7 @@
 	RF_Ballistics = "Ballistics",
 	RF_BearDown = "Bear Down",
 	RF_BestialVigor = "Bestial Vigor",
+	RF_BetweenTheEyes = "Between the Eyes",
 	RF_BetweenTheRibs = "Between the Ribs",
 	RF_Blitzkrieg = "Blitzkrieg",
 	RF_Bloodlust = "Bloodlust",
@@ -971,6 +972,17 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Active,
 			Description = [
 				"Unlocks the [Bestial Vigor|Skill+rf_bestial_vigor_skill] skill which can be used to reduce [Fatigue|Concept.Fatigue] and gain [Action Points|Concept.ActionPoints] during combat."
+			]
+		}]
+ 	}),
+	RF_BetweenTheEyes = ::UPD.getDescription({
+ 		Fluff = "Like splitting butter!",
+ 		Requirement = "Melee Attack",
+ 		Effects = [{
+			Type = ::UPD.EffectType.Active,
+			Description = [
+				"Unlocks the [Between the Eyes|NullEntitySkill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head equal to " + ::MSU.Text.colorGreen("50%") + " of your [Melee Skill|Concept.MeleeSkill]."
+				"The [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] Cost of your primary melee attack is added to the costs of this skill.",
 			]
 		}]
  	}),
