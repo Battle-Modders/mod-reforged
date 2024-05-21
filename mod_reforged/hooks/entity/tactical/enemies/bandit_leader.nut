@@ -187,19 +187,22 @@
 	    	{
 	    		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver)) // Sword/Cleaver hybrid
 	    		{
-	    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_cleaver"));
     				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
     				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
 	    		}
-	    		else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
+	    		else (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
 	    		{
-	    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	    			::Reforged.Skills.addPerkGroup(this, "pg.rf_spear");
+	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_spear"));
+	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
+    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
+    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
 	    		}
-	    		else
-	    		{
-	    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	    		}
+    		}
+    		else
+    		{
+    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
     		}
 
     		if (::Reforged.Items.isDuelistValid(mainhandItem))
