@@ -11,11 +11,11 @@ this.pg_rf_hammer <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				[],
-				["perk.rf_rattle"],
 				[],
+				["perk.rf_rattle"],
 				["perk.mastery.hammer"],
 				[],
-				["perk.rf_dismantle"],
+				["perk.rf_deep_impact"],
 				[]
 			]
 		};
