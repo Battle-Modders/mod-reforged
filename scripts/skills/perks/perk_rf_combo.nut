@@ -39,7 +39,7 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (!_forFree && _skill.getActionPointCost() != 0)
 		{
