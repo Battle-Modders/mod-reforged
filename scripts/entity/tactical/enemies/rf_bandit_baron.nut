@@ -226,12 +226,16 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
     				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
     				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
 	    		}
-	    		else (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
+	    		else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
 	    		{
 	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_spear"));
 	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
     				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
     				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+	    		}
+	    		else
+	    		{
+	    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	    		}
     		}
     		else
