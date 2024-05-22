@@ -40,7 +40,7 @@ local parties = [
 				}
 
 				UnitBlockDefs = [
-					{ BaseID = "UnitBlock.RF.SkeletonFrontline", RatioMin = 0.40, RatioMax = 0.60 },
+					{ BaseID = "UnitBlock.RF.SkeletonFrontline", RatioMin = 0.40, RatioMax = 1.0 },
 					{ BaseID = "UnitBlock.RF.SkeletonBackline", RatioMin = 0.00, RatioMax = 0.40 },
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.00, RatioMax = 0.30, function getSpawnWeight(){ return base.getSpawnWeight() * 0.3 } },
 					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.00, RatioMax = 0.30, ExclusionChance = 0.75, StartingResourceMin = 220, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 }, function getUpgradeWeight(){ return base.getUpgradeWeight() * 0.2 } },
