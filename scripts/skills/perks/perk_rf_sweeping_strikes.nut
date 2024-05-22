@@ -88,7 +88,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 	{
 		if (_targetEntity.isAlive() && _skill.isAttack() && !_skill.isRanged() && _skill.isAOE())
 		{
-			this.m.TargetsAffected.push(::MSU.asWeakTableRef(_targetEntity));
+			this.addTarget(_targetEntity);
 		}
 	}
 
@@ -96,7 +96,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill.isAttack() && !_skill.isRanged() && _skill.isAOE())
 		{
-			this.m.TargetsAffected.push(::MSU.asWeakTableRef(_targetEntity));
+			this.addTarget(_targetEntity);
 		}
 	}
 
@@ -131,5 +131,15 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 		this.skill.onCombatFinished()
 		this.m.IsInEffect = false;
 		this.m.TargetsAffected.clear();
+	}
+
+	function addTarget( _entity )
+	{
+		foreach (e in this.m.TargetsAffected)
+		{
+			if (::MSU.isEqual(e, _entity))
+				return;
+		}
+		this.m.TargetsAffected.push(::MSU.asWeakTableRef(_entity));
 	}
 });
