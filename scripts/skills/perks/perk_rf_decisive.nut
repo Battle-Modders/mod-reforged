@@ -87,7 +87,7 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = "All stacks are lost when using [Wait|Concept.Wait]"
+			text = ::Reforged.Mod.Tooltips.parseString("All stacks are lost when using [Wait|Concept.Wait]")
 		});
 
 		return ret;
