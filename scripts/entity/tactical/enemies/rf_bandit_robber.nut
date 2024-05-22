@@ -94,11 +94,11 @@ this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorFast.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 30 || conditionMax > 65) return 0.0;
+					if (conditionMax > 70) return 0.0;
 					return _weight;
 				}
 			})
@@ -107,11 +107,11 @@ this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetFast.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 40 || conditionMax > 50) return 0.0;
+					if (conditionMax > 50) return 0.0;
 					return _weight;
 				}
 			})

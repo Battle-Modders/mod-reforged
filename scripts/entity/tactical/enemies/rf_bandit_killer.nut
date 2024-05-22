@@ -110,11 +110,11 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorFast.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 115 || conditionMax > 140) return 0.0;
+					if (conditionMax <= 100 || conditionMax > 140) return 0.0;
 					return _weight;
 				}
 			})
@@ -123,22 +123,13 @@ this.rf_bandit_killer <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
-				Exclude = [
-					"scripts/items/helmets/dented_nasal_helmet",
-					"scripts/items/helmets/rf_padded_scale_helmet"
-				],
+			local helmet = ::Reforged.ItemTable.BanditHelmetFast.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 105 || conditionMax > 125) return 0.0;
+					if (conditionMax <= 90 || conditionMax > 130) return 0.0;
 					return _weight;
-				},
-				Add = [
-					[0.5, "scripts/items/helmets/rf_skull_cap"],
-					[1, "scripts/items/helmets/reinforced_mail_coif"],
-					[0.5, "scripts/items/helmets/nordic_helmet"]
-				]
+				}
 			})
 			this.m.Items.equip(::new(helmet));
 		}

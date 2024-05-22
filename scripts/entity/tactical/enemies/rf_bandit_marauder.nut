@@ -61,11 +61,11 @@ this.rf_bandit_marauder <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorTough.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 80 || conditionMax > 95) return 0.0;
+					if (conditionMax < 65 || conditionMax > 110) return 0.0;
 					return _weight;
 				}
 			})
@@ -78,7 +78,7 @@ this.rf_bandit_marauder <- this.inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 70 || conditionMax > 90) return 0.0;
+					if (conditionMax < 70 || conditionMax > 100) return 0.0;
 					return _weight;
 				}
 			})

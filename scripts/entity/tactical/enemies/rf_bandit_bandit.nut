@@ -108,14 +108,11 @@ this.rf_bandit_bandit <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
-				Exclude = [
-					"scripts/items/armor/patched_mail_shirt"
-				],
+			local armor = ::Reforged.ItemTable.BanditArmorFast.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 80 || conditionMax > 105) return 0.0;
+					if (conditionMax <= 70 || conditionMax > 100) return 0.0;
 					return _weight;
 				}
 			})
@@ -124,17 +121,14 @@ this.rf_bandit_bandit <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetFast.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 40 || conditionMax > 50) return 0.0;
+					if (conditionMax < 40 || conditionMax > 90) return 0.0;
+					if (conditionMax > 70) return _weight * 0.5;
 					return _weight;
-				},
-				Add = [
-					[0.5, "scripts/items/helmets/mail_coif"],
-					[0.2, "scripts/items/helmets/closed_mail_coif"]
-				]
+				}
 			})
 			this.m.Items.equip(::new(helmet));
 		}

@@ -89,12 +89,11 @@ this.rf_bandit_highwayman <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
 					if (conditionMax < 150 || conditionMax > 190) return 0.0;
-					if (conditionMax > 170 || conditionMax <= 190) return _weight * 0.5;
 					return _weight;
 				}
 			})
@@ -103,15 +102,14 @@ this.rf_bandit_highwayman <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
 					if (conditionMax < 130 || conditionMax > 180) return 0.0;
-					if (conditionMax > 170 || conditionMax <= 180) return _weight * 0.5;
 					return _weight;
-				},
-				Add = [[0.5, "scripts/items/helmets/rf_padded_skull_cap"]]})
+				}
+			})
 			this.m.Items.equip(::new(helmet));
 		}
 	}

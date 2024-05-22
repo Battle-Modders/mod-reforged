@@ -58,7 +58,7 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBowman.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorRanged.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
@@ -71,11 +71,11 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetBowman.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetRanged.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 30 || conditionMax > 70) return 0.0;
+					if (conditionMax < 40 || conditionMax > 70) return 0.0;
 					return _weight;
 				}
 			})

@@ -65,18 +65,13 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorTough.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 10 || conditionMax > 10) return 0.0;
+					if (conditionMax > 50) return 0.0;
 					return _weight;
-				},
-				Add = [
-					[2, "scripts/items/armor/leather_wraps"],
-					[1, "scripts/items/armor/thick_tunic"],
-					[0.5, "scripts/items/armor/butcher_apron"]
-				]
+				}
 			})
 			this.m.Items.equip(::new(armor));
 		}
@@ -87,7 +82,7 @@
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax > 45) return 0.0;
+					if (conditionMax > 40) return 0.0;
 					return _weight;
 				}
 			})

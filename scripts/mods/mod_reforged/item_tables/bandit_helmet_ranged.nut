@@ -1,4 +1,4 @@
-::Reforged.ItemTable.BanditHelmetBowman <- ::ItemTables.Class.ItemTable([
+::Reforged.ItemTable.BanditHelmetRanged <- ::ItemTables.Class.ItemTable([
 	[1, "scripts/items/helmets/mouth_piece"],
 	[1, "scripts/items/helmets/headscarf"],
 	[1, "scripts/items/helmets/hood"],

@@ -94,7 +94,7 @@ this.rf_bandit_scoundrel <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
@@ -102,8 +102,7 @@ this.rf_bandit_scoundrel <- this.inherit("scripts/entity/tactical/human", {
 					return _weight;
 				},
 				Add = [
-					[1, "scripts/items/armor/monk_robe"],
-					[0.5, "scripts/items/armor/apron"]
+					[1, "scripts/items/armor/monk_robe"]
 				]
 			})
 			this.m.Items.equip(::new(armor));
@@ -112,7 +111,7 @@ this.rf_bandit_scoundrel <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 50)
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;

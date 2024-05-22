@@ -70,7 +70,7 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
@@ -84,17 +84,13 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetBasic.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 105 || conditionMax > 125) return 0.0;
+					if (conditionMax < 105 || conditionMax > 140) return 0.0;
 					return _weight;
-				},
-				Add = [
-					[0.5, "scripts/items/helmets/rf_skull_cap"],
-					[1, "scripts/items/helmets/nasal_helmet_with_rusty_mail"]
-				]
+				}
 			})
 			this.m.Items.equip(::new(helmet));
 		}

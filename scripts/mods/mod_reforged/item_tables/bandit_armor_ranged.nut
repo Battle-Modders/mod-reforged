@@ -1,4 +1,5 @@
-::Reforged.ItemTable.BanditArmorBowman <- ::ItemTables.Class.ItemTable([
+::Reforged.ItemTable.BanditArmorRanged <- ::ItemTables.Class.ItemTable([
+	[1, "scripts/items/armor/sackcloth"],
 	[1, "scripts/items/armor/leather_wraps"],
 	[1, "scripts/items/armor/thick_tunic"],
 	[1, "scripts/items/armor/padded_surcoat"],

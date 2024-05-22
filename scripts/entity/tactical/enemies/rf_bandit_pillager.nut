@@ -60,14 +60,13 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorTough.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 50 || conditionMax > 55) return 0.0;
+					if (conditionMax < 35 || conditionMax > 55) return 0.0;
 					return _weight;
-				},
-				Add = [[1, "scripts/items/armor/thick_tunic"]]
+				}
 			})
 			this.m.Items.equip(::new(armor));
 		}
@@ -78,7 +77,7 @@ this.rf_bandit_pillager <- this.inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 20 || conditionMax > 40) return 0.0;
+					if (conditionMax < 25 || conditionMax > 45) return 0.0;
 					return _weight;
 				}
 			})

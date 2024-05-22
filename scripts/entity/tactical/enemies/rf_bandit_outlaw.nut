@@ -60,14 +60,13 @@ this.rf_bandit_outlaw <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBasic.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorTough.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 65 || conditionMax > 90) return 0.0;
+					if (conditionMax < 55 || conditionMax > 95) return 0.0;
 					return _weight;
-				},
-				Add = [[1, "scripts/items/armor/blotched_gambeson"]]
+				}
 			})
 			if (armor != null) this.m.Items.equip(::new(armor));
 		}
