@@ -20,7 +20,7 @@ this.perk_rf_calculated_strikes <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (this.isEnabledFor(_targetEntity))
+		if (_targetEntity != null && this.isEnabledFor(_targetEntity))
 		{
 			_properties.DamageTotalMult *= this.m.DamageTotalMult;
 		}
