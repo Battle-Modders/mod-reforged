@@ -25,7 +25,14 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.Stacks == 0 && this.m.AttacksRemaining == 0;
+		if (this.m.Stacks == 0 && this.m.AttacksRemaining == 0)
+			return true;
+
+		if (this.m.RequiredWeaponType == null)
+			return false;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return ::MSU.isNull(weapon) || !weapon.isItemType(::Const.Items.ItemType.Weapon) || !weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 
 	function getTooltip()
