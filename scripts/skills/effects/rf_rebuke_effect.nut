@@ -97,7 +97,7 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 
 		this.m.RiposteSkillCounter = ::Const.SkillCounter;
 		if (this.m.BuildsFatigue && !_info.User.isArmedWithShield() && !_info.User.checkMorale(0, 0))
-			_info.User.setFatigue(::Math.max(_info.User.getFatigueMax(), _info.User.getFatigue() + _info.Skill.getFatigueCost()));
+			_info.User.setFatigue(::Math.min(_info.User.getFatigueMax(), _info.User.getFatigue() + _info.Skill.getFatigueCost()));
 
 		_info.Skill.useForFree(_info.TargetTile);
 	}
