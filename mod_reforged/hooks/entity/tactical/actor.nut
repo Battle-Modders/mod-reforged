@@ -136,12 +136,24 @@
 
 		local count = __original();
 
-		foreach (enemy in ::Tactical.Entities.getHostileActors(this.getFaction(), this.getTile(), 2, true))
+		local myTile = this.getTile();
+
+		foreach (enemy in ::Tactical.Entities.getHostileActors(this.getFaction(), myTile, 2, true))
 		{
+			if (!enemy.hasZoneOfControl() || enemy.isNonCombatant() || !enemy.getTile().hasLineOfSightTo(myTile, enemy.getCurrentProperties().getVision()))
+				continue;
+
 			local perk = enemy.getSkills().getSkillByID("perk.rf_long_reach");
-			if (perk != null && perk.isEnabled())
+			if (perk == null || !perk.isEnabled())
+				continue;
+
+			foreach (skill in enemy.getSkills().getAllSkillsOfType(::Const.SkillType.Active))
 			{
-				count++;
+				if (perk.isSkillValid(skill) && skill.verifyTargetAndRange(myTile, enemy.getTile()))
+				{
+					count++;
+					break;
+				}
 			}
 		}
 
