@@ -1,4 +1,6 @@
 ::MSU.Table.merge(::Const.Tactical.Actor.Conscript, {
+	MeleeSkill = 60, // Vanilla is 70
+	MeleeDefense = 0, // Vanilla is 10
 	RangedDefense = 0
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Officer, {
