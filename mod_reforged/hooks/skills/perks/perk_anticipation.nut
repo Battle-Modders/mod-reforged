@@ -83,9 +83,16 @@
 		if (this.m.IsAboutToConsumeUse == false) return;	// We only consume one use for each registered attack. But a single attack that deals damage multiple times will therefor have the damage of all instances reduced
 		this.m.IsAboutToConsumeUse = false;
 
-		local actor = this.getContainer().getActor();
 		this.m.UsesRemaining = ::Math.max(0, this.m.UsesRemaining - 1);
-		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated the attack of " + ::Const.UI.getColorizedEntityName(_attacker) + ", reducing damage received by " + ::MSU.Text.colorGreen(this.m.TempDamageReduction + "%"));
+
+		if (_attacker == null)	// This can for example happen when this character receives a mortar attack.
+		{
+			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated an attack, reducing damage received by " + ::MSU.Text.colorGreen(this.m.TempDamageReduction + "%"));
+		}
+		else
+		{
+			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated the attack of " + ::Const.UI.getColorizedEntityName(_attacker) + ", reducing damage received by " + ::MSU.Text.colorGreen(this.m.TempDamageReduction + "%"));
+		}
 	}
 
 
