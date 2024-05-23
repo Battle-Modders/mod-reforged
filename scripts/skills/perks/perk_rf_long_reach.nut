@@ -1,6 +1,6 @@
 this.perk_rf_long_reach <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false
+		RequiredWeaponType = ::Const.Items.WeaponType.Polearm
 	},
 	function create()
 	{
@@ -17,17 +17,25 @@ this.perk_rf_long_reach <- ::inherit("scripts/skills/skill", {
 
 	function isEnabled()
 	{
-		if (this.m.IsForceEnabled)
-		{
+		if (this.m.RequiredWeaponType == null)
 			return true;
-		}
+
+		if (this.getContainer().getActor().isDisarmed())
+			return false;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
-		{
-			return false;
-		}
+		return weapon != null && weapon.isWeaponType(this.m.RequiredWeaponType);
+	}
 
-		return true;
+	function isSkillValid( _skill )
+	{
+		if (!_skill.isAttack())
+			return false;
+
+		if (this.m.RequiredWeaponType == null)
+			return true;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });
