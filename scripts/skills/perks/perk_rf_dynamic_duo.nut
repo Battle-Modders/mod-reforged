@@ -1,19 +1,18 @@
 this.perk_rf_dynamic_duo <- ::inherit("scripts/skills/perks/perk_rf_dynamic_duo_abstract", {
-	m = {},
+	m = {
+		IsBeingRemoved = false // Set to true during onRemoved to prevent onPartnerRemoved from adding select_partner skill otherwise that skill isn't removed properly as it goes to SkillsToAdd of container
+	},
 	function create()
 	{
 		this.perk_rf_dynamic_duo_abstract.create();
 		this.m.ID = "perk.rf_dynamic_duo";
 	}
 
-	function setPartnerSkill( _skill )
+	function onPartnerRemoved()
 	{
-		this.perk_rf_dynamic_duo_abstract.setPartnerSkill(_skill);
-		if (_skill == null)
-		{
+		this.perk_rf_dynamic_duo_abstract.onPartnerRemoved();
+		if (!this.m.IsBeingRemoved)
 			this.getContainer().add(::new("scripts/skills/actives/rf_dynamic_duo_select_partner_skill"));
-			this.getContainer().removeByID("actives.rf_dynamic_duo_shuffle");
-		}
 	}
 
 	function onAdded()
@@ -25,6 +24,7 @@ this.perk_rf_dynamic_duo <- ::inherit("scripts/skills/perks/perk_rf_dynamic_duo_
 
 	function onRemoved()
 	{
+		this.m.IsBeingRemoved = true;
 		this.perk_rf_dynamic_duo_abstract.onRemoved();
 		this.getContainer().removeByID("actives.rf_dynamic_duo_select_partner");
 	}

@@ -8,15 +8,14 @@ this.rf_dynamic_duo_partner_effect <- ::inherit("scripts/skills/perks/perk_rf_dy
 		this.m.Overlay = "rf_dynamic_duo_partner_effect";
 	}
 
-	function setPartnerSkill( _skill )
+	function onPartnerRemoved()
 	{
-		this.perk_rf_dynamic_duo_abstract.setPartnerSkill(_skill);
-		if (_skill == null)
-		{
-			local perk = this.getContainer().getSkillByID("perk.rf_dynamic_duo");
-			if (perk != null)
-				perk.setPartnerSkill(null);
-		}
+		this.perk_rf_dynamic_duo_abstract.onPartnerRemoved();
+		local perk = this.getContainer().getSkillByID("perk.rf_dynamic_duo");
+		if (perk != null)
+			perk.onPartnerRemoved(); // So that it adds the select partner skill to the actor
+
+		this.getContainer().remove(this); // instead of this.removeSelf() so that it is removed immediately instead of waiting for next update
 	}
 
 	function onDeserialize( _in )
