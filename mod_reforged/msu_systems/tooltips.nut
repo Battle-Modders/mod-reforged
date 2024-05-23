@@ -25,7 +25,20 @@
 	},
 	Tactical = {
 		Button = {
-			WaitTurnAllButton = ::MSU.Class.BasicTooltip("Wait Round", "Have all your characters use \'Wait\' on their turn.")
+			WaitTurnAllButton = ::MSU.Class.CustomTooltip(function( _ ) {
+				return [
+					{
+						id = 1,
+						type = "title",
+						text = format("Wait Round (%s)", ::MSU.System.Keybinds.KeybindsByMod["mod_reforged"]["Tactical_WaitRound"].getKeyCombinations())
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Have all your characters use \'Wait\' on their turn."
+					}
+				];
+			})
 		}
 	}
 });
