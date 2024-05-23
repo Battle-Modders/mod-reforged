@@ -27,6 +27,7 @@ this.perk_rf_long_reach <- ::inherit("scripts/skills/skill", {
 		return weapon != null && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 
+	// Is called from actor.getSurroundCount to check if the character has a valid skill to apply the surround bonus
 	function isSkillValid( _skill )
 	{
 		if (!_skill.isAttack())
