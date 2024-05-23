@@ -1,7 +1,8 @@
 this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 	m = {
 		UsedSkillID = "",
-		UsedSkillName = ""
+		UsedSkillName = "",
+		IsUsingValidSkill = false // Set during onBeforeAnySkillExecuted to check if during onAnySkillExecuted we should activate the perk's effect
 	},
 	function create()
 	{
@@ -39,9 +40,17 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
+	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		// We do this in onBeforeAnySkillExecuted because some skills remove themselves after executing them
+		// or some other effects may be triggered which may change the skill's ActionPointCost after execution
+		// and in both these cases getActionPointCost() will not give us the intended value in onAnySkillExecuted
+		this.m.IsUsingValidSkill = !_forFree && _skill.getActionPointCost() != 0;
+	}
+
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (!_forFree && _skill.getActionPointCost() != 0)
+		if (this.m.IsUsingValidSkill)
 		{
 			this.m.UsedSkillID = _skill.getID();
 			this.m.UsedSkillName = _skill.getName();
