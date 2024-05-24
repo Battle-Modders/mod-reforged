@@ -19,19 +19,19 @@ local parties = [
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 300)
 			{
-				return 14;
+				return 12;
 			}
 			else if (startingResources >= 216)
 			{
-				return 12;
+				return 10;
 			}
 			else if (startingResources >= 164)
 			{
-				return 10;
+				return 8;
 			}
 			else
 			{
-				return 8;
+				return 6;
 			}
 		}
 	},
@@ -55,19 +55,19 @@ local parties = [
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 300)
 			{
-				return 14;
+				return 12;
 			}
 			else if (startingResources >= 216)
 			{
-				return 12;
+				return 10;
 			}
 			else if (startingResources >= 164)
 			{
-				return 10;
+				return 8;
 			}
 			else
 			{
-				return 8;
+				return 6;
 			}
 		}
 	},
@@ -92,19 +92,19 @@ local parties = [
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 300)
 			{
-				return 14;
+				return 12;
 			}
 			else if (startingResources >= 216)
 			{
-				return 12;
+				return 10;
 			}
 			else if (startingResources >= 164)
 			{
-				return 10;
+				return 8;
 			}
 			else
 			{
-				return 8;
+				return 6;
 			}
 		}
 	},
@@ -129,19 +129,19 @@ local parties = [
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 300)
 			{
-				return 14;
+				return 12;
 			}
 			else if (startingResources >= 216)
 			{
-				return 12;
+				return 10;
 			}
 			else if (startingResources >= 164)
 			{
-				return 10;
+				return 8;
 			}
 			else
 			{
-				return 8;
+				return 6;
 			}
 		}
 	},
@@ -166,19 +166,19 @@ local parties = [
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 300)
 			{
-				return 14;
+				return 12;
 			}
 			else if (startingResources >= 216)
 			{
-				return 12;
+				return 10;
 			}
 			else if (startingResources >= 164)
 			{
-				return 10;
+				return 8;
 			}
 			else
 			{
-				return 8;
+				return 6;
 			}
 		}
 	},
