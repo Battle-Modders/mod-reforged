@@ -64,22 +64,15 @@
 	q.assignRandomEquipment = @(__original) function()
 	{
 		__original();
-		local weapon = this.getMainhandItem();
-		if (weapon != null)
-		{
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-			}
-			else
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-			}
 
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+
+		foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))
+		{
+			if (item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
+				break;
 			}
 		}
 	}
