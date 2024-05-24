@@ -67,21 +67,6 @@
 	q.assignRandomEquipment = @(__original) function()
 	{
 		__original();
-		local weapon = this.getMainhandItem();
-		if (weapon != null)
-		{
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cull"));
-			}
-			else
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_mauler"));
-			}
-		}
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	}
 });
