@@ -10,6 +10,8 @@
 	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.NomadCutthroat, {
+	MeleeSkill = 50, // Vanilla is 55
+	MeleeDefense = 0, // Vanilla is 5
 	RangedDefense = 0
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.NomadOutlaw, {

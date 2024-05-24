@@ -35,10 +35,11 @@
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 35)
 		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
+		// 	this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect")); // we add dodge as a perk
 		// }
 
 		// Reforged
+		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
