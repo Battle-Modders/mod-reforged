@@ -7,8 +7,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge + 1;
-		this.m.Skills.add(this.new("scripts/skills/traits/iron_jaw_trait"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_unstoppable"));
 	}
 });

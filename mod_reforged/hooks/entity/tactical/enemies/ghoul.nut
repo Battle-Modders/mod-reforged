@@ -38,7 +38,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall + 1;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_colossus"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_deep_cuts"));
 	}
 
