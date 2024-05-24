@@ -42,3 +42,22 @@
 		40
 	]
 });
+::MSU.Table.merge(::Const.Tactical.Actor.Spider, {
+	XP = 100,
+	ActionPoints = 11,
+	Hitpoints = 60,
+	Bravery = 45,
+	Stamina = 130,
+	MeleeSkill = 60,
+	RangedSkill = 0,
+	MeleeDefense = 15, // vanilla 10
+	RangedDefense = 25, // vanilla 20
+	Initiative = 150,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 20,
+	Armor = [
+		20,
+		20
+	]
+});
