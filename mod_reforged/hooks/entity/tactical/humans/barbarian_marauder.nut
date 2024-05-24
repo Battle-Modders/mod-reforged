@@ -59,6 +59,7 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
