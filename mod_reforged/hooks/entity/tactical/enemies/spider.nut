@@ -79,6 +79,10 @@
 	    this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall;
 	    this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
+		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_between_the_ribs", function(o) {
+    		o.m.RequiredWeaponType = null;
+    		o.m.RequiredDamageType = null;
+    	}));
 	}
 
 	// switcheroo function to replace loot drops with dummy object
