@@ -1,6 +1,8 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
+	// Private
 	q.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
 	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
+	q.m.InversePoise <- 0;			// This is the inverse of Poise and counts upwards instead of downwards as Poise damage is received
 
 	q.isDisarmed <- function()
 	{
@@ -23,6 +25,7 @@
 		this.getSkills().add(::new("scripts/skills/special/rf_reach"));
 		this.getSkills().add(::new("scripts/skills/special/rf_formidable_approach_manager"));
 		this.getSkills().add(::new("scripts/skills/special/rf_direct_damage_limiter"));
+		this.getSkills().add(::new("scripts/skills/special/rf_poise_effect"));
 		this.getSkills().add(::new("scripts/skills/special/rf_polearm_adjacency"));
 		this.getSkills().add(::new("scripts/skills/special/rf_follow_up_proccer"));
 		this.getSkills().add(::new("scripts/skills/special/rf_inspiring_presence_buff_effect"));
@@ -220,6 +223,28 @@
 	}
 
 // New Functions:
+/*
+Internally we calculate the current threshold inversely. That makes it much cleaner in code to handle increases and reduction of PoiseMax.
+Our intended behavior is that a change in PoiseMax also changes the Poise of that character by the same amount:
+
+The PoiseMax is purely handled in the Properties while the current Poise is handled in this skill.
+It is much cleaner when a change to PoiseMax can solely focus on changing variables in Properties.
+*/
+	q.getPoise <- function()
+	{
+		return this.getCurrentProperties().getPoiseMax() - this.m.InversePoise;
+	}
+
+	q.addPoise <- function( _additionalPoise )
+	{
+		this.m.InversePoise -= _additionalPoise;
+	}
+
+	q.resetPoise <- function()
+	{
+		this.m.InversePoise = 0;
+	}
+
 	q.getSurroundedBonus <- function( _targetEntity )
 	{
 		local surroundedCount = _targetEntity.getSurroundedCount();
@@ -245,6 +270,13 @@
 		::Reforged.Config.XPOverride = true;
 		__original(_actor, _tile, _skill);
 		::Reforged.Config.XPOverride = wasOverriding;
+	}
+
+	// When entities are permanently stun immune then they should probably also be immune from poise stuns.
+	q.onInit = @(__original) function()
+	{
+		__original();
+		this.m.BaseProperties.IsImmuneToStunFromPoise = this.m.BaseProperties.IsImmuneToStun;
 	}
 
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )

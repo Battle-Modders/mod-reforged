@@ -197,7 +197,8 @@
 			RangeIdeal = baseWeapon.m.RangeIdeal,
 
 			// Reforged stuff -- should be removed when porting to MSU
-			Reach = baseWeapon.m.Reach
+			Reach = baseWeapon.m.Reach,
+			PoiseDamage = baseWeapon.m.PoiseDamage,
 		};
 	}
 

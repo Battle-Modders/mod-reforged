@@ -1,4 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
+	q.m.IsDamagingPoise <- false;
+	q.m.IsStunningFromPoise <- false;
+
 	q.isDuelistValid <- function()
 	{
 		return this.isAttack() && !this.isRanged() && this.getBaseValue("MaxRange") == 1;
@@ -63,15 +66,31 @@
 		}
 
 		// New Entries
-		if (!this.m.IsShieldRelevant && _targetTile.IsOccupiedByActor && _targetTile.getEntity().isArmedWithShield())
+		if (_targetTile.IsOccupiedByActor)
 		{
-			local shield = _targetTile.getEntity().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-			local bonus = (this.isRanged()) ? shield.getRangedDefenseBonus() : shield.getMeleeDefenseBonus();
-			if (bonus > 0)
+			local targetEntity = _targetTile.getEntity();
+			if (!this.m.IsShieldRelevant && targetEntity.isArmedWithShield())
 			{
+				local shield = targetEntity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+				local bonus = (this.isRanged()) ? shield.getRangedDefenseBonus() : shield.getMeleeDefenseBonus();
+				if (bonus > 0)
+				{
+					ret.push({
+						icon = "ui/tooltips/positive.png",
+						text = ::MSU.Text.colorGreen(bonus + "%") + " Ignores Shield",
+					});
+				}
+			}
+
+			if (!targetEntity.getCurrentProperties().IsImmuneToStun && this.m.IsStunningFromPoise)
+			{
+				local targetThresholdSkill = targetEntity.getSkills().getSkillByID("effects.poise");
+				local turnsStunnedBody = targetThresholdSkill.wouldStun(this.getContainer().getActor(), this, ::Const.BodyPart.Body);
+				local turnsStunnedHead = targetThresholdSkill.wouldStun(this.getContainer().getActor(), this, ::Const.BodyPart.Head);
+
 				ret.push({
 					icon = "ui/tooltips/positive.png",
-					text = ::MSU.Text.colorGreen(bonus + "%") + " Ignores Shield"
+					text = "Will stun for " + ::MSU.Text.colorGreen(turnsStunnedBody) + "/" + ::MSU.Text.colorGreen(turnsStunnedHead) + " turns",
 				});
 			}
 		}
@@ -94,6 +113,70 @@
 			{
 				this.m.IconDisabled = ::String.replace(this.m.Icon, ".png", "_sw.png");
 			}
+
+			if (this.m.IsStunningFromPoise)
+			{
+				if (::MSU.isIn("StunChance", this.m))
+				{
+					this.m.StunChance = 0;	// Skills that now use the Composure system should no longer use the StunChance
+				}
+			}
 		}
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+
+		if (this.m.IsDamagingPoise && this.getContainer().getActor() != null)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Poise Damage: " + this.getContainer().getActor().getCurrentProperties().getPoiseDamage()
+			});
+		}
+
+		if (this.m.IsStunningFromPoise)
+		{
+			foreach(index, entry in ret)
+			{
+				if (entry.text.find("%[/color] chance to s"))	// remove the entry about stunchance. This string is weird because it also needs to catch strike_down_skill
+				{
+					ret.remove(index);
+					break;
+				}
+			}
+
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Breaking the targets Poise will stun it"
+			});
+		}
+
+		return ret;
+	}
+
+	q.onUse = @(__original) function( _user, _targetTile )
+	{
+		if (this.m.IsStunningFromPoise)
+		{
+			local actor = this.getContainer().getActor();
+
+			local oldMaceSpec = actor.getCurrentProperties().IsSpecializedInMaces;
+			actor.getCurrentProperties().IsSpecializedInMaces = false;	// This will disable all vanilla StunChance based stuns
+			local ret = __original(_user, _targetTile);
+			actor.getCurrentProperties().IsSpecializedInMaces = oldMaceSpec;
+
+			return ret;
+		}
+		else
+		{
+			return __original(_user, _targetTile);
+		}
+	}
+
 });

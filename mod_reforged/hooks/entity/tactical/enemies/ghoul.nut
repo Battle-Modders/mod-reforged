@@ -38,6 +38,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall + 1;
+		this.m.BaseProperties.PoiseMax = ::Reforged.Poise.Default.Beast;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_colossus"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_deep_cuts"));
 	}

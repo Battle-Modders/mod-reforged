@@ -28,6 +28,7 @@
 
 		baseProperties.IsImmuneToDisarm = true;
 		baseProperties.IsImmuneToRotation = true;
+		baseProperties.PoiseMax = ::Reforged.Poise.Default.Unhold;
 	}
 
 	q.onTurnStart = @(__original) function()

@@ -103,6 +103,7 @@ foreach (requirement in requiredMods)
 	{
 		::include(file);
 	}
+	::include("mod_reforged/config/poise.nut");	// The default must have been defined so that it can be used in character.nut
 
 	::MSU.AI.addBehavior("RF_AttackLunge", "RF.AttackLunge", ::Const.AI.Behavior.Order.Darkflight, ::Const.AI.Behavior.Score.Attack);
 	::MSU.AI.addBehavior("RF_CoverAlly", "RF.CoverAlly", ::Const.AI.Behavior.Order.Adrenaline, 60);

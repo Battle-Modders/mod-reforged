@@ -12,8 +12,20 @@ local dummyItemContainer = ::new("scripts/items/item_container");
 	Tooltips = {
 		Concept = {
 			Wait = ::MSU.Class.BasicTooltip("Wait", ::Reforged.Mod.Tooltips.parseString(format("If you are not the last character in the [turn order|Concept.Turn] in a [round|Concept.Round], you may use the Wait action. This moves you to the end of the current [turn order|Concept.Turn], allowing you to act again before the end of the [round|Concept.Round].\n\nYou can only use Wait once per [turn|Concept.Turn].%s", ::Const.CharacterProperties.InitiativeAfterWaitMult == 1.0 ? "" : "\n\nUsing Wait causes your [turn order|Concept.Turn] in the next [round|Concept.Round] to be calculated with " + ::MSU.Text.colorizeMult(::Const.CharacterProperties.InitiativeAfterWaitMult) + " " + (::Const.CharacterProperties.InitiativeAfterWaitMult > 1.0 ? "more" : "less") + " [Initiative|Concept.Initiative]."))),
+			Poise = ::MSU.Class.BasicTooltip(
+				"Poise",
+				::Reforged.Mod.Tooltips.parseString("Poise depicts how well an entity resists stuns. It is reduced by [stunning attacks|Concept.StunningAttack] and some other skills which can damage Poise. At the start of an entities turn or whenever its Poise reaches 0, it is reset to the maximum value.")
+			),
 			Perk = ::MSU.Class.BasicTooltip("Perk", ::Reforged.Mod.Tooltips.parseString("As characters gain levels, they unlock perk points which can be spent to unlock powerful perks. Perks grant a character permanent bonuses or unlock new skills for use. The character\'s current [perk tier|Concept.PerkTier] increases by 1 each time a perk point is spent.")),
 			StatusEffect = ::MSU.Class.BasicTooltip("Status Effect", ::Reforged.Mod.Tooltips.parseString("Status effects are positive or negative effects on a character, which are mostly temporary. A status effect can have various effects ranging from increasing/decreasing [attributes|Concept.CharacterAttribute] to unlocking new abilities.")),
+			PoiseDamage = ::MSU.Class.BasicTooltip(
+				"Poise Damage",
+				::Reforged.Mod.Tooltips.parseString("Poise Damage is granted by certain weapons and improved by various skills. It determines how well [stunning attacks|Concept.StunningAttack] perform.")
+			),
+			StunningAttack = ::MSU.Class.BasicTooltip(
+				"Stunning Attack",
+				::Reforged.Mod.Tooltips.parseString("A Stunning Attack subtracts the [Poise Damage|Concept.PoiseDamage] for this attack from the targets [Poise|Concept.Poise] on a hit. If it reduces the targets [Poise|Concept.Poise] to 0 or below, the target will be stunned. Does not affect enemies who are immune to stuns.")
+			),
 			Injury = ::MSU.Class.BasicTooltip("Injury", ::Reforged.Mod.Tooltips.parseString("If sufficient damage is dealt to [Hitpoints|Concept.Hitpoints] during combat, characters can sustain an injury. Injuries are [status effects|Concept.StatusEffect] that confer various maluses.\n\nInjuries sustained during combat are [temporary|Concept.InjuryTemporary], and will heal over time. Such injuries can be treated at a Temple for faster healing.\n\nIf a character is killed during combat, they have a chance to be struck down instead of being killed and survive the battle with a [permanent injury|Concept.InjuryPermanent]"))
 			InjuryTemporary = ::MSU.Class.BasicTooltip("Temporary Injury", ::Reforged.Mod.Tooltips.parseString("Temporary injuries are received during combat when the damage to [Hitpoints|Concept.Hitpoints] received by a character exceeds the injury threshold. These injuries heal over time, but can be treated at a Temple for faster healing."))
 			InjuryPermanent = ::MSU.Class.BasicTooltip("Permanent Injury", ::Reforged.Mod.Tooltips.parseString("Permanent injuries are received when a character is \'struck down\' during combat instead of being killed. These injuries, and the maluses they incur, are forever.")),

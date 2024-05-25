@@ -44,6 +44,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium - 1;
+		this.m.BaseProperties.PoiseMax = ::Reforged.Poise.Default.Beast;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
 	}
 
