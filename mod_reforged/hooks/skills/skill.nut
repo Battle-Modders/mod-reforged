@@ -85,8 +85,8 @@
 			if (!targetEntity.getCurrentProperties().IsImmuneToStun && this.m.IsStunningFromPoise)
 			{
 				local targetThresholdSkill = targetEntity.getSkills().getSkillByID("effects.poise");
-				local turnsStunnedBody = targetThresholdSkill.wouldStun(this.getContainer().getActor(), this, false);
-				local turnsStunnedHead = targetThresholdSkill.wouldStun(this.getContainer().getActor(), this, true);
+				local turnsStunnedBody = targetThresholdSkill.wouldStun(this.getContainer().getActor(), this, ::Const.BodyPart.Body);
+				local turnsStunnedHead = targetThresholdSkill.wouldStun(this.getContainer().getActor(), this, ::Const.BodyPart.Head);
 
 				ret.push({
 					icon = "ui/tooltips/positive.png",
