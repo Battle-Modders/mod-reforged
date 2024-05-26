@@ -37,11 +37,10 @@
 		local ret = __original();
 		if (ret)
 		{
-			this.m.Skills.removeByID("perk.overwhelm"); // revert vanilla
 			this.m.Skills.removeByID("perk.fast_adaption"); // revert vanilla
-			// Rest from vanilla: Dodge, Relentless, Head Hunter
+			// Rest from vanilla: Dodge, Relentless, Head Hunter, Overwhelm
 
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hip_shooter"));
 		}
 
