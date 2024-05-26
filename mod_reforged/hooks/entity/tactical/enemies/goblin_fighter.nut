@@ -65,21 +65,8 @@
 			this.m.Skills.removeByID("perk.nine_lives"); // revert vanilla
 			// Rest from vanilla: Nimble, Dodge, Relentless
 
-			local weapon = this.getMainhandItem();
-			if (weapon != null)
-			{
-				if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
-		    	{
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-		    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
-		    	}
-		    	else
-		    	{
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
-		    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
-		    		this.m.BaseProperties.DamageDirectMult = 1.25;
-		    	}
-			}
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		}
 
 		return ret;
