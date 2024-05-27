@@ -13,15 +13,18 @@
 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
 		this.getSprite("head").setBrush("bust_goblin_03_head_01");
 		this.addDefaultStatusSprites();
-		b.IsSpecializedInSwords = true;
-		b.IsSpecializedInCrossbows = true;
+		// b.IsSpecializedInSwords = true;
+		// b.IsSpecializedInCrossbows = true;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
 		this.m.Skills.add(this.new("scripts/skills/actives/goblin_whip"));
 
 		// Reforged
-		::Reforged.Skills.addPerkGroup(this, "pg.rf_sword");
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
+	}
+
+	q.onSetupEntity = @() function()
+	{
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		::Reforged.Skills.addPerkGroup(this, "pg.rf_sword");
 	}
 });
