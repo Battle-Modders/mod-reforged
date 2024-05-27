@@ -15,7 +15,6 @@
 		}
 		else
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_long_reach"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 		}
 	}

@@ -19,7 +19,7 @@
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_southern");
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
+		// this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert")); // Given conditionally
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
@@ -35,10 +35,6 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_bolster", function(o) {
-			o.m.RequiredWeaponType = null;
-			o.m.RequiredWeaponReach = 1;
-		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
@@ -70,6 +66,7 @@
 	    if (this.isArmedWithShield())
 	    {
 	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
+	    	this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 	    }
 	}
 });

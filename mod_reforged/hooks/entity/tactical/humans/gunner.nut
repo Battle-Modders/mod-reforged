@@ -20,31 +20,8 @@
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
-		b.RangedDefense += 10;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_entrenched"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_power_shot"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
-	}
-
-	q.assignRandomEquipment = @(__original) function()
-	{
-	    __original();
-
-	    foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
-	    {
-	    	if (item.isItemType(::Const.Items.ItemType.MeleeWeapon))
-	    	{
-	    		if (item.isWeaponType(::Const.Items.WeaponType.Sword))
-	    		{
-	    			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
-	    		}
-	    		else if (item.isWeaponType(::Const.Items.WeaponType.Mace))
-	    		{
-	    			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_mace"));
-	    		}
-	    	}
-	    }
 	}
 });
