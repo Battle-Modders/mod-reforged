@@ -41,7 +41,7 @@ local units = [
 	{
 		ID = "Unit.RF.SouthernDonkey",
 		Troop = "SouthernDonkey",
-		Figure = "cart_02",
+		Figure = "cart_03",
 		Cost = 10      // 0 in Vanilla
 	}
 ]
