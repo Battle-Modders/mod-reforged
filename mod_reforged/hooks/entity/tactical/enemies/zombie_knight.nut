@@ -9,7 +9,7 @@
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToBleeding = true;
 		b.IsImmuneToPoison = true;
-		// b.FatigueDealtPerHitMult = 2.0;
+		b.FatigueDealtPerHitMult = 2.0;
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 90)
 		// {
@@ -26,39 +26,26 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
-
-	    this.m.Skills.add(::new("scripts/skills/perks/perk_nine_lives"));
-
 	    local weapon = this.getMainhandItem();
 	    if (weapon == null) return;
 
 	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-
-    	if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-    	}
-    	else
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-    	}
 	}
 
-	q.makeMiniboss = @(__original) function()
+	q.onSkillsUpdated = @(__original) function()
 	{
-		local ret = __original();
-		if (ret)
-		{
-			// Vanilla also adds nine_lives but we don't remove that here
-			this.m.Skills.removeByID("perk.hold_out");
-		}
+		__original();
+		local weapon = this.getMainhandItem();
+		if (weapon == null) return;
 
-		return ret;
+	    if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+	    {
+	 		this.m.Skills.removeByID("actives.rf_kata_step_skill");
+	    }
 	}
 });
