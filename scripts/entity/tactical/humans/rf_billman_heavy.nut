@@ -123,7 +123,7 @@ this.rf_billman_heavy <- ::inherit("scripts/entity/tactical/human" {
 				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
 			}
-			else
+			else // polehammer or voulge
 			{
 				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
 				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));

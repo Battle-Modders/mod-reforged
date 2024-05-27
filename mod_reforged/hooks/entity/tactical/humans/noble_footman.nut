@@ -105,26 +105,6 @@
 
 	q.onSetupEntity <- function()
 	{
-		local weapon = this.getMainhandItem();
-		if (weapon != null)
-		{
-			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Mace))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_dent_armor"));
-			}
-			else if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_from_all_sides"));
-			}
-		}
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}
 });

@@ -45,7 +45,7 @@
 
 // New Reforged Actors
 ::Const.Tactical.Actor.RF_FootmanHeavy <- {
-	XP = 350,
+	XP = 400,
 	ActionPoints = 9,
 	Hitpoints = 80,
 	Bravery = 70,
@@ -64,7 +64,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_BillmanHeavy <- {
-	XP = 350,
+	XP = 400,
 	ActionPoints = 9,
 	Hitpoints = 80,
 	Bravery = 70,
@@ -121,7 +121,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_Fencer <- {
-	XP = 450,
+	XP = 475,
 	ActionPoints = 9,
 	Hitpoints = 60,
 	Bravery = 70,
@@ -197,7 +197,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_HeraldsBodyguard <- {
-	XP = 500,
+	XP = 550,
 	ActionPoints = 9,
 	Hitpoints = 120,
 	Bravery = 90,
