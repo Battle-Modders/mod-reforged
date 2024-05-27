@@ -14,15 +14,6 @@
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
-		this.m.BaseProperties.Hitpoints += 10;
-		this.m.BaseProperties.Bravery += 20;
-		this.m.BaseProperties.Stamina += 10;
-		this.m.BaseProperties.MeleeSkill += 10;
-		this.m.BaseProperties.RangedSkill += 10;
-		this.m.BaseProperties.MeleeDefense += 5;
-		this.m.BaseProperties.RangedDefense += 10;
-		this.m.BaseProperties.Initiative += 20;
-
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 	}
@@ -46,7 +37,8 @@
 	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 	    	}
 
-    		if (::Reforged.Items.isDuelistValid(weapon))
+	    	local offhand = this.getOffhandItem();
+    		if (offhand == null)
     		{
     			this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
     		}
