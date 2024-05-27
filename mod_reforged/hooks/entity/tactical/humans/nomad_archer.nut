@@ -48,17 +48,11 @@
 		// {
 		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		// }
-
-		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
-		if (::Math.rand(1, 100) <= 25)
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_eyes_up"));
-		}
-		else if (::Math.rand(1, 100) <= 25)
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_flaming_arrows"));
-		}
 	}
+
+	q.onSetupEntity = @() function()
+	{
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+	}
+
 });

@@ -35,7 +35,7 @@
 		// }
 
 		// Reforged
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_target_practice"));
 	}
 });
