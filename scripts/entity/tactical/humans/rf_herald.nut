@@ -39,7 +39,6 @@ this.rf_herald <- ::inherit("scripts/entity/tactical/human" {
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_inspiring_presence"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rally_the_troops"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));

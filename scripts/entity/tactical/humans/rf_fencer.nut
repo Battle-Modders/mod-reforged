@@ -25,13 +25,11 @@ this.rf_fencer <- ::inherit("scripts/entity/tactical/human" {
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fencer"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
@@ -141,8 +139,7 @@ this.rf_fencer <- ::inherit("scripts/entity/tactical/human" {
 			})
 			this.m.Items.equip(::new(helmet));
 		}
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_precise"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 
 		return true;
 	}
