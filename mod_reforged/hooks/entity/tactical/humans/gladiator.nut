@@ -70,17 +70,4 @@
 	    	}
 	    }
 	}
-
-	q.makeMiniboss = @(__original) function()
-	{
-		local ret = __original();
-		if (ret)
-		{
-			this.m.Skills.removeByID("perk.fearsome"); // revert vanilla
-
-			this.m.Skills.add(::new("scripts/skills/perks/perk_lone_wolf"));
-		}
-
-		return ret;
-	}
 });

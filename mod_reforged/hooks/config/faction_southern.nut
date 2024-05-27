@@ -1,5 +1,40 @@
 ::MSU.Table.merge(::Const.Tactical.Actor.Conscript, {
-	RangedDefense = 0
+	XP = 250,
+	ActionPoints = 9,
+	Hitpoints = 55,
+	Bravery = 70,
+	Stamina = 120,
+	MeleeSkill = 60, // vanilla 70
+	RangedSkill = 50,
+	MeleeDefense = 0, // vanilla 10
+	RangedDefense = 0, // vanilla 5
+	Initiative = 110,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15
+});
+::MSU.Table.merge(::Const.Tactical.Actor.Gunner, {
+	XP = 250,
+	ActionPoints = 9,
+	Hitpoints = 70,
+	Bravery = 70,
+	Stamina = 120,
+	MeleeSkill = 65,
+	RangedSkill = 75,
+	MeleeDefense = 5,
+	RangedDefense = 20,
+	Initiative = 120,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Officer, {
 	RangedDefense = 0,
@@ -8,6 +43,9 @@
 ::MSU.Table.merge(::Const.Tactical.Actor.Gladiator, {
 	RangedDefense = 0,
 	FatigueRecoveryRate = 15
+});
+::MSU.Table.merge(::Const.Tactical.Actor.Assassin, {
+	FatigueRecoveryRate = 15 // Vanilla 20
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.NomadCutthroat, {
 	XP = 175, // vanilla 150

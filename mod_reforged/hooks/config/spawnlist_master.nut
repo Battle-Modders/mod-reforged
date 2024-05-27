@@ -47,6 +47,10 @@
 ::Const.World.Spawn.Troops.Greatsword.TitleList <- ::Const.Strings.RF_ZweihanderTitles;
 ::Const.World.Spawn.Troops.Knight.Strength = 45;
 
+//Southern
+::Const.World.Spawn.Troops.Conscript.Strength = 16;  // vanilla 20
+::Const.World.Spawn.Troops.Conscript.Cost = 16;  // vanilla 20
+
 // Cost is handled in bandit_units.nut
 ::MSU.Table.merge(::Const.World.Spawn.Troops, {
 	// Bandits
