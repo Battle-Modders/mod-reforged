@@ -1,4 +1,23 @@
 // Adjust Vanilla Actors
+::MSU.Table.merge(::Const.Tactical.Actor.MilitiaVeteran, {
+	XP = 200, // vanilla 150
+	ActionPoints = 9,
+	Hitpoints = 70, // vanilla 60
+	Bravery = 70, // vanilla 50
+	Stamina = 120, // vanilla 110
+	MeleeSkill = 65, // vanilla 55
+	RangedSkill = 50, // vanilla 40
+	MeleeDefense = 10, // vanilla 5
+	RangedDefense = 0,
+	Initiative = 120, // vanilla 100
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15
+});
 ::MSU.Table.merge(::Const.Tactical.Actor.CaravanGuard, {
 	RangedDefense = 0
 });
