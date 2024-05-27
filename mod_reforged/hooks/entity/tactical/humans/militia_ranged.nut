@@ -10,7 +10,7 @@
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
 		this.getSprite("accessory_special").setBrush("bust_militia_band_01");
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
@@ -21,6 +21,6 @@
 	{
 	    __original();
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 	}
 });
