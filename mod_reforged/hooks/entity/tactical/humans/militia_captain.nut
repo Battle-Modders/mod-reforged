@@ -29,10 +29,6 @@
 			o.m.Cooldown = 3;
 		}));
 
-		this.m.BaseProperties.MeleeSkill += 10;
-		this.m.BaseProperties.RangedDefense += 10;
-		this.m.BaseProperties.MeleeDefense += 10;
-
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
