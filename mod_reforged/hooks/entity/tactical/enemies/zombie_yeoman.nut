@@ -12,7 +12,7 @@
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
 		// {
-		// 	b.FatigueDealtPerHitMult = 2.0;
+			b.FatigueDealtPerHitMult = 2.0;
 		// }
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 90)

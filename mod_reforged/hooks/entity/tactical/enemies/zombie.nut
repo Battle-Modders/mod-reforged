@@ -121,6 +121,8 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
+		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_wear_them_down"));
 	}
 });
