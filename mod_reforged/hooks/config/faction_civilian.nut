@@ -18,6 +18,25 @@
 	],
 	FatigueRecoveryRate = 15
 });
+::MSU.Table.merge(::Const.Tactical.Actor.MilitiaCaptain, {
+	XP = 250, // vanilla 200
+	ActionPoints = 9,
+	Hitpoints = 80, // vanilla 70
+	Bravery = 80, // vanilla 70
+	Stamina = 130, // vanilla 120
+	MeleeSkill = 70, // vanilla 60
+	RangedSkill = 50,
+	MeleeDefense = 15, // vanilla 10
+	RangedDefense = 0,
+	Initiative = 130, // vanilla 100
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15 // vanilla 20
+});
 ::MSU.Table.merge(::Const.Tactical.Actor.CaravanGuard, {
 	RangedDefense = 0
 });
