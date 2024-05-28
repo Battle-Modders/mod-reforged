@@ -10,18 +10,15 @@
 	{
 		local ret = __original();
 
-		local maxReduction = 0.5;
-		if (!::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()))
+		if (this.RF_getDefenseMult() != 1.0)
 		{
-			maxReduction = this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields ? 0.25 : 0.5;
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Except when using [Shieldwall|Skill+shieldwall], the defense values drop linearly as you build [Fatigue|Concept.Fatigue] up to " + ::MSU.Text.colorizeMult(this.RF_getDefenseMult()) + " at maximum [Fatigue|Concept.Fatigue]")
+			});
 		}
-
-		ret.push({
-			id = 8,
-			type = "text",
-			icon = "ui/icons/fatigue.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Except when using [Shieldwall|Skill+shieldwall], the defense values drop linearly as you build [Fatigue|Concept.Fatigue] up to " + ::MSU.Text.colorRed((maxReduction * 100) + "%") + " at maximum [Fatigue|Concept.Fatigue]")
-		});
 
 		ret.push({
 			id = 8,
@@ -35,22 +32,18 @@
 
 	q.getMeleeDefense = @(__original) function()
 	{
-		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()) || this.getContainer().getActor().getSkills().hasSkill("effects.shieldwall"))
+		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 			return __original();
 
-		local actor = this.getContainer().getActor();
-		local mult = 1.0 - (actor.getFatigue() / actor.getFatigueMax()) * (actor.getCurrentProperties().IsSpecializedInShields ? 0.25 : 0.5);
-		return ::Math.floor(__original() * mult);
+		return ::Math.floor(__original() * this.RF_getDefenseMult());
 	}
 
 	q.getRangedDefense = @(__original) function()
 	{
-		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()) || this.getContainer().getActor().getSkills().hasSkill("effects.shieldwall"))
+		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 			return __original();
 
-		local actor = this.getContainer().getActor();
-		local mult = 1.0 - (actor.getFatigue() / actor.getFatigueMax()) * (actor.getCurrentProperties().IsSpecializedInShields ? 0.25 : 0.5);
-		return ::Math.floor(__original() * mult);
+		return ::Math.floor(__original() * this.RF_getDefenseMult());
 	}
 
 	// We hook it to use getMeleeDefense(), getRangedDefense(), getStaminaModifier() instead of
@@ -81,5 +74,22 @@
 	{
 		local mult = (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields) ? 1.25 : 1.0;
 		return ::Math.floor(this.getRangedDefense() * mult);
+	}
+
+	// Used to drop defenses of the actor as the actor builds fatigue
+	q.RF_getDefenseMult <- function()
+	{
+		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
+		{
+			return 0.5;
+		}
+
+		local actor = this.getContainer().getActor();
+		if (actor.getSkills().hasSkill("effects.shieldwall"))
+		{
+			return 1.0;
+		}
+
+		return (actor.getCurrentProperties().IsSpecializedInShields ? 0.75 : 0.5) * actor.getFatigue() / actor.getFatigueMax();
 	}
 });
