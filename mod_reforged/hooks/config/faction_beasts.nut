@@ -23,3 +23,22 @@
 	MeleeDefense = 20,
 	RangedDefense = 20
 });
+::MSU.Table.merge(::Const.Tactical.Actor.Serpent, {
+	XP = 175,
+	ActionPoints = 9,
+	Hitpoints = 130,
+	Bravery = 100,
+	Stamina = 110,
+	MeleeSkill = 65,
+	RangedSkill = 0,
+	MeleeDefense = 15, // vanilla 10
+	RangedDefense = 25,
+	Initiative = 50,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 15,
+	Armor = [
+		40,
+		40
+	]
+});
