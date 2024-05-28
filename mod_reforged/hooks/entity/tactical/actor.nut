@@ -57,7 +57,9 @@
 			{
 				if (entry.id == 4)
 				{
-					entry.text += " (Has Waited)";
+					// The first word in vanilla is "Acts" or "Acting" and we want to add the word "again" after that
+					local idx = entry.text.find(" ");
+					entry.text = ::Reforged.Mod.Tooltips.parseString(entry.text.slice(0, idx) + " [again|Concept.Wait]" + entry.text.slice(idx));
 					break;
 				}
 			}
