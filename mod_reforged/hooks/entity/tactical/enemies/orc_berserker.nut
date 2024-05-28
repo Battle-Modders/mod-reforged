@@ -79,19 +79,19 @@
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
+	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+	}
 
-	    local weapon = this.getMainhandItem();
-	    if (weapon == null) return;
+	q.onSkillsUpdated = @(__original) function()
+	{
+		__original();
+		local weapon = this.getMainhandItem();
+		if (weapon == null) return;
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 6);
-
-	    if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
+	    if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
 	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
-	    }
-	    else
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+	 		this.m.Skills.removeByID("actives.rf_bearded_blade_skill");
+ 			this.m.Skills.removeByID("actives.rf_hook_shield_skill");
 	    }
 	}
 });

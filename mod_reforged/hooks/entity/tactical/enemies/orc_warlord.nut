@@ -67,10 +67,6 @@
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
-
-	    local weapon = this.getMainhandItem();
-	    if (weapon == null) return;
-
 	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	}
 
@@ -79,9 +75,22 @@
 		local ret = __original();
 		if (ret)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
 		}
 
 		return ret;
+	}
+
+	q.onSkillsUpdated = @(__original) function()
+	{
+		__original();
+		local weapon = this.getMainhandItem();
+		if (weapon == null) return;
+
+	    if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
+	    {
+	 		this.m.Skills.removeByID("actives.rf_bearded_blade_skill");
+ 			this.m.Skills.removeByID("actives.rf_hook_shield_skill");
+	    }
 	}
 });

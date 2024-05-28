@@ -74,7 +74,7 @@
 		local ret = __original();
 		if (ret)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
 		}
 
 		return ret;
