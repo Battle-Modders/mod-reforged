@@ -3,19 +3,25 @@
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/shield_damage.png",
-			text = "Inflicts [color=" + ::Const.UI.Color.DamageValue + "]" + this.getContainer().getActor().getMainhandItem().getShieldDamage() + "[/color] damage to shields"
-		});
+		if (this.getShieldDamage(this.getContainer().getActor()) != 0)
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/shield_damage.png",
+				text = "Inflicts " + ::MSU.Text.colorGreen(this.getShieldDamage(this.getContainer().getActor())) + " damage to shields"
+			});
+		}
 
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Inflicts [color=" + ::Const.UI.Color.DamageValue + "]" + this.RF_getFatigueDamage() + "[/color] [Fatigue|Concept.Fatigue] on the target")
-		});
+		if (this.RF_getFatigueDamage() != 0)
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Inflicts [color=" + ::Const.UI.Color.DamageValue + "]" + this.RF_getFatigueDamage() + "[/color] [Fatigue|Concept.Fatigue] on the target")
+			});
+		}
 
 		if (this.getMaxRange() > 1)
 		{
@@ -57,7 +63,7 @@
 		if (shield != null)
 		{
 			this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplitShield);
-			local damage = _user.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).getShieldDamage();
+			local damage = this.getShieldDamage(_user);
 
 			local conditionBefore = shield.getCondition();
 			shield.applyShieldDamage(damage);
@@ -66,19 +72,19 @@
 			{
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses Smash Shield and destroys " + ::Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and destroys " + ::Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield");
 				}
 			}
 			else
 			{
 				if (this.m.SoundOnHit.len() != 0)
 				{
-					this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _targetTile.getEntity().getPos());
+					::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _targetTile.getEntity().getPos());
 				}
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses Smash Shield and hits " + ::Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield for [b]" + (conditionBefore - shield.getCondition()) + "[/b] damage");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and hits " + ::Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield for [b]" + (conditionBefore - shield.getCondition()) + "[/b] damage");
 				}
 			}
 
@@ -106,6 +112,12 @@
 		}
 
 		return true;
+	}
+
+// New Functions
+	q.getShieldDamage <- function( _user )
+	{
+		return _user.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).getShieldDamage();
 	}
 
 	q.RF_getFatigueDamage <- function()
