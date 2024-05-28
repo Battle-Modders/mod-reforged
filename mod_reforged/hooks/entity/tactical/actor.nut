@@ -57,9 +57,9 @@
 			{
 				if (entry.id == 4)
 				{
-					// The first word in vanilla is "Acts" or "Acting" and we want to add the word "again" after that
-					local idx = entry.text.find(" ");
-					entry.text = ::Reforged.Mod.Tooltips.parseString(entry.text.slice(0, idx) + " [again|Concept.Wait]" + entry.text.slice(idx));
+					// The first word in vanilla is "Acts" or "Acting" and we want to add the word "again" after that to show that
+					// this actor has used Wait. So we replace the first instance of space with "again" hyperlinked to Wait concept.
+					entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.String.replace(entry.text, " ", " [again|Concept.Wait] "));
 					break;
 				}
 			}
