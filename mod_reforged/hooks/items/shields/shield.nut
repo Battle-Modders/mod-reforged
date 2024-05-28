@@ -20,12 +20,15 @@
 			});
 		}
 
-		ret.push({
-			id = 8,
-			type = "text",
-			icon = "ui/icons/reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Ignores " + ::MSU.Text.colorGreen(this.getReachIgnore()) + " [Reach Advantage|Concept.ReachAdvantage]")
-		});
+		if (this.getReachIgnore() != 0)
+		{
+			ret.push({
+				id = 12,
+				type = "text",
+				icon = "ui/icons/reach.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Ignores " + ::MSU.Text.colorGreen(this.getReachIgnore()) + " [Reach Advantage|Concept.ReachAdvantage]")
+			});
+		}
 
 		return ret;
 	}
