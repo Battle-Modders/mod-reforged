@@ -20,7 +20,7 @@ this.rf_faction_banner_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "Receive no morale check from dying allies as long as your faction outnumbers your enemies"
+			text = "Receive no morale check from dying allies as long as a faction member carries your banner and your faction outnumbers your enemies"
 		});
 		
 		return tooltip;
