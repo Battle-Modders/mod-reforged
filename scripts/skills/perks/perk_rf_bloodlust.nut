@@ -1,6 +1,6 @@
 this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
+		RequiredWeaponType = ::Const.Items.WeaponType.Cleaver,
 		Stacks = 0,
 		MaxStacks = 2,
 		StacksPerTrigger = 2,
@@ -102,10 +102,10 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 		if (_skill.isRanged() || !_skill.isAttack())
 			return false;
 
-		if (this.m.IsForceEnabled)
+		if (this.m.RequiredWeaponType == null)
 			return true;
 
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Cleaver);
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });

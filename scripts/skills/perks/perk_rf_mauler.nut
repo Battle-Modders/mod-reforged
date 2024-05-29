@@ -1,7 +1,7 @@
 this.perk_rf_mauler <- this.inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
-		RequireWeapon = true,
+		RequiredWeaponType = ::Const.Items.WeaponType.Cleaver,
+		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
 		Chance = 33,
 		BleedStacksRequired = 3
 		InjuryPool = null
@@ -66,20 +66,14 @@ this.perk_rf_mauler <- this.inherit("scripts/skills/skill", {
 
 	function isSkillValid( _skill )
 	{
-		if (!_skill.isAttack())
+		if (!_skill.isAttack() || (!this.m.RequiredWeaponType != null && !_skill.getDamageType().contains(::Const.Damage.DamageType.Cutting)))
 			return false;
 
-		if (this.m.IsForceEnabled)
-			return true;
-
-		if (!_skill.getDamageType().contains(::Const.Damage.DamageType.Cutting))
-			return false;
-
-		if (!this.m.RequireWeapon)
+		if (this.m.RequiredWeaponType == null)
 			return true;
 
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Cleaver);
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 
 	// It is a copy of how vanilla applies injury in actor.nut onDamageReceived function

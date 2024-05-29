@@ -2,7 +2,7 @@ this.perk_rf_bear_down <- ::inherit("scripts/skills/skill", {
 	m = {
 		ChanceToHitHeadModifier = 15,
 		ThresholdToInflictInjuryMult = 0.66,
-		IsForceEnabled = false,
+		RequiredWeaponType = ::Const.Items.WeaponType.Mace,
 		ValidEffects = [
 			"effects.stunned",
 			"effects.dazed",
@@ -55,10 +55,10 @@ this.perk_rf_bear_down <- ::inherit("scripts/skills/skill", {
 		if (_skill.isRanged() || !_skill.isAttack())
 			return false;
 
-		if (this.m.IsForceEnabled)
+		if (this.m.RequiredWeaponType == null)
 			return true;
 
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Mace);
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });

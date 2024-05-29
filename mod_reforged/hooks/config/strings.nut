@@ -988,7 +988,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_BetweenTheRibs = ::UPD.getDescription({
  		Fluff = "Striking when an enemy is distracted allows this character to aim for the vulnerable bits!",
- 		Requirement = "Dagger",
+ 		Requirement = "Dagger and Piercing Attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1068,7 +1068,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_BoneBreaker = ::UPD.getDescription({
  		Fluff = "Snap, crunch, crumble. Music to your ears!",
- 		Requirement = "Mace",
+ 		Requirement = "Mace and Blunt Attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1693,7 +1693,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
  	RF_Mauler = ::UPD.getDescription({
  		Fluff = "Flesh is the canvas on which you paint!",
- 		Requirement = "Cleaver",
+ 		Requirement = "Cleaver and Cutting Attack",
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [

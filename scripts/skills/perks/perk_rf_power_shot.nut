@@ -1,6 +1,6 @@
 this.perk_rf_power_shot <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
+		RequiredWeaponType = ::Const.Items.WeaponType.Crossbow | ::Const.Items.WeaponType.Firearm,
 		Chance = 50
 	},
 	function create()
@@ -16,41 +16,30 @@ this.perk_rf_power_shot <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function isEnabled()
-	{
-		if (this.m.IsForceEnabled)
-		{
-			return true;
-		}
-
-		if (this.getContainer().getActor().isDisarmed()) return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || (!weapon.isWeaponType(::Const.Items.WeaponType.Crossbow) && !weapon.isWeaponType(::Const.Items.WeaponType.Firearm)))
-		{
-			return false;
-		}
-
-		return true;
-	}
-
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_skill.isAttack() || !_skill.isRanged() || !_targetEntity.isAlive() || _targetEntity.isDying() || !this.isEnabled())
-		{
+		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill) || ::Math.rand(1, 100) > this.m.Chance)
 			return;
-		}
 
-		if (::Math.rand(1, 100) <= this.m.Chance)
+		local effect = ::new("scripts/skills/effects/staggered_effect");
+		_targetEntity.getSkills().add(effect);
+		effect.m.TurnsLeft = 1;
+
+		if (!this.getContainer().getActor().isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
 		{
-			local effect = ::new("scripts/skills/effects/staggered_effect");
-			_targetEntity.getSkills().add(effect);
-			effect.m.TurnsLeft = 1;
-
-			if (!this.getContainer().getActor().isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-			{
-				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " has staggered " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn(s)");
-			}
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " has staggered " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn(s)");
 		}
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (!_skill.isAttack())
+			return false;
+
+		if (this.m.RequiredWeaponType == null)
+			return true;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });

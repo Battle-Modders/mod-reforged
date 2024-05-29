@@ -1,6 +1,6 @@
 this.perk_rf_eyes_up <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
+		RequiredWeaponType = ::Const.Items.WeaponType.Bow,
 		TargetTile = null,
 		ActorsAppliedTo = []
 	},
@@ -17,24 +17,6 @@ this.perk_rf_eyes_up <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function isEnabled()
-	{
-		if (this.m.IsForceEnabled)
-		{
-			return true;
-		}
-
-		if (this.getContainer().getActor().isDisarmed()) return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Bow))
-		{
-			return false;
-		}
-
-		return true;
-	}
-
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		this.m.TargetTile = _targetTile;
@@ -43,12 +25,12 @@ this.perk_rf_eyes_up <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (this.isEnabled() && (_skill.isRanged() || this.m.IsForceEnabled)) this.applyEffect(_targetEntity);
+		if (this.isSkillValid(_skill)) this.applyEffect(_targetEntity);
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
 	{
-		if (this.isEnabled() && (_skill.isRanged() || this.m.IsForceEnabled)) this.applyEffect(_targetEntity);
+		if (this.isSkillValid(_skill)) this.applyEffect(_targetEntity);
 	}
 
 	function applyEffect( _targetEntity )
@@ -90,5 +72,17 @@ this.perk_rf_eyes_up <- ::inherit("scripts/skills/skill", {
 		this.skill.onCombatFinished();
 		this.m.TargetTile = null;
 		this.m.ActorsAppliedTo.clear();
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (!_skill.isAttack())
+			return false;
+
+		if (this.m.RequiredWeaponType == null)
+			return true;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });

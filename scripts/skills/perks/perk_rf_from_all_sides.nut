@@ -1,6 +1,6 @@
 this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
+		RequiredWeaponType = ::Const.Items.WeaponType.Flail,
 		SkillCount = 0,
 		LastTargetID = 0,
 	},
@@ -17,38 +17,10 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function isEnabled()
-	{
-		if (this.m.IsForceEnabled)
-		{
-			return true;
-		}
-
-		if (!::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()) || this.getContainer().getActor().isDisarmed())
-		{
-			return false;
-		}
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Flail))
-		{
-			return false;
-		}
-
-		return true;
-	}
-
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		if (!_skill.isAttack() || _targetEntity.isAlliedWith(this.getContainer().getActor()) || !this.isEnabled() || (!_skill.m.IsWeaponSkill && !this.m.IsForceEnabled))
-		{
+		if (!this.isSkillValid(_skill) || this.m.SkillCount == ::Const.SkillCounter && this.m.LastTargetID == _targetEntity.getID())
 			return;
-		}
-
-		if (this.m.SkillCount == ::Const.SkillCounter && this.m.LastTargetID == _targetEntity.getID())
-		{
-			return;
-		}
 
 		this.m.SkillCount = ::Const.SkillCounter;
 		this.m.LastTargetID = _targetEntity.getID();
@@ -61,5 +33,17 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 
 		effect.proc(_hitInfo);
 		_targetEntity.getSkills().add(effect);
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (!_skill.isAttack())
+			return false;
+
+		if (this.m.RequiredWeaponType == null)
+			return true;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });

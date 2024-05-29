@@ -64,7 +64,7 @@
 		this.m.BaseProperties.MeleeDefense = 15;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_from_all_sides", function(o) {
-			o.m.IsForceEnabled = true;
+			o.m.RequiredWeaponType = null;
 		}));
 	}
 

@@ -1,6 +1,6 @@
 this.perk_rf_internal_hemorrhage <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
+		RequiredDamageType = ::Const.Damage.DamageType.Blunt,
 		PercentageOfDamage = 20
 	},
 	function create()
@@ -18,7 +18,7 @@ this.perk_rf_internal_hemorrhage <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_targetEntity.isAlive() || _targetEntity.isDying() || !_skill.isAttack() || (!_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt) && !this.m.IsForceEnabled))
+		if (!_targetEntity.isAlive() || _targetEntity.isDying() || !this.isSkillValid(_skill))
 		{
 			return;
 		}
@@ -42,7 +42,7 @@ this.perk_rf_internal_hemorrhage <- ::inherit("scripts/skills/skill", {
 
 	function onQueryTooltip( _skill, _tooltip )
 	{
-		if (_skill.isAttack() && (_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt) || this.m.IsForceEnabled))
+		if (this.isSkillValid(_skill))
 		{
 			_tooltip.push({
 				id = 10,
@@ -51,5 +51,10 @@ this.perk_rf_internal_hemorrhage <- ::inherit("scripts/skills/skill", {
 				text = "Inflicts internal hemorrhage for [color=" + ::Const.UI.Color.DamageValue + "]" + this.m.PercentageOfDamage + "%[/color] of the damage dealt to Hitpoints"
 			});
 		}
+	}
+
+	function isSkillValid( _skill )
+	{
+		return _skill.isAttack() && (this.m.RequiredDamageType == null || _skill.getDamageType().contains(this.m.RequiredDamageType));
 	}
 });

@@ -1,5 +1,7 @@
 this.perk_rf_rattle <- ::inherit("scripts/skills/skill", {
 	m = {
+		RequiredWeaponType = ::Const.Items.WeaponType.Hammer,
+		RequiredDamageType = ::Const.Damage.DamageType.Blunt,
 		IsForceEnabled = false,
 		RequiresWeapon = true
 	},
@@ -26,20 +28,14 @@ this.perk_rf_rattle <- ::inherit("scripts/skills/skill", {
 
 	function isSkillValid( _skill )
 	{
-		if (!_skill.isAttack())
+		if (!_skill.isAttack() || (this.m.RequiredDamageType != null && !_skill.getDamageType().contains(this.m.RequiredDamageType)))
 			return false;
 
-		if (this.m.IsForceEnabled)
-			return true;
-
-		if (!_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt))
-			return false;
-
-		if (!this.m.RequiresWeapon)
+		if (this.m.RequiredWeaponType == null)
 			return true;
 
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Hammer);
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });
 

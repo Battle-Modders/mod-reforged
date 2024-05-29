@@ -1,6 +1,6 @@
 this.perk_rf_cull <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
+		RequiredWeaponType = ::Const.Items.WeaponType.Axe,
 		Threshold = 0.33,
 		SkillCount = 0,
 		LastTargetID = 0
@@ -70,10 +70,10 @@ this.perk_rf_cull <- ::inherit("scripts/skills/skill", {
 		if (_skill.isRanged() || !_skill.isAttack())
 			return false;
 
-		if (this.m.IsForceEnabled)
+		if (this.m.RequiredWeaponType == null)
 			return true;
 
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Axe);
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });

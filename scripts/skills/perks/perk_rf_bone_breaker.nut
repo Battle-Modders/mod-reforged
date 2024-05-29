@@ -1,6 +1,7 @@
 this.perk_rf_bone_breaker <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
+		RequiredWeaponType = ::Const.Items.WeaponType.Mace,
+		RequiredDamageType = ::Const.Damage.DamageType.Blunt,
 		IsForceTwoHanded = false,
 		IsTargetValid = false,
 		InjuryPool = null,
@@ -29,24 +30,6 @@ this.perk_rf_bone_breaker <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function isEnabled()
-	{
-		if (this.m.IsForceEnabled)
-		{
-			return true;
-		}
-
-		if (this.getContainer().getActor().isDisarmed()) return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if(weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Mace))
-		{
-			return false;
-		}
-
-		return true;
-	}
-
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		this.m.InjuryPool = null;
@@ -64,7 +47,7 @@ this.perk_rf_bone_breaker <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (this.m.DamageInflictedHitpoints < this.m.MinDamageToInflictInjury || this.m.InjuryPool == null || _targetEntity == null || this.m.TargetsThisTurn.find(_targetEntity.getID()) != null || !_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.isAlliedWith(this.getContainer().getActor()) || !_skill.isAttack() || !this.isEnabled())
+		if (this.m.DamageInflictedHitpoints < this.m.MinDamageToInflictInjury || this.m.InjuryPool == null || _targetEntity == null || this.m.TargetsThisTurn.find(_targetEntity.getID()) != null || !_targetEntity.isAlive() || !this.isSkillValid(_skill))
 		{
 			this.m.InjuryPool = null;
 			return;
@@ -155,5 +138,17 @@ this.perk_rf_bone_breaker <- ::inherit("scripts/skills/skill", {
 				_targetEntity.onUpdateInjuryLayer();
 			}
 		}
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (!_skill.isAttack() || (this.m.RequiredDamageType != null && !_skill.getDamageType().contains(this.m.RequiredDamageType)))
+			return false;
+
+		if (this.m.RequiredWeaponType == null)
+			return true;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });
