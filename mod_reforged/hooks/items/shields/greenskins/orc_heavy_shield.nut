@@ -4,5 +4,6 @@
 		__original();
 		this.m.Condition = 300;
 		this.m.ConditionMax = 300;
+		this.m.StaminaModifier = -25;
 	}
 });
