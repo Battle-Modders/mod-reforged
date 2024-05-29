@@ -28,9 +28,6 @@
 
 		this.m.Skills.add(this.new("scripts/skills/racial/goblin_ambusher_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
-
-		// Reforged
-		b.RangedDefense += 5;
 	}
 
 	q.makeMiniboss = @(__original) function()
