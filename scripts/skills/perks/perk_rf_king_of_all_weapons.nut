@@ -51,6 +51,14 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (!this.m.IsSpent && this.isSkillValid(_skill) && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		{
+			_properties.DamageTotalMult *= this.m.DamageTotalMult;
+		}
+	}
+
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (this.isSkillValid(_skill) && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
