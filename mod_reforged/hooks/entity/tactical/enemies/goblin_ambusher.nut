@@ -4,7 +4,7 @@
 	    this.goblin.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.GoblinAmbusher);
-		b.DamageDirectMult = 1.25;
+		// b.DamageDirectMult = 1.25;
 		b.TargetAttractionMult = 1.1;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -17,8 +17,8 @@
 
 		// if (!this.m.IsLow)
 		// {
-			b.IsSpecializedInBows = true;
-			b.Vision = 8;
+			// b.IsSpecializedInBows = true;
+			// b.Vision = 8;
 
 			// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 180)
 			// {
@@ -27,6 +27,7 @@
 		// }
 
 		this.m.Skills.add(this.new("scripts/skills/racial/goblin_ambusher_racial"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
 
 		// Reforged
 		b.RangedDefense += 5;
