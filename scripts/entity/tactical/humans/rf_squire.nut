@@ -77,6 +77,8 @@ this.rf_squire <- ::inherit("scripts/entity/tactical/human" {
 				[1, "scripts/items/helmets/sallet_helmet"],
 				[1, "scripts/items/helmets/rf_sallet_helmet"]
 			]).roll());
+
+			helmet.setPlainVariant();
 			this.m.Items.equip(helmet);
 		}
 	}
