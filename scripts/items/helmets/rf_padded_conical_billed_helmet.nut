@@ -9,7 +9,7 @@ this.rf_padded_conical_billed_helmet <- this.inherit("scripts/items/helmets/helm
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;
-		this.m.HideBeard = false;
+		this.m.HideBeard = true;
 		this.m.Variant = 1;
 		this.m.VariantString = "rf_padded_conical_billed_helmet"
 		this.updateVariant();
