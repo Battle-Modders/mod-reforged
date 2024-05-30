@@ -51,6 +51,20 @@
 		if (this.isDiscovered() == false) return ret;
 		if (this.isHiddenToPlayer()) return ret;
 
+		if (this.m.IsActingEachTurn && !this.m.IsTurnDone && this.isWaitActionSpent())
+		{
+			foreach (entry in ret)
+			{
+				if (entry.id == 4)
+				{
+					// The first word in vanilla is "Acts" or "Acting" and we want to add the word "again" after that to show that
+					// this actor has used Wait. So we replace the first instance of space with "again" hyperlinked to Wait concept.
+					entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.String.replace(entry.text, " ", " [again|Concept.Wait] "));
+					break;
+				}
+			}
+		}
+
 		// Adjust existing progressbars displayed by Vanilla
 		for (local index = (ret.len() - 1); index >= 0; index--)	// we move through it backwards to safely remove entries during it
 		{
