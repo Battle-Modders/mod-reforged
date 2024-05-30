@@ -5,7 +5,7 @@ this.rf_poleaxe <- ::inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.rf_poleaxe";
 		this.m.Name = "Poleaxe";
-		this.m.Description = "A pike-like weapon with a blade for striking over some distance and a hook attached for pulling in targets.";
+		this.m.Description = "A versatile and formidable weapon with a long shaft, an axe head and a spear point making it an ideal choice for both close and long range melee combat.";
 		this.m.Categories = "Axe, Two-Handed";
 		this.m.IconLarge = "weapons/melee/rf_poleaxe_01.png";
 		this.m.Icon = "weapons/melee/rf_poleaxe_01_70x70.png";
