@@ -71,7 +71,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 		if (actor.isPreviewing())
 		{
 			// Gain Ground can only be used on a valid tile
-			isValid = (actor.getPreviewMovement() != null && !this.isTileValid(actor.getPreviewMovement().End)) || (actor.getPreviewSkill() != null && actor.getPreviewSkill().getID() != "actives.rf_gain_ground");
+			isValid = (actor.getPreviewMovement() != null && this.isTileValid(actor.getPreviewMovement().End)) || (actor.getPreviewSkill() != null && actor.getPreviewSkill().getID() != "actives.rf_gain_ground");
 		}
 
 		if (isValid)
