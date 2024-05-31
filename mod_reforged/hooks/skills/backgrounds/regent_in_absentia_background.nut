@@ -48,7 +48,6 @@
 
 	q.onAdded = @(__original) function()
 	{
-		__original();
 		if (this.m.IsNew)
 		{
 			this.getPerkTree().addPerkGroup("pg.rf_noble");
@@ -56,5 +55,6 @@
 				o.m.IsRefundable = false;
 			}));
 		}
+		__original();
 	}
 });
