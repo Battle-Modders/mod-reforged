@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
+	q.m.ReachBonus <- 0;	// Additional Reach granted by this skill during its use. Similar to the vanilla 'HitChanceBonus' except that it actually applies the bonus be default
+
 	q.isDuelistValid <- function()
 	{
 		return this.isAttack() && !this.isRanged() && this.getBaseValue("MaxRange") == 1;
@@ -77,6 +79,16 @@
 		}
 
 		return ret;
+	}
+
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	{
+		if (_skill == this)
+		{
+			_properties.Reach += this.m.ReachBonus;
+		}
+
+		__original(_skill, _targetEntity, _properties);
 	}
 });
 
