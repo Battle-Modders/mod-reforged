@@ -36,6 +36,20 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		if (!_item.isItemType(::Const.Items.ItemType.Weapon))
 			return;
 
+		local function hasSkill( _id )
+		{
+			if (this.getContainer().hasSkill(_id))
+				return true;
+
+			foreach (s in this.getContainer().m.SkillsToAdd)
+			{
+				if (s.getID() == _id && !s.isGarbage())
+					return true;
+			}
+
+			return false;
+		}
+
 		local hasFirstPerk = false;
 		local hasSecondPerk = false;
 		local hasThirdPerk = false;
@@ -48,8 +62,8 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 					continue;
 
 				local perkID = row[0];
-				if (!this.getContainer().hasSkill(perkID))
-						continue;
+				if (!hasSkill(perkID))
+					continue;
 
 				if (i < 3)
 					hasFirstPerk = true;
