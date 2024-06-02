@@ -93,6 +93,8 @@
 			return 1.0;
 		}
 
-		return (actor.getCurrentProperties().IsSpecializedInShields ? 0.75 : 0.5) * actor.getFatigue() / actor.getFatigueMax();
+		local maxMalus = actor.getCurrentProperties().IsSpecializedInShields ? 0.25 : 0.5;
+
+		return 1.0 - maxMalus * actor.getFatigue() / actor.getFatigueMax();
 	}
 });
