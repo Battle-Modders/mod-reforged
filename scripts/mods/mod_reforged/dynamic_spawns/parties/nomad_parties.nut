@@ -8,7 +8,7 @@ local parties = [
 		VisionMult = 1.0,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.NomadFrontline", RatioMin = 0.50, RatioMax = 0.80, DeterminesFigure = true },
-			{ BaseID = "UnitBlock.RF.NomadRanged", RatioMin = 0.15, RatioMax = 0.50, DeterminesFigure = true }
+			{ BaseID = "UnitBlock.RF.NomadRanged", RatioMin = 0.2, RatioMax = 0.50, DeterminesFigure = true }
 		]
 	},
 	{
