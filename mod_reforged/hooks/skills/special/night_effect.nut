@@ -18,7 +18,7 @@
 	{
 		__original(_skill, _targetTile, _tooltip);
 
-		if (_skill.isAttack() && _skill.isRanged())
+		if (_skill.isAttack() && _skill.isRanged() && !this.isHidden())
 		{
 			local malus = this.m.HitChancePerTile * (this.getContainer().getActor().getTile().getDistanceTo(_targetTile) - _skill.getMinRange());
 			if (malus != 0)
