@@ -44,48 +44,52 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 		if (!throwNetSkill.onVerifyTarget(actor.getTile(), _targetEntity.getTile()))
 			return;
 
-		local netItemScript = ::IO.scriptFilenameByHash(actor.getOffhandItem().ClassNameHash);
+		// ScheduleEvent is used because container.m.IsUpdating is true right now, so directly using skills is not good here
+		// and leads to improper removal/addition of skills
+		::Time.scheduleEvent(::TimeUnit.Virtual, 1, function( _perk ) {
+			local netItemScript = ::IO.scriptFilenameByHash(actor.getOffhandItem().ClassNameHash);
 
-		throwNetSkill.useForFree(_targetEntity.getTile());
+			throwNetSkill.useForFree(_targetEntity.getTile());
 
-		local netEffect = _targetEntity.getSkills().getSkillByID("effects.net");
-		if (netEffect == null) // Make sure target is actually netted. In vanilla net can be thrown on targets which are immune to it causing it to miss.
-			return;
+			local netEffect = _targetEntity.getSkills().getSkillByID("effects.net");
+			if (netEffect == null) // Make sure target is actually netted. In vanilla net can be thrown on targets which are immune to it causing it to miss.
+				return;
 
-		// Hook the net_effect on the target to reset our perk when the net expires or the target dies
-		netEffect.m.KingfisherPerk <- ::MSU.asWeakTableRef(this);
-		netEffect.resetKingfisher <- function()
-		{
-			if (!::MSU.isNull(this.m.KingfisherPerk))
-				this.m.KingfisherPerk.setSpent(false);
-		}
-		local onRemoved = netEffect.onRemoved;
-		netEffect.onRemoved <- function()
-		{
-			onRemoved();
-			this.resetKingfisher();
-		}
-		local onDeath = netEffect.onDeath;
-		netEffect.onDeath <- function( _fatalityType )
-		{
-			onDeath(_fatalityType);
-			this.resetKingfisher();
-		}
+			// Hook the net_effect on the target to reset our perk when the net expires or the target dies
+			netEffect.m.KingfisherPerk <- ::MSU.asWeakTableRef(this);
+			netEffect.resetKingfisher <- function()
+			{
+				if (!::MSU.isNull(this.m.KingfisherPerk))
+					this.m.KingfisherPerk.setSpent(false);
+			}
+			local onRemoved = netEffect.onRemoved;
+			netEffect.onRemoved <- function()
+			{
+				onRemoved();
+				this.resetKingfisher();
+			}
+			local onDeath = netEffect.onDeath;
+			netEffect.onDeath <- function( _fatalityType )
+			{
+				onDeath(_fatalityType);
+				this.resetKingfisher();
+			}
 
-		this.m.NetEffect = ::MSU.asWeakTableRef(netEffect);
+			this.m.NetEffect = ::MSU.asWeakTableRef(netEffect);
 
-		local replacementNet = ::new(netItemScript)
+			local replacementNet = ::new(netItemScript)
 
-		actor.getItems().equip(replacementNet); // the original net is unequipped during use of throw net skill, so we equip a "new" net of the same type
-		foreach (skill in replacementNet.m.SkillPtrs)
-		{
-			// We set all the skills of the newly equipped net to Hidden so they cannot be used
-			skill.m.IsHidden = true;
-		}
+			actor.getItems().equip(replacementNet); // the original net is unequipped during use of throw net skill, so we equip a "new" net of the same type
+			foreach (skill in replacementNet.m.SkillPtrs)
+			{
+				// We set all the skills of the newly equipped net to Hidden so they cannot be used
+				skill.m.IsHidden = true;
+			}
 
-		_targetEntity.getSkills().getSkillByID("actives.break_free").setChanceBonus(999);
+			_targetEntity.getSkills().getSkillByID("actives.break_free").setChanceBonus(999);
 
-		this.setSpent(true);
+			this.setSpent(true);
+		}.bindenv(this), this);
 	}
 
 	function onUpdate( _properties )
@@ -100,8 +104,7 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 		if (this.m.IsSpent && !::MSU.isNull(this.m.NetEffect) && this.m.NetEffect.getContainer().getActor().getTile().getDistanceTo(_tile) > 1)
 		{
 			this.m.NetEffect.m.KingfisherPerk = null;
-			this.setSpent(false);
-			this.getContainer().getActor().getItems().unequip(this.getContainer().getActor().getOffhandItem());
+			this.setSpent(false, false);
 		}
 	}
 
@@ -111,7 +114,9 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 		this.setSpent(false);
 	}
 
-	function setSpent( _isSpent )
+	// The _reEquip parameter is used to properly unequip the net during onMovementFinished, because during that function container.m.IsUpdating
+	// is true so unequipping, equipping, and then trying to unequip again leads to errors in the skills of the item being unequipped.
+	function setSpent( _isSpent, _reEquip = true )
 	{
 		this.m.IsSpent = _isSpent;
 
@@ -126,7 +131,8 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 			if (!_isSpent)
 			{
 				actor.getItems().unequip(net);
-				actor.getItems().equip(net); // Unequip and re-equip the net to get all the skills back which were hidden during onTargetHit above
+				if (_reEquip)
+					actor.getItems().equip(net); // Unequip and re-equip the net to get all the skills back which were hidden during onTargetHit above
 			}
 		}
 	}
