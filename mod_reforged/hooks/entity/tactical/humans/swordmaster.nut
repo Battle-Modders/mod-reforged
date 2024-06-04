@@ -174,7 +174,6 @@
 
 	            case this.m.SwordmasterVariants.Reaper:
 	                weapon = ::MSU.Class.WeightedContainer([
-	                	[1, "scripts/items/weapons/named/named_rf_greatsword"],
 						[1, "scripts/items/weapons/named/named_warbrand"],
 						[1, "scripts/items/weapons/named/named_greatsword"]
 			    	]).roll();
