@@ -34,7 +34,7 @@
 					id = 20,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "Applicable masteries: " + masteries.slice(0, -2)
+					text = ::Reforged.Mod.Tooltips.parseString("[Applicable masteries:|Concept.ApplicableMastery] " + masteries.slice(0, -2))
 				});
 			}
 		}
