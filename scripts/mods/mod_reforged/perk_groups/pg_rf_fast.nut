@@ -16,7 +16,7 @@ this.pg_rf_fast <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.rf_survival_instinct"],
+				["perk.nine_lives"],
 				["perk.quick_hands"],
 				[],
 				["perk.rf_dynamic_duo"],

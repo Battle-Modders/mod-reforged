@@ -16,7 +16,7 @@ this.pg_rf_vigorous <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		];
 		this.m.Trees = {
 			"default": [
-				["perk.nine_lives"],
+				["perk.rf_survival_instinct"],
 				["perk.hold_out"],
 				["perk.fortified_mind"],
 				["perk.rf_decisive"],
