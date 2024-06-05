@@ -16,6 +16,36 @@
 		switch (_id)
 		{
 			case "building.marketplace":
+				if (this.m.Settlement.getTile().SquareCoords.Y > ::World.getMapSize().Y * 0.7)
+				{
+					_list.extend([
+						{
+							R = 70,
+							P = 1.0,
+							S = "accessory/warhound_item"
+						},
+						{
+							R = 80,
+							P = 1.0,
+							S = "accessory/armored_warhound_item"
+						}
+					]);
+				}
+				else
+				{
+					_list.extend([
+						{
+							R = 70,
+							P = 1.0,
+							S = "accessory/wardog_item"
+						},
+						{
+							R = 80,
+							P = 1.0,
+							S = "accessory/armored_wardog_item"
+						}
+					]);
+				}
 				_list.extend([
 					{
 						R = 90,
