@@ -55,7 +55,7 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next " + this.m.AttacksRemaining + " attack(s), if successful, against a target that acts after you in this [round|Concept.Round] will recover " + ::MSU.Text.colorGreen(this.m.APRecovery) + " [Action Points|Concept.ActionPoints]")
+				text = ::Reforged.Mod.Tooltips.parseString("The next " + this.m.AttacksRemaining + " hit(s) against a target that acts after you in this [round|Concept.Round] will recover " + ::MSU.Text.colorGreen(this.m.APRecovery) + " [Action Points|Concept.ActionPoints]")
 			});
 		}
 
