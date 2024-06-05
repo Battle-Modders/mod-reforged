@@ -3,7 +3,7 @@ this.perk_rf_through_the_gaps <- ::inherit("scripts/skills/skill", {
 		RequiredDamageType = ::Const.Damage.DamageType.Piercing,
 		RequiredWeaponType = ::Const.Items.WeaponType.Spear,
 		IsSpent = true,
-		DirectDamageModifier = 0.25
+		DirectDamageModifier = 0.10
 	},
 	function create()
 	{

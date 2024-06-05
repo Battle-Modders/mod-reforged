@@ -2177,7 +2177,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The first attack each [turn|Concept.Turn] ignores " + ::MSU.Text.colorGreen("+25%") + " of the target\'s armor and always targets the body part with the lower armor."
+				"The first attack each [turn|Concept.Turn] ignores " + ::MSU.Text.colorGreen("+10%") + " of the target\'s armor and always targets the body part with the lower armor."
 			]
 		}]
  	}),
