@@ -2,6 +2,26 @@
 	q.m.RerollDamageMult <- 1.0;
 	q.m.IsAttacking <- false;
 
+	q.getTooltip = @() function()
+	{
+		local ret = this.getDefaultTooltip();
+		ret.extend([
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Will make three separate attack rolls for one third of the weapon\'s damage each, combined into one strike"
+			},
+			{
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Ignores the bonus to [Melee Defense|Concept.MeleeDefense] granted by shields but not by [Shieldwall|Skill+shieldwall]")
+			}
+		]);
+		return ret;
+	}
+
 	q.onUse = @() function( _user, _targetTile )
 	{
 		this.m.RerollDamageMult = 1.0;			
