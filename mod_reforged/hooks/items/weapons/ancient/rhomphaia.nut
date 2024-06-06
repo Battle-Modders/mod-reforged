@@ -2,7 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.Reach = 5;
+		this.m.Reach = 6;
 	}
 
 	q.onEquip = @() function()
