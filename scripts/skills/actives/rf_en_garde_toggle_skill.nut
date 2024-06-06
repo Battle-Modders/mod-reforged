@@ -1,7 +1,6 @@
 this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsOn = true,
-		HasMoved = false,
 		FatigueRequired = 15
 	},
 	function create()
@@ -60,20 +59,6 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 	function isHidden()
 	{
 		return !this.getContainer().getActor().isPlacedOnMap() || !this.isEnabled();
-	}
-
-	function onTurnStart()
-	{
-		this.m.HasMoved = false;
-	}
-
-	function onMovementFinished( _tile )
-	{
-		local meisterhau = this.getContainer().getSkillByID("actives.rf_swordmaster_stance_meisterhau");
-		if (meisterhau == null || !meisterhau.m.IsOn)
-		{
-			this.m.HasMoved = true;
-		}
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
@@ -137,10 +122,6 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 					::Sound.play(this.m.ReturnFavorSounds[::Math.rand(0, this.m.ReturnFavorSounds.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, actor.getPos());
 				}
 			}
-			if (this.m.HasMoved)
-			{
-				actor.setFatigue(::Math.min(actor.getFatigueMax(), actor.getFatigue() + this.m.FatigueRequired));
-			}
 		}
 	}
 
@@ -148,7 +129,11 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 	{
 		// During preview set the fatigue cost so that the player knows if their previewed action
 		// will still allow en garde to trigger afterward
-		if (this.getContainer().getActor().isPreviewing())
+		if (!this.getContainer().getActor().isPreviewing())
+			return;
+
+		local meisterhau = this.getContainer().getSkillByID("actives.rf_swordmaster_stance_meisterhau");
+		if (meisterhau == null || !meisterhau.m.IsOn)
 			this.m.FatigueCost = this.m.FatigueRequired;
 	}
 

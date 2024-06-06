@@ -1283,8 +1283,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"The double grip bonus for southern swords is not disabled when using an offhand item with less than " + ::MSU.Text.colorRed("10") + " weight."
 				"Use [Riposte|Skill+riposte] freely at the end of your [turn|Concept.Turn] if your weapon has [Riposte|Skill+riposte]. If your weapon does not have [Riposte|Skill+riposte] and is two-handed, gain the [Rebuke|Skill+rf_rebuke_effect] effect instead for one [turn|Concept.Turn], with an additional chance of " + ::MSU.Text.colorGreen("+15%") + " for returning a missed attack. The attacks triggered from this [Rebuke|Skill+rf_rebuke_effect] do not build [Fatigue|Concept.Fatigue].",
-				"This perk only triggers if you have at least " + ::MSU.Text.colorRed(15) + " [Fatigue|Concept.Fatigue] remaining.",
-				"Does not cost any [Action Points|Concept.ActionPoints]. Additionally, does not build any [Fatigue|Concept.Fatigue] if you have not moved from your position during your [turn|Concept.Turn], otherwise builds " + ::MSU.Text.colorRed(15) + " [Fatigue|Concept.Fatigue]."
+				"This perk only triggers if you have at least " + ::MSU.Text.colorRed(15) + " [Fatigue|Concept.Fatigue] remaining, but does not cost any [Action Points|Concept.ActionPoints] and does not build any [Fatigue|Concept.Fatigue]."
 			]
 		}]
  	}),

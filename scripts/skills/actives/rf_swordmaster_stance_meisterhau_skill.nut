@@ -31,7 +31,7 @@ this.rf_swordmaster_stance_meisterhau_skill <- ::inherit("scripts/skills/actives
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Triggering [En Garde|Skill+perk_rf_en_garde] no longer builds [Fatigue|Concept.Fatigue] after having moved from your position")
+			text = ::Reforged.Mod.Tooltips.parseString("Triggering [En Garde|Skill+perk_rf_en_garde] no longer requires any remaining [Fatigue|Concept.Fatigue]")
 		});
 
 		tooltip.push({
