@@ -26,8 +26,6 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
 	}
@@ -81,12 +79,26 @@
 		return true;
 	}
 
-	q.onSetupEntity <- function()
+	q.onSetupEntity = @() function()
 	{
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+
+		if (this.isArmedWithShield())
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
+		}
+
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+			if (weapon.isAoE())
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+			}
+			if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
 		}
 	}
 });

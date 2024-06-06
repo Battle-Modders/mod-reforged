@@ -24,8 +24,6 @@ this.rf_skeleton_heavy_lesser <- ::inherit("scripts/entity/tactical/skeleton", {
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 	}
 
@@ -63,12 +61,24 @@ this.rf_skeleton_heavy_lesser <- ::inherit("scripts/entity/tactical/skeleton", {
 
 	function onSetupEntity()
 	{
-		this.skeleton.onSetupEntity();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+
+		if (this.isArmedWithShield())
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
+		}
 
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+			if (weapon.isAoE())
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+			}
+			if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
 		}
 	}
 });
