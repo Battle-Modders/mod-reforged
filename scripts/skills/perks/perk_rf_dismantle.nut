@@ -17,7 +17,7 @@ this.perk_rf_dismantle <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_targetEntity.isAlive() || _damageInflictedArmor == 0 || !this.isSkillValid(_skill) || ::Math.rand(1, 100) > _damageInflictedArmor.tofloat() / _targetEntity.getArmor(_bodyPart))
+		if (!_targetEntity.isAlive() || _damageInflictedArmor == 0 || !this.isSkillValid(_skill) || ::Math.rand(1, 100) > 100 * _damageInflictedArmor.tofloat() / _targetEntity.getArmor(_bodyPart))
 			return;
 
 		local effect = _targetEntity.getSkills().getSkillByID("effects.rf_dismantled");
