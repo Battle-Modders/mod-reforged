@@ -53,9 +53,10 @@ this.perk_rf_dismemberment <- ::inherit("scripts/skills/skill", {
 		if (this.m.NumInjuriesBefore < _targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len())
 		{
 			local count = 0;
+			local difficulty = ::Const.Morale.OnHitBaseDifficulty * (1.0 - _targetEntity.getHitpoints() / _targetEntity.getHitpointsMax());
 			for (local i = _damageInflictedHitpoints / _targetEntity.getHitpoints(); i >= 0; i -= this.m.HPDamageFractionPerMoraleCheck)
 			{
-				_targetEntity.checkMorale(-1, ::Const.Morale.OnHitBaseDifficulty * (1.0 - _targetEntity.getHitpoints() / _targetEntity.getHitpointsMax()));
+				_targetEntity.checkMorale(-1, difficulty);
 				if (++count == this.m.MaxMoraleChecks)
 				{
 					break;
