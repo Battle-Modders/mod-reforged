@@ -16,7 +16,7 @@
 		switch (_id)
 		{
 			case "building.marketplace":
-				if (this.m.Settlement.getTile().SquareCoords.Y > ::World.getMapSize().Y * 0.7)
+				if (this.getTile().SquareCoords.Y > ::World.getMapSize().Y * 0.7)
 				{
 					_list.extend([
 						{
