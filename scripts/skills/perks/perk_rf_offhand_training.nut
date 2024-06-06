@@ -2,6 +2,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsSpent = true,
 		IsFreeUse = false,
+		IsConsumingFreeUse = false // Used in onBeforeAnySkillExecuted to flip IsFreeUse in onAnySkillExecuted
 	},
 	function create()
 	{
@@ -107,16 +108,23 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 		this.m.IsSpent = true;
 	}
 
+	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (!this.m.IsFreeUse || _forFree || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+			return;
+
+		if (_skill.getItem() != null && ::MSU.isEqual(_skill.getItem(), this.getContainer().getActor().getOffhandItem()))
+		{
+			// Using a net unequips the net and therefore the item of the used skill becomes null
+			// Therefore we must check the item BEFORE use and then flip the member variable for free use AFTER use
+			this.m.IsConsumingFreeUse = true;
+		}
+	}
+
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_skill.getItem() != null)
-		{
-			local off = this.getContainer().getActor().getOffhandItem();
-			if (off != null && _skill.getItem().getID() == off.getID())
-			{
-				this.m.IsFreeUse = false;
-			}
-		}
+		if (this.m.IsConsumingFreeUse)
+			this.m.IsFreeUse = false;
 	}
 
 	function onAfterUpdate( _properties )
@@ -136,6 +144,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 
 	function onTurnStart()
 	{
+		this.m.IsConsumingFreeUse = false;
 		this.m.IsFreeUse = true;
 		this.m.IsSpent = false;
 	}
@@ -143,6 +152,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
+		this.m.IsConsumingFreeUse = false;
 		this.m.IsFreeUse = false;
 		this.m.IsSpent = true;
 	}
