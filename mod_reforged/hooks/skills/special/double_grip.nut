@@ -71,6 +71,10 @@
 			case "SouthernSword":
 				_properties.MeleeDamageMult *= 1.25;
 				break;
+
+			case "FencingSword":
+				_properties.DamageDirectAdd += 0.25;
+				break;
 		}
 	}
 
@@ -219,6 +223,15 @@
 					text = ::MSU.Text.colorGreen("25%") + " increased damage"
 				});
 				break;
+
+			case "FencingSword":
+				ret.push({
+					id = 7,
+					type = "text",
+					icon = "ui/icons/direct_damage.png",
+					text = ::MSU.Text.colorGreen("+25%") + " damage ignores armor"
+				});
+				break;
 		}
 
 		return ret;
@@ -246,7 +259,21 @@
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))	this.m.CurrWeaponType = ::Const.Items.WeaponType.Hammer;
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Mace))	this.m.CurrWeaponType = ::Const.Items.WeaponType.Mace;
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Spear))	this.m.CurrWeaponType = ::Const.Items.WeaponType.Spear;
-		else if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))	this.m.CurrWeaponType = weapon.isItemType(::Const.Items.ItemType.RF_Southern) ? "SouthernSword" : ::Const.Items.WeaponType.Sword;
+		else if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+		{
+			if (weapon.isItemType(::Const.Items.ItemType.RF_Southern))
+			{
+				this.m.CurrWeaponType = "SouthernSword";
+			}
+			else if (weapon.isItemType(::Const.Items.ItemType.RF_Fencing))
+			{
+				this.m.CurrWeaponType = "FencingSword";
+			}
+			else
+			{
+				this.m.CurrWeaponType = ::Const.Items.WeaponType.Sword;
+			}
+		}
 
 		this.applyBonusOnUpdate(_properties);
 	}
