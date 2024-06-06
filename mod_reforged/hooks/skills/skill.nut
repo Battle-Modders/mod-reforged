@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
 	q.isDuelistValid <- function()
 	{
-		return this.isAttack() && !this.isRanged() && this.getBaseValue("MaxRange") == 1;
+		return this.isAttack() && !this.isRanged() && !this.isAOE() && this.getBaseValue("MaxRange") == 1;
 	}
 
 	q.getHitFactors = @(__original) function( _targetTile )
