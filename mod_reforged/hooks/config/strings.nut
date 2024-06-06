@@ -1241,7 +1241,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When inflicting an [injury|Concept.InjuryTemporary] with an attack, if you meet the [threshold|Concept.InjuryThreshold] for the lowest possible injury, instead inflict one with the highest [threshold|Concept.InjuryThreshold].",
-				"This injury triggers morale checks on the target for every " + ::MSU.Text.colorGreen("25") + " [Resolve|Concept.Bravery] you have."
+				"This injury triggers at least one additional [morale check|Concept.Morale] on the target and can trigger up to " + ::MSU.Text.colorRed(3) + " [morale checks|Concept.Morale], one for every " + ::MSU.Text.colorGreen("33%") + " of [Hitpoints|Concept.Hitpoints] damage dealt compared to remaining [Hitpoints|Concept.Hitpoints]."
 			]
 		}]
  	}),

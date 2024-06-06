@@ -1,7 +1,8 @@
 this.perk_rf_dismemberment <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredWeaponType = ::Const.Items.WeaponType.Axe,
-		BraveryPerMoraleCheck = 25,
+		HPDamageFractionPerMoraleCheck = 0.33,
+		MaxMoraleChecks = 3,
 		NumInjuriesBefore = 0
 	},
 	function create()
@@ -51,9 +52,14 @@ this.perk_rf_dismemberment <- ::inherit("scripts/skills/skill", {
 
 		if (this.m.NumInjuriesBefore < _targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len())
 		{
-			for (local i = this.getContainer().getActor().getCurrentProperties().getBravery() - this.m.BraveryPerMoraleCheck; i >= 0; i -= this.m.BraveryPerMoraleCheck)
+			local count = 0;
+			for (local i = _damageInflictedHitpoints / _targetEntity.getHitpoints(); i >= 0; i -= this.m.HPDamageFractionPerMoraleCheck)
 			{
 				_targetEntity.checkMorale(-1, ::Const.Morale.OnHitBaseDifficulty * (1.0 - _targetEntity.getHitpoints() / _targetEntity.getHitpointsMax()));
+				if (++count == this.m.MaxMoraleChecks)
+				{
+					break;
+				}
 			}
 		}
 	}
