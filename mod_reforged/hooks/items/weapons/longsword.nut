@@ -3,8 +3,9 @@
 	{
 		__original();
 		this.m.Reach = 5;
-		this.m.RegularDamage = 50;
+		this.m.RegularDamage = 65;
 		this.m.RegularDamageMax = 75;
+		this.m.DirectDamageMult = 0.3;
 		this.m.ArmorDamageMult = 0.8;
 		this.m.StaminaModifier = -8;
 		this.m.ChanceToHitHead = 10;
@@ -15,15 +16,17 @@
 	{
 		this.weapon.onEquip();
 
+		local self = this;
 		this.addSkill(::MSU.new("scripts/skills/actives/slash", function(o) {
-			o.m.DirectDamageMult = this.m.DirectDamageMult;
-		}.bindenv(this)));
+			o.m.DirectDamageMult = self.m.DirectDamageMult;
+		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 1;
-			o.setStunChance(this.m.StunChance);
-		}.bindenv(this)));
+			o.m.DirectDamageMult = self.m.DirectDamageMult;
+			o.setStunChance(self.m.StunChance);
+		}));
 
 		this.addSkill(::MSU.new("scripts/skills/actives/riposte"));
 	}
