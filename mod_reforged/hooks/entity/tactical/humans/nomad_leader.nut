@@ -51,6 +51,37 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 	}
 
+	q.assignRandomEquipment = @() function()
+	{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/shamshir"],
+				[1, "scripts/items/weapons/oriental/heavy_southern_mace"],
+				[1, "scripts/items/weapons/fighting_spear"],
+				[1, "scripts/items/weapons/oriental/two_handed_scimitar"]
+			]).roll()));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+				[1.0, "scripts/items/shields/oriental/metal_round_shield"]
+			]).rollchance(66)));
+		}
+
+		if (this.getIdealRange() == 1)
+		{
+			this.m.Items.addToBag(::new(::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/javelin"],
+				[1, "scripts/items/weapons/throwing_spear"]
+			]).rollchance(35)));
+		}
+
+		this.m.Items.equip(::new("scripts/items/armor/oriental/southern_long_mail_with_padding"));
+		this.m.Items.equip(::new("scripts/items/helmets/oriental/southern_helmet_with_coif"));
+	}
+
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
