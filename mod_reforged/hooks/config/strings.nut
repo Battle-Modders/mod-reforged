@@ -1230,7 +1230,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Every successful hit has a chance to apply the [Dismantled Armor|Skill+rf_dismantled_effect] effect, which causes the target to receive a stacking " + ::MSU.Text.colorRed("+20%") + " damage received ignoring armor on the body part hit for the remainder of the combat.",
-				"The chance is equal to the ratio of armor damage inflicted to remaining armor on the body part hit."
+				"The chance is equal to twice the ratio of armor damage inflicted to remaining armor on the body part hit."
 			]
 		}]
  	}),
