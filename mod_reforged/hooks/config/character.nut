@@ -14,6 +14,17 @@ local getClone = ::Const.CharacterProperties.getClone;
 	return ret;
 }
 
+::Const.CharacterProperties.Resilience <- ::Reforged.Config.Resilience.Default;
+::Const.CharacterProperties.ResilienceMult <- 1.0;
+::Const.CharacterProperties.ResilienceDamage <- 0;
+::Const.CharacterProperties.ResilienceDamageMult <- 1.0;
+::Const.CharacterProperties.ResilienceDamageReceivedMult <- 1.0;
+
+::Const.CharacterProperties.getResilienceDamage <- function()
+{
+	return this.ResilienceDamage * this.ResilienceDamageMult;
+}
+
 ::Const.CharacterProperties.Reach <- 0;
 ::Const.CharacterProperties.ReachMult <- 1.0;
 ::Const.CharacterProperties.getReach <- function()

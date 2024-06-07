@@ -1,4 +1,14 @@
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
+	q.m.ResilienceDamageMult <- 1.0;
+
+	q.getResilienceDamage <- function()
+	{
+		if (::MSU.isNull(this.getContainer()))
+			return 0.0;
+
+		return this.getContainer().getActor().getCurrentProperties().getResilienceDamage() * this.m.ResilienceDamageMult;
+	}
+
 	q.isDuelistValid <- function()
 	{
 		return this.isAttack() && !this.isRanged() && !this.isAOE() && this.getBaseValue("MaxRange") == 1;

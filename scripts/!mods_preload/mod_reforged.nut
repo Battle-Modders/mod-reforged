@@ -117,6 +117,11 @@ foreach (requirement in requiredMods)
 
 	::include("mod_reforged/hooks/config/strings.nut");
 
+	foreach (file in ::IO.enumerateFiles("mod_reforged/config"))
+	{
+		::include(file);
+	}
+
 	foreach (file in ::IO.enumerateFiles("mod_reforged/hooks/config"))
 	{
 		::include(file);

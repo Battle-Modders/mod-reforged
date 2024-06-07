@@ -7,3 +7,11 @@
 	background-repeat: no-repeat;
 	background-size: 19.6rem 2.0rem;
 }
+
+.ui-control-stats-progressbar.resilience-slim,
+.ui-control-stats-progressbar-preview.resilience-slim
+{
+    background-image: url("coui://gfx/ui/skin/bar_fill_resilience_196.png");
+    background-repeat: no-repeat;
+    background-size: 19.6rem 2.0rem;
+}

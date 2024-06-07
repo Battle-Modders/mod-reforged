@@ -1,6 +1,34 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
 	q.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
 	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
+	q.m.Resilience <- ::Reforged.Config.Resilience.Default;
+
+	q.getResilience <- function()
+	{
+		return this.m.Resilience;
+	}
+
+	q.getResilienceMax <- function()
+	{
+		return ::Math.floor(this.m.CurrentProperties.Resilience * (this.m.CurrentProperties.ResilienceMult >= 0 ? this.m.CurrentProperties.ResilienceMult : 1.0 / this.m.CurrentProperties.ResilienceMult));
+	}
+
+	q.onResilienceDamageReceived <- function( _hitInfo )
+	{
+		if (this.m.Resilience > 0)
+			return;
+
+		local stun = this.getSkills().getSkillByID("effects.stunned");
+		if (stun == null)
+			stun = ::new("scripts/skills/effects/stunned_effect");
+
+		if (this.m.Resilience <= -max)
+		{
+			stun.m.TurnsLeft = 2;
+		}
+
+		this.getSkills().add(stun);
+	}
 
 	q.isDisarmed <- function()
 	{
@@ -85,6 +113,18 @@
 				entry.text = "" + this.getActionPoints() + " / " + this.getActionPointsMax() + "",
 				entry.style = "action-points-slim";
 				continue;
+			}
+			else if (entry.id == 9)
+			{
+				ret.insert(index + 1, {
+					id = 10,
+					type = "progressbar",
+					icon = "ui/icons/sturdiness.png", // vanilla icon that is only used in one place in vanilla in a single tooltip entry in `orc_berserker_potion_effect`
+					value = this.getResilience(),
+					valueMax = this.getResilienceMax(),
+					text = this.getResilience() + " / " + this.getResilienceMax(),
+					style = "resilience-slim"
+				});
 			}
 
 			// Remove all vanilla generated effect entries but possible also most mod-generated entries

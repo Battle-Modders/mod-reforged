@@ -6,5 +6,16 @@
 
 	UI = {
 		WorldBannerYOffset = 50
+	},
+
+	Resilience = {
+		Default = 100,
+		Human = 125,
+		Goblin = 100,
+		Orc = 150,
+		BeastSmall = 100,
+		BeastMedium = 125,
+		BeastLarge = 200,
+		BeastHuge = 400
 	}
 }
