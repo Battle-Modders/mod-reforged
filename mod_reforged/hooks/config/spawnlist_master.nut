@@ -18,13 +18,13 @@
 ::Const.World.Spawn.Troops.BanditMarksmanLOW.Strength = 12;
 ::Const.World.Spawn.Troops.BanditMarksmanLOW.Cost = 12;
 ::Const.World.Spawn.Troops.BanditMarksman.Strength = 30;
-::Const.World.Spawn.Troops.BanditMarksman.Cost = 25;
+::Const.World.Spawn.Troops.BanditMarksman.Cost = 22;
 ::Const.World.Spawn.Troops.BanditRaiderWolf.Strength = 30;
 ::Const.World.Spawn.Troops.BanditRaiderWolf.Cost = 30;
 ::Const.World.Spawn.Troops.BanditRaider.Strength = 28;
-::Const.World.Spawn.Troops.BanditRaider.Cost = 25;
+::Const.World.Spawn.Troops.BanditRaider.Cost = 22;
 ::Const.World.Spawn.Troops.BanditLeader.Strength = 40;
-::Const.World.Spawn.Troops.BanditLeader.Cost = 40;
+::Const.World.Spawn.Troops.BanditLeader.Cost = 35;
 
 //Civilian
 ::Const.World.Spawn.Troops.HedgeKnight.Strength = 45;
@@ -94,7 +94,7 @@
 		ID = ::Const.EntityType.RF_BanditOutlaw,
 		Variant = 0,
 		Strength = 28,
-		Cost = 25,
+		Cost = 22,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_outlaw"
 	},
@@ -102,7 +102,7 @@
 		ID = ::Const.EntityType.RF_BanditBandit,
 		Variant = 0,
 		Strength = 28,
-		Cost = 25,
+		Cost = 22,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_bandit"
 	},
@@ -110,7 +110,7 @@
 		ID = ::Const.EntityType.RF_BanditHighwayman,
 		Variant = 0,
 		Strength = 36,
-		Cost = 30,
+		Cost = 26,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_highwayman"
 	},
@@ -118,7 +118,7 @@
 		ID = ::Const.EntityType.RF_BanditMarauder,
 		Variant = 0,
 		Strength = 36,
-		Cost = 30,
+		Cost = 26,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_marauder"
 	},
@@ -126,7 +126,7 @@
 		ID = ::Const.EntityType.RF_BanditSharpshooter,
 		Variant = 0,
 		Strength = 36,
-		Cost = 30,
+		Cost = 26,
 		Row = 1,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_sharpshooter"
 	},
@@ -134,7 +134,7 @@
 		ID = ::Const.EntityType.RF_BanditKiller,
 		Variant = 0,
 		Strength = 36,
-		Cost = 30,
+		Cost = 26,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_killer"
 	},
@@ -142,7 +142,7 @@
 		ID = ::Const.EntityType.RF_BanditBaron,
 		Variant = 1,
 		Strength = 50,
-		Cost = 50,
+		Cost = 40,
 		Row = 2,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_baron",
 		NameList = this.Const.Strings.BanditLeaderNames,
