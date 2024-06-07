@@ -42,6 +42,36 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}
 
+	q.assignRandomEquipment = @() function()
+	{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+				[2, "scripts/items/weapons/oriental/two_handed_scimitar"],
+				[1, "scripts/items/weapons/two_handed_hammer"],
+				[1, "scripts/items/weapons/two_handed_flanged_mace"],
+				[1, "scripts/items/weapons/two_handed_flail"],
+				[1, "scripts/items/weapons/bardiche"]
+			]).roll()));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+				[1, "scripts/items/armor/lamellar_harness"],
+				[1, "scripts/items/armor/heavy_lamellar_armor"]
+			]).roll()));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+				[1, "scripts/items/helmets/oriental/southern_helmet_with_coif"],
+				[1, "scripts/items/helmets/oriental/turban_helmet"]
+			]).roll()));
+		}
+	}
+
 	q.assignRandomEquipment = @(__original) function()
 	{
 	    __original();
