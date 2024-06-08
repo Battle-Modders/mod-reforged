@@ -46,7 +46,7 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 			id = 12,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorizeMult(mult) + " less [Fatigue|Concept.Fatigue]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(mult) + " more [Fatigue recovered|Concept.FatigueRecovery] next [turn|Concept.Turn]")
 		});
 		ret.push({
 			id = 13,
@@ -73,6 +73,7 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 		local mult = 1.0 + this.m.MultPerStack * this.m.Stacks;
 		_properties.BraveryMult *= mult;
 		_properties.InitiativeMult *= mult;
+		_properties.FatigueRecoveryRateMult *= mult;
 	}
 
 	function onAfterUpdate( _properties )
