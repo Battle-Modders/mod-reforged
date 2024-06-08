@@ -78,7 +78,7 @@ this.rf_encourage_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 
 		local actor = this.getContainer().getActor();
-		return actor.getFaction() == target.getFaction() && target.getMoraleState() < actor.getMoraleState() - actor.getTile().getDistanceTo(target.getTile());
+		return actor.getFaction() == target.getFaction() && actor.getMoraleState() - target.getMoraleState() >= actor.getTile().getDistanceTo(target.getTile());
 	}
 
 	function isUsable()
