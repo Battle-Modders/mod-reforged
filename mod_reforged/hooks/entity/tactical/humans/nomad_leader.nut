@@ -74,22 +74,20 @@
 			this.m.Items.equip(::new(weapons.roll()));
 		}
 
-		if (this.getIdealRange() == 1)
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 35)
 		{
 			this.m.Items.addToBag(::new(::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/javelin"],
 				[1, "scripts/items/weapons/throwing_spear"]
-			]).rollChance(35)));
+			]).roll()));
 		}
 
 		this.m.Items.equip(::new("scripts/items/armor/oriental/southern_long_mail_with_padding"));
 		this.m.Items.equip(::new("scripts/items/helmets/oriental/southern_helmet_with_coif"));
 	}
 
-	q.assignRandomEquipment = @(__original) function()
+	q.onSetupEntity = @() function()
 	{
-	    __original();
-
 	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
 	    local weapon = this.getMainhandItem();

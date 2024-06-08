@@ -72,9 +72,8 @@
 		}
 	}
 
-	q.assignRandomEquipment = @(__original) function()
+	q.onSetupEntity = @() function()
 	{
-	    __original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
 	    local weapon = this.getMainhandItem();
