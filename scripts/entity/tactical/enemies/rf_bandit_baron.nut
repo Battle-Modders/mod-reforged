@@ -77,6 +77,16 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 50)
+		{
+			local shield = ::MSU.Class.WeightedContainer([
+				[1.0, "scripts/items/shields/heater_shield"],
+				[1.0, "scripts/items/shields/kite_shield"]
+			]).roll();
+
+			this.m.Items.equip(::new(shield));
+		}
+
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
@@ -105,16 +115,6 @@ this.rf_bandit_baron <- this.inherit("scripts/entity/tactical/human", {
 
 				this.m.Items.equip(::new(weapon));
 			}
-		}
-
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
-			local shield = ::MSU.Class.WeightedContainer([
-				[1.0, "scripts/items/shields/heater_shield"],
-				[1.0, "scripts/items/shields/kite_shield"]
-			]).roll();
-
-			this.m.Items.equip(::new(shield));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
