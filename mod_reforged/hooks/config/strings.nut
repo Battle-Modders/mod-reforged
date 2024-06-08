@@ -1061,7 +1061,8 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Adjacent allies gain " + ::MSU.Text.colorGreen("20%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional [Resolve|Concept.Bravery] for all [morale checks|Concept.Morale] except mental attacks."
+				"Adjacent allies gain " + ::MSU.Text.colorGreen("20%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional [Resolve|Concept.Bravery] for all [morale checks|Concept.Morale] except mental attacks.",
+				"If multiple characters with this [perk|Concept.Perk] are adjacent, only the highest bonus applies."
 			]
 		}]
  	}),
