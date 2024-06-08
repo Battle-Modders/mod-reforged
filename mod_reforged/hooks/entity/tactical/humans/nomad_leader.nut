@@ -53,21 +53,25 @@
 
 	q.assignRandomEquipment = @() function()
 	{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 66)
+		{
+			this.m.Items.equip(::new("scripts/items/shields/oriental/metal_round_shield"))
+		}
+
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+			local weapons = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/shamshir"],
 				[1, "scripts/items/weapons/oriental/heavy_southern_mace"],
 				[1, "scripts/items/weapons/fighting_spear"],
-				[1, "scripts/items/weapons/oriental/two_handed_scimitar"]
-			]).roll()));
-		}
+			]);
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
-			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
-				[1.0, "scripts/items/shields/oriental/metal_round_shield"]
-			]).rollChance(66)));
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapons.add("scripts/items/weapons/oriental/two_handed_scimitar", 1);
+			}
+
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 
 		if (this.getIdealRange() == 1)
