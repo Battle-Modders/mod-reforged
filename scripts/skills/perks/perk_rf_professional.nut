@@ -32,7 +32,8 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 				"pg.rf_mace",
 				"pg.rf_polearm",
 				"pg.rf_spear",
-				"pg.rf_sword"
+				"pg.rf_sword",
+				"pg.rf_flail"
 			];
 
 			local options = [];
