@@ -282,6 +282,7 @@
 	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
     				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_metzger"));
     				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
+    				break;
 
 	            case this.m.SwordmasterVariants.Precise:
 			    	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_fencer"));
