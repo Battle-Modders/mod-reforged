@@ -300,7 +300,7 @@ foreach(characterName in ::Const.Strings.CharacterNames)
 	"Zayd",
 	"Zeeshan",
 	"Ziyad",
-	"Zuhair",
+	"Zuhayr",
 	"Zahid",
 	"Zubayr"
 ]);
