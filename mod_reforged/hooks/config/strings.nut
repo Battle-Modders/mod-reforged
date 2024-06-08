@@ -1012,7 +1012,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"After inflicting a fatality, gain " + ::MSU.Text.colorGreen("2") + " stacks of Bloodlust, up to a maximum of 2 stacks.",
-				"For each stack [Resolve|Concept.Bravery] and [Initiative|Concept.Initiative] are increased by " + ::MSU.Text.colorGreen("25%") + " and skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue], stacking [additively|Concept.StackAdditively].",
+				"For each stack [Resolve|Concept.Bravery], [Initiative|Concept.Initiative] and [Fatigue Recovery|Concept.FatigueRecovery] rate are increased by " + ::MSU.Text.colorGreen("25%") + " stacking [additively|Concept.StackAdditively].",
 				"You lose " + ::MSU.Text.colorRed("1") + " stack every [turn|Concept.Turn]."
 			]
 		}]
