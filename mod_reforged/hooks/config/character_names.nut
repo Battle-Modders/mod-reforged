@@ -242,3 +242,71 @@ foreach(characterName in ::Const.Strings.CharacterNames)
 
 // Remove The Robber Baron as a bandit leader name because we have a RobberBaron entity in Reforged
 ::MSU.Array.removeByValue(::Const.Strings.BanditLeaderNames, "The Robber Baron");
+
+::Const.Strings.SouthernNames.extend([
+	"Adil",
+	"Akil",
+	"Akram",
+	"Amin",
+	"Anwar",
+	"Asim",
+	"Badr",
+	"Bashir",
+	"Fahad",
+	"Faisal",
+	"Farid",
+	"Ghassan",
+	"Habib",
+	"Hadi",
+	"Hakim",
+	"Harith",
+	"Idris",
+	"Ihsan",
+	"Imad",
+	"Imran",
+	"Ishaq",
+	"Jafar",
+	"Jamal",
+	"Jibril",
+	"Karim",
+	"Khalid",
+	"Khalil",
+	"Latif",
+	"Layth",
+	"Mahdi",
+	"Mahir",
+	"Marwan",
+	"Munir",
+	"Nadir",
+	"Najeeb",
+	"Naji",
+	"Nawfal",
+	"Qadir",
+	"Qasim",
+	"Qays",
+	"Rafiq",
+	"Saad",
+	"Safwan",
+	"Salah",
+	"Salim",
+	"Samir",
+	"Suhayl",
+	"Talib",
+	"Thabit",
+	"Wahid",
+	"Waqas",
+	"Yasir",
+	"Zafar",
+	"Zayd",
+	"Zeeshan",
+	"Ziyad",
+	"Zuhair",
+	"Zahid",
+	"Zubayr"
+]);
+
+foreach (name in ::Const.Strings.SouthernNames)
+{
+	::Const.Strings.SouthernNamesLast.push("Ibn " + name);
+	::Const.Strings.SouthernNamesLast.push("Al-" + name);
+}
