@@ -24,7 +24,14 @@
 		local worth = 0;
 		foreach (t in this.m.Troops)
 		{
-			worth += t.Cost;
+			foreach (troop in ::Const.World.Spawn.Troops)
+			{
+				if (troop.ID = t.ID && troop.Script == t.Script)
+				{
+					worth += troop.Cost;
+					break;
+				}
+			}
 		}
 
 		if (!this.isHiddenToPlayer() && this.m.Troops.len() != 0 && this.getFaction() != 0)
