@@ -74,7 +74,7 @@ this.rf_encourage_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 
 		local target = _targetTile.getEntity();
-		if (target.getCurrentProperties().IsStunned || target.getMoraleState() == ::Const.MoraleState.Fleeing || target.getMoraleState() >= ::Const.MoraleState.Confident || target.getMoraleState() < target.m.MaxMoraleState)
+		if (target.getCurrentProperties().IsStunned || target.getMoraleState() == ::Const.MoraleState.Fleeing || target.getMoraleState() >= ::Const.MoraleState.Confident || target.getMoraleState() >= target.m.MaxMoraleState)
 			return false;
 
 		local actor = this.getContainer().getActor();
