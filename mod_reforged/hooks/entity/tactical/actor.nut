@@ -111,6 +111,20 @@
 
 	q.checkMorale = @(__original) function( _change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{
+		if (_type != ::Const.MoraleCheckType.MentalAttack)
+		{
+			local bonus = 0;
+			foreach (ally in ::Tactical.Entities.getAlliedActors(this.getFaction(), this.getTile(), 1, true))
+			{
+				local bolster = ally.getSkills().getSkillByID("perk.rf_bolster");
+				if (bolster != null && bolster.isEnabled())
+				{
+					bonus = ::Math.max(bonus, bolster.getResolveBonus());
+				}
+			}
+			_difficulty += bonus;
+		}
+
 		if (_change < 0)
 		{
 			local p = this.getCurrentProperties();
