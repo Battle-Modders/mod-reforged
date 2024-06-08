@@ -24,7 +24,7 @@
 ::Const.World.Spawn.Troops.BanditRaider.Strength = 28;
 ::Const.World.Spawn.Troops.BanditRaider.Cost = 22;
 ::Const.World.Spawn.Troops.BanditLeader.Strength = 40;
-::Const.World.Spawn.Troops.BanditLeader.Cost = 35;
+::Const.World.Spawn.Troops.BanditLeader.Cost = 40;
 
 //Civilian
 ::Const.World.Spawn.Troops.HedgeKnight.Strength = 45;
@@ -142,7 +142,7 @@
 		ID = ::Const.EntityType.RF_BanditBaron,
 		Variant = 1,
 		Strength = 50,
-		Cost = 40,
+		Cost = 45,
 		Row = 2,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_baron",
 		NameList = this.Const.Strings.BanditLeaderNames,
