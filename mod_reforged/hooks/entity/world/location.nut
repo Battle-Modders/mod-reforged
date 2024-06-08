@@ -26,7 +26,7 @@
 		{
 			foreach (troop in ::Const.World.Spawn.Troops)
 			{
-				if (troop.ID = t.ID && troop.Script == t.Script)
+				if (troop.ID == t.ID && troop.Script == t.Script)
 				{
 					worth += troop.Cost;
 					break;
