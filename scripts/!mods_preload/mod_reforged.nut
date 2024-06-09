@@ -26,11 +26,15 @@ local requiredMods = [
 	"mod_stack_based_skills >= 0.5.0"
 ];
 
+requiredMods.push("mod_poise_system >= 0.1.1");
+
 ::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
 ::Reforged.HooksMod.require(requiredMods);
 ::Reforged.HooksMod.conflictWith(
 	"mod_legends"
 );
+
+requiredMods.pop();	// Poise System must load after Reforged, even though it's a requirement for reforged
 
 local queueLoadOrder = [];
 foreach (requirement in requiredMods)
