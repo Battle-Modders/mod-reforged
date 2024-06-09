@@ -36,6 +36,7 @@
 	<sprite id="rf_between_the_eyes_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_between_the_eyes_skill.png" />
 	<sprite id="rf_follow_up_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_follow_up_skill.png" />
 	<sprite id="rf_kata_step_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_kata_step_skill.png" />
+	<sprite id="rf_move_under_cover_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_move_under_cover_skill.png" />
 	<sprite id="rf_net_pull_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_net_pull_skill.png" />
 	<sprite id="rf_onslaught_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_onslaught_skill.png" />
 	<sprite id="rf_sprint_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sprint_skill.png" />
