@@ -15,6 +15,9 @@ for (local index = (::Const.TipOfTheDay.len() - 1); index >= 0; index--)
 		case "Losing is fun.":
 		case "Some people will use you and throw you away.":
 			::Const.TipOfTheDay.remove(index);
+		case "Flails ignore the defense bonus of shields.":
+			::Const.TipOfTheDay[index] = "Flails and Bolas ignore the defense granted by shields, but not by \'Shieldwall\'";
+			break;
 	}
 }
 
