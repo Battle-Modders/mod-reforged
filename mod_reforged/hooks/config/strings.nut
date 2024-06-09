@@ -1013,7 +1013,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"After inflicting a fatality, gain " + ::MSU.Text.colorGreen("2") + " stacks of Bloodlust, up to a maximum of 2 stacks.",
 				"For each stack [Resolve|Concept.Bravery], [Initiative|Concept.Initiative] and [Fatigue Recovery|Concept.FatigueRecovery] rate are increased by " + ::MSU.Text.colorGreen("25%") + " stacking [additively|Concept.StackAdditively].",
-				"You lose " + ::MSU.Text.colorRed("1") + " stack every [turn|Concept.Turn]."
+				"You lose " + ::MSU.Text.colorRed("1") + " stack at the start of every [turn|Concept.Turn]."
 			]
 		}]
  	}),
