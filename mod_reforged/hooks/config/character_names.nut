@@ -305,8 +305,13 @@ foreach(characterName in ::Const.Strings.CharacterNames)
 	"Zubayr"
 ]);
 
+// The array contains some duplicates even in vanilla
+::Const.Strings.SouthernNames = ::MSU.Array.removeDuplicates(::Const.Strings.SouthernNames);
+
 foreach (name in ::Const.Strings.SouthernNames)
 {
 	::Const.Strings.SouthernNamesLast.push("Ibn " + name);
 	::Const.Strings.SouthernNamesLast.push("Al-" + name);
 }
+
+::Const.Strings.SouthernNamesLast = ::MSU.Array.removeDuplicates(::Const.Strings.SouthernNamesLast);
