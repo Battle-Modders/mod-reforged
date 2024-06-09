@@ -5,9 +5,9 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "actives.rf_move_under_cover";
 		this.m.Name = "Move Under Cover";
 		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Use the cover provided by a shield-bearing ally to move 1 tile ignoring [Zone of Control|Concept.ZoneOfControl] and without triggering free attacks.");
-		this.m.Icon = "ui/perks/perk_25_active.png";
-		this.m.IconDisabled = "ui/perks/perk_25_active_sw.png";
-		this.m.Overlay = "perk_25_active";
+		this.m.Icon = "skills/rf_move_under_cover_skill.png";
+		this.m.IconDisabled = "skills/rf_move_under_cover_skill_sw.png";
+		this.m.Overlay = "rf_move_under_cover_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/footwork_01.wav"
 		];
