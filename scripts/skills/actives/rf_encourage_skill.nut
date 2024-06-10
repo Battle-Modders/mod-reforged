@@ -1,14 +1,16 @@
 this.rf_encourage_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		// Config
-		EncourageBonusFraction = 0.1		// This percentage of Resolve is added as a bonus for the morale check
+		EncourageBonusFraction = 0.5,		// This percentage of Resolve is added as a bonus for the morale check
+
+		IsSpent = false
 	},
 
 	function create()
 	{
 		this.m.ID = "actives.rf_encourage";
 		this.m.Name = "Encourage";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Encourage an ally to raise their current [Morale|Concept.Morale]. A character can only be encouraged once per [round|Concept.Round]. Cannot be used on [fleeing|Concept.Morale] or [stunned|Skill+stunned_effect] allies.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Encourage an ally to raise their current [Morale|Concept.Morale]. Cannot be used on [fleeing|Concept.Morale] or [stunned|Skill+stunned_effect] allies.");
 		this.m.Icon = "ui/perks/perk_28_active.png";	// unused vanilla artwork
 		this.m.IconDisabled = "ui/perks/perk_28_active_sw.png";	// unused vanilla artwork
 		this.m.Overlay = "rf_encourage_skill";
@@ -25,7 +27,7 @@ this.rf_encourage_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ActionPointCost = 3;
 		this.m.FatigueCost = 15;
 		this.m.MinRange = 1;
-		this.m.MaxRange = 3;
+		this.m.MaxRange = 2;
 	}
 
 	function getTooltip()
@@ -44,8 +46,24 @@ this.rf_encourage_skill <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/vision.png",
 				text = "Has a range of " + ::MSU.Text.colorGreen(this.getMaxRange()) + " tiles"
+			},
+			{
+				id = 16,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Can only be used on characters whose [morale|Concept.Morale] is lower than you per tile of distance they are away")
 			}
 		]);
+
+		if (this.m.IsSpent)
+		{
+			ret.push({
+				id = 20,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Can only be used once per [turn|Concept.Turn]")
+			});
+		}
 
 		return ret;
 	}
@@ -53,23 +71,37 @@ this.rf_encourage_skill <- this.inherit("scripts/skills/skill", {
 	function onVerifyTarget( _originTile, _targetTile )
 	{
 		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
 			return false;
-		}
 
 		local target = _targetTile.getEntity();
+		if (target.getCurrentProperties().IsStunned || target.getMoraleState() == ::Const.MoraleState.Fleeing || target.getMoraleState() >= ::Const.MoraleState.Confident || target.getMoraleState() >= target.m.MaxMoraleState)
+			return false;
+
 		local actor = this.getContainer().getActor();
-		return actor.getFaction() == target.getFaction() && target.getMoraleState() < actor.getMoraleState() && this.__canBeEncouraged(target);
+		return actor.getFaction() == target.getFaction() && actor.getMoraleState() - target.getMoraleState() >= actor.getTile().getDistanceTo(target.getTile());
+	}
+
+	function isUsable()
+	{
+		return !this.m.IsSpent && this.skill.isUsable();
 	}
 
 	function onUse( _user, _targetTile )
 	{
-		local target = _targetTile.getEntity();
-
-		target.checkMorale(1, this.getEncourageBonus(), ::Const.MoraleCheckType.Default);
-		this.__markEntityWithRound(target);
-
+		_targetTile.getEntity().checkMorale(1, this.getEncourageBonus(), ::Const.MoraleCheckType.Default);
+		this.m.IsSpent = true;
 		return true;
+	}
+
+	function onTurnStart()
+	{
+		this.m.IsSpent = false;
+	}
+
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		this.m.IsSpent = false;
 	}
 
 // New Functions
@@ -77,31 +109,5 @@ this.rf_encourage_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local encourageBonus = this.getContainer().getActor().getCurrentProperties().getBravery() * this.m.EncourageBonusFraction;
 		return ::Math.max(0, encourageBonus);	// The bonus can never be negative
-	}
-
-	function __canBeEncouraged( _targetEntity )
-	{
-		// The MaxMoraleState part might be confusing for the player because it's not mentioned in the tooltip but it's just logical
-		if (_targetEntity.getCurrentProperties().IsStunned || _targetEntity.getMoraleState() >= _targetEntity.m.MaxMoraleState)
-			return false;
-
-		return this.__getRoundOfMarkedEntity(_targetEntity) < ::Time.getRound();
-	}
-
-	// Write the current round number in a tactical manager flag that consists of the id of an entity and the id of this skill
-	function __markEntityWithRound( _targetEntity )
-	{
-		::Tactical.Entities.getFlags().set(_targetEntity.getID() + this.getID() + "MarkedWithRoundNumber", ::Time.getRound());
-	}
-
-	// Return the round number imprinted into a tactical manager flag for that entity; Returns 0 if no flag exists yet for it
-	function __getRoundOfMarkedEntity( _targetEntity )
-	{
-		if (::Tactical.Entities.getFlags().has(_targetEntity.getID() + this.getID() + "MarkedWithRoundNumber"))
-		{
-			return ::Tactical.Entities.getFlags().get(_targetEntity.getID() + this.getID() + "MarkedWithRoundNumber");
-		}
-
-		return 0;
 	}
 });
