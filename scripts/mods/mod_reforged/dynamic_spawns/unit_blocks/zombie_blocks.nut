@@ -1,7 +1,7 @@
 local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.ZombieFrontline",
-		UnitDefs = [{ BaseID = "Unit.RF.Zombie" }, { BaseID = "Unit.RF.ZombieYeoman" }, { BaseID = "Unit.RF.ZombieKnight" }]
+		UnitDefs = [{ BaseID = "Unit.RF.Zombie" }, { BaseID = "Unit.RF.ZombieYeoman" }, { BaseID = "Unit.RF.ZombieKnight", RatioMax = 0.5 }]
 	},
 	{
 		ID = "UnitBlock.RF.ZombieLight",
