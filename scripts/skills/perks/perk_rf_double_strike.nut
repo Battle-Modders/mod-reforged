@@ -28,7 +28,7 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = ::MSU.Text.colorizePercentage(this.m.DamageBonus) + " increased damage dealt"
+			text = "Single target attacks deal " + ::MSU.Text.colorizePercentage(this.m.DamageBonus) + " more damage"
 		});
 
 		tooltip.push({
@@ -41,31 +41,17 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function onUpdate( _properties )
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (this.m.IsInEffect)
+		if (this.m.IsInEffect && this.isSkillValid(_skill))
 		{
 			_properties.MeleeDamageMult *= 1.0 + this.m.DamageBonus * 0.01;
 		}
 	}
 
-	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		if (!this.m.IsInEffect)
-			return;
-
-		if (!this.isSkillValid(_skill))
-		{
-			this.m.IsInEffect = false;
-		}
-	}
-
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (this.isSkillValid(_skill))
-		{
-			this.m.IsInEffect = true;
-		}
+		this.m.IsInEffect = this.isSkillValid(_skill);
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
