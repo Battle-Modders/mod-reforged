@@ -25,7 +25,7 @@ this.rf_goblin_wolfrider_racial <- ::inherit("scripts/skills/skill", {
 		ret.push({
 			id = 8,
 			type = "text",
-			icon = "ui/icons/ammo.png",
+			icon = "ui/icons/action_points.png",
 			text = format("Weapon skills cost %s Action Point", ::MSU.Text.colorRed("+1"))
 		});
 		return ret;
