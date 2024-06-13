@@ -51,12 +51,18 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		this.m.IsInEffect = false;
+		if (!this.m.IsInEffect)
+			return;
+
+		if (!this.isSkillValid(_skill))
+		{
+			this.m.IsInEffect = false;
+		}
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_skill.isAttack() && !_skill.isRanged() && !_skill.isAOE())
+		if (this.isSkillValid(_skill))
 		{
 			this.m.IsInEffect = true;
 		}
@@ -101,5 +107,10 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 	{
 		this.skill.onCombatFinished();
 		this.m.IsInEffect = false;
+	}
+
+	function isSkillValid( _skill )
+	{
+		return _skill.isAttack() && !_skill.isRanged() && !_skill.isAOE();
 	}
 });
