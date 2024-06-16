@@ -72,7 +72,7 @@ this.rf_dislocated_jaw_injury <- this.inherit("scripts/skills/injury/injury", {
 		_properties.FatigueRecoveryRate += this.m.FatigueRecoveryModifier;
 
 		local actor = this.getContainer().getActor();
-		if (this.m.IsApplyingBraveryMult || actor.isPreviewing() && actor.getPreviewSkill() != null)
+		if (this.m.IsApplyingBraveryMult || actor.isPreviewing() && actor.getPreviewSkill() != null && !actor.getPreviewSkill().isAttack())
 		{
 			_properties.BraveryMult *= this.m.BraveryMult;
 		}
