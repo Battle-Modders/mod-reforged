@@ -8,6 +8,7 @@
 			"sounds/combat/break_free_roots_02.wav",
 			"sounds/combat/break_free_roots_03.wav"
 		];
+		this.m.RF_HideInTooltip = true;
 	}
 
 	q.onTargetHit <- function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
