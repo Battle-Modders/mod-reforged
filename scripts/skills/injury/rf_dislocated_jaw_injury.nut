@@ -2,6 +2,7 @@ this.rf_dislocated_jaw_injury <- this.inherit("scripts/skills/injury/injury", {
 	m = {
 		FatigueRecoveryModifier = -3,
 		BraveryMult = 0.7,
+		IsApplyingBraveryMult = false // Used during skill execution to apply the BraveryMult
 	},
 	function create()
 	{
@@ -33,30 +34,30 @@ this.rf_dislocated_jaw_injury <- this.inherit("scripts/skills/injury/injury", {
 
 		if (this.m.BraveryMult != 1.0)
 		{
-			local actor = this.getContainer().getActor();
-			if (actor.isPlacedOnMap() && ::Tactical.TurnSequenceBar.isActiveEntity(actor))
-			{
-				ret.push({
-					id = 10,
-					type = "text",
-					icon = "ui/icons/bravery.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.BraveryMult) + " less [Resolve|Concept.Bravery]")
-				});
-			}
-			else
-			{
-				ret.push({
-					id = 11,
-					type = "text",
-					icon = "ui/icons/special.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.BraveryMult) + " less [Resolve|Concept.Bravery] during this character\'s turn")
-				});
-			}
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/bravery.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.BraveryMult) + " less [Resolve|Concept.Bravery] during skill use except attacks")
+			});
 		}
 
 		this.addTooltipHint(ret);	// Injury specific additional tooltips
 
 		return ret;
+	}
+
+	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		// We only want to apply the Resolve malus for reducing the efficacy of skills like Rally the Troops
+		// but we don't want to reduce the efficacy of Fearsome.
+		if (!_skill.isAttack())
+			this.m.IsApplyingBraveryMult = true;
+	}
+
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		this.m.IsApplyingBraveryMult = false;
 	}
 
 	function onUpdate( _properties )
@@ -71,7 +72,7 @@ this.rf_dislocated_jaw_injury <- this.inherit("scripts/skills/injury/injury", {
 		_properties.FatigueRecoveryRate += this.m.FatigueRecoveryModifier;
 
 		local actor = this.getContainer().getActor();
-		if (actor.isPlacedOnMap() && ::Tactical.TurnSequenceBar.isActiveEntity(actor))
+		if (this.m.IsApplyingBraveryMult || actor.isPreviewing() && actor.getPreviewSkill() != null && !actor.getPreviewSkill().isAttack())
 		{
 			_properties.BraveryMult *= this.m.BraveryMult;
 		}
