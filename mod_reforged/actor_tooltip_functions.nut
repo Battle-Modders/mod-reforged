@@ -49,7 +49,7 @@
     local collapseThreshold = ::Reforged.Mod.ModSettings.getSetting("CollapseEffectsWhenX").getValue();
     local effectList = [];
 
-    local statusEffects = _actor.getSkills().query(::Const.SkillType.StatusEffect | ::Const.SkillType.PermanentInjury, false, true);
+    local statusEffects = this.__querySkills(_actor, ::Const.SkillType.StatusEffect | ::Const.SkillType.PermanentInjury, false, true);
     if (statusEffects.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(effectList, "Effects", currentID);
     currentID++;
 
@@ -106,7 +106,7 @@
     local collapseThreshold = ::Reforged.Mod.ModSettings.getSetting("CollapsePerksWhenX").getValue();
     local perkList = [];
 
-    local perks = _actor.getSkills().query(::Const.SkillType.Perk, true, true);
+    local perks = this.__querySkills(_actor, ::Const.SkillType.Perk, true, true);
     if (perks.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(perkList, "Perks", currentID);
     currentID++;
 
@@ -270,7 +270,7 @@
 {
 	local ret = [];
 
-	local skills = _actor.getSkills().getAllSkillsOfType(::Const.SkillType.Active);
+	local skills = this.__querySkills(_actor, ::Const.SkillType.Active, false, true);
 
 	if (skills.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true)
 	{
@@ -381,4 +381,18 @@
 {
     local fileName = split(::IO.scriptFilenameByHash(_skill.ClassNameHash), "/").top();
     return ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|%s]", !_skill.isActive() || _skill.isAffordable() ? _skill.getIconColored() : _skill.getIconDisabled(), "Skill+" + fileName));
+}
+
+// Private Functions
+::Reforged.TacticalTooltip.__querySkills <- function( _actor, _filter, _includeHidden, _ordered )
+{
+	local ret = _actor.getSkills().query(_filter, _includeHidden, _ordered);
+	for (local i = ret.len() - 1; i >= 0; i--)
+	{
+		if (ret[i].hideInTooltip())	// Enforce our reforged flag for REALLY hiding this skill no matter what
+		{
+			ret.remove(i);
+		}
+	}
+	return ret;
 }

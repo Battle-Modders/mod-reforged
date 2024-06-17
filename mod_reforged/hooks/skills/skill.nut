@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
+	q.m.RF_HideInTooltip <- false;	// If true, then this skill with never be listed in the combat tooltip. e.g. for dummy ZoC skills on enemies.
+
 	q.isDuelistValid <- function()
 	{
 		return this.isAttack() && !this.isRanged() && !this.isAOE() && this.getBaseValue("MaxRange") == 1;
@@ -77,6 +79,12 @@
 		}
 
 		return ret;
+	}
+
+// New Functions
+	q.hideInTooltip <- function()
+	{
+		return this.m.RF_HideInTooltip
 	}
 });
 
