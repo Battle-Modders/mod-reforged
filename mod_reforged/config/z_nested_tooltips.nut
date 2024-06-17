@@ -88,6 +88,7 @@ local getThresholdForInjury = function( _script )
 		Round = ::MSU.Class.BasicTooltip("Round", ::Reforged.Mod.Tooltips.parseString("Combat in battle brothers is turn-based. Each combat consists of a series of rounds. During a round, characters act in [turns|Concept.Turn]. A round ends when all characters have ended their [turns|Concept.Turn].")),
 		ZoneOfControl = ::MSU.Class.BasicTooltip("Zone of Control", ::Reforged.Mod.Tooltips.parseString("Most melee characters exert Zone of Control on their surrounding tiles. Trying to move out of enemy Zone of Control will trigger one free attack from each controlling enemy until the first attack hit or every attack missed. A hit will cancel the movement.")),
 		BagSlots = ::MSU.Class.BasicTooltip("Bag Slots", ::Reforged.Mod.Tooltips.parseString("Bag slots can be used to store additional weapons or utility items for use during combat. Every character has " + ::new("scripts/items/item_container").getUnlockedBagSlots() + " bag slots by default and can have a maximum of " + ::Const.ItemSlotSpaces[::Const.ItemSlot.Bag] + ".")),
+		ApplicableMastery = ::MSU.Class.BasicTooltip("Applicable Mastery", ::Reforged.Mod.Tooltips.parseString("A weapon requires its wielder to possess just one of its applicable masteries for all skills to fully benefit from mastery effects.")),
 	});
 
 	::Reforged.Mod.Tooltips.setTooltips(::Reforged.NestedTooltips.Tooltips);
