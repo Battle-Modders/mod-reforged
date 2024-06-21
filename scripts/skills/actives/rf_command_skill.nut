@@ -76,11 +76,24 @@ this.rf_command_skill <- this.inherit("scripts/skills/skill", {
 		local target = _targetTile.getEntity();
 		::Tactical.TurnSequenceBar.moveEntityToFront(target.getID());
 
+		if (!_user.isHiddenToPlayer())
+		{
+			local logText = ::Const.UI.getColorizedEntityName(_user) + " uses Command";
+			if (!target.isHiddenToPlayer())
+			{
+				logText += " on " + ::Const.UI.getColorizedEntityName(target);
+			}
+			::Tactical.EventLog.log(logText);
+		}
+
 		local recoveredActionPoints = ::Math.min(target.getActionPointsMax() - target.getActionPoints(), this.m.ActionPointsRecovered);
 		if (recoveredActionPoints != 0)
 		{
 			target.setActionPoints(target.getActionPoints() + recoveredActionPoints);
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " recovers " + ::MSU.Text.colorGreen(recoveredActionPoints) + " Action Point(s)");
+			if (!target.isHiddenToPlayer())
+			{
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " recovers " + ::MSU.Text.colorGreen(recoveredActionPoints) + " Action Point(s)");
+			}
 		}
 		target.getSkills().add(::new("scripts/skills/effects/rf_commanded_effect"));
 
