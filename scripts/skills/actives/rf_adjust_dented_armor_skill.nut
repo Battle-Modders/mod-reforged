@@ -8,7 +8,14 @@ this.rf_adjust_dented_armor_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/rf_adjust_dented_armor_skill.png";
 		this.m.IconDisabled = "skills/rf_adjust_dented_armor_skill_bw.png";
 		this.m.Overlay = "rf_adjust_dented_armor_skill";
-		this.m.SoundOnHit = [];
+		this.m.SoundOnUse = [
+			"sounds/ambience/settlement/fortification_armor_weapons_00.wav",
+			"sounds/ambience/settlement/fortification_armor_weapons_01.wav",
+			"sounds/ambience/settlement/fortification_armor_weapons_02.wav",
+			"sounds/ambience/settlement/fortification_armor_weapons_03.wav",
+			"sounds/ambience/settlement/fortification_armor_weapons_04.wav",
+			"sounds/ambience/settlement/fortification_armor_weapons_05.wav"
+		];
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsSerialized = false;
