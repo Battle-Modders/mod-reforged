@@ -106,4 +106,20 @@
 			}
 		}
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		if (!this.isAttack())
+			return __original();
+
+		local ret = __original();
+		ret.push({
+			id = 20,
+			type = "text",
+			icon = "ui/icons/rf_resilience_damage.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorRed(this.getResilienceDamage()) + " damage to Resilience")
+		});
+
+		return ret;
+	}
 });
