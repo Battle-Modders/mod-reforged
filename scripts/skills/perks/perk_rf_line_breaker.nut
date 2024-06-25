@@ -53,7 +53,7 @@ this.perk_rf_line_breaker <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
-				text = ::MSU.Text.colorizePercentage(this.m.KnockBackMeleeSkillBonus, {AddSign = false}) + this.getName()
+				text = ::MSU.Text.colorizePercentage(this.m.KnockBackMeleeSkillBonus, {AddSign = false}) + " " + this.getName()
 			});
 		}
 	}
