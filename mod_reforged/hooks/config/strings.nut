@@ -2211,7 +2211,6 @@ foreach (vanillaDesc in vanillaDescriptions)
  	}),
 	RF_Unstoppable = ::UPD.getDescription({
  		Fluff = "Once you get going, you cannot be stopped!",
- 		Requirement = "Melee Attack,"
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
