@@ -6,7 +6,7 @@ this.perk_rf_supporter <- this.inherit("scripts/skills/skill", {
 
 		// Private
 		IsSpent = false,
-		RecoveredActionPoints = 0
+		WillRecoverActionPoints = false // conditionally flipped in onBeforeAnySkillExecuted to recover AP in onAnySkillExecuted
 	},
 
 	function create()
@@ -50,18 +50,20 @@ this.perk_rf_supporter <- this.inherit("scripts/skills/skill", {
 		if (actor.getFaction() != _targetEntity.getFaction() || actor.getID() == _targetEntity.getID() || !actor.isPlacedOnMap() || actor.getTile().getDistanceTo(_targetTile) > this.m.MinDistanceAPRecovery)
 			return;
 
-		this.m.RecoveredActionPoints = ::Math.min(actor.getActionPointsMax() - actor.getActionPoints(), this.m.ActionPointsRecovered);
+		this.m.WillRecoverActionPoints = true;
 		this.m.IsSpent = true;
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (this.m.RecoveredActionPoints != 0)
+		if (this.m.WillRecoverActionPoints)
 		{
+			this.m.WillRecoverActionPoints = false;
+
 			local actor = this.getContainer().getActor();
-			actor.setActionPoints(actor.getActionPoints() + this.m.RecoveredActionPoints);
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " recovers " + ::MSU.Text.colorGreen(this.m.RecoveredActionPoints) + " Action Point(s)");
-			this.m.RecoveredActionPoints = 0;
+			local recoveredActionPoints = ::Math.min(actor.getActionPointsMax() - actor.getActionPoints(), this.m.ActionPointsRecovered);
+			actor.setActionPoints(actor.getActionPoints() + recoveredActionPoints);
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " recovers " + ::MSU.Text.colorGreen(recoveredActionPoints) + " Action Point(s)");
 		}
 	}
 });
