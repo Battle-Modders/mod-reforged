@@ -15,9 +15,11 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_mentor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
 	}
 
 	q.assignRandomEquipment = @() function()

@@ -43,6 +43,7 @@ this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
 			o.m.MaxStudents = 2;
 		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
 	}
 
 	function assignRandomEquipment()
