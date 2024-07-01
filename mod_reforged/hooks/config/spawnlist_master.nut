@@ -7,6 +7,12 @@
 ::Const.World.Spawn.Troops.SkeletonMediumPolearm.Cost = 28;
 ::Const.World.Spawn.Troops.SkeletonHeavy.Strength = 50;
 ::Const.World.Spawn.Troops.SkeletonHeavy.Cost = 50;
+::Const.World.Spawn.Troops.SkeletonHeavy.Row = 2;
+::Const.World.Spawn.Troops.SkeletonHeavyBodyguard.Strength = 50;
+::Const.World.Spawn.Troops.SkeletonHeavyBodyguard.Cost = 50;
+::Const.World.Spawn.Troops.SkeletonHeavyBodyguard.Row = 2;
+::Const.World.Spawn.Troops.SkeletonPriest.Row = 3
+::Const.World.Spawn.Troops.SkeletonBoss.Row = 3
 
 //Bandits
 ::Const.World.Spawn.Troops.Wardog.Strength = 6;
@@ -187,7 +193,7 @@
 		Variant = 0,
 		Strength = 40,
 		Cost = 40,
-		Row = 1,
+		Row = 2,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_lesser"
 	},
 	RF_SkeletonHeavyLesserBodyguard = {
@@ -213,7 +219,7 @@
 		Variant = 0,
 		Strength = 32,
 		Cost = 32,
-		Row = 2,
+		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_decanus"
 	},
 	RF_SkeletonCenturion = {
@@ -221,7 +227,7 @@
 		Variant = 0,
 		Strength = 44,
 		Cost = 44,
-		Row = 2,
+		Row = 1,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_centurion"
 	},
 	RF_SkeletonLegatus = {
