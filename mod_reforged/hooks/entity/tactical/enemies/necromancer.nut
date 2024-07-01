@@ -17,6 +17,7 @@
 		this.getSprite("body").Saturation = 0.6;
 		this.m.Skills.add(this.new("scripts/skills/actives/raise_undead"));
 		this.m.Skills.add(this.new("scripts/skills/actives/possess_undead_skill"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_soul_link"));
 
 		// Reforged
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
