@@ -4,117 +4,38 @@
 		this.m.Name = "Black Monolith";
 		this.location.onSpawned();
 
-		// Right (31)
+		local troops = [
+			// [num, troopType]
 
-		for( local i = 0; i < 3; i = ++i )
+			// Right (31)
+			[3, ::Const.World.Spawn.Troops.RF_SkeletonDecanus],
+			[7, ::Const.World.Spawn.Troops.RF_SkeletonMediumElite],
+			[3, ::Const.World.Spawn.Troops.SkeletonMedium],
+			[3, ::Const.World.Spawn.Troops.RF_SkeletonMediumElitePolearm],
+			[2, ::Const.World.Spawn.Troops.RF_SkeletonCenturion],
+			[2, ::Const.World.Spawn.Troops.RF_SkeletonMediumElitePolearm],
+			[3, ::Const.World.Spawn.Troops.SkeletonMediumPolearm],
+			[1, ::Const.World.Spawn.Troops.RF_SkeletonLegatus],
+			[5, ::Const.World.Spawn.Troops.Vampire],
+			[2, ::Const.World.Spawn.Troops.RF_VampireLord]
+
+			// Top (16)
+			[2, ::Const.World.Spawn.Troops.SkeletonHeavyBodyguard],
+			[3, ::Const.World.Spawn.Troops.RF_SkeletonHeavyLesserBodyguard],
+			[2, ::Const.World.Spawn.Troops.SkeletonHeavy],
+			[5, ::Const.World.Spawn.Troops.RF_SkeletonHeavyLesser],
+			[1, ::Const.World.Spawn.Troops.SkeletonBoss],
+			[3, ::Const.World.Spawn.Troops.SkeletonPriest]
+		];
+
+		foreach (entry in troops)
 		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.RF_SkeletonDecanus
-			}, false);
-		}
-
-		for( local i = 0; i < 7; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.RF_SkeletonMediumElite
-			}, false);
-		}
-
-		for( local i = 0; i < 3; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.SkeletonMedium
-			}, false);
-		}
-
-		for( local i = 0; i < 3; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.RF_SkeletonMediumElitePolearm
-			}, false);
-		}
-
-		for( local i = 0; i < 2; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.RF_SkeletonCenturion
-			}, false);
-		}
-
-		for( local i = 0; i < 2; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.RF_SkeletonMediumElitePolearm
-			}, false);
-		}
-
-		for( local i = 0; i < 3; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.SkeletonMediumPolearm
-			}, false);
-		}
-
-		for( local i = 0; i < 1; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.RF_SkeletonLegatus
-			}, false);
-		}
-
-		for( local i = 0; i < 5; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.Vampire
-			}, false);
-		}
-
-		for( local i = 0; i < 2; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.RF_VampireLord
-			}, false);
-		}
-
-		// Top (16)
-
-		for( local i = 0; i < 2; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.SkeletonHeavyBodyguard
-			}, false);
-		}
-
-		for( local i = 0; i < 3; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.RF_SkeletonHeavyLesserBodyguard
-			}, false);
-		}
-
-		for( local i = 0; i < 2; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.SkeletonHeavy
-			}, false);
-		}
-
-		for( local i = 0; i < 5; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.RF_SkeletonHeavyLesser
-			}, false);
-		}
-
-		this.Const.World.Common.addTroop(this, {
-			Type = this.Const.World.Spawn.Troops.SkeletonBoss
-		}, false);
-
-		for( local i = 0; i < 3; i = ++i )
-		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.SkeletonPriest
-			}, false);
+			local num = entry[0];
+			local troop = entry[1];
+			for (local i = 0; i < num; i++)
+			{
+				::Const.World.Common.addTroop(this, { Type = troop }, false));
+			}
 		}
 	}
 
