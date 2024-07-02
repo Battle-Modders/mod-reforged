@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/world/locations/legendary/black_monolith_location", function(q) {
-	q.onSpawned = @(__original) function()
+	q.onSpawned = @() function()
 	{
 		this.m.Name = "Black Monolith";
 		this.location.onSpawned();
