@@ -16,8 +16,8 @@
 			[2, ::Const.World.Spawn.Troops.RF_SkeletonMediumElitePolearm],
 			[3, ::Const.World.Spawn.Troops.SkeletonMediumPolearm],
 			[1, ::Const.World.Spawn.Troops.RF_SkeletonLegatus],
-			[5, ::Const.World.Spawn.Troops.Vampire],
-			[2, ::Const.World.Spawn.Troops.RF_VampireLord]
+			[6, ::Const.World.Spawn.Troops.Vampire],
+			[1, ::Const.World.Spawn.Troops.RF_VampireLord]
 
 			// Top (16)
 			[2, ::Const.World.Spawn.Troops.SkeletonHeavyBodyguard],
