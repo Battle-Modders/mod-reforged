@@ -5,7 +5,8 @@ this.perk_rf_supporter <- this.inherit("scripts/skills/skill", {
 		ActionPointsRecovered = 2,
 
 		// Private
-		IsSpent = false
+		IsSpent = false,
+		WillRecoverActionPoints = false // conditionally flipped in onBeforeAnySkillExecuted to recover AP in onAnySkillExecuted
 	},
 
 	function create()
@@ -37,27 +38,32 @@ this.perk_rf_supporter <- this.inherit("scripts/skills/skill", {
 
 // MSU Functions
 	// Implement Action Point recovery after using a skill on adjacent allies
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	// We measure the tile distance in onBeforeAnySkillExecuted because some skills e.g. Rotation
+	// may cause the actor to not be placed on map, causing tile distance to crash during onAnySkillExecuted.
+	// We then recover the AP in onAnySkillExecuted so the AP is recovered after spending AP on skill use.
+	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (this.m.IsSpent || _targetEntity == null)
-		{
 			return;
-		}
 
 		local actor = this.getContainer().getActor();
-		if (actor.getFaction() == _targetEntity.getFaction() && actor.getID() != _targetEntity.getID())
-		{
-			if (actor.getTile().getDistanceTo(_targetTile) <= this.m.MinDistanceAPRecovery)
-			{
-				local recoveredActionPoints = ::Math.min(actor.getActionPointsMax() - actor.getActionPoints(), this.m.ActionPointsRecovered);
-				if (recoveredActionPoints != 0)
-				{
-					actor.setActionPoints(actor.getActionPoints() + recoveredActionPoints);
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " recovers " + ::MSU.Text.colorGreen(recoveredActionPoints) + " Action Point(s)");
-				}
+		if (actor.getFaction() != _targetEntity.getFaction() || actor.getID() == _targetEntity.getID() || !actor.isPlacedOnMap() || actor.getTile().getDistanceTo(_targetTile) > this.m.MinDistanceAPRecovery)
+			return;
 
-				this.m.IsSpent = true;
-			}
+		this.m.WillRecoverActionPoints = true;
+		this.m.IsSpent = true;
+	}
+
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (this.m.WillRecoverActionPoints)
+		{
+			this.m.WillRecoverActionPoints = false;
+
+			local actor = this.getContainer().getActor();
+			local recoveredActionPoints = ::Math.min(actor.getActionPointsMax() - actor.getActionPoints(), this.m.ActionPointsRecovered);
+			actor.setActionPoints(actor.getActionPoints() + recoveredActionPoints);
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " recovers " + ::MSU.Text.colorGreen(recoveredActionPoints) + " Action Point(s)");
 		}
 	}
 });
