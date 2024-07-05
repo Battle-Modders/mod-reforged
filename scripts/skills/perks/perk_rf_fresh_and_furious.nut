@@ -55,12 +55,25 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
-		tooltip.push({
-			id = 12,
-			type = "text",
-			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Becomes disabled when starting a turn with " + ::MSU.Text.colorizeFraction(this.m.FatigueThreshold) + " or more [Fatigue|Concept.Fatigue] built")
-		});
+		// For non-dummy actor we also add the actual fatigue value calculated from the threshold
+		if (this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID())
+		{
+			tooltip.push({
+				id = 12,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Becomes disabled when starting a turn with " + ::MSU.Text.colorizeFraction(this.m.FatigueThreshold) + " or more [Fatigue|Concept.Fatigue] built")
+			});
+		}
+		else
+		{
+			tooltip.push({
+				id = 12,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString(format("Becomes disabled when starting a turn with %s (%s) or more [Fatigue|Concept.Fatigue] built", ::MSU.Text.colorizeFraction(this.m.FatigueThreshold), ::MSU.Text.colorRed(::Math.round(this.m.FatigueThreshold * this.getContainer().getActor().getFatigue()))))
+			});
+		}
 
 		return tooltip;
 	}
