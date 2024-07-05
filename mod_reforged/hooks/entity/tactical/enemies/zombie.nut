@@ -5,10 +5,10 @@
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.Zombie);
 		// b.SurroundedBonus = 10;	// This is now controlled by them having 'Backstabber'
-		b.IsAffectedByNight = false;
-		b.IsAffectedByInjuries = false;
-		b.IsImmuneToBleeding = true;
-		b.IsImmuneToPoison = true;
+		// b.IsAffectedByNight = false;	// Set via rf_zombie_racial
+		// b.IsAffectedByInjuries = false;	// Set via rf_zombie_racial
+		// b.IsImmuneToBleeding = true;	// Set via rf_zombie_racial
+		// b.IsImmuneToPoison = true;	// Set via rf_zombie_racial
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 90)
 		// {
@@ -121,6 +121,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
+		this.m.Skills.add(::new("scripts/skills/racial/rf_zombie_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_wear_them_down"));
