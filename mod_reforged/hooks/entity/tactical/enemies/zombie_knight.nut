@@ -5,11 +5,11 @@
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.ZombieKnight);
 		// b.SurroundedBonus = 10;	// This is now controlled by them having 'Backstabber'
-		b.IsAffectedByNight = false;
-		b.IsAffectedByInjuries = false;
-		b.IsImmuneToBleeding = true;
-		b.IsImmuneToPoison = true;
-		b.FatigueDealtPerHitMult = 2.0;
+		// b.IsAffectedByNight = false;	// Redundant. Set via rf_zombie_racial
+		// b.IsAffectedByInjuries = false;	// Redundant. Set via rf_zombie_racial
+		// b.IsImmuneToBleeding = true;	// Redundant. Set via rf_zombie_racial
+		// b.IsImmuneToPoison = true;	// Redundant. Set via rf_zombie_racial
+		// b.FatigueDealtPerHitMult = 2.0;	// Set via rf_zombie_racial
 
 		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 90)
 		// {
