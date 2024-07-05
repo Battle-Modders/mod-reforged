@@ -86,6 +86,46 @@
 			}
 		}
 
+		if (_targetTile.IsOccupiedByActor && this.isAttack())
+		{
+			local target = _targetTile.getEntity();
+			local resilienceDamage = this.getResilienceDamage() * target.getCurrentProperties().ResilienceDamageReceivedMult;
+			if (resilienceDamage != 0)
+			{
+				local targetResilience = target.getResilience();
+				local remResilience = targetResilience - resilienceDamage;
+				if (remResilience <= 0)
+				{
+					if (remResilience <= -target.getResilienceMax())
+					{
+						ret.push({
+							icon = "ui/tooltips/positive.png",
+							text = "Will Stun for 2 turns"
+						});
+					}
+					else
+					{
+						ret.push({
+							icon = "ui/tooltips/positive.png",
+							text = "Will Stun"
+						});
+					}
+				}
+				else
+				{
+					local properties = this.getContainer().buildPropertiesForUse(this, _targetTile);
+					local headshotChance = properties.HitChance[::Const.BodyPart.Head] * properties.HitChanceMult[::Const.BodyPart.Head];
+					if (headshotChance > 0 && targetResilience - 1.25 * resilienceDamage <= 0)
+					{
+						ret.push({
+							icon = "ui/tooltips/positive.png",
+							text = ::MSU.Text.colorGreen(headshotChance + "%") + " chance to Stun"
+						});
+					}
+				}
+			}
+		}
+
 		return ret;
 	}
 });
