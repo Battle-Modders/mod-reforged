@@ -18,13 +18,25 @@
 				type = "text",
                 icon = "ui/icons/campfire.png",
 				text = ::MSU.Text.colorRed("33%") + " reduced burning damage received"
-			}/*,
-			{
+			},
+			/*{
 				id = 13,
 				type = "text",
                 icon = "ui/icons/initiative.png",
 				text = "Initiative is treated as 15 higher for the purpose of turn order if there is a potential target to be hooked nearby"
 			}*/
+			{
+				id = 20,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Not affected by nighttime penalties"
+			},
+			{
+				id = 23,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being disarmed"
+			}
 		]);
 		return ret;
 	}

@@ -26,6 +26,24 @@
 				type = "text",
                 icon = "ui/icons/direct_damage.png",
 				text = "When attacking a webbed target, the damage that ignores armor is increased by " + ::MSU.Text.colorGreen("100%")
+			},
+			{
+				id = 20,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Not affected by nighttime penalties"
+			},
+			{
+				id = 21,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to Poison"
+			},
+			{
+				id = 23,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being disarmed"
 			}
 		]);
 		return ret;

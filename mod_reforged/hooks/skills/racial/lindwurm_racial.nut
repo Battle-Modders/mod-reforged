@@ -20,6 +20,36 @@
 				type = "text",
                 icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Upon receiving a hit from an adjacent enemy that deals at least " + ::MSU.Text.colorGreen("10") + " damage to Hitpoints, apply [Lindwurm Acid|Skill+lindwurm_acid_effect] to them, which deals damage to armor over time")
+			},
+			{
+				id = 20,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Not affected by nighttime penalties"
+			},
+			{
+				id = 24,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being knocked back or grabbed"
+			},
+			{
+				id = 26,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being disarmed"
+			},
+			{
+				id = 27,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being rooted"
+			}
+			{
+				id = 28,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [stunned|Skill+stunned_effect]")
 			}
 		]);
 		return ret;

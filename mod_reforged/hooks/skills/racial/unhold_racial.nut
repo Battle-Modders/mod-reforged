@@ -17,6 +17,18 @@
 				type = "text",
                 icon = "ui/icons/health.png",
 				text = "At the start of each turn, this character heals by " + ::MSU.Text.colorGreen("15%") + " of Maximum Hitpoints"
+			},
+			{
+				id = 20,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being disarmed"
+			},
+			{
+				id = 21,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being [rotated|Skill+rotation]"
 			}
 		]);
 		return ret;

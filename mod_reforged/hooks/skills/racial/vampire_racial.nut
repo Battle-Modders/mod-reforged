@@ -22,6 +22,24 @@
 				type = "text",
                 icon = "ui/icons/regular_damage.png",
 				text = "Heal " + ::MSU.Text.colorGreen("100%") + " of Hitpoint damage inflicted on enemies"
+			},
+			{
+				id = 20,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Not affected by nighttime penalties"
+			},
+			{
+				id = 21,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Not affected by, and cannot receive, [temporary injuries|Concept.InjuryTemporary]")
+			},
+			{
+				id = 22,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to Poison"
 			}
 		]);
 		return ret;
