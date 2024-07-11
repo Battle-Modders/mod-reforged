@@ -16,6 +16,9 @@
 	q.canDoubleGrip = @() function()
 	{
 		local actor = this.getContainer().getActor();
+		if (actor.isDisarmed())
+			return false;
+
 		local weapon = actor.getMainhandItem();
 		if (weapon == null || !weapon.isDoubleGrippable())
 			return false;
