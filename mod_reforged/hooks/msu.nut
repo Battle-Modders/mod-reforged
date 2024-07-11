@@ -86,7 +86,7 @@
 	if (_options == null) _options = {};
 	if (!("AddSign" in _options)) _options.AddSign <- false;
 	_options.AddPercent <- true;
-	return this.colorizeValue((_value - 1.0) * 100, _options);
+	return this.colorizeValue(::Math.round((_value - 1.0) * 100), _options);
 }
 
 ::logInfo("Reforged::MSU -- adding ::MSU.Text.colorizeFraction");
@@ -100,7 +100,7 @@
 	if (_options == null) _options = {};
 	if (!("AddSign" in _options)) _options.AddSign <- false;
 	_options.AddPercent <- true;
-	return this.colorizeValue(_value * 100, _options);
+	return this.colorizeValue(::Math.round(_value * 100), _options);
 }
 
 ::logInfo("Reforged::MSU -- adding ::MSU.Tile.getNeighbors");
