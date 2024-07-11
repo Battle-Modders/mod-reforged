@@ -84,7 +84,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 			return;
 
 		local actor = this.getContainer().getActor();
-		if (!actor.isPreviewing() || actor.getPreviewMovement() != null || (actor.getPreviewSkill().getActionPointCost() == 0 && actor.getPreviewSkill().getFatigueCost() == 0))
+		if (!actor.isPreviewing() || actor.getPreviewMovement() != null || actor.getPreviewSkill().getActionPointCost() == 0)
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
@@ -99,7 +99,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		// Sometimes you use a non-free skill which uses a free skill inside its onUse function
 		// In this case, we want to ensure that if IsUsingFreeSkill is false, we don't set it to true
 		if (!this.m.IsUsingFreeSkill) return;
-		this.m.IsUsingFreeSkill = _forFree || (_skill.getActionPointCost() == 0 && _skill.getFatigueCost() == 0);
+		this.m.IsUsingFreeSkill = _forFree || _skill.getActionPointCost() == 0;
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
