@@ -99,6 +99,9 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 			return false;
 
 		local targetEntity = _targetTile.getEntity();
+		if (targetEntity.isAlliedWith(this.getContainer().getActor()))
+			return false;
+
 		return targetEntity.isArmedWithShield() && this.skill.onVerifyTarget(_originTile, _targetTile) && !targetEntity.getSkills().hasSkill("effects.shieldwall") && !targetEntity.getSkills().hasSkill("effects.rf_hooked_shield");
 	}
 
