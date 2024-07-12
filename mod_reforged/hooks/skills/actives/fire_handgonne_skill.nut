@@ -89,4 +89,46 @@
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 		}
 	}
+
+	// Implementation of Extended AOE due to rf_take_aim_effect
+	q.getAffectedTiles = @(__original) function( _targetTile )
+	{
+		// For targeting beyond 2 tiles keep normal behavior
+		if (_targetTile.getDistanceTo(this.getContainer().getActor().getTile()) != 2 || !this.getContainer().hasSkill("effects.rf_take_aim"))
+		{
+			return __original(_targetTile);
+		}
+
+		local ret = [
+			_targetTile
+		];
+		local ownTile = this.getContainer().getActor().getTile();
+
+		// The logic below is the same as vanilla's for adding the tiles except we condense it by using a local function
+		// and increase the number of tiles that are added in each direction.
+
+		local function addForwardTiles( _tile, _dir, _num )
+		{
+			while (_num > 0 && _tile.hasNextTile(_dir))
+			{
+				_tile = _tile.getNextTile(_dir);
+				if (::Math.abs(_tile.Level - ownTile.Level) <= this.m.MaxLevelDifference)
+				{
+					ret.push(_tile);
+				}
+				_num--;
+			}
+		}
+
+		local dir = ownTile.getDirectionTo(_targetTile);
+		addForwardTiles(_targetTile, dir, 2);
+
+		local left = dir - 1 < 0 ? 5 : dir - 1;
+		addForwardTiles(_targetTile, left, 3);
+
+		local right = dir + 1 > 5 ? 0 : dir + 1;
+		addForwardTiles(_targetTile, right, 3);
+
+		return ret;
+	}
 });
