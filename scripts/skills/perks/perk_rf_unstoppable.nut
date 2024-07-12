@@ -72,6 +72,11 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function onTurnStart()
+	{
+		this.m.IsGainingStackThisTurn = false;
+	}
+
 	function onTurnEnd()
 	{
 		if (!this.m.IsGainingStackThisTurn)
