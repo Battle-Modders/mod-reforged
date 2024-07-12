@@ -1781,7 +1781,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"The first 2 throwing attacks during a combat have their [Action Point|Concept.ActionPoints] costs " + ::MSU.Text.colorGreen("halved") + ".",
-				"Every time you stand over an enemy\'s corpse during your [turn|Concept.Turn], gain " + ::MSU.Text.colorGreen(1) + " ammo and restore " + ::MSU.Text.colorGreen(4) + " [Action Points|Concept.ActionPoints]. Afterward, the next throwing attack has its [Fatigue|Concept.Fatigue] Cost " + ::MSU.Text.colorGreen("halved") + ".",
+				"When using a throwing weapon which uses ammo, every time you stand over an enemy\'s corpse during your [turn|Concept.Turn], gain " + ::MSU.Text.colorGreen(1) + " ammo and restore " + ::MSU.Text.colorGreen(4) + " [Action Points|Concept.ActionPoints]. Afterward, the next throwing attack has its [Fatigue|Concept.Fatigue] Cost " + ::MSU.Text.colorGreen("halved") + ".",
 				"A corpse can only be used once per combat and cannot be used by multiple characters with this perk."
 			]
 		}]
