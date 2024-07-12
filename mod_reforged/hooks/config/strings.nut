@@ -992,7 +992,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Damage against [surrounded|Concept.Surrounding] targets is increased by " + ::MSU.Text.colorGreen("10%") + " per character surrounding the target."
+				"Attacks against [surrounded|Concept.Surrounding] targets deal " + ::MSU.Text.colorGreen("10%") + " more damage and have " + ::MSU.Text.colorGreen("+10%") + " armor penetration per character surrounding the target."
 			]
 		}]
  	}),
