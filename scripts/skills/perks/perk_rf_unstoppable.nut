@@ -98,6 +98,9 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
+		if (!::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+			return;
+
 		if (_skill.isAttack())
 		{
 			this.m.IsGainingStackThisTurn = true;
