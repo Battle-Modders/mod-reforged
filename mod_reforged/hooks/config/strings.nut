@@ -1448,7 +1448,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"[Hitpoints|Concept.Hitpoints], [Maximum Fatigue|Concept.MaximumFatigue], and [Initiative|Concept.Initiative] are increased by " + ::MSU.Text.colorGreen("10%") + " of their respective base values."
+				"[Hitpoints|Concept.Hitpoints] and [Maximum Fatigue|Concept.MaximumFatigue] are increased by " + ::MSU.Text.colorGreen("10%") + " of their respective base values."
 			]
 		}]
  	}),
