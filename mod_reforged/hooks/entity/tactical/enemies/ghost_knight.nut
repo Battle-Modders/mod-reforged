@@ -1,16 +1,9 @@
-// ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/ghost_knight", function(q) {
-// 	q.onInit = @(__original) function()
-// 	{
-// 	    // copy vanilla function contents completely
-// 	    // and replace skills except equipment based skills
-// 	    // NOTE: Remove the hook on onInit completely if unused
-// 	}
-
-//
-// 	q.assignRandomEquipment = @(__original) function()
-// 	{
-// 	    __original();
-
-// 	    // any skills that should be added based on equipment
-// 	}
-// });
+::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/ghost_knight", function(q) {
+	q.onInit = @(__original) function()
+	{
+	    __original();
+	    // He already has 999 ranged defense in vanilla, and in Reforged we have a reworked Anticipation
+	    // which doesn't fit well with this entity's design.
+	    this.m.Skills.removeByID("perk.anticipation");
+	}
+});
