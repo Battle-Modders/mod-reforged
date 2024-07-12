@@ -2,14 +2,6 @@
 	q.getTooltip = @(__original) function()
 	{
 		local tooltip = __original();
-		tooltip.push(
-			{
-				id = 6,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Grants immunity to the next stun, but will be lost upon receiving the stun"
-			}
-		);
 
 		tooltip.push({
 			id = 6,
