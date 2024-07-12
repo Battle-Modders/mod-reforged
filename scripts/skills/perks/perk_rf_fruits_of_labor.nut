@@ -23,6 +23,5 @@ this.perk_rf_fruits_of_labor <- ::inherit("scripts/skills/skill", {
 
 		_properties.Hitpoints += ::Math.floor(mult * baseProperties.Hitpoints);
 		_properties.Stamina += ::Math.floor(mult * baseProperties.Stamina);
-		_properties.Initiative += ::Math.floor(mult * baseProperties.Initiative);
 	}
 });
