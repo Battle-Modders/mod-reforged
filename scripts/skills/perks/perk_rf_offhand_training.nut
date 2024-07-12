@@ -1,5 +1,6 @@
 this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 	m = {
+		StaminaModifierThreshold = -10,
 		IsSpent = true,
 		IsFreeUse = false,
 		IsConsumingFreeUse = false // Used in onBeforeAnySkillExecuted to flip IsFreeUse in onAnySkillExecuted
@@ -33,7 +34,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The first swap of a tool or buckler in the offhand this turn costs no Action Points"
+				text = "The first swap of an offhand item with a weight less than " + ::MSU.Text.colorRed(-this.m.StaminaModifierThreshold) + " costs no Action Points"
 			});
 		}
 
@@ -76,23 +77,12 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			if (i.isItemType(::Const.Items.ItemType.Tool))
+			if (i.getStaminaModifier() <= this.m.StaminaModifierThreshold)
 			{
-				validItemsCount++;
-				continue;
+				return null;
 			}
 
-			if (i.isItemType(::Const.Items.ItemType.Shield))
-			{
-				 if (i.getID().find("buckler") != null)
-				 {
-					 validItemsCount++;
-				 }
-				 else
-				 {
-					 return null;
-				 }
-			}
+			validItemsCount++;
 		}
 
 		if (validItemsCount > 0)
