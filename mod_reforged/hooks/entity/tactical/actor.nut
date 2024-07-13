@@ -140,6 +140,7 @@
 			this.getSkills().add(::new("scripts/skills/special/rf_first_turn_initiative"));
 		}
 
+		this.m.IsWaitingTurn = false;
 		__original();
 	}
 
@@ -175,14 +176,6 @@
 
 		return ::Math.max(0, count - startSurroundCountAt);
 	}
-
-
-	q.onRoundStart = @(__original) function()
-	{
-		this.m.IsWaitingTurn = false;
-		__original();
-	}
-
 
 	q.isTurnDone = @(__original) function()
 	{
