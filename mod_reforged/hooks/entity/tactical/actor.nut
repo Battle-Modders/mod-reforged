@@ -135,7 +135,7 @@
 
 	q.onRoundStart = @(__original) function()
 	{
-		if (this.isAlive() && ::Time.getRound() == 1)
+		if (this.isAlive() && this.m.IsActingEachTurn && ::Time.getRound() == 1)
 		{
 			this.getSkills().add(::new("scripts/skills/special/rf_first_turn_initiative"));
 		}
