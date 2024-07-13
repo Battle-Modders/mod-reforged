@@ -14,19 +14,6 @@
 		}];
 	}
 
-	// TODO: Currently this randomization is not persistent across game load. We need to serialize the hiring cost.
-	q.adjustHiringCostBasedOnEquipment = @(__original) function()
-	{
-		__original();
-		local actor = this.getContainer().getActor();
-		local hiringCost = actor.m.HiringCost;
-		local minimum = hiringCost * (1.0 - ::Reforged.Config.HiringCostVariance);
-		local maximum = hiringCost * (1.0 + ::Reforged.Config.HiringCostVariance);
-		hiringCost = ::Reforged.Math.luckyRoll(minimum, maximum, hiringCost, ::Reforged.Config.HiringCostLuck);		// Randomizes this value an additional time for every 100 luck and picks the one closest to the original
-		hiringCost = ::Reforged.Math.ceil(hiringCost, -1);		// Makes sure this unsigned integer ends with a 0 one again
-		actor.m.HiringCost = hiringCost;
-	}
-
 	q.getPerkTreeTooltip <- function()
 	{
 		return {
