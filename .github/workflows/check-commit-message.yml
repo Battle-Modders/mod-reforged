@@ -21,7 +21,7 @@ jobs:
       - name: Validate Commit Messages
         run: |
           # Define the allowed prefixes
-          allowed_prefixes=("feat:" "refactor:" "fix:" "balance:" "ci:" "tests:" "docs:")
+          allowed_prefixes=("feat:" "refactor:" "fix:" "fix(vanilla):" "balance:" "ci:" "revert:" "tests:" "docs:" "Merge" "Revert")
 
           # Fetch the latest state of the base branch (the branch into which the PR is being merged)
           git fetch origin ${{ github.base_ref }}
@@ -33,11 +33,6 @@ jobs:
           # Check each commit message
           invalid_commits=0
           while IFS= read -r msg; do
-            # Skip merge commits
-            if [[ $msg == Merge* ]]; then
-              continue
-            fi
-
             valid=0
             # Check if the commit message starts with any of the allowed prefixes
             for prefix in "${allowed_prefixes[@]}"; do
