@@ -29,6 +29,9 @@ this.perk_rf_dismemberment <- ::inherit("scripts/skills/skill", {
 		local presentInjuries = _targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).map(@(injury) injury.getID());
 		this.m.NumInjuriesBefore = presentInjuries.len();
 
+		if (_hitInfo.Injuries == null)
+			return;
+
 		local injuries = _hitInfo.Injuries.filter(@(_, injury) _targetEntity.m.ExcludedInjuries.find(injury.ID) == null && presentInjuries.find(injury.ID) == null);
 		if (injuries.len() == 0)
 			return;
