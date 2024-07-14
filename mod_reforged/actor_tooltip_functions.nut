@@ -271,6 +271,24 @@
 	local ret = [];
 
 	local skills = _actor.getSkills().getAllSkillsOfType(::Const.SkillType.Active);
+	if (!_actor.isPlayerControlled())
+	{
+		local behaviorSkillIDs = [];
+		foreach (b in _actor.getAIAgent().m.Behaviors)
+		{
+			if (::MSU.isIn("PossibleSkills", b.m, true))
+			{
+				behaviorSkillIDs.extend(b.m.PossibleSkills);
+			}
+		}
+		for (local i = skills.len() - 1; i >= 0; i--)
+		{
+			if (behaviorSkillIDs.find(skills[i].getID()) == null)
+			{
+				skills.remove(i);
+			}
+		}
+	}
 
 	if (skills.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true)
 	{
