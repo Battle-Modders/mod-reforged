@@ -34,6 +34,42 @@
 				type = "text",
                 icon = "ui/icons/health.png",
 				text = "Whenever this character receives damage to Hitpoints, teleport all Alps to new random locations close to enemies"
+			},
+			{
+				id = 20,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Not affected by nighttime penalties"
+			},
+			{
+				id = 21,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Not affected by, and cannot receive, [temporary injuries|Concept.InjuryTemporary]")
+			},
+			{
+				id = 22,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to [Bleeding|Skill+bleeding_effect]")
+			},
+			{
+				id = 23,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to Poison"
+			},
+			{
+				id = 24,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being knocked back or grabbed"
+			},
+			{
+				id = 25,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being disarmed"
 			}
 		]);
 		return ret;

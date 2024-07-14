@@ -30,6 +30,30 @@
 				type = "text",
                 icon = "ui/icons/campfire.png",
 				text = ::MSU.Text.colorRed("75%") + " reduced burning damage received"
+			},
+			{
+				id = 20,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Not affected by nighttime penalties"
+			},
+			{
+				id = 21,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Cannot receive [temporary injuries|Concept.InjuryTemporary]")
+			},
+			{
+				id = 22,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to [Bleeding|Skill+bleeding_effect]")
+			},
+			{
+				id = 23,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to Poison")
 			}
 		]);
 		return ret;

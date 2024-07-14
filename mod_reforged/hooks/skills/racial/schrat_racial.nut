@@ -39,12 +39,60 @@
 				type = "text",
                 icon = "ui/icons/campfire.png",
 				text = ::MSU.Text.colorGreen("100%") + " increased burning damage received"
+			},
+			{
+				id = 20,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Not affected by nighttime penalties"
+			},
+			{
+				id = 21,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Not affected by, and cannot receive, [temporary injuries|Concept.InjuryTemporary]")
+			},
+			{
+				id = 22,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to [Bleeding|Skill+bleeding_effect]")
+			},
+			{
+				id = 23,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to Poison"
+			},
+			{
+				id = 24,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being knocked back or grabbed"
+			},
+			{
+				id = 25,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being disarmed"
+			},
+			{
+				id = 26,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being rooted"
+			},
+			{
+				id = 27,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [stunned|Skill+stunned_effect]")
 			}
 		]);
 		if (this.getContainer().getActor().isArmedWithShield())
 		{
 			ret.push({
-				id = 15,
+				id = 30,
 				type = "text",
                 icon = "skills/status_effect_86.png",
 				text = ::MSU.Text.colorRed("70%") + " reduced damage received while this character is shielded"

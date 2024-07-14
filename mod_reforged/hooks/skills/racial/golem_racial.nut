@@ -29,6 +29,48 @@
 				type = "text",
                 icon = "ui/icons/campfire.png",
 				text = ::MSU.Text.colorRed("90%") + " reduced fire damage received"
+			},
+			{
+				id = 21,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Not affected by, and cannot receive, [temporary injuries|Concept.InjuryTemporary]")
+			},
+			{
+				id = 22,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to [Bleeding|Skill+bleeding_effect]")
+			},
+			{
+				id = 23,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to Poison"
+			},
+			{
+				id = 24,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being knocked back or grabbed"
+			},
+			{
+				id = 25,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to fire"
+			},
+			{
+				id = 26,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to being disarmed"
+			},
+			{
+				id = 27,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [stunned|Skill+stunned_effect]")
 			}
 		]);
 		return ret;
