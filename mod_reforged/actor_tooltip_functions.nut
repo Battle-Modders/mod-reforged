@@ -271,7 +271,9 @@
 	local ret = [];
 
 	local skills = _actor.getSkills().getAllSkillsOfType(::Const.SkillType.Active);
-	if (!_actor.isPlayerControlled())
+	// Hide active skills for which NPC characters do not have an AI Behavior
+	// We exclude PlayerAnimals for the edge case where a player may trigger their skills indirectly.
+	if (!_actor.isPlayerControlled() && _actor.getFaction() != ::Const.Faction.PlayerAnimals)
 	{
 		local behaviorSkillIDs = [];
 		foreach (b in _actor.getAIAgent().m.Behaviors)
