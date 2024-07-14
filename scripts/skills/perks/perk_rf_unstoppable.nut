@@ -2,7 +2,7 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 	m = {
 		Stacks = 0,
 		MaxStacks = 5,
-		IsGainingStackThisTurn = true // We set it to false after using Recover so we don't gain stack during that turn
+		IsGainingStackThisTurn = false
 	},
 	function create()
 	{
@@ -72,11 +72,15 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function onTurnStart()
+	{
+		this.m.IsGainingStackThisTurn = false;
+	}
+
 	function onTurnEnd()
 	{
 		if (!this.m.IsGainingStackThisTurn)
 		{
-			this.m.IsGainingStackThisTurn = true;
 			return;
 		}
 
@@ -94,7 +98,14 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_skill.getID() == "actives.recover")
+		if (!::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+			return;
+
+		if (_skill.isAttack())
+		{
+			this.m.IsGainingStackThisTurn = true;
+		}
+		else if (_skill.getID() == "actives.recover")
 		{
 			this.m.Stacks = 0;
 			this.m.IsGainingStackThisTurn = false;
@@ -117,7 +128,7 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 	{
 		this.skill.onCombatFinished();
 		this.m.Stacks = 0;
-		this.m.IsGainingStackThisTurn = true;
+		this.m.IsGainingStackThisTurn = false;
 	}
 
 	function onQueryTooltip( _skill, _tooltip )

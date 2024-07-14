@@ -2214,7 +2214,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Whenever you end your [turn|Concept.Turn] with half or fewer of your [Action Points|Concept.ActionPoints] remaining, gain a stack, up to a maximum of 5 stacks.",
+				"As long as you have attacked at least once during your [turn|Concept.Turn], if you end the [turn|Concept.Turn] with half or fewer of your [Action Points|Concept.ActionPoints] remaining, gain a stack, up to a maximum of 5 stacks.",
 				"Each stack increases [Action Points|Concept.ActionPoints] by " + ::MSU.Text.colorGreen("+1") + " and [Initiative|Concept.Initiative] by " + ::MSU.Text.colorGreen("+10") + ".",
 				"All the stacks are lost if you end your [turn|Concept.Turn] with more than half of your [Action Points|Concept.ActionPoints] remaining, use [Wait|Concept.Wait] or [Recover|Skill+recover_skill], or get [Stunned|Skill+stunned_effect], Rooted or [Staggered|Skill+staggered_effect]."
 			]
