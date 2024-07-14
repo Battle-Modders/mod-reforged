@@ -16,33 +16,21 @@ this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	// Given to adjacent allies on morale checks via a hook on actor.checkMorale
+	function getResolveBonus()
 	{
-		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || actor.isEngagedInMelee() || !this.isSkillValid(_skill))
-			return;
-
-		foreach (ally in ::Tactical.Entities.getFactionActors(actor.getFaction(), actor.getTile(), 1, true))
-		{
-			local moraleState = ally.getMoraleState();
-			if (moraleState < ::Const.MoraleState.Confident)
-			{
-				ally.checkMorale(1, ::Const.Morale.RallyBaseDifficulty);
-				if (ally.getMoraleState() > moraleState)
-					this.spawnIcon("perk_rf_bolster", ally.getTile());
-			}
-		}
+		this.getContainer().getActor().getCurrentProperties().getMeleeSkill() * 0.2;
 	}
 
-	function isSkillValid( _skill )
+	function isEnabled()
 	{
-		if (_skill.isRanged() || !_skill.isAttack())
+		if (this.m.RequiredWeaponType == null)
+			return true;
+
+		if (this.getContainer().getActor().isDisarmed())
 			return false;
 
-		local weapon = _skill.getItem();
-		if (::MSU.isNull(weapon))
-			return this.m.RequiredWeaponType == null;
-
-		return weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.getReach() >= this.m.RequiredWeaponReach && (this.m.RequiredWeaponType == null || weapon.isWeaponType(this.m.RequiredWeaponType));
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType) && weapon.getReach() >= this.m.RequiredWeaponReach;
 	}
 });
