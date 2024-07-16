@@ -6,7 +6,8 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 		PossibleSkills = [
 			"actives.rf_kata_step",
 			"actives.rf_move_under_cover",
-			"actives.footwork"
+			"actives.footwork",
+			"actives.rf_gain_ground"
 		],
 		Skill = null
 	},
