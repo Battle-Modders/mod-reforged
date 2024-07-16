@@ -228,7 +228,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_skill != this) this.m.IsSpent = true;
+		if (_skill != this && !_forFree) this.m.IsSpent = true;
 	}
 
 	function onPayForItemAction( _skill, _items )
