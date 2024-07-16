@@ -2,6 +2,7 @@
 	// Is set during onUpdate so that hybrid weapons are properly dealt with in functions other than onUpdate
 	// because we go through weapon types alphabetically and choose the first applicable type
 	q.m.CurrWeaponType <- null;
+	q.m.MeleeDamageMult_Dagger <- 1.2;
 
 	q.create = @(__original) function()
 	{
@@ -44,7 +45,7 @@
 				break;
 
 			case ::Const.Items.WeaponType.Dagger:
-				_properties.MeleeDamageMult *= 1.2;
+				_properties.MeleeDamageMult *= this.m.MeleeDamageMult_Dagger;
 				break;
 
 			case ::Const.Items.WeaponType.Flail:
@@ -115,7 +116,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorGreen("20%") + " increased damage"
+					text = ::MSU.Text.colorizeMult(this.m.MeleeDamageMult_Dagger) + " increased damage"
 				});
 				ret.push({
 					id = 7,
@@ -335,6 +336,11 @@
 					}
 				}
 			}
+		}
+
+		if (_skill.getID() == "actives.puncture" && this.m.CurrWeaponType == ::Const.Items.WeaponType.Dagger)
+		{
+			_properties.MeleeDamageMult /= this.m.MeleeDamageMult_Dagger;
 		}
 	}
 
