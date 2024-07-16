@@ -121,7 +121,7 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 			}
 		}
 
-		paths.extend(this.getPaths(myTile, null, pathLength));
+		paths.extend(this.getPaths(_entity, myTile, null, pathLength));
 
 		if (paths.len() == 1)
 		{
@@ -391,7 +391,7 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 		return true;
 	}
 
-	function getPaths( _originTile, _basePath, _maxLength = 2 )
+	function getPaths( _entity, _originTile, _basePath, _maxLength = 2 )
 	{
 		local ret = [];
 
@@ -401,7 +401,38 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 				continue;
 
 			local nextTile = _originTile.getNextTile(i);
-			if ((_basePath != null && _basePath.Tiles.find(nextTile) != null) || !this.m.Skill.verifyTargetAndRange(nextTile, _originTile))
+
+			// Ignore paths whose first step would be cheaper to travel in terms of ActionPoints via regular movement
+			if (_basePath == null)
+			{
+				if (_entity.getTile().getZoneOfControlCountOtherThan(_entity.getAlliedFactions()) == 0 && nextTile.IsEmpty && nextTile.Type != ::Const.Tactical.TerrainType.Impassable)
+				{
+					local navigator = ::Tactical.getNavigator();
+					local settings = navigator.createSettings();
+					settings.ActionPointCosts = _entity.getActionPointCosts();
+					settings.FatigueCosts = _entity.getFatigueCosts();
+					settings.FatigueCostFactor = ::Const.Movement.FatigueCostFactor;
+					settings.ActionPointCostPerLevel = _entity.getLevelActionPointCost();
+					settings.FatigueCostPerLevel = _entity.getLevelFatigueCost();
+					settings.Faction = _entity.getFaction();
+					settings.HiddenCost = this.getProperties().OverallHideMult >= 1 ? -1 : 0;
+					if (navigator.findPath(_originTile, nextTile, settings, 0))
+					{
+						local costs = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
+						if (!costs.IsMissingActionPoints && this.m.Skill.getActionPointCost() >= costs.ActionPointsRequired)
+							continue;
+					}
+				}
+			}
+			// If we have already evaluated the nextTile as part of this path's base path, don't put it again in the path
+			// This ensures that paths are always going forward and never return to a tile
+			else if (_basePath.Tiles.find(nextTile) != null)
+			{
+				continue;
+			}
+
+			// If the skill won't be usable on nextTile then ignore it
+			if (!this.m.Skill.verifyTargetAndRange(nextTile, _originTile))
 				continue;
 
 			local tiles = _basePath == null ? [] : clone _basePath.Tiles;
@@ -419,7 +450,7 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 
 			// If you put 0 here then the total path length ends up being _maxLength + 1
 			if (_maxLength > 1)
-				ret.extend(this.getPaths(nextTile, path, _maxLength - 1));
+				ret.extend(this.getPaths(_entity, nextTile, path, _maxLength - 1));
 		}
 
 		return ret;
