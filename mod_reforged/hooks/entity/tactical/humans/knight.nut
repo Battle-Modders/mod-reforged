@@ -98,7 +98,7 @@
 			local weapon = ::MSU.Class.WeightedContainer([
 	    		[1, "scripts/items/weapons/named/named_axe"],
 	    		[1, "scripts/items/weapons/named/named_sword"],
-	    		[1, "scripts/items/weapons/named/named_hammer"],
+	    		[1, "scripts/items/weapons/named/named_warhammer"],
 				[1, "scripts/items/weapons/named/named_mace"]
 	    	]).roll();
 
