@@ -5,7 +5,8 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 		MaxPathLength = 3,
 		PossibleSkills = [
 			"actives.rf_kata_step",
-			"actives.rf_move_under_cover"
+			"actives.rf_move_under_cover",
+			"actives.footwork"
 		],
 		Skill = null
 	},
@@ -41,6 +42,17 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 		}
 
 		return ret;
+	}
+
+	// Overwrite base behavior function to avoid spamming high fatigue cost skills (e.g. Footwork)
+	// as this behavior has a rather high score so we reduce score further based skill fatigue cost
+	function getFatigueScoreMult( _skill )
+	{
+		local fatCost = _skill.getFatigueCost();
+		if (fatCost == 0)
+			return this.behavior.getFatigueScoreMult(_skill);
+
+		return this.behavior.getFatigueScoreMult(_skill) / fatCost;
 	}
 
 	function onEvaluate( _entity )
