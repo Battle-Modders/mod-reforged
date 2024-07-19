@@ -54,6 +54,19 @@
 	currentID++;
 
 	statusEffects.sort(@(_a,_b) _a.getName() <=> _b.getName());
+	// Sort injuries to the start of the status effects list
+	statusEffects.sort(function( _a, _b ) {
+		if (_a.isType(::Const.SkillType.Injury) && !_b.isType(::Const.SkillType.Injury))
+		{
+			return -1;
+		}
+		else if (_b.isType(::Const.SkillType.Injury) && !_a.isType(::Const.SkillType.Injury))
+		{
+			return 1;
+		}
+
+		return 0;
+	});
 
 	if (statusEffects.len() < collapseThreshold)
 	{
