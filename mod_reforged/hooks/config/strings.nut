@@ -1093,7 +1093,7 @@ foreach (vanillaDesc in vanillaDescriptions)
  		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorGreen("5%") + " of your combined head and body armor durability as [Resolve|Concept.Bravery].",
+				"Gain " + ::MSU.Text.colorGreen("5%") + " of your current combined head and body armor durability as [Resolve|Concept.Bravery].",
 				"This bonus is doubled against negative morale checks except mental attacks."
 			]
 		}]
