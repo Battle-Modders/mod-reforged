@@ -53,6 +53,8 @@
     if (statusEffects.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(effectList, "Effects", currentID);
     currentID++;
 
+    statusEffects.sort(@(_a,_b) _a.getName() <=> _b.getName());
+
     if (statusEffects.len() < collapseThreshold)
     {
         foreach( statusEffect in statusEffects )
@@ -71,7 +73,6 @@
     else
     {
         local entryText = "";
-        statusEffects.sort(@(a,b) a.getName() <=> b.getName());
         if (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_CollapseAsText").getValue())
         {
         	foreach( statusEffect in statusEffects )
