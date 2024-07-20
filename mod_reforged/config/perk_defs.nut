@@ -638,14 +638,6 @@
 		IconDisabled = "ui/perks/rf_eyes_up_bw.png"
 	},
 	{
-		ID = "perk.rf_hale_and_hearty",
-		Script = "scripts/skills/perks/perk_rf_hale_and_hearty",
-		Name = ::Const.Strings.PerkName.RF_HaleAndHearty,
-		Tooltip = ::Const.Strings.PerkDescription.RF_HaleAndHearty,
-		Icon = "ui/perks/rf_hale_and_hearty.png",
-		IconDisabled = "ui/perks/rf_hale_and_hearty_bw.png"
-	},
-	{
 		ID = "perk.rf_internal_hemorrhage",
 		Script = "scripts/skills/perks/perk_rf_internal_hemorrhage",
 		Name = ::Const.Strings.PerkName.RF_InternalHemorrhage,
@@ -900,14 +892,6 @@
 		IconDisabled = "ui/perks/rf_battle_flow_bw.png"
 	},
 	{
-		ID = "perk.alert",
-		Script = "scripts/skills/perks/perk_alert",
-		Name = ::Const.Strings.PerkName.RF_Alert,
-		Tooltip = ::Const.Strings.PerkDescription.RF_Alert,
-		Icon = "ui/perks/rf_alert.png",
-		IconDisabled = "ui/perks/rf_alert_bw.png"
-	},
-	{
 		ID = "perk.rf_supporter",
 		Script = "scripts/skills/perks/perk_rf_supporter",
 		Name = ::Const.Strings.PerkName.RF_Supporter,
@@ -1018,14 +1002,6 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_DeathDealer,
 		Icon = "ui/perks/rf_death_dealer.png",
 		IconDisabled = "ui/perks/rf_death_dealer_bw.png"
-	},
-	{
-		ID = "perk.rf_ballistics",
-		Script = "scripts/skills/perks/perk_rf_ballistics",
-		Name = ::Const.Strings.PerkName.RF_Ballistics,
-		Tooltip = ::Const.Strings.PerkDescription.RF_Ballistics,
-		Icon = "ui/perks/rf_ballistics.png",
-		IconDisabled = "ui/perks/rf_ballistics_bw.png"
 	},
 	{
 		ID = "perk.rf_double_strike",
