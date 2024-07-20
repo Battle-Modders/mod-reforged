@@ -24,14 +24,6 @@
 		IconDisabled = "ui/perks/rf_cheap_trick_sw.png"
 	},
 	{
-		ID = "perk.rf_cull",
-		Script = "scripts/skills/perks/perk_rf_cull",
-		Name = ::Const.Strings.PerkName.RF_Cull,
-		Tooltip = ::Const.Strings.PerkDescription.RF_Cull,
-		Icon = "ui/perks/rf_cull.png",
-		IconDisabled = "ui/perks/rf_cull_bw.png"
-	},
-	{
 		ID = "perk.rf_decisive",
 		Script = "scripts/skills/perks/perk_rf_decisive",
 		Name = ::Const.Strings.PerkName.RF_Decisive,
