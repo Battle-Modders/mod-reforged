@@ -125,7 +125,6 @@
 	RF_Hybridization = "Hybridization",
 	RF_Supporter = "Supporter",
 	InspiringPresence = "Inspiring Presence",
-	RF_InternalHemorrhage = "Internal Hemorrhage",
 	RF_Intimidate = "Intimidate",
 	RF_IronSights = "Iron Sights",
 	RF_Kata = "Kata",
@@ -1512,16 +1511,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Any member of your company who is adjacent to an enemy, or is adjacent to an ally who is adjacent to an enemy, gains " + ::MSU.Text.colorPositive("+3") + " [Action Points|Concept.ActionPoints] as long as they start their [turn|Concept.Turn] adjacent to you."
-			]
-		}]
-	}),
-	RF_InternalHemorrhage = ::UPD.getDescription({
-		Fluff = "Learn to strike at your target\'s softest spots, causing intense internal bleeding.",
-		Requirement = "Blunt Damage",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Blunt Damage attacks now apply the [Hemorrhaging Internally|Skill+rf_internal_hemorrhage_effect] effect that deals " + ::MSU.Text.colorPositive("20%") + " of the damage dealt to [Hitpoints|Concept.Hitpoints] in that attack as damage to the target at the end of their [turn|Concept.Turn]."
 			]
 		}]
 	}),
