@@ -67,7 +67,6 @@
 ]);
 
 ::MSU.Table.merge(::Const.Strings.PerkName, {
-	RF_Alert = "Alert",
 	RF_Angler = "Angler",
 	RF_BattleFervor = "Battle Fervor",
 	RF_BackToBasics = "Back to Basics",
@@ -75,7 +74,6 @@
 	RF_CheapTrick = "Cheap Trick",
 	RF_Command = "Command",
 	RF_Skirmisher = "Skirmisher",
-	RF_Ballistics = "Ballistics",
 	RF_BearDown = "Bear Down",
 	RF_BestialVigor = "Bestial Vigor",
 	RF_BetweenTheEyes = "Between the Eyes",
@@ -120,7 +118,6 @@
 	RF_FromAllSides = "From all Sides",
 	RF_FruitsOfLabor = "Fruits of Labor",
 	RF_Ghostlike = "Ghostlike",
-	RF_HaleAndHearty = "Hale and Hearty",
 	RF_Heft = "Heft",
 	RF_TrickstersPurses = "Trickster\'s Purses",
 	RF_HipShooter = "Hip Shooter",
@@ -867,15 +864,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 }
 
 ::MSU.Table.merge(::Const.Strings.PerkDescription, {
-	RF_Alert = ::UPD.getDescription({
-		Fluff = "What was that over there?",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"[Initiative|Concept.Initiative] is increased by " + ::MSU.Text.colorPositive("20%") + "."
-			]
-		}]
-	}),
 	RF_Angler = ::UPD.getDescription({
 		Fluff = "Throw nets in a way that perfectly billows around your targets.",
 		Requirement = "Net",
@@ -927,32 +915,12 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
 	}),
-	RF_Ballistics = ::UPD.getDescription({
-		Fluff = "Death from afar!",
-		Requirement = "Ranged Attack",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"The penalty to hit chance per tile of distance is reduced by " + ::MSU.Text.colorPositive("2%") + "."
-			]
-		}]
-	}),
 	BattleFlow = ::UPD.getDescription({
 		Fluff = "On to the next!",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Once per [turn|Concept.Turn], killing an opponent reduces current [Fatigue|Concept.Fatigue] by " + ::MSU.Text.colorPositive("15%") + " of [Base|Concept.BaseAttribute] [Maximum Fatigue|Concept.MaximumFatigue]."
-			]
-		}]
-	}),
-	RF_Ballistics = ::UPD.getDescription({
-		Fluff = "Take your time and get it right, just like the Captain says!",
-		Requirement = "Ranged Attack",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"The penalty to hit chance per tile of distance is reduced by " + ::MSU.Text.colorPositive(2) + "."
 			]
 		}]
 	}),
@@ -1460,15 +1428,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"When the number of adjacent allies is greater than or equal to the number of adjacent enemies, you may ignore [Zone of Control|Concept.ZoneOfControl] for your next movement action."
 				"When wielding a melee weapon with up to 4 [Reach|Concept.Reach] when you end your movement adjacent to an enemy, the next attack against that enemy deals " + ::MSU.Text.colorPositive("25%") + " more damage and " + ::MSU.Text.colorPositive("+20%") + " damage ignoring armor. This bonus expires upon any action other than an attack."
-			]
-		}]
-	}),
-	RF_HaleAndHearty = ::UPD.getDescription({
-		Fluff = "Years of hard labor have given you a stamina like none other!",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Fatigue Recovery is increased by " + ::MSU.Text.colorPositive("5%") + " of your [Maximum Fatigue|Concept.MaximumFatigue] after gear."
 			]
 		}]
 	}),
