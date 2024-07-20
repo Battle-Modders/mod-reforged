@@ -268,10 +268,10 @@
 		// - In both the above points the XP received by a bro is scaled with the ratio of the target's XP value to the bro's XP value.
 
 		local bros = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
+		local victimXPValue = this.getXPValue().tofloat();
 
 		if (::Const.Faction.Player in this.m.RF_DamageReceived)
 		{
-			local victimXPValue = this.getXPValue().tofloat();
 			local XPavailable = victimXPValue * this.m.RF_DamageReceived[::Const.Faction.Player].Total / this.m.RF_DamageReceived.Total;
 			local XPkiller = XPavailable * ::Const.XP.XPForKillerPct; // This will be divided among all bros who did damage. The rest will be divided equally among other bros.
 			local XPgroup = ::Math.max(1, ::Math.floor((XPavailable - XPkiller) / bros.len()));
@@ -294,7 +294,7 @@
 
 		if (::Const.Faction.PlayerAnimals in this.m.RF_DamageReceived)
 		{
-			local XPgroup = (this.getXPValue() * this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total / this.m.RF_DamageReceived.Total) * (1.0 - ::Const.XP.XPForKillerPct);
+			local XPgroup = (victimXPValue * this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total / this.m.RF_DamageReceived.Total) * (1.0 - ::Const.XP.XPForKillerPct);
 			XPgroup = ::Math.max(1, ::Math.floor(XPgroup / bros.len()));
 
 			foreach (bro in bros)
