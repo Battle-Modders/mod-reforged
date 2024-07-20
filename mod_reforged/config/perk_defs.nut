@@ -638,14 +638,6 @@
 		IconDisabled = "ui/perks/rf_eyes_up_bw.png"
 	},
 	{
-		ID = "perk.rf_internal_hemorrhage",
-		Script = "scripts/skills/perks/perk_rf_internal_hemorrhage",
-		Name = ::Const.Strings.PerkName.RF_InternalHemorrhage,
-		Tooltip = ::Const.Strings.PerkDescription.RF_InternalHemorrhage,
-		Icon = "ui/perks/rf_internal_hemorrhage.png",
-		IconDisabled = "ui/perks/rf_internal_hemorrhage_bw.png"
-	},
-	{
 		ID = "perk.rf_blitzkrieg",
 		Script = "scripts/skills/perks/perk_rf_blitzkrieg",
 		Name = ::Const.Strings.PerkName.RF_Blitzkrieg,
