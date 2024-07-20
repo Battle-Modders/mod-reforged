@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/noble_billman", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Billman);
 		this.m.ActionPoints = b.ActionPoints;

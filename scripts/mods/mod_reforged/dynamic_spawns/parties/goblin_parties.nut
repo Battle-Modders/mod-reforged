@@ -37,7 +37,7 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.GoblinRanged", RatioMin = 0.15, RatioMax = 0.50, DeterminesFigure = true },
 			{ BaseID = "UnitBlock.RF.GoblinFlank", RatioMin = 0.00, RatioMax = 0.35, DeterminesFigure = true },
 			{ BaseID = "UnitBlock.RF.GoblinBoss", RatioMin = 0.01, RatioMax = 0.15, StartingResourceMin = 250, DeterminesFigure = true }	// One boss is guaranteed at 250+ resources
-	   ]
+		]
 	},
 	{
 		ID = "GoblinDefenders",

@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/militia_veteran", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.MilitiaVeteran);
 		this.m.ActionPoints = b.ActionPoints;
@@ -20,28 +20,28 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		__original();
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 
-	    if (this.isArmedWithShield())
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-	    }
+		if (this.isArmedWithShield())
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+		}
 
-	    local weapon = this.getMainhandItem();
-	    if (weapon != null)
-	    {
-	    	if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    	}
+		local weapon = this.getMainhandItem();
+		if (weapon != null)
+		{
+			if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
 
-	    	local offhand = this.getOffhandItem();
-    		if (offhand == null)
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-    		}
-	    }
+			local offhand = this.getOffhandItem();
+			if (offhand == null)
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+		}
 	}
 });

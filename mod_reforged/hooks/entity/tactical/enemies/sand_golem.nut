@@ -38,7 +38,7 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall + 1;
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_concussive_strikes", function(o) {
-    		o.m.RequiredWeaponType = null;
-    	}));
+			o.m.RequiredWeaponType = null;
+		}));
 	}
 });

@@ -32,15 +32,15 @@
 }
 .character-screen .ui-control.popup-dialog.unlock-perk-popup
 {
-    min-height: 30.0rem;
-    height: auto;
+	min-height: 30.0rem;
+	height: auto;
 
-    background-size: 60.0rem 100%;
+	background-size: 60.0rem 100%;
 }
 .character-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container
 {
-    min-height: 17.7rem;
-    height: auto;
+	min-height: 17.7rem;
+	height: auto;
 }
 .hire-screen-perks-container,
 .hire-screen-perkgroups-container

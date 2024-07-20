@@ -44,22 +44,22 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
+		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
-	    local weapon = this.getMainhandItem();
-	    if (weapon != null)
-	    {
-	    	if (::Reforged.Items.isDuelistValid(weapon))
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-	    	}
-	    	else
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    	}
+		local weapon = this.getMainhandItem();
+		if (weapon != null)
+		{
+			if (::Reforged.Items.isDuelistValid(weapon))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
 
-	    	if (weapon.isAoE())
+			if (weapon.isAoE())
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 			}
@@ -67,7 +67,7 @@
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_small_target"));
 			}
-	    }
+		}
 	}
 
 	q.makeMiniboss = @(__original) function()

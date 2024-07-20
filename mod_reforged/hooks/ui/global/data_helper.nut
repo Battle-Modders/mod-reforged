@@ -31,15 +31,15 @@
 		local specialRow = [];
 		foreach (perkGroup in ::DynamicPerks.PerkGroups.getByType(::DynamicPerks.Class.SpecialPerkGroup))
 		{
-		    if (perkTree.hasPerkGroup(perkGroup.getID()))
-		    {
-		        local uiData = perkGroup.toUIData();
-		        ret.perkGroups.push(uiData);
-		        specialRow.push(uiData);
-		    }
+			if (perkTree.hasPerkGroup(perkGroup.getID()))
+			{
+				local uiData = perkGroup.toUIData();
+				ret.perkGroups.push(uiData);
+				specialRow.push(uiData);
+			}
 		}
 		if (specialRow.len() > 0)
-		    ret.perkGroupsOrdered.push(specialRow);
+			ret.perkGroupsOrdered.push(specialRow);
 
 		ret.lockedPerks <- [];
 		foreach (id, perk in perkTree.getPerks())

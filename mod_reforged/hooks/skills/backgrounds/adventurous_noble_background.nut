@@ -3,10 +3,10 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-            "pg.special.rf_leadership": 20,
-            "pg.rf_tactician": 3,
-            "pg.rf_trained": 5,
-            "pg.rf_heavy_armor": 3
+			"pg.special.rf_leadership": 20,
+			"pg.rf_tactician": 3,
+			"pg.rf_trained": 5,
+			"pg.rf_heavy_armor": 3
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);

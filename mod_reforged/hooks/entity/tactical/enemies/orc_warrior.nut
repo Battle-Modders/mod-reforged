@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/orc_warrior", function(q) {
 	q.onInit = @() function()
 	{
-	    this.actor.onInit();
+		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.OrcWarrior);
 
@@ -65,8 +65,8 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 	}
 
 	q.makeMiniboss = @(__original) function()

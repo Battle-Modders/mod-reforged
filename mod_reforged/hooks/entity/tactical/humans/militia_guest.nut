@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/militia_guest", function(q) {
 	q.onInit = @() function()
 	{
-	    this.player.onInit();
+		this.player.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Militia);
 		b.TargetAttractionMult = 1.0;
@@ -24,12 +24,12 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 
-    	if (this.isArmedWithShield())
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
-    	}
+		if (this.isArmedWithShield())
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
+		}
 	}
 });

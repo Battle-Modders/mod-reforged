@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/nomad_cutthroat", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.NomadCutthroat);
 		this.m.ActionPoints = b.ActionPoints;
@@ -44,7 +44,7 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 	}
 });

@@ -18,11 +18,11 @@
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					"pg.rf_trapper",
-	                ::MSU.Class.WeightedContainer([
-	                    [20, "pg.rf_laborer"],
-	                    [30, "pg.rf_raider"],
-	                    [50, "pg.rf_soldier"]
-	                ])
+					::MSU.Class.WeightedContainer([
+						[20, "pg.rf_laborer"],
+						[30, "pg.rf_raider"],
+						[50, "pg.rf_soldier"]
+					])
 				],
 				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [],

@@ -2,7 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-        this.m.Description = "This character is possessed until the end of their turn."
+		this.m.Description = "This character is possessed until the end of their turn."
 	}
 
 	q.getTooltip <- function()
@@ -12,7 +12,7 @@
 			{
 				id = 10,
 				type = "text",
-                icon = "ui/icons/action_points.png",
+				icon = "ui/icons/action_points.png",
 				text = "Maximum Action Points are set to " + ::MSU.Text.colorGreen("12")
 			},
 			{
@@ -48,7 +48,7 @@
 			{
 				id = 10,
 				type = "text",
-                icon = "ui/icons/special.png",
+				icon = "ui/icons/special.png",
 				text = "All damage received is reduced by " + ::MSU.Text.colorRed("25%")
 			}
 		]);

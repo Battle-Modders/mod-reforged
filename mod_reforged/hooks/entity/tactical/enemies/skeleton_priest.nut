@@ -2,7 +2,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_priest", function(q) {
 	q.onInit = @() function()
 	{
-	    this.skeleton.onInit();
+		this.skeleton.onInit();
 		this.getSprite("body").setBrush("bust_skeleton_body_02");
 		this.setDirty(true);
 		local b = this.m.BaseProperties;

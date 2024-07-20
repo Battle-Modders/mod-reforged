@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_ambusher", function(q) {
 	q.onInit = @() function()
 	{
-	    this.goblin.onInit();
+		this.goblin.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.GoblinAmbusher);
 		// b.DamageDirectMult = 1.25;

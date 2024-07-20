@@ -27,7 +27,7 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-	   ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	}
 });

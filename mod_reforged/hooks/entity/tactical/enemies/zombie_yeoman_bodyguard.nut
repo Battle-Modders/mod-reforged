@@ -1,16 +1,16 @@
 // ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/zombie_yeoman_bodyguard", function(q) {
 // 	q.onInit = @(__original) function()
 // 	{
-// 	    // copy vanilla function contents completely
-// 	    // and replace skills except equipment based skills
-// 	    // NOTE: Remove the hook on onInit completely if unused
+// 		// copy vanilla function contents completely
+// 		// and replace skills except equipment based skills
+// 		// NOTE: Remove the hook on onInit completely if unused
 // 	}
 
 //
 // 	q.assignRandomEquipment = @(__original) function()
 // 	{
-// 	    __original();
+// 		__original();
 
-// 	    // any skills that should be added based on equipment
+// 		// any skills that should be added based on equipment
 // 	}
 // });

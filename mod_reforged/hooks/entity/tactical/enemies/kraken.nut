@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/kraken", function(q) {
 	q.onInit = @() function()
 	{
-	    this.actor.onInit();
+		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Kraken);
 		b.TargetAttractionMult = 3.0;

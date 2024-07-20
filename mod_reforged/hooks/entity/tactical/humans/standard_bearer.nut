@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/standard_bearer", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.StandardBearer);
 		b.TargetAttractionMult = 1.5;

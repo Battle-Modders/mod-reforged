@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/nomad_leader", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.NomadLeader);
 		// b.IsSpecializedInSwords = true;
@@ -53,30 +53,30 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
+		__original();
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
-	    local weapon = this.getMainhandItem();
-	    if (weapon != null && weapon.isItemType(::Const.Items.ItemType.OneHanded) && this.getOffhandItem() == null)
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-	    }
+		local weapon = this.getMainhandItem();
+		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.OneHanded) && this.getOffhandItem() == null)
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
+		}
 
-	    if (this.isArmedWithShield())
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
-	    }
+		if (this.isArmedWithShield())
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_line_breaker"));
+		}
 
-	    foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
-	    {
-	    	if (item.isItemType(::Const.Items.ItemType.RangedWeapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
-	    		break;
-	    	}
-	    }
+		foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
+		{
+			if (item.isItemType(::Const.Items.ItemType.RangedWeapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
+				break;
+			}
+		}
 	}
 
 	q.makeMiniboss = @(__original) function()

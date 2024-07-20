@@ -2,17 +2,17 @@ local units = [
 	{
 		ID = "Unit.RF.NomadCutthroat",
 		Troop = "NomadCutthroat",
-		Figure = "figure_nomad_01"     // Official "Cutthroat" figure
+		Figure = "figure_nomad_01"	 // Official "Cutthroat" figure
 	},
 	{
 		ID = "Unit.RF.NomadSlinger",
 		Troop = "NomadSlinger",
-		Figure = "figure_nomad_03"     // Seems to be the "Slinger" figure but it may aswell not exist or be used for variations/other entities
+		Figure = "figure_nomad_03"	 // Seems to be the "Slinger" figure but it may aswell not exist or be used for variations/other entities
 	},
 	{
 		ID = "Unit.RF.NomadOutlaw",
 		Troop = "NomadOutlaw",
-		Figure = "figure_nomad_02"     // Official "Outlaw" figure
+		Figure = "figure_nomad_02"	 // Official "Outlaw" figure
 	},
 	{
 		ID = "Unit.RF.NomadArcher",

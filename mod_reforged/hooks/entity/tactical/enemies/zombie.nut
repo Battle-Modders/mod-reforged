@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/zombie", function(q) {
 	q.onInit = @() function()
 	{
-	    this.actor.onInit();
+		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Zombie);
 		// b.SurroundedBonus = 10;	// This is now controlled by them having 'Backstabber'

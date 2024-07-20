@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/serpent", function(q) {
 	q.onInit = @() function()
 	{
-	    this.actor.onInit();
+		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Serpent);
 		b.Initiative += ::Math.rand(0, 50);

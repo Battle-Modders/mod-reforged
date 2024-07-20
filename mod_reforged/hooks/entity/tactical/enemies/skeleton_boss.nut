@@ -2,7 +2,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_boss", function(q) {
 	q.onInit = @() function()
 	{
-	    this.skeleton.onInit();
+		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.SkeletonBoss);
 		// b.IsAffectedByNight = false;			// Now handled by racial effect

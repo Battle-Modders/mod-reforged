@@ -40,8 +40,8 @@ TooltipModule.prototype.setupUITooltip = function(_targetDIV, _data)
 		}
 	}
 
-	var targetOffset    = _targetDIV.offset();
-	var elementHeight   = _targetDIV.outerHeight(true);
+	var targetOffset	= _targetDIV.offset();
+	var elementHeight	= _targetDIV.outerHeight(true);
 	var containerHeight = this.mContainer.outerHeight(true);
 	// By default we want the tooltips shown on top of the UI-Element
 	var offsets = {

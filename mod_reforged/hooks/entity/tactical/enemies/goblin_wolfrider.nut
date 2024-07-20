@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_wolfrider", function(q) {
 	q.onInit = @() function()
 	{
-	    this.goblin.onInit();
+		this.goblin.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.GoblinWolfrider);
 		// b.AdditionalActionPointCost = 1;
@@ -58,8 +58,8 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
+		__original();
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}
 });

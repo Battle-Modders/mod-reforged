@@ -58,7 +58,7 @@
 			local weapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/goedendag"],
 				[2, "scripts/items/weapons/woodcutters_axe"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}

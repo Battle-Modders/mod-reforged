@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/trickster_god", function(q) {
 	q.onInit = @() function()
 	{
-	    this.actor.onInit();
+		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.TricksterGod);
 		b.IsImmuneToDisarm = true;
@@ -48,8 +48,8 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
+		__original();
 
-	    // any skills that should be added based on equipment
+		// any skills that should be added based on equipment
 	}
 });

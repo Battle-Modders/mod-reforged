@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/militia", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Militia);
 		this.m.ActionPoints = b.ActionPoints;
@@ -12,19 +12,19 @@
 		this.getSprite("accessory_special").setBrush("bust_militia_band_01");
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
-	    // Reforged
+		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 
 
-	    if (this.isArmedWithShield())
-    	{
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
-    	}
+		if (this.isArmedWithShield())
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
+		}
 	}
 });

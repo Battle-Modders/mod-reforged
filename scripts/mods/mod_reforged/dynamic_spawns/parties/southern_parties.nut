@@ -31,12 +31,12 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.Slave", RatioMin = 0.00, RatioMax = 0.25, DeterminesFigure = false },
 			{ BaseID = "UnitBlock.RF.SouthernBackline", RatioMin = 0.10, RatioMax = 0.40, DeterminesFigure = false },
 			{ BaseID = "UnitBlock.RF.Officer", RatioMin = 0.00, RatioMax = 0.08, ReqPartySize = 14, DeterminesFigure = false },
-			{ BaseID = "UnitBlock.RF.SouthernCaravanDonkey", RatioMin = 0.01, RatioMax = 0.12, ReqPartySize = 14 }   // Vanilla: Second starts spawning at 14, then 16+
+			{ BaseID = "UnitBlock.RF.SouthernCaravanDonkey", RatioMin = 0.01, RatioMax = 0.12, ReqPartySize = 14 }	// Vanilla: Second starts spawning at 14, then 16+
 		]
 		// In Vanilla this party is also able to spawn just with mercenaries. But this is so rare that I chose to not try to mirror that behavior here
 	},
 	{
-		ID = "CaravanSouthernEscort",   // For Contract Escort missions
+		ID = "CaravanSouthernEscort",	// For Contract Escort missions
 		HardMin = 2,
 		DefaultFigure = "cart_03",
 		MovementSpeedMult = 0.5,
@@ -47,7 +47,7 @@ local parties = [
 		],
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.SouthernFrontline", RatioMin = 0.35, RatioMax = 1.00, DeterminesFigure = false },
-			// { BaseID = "UnitBlock.RF.Slave", RatioMin = 0.00, RatioMax = 0.25 },     // This is new. I find Slaves seen as a trade good a nice touch for player escorted southern caravans
+			// { BaseID = "UnitBlock.RF.Slave", RatioMin = 0.00, RatioMax = 0.25 },	 // This is new. I find Slaves seen as a trade good a nice touch for player escorted southern caravans
 			{ BaseID = "UnitBlock.RF.SouthernCaravanDonkey", RatioMin = 0.35, RatioMax = 0.50, ReqPartySize = 3 }
 		]
 		// In Vanilla this party is also able to spawn just with mercenaries. But this is so rare that I chose to not try to mirror that behavior here

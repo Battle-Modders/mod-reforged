@@ -2,7 +2,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_medium_polearm", function(q) {
 	q.onInit = @() function()
 	{
-	    this.skeleton.onInit();
+		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.SkeletonMedium);
 		b.Initiative -= 20;
@@ -32,8 +32,8 @@
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
 				[3, "scripts/items/weapons/ancient/bladed_pike"],
-	    		[1, "scripts/items/weapons/ancient/warscythe"]
-	    	]).roll();
+				[1, "scripts/items/weapons/ancient/warscythe"]
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}

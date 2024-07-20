@@ -14,7 +14,7 @@
 			"pg.rf_spear": 0.2,
 			"pg.rf_throwing": 0.9,
 
-            "pg.special.rf_man_of_steel": -1
+			"pg.special.rf_man_of_steel": -1
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);

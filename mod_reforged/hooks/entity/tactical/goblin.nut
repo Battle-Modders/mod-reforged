@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/goblin", function(q) {
 	q.onInit = @() function()
 	{
-	    this.actor.onInit();
+		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.GoblinAmbusher);
 		b.IsFleetfooted = true;
@@ -67,9 +67,9 @@
 				loot = ::MSU.Class.WeightedContainer([
 					[1.0, "scripts/items/loot/goblin_carved_ivory_iconographs_item.nut"],
 					[0.5, "scripts/items/loot/goblin_minted_coins_item.nut"]
-		    	]).rollChance(20);
+				]).rollChance(20);
 
-		    	if (loot != null) ::new(loot).drop(_tile);
+				if (loot != null) ::new(loot).drop(_tile);
 			}
 			__original(_killer, _skill, _tile, _fatalityType);
 		}

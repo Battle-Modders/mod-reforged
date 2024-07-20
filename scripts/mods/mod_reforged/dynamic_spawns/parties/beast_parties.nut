@@ -106,7 +106,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		StaticUnitDefs = [
-			{ BaseID = "Unit.RF.Hexe" }    // This one has no Bodyguards, which is not perfect because sometimes the only Hexe spawns with bodyguards in vanilla
+			{ BaseID = "Unit.RF.Hexe" }	// This one has no Bodyguards, which is not perfect because sometimes the only Hexe spawns with bodyguards in vanilla
 		],
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.HexeWithBodyguard", RatioMin = 0.00, RatioMax = 0.13 },
@@ -128,7 +128,7 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		StaticUnitDefs = [
-			{ BaseID = "Unit.RF.Hexe" }    // This one has no Bodyguards, which is not perfect because sometimes the only Hexe spawns with bodyguards in vanilla
+			{ BaseID = "Unit.RF.Hexe" }	// This one has no Bodyguards, which is not perfect because sometimes the only Hexe spawns with bodyguards in vanilla
 		],
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.HexeNoSpider", RatioMin = 0.00, RatioMax = 0.13 },

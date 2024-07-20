@@ -6,9 +6,9 @@
 	}
 
 	q.onPutIntoBag <- function()
-    {
+	{
 		local skill = ::new("scripts/skills/actives/rf_sling_fire_bomb_skill");
 		skill.setItem(this);
 		this.addSkill(skill);
-    }
+	}
 });

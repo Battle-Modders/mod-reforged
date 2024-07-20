@@ -2,7 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-        this.m.Description = "This character is in a berserking rage."
+		this.m.Description = "This character is in a berserking rage."
 	}
 
 	q.getDescription = @(__original) function()	// Vanilla overwrote this returning "TODO" so we need to fix that
@@ -18,7 +18,7 @@
 			{
 				id = 10,
 				type = "text",
-                icon = "ui/icons/special.png",
+				icon = "ui/icons/special.png",
 				text = "All damage received is reduced by " + ::MSU.Text.colorRed((100.0 - (this.calcDamageTakenMult() * 100.0)) + "%")
 			},
 			{

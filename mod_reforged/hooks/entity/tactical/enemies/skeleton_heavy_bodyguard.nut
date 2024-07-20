@@ -33,11 +33,11 @@
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/ancient/ancient_sword"],
-	    		[1, "scripts/items/weapons/ancient/khopesh"],
-	    		[1, "scripts/items/weapons/ancient/warscythe"],
-	    		[1, "scripts/items/weapons/ancient/crypt_cleaver"],
-	    		[1, "scripts/items/weapons/ancient/rhomphaia"]
-	    	]).roll();
+				[1, "scripts/items/weapons/ancient/khopesh"],
+				[1, "scripts/items/weapons/ancient/warscythe"],
+				[1, "scripts/items/weapons/ancient/crypt_cleaver"],
+				[1, "scripts/items/weapons/ancient/rhomphaia"]
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}

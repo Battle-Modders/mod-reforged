@@ -55,10 +55,10 @@ this.rf_bandit_highwayman <- ::inherit("scripts/entity/tactical/human", {
 		}
 
 			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/arming_sword"],
-	    		[1, "scripts/items/weapons/boar_spear"],
-	    		[1, "scripts/items/weapons/flail"],
-	    		[1, "scripts/items/weapons/hand_axe"],
+				[1, "scripts/items/weapons/arming_sword"],
+				[1, "scripts/items/weapons/boar_spear"],
+				[1, "scripts/items/weapons/flail"],
+				[1, "scripts/items/weapons/hand_axe"],
 				[1, "scripts/items/weapons/military_pick"],
 				[1, "scripts/items/weapons/morning_star"],
 				[1, "scripts/items/weapons/scramasax"],

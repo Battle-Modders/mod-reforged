@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_fighter", function(q) {
 	q.onInit = @() function()
 	{
-	    this.goblin.onInit();
+		this.goblin.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.GoblinFighter);
 		// b.DamageDirectMult = 1.25;
@@ -40,20 +40,20 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
+		__original();
 
-	    local weapon = this.getMainhandItem();
-	    if (weapon != null)
-	    {
-	    	if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4)
-	    	}
-	    	else
-	    	{
-	    		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3)
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-	    	}
+		local weapon = this.getMainhandItem();
+		if (weapon != null)
+		{
+			if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4)
+			}
+			else
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3)
+				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+			}
 		}
 	}
 
@@ -66,7 +66,7 @@
 			// Rest from vanilla: Nimble, Dodge, Relentless
 
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		}
 
 		return ret;

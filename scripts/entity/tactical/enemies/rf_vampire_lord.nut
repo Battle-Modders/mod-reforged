@@ -24,9 +24,9 @@ this.rf_vampire_lord <- ::inherit("scripts/entity/tactical/enemies/vampire", {
 
 	function onInit()
 	{
-	    this.vampire.onInit();
+		this.vampire.onInit();
 
-	    this.getSprite("body_detail").Visible = false;
+		this.getSprite("body_detail").Visible = false;
 
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
 		this.m.BaseProperties.ActionPoints = 9;

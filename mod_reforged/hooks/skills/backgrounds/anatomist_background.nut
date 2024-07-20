@@ -16,10 +16,10 @@
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
-	                ::MSU.Class.WeightedContainer([
-	                    [30, "pg.rf_knave"],
-	                    [70, "pg.rf_trapper"]
-	                ])
+					::MSU.Class.WeightedContainer([
+						[30, "pg.rf_knave"],
+						[70, "pg.rf_trapper"]
+					])
 				],
 				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [],

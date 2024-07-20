@@ -18,10 +18,10 @@
 local addTroop = ::Const.World.Common.addTroop;
 ::Const.World.Common.addTroop = function( _party, _troop, _updateStrength = true, _minibossify = 0 )
 {
-    local ret = addTroop(_party, _troop, _updateStrength, _minibossify);
-    if (ret.Name != "")
-    	ret.Name = ::buildTextFromTemplate(ret.Name, this.RF_getTroopNameTemplateVars(ret));
-    return ret;
+	local ret = addTroop(_party, _troop, _updateStrength, _minibossify);
+	if (ret.Name != "")
+		ret.Name = ::buildTextFromTemplate(ret.Name, this.RF_getTroopNameTemplateVars(ret));
+	return ret;
 }
 
 // Add functionality to allow using more vars in troop names e.g. for champions

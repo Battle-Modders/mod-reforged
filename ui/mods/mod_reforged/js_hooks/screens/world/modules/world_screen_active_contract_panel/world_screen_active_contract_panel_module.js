@@ -13,7 +13,7 @@ Reforged.Hooks.WorldScreenActiveContractPanelModule_bindTooltips = WorldScreenAc
 WorldScreenActiveContractPanelModule.prototype.bindTooltips = function ()
 {
 	Reforged.Hooks.WorldScreenActiveContractPanelModule_bindTooltips.call(this);
-    this.mContentContainer.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Contract.FocusOnObjective"});
+	this.mContentContainer.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Contract.FocusOnObjective"});
 };
 
 Reforged.Hooks.WorldScreenActiveContractPanelModule_unbindTooltips = WorldScreenActiveContractPanelModule.prototype.unbindTooltips;

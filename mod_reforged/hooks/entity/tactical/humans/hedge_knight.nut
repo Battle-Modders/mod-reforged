@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/hedge_knight", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.HedgeKnight);
 		b.TargetAttractionMult = 1.0;
@@ -31,12 +31,12 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/bardiche"],
+				[1, "scripts/items/weapons/bardiche"],
 				[1, "scripts/items/weapons/greataxe"],
 				[1, "scripts/items/weapons/two_handed_flail"],
 				[1, "scripts/items/weapons/two_handed_hammer"],
 				[1, "scripts/items/weapons/two_handed_flanged_mace"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}
@@ -44,10 +44,10 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/armor/heavy_lamellar_armor"],
+				[1, "scripts/items/armor/heavy_lamellar_armor"],
 				[1, "scripts/items/armor/coat_of_plates"],
 				[1, "scripts/items/armor/coat_of_scales"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(armor));
 		}
@@ -56,10 +56,10 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/helmets/closed_flat_top_with_mail"],
+				[1, "scripts/items/helmets/closed_flat_top_with_mail"],
 				[0.5, "scripts/items/helmets/conic_helmet_with_faceguard"],
 				[1, "scripts/items/helmets/full_helm"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(helmet));
 		}
@@ -79,12 +79,12 @@
 		if (r == 1)
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/named/named_bardiche"],
-	    		[1, "scripts/items/weapons/named/named_greataxe"],
-	    		[1, "scripts/items/weapons/named/named_two_handed_flail"],
+				[1, "scripts/items/weapons/named/named_bardiche"],
+				[1, "scripts/items/weapons/named/named_greataxe"],
+				[1, "scripts/items/weapons/named/named_two_handed_flail"],
 				[1, "scripts/items/weapons/named/named_two_handed_hammer"],
 				[1, "scripts/items/weapons/named/named_two_handed_mace"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}
@@ -122,17 +122,17 @@
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-	    	::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
-	    	if (mainhandItem.isAoE())
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-	    	}
-	    	else
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    	}
+			if (mainhandItem.isAoE())
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
+			}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
 		}
 	}
 });

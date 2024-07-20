@@ -9,10 +9,10 @@
 ];
 
 ::Const.Strings.RumorsUniqueLocation <- [
-	[   // Doesn't include the name but the information is correct
+	[	// Doesn't include the name but the information is correct
 		"{I keep hearing talk | Some traveller mentioned something | Some pilgrim mentioned something} about a %legendaryLocationAdjective% {place | location} {%direction% from here | %distance% from here %terrain% }"
 	],
-	[   // Include the exact name but the other information is usually randomly true or fake
+	[	// Include the exact name but the other information is usually randomly true or fake
 		"{An explorer | A cartographer} just recently came by, said he found {a | some} %legendaryLocationAdjective% {place | location} %distance% from here {that he | } {called | named} %location%. If only some more details slipped out of his mouth...",
 		"{Some guy from %randomtown% | %randomname%} told me \'bout %location% the other day. He said it was {%direction% | %wrongDirection% | %wrongDirection%} from here. {But he was drunk so I wouldn\'t trust his word | I\'m probably remembering it wrong}.",
 		"There is an {urban | old} {tale | legend | story} about a {place | location} called %location%. {Some | Some folk} {say | insist} it\'s {%distance% from here %terrain% while others estimate it %wrongDistance% from here %wrongTerrain% | %wrongDistance% from here %wrongTerrain% while others estimate it %distance% from here %terrain%}.",

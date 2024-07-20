@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/oathbringer", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Oathbringer);
 		b.TargetAttractionMult = 1.0;
@@ -39,7 +39,7 @@
 
 	q.assignRandomEquipment = @() function()
 	{
-	   	if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapons = [
 				"weapons/fighting_axe",

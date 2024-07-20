@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/gladiator", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Gladiator);
 		// b.IsSpecializedInSwords = true;
@@ -39,24 +39,24 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
+		__original();
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
-	    local weapon = this.getMainhandItem();
-	    if (weapon != null)
-	    {
-	    	if (::Reforged.Items.isDuelistValid(weapon))
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-	    	}
-	    	else
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    	}
+		local weapon = this.getMainhandItem();
+		if (weapon != null)
+		{
+			if (::Reforged.Items.isDuelistValid(weapon))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
 
-	    	if (weapon.getRangeMax() == 2) this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-	    }
+			if (weapon.getRangeMax() == 2) this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+		}
 	}
 
 	q.makeMiniboss = @(__original) function()

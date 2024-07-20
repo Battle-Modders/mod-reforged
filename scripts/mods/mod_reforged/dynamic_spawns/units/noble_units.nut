@@ -49,10 +49,10 @@ local units = [
 			]
 		}
 	},
-	{   // This already exists under human_units but noble caravans use a different figure
+	{	// This already exists under human_units but noble caravans use a different figure
 		ID = "Unit.RF.NobleCaravanDonkey",
 		Troop = "CaravanDonkey",
-		Cost = 0,      // 0 in Vanilla
+		Cost = 0,	// 0 in Vanilla
 		Figure = "cart_01"
 	},
 

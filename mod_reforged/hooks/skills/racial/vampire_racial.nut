@@ -20,7 +20,7 @@
 			{
 				id = 10,
 				type = "text",
-                icon = "ui/icons/regular_damage.png",
+				icon = "ui/icons/regular_damage.png",
 				text = "Heal " + ::MSU.Text.colorGreen("100%") + " of Hitpoint damage inflicted on enemies"
 			},
 			{

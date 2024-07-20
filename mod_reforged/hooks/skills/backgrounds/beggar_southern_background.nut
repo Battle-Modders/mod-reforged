@@ -18,8 +18,8 @@
 				"pgc.rf_weapon": [],
 				"pgc.rf_armor": [
 					::MSU.Class.WeightedContainer([
-					    [50, "pg.rf_light_armor"],
-					    [50, "pg.rf_medium_armor"]
+						[50, "pg.rf_light_armor"],
+						[50, "pg.rf_medium_armor"]
 					])
 				],
 				"pgc.rf_fighting_style": []

@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/militia_guest_ranged", function(q) {
 	q.onInit = @() function()
 	{
-	    this.player.onInit();
+		this.player.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.MilitiaRanged);
 		b.TargetAttractionMult = 1.0;
@@ -24,8 +24,8 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
+		__original();
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}
 });

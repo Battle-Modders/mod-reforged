@@ -13,10 +13,10 @@
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
-	                ::MSU.Class.WeightedContainer([
-	                    [50, "pg.rf_soldier"],
-	                    [50, "DynamicPerks_NoPerkGroup"]
-	                ]),
+					::MSU.Class.WeightedContainer([
+						[50, "pg.rf_soldier"],
+						[50, "DynamicPerks_NoPerkGroup"]
+					]),
 				],
 				"pgc.rf_shared_1": [
 					"pg.rf_trained"

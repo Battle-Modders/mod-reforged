@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_leader", function(q) {
 	q.onInit = @() function()
 	{
-	    this.goblin.onInit();
+		this.goblin.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.GoblinLeader);
 		b.TargetAttractionMult = 1.5;

@@ -25,19 +25,19 @@
 			{
 				id = 10,
 				type = "text",
-                icon = "ui/icons/melee_defense.png",
+				icon = "ui/icons/melee_defense.png",
 				text = ::MSU.Text.colorRed("50%") + " reduced melee piercing damage received"
 			},
 			{
 				id = 11,
 				type = "text",
-                icon = "ui/icons/ranged_defense.png",
+				icon = "ui/icons/ranged_defense.png",
 				text = ::MSU.Text.colorRed("66%") + " reduced ranged piercing damage received"
 			},
 			{
 				id = 12,
 				type = "text",
-                icon = "ui/icons/campfire.png",
+				icon = "ui/icons/campfire.png",
 				text = ::MSU.Text.colorGreen("100%") + " increased burning damage received"
 			},
 			{
@@ -94,7 +94,7 @@
 			ret.push({
 				id = 30,
 				type = "text",
-                icon = "skills/status_effect_86.png",
+				icon = "skills/status_effect_86.png",
 				text = ::MSU.Text.colorRed("70%") + " reduced damage received while this character is shielded"
 			})
 		}

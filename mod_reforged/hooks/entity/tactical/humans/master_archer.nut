@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/master_archer", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.MasterArcher);
 		b.Vision = 8;
@@ -42,21 +42,21 @@
 		}
 
 		local sidearm = ::MSU.Class.WeightedContainer([
-    		[1, "scripts/items/weapons/falchion"],
+			[1, "scripts/items/weapons/falchion"],
 			[1, "scripts/items/weapons/hand_axe"],
 			[1, "scripts/items/weapons/rondel_dagger"],
 			[1, "scripts/items/weapons/scramasax"]
-    	]).roll();
+		]).roll();
 
 		if (sidearm != null) this.m.Items.addToBag(::new(sidearm));
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/armor/thick_tunic"],
+				[1, "scripts/items/armor/thick_tunic"],
 				[1, "scripts/items/armor/padded_surcoat"],
 				[1, "scripts/items/armor/gambeson"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(armor));
 		}
@@ -66,7 +66,7 @@
 			local helmet = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/helmets/hood"],
 				[1, "scripts/items/helmets/hunters_hat"]
-	    	]).rollChance(33);
+			]).rollChance(33);
 
 			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}

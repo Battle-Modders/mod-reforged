@@ -16,13 +16,13 @@
 			{
 				id = 12,
 				type = "text",
-                icon = "ui/icons/campfire.png",
+				icon = "ui/icons/campfire.png",
 				text = ::MSU.Text.colorRed("33%") + " reduced burning damage received"
 			},
 			/*{
 				id = 13,
 				type = "text",
-                icon = "ui/icons/initiative.png",
+				icon = "ui/icons/initiative.png",
 				text = "Initiative is treated as 15 higher for the purpose of turn order if there is a potential target to be hooked nearby"
 			}*/
 			{

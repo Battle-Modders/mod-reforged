@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/zombie_knight", function(q) {
 	q.onInit = @() function()
 	{
-	    this.zombie.onInit();
+		this.zombie.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.ZombieKnight);
 		// b.SurroundedBonus = 10;	// This is now controlled by them having 'Backstabber'
@@ -30,11 +30,11 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-	    local weapon = this.getMainhandItem();
-	    if (weapon == null) return;
+		__original();
+		local weapon = this.getMainhandItem();
+		if (weapon == null) return;
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	}
 
 	q.onSkillsUpdated = @(__original) function()
@@ -43,9 +43,9 @@
 		local weapon = this.getMainhandItem();
 		if (weapon == null) return;
 
-	    if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-	    {
-	 		this.m.Skills.removeByID("actives.rf_kata_step_skill");
-	    }
+		if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+		{
+			this.m.Skills.removeByID("actives.rf_kata_step_skill");
+		}
 	}
 });

@@ -33,12 +33,12 @@ local units = [
 	{
 		ID = "Unit.RF.BarbarianUnhold",
 		Troop = "BarbarianUnhold",
-		Figure = "figure_unhold_01"     // Not really needed as barbarian unholds never determine their Figure in Vanilla
+		Figure = "figure_unhold_01"	 // Not really needed as barbarian unholds never determine their Figure in Vanilla
 	},
 	{
 		ID = "Unit.RF.BarbarianUnholdFrost",
 		Troop = "BarbarianUnholdFrost",
-		Figure = "figure_unhold_02"     // Not really needed as barbarian unholds never determine their Figure in Vanilla
+		Figure = "figure_unhold_02"	 // Not really needed as barbarian unholds never determine their Figure in Vanilla
 	},
 	{
 		ID = "Unit.RF.BarbarianBeastmasterU",

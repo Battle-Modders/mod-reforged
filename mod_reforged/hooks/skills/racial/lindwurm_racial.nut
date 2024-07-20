@@ -18,7 +18,7 @@
 			{
 				id = 10,
 				type = "text",
-                icon = "ui/icons/special.png",
+				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Upon receiving a hit from an adjacent enemy that deals at least " + ::MSU.Text.colorGreen("10") + " damage to Hitpoints, apply [Lindwurm Acid|Skill+lindwurm_acid_effect] to them, which deals damage to armor over time")
 			},
 			{

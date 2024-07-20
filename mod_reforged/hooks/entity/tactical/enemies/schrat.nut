@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/schrat", function(q) {
 	q.onInit = @() function()
 	{
-	    this.actor.onInit();
+		this.actor.onInit();
 		local clouds = ::Tactical.getWeather().createCloudSettings();
 		clouds.Type = this.getconsttable().CloudType.Fog;
 		clouds.MinClouds = 20;
@@ -101,7 +101,7 @@
 					[2.0, "scripts/items/misc/ancient_wood_item"],
 					[2.0, "scripts/items/misc/glowing_resin_item"],
 					[1.0, "scripts/items/misc/heart_of_the_forest_item"]
-		    	]).roll();
+				]).roll();
 
 				::new(loot).drop(_tile);
 			}

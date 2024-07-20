@@ -20,8 +20,8 @@ this.rf_skeleton_commander <- ::inherit("scripts/entity/tactical/skeleton", {
 			}
 			return addSprite(_sprite);
 		}
-	    this.skeleton.onInit();
-	    this.addSprite = addSprite;
+		this.skeleton.onInit();
+		this.addSprite = addSprite;
 	}
 
 	function onFactionChanged()

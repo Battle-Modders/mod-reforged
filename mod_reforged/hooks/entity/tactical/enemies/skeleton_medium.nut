@@ -2,7 +2,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_medium", function(q) {
 	q.onInit = @() function()
 	{
-	    this.skeleton.onInit();
+		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.SkeletonMedium);
 		// b.IsAffectedByNight = false;			// Now handled by racial effect
@@ -27,8 +27,8 @@
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
 				[3, "scripts/items/weapons/ancient/ancient_sword"],
-	    		[1, "scripts/items/weapons/ancient/broken_ancient_sword"]
-	    	]).roll();
+				[1, "scripts/items/weapons/ancient/broken_ancient_sword"]
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}
@@ -36,9 +36,9 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local shield = ::MSU.Class.WeightedContainer([
-	    		[2, "scripts/items/shields/ancient/coffin_shield"],
+				[2, "scripts/items/shields/ancient/coffin_shield"],
 				[1, "scripts/items/shields/ancient/tower_shield"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(shield));
 		}

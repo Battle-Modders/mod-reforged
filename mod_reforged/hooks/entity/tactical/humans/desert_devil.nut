@@ -40,7 +40,7 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
+		__original();
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{

@@ -6,9 +6,9 @@
 		this.m.AIAgent.setActor(this);
 	}
 
-    q.onInit = @() function()
-    {
-       this.human.onInit();
+	q.onInit = @() function()
+	{
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.BanditLeader);
 		this.m.ActionPoints = b.ActionPoints;
@@ -33,8 +33,8 @@
 
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
-    		o.m.IsForceEnabled = true;
-    	}));
+			o.m.IsForceEnabled = true;
+		}));
 		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rally_the_troops", function(o) {
 			o.m.Cooldown = 3;
 		}));
@@ -183,40 +183,40 @@
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-	  		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
-	    	{
-	    		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver)) // Sword/Cleaver hybrid
-	    		{
-	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_cleaver"));
-    				this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
-	    		}
-	    		else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
-	    		{
-	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_spear"));
-	    			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
-    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
-    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
-	    		}
-	    		else
-	    		{
-	    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	    		}
-    		}
-    		else
-    		{
-    			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-    		}
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+			{
+				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver)) // Sword/Cleaver hybrid
+				{
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_cleaver"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
+				{
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_spear"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+				}
+				else
+				{
+					::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+				}
+			}
+			else
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+			}
 
-    		if (::Reforged.Items.isDuelistValid(mainhandItem))
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-    		}
-    		else
-    		{
-    			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-    		}
+			if (::Reforged.Items.isDuelistValid(mainhandItem))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
 		}
 
 		local offhandItem = this.getOffhandItem();

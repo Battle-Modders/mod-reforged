@@ -13,12 +13,12 @@
 	{
 		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 		{
-		   this.m.TurnsLeft = ::Math.max(1, _amount);
+			this.m.TurnsLeft = ::Math.max(1, _amount);
 		}
 		else
 		{
-		   this.m.TurnsLeft = ::Math.max(1, _amount + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
-		   this.updateSprite();
+			this.m.TurnsLeft = ::Math.max(1, _amount + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+			this.updateSprite();
 		}
 	}
 

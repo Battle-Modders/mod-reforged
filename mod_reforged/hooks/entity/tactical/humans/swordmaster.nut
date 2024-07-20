@@ -1,17 +1,17 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/swordmaster", function(q) {
 	q.m.SwordmasterVariants <- {
-        BladeDancer = 0,
-        Metzger = 1,
-        Reaper = 2,
-        Precise = 3,
-        Versatile = 4
-    };
+		BladeDancer = 0,
+		Metzger = 1,
+		Reaper = 2,
+		Precise = 3,
+		Versatile = 4
+	};
 	q.m.MyArmorVariant <- 0; // 0 = Light Armor, 1 = Medium Armor
 	q.m.MyVariant <- 0;
 
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Swordmaster);
 		b.IsSpecializedInSwords = true;
@@ -31,23 +31,23 @@
 		this.m.MyVariant = ::MSU.Table.randValue(this.m.SwordmasterVariants);
 
 		switch(this.m.MyVariant)
-        {
-            case this.m.SwordmasterVariants.Precise: // light armor only
-            	this.m.MyArmorVariant = 0;
-                break;
+		{
+			case this.m.SwordmasterVariants.Precise: // light armor only
+				this.m.MyArmorVariant = 0;
+				break;
 
-            case this.m.SwordmasterVariants.Reaper:  // medium armor only
-            case this.m.SwordmasterVariants.Versatile:
-            	this.m.MyArmorVariant = 1;
-            	this.getAIAgent().m.Properties.BehaviorMult[::Const.AI.Behavior.ID.LineBreaker] = 10.0;
-            	this.getAIAgent().m.Properties.BehaviorMult[::Const.AI.Behavior.ID.KnockBack] = 10.0;
-                break;
+			case this.m.SwordmasterVariants.Reaper:  // medium armor only
+			case this.m.SwordmasterVariants.Versatile:
+				this.m.MyArmorVariant = 1;
+				this.getAIAgent().m.Properties.BehaviorMult[::Const.AI.Behavior.ID.LineBreaker] = 10.0;
+				this.getAIAgent().m.Properties.BehaviorMult[::Const.AI.Behavior.ID.KnockBack] = 10.0;
+				break;
 
-            case this.m.SwordmasterVariants.BladeDancer: // light or medium armor
-            case this.m.SwordmasterVariants.Metzger:
-            	this.m.MyArmorVariant = ::Math.rand(0, 1); // 0 = Light Armor, 1 = Medium Armor
-                break;
-        }
+			case this.m.SwordmasterVariants.BladeDancer: // light or medium armor
+			case this.m.SwordmasterVariants.Metzger:
+				this.m.MyArmorVariant = ::Math.rand(0, 1); // 0 = Light Armor, 1 = Medium Armor
+				break;
+		}
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -55,38 +55,38 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			if (this.m.MyArmorVariant == 0) // light armor
-            {
-               this.m.Items.equip(::new("scripts/items/armor/noble_mail_armor"));
-            }
-            else // medium armor
-            {
-               local armor = ::MSU.Class.WeightedContainer([
-		    		[1, "scripts/items/armor/rf_breastplate"],
+			{
+				this.m.Items.equip(::new("scripts/items/armor/noble_mail_armor"));
+			}
+			else // medium armor
+			{
+				local armor = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/armor/rf_breastplate"],
 					[1, "scripts/items/armor/rf_brigandine_armor"]
-		    	]).roll();
+				]).roll();
 
-               this.m.Items.equip(::new(armor));
-            }
-        }
+				this.m.Items.equip(::new(armor));
+			}
+		}
 
-        if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = null;
 			if (this.m.MyArmorVariant == 0) // light armor
 			{
 				helmet = ::MSU.Class.WeightedContainer([
-		    		[1, "scripts/items/helmets/greatsword_hat"],
+					[1, "scripts/items/helmets/greatsword_hat"],
 					[1, "scripts/items/helmets/reinforced_mail_coif"]
-		    	]).roll();
+				]).roll();
 			}
 			else // medium armor
 			{
 				helmet = ::MSU.Class.WeightedContainer([
-		    		[1, "scripts/items/helmets/greatsword_faction_helm"],
+					[1, "scripts/items/helmets/greatsword_faction_helm"],
 					[1, "scripts/items/helmets/rf_padded_sallet_helmet"],
 					[1, "scripts/items/helmets/barbute_helmet"],
 					[1, "scripts/items/helmets/rf_half_closed_sallet"]
-		    	]).roll();
+				]).roll();
 			}
 		this.m.Items.equip(::new(helmet));
 		}
@@ -95,42 +95,42 @@
 		{
 			local weapon;
 			switch(this.m.MyVariant)
-	        {
-	            case this.m.SwordmasterVariants.BladeDancer:
-	                weapon = ::MSU.Class.WeightedContainer([
-			    		[1, "scripts/items/weapons/longsword"],
+			{
+				case this.m.SwordmasterVariants.BladeDancer:
+					weapon = ::MSU.Class.WeightedContainer([
+						[1, "scripts/items/weapons/longsword"],
 						[1, "scripts/items/weapons/rf_greatsword"],
 						[1, "scripts/items/weapons/noble_sword"],
 						[1, "scripts/items/weapons/warbrand"]
-			    	]).roll();
-	                break;
+					]).roll();
+					break;
 
-                case this.m.SwordmasterVariants.Versatile:
-                	weapon = "scripts/items/weapons/greatsword";
-                    break;
+				case this.m.SwordmasterVariants.Versatile:
+					weapon = "scripts/items/weapons/greatsword";
+					break;
 
-	            case this.m.SwordmasterVariants.Metzger:
+				case this.m.SwordmasterVariants.Metzger:
 						weapon = "scripts/items/weapons/shamshir";
 						this.m.Items.equip(::new("scripts/items/shields/oriental/southern_light_shield"));
-	                break;
+					break;
 
-	            case this.m.SwordmasterVariants.Precise:
-	                weapon = ::MSU.Class.WeightedContainer([
-			    		[1, "scripts/items/weapons/fencing_sword"],
+				case this.m.SwordmasterVariants.Precise:
+					weapon = ::MSU.Class.WeightedContainer([
+						[1, "scripts/items/weapons/fencing_sword"],
 						[1, "scripts/items/weapons/rf_estoc"]
-			    	]).roll();
-	                break;
+					]).roll();
+					break;
 
-                case this.m.SwordmasterVariants.Reaper:
-                    weapon = ::MSU.Class.WeightedContainer([
-    		    		[1, "scripts/items/weapons/rf_greatsword"],
-    					[1, "scripts/items/weapons/warbrand"],
-    					[1, "scripts/items/weapons/greatsword"]
-    		    	]).roll();
-                    break;
-	        }
-       	 	this.m.Items.equip(::new(weapon));
-  	 	}
+				case this.m.SwordmasterVariants.Reaper:
+					weapon = ::MSU.Class.WeightedContainer([
+						[1, "scripts/items/weapons/rf_greatsword"],
+						[1, "scripts/items/weapons/warbrand"],
+						[1, "scripts/items/weapons/greatsword"]
+					]).roll();
+					break;
+			}
+				this.m.Items.equip(::new(weapon));
+		}
 	}
 
 	q.makeMiniboss = @() function()
@@ -147,46 +147,46 @@
 		{
 			local weapon = null;
 			switch(this.m.MyVariant)
-	        {
-	            case this.m.SwordmasterVariants.BladeDancer:
-	                weapon = ::MSU.Class.WeightedContainer([
+			{
+				case this.m.SwordmasterVariants.BladeDancer:
+					weapon = ::MSU.Class.WeightedContainer([
 						[1, "scripts/items/weapons/named/named_sword"],
 						[1, "scripts/items/weapons/named/named_rf_longsword"],
 						[1, "scripts/items/weapons/named/named_warbrand"]
-			    	]).roll();
-	                break;
+					]).roll();
+					break;
 
-                case this.m.SwordmasterVariants.Versatile:
-               		weapon = "scripts/items/weapons/named/named_greatsword";
-                    break;
+				case this.m.SwordmasterVariants.Versatile:
+						weapon = "scripts/items/weapons/named/named_greatsword";
+					break;
 
-	            case this.m.SwordmasterVariants.Metzger:
+				case this.m.SwordmasterVariants.Metzger:
 						weapon = "scripts/items/weapons/named/named_shamshir";
 						this.m.Items.equip(::new("scripts/items/shields/oriental/southern_light_shield"));
-	                break;
+					break;
 
-	            case this.m.SwordmasterVariants.Precise:
-	                weapon = ::MSU.Class.WeightedContainer([
-			    		[1, "scripts/items/weapons/named/named_fencing_sword"],
+				case this.m.SwordmasterVariants.Precise:
+					weapon = ::MSU.Class.WeightedContainer([
+						[1, "scripts/items/weapons/named/named_fencing_sword"],
 						[1, "scripts/items/weapons/named/named_rf_estoc"]
-			    	]).roll();
-	                break;
+					]).roll();
+					break;
 
-	            case this.m.SwordmasterVariants.Reaper:
-	                weapon = ::MSU.Class.WeightedContainer([
+				case this.m.SwordmasterVariants.Reaper:
+					weapon = ::MSU.Class.WeightedContainer([
 						[1, "scripts/items/weapons/named/named_warbrand"],
 						[1, "scripts/items/weapons/named/named_greatsword"]
-			    	]).roll();
-	                break;
-	        }
-        	this.m.Items.equip(::new(weapon));
+					]).roll();
+					break;
+			}
+			this.m.Items.equip(::new(weapon));
 		}
 		else if (r <= 80) // named armor
 		{
 			local armor = null;
 			if (this.m.MyArmorVariant == 0) // light armor
-            {
-                armor = ::Reforged.ItemTable.NamedArmorNorthern.roll({
+			{
+				armor = ::Reforged.ItemTable.NamedArmorNorthern.roll({
 					Apply = function ( _script, _weight )
 					{
 						local stam = ::ItemTables.ItemInfoByScript[_script].StaminaModifier;
@@ -194,10 +194,10 @@
 						return _weight;
 					}
 				})
-            }
-            else // medium armor
-            {
-               armor = ::Reforged.ItemTable.NamedArmorNorthern.roll({
+			}
+			else // medium armor
+			{
+				armor = ::Reforged.ItemTable.NamedArmorNorthern.roll({
 					Apply = function ( _script, _weight )
 					{
 						local stam = ::ItemTables.ItemInfoByScript[_script].StaminaModifier;
@@ -205,9 +205,9 @@
 						return _weight;
 					}
 				})
-            }
-        	if (armor != null) this.m.Items.equip(::new(armor));
-        }
+			}
+			if (armor != null) this.m.Items.equip(::new(armor));
+		}
 		else // named helmet
 		{
 			local helmet = null;
@@ -256,64 +256,64 @@
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 			switch(this.m.MyVariant)
-	        {
-	            case this.m.SwordmasterVariants.BladeDancer:
-	            	this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
-	         	    this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+			{
+				case this.m.SwordmasterVariants.BladeDancer:
+					this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
 
 					switch (mainhandItem.getID())
-		    		{
-		    			case "weapon.warbrand":
-		    			case "weapon.named_warbrand":
-		    				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-		    				break;
-		    		}
-                	break;
-
-	            case this.m.SwordmasterVariants.Versatile:
-	            	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-	            	this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-	            	this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
-	            	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_versatile_swordsman"));
+					{
+						case "weapon.warbrand":
+						case "weapon.named_warbrand":
+							this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
+							break;
+					}
 					break;
 
-	            case this.m.SwordmasterVariants.Metzger:
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-    				this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_metzger"));
-    				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
-    				break;
+				case this.m.SwordmasterVariants.Versatile:
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_versatile_swordsman"));
+					break;
 
-	            case this.m.SwordmasterVariants.Precise:
-			    	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_fencer"));
-			    	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_precise"));
-	                break;
+				case this.m.SwordmasterVariants.Metzger:
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_metzger"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
+					break;
 
-	            case this.m.SwordmasterVariants.Reaper:
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
-			    	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_reaper"));
-			    	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-	                break;
-	        }
-        }
+				case this.m.SwordmasterVariants.Precise:
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_fencer"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_precise"));
+					break;
 
-        if (this.m.IsMiniboss)
-        {
+				case this.m.SwordmasterVariants.Reaper:
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_reaper"));
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
+					break;
+			}
+		}
+
+		if (this.m.IsMiniboss)
+		{
 			switch(this.m.MyVariant)
-	        {
-	            case this.m.SwordmasterVariants.Metzger:
-		    		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
-	                break;
+			{
+				case this.m.SwordmasterVariants.Metzger:
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
+					break;
 
-	            case this.m.SwordmasterVariants.BladeDancer:
-	            case this.m.SwordmasterVariants.Versatile:
-	            case this.m.SwordmasterVariants.Precise:
-	            case this.m.SwordmasterVariants.Reaper:
-	            	this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_pattern_recognition"));
-	                break;
+				case this.m.SwordmasterVariants.BladeDancer:
+				case this.m.SwordmasterVariants.Versatile:
+				case this.m.SwordmasterVariants.Precise:
+				case this.m.SwordmasterVariants.Reaper:
+					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_pattern_recognition"));
+					break;
 
-	        }
-        }
+			}
+		}
 	}
 
 	q.onSkillsUpdated = @(__original) function()

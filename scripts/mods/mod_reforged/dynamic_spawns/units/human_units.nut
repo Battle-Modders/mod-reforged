@@ -36,7 +36,7 @@ local units = [
 	{
 		ID = "Unit.RF.CaravanDonkey",
 		Troop = "CaravanDonkey",
-		Cost = 10,      // 0 in Vanilla
+		Cost = 10,	// 0 in Vanilla
 		Figure = "cart_02"
 	},
 
@@ -52,7 +52,7 @@ local units = [
 	{
 		ID = "Unit.RF.MilitiaVeteran",
 		Troop = "MilitiaVeteran",
-		Cost = 15   // Vanilla 12
+		Cost = 15	// Vanilla 12
 	},
 	{
 		ID = "Unit.RF.MilitiaCaptain",

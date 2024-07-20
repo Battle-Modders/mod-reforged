@@ -2,7 +2,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_heavy_polearm", function(q) {
 	q.onInit = @() function()
 	{
-	    this.skeleton.onInit();
+		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.SkeletonHeavy);
 		b.Initiative -= 20;
@@ -29,23 +29,23 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
+		__original();
 
-	    local weapon = this.getMainhandItem();
-	    if (weapon == null) return;
+		local weapon = this.getMainhandItem();
+		if (weapon == null) return;
 
-	    if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-	    }
+		if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_leverage"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_intimidate"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+		}
 
-	    if (weapon.isAoE())
+		if (weapon.isAoE())
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 		}

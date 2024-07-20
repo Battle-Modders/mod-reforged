@@ -2,8 +2,8 @@
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
-        foreach (index, entry in ret)
-        {
+		foreach (index, entry in ret)
+		{
 			// Vanilla has two entries with id 5. That's why we check for a phrase aswell
 			if (entry.id == 5 && entry.text.find("Increases Ranged Defense by ") != null)
 			{
@@ -27,6 +27,6 @@
 			}
 		]);
 
-        return ret;
+		return ret;
 	}
 });

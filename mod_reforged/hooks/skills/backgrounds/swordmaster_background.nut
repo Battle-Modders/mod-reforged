@@ -9,7 +9,7 @@
 			"pg.rf_vigorous": 0.25,
 			"pg.rf_tactician": 2,
 
-            "pg.special.rf_fencer": -1
+			"pg.special.rf_fencer": -1
 		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -34,8 +34,8 @@
 		});
 
 		this.m.Excluded.extend([
-		    "trait.asthmatic",
-		    "trait.cocky"
+			"trait.asthmatic",
+			"trait.cocky"
 		]);
 
 		this.m.ExcludedTalents.push(::Const.Attributes.RangedDefense);

@@ -53,11 +53,11 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
+		__original();
 
 		foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
-	    {
-	    	::Reforged.Skills.addMasteryOfEquippedWeapon(this)
-	    }
+		{
+			::Reforged.Skills.addMasteryOfEquippedWeapon(this)
+		}
 	}
 });

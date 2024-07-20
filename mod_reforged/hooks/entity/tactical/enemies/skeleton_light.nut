@@ -2,7 +2,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_light", function(q) {
 	q.onInit = @() function()
 	{
-	    this.skeleton.onInit();
+		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.SkeletonLight);
 		// b.IsAffectedByNight = false;			// Now handled by racial effect
@@ -25,10 +25,10 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/ancient/broken_ancient_sword"],
+				[1, "scripts/items/weapons/ancient/broken_ancient_sword"],
 				[1, "scripts/items/weapons/ancient/falx"],
 				[1, "scripts/items/weapons/ancient/ancient_spear"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}

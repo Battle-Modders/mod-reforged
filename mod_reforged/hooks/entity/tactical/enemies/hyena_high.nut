@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/hyena_high", function(q) {
 	q.onInit = @() function()
 	{
-	    this.hyena.onInit();
+		this.hyena.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.FrenziedHyena);
 		b.IsAffectedByNight = false;

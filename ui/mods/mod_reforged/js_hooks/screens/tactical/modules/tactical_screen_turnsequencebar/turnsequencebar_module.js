@@ -8,15 +8,15 @@ TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 	this.mWaitTurnAllButtonContainer = null;
 
 	// Create WaitAllButton
-    var buttonBackground = $('<div class="l-button-container"/>');
-    var layout = $('<div class="l-button"/>');
-    buttonBackground.append(layout);
+	var buttonBackground = $('<div class="l-button-container"/>');
+	var layout = $('<div class="l-button"/>');
+	buttonBackground.append(layout);
 	var self = this;
-    this.mWaitTurnAllButton = layout.createImageButton(Path.GFX + Reforged.Asset.BUTTON_WAIT_ALL_TURNS, function ()
-    {
-        self.notifyBackendWaitTurnAllButtonPressed();
-    }, '', 6);
-    this.mWaitTurnAllButtonContainer = buttonBackground;
+	this.mWaitTurnAllButton = layout.createImageButton(Path.GFX + Reforged.Asset.BUTTON_WAIT_ALL_TURNS, function ()
+	{
+		self.notifyBackendWaitTurnAllButtonPressed();
+	}, '', 6);
+	this.mWaitTurnAllButtonContainer = buttonBackground;
 
 	// var buttonsContainer = this.mContainer.find('.buttons-container:first');	// We find the element that the other 3 vanilla buttons are appended to
 	this.mEndTurnButtonContainer.parent().append(buttonBackground);
@@ -25,10 +25,10 @@ TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 Reforged.Hooks.TacticalScreenTurnSequenceBarModule_destroyDIV = TacticalScreenTurnSequenceBarModule.prototype.destroyDIV;
 TacticalScreenTurnSequenceBarModule.prototype.destroyDIV = function ()
 {
-    this.mWaitTurnAllButton.remove();
-    this.mWaitTurnAllButton = null;
-    this.mWaitTurnAllButtonContainer.remove();
-    this.mWaitTurnAllButtonContainer = null;
+	this.mWaitTurnAllButton.remove();
+	this.mWaitTurnAllButton = null;
+	this.mWaitTurnAllButtonContainer.remove();
+	this.mWaitTurnAllButtonContainer = null;
 
 	Reforged.Hooks.TacticalScreenTurnSequenceBarModule_destroyDIV.call(this);
 }
@@ -43,8 +43,8 @@ TacticalScreenTurnSequenceBarModule.prototype.updateButtonBar = function (_entit
 	if ('isWaitActionSpent' in _entityData && _entityData.isWaitActionSpent === true)
 	{
 		// This is an approximation: In 99%+ of the cases WaitAll is redundant here because everyone spend their wait or ended their turn while already in the second half of the turn
-        this.mWaitTurnAllButton.enableButton(false);
-    }
+		this.mWaitTurnAllButton.enableButton(false);
+	}
 }
 
 Reforged.Hooks.TacticalScreenTurnSequenceBarModule_bindTooltips = TacticalScreenTurnSequenceBarModule.prototype.bindTooltips;
@@ -69,26 +69,26 @@ TacticalScreenTurnSequenceBarModule.prototype.showStatsPanel = function (_show, 
 	if (_instant !== undefined && typeof(_instant) == 'boolean')
 	{
 		this.mWaitTurnAllButtonContainer.css({ opacity: _show ? 1 : 0 });
-        if (_show) this.mWaitTurnAllButtonContainer.removeClass('display-none').addClass('display-block');
-        else this.mWaitTurnAllButtonContainer.addClass('display-none').removeClass('display-block');
+		if (_show) this.mWaitTurnAllButtonContainer.removeClass('display-none').addClass('display-block');
+		else this.mWaitTurnAllButtonContainer.addClass('display-none').removeClass('display-block');
 	}
 	else
 	{
-        this.mWaitTurnAllButtonContainer.velocity("finish", true).velocity({ opacity: _show ? 1 : 0 },
-        {
-            duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
-            easing: 'swing',
-            begin: function ()
-            {
-            	if (_show)
-            		$(this).removeClass('display-none').addClass('display-block');
-            },
-            complete: function ()
-            {
-            	if (!_show)
-            		$(this).removeClass('display-block').addClass('display-none');
-            }
-        });
+		this.mWaitTurnAllButtonContainer.velocity("finish", true).velocity({ opacity: _show ? 1 : 0 },
+		{
+			duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
+			easing: 'swing',
+			begin: function ()
+			{
+				if (_show)
+					$(this).removeClass('display-none').addClass('display-block');
+			},
+			complete: function ()
+			{
+				if (!_show)
+					$(this).removeClass('display-block').addClass('display-none');
+			}
+		});
 	}
 	Reforged.Hooks.TacticalScreenTurnSequenceBarModule_showStatsPanel.call(this, _show, _instant);
 }
@@ -101,5 +101,5 @@ TacticalScreenTurnSequenceBarModule.prototype.notifyBackendWaitTurnAllButtonPres
 
 TacticalScreenTurnSequenceBarModule.prototype.setWaitTurnAllButtonVisible = function (_visible)
 {
-    this.mWaitTurnAllButton.enableButton(_visible);
+	this.mWaitTurnAllButton.enableButton(_visible);
 }

@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/mercenary", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Mercenary);
 		// b.IsSpecializedInSwords = true;
@@ -34,7 +34,7 @@
 
 	q.assignRandomEquipment = @() function()
 	{
-	    local r;
+		local r;
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -248,31 +248,31 @@
 		}
 
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	    if (this.isArmedWithShield())
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-	    }
+		if (this.isArmedWithShield())
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+		}
 
-        local weapon = this.getMainhandItem();
-        if (weapon != null)
-        {
-        	if (::Reforged.Items.isDuelistValid(weapon))
-        	{
-        		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-        	}
-        	else
-        	{
-        		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-        	}
-        }
+		local weapon = this.getMainhandItem();
+		if (weapon != null)
+		{
+			if (::Reforged.Items.isDuelistValid(weapon))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
+		}
 
-	    foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
-	    {
-	    	if (item.isItemType(::Const.Items.ItemType.RangedWeapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
-	    	{
-	    		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
-	    		break;
-	    	}
-	    }
+		foreach (item in this.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
+		{
+			if (item.isItemType(::Const.Items.ItemType.RangedWeapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
+				break;
+			}
+		}
 	}
 });

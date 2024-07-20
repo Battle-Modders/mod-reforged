@@ -22,10 +22,10 @@
 		{
 			foreach (skill in weapon.getSkills())
 			{
-				 if (skill.m.MaxRange == 2 && skill.m.ActionPointCost > 5)
-				 {
-					 skill.m.ActionPointCost -= 1;
-				 }
+				if (skill.m.MaxRange == 2 && skill.m.ActionPointCost > 5)
+				{
+					skill.m.ActionPointCost -= 1;
+				}
 			}
 		}
 	}

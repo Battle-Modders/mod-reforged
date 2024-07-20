@@ -21,7 +21,7 @@
 
 	q.onInit = @() function()
 	{
-	    this.actor.onInit();
+		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Vampire);
 		// b.IsAffectedByNight = false;			// Now handled by racial effect

@@ -16,7 +16,7 @@
 		if (bestLocation == null) return ret;	// This should only happen if all legendary locations on the map are discovered
 
 		this.m.Location = ::WeakTableRef(bestLocation);
-		local candidates = ::Const.Strings.RumorsUniqueLocation[::Math.rand(0, 1)];     // 50% of the time you get a generic tip with no name of the location
+		local candidates = ::Const.Strings.RumorsUniqueLocation[::Math.rand(0, 1)];	 // 50% of the time you get a generic tip with no name of the location
 
 		local rumor = "";
 		if (_isPaidFor) rumor = ::MSU.Array.rand(::Const.Strings.PayTavernRumorsIntro);
@@ -57,8 +57,8 @@
 		foreach( s in ::World.EntityManager.getLocations() )
 		{
 			if (s.isLocationType(::Const.World.LocationType.Unique) == false) continue;
-			if (s.isDiscovered()) continue;     // We don't want to show the player already discovered unique locations
-			if (s.getVisibilityMult() == 0.0) continue;     // These legendary locations are not meant to be found yet (tundra_elk_location)
+			if (s.isDiscovered()) continue;	 // We don't want to show the player already discovered unique locations
+			if (s.getVisibilityMult() == 0.0) continue;	 // These legendary locations are not meant to be found yet (tundra_elk_location)
 
 			local d = s.getTile().getDistanceTo(this.m.Settlement.getTile()) - ::Math.rand(1, 10);  // Small variance so we don't always talk about the nearest unique location
 			if (d > bestDist) continue;

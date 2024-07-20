@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/mercenary_low", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.BanditRaider);
 		// b.IsSpecializedInSwords = true;
@@ -32,12 +32,12 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 
-	    if (this.isArmedWithShield())
-	    {
-	    	this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-	    }
+		if (this.isArmedWithShield())
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+		}
 	}
 });

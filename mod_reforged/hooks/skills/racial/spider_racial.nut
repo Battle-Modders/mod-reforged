@@ -18,13 +18,13 @@
 			{
 				id = 10,
 				type = "text",
-                icon = "ui/icons/bravery.png",
+				icon = "ui/icons/bravery.png",
 				text = "Resolve is increased by " + ::MSU.Text.colorGreen("+3") + " for every other ally on the battlefield of the same faction"
 			},
 			{
 				id = 11,
 				type = "text",
-                icon = "ui/icons/direct_damage.png",
+				icon = "ui/icons/direct_damage.png",
 				text = "When attacking a webbed target, the damage that ignores armor is increased by " + ::MSU.Text.colorGreen("100%")
 			},
 			{

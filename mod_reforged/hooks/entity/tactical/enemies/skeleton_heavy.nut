@@ -2,7 +2,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_heavy", function(q) {
 	q.onInit = @() function()
 	{
-	   	this.skeleton.onInit();
+		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.SkeletonHeavy);
 		// b.IsAffectedByNight = false;			// Now handled by racial effect
@@ -35,10 +35,10 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/ancient/khopesh"],
-	    		[1, "scripts/items/weapons/ancient/crypt_cleaver"],
-	    		[1, "scripts/items/weapons/ancient/rhomphaia"]
-	    	]).roll();
+				[1, "scripts/items/weapons/ancient/khopesh"],
+				[1, "scripts/items/weapons/ancient/crypt_cleaver"],
+				[1, "scripts/items/weapons/ancient/rhomphaia"]
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}

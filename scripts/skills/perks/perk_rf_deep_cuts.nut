@@ -1,6 +1,6 @@
 this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 	m = {
-	    TargetID = null,
+		TargetID = null,
 		NumInjuriesBefore = 0,
 		InjuryThresholdReduction = 33
 	},
@@ -67,8 +67,8 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 
 		// Attacking the same target as previous attack
 		if (this.m.TargetID == _targetEntity.getID())
-	    {
-	      	if (_damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
+		{
+			if (_damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
 			{
 				local actor = this.getContainer().getActor();
 				local effect = ::new("scripts/skills/effects/bleeding_effect");
@@ -85,11 +85,11 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " made a particularly Deep Cut inflicting additional Bleeding on " + ::Const.UI.getColorizedEntityName(_targetEntity));
 				}
 			}
-	    }
-	    else // Set our target
-	    {
+		}
+		else // Set our target
+		{
 			this.m.TargetID = _targetEntity.getID();
-	   	}
+			}
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )

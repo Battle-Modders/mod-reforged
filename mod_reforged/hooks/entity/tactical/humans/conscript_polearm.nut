@@ -6,10 +6,10 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-	    local weapon = this.getMainhandItem();
+		__original();
+		local weapon = this.getMainhandItem();
 
-	    if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Mace))
+		if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Mace))
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 		}

@@ -10,7 +10,7 @@
 			"pg.rf_bow": 0,
 			"pg.rf_crossbow": 0,
 
-			 "pg.special.rf_professional": -1
+			"pg.special.rf_professional": -1
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeSpecialist);

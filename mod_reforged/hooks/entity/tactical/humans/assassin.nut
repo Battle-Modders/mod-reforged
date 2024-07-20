@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/assassin", function(q) {
-    q.onInit = @() function()
-    {
-       this.human.onInit();
+	q.onInit = @() function()
+	{
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Assassin);
 		// b.IsSpecializedInSwords = true;
@@ -30,11 +30,11 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_double_strike"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
-    }
+	}
 
-    q.assignRandomEquipment = @(__original) function()
-    {
-        __original();
-        ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-    }
+	q.assignRandomEquipment = @(__original) function()
+	{
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+	}
 });

@@ -24,7 +24,7 @@ local units = [
 	{
 		ID = "Unit.RF.GhoulHIGH",
 		Troop = "GhoulHIGH",
-		Figure = "figure_ghoul_02",     // I don't know if a 'figure_ghoul_03' exists
+		Figure = "figure_ghoul_02",	 // I don't know if a 'figure_ghoul_03' exists
 		StartingResourceMin = 220	// In vanilla this is 120
 	},
 	{
@@ -91,18 +91,18 @@ local units = [
 		ID = "Unit.RF.SandGolemMEDIUM",
 		Troop = "SandGolemMEDIUM",
 		Figure = "figure_golem_01",
-		Cost = 42   // 35 in Vanilla, 3 Small Golems should cost slightly less than 1 Medium Golem because they always spend their first turn action morphing
+		Cost = 42	// 35 in Vanilla, 3 Small Golems should cost slightly less than 1 Medium Golem because they always spend their first turn action morphing
 	},
 	{	// In Vanilla these never spawn naturally as part of the line-up
 		ID = "Unit.RF.SandGolemHIGH",
 		Troop = "SandGolemHIGH",
-		Figure = "figure_golem_02",    // I don't know if a 'figure_golem_03' exists
-		Cost = 129   // 70 in Vanilla, -!!-
+		Figure = "figure_golem_02",	// I don't know if a 'figure_golem_03' exists
+		Cost = 129	// 70 in Vanilla, -!!-
 	}
 
 	// Possible Hexen
 	{
-		ID = "Unit.RF.Hexe",      // Without Bodyguards
+		ID = "Unit.RF.Hexe",	// Without Bodyguards
 		Troop = "Hexe",
 		Figure = "figure_hexe_01"
 	},

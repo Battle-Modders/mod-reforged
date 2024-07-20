@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/orc_warlord", function(q) {
 	q.onInit = @() function()
 	{
-	    this.actor.onInit();
+		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.OrcWarlord);
 
@@ -66,8 +66,8 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	}
 
 	q.makeMiniboss = @(__original) function()
@@ -87,10 +87,10 @@
 		local weapon = this.getMainhandItem();
 		if (weapon == null) return;
 
-	    if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
-	    {
-	 		this.m.Skills.removeByID("actives.rf_bearded_blade_skill");
- 			this.m.Skills.removeByID("actives.rf_hook_shield_skill");
-	    }
+		if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
+		{
+			this.m.Skills.removeByID("actives.rf_bearded_blade_skill");
+			this.m.Skills.removeByID("actives.rf_hook_shield_skill");
+		}
 	}
 });

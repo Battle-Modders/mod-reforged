@@ -38,23 +38,23 @@
 
 	q.assignRandomEquipment = @() function()
 	{
-	    if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-	    {
-	    	local r = ::Math.rand(1, 2);
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			local r = ::Math.rand(1, 2);
 
-	    	if (r == 1)
-	    	{
-	    		this.m.Items.equip(::new("scripts/items/weapons/hunting_bow"));
-	    		this.m.Items.equip(::new("scripts/items/ammo/quiver_of_arrows"));
-	    	}
-	    	else
-	    	{
-	    		this.m.Items.equip(::new("scripts/items/weapons/crossbow"));
-	    		this.m.Items.equip(::new("scripts/items/ammo/quiver_of_bolts"));
-	    	}
-	    }
+			if (r == 1)
+			{
+				this.m.Items.equip(::new("scripts/items/weapons/hunting_bow"));
+				this.m.Items.equip(::new("scripts/items/ammo/quiver_of_arrows"));
+			}
+			else
+			{
+				this.m.Items.equip(::new("scripts/items/weapons/crossbow"));
+				this.m.Items.equip(::new("scripts/items/ammo/quiver_of_bolts"));
+			}
+		}
 
-	    this.m.Items.addToBag(::new("scripts/items/weapons/dagger"));
+		this.m.Items.addToBag(::new("scripts/items/weapons/dagger"));
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
@@ -88,7 +88,7 @@
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-		    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 		}
 	}
 

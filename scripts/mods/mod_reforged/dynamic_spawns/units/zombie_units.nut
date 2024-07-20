@@ -3,7 +3,7 @@ local units = [
 	{
 		ID = "Unit.RF.Zombie",
 		Troop = "Zombie",
-		Figure = "figure_zombie_01"       // Exclusive
+		Figure = "figure_zombie_01"		// Exclusive
 	},
 	{
 		ID = "Unit.RF.ZombieYeoman",
@@ -17,7 +17,7 @@ local units = [
 		Figure = "figure_zombie_03"
 	},
 	{
-		ID = "Unit.RF.ZombieKnight",     // Fallen Hero
+		ID = "Unit.RF.ZombieKnight",	 // Fallen Hero
 		Troop = "ZombieKnight",
 		Figure = "figure_zombie_03",
 		StartingResourceMin = 200
@@ -25,7 +25,7 @@ local units = [
 	{
 		ID = "Unit.RF.Necromancer",
 		Troop = "Necromancer",
-		Figure = ["figure_necromancer_01", "figure_necromancer_02"]    // In Vanilla 02 is only used for Scourge Spawns. But there they still use 01 randomly aswell
+		Figure = ["figure_necromancer_01", "figure_necromancer_02"]	// In Vanilla 02 is only used for Scourge Spawns. But there they still use 01 randomly aswell
 	},
 
 // Necromancer with Bodyguards
@@ -109,7 +109,7 @@ local units = [
 	{
 		ID = "Unit.RF.Ghost",
 		Troop = "Ghost",
-		Figure = "figure_ghost_01"     // Exclusive
+		Figure = "figure_ghost_01"	 // Exclusive
 	},
 ]
 

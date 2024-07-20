@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/lindwurm_tail", function(q) {
 	q.onInit = @() function()
 	{
-	    if (this.m.ParentID != 0)
+		if (this.m.ParentID != 0)
 		{
 			this.m.Body = ::Tactical.getEntityByID(this.m.ParentID);
 			this.m.Items = this.m.Body.m.Items;

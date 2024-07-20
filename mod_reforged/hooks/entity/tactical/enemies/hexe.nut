@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/hexe", function(q) {
 	q.onInit = @() function()
 	{
-	    this.actor.onInit();
+		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Hexe);
 		b.TargetAttractionMult = 3.0;
@@ -45,7 +45,7 @@
 		// Reforged
 		b.RangedDefense += 10;
 		this.m.BaseProperties.IsAffectedByReach = false;
-    	this.getSkills().update()
+		this.getSkills().update()
 	}
 
 	// switcheroo function to replace loot drops with dummy object
@@ -76,7 +76,7 @@
 				local loot = ::MSU.Class.WeightedContainer([ // new loot drops
 					[1.0, "scripts/items/loot/jade_broche_item"],
 					[1.3, "scripts/items/loot/signet_ring_item"]
-		    	]).rollChance(70);
+				]).rollChance(70);
 
 				if (loot != null) ::new(loot).drop(_tile);
 			}

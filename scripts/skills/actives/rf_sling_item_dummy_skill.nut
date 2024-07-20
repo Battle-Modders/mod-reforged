@@ -11,11 +11,11 @@ this.rf_sling_item_dummy_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Sling Item";
 		this.m.Description = "Propel utility items from your bag, e.g. bombs, pots and flasks, using your sling."
 		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
-        this.m.IsHidden = true;     // This skill should never show up anywhere except as a nested tooltip
+		this.m.IsHidden = true;	 // This skill should never show up anywhere except as a nested tooltip
 
-        // These values will show up on the nested tooltip. These will stop being correct as soon as we introduce indiviual costs for the different pots
-        this.m.ActionPointCost = 5;
-        this.m.FatigueCost = 25;
+		// These values will show up on the nested tooltip. These will stop being correct as soon as we introduce indiviual costs for the different pots
+		this.m.ActionPointCost = 5;
+		this.m.FatigueCost = 25;
 	}
 
 	function getTooltip()

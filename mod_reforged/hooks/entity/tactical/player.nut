@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/player", function(q) {
 
-    // Player and Non-Player are now using the exact same tooltip-structure again because the only difference of the exact values for progressbar has been streamlined
-    // This will make modding easier because now the elements for both types of tooltips have the same IDs
-    q.getTooltip = @(__original) function ( _targetedWithSkill = null )
-    {
-        return this.actor.getTooltip(_targetedWithSkill);
-    }
+	// Player and Non-Player are now using the exact same tooltip-structure again because the only difference of the exact values for progressbar has been streamlined
+	// This will make modding easier because now the elements for both types of tooltips have the same IDs
+	q.getTooltip = @(__original) function ( _targetedWithSkill = null )
+	{
+		return this.actor.getTooltip(_targetedWithSkill);
+	}
 
 	q.onInit = @(__original) function()
 	{

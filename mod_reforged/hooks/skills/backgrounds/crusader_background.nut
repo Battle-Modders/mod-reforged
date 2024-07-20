@@ -12,7 +12,7 @@
 			"pg.rf_polearm": 0,
 			"pg.rf_spear": 0,
 
-            "pg.special.rf_man_of_steel": -1
+			"pg.special.rf_man_of_steel": -1
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);

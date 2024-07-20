@@ -80,12 +80,12 @@ local unitBlocks = [
 		UnitDefs = [{ BaseID = "Unit.RF.Hexe" }, { BaseID = "Unit.RF.HexeOneDirewolf" }, { BaseID = "Unit.RF.HexeTwoDirewolf" }]
 	},
 	{
-		ID = "UnitBlock.RF.HexeBandit",    // Spawn in HexenFights
+		ID = "UnitBlock.RF.HexeBandit",	// Spawn in HexenFights
 		StartingResourceMin = 200,
 		UnitDefs = [{ BaseID = "Unit.RF.BanditRaider" }]
 	},
 	{
-		ID = "UnitBlock.RF.HexeBanditRanged",    // Spawn in HexenFights. In Vanilla they only ever spawn a single marksman alongside several raiders. Never more
+		ID = "UnitBlock.RF.HexeBanditRanged",	// Spawn in HexenFights. In Vanilla they only ever spawn a single marksman alongside several raiders. Never more
 		StartingResourceMin = 200,
 		UnitDefs = [{ BaseID = "Unit.RF.BanditMarksman" }]
 	},

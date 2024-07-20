@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/mercenary_ranged", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.MercenaryRanged);
 		b.TargetAttractionMult = 1.1;
@@ -34,8 +34,8 @@
 
 	q.assignRandomEquipment = @(__original) function()
 	{
-	    __original();
+		__original();
 
-	    ::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	}
 });

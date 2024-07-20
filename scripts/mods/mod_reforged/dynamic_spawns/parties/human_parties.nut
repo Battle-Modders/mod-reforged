@@ -66,7 +66,7 @@ local parties = [
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.MercenaryFrontline", RatioMin = 0.60, RatioMax = 1.00 },
 			{ BaseID = "UnitBlock.RF.MercenaryRanged", RatioMin = 0.12, RatioMax = 0.30 },
-			{ BaseID = "UnitBlock.RF.MercenaryElite", RatioMin = 0.10, RatioMax = 0.25, ReqPartySize = 10 },    // Start spawning at 11+. Only exception is HedgeKnight which appears a in a group of 6 aswell
+			{ BaseID = "UnitBlock.RF.MercenaryElite", RatioMin = 0.10, RatioMax = 0.25, ReqPartySize = 10 },	// Start spawning at 11+. Only exception is HedgeKnight which appears a in a group of 6 aswell
 			{ BaseID = "UnitBlock.RF.Wardog", RatioMin = 0.00, RatioMax = 0.12 }
 		]
 	},
@@ -80,7 +80,7 @@ local parties = [
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.MilitiaFrontline", RatioMin = 0.60, RatioMax = 1.00 },
 			{ BaseID = "UnitBlock.RF.MilitiaRanged", RatioMin = 0.12, RatioMax = 0.35 },
-			{ BaseID = "UnitBlock.RF.MilitiaCaptain", RatioMin = 0.09, RatioMax = 0.09, ReqPartySize = 12 }   // Vanilla: starts spawning in groups of 13+; Vanilla never spawns more than one
+			{ BaseID = "UnitBlock.RF.MilitiaCaptain", RatioMin = 0.09, RatioMax = 0.09, ReqPartySize = 12 }	// Vanilla: starts spawning in groups of 13+; Vanilla never spawns more than one
 		]
 	},
 	{
@@ -94,24 +94,24 @@ local parties = [
 			{ BaseID = "Unit.RF.CaravanDonkey" }
 		],
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.17, RatioMax = 0.20, ReqPartySize = 6 },      // Vanilla: Second Donkey starts spawning at 7+
+			{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.17, RatioMax = 0.20, ReqPartySize = 6 },	// Vanilla: Second Donkey starts spawning at 7+
 			{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.35, RatioMax = 0.80, DeterminesFigure = false },
 			{ BaseID = "UnitBlock.RF.CaravanGuard", RatioMin = 0.15, RatioMax = 0.55, DeterminesFigure = false }
 		]
 	},
 	{
-		ID = "CaravanEscort",   // Caravans spawned for player escort contract
+		ID = "CaravanEscort",	// Caravans spawned for player escort contract
 		HardMin = 4,
 		DefaultFigure = "cart_02",
 		MovementSpeedMult = 0.5,
 		VisibilityMult = 1.0,
 		VisionMult = 0.25,
 		StaticUnitDefs = [
-			{ BaseID = "Unit.RF.CaravanDonkey" },      // In vanilla an escorted caravan can also have only a single Donkey. I chose to force 2 donkey every time instead
+			{ BaseID = "Unit.RF.CaravanDonkey" },	// In vanilla an escorted caravan can also have only a single Donkey. I chose to force 2 donkey every time instead
 			{ BaseID = "Unit.RF.CaravanDonkey" }
 		],
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.15, RatioMax = 0.35, ReqPartySize = 5 },   // Vanilla: Third donkey spawns at 6+
+			{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.15, RatioMax = 0.35, ReqPartySize = 5 },	// Vanilla: Third donkey spawns at 6+
 			{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.50, RatioMax = 1.00, DeterminesFigure = false }
 		]
 	}

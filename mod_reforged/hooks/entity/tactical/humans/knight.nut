@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/knight", function(q) {
 	q.onInit = @() function()
 	{
-	    this.human.onInit();
+		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.Knight);
 		b.TargetAttractionMult = 1.0;
@@ -22,7 +22,7 @@
 
 	q.assignRandomEquipment = @() function()
 	{
-	    local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
+		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
 		if (::Math.rand(1, 100) <= 90)
 		{
@@ -96,11 +96,11 @@
 		if (r <= 25)
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-	    		[1, "scripts/items/weapons/named/named_axe"],
-	    		[1, "scripts/items/weapons/named/named_sword"],
-	    		[1, "scripts/items/weapons/named/named_warhammer"],
+				[1, "scripts/items/weapons/named/named_axe"],
+				[1, "scripts/items/weapons/named/named_sword"],
+				[1, "scripts/items/weapons/named/named_warhammer"],
 				[1, "scripts/items/weapons/named/named_mace"]
-	    	]).roll();
+			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}
