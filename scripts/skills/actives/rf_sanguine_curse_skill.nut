@@ -6,7 +6,7 @@ this.rf_sanguine_curse_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_sanguine_curse";
 		this.m.Name = "Sanguine Curse";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Apply a curse that drains the target of their [Hitpoints|Concept.Hitpoints] and [Stamina|Concept.Fatigue].");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Apply a curse that drains the target of their [Hitpoints|Concept.Hitpoints] and [Stamina.|Concept.Fatigue]");
 		this.m.Icon = "skills/rf_sanguine_curse_skill.png";
 		this.m.IconDisabled = "skills/rf_sanguine_curse_skill.png";
 		this.m.Overlay = "rf_sanguine_curse_skill";
