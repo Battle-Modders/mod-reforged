@@ -1768,8 +1768,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Once per [turn,|Concept.Turn] the first use of the tool in your offhand costs no [Action Points.|Concept.ActionPoints]",
-				"Once per [turn,|Concept.Turn] switching an offhand item costs no [Action Points.|Concept.ActionPoints] Does not work when switching items with a weight of " + ::MSU.Text.colorNegative("10") + " or more. Does not stack with other free item swapping skills e.g. Quick Hands.",
+				"Once per [turn,|Concept.Turn] the first use of your offhand item weighing less than " + ::MSU.Text.colorRed(10) + " costs no [Action Points.|Concept.ActionPoints]",
 				"When equipped with a net, gain the [Trip Artist|NullEntitySkill+rf_trip_artist_effect] effect."
 			]
 		}]
