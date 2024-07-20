@@ -16,7 +16,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Except when using [Shieldwall|Skill+shieldwall], the defense values drop linearly as you build [Fatigue|Concept.Fatigue] up to " + ::MSU.Text.colorizeMult(this.RF_getDefenseMult()) + " at maximum [Fatigue|Concept.Fatigue]")
+				text = ::Reforged.Mod.Tooltips.parseString("Except when using [Shieldwall,|Skill+shieldwall] the defense values drop linearly as you build [Fatigue|Concept.Fatigue] up to " + ::MSU.Text.colorizeMult(this.RF_getDefenseMult()) + " at maximum [Fatigue|Concept.Fatigue]")
 			});
 		}
 

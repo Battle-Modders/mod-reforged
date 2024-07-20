@@ -30,7 +30,7 @@ this.rf_deep_impact_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Damage dealt is reduced by a percentage equal to the ratio of the [Hitpoints|Concept.Hitpoints] damage received to current [Hitpoints|Concept.Hitpoints], up to a maximum of " + ::MSU.Text.colorizeMult(this.m.DamageTotalMultMin))
+				text = ::Reforged.Mod.Tooltips.parseString("Damage dealt is reduced by a percentage equal to the ratio of the [Hitpoints|Concept.Hitpoints] damage received to current [Hitpoints,|Concept.Hitpoints] up to a maximum of " + ::MSU.Text.colorizeMult(this.m.DamageTotalMultMin))
 			});
 		}
 		else

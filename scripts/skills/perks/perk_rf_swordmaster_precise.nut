@@ -5,7 +5,7 @@ this.perk_rf_swordmaster_precise <- ::inherit("scripts/skills/perks/perk_rf_swor
 		this.perk_rf_swordmaster_abstract.create();
 		this.m.ID = "perk.rf_swordmaster_precise";
 		this.m.Name = ::Const.Strings.PerkName.RF_SwordmasterPrecise;
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character is exceptionally precise with the sword, able to consistently strike at the most vulnerable parts. This effect becomes stronger with each [level|Concept.Level].");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character is exceptionally precise with the sword, able to consistently strike at the most vulnerable parts. This effect becomes stronger with each [level.|Concept.Level]");
 		this.m.Icon = "ui/perks/rf_swordmaster_precise.png";
 		this.m.Type = this.m.Type | ::Const.SkillType.StatusEffect;
 	}

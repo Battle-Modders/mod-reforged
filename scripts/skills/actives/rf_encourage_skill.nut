@@ -10,7 +10,7 @@ this.rf_encourage_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_encourage";
 		this.m.Name = "Encourage";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Encourage an ally to raise their current [Morale|Concept.Morale]. Cannot be used on [fleeing|Concept.Morale] or [stunned|Skill+stunned_effect] allies.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Encourage an ally to raise their current [Morale.|Concept.Morale] Cannot be used on [fleeing|Concept.Morale] or [stunned|Skill+stunned_effect] allies.");
 		this.m.Icon = "ui/perks/perk_28_active.png";	// unused vanilla artwork
 		this.m.IconDisabled = "ui/perks/perk_28_active_sw.png";	// unused vanilla artwork
 		this.m.Overlay = "rf_encourage_skill";
