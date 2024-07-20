@@ -12,8 +12,6 @@ this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "";	// A mini-icon would be useful
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsHidden = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

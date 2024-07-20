@@ -25,9 +25,6 @@ this.perk_rf_bone_breaker <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_bone_breaker.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Offensive;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )

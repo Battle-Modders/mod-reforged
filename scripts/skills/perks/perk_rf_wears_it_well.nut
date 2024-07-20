@@ -10,9 +10,6 @@ this.perk_rf_wears_it_well <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_wears_it_well.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onUpdate(_properties)

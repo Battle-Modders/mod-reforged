@@ -12,9 +12,6 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_from_all_sides.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )

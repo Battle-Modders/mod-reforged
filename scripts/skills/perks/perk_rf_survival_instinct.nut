@@ -17,9 +17,6 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "rf_survival_instinct_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = true;
 	}
 
 	function getName()

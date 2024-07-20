@@ -11,9 +11,6 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "rf_swift_stabs_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()

@@ -16,9 +16,6 @@ this.rf_inspiring_presence_buff_effect <- ::inherit("scripts/skills/skill", {
 			"sounds/combat/rf_inspiring_presence_02.wav",
 			"sounds/combat/rf_inspiring_presence_03.wav"
 		];
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsSerialized = false;
 	}
 

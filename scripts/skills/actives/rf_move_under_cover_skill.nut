@@ -18,8 +18,6 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsTargeted = true;
 		this.m.IsTargetingActor = false;
 		this.m.IsVisibleTileNeeded = false;
-		this.m.IsStacking = false;
-		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsDisengagement = true;
 		this.m.ActionPointCost = 0;

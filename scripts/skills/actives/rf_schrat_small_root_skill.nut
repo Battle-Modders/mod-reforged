@@ -26,7 +26,6 @@ this.rf_schrat_small_root_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
-		this.m.IsStacking = false;
 		this.m.IsAttack = true;
 		this.m.IsRanged = false;
 		this.m.IsIgnoredAsAOO = true;

@@ -18,9 +18,6 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "rf_tempo_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()

@@ -17,9 +17,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
-		this.m.IsStacking = false;
 		this.m.IsAttack = true;
-		this.m.IsWeaponSkill = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.ActionPointCost = 1;
 		this.m.FatigueCost = 10;

@@ -11,9 +11,6 @@ this.perk_rf_hip_shooter <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_hip_shooter.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )

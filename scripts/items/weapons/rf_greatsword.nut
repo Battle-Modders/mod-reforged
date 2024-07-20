@@ -16,9 +16,6 @@ this.rf_greatsword <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAgainstShields = true;
 		this.m.IsAoE = true;
-		this.m.AddGenericSkill = true;
-		this.m.ShowQuiver = false;
-		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_sword_two_handed_01";
 		this.m.Value = 2400;
 		this.m.ShieldDamage = 16;

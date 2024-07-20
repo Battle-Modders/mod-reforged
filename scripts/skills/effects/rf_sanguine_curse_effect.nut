@@ -22,7 +22,6 @@ this.rf_sanguine_curse_effect <- ::inherit("scripts/skills/skill", {
 			"sounds/enemies/dlc2/hexe_hex_damage_04.wav"
 		];
 		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsHidden = false;
 		this.m.IsSerialized = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

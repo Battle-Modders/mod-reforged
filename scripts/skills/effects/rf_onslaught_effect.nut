@@ -13,7 +13,6 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "rf_onslaught_effect_mini";
 		this.m.Overlay = "rf_onslaught_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

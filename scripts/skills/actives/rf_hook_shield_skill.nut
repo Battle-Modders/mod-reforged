@@ -36,8 +36,6 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
-		this.m.IsStacking = false;
-		this.m.IsUsingHitchance = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 3;

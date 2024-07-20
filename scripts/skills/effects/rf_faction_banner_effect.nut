@@ -8,7 +8,6 @@ this.rf_faction_banner_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_28.png";
 		this.m.IconMini = "perk_28_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

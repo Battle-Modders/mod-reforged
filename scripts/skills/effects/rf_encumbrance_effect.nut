@@ -8,9 +8,6 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/rf_encumbrance_effect.png";
 		//this.m.IconMini = "rf_armor_fatigue_recovery_effect_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsSerialized = false;
 	}
 

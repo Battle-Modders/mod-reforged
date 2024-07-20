@@ -23,14 +23,9 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
-		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
-		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.ActionPointCost = 0;
 		this.m.FatigueCost = 0;
-		this.m.MinRange = 0;
-		this.m.MaxRange = 0;
 	}
 
 	function isHidden()

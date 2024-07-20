@@ -14,9 +14,6 @@ this.rf_great_khopesh <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAgainstShields = true;
 		this.m.IsAoE = true;
-		this.m.AddGenericSkill = true;
-		this.m.ShowQuiver = false;
-		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_rf_great_khopesh_01";
 		this.m.Value = 2800;
 		this.m.ShieldDamage = 28;

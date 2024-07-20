@@ -6,9 +6,6 @@ this.perk_rf_swordmaster_abstract <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isEnabled()

@@ -8,9 +8,7 @@ this.rf_formidable_approach_manager <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "";
 		this.m.Description = "";
 		this.m.Type = ::Const.SkillType.Special;
-		this.m.IsActive = false;
 		this.m.IsHidden = true;
-		this.m.IsSerialized = false;
 		this.m.IsSerialized = false;
 	}
 

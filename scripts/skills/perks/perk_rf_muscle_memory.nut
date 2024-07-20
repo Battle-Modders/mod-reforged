@@ -10,9 +10,6 @@ this.perk_rf_muscle_memory <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_muscle_memory.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onAfterUpdate(_properties)

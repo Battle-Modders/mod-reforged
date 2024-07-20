@@ -13,9 +13,6 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_offhand_training.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.ItemActionOrder = ::Const.ItemActionOrder.BeforeLast;
 	}
 

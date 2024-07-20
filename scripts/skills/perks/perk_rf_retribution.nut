@@ -11,9 +11,6 @@ this.perk_rf_retribution <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_retribution.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()

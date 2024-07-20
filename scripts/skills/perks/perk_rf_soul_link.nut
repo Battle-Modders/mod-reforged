@@ -21,7 +21,6 @@ this.perk_rf_soul_link <- ::inherit("scripts/skills/skill", {
 			"sounds/enemies/dlc2/hexe_hex_damage_04.wav"
 		];
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		this.m.IsHidden = true;
 	}
 
 	function isHidden()

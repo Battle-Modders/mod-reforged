@@ -8,9 +8,6 @@ this.rf_orc_racial <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/orientation/orc_02_orientation.png";
 		this.m.Type = ::Const.SkillType.Racial | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getTooltip()

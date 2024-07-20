@@ -7,11 +7,8 @@ this.rf_bodyguard <- ::inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "special.rf_bodyguard";
-		this.m.Name = "";
-		this.m.Description = "";
 		this.m.Type = ::Const.SkillType.Special;
 		this.m.IsSerialized = false;
-		this.m.IsActive = false;
 		this.m.IsHidden = true;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_Bodyguard;
 	}

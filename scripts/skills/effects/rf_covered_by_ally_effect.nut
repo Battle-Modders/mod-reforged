@@ -17,7 +17,6 @@ this.rf_covered_by_ally_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Overlay = "rf_covered_by_ally_effect";
 		this.m.SoundOnUse = [];
 		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

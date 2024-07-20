@@ -22,9 +22,6 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 			"sounds/combat/rage_01.wav",
 			"sounds/combat/rage_02.wav"
 		];
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()

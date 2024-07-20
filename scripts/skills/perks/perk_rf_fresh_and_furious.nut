@@ -15,9 +15,6 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "rf_fresh_and_furious_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Any;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 
 		this.m.IconMiniBackup = this.m.IconMini;
 	}

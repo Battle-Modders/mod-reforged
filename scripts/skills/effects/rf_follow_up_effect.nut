@@ -14,8 +14,6 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "rf_follow_up_effect_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsHidden = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

@@ -5,12 +5,9 @@ this.rf_follow_up_proccer <- ::inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "special.rf_follow_up_proccer";
-		this.m.Name = "";
-		this.m.Description = "";
 		this.m.Icon = "ui/perks/rf_follow_up.png";
 		//this.m.IconMini = "perk_01_mini";
 		this.m.Type = ::Const.SkillType.Special;
-		this.m.IsActive = false;
 		this.m.IsHidden = true;
 		this.m.IsSerialized = false;
 	}

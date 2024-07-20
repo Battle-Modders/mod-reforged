@@ -11,8 +11,6 @@ this.rf_inspired_by_champion_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "perk_26_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
 	}
 
 	function getTooltip()

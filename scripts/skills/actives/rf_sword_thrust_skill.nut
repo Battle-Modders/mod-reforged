@@ -24,7 +24,6 @@ this.rf_sword_thrust_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
-		this.m.IsStacking = false;
 		this.m.IsAttack = true;
 		this.m.IsWeaponSkill = true;
 		this.m.InjuriesOnBody = ::Const.Injury.PiercingBody;

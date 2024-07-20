@@ -26,9 +26,6 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
 		this.m.IsTargetingActor = false;
-		this.m.IsVisibleTileNeeded = true;
-		this.m.IsStacking = false;
-		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsUsingActorPitch = true;
 		this.m.ActionPointCost = 5;

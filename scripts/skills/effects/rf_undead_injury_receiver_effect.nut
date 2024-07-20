@@ -9,7 +9,6 @@ this.rf_undead_injury_receiver_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Trait;
-		this.m.IsActive = false;
 		this.m.IsHidden = true;
 	}
 

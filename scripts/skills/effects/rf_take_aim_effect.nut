@@ -13,8 +13,6 @@ this.rf_take_aim_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "rf_take_aim_effect_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Any;
-		this.m.IsActive = false;
-		this.m.IsHidden = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

@@ -13,9 +13,6 @@ this.rf_battle_axe <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.WeaponType = ::Const.Items.WeaponType.Axe;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAgainstShields = true;
-		this.m.AddGenericSkill = true;
-		this.m.ShowQuiver = false;
-		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_rf_battle_axe_01";
 		this.m.Value = 1950;
 		this.m.ShieldDamage = 26;

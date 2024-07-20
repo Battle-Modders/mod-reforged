@@ -16,7 +16,6 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 			"sounds/combat/indomitable_02.wav"
 		];
 		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
-		this.m.IsUsingHitchance = true;
 		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 20;

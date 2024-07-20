@@ -13,9 +13,6 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_kingfisher.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isEnabled()

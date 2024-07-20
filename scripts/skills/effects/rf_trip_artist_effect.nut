@@ -11,9 +11,6 @@ this.rf_trip_artist_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_trip_artist.png";
 		// this.m.IconMini = "rf_trip_artist_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isEnabled()

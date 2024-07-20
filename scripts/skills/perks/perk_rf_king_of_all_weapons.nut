@@ -13,9 +13,6 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "rf_king_of_all_weapons_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()

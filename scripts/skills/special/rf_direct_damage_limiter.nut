@@ -8,13 +8,8 @@ this.rf_direct_damage_limiter <- ::inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "special.rf_direct_damage_limiter";
-		this.m.Name = "";
-		this.m.Description = "";
-		this.m.Icon = "";		
 		this.m.Type = ::Const.SkillType.Special;
 		this.m.Order = ::Const.SkillOrder.VeryLast + 10;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
 		this.m.IsHidden = true;		
 		this.m.IsSerialized = false;
 	}

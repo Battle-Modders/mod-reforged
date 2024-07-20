@@ -11,9 +11,6 @@ this.rf_sapling_harvest_effect <- ::inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = [];
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getDescription()

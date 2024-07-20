@@ -21,11 +21,8 @@ this.rf_adjust_dented_armor_ally_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
-		this.m.IsStacking = false;
-		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsUsingHitchance = false;
-		this.m.IsHidden = true;
 		this.m.ActionPointCost = 7;
 		this.m.FatigueCost = 20;
 		this.m.MinRange = 1;

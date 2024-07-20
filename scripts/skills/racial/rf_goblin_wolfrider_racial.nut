@@ -8,9 +8,6 @@ this.rf_goblin_wolfrider_racial <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/orientation/goblin_05_orientation.png";
 		this.m.Type = ::Const.SkillType.Racial | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Any;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getTooltip()

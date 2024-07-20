@@ -15,8 +15,6 @@ this.return_favor_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "rf_return_favor_effect_mini";
 		this.m.Overlay = "rf_return_favor_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

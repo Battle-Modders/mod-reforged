@@ -12,9 +12,6 @@ this.rf_poleaxe <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
-		this.m.AddGenericSkill = true;
-		this.m.ShowQuiver = false;
-		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_rf_poleaxe_01";
 		this.m.Value = 2800;
 		this.m.ShieldDamage = 0;

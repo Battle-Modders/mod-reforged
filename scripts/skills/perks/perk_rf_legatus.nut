@@ -8,9 +8,6 @@ this.perk_rf_legatus <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_legatus.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onUpdate( _properties )

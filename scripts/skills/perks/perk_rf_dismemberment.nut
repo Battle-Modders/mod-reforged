@@ -13,9 +13,6 @@ this.perk_rf_dismemberment <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_dismemberment.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	// Get all the possible injuries, filter out any that are already present on the target or are excluded from the target

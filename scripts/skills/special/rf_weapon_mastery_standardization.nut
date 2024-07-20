@@ -8,9 +8,7 @@ this.rf_weapon_mastery_standardization <- ::inherit("scripts/skills/skill", {
 		this.m.Type = ::Const.SkillType.Special;
 		this.m.Order = ::Const.SkillOrder.Background;
 		this.m.IsSerialized = false;
-		this.m.IsActive = false;
 		this.m.IsHidden = true;
-		this.m.IsRemovedAfterBattle = false;
 	}
 
 	function onUpdate( _properties )

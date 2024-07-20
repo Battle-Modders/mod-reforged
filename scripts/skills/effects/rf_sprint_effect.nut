@@ -11,7 +11,6 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "rf_sprint_effect_mini";
 		this.m.Overlay = "rf_sprint_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

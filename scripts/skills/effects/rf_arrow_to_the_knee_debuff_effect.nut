@@ -13,8 +13,6 @@ this.rf_arrow_to_the_knee_debuff_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IconMini = "rf_arrow_to_the_knee_debuff_effect_mini";
 		this.m.Overlay = "rf_arrow_to_the_knee_debuff_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

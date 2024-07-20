@@ -11,9 +11,6 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_fencer.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Any;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isEnabled()

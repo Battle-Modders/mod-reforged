@@ -10,7 +10,6 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Crowded";
 		this.m.Description = "Long range melee weapons are harder to use in a crowded environment. When using such weapons, any melee attack with a base range of 2 or more tiles has its hit chance reduced by " + ::MSU.Text.colorizePercentage(-this.m.MalusPerAlly) + " per adjacent ally (ignoring the first two adjacent allies) and " + ::MSU.Text.colorizePercentage(-this.m.MalusPerEnemy) + " per adjacent enemy.";
 		this.m.Type = ::Const.SkillType.Special;
-		this.m.IsActive = false;
 		this.m.IsHidden = true;
 		this.m.IsSerialized = false;
 	}

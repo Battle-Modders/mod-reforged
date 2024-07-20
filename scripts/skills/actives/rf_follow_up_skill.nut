@@ -13,14 +13,9 @@ this.rf_follow_up_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
-		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
-		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 30;
-		this.m.MinRange = 0;
-		this.m.MaxRange = 0;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_FollowUp;
 	}
 

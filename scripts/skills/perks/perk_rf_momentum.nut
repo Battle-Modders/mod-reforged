@@ -13,9 +13,6 @@ this.perk_rf_momentum <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_momentum.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()

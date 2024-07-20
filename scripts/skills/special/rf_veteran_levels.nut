@@ -7,9 +7,7 @@ this.rf_veteran_levels <- ::inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.Type = ::Const.SkillType.Special;
 		this.m.IsSerialized = false;
-		this.m.IsActive = false;
 		this.m.IsHidden = true;
-		this.m.IsRemovedAfterBattle = false;
 	}
 
 	function onUpdateLevel()

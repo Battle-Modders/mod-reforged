@@ -11,9 +11,6 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/rf_reach_effect.png";
 		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast + 100;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsSerialized = false;
 	}
 

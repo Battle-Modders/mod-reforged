@@ -8,9 +8,6 @@ this.perk_rf_back_to_basics <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/rf_back_to_basics.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsRefundable = false;
 	}
 
