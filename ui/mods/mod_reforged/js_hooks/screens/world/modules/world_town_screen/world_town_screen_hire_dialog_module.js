@@ -19,7 +19,7 @@ WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	this.mDetailsPanel.mModules = [
 		this.mDetailsPanel.Container.find(".is-character-container"), // The character icon, description etc that will be hidden
 		this.mDetailsPanel.CharacterBackgroundPerkGroupsContainer,
-		this.mDetailsPanel.CharacterBackgroundPerksContainer,
+		this.mDetailsPanel.CharacterBackgroundPerksContainer
 	];
 	$.each(this.mDetailsPanel.mModules, $.proxy(function(_idx, _module)
 	{

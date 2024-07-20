@@ -9,7 +9,7 @@
 			"pg.rf_unstoppable": 2,
 			"pg.rf_bow": 0,
 			"pg.rf_crossbow": 0,
-			"pg.rf_dagger": 0,
+			"pg.rf_dagger": 0
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeSpecialist);

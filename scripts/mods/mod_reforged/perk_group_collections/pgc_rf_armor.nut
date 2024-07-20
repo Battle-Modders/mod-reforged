@@ -10,7 +10,7 @@ this.pgc_rf_armor <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 		this.m.Groups = [
 			"pg.rf_light_armor",
 			"pg.rf_medium_armor",
-			"pg.rf_heavy_armor",
+			"pg.rf_heavy_armor"
 		];
 	}
 });

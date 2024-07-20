@@ -17,7 +17,7 @@ this.pgc_rf_exclusive_1 <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 			"pg.rf_soldier",
 			"pg.rf_swordmaster",
 			"pg.rf_wildling",
-			"pg.rf_trapper",
+			"pg.rf_trapper"
 		];
 	}
 });

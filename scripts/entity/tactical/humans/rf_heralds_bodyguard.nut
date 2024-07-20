@@ -141,7 +141,7 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 			local helmet = ::new(::MSU.Class.WeightedContainer([
 				[1, "scripts/items/helmets/rf_sallet_helmet_with_bevor"],
 				[1, "scripts/items/helmets/rf_half_closed_sallet_with_mail"],
-				[1, "scripts/items/helmets/full_helm"],
+				[1, "scripts/items/helmets/full_helm"]
 			]).roll());
 
 			helmet.setPlainVariant();

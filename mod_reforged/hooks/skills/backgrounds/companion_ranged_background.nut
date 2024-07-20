@@ -11,7 +11,7 @@
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [],
 				"pgc.rf_shared_1": [
-					"pg.rf_agile",
+					"pg.rf_agile"
 				],
 				"pgc.rf_weapon": [
 					"pg.rf_bow",

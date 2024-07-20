@@ -6,7 +6,7 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 		StartingTile = null,
 		IsIconSet = false,
 		CurrAPBonus = 0,
-		CurrFatBonus = 0,
+		CurrFatBonus = 0
 	},
 	function create()
 	{

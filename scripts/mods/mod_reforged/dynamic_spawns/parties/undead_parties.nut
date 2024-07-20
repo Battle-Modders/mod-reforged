@@ -112,7 +112,7 @@ local parties = [
 					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, HardMax = 2, StartingResourceMin = 180, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
 					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, HardMax = 1, StartingResourceMin = 300, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } }
 				]
-			}],
+			}]
 		])
 	},
 	{

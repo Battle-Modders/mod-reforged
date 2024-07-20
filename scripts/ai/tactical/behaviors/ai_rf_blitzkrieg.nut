@@ -3,7 +3,7 @@ this.ai_rf_blitzkrieg <- ::inherit("scripts/ai/tactical/behavior", {
 		Skill = null,
 		PossibleSkills = [
 			"actives.rf_blitzkrieg"
-		],
+		]
 	},
 	function create()
 	{

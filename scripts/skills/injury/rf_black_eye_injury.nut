@@ -2,7 +2,7 @@ this.rf_black_eye_injury <- ::inherit("scripts/skills/injury/injury", {
 	m = {
 		VisionModifier = -1,
 		MeleeSkillMult = 0.9,
-		RangedSkillMult = 0.9,
+		RangedSkillMult = 0.9
 	},
 	function create()
 	{

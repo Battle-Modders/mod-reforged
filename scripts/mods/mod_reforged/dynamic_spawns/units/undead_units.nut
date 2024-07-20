@@ -3,7 +3,7 @@ local units = [
 	{
 		ID = "Unit.RF.SkeletonLight",
 		Troop = "SkeletonLight",
-		Figure = "figure_rf_skeleton_light",
+		Figure = "figure_rf_skeleton_light"
 	},
 	{
 		ID = "Unit.RF.SkeletonMedium",
@@ -134,7 +134,7 @@ local units = [
 		StartingResourceMin = 375,
 		Cost = 40,
 		SubPartyDef = {BaseID = "SubPartyHonor2", IsUsingTopPartyResources = false}
-	},
+	}
 ];
 
 foreach (unitDef in units)

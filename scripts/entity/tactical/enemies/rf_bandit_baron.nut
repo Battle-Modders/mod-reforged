@@ -110,7 +110,7 @@ this.rf_bandit_baron <- ::inherit("scripts/entity/tactical/human", {
 					[1, "scripts/items/weapons/fighting_spear"],
 					[1, "scripts/items/weapons/noble_sword"],
 					[1, "scripts/items/weapons/warhammer"],
-					[1, "scripts/items/weapons/winged_mace"],
+					[1, "scripts/items/weapons/winged_mace"]
 				]).roll();
 
 				this.m.Items.equip(::new(weapon));

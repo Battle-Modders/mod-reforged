@@ -1,7 +1,7 @@
 this.rf_worn_down_effect <- ::inherit("scripts/skills/skill", {
 	m = {
 		FatigueCostMult = 1.1,
-		InitiativeMult = 0.9,
+		InitiativeMult = 0.9
 	},
 	function create()
 	{

@@ -21,7 +21,7 @@ this.pg_rf_swordmaster <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 					"perk.rf_swordmaster_juggernaut",
 					"perk.rf_swordmaster_versatile_swordsman",
 					"perk.rf_swordmaster_precise",
-					"perk.rf_swordmaster_reaper",
+					"perk.rf_swordmaster_reaper"
 				],
 				[],
 				[],

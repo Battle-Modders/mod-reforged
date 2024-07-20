@@ -7,7 +7,7 @@ local unitBlocks = [
 			[1, { BaseID = "Unit.RF.NecromancerYK" }],
 			[1, { BaseID = "Unit.RF.NecromancerKK" }]
 		])
-	},
+	}
 ]
 
 foreach (blockDef in unitBlocks)

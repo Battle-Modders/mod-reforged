@@ -25,7 +25,7 @@ this.rf_cheap_trick_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = ::MSU.Text.colorizePercentage(this.m.HitChanceModifier) + " chance to hit with your next attack",
+				text = ::MSU.Text.colorizePercentage(this.m.HitChanceModifier) + " chance to hit with your next attack"
 			});
 		}
 
@@ -35,7 +35,7 @@ this.rf_cheap_trick_effect <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/damage_regular.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizeMult(this.m.DamageRegularMult ) + " less damage with your next attack"),
+				text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizeMult(this.m.DamageRegularMult ) + " less damage with your next attack")
 			});
 		}
 
@@ -43,7 +43,7 @@ this.rf_cheap_trick_effect <- ::inherit("scripts/skills/skill", {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using [Wait|Concept.Wait] or ending the [turn|Concept.Turn]"),
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using [Wait|Concept.Wait] or ending the [turn|Concept.Turn]")
 		});
 
 		return ret;
@@ -84,7 +84,7 @@ this.rf_cheap_trick_effect <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
-				text = ::MSU.Text.colorizePercentage(this.m.HitChanceModifier) + " " + this.getName(),
+				text = ::MSU.Text.colorizePercentage(this.m.HitChanceModifier) + " " + this.getName()
 			});
 		}
 	}

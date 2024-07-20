@@ -1,7 +1,7 @@
 this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 	m = {
 		Stacks = 0,
-		MalusPerStack = 5,
+		MalusPerStack = 5
 	},
 	function create()
 	{

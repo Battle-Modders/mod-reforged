@@ -6,7 +6,7 @@
 			"pg.rf_tactician": 3,
 			"pg.rf_trained": 1.4,
 			"pg.rf_unstoppable": 1.5,
-			"pg.rf_vicious": 1.5,
+			"pg.rf_vicious": 1.5
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.RangedBackground);

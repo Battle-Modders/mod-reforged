@@ -8,7 +8,7 @@
 			"pg.rf_vigorous": 2,
 			"pg.rf_dagger": 0,
 			"pg.rf_polearm": 0,
-			"pg.rf_spear": 0,
+			"pg.rf_spear": 0
 		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {

@@ -5,7 +5,7 @@ this.rf_cheap_trick_skill <- ::inherit("scripts/skills/skill", {
 		DamageRegularMult = 0.50,
 
 		// Private
-		IsSpent = false,
+		IsSpent = false
 	},
 	function create()
 	{
@@ -33,7 +33,7 @@ this.rf_cheap_trick_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Gain " + ::MSU.Text.colorizePercentage(this.m.HitChanceModifier) + " chance to hit with your next attack",
+				text = "Gain " + ::MSU.Text.colorizePercentage(this.m.HitChanceModifier) + " chance to hit with your next attack"
 			});
 		}
 
@@ -43,7 +43,7 @@ this.rf_cheap_trick_skill <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizeMult(this.m.DamageRegularMult ) + " less damage with your next attack"),
+				text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizeMult(this.m.DamageRegularMult ) + " less damage with your next attack")
 			});
 		}
 
@@ -53,7 +53,7 @@ this.rf_cheap_trick_skill <- ::inherit("scripts/skills/skill", {
 				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed(::Reforged.Mod.Tooltips.parseString("Can only be used once per [turn|Concept.Turn]")),
+				text = ::MSU.Text.colorRed(::Reforged.Mod.Tooltips.parseString("Can only be used once per [turn|Concept.Turn]"))
 			});
 		}
 

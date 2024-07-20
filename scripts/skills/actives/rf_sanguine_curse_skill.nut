@@ -14,7 +14,7 @@ this.rf_sanguine_curse_skill <- ::inherit("scripts/skills/skill", {
 			"sounds/combat/rf_sanguine_curse_skill_01.wav",
 			"sounds/combat/rf_sanguine_curse_skill_02.wav",
 			"sounds/combat/rf_sanguine_curse_skill_03.wav",
-			"sounds/combat/rf_sanguine_curse_skill_04.wav",
+			"sounds/combat/rf_sanguine_curse_skill_04.wav"
 		];
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.UtilityTargeted;

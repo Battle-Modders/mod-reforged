@@ -6,7 +6,7 @@
 			"pg.rf_agile": 0.9,
 			"pg.rf_fast": 0.8,
 			"pg.rf_tough": 3,
-			"pg.rf_vigorous": 3,
+			"pg.rf_vigorous": 3
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);

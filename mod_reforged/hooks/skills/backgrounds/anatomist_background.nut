@@ -11,7 +11,7 @@
 			"pg.rf_mace": 0.75,
 			"pg.rf_power": 0.75,
 			"pg.rf_shield": 0.75,
-			"pg.special.rf_student": 2,
+			"pg.special.rf_student": 2
 		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {

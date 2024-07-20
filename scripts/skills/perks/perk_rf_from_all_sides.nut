@@ -2,7 +2,7 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredWeaponType = ::Const.Items.WeaponType.Flail,
 		SkillCount = 0,
-		LastTargetID = 0,
+		LastTargetID = 0
 	},
 	function create()
 	{

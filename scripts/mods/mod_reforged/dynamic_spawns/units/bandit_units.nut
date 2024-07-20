@@ -6,7 +6,7 @@ local units = [
 	},
 	{
 		ID = "Unit.RF.Wardog",
-		Troop = "Wardog",
+		Troop = "Wardog"
 	},
 	{
 		ID = "Unit.RF.BanditMarksmanLOW",
@@ -32,7 +32,7 @@ local units = [
 	},
 	{
 		ID = "Unit.RF.BanditRaiderWolf",
-		Troop = "BanditRaiderWolf",
+		Troop = "BanditRaiderWolf"
 	},
 
 	//New in Reforged

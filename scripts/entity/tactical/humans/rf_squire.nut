@@ -49,7 +49,7 @@ this.rf_squire <- ::inherit("scripts/entity/tactical/human" {
 				[1, "scripts/items/weapons/arming_sword"],
 				[1, "scripts/items/weapons/flail"],
 				[1, "scripts/items/weapons/morning_star"],
-				[1, "scripts/items/weapons/military_pick"],
+				[1, "scripts/items/weapons/military_pick"]
 			]).roll()));
 		}
 

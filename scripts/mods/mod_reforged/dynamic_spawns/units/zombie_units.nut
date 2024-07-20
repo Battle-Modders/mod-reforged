@@ -110,7 +110,7 @@ local units = [
 		ID = "Unit.RF.Ghost",
 		Troop = "Ghost",
 		Figure = "figure_ghost_01"	 // Exclusive
-	},
+	}
 ]
 
 foreach (unitDef in units)

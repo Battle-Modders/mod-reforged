@@ -11,7 +11,7 @@ this.rf_first_turn_initiative <- ::inherit("scripts/skills/skill", {
 		IconNegative = "ui/traits/trait_icon_25.png",	// Hesitant Trait
 
 		// Private
-		CurrentAPBonus = 0,
+		CurrentAPBonus = 0
 	},
 	function create()
 	{
@@ -42,7 +42,7 @@ this.rf_first_turn_initiative <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.CurrentAPBonus) + " [Action Point(s)|Concept.ActionPoints] for this [turn|Concept.Turn]"),
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.CurrentAPBonus) + " [Action Point(s)|Concept.ActionPoints] for this [turn|Concept.Turn]")
 		});
 
 		return ret;

@@ -56,7 +56,7 @@
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = ::MSU.Text.colorGreen("15%") + " increased Initiative"
-			},
+			}
 		]);
 		return ret;
 	}

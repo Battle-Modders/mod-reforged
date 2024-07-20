@@ -23,7 +23,7 @@ this.rf_pocket_sand_skill <- ::inherit("scripts/skills/actives/throw_dirt_skill"
 					id = 20,
 					type = "text",
 					icon = "ui/tooltips/warning.png",
-					text = "Remaining uses: " + ::MSU.Text.colorRed("0"),
+					text = "Remaining uses: " + ::MSU.Text.colorRed("0")
 				});
 			}
 			else
@@ -32,7 +32,7 @@ this.rf_pocket_sand_skill <- ::inherit("scripts/skills/actives/throw_dirt_skill"
 					id = 20,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "Remaining uses: " + ::MSU.Text.colorGreen(this.getRemainingUses()),
+					text = "Remaining uses: " + ::MSU.Text.colorGreen(this.getRemainingUses())
 				});
 			}
 		}
@@ -42,7 +42,7 @@ this.rf_pocket_sand_skill <- ::inherit("scripts/skills/actives/throw_dirt_skill"
 				id = 21,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("You have one use for each empty [bag slot|Concept.BagSlots] that you start the battle with"),
+				text = ::Reforged.Mod.Tooltips.parseString("You have one use for each empty [bag slot|Concept.BagSlots] that you start the battle with")
 			});
 		}
 

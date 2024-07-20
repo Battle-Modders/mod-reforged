@@ -3,7 +3,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		APRecovered = 4,
 		FatCostRed = 50,
 		IsPrimed = false,
-		AttacksRemaining = 2,
+		AttacksRemaining = 2
 	},
 	function create()
 	{

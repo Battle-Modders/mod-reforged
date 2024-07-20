@@ -13,7 +13,7 @@
 	Stamina = 100,
 	MeleeSkill = 55,
 	MeleeDefense = -5,
-	Initiative = 60,
+	Initiative = 60
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.BanditRaider, {
 	XP = 275,

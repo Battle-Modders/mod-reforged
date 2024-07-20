@@ -37,7 +37,7 @@
 			ID = "injury.rf_heat_stroke",
 			Threshold = 0.25,
 			Script = "injury/rf_heat_stroke_injury"
-		},
+		}
 	]);
 
 	::Const.Injury.BluntAndPiercingHead.extend([
@@ -50,7 +50,7 @@
 			ID = "injury.rf_dislocated_jaw",
 			Threshold = 0.25,
 			Script = "injury/rf_dislocated_jaw_injury"
-		},
+		}
 	]);
 
 	::Const.Injury.Burning.extend([
@@ -58,7 +58,7 @@
 			ID = "injury.rf_heat_stroke",
 			Threshold = 0.25,
 			Script = "injury/rf_heat_stroke_injury"
-		},
+		}
 	]);
 
 	::Const.Injury.BurningAndPiercingBody.extend([
@@ -66,7 +66,7 @@
 			ID = "injury.rf_heat_stroke",
 			Threshold = 0.25,
 			Script = "injury/rf_heat_stroke_injury"
-		},
+		}
 	]);
 }
 

@@ -19,7 +19,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Applies the [Distracted|Skill+distracted_effect] effect on the target"),
+			text = ::Reforged.Mod.Tooltips.parseString("Applies the [Distracted|Skill+distracted_effect] effect on the target")
 		});
 
 		return ret;

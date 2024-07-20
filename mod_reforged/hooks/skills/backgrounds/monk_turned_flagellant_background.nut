@@ -9,7 +9,7 @@
 			"pg.rf_heavy_armor": 0,
 			"pg.rf_power": 2,
 			"pg.rf_shield": 0,
-			"pg.rf_swift": 2,
+			"pg.rf_swift": 2
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);

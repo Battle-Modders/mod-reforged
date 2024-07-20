@@ -15,7 +15,7 @@
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					"pg.rf_soldier",
-					"pg.rf_swordmaster",
+					"pg.rf_swordmaster"
 				],
 				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [
@@ -79,7 +79,7 @@
 			"perk.mastery.mace",
 			"perk.mastery.polearm",
 			"perk.mastery.spear",
-			"perk.mastery.throwing",
+			"perk.mastery.throwing"
 		];
 		foreach (perk in perksToRemove)
 		{

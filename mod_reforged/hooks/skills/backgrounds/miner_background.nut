@@ -7,7 +7,7 @@
 			"pg.rf_vigorous": 0.165,
 			"pg.rf_flail": 1.5,
 			"pg.rf_mace": 1.5
-			"pg.rf_swift": 0.5,
+			"pg.rf_swift": 0.5
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);

@@ -15,7 +15,7 @@ this.pgc_rf_shared_1 <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 			"pg.rf_tactician",
 			"pg.rf_trained",
 			"pg.rf_unstoppable",
-			"pg.rf_vicious",
+			"pg.rf_vicious"
 		];
 	}
 });

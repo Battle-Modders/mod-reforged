@@ -3,7 +3,7 @@ this.perk_rf_entrenched <- ::inherit("scripts/skills/skill", {
 		FirstStackBonus = 7,
 		BonusPerStack = 2,
 		MaxStacks = 5,
-		Stacks = 0,
+		Stacks = 0
 	},
 	function create()
 	{

@@ -75,7 +75,7 @@
 					[1, "scripts/items/weapons/military_cleaver"],
 					[1, "scripts/items/weapons/noble_sword"],
 					[1, "scripts/items/weapons/warhammer"],
-					[1, "scripts/items/weapons/winged_mace"],
+					[1, "scripts/items/weapons/winged_mace"]
 				]).roll();
 
 				this.m.Items.equip(::new(weapon));

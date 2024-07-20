@@ -3,7 +3,7 @@ this.ai_rf_follow_up <- ::inherit("scripts/ai/tactical/behavior", {
 		Skill = null,
 		PossibleSkills = [
 			"actives.rf_follow_up"
-		],
+		]
 	},
 	function create()
 	{

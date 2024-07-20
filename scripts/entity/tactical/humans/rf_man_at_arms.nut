@@ -48,7 +48,7 @@ this.rf_man_at_arms <- ::inherit("scripts/entity/tactical/human" {
 				[1, "scripts/items/weapons/longsword"],
 				[1, "scripts/items/weapons/rf_swordstaff"],
 				[1, "scripts/items/weapons/two_handed_flanged_mace"],
-				[1, "scripts/items/weapons/two_handed_flail"],
+				[1, "scripts/items/weapons/two_handed_flail"]
 			]).roll()));
 		}
 

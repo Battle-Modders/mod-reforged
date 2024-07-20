@@ -1,6 +1,6 @@
 this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 	m = {
-		RequiredWeaponType = ::Const.Items.WeaponType.Hammer,
+		RequiredWeaponType = ::Const.Items.WeaponType.Hammer
 	},
 	function create()
 	{

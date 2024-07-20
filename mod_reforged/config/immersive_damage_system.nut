@@ -38,7 +38,7 @@
 			],
 			FluffRanged = [
 				" made a decent shot",
-				"\'s shot was nothing to be ashamed of",
+				"\'s shot was nothing to be ashamed of"
 			]
 		},
 		{
