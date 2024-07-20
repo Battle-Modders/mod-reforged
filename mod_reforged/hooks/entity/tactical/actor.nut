@@ -19,7 +19,6 @@
 		__original();
 		this.getSkills().add(::new("scripts/skills/effects/rf_encumbrance_effect"));
 		this.getSkills().add(::new("scripts/skills/effects/rf_inspired_by_champion_effect"));
-		this.getSkills().add(::new("scripts/skills/effects/rf_immersive_damage_effect"));
 		this.getSkills().add(::new("scripts/skills/special/rf_reach"));
 		this.getSkills().add(::new("scripts/skills/special/rf_formidable_approach_manager"));
 		this.getSkills().add(::new("scripts/skills/special/rf_direct_damage_limiter"));
