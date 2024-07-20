@@ -41,7 +41,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			id = 12,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s [Reach|Concept.Reach]")
+			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorNegative("one-third") + " of your weapon\'s [Reach|Concept.Reach]")
 		});
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
@@ -67,7 +67,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png"
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Removes") + " all skills from the currently equipped sword and " + ::MSU.Text.colorGreen("adds") + " the [Bash|Skill+bash] and [Knock Out|Skill+knock_out] or the [Cudgel|Skill+cudgel_skill] and [Strike Down|Skill+strike_down_skill] skills for one-handed and two-handed swords respectively")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Removes") + " all skills from the currently equipped sword and " + ::MSU.Text.colorPositive("adds") + " the [Bash|Skill+bash] and [Knock Out|Skill+knock_out] or the [Cudgel|Skill+cudgel_skill] and [Strike Down|Skill+strike_down_skill] skills for one-handed and two-handed swords respectively")
 		});
 
 		tooltip.push({
@@ -81,7 +81,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			id = 12,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorRed("one-third") + " of your weapon\'s [Reach|Concept.Reach]")
+			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorNegative("one-third") + " of your weapon\'s [Reach|Concept.Reach]")
 		});
 
 		tooltip.push({

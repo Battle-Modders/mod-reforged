@@ -62,7 +62,7 @@ this.rf_trip_artist_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorRed("Requires an equipped net")
+			text = ::MSU.Text.colorNegative("Requires an equipped net")
 		});
 		return tooltip;
 	}

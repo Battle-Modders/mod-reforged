@@ -9,7 +9,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/reach.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Ignore " + ::MSU.Text.colorGreen(reachIgnore) + " [Reach Disadvantage|Concept.ReachAdvantage] when attacking")
+				text = ::Reforged.Mod.Tooltips.parseString("Ignore " + ::MSU.Text.colorPositive(reachIgnore) + " [Reach Disadvantage|Concept.ReachAdvantage] when attacking")
 			});
 		}
 		return ret;

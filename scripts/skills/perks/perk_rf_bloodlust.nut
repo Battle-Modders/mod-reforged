@@ -52,7 +52,7 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 			id = 13,
 			type = "text",
 			icon = "ui/tooltips/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("These effects are reduced by " + ::MSU.Text.colorRed("-" + (this.m.MultPerStack * 100) + "%") + " every [turn|Concept.Turn] until another fatality")
+			text = ::Reforged.Mod.Tooltips.parseString("These effects are reduced by " + ::MSU.Text.colorNegative("-" + (this.m.MultPerStack * 100) + "%") + " every [turn|Concept.Turn] until another fatality")
 		});
 		return ret;
 	}

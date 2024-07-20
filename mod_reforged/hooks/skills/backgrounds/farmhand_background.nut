@@ -38,7 +38,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorGreen("+10%") + " chance to hit with [Pitchfork|Item+pitchfork] and " + ::MSU.Text.colorGreen("+5%") + " chance to hit with [Hooked Blade|Item+hooked_blade]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+10%") + " chance to hit with [Pitchfork|Item+pitchfork] and " + ::MSU.Text.colorPositive("+5%") + " chance to hit with [Hooked Blade|Item+hooked_blade]")
 		});
 		return ret;
 	}

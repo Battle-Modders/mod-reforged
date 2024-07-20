@@ -18,7 +18,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Receive " + ::MSU.Text.colorRed(this.getDamage()) + " damage per [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("Receive " + ::MSU.Text.colorNegative(this.getDamage()) + " damage per [turn|Concept.Turn]")
 		});
 
 		if (this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID())
@@ -51,7 +51,7 @@
 			id = 13,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("If at least " + ::MSU.Text.colorRed(this.m.StacksForMoraleCheck) + " stacks are received in a single [turn|Concept.Turn], a negative [morale check|Concept.Morale] is immediately triggered")
+			text = ::Reforged.Mod.Tooltips.parseString("If at least " + ::MSU.Text.colorNegative(this.m.StacksForMoraleCheck) + " stacks are received in a single [turn|Concept.Turn], a negative [morale check|Concept.Morale] is immediately triggered")
 		});
 		return ret;
 	}

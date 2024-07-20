@@ -38,7 +38,7 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorRed("+" + fatigueBuildUp) + " Fatigue at the start of every turn"
+				text = ::MSU.Text.colorNegative("+" + fatigueBuildUp) + " Fatigue at the start of every turn"
 			});
 		}
 
@@ -49,7 +49,7 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorRed("+" + travelCost) + " Fatigue built per tile traveled"
+				text = ::MSU.Text.colorNegative("+" + travelCost) + " Fatigue built per tile traveled"
 			});
 		}
 

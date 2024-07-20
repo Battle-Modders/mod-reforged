@@ -45,7 +45,7 @@ this.rf_encourage_skill <- ::inherit("scripts/skills/skill", {
 				id = 15,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Has a range of " + ::MSU.Text.colorGreen(this.getMaxRange()) + " tiles"
+				text = "Has a range of " + ::MSU.Text.colorPositive(this.getMaxRange()) + " tiles"
 			},
 			{
 				id = 16,

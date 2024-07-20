@@ -17,7 +17,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/campfire.png",
-				text = ::MSU.Text.colorRed("33%") + " reduced burning damage received"
+				text = ::MSU.Text.colorNegative("33%") + " reduced burning damage received"
 			},
 			/*{
 				id = 13,

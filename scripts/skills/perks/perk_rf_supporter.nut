@@ -63,7 +63,7 @@ this.perk_rf_supporter <- ::inherit("scripts/skills/skill", {
 			local actor = this.getContainer().getActor();
 			local recoveredActionPoints = ::Math.min(actor.getActionPointsMax() - actor.getActionPoints(), this.m.ActionPointsRecovered);
 			actor.setActionPoints(actor.getActionPoints() + recoveredActionPoints);
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " recovers " + ::MSU.Text.colorGreen(recoveredActionPoints) + " Action Point(s)");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " recovers " + ::MSU.Text.colorPositive(recoveredActionPoints) + " Action Point(s)");
 		}
 	}
 });

@@ -35,7 +35,7 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorRed("Will be lost upon moving, swapping an item, using any skill except a single-target attack, missing an attack, or waiting or ending the turn")
+			text = ::MSU.Text.colorNegative("Will be lost upon moving, swapping an item, using any skill except a single-target attack, missing an attack, or waiting or ending the turn")
 		});
 
 		return tooltip;

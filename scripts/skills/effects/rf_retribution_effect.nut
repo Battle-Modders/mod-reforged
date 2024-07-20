@@ -29,14 +29,14 @@ this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = ::MSU.Text.colorGreen((this.m.Stacks * this.m.BonusPerStack) + "%") + " increased damage dealt"
+			text = ::MSU.Text.colorPositive((this.m.Stacks * this.m.BonusPerStack) + "%") + " increased damage dealt"
 		});
 
 		tooltip.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorRed("Will expire upon performing an attack or ending the turn")
+			text = ::MSU.Text.colorNegative("Will expire upon performing an attack or ending the turn")
 		});
 
 		return tooltip;
@@ -53,14 +53,14 @@ this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "Stacking " + ::MSU.Text.colorGreen(this.m.BonusPerStack + "%") + " increased damage dealt for every hit received"
+			text = "Stacking " + ::MSU.Text.colorPositive(this.m.BonusPerStack + "%") + " increased damage dealt for every hit received"
 		});
 
 		tooltip.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorRed("Will expire upon performing the next attack or ending the turn")
+			text = ::MSU.Text.colorNegative("Will expire upon performing the next attack or ending the turn")
 		});
 
 		return tooltip;

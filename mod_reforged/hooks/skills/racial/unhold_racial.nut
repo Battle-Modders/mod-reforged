@@ -16,7 +16,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "At the start of each turn, this character heals by " + ::MSU.Text.colorGreen("15%") + " of Maximum Hitpoints"
+				text = "At the start of each turn, this character heals by " + ::MSU.Text.colorPositive("15%") + " of Maximum Hitpoints"
 			},
 			{
 				id = 20,

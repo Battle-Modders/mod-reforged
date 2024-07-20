@@ -9,7 +9,7 @@
 			if (entry.id == 12 && entry.icon == "ui/icons/ranged_defense.png")
 			{
 				// We replace a single line of the vanilla tooltip without touching the rest
-				entry.text = ::MSU.Text.colorGreen("+" + this.m.RangedDefenseBonus) + " Ranged Defense";
+				entry.text = ::MSU.Text.colorPositive("+" + this.m.RangedDefenseBonus) + " Ranged Defense";
 				break;
 			}
 		}

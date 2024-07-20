@@ -287,7 +287,7 @@
 				id = _startID++,
 				type = "text",
 				icon = skill.getIcon(),
-				text = format("%s (%s, %s)", ::Reforged.TacticalTooltip.getNestedSkillName(skill), ::MSU.Text.colorRed(skill.getActionPointCost()), ::MSU.Text.colorGreen(skill.getFatigueCost()))
+				text = format("%s (%s, %s)", ::Reforged.TacticalTooltip.getNestedSkillName(skill), ::MSU.Text.colorNegative(skill.getActionPointCost()), ::MSU.Text.colorPositive(skill.getFatigueCost()))
 			});
 		}
 	}

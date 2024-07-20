@@ -14,7 +14,7 @@
 		{
 			if (entry.id == 12)
 			{
-				entry.text = ::MSU.Text.colorRed("10%") + " reduced melee damage";
+				entry.text = ::MSU.Text.colorNegative("10%") + " reduced melee damage";
 				break;
 			}
 		}
@@ -23,7 +23,7 @@
 			id = 13,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("-1") + " [Reach|Concept.Reach]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("-1") + " [Reach|Concept.Reach]")
 		});
 		return ret;
 	}

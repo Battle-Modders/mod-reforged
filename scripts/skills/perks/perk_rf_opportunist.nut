@@ -33,7 +33,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The next " + ::MSU.Text.colorGreen(this.m.AttacksRemaining) + " throwing attack(s) in this battle have their Action Point costs halved"
+				text = "The next " + ::MSU.Text.colorPositive(this.m.AttacksRemaining) + " throwing attack(s) in this battle have their Action Point costs halved"
 			});
 		}
 
@@ -43,14 +43,14 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "The next throwing attack builds " + ::MSU.Text.colorGreen(this.m.FatCostRed + "%") + " less Fatigue"
+				text = "The next throwing attack builds " + ::MSU.Text.colorPositive(this.m.FatCostRed + "%") + " less Fatigue"
 			});
 
 			tooltip.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("The fatigue reduction will expire upon waiting or ending the turn, swapping your weapon, or using any skill")
+				text = ::MSU.Text.colorNegative("The fatigue reduction will expire upon waiting or ending the turn, swapping your weapon, or using any skill")
 			});
 		}
 
@@ -85,7 +85,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 				id = 90,
 				type = "text",
 				icon = this.m.Icon,
-				text = "Can be used for " + ::MSU.Text.colorGreen(this.getName())
+				text = "Can be used for " + ::MSU.Text.colorPositive(this.getName())
 			});
 		}
 	}

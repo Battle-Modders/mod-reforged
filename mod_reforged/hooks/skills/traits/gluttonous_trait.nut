@@ -17,7 +17,7 @@
 			id = 5,
 			type = "text",
 			icon = "ui/icons/asset_daily_food.png",
-			text = "Consumes " + ::MSU.Text.colorRed("+1") + " food daily"
+			text = "Consumes " + ::MSU.Text.colorNegative("+1") + " food daily"
 		})
 		return ret;
 	}

@@ -33,7 +33,7 @@ this.rf_deep_impact_skill <- ::inherit("scripts/skills/skill", {
 		if (aoo != null && this.isSkillValid(aoo))
 			return this.skill.getCostString();
 
-		return ::Reforged.Mod.Tooltips.parseString("Costs as if your primary attack had a base [Fatigue|Concept.Fatigue] cost of " + ::MSU.Text.colorRed(this.m.FatigueCost));
+		return ::Reforged.Mod.Tooltips.parseString("Costs as if your primary attack had a base [Fatigue|Concept.Fatigue] cost of " + ::MSU.Text.colorNegative(this.m.FatigueCost));
 	}
 
 	function getTooltip()
@@ -57,7 +57,7 @@ this.rf_deep_impact_skill <- ::inherit("scripts/skills/skill", {
 				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Requires a valid attack"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Requires a valid attack"))
 			});
 		}
 		else

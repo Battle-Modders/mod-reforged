@@ -20,7 +20,7 @@ this.rf_orc_racial <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The [threshold|Concept.InjuryThreshold] to sustain [injuries|Concept.InjuryTemporary] on getting hit is increased by " + ::MSU.Text.colorGreen("25%"))
+			text = ::Reforged.Mod.Tooltips.parseString("The [threshold|Concept.InjuryThreshold] to sustain [injuries|Concept.InjuryTemporary] on getting hit is increased by " + ::MSU.Text.colorPositive("25%"))
 		});
 		return ret;
 	}

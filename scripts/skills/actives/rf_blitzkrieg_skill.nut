@@ -54,7 +54,7 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Has already been used by the company this day")
+				text = ::MSU.Text.colorNegative("Has already been used by the company this day")
 			});
 		}
 

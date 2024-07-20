@@ -32,7 +32,7 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Armor penetrating damage through Head Armor is reduced by " + ::MSU.Text.colorGreen(headBonus + "%")
+				text = "Armor penetrating damage through Head Armor is reduced by " + ::MSU.Text.colorPositive(headBonus + "%")
 			});
 		}
 		else
@@ -41,7 +41,7 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("This character\'s Head Armor is too damaged")
+				text = ::MSU.Text.colorNegative("This character\'s Head Armor is too damaged")
 			});
 		}
 
@@ -51,7 +51,7 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Armor penetrating damage through Body Armor is reduced by " + ::MSU.Text.colorGreen(bodyBonus + "%")
+				text = "Armor penetrating damage through Body Armor is reduced by " + ::MSU.Text.colorPositive(bodyBonus + "%")
 			});
 		}
 		else
@@ -60,7 +60,7 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("This character\'s Body Armor is too damaged")
+				text = ::MSU.Text.colorNegative("This character\'s Body Armor is too damaged")
 			});
 		}
 

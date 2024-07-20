@@ -13,43 +13,43 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "Maximum Action Points are set to " + ::MSU.Text.colorGreen("12")
+				text = "Maximum Action Points are set to " + ::MSU.Text.colorPositive("12")
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = ::MSU.Text.colorGreen("+15") + " Melee Skill"
+				text = ::MSU.Text.colorPositive("+15") + " Melee Skill"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorGreen("+10") + " Melee Defense"
+				text = ::MSU.Text.colorPositive("+10") + " Melee Defense"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorGreen("+10") + " Ranged Defense"
+				text = ::MSU.Text.colorPositive("+10") + " Ranged Defense"
 			},
 			{
 				id = 14,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::MSU.Text.colorGreen("+15") + " Resolve"
+				text = ::MSU.Text.colorPositive("+15") + " Resolve"
 			},
 			{
 				id = 15,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Text.colorGreen("+50") + " Initiative"
+				text = ::MSU.Text.colorPositive("+50") + " Initiative"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "All damage received is reduced by " + ::MSU.Text.colorRed("25%")
+				text = "All damage received is reduced by " + ::MSU.Text.colorNegative("25%")
 			}
 		]);
 		return ret;

@@ -22,7 +22,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "This character has been taunted by " + ::MSU.Text.colorRed(this.getTauntSource().getName())
+				text = "This character has been taunted by " + ::MSU.Text.colorNegative(this.getTauntSource().getName())
 			});
 
 			if (this.getMeleeDefenseModifier() != 0)

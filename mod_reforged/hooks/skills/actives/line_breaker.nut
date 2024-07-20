@@ -13,7 +13,7 @@
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorRed("10") + " extra [fatigue|Concept.Fatigue]")
+			text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorNegative("10") + " extra [fatigue|Concept.Fatigue]")
 		});
 		return ret;
 	}

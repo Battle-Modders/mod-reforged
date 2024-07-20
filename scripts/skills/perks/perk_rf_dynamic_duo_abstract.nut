@@ -234,7 +234,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
-				text = ::MSU.Text.colorGreen(this.m.MeleeSkillModifier + "% ") + this.m.Name
+				text = ::MSU.Text.colorPositive(this.m.MeleeSkillModifier + "% ") + this.m.Name
 			});
 		}
 	}
@@ -245,7 +245,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/negative.png",
-				text = ::MSU.Text.colorRed(this.m.MeleeDefenseModifier + "% ") + this.m.Name
+				text = ::MSU.Text.colorNegative(this.m.MeleeDefenseModifier + "% ") + this.m.Name
 			});
 		}
 	}

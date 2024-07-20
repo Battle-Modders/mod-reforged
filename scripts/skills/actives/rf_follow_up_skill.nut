@@ -32,7 +32,7 @@ this.rf_follow_up_skill <- ::inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = "The damage dealt is reduced by " + ::MSU.Text.colorRed("30%") + " and by an additional " + ::MSU.Text.colorRed("10%") + " for every next attack up to a maximum of " + ::MSU.Text.colorRed("90%")
+			text = "The damage dealt is reduced by " + ::MSU.Text.colorNegative("30%") + " and by an additional " + ::MSU.Text.colorNegative("10%") + " for every next attack up to a maximum of " + ::MSU.Text.colorNegative("90%")
 		});
 
 		if (this.getContainer().getActor().isEngagedInMelee())
@@ -41,7 +41,7 @@ this.rf_follow_up_skill <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Cannot be used when engaged in melee")
+				text = ::MSU.Text.colorNegative("Cannot be used when engaged in melee")
 			});
 		}
 
@@ -51,7 +51,7 @@ this.rf_follow_up_skill <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Only usable with Two-Handed Melee weapons")
+				text = ::MSU.Text.colorNegative("Only usable with Two-Handed Melee weapons")
 			});
 		}
 

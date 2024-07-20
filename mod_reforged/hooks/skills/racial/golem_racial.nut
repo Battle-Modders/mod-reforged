@@ -16,19 +16,19 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorRed("50%") + " reduced melee piercing damage received"
+				text = ::MSU.Text.colorNegative("50%") + " reduced melee piercing damage received"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorRed("66%") + " reduced ranged piercing and ranged blunt damage received"
+				text = ::MSU.Text.colorNegative("66%") + " reduced ranged piercing and ranged blunt damage received"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/campfire.png",
-				text = ::MSU.Text.colorRed("90%") + " reduced fire damage received"
+				text = ::MSU.Text.colorNegative("90%") + " reduced fire damage received"
 			},
 			{
 				id = 21,

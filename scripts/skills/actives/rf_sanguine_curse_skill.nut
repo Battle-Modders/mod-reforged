@@ -56,7 +56,7 @@ this.rf_sanguine_curse_skill <- ::inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorRed(::Reforged.Mod.Tooltips.parseString("Only a single [Sanguine Curse|NullEntitySkill+rf_sanguine_curse_effect] can be active at any time"))
+			text = ::MSU.Text.colorNegative(::Reforged.Mod.Tooltips.parseString("Only a single [Sanguine Curse|NullEntitySkill+rf_sanguine_curse_effect] can be active at any time"))
 		});
 		return ret;
 	}

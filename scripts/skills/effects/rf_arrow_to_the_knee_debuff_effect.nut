@@ -26,7 +26,7 @@ this.rf_arrow_to_the_knee_debuff_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::MSU.Text.colorRed(this.m.MovementAPCostAdditional) + " additional Action Points per tile moved"
+			text = ::MSU.Text.colorNegative(this.m.MovementAPCostAdditional) + " additional Action Points per tile moved"
 		});
 
 		return tooltip;

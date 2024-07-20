@@ -36,7 +36,7 @@ this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = "Action Point cost for movement on all terrain will be reduced by " + ::MSU.Text.colorGreen(1)
+			text = "Action Point cost for movement on all terrain will be reduced by " + ::MSU.Text.colorPositive(1)
 		});
 
 		if (this.m.FatigueMult != 1.0)
@@ -55,7 +55,7 @@ this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Cannot be used while rooted")
+				text = ::MSU.Text.colorNegative("Cannot be used while rooted")
 			});
 		}
 

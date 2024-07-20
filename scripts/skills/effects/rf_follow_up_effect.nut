@@ -35,7 +35,7 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorRed("Cannot follow up when engaged in melee")
+				text = ::MSU.Text.colorNegative("Cannot follow up when engaged in melee")
 			});
 		}
 

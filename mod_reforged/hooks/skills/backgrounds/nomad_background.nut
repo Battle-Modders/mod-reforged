@@ -88,7 +88,7 @@
 				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Can only be used once per [turn|Concept.Turn]"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Can only be used once per [turn|Concept.Turn]"))
 			});
 		}
 	}

@@ -26,7 +26,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/reach.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Ignores " + ::MSU.Text.colorGreen(this.getReachIgnore()) + " [Reach Advantage|Concept.ReachAdvantage]")
+				text = ::Reforged.Mod.Tooltips.parseString("Ignores " + ::MSU.Text.colorPositive(this.getReachIgnore()) + " [Reach Advantage|Concept.ReachAdvantage]")
 			});
 		}
 

@@ -33,14 +33,14 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The next " + ::MSU.Text.colorRed("cutting") + " attack(s) this turn against " + ::MSU.Text.colorRed(e.getName()) + " have a " + ::MSU.Text.colorGreen(this.m.InjuryThresholdReduction + "%") + " lower threshold to inflict injury"
+				text = "The next " + ::MSU.Text.colorNegative("cutting") + " attack(s) this turn against " + ::MSU.Text.colorNegative(e.getName()) + " have a " + ::MSU.Text.colorPositive(this.m.InjuryThresholdReduction + "%") + " lower threshold to inflict injury"
 			});
 
 			tooltip.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Will expire upon attacking another target, moving, swapping an item, waiting or ending a turn, or using any skill except a cutting attack")
+				text = ::MSU.Text.colorNegative("Will expire upon attacking another target, moving, swapping an item, waiting or ending a turn, or using any skill except a cutting attack")
 			});
 		}
 

@@ -17,7 +17,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "When being attacked, gain " + ::MSU.Text.colorGreen("+10") + " Melee Defense and Ranged Defense for each tile between you and the attacker"
+				text = "When being attacked, gain " + ::MSU.Text.colorPositive("+10") + " Melee Defense and Ranged Defense for each tile between you and the attacker"
 			},
 			{
 				id = 20,

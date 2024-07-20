@@ -29,7 +29,7 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Reduces the [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangedDefense] granted by shields by " + ::MSU.Text.colorRed("75%"))
+				text = ::Reforged.Mod.Tooltips.parseString("Reduces the [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangedDefense] granted by shields by " + ::MSU.Text.colorNegative("75%"))
 			});
 		}
 		else
@@ -124,7 +124,7 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 		local bonus = _skill.isRanged() ? ::Math.floor(shield.getRangedDefenseBonus() * 0.75) : ::Math.floor(shield.getMeleeDefenseBonus() * 0.75);
 		_tooltip.push({
 			icon = "ui/tooltips/positive.png",
-			text = ::MSU.Text.colorGreen(bonus + "% ") + this.getName()
+			text = ::MSU.Text.colorPositive(bonus + "% ") + this.getName()
 		});
 	}
 
@@ -137,7 +137,7 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Is disabled because of [" + this.getName() + "|Skill+" + filename"]"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Is disabled because of [" + this.getName() + "|Skill+" + filename"]"))
 			});
 		}
 	}

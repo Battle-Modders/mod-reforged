@@ -7,55 +7,55 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = ::MSU.Text.colorGreen("15%") + " increased Damage dealt"
+				text = ::MSU.Text.colorPositive("15%") + " increased Damage dealt"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = ::MSU.Text.colorGreen("15%") + " increased Melee Skill"
+				text = ::MSU.Text.colorPositive("15%") + " increased Melee Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::MSU.Text.colorGreen("15%") + " increased Ranged Skill"
+				text = ::MSU.Text.colorPositive("15%") + " increased Ranged Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorGreen(::Math.floor((this.getDefenseMultiplier() - 1.0) * 100) + "%") + " increased Melee Defense"
+				text = ::MSU.Text.colorPositive(::Math.floor((this.getDefenseMultiplier() - 1.0) * 100) + "%") + " increased Melee Defense"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorGreen(::Math.floor((this.getDefenseMultiplier() - 1.0) * 100) + "%") + " increased Ranged Defense"
+				text = ::MSU.Text.colorPositive(::Math.floor((this.getDefenseMultiplier() - 1.0) * 100) + "%") + " increased Ranged Defense"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = ::MSU.Text.colorGreen(::Math.floor((this.getHitpointMult() - 1.0) * 100) + "%") + " increased Maximum Hitpoints"
+				text = ::MSU.Text.colorPositive(::Math.floor((this.getHitpointMult() - 1.0) * 100) + "%") + " increased Maximum Hitpoints"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorGreen("50%") + " increased Maximum Fatigue"
+				text = ::MSU.Text.colorPositive("50%") + " increased Maximum Fatigue"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::MSU.Text.colorGreen("50%") + " increased Resolve"
+				text = ::MSU.Text.colorPositive("50%") + " increased Resolve"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Text.colorGreen("15%") + " increased Initiative"
+				text = ::MSU.Text.colorPositive("15%") + " increased Initiative"
 			}
 		]);
 		return ret;

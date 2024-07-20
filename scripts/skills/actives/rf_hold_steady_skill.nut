@@ -55,7 +55,7 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorRed("Cannot be used more than once per combat (company-wide)")
+			text = ::MSU.Text.colorNegative("Cannot be used more than once per combat (company-wide)")
 		});
 
 		if (this.m.IsSpent)
@@ -64,7 +64,7 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Has already been used by the company in this combat")
+				text = ::MSU.Text.colorNegative("Has already been used by the company in this combat")
 			});
 		}
 

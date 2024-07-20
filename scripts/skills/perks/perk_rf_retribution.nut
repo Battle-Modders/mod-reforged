@@ -28,14 +28,14 @@ this.perk_rf_retribution <- ::inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = ::MSU.Text.colorGreen((this.m.Stacks * this.m.BonusPerStack) + "%") + " increased damage dealt"
+			text = ::MSU.Text.colorPositive((this.m.Stacks * this.m.BonusPerStack) + "%") + " increased damage dealt"
 		});
 
 		tooltip.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorRed("Will expire upon performing an attack or ending the turn")
+			text = ::MSU.Text.colorNegative("Will expire upon performing an attack or ending the turn")
 		});
 
 		return tooltip;

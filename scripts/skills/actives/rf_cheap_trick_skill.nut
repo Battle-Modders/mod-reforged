@@ -53,7 +53,7 @@ this.rf_cheap_trick_skill <- ::inherit("scripts/skills/skill", {
 				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed(::Reforged.Mod.Tooltips.parseString("Can only be used once per [turn|Concept.Turn]"))
+				text = ::MSU.Text.colorNegative(::Reforged.Mod.Tooltips.parseString("Can only be used once per [turn|Concept.Turn]"))
 			});
 		}
 

@@ -29,7 +29,7 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The [Action Point|Concept.ActionPointCost] cost of all skills except " + this.m.UsedSkillName + " is reduced by " + ::MSU.Text.colorGreen("1"))
+			text = ::Reforged.Mod.Tooltips.parseString("The [Action Point|Concept.ActionPointCost] cost of all skills except " + this.m.UsedSkillName + " is reduced by " + ::MSU.Text.colorPositive("1"))
 		});
 		ret.push({
 			id = 11,

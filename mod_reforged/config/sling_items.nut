@@ -22,7 +22,7 @@
 			id = 8,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of " + ::MSU.Text.colorGreen(this.getMaxRange()) + " tiles on even ground, more if slinging downhill"
+			text = "Has a range of " + ::MSU.Text.colorPositive(this.getMaxRange()) + " tiles on even ground, more if slinging downhill"
 		});
 		if (this.getContainer().getActor().isEngagedInMelee())
 		{
@@ -30,7 +30,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorRed("Can not be used because this character is engaged in melee")
+				text = ::MSU.Text.colorNegative("Can not be used because this character is engaged in melee")
 			});
 		}
 		return ret;

@@ -92,13 +92,13 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorGreen("15%") + " increased damage"
+					text = ::MSU.Text.colorPositive("15%") + " increased damage"
 				});
 				ret.push({
 					id = 7,
 					type = "text",
 					icon = "ui/icons/direct_damage.png",
-					text = ::MSU.Text.colorGreen("+15%") + " damage ignores armor"
+					text = ::MSU.Text.colorPositive("+15%") + " damage ignores armor"
 				});
 				break;
 
@@ -107,7 +107,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorGreen("30%") + " increased damage"
+					text = ::MSU.Text.colorPositive("30%") + " increased damage"
 				});
 				break;
 
@@ -122,7 +122,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorGreen("+10%") + " of your [Initiative|Concept.Initiative] as additional [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] against opponents who act after you in a [round|Concept.Round]")
+					text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorPositive("+10%") + " of your [Initiative|Concept.Initiative] as additional [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] against opponents who act after you in a [round|Concept.Round]")
 				});
 				break;
 
@@ -131,13 +131,13 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/chance_to_hit_head.png",
-					text = ::MSU.Text.colorGreen("+10%") + " chance to hit the head"
+					text = ::MSU.Text.colorPositive("+10%") + " chance to hit the head"
 				});
 				ret.push({
 					id = 7,
 					type = "text",
 					icon = "ui/icons/direct_damage.png",
-					text = ::MSU.Text.colorGreen("+20%") + " damage ignores armor"
+					text = ::MSU.Text.colorPositive("+20%") + " damage ignores armor"
 				});
 				break;
 
@@ -146,13 +146,13 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorGreen("25%") + " increased damage"
+					text = ::MSU.Text.colorPositive("25%") + " increased damage"
 				});
 				ret.push({
 					id = 7,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorGreen("25%") + " less [Fatigue|Concept.Fatigue]")
+					text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue|Concept.Fatigue]")
 				});
 				break;
 
@@ -161,7 +161,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorGreen("15%") + " increased damage"
+					text = ::MSU.Text.colorPositive("15%") + " increased damage"
 				});
 				ret.push({
 					id = 7,
@@ -176,25 +176,25 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/reach.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorGreen("+1") + " [Reach|Concept.Reach]")
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach]")
 				});
 				ret.push({
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorGreen("10%") + " increased damage"
+					text = ::MSU.Text.colorPositive("10%") + " increased damage"
 				});
 				ret.push({
 					id = 7,
 					type = "text",
 					icon = "ui/icons/direct_damage.png",
-					text = ::MSU.Text.colorGreen("+10%") + " damage ignores armor"
+					text = ::MSU.Text.colorPositive("+10%") + " damage ignores armor"
 				});
 				ret.push({
 					id = 7,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = ::Reforged.Mod.Tooltips.parseString("[Thrust|Skill+thrust] can be used up to " + ::MSU.Text.colorGreen("2") + " tiles away but has " + ::MSU.Text.colorRed("-40%") + " chance to hit if there is something between you and your target")
+					text = ::Reforged.Mod.Tooltips.parseString("[Thrust|Skill+thrust] can be used up to " + ::MSU.Text.colorPositive("2") + " tiles away but has " + ::MSU.Text.colorNegative("-40%") + " chance to hit if there is something between you and your target")
 				});
 				break;
 
@@ -203,19 +203,19 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorGreen("10%") + " increased damage"
+					text = ::MSU.Text.colorPositive("10%") + " increased damage"
 				});
 				ret.push({
 					id = 7,
 					type = "text",
 					icon = "ui/icons/direct_damage.png",
-					text = ::MSU.Text.colorGreen("+25%") + " damage ignores armor"
+					text = ::MSU.Text.colorPositive("+25%") + " damage ignores armor"
 				});
 				ret.push({
 					id = 7,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorGreen("33%") + " less [Fatigue|Concept.Fatigue]")
+					text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorPositive("33%") + " less [Fatigue|Concept.Fatigue]")
 				});
 				break;
 
@@ -224,7 +224,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorGreen("25%") + " increased damage"
+					text = ::MSU.Text.colorPositive("25%") + " increased damage"
 				});
 				break;
 
@@ -233,7 +233,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/direct_damage.png",
-					text = ::MSU.Text.colorGreen("+25%") + " damage ignores armor"
+					text = ::MSU.Text.colorPositive("+25%") + " damage ignores armor"
 				});
 				break;
 		}

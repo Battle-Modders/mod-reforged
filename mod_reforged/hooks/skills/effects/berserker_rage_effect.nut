@@ -19,25 +19,25 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "All damage received is reduced by " + ::MSU.Text.colorRed((100.0 - (this.calcDamageTakenMult() * 100.0)) + "%")
+				text = "All damage received is reduced by " + ::MSU.Text.colorNegative((100.0 - (this.calcDamageTakenMult() * 100.0)) + "%")
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = ::MSU.Text.colorGreen("+" + this.m.RageStacks) + " Damage"
+				text = ::MSU.Text.colorPositive("+" + this.m.RageStacks) + " Damage"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::MSU.Text.colorGreen("+" + this.m.RageStacks) + " Resolve"
+				text = ::MSU.Text.colorPositive("+" + this.m.RageStacks) + " Resolve"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Text.colorGreen("+" + this.m.RageStacks) + " Initiative"
+				text = ::MSU.Text.colorPositive("+" + this.m.RageStacks) + " Initiative"
 			}
 		]);
 		return ret;

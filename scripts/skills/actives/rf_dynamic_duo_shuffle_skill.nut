@@ -40,7 +40,7 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Requires a partner")
+				text = ::MSU.Text.colorNegative("Requires a partner")
 			});
 		}
 		else
@@ -60,7 +60,7 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 						id = 20,
 						type = "text",
 						icon = "ui/tooltips/warning.png",
-						text = ::MSU.Text.colorRed("Requires your partner to be present on the battlefield")
+						text = ::MSU.Text.colorNegative("Requires your partner to be present on the battlefield")
 					});
 				}
 				else if (actor.getTile().getDistanceTo(partner.getTile()) != 1)
@@ -69,7 +69,7 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 						id = 21,
 						type = "text",
 						icon = "ui/tooltips/warning.png",
-						text = ::MSU.Text.colorRed("Requires your partner to be next to you")
+						text = ::MSU.Text.colorNegative("Requires your partner to be next to you")
 					});
 				}
 			}
@@ -81,7 +81,7 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 				id = 22,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorRed("Cannot be used while rooted")
+				text = ::MSU.Text.colorNegative("Cannot be used while rooted")
 			});
 		}
 
@@ -91,7 +91,7 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 				id = 23,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Cannot be used more than once per [turn|Concept.Turn]"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used more than once per [turn|Concept.Turn]"))
 			});
 		}
 

@@ -24,14 +24,14 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Removes") + " all attack skills from the currently equipped sword and adds the [Stab|Skill+stab] and [Puncture|Skill+puncture] skills. The Stab skill does " + ::MSU.Text.colorRed("50%") + " reduced damage.")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Removes") + " all attack skills from the currently equipped sword and adds the [Stab|Skill+stab] and [Puncture|Skill+puncture] skills. The Stab skill does " + ::MSU.Text.colorNegative("50%") + " reduced damage.")
 		});
 
 		tooltip.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorRed("half") + " of your weapon\'s [Reach|Concept.Reach]")
+			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorNegative("half") + " of your weapon\'s [Reach|Concept.Reach]")
 		});
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())

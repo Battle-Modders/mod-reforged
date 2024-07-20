@@ -186,7 +186,7 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 							id = 7,
 							type = "text",
 							icon = "ui/icons/warning.png",
-							text = ::MSU.Text.colorRed("This skill is only available to " + entityNamePlural + " using a " + weapon.getName())
+							text = ::MSU.Text.colorNegative("This skill is only available to " + entityNamePlural + " using a " + weapon.getName())
 						})
 						return ret;
 					}

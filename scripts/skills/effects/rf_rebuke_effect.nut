@@ -26,7 +26,7 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::MSU.Text.colorGreen(this.getChance() + "%") + " chance to perform a free attack against characters who miss a melee attack against this character"
+			text = ::MSU.Text.colorPositive(this.getChance() + "%") + " chance to perform a free attack against characters who miss a melee attack against this character"
 		});
 
 		if (this.getContainer().getAttackOfOpportunity() == null)
@@ -35,7 +35,7 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Requires a melee attack that exerts [Zone of Control|Concept.ZoneOfControl]"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Requires a melee attack that exerts [Zone of Control|Concept.ZoneOfControl]"))
 			});
 		}
 

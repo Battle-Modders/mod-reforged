@@ -129,7 +129,7 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/negative.png",
-				text = ::MSU.Text.colorRed(this.getBonus()) + "% " + this.m.Name
+				text = ::MSU.Text.colorNegative(this.getBonus()) + "% " + this.m.Name
 			});
 		}
 	}

@@ -18,7 +18,7 @@ this.rf_sapling_harvest_effect <- ::inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return ::Reforged.Mod.Tooltips.parseString("Whenever this character receives " + ::MSU.Text.colorGreen((this.m.DamageThreshold * 100.0) + "%") + " or more damage to [Hitpoints|Concept.Hitpoints] from a single hit, spawn a Sapling on an adjacent tile, if possible.");
+		return ::Reforged.Mod.Tooltips.parseString("Whenever this character receives " + ::MSU.Text.colorPositive((this.m.DamageThreshold * 100.0) + "%") + " or more damage to [Hitpoints|Concept.Hitpoints] from a single hit, spawn a Sapling on an adjacent tile, if possible.");
 	}
 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )

@@ -76,7 +76,7 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/negative.png",
-				text = ::MSU.Text.colorRed(this.getBonus(user.getID()) + "% ") + this.getName()
+				text = ::MSU.Text.colorNegative(this.getBonus(user.getID()) + "% ") + this.getName()
 			});
 		}
 	}

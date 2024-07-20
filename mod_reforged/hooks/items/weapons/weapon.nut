@@ -24,7 +24,7 @@
 			{
 				::MSU.NestedTooltips.setNestedSkillItem(this);
 				local name = ::Reforged.Mod.Tooltips.parseString(format("[%s|Skill+%s]", skill.getName(), split(::IO.scriptFilenameByHash(skill.ClassNameHash), "/").top()));
-				skillsString += format("- %s (%s, %s)\n", name, ::MSU.Text.colorGreen(skill.m.ActionPointCost), ::MSU.Text.colorRed(skill.m.FatigueCost));
+				skillsString += format("- %s (%s, %s)\n", name, ::MSU.Text.colorPositive(skill.m.ActionPointCost), ::MSU.Text.colorNegative(skill.m.FatigueCost));
 			}
 			::MSU.getDummyPlayer().getItems().unequip(this);
 
@@ -37,7 +37,7 @@
 				id = 20,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Skills: (" + ::MSU.Text.colorGreen("AP") + ", " + ::MSU.Text.colorRed("Fatigue") + ")\n" + skillsString
+				text = "Skills: (" + ::MSU.Text.colorPositive("AP") + ", " + ::MSU.Text.colorNegative("Fatigue") + ")\n" + skillsString
 			});
 		}
 

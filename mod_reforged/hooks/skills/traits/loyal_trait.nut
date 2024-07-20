@@ -12,7 +12,7 @@
 			id = 5,
 			type = "text",
 			icon = "ui/icons/asset_money.png",
-			text = "Chance to desert on low mood is reduced by " + ::MSU.Text.colorGreen("50%")
+			text = "Chance to desert on low mood is reduced by " + ::MSU.Text.colorPositive("50%")
 		})
 		return ret;
 	}

@@ -5,7 +5,7 @@
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
-				text = ::MSU.Text.colorGreen((this.m.Stacks * 10) + "% ") + this.getName()
+				text = ::MSU.Text.colorPositive((this.m.Stacks * 10) + "% ") + this.getName()
 			});
 		}
 	}

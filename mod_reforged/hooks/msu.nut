@@ -44,14 +44,14 @@
 	{
 		if (!options.AddSign && _value < 0) _value *= -1;
 		if (options.AddPercent) _value = _value + "%";
-		return options.InvertColor ? this.colorGreen(_value) : this.colorRed(_value);
+		return options.InvertColor ? this.colorPositive(_value) : this.colorNegative(_value);
 	}
 
 	if (_value > options.CompareTo)
 	{
 		if (options.AddSign && _value > 0) _value = "+" + _value;
 		if (options.AddPercent) _value = _value + "%";
-		return options.InvertColor ? this.colorRed(_value) : this.colorGreen(_value);
+		return options.InvertColor ? this.colorNegative(_value) : this.colorPositive(_value);
 	}
 
 	if (_value == options.CompareTo)

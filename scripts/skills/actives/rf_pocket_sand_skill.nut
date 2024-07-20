@@ -23,7 +23,7 @@ this.rf_pocket_sand_skill <- ::inherit("scripts/skills/actives/throw_dirt_skill"
 					id = 20,
 					type = "text",
 					icon = "ui/tooltips/warning.png",
-					text = "Remaining uses: " + ::MSU.Text.colorRed("0")
+					text = "Remaining uses: " + ::MSU.Text.colorNegative("0")
 				});
 			}
 			else
@@ -32,7 +32,7 @@ this.rf_pocket_sand_skill <- ::inherit("scripts/skills/actives/throw_dirt_skill"
 					id = 20,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "Remaining uses: " + ::MSU.Text.colorGreen(this.getRemainingUses())
+					text = "Remaining uses: " + ::MSU.Text.colorPositive(this.getRemainingUses())
 				});
 			}
 		}

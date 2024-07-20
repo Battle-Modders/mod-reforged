@@ -36,26 +36,26 @@
 					if (this.m.HitChanceBonus == 0) break;	// MSU pushes a raw 'this.getName()' string sometimes even when HitChanceBonus is 0. Currently this is with ranged attacks based on AdditionalAccuracy
 					if (this.m.HitChanceBonus < 0)
 					{
-						ret[index].text = ::MSU.Text.colorRed(this.m.HitChanceBonus + "% ") + ret[index].text;
+						ret[index].text = ::MSU.Text.colorNegative(this.m.HitChanceBonus + "% ") + ret[index].text;
 					}
 					else
 					{
-						ret[index].text = ::MSU.Text.colorGreen(this.m.HitChanceBonus + "% ") + ret[index].text;
+						ret[index].text = ::MSU.Text.colorPositive(this.m.HitChanceBonus + "% ") + ret[index].text;
 					}
 					break;
 
 				case "Height disadvantage":
-					ret[index].text = ::MSU.Text.colorRed((::Const.Combat.LevelDifferenceToHitMalus * (_targetTile.Level - this.m.Container.getActor().getTile().Level)) + "% ") + " Height Disadvantage";
+					ret[index].text = ::MSU.Text.colorNegative((::Const.Combat.LevelDifferenceToHitMalus * (_targetTile.Level - this.m.Container.getActor().getTile().Level)) + "% ") + " Height Disadvantage";
 					break;
 
 				case "Height advantage":
-					ret[index].text = ::MSU.Text.colorGreen(::Const.Combat.LevelDifferenceToHitBonus + "% ") + " Height Advantage";
+					ret[index].text = ::MSU.Text.colorPositive(::Const.Combat.LevelDifferenceToHitBonus + "% ") + " Height Advantage";
 					break;
 				case "Surrounded":
 					if (_targetTile.IsOccupiedByActor)
 					{
 						local bonus = this.getContainer().getActor().getSurroundedBonus(_targetTile.getEntity());
-						if (bonus > 0) ret[index].text = ::MSU.Text.colorGreen(bonus + "%") + " Surrounded";
+						if (bonus > 0) ret[index].text = ::MSU.Text.colorPositive(bonus + "%") + " Surrounded";
 					}
 					break;
 
@@ -71,7 +71,7 @@
 			{
 				ret.push({
 					icon = "ui/tooltips/positive.png",
-					text = ::MSU.Text.colorGreen(bonus + "%") + " Ignores Shield"
+					text = ::MSU.Text.colorPositive(bonus + "%") + " Ignores Shield"
 				});
 			}
 		}

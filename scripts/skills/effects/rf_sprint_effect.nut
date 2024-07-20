@@ -23,7 +23,7 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::MSU.Text.colorGreen(-1) + " Action Points spent per tile traveled"
+			text = ::MSU.Text.colorPositive(-1) + " Action Points spent per tile traveled"
 		});
 
 		if (this.m.FatigueMult != 1.0)
@@ -40,7 +40,7 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 			id = 12,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorRed("Will expire upon using any skill")
+			text = ::MSU.Text.colorNegative("Will expire upon using any skill")
 		});
 
 		return tooltip;

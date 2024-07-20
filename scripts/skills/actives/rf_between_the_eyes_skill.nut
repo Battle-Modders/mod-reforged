@@ -40,7 +40,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Requires an attack which can exert Zone of Control")
+				text = ::MSU.Text.colorNegative("Requires an attack which can exert Zone of Control")
 			});
 		}
 		else if (bonus == 0)
@@ -50,7 +50,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Too low Melee Skill to get any bonus from this skill")
+				text = ::MSU.Text.colorNegative("Too low Melee Skill to get any bonus from this skill")
 			});
 		}
 		else
@@ -60,7 +60,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Perform a " + ::MSU.Text.colorRed(this.getContainer().getAttackOfOpportunity().getName()) + " with " + ::MSU.Text.colorizePercentage(bonus) + " chance to hit the head"
+				text = "Perform a " + ::MSU.Text.colorNegative(this.getContainer().getAttackOfOpportunity().getName()) + " with " + ::MSU.Text.colorizePercentage(bonus) + " chance to hit the head"
 			});
 		}
 
@@ -77,13 +77,13 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Perform your weapon\'s primary attack with additional chance to hit the head equal to " + ::MSU.Text.colorGreen((this.m.SkillToChanceMult * 100) + "%") + " of your [Melee Skill|Concept.MeleeSkill]")
+			text = ::Reforged.Mod.Tooltips.parseString("Perform your weapon\'s primary attack with additional chance to hit the head equal to " + ::MSU.Text.colorPositive((this.m.SkillToChanceMult * 100) + "%") + " of your [Melee Skill|Concept.MeleeSkill]")
 		});
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorRed("Requires an attack which can exert Zone of Control")
+			text = ::MSU.Text.colorNegative("Requires an attack which can exert Zone of Control")
 		});
 		return ret;
 	}

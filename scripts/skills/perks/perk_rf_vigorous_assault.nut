@@ -60,7 +60,7 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Will expire upon waiting or ending the turn, using any skill, or swapping any item except to/from a throwing weapon")
+				text = ::MSU.Text.colorNegative("Will expire upon waiting or ending the turn, using any skill, or swapping any item except to/from a throwing weapon")
 			}
 		);
 

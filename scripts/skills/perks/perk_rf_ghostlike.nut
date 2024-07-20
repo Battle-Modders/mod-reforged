@@ -65,7 +65,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 				id = 13,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("The damage bonus will be lost upon swapping an item or waiting or ending your turn")
+				text = ::MSU.Text.colorNegative("The damage bonus will be lost upon swapping an item or waiting or ending your turn")
 			});
 		}
 

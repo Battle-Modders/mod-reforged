@@ -23,7 +23,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The next spear attack costs " + ::MSU.Text.colorGreen("0") + " [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorGreen("0") + " [Fatigue|Concept.Fatigue] but does " + ::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " less damage")
+			text = ::Reforged.Mod.Tooltips.parseString("The next spear attack costs " + ::MSU.Text.colorPositive("0") + " [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive("0") + " [Fatigue|Concept.Fatigue] but does " + ::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " less damage")
 		});
 		ret.push({
 			id = 20,

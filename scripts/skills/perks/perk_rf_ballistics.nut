@@ -29,7 +29,7 @@ this.perk_rf_ballistics <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "The penalty to hitchance per tile of distance is reduced by " + ::MSU.Text.colorGreen(2) + " due to " + this.getName()
+				text = "The penalty to hitchance per tile of distance is reduced by " + ::MSU.Text.colorPositive(2) + " due to " + this.getName()
 			});
 		}
 	}

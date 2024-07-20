@@ -42,7 +42,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Disabled until this character uses [Recover|Skill+recover]"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Disabled until this character uses [Recover|Skill+recover]"))
 			});
 		}
 		else
@@ -51,7 +51,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next non-free skill used has its [Action Point|Concept.ActionPoints] cost " + ::MSU.Text.colorGreen("halved"))
+				text = ::Reforged.Mod.Tooltips.parseString("The next non-free skill used has its [Action Point|Concept.ActionPoints] cost " + ::MSU.Text.colorPositive("halved"))
 			});
 		}
 
@@ -71,7 +71,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("Becomes disabled when starting a turn with %s (%s) or more [Fatigue|Concept.Fatigue] built", ::MSU.Text.colorizeFraction(this.m.FatigueThreshold, {InvertColor = true}), ::MSU.Text.colorRed(::Math.round(this.m.FatigueThreshold * this.getContainer().getActor().getFatigue()))))
+				text = ::Reforged.Mod.Tooltips.parseString(format("Becomes disabled when starting a turn with %s (%s) or more [Fatigue|Concept.Fatigue] built", ::MSU.Text.colorizeFraction(this.m.FatigueThreshold, {InvertColor = true}), ::MSU.Text.colorNegative(::Math.round(this.m.FatigueThreshold * this.getContainer().getActor().getFatigue()))))
 			});
 		}
 

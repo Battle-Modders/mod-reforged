@@ -38,13 +38,13 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Grants the Move Under Cover skill to the target which allows moving " + ::MSU.Text.colorGreen(1) + " tile ignoring [Zone of Control|Concept.ZoneOfControl]")
+				text = ::Reforged.Mod.Tooltips.parseString("Grants the Move Under Cover skill to the target which allows moving " + ::MSU.Text.colorPositive(1) + " tile ignoring [Zone of Control|Concept.ZoneOfControl]")
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "If the target stays adjacent to you until the start of the next round, their turn order is calculated with " + ::MSU.Text.colorGreen("+5000") + " Initiative"
+				text = "If the target stays adjacent to you until the start of the next round, their turn order is calculated with " + ::MSU.Text.colorPositive("+5000") + " Initiative"
 			}
 		]);
 
@@ -54,7 +54,7 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Cannot be used while Rooted or Stunned")
+				text = ::MSU.Text.colorNegative("Cannot be used while Rooted or Stunned")
 			});
 		}
 
@@ -64,7 +64,7 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorRed("Cannot be used when already providing cover to an ally")
+				text = ::MSU.Text.colorNegative("Cannot be used when already providing cover to an ally")
 			});
 		}
 

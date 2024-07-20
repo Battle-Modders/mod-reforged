@@ -42,13 +42,13 @@ this.rf_command_skill <- ::inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "Recover " + ::MSU.Text.colorGreen(this.m.ActionPointsRecovered) + " Action Point(s) on the target"
+				text = "Recover " + ::MSU.Text.colorPositive(this.m.ActionPointsRecovered) + " Action Point(s) on the target"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Has a range of " + ::MSU.Text.colorGreen(this.getMaxRange()) + " tiles"
+				text = "Has a range of " + ::MSU.Text.colorPositive(this.getMaxRange()) + " tiles"
 			}
 		]);
 
@@ -92,7 +92,7 @@ this.rf_command_skill <- ::inherit("scripts/skills/skill", {
 			target.setActionPoints(target.getActionPoints() + recoveredActionPoints);
 			if (!target.isHiddenToPlayer())
 			{
-				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " recovers " + ::MSU.Text.colorGreen(recoveredActionPoints) + " Action Point(s)");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " recovers " + ::MSU.Text.colorPositive(recoveredActionPoints) + " Action Point(s)");
 			}
 		}
 		target.getSkills().add(::new("scripts/skills/effects/rf_commanded_effect"));

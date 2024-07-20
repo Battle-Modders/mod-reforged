@@ -37,7 +37,7 @@ this.perk_rf_soul_link <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = ::MSU.Text.colorGreen((this.m.TransferedPart * 100) + "%") + " of Hitpoint damage taken is redirected"
+			text = ::MSU.Text.colorPositive((this.m.TransferedPart * 100) + "%") + " of Hitpoint damage taken is redirected"
 		});
 
 		return tooltip;

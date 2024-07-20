@@ -35,7 +35,7 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed(this.m.RequiredWeaponType == null ? "Requires an attack that exerts zone of control" : "Requires an attack from a two-handed " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower())
+				text = ::MSU.Text.colorNegative(this.m.RequiredWeaponType == null ? "Requires an attack that exerts zone of control" : "Requires an attack from a two-handed " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower())
 			});
 		}
 		else
@@ -68,7 +68,7 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 				id = 13,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Cannot be used while Rooted")
+				text = ::MSU.Text.colorNegative("Cannot be used while Rooted")
 			});
 		}
 

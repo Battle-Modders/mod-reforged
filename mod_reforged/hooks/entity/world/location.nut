@@ -26,7 +26,7 @@
 				id = 100,
 				type = "text",
 				icon = "ui/icons/icon_contract_swords.png",
-				text = format("Strength: %s / %s", ::MSU.Text.colorGreen(::World.State.getPlayer().getStrength()), ::MSU.Text.colorRed(this.getStrength()))
+				text = format("Strength: %s / %s", ::MSU.Text.colorPositive(::World.State.getPlayer().getStrength()), ::MSU.Text.colorNegative(this.getStrength()))
 			});
 		}
 		return ret;

@@ -36,7 +36,7 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorRed("Will expire upon attacking or successfully disarming an opponent, or swapping your weapon")
+			text = ::MSU.Text.colorNegative("Will expire upon attacking or successfully disarming an opponent, or swapping your weapon")
 		});
 
 		return tooltip;

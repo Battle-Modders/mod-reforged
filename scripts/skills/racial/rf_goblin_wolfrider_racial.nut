@@ -20,13 +20,13 @@ this.rf_goblin_wolfrider_racial <- ::inherit("scripts/skills/skill", {
 			id = 8,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorGreen("+1") + " [Reach|Concept.Reach]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach]")
 		});
 		ret.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = format("Weapon skills cost %s Action Point", ::MSU.Text.colorRed("+1"))
+			text = format("Weapon skills cost %s Action Point", ::MSU.Text.colorNegative("+1"))
 		});
 		return ret;
 	}

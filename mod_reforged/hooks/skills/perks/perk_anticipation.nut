@@ -45,19 +45,19 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorRed(damageReduction + "%") + " reduced damage received from all attacks"
+				text = ::MSU.Text.colorNegative(damageReduction + "%") + " reduced damage received from all attacks"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorRed(this.m.DamageReductionPerTile + "%") + " additional reduced damage received from all attacks for every tile between the attacker and you"
+				text = ::MSU.Text.colorNegative(this.m.DamageReductionPerTile + "%") + " additional reduced damage received from all attacks for every tile between the attacker and you"
 			},
 			{
 				id = 15,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::MSU.Text.colorGreen(this.m.UsesRemaining) + " uses remaining"
+				text = ::MSU.Text.colorPositive(this.m.UsesRemaining) + " uses remaining"
 			}
 		]);
 
@@ -87,11 +87,11 @@
 
 		if (_attacker == null)	// This can for example happen when this character receives a mortar attack.
 		{
-			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated an attack, reducing damage received by " + ::MSU.Text.colorGreen(this.m.TempDamageReduction + "%"));
+			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated an attack, reducing damage received by " + ::MSU.Text.colorPositive(this.m.TempDamageReduction + "%"));
 		}
 		else
 		{
-			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated the attack of " + ::Const.UI.getColorizedEntityName(_attacker) + ", reducing damage received by " + ::MSU.Text.colorGreen(this.m.TempDamageReduction + "%"));
+			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated the attack of " + ::Const.UI.getColorizedEntityName(_attacker) + ", reducing damage received by " + ::MSU.Text.colorPositive(this.m.TempDamageReduction + "%"));
 		}
 	}
 

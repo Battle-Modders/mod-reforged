@@ -15,7 +15,7 @@
 		{
 			if (entry.id == 10)
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Will receive " + ::MSU.Text.colorRed("double") + " damage from [Bleeding|Skill+bleeding_effect]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Will receive " + ::MSU.Text.colorNegative("double") + " damage from [Bleeding|Skill+bleeding_effect]");
 				break;
 			}
 		}

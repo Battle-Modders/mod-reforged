@@ -53,7 +53,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorRed("Cannot be used while rooted")
+				text = ::MSU.Text.colorNegative("Cannot be used while rooted")
 			});
 		}
 
@@ -63,7 +63,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorRed("Can only be used immediately after killing an adjacent target")
+				text = ::MSU.Text.colorNegative("Can only be used immediately after killing an adjacent target")
 			});
 		}
 

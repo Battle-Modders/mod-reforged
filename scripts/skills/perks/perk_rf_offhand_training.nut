@@ -34,7 +34,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The first swap of an offhand item with a weight less than " + ::MSU.Text.colorRed(-this.m.StaminaModifierThreshold) + " costs no Action Points"
+				text = "The first swap of an offhand item with a weight less than " + ::MSU.Text.colorNegative(-this.m.StaminaModifierThreshold) + " costs no Action Points"
 			});
 		}
 

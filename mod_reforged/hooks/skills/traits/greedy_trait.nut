@@ -15,7 +15,7 @@
 			id = 5,
 			type = "text",
 			icon = "ui/icons/asset_money.png",
-			text = "Daily wage is increased by " + ::MSU.Text.colorRed("15%")
+			text = "Daily wage is increased by " + ::MSU.Text.colorNegative("15%")
 		})
 		return ret;
 	}

@@ -29,7 +29,7 @@ this.rf_line_breaker_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorRed("Cannot be used while Rooted or Stunned")
+				text = ::MSU.Text.colorNegative("Cannot be used while Rooted or Stunned")
 			});
 		}
 

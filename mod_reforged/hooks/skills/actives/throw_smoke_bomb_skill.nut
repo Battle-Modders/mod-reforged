@@ -17,13 +17,13 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::MSU.Text.colorRed("50%") + " reduced Ranged Skill for anyone inside"
+				text = ::MSU.Text.colorNegative("50%") + " reduced Ranged Skill for anyone inside"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorGreen("+30") + " Ranged Defense for anyone inside"
+				text = ::MSU.Text.colorPositive("+30") + " Ranged Defense for anyone inside"
 			}
 		]);
 
