@@ -93,7 +93,6 @@
 	<sprite id="rf_decisive_mini" ic = "FF23165B" img="mini\rf_decisive_mini.png" />
 	<sprite id="rf_feral_rage_mini" ic = "FF23165B" img="mini\rf_feral_rage_mini.png" />
 	<sprite id="rf_exploit_opening_mini" ic = "FF23165B" img="mini\rf_exploit_opening_mini.png" />
-	<sprite id="rf_exploitable_opening_effect_mini" ic = "FF23165B" img="mini\rf_exploitable_opening_effect_mini.png" />
 	<sprite id="rf_fresh_and_furious_mini" ic = "FF23165B" img="mini\rf_fresh_and_furious_mini.png" />
 	<sprite id="rf_king_of_all_weapons_mini" ic = "FF23165B" img="mini\rf_king_of_all_weapons_mini.png" />
 	<sprite id="rf_man_of_steel_mini" ic = "FF23165B" img="mini\rf_man_of_steel_mini.png" />
