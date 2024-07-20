@@ -4,7 +4,7 @@
 	{
 	    this.skeleton.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.SkeletonLight);
+		b.setValues(::Const.Tactical.Actor.SkeletonLight);
 		// b.IsAffectedByNight = false;			// Now handled by racial effect
 		// b.IsAffectedByInjuries = false;		// Now handled by racial effect
 		// b.IsImmuneToBleeding = true;			// Now handled by racial effect
@@ -12,8 +12,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));

@@ -10,7 +10,7 @@ this.rf_estoc <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.Icon = "weapons/melee/rf_estoc_01_70x70.png";
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.RF_Fencing;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

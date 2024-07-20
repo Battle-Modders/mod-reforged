@@ -1,4 +1,4 @@
-this.rf_bandit_robber <- this.inherit("scripts/entity/tactical/human", {
+this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 	m = {
 		MyVariant = 0
 	},

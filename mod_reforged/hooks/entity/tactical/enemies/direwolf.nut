@@ -3,30 +3,30 @@
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Direwolf);
+		b.setValues(::Const.Tactical.Actor.Direwolf);
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
-		body.setBrush("bust_direwolf_0" + this.Math.rand(1, 3));
+		body.setBrush("bust_direwolf_0" + ::Math.rand(1, 3));
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varySaturation(0.2);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyColor(0.05, 0.05, 0.05);
 		}
 
 		local head = this.addSprite("head");
-		head.setBrush("bust_direwolf_0" + this.Math.rand(1, 3) + "_head");
+		head.setBrush("bust_direwolf_0" + ::Math.rand(1, 3) + "_head");
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		local head_frenzy = this.addSprite("head_frenzy");

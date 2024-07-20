@@ -3,9 +3,9 @@
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.OrcWarlord);
+		b.setValues(::Const.Tactical.Actor.OrcWarlord);
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 200)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 200)
 		// {
 		// 	b.MeleeSkill += 5;
 		// 	b.DamageTotalMult += 0.1;
@@ -16,8 +16,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_orc_04_body";
 		this.addSprite("socket").setBrush("bust_base_orcs");
 		local body = this.addSprite("body");

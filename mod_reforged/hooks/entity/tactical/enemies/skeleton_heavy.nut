@@ -4,7 +4,7 @@
 	{
 	   	this.skeleton.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.SkeletonHeavy);
+		b.setValues(::Const.Tactical.Actor.SkeletonHeavy);
 		// b.IsAffectedByNight = false;			// Now handled by racial effect
 		// b.IsAffectedByInjuries = false;		// Now handled by racial effect
 		// b.IsImmuneToBleeding = true;			// Now handled by racial effect
@@ -12,7 +12,7 @@
 		// b.IsSpecializedInAxes = true;
 		// b.IsSpecializedInCleavers = true;
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 100)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 100)
 		// {
 		// 	b.IsSpecializedInPolearms = true;
 		// }
@@ -20,8 +20,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
 
 		// Reforged
@@ -72,8 +72,8 @@
 		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
-		local weapons = this.Const.Items.NamedUndeadWeapons;
-		this.m.Items.equip(::new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		local weapons = ::Const.Items.NamedUndeadWeapons;
+		this.m.Items.equip(::new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 		return true;

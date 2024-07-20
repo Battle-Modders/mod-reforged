@@ -4,8 +4,8 @@
 	{
 		// Map size: 140 x 170 tiles
 		// This does not translate entirely to the Pos style distances, but 25000 radius covers the whole map
-		local centerTile = this.World.getTileSquare(70, 85);
-		local entities = this.World.getAllEntitiesAtPos(centerTile, 25000);
+		local centerTile = ::World.getTileSquare(70, 85);
+		local entities = ::World.getAllEntitiesAtPos(centerTile, 25000);
 		local markedEntites = entities.filter(function(_idx, _entity){
 			return _entity.getSprite("selection").Visible && _entity.isDiscovered();
 		})
@@ -18,7 +18,7 @@
 			if (this.m.SelectionClickedArray.find(entity.getID()) == null)
 			{
 				this.m.SelectionClickedArray.push(entity.getID());
-				this.World.getCamera().moveTo(this.World.getEntityByID(entity.getID()));
+				::World.getCamera().moveTo(::World.getEntityByID(entity.getID()));
 				return;
 			}
 		}

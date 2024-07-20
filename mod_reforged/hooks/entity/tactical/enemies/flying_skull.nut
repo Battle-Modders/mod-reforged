@@ -4,7 +4,7 @@
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.FlyingSkull);
+		b.setValues(::Const.Tactical.Actor.FlyingSkull);
 		b.TargetAttractionMult = 0.5;
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
@@ -15,11 +15,11 @@
 		b.IsImmuneToFire = true;
 		b.IsImmuneToRoot = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 25)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 25)
 		{
 			b.DamageDirectAdd += 0.05;
 
-			if (this.World.getTime().Days >= 50)
+			if (::World.getTime().Days >= 50)
 			{
 				b.DamageDirectAdd += 0.05;
 			}
@@ -28,24 +28,24 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.SameMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.SameMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.MaxTraversibleLevels = 3;
 		this.addSprite("socket").setBrush("bust_base_undead");
 		local body = this.addSprite("body");
-		body.setBrush("bust_skeleton_flying_head_0" + this.Math.rand(1, 2));
+		body.setBrush("bust_skeleton_flying_head_0" + ::Math.rand(1, 2));
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varySaturation(0.1);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyColor(0.1, 0.1, 0.1);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyBrightness(0.1);
 		}

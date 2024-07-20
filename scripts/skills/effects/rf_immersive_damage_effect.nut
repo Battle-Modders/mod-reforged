@@ -1,4 +1,4 @@
-this.rf_immersive_damage_effect <- this.inherit("scripts/skills/skill", {
+this.rf_immersive_damage_effect <- ::inherit("scripts/skills/skill", {
 	m = {
 		DamageMult = 1.0,
 		Roll = 0,		

@@ -3,13 +3,13 @@
 	{
 	    if (this.m.ParentID != 0)
 		{
-			this.m.Body = this.Tactical.getEntityByID(this.m.ParentID);
+			this.m.Body = ::Tactical.getEntityByID(this.m.ParentID);
 			this.m.Items = this.m.Body.m.Items;
 		}
 
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Lindwurm);
+		b.setValues(::Const.Tactical.Actor.Lindwurm);
 		// b.IsAffectedByNight = false;			// Now handled by racial effect
 		// b.IsImmuneToKnockBackAndGrab = true;	// Now handled by racial effect
 		// b.IsImmuneToStun = true;				// Now handled by racial effect
@@ -17,7 +17,7 @@
 		// b.IsImmuneToDisarm = true;			// Now handled by racial effect
 		// b.IsImmuneToRoot = true;				// Now handled by racial effect
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 180)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 180)
 		// {
 		// 	b.MeleeSkill += 10;
 		// 	b.DamageTotalMult += 0.1;
@@ -26,18 +26,18 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
-		body.setBrush("bust_lindwurm_tail_0" + this.Math.rand(1, 1));
+		body.setBrush("bust_lindwurm_tail_0" + ::Math.rand(1, 1));
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varySaturation(0.2);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyColor(0.08, 0.08, 0.08);
 		}

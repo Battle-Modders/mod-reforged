@@ -7,51 +7,51 @@
 		{
 			local ids = [];
 
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Axe))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
 			{
 				ids.push("pg.rf_axe");
 			}
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Bow))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Bow))
 			{
 				ids.push("pg.rf_bow");
 			}
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Cleaver))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
 			{
 				ids.push("pg.rf_cleaver");
 			}
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow) || weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow) || weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
 			{
 				ids.push("pg.rf_crossbow");
 			}
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Dagger))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Dagger))
 			{
 				ids.push("pg.rf_dagger");
 			}
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Flail))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))
 			{
 				ids.push("pg.rf_flail");
 			}
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Hammer))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
 			{
 				ids.push("pg.rf_hammer");
 			}
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Mace))
 			{
 				ids.push("pg.rf_mace");
 			}
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Polearm))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
 			{
 				ids.push("pg.rf_polearm");
 			}
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Spear))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Spear))
 			{
 				ids.push("pg.rf_spear");
 			}
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Sword))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
 			{
 				ids.push("pg.rf_sword");
 			}
-			if (weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
 			{
 				ids.push("pg.rf_throwing");
 			}

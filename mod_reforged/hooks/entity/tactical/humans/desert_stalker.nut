@@ -3,7 +3,7 @@
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.DesertStalker);
+		b.setValues(::Const.Tactical.Actor.DesertStalker);
 		// b.DamageDirectMult = 1.25;
 		// b.IsSpecializedInBows = true;
 		b.Vision = 8;

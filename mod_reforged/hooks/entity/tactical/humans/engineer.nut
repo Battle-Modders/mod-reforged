@@ -3,7 +3,7 @@
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Engineer);
+		b.setValues(::Const.Tactical.Actor.Engineer);
 		b.TargetAttractionMult = 1.1;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;

@@ -1,4 +1,4 @@
-this.rf_vampire_lord_helmet <- this.inherit("scripts/items/helmets/helmet", {
+this.rf_vampire_lord_helmet <- ::inherit("scripts/items/helmets/helmet", {
 	m = {},
 	function create()
 	{

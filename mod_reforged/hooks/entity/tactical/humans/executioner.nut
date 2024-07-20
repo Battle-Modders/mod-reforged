@@ -3,7 +3,7 @@
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Executioner);
+		b.setValues(::Const.Tactical.Actor.Executioner);
 		b.TargetAttractionMult = 1.0;
 		// b.IsSpecializedInSwords = true;
 		// b.IsSpecializedInAxes = true;

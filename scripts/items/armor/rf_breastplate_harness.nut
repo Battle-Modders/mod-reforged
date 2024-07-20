@@ -1,4 +1,4 @@
-this.rf_breastplate_harness <- this.inherit("scripts/items/armor/armor", {
+this.rf_breastplate_harness <- ::inherit("scripts/items/armor/armor", {
 	m = {},
 	function create()
 	{

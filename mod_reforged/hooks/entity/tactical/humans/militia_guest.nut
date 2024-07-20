@@ -3,16 +3,16 @@
 	{
 	    this.player.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Militia);
+		b.setValues(::Const.Tactical.Actor.Militia);
 		b.TargetAttractionMult = 1.0;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.Talents.resize(this.Const.Attributes.COUNT, 0);
-		this.m.Attributes.resize(this.Const.Attributes.COUNT, [
+		this.m.Talents.resize(::Const.Attributes.COUNT, 0);
+		this.m.Attributes.resize(::Const.Attributes.COUNT, [
 			0
 		]);
-		this.m.Name = this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)];
+		this.m.Name = ::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)];
 		this.m.Title = "the Militiaman";
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");

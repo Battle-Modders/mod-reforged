@@ -1,4 +1,4 @@
-this.rf_military_fencer_agent <- this.inherit("scripts/ai/tactical/agents/military_melee_agent", {
+this.rf_military_fencer_agent <- ::inherit("scripts/ai/tactical/agents/military_melee_agent", {
 	m = {},
 	function create()
 	{

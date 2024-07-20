@@ -3,16 +3,16 @@
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Warhound);
+		b.setValues(::Const.Tactical.Actor.Warhound);
 		b.TargetAttractionMult = 0.1;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToDisarm = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-		local variant = this.Math.rand(1, 2);
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
+		local variant = ::Math.rand(1, 2);
 		this.m.Items.getAppearance().Body = "bust_hound_0" + variant + "_body";
 		this.addSprite("socket").setBrush("bust_base_player");
 		local body = this.addSprite("body");

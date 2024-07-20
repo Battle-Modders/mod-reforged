@@ -9,8 +9,8 @@ this.rf_sapling_harvest_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Sapling Harvest";
 		this.m.Icon = "skills/terrain_icon_06.png";
 		this.m.SoundOnUse = [];
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Last;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;

@@ -1,4 +1,4 @@
-this.rf_half_closed_sallet <- this.inherit("scripts/items/helmets/helmet", {
+this.rf_half_closed_sallet <- ::inherit("scripts/items/helmets/helmet", {
 	m = {},
 	function create()
 	{

@@ -3,7 +3,7 @@
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.SandGolem);
+		b.setValues(::Const.Tactical.Actor.SandGolem);
 		// b.IsAffectedByNight = false;			// Now handled by racial effect
 		// b.IsImmuneToDisarm = true;			// Now handled by racial effect
 		// b.IsImmuneToBleeding = true;			// Now handled by racial effect
@@ -14,9 +14,9 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-		this.m.Variant = this.Math.rand(1, 2);
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
+		this.m.Variant = ::Math.rand(1, 2);
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
 		body.setBrush("bust_golem_body_0" + this.m.Variant + "_small");

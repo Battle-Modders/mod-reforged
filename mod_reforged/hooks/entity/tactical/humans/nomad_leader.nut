@@ -3,7 +3,7 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.NomadLeader);
+		b.setValues(::Const.Tactical.Actor.NomadLeader);
 		// b.IsSpecializedInSwords = true;
 		// b.IsSpecializedInAxes = true;
 		// b.IsSpecializedInMaces = true;
@@ -20,7 +20,7 @@
 		this.getSprite("socket").setBrush("bust_base_nomads");
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
-		dirt.Alpha = this.Math.rand(150, 255);
+		dirt.Alpha = ::Math.rand(150, 255);
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
@@ -33,7 +33,7 @@
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 40)
 		// {
 		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
 		// }

@@ -1,4 +1,4 @@
-this.rf_geist_tear_item <- this.inherit("scripts/items/item", {
+this.rf_geist_tear_item <- ::inherit("scripts/items/item", {
 	m = {},
 	function create()
 	{

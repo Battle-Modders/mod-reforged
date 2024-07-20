@@ -3,7 +3,7 @@
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.BountyHunter);
+		b.setValues(::Const.Tactical.Actor.BountyHunter);
 		// b.IsSpecializedInSwords = true;
 		// b.IsSpecializedInAxes = true;
 		// b.IsSpecializedInMaces = true;

@@ -73,7 +73,7 @@
 			{
 				if (this.m.SoundOnHit.len() != 0)
 				{
-					this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _targetTile.getEntity().getPos());
+					::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _targetTile.getEntity().getPos());
 				}
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)

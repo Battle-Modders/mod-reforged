@@ -1,4 +1,4 @@
-this.perk_rf_calculated_strikes <- this.inherit("scripts/skills/skill", {
+this.perk_rf_calculated_strikes <- ::inherit("scripts/skills/skill", {
 	m = {
 		DamageTotalMult = 1.2,
 		InitiativeMult = 0.8

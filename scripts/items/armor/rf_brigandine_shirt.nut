@@ -1,4 +1,4 @@
-this.rf_brigandine_shirt <- this.inherit("scripts/items/armor/armor", {
+this.rf_brigandine_shirt <- ::inherit("scripts/items/armor/armor", {
 	m = {},
 	function create()
 	{

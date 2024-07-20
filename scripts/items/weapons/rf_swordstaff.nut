@@ -10,7 +10,7 @@ this.rf_swordstaff <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.Icon = "weapons/melee/rf_swordstaff_01_70x70.png";
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Spear;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sword | ::Const.Items.WeaponType.Spear;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Defensive;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

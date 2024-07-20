@@ -3,7 +3,7 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Necromancer);
+		b.setValues(::Const.Tactical.Actor.Necromancer);
 		b.TargetAttractionMult = 3.0;
 		b.IsAffectedByNight = false;
 		b.Vision = 8;

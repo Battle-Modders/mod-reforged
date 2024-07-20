@@ -93,7 +93,7 @@ this.rf_inspiring_presence_buff_effect <- ::inherit("scripts/skills/skill", {
 			this.m.IsInEffect = true;
 			this.m.IsStartingTurn = true;
 			this.spawnIcon("rf_inspiring_presence_buff_effect", actor.getTile());
-			::Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, actor.getPos());
+			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, actor.getPos());
 		}
 	}
 

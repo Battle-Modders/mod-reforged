@@ -100,7 +100,7 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 
 			if (this.m.SoundOnHit.len() != 0)
 			{
-				::Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill * 1.2, _user.getPos());
+				::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill * 1.2, _user.getPos());
 			}
 		}
 

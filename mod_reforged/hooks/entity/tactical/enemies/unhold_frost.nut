@@ -3,12 +3,12 @@
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.UnholdFrost);
+		b.setValues(::Const.Tactical.Actor.UnholdFrost);
 		// b.DamageTotalMult += 0.15;
 		// b.IsImmuneToDisarm = true;		// Now handled by racial effect
 		// b.IsImmuneToRotation = true;		// Now handled by racial effect
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 90)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 90)
 		// {
 		// 	b.DamageTotalMult += 0.1;
 		// }
@@ -16,8 +16,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_unhold_body_01";
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");

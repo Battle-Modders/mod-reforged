@@ -3,13 +3,13 @@
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.OrcYoung);
+		b.setValues(::Const.Tactical.Actor.OrcYoung);
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 70)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 70)
 		// {
 		// 	b.IsSpecializedInThrowing = true;
 
-		// 	if (this.World.getTime().Days >= 150)
+		// 	if (::World.getTime().Days >= 150)
 		// 	{
 		// 		b.RangedSkill += 5;
 		// 	}
@@ -20,8 +20,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_orc_01_body";
 		this.addSprite("socket").setBrush("bust_base_orcs");
 		local body = this.addSprite("body");
@@ -33,7 +33,7 @@
 		injury_body.setBrush("bust_orc_01_body_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		head.setBrush("bust_orc_01_head_0" + this.Math.rand(1, 3));
+		head.setBrush("bust_orc_01_head_0" + ::Math.rand(1, 3));
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
 		local injury = this.addSprite("injury");
@@ -49,7 +49,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		this.m.Skills.add(this.new("scripts/skills/actives/charge"));
 
-		if (this.Const.DLC.Unhold)
+		if (::Const.DLC.Unhold)
 		{
 			this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
 		}
@@ -67,16 +67,16 @@
 		local r;
 		local weapon;
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/orc_javelin"));
 		}
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
-			if (this.Math.rand(1, 100) <= 50)
+			if (::Math.rand(1, 100) <= 50)
 			{
-				local r = this.Math.rand(1, 2);
+				local r = ::Math.rand(1, 2);
 
 				if (r == 1)
 				{
@@ -89,7 +89,7 @@
 			}
 			else
 			{
-				local r = this.Math.rand(1, 2);
+				local r = ::Math.rand(1, 2);
 
 				if (r == 1)
 				{
@@ -103,7 +103,7 @@
 		}
 		else
 		{
-			r = this.Math.rand(1, 2);
+			r = ::Math.rand(1, 2);
 
 			// if (r == 1)
 			// {
@@ -119,7 +119,7 @@
 			}
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			this.m.Items.equip(weapon);
 		}
@@ -128,12 +128,12 @@
 			this.m.Items.addToBag(weapon);
 		}
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			this.m.Items.equip(this.new("scripts/items/shields/greenskins/orc_light_shield"));
 		}
 
-		r = this.Math.rand(1, 5);
+		r = ::Math.rand(1, 5);
 
 		if (r == 1)
 		{
@@ -152,7 +152,7 @@
 			this.m.Items.equip(this.new("scripts/items/armor/greenskins/orc_young_heavy_armor"));
 		}
 
-		r = this.Math.rand(1, 4);
+		r = ::Math.rand(1, 4);
 
 		if (r == 1)
 		{

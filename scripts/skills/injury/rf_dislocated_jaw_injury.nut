@@ -1,4 +1,4 @@
-this.rf_dislocated_jaw_injury <- this.inherit("scripts/skills/injury/injury", {
+this.rf_dislocated_jaw_injury <- ::inherit("scripts/skills/injury/injury", {
 	m = {
 		FatigueRecoveryModifier = -3,
 		BraveryMult = 0.7,

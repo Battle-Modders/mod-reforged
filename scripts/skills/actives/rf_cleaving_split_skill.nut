@@ -43,7 +43,7 @@ this.rf_cleaving_split_skill <- ::inherit("scripts/skills/actives/split", {
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts additional stacking [color=" + this.Const.UI.Color.DamageValue + "]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
+			text = "Inflicts additional stacking [color=" + ::Const.UI.Color.DamageValue + "]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
 		});
 
 		return ret;

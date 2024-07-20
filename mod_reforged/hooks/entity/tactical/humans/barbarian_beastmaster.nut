@@ -9,23 +9,23 @@
 			6
 		];
 
-		if (this.Math.rand(1, 100) <= 66)
+		if (::Math.rand(1, 100) <= 66)
 		{
 			local tattoo_body = this.actor.getSprite("tattoo_body");
 			local body = this.actor.getSprite("body");
-			tattoo_body.setBrush("tattoo_0" + tattoos[this.Math.rand(0, tattoos.len() - 1)] + "_" + body.getBrush().Name);
+			tattoo_body.setBrush("tattoo_0" + tattoos[::Math.rand(0, tattoos.len() - 1)] + "_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			local tattoo_head = this.actor.getSprite("tattoo_head");
-			tattoo_head.setBrush("tattoo_0" + tattoos[this.Math.rand(0, tattoos.len() - 1)] + "_head");
+			tattoo_head.setBrush("tattoo_0" + tattoos[::Math.rand(0, tattoos.len() - 1)] + "_head");
 			tattoo_head.Visible = true;
 		}
 
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.BarbarianBeastmaster);
+		b.setValues(::Const.Tactical.Actor.BarbarianBeastmaster);
 		b.TargetAttractionMult = 1.1;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -41,7 +41,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(this.new("scripts/skills/actives/crack_the_whip_skill"));
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 30)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 30)
 		// {
 			// this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect")); // Replaced as perk
 		// }

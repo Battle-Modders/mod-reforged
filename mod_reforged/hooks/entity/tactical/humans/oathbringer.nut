@@ -3,7 +3,7 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Oathbringer);
+		b.setValues(::Const.Tactical.Actor.Oathbringer);
 		b.TargetAttractionMult = 1.0;
 		// b.IsSpecializedInSwords = true;
 		// b.IsSpecializedInAxes = true;
@@ -39,7 +39,7 @@
 
 	q.assignRandomEquipment = @() function()
 	{
-	   	if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+	   	if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapons = [
 				"weapons/fighting_axe",
@@ -48,7 +48,7 @@
 				"weapons/warhammer"
 			];
 
-			if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 			{
 				weapons.extend([
 					"weapons/greatsword",
@@ -57,7 +57,7 @@
 				]);
 			}
 
-			if (this.Const.DLC.Unhold && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+			if (::Const.DLC.Unhold && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 			{
 				weapons.extend([
 					"weapons/two_handed_flanged_mace",
@@ -65,37 +65,37 @@
 				]);
 			}
 
-			if (this.Const.DLC.Wildmen && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+			if (::Const.DLC.Wildmen && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 			{
 				weapons.extend([
 					"weapons/bardiche"
 				]);
 			}
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand) && this.Math.rand(1, 100) <= 60)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 60)
 		{
 			local shields = [
 				"shields/heater_shield"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 		// else
 		// {
 		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 		// }
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = [
 				"armor/adorned_heavy_mail_hauberk"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + armor[this.Math.rand(0, armor.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + armor[::Math.rand(0, armor.len() - 1)]));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = [
 				"helmets/adorned_closed_flat_top_with_mail",
@@ -104,7 +104,7 @@
 				"helmets/adorned_full_helm",
 				"helmets/full_helm"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + helmet[this.Math.rand(0, helmet.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + helmet[::Math.rand(0, helmet.len() - 1)]));
 		}
 
 		// Reforged

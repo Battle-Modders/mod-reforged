@@ -1,4 +1,4 @@
-this.rf_closed_bascinet <- this.inherit("scripts/items/helmets/helmet", {
+this.rf_closed_bascinet <- ::inherit("scripts/items/helmets/helmet", {
 	m = {},
 	function create()
 	{

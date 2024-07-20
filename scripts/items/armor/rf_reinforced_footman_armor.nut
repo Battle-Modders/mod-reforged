@@ -1,4 +1,4 @@
-this.rf_reinforced_footman_armor <- this.inherit("scripts/items/armor/armor", {
+this.rf_reinforced_footman_armor <- ::inherit("scripts/items/armor/armor", {
 	m = {},
 	function create()
 	{

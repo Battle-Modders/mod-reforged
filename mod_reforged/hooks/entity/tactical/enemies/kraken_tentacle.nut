@@ -3,7 +3,7 @@
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.KrakenTentacle);
+		b.setValues(::Const.Tactical.Actor.KrakenTentacle);
 		b.IsAffectedByNight = false;
 		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsImmuneToPoison = true;
@@ -13,8 +13,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
 		body.setBrush("bust_kraken_tentacle_01");
@@ -30,7 +30,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-		this.Tactical.getTemporaryRoster().add(this);
+		::Tactical.getTemporaryRoster().add(this);
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge;

@@ -1,4 +1,4 @@
-this.perk_rf_nailed_it <- this.inherit("scripts/skills/skill", {
+this.perk_rf_nailed_it <- ::inherit("scripts/skills/skill", {
 	m = {
 		BaseBonus = 25,
 		BonusDecreasePerTile = 5
@@ -6,11 +6,11 @@ this.perk_rf_nailed_it <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "perk.rf_nailed_it";
-		this.m.Name = this.Const.Strings.PerkName.RF_NailedIt;
-		this.m.Description = this.Const.Strings.PerkDescription.RF_NailedIt;
+		this.m.Name = ::Const.Strings.PerkName.RF_NailedIt;
+		this.m.Description = ::Const.Strings.PerkDescription.RF_NailedIt;
 		this.m.Icon = "ui/perks/rf_nailed_it.png";
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.Perk;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;

@@ -1,4 +1,4 @@
-this.perk_rf_supporter <- this.inherit("scripts/skills/skill", {
+this.perk_rf_supporter <- ::inherit("scripts/skills/skill", {
 	m = {
 		// Config
 		MinDistanceAPRecovery = 1,

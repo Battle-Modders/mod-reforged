@@ -3,7 +3,7 @@
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.SpiderEggs);
+		b.setValues(::Const.Tactical.Actor.SpiderEggs);
 		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsImmuneToStun = true;
 		b.IsImmuneToRoot = true;
@@ -17,9 +17,9 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-		local flip = this.Math.rand(0, 1) == 1;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
+		local flip = ::Math.rand(0, 1) == 1;
 		local body = this.addSprite("body");
 		body.setBrush("nest_01");
 		body.setHorizontalFlipping(flip);

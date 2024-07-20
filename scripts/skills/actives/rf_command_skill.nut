@@ -1,4 +1,4 @@
-this.rf_command_skill <- this.inherit("scripts/skills/skill", {
+this.rf_command_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		ActionPointsRecovered = 1
 	},

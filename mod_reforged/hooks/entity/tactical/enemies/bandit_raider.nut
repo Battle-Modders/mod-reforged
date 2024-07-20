@@ -3,7 +3,7 @@
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.BanditRaider);
+		b.setValues(::Const.Tactical.Actor.BanditRaider);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -11,7 +11,7 @@
 		this.getSprite("socket").setBrush("bust_base_bandits");
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
-		dirt.Alpha = this.Math.rand(150, 255);
+		dirt.Alpha = ::Math.rand(150, 255);
 		this.getSprite("armor").Saturation = 0.85;
 		this.getSprite("helmet").Saturation = 0.85;
 		this.getSprite("helmet_damage").Saturation = 0.85;

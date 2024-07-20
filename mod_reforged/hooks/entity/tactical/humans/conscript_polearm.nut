@@ -9,7 +9,7 @@
 	    __original();
 	    local weapon = this.getMainhandItem();
 
-	    if (weapon != null && weapon.isWeaponType(this.Const.Items.WeaponType.Mace))
+	    if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Mace))
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 		}

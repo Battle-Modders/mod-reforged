@@ -3,16 +3,16 @@
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Serpent);
-		b.Initiative += this.Math.rand(0, 50);
+		b.setValues(::Const.Tactical.Actor.Serpent);
+		b.Initiative += ::Math.rand(0, 50);
 		// b.IsAffectedByNight = false;		// Now handled by racial effect
 		// b.IsImmuneToDisarm = true;		// Now handled by racial effect
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 20)
 		// {
 		// 	b.MeleeDefense += 5;
 
-		// 	if (this.World.getTime().Days >= 50)
+		// 	if (::World.getTime().Days >= 50)
 		// 	{
 				b.DamageDirectMult += 0.15;
 		// 	}
@@ -21,24 +21,24 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
-		this.m.Variant = this.Math.rand(1, 2);
-		body.setBrush("bust_snake_0" + this.m.Variant + "_head_0" + this.Math.rand(1, 2));
+		this.m.Variant = ::Math.rand(1, 2);
+		body.setBrush("bust_snake_0" + this.m.Variant + "_head_0" + ::Math.rand(1, 2));
 
-		if (this.m.Variant == 2 && this.Math.rand(0, 100) < 90)
+		if (this.m.Variant == 2 && ::Math.rand(0, 100) < 90)
 		{
 			body.varySaturation(0.1);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyColor(0.1, 0.1, 0.1);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyBrightness(0.1);
 		}
@@ -57,7 +57,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(this.new("scripts/skills/actives/serpent_hook_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/serpent_bite_skill"));
-		this.Tactical.getTemporaryRoster().add(this);
+		::Tactical.getTemporaryRoster().add(this);
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge;
@@ -86,7 +86,7 @@
 		__original(_killer, _skill, _tile, _fatalityType);
 		::new = new;
 
-		if (_tile != null && this.Math.rand(1, 100) <= 15)
+		if (_tile != null && ::Math.rand(1, 100) <= 15)
 		{
 			local loot = this.new("scripts/items/loot/rainbow_scale_item");
 			loot.drop(_tile);

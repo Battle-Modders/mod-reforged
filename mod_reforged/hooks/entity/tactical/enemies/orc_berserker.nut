@@ -3,9 +3,9 @@
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.OrcBerserker);
+		b.setValues(::Const.Tactical.Actor.OrcBerserker);
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 190)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 190)
 		// {
 		// 	b.MeleeSkill += 5;
 		// 	b.DamageTotalMult += 0.1;
@@ -19,8 +19,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_orc_02_body";
 		this.addSprite("socket").setBrush("bust_base_orcs");
 		local body = this.addSprite("body");
@@ -29,9 +29,9 @@
 		body.varyColor(0.08, 0.08, 0.08);
 		local tattoo_body = this.addSprite("tattoo_body");
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
-			tattoo_body.setBrush("bust_orc_02_body_paint_0" + this.Math.rand(1, 3));
+			tattoo_body.setBrush("bust_orc_02_body_paint_0" + ::Math.rand(1, 3));
 		}
 
 		local injury_body = this.addSprite("injury_body");
@@ -39,14 +39,14 @@
 		injury_body.setBrush("bust_orc_02_body_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		head.setBrush("bust_orc_02_head_0" + this.Math.rand(1, 3));
+		head.setBrush("bust_orc_02_head_0" + ::Math.rand(1, 3));
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
 		local tattoo_head = this.addSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
-			tattoo_head.setBrush("bust_orc_02_head_paint_0" + this.Math.rand(1, 3));
+			tattoo_head.setBrush("bust_orc_02_head_paint_0" + ::Math.rand(1, 3));
 		}
 
 		local injury = this.addSprite("injury");

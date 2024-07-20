@@ -1,4 +1,4 @@
-this.perk_rf_command <- this.inherit("scripts/skills/skill", {
+this.perk_rf_command <- ::inherit("scripts/skills/skill", {
 	m = {},
 
 	function create()

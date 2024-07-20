@@ -1,4 +1,4 @@
-this.rf_bandit_marauder <- this.inherit("scripts/entity/tactical/human", {
+this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{

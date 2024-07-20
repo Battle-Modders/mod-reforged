@@ -1,4 +1,4 @@
-this.ai_rf_blitzkrieg <- this.inherit("scripts/ai/tactical/behavior", {
+this.ai_rf_blitzkrieg <- ::inherit("scripts/ai/tactical/behavior", {
 	m = {
 		Skill = null,
 		PossibleSkills = [
@@ -62,7 +62,7 @@ this.ai_rf_blitzkrieg <- this.inherit("scripts/ai/tactical/behavior", {
 				local aoo = _actor.getSkills().getAttackOfOpportunity();
 				if (aoo != null)
 				{
-					local predictedFatigueBuilt = aoo.getFatigueCost() * this.Math.floor(_actor.getActionPointsMax() / aoo.getActionPointCost());
+					local predictedFatigueBuilt = aoo.getFatigueCost() * ::Math.floor(_actor.getActionPointsMax() / aoo.getActionPointCost());
 					ret -= predictedFatigueBuilt * _actor.getCurrentProperties().FatigueToInitiativeRate;					
 				}
 			}

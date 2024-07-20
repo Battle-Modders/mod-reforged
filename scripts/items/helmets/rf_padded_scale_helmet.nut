@@ -1,4 +1,4 @@
-this.rf_padded_scale_helmet <- this.inherit("scripts/items/helmets/helmet", {
+this.rf_padded_scale_helmet <- ::inherit("scripts/items/helmets/helmet", {
 	m = {},
 	function create()
 	{

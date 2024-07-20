@@ -3,7 +3,7 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.NomadArcher);
+		b.setValues(::Const.Tactical.Actor.NomadArcher);
 		b.TargetAttractionMult = 1.1;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -11,7 +11,7 @@
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_nomads");
 
-		if (this.Math.rand(1, 100) <= 20)
+		if (::Math.rand(1, 100) <= 20)
 		{
 			local pox = this.getSprite("tattoo_head");
 			pox.Visible = true;
@@ -21,17 +21,17 @@
 		{
 			local dirt = this.getSprite("dirt");
 			dirt.Visible = true;
-			dirt.Alpha = this.Math.rand(150, 255);
+			dirt.Alpha = ::Math.rand(150, 255);
 		}
 
 		// b.IsSpecializedInBows = true; // Replaced with perk
 		b.Vision = 8;
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 30)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 30)
 		// {
 		// 	b.RangedSkill += 5;
 
-		// 	if (this.World.getTime().Days >= 60)
+		// 	if (::World.getTime().Days >= 60)
 		// 	{
 		// 		this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 		// 		b.RangedDefense += 5;
@@ -44,7 +44,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 20)
 		// {
 		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		// }

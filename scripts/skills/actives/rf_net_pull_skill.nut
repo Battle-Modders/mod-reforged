@@ -139,7 +139,7 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 
 		if (this.m.SoundOnHit.len() != 0)
 		{
-			this.Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
+			::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 		}
 
 		target.setCurrentMovementType(::Const.Tactical.MovementType.Involuntary);

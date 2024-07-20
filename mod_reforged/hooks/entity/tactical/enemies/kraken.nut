@@ -3,7 +3,7 @@
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Kraken);
+		b.setValues(::Const.Tactical.Actor.Kraken);
 		b.TargetAttractionMult = 3.0;
 		b.IsAffectedByNight = false;
 		b.IsImmuneToKnockBackAndGrab = true;
@@ -16,18 +16,18 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::Tactical.State.isScenarioMode())
 		{
-			if (!this.World.Flags.get("IsKrakenDefeated"))
+			if (!::World.Flags.get("IsKrakenDefeated"))
 			{
 				this.setName("Beast of Beasts");
 			}
 			else
 			{
-				this.setName(this.Const.Strings.KrakenNames[this.Math.rand(0, this.Const.Strings.KrakenNames.len() - 1)]);
+				this.setName(::Const.Strings.KrakenNames[::Math.rand(0, ::Const.Strings.KrakenNames.len() - 1)]);
 			}
 		}
 
@@ -35,12 +35,12 @@
 		local body = this.addSprite("body");
 		body.setBrush("bust_kraken_body_01");
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varySaturation(0.2);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyColor(0.08, 0.08, 0.08);
 		}
@@ -54,20 +54,20 @@
 
 		for( local i = 0; i < 8; i = ++i )
 		{
-			local mapSize = this.Tactical.getMapSize();
+			local mapSize = ::Tactical.getMapSize();
 
 			for( local attempts = 0; attempts < 500; attempts = ++attempts )
 			{
-				local x = this.Math.rand(this.Math.max(0, myTile.SquareCoords.X - 2), this.Math.min(mapSize.X - 1, myTile.SquareCoords.X + 8));
-				local y = this.Math.rand(this.Math.max(0, myTile.SquareCoords.Y - 8), this.Math.min(mapSize.Y - 1, myTile.SquareCoords.Y + 8));
-				local tile = this.Tactical.getTileSquare(x, y);
+				local x = ::Math.rand(::Math.max(0, myTile.SquareCoords.X - 2), ::Math.min(mapSize.X - 1, myTile.SquareCoords.X + 8));
+				local y = ::Math.rand(::Math.max(0, myTile.SquareCoords.Y - 8), ::Math.min(mapSize.Y - 1, myTile.SquareCoords.Y + 8));
+				local tile = ::Tactical.getTileSquare(x, y);
 
 				if (!tile.IsEmpty)
 				{
 				}
 				else
 				{
-					local tentacle = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/kraken_tentacle", tile.Coords);
+					local tentacle = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/kraken_tentacle", tile.Coords);
 					tentacle.setParent(this);
 					tentacle.setFaction(this.getFaction());
 					this.m.Tentacles.push(this.WeakTableRef(tentacle));

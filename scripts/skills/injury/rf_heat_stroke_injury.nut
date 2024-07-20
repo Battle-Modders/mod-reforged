@@ -1,4 +1,4 @@
-this.rf_heat_stroke_injury <- this.inherit("scripts/skills/injury/injury", {
+this.rf_heat_stroke_injury <- ::inherit("scripts/skills/injury/injury", {
 	m = {
 		FatigueEffectMult = 1.25,
 	},

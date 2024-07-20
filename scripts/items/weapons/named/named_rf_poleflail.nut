@@ -6,7 +6,7 @@ this.named_rf_poleflail <- ::inherit("scripts/items/weapons/named/named_weapon",
 		this.m.Variant = 1;
 		this.updateVariant();
 		this.m.ID = "weapon.named_rf_poleflail";
-		this.m.NameList = this.Const.Strings.TwoHandedFlailNames;
+		this.m.NameList = ::Const.Strings.TwoHandedFlailNames;
 		this.m.Description = "Impossible to confuse for the agricultural tool it is based upon, the beautiful craftmanship of a master weaponsmith is clear to see.";
 		this.m.Value = 4000;
 		this.m.BaseWeaponScript = "scripts/items/weapons/rf_poleflail";

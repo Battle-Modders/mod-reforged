@@ -1,4 +1,4 @@
-this.rf_black_eye_injury <- this.inherit("scripts/skills/injury/injury", {
+this.rf_black_eye_injury <- ::inherit("scripts/skills/injury/injury", {
 	m = {
 		VisionModifier = -1,
 		MeleeSkillMult = 0.9,

@@ -3,7 +3,7 @@
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.TricksterGod);
+		b.setValues(::Const.Tactical.Actor.TricksterGod);
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToRoot = true;
 		b.IsImmuneToStun = true;
@@ -13,8 +13,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.ImmobileMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.ImmobileMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
 		body.setBrush("bust_trickster_god_body_01");

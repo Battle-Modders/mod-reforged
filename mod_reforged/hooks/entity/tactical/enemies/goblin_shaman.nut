@@ -3,15 +3,15 @@
 	{
 	    this.goblin.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.GoblinShaman);
+		b.setValues(::Const.Tactical.Actor.GoblinShaman);
 		b.Vision = 8;
 		b.TargetAttractionMult = 2.0;
 		b.IsAffectedByNight = false;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.getSprite("head").setBrush("bust_goblin_02_head_01");
 		this.addDefaultStatusSprites();
 		this.m.Skills.add(this.new("scripts/skills/racial/goblin_shaman_racial"));

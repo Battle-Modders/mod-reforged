@@ -3,14 +3,14 @@
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Ghoul);
+		b.setValues(::Const.Tactical.Actor.Ghoul);
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
 		body.setBrush("bust_ghoul_body_01");
@@ -20,7 +20,7 @@
 		head.setBrush("bust_ghoul_head_01");
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
-		this.m.Head = this.Math.rand(1, 3);
+		this.m.Head = ::Math.rand(1, 3);
 		local injury = this.addSprite("injury");
 		injury.setBrush("bust_ghoul_01_injured");
 		injury.Visible = false;
@@ -75,7 +75,7 @@
 			chanceToRoll = 50;
 		}
 
-		if (_tile != null && this.Math.rand(1, 100) <= chanceToRoll)
+		if (_tile != null && ::Math.rand(1, 100) <= chanceToRoll)
 		{
 			local loot = this.new("scripts/items/loot/growth_pearls_item");
 			loot.drop(_tile);

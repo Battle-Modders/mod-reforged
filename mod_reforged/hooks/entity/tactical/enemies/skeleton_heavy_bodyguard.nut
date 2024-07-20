@@ -4,7 +4,7 @@
 	{
 		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.SkeletonHeavy);
+		b.setValues(::Const.Tactical.Actor.SkeletonHeavy);
 		b.Initiative -= 50;
 		// b.IsAffectedByNight = false;			// Now handled by racial effect
 		// b.IsAffectedByInjuries = false;		// Now handled by racial effect
@@ -16,8 +16,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
 
 		// Reforged

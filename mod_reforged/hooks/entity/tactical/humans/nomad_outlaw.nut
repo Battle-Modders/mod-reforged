@@ -3,14 +3,14 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.NomadOutlaw);
+		b.setValues(::Const.Tactical.Actor.NomadOutlaw);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_nomads");
 
-		if (this.Math.rand(1, 100) <= 15)
+		if (::Math.rand(1, 100) <= 15)
 		{
 			local pox = this.getSprite("tattoo_head");
 			pox.Visible = true;
@@ -22,7 +22,7 @@
 			dirt.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			this.getSprite("eye_rings").Visible = true;
 		}
@@ -39,7 +39,7 @@
 		// 	b.IsSpecializedInSpears = true;
 		// 	b.IsSpecializedInCleavers = true;
 
-		// 	if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		// 	if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 40)
 		// 	{
 		// 		b.MeleeSkill += 5;
 		// 		b.RangedSkill += 5;
@@ -55,7 +55,7 @@
 		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 40)
 		// {
 		// 	this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
 		// }

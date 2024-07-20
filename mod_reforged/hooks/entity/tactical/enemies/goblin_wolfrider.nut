@@ -3,7 +3,7 @@
 	{
 	    this.goblin.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.GoblinWolfrider);
+		b.setValues(::Const.Tactical.Actor.GoblinWolfrider);
 		// b.AdditionalActionPointCost = 1;
 		// b.DamageDirectMult = 1.25;
 		b.IsSpecializedInSwords = true;
@@ -11,9 +11,9 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-		this.getSprite("head").setBrush("bust_goblin_01_head_0" + this.Math.rand(1, 3));
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
+		this.getSprite("head").setBrush("bust_goblin_01_head_0" + ::Math.rand(1, 3));
 		this.setAlwaysApplySpriteOffset(true);
 		local offset = this.createVec(8, 14);
 		this.setSpriteOffset("body", offset);
@@ -23,7 +23,7 @@
 		this.setSpriteOffset("helmet", offset);
 		this.setSpriteOffset("helmet_damage", offset);
 		this.setSpriteOffset("body_blood", offset);
-		local variant = this.Math.rand(1, 2);
+		local variant = ::Math.rand(1, 2);
 		local wolf = this.addSprite("wolf");
 		wolf.setBrush("bust_wolf_0" + variant + "_body");
 		wolf.varySaturation(0.15);

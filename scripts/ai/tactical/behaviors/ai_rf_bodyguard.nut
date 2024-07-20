@@ -200,7 +200,7 @@ this.ai_rf_bodyguard <- ::inherit("scripts/ai/tactical/behavior", {
 	function selectBestTargetTile( _entity, _vip )
 	{
 		// Function is a generator.
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 		local myTile = _entity.getTile();
 		local allOpponents = this.getAgent().getKnownOpponents();
 		local potential_tiles = [];

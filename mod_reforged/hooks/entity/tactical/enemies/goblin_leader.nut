@@ -3,14 +3,14 @@
 	{
 	    this.goblin.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.GoblinLeader);
+		b.setValues(::Const.Tactical.Actor.GoblinLeader);
 		b.TargetAttractionMult = 1.5;
 		// b.DamageDirectMult = 1.1;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.getSprite("head").setBrush("bust_goblin_03_head_01");
 		this.addDefaultStatusSprites();
 		// b.IsSpecializedInSwords = true;

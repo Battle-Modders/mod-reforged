@@ -1,4 +1,4 @@
-this.rf_sallet_helmet_with_bevor <- this.inherit("scripts/items/helmets/helmet", {
+this.rf_sallet_helmet_with_bevor <- ::inherit("scripts/items/helmets/helmet", {
 	m = {},
 	function create()
 	{

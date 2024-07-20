@@ -140,7 +140,7 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 		{
 			if (this.m.SoundOnUse.len() != 0)
 			{
-				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
+				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 			}
 
 			local knockToTile = this.findTileToKnockBackTo(_user.getTile(), _targetTile);
@@ -158,11 +158,11 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 
 			if (this.m.SoundOnHit.len() != 0)
 			{
-				this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
+				::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 			}
 
 			target.setCurrentMovementType(::Const.Tactical.MovementType.Involuntary);
-			local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - _targetTile.Level) - 1) * ::Const.Combat.FallingDamage;
+			local damage = ::Math.max(0, ::Math.abs(knockToTile.Level - _targetTile.Level) - 1) * ::Const.Combat.FallingDamage;
 
 			if (damage == 0)
 			{

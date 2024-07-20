@@ -3,7 +3,7 @@
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.SchratSmall);
+		b.setValues(::Const.Tactical.Actor.SchratSmall);
 		// b.IsImmuneToBleeding = true;				// Now handled by racial effect
 		// b.IsImmuneToPoison = true;				// Now handled by racial effect
 		// b.IsImmuneToKnockBackAndGrab = true;		// Now handled by racial effect
@@ -16,8 +16,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
 		body.setBrush("bust_schrat_body_small_01");

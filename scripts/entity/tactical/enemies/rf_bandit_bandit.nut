@@ -1,4 +1,4 @@
-this.rf_bandit_bandit <- this.inherit("scripts/entity/tactical/human", {
+this.rf_bandit_bandit <- ::inherit("scripts/entity/tactical/human", {
 	m = {
 		MyVariant = 0 // 1 for regular throwing weapons, 0 for not or throwing spear.
 	},

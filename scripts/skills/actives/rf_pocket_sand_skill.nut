@@ -1,4 +1,4 @@
-this.rf_pocket_sand_skill <- this.inherit("scripts/skills/actives/throw_dirt_skill", {
+this.rf_pocket_sand_skill <- ::inherit("scripts/skills/actives/throw_dirt_skill", {
 	m = {
 		// Private
 		RemainingUses = 0

@@ -3,15 +3,15 @@
 	{
 	    this.goblin.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.GoblinAmbusher);
+		b.setValues(::Const.Tactical.Actor.GoblinAmbusher);
 		// b.DamageDirectMult = 1.25;
 		b.TargetAttractionMult = 1.1;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-		this.getSprite("head").setBrush("bust_goblin_01_head_0" + this.Math.rand(1, 3));
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
+		this.getSprite("head").setBrush("bust_goblin_01_head_0" + ::Math.rand(1, 3));
 		this.getSprite("quiver").Visible = true;
 		this.addDefaultStatusSprites();
 
@@ -20,7 +20,7 @@
 			// b.IsSpecializedInBows = true;
 			// b.Vision = 8;
 
-			// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 180)
+			// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 180)
 			// {
 			// 	b.DamageDirectMult = 1.35;
 			// }

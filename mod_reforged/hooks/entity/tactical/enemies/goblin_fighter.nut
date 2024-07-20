@@ -3,14 +3,14 @@
 	{
 	    this.goblin.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.GoblinFighter);
+		b.setValues(::Const.Tactical.Actor.GoblinFighter);
 		// b.DamageDirectMult = 1.25;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-		this.getSprite("head").setBrush("bust_goblin_01_head_0" + this.Math.rand(1, 3));
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
+		this.getSprite("head").setBrush("bust_goblin_01_head_0" + ::Math.rand(1, 3));
 		this.addDefaultStatusSprites();
 
 		// if (!this.m.IsLow)
@@ -19,13 +19,13 @@
 		// 	b.IsSpecializedInSpears = true;
 		// 	b.IsSpecializedInSwords = true;
 
-		// 	if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 50)
+		// 	if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 50)
 		// 	{
 		// 		b.MeleeDefense += 5;
 		// 		b.RangedDefense += 5;
 		// 		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 
-		// 		if (this.World.getTime().Days >= 90)
+		// 		if (::World.getTime().Days >= 90)
 		// 		{
 		// 			b.RangedSkill += 5;
 		// 		}

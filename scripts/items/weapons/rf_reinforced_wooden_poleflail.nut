@@ -10,9 +10,9 @@ this.rf_reinforced_wooden_poleflail <- ::inherit("scripts/items/weapons/weapon",
 		this.m.Icon = "weapons/melee/rf_reinforced_wooden_poleflail_01_70x70.png";
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
-		this.m.WeaponType = this.Const.Items.WeaponType.Flail;
+		this.m.WeaponType = ::Const.Items.WeaponType.Flail;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
-		this.m.ItemProperty = this.Const.Items.Property.IgnoresShieldwall;
+		this.m.ItemProperty = ::Const.Items.Property.IgnoresShieldwall;
 		this.m.IsAgainstShields = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

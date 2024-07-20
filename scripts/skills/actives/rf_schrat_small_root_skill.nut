@@ -20,8 +20,8 @@ this.rf_schrat_small_root_skill <- ::inherit("scripts/skills/skill", {
 			"sounds/combat/break_free_roots_02.wav",
 			"sounds/combat/break_free_roots_03.wav"
 		];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 0;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -52,7 +52,7 @@ this.rf_schrat_small_root_skill <- ::inherit("scripts/skills/skill", {
 
 		if (this.m.SoundOnHit.len() != 0)
 		{
-			this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, targetEntity.getPos());
+			::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, targetEntity.getPos());
 		}
 
 		targetEntity.getSkills().add(::new("scripts/skills/effects/rooted_effect"));

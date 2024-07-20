@@ -3,7 +3,7 @@
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.DesertDevil);
+		b.setValues(::Const.Tactical.Actor.DesertDevil);
 		// b.IsSpecializedInSwords = true;
 		// b.IsSpecializedInPolearms = true;
 		// b.IsSpecializedInSpears = true;
@@ -44,7 +44,7 @@
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			if (weapon.isItemType(this.Const.Items.ItemType.OneHanded))
+			if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 			{
 				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
@@ -68,7 +68,7 @@
 			local mainhandItem = this.getMainhandItem();
 			if (mainhandItem != null)
 			{
-				if (mainhandItem.isItemType(this.Const.Items.ItemType.OneHanded))
+				if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
 				{
 					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
 				}

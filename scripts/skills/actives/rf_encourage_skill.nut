@@ -1,4 +1,4 @@
-this.rf_encourage_skill <- this.inherit("scripts/skills/skill", {
+this.rf_encourage_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		// Config
 		EncourageBonusFraction = 0.5,		// This percentage of Resolve is added as a bonus for the morale check

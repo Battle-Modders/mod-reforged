@@ -3,7 +3,7 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.MasterArcher);
+		b.setValues(::Const.Tactical.Actor.MasterArcher);
 		b.Vision = 8;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -25,9 +25,9 @@
 
 	q.assignRandomEquipment = @() function()
 	{
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local r = this.Math.rand(1, 2);
+			local r = ::Math.rand(1, 2);
 
 			if (r == 1)
 			{
@@ -50,7 +50,7 @@
 
 		if (sidearm != null) this.m.Items.addToBag(::new(sidearm));
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = ::MSU.Class.WeightedContainer([
 	    		[1, "scripts/items/armor/thick_tunic"],
@@ -61,7 +61,7 @@
 			this.m.Items.equip(::new(armor));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/helmets/hood"],
@@ -81,9 +81,9 @@
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 
-		if (this.Math.rand(1, 100) < 70)
+		if (::Math.rand(1, 100) < 70)
 		{
-			local r = this.Math.rand(1, 2);
+			local r = ::Math.rand(1, 2);
 			if (r == 1)
 			{
 				this.m.Items.equip(::new("scripts/items/weapons/named/named_warbow"));

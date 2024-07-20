@@ -3,7 +3,7 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.HedgeKnight);
+		b.setValues(::Const.Tactical.Actor.HedgeKnight);
 		b.TargetAttractionMult = 1.0;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -28,7 +28,7 @@
 
 	q.assignRandomEquipment = @() function()
 	{
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
 	    		[1, "scripts/items/weapons/bardiche"],
@@ -41,7 +41,7 @@
 			this.m.Items.equip(::new(weapon));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = ::MSU.Class.WeightedContainer([
 	    		[1, "scripts/items/armor/heavy_lamellar_armor"],
@@ -53,7 +53,7 @@
 		}
 
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = ::MSU.Class.WeightedContainer([
 	    		[1, "scripts/items/helmets/closed_flat_top_with_mail"],
@@ -74,7 +74,7 @@
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 
-		local r = this.Math.rand(1, 3);
+		local r = ::Math.rand(1, 3);
 
 		if (r == 1)
 		{

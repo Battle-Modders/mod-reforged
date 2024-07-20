@@ -3,7 +3,7 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.MercenaryRanged);
+		b.setValues(::Const.Tactical.Actor.MercenaryRanged);
 		b.TargetAttractionMult = 1.1;
 		b.Vision = 8;
 		// b.IsSpecializedInBows = true;

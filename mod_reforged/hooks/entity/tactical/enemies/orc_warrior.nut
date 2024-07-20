@@ -3,9 +3,9 @@
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.OrcWarrior);
+		b.setValues(::Const.Tactical.Actor.OrcWarrior);
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 200)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 200)
 		// {
 		// 	b.MeleeSkill += 5;
 		// 	b.DamageTotalMult += 0.1;
@@ -17,8 +17,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_orc_03_body";
 		this.addSprite("socket").setBrush("bust_base_orcs");
 		local body = this.addSprite("body");
@@ -29,7 +29,7 @@
 		injury_body.setBrush("bust_orc_03_body_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		head.setBrush("bust_orc_03_head_0" + this.Math.rand(1, 3));
+		head.setBrush("bust_orc_03_head_0" + ::Math.rand(1, 3));
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
 		local injury = this.addSprite("injury");
@@ -50,7 +50,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 
-		if (this.Const.DLC.Unhold)
+		if (::Const.DLC.Unhold)
 		{
 			this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
 		}

@@ -13,7 +13,7 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Swordmaster);
+		b.setValues(::Const.Tactical.Actor.Swordmaster);
 		b.IsSpecializedInSwords = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -52,7 +52,7 @@
 
 	q.assignRandomEquipment = @() function()
 	{
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			if (this.m.MyArmorVariant == 0) // light armor
             {
@@ -69,7 +69,7 @@
             }
         }
 
-        if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
+        if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = null;
 			if (this.m.MyArmorVariant == 0) // light armor
@@ -91,7 +91,7 @@
 		this.m.Items.equip(::new(helmet));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon;
 			switch(this.m.MyVariant)

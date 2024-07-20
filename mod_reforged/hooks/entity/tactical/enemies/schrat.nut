@@ -2,7 +2,7 @@
 	q.onInit = @() function()
 	{
 	    this.actor.onInit();
-		local clouds = this.Tactical.getWeather().createCloudSettings();
+		local clouds = ::Tactical.getWeather().createCloudSettings();
 		clouds.Type = this.getconsttable().CloudType.Fog;
 		clouds.MinClouds = 20;
 		clouds.MaxClouds = 20;
@@ -12,9 +12,9 @@
 		clouds.MaxAlpha = 0.45;
 		clouds.MinScale = 2.0;
 		clouds.MaxScale = 3.0;
-		this.Tactical.getWeather().buildCloudCover(clouds);
+		::Tactical.getWeather().buildCloudCover(clouds);
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Schrat);
+		b.setValues(::Const.Tactical.Actor.Schrat);
 		// b.IsImmuneToBleeding = true;				// Now handled by racial effect
 		// b.IsImmuneToPoison = true;				// Now handled by racial effect
 		// b.IsImmuneToKnockBackAndGrab = true;		// Now handled by racial effect
@@ -25,7 +25,7 @@
 		// b.IsAffectedByInjuries = false;			// Now handled by racial effect
 		// b.IsImmuneToDisarm = true;				// Now handled by racial effect
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 250)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 250)
 		// {
 		// 	b.MeleeSkill += 5;
 		// }
@@ -33,8 +33,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
 		body.setBrush("bust_schrat_body_01");
@@ -42,7 +42,7 @@
 		body.varyColor(0.05, 0.05, 0.05);
 		this.m.BloodColor = body.Color;
 		local head = this.addSprite("head");
-		head.setBrush("bust_schrat_head_0" + this.Math.rand(1, 2));
+		head.setBrush("bust_schrat_head_0" + ::Math.rand(1, 2));
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		local injury = this.addSprite("injury");

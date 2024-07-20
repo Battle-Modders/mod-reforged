@@ -9,9 +9,9 @@
         "sounds/combat/dlc6/status_on_fire_02.wav",
         "sounds/combat/dlc6/status_on_fire_03.wav"
     ];
-    ::Sound.play(sounds[this.Math.rand(0, sounds.len() - 1)], ::Const.Sound.Volume.Actor, _entity.getPos());
+    ::Sound.play(sounds[::Math.rand(0, sounds.len() - 1)], ::Const.Sound.Volume.Actor, _entity.getPos());
 
-    local damage = this.Math.rand(15, 30);
+    local damage = ::Math.rand(15, 30);
     local hitInfo = clone ::Const.Tactical.HitInfo;
     hitInfo.DamageRegular = damage;
     hitInfo.DamageArmor = damage;

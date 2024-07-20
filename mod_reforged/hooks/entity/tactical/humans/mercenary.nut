@@ -3,7 +3,7 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Mercenary);
+		b.setValues(::Const.Tactical.Actor.Mercenary);
 		// b.IsSpecializedInSwords = true;
 		// b.IsSpecializedInAxes = true;
 		// b.IsSpecializedInMaces = true;
@@ -36,7 +36,7 @@
 	{
 	    local r;
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapons = [
 				"weapons/billhook",
@@ -52,7 +52,7 @@
 				"weapons/military_pick"
 			];
 
-			if (this.Const.DLC.Unhold)
+			if (::Const.DLC.Unhold)
 			{
 				weapons.extend([
 					"weapons/polehammer",
@@ -60,7 +60,7 @@
 				]);
 			}
 
-			if (this.Const.DLC.Wildmen)
+			if (::Const.DLC.Wildmen)
 			{
 				weapons.extend([
 					"weapons/bardiche",
@@ -74,14 +74,14 @@
 				"weapons/rf_greatsword"
 			]);
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
-			if (this.Math.rand(1, 100) <= 75)
+			if (::Math.rand(1, 100) <= 75)
 			{
-				r = this.Math.rand(0, 2);
+				r = ::Math.rand(0, 2);
 
 				if (r == 0)
 				{
@@ -102,11 +102,11 @@
 			}
 		}
 
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 60)
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 60)
 		{
-			if (this.Const.DLC.Unhold)
+			if (::Const.DLC.Unhold)
 			{
-				r = this.Math.rand(1, 3);
+				r = ::Math.rand(1, 3);
 
 				if (r == 1)
 				{
@@ -123,7 +123,7 @@
 			}
 			else
 			{
-				r = this.Math.rand(1, 2);
+				r = ::Math.rand(1, 2);
 
 				if (r == 1)
 				{
@@ -136,9 +136,9 @@
 			}
 		}
 
-		if (this.Const.DLC.Unhold)
+		if (::Const.DLC.Unhold)
 		{
-			r = this.Math.rand(1, 11);
+			r = ::Math.rand(1, 11);
 
 			if (r == 1)
 			{
@@ -187,7 +187,7 @@
 		}
 		else
 		{
-			r = this.Math.rand(2, 8);
+			r = ::Math.rand(2, 8);
 
 			if (r == 2)
 			{
@@ -219,7 +219,7 @@
 			}
 		}
 
-		if (this.Math.rand(1, 100) <= 95)
+		if (::Math.rand(1, 100) <= 95)
 		{
 			local helmets = [
 				"scripts/items/helmets/nasal_helmet",
@@ -236,7 +236,7 @@
 				"scripts/items/helmets/bascinet_with_mail"
 			];
 
-			if (this.Const.DLC.Wildmen)
+			if (::Const.DLC.Wildmen)
 			{
 				helmets.extend([
 					"scripts/items/helmets/nordic_helmet",
@@ -244,7 +244,7 @@
 				]);
 			}
 
-			this.m.Items.equip(this.new(helmets[this.Math.rand(1, helmets.len() - 1)]));
+			this.m.Items.equip(this.new(helmets[::Math.rand(1, helmets.len() - 1)]));
 		}
 
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);

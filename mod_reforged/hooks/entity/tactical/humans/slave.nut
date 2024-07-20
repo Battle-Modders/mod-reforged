@@ -3,7 +3,7 @@
 	{
 	    this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Slave);
+		b.setValues(::Const.Tactical.Actor.Slave);
 		b.TargetAttractionMult = 0.5;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -11,7 +11,7 @@
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_southern");
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			local tattoo_head = this.actor.getSprite("tattoo_head");
 			tattoo_head.setBrush("bust_head_darkeyes_01");
@@ -24,13 +24,13 @@
 			tattoo_head.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
 			local dirt = this.getSprite("dirt");
 			dirt.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
 			local tattoo_body = this.actor.getSprite("tattoo_body");
 			local body = this.actor.getSprite("body");

@@ -5,7 +5,7 @@
 	// Overwrite vanilla function to prevent repeated adding of reload skill
 	q.onUse = @() function( _user, _targetTile	)
 	{
-		::Sound.play(this.m.SoundOnFire[this.Math.rand(0, this.m.SoundOnFire.len() - 1)], this.Const.Sound.Volume.Skill * this.m.SoundVolume, _user.getPos());
+		::Sound.play(this.m.SoundOnFire[::Math.rand(0, this.m.SoundOnFire.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, _user.getPos());
 		local tag = {
 			Skill = this,
 			User = _user,

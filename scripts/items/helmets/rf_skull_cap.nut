@@ -1,4 +1,4 @@
-this.rf_skull_cap <- this.inherit("scripts/items/helmets/helmet", {
+this.rf_skull_cap <- ::inherit("scripts/items/helmets/helmet", {
 	m = {},
 	function create()
 	{

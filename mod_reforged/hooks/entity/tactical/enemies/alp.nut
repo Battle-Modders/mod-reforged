@@ -3,8 +3,8 @@
     {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Alp);
-		b.Initiative += this.Math.rand(0, 55);
+		b.setValues(::Const.Tactical.Actor.Alp);
+		b.Initiative += ::Math.rand(0, 55);
 		// b.IsAffectedByNight = false;				// Now handled by racial effect
 		// b.IsAffectedByInjuries = false;			// Now handled by racial effect
 		// b.IsImmuneToBleeding = true;				// Now handled by racial effect
@@ -14,14 +14,14 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
 		body.setBrush("bust_alp_body_01");
 		body.varySaturation(0.2);
 		local head = this.addSprite("head");
-		head.setBrush("bust_alp_head_0" + this.Math.rand(1, 3));
+		head.setBrush("bust_alp_head_0" + ::Math.rand(1, 3));
 		head.Saturation = body.Saturation;
 		local injury = this.addSprite("injury");
 		injury.setBrush("bust_alp_01_injured");

@@ -1,4 +1,4 @@
-this.rf_bandit_tough_agent <- this.inherit("scripts/ai/tactical/agents/bandit_melee_agent", {
+this.rf_bandit_tough_agent <- ::inherit("scripts/ai/tactical/agents/bandit_melee_agent", {
 	m = {},
 	function create()
 	{

@@ -10,7 +10,7 @@ this.rf_battle_axe <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.Icon = "weapons/melee/rf_battle_axe_01_70x70.png";
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
-		this.m.WeaponType = this.Const.Items.WeaponType.Axe;
+		this.m.WeaponType = ::Const.Items.WeaponType.Axe;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAgainstShields = true;
 		this.m.AddGenericSkill = true;

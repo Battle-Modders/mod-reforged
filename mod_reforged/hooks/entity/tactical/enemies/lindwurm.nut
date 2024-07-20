@@ -3,7 +3,7 @@
 	{
 	    this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Lindwurm);
+		b.setValues(::Const.Tactical.Actor.Lindwurm);
 		// b.IsAffectedByNight = false;				// Now handled by racial effect
 		// b.IsImmuneToKnockBackAndGrab = true;		// Now handled by racial effect
 		// b.IsImmuneToStun = true;					// Now handled by racial effect
@@ -11,7 +11,7 @@
 		// b.IsImmuneToRoot = true;					// Now handled by racial effect
 		// b.IsImmuneToDisarm = true;				// Now handled by racial effect
 
-		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 170)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 170)
 		// {
 		// 	b.MeleeSkill += 10;
 		// 	b.DamageTotalMult += 0.1;
@@ -20,24 +20,24 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
-		body.setBrush("bust_lindwurm_body_0" + this.Math.rand(1, 1));
+		body.setBrush("bust_lindwurm_body_0" + ::Math.rand(1, 1));
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varySaturation(0.2);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyColor(0.08, 0.08, 0.08);
 		}
 
 		local head = this.addSprite("head");
-		head.setBrush("bust_lindwurm_head_0" + this.Math.rand(1, 1));
+		head.setBrush("bust_lindwurm_head_0" + ::Math.rand(1, 1));
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		local injury = this.addSprite("injury");
@@ -63,13 +63,13 @@
 			local myTile = this.getTile();
 			local spawnTile;
 
-			if (myTile.hasNextTile(this.Const.Direction.NE) && myTile.getNextTile(this.Const.Direction.NE).IsEmpty)
+			if (myTile.hasNextTile(::Const.Direction.NE) && myTile.getNextTile(::Const.Direction.NE).IsEmpty)
 			{
-				spawnTile = myTile.getNextTile(this.Const.Direction.NE);
+				spawnTile = myTile.getNextTile(::Const.Direction.NE);
 			}
-			else if (myTile.hasNextTile(this.Const.Direction.SE) && myTile.getNextTile(this.Const.Direction.SE).IsEmpty)
+			else if (myTile.hasNextTile(::Const.Direction.SE) && myTile.getNextTile(::Const.Direction.SE).IsEmpty)
 			{
-				spawnTile = myTile.getNextTile(this.Const.Direction.SE);
+				spawnTile = myTile.getNextTile(::Const.Direction.SE);
 			}
 			else
 			{
@@ -88,7 +88,7 @@
 
 			if (spawnTile != null)
 			{
-				this.m.Tail = this.WeakTableRef(this.Tactical.spawnEntity("scripts/entity/tactical/enemies/lindwurm_tail", spawnTile.Coords.X, spawnTile.Coords.Y, this.getID()));
+				this.m.Tail = this.WeakTableRef(::Tactical.spawnEntity("scripts/entity/tactical/enemies/lindwurm_tail", spawnTile.Coords.X, spawnTile.Coords.Y, this.getID()));
 				this.m.Tail.m.Body = this.WeakTableRef(this);
 				this.m.Tail.getSprite("body").Color = body.Color;
 				this.m.Tail.getSprite("body").Saturation = body.Saturation;

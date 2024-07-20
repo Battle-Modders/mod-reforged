@@ -1,4 +1,4 @@
-this.perk_rf_mauler <- this.inherit("scripts/skills/skill", {
+this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredWeaponType = ::Const.Items.WeaponType.Cleaver,
 		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
