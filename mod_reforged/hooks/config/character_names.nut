@@ -308,10 +308,23 @@ foreach(characterName in ::Const.Strings.CharacterNames)
 // The array contains some duplicates even in vanilla
 ::Const.Strings.SouthernNames = ::MSU.Array.removeDuplicates(::Const.Strings.SouthernNames);
 
-foreach (name in ::Const.Strings.SouthernNames)
+foreach (i, name in ::Const.Strings.SouthernNames)
 {
 	::Const.Strings.SouthernNamesLast.push("Ibn " + name);
 	::Const.Strings.SouthernNamesLast.push("Al-" + name);
+	// For Officer Titles we push all Al- variants but fewer Ibn variants
+	// and a small number of long variants of the form "Al-Name Ibn Name"
+	// this is similar to the distribution of vanilla SouthernOfficerTitles
+	::Const.Strings.SouthernOfficerTitles.push("Al-" + name);
+	if (i % 3 == 0)
+	{
+		::Const.Strings.SouthernOfficerTitles.push("Ibn " + name);
+	}
+	if (i % 5 == 0)
+	{
+		::Const.Strings.SouthernOfficerTitles.push("Al-" + name + " Ibn " + ::MSU.Array.rand(::Const.Strings.SouthernNames));
+	}
 }
 
 ::Const.Strings.SouthernNamesLast = ::MSU.Array.removeDuplicates(::Const.Strings.SouthernNamesLast);
+::Const.Strings.SouthernOfficerTitles = ::MSU.Array.removeDuplicates(::Const.Strings.SouthernOfficerTitles);
