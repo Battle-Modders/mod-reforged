@@ -1,0 +1,3 @@
+<brush name="gfx/rf_effects.png" version ="17" b1="2" b5="0">
+	<sprite id="rf_projectile_flaming_arrow" ic = "FF23165B" img="effects\rf_projectile_flaming_arrow.png" />
+</brush>
