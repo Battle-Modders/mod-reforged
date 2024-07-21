@@ -13,7 +13,6 @@ this.rf_take_aim_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
-		this.m.IsStacking = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 2;
