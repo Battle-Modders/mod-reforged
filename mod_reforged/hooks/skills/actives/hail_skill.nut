@@ -2,6 +2,37 @@
 	q.m.RerollDamageMult <- 1.0;
 	q.m.IsAttacking <- false;
 
+	q.getTooltip = @() function()
+	{
+		local ret = this.getDefaultTooltip();
+		ret.extend([
+			{
+				id = 9, // In vanilla the id is 9 for this and 7 for the three separate attack rolls entry in this order, so we kept it like that
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a " + ::MSU.Text.colorGreen("100%") + " chance to hit the head"
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Will make three separate attack rolls for one third of the damage each, combined into one strike"
+			}
+		]);
+
+		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInFlails)
+		{
+			ret.push({
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Ignores the bonus to [Melee Defense|Concept.MeleeDefense] granted by shields but not by [Shieldwall|Skill+shieldwall_effect]")
+			});
+		}
+
+		return ret;
+	}
+
 	q.onUse = @() function( _user, _targetTile )
 	{
 		this.m.RerollDamageMult = 1.0;			
