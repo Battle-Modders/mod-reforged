@@ -83,7 +83,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_skill.isAttack())
+		if (_skill.isAttack() && !_forFree)
 			this.m.ValidTiles.clear();
 	}
 

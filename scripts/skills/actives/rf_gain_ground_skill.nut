@@ -111,7 +111,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_skill != this)
+		if (_skill != this && !_forFree)
 			this.m.ValidTiles.clear();
 	}
 
