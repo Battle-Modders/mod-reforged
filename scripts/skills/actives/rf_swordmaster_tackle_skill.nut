@@ -6,7 +6,7 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 		this.m.Name = "Tackle";
 		this.m.Description = "Tackle an enemy with sheer force and skill, switching places with them.";
 		this.m.Icon = "skills/rf_swordmaster_tackle_skill.png";
-		this.m.IconDisabled = "skills/rf_swordmaster_tackle_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_swordmaster_tackle_skill_sw.png";
 		this.m.Overlay = "rf_swordmaster_tackle_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/indomitable_01.wav",

@@ -6,7 +6,7 @@ this.rf_take_aim_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Take Aim";
 		this.m.Description = "Put additional effort into getting a better aim to hit targets behind cover with a Crossbow or to reach farther targets with a Handgonne."
 		this.m.Icon = "skills/rf_take_aim_skill.png";
-		this.m.IconDisabled = "skills/rf_take_aim_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_take_aim_skill_sw.png";
 		this.m.Overlay = "rf_take_aim_skill";
 		this.m.SoundOnUse = [];
 		this.m.Type = ::Const.SkillType.Active;

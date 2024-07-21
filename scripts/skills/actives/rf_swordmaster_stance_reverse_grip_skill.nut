@@ -9,7 +9,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		this.m.Name = "Stance: Reverse Grip";
 		this.m.Description = "Grab your sword in a reverse grip to use it like a mace.";
 		this.m.Icon = "skills/rf_swordmaster_stance_reverse_grip_skill.png";
-		this.m.IconDisabled = "skills/rf_swordmaster_stance_reverse_grip_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_swordmaster_stance_reverse_grip_skill_sw.png";
 		this.m.Overlay = "rf_swordmaster_stance_reverse_grip_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/riposte_01.wav",

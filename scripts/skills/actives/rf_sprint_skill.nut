@@ -8,7 +8,7 @@ this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Sprint";
 		this.m.Description = "Get to your destination as fast as possible!";
 		this.m.Icon = "skills/rf_sprint_skill.png";
-		this.m.IconDisabled = "skills/rf_sprint_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_sprint_skill_sw.png";
 		this.m.Overlay = "rf_sprint_skill";
 		this.m.SoundOnUse = [
 			"sounds/humans/3/human_flee_03.wav"

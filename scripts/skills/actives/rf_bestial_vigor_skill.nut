@@ -11,7 +11,7 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Bestial Vigor";
 		this.m.Description = "Unleash your beastly vigor to shake off the effects of Fatigue and push your body beyond limits!";
 		this.m.Icon = "skills/rf_bestial_vigor_skill.png";
-		this.m.IconDisabled = "skills/rf_bestial_vigor_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_bestial_vigor_skill_sw.png";
 		this.m.Overlay = "rf_bestial_vigor_skill";
 		this.m.SoundOnUse = [
 			"sounds/enemies/orc_linebreaker_01.wav",

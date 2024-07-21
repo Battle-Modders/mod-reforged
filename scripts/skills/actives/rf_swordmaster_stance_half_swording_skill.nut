@@ -7,7 +7,7 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 		this.m.Name = "Stance: Half Swording";
 		this.m.Description = "Switch to a half-sword grip to allow for precise piercing attacks through your target\'s armor.";
 		this.m.Icon = "skills/rf_swordmaster_stance_half_swording_skill.png";
-		this.m.IconDisabled = "skills/rf_swordmaster_stance_half_swording_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_swordmaster_stance_half_swording_skill_sw.png";
 		this.m.Overlay = "rf_swordmaster_stance_half_swording_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/riposte_01.wav",

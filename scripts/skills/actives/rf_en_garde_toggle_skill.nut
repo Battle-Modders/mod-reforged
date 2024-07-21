@@ -9,7 +9,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Toggle En Garde";
 		this.m.Description = "Toggle your En Garde perk to be enabled or disabled."
 		this.m.Icon = "skills/rf_en_garde_toggle_on.png";
-		this.m.IconDisabled = "skills/rf_en_garde_toggle_bw.png";
+		this.m.IconDisabled = "skills/rf_en_garde_toggle_sw.png";
 		this.m.ReturnFavorSounds <- [
 			"sounds/combat/return_favor_01.wav"
 		];

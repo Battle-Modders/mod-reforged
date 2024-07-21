@@ -7,7 +7,7 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 		this.m.Name = "Push Through";
 		this.m.Description = "Use your muscle and grappling skills to knock back a target and take their place, all in one action."
 		this.m.Icon = "skills/rf_swordmaster_push_through_skill.png";
-		this.m.IconDisabled = "skills/rf_swordmaster_push_through_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_swordmaster_push_through_skill_sw.png";
 		this.m.Overlay = "rf_swordmaster_push_through_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/indomitable_01.wav",

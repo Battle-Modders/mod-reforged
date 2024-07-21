@@ -6,7 +6,7 @@ this.rf_follow_up_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Follow Up";
 		this.m.Description = "Prepare to attack any target in your attack range who gets hit by an ally.";
 		this.m.Icon = "skills/rf_follow_up_skill.png";
-		this.m.IconDisabled = "skills/rf_follow_up_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_follow_up_skill_sw.png";
 		this.m.Overlay = "rf_follow_up_skill";
 		this.m.SoundOnUse = [];
 		this.m.Type = ::Const.SkillType.Active;

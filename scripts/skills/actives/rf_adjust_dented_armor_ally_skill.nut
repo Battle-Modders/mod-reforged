@@ -6,7 +6,7 @@ this.rf_adjust_dented_armor_ally_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Adjust Ally\'s Dented Armor";
 		this.m.Description = "Adjust an ally\'s dented armor.";
 		this.m.Icon = "skills/rf_adjust_dented_armor_ally_skill.png";
-		this.m.IconDisabled = "skills/rf_adjust_dented_armor_ally_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_adjust_dented_armor_ally_skill_sw.png";
 		this.m.Overlay = "rf_adjust_dented_armor_ally_skill";
 		this.m.SoundOnUse = [
 			"sounds/ambience/settlement/fortification_armor_weapons_00.wav",

@@ -9,7 +9,7 @@ this.rf_line_breaker_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 		this.m.Name = "Line Breaker";
 		this.m.Description = "Push through the ranks of your enemies by knocking back a target and taking its place, all in one action.";
 		this.m.Icon = "skills/rf_line_breaker_skill.png";
-		this.m.IconDisabled = "skills/rf_line_breaker_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_line_breaker_skill_sw.png";
 		this.m.Overlay = "rf_line_breaker_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/indomitable_01.wav",

@@ -7,7 +7,7 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 		this.m.Name = "Arrow to the Knee";
 		this.m.Description = "A debilitating shot aimed at the knees of your target causing them to spend additional Action Points per tile moved.";
 		this.m.Icon = "skills/rf_arrow_to_the_knee_skill.png";
-		this.m.IconDisabled = "skills/rf_arrow_to_the_knee_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_arrow_to_the_knee_skill_sw.png";
 		this.m.Overlay = "rf_arrow_to_the_knee_skill";
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 20;

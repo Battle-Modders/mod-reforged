@@ -8,7 +8,7 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Hold Steady";
 		this.m.Description = "Order your men to hold their ground!"
 		this.m.Icon = "skills/rf_hold_steady_skill.png";
-		this.m.IconDisabled = "skills/rf_hold_steady_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_hold_steady_skill_sw.png";
 		this.m.Overlay = "rf_hold_steady_skill";
 		this.m.SoundOnUse = [];
 		this.m.Type = ::Const.SkillType.Active;

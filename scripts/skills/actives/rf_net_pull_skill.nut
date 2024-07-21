@@ -6,7 +6,7 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Net Pull";
 		this.m.Description = "Pull a target from 2 tiles away if there is space next to you. After being pulled, cast your net to pin down the target. A target can not be pulled up a level of height. Shieldwall, Spearwall and Riposte will be canceled for a successfully pulled target. A rooted target can not be pulled.";
 		this.m.Icon = "skills/rf_net_pull_skill.png";
-		this.m.IconDisabled = "skills/rf_net_pull_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_net_pull_skill_sw.png";
 		this.m.Overlay = "rf_net_pull_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/hook_01.wav",

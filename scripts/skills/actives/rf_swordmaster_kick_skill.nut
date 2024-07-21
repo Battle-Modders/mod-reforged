@@ -6,7 +6,7 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 		this.m.Name = "Kick";
 		this.m.Description = "Kick an enemy, knocking them back and staggering them!";
 		this.m.Icon = "skills/rf_swordmaster_kick_skill.png";
-		this.m.IconDisabled = "skills/rf_swordmaster_kick_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_swordmaster_kick_skill_sw.png";
 		this.m.Overlay = "rf_swordmaster_kick_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/knockback_01.wav",

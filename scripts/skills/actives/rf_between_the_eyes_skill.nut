@@ -9,7 +9,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Between the Eyes";
 		this.m.Description = "Attempt to land your next attack right between your target\'s eyes.";
 		this.m.Icon = "skills/rf_between_the_eyes_skill.png";
-		this.m.IconDisabled = "skills/rf_between_the_eyes_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_between_the_eyes_skill_sw.png";
 		this.m.Overlay = "rf_between_the_eyes_skill";
 		this.m.SoundOnUse = [];
 		this.m.Type = ::Const.SkillType.Active;

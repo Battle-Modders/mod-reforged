@@ -8,7 +8,7 @@ this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Onslaught";
 		this.m.Description = "Order your men to push through the enemy lines!"
 		this.m.Icon = "skills/rf_onslaught_skill.png";
-		this.m.IconDisabled = "skills/rf_onslaught_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_onslaught_skill_sw.png";
 		this.m.Overlay = "rf_onslaught_skill";
 		this.m.SoundOnUse = [];
 		this.m.Type = ::Const.SkillType.Active;

@@ -6,7 +6,7 @@ this.rf_bearded_blade_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Bearded Blade";
 		this.m.Description = "Prepare to use the bearded blade of your axe to disarm your opponent.";
 		this.m.Icon = "skills/rf_bearded_blade_skill.png";
-		this.m.IconDisabled = "skills/rf_bearded_blade_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_bearded_blade_skill_sw.png";
 		this.m.Overlay = "rf_bearded_blade_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/riposte_01.wav",

@@ -8,7 +8,7 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Name = "Blitzkrieg";
 		this.m.Description = "Order your men to attack as fast as possible!"
 		this.m.Icon = "skills/rf_blitzkrieg_skill.png";
-		this.m.IconDisabled = "skills/rf_blitzkrieg_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_blitzkrieg_skill_sw.png";
 		this.m.Overlay = "rf_blitzkrieg_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/rf_blitzkrieg_skill_1.wav",

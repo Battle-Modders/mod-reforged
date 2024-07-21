@@ -9,7 +9,7 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 		this.m.Name = "Juggernaut Charge";
 		this.m.Description = "Unleash the juggernaut! Rush towards your opponents - closing the gap quickly - and perform a devastating attack.";
 		this.m.Icon = "skills/rf_swordmaster_charge_skill.png";
-		this.m.IconDisabled = "skills/rf_swordmaster_charge_skill_bw.png";
+		this.m.IconDisabled = "skills/rf_swordmaster_charge_skill_sw.png";
 		this.m.Overlay = "rf_swordmaster_charge_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/indomitable_01.wav",
