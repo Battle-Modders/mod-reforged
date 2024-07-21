@@ -11,7 +11,7 @@ this.perk_rf_soul_link <- ::inherit("scripts/skills/skill", {
 		this.m.Name = ::Const.Strings.PerkName.RF_SoulLink;
 		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character has established a link with the souls of adjacent allies redirecting a portion of all incoming [Hitpoints|Concept.Hitpoints] damage.");
 		this.m.KilledString = "Died from Soul Link";
-		this.m.Icon = "ui/perks/rf_soul_link.png";
+		this.m.Icon = "ui/perks/perk_rf_soul_link.png";
 		this.m.IconMini = "perk_rf_soul_link_mini";
 		this.m.Overlay = "perk_rf_soul_link";
 		this.m.SoundOnUse = [

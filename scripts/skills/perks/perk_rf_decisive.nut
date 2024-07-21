@@ -16,8 +16,8 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_decisive";
 		this.m.Name = ::Const.Strings.PerkName.RF_Decisive;
 		this.m.Description = "This character is capable of making quick and confident decisions without any hesitation.";
-		this.m.Icon = "ui/perks/rf_decisive.png";
-		this.m.IconMini = "rf_decisive_mini";
+		this.m.Icon = "ui/perks/perk_rf_decisive.png";
+		this.m.IconMini = "perk_rf_decisive_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

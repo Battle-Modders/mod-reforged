@@ -10,7 +10,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_offhand_training";
 		this.m.Name = ::Const.Strings.PerkName.RF_OffhandTraining;
 		this.m.Description = "This character is skilled in the use of offhand items such as tools and bucklers.";
-		this.m.Icon = "ui/perks/rf_offhand_training.png";
+		this.m.Icon = "ui/perks/perk_rf_offhand_training.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.ItemActionOrder = ::Const.ItemActionOrder.BeforeLast;

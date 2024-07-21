@@ -9,8 +9,8 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_the_rush_of_battle";
 		this.m.Name = ::Const.Strings.PerkName.RF_TheRushOfBattle;
 		this.m.Description = "This character is in the thick of battle. The heart beats faster, pumping fresh blood through the veins.";
-		this.m.Icon = "ui/perks/rf_the_rush_of_battle.png";
-		this.m.IconMini = "rf_the_rush_of_battle_mini";
+		this.m.Icon = "ui/perks/perk_rf_the_rush_of_battle.png";
+		this.m.IconMini = "perk_rf_the_rush_of_battle_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Any;
 	}

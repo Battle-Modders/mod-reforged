@@ -10,7 +10,7 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.rf_rebuke";
 		this.m.Name = "Rebuke";
 		this.m.Description = "This character has a chance to return any missed melee attacks from adjacent attackers with a free attack.";
-		this.m.Icon = "ui/perks/rf_rebuke.png";
+		this.m.Icon = "ui/perks/perk_rf_rebuke.png";
 		this.m.IconMini = "rf_rebuke_effect_mini";
 		this.m.Overlay = "rf_rebuke_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;

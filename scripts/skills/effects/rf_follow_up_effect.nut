@@ -10,7 +10,7 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.rf_follow_up";
 		this.m.Name = "Follow Up";
 		this.m.Description = "Every time an enemy gets hit in this character\'s attack range by an ally, this character perform a free non-lethal attack against that enemy with reduced damage.";
-		this.m.Icon = "ui/perks/rf_follow_up.png";
+		this.m.Icon = "ui/perks/perk_rf_follow_up.png";
 		this.m.IconMini = "rf_follow_up_effect_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;

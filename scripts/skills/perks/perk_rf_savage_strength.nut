@@ -7,7 +7,7 @@ this.perk_rf_savage_strength <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_savage_strength";
 		this.m.Name = ::Const.Strings.PerkName.RF_SavageStrength;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_SavageStrength;
-		this.m.Icon = "ui/perks/rf_savage_strength.png";
+		this.m.Icon = "ui/perks/perk_rf_savage_strength.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Any;
 	}

@@ -8,7 +8,7 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 		this.m.ID = "perk.rf_swordmaster_metzger";
 		this.m.Name = ::Const.Strings.PerkName.RF_SwordmasterMetzger;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_SwordmasterMetzger;
-		this.m.Icon = "ui/perks/rf_swordmaster_metzger.png";
+		this.m.Icon = "ui/perks/perk_rf_swordmaster_metzger.png";
 	}
 
 	function onAdded()

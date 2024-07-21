@@ -6,7 +6,7 @@ this.perk_rf_swordmaster_versatile_swordsman <- ::inherit("scripts/skills/perks/
 		this.m.ID = "perk.rf_swordmaster_versatile_swordsman";
 		this.m.Name = ::Const.Strings.PerkName.RF_SwordmasterVersatileSwordsman;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_SwordmasterVersatileSwordsman;
-		this.m.Icon = "ui/perks/rf_swordmaster_versatile_swordsman.png";
+		this.m.Icon = "ui/perks/perk_rf_swordmaster_versatile_swordsman.png";
 	}
 
 	function onAdded()

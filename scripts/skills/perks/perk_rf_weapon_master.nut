@@ -7,7 +7,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_weapon_master";
 		this.m.Name = ::Const.Strings.PerkName.RF_WeaponMaster;
 		this.m.Description = "This character is skilled in the use of various weapons."
-		this.m.Icon = "ui/perks/rf_weapon_master.png";
+		this.m.Icon = "ui/perks/perk_rf_weapon_master.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Any;
 	}

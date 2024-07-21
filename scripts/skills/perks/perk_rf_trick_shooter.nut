@@ -5,7 +5,7 @@ this.perk_rf_trick_shooter <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_trick_shooter";
 		this.m.Name = ::Const.Strings.PerkName.RF_TrickShooter;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_TrickShooter;
-		this.m.Icon = "ui/perks/rf_trick_shooter.png";
+		this.m.Icon = "ui/perks/perk_rf_trick_shooter.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

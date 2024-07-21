@@ -8,7 +8,7 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.rf_from_all_sides";
 		this.m.Name = "From all Sides";
 		this.m.Description = "This character is receiving attacks which seem to be coming from all sides - very confusing!";
-		this.m.Icon = "ui/perks/rf_from_all_sides.png";
+		this.m.Icon = "ui/perks/perk_rf_from_all_sides.png";
 		this.m.IconMini = "rf_from_all_sides_effect_mini";
 		this.m.Overlay = "rf_from_all_sides_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;

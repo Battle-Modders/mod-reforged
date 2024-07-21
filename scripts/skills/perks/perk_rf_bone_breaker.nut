@@ -22,7 +22,7 @@ this.perk_rf_bone_breaker <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_bone_breaker";
 		this.m.Name = ::Const.Strings.PerkName.RF_BoneBreaker;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_BoneBreaker;
-		this.m.Icon = "ui/perks/rf_bone_breaker.png";
+		this.m.Icon = "ui/perks/perk_rf_bone_breaker.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Offensive;
 	}

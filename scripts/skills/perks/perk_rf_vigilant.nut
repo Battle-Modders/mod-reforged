@@ -7,7 +7,7 @@ this.perk_rf_vigilant <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_vigilant";
 		this.m.Name = ::Const.Strings.PerkName.RF_Vigilant;
 		this.m.Description = "This character\'s eye is keen, his movements keener. Gain a portion of unspent Action Points from the previous turn.";
-		this.m.Icon = "ui/perks/rf_vigilant.png";
+		this.m.Icon = "ui/perks/perk_rf_vigilant.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

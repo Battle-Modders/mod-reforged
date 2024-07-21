@@ -9,7 +9,7 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_combo";
 		this.m.Name = ::Const.Strings.PerkName.RF_Combo;
 		this.m.Description = "The good old one-two!";
-		this.m.Icon = "ui/perks/rf_combo.png";
+		this.m.Icon = "ui/perks/perk_rf_combo.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Any;
 	}

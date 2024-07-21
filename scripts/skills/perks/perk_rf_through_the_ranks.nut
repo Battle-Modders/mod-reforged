@@ -7,7 +7,7 @@ this.perk_rf_through_the_ranks <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_through_the_ranks";
 		this.m.Name = ::Const.Strings.PerkName.RF_ThroughTheRanks;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_ThroughTheRanks;
-		this.m.Icon = "ui/perks/rf_through_the_ranks.png";
+		this.m.Icon = "ui/perks/perk_rf_through_the_ranks.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

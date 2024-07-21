@@ -10,8 +10,8 @@ this.perk_rf_entrenched <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_entrenched";
 		this.m.Name = ::Const.Strings.PerkName.RF_Entrenched;
 		this.m.Description = "This character\'s confidence in combat is increased due to support from adjacent allies.";
-		this.m.Icon = "ui/perks/rf_entrenched.png";
-		this.m.IconMini = "rf_entrenched_mini";
+		this.m.Icon = "ui/perks/perk_rf_entrenched.png";
+		this.m.IconMini = "perk_rf_entrenched_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

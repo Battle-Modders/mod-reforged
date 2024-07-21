@@ -14,8 +14,8 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_feral_rage";
 		this.m.Name = ::Const.Strings.PerkName.RF_FeralRage;
 		this.m.Description = "The smell of blood and death sends you into an uncontrollable rage. Every taste of blood your weapon takes, every kill you make, and every hit you receive emboldens you and increases your lethality. Once in a rage, you must continuously feed it to keep it going.";
-		this.m.Icon = "ui/perks/rf_feral_rage.png";
-		this.m.IconMini = "rf_feral_rage_mini";
+		this.m.Icon = "ui/perks/perk_rf_feral_rage.png";
+		this.m.IconMini = "perk_rf_feral_rage_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.SoundOnUse = [

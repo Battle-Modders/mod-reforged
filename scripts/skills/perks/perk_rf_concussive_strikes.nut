@@ -9,7 +9,7 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_concussive_strikes";
 		this.m.Name = ::Const.Strings.PerkName.RF_ConcussiveStrikes;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_ConcussiveStrikes;
-		this.m.Icon = "ui/perks/rf_concussive_strikes.png";
+		this.m.Icon = "ui/perks/perk_rf_concussive_strikes.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

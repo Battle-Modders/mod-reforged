@@ -9,7 +9,7 @@ this.perk_rf_eyes_up <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_eyes_up";
 		this.m.Name = ::Const.Strings.PerkName.RF_EyesUp;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_EyesUp;
-		this.m.Icon = "ui/perks/rf_eyes_up.png";
+		this.m.Icon = "ui/perks/perk_rf_eyes_up.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

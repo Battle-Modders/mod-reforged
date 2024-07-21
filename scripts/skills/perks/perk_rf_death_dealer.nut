@@ -5,7 +5,7 @@ this.perk_rf_death_dealer <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_death_dealer";
 		this.m.Name = ::Const.Strings.PerkName.RF_DeathDealer;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_DeathDealer;
-		this.m.Icon = "ui/perks/rf_death_dealer.png";
+		this.m.Icon = "ui/perks/perk_rf_death_dealer.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

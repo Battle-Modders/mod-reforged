@@ -9,7 +9,7 @@ this.perk_rf_between_the_ribs <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_between_the_ribs";
 		this.m.Name = ::Const.Strings.PerkName.RF_BetweenTheRibs;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_BetweenTheRibs;
-		this.m.Icon = "ui/perks/rf_between_the_ribs.png";
+		this.m.Icon = "ui/perks/perk_rf_between_the_ribs.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

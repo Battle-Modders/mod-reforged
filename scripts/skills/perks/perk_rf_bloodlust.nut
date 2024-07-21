@@ -11,8 +11,8 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_bloodlust";
 		this.m.Name = ::Const.Strings.PerkName.RF_Bloodlust;
 		this.m.Description = "This character gains increased vigor when inflicting fatalities.";
-		this.m.Icon = "ui/perks/rf_bloodlust.png";
-		this.m.IconMini = "rf_bloodlust_mini";
+		this.m.Icon = "ui/perks/perk_rf_bloodlust.png";
+		this.m.IconMini = perk_rf_bloodlust_mini;
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.BeforeLast; // So that it runs onAfterUpdate after active skills to properly reduce their fatigue cost
 	}

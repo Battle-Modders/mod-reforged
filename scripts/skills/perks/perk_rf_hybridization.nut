@@ -9,7 +9,7 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_hybridization";
 		this.m.Name = ::Const.Strings.PerkName.RF_Hybridization;
 		this.m.Description = "This character is skilled in both ranged and melee combat.";
-		this.m.Icon = "ui/perks/rf_hybridization.png";
+		this.m.Icon = "ui/perks/perk_rf_hybridization.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

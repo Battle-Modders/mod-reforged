@@ -5,7 +5,7 @@ this.perk_rf_blitzkrieg <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_blitzkrieg";
 		this.m.Name = ::Const.Strings.PerkName.RF_Blitzkrieg;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_Blitzkrieg;
-		this.m.Icon = "ui/perks/rf_blitzkrieg.png";
+		this.m.Icon = "ui/perks/perk_rf_blitzkrieg.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

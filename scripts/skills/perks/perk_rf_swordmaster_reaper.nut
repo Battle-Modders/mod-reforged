@@ -9,7 +9,7 @@ this.perk_rf_swordmaster_reaper <- ::inherit("scripts/skills/perks/perk_rf_sword
 		this.m.ID = "perk.rf_swordmaster_reaper";
 		this.m.Name = ::Const.Strings.PerkName.RF_SwordmasterReaper;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_SwordmasterReaper;
-		this.m.Icon = "ui/perks/rf_swordmaster_reaper.png";
+		this.m.Icon = "ui/perks/perk_rf_swordmaster_reaper.png";
 	}
 
 	function onAfterUpdate( _properties )

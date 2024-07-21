@@ -10,8 +10,8 @@ this.rf_eyes_up_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.rf_eyes_up";
 		this.m.Name = "Eyes Up";
 		this.m.Description = "A part of this character\'s attention is diverted towards attacks coming from up high.";
-		this.m.Icon = "ui/perks/rf_eyes_up.png";
-		this.m.IconMini = "rf_eyes_up_mini";
+		this.m.Icon = "ui/perks/perk_rf_eyes_up.png";
+		this.m.IconMini = "perk_rf_eyes_up_mini";
 		this.m.Overlay = "rf_eyes_up_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsRemovedAfterBattle = true;

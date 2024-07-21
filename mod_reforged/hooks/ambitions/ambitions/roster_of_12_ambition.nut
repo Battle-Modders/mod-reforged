@@ -2,7 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.ButtonIcon = "ui/perks/rf_strength_in_numbers.png";	// peasant militia icon
+		this.m.ButtonIcon = "ui/perks/perk_rf_strength_in_numbers.png";	// peasant militia icon
 	}
 });
 

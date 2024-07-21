@@ -5,8 +5,8 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_man_of_steel";
 		this.m.Name = ::Const.Strings.PerkName.RF_ManOfSteel;
 		this.m.Description = "Attacks against this character don\'t even cause a tickle.";
-		this.m.Icon = "ui/perks/rf_man_of_steel.png";
-		this.m.IconMini = "rf_man_of_steel_mini";
+		this.m.Icon = "ui/perks/perk_rf_man_of_steel.png";
+		this.m.IconMini = "perk_rf_man_of_steel_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

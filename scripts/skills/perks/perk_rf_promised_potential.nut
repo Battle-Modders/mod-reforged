@@ -8,7 +8,7 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_promised_potential";
 		this.m.Name = ::Const.Strings.PerkName.RF_PromisedPotential;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_PromisedPotential;
-		this.m.Icon = "ui/perks/rf_promised_potential.png";
+		this.m.Icon = "ui/perks/perk_rf_promised_potential.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsRefundable = false;

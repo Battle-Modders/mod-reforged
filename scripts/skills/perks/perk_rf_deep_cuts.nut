@@ -9,7 +9,7 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_deep_cuts";
 		this.m.Name = ::Const.Strings.PerkName.RF_DeepCuts;
 		this.m.Description = "This character is prepared to deal a particularly deep cut on the next attack against the same target.";
-		this.m.Icon = "ui/perks/rf_deep_cuts.png";
+		this.m.Icon = "ui/perks/perk_rf_deep_cuts.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

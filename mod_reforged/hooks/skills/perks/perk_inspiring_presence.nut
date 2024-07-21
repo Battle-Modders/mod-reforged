@@ -6,8 +6,8 @@
 		__original();
 		this.m.Description = "This character has an inspiring presence on the battlefield.";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		this.m.Icon = "ui/perks/rf_inspiring_presence.png";
-		this.m.IconMini = "rf_inspiring_presence_mini";
+		this.m.Icon = "ui/perks/perk_rf_inspiring_presence.png";
+		this.m.IconMini = "perk_rf_inspiring_presence_mini";
 	}
 
 	q.isHidden <- function()

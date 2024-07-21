@@ -8,8 +8,8 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_strength_in_numbers";
 		this.m.Name = "Strength in Numbers";
 		this.m.Description = "This character\'s martial prowess increases when fighting adjacent to allies.";
-		this.m.Icon = "ui/perks/rf_strength_in_numbers.png";
-		// this.m.IconMini = "rf_strength_in_numbers_mini";
+		this.m.Icon = "ui/perks/perk_rf_strength_in_numbers.png";
+		// this.m.IconMini = "perk_rf_strength_in_numbers_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

@@ -10,7 +10,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_sweeping_strikes";
 		this.m.Name = ::Const.Strings.PerkName.RF_SweepingStrikes;
 		this.m.Description = "This character is swinging his weapon in large sweeping motions, making it harder to approach him.";
-		this.m.Icon = "ui/perks/rf_sweeping_strikes.png";
+		this.m.Icon = "ui/perks/perk_rf_sweeping_strikes.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

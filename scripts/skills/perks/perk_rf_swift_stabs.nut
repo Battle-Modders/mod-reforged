@@ -7,8 +7,8 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_swift_stabs";
 		this.m.Name = ::Const.Strings.PerkName.RF_SwiftStabs;
 		this.m.Description = "This character has successfully found an opening in the target\'s armor and can quickly deliver several deadly stabs.";
-		this.m.Icon = "ui/perks/rf_swift_stabs.png";
-		this.m.IconMini = "rf_swift_stabs_mini";
+		this.m.Icon = "ui/perks/perk_rf_swift_stabs.png";
+		this.m.IconMini = "perk_rf_swift_stabs_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
 	}

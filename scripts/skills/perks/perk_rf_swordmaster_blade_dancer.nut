@@ -11,7 +11,7 @@ this.perk_rf_swordmaster_blade_dancer <- ::inherit("scripts/skills/perks/perk_rf
 		this.m.ID = "perk.rf_swordmaster_blade_dancer";
 		this.m.Name = ::Const.Strings.PerkName.RF_SwordmasterBladeDancer;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_SwordmasterBladeDancer;
-		this.m.Icon = "ui/perks/rf_swordmaster_blade_dancer.png";
+		this.m.Icon = "ui/perks/perk_rf_swordmaster_blade_dancer.png";
 	}
 
 	function getInitiativeBonus()

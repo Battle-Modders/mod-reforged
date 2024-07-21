@@ -5,7 +5,7 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_poise";
 		this.m.Name = ::Const.Strings.PerkName.RF_Poise;
 		this.m.Description = "This character moves lithely, turning incoming attacks into somewhat glancing hits.";
-		this.m.Icon = "ui/perks/rf_poise.png";
+		this.m.Icon = "ui/perks/perk_rf_poise.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

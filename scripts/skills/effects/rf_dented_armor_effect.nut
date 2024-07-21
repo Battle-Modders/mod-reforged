@@ -9,7 +9,7 @@ this.rf_dented_armor_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.rf_dented_armor";
 		this.m.Name = "Dented Armor";
 		this.m.Description = "This character\'s armor has been dented severely, restricting mobility.";
-		this.m.Icon = "ui/perks/rf_dent_armor.png";
+		this.m.Icon = "ui/perks/perk_rf_dent_armor.png";
 		this.m.IconMini = "rf_dented_armor_effect_mini";
 		this.m.Overlay = "rf_dented_armor_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;

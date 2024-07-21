@@ -8,7 +8,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_vanquisher";
 		this.m.Name = ::Const.Strings.PerkName.RF_Vanquisher;
 		this.m.Description = "Having just killed an opponent, this character is eager to take on another one!";
-		this.m.Icon = "ui/perks/rf_vanquisher.png";
+		this.m.Icon = "ui/perks/perk_rf_vanquisher.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

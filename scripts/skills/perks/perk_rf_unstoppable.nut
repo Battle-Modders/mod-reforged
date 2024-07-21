@@ -9,8 +9,8 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_unstoppable";
 		this.m.Name = ::Const.Strings.PerkName.RF_Unstoppable;
 		this.m.Description = "This character is like a boulder rolling down a hill. Unstoppable!";
-		this.m.Icon = "ui/perks/rf_unstoppable.png";
-		this.m.IconMini = "rf_unstoppable_mini";
+		this.m.Icon = "ui/perks/perk_rf_unstoppable.png";
+		this.m.IconMini = "perk_rf_unstoppable_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

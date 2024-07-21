@@ -5,7 +5,7 @@ this.perk_rf_between_the_eyes <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_between_the_eyes";
 		this.m.Name = ::Const.Strings.PerkName.RF_BetweenTheEyes;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_BetweenTheEyes;
-		this.m.Icon = "ui/perks/rf_between_the_eyes.png";
+		this.m.Icon = "ui/perks/perk_rf_between_the_eyes.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

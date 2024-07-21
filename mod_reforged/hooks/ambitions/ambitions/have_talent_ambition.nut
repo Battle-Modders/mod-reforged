@@ -2,6 +2,6 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.ButtonIcon = "ui/perks/rf_discovered_talent.png";
+		this.m.ButtonIcon = "ui/perks/perk_rf_discovered_talent.png";
 	}
 });

@@ -9,8 +9,8 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_king_of_all_weapons";
 		this.m.Name = ::Const.Strings.PerkName.RF_KingOfAllWeapons;
 		this.m.Description = "This character is exceptionally skilled with the spear, which is known by many to be the king of all weapons.";
-		this.m.Icon = "ui/perks/rf_king_of_all_weapons.png";
-		this.m.IconMini = "rf_king_of_all_weapons_mini";
+		this.m.Icon = "ui/perks/perk_rf_king_of_all_weapons.png";
+		this.m.IconMini = "perk_rf_king_of_all_weapons_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast;
 	}

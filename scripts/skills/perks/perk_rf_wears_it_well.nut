@@ -7,7 +7,7 @@ this.perk_rf_wears_it_well <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_wears_it_well";
 		this.m.Name = ::Const.Strings.PerkName.RF_WearsItWell;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_WearsItWell;
-		this.m.Icon = "ui/perks/rf_wears_it_well.png";
+		this.m.Icon = "ui/perks/perk_rf_wears_it_well.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

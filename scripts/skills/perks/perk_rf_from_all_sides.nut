@@ -9,7 +9,7 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_from_all_sides";
 		this.m.Name = ::Const.Strings.PerkName.RF_FromAllSides;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_FromAllSides;
-		this.m.Icon = "ui/perks/rf_from_all_sides.png";
+		this.m.Icon = "ui/perks/perk_rf_from_all_sides.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

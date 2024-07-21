@@ -6,7 +6,7 @@ this.perk_rf_swordmaster_juggernaut <- ::inherit("scripts/skills/perks/perk_rf_s
 		this.m.ID = "perk.rf_swordmaster_juggernaut";
 		this.m.Name = ::Const.Strings.PerkName.RF_SwordmasterJuggernaut;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_SwordmasterJuggernaut;
-		this.m.Icon = "ui/perks/rf_swordmaster_juggernaut.png";
+		this.m.Icon = "ui/perks/perk_rf_swordmaster_juggernaut.png";
 	}
 
 	function isEnabled()

@@ -6,7 +6,7 @@ this.perk_rf_swordmaster_grappler <- ::inherit("scripts/skills/perks/perk_rf_swo
 		this.m.ID = "perk.rf_swordmaster_grappler";
 		this.m.Name = ::Const.Strings.PerkName.RF_SwordmasterGrappler;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_SwordmasterGrappler;
-		this.m.Icon = "ui/perks/rf_swordmaster_grappler.png";
+		this.m.Icon = "ui/perks/perk_rf_swordmaster_grappler.png";
 	}
 
 	function onAdded()

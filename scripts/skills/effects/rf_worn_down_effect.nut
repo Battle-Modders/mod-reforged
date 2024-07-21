@@ -8,7 +8,7 @@ this.rf_worn_down_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.rf_worn_down";
 		this.m.Name = "Worn Down";
 		this.m.Description = "This character is feeling worn down after reciving rather tiring attacks.";
-		this.m.Icon = "ui/perks/rf_wear_them_down.png";
+		this.m.Icon = "ui/perks/perk_rf_wear_them_down.png";
 		this.m.IconMini = "rf_worn_down_effect_mini";
 		this.m.Overlay = "rf_worn_down_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;

@@ -5,7 +5,7 @@ this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_battle_fervor";
 		this.m.Name = ::Const.Strings.PerkName.RF_BattleFervor;
 		this.m.Description = "This character will stop at nothing short of absolute victory.";
-		this.m.Icon = "ui/perks/rf_battle_fervor.png";
+		this.m.Icon = "ui/perks/perk_rf_battle_fervor.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

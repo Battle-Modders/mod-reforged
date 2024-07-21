@@ -5,7 +5,7 @@ this.perk_rf_exude_confidence <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_exude_confidence";
 		this.m.Name = ::Const.Strings.PerkName.RF_ExudeConfidence;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_ExudeConfidence;
-		this.m.Icon = "ui/perks/rf_exude_confidence.png";
+		this.m.Icon = "ui/perks/perk_rf_exude_confidence.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

@@ -8,7 +8,7 @@ this.perk_rf_deep_impact <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_deep_impact";
 		this.m.Name = ::Const.Strings.PerkName.RF_DeepImpact;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_DeepImpact;
-		this.m.Icon = "ui/perks/rf_deep_impact.png";
+		this.m.Icon = "ui/perks/perk_rf_deep_impact.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

@@ -19,7 +19,7 @@ this.perk_rf_bear_down <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_bear_down";
 		this.m.Name = ::Const.Strings.PerkName.RF_BearDown;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_BearDown;
-		this.m.Icon = "ui/perks/rf_bear_down.png";
+		this.m.Icon = "ui/perks/perk_rf_bear_down.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

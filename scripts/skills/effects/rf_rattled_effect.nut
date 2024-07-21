@@ -7,7 +7,7 @@ this.rf_rattled_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.rf_rattled";
 		this.m.Name = "Rattled";
 		this.m.Description = "This character has been rattled to the bones making it harder to fight effectively.";
-		this.m.Icon = "ui/perks/rf_rattle.png";
+		this.m.Icon = "ui/perks/perk_rf_rattle.png";
 		this.m.IconMini = "rf_rattled_effect_mini";
 		this.m.Overlay = "rf_rattled_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;

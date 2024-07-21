@@ -5,7 +5,7 @@ this.perk_rf_skirmisher <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_skirmisher";
 		this.m.Name = ::Const.Strings.PerkName.RF_Skirmisher;
 		this.m.Description = "This character gains moves faster than most.";
-		this.m.Icon = "ui/perks/rf_skirmisher.png";
+		this.m.Icon = "ui/perks/perk_rf_skirmisher.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

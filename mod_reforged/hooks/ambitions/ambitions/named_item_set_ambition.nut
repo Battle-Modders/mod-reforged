@@ -2,6 +2,6 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.ButtonIcon = "ui/perks/rf_weapon_master.png";		// Crown + 3 Weapons
+		this.m.ButtonIcon = "ui/perks/perk_rf_weapon_master.png";		// Crown + 3 Weapons
 	}
 });

@@ -7,8 +7,8 @@ this.perk_rf_bulwark <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_bulwark";
 		this.m.Name = ::Const.Strings.PerkName.RF_Bulwark;
 		this.m.Description = "This character feels braver while wearing more durable armor!"
-		this.m.Icon = "ui/perks/rf_bulwark.png";
-		this.m.IconMini = "rf_bulwark_mini";
+		this.m.Icon = "ui/perks/perk_rf_bulwark.png";
+		this.m.IconMini = "perk_rf_bulwark_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

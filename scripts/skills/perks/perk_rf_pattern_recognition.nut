@@ -7,8 +7,8 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_pattern_recognition";
 		this.m.Name = ::Const.Strings.PerkName.RF_PatternRecognition;
 		this.m.Description = "This character is quick to understand the fighting style of opponents, getting better at fighting them as the combat draws on.";
-		this.m.Icon = "ui/perks/rf_pattern_recognition.png";
-		this.m.IconMini = "rf_pattern_recognition_mini";
+		this.m.Icon = "ui/perks/perk_rf_pattern_recognition.png";
+		this.m.IconMini = "perk_rf_pattern_recognition_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

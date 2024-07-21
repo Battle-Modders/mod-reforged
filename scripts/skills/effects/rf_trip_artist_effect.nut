@@ -8,7 +8,7 @@ this.rf_trip_artist_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.rf_trip_artist";
 		this.m.Name = "Trip Artist";
 		this.m.Description = "This character is a master of fighting while using nets in the offhand.";
-		this.m.Icon = "ui/perks/rf_trip_artist.png";
+		this.m.Icon = "ui/perks/perk_rf_trip_artist.png";
 		// this.m.IconMini = "rf_trip_artist_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 	}

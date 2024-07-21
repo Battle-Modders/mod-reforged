@@ -13,8 +13,8 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_vigorous_assault";
 		this.m.Name = ::Const.Strings.PerkName.RF_VigorousAssault;
 		this.m.Description = "The momentum of this character\'s movement lends to an easier and faster attack.";
-		this.m.Icon = "ui/perks/rf_vigorous_assault.png";
-		this.m.IconMini = "rf_vigorous_assault_mini";
+		this.m.Icon = "ui/perks/perk_rf_vigorous_assault.png";
+		this.m.IconMini = "perk_rf_vigorous_assault_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
 	}
@@ -87,8 +87,8 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 		{
 			if (this.getContainer().getActor().getFaction() == ::World.FactionManager.getFactionOfType(::Const.FactionType.Barbarians).getID())
 			{
-				this.m.Icon = "ui/perks/rf_vigorous_assault_barbarian.png";
-				this.m.IconMini = "rf_vigorous_assault_barbarian_mini";
+				this.m.Icon = "ui/perks/perk_rf_vigorous_assault_barbarian.png";
+				this.m.IconMini = "perk_rf_vigorous_assault_barbarian_mini";
 			}
 
 			this.m.IsIconSet = true;

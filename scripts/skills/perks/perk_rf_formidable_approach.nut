@@ -8,7 +8,7 @@ this.perk_rf_formidable_approach <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_formidable_approach";
 		this.m.Name = ::Const.Strings.PerkName.RF_FormidableApproach;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_FormidableApproach;
-		this.m.Icon = "ui/perks/rf_formidable_approach.png";
+		this.m.Icon = "ui/perks/perk_rf_formidable_approach.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

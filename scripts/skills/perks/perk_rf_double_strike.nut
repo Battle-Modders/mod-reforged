@@ -8,7 +8,7 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_double_strike";
 		this.m.Name = ::Const.Strings.PerkName.RF_DoubleStrike;
 		this.m.Description = "Having just landed a hit, this character is ready to perform a powerful followup strike! The next attack will inflict increased damage. If the attack misses, the effect is wasted.";
-		this.m.Icon = "ui/perks/rf_double_strike.png";
+		this.m.Icon = "ui/perks/perk_rf_double_strike.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

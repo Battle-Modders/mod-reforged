@@ -9,7 +9,7 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_flail_spinner";
 		this.m.Name = ::Const.Strings.PerkName.RF_FlailSpinner;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_FlailSpinner;
-		this.m.Icon = "ui/perks/rf_flail_spinner.png";
+		this.m.Icon = "ui/perks/perk_rf_flail_spinner.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

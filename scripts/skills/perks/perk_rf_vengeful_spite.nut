@@ -8,8 +8,8 @@ this.perk_rf_vengeful_spite <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_vengeful_spite";
 		this.m.Name = ::Const.Strings.PerkName.RF_VengefulSpite;
 		this.m.Description = "This character deals increasingly more damage as allies die nearby.";
-		this.m.Icon = "ui/perks/rf_vengeful_spite.png";
-		this.m.IconMini = "rf_vengeful_spite_mini";
+		this.m.Icon = "ui/perks/perk_rf_vengeful_spite.png";
+		this.m.IconMini = "perk_rf_vengeful_spite_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

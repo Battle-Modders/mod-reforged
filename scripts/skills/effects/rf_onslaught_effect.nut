@@ -9,7 +9,7 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "effects.rf_onslaught";
 		this.m.Name = "Onslaught";
 		this.m.Description = "This character is ready to push forward through the enemy's ranks.";
-		this.m.Icon = "ui/perks/rf_onslaught.png";
+		this.m.Icon = "ui/perks/perk_rf_onslaught.png";
 		this.m.IconMini = "rf_onslaught_effect_mini";
 		this.m.Overlay = "rf_onslaught_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;

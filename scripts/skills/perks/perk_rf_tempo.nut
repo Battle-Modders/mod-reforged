@@ -14,8 +14,8 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_tempo";
 		this.m.Name = ::Const.Strings.PerkName.RF_Tempo;
 		this.m.Description = "This character is building upon the advantage of going first in the flow of battle.";
-		this.m.Icon = "ui/perks/rf_tempo.png";
-		this.m.IconMini = "rf_tempo_mini";
+		this.m.Icon = "ui/perks/perk_rf_tempo.png";
+		this.m.IconMini = "perk_rf_tempo_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

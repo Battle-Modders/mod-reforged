@@ -10,7 +10,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_opportunist";
 		this.m.Name = ::Const.Strings.PerkName.RF_Opportunist;
 		this.m.Description = "This character wastes no opportunity to pull a weapon out of an enemy\'s corpse, only to launch it towards another!";
-		this.m.Icon = "ui/perks/rf_opportunist.png";
+		this.m.Icon = "ui/perks/perk_rf_opportunist.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
 	}

@@ -7,7 +7,7 @@ this.perk_rf_second_wind <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_second_wind";
 		this.m.Name = ::Const.Strings.PerkName.RF_SecondWind;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_SecondWind;
-		this.m.Icon = "ui/perks/rf_second_wind.png";
+		this.m.Icon = "ui/perks/perk_rf_second_wind.png";
 		this.m.Overlay = "perk_rf_second_wind";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;

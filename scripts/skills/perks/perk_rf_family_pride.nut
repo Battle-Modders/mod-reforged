@@ -7,7 +7,7 @@ this.perk_rf_family_pride <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_family_pride";
 		this.m.Name = ::Const.Strings.PerkName.RF_FamilyPride;
 		this.m.Description = "This character hails from a family who have no prejudice against pride.";
-		this.m.Icon = "ui/perks/rf_family_pride.png";
+		this.m.Icon = "ui/perks/perk_rf_family_pride.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

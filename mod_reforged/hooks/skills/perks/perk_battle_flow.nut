@@ -2,6 +2,6 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.Icon = "ui/perks/rf_battle_flow.png"
+		this.m.Icon = "ui/perks/perk_rf_battle_flow.png"
 	}
 });

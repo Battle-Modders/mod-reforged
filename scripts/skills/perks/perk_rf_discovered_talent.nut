@@ -7,7 +7,7 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_discovered_talent";
 		this.m.Name = ::Const.Strings.PerkName.RF_DiscoveredTalent;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_DiscoveredTalent;
-		this.m.Icon = "ui/perks/rf_discovered_talent.png";
+		this.m.Icon = "ui/perks/perk_rf_discovered_talent.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsRefundable = false;

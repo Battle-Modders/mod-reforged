@@ -10,7 +10,7 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_kingfisher";
 		this.m.Name = ::Const.Strings.PerkName.RF_Kingfisher;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_Kingfisher;
-		this.m.Icon = "ui/perks/rf_kingfisher.png";
+		this.m.Icon = "ui/perks/perk_rf_kingfisher.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

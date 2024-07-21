@@ -11,7 +11,7 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_whirling_death";
 		this.m.Name = ::Const.Strings.PerkName.RF_WhirlingDeath;
 		this.m.Description = "This character\'s attacks are like a whirlwind, making it very dangerous to be near them.";
-		this.m.Icon = "ui/perks/rf_whirling_death.png";
+		this.m.Icon = "ui/perks/perk_rf_whirling_death.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

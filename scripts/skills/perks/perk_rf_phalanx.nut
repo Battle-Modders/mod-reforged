@@ -5,7 +5,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_phalanx";
 		this.m.Name = ::Const.Strings.PerkName.RF_Phalanx;
 		this.m.Description = "This character is highly skilled in fighting in a shielded formation and gains bonuses when adjacent to allies with shields.";
-		this.m.Icon = "ui/perks/rf_phalanx.png";
+		this.m.Icon = "ui/perks/perk_rf_phalanx.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.BeforeLast;
 	}

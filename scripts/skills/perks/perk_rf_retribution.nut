@@ -8,7 +8,7 @@ this.perk_rf_retribution <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_retribution";
 		this.m.Name = ::Const.Strings.PerkName.RF_Retribution;
 		this.m.Description = "This character hits significantly harder after taking a hit.";
-		this.m.Icon = "ui/perks/rf_retribution.png";
+		this.m.Icon = "ui/perks/perk_rf_retribution.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

@@ -8,7 +8,7 @@ this.perk_rf_rising_star <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_rising_star";
 		this.m.Name = ::Const.Strings.PerkName.RF_RisingStar;
 		this.m.Description = "This character is a destined for greatness.";
-		this.m.Icon = "ui/perks/rf_rising_star.png";
+		this.m.Icon = "ui/perks/perk_rf_rising_star.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsRefundable = false;

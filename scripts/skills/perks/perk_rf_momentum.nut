@@ -10,7 +10,7 @@ this.perk_rf_momentum <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_momentum";
 		this.m.Name = ::Const.Strings.PerkName.RF_Momentum;
 		this.m.Description = "A running start goes a long way to throwing better!";
-		this.m.Icon = "ui/perks/rf_momentum.png";
+		this.m.Icon = "ui/perks/perk_rf_momentum.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Last;
 	}

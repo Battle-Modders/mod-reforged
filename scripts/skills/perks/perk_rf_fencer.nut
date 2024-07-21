@@ -8,7 +8,7 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_fencer";
 		this.m.Name = ::Const.Strings.PerkName.RF_Fencer;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_Fencer;
-		this.m.Icon = "ui/perks/rf_fencer.png";
+		this.m.Icon = "ui/perks/perk_rf_fencer.png";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Any;
 	}

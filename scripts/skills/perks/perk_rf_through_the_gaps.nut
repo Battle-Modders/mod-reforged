@@ -10,7 +10,7 @@ this.perk_rf_through_the_gaps <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_through_the_gaps";
 		this.m.Name = ::Const.Strings.PerkName.RF_ThroughTheGaps;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_ThroughTheGaps;
-		this.m.Icon = "ui/perks/rf_through_the_gaps.png";
+		this.m.Icon = "ui/perks/perk_rf_through_the_gaps.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}

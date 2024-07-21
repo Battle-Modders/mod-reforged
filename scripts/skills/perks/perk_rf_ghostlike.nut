@@ -11,7 +11,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "perk.rf_ghostlike";
 		this.m.Name = ::Const.Strings.PerkName.RF_Ghostlike;
 		this.m.Description = "Blink and you\'ll miss me.";
-		this.m.Icon = "ui/perks/rf_ghostlike.png";
+		this.m.Icon = "ui/perks/perk_rf_ghostlike.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}
