@@ -96,61 +96,6 @@
 	return ::MSU.Text.color(::Const.UI.Color.DamageValue, _string);
 }
 
-::logInfo("Reforged::MSU -- adding ::MSU.Tile.getNeighbors");
-::MSU.Tile.getNeighbors <- function( _tile, _function = null )
-{
-	local ret = [];
-	for (local i = 0; i < 6; i++)
-	{
-		if (_tile.hasNextTile(i))
-		{
-			local nextTile = _tile.getNextTile(i);
-			if (_function == null || _function(nextTile))
-				ret.push(nextTile);
-		}
-	}
-	return ret;
-}
-
-::logInfo("Reforged::MSU -- adding ::MSU.Tile.getNeighbor");
-::MSU.Tile.getNeighbor <- function( _tile, _function = null )
-{
-	for (local i = 0; i < 6; i++)
-	{
-		if (_tile.hasNextTile(i))
-		{
-			local nextTile = _tile.getNextTile(i);
-			if (_function == null || _function(nextTile))
-				return nextTile;
-		}
-	}
-}
-
-::logInfo("Reforged::MSU -- adding fix for onCombatStarted for AI");
-::Reforged.HooksMod.hook("scripts/entity/tactical/tactical_entity_manager", function(q) {
-	// VANILLAFIX: http://battlebrothersgame.com/forums/topic/oncombatstarted-is-not-called-for-ai-characters/
-	q.spawn = @(__original) function( _properties )
-	{
-		local ret = __original(_properties);
-		foreach (i, faction in this.getAllInstances())
-		{
-			if (i != ::Const.Faction.Player)
-			{
-				foreach (actor in faction)
-				{
-					actor.getSkills().onCombatStarted();
-					actor.getItems().onCombatStarted();
-					actor.getSkills().update();
-				}
-			}
-		}
-
-		::Math.seedRandom(::Time.getRealTime());
-
-		return ret;
-	}
-});
-
 ::logInfo("Reforged::MSU -- adding onSkillsUpdated event");
 ::Reforged.HooksMod.hook("scripts/skills/skill_container", function(q) {
 	q.update = @(__original) function()
@@ -186,40 +131,6 @@
 	{
 	}
 })
-
-::logInfo("Reforged::MSU -- adding getItemsByFunction and getItemsByFunctionAtSlot to item_container");
-::Reforged.HooksMod.hook("scripts/items/item_container", function(q) {
-	q.getItemsByFunction <- function( _function )
-	{
-		local ret = [];
-
-		for (local i = 0; i < ::Const.ItemSlot.COUNT; i++)
-		{
-			for (local j = 0; j < ::Const.ItemSlotSpaces[i]; j++)
-			{
-				local item = this.m.Items[i][j];
-				if (item != null && item != -1 && _function(item))
-					ret.push(item);
-			}
-		}
-
-		return ret;
-	}
-
-	q.getItemsByFunctionAtSlot <- function( _slot, _function )
-	{
-		local ret = [];
-
-		for (local i = 0; i < ::Const.ItemSlotSpaces[_slot]; i++)
-		{
-			local item = this.m.Items[_slot][i];
-			if (item != null && item != -1 && _function(item))
-				ret.push(item);
-		}
-
-		return ret;
-	}
-});
 
 ::logInfo("Reforged::MSU -- adding ::MSU.Array.removeValues");
 ::MSU.Array.removeValues <- function( _array, _values )
