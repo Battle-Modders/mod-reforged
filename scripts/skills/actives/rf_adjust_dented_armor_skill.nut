@@ -20,6 +20,7 @@ this.rf_adjust_dented_armor_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
+		this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = false;
 		this.m.ActionPointCost = 7;
 		this.m.FatigueCost = 30;

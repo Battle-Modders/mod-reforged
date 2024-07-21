@@ -17,6 +17,7 @@ this.rf_bearded_blade_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.NonTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
+		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 3;
 		this.m.FatigueCost = 15;
