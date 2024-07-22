@@ -57,7 +57,7 @@ this.rf_direct_damage_limiter <- ::inherit("scripts/skills/skill", {
 			{
 				if (entry.text.find("of which") != null && entry.text.find("can ignore armor") != null)
 				{
-					entry.text += ", with a [color=" + ::Const.UI.Color.PositiveValue + "]" + this.m.FullArmorIgnoreChance + "%[/color] chance of completely ignoring armor";
+					entry.text += ", with a " + ::MSU.Text.colorPositive(this.m.FullArmorIgnoreChance + "%") + " chance of completely ignoring armor";
 					return;
 				}
 			}

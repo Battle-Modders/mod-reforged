@@ -24,7 +24,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has a [color=" + ::Const.UI.Color.NegativeValue + "]50%[/color] lower threshold to inflict injuries"
+				text = "Has a " + ::MSU.Text.colorNegative("50%") + " lower threshold to inflict injuries"
 			});
 		}
 		else
@@ -33,7 +33,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has a [color=" + ::Const.UI.Color.NegativeValue + "]33%[/color] lower threshold to inflict injuries"
+				text = "Has a " + ::MSU.Text.colorNegative("33%") + " lower threshold to inflict injuries"
 			});
 		}
 

@@ -8,13 +8,13 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + (this.m.Count * 10) + "%[/color] Melee Skill"
+				text = ::MSU.Text.colorNegative("-" + (this.m.Count * 10) + "%") + " Melee Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + (this.m.Count * 10) + "%[/color] Ranged Skill"
+				text = ::MSU.Text.colorNegative("-" + (this.m.Count * 10) + "%") + " Ranged Skill"
 			}
 		]);
 

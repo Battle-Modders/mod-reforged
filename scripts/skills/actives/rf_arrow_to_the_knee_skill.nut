@@ -41,7 +41,7 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + ::Const.UI.Color.PositiveValue + "]" + ammo + "[/color] arrows left"
+				text = "Has " + ::MSU.Text.colorPositive(ammo) + " arrows left"
 			});
 		}
 		else
@@ -50,7 +50,7 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Needs a non-empty quiver of arrows equipped[/color]"
+				text = ::MSU.Text.colorNegative("Needs a non-empty quiver of arrows equipped")
 			});
 		}
 
@@ -60,7 +60,7 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Cannot be used because this character is engaged in melee[/color]"
+				text = ::MSU.Text.colorNegative("Cannot be used because this character is engaged in melee")
 			});
 		}
 

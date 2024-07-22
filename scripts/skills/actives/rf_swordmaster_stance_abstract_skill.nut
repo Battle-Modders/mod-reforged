@@ -17,7 +17,7 @@ this.rf_swordmaster_stance_abstract_skill <- ::inherit("scripts/skills/actives/r
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png"
-			text = "Currently Active: " + (this.m.IsOn ? "[color=" + ::Const.UI.Color.PositiveValue + "]Yes[/color]" : "[color=" + ::Const.UI.Color.NegativeValue + "]No[/color]")
+			text = "Currently Active: " + (this.m.IsOn ? ::MSU.Text.colorPositive("Yes") : ::MSU.Text.colorNegative("No"))
 		});
 
 		return tooltip;

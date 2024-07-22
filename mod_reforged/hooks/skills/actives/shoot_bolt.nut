@@ -26,7 +26,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + ::Const.UI.Color.PositiveValue + "]" + ammo + "[/color] bolts left"
+				text = "Has " + ::MSU.Text.colorPositive(ammo) + " bolts left"
 			});
 		}
 		else
@@ -35,7 +35,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Needs a non-empty quiver of bolts equipped[/color]"
+				text = ::MSU.Text.colorNegative("Needs a non-empty quiver of bolts equipped")
 			});
 		}
 
@@ -45,7 +45,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Must be reloaded before shooting again[/color]"
+				text = ::MSU.Text.colorNegative("Must be reloaded before shooting again")
 			});
 		}
 

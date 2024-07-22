@@ -32,7 +32,7 @@ this.rf_inspiring_presence_buff_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.m.BonusActionPoints + "[/color] Action Points"
+			text = ::MSU.Text.colorPositive("+" + this.m.BonusActionPoints) + " Action Points"
 		});
 
 		return tooltip;

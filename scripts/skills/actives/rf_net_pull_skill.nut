@@ -41,13 +41,13 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + ::Const.UI.Color.PositiveValue + "]2[/color] tiles"
+			text = "Has a range of " + ::MSU.Text.colorPositive("2") + " tiles"
 		});
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to net on a hit"
+			text = "Has a " + ::MSU.Text.colorPositive("100%") + " chance to net on a hit"
 		});
 		ret.push({
 			id = 12,

@@ -45,7 +45,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + ::Const.UI.Color.PositiveValue + "]" + ammo + "[/color] shots left"
+				text = "Has " + ::MSU.Text.colorPositive(ammo) + " shots left"
 			});
 		}
 		else
@@ -54,7 +54,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Needs a non-empty powder bag equipped[/color]"
+				text = ::MSU.Text.colorNegative("Needs a non-empty powder bag equipped")
 			});
 		}
 
@@ -64,7 +64,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Must be reloaded before firing again[/color]"
+				text = ::MSU.Text.colorNegative("Must be reloaded before firing again")
 			});
 		}
 
@@ -74,7 +74,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Cannot be used because this character is engaged in melee[/color]"
+				text = ::MSU.Text.colorNegative("Cannot be used because this character is engaged in melee")
 			});
 		}
 

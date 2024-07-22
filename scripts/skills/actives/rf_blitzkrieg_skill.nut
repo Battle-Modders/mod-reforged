@@ -33,14 +33,14 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Every ally within [color=" + ::Const.UI.Color.PositiveValue + "]4[/color] tiles who has at least [color=" + ::Const.UI.Color.NegativeValue + "]10[/color] Fatigue remaining and is not Stunned or Fleeing will get the Adrenaline effect and build [color=" + ::Const.UI.Color.NegativeValue + "]10[/color] Fatigue"
+			text = "Every ally within " + ::MSU.Text.colorPositive("4") + " tiles who has at least " + ::MSU.Text.colorNegative("10") + " Fatigue remaining and is not Stunned or Fleeing will get the Adrenaline effect and build " + ::MSU.Text.colorNegative("10") + " Fatigue"
 		});
 
 		tooltip.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Cannot be used more than once per day (company-wide)[/color]"
+			text = ::MSU.Text.colorNegative("Cannot be used more than once per day (company-wide)")
 		});
 
 		if (this.m.IsSpent)

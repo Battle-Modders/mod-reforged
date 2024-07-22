@@ -41,7 +41,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 				id = 3,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Costs [color=" + ::Const.UI.Color.PositiveValue + "]2[/color] fewer Action Points than the movement cost of the starting tile"
+				text = "Costs " + ::MSU.Text.colorPositive("2") + " fewer Action Points than the movement cost of the starting tile"
 			});
 			tooltip.push({
 				id = 3,
@@ -65,7 +65,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a Two-Handed Sword or a double gripped One-Handed sword[/color]"
+				text = ::MSU.Text.colorNegative("Requires a Two-Handed Sword or a double gripped One-Handed sword")
 			});
 		}
 
@@ -77,7 +77,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 					id = 9,
 					type = "text",
 					icon = "ui/tooltips/warning.png",
-					text = "[color=" + ::Const.UI.Color.NegativeValue + "]Cannot be used while rooted[/color]"
+					text = ::MSU.Text.colorNegative("Cannot be used while rooted")
 				});
 			}
 
@@ -87,7 +87,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 					id = 9,
 					type = "text",
 					icon = "ui/tooltips/warning.png",
-					text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires an empty tile adjacent to an enemy[/color]"
+					text = ::MSU.Text.colorNegative("Requires an empty tile adjacent to an enemy")
 				});
 			}
 
@@ -97,7 +97,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 					id = 9,
 					type = "text",
 					icon = "ui/tooltips/warning.png",
-					text = "[color=" + ::Const.UI.Color.NegativeValue + "]Can only be used immediately after a successful attack[/color]"
+					text = ::MSU.Text.colorNegative("Can only be used immediately after a successful attack")
 				});
 			}
 		}

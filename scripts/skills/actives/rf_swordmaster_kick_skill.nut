@@ -40,7 +40,7 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger the target"
+			text = "Has a " + ::MSU.Text.colorPositive("100%") + " chance to stagger the target"
 		});
 
 		local attack = this.getContainer().getAttackOfOpportunity();

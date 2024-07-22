@@ -7,14 +7,14 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/shield_damage.png",
-			text = "Inflicts [color=" + ::Const.UI.Color.DamageValue + "]" + this.getContainer().getActor().getMainhandItem().getShieldDamage() + "[/color] damage to shields"
+			text = "Inflicts " + ::MSU.Text.colorDamage(this.getContainer().getActor().getMainhandItem().getShieldDamage()) + " damage to shields"
 		});
 
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Inflicts [color=" + ::Const.UI.Color.DamageValue + "]" + this.RF_getFatigueDamage() + "[/color] [Fatigue|Concept.Fatigue] on the target")
+			text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorDamage(this.RF_getFatigueDamage()) + " [Fatigue|Concept.Fatigue] on the target")
 		});
 
 		if (this.getMaxRange() > 1)
@@ -23,7 +23,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Has a range of [color=" + ::Const.UI.Color.PositiveValue + "] " + this.m.MaxRange + "[/color] tiles"
+				text = "Has a range of " + ::MSU.Text.colorPositive(this.m.MaxRange) + " tiles"
 			});
 		}
 
@@ -33,7 +33,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + ::Const.UI.Color.NegativeValue + "]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
+				text = "Has " + ::MSU.Text.colorNegative("-15%") + " chance to hit targets directly adjacent because the weapon is too unwieldy"
 			});
 		}
 

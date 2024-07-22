@@ -32,7 +32,7 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger the target"
+			text = "Has a " + ::MSU.Text.colorPositive("100%") + " chance to stagger the target"
 		});
 
 		local attack = this.getContainer().getAttackOfOpportunity();
@@ -56,7 +56,7 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Cannot be used while Rooted or Stunned[/color]"
+				text = ::MSU.Text.colorNegative("Cannot be used while Rooted or Stunned")
 			});
 		}
 

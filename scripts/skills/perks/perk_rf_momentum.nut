@@ -28,7 +28,7 @@ this.perk_rf_momentum <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = "The next Throwing attack costs [color=" + ::Const.UI.Color.PositiveValue + "]-" + this.m.TilesMovedThisTurn + "[/color] Action Points"
+			text = "The next Throwing attack costs " + ::MSU.Text.colorPositive("-" + this.m.TilesMovedThisTurn) + " Action Points"
 		});
 
 		local damageBonus = this.getBonus();
@@ -37,7 +37,7 @@ this.perk_rf_momentum <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/damage_dealt.png",
-			text = "The next Throwing attack does [color=" + ::Const.UI.Color.PositiveValue + "]" + damageBonus + "%[/color] more damage"
+			text = "The next Throwing attack does " + ::MSU.Text.colorPositive(damageBonus + "%") + " more damage"
 		});
 
 		tooltip.push({

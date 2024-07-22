@@ -24,7 +24,7 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/damage_dealt.png",
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]" + this.getCurrentMalus() + "%[/color] reduced damage inflicted"
+			text = ::MSU.Text.colorNegative(this.getCurrentMalus() + "%") + " reduced damage inflicted"
 		});
 
 		if (!this.isEnabled())

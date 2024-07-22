@@ -20,7 +20,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Cannot be used because this character is engaged in melee[/color]"
+				text = ::MSU.Text.colorNegative("Cannot be used because this character is engaged in melee")
 			});
 		}
 

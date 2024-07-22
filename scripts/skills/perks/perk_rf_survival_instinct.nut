@@ -55,13 +55,13 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Melee Defense"
+				text = ::MSU.Text.colorPositive("+" + bonus) + " Melee Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Ranged Defense"
+				text = ::MSU.Text.colorPositive("+" + bonus) + " Ranged Defense"
 			}
 		]);
 

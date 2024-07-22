@@ -20,14 +20,14 @@ this.perk_rf_skirmisher <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + initBonus + "[/color] Initiative"
+				text = ::MSU.Text.colorPositive("+" + initBonus) + " Initiative"
 			});
 		}
 		tooltip.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Initiative loss due to built Fatigue is reduced by [color=" + ::Const.UI.Color.PositiveValue + "]50%[/color]"
+			text = "Initiative loss due to built Fatigue is reduced by " + ::MSU.Text.colorPositive("50%")
 		});
 
 		return tooltip;

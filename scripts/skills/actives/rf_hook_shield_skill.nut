@@ -69,7 +69,7 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 				id = 8,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Has a range of [color=" + ::Const.UI.Color.PositiveValue + "] " + this.m.MaxRange + "[/color] tiles"
+				text = "Has a range of " + ::MSU.Text.colorPositive(this.m.MaxRange) + " tiles"
 			});
 		}
 
@@ -79,7 +79,7 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + ::Const.UI.Color.NegativeValue + "]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
+				text = "Has " + ::MSU.Text.colorNegative("-15%") + " chance to hit targets directly adjacent because the weapon is too unwieldy"
 			});
 		}
 

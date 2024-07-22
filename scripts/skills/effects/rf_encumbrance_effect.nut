@@ -25,7 +25,7 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Current Encumbrance Level: [color=" + ::Const.UI.Color.NegativeValue + "]" + level + "[/color]"
+			text = "Current Encumbrance Level: " + ::MSU.Text.colorNegative(level)
 		});
 
 		local fatigueBuildUp = this.getFatigueOnTurnStart(level);

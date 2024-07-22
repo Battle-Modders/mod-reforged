@@ -29,14 +29,14 @@ this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Affects all allies within [color=" + ::Const.UI.Color.PositiveValue + "]4[/color] tiles who have at least [color=" + ::Const.UI.Color.NegativeValue + "]10[/color] Fatigue remaining and are not Stunned or Fleeing"
+			text = "Affects all allies within " + ::MSU.Text.colorPositive("4") + " tiles who have at least " + ::MSU.Text.colorNegative("10") + " Fatigue remaining and are not Stunned or Fleeing"
 		});
 
 		tooltip.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Affected allies build [color=" + ::Const.UI.Color.NegativeValue + "]10[/color] Fatigue"
+			text = "Affected allies build " + ::MSU.Text.colorNegative("10") + " Fatigue"
 		});
 
 		tooltip.push({

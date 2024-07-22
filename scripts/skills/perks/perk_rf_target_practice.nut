@@ -43,7 +43,7 @@ this.perk_rf_target_practice <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]" + this.m.RangedSkillBonus + "%[/color] " + this.getName()
+				text = ::MSU.Text.colorPositive(this.m.RangedSkillBonus + "%") + " " + this.getName()
 			});
 		}
 	}

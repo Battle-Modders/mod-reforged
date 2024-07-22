@@ -43,7 +43,7 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/orientation/" + opponent.getOverlayImage() + ".png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.getBonus(opponentID) + "[/color] against " + opponent.getName()
+				text = ::MSU.Text.colorPositive("+" + this.getBonus(opponentID)) + " against " + opponent.getName()
 			});
 		}
 
@@ -59,7 +59,7 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]" + this.getBonus(targetEntity.getID()) + "%[/color] " + this.getName()
+				text = ::MSU.Text.colorPositive(this.getBonus(targetEntity.getID()) + "%") + " " + this.getName()
 			});
 		}
 	}

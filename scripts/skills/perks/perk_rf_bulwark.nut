@@ -27,14 +27,14 @@ this.perk_rf_bulwark <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Resolve"
+			text = ::MSU.Text.colorPositive("+" + bonus) + " Resolve"
 		});
 
 		tooltip.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "Additional [color=" + ::Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Resolve at negative morale checks except mental attacks"
+			text = "Additional " + ::MSU.Text.colorPositive("+" + bonus) + " Resolve at negative morale checks except mental attacks"
 		});
 
 		return tooltip;

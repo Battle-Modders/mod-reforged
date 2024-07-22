@@ -37,19 +37,19 @@ this.perk_rf_entrenched <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Ranged Skill"
+				text = ::MSU.Text.colorPositive("+" + bonus) + " Ranged Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Ranged Defense"
+				text = ::MSU.Text.colorPositive("+" + bonus) + " Ranged Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Resolve"
+				text = ::MSU.Text.colorPositive("+" + bonus) + " Resolve"
 			}
 		]);
 

@@ -40,7 +40,7 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a two-handed sword or a double-gripped one-handed sword[/color]"
+				text = ::MSU.Text.colorNegative("Requires a two-handed sword or a double-gripped one-handed sword")
 			});
 		}
 

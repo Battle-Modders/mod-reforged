@@ -20,7 +20,7 @@ this.rf_inspired_by_champion_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.m.Difference + "[/color] Resolve"
+			text = ::MSU.Text.colorPositive("+" + this.m.Difference) + " Resolve"
 		});
 
 		return tooltip;

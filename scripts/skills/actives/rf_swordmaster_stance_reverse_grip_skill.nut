@@ -27,7 +27,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png"
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Removes[/color] all skills from the currently equipped sword and adds the " + ::Reforged.Mod.Tooltips.parseString(skillsString) + " skills"
+			text = ::MSU.Text.colorNegative("Removes") + " all skills from the currently equipped sword and adds the " + ::Reforged.Mod.Tooltips.parseString(skillsString) + " skills"
 		});
 
 		tooltip.push({
@@ -50,7 +50,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a two-handed sword or a double-gripped one-handed sword[/color]"
+				text = ::MSU.Text.colorNegative("Requires a two-handed sword or a double-gripped one-handed sword")
 			});
 		}
 
@@ -88,7 +88,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			id = 10,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a two-handed sword or a double-gripped one-handed sword[/color]"
+			text = ::MSU.Text.colorNegative("Requires a two-handed sword or a double-gripped one-handed sword")
 		});
 
 		this.addEnabledTooltip(tooltip);

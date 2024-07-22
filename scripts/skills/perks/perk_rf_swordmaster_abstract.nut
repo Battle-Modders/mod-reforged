@@ -31,7 +31,7 @@ this.perk_rf_swordmaster_abstract <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a sword[/color]"
+				text = ::MSU.Text.colorNegative("Requires a sword")
 			});
 		}
 	}

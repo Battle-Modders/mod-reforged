@@ -39,7 +39,7 @@ this.rf_cleaving_swing_skill <- ::inherit("scripts/skills/actives/swing", {
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts additional stacking [color=" + ::Const.UI.Color.DamageValue + "]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
+			text = "Inflicts additional stacking " + ::MSU.Text.colorDamage(dmg) + " bleeding damage per turn, for 2 turns"
 		});
 		return ret;
 	}

@@ -31,13 +31,13 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + malus + "[/color] Melee Defense"
+				text = ::MSU.Text.colorNegative("-" + malus) + " Melee Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + malus + "[/color] Ranged Defense"
+				text = ::MSU.Text.colorNegative("-" + malus) + " Ranged Defense"
 			}
 		]);
 

@@ -25,7 +25,7 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Damage to hitpoints from attacks is reduced by [color=" + ::Const.UI.Color.PositiveValue + "]" + (100-hpBonus) + "%[/color]"
+				text = "Damage to hitpoints from attacks is reduced by " + ::MSU.Text.colorPositive((100-hpBonus) + "%")
 			});
 		}
 		local armorBonus = ::Math.round(this.getArmorDamage() * 100);
@@ -35,7 +35,7 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Damage to armor from attacks is reduced by [color=" + ::Const.UI.Color.PositiveValue + "]" + (100-armorBonus) + "%[/color]"
+				text = "Damage to armor from attacks is reduced by " + ::MSU.Text.colorPositive((100-armorBonus) + "%")
 			});
 		}
 
@@ -45,7 +45,7 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]This character\'s body and head armor are too heavy to gain any benefit from poise[/color]"
+				text = ::MSU.Text.colorNegative("This character\'s body and head armor are too heavy to gain any benefit from poise")
 			});
 		}
 

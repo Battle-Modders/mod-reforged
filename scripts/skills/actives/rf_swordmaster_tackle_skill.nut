@@ -50,7 +50,7 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a two-handed or double-gripped one-handed sword[/color]"
+				text = ::MSU.Text.colorNegative("Requires a two-handed or double-gripped one-handed sword")
 			});
 		}
 
@@ -60,7 +60,7 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Cannot be used while rooted[/color]"
+				text = ::MSU.Text.colorNegative("Cannot be used while rooted")
 			});
 		}
 

@@ -30,7 +30,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "En Garde is currently " + (this.m.IsOn ? "[color=" + ::Const.UI.Color.PositiveValue + "]Enabled[/color]" : "[color=" + ::Const.UI.Color.NegativeValue + "]Disabled[/color]")
+			text = "En Garde is currently " + (this.m.IsOn ? ::MSU.Text.colorPositive("Enabled") : ::MSU.Text.colorNegative("Disabled"))
 		});
 		
 		return tooltip;

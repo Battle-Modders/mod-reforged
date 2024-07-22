@@ -33,19 +33,19 @@ this.rf_eyes_up_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + skillMalus + "[/color] Melee Skill"
+				text = ::MSU.Text.colorNegative("-" + skillMalus) + " Melee Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + skillMalus + "[/color] Ranged Skill"
+				text = ::MSU.Text.colorNegative("-" + skillMalus) + " Ranged Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-" + this.getDefenseMalus() + "[/color] Melee Defense"
+				text = ::MSU.Text.colorNegative("-" + this.getDefenseMalus()) + " Melee Defense"
 			}
 		]);
 

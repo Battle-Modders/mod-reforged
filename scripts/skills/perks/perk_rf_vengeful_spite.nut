@@ -31,7 +31,7 @@ this.perk_rf_vengeful_spite <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "[color=" + ::Const.UI.Color.PositiveValue + "]" + this.getBonus() + "%[/color] increased damage dealt"
+			text = ::MSU.Text.colorPositive(this.getBonus() + "%") + " increased damage dealt"
 		});
 
 		return tooltip;

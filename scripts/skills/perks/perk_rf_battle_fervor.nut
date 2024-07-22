@@ -21,13 +21,13 @@ this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + (isConfident ? 20 : 10) + "%[/color] Resolve"
+				text = ::MSU.Text.colorPositive("+" + (isConfident ? 20 : 10) + "%") + " Resolve"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "Additional [color=" + ::Const.UI.Color.PositiveValue + "]+" + (isConfident ? 20 : 10) + "[/color] Resolve at positive morale checks"
+				text = "Additional " + ::MSU.Text.colorPositive("+" + (isConfident ? 20 : 10)) + " Resolve at positive morale checks"
 			}
 		]);
 
@@ -38,25 +38,25 @@ this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_skill.png",
-					text = "[color=" + ::Const.UI.Color.PositiveValue + "]+5%[/color] Melee Skill"
+					text = ::MSU.Text.colorPositive("+5%") + " Melee Skill"
 				},
 				{
 					id = 10,
 					type = "text",
 					icon = "ui/icons/ranged_skill.png",
-					text = "[color=" + ::Const.UI.Color.PositiveValue + "]+5%[/color] Ranged Skill"
+					text = ::MSU.Text.colorPositive("+5%") + " Ranged Skill"
 				},
 				{
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = "[color=" + ::Const.UI.Color.PositiveValue + "]+5%[/color] Melee Defense"
+					text = ::MSU.Text.colorPositive("+5%") + " Melee Defense"
 				},
 				{
 					id = 10,
 					type = "text",
 					icon = "ui/icons/ranged_defense.png",
-					text = "[color=" + ::Const.UI.Color.PositiveValue + "]+5%[/color] Ranged Defense"
+					text = ::MSU.Text.colorPositive("+5%") + " Ranged Defense"
 				}
 			]);
 		}

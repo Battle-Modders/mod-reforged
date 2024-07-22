@@ -208,7 +208,7 @@ local vanillaDescriptions = [
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Armor damage taken is reduced by a percentage equal to [color=" + ::Const.UI.Color.PositiveValue + "]5%[/color] of the current total armor value of both body and head armor.",
+					"Armor damage taken is reduced by a percentage equal to " + ::MSU.Text.colorPositive("5%") + " of the current total armor value of both body and head armor.",
 					"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachDisadvantage] reduce this disadvantage by 1 for every 300 current combined head and body armor durability you have."
 					"Does not affect damage from mental attacks or status effects."
 				]
@@ -567,11 +567,11 @@ local vanillaDescriptions = [
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Skills build up [color=" + ::Const.UI.Color.NegativeValue + "]25%[/color] less Fatigue.",
+					"Skills build up " + ::MSU.Text.colorNegative("25%") + " less Fatigue.",
 					"[Lash|Skill+lash_skill] and [Hail|Skill+hail_skill] ignore the defense bonus of shields.",
 					"Gain the [From all Sides|Perk+perk_rf_from_all_sides] perk.",
-					"Pound ignores an additional [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] of armor on head hits.",
-					"Thresh gains [color=" + ::Const.UI.Color.PositiveValue + "]+5%[/color] chance to hit.",
+					"Pound ignores an additional " + ::MSU.Text.colorPositive("+10%") + " of armor on head hits.",
+					"Thresh gains " + ::MSU.Text.colorPositive("+5%") + " chance to hit.",
 					"Poleflails no longer have a penalty for attacking targets directly adjacent."
 				]
 			}]
@@ -712,7 +712,7 @@ local vanillaDescriptions = [
 			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Gain additional [color=" + ::Const.UI.Color.PositiveValue + "]20%[/color] experience from battle."
+					"Gain additional " + ::MSU.Text.colorPositive("20%") + " experience from battle."
 				]
 			}],
 			Footer = ::MSU.Text.colorNegative("This perk cannot be refunded.")	// This line is new, rest is the same
@@ -854,7 +854,7 @@ local vanillaDescriptions = [
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"The fatigue and initiative penalty from wearing armor and helmet is reduced by [color=" + ::Const.UI.Color.NegativeValue + "]30%[/color]."
+					"The fatigue and initiative penalty from wearing armor and helmet is reduced by " + ::MSU.Text.colorNegative("30%") + "."
 				]
 			}]
 		})

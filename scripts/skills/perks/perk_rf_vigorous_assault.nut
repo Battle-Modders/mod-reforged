@@ -35,7 +35,7 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/action_points.png",
-					text = "The next attack costs [color=" + ::Const.UI.Color.PositiveValue + "]-" + this.m.CurrAPBonus + "[/color] Action Point(s)"
+					text = "The next attack costs " + ::MSU.Text.colorPositive("-" + this.m.CurrAPBonus) + " Action Point(s)"
 				}
 			);
 		}

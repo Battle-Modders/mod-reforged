@@ -31,25 +31,25 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_skill.png",
-					text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Melee Skill"
+					text = ::MSU.Text.colorPositive("+" + bonus) + " Melee Skill"
 				},
 				{
 					id = 10,
 					type = "text",
 					icon = "ui/icons/ranged_skill.png",
-					text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Ranged Skill"
+					text = ::MSU.Text.colorPositive("+" + bonus) + " Ranged Skill"
 				},
 				{
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Melee Defense"
+					text = ::MSU.Text.colorPositive("+" + bonus) + " Melee Defense"
 				},
 				{
 					id = 10,
 					type = "text",
 					icon = "ui/icons/ranged_defense.png",
-					text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Ranged Defense"
+					text = ::MSU.Text.colorPositive("+" + bonus) + " Ranged Defense"
 				}
 			]);
 		}
@@ -61,7 +61,7 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+" + this.getResolveBonus() + "[/color] Resolve"
+				text = ::MSU.Text.colorPositive("+" + this.getResolveBonus()) + " Resolve"
 			});
 		}
 

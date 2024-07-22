@@ -50,14 +50,14 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Will move to the targeted tile and attack a random adjacent enemy with [color=" + ::Const.UI.Color.PositiveValue + "]" + (this.m.DamageMultBonus * 100) + "%[/color] increased damage"
+			text = "Will move to the targeted tile and attack a random adjacent enemy with " + ::MSU.Text.colorPositive((this.m.DamageMultBonus * 100) + "%") + " increased damage"
 		});
 
 		tooltip.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger all enemies adjacent to the target tile"
+			text = "Has a " + ::MSU.Text.colorPositive("100%") + " chance to stagger all enemies adjacent to the target tile"
 		});
 
 		if (!this.isEnabled())
@@ -66,7 +66,7 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Requires a two-handed non-fencing sword[/color]"
+				text = ::MSU.Text.colorNegative("Requires a two-handed non-fencing sword")
 			});
 		}
 
@@ -78,7 +78,7 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Not usable when engaged in melee[/color]"
+				text = ::MSU.Text.colorNegative("Not usable when engaged in melee")
 			});
 		}
 

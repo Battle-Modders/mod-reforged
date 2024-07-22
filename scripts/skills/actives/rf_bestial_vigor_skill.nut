@@ -54,7 +54,7 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Is only usable [color=" + ::Const.UI.Color.NegativeValue + "]once[/color] per combat"
+				text = "Is only usable " + ::MSU.Text.colorNegative("once") + " per combat"
 			}
 		]);
 

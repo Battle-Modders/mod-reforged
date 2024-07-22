@@ -38,7 +38,7 @@ this.rf_dismantled_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]" + (this.m.HeadHitCount * this.m.DamageIncrease) + "%[/color] increased damage received through Head Armor"
+				text = ::MSU.Text.colorNegative((this.m.HeadHitCount * this.m.DamageIncrease) + "%") + " increased damage received through Head Armor"
 			});
 		}
 
@@ -48,7 +48,7 @@ this.rf_dismantled_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]" + (this.m.BodyHitCount * this.m.DamageIncrease) + "%[/color] increased damage received through Body Armor"
+				text = ::MSU.Text.colorNegative((this.m.BodyHitCount * this.m.DamageIncrease) + "%") + " increased damage received through Body Armor"
 			});
 		}
 

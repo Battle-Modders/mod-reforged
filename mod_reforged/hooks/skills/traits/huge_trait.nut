@@ -17,7 +17,7 @@
 			id = 11,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = "[color=" + ::Const.UI.Color.PositiveValue + "]+1[/color] Reach"
+			text = ::MSU.Text.colorPositive("+1") + " Reach"
 		});
 		return tooltip;
 	}
