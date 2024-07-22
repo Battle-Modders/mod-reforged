@@ -3,7 +3,7 @@
 ::Const.CharacterProperties.NegativeMoraleCheckBravery <- array(::Const.MoraleCheckType.len(), 0);
 ::Const.CharacterProperties.NegativeMoraleCheckBraveryMult <- array(::Const.MoraleCheckType.len(), 1.0);
 
-::Const.CharacterProperties.getFatigueRecovery <- function()
+::Const.CharacterProperties.getFatigueRecoveryRate <- function()
 {
 	return ::Math.floor(this.FatigueRecoveryRate * this.FatigueRecoveryRateMult);
 }
