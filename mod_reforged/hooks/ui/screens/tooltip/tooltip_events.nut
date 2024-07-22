@@ -50,7 +50,7 @@
 			return [];
 		}
 
-		// Manually look for all attribute ID's and generate the respective tooltip entries
+		// Manually look for all attribute IDs and generate the respective tooltip entries
 		switch( _elementId )
 		{
 			case "character-stats.MeleeSkill":
