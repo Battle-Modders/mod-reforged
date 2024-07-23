@@ -29,21 +29,7 @@ this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Affects all allies within " + ::MSU.Text.colorPositive("4") + " tiles who have at least " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue] remaining and are not [Stunned|Skill+stunned_effect] or [Fleeing|Concept.Morale]")
-		});
-
-		ret.push({
-			id = 11,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Affected allies build " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue]")
-		});
-
-		ret.push({
-			id = 12,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Affected allies and you gain the [Onslaught|Skill+rf_onslaught_effect] effect for one [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("You and your allies within " + ::MSU.Text.colorPositive(4) " tiles gain the [Onslaught|Skill+rf_onslaught_effect] effect for one [turn|Concept.Turn]")
 		});
 
 		ret.push({
@@ -100,9 +86,8 @@ this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 			}
 			else
 			{
-				if (ally.getTile().getDistanceTo(myTile) <= 4 && ally.getFatigueMax() - ally.getFatigue() >= 10)
+				if (ally.getTile().getDistanceTo(myTile) <= 4)
 				{
-					ally.setFatigue(ally.getFatigue() + 10);
 					local effect = ::new("scripts/skills/effects/rf_onslaught_effect");
 					if (!ally.isTurnStarted() && !ally.isTurnDone())
 					{
