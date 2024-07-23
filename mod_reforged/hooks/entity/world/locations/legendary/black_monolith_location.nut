@@ -17,7 +17,7 @@
 			[3, ::Const.World.Spawn.Troops.SkeletonMediumPolearm],
 			[1, ::Const.World.Spawn.Troops.RF_SkeletonLegatus],
 			[6, ::Const.World.Spawn.Troops.Vampire],
-			[1, ::Const.World.Spawn.Troops.RF_VampireLord]
+			[1, ::Const.World.Spawn.Troops.RF_VampireLord],
 
 			// Top (16)
 			[2, ::Const.World.Spawn.Troops.SkeletonHeavyBodyguard],
@@ -34,7 +34,7 @@
 			local troop = entry[1];
 			for (local i = 0; i < num; i++)
 			{
-				::Const.World.Common.addTroop(this, { Type = troop }, false));
+				::Const.World.Common.addTroop(this, { Type = troop }, false);
 			}
 		}
 	}
