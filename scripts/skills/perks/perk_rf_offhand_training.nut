@@ -2,8 +2,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 	m = {
 		StaminaModifierThreshold = -10,
 		IsSpent = true,
-		IsFreeUse = false,
-		IsConsumingFreeUse = false // Used in onBeforeAnySkillExecuted to flip IsFreeUse in onAnySkillExecuted
+		IsConsumingFreeUse = false // Used in onBeforeAnySkillExecuted to flip IsSpent in onAnySkillExecuted
 	},
 	function create()
 	{
@@ -18,34 +17,19 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.IsSpent && !this.m.IsFreeUse;
+		return this.m.IsSpent;
 	}
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-
-		if (!this.m.IsSpent)
-		{
-			tooltip.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "The first swap of an offhand item with a weight less than " + ::MSU.Text.colorNegative(-this.m.StaminaModifierThreshold) + " costs no Action Points"
-			});
-		}
-
-		if (this.m.IsFreeUse)
-		{
-			tooltip.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "The first use of a tool in the offhand this turn costs no Action Points"
-			});
-		}
-
-		return tooltip;
+		local ret = this.skill.getTooltip();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("The first use of any offhand item weighing less than " + ::MSU.Text.colorNegative(-this.m.StaminaModifierThreshold) + " this [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints]")
+		});
+		return ret;
 	}
 
 	function onAdded()
@@ -58,46 +42,9 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 		this.getContainer().removeByID("effects.rf_trip_artist");
 	}
 
-	function getItemActionCost( _items )
-	{
-		if (this.m.IsSpent)
-		{
-			return null;
-		}
-
-		local validItemsCount = 0;
-
-		foreach (i in _items)
-		{
-			if (i == null || i.getSlotType() != ::Const.ItemSlot.Offhand)
-			{
-				continue;
-			}
-
-			if (i.getStaminaModifier() <= this.m.StaminaModifierThreshold)
-			{
-				return null;
-			}
-
-			validItemsCount++;
-		}
-
-		if (validItemsCount > 0)
-		{
-			return 0;
-		}
-
-		return null;
-	}
-
-	function onPayForItemAction(_skill, _items)
-	{
-		this.m.IsSpent = true;
-	}
-
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (!this.m.IsFreeUse || _forFree || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		if (this.m.IsSpent || _forFree || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 			return;
 
 		if (_skill.getItem() != null && ::MSU.isEqual(_skill.getItem(), this.getContainer().getActor().getOffhandItem()))
@@ -111,20 +58,20 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (this.m.IsConsumingFreeUse)
-			this.m.IsFreeUse = false;
+			this.m.IsSpent = true;
 	}
 
 	function onAfterUpdate( _properties )
 	{
-		if (this.m.IsFreeUse)
+		if (this.m.IsSpent)
+			return;
+
+		local offhand = this.getContainer().getActor().getOffhandItem();
+		if (offhand != null && offhand.getStaminaModifier() > this.m.StaminaModifierThreshold)
 		{
-			local off = this.getContainer().getActor().getOffhandItem();
-			if (off != null && off.isItemType(::Const.Items.ItemType.Tool))
+			foreach (skill in off.getSkills())
 			{
-				foreach (skill in off.getSkills())
-				{
-					skill.m.ActionPointCost = 0;
-				}
+				skill.m.ActionPointCost = 0;
 			}
 		}
 	}
@@ -132,7 +79,6 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 	function onTurnStart()
 	{
 		this.m.IsConsumingFreeUse = false;
-		this.m.IsFreeUse = true;
 		this.m.IsSpent = false;
 	}
 
@@ -140,7 +86,6 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 	{
 		this.skill.onCombatFinished();
 		this.m.IsConsumingFreeUse = false;
-		this.m.IsFreeUse = false;
 		this.m.IsSpent = true;
 	}
 });
