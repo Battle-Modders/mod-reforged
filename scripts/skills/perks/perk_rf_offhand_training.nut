@@ -1,8 +1,8 @@
 this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 	m = {
 		StaminaModifierThreshold = -10,
-		IsFreeUse = false,
-		IsConsumingFreeUse = false // Used in onBeforeAnySkillExecuted to flip IsFreeUse in onAnySkillExecuted
+		IsSpent = true,
+		IsConsumingFreeUse = false // Used in onBeforeAnySkillExecuted to flip IsSpent in onAnySkillExecuted
 	},
 	function create()
 	{
@@ -17,7 +17,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return !this.m.IsFreeUse;
+		return this.m.IsSpent;
 	}
 
 	function getTooltip()
@@ -44,7 +44,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (!this.m.IsFreeUse || _forFree || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		if (this.m.IsSpent || _forFree || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 			return;
 
 		if (_skill.getItem() != null && ::MSU.isEqual(_skill.getItem(), this.getContainer().getActor().getOffhandItem()))
@@ -58,12 +58,12 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (this.m.IsConsumingFreeUse)
-			this.m.IsFreeUse = false;
+			this.m.IsSpent = true;
 	}
 
 	function onAfterUpdate( _properties )
 	{
-		if (!this.m.IsFreeUse)
+		if (this.m.IsSpent)
 			return;
 
 		local offhand = this.getContainer().getActor().getOffhandItem();
@@ -79,13 +79,13 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 	function onTurnStart()
 	{
 		this.m.IsConsumingFreeUse = false;
-		this.m.IsFreeUse = true;
+		this.m.IsSpent = false;
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
 		this.m.IsConsumingFreeUse = false;
-		this.m.IsFreeUse = false;
+		this.m.IsSpent = true;
 	}
 });
