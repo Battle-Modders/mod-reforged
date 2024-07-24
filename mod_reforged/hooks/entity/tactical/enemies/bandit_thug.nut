@@ -76,7 +76,7 @@
 			this.m.Items.equip(::new(armor));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 30)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 70)
 		{
 			local helmet = ::Reforged.ItemTable.BanditHelmetTough.roll({
 				Apply = function ( _script, _weight )
