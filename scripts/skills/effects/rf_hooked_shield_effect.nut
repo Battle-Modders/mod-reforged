@@ -24,7 +24,7 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 		if (shield == null) // can be null during nested tooltip
 		{
 			ret.push({
-				id = 10,
+				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Reduces the [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangedDefense] granted by shields by " + ::MSU.Text.colorNegative("75%"))
@@ -39,20 +39,20 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-::Math.floor(shield.getMeleeDefenseBonus() * 0.75)) + " [Melee Defense|Concept.MeleeDefense] from equipped shield")
 			});
 			ret.push({
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-::Math.floor(shield.getRangedDefenseBonus() * 0.75)) + " [Ranged Defense|Concept.RangeDefense] from equipped shield")
 			});
 		}
 		ret.push({
-			id = 10,
+			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Removes [Riposte|Skill+riposte_effect] and disables [Rebuke|Skill+rf_rebuke_effect]")
 		});
 		ret.push({
-			id = 10,
+			id = 13,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using any skill or starting a new [turn|Concept.Turn]")

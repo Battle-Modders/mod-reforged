@@ -50,14 +50,14 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 		local ret = this.skill.getDefaultUtilityTooltip();
 
 		ret.push({
-			id = 7,
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Applies the [Hooked Shield|Skill+rf_hooked_shield_effect] effect on the target")
 		});
 
 		ret.push({
-			id = 7,
+			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Ignores the bonus to [Melee Defense|Concept.MeleeDefense] granted by shields")

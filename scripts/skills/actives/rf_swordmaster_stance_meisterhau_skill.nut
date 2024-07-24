@@ -25,16 +25,16 @@ this.rf_swordmaster_stance_meisterhau_skill <- ::inherit("scripts/skills/actives
 
 	function getTooltip()
 	{
-		local tooltip = this.rf_swordmaster_stance_abstract_skill.getTooltip();
+		local ret = this.rf_swordmaster_stance_abstract_skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Triggering [En Garde|Skill+perk_rf_en_garde] no longer requires any remaining [Fatigue|Concept.Fatigue]")
 		});
 
-		tooltip.push({
+		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
@@ -43,7 +43,7 @@ this.rf_swordmaster_stance_meisterhau_skill <- ::inherit("scripts/skills/actives
 
 		this.addEnabledTooltip(tooltip);
 
-		return tooltip;
+		return ret;
 	}
 
 	function toggleOn()

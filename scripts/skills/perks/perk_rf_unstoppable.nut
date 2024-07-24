@@ -37,11 +37,11 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		if (this.getAPBonus() != 0)
 		{
-			tooltip.push({
+			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
@@ -51,7 +51,7 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 
 		if (this.getInitiativeBonus() != 0)
 		{
-			tooltip.push({
+			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
@@ -59,14 +59,14 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
-		tooltip.push({
-			id = 12,
+		ret.push({
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using [Wait|Concept.Wait] or [Recover|Skill+recover] or getting [stunned,|Skill+stunned_effect] rooted, or [staggered|Skill+staggered_effect]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onTurnStart()

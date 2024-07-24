@@ -21,27 +21,34 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		local e = ::Tactical.getEntityByID(this.m.TargetID);
 		if (e != null && e.isAlive())
 		{
-			tooltip.push({
+			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The next " + ::MSU.Text.colorNegative("cutting") + " attack(s) this turn against " + ::MSU.Text.colorNegative(e.getName()) + " have a " + ::MSU.Text.colorPositive(this.m.InjuryThresholdReduction + "%") + " lower threshold to inflict injury"
+				text = ::Reforged.Mod.Tooltips.parseString("The next " + ::MSU.Text.colorNegative("cutting") + " attack(s) this turn against " + ::MSU.Text.colorNegative(e.getName()) + " have a " + ::MSU.Text.colorPositive(this.m.InjuryThresholdReduction + "%") + " lower [threshold|Concept.InjuryThreshold] to inflict [injuries|Concept.InjuryTemporary]")
 			});
 
-			tooltip.push({
-				id = 10,
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("These attacks also inflict [Bleeding|Skill+bleeding_effect] when dealing at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.MinDamageToApplyBleeding) + " damage to [Hitpoints|Concept.Hitpoints]")
+			});
+
+			ret.push({
+				id = 12,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("Will expire upon attacking another target, moving, swapping an item, waiting or ending a turn, or using any skill except a cutting attack")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Will expire upon attacking another target, moving, swapping an item, [waiting|Concept.Wait] or ending a [turn|Concept.Turn], or using any skill except a cutting attack"))
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

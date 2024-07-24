@@ -17,29 +17,29 @@ this.rf_legatus_command_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.extend([
+		local ret = this.skill.getTooltip();
+		ret.extend([
 			{
-				id = 7,
+				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizePercentage(this.m.DamageMult * 100 - 100, {AddSign = false}) + " increased [Damage|Concept.Hitpoints] dealt")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizePercentage(this.m.DamageMult * 100 - 100, {AddSign = false}) + " more [Damage|Concept.Hitpoints] dealt")
 			},
 			{
-				id = 7,
+				id = 11,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizePercentage(100 - this.m.DamageMult * 100, {AddSign = false}) + " reduced [Damage|Concept.Hitpoints] received")
+				icon = "ui/icons/melee_defense.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizePercentage(100 - this.m.DamageMult * 100, {AddSign = false}) + " less [Damage|Concept.Hitpoints] received")
 			},
 			{
-				id = 7,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ResolveBonus) + " [Resolve|Concept.Bravery]")
 			}
 		]);
 
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

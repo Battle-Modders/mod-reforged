@@ -18,30 +18,30 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.extend([
+		ret.extend([
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = ::MSU.Text.colorizeValue(10) + " Melee Skill"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(10) + " [Melee Skill|Concept.MeleeSkill]")
 			},
 			{
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Text.colorizeValue(20) + " Initiative"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(20) + " [Initiative|Concept.Initiative]")
 			},
 			{
-				id = 10,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Gain one use of the [Linebreaker|Skill+rf_line_breaker_skill] skill with reduced [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] Cost")
 			}
 		]);
 		
-		return tooltip;
+		return ret;
 	}
 
 	function onAdded()

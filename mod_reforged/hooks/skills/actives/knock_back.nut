@@ -6,20 +6,10 @@
 		local oldValue = p.IsSpecializedInShields;
 		p.IsSpecializedInShields = false;
 
-		local tooltip = __original();
+		local ret = __original();
 		p.IsSpecializedInShields = oldValue;	// Revert Switcheroo
 
-		if (this.getContainer().hasSkill("perk.rf_line_breaker"))
-		{
-			tooltip.push({
-				id = 7,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Will stagger the target if successfully knocked back"
-			});
-		}
-
-		return tooltip;
+		return ret;
 	}
 
 	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )

@@ -28,7 +28,7 @@ this.rf_dislocated_jaw_injury <- ::inherit("scripts/skills/injury/injury", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorizeValue(this.m.FatigueRecoveryModifier) + " Fatigue Recovery per turn"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.FatigueRecoveryModifier) + " [Fatigue Recovery|Concept.FatigueRecovery]")
 			});
 		}
 

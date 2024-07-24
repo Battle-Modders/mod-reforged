@@ -18,16 +18,16 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 
 	function getTooltip()
 	{
-		local tooltip = this.rf_swordmaster_stance_abstract_skill.getTooltip();
+		local ret = this.rf_swordmaster_stance_abstract_skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Removes") + " all attack skills from the currently equipped sword and adds the [Stab|Skill+stab] and [Puncture|Skill+puncture] skills. The Stab skill does " + ::MSU.Text.colorNegative("50%") + " reduced damage.")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Removes") + " all attack skills from the currently equipped sword and adds the [Stab|Skill+stab] and [Puncture|Skill+puncture] skills. The Stab skill does " + ::MSU.Text.colorNegative("50%") + " reduced damage")
 		});
 
-		tooltip.push({
+		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/reach.png",
@@ -36,7 +36,7 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
 		{
-			tooltip.push({
+			ret.push({
 				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
@@ -46,7 +46,7 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 
 		this.addEnabledTooltip(tooltip);
 
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

@@ -29,44 +29,44 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getDefaultUtilityTooltip();
+		local ret = this.skill.getDefaultUtilityTooltip();
 
-		tooltip.extend([
+		ret.extend([
 			{
-				id = 7,
+				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Grants the Move Under Cover skill to the target which allows moving " + ::MSU.Text.colorPositive(1) + " tile ignoring [Zone of Control|Concept.ZoneOfControl]")
+				text = ::Reforged.Mod.Tooltips.parseString("The target gains the [Move Under Cover|Skill+rf_move_under_cover_skill] skill which allows moving " + ::MSU.Text.colorPositive(1) + " tile ignoring [Zone of Control|Concept.ZoneOfControl]")
 			},
 			{
-				id = 7,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "If the target stays adjacent to you until the start of the next round, their turn order is calculated with " + ::MSU.Text.colorPositive("+5000") + " Initiative"
+				text = ::Reforged.Mod.Tooltips.parseString("If the target stays adjacent to you until the start of the next [round|Concept.Round], their [turn|Concept.Turn] order is calculated with " + ::MSU.Text.colorPositive("+5000") + " [Initiative|Concept.Initiative]")
 			}
 		]);
 
 		if (this.getContainer().getActor().getCurrentProperties().IsRooted || this.getContainer().getActor().getCurrentProperties().IsStunned)
 		{
-			tooltip.push({
-				id = 10,
+			ret.push({
+				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("Cannot be used while Rooted or Stunned")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while Rooted or [Stunned|Skill+stunned_effect]"))
 			});
 		}
 
 		if (this.getContainer().hasSkill("effects.rf_covering_ally"))
 		{
-			tooltip.push({
-				id = 5,
+			ret.push({
+				id = 21,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorNegative("Cannot be used when already providing cover to an ally")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used when already [providing cover|Skill+rf_covering_ally_effect] to an ally"))
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function isUsable()

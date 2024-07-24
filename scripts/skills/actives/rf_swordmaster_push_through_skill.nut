@@ -25,45 +25,44 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getDefaultUtilityTooltip();
+		local ret = this.skill.getDefaultUtilityTooltip();
 		local actor = this.getContainer().getActor();
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a " + ::MSU.Text.colorPositive("100%") + " chance to stagger the target"
+			text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] the target")
 		});
 
-		local attack = this.getContainer().getAttackOfOpportunity();
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString(format("Perform a free [%s|Skill+%s] on the target", attack.getName(), split(::IO.scriptFilenameByHash(attack.ClassNameHash), "/").top()))
+			text = ::Reforged.Mod.Tooltips.parseString("Perform a free " + ::Reforged.NestedTooltips.getNestedSkillName(this.getContainer().getAttackOfOpportunity()) + " on the target")
 		});
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "If the attack is successful, the target is pushed back a tile and you move into their position"
+			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, automatically use [Line Breaker|Skill+line_breaker] for free on the target")
 		});
 
 		if (actor.getCurrentProperties().IsRooted || actor.getCurrentProperties().IsStunned)
 		{
-			tooltip.push({
+			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("Cannot be used while Rooted or Stunned")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while Rooted or [Stunned|Skill+stunned_effect]"))
 			});
 		}
 
 		local perk = this.getContainer().getSkillByID("perk.rf_swordmaster_grappler");
 		if (perk != null) perk.addEnabledTooltip(tooltip);
 
-		return tooltip;
+		return ret;
 	}
 
 	function isUsable()

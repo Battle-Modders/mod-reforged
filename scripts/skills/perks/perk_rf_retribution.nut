@@ -20,22 +20,22 @@ this.perk_rf_retribution <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 6,
+		local ret = this.skill.getTooltip();
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = ::MSU.Text.colorPositive((this.m.Stacks * this.m.BonusPerStack) + "%") + " increased damage dealt"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive((this.m.Stacks * this.m.BonusPerStack) + "%") + " more damage dealt")
 		});
 
-		tooltip.push({
-			id = 6,
+		ret.push({
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative("Will expire upon performing an attack or ending the turn")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon performing an attack or ending the [turn|Concept.Turn]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

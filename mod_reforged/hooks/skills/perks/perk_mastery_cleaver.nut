@@ -33,7 +33,7 @@
 				id = 100,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("Inflicts additional [Bleeding|Skill+bleeding_effect] due to [%s|Perk+%s]", ::Const.Perks.findById(this.getID()).Name, split(::IO.scriptFilenameByHash(this.ClassNameHash), "/").top()))
+				text = ::Reforged.Mod.Tooltips.parseString("Inflicts additional [Bleeding|Skill+bleeding_effect] due to " + ::Reforged.NestedTooltips.getNestedPerkName(this) + " when dealing at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.MinDamageToApplyBleeding) + " damage to [Hitpoints|Concept.Hitpoints]")
 			});
 		}
 	}

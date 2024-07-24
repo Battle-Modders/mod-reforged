@@ -27,33 +27,33 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getDefaultUtilityTooltip();
+		local ret = this.skill.getDefaultUtilityTooltip();
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Every ally within " + ::MSU.Text.colorPositive("4") + " tiles who has at least " + ::MSU.Text.colorNegative("10") + " Fatigue remaining and is not Stunned or Fleeing will get the Adrenaline effect and build " + ::MSU.Text.colorNegative("10") + " Fatigue"
+			text = ::Reforged.Mod.Tooltips.parseString("Every ally within " + ::MSU.Text.colorPositive("4") + " tiles who has at least " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue] remaining and is not [stunned|Skill+stunned_effect] or [fleeing|Concept.Morale] will get the [Adrenaline|Skill+adrenaline_effect] effect and build " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue]")
 		});
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative("Cannot be used more than once per day (company-wide)")
+			text = "Cannot be used more than once per day (company-wide)"
 		});
 
 		if (this.m.IsSpent)
 		{
-			tooltip.push({
-				id = 7,
+			ret.push({
+				id = 21,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorNegative("Has already been used by the company this day")
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function isUsable()

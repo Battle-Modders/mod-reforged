@@ -30,26 +30,26 @@ this.rf_adjust_dented_armor_skill <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getDefaultUtilityTooltip();
+		local ret = this.skill.getDefaultUtilityTooltip();
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Removes the Dented Armor status effect"
+			text = ::Reforged.Mod.Tooltips.parseString("Removes the [Dented Armor|Skill+rf_dented_armor_effect] effect")
 		});
 
 		if (this.getContainer().getActor().isEngagedInMelee())
 		{
-			tooltip.push({
-				id = 5,
+			ret.push({
+				id = 20,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorNegative("Cannot be used because this character is engaged in melee")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used because this character is [engaged|Concept.ZoneOfControl] in melee"))
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function isUsable()

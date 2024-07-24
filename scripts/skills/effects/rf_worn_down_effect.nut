@@ -17,23 +17,23 @@ this.rf_worn_down_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = ::MSU.Text.colorizeMult(this.m.FatigueCostMult, {InvertColor = true}) + " increased Fatigue built"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.FatigueCostMult, {InvertColor = true}) + " more [Fatigue|Concept.Fatigue] built")
 		});
 
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/initiative.png",
-			text = ::MSU.Text.colorizeMult(this.m.InitiativeMult) + " reduced Initiative"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.InitiativeMult) + " less [Initiative|Concept.Initiative]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

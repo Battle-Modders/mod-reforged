@@ -17,14 +17,14 @@
 
 	q.getTooltip <- function()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 11,
+		local ret = this.skill.getTooltip();
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Allies who start their turn adjacent to this character will gain additional Action Points when engaged in melee or being adjacent to an ally engaged in melee"
+			text = ::Reforged.Mod.Tooltips.parseString("Allies who start their [turn|Concept.Turn] adjacent to this character when they are [engaged|Concept.ZoneOfControl] in melee or are adjacent to an ally [engaged|Concept.ZoneOfControl] in melee will gain the [Feeling Inspired|Skill+rf_inspiring_presence_buff_effect] effect")
 		});
-		return tooltip;
+		return ret;
 	}
 
 	q.isEnabled <- function()

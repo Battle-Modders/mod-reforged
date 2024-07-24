@@ -36,8 +36,8 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.extend([
+		local ret = this.skill.getTooltip();
+		ret.extend([
 			{
 				id = 10,
 				type = "text",
@@ -70,7 +70,7 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 			}
 		]);
 
-		return tooltip;
+		return ret;
 	}
 
 	function addRage( _r )

@@ -31,23 +31,23 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = "The Action Point costs of Dagger attacks are reduced"
+			text = ::Reforged.Mod.Tooltips.parseString("The [Action Point|Concept.ActionPoints] costs of Dagger attacks are reduced")
 		});
 
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = "Will expire upon killing the target, switching targets, missing an attack, using any non-attack skill, swapping your weapon, or waiting or ending your turn"
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon killing the target, switching targets, missing an attack, using any non-attack skill, swapping your weapon, or [waiting|Concept.Wait] or ending your [turn|Concept.Turn]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onAfterUpdate(_properties)

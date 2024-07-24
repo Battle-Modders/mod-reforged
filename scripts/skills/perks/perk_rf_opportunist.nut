@@ -22,36 +22,29 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		if (this.m.AttacksRemaining > 0)
 		{
-			tooltip.push({
+			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The next " + ::MSU.Text.colorPositive(this.m.AttacksRemaining) + " throwing attack(s) in this battle have their Action Point costs halved"
+				text = ::Reforged.Mod.Tooltips.parseString("The next " + ::MSU.Text.colorPositive(this.m.AttacksRemaining) + " throwing attack(s) in this battle have their [Action Point|Concept.ActionPoints] costs halved")
 			});
 		}
 
 		if (this.m.IsPrimed)
 		{
-			tooltip.push({
-				id = 10,
+			ret.push({
+				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "The next throwing attack builds " + ::MSU.Text.colorPositive(this.m.FatCostRed + "%") + " less Fatigue"
-			});
-
-			tooltip.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("The fatigue reduction will expire upon waiting or ending the turn, swapping your weapon, or using any skill")
+				text = ::Reforged.Mod.Tooltips.parseString("The next throwing attack before [waiting|Concept.Wait] or ending the [turn|Concept.Turn] builds " + ::MSU.Text.colorPositive(this.m.FatCostRed + "%") + " less [Fatigue|Concept.Fatigue]")
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )

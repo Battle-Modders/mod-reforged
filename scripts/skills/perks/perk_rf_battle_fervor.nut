@@ -12,56 +12,56 @@ this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		local isConfident = this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Confident;
 
-		tooltip.extend([
+		ret.extend([
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::MSU.Text.colorPositive("+" + (isConfident ? 20 : 10) + "%") + " Resolve"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive((isConfident ? 20 : 10) + "%") + " more [Resolve|Concept.Bravery]")
 			},
 			{
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "Additional " + ::MSU.Text.colorPositive("+" + (isConfident ? 20 : 10)) + " Resolve at positive morale checks"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + (isConfident ? 20 : 10)) + " [Resolve|Concept.Bravery] at positive [morale checks|Concept.Morale]")
 			}
 		]);
 
 		if (isConfident)
 		{
-			tooltip.extend([
+			ret.extend([
 				{
-					id = 10,
+					id = 12,
 					type = "text",
 					icon = "ui/icons/melee_skill.png",
-					text = ::MSU.Text.colorPositive("+5%") + " Melee Skill"
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("5%") + " more [Melee Skill|Concept.MeleeSkill]")
 				},
 				{
-					id = 10,
+					id = 13,
 					type = "text",
 					icon = "ui/icons/ranged_skill.png",
-					text = ::MSU.Text.colorPositive("+5%") + " Ranged Skill"
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("5%") + " more [Ranged Skill|Concept.RangeSkill]")
 				},
 				{
-					id = 10,
+					id = 14,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = ::MSU.Text.colorPositive("+5%") + " Melee Defense"
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("5%") + " more [Melee Defense|Concept.MeleeDefense]")
 				},
 				{
-					id = 10,
+					id = 15,
 					type = "text",
 					icon = "ui/icons/ranged_defense.png",
-					text = ::MSU.Text.colorPositive("+5%") + " Ranged Defense"
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("5%") + " more [Ranged Defense|Concept.RangeDefense]")
 				}
 			]);
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

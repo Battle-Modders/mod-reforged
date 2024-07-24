@@ -17,9 +17,9 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/rf_reach.png",
@@ -28,7 +28,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 		if (this.hasAdjacentShieldwall() || this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID())
 		{
-			tooltip.push({
+			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
@@ -36,7 +36,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

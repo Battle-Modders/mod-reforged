@@ -35,30 +35,28 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getDefaultUtilityTooltip();
-
-		tooltip.extend([
+		local ret = this.skill.getDefaultUtilityTooltip();
+		ret.extend([
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Current Fatigue is reduced by " + ::MSU.Text.colorizeFraction(this.m.FatigueRecoveredFraction)
+				text = ::Reforged.Mod.Tooltips.parseString("Current [Fatigue|Concept.Fatigue] is reduced by " + ::MSU.Text.colorizeFraction(this.m.FatigueRecoveredFraction))
 			},
 			{
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "Gain " + ::MSU.Text.colorizeValue(this.m.ActionPointsGained) + " Action Points for this turn"
+				text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizeValue(this.m.ActionPointsGained) + " [Action Points|Concept.ActionPoints] for this [turn|Concept.Turn]")
 			},
 			{
-				id = 10,
+				id = 20,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Is only usable " + ::MSU.Text.colorNegative("once") + " per combat"
+				icon = "ui/icons/warning.png",
+				text = "Is only usable " + ::MSU.Text.colorNegative("once") + " per battle"
 			}
 		]);
-
-		return tooltip;
+		return ret;
 	}
 
 	function isUsable()

@@ -38,22 +38,22 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
-			id = 7,
+			id = 10,
 			type = "text",
 			icon = "ui/icons/vision.png",
 			text = "Has a range of " + ::MSU.Text.colorPositive("2") + " tiles"
 		});
 		ret.push({
-			id = 7,
+			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a " + ::MSU.Text.colorPositive("100%") + " chance to net on a hit"
+			text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorPositive("100%") + " chance to [net|Skill+net_effect] and [stagger|Skill+staggered_effect] on a hit")
 		});
 		ret.push({
-			id = 12,
+			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorPositive("100%") + " chance to [stagger|Skill+staggered_effect] on a hit")
+			text = ::Reforged.Mod.Tooltips.parseString("The target will lose the [Shieldwall|Skill+shieldwall_effect], [Spearwall+Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
 		});
 		return ret;
 	}

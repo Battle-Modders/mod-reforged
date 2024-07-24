@@ -34,11 +34,11 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		if (this.m.Stacks != 0)
 		{
-			tooltip.push({
+			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
@@ -48,8 +48,8 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 		if (this.m.AttacksRemaining > 0)
 		{
-			tooltip.push({
-				id = 10,
+			ret.push({
+				id = 11,
 				type = "text",
 				icon = "ui/icons/action_points.png",
 				text = ::Reforged.Mod.Tooltips.parseString("The next " + this.m.AttacksRemaining + " hit(s) against a target that acts after you in this [round|Concept.Round] will recover " + ::MSU.Text.colorPositive(this.m.APRecovery) + " [Action Points|Concept.ActionPoints]")
@@ -58,15 +58,15 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 		if (this.m.HasCarriedOverInitiative)
 		{
-			tooltip.push({
-				id = 10,
+			ret.push({
+				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("The Initiative bonus has been carried over from the previous turn and will expire after using a skill or upon waiting or ending this turn")
+				text = ::Reforged.Mod.Tooltips.parseString("The [Initiative|Concept.Initiative] bonus has been carried over from the previous [turn|Concept.Turn] and will expire after using a skill or upon [waiting|Concept.Wait] or ending this [turn|Concept.Turn]")
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function getBonus()

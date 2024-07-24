@@ -10,7 +10,7 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a " + ::MSU.Text.colorNegative("100%") + " chance to daze a target on a hit to the head"
+			text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorNegative("100%") + " chance to [daze|Skill+dazed_effect] the target on a hit to the head")
 		});
 
 		if (this.getContainer().getActor().isEngagedInMelee())
@@ -19,7 +19,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorNegative("Cannot be used because this character is engaged in melee")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used because this character is [engaged|Concept.ZoneOfControl] in melee"))
 			});
 		}
 

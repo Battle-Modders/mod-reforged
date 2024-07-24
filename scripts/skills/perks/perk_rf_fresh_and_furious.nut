@@ -31,11 +31,11 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		if (this.m.RequiresRecover)
 		{
-			tooltip.push({
+			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
@@ -44,18 +44,18 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			tooltip.push({
+			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next non-free skill used has its [Action Point|Concept.ActionPoints] cost " + ::MSU.Text.colorPositive("halved"))
+				text = ::Reforged.Mod.Tooltips.parseString("The next skill costing [Action Points|Concept.ActionPoints] has its [Action Point|Concept.ActionPoints] cost " + ::MSU.Text.colorPositive("halved"))
 			});
 		}
 
 		// For non-dummy actor we also add the actual fatigue value calculated from the threshold
 		if (this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID())
 		{
-			tooltip.push({
+			ret.push({
 				id = 12,
 				type = "text",
 				icon = "ui/icons/warning.png",
@@ -64,7 +64,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			tooltip.push({
+			ret.push({
 				id = 12,
 				type = "text",
 				icon = "ui/icons/warning.png",
@@ -72,7 +72,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function onAfterUpdate( _properties )

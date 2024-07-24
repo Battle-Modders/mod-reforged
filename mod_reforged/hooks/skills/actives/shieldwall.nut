@@ -1,23 +1,23 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/shieldwall", function(q) {
 	q.getTooltip = @(__original) function()
 	{
-		local tooltip = __original();
+		local ret = __original();
 
-		tooltip.push({
-			id = 6,
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Grants immunity against [Hook Shield|Skill+rf_hook_shield_skill]")
 		});
 
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Removes the penalty to shield defenses from built [Fatigue|Concept.Fatigue]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	q.onAfterUpdate = @() function( _properties )

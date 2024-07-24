@@ -1,6 +1,5 @@
 this.rf_trip_artist_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
 		IsSpent = true
 	},
 	function create()
@@ -15,53 +14,70 @@ this.rf_trip_artist_effect <- ::inherit("scripts/skills/skill", {
 
 	function isEnabled()
 	{
-		if (this.m.IsForceEnabled) return true;
-
 		return this.getContainer().hasSkill("actives.throw_net");
-	}
-
-	function isHidden()
-	{
-		return this.m.IsSpent || !this.isEnabled();
 	}
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "The next melee attack against an adjacent target will apply the Staggered effect"
-		});
-		return tooltip;
-	}
+		local ret = this.skill.getTooltip();
+		if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("The first melee attack every [turn|Concept.Turn] against an adjacent target will apply the [staggered|Skill+staggered_effect] effect on a hit")
+			});
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("When wielding a weapon with a [Reach|Concept.Reach] of less than 4, " + ::MSU.Text.colorPositive("gain") + " the difference in [Reach|Concept.Reach] up to 4")
+			});
+			ret.push({
+				id = 20,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "Requires an equipped net"
+			});
+		}
+		else
+		{
+			if (!this.isEnabled())
+			{
+				ret.push({
+					id = 20,
+					type = "text",
+					icon = "ui/icons/warning.png",
+					text = ::MSU.Text.colorNegative("Requires an equipped net")
+				});
+			}
+			else
+			{
+				if (!this.m.IsSpent)
+				{
+					ret.push({
+						id = 10,
+						type = "text",
+						icon = "ui/icons/special.png",
+						text = ::Reforged.Mod.Tooltips.parseString("The next melee attack against an adjacent target will apply the [Staggered|Skill+staggered_effect] effect on a hit")
+					});
+				}
 
-	function getNestedTooltip()
-	{
-		if (this.getContainer().getActor().getID() != ::MSU.getDummyPlayer().getID())
-			return this.getTooltip();
+				local weapon = this.getContainer().getActor().getMainhandItem();
+				if (weapon != null && weapon.getReach() < 4)
+				{
+					ret.push({
+						id = 11,
+						type = "text",
+						icon = "ui/icons/special.png",
+						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(4 - weapon.getReach()) + " [Reach|Concept.Reach]")
+					});
+				}
+			}
+		}
 
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The first successful melee attack every [turn|Concept.Turn] against an adjacent target will apply the [staggered|Skill+staggered_effect] effect")
-		});
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("When wielding a weapon with a [Reach|Concept.Reach] of less than 4, gain the difference in [Reach|Concept.Reach] up to 4")
-		});
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative("Requires an equipped net")
-		});
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

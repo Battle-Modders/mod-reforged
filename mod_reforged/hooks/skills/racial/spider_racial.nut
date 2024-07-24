@@ -19,13 +19,13 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "Resolve is increased by " + ::MSU.Text.colorPositive("+3") + " for every other ally on the battlefield of the same faction"
+				text = ::Reforged.Mod.Tooltips.parseString("[Resolve|Concept.Bravery] is increased by " + ::MSU.Text.colorPositive("+3") + " for every other ally on the battlefield of the same faction")
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = "When attacking a webbed target, the damage that ignores armor is increased by " + ::MSU.Text.colorPositive("100%")
+				text = ::Reforged.Mod.Tooltips.parseString("When attacking a [webbed|Skill+web_effect] target, the damage that ignores armor is increased by " + ::MSU.Text.colorPositive("100%"))
 			},
 			{
 				id = 20,

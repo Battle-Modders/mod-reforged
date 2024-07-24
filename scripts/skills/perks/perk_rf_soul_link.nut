@@ -30,16 +30,16 @@ this.perk_rf_soul_link <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = ::MSU.Text.colorPositive((this.m.TransferedPart * 100) + "%") + " of Hitpoint damage taken is redirected"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive((this.m.TransferedPart * 100) + "%") + " of damage received to [Hitpoints|Concept.Hitpoints] is redirected")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )

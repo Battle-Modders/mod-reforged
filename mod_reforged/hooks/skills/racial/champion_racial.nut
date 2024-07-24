@@ -7,55 +7,55 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = ::MSU.Text.colorPositive("15%") + " increased Damage dealt"
+				text = ::MSU.Text.colorPositive("15%") + " more damage dealt"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = ::MSU.Text.colorPositive("15%") + " increased Melee Skill"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("15%") + " more [Melee Skill|Concept.MeleeSkill]")
 			},
 			{
-				id = 11,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::MSU.Text.colorPositive("15%") + " increased Ranged Skill"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("15%") + " more [Ranged Skill|Concept.RangedSkill]")
 			},
 			{
-				id = 11,
+				id = 13,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorPositive(::Math.floor((this.getDefenseMultiplier() - 1.0) * 100) + "%") + " increased Melee Defense"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive(::Math.floor((this.getDefenseMultiplier() - 1.0) * 100) + "%") + " more [Melee Defense|Concept.MeleeDefense]")
 			},
 			{
-				id = 11,
+				id = 14,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorPositive(::Math.floor((this.getDefenseMultiplier() - 1.0) * 100) + "%") + " increased Ranged Defense"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive(::Math.floor((this.getDefenseMultiplier() - 1.0) * 100) + "%") + " more [Ranged Defense|Concept.RangeDefense]")
 			},
 			{
-				id = 11,
+				id = 15,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = ::MSU.Text.colorPositive(::Math.floor((this.getHitpointMult() - 1.0) * 100) + "%") + " increased Maximum Hitpoints"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive(::Math.floor((this.getHitpointMult() - 1.0) * 100) + "%") + " more Maximum [Hitpoints|Concept.Hitpoints]")
 			},
 			{
-				id = 11,
+				id = 16,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorPositive("50%") + " increased Maximum Fatigue"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("50%") + " more Maximum [Fatigue|Concept.Fatigue]")
 			},
 			{
-				id = 11,
+				id = 17,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::MSU.Text.colorPositive("50%") + " increased Resolve"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("50%") + " more [Resolve|Concept.Bravery]")
 			},
 			{
-				id = 11,
+				id = 18,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Text.colorPositive("15%") + " increased Initiative"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("15%") + " more [Initiative|Concept.Initiative]")
 			}
 		]);
 		return ret;

@@ -92,7 +92,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorPositive("15%") + " increased damage"
+					text = ::MSU.Text.colorPositive("15%") + " more damage"
 				});
 				ret.push({
 					id = 7,
@@ -107,7 +107,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorPositive("30%") + " increased damage"
+					text = ::MSU.Text.colorPositive("30%") + " more damage"
 				});
 				break;
 
@@ -116,7 +116,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorizeMult(this.m.MeleeDamageMult_Dagger) + " increased damage"
+					text = ::MSU.Text.colorizeMult(this.m.MeleeDamageMult_Dagger) + " more damage"
 				});
 				ret.push({
 					id = 7,
@@ -146,7 +146,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorPositive("25%") + " increased damage"
+					text = ::MSU.Text.colorPositive("25%") + " more damage"
 				});
 				ret.push({
 					id = 7,
@@ -161,7 +161,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorPositive("15%") + " increased damage"
+					text = ::MSU.Text.colorPositive("15%") + " more damage"
 				});
 				ret.push({
 					id = 7,
@@ -182,7 +182,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorPositive("10%") + " increased damage"
+					text = ::MSU.Text.colorPositive("10%") + " more damage"
 				});
 				ret.push({
 					id = 7,
@@ -203,7 +203,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorPositive("10%") + " increased damage"
+					text = ::MSU.Text.colorPositive("10%") + " more damage"
 				});
 				ret.push({
 					id = 7,
@@ -224,7 +224,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorPositive("25%") + " increased damage"
+					text = ::MSU.Text.colorPositive("25%") + " more damage"
 				});
 				break;
 

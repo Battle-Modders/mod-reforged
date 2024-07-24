@@ -15,39 +15,49 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.Opponents.len() == 0;
+		foreach (opponentID, _ in this.m.Opponents)
+		{
+			local opponent = ::Tactical.getEntityByID(opponentID);
+			if (opponent != null && opponent.isAlive())
+			{
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push(
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/plus.png",
-				text = "Increased Melee Skill and Melee Defense"
-			}
-		);		
-
+		local opponents = [];
 		foreach (opponentID, stacks in this.m.Opponents)
 		{
 			local opponent = ::Tactical.getEntityByID(opponentID);
-			if (opponent == null || !opponent.isPlacedOnMap() || !opponent.isAlive() || opponent.isDying())
-			{
+			if (opponent == null || !opponent.isAlive())
 				continue;
-			}
 
-			tooltip.push({
-				id = 10,
+			opponents.push({
+				id = 11,
 				type = "text",
 				icon = "ui/orientation/" + opponent.getOverlayImage() + ".png",
-				text = ::MSU.Text.colorPositive("+" + this.getBonus(opponentID)) + " against " + opponent.getName()
+				text = ::MSU.Text.colorPositive("+" + this.getBonus(opponent)) + " against " + opponent.getName()
 			});
 		}
 
-		return tooltip;
+		if (opponents.len() != 0)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/plus.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Increased [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense]")
+				children = opponents
+			});
+		}
+
+		return ret;
 	}
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )

@@ -27,33 +27,17 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/reach.png",
-			text = "Current Reach: " + this.getContainer().getActor().getCurrentProperties().getReach()
-		});
-		return tooltip;
-	}
-
-	function getNestedTooltip()
-	{
-		if (this.getContainer().getActor().getID() != ::MSU.getDummyPlayer().getID())
-			return this.getTooltip();
-
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.m.Name
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			}
-		];
+		local ret = this.skill.getTooltip();
+		if (!::MSU.isEqual(this.getContainer().getActor(), ::MSU.isDummyPlayer()))
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/reach.png",
+				text = "Current Reach: " + this.getContainer().getActor().getCurrentProperties().getReach()
+			});
+		}
+		return ret;
 	}
 
 	function onUpdate( _properties )

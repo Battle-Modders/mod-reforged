@@ -13,14 +13,14 @@
 
 	q.getTooltip = @(__original) function()
 	{
-		local tooltip = __original();
-		tooltip.insert(tooltip.len() - 1, {
+		local ret = __original();
+		ret.insert(tooltip.len() - 1, {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
 			text = "Has " + ::MSU.Text.colorizePercentage(this.m.HitChanceBonus) + " chance to hit"
 		});
-		return tooltip;
+		return ret;
 	}
 
 	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )

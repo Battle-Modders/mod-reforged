@@ -1,6 +1,6 @@
 this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		FatigueMult = 1.0
+		FatigueMult = 1.5
 	},
 	function create()
 	{
@@ -16,33 +16,33 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::MSU.Text.colorPositive(-1) + " Action Points spent per tile traveled"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive(-1) + " [Action Points|Concept.ActionPoints] spent per tile traveled")
 		});
 
 		if (this.m.FatigueMult != 1.0)
 		{
-			tooltip.push({
+			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorizeMult(this.m.FatigueMult, {InvertColor = true, AddSign = true}) + " Fatigue built per tile traveled"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.FatigueMult, {InvertColor = true, AddSign = true}) + " [Fatigue|Concept.Fatigue] built per tile traveled")
 			});
 		}
 
-		tooltip.push({
-			id = 12,
+		ret.push({
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative("Will expire upon using any skill")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using any skill or ending the [turn|Concept.Turn]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

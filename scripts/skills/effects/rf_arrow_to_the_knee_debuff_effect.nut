@@ -18,16 +18,16 @@ this.rf_arrow_to_the_knee_debuff_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::MSU.Text.colorNegative(this.m.MovementAPCostAdditional) + " additional Action Points per tile moved"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative(this.m.MovementAPCostAdditional) + " additional [Action Points|Concept.ActionPoints] per tile moved")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onRefresh()

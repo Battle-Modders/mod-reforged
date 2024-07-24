@@ -34,7 +34,7 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative(this.m.RequiredWeaponType == null ? "Requires an attack that exerts zone of control" : "Requires an attack from a two-handed " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower())
+				text = ::MSU.Text.colorNegative(this.m.RequiredWeaponType == null ? ::Reforged.Mod.Tooltips.parseString("Requires an attack that exerts [Zone of Control|Concept.ZoneOfControl]") : "Requires an attack from a two-handed " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower())
 			});
 		}
 		else
@@ -43,7 +43,7 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("Perform a free [%s|Skill+%s] on the target", attack.getName(), split(::IO.scriptFilenameByHash(attack.ClassNameHash), "/").top()))
+				text = ::Reforged.Mod.Tooltips.parseString("Perform a free " + ::Reforged.NestedTooltips.getNestedSkillName(attack) + " on the target")
 			});
 		}
 
@@ -51,7 +51,7 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, [stagger|Skill+staggered_effect] the target")
+			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, the target becomes [staggered|Skill+staggered_effect]")
 		});
 
 		ret.push({

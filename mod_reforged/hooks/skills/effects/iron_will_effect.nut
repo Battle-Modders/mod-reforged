@@ -1,9 +1,9 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/iron_will_effect", function(q) {
 	q.getTooltip = @(__original) function()
 	{
-		local tooltip = __original();
+		local ret = __original();
 
-		foreach (entry in tooltip)
+		foreach (entry in ret)
 		{
 			if (entry.id == 11)
 			{
@@ -12,6 +12,6 @@
 			}
 		}
 
-		return tooltip;
+		return ret;
 	}
 });

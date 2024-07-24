@@ -3,11 +3,11 @@
 
 	q.getTooltip = @(__original) function()
 	{
-		local tooltip = __original();
+		local ret = __original();
 
 		if (this.isItemType(::Const.Items.ItemType.MeleeWeapon))
 		{
-			tooltip.push({
+			ret.push({
 				id = 20,
 				type = "text",
 				icon = "ui/icons/reach.png",
@@ -33,7 +33,7 @@
 
 		if (skillsString != "")
 		{
-			tooltip.push({
+			ret.push({
 				id = 20,
 				type = "text",
 				icon = "ui/icons/special.png",
@@ -56,7 +56,7 @@
 
 			if (masteries != "")
 			{
-				tooltip.push({
+				ret.push({
 					id = 20,
 					type = "text",
 					icon = "ui/icons/special.png",
@@ -65,7 +65,7 @@
 			}
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	q.onEquip = @(__original) function()

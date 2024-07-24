@@ -17,7 +17,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "When being attacked, gain " + ::MSU.Text.colorPositive("+10") + " Melee Defense and Ranged Defense for each tile between you and the attacker"
+				text = ::Reforged.Mod.Tooltips.parseString("When being attacked, gain " + ::MSU.Text.colorPositive("+10") + " [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] for each tile between you and the attacker")
 			},
 			{
 				id = 20,

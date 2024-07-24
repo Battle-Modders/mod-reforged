@@ -7,7 +7,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_en_garde_toggle";
 		this.m.Name = "Toggle En Garde";
-		this.m.Description = "Toggle your En Garde perk to be enabled or disabled."
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Toggle your [En Garde|Perk+perk_rf_en_garde] perk to be enabled or disabled.");
 		this.m.Icon = "skills/rf_en_garde_toggle_on.png";
 		this.m.IconDisabled = "skills/rf_en_garde_toggle_sw.png";
 		this.m.ReturnFavorSounds <- [
@@ -24,16 +24,16 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getDefaultUtilityTooltip();
+		local ret = this.skill.getDefaultUtilityTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "En Garde is currently " + (this.m.IsOn ? ::MSU.Text.colorPositive("Enabled") : ::MSU.Text.colorNegative("Disabled"))
+			text = "Currently " + (this.m.IsOn ? ::MSU.Text.colorPositive("enabled") : ::MSU.Text.colorNegative("disabled"))
 		});
 		
-		return tooltip;
+		return ret;
 	}
 
 	function isEnabled()

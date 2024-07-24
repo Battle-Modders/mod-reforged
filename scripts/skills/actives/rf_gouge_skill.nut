@@ -11,7 +11,7 @@ this.rf_gouge_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_gouge";
 		this.m.Name = "Gouge";
-		this.m.Description = "A well-placed gouging attack that is likely to inflict debilitating injuries.";
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("A well-placed gouging attack that is likely to inflict debilitating [injuries.|Concept.InjuryTemporary]");
 		this.m.KilledString = "Cut down";
 		this.m.Icon = "skills/rf_gouge_skill.png";
 		this.m.IconDisabled = "skills/rf_gouge_skill_sw.png";
@@ -69,7 +69,7 @@ this.rf_gouge_skill <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Applies " + ::MSU.Text.colorPositive(this.m.BleedStacks) + " stacks of [Bleeding|Skill+bleeding_effect] when inflicting at least " + ::MSU.Text.colorNegative(::Const.Combat.MinDamageToApplyBleeding) + " damage")
+				text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorPositive(this.m.BleedStacks) + " stacks of [Bleeding|Skill+bleeding_effect] when dealing at least " + ::MSU.Text.colorNegative(::Const.Combat.MinDamageToApplyBleeding) + " damage")
 			});
 		}
 

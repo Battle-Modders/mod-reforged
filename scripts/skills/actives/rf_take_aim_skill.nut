@@ -21,30 +21,16 @@ this.rf_take_aim_skill <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getDefaultUtilityTooltip();
+		local ret = this.skill.getDefaultUtilityTooltip();
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "For the next ranged attack:"
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Taking Aim|Skill+rf_take_aim_effect] effect")
 		});
 
-		tooltip.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "Crossbows ignore any hitchance penalty from obstacles, and the shot cannot go astray"
-		});
-
-		tooltip.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "Handgonnes have their Maximum Range increased by 1 and if used at shorter range, have their area of effect increased by 1 instead"
-		});
-
-		return tooltip;
+		return ret;
 	}
 
 	function isEnabled()

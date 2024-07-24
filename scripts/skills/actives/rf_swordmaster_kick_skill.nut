@@ -4,7 +4,7 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 	{
 		this.m.ID = "actives.rf_swordmaster_kick";
 		this.m.Name = "Kick";
-		this.m.Description = "Kick an enemy, knocking them back and staggering them!";
+		this.m.Description = "Kick an enemy, knocking them back and putting them off balance!";
 		this.m.Icon = "skills/rf_swordmaster_kick_skill.png";
 		this.m.IconDisabled = "skills/rf_swordmaster_kick_skill_sw.png";
 		this.m.Overlay = "rf_swordmaster_kick_skill";
@@ -34,33 +34,32 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 
 	function getTooltip()
 	{
-		local tooltip = this.getDefaultUtilityTooltip();
+		local ret = this.getDefaultUtilityTooltip();
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a " + ::MSU.Text.colorPositive("100%") + " chance to stagger the target"
+			text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] the target")
 		});
 
-		local attack = this.getContainer().getAttackOfOpportunity();
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString(format("Perform a free [%s|Skill+%s] on the target", attack.getName(), split(::IO.scriptFilenameByHash(attack.ClassNameHash), "/").top()))
+			text = ::Reforged.Mod.Tooltips.parseString("Perform a free " + ::Reforged.NestedTooltips.getNestedSkillName(this.getContainer().getAttackOfOpportunity()) + " on the target")
 		});
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "If the attack is successful, the target is pushed back a tile"
+			text = "If the attack is successful, the target is pushed back a tile and loses the [Shieldwall|Skill+shieldwall_effect], [Spearwall+Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects"
 		});
 
 		this.addEnabledTooltip(tooltip);
 
-		return tooltip;
+		return ret;
 	}
 
 	function findTileToKnockBackTo( _userTile, _targetTile )

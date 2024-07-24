@@ -31,13 +31,13 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::MSU.Text.colorPositive("+" + this.m.RageStacks) + " Resolve"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + this.m.RageStacks) + " [Resolve|Concept.Bravery]")
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Text.colorPositive("+" + this.m.RageStacks) + " Initiative"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + this.m.RageStacks) + " [Initiative|Concept.Initiative]")
 			}
 		]);
 		return ret;

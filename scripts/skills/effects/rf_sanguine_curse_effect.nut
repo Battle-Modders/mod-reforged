@@ -38,28 +38,28 @@ this.rf_sanguine_curse_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = ::Reforged.Mod.Tooltips.parseString("At the end of the turn, " + ::MSU.Text.colorNegative(this.m.Damage) + " [Hitpoints|Concept.Hitpoints] are transferred to " + (::MSU.isNull(this.m.Caster) ? " the caster" : this.m.Caster.getName()))
+			text = ::Reforged.Mod.Tooltips.parseString("At the end of the [turn|Concept.Turn], " + ::MSU.Text.colorNegative(this.m.Damage) + " [Hitpoints|Concept.Hitpoints] are transferred to " + (::MSU.isNull(this.m.Caster) ? " the caster" : this.m.Caster.getName()))
 		});
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative(((1.0 - this.m.StaminaMult)*100) + "%") + " reduced [Maximum Fatigue|Concept.Fatigue]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.StaminaMult) + " less [Maximum Fatigue|Concept.Fatigue]")
 		});
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 12,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
 			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative(this.m.FatigueRecoveryAdd) + " [Fatigue Recovery|Concept.FatigueRecovery]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

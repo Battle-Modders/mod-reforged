@@ -15,25 +15,25 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorNegative("50%") + " reduced melee piercing damage received"
+				text = ::MSU.Text.colorNegative("50%") + " less melee piercing damage received"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorNegative("66%") + " reduced ranged piercing and ranged blunt damage received"
+				text = ::MSU.Text.colorNegative("66%") + " less ranged piercing and ranged blunt damage received"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorNegative("66%") + " reduced cutting damage received from dogs and wolfs"
+				text = ::MSU.Text.colorNegative("66%") + " less cutting damage received from dogs and wolves"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "Whenever this character receives damage to Hitpoints, teleport all Alps to new random locations close to enemies"
+				text = ::Reforged.Mod.Tooltips.parseString("Whenever this character receives damage to [Hitpoints|Concept.Hitpoints], teleport all Alps to new random locations close to enemies")
 			},
 			{
 				id = 20,

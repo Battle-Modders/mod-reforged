@@ -19,25 +19,25 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
+		local ret = this.skill.getTooltip();
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/damage_dealt.png",
-			text = ::MSU.Text.colorNegative(this.getCurrentMalus() + "%") + " reduced damage inflicted"
+			text = ::MSU.Text.colorNegative(this.getCurrentMalus() + "%") + " less damage inflicted"
 		});
 
 		if (!this.isEnabled())
 		{
-			tooltip.push({
-				id = 10,
+			ret.push({
+				id = 20,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorNegative("Cannot follow up when engaged in melee")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot follow up when [engaged|Concept.ZoneOfControl] in melee"))
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function isEnabled()

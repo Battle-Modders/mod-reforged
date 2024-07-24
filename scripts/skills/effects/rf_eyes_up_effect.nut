@@ -24,32 +24,32 @@ this.rf_eyes_up_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		local skillMalus = this.getSkillMalus();
 
-		tooltip.extend([
+		ret.extend([
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = ::MSU.Text.colorNegative("-" + skillMalus) + " Melee Skill"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("-" + skillMalus) + " [Melee Skill|Concept.MeleeSkill]")
 			},
 			{
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::MSU.Text.colorNegative("-" + skillMalus) + " Ranged Skill"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("-" + skillMalus) + " [Ranged Skill|Concept.RangeSkill]")
 			},
 			{
-				id = 10,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorNegative("-" + this.getDefenseMalus()) + " Melee Defense"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("-" + this.getDefenseMalus()) + " [Melee Defense|Concept.MeleeDefense]")
 			}
 		]);
 
-		return tooltip;
+		return ret;
 	}
 
 	function addStacks( _stacks )

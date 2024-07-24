@@ -21,7 +21,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Heal " + ::MSU.Text.colorPositive("100%") + " of Hitpoint damage inflicted on enemies"
+				text = ::Reforged.Mod.Tooltips.parseString("Heal " + ::MSU.Text.colorPositive("100%") + " of [Hitpoint|Concept.Hitpoints] damage inflicted on enemies")
 			},
 			{
 				id = 20,

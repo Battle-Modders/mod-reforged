@@ -22,32 +22,32 @@ this.perk_rf_momentum <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = "The next Throwing attack costs " + ::MSU.Text.colorPositive("-" + this.m.TilesMovedThisTurn) + " Action Points"
+			text = ::Reforged.Mod.Tooltips.parseString("The next Throwing attack costs " + ::MSU.Text.colorPositive("-" + this.m.TilesMovedThisTurn) + " [Action Points|Concept.ActionPoints]")
 		});
 
 		local damageBonus = this.getBonus();
 
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/damage_dealt.png",
 			text = "The next Throwing attack does " + ::MSU.Text.colorPositive(damageBonus + "%") + " more damage"
 		});
 
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative("Will expire upon waiting or ending the turn, using any skill, or swapping any item except to/from a throwing weapon")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon [waiting|Concept.Wait] or ending the [turn|Concept.Turn], using any skill, or swapping any item except to/from a throwing weapon")
 		});
 		
-		return tooltip;
+		return ret;
 	}
 
 	function isEnabled()

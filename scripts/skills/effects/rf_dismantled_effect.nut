@@ -30,29 +30,29 @@ this.rf_dismantled_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		if (this.m.HeadHitCount > 0)
 		{
-			tooltip.push({
+			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = ::MSU.Text.colorNegative((this.m.HeadHitCount * this.m.DamageIncrease) + "%") + " increased damage received through Head Armor"
+				text = ::MSU.Text.colorNegative((this.m.HeadHitCount * this.m.DamageIncrease) + "%") + " more damage received through Head Armor"
 			});
 		}
 
 		if (this.m.BodyHitCount > 0)
 		{
-			tooltip.push({
-				id = 10,
+			ret.push({
+				id = 11,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = ::MSU.Text.colorNegative((this.m.BodyHitCount * this.m.DamageIncrease) + "%") + " increased damage received through Body Armor"
+				text = ::MSU.Text.colorNegative((this.m.BodyHitCount * this.m.DamageIncrease) + "%") + " more damage received through Body Armor"
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function onRefresh()

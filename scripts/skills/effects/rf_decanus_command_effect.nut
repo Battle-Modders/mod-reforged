@@ -13,15 +13,15 @@ this.rf_decanus_command_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 7,
+		local ret = this.skill.getTooltip();
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Can use [Shieldwall|Skill+shieldwall] for 0 [Action Points|Concept.ActionPoints]")
+			text = ::Reforged.Mod.Tooltips.parseString("Can use [Shieldwall|Skill+shieldwall] for no [Action Points|Concept.ActionPoints]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onAfterUpdate( _properties )

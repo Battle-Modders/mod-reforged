@@ -27,14 +27,14 @@ this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
+		local ret = this.skill.getTooltip();
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "The next melee attack against an adjacent target will apply the Staggered effect"
+			text = ::Reforged.Mod.Tooltips.parseString("The next melee attack against an adjacent target will [stagger|Skill+staggered_effect] them")
 		});
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

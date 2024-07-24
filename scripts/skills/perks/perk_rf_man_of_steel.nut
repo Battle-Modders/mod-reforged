@@ -18,15 +18,15 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		local headBonus = this.getBonus(::Const.BodyPart.Head);
 		local bodyBonus = this.getBonus(::Const.BodyPart.Body);
 
 		if (headBonus > 0)
 		{
-			tooltip.push({
-				id = 6,
+			ret.push({
+				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Armor penetrating damage through Head Armor is reduced by " + ::MSU.Text.colorPositive(headBonus + "%")
@@ -34,8 +34,8 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			tooltip.push({
-				id = 6,
+			ret.push({
+				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorNegative("This character\'s Head Armor is too damaged")
@@ -44,8 +44,8 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 
 		if (bodyBonus > 0)
 		{
-			tooltip.push({
-				id = 6,
+			ret.push({
+				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Armor penetrating damage through Body Armor is reduced by " + ::MSU.Text.colorPositive(bodyBonus + "%")
@@ -53,15 +53,15 @@ this.perk_rf_man_of_steel <- ::inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			tooltip.push({
-				id = 6,
+			ret.push({
+				id = 11,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorNegative("This character\'s Body Armor is too damaged")
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function getBonus( _bodyPart )

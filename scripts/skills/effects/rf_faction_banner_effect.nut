@@ -13,16 +13,16 @@ this.rf_faction_banner_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "Receive no morale check from dying allies as long as a faction member carries your banner and your faction outnumbers your enemies"
+			text = ::Reforged.Mod.Tooltips.parseString("Receive no [morale check|Concept.Morale] from dying allies as long as a faction member carries your banner and your faction outnumbers your enemies")
 		});
 		
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

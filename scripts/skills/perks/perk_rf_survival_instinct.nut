@@ -46,26 +46,26 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		local bonus = this.getBonus();
 
-		tooltip.extend([
+		ret.extend([
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorPositive("+" + bonus) + " Melee Defense"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Melee Defense|Concept.MeleeDefense]")
 			},
 			{
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorPositive("+" + bonus) + " Ranged Defense"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Ranged Defense|Concept.RangeDefense]")
 			}
 		]);
 
-		return tooltip;
+		return ret;
 	}
 
 	function getBonus()

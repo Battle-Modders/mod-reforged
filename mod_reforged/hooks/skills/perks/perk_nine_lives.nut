@@ -15,7 +15,7 @@
 	// Nine lives now shows up as an effect while available. Therefore we give it a custom more detailed description
 	q.getDescription <- function()
 	{
-		return "Upon receiving the next killing blow, this character will survive with " + ::MSU.Text.colorPositive(this.m.MinHP + "-" + this.m.MaxHP) + " Hitpoints, all damage over time effects wil be removed, and Melee Skill, Melee Defense, Resolve and Initiative will be increased until the start of their next turn.";
+		return ::Reforged.Mod.Tooltips.parseString("Upon receiving the next killing blow, this character will survive with " + ::MSU.Text.colorPositive(this.m.MinHP + "-" + this.m.MaxHP) + " [Hitpoints|Concept.Hitpoints], all damage over time [effects|Concept.StatusEffect] wil be removed, and [Melee Skill,|Concept.MeleeSkill] [Melee Defense,|Concept.MeleeDefense] [Resolve|Concept.Bravery] and [Initiative|Concept.Initiative] will be increased until the start of their next [turn.|Concept.Turn]");
 	}
 
 	q.setSpent = @(__original) function( _f )

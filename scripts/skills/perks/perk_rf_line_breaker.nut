@@ -54,4 +54,17 @@ this.perk_rf_line_breaker <- ::inherit("scripts/skills/skill", {
 			});
 		}
 	}
+
+	function onQueryTooltip( _skill, _tooltip )
+	{
+		if (_skill.getID() == "actives.knock_back")
+		{
+			_tooltip.push({
+				id = 100,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] the target if successfully knocked back")
+			});
+		}
+	}
 });

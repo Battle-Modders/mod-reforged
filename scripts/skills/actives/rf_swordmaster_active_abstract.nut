@@ -29,7 +29,7 @@ this.rf_swordmaster_active_abstract <- ::inherit("scripts/skills/skill", {
 		if (!this.isEnabled())
 		{
 			_tooltip.push({
-				id = 10,
+				id = 50,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorNegative("Requires a sword")

@@ -19,16 +19,16 @@ this.perk_rf_family_pride <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 			
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.BraveryMult) + " increased [Resolve|Concept.Bravery] against negative [morale checks|Concept.Morale]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.BraveryMult) + " more [Resolve|Concept.Bravery] against negative [morale checks|Concept.Morale]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onAdded()

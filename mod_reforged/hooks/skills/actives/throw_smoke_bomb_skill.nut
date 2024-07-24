@@ -17,13 +17,13 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::MSU.Text.colorNegative("50%") + " reduced Ranged Skill for anyone inside"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("50%") + " less [Ranged Skill|Concept.RangedSkill] for anyone inside")
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorPositive("+30") + " Ranged Defense for anyone inside"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+30") + " [Ranged Defense|Concept.RangeDefense] for anyone inside")
 			}
 		]);
 

@@ -6,7 +6,7 @@ this.rf_inspired_by_champion_effect <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.rf_inspired_by_champion";
 		this.m.Name = "Inspired by nearby Champion";
-		this.m.Description = "With a champion nearby, this character has temporarily increased Resolve.";
+		this.m.Description = "This character feels braver in the presence of a glorious champion.";
 		this.m.Icon = "ui/perks/perk_26.png";
 		this.m.IconMini = "perk_26_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
@@ -15,15 +15,15 @@ this.rf_inspired_by_champion_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
+		local ret = this.skill.getTooltip();
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::MSU.Text.colorPositive("+" + this.m.Difference) + " Resolve"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + this.m.Difference) + " [Resolve|Concept.Bravery]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function getBonus()

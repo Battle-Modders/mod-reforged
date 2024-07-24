@@ -46,16 +46,16 @@ this.rf_sanguine_curse_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
-			id = 6,
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Applies [Sanguine Curse|NullEntitySkill+rf_sanguine_curse_effect] on the target")
+			text = ::Reforged.Mod.Tooltips.parseString("The target is inflicted with [Sanguine Curse|NullEntitySkill+rf_sanguine_curse_effect]")
 		});
 		ret.push({
-			id = 6,
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative(::Reforged.Mod.Tooltips.parseString("Only a single [Sanguine Curse|NullEntitySkill+rf_sanguine_curse_effect] can be active at any time"))
+			text = ::Reforged.Mod.Tooltips.parseString("Only a single [Sanguine Curse|NullEntitySkill+rf_sanguine_curse_effect] can be active at any time")
 		});
 		return ret;
 	}

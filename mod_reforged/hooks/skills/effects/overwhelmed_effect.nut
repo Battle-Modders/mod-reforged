@@ -1,26 +1,4 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/overwhelmed_effect", function(q) {
-	q.getTooltip = @() function()
-	{
-		local tooltip = this.skill.getTooltip();
-
-		tooltip.extend([
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/melee_skill.png",
-				text = ::MSU.Text.colorNegative("-" + (this.m.Count * 10) + "%") + " Melee Skill"
-			},
-			{
-				id = 11,
-				type = "text",
-				icon = "ui/icons/ranged_skill.png",
-				text = ::MSU.Text.colorNegative("-" + (this.m.Count * 10) + "%") + " Ranged Skill"
-			}
-		]);
-
-		return tooltip;
-	}
-
 	q.onUpdate = @() function( _properties )
 	{
 		_properties.MeleeSkillMult = ::Math.maxf(0.0, _properties.MeleeSkillMult - 0.1 * this.m.Count);

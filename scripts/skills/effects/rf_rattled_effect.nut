@@ -16,16 +16,16 @@ this.rf_rattled_effect <- ::inherit("scripts/skills/skill", {
 	
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 		
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/reach.png",
 			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ReachModifier) + " [Reach|Concept.Reach]")
 		});
 		
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

@@ -37,33 +37,33 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 
 	function getTooltip()
 	{
-		local tooltip = this.getDefaultUtilityTooltip();
+		local ret = this.getDefaultUtilityTooltip();
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Immediately gain the Indomitable effect"
+			text = ::Reforged.Mod.Tooltips.parseString("Immediately gain the [Indomitable|Skill+indomitable_effect] effect")
 		});
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Will move to the targeted tile and attack a random adjacent enemy with " + ::MSU.Text.colorPositive((this.m.DamageMultBonus * 100) + "%") + " increased damage"
+			text = "Will move to the targeted tile and attack a random adjacent enemy with " + ::MSU.Text.colorPositive((this.m.DamageMultBonus * 100) + "%") + " more damage"
 		});
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a " + ::MSU.Text.colorPositive("100%") + " chance to stagger all enemies adjacent to the target tile"
+			text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] all enemies adjacent to the target tile")
 		});
 
 		if (!this.isEnabled())
 		{
-			tooltip.push({
-				id = 7,
+			ret.push({
+				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorNegative("Requires a two-handed non-fencing sword")
@@ -74,15 +74,15 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 
 		if (this.getContainer().getActor().isEngagedInMelee())
 		{
-			tooltip.push({
-				id = 7,
+			ret.push({
+				id = 21,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("Not usable when engaged in melee")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Not usable when [engaged|Concept.ZoneOfControl] in melee"))
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function isEnabled()

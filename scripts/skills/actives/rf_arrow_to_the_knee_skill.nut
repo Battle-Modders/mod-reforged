@@ -5,7 +5,7 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 		this.quick_shot.create();
 		this.m.ID = "actives.rf_arrow_to_the_knee";
 		this.m.Name = "Arrow to the Knee";
-		this.m.Description = "A debilitating shot aimed at the knees of your target causing them to spend additional Action Points per tile moved.";
+		this.m.Description = "A debilitating shot aimed at the knees of your target to cripple their ability to move and defend themselves.";
 		this.m.Icon = "skills/rf_arrow_to_the_knee_skill.png";
 		this.m.IconDisabled = "skills/rf_arrow_to_the_knee_skill_sw.png";
 		this.m.Overlay = "rf_arrow_to_the_knee_skill";
@@ -17,27 +17,27 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 
 	function getTooltip()
 	{
-		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
+		local ret = this.getRangedTooltip(this.getDefaultTooltip());
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will apply the [Arrow to the Knee|Skill+rf_arrow_to_the_knee_debuff_effect] on the target on a hit")
+			text = ::Reforged.Mod.Tooltips.parseString("Will apply [Arrow to the Knee|Skill+rf_arrow_to_the_knee_debuff_effect] effect to the target on a hit")
 		});
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will [Stagger|Skill+staggered_effect] the target on a hit")
+			text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] the target on a hit")
 		});
 
 		local ammo = this.getAmmo();
 
 		if (ammo > 0)
 		{
-			tooltip.push({
+			ret.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
@@ -46,7 +46,7 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 		}
 		else
 		{
-			tooltip.push({
+			ret.push({
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
@@ -56,15 +56,15 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 
 		if (this.getContainer().getActor().isEngagedInMelee())
 		{
-			tooltip.push({
+			ret.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorNegative("Cannot be used because this character is engaged in melee")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used because this character is [engaged|Concept.ZoneOfControl] in melee"))
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )

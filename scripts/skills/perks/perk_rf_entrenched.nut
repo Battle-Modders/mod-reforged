@@ -28,32 +28,32 @@ this.perk_rf_entrenched <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		local bonus = this.getBonus();
 
-		tooltip.extend([
+		ret.extend([
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::MSU.Text.colorPositive("+" + bonus) + " Ranged Skill"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Ranged Skill|Concept.RangeSkill]")
 			},
 			{
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorPositive("+" + bonus) + " Ranged Defense"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Ranged Defense|Concept.RangeDefense]")
 			},
 			{
-				id = 10,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::MSU.Text.colorPositive("+" + bonus) + " Resolve"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Resolve|Concept.Bravery]")
 			}
 		]);
 
-		return tooltip;
+		return ret;
 	}
 
 	function isEnabled()

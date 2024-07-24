@@ -17,22 +17,22 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 		local hpBonus = ::Math.round(this.getHitpointsDamage() * 100);
 		if (hpBonus < 100)
 		{
-			tooltip.push({
-				id = 6,
+			ret.push({
+				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Damage to hitpoints from attacks is reduced by " + ::MSU.Text.colorPositive((100-hpBonus) + "%")
+				text = ::Reforged.Mod.Tooltips.parseString("Damage to [Hitpoints|Concept.Hitpoints] from attacks is reduced by " + ::MSU.Text.colorPositive((100-hpBonus) + "%"))
 			});
 		}
 		local armorBonus = ::Math.round(this.getArmorDamage() * 100);
 		if (armorBonus < 100)
 		{
-			tooltip.push({
-				id = 6,
+			ret.push({
+				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Damage to armor from attacks is reduced by " + ::MSU.Text.colorPositive((100-armorBonus) + "%")
@@ -41,16 +41,16 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 
 		if (hpBonus >= 100 && armorBonus >= 100)
 		{
-			tooltip.push({
-				id = 6,
+			ret.push({
+				id = 20,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorNegative("This character\'s body and head armor are too heavy to gain any benefit from poise")
+				text = ::MSU.Text.colorNegative("This character\'s body and head armor are too heavy to gain any damage reduction from " + this.m.Name)
 			});
 		}
 
-		tooltip.push({
-			id = 6,
+		ret.push({
+			id = 12,
 			type = "text",
 			icon = "ui/icons/reach.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Ignore 1 [Reach Disadvantage|Concept.ReachAdvantage] when attacking a target with lower [Initiative|Concept.Initiative] than yours")
@@ -60,14 +60,14 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 		local maxHPString = ::Math.floor(actor.getHitpointsMax() / (hpBonus * 0.01));
 		local currHPString = ::Math.floor(actor.getHitpoints() / (hpBonus * 0.01));
 
-		tooltip.push({
-			id = 6,
+		ret.push({
+			id = 15,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::MSU.Text.colorPositive("Effective Hitpoints: ") + currHPString + " / " + maxHPString
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function getHitpointsDamage()

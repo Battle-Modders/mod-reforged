@@ -12,14 +12,14 @@
 	
 	q.getTooltip = @(__original) function()
 	{
-		local tooltip = __original();
-		tooltip.push({
+		local ret = __original();
+		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = ::MSU.Text.colorPositive("+1") + " Reach"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach]")
 		});
-		return tooltip;
+		return ret;
 	}
 
 	q.onUpdate = @(__original) function( _properties )

@@ -58,7 +58,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 		if (this.m.ValidTiles.len() == 0)
 		{
 			ret.push({
-				id = 11,
+				id = 20,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
 				text = ::MSU.Text.colorNegative("Can only be used immediately after killing an adjacent target")

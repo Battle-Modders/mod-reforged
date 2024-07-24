@@ -23,37 +23,37 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/melee_defense.png",
-			text = ::MSU.Text.colorizeValue(this.m.SelfDefenseMalus) + " Melee Defense"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfDefenseMalus) + " [Melee Defense|Concept.MeleeDefense]")
 		});
 
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/ranged_defense.png",
-			text = ::MSU.Text.colorizeValue(this.m.SelfDefenseMalus) + " Ranged Defense"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfDefenseMalus) + " [Ranged Defense|Concept.RangeDefense]")
 		});
 
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 12,
 			type = "text",
 			icon = "ui/icons/melee_skill.png",
-			text = ::MSU.Text.colorizeValue(this.m.SelfSkillMalus) + " Melee Skill"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfSkillMalus) + " [Melee Skill|Concept.MeleeSkill]")
 		});
 
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 13,
 			type = "text",
 			icon = "ui/icons/ranged_skill.png",
-			text = ::MSU.Text.colorizeValue(this.m.SelfSkillMalus) + " Ranged Skill"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfSkillMalus) + " [Ranged Skill|Concept.RangeSkill]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

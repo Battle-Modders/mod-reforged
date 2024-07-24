@@ -27,62 +27,59 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip;
+		if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
+		{
+			local ret = this.skill.getDefaultTooltip();
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Perform your weapon\'s primary attack with additional chance to hit the head equal to " + ::MSU.Text.colorPositive((this.m.SkillToChanceMult * 100) + "%") + " of your [Melee Skill|Concept.MeleeSkill]")
+			});
+			ret.push({
+				id = 20,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Requires an attack which can exert [Zone of Control|Concept.ZoneOfControl]")
+			});
+			return ret;
+		}
+
+		local ret;
 		local aoo = this.getContainer().getAttackOfOpportunity();
 		local bonus = this.getBonus();
 
 		if (aoo == null)
 		{
-			tooltip = this.skill.getTooltip();
-			tooltip.push({
-				id = 7,
+			ret = this.skill.getTooltip();
+			ret.push({
+				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("Requires an attack which can exert Zone of Control")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Requires an attack which can exert [Zone of Control|Concept.ZoneOfControl]"))
 			});
 		}
 		else if (bonus == 0)
 		{
-			tooltip = this.skill.getTooltip();
-			tooltip.push({
-				id = 7,
+			ret = this.skill.getTooltip();
+			ret.push({
+				id = 21,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("Too low Melee Skill to get any bonus from this skill")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Too low [Melee Skill|Concept.MeleeSkill] to get any bonus from this skill"))
 			});
 		}
 		else
 		{
-			tooltip = this.skill.getDefaultTooltip();
-			tooltip.push({
-				id = 7,
+			ret = this.skill.getDefaultTooltip();
+			ret.push({
+				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Perform a " + ::MSU.Text.colorNegative(this.getContainer().getAttackOfOpportunity().getName()) + " with " + ::MSU.Text.colorizePercentage(bonus) + " chance to hit the head"
+				text = ::Reforged.Mod.Tooltips.parseString("Perform a " + ::Reforged.NestedTooltips.getNestedSkillName(aoo) + " with " + ::MSU.Text.colorizePercentage(bonus) + " chance to hit the head")
 			});
 		}
 
-		return tooltip;
-	}
-
-	function getNestedTooltip()
-	{
-		if (this.getContainer().getActor().getID() != ::MSU.getDummyPlayer().getID())
-			return this.getTooltip();
-
-		local ret = this.skill.getDefaultTooltip();
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Perform your weapon\'s primary attack with additional chance to hit the head equal to " + ::MSU.Text.colorPositive((this.m.SkillToChanceMult * 100) + "%") + " of your [Melee Skill|Concept.MeleeSkill]")
-		});
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative("Requires an attack which can exert Zone of Control")
-		});
 		return ret;
 	}
 

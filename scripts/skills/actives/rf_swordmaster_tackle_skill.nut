@@ -28,17 +28,17 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 
 	function getTooltip()
 	{
-		local tooltip = this.getDefaultUtilityTooltip();
+		local ret = this.getDefaultUtilityTooltip();
 		local attack = this.getContainer().getAttackOfOpportunity();
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString(format("Perform a free [%s|Skill+%s] on the target", attack.getName(), split(::IO.scriptFilenameByHash(attack.ClassNameHash), "/").top()))
+			text = ::Reforged.Mod.Tooltips.parseString("Perform a free " + ::Reforged.NestedTooltips.getNestedSkillName(this.getContainer().getAttackOfOpportunity()) + " on the target")
 		});
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, the target is [stunned|Skill+stunned_effect] and you exchange positions with the target")
@@ -46,8 +46,8 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
 		{
-			tooltip.push({
-				id = 7,
+			ret.push({
+				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorNegative("Requires a two-handed or double-gripped one-handed sword")
@@ -56,8 +56,8 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 
 		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
 		{
-			tooltip.push({
-				id = 9,
+			ret.push({
+				id = 21,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
 				text = ::MSU.Text.colorNegative("Cannot be used while rooted")
@@ -66,7 +66,7 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 
 		this.addEnabledTooltip(tooltip);
 
-		return tooltip;
+		return ret;
 	}
 
 	function getCursorForTile( _tile )

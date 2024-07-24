@@ -19,9 +19,9 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 7,
+		local ret = this.skill.getTooltip();
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::MSU.Text.colorPositive(this.getChance() + "%") + " chance to perform a free attack against characters who miss a melee attack against this character"
@@ -29,15 +29,15 @@ this.rf_rebuke_effect <- ::inherit("scripts/skills/skill", {
 
 		if (this.getContainer().getAttackOfOpportunity() == null)
 		{
-			tooltip.push({
-				id = 7,
+			ret.push({
+				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Requires a melee attack that exerts [Zone of Control|Concept.ZoneOfControl]"))
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function canProc( _attacker, _skill )

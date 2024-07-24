@@ -33,7 +33,7 @@
 		});
 
 		local rangedTooltip = this.getRangedTooltip();
-		rangedTooltip[rangedTooltip.len() - 1].text += ". This chance is unaffected by objects or characters in the line of fire."
+		rangedTooltip[rangedTooltip.len() - 1].text += ". This chance is unaffected by objects or characters in the line of fire"
 
 		ret.extend(rangedTooltip);
 
@@ -74,7 +74,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorNegative("Cannot be used because this character is engaged in melee")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used because this character is [engaged|Concept.ZoneOfControl] in melee"))
 			});
 		}
 

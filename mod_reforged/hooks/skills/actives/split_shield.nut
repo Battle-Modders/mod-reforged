@@ -4,14 +4,14 @@
 		local ret = this.skill.getDefaultUtilityTooltip();
 
 		ret.push({
-			id = 7,
+			id = 10,
 			type = "text",
 			icon = "ui/icons/shield_damage.png",
 			text = "Inflicts " + ::MSU.Text.colorDamage(this.getContainer().getActor().getMainhandItem().getShieldDamage()) + " damage to shields"
 		});
 
 		ret.push({
-			id = 7,
+			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorDamage(this.RF_getFatigueDamage()) + " [Fatigue|Concept.Fatigue] on the target")

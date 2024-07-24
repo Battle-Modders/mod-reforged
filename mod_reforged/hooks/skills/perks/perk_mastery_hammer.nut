@@ -22,7 +22,7 @@
 		if (this.m.DentArmorSkills.find(_skill.getID()) != null)
 		{
 			_tooltip.push({
-				id = 10,
+				id = 100,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Applies the [Dented Armor|Skill+rf_dented_armor_effect] effect on hitting an armor piece with at least " + this.m.MinArmorToDent + " maximum durability")

@@ -14,7 +14,7 @@
 		{
 			if (entry.id == 12)
 			{
-				entry.text = ::MSU.Text.colorNegative("10%") + " reduced melee damage";
+				entry.text = ::MSU.Text.colorNegative("10%") + " less melee damage";
 				break;
 			}
 		}

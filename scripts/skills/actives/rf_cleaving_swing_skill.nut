@@ -34,12 +34,11 @@ this.rf_cleaving_swing_skill <- ::inherit("scripts/skills/actives/swing", {
 			text = "Can hit up to 3 targets"
 		});
 
-		local dmg = this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5;
 		ret.push({
-			id = 8,
+			id = 20,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts additional stacking " + ::MSU.Text.colorDamage(dmg) + " bleeding damage per turn, for 2 turns"
+			text = ::Reforged.Mod.Tooltips.parseString("Inflicts [Bleeding|Skill+bleeding_effect] when dealing at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.MinDamageToApplyBleeding) + " damage to [Hitpoints|Concept.Hitpoints]")
 		});
 		return ret;
 	}

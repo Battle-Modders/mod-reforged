@@ -38,7 +38,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Ignores the bonus to Ranged Defense granted by shields"
+			text = ::Reforged.Mod.Tooltips.parseString("Ignores the bonus to [Ranged Defense|Concept.RangeDefense] granted by shields")
 		});
 
 		if (this.getContainer().getActor().isEngagedInMelee())
@@ -47,7 +47,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorNegative("Cannot be used because this character is engaged in melee")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used because this character is [engaged|Concept.ZoneOfControl] in melee"))
 			});
 		}
 

@@ -39,7 +39,7 @@ this.rf_deep_impact_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = ::MSU.Text.colorizeMult(::Math.round(this.m.DamageTotalMult * 100) / 100.0) + " less Damage dealt "
+				text = ::MSU.Text.colorizeMult(::Math.round(this.m.DamageTotalMult * 100) / 100.0) + " less damage dealt "
 			});
 		}
 

@@ -26,42 +26,36 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		if (this.m.CurrAPBonus > 0)
 		{
-			tooltip.push(
-				{
-					id = 10,
-					type = "text",
-					icon = "ui/icons/action_points.png",
-					text = "The next attack costs " + ::MSU.Text.colorPositive("-" + this.m.CurrAPBonus) + " Action Point(s)"
-				}
-			);
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/action_points.png",
+				text = ::Reforged.Mod.Tooltips.parseString("The next attack costs " + ::MSU.Text.colorPositive("-" + this.m.CurrAPBonus) + " [Action Point(s)|Concept.ActionPoints]")
+			});
 		}
 
 		if (this.m.CurrFatBonus > 0)
 		{
-			tooltip.push(
-				{
-					id = 10,
-					type = "text",
-					icon = "ui/icons/fatigue.png",
-					text = "The next attack builds up " + ::MSU.Text.colorizePercentage(this.m.CurrFatBonus) + " less Fatigue"
-				}
-			);
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = ::Reforged.Mod.Tooltips.parseString("The next attack builds up " + ::MSU.Text.colorizePercentage(this.m.CurrFatBonus) + " less [Fatigue|Concept.Fatigue]")
+			});
 		}
 
-		tooltip.push(
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("Will expire upon waiting or ending the turn, using any skill, or swapping any item except to/from a throwing weapon")
-			}
-		);
+		ret.push({
+			id = 20,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon [waiting|Concept.Wait] or ending the [turn|Concept.Turn], using any skill, or swapping any item except to/from a throwing weapon")
+		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function isEnabled()

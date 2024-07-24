@@ -22,46 +22,34 @@ this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/regular_damage.png",
-			text = ::MSU.Text.colorPositive((this.m.Stacks * this.m.BonusPerStack) + "%") + " increased damage dealt"
-		});
+		local ret = this.skill.getTooltip();
+		if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.isDummyPlayer()))
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/regular_damage.png",
+				text = "Stacking " + ::MSU.Text.colorPositive(this.m.BonusPerStack + "%") + " more damage dealt for every hit received"
+			});
+		}
+		else
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/regular_damage.png",
+				text = ::MSU.Text.colorPositive((this.m.Stacks * this.m.BonusPerStack) + "%") + " more damage dealt"
+			});
+		}
 
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative("Will expire upon performing an attack or ending the turn")
-		});
-
-		return tooltip;
-	}
-
-	function getNestedTooltip()
-	{
-		if (this.getContainer().getActor().getID() != ::MSU.getDummyPlayer().getID())
-			return this.getTooltip();
-
-		local tooltip = this.skill.getTooltip();
-
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/regular_damage.png",
-			text = "Stacking " + ::MSU.Text.colorPositive(this.m.BonusPerStack + "%") + " increased damage dealt for every hit received"
-		});
-
-		tooltip.push({
-			id = 6,
+		ret.push({
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative("Will expire upon performing the next attack or ending the turn")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon performing an attack or ending the [turn|Concept.Turn]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

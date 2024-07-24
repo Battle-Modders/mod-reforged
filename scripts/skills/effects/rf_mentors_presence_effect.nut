@@ -45,22 +45,22 @@ this.rf_mentors_presence_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.extend([
+		local ret = this.skill.getTooltip();
+		ret.extend([
 			{
-				id = 7,
+				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeSkillAdd) + " [Melee Skill|Concept.MeleeSkill]")
 			},
 			{
-				id = 7,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeDefenseAdd) + " [Melee Defense|Concept.MeleeDefense]")
 			},
 			{
-				id = 7,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.BraveryAdd) + " [Resolve|Concept.Bravery]")
@@ -69,15 +69,15 @@ this.rf_mentors_presence_effect <- ::inherit("scripts/skills/skill", {
 
 		if (this.getContainer().getActor().getMoraleState() != ::Const.MoraleState.Ignore)
 		{
-			tooltip.extend([
+			ret.extend([
 				{
-					id = 7,
+					id = 13,
 					type = "text",
 					icon = "ui/icons/bravery.png",
 					text = ::Reforged.Mod.Tooltips.parseString("At the start of every [turn|Concept.Turn] become [Confident|Concept.Morale]")
 				},
 				{
-					id = 7,
+					id = 14,
 					type = "text",
 					icon = "ui/icons/bravery.png",
 					text = ::Reforged.Mod.Tooltips.parseString("Will lose " + ::MSU.Text.colorizeValue(this.m.MoraleStateOnMentorDeathAdd, {AddSign = false}) + " levels of [morale|Concept.Morale] upon the mentor\'s death")
@@ -85,7 +85,7 @@ this.rf_mentors_presence_effect <- ::inherit("scripts/skills/skill", {
 			]);
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function onAdded()

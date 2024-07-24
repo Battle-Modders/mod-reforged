@@ -18,39 +18,39 @@ this.rf_encumbrance_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 		local level = this.getEncumbranceLevel();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Current Encumbrance Level: " + ::MSU.Text.colorNegative(level)
+			text = "Current " + this.m.Name + " Level: " + ::MSU.Text.colorNegative(level)
 		});
 
 		local fatigueBuildUp = this.getFatigueOnTurnStart(level);
 		if (fatigueBuildUp != 0)
 		{
-			tooltip.push({
-				id = 10,
+			ret.push({
+				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorNegative("+" + fatigueBuildUp) + " Fatigue at the start of every turn"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("+" + fatigueBuildUp) + " [Fatigue|Concept.Fatigue] at the start of every [turn|Concept.Turn]")
 			});
 		}
 
 		local travelCost = this.getMovementFatigueCostModifier(level);
 		if (travelCost != 0)
 		{
-			tooltip.push({
-				id = 10,
+			ret.push({
+				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorNegative("+" + travelCost) + " Fatigue built per tile traveled"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("+" + travelCost) + " [Fatigue|Concept.Fatigue] built per tile traveled")
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function getEncumbranceLevel()

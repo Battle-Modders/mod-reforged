@@ -28,7 +28,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 			text = ::Reforged.Mod.Tooltips.parseString("The next skill used costs " + ::MSU.Text.colorPositive("half") + " [Action Points|Concept.ActionPoints]")
 		});
 		ret.push({
-			id = 11,
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
 			text = "Will expire upon taking any action other than a skill usage"

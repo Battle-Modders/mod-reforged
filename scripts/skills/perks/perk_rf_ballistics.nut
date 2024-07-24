@@ -25,7 +25,7 @@ this.perk_rf_ballistics <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill.isAttack() && _skill.isRanged())
 		{
-			tooltip.push({
+			ret.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",

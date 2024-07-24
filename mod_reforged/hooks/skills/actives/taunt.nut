@@ -8,12 +8,24 @@
 
 		if (this.m.DefenseModifierFraction != 0)
 		{
-			ret.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("When used on an adjacent target, reduces its [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by " + ::MSU.Text.colorizeValue(this.calculateDefenseModifier()) + " (" + ::MSU.Text.colorizeFraction(this.m.DefenseModifierFraction) + " of your current [Resolve|Concept.Bravery])")
-			});
+			if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
+			{
+				ret.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = ::Reforged.Mod.Tooltips.parseString("When used on an adjacent target, reduces its [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by " + ::MSU.Text.colorizeFraction(this.m.DefenseModifierFraction) + " of your current [Resolve|Concept.Bravery]")
+				});
+			}
+			else
+			{
+				ret.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = ::Reforged.Mod.Tooltips.parseString("When used on an adjacent target, reduces its [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by " + ::MSU.Text.colorizeValue(this.calculateDefenseModifier()) + " (" + ::MSU.Text.colorizeFraction(this.m.DefenseModifierFraction) + " of your current [Resolve|Concept.Bravery])")
+				});
+			}
 		}
 
 		return ret;
@@ -40,28 +52,6 @@
 		target.getSkills().update();	// Otherwise the defense debuff will not be immediately visible in the combat tooltip
 
 		return true;
-	}
-
-// MSU Functions
-	q.getNestedTooltip = @() function()
-	{
-		if (this.getContainer().getActor().getID() != ::MSU.getDummyPlayer().getID())
-			return this.getTooltip();
-
-		// Replicate the getTooltip method of class in a way that works with dummy players
-		local ret = this.skill.getTooltip();
-
-		if (this.m.DefenseModifierFraction != 0)
-		{
-			ret.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("When used on an adjacent target, reduces its [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by " + ::MSU.Text.colorizeFraction(this.m.DefenseModifierFraction) + " of your current [Resolve|Concept.Bravery]")
-			});
-		}
-
-		return ret;
 	}
 
 // New Functions

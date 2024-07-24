@@ -1,7 +1,8 @@
 this.perk_rf_rising_star <- ::inherit("scripts/skills/skill", {
 	m = {
 		StartLevel = null,
-		LevelsRequiredForPerk = 5	
+		LevelsRequiredForPerk = 5,
+		PerkPointsToGain = 2,
 	},
 	function create()
 	{
@@ -26,7 +27,7 @@ this.perk_rf_rising_star <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will gain 2 [perk points|Concept.Perk] at [level|Concept.Level] " + (this.m.StartLevel + this.m.LevelsRequiredForPerk))
+			text = ::Reforged.Mod.Tooltips.parseString("Will gain " + ::MSU.Text.colorPositive(this.m.PerkPointsToGain) + " [perk points|Concept.Perk] at [level|Concept.Level] " + (this.m.StartLevel + this.m.LevelsRequiredForPerk))
 		});
 		return ret;
 	}

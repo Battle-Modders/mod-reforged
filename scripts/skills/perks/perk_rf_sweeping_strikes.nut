@@ -22,12 +22,12 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 6,
+		local ret = this.skill.getTooltip();
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/reach.png",
-			text = ::MSU.Text.colorizeValue(this.m.ReachBonus) + " Reach"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ReachBonus) + " [Reach|Concept.Reach]")
 		});
 
 		local enemyList = [];
@@ -36,7 +36,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 			if (!::MSU.isNull(entity) && entity.isAlive())
 			{
 				enemyList.push({
-					id = 10,
+					id = 11,
 					type = "text",
 					icon = "ui/orientation/" + entity.getOverlayImage() + ".png",
 					text = entity.getName()
@@ -46,16 +46,16 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 
 		if (enemyList.len() != 0)
 		{
-			tooltip.push({
-				id = 6,
+			ret.push({
+				id = 10,
 				type = "text",
 				icon = "ui/icons/reach.png",
-				text = ::MSU.Text.colorizeValue(this.m.ReachBonus) + " Reach against attacks from:"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ReachBonus) + " [Reach|Concept.Reach] against attacks from:")
 				children = enemyList
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function isEnabled()

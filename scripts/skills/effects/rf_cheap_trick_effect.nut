@@ -8,7 +8,7 @@ this.rf_cheap_trick_effect <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.rf_cheap_trick";
 		this.m.Name = "Cheap Trick";
-		this.m.Description = "Unleash a quick and deceptive move to catch opponents off-guard, allowing for a higher chance of landing a hit but at the cost of power.";
+		this.m.Description = "Perform a quick and deceptive move to catch opponents off-guard, allowing for a higher chance of landing a hit but at the cost of power.";
 		this.m.Icon = "ui/perks/perk_rf_cheap_trick.png";
 		this.m.Overlay = "rf_cheap_trick_effect";
 		this.m.Type = ::Const.SkillType.StatusEffect;
@@ -35,7 +35,7 @@ this.rf_cheap_trick_effect <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/damage_regular.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizeMult(this.m.DamageRegularMult ) + " less damage with your next attack")
+				text = ::Reforged.Mod.Tooltips.parseString("The attack deals " + ::MSU.Text.colorizeMult(this.m.DamageRegularMult ) + " less damage")
 			});
 		}
 

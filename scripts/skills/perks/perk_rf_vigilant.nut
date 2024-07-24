@@ -6,7 +6,7 @@ this.perk_rf_vigilant <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "perk.rf_vigilant";
 		this.m.Name = ::Const.Strings.PerkName.RF_Vigilant;
-		this.m.Description = "This character\'s eye is keen, his movements keener. Gain a portion of unspent Action Points from the previous turn.";
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character\'s eye is keen, his movements keener. Gain a portion of unspent [Action Points|Concept.ActionPoints] from the previous [turn.|Concept.Turn]");
 		this.m.Icon = "ui/perks/perk_rf_vigilant.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
@@ -19,16 +19,16 @@ this.perk_rf_vigilant <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
-			id = 6,
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::MSU.Text.colorizeValue(this.m.CurrBonus) + " Action Points"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.CurrBonus) + " [Action Points|Concept.ActionPoints]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onTurnEnd()

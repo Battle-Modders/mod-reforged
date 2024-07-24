@@ -5,7 +5,7 @@ this.rf_great_cleave_skill <- ::inherit("scripts/skills/actives/cleave", {
 		this.cleave.create();
 		this.m.ID = "actives.rf_great_cleave";
 		this.m.Name = "Great Cleave";
-		this.m.Description = "A large overhead cleaving attack that can inflict bleeding wounds if there is no armor absorbing the blow and if the target is able to bleed at all.";
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("A large overhead cleaving attack that can inflict [bleeding|Skill+bleeding_effect] wounds if there is no armor absorbing the blow and if the target is able to bleed at all.");
 		this.m.Icon = "skills/rf_great_cleave_skill.png";
 		this.m.IconDisabled = "skills/rf_great_cleave_skill_sw.png";
 		this.m.Overlay = "rf_great_cleave_skill";

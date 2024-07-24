@@ -4,7 +4,7 @@ this.rf_dynamic_duo_select_partner_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_dynamic_duo_select_partner";
 		this.m.Name = "Select Partner";
-		this.m.Description = "Select a partner for your Dynamic Duo perk."
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Select a partner for your [Dynamic Duo|Perk+perk_rf_dynamic_duo] perk.");
 		this.m.Icon = "skills/rf_dynamic_duo_select_partner_skill.png";
 		this.m.IconDisabled = "skills/rf_dynamic_duo_select_partner_skill_sw.png";
 		// this.m.Overlay = "rf_dynamic_duo_select_partner_skill"; // No need to spawn an overlay for this skill.

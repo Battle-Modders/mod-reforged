@@ -26,16 +26,16 @@ this.rf_inspiring_presence_buff_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
 			text = ::MSU.Text.colorPositive("+" + this.m.BonusActionPoints) + " Action Points"
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

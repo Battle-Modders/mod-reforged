@@ -20,26 +20,26 @@ this.return_favor_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 7,
+		local ret = this.skill.getTooltip();
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Any adjacent attacker who misses a melee attack against this character has a " + ::MSU.Text.colorPositive(this.m.StunChance + "%") + " chance to be Stunned, " + ::MSU.Text.colorPositive(this.m.DazeChance + "%") + " chance to be Dazed and " + ::MSU.Text.colorPositive(this.m.StaggerChance + "%") + " chance to be Staggered"
+			text = ::Reforged.Mod.Tooltips.parseString("Any adjacent attacker who misses a melee attack against this character has a " + ::MSU.Text.colorPositive(this.m.StunChance + "%") + " chance to be [Stunned|Skill+stunned_effect], " + ::MSU.Text.colorPositive(this.m.DazeChance + "%") + " chance to be [Dazed|Skill+dazed_effect] and " + ::MSU.Text.colorPositive(this.m.StaggerChance + "%") + " chance to be [Staggered|Skill+staggered_effect]")
 		});
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon != null && !weapon.isItemType(::Const.Items.ItemType.MeleeWeapon))
 		{
-			tooltip.push({
-				id = 7,
+			ret.push({
+				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorNegative("Requires being unarmed or armed with a melee weapon")
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function onMissed( _attacker, _skill )

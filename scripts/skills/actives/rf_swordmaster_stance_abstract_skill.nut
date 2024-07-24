@@ -12,15 +12,15 @@ this.rf_swordmaster_stance_abstract_skill <- ::inherit("scripts/skills/actives/r
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
+		local ret = this.skill.getTooltip();
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png"
 			text = "Currently Active: " + (this.m.IsOn ? ::MSU.Text.colorPositive("Yes") : ::MSU.Text.colorNegative("No"))
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onAdded()

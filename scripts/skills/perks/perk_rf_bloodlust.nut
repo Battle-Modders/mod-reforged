@@ -31,13 +31,13 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(mult) + " increased [Resolve|Concept.Bravery]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(mult) + " more [Resolve|Concept.Bravery]")
 		});
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/initiative.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(mult) + " increased [Initiative|Concept.Initiative]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(mult) + " more [Initiative|Concept.Initiative]")
 		});
 		ret.push({
 			id = 12,

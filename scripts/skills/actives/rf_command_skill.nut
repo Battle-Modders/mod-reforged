@@ -31,16 +31,16 @@ this.rf_command_skill <- ::inherit("scripts/skills/skill", {
 
 		ret.extend([
 			{
-				id = 8,
+				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "Move the target to the next position in the turn sequence"
+				text = ::Reforged.Mod.Tooltips.parseString("Move the target to the next position in the [turn|Concept.Turn] sequence")
 			},
 			{
-				id = 9,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "Recover " + ::MSU.Text.colorPositive(this.m.ActionPointsRecovered) + " Action Point(s) on the target"
+				text = "The target recovers " + ::MSU.Text.colorPositive(this.m.ActionPointsRecovered) + " [Action Point(s)|Concept.ActionPoints]"
 			},
 			{
 				id = 12,

@@ -12,25 +12,25 @@ this.perk_rf_skirmisher <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 		local initBonus = this.getInitiativeBonus();
 		if (initBonus > 0)
 		{
-			tooltip.push({
-				id = 6,
+			ret.push({
+				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::MSU.Text.colorPositive("+" + initBonus) + " Initiative"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + initBonus) + " [Initiative|Concept.Initiative]")
 			});
 		}
-		tooltip.push({
-			id = 6,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Initiative loss due to built Fatigue is reduced by " + ::MSU.Text.colorPositive("50%")
+			text = ::Reforged.Mod.Tooltips.parseString("[Initiative|Concept.Initiative] loss due to built [Fatigue|Concept.Fatigue] is reduced by " + ::MSU.Text.colorPositive("50%"))
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function getInitiativeBonus()

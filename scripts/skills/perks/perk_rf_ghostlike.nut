@@ -37,20 +37,14 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 		if (this.m.Enemies.len() != 0)
 		{
-			ret.push({
-				id = 11,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " more damage and " + ::MSU.Text.colorizeFraction(this.m.DirectDamageModifier, {AddSign = true}) + " damage ignoring armor against:"
-			});
-
+			local enemies = [];
 			foreach (enemy in this.m.Enemies)
 			{
 				local enemy = ::Tactical.getEntityByID(enemy);
 				if (enemy == null || !enemy.isPlacedOnMap() || !enemy.isAlive())
 					continue;
 
-				ret.push({
+				enemies.push({
 					id = 12,
 					type = "text",
 					icon = "ui/orientation/" + enemy.getOverlayImage() + ".png",
@@ -58,12 +52,23 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 				});
 			}
 
-			ret.push({
-				id = 13,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("The damage bonus will be lost upon swapping an item or waiting or ending your turn")
-			});
+			if (enemies.len() != 0)
+			{
+				ret.push({
+					id = 11,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = ::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " more damage and " + ::MSU.Text.colorizeFraction(this.m.DirectDamageModifier, {AddSign = true}) + " damage ignoring armor against:",
+					children = enemies
+				});
+
+				ret.push({
+					id = 13,
+					type = "text",
+					icon = "ui/icons/warning.png",
+					text = ::Reforged.Mod.Tooltips.parseString("The damage bonus will be lost upon swapping an item or [waiting|Concept.Wait] or ending your [turn|Concept.Turn]")
+				});
+			}
 		}
 
 		return ret;

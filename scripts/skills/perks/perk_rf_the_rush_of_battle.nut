@@ -22,24 +22,24 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 		local bonus = this.getBonus();
 
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/initiative.png",
-			text = ::MSU.Text.colorPositive("+" + bonus) + " Initiative"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Initiative|Concept.Initiative]")
 		});
 
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 11,
 			type = "text",
-			icon = "ui/icons/melee_skill.png",
-			text = "Skills build up " + ::MSU.Text.colorPositive(bonus + "%") + " less Fatigue"
+			icon = "ui/icons/fatigue.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorPositive(bonus + "%") + " less [Fatigue|Concept.Fatigue]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function isHidden()

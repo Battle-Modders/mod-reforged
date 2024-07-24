@@ -23,47 +23,47 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getDefaultUtilityTooltip();
+		local ret = this.skill.getDefaultUtilityTooltip();
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Affects all allies within " + ::MSU.Text.colorPositive("4") + " tiles who have at least " + ::MSU.Text.colorNegative("10") + " Fatigue remaining and are not Stunned or Fleeing"
+			text = ::Reforged.Mod.Tooltips.parseString("Affects all allies within " + ::MSU.Text.colorPositive("4") + " tiles who have at least " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue] remaining and are not [Stunned|Skill+stunned_effect] or [Fleeing|Concept.Morale]")
 		});
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Affected allies build " + ::MSU.Text.colorNegative("10") + " Fatigue"
+			text = ::Reforged.Mod.Tooltips.parseString("Affected allies build " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue]")
 		});
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Affected allies and you gain the [Holding Steady|Skill+rf_hold_steady_effect] effect for one turn")
+			text = ::Reforged.Mod.Tooltips.parseString("Affected allies and you gain the [Holding Steady|Skill+rf_hold_steady_effect] effect for one [turn|Concept.Turn]")
 		});
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative("Cannot be used more than once per combat (company-wide)")
+			text = "Cannot be used more than once per battle (company-wide)"
 		});
 
 		if (this.m.IsSpent)
 		{
-			tooltip.push({
-				id = 7,
+			ret.push({
+				id = 21,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("Has already been used by the company in this combat")
+				text = ::MSU.Text.colorNegative("Has already been used by the company in this battle")
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function isUsable()

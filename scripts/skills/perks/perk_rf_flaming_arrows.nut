@@ -35,17 +35,17 @@ this.perk_rf_flaming_arrows <- ::inherit("scripts/skills/skill", {
 		if (_skill.getID() == "actives.aimed_shot")
 		{
 			_tooltip.push({
-				id = 10,
+				id = 100,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Will trigger a morale check for the character hit and all adjacent enemies"
+				text = ::Reforged.Mod.Tooltips.parseString("Will trigger a negative [morale check|Concept.MoraleCheck] for the character hit and all adjacent enemies")
 			});
 
 			_tooltip.push({
-				id = 10,
+				id = 101,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Will light the landing tile on fire for 2 rounds"
+				text = ::Reforged.Mod.Tooltips.parseString("Will light the landing tile on fire for " + ::MSU.Text.colorNegative(2) + " [rounds|Concept.Round]")
 			});
 		}
 	}

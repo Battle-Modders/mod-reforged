@@ -20,24 +20,24 @@ this.perk_rf_bulwark <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		local bonus = this.getBonus();
-		tooltip.push({
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::MSU.Text.colorPositive("+" + bonus) + " Resolve"
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Resolve|Bravery]")
 		});
 
-		tooltip.push({
-			id = 10,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "Additional " + ::MSU.Text.colorPositive("+" + bonus) + " Resolve at negative morale checks except mental attacks"
+			text = ::Reforged.Mod.Tooltips.parseString("Additional " + ::MSU.Text.colorPositive("+" + bonus) + " [Resolve|Concept.Bravery] at negative [morale checks|Concept.Morale] except mental attacks")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function getBonus()

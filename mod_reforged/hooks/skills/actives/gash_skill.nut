@@ -24,7 +24,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has a " + ::MSU.Text.colorNegative("50%") + " lower threshold to inflict injuries"
+				text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorNegative("50%") + " lower [threshold|Concept.InjuryThreshold] to inflict [injuries|Concept.InjuryTemporary]")
 			});
 		}
 		else
@@ -33,17 +33,17 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has a " + ::MSU.Text.colorNegative("33%") + " lower threshold to inflict injuries"
+				text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorNegative("33%") + " lower [threshold|Concept.InjuryThreshold] to inflict [injuries|Concept.InjuryTemporary]")
 			});
 		}
 
 		if (this.m.BleedStacks != 0)
 		{
 			ret.push({
-				id = 6,
+				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Applies " + ::MSU.Text.colorPositive(this.m.BleedStacks) + " stacks of [Bleeding|Skill+bleeding_effect] when inflicting at least " + ::MSU.Text.colorNegative(::Const.Combat.MinDamageToApplyBleeding) + " damage")
+				text = ::Reforged.Mod.Tooltips.parseString("Applies " + ::MSU.Text.colorPositive(this.m.BleedStacks) + " stacks of [Bleeding|Skill+bleeding_effect] when inflicting at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.MinDamageToApplyBleeding) + " damage")
 			});
 		}
 

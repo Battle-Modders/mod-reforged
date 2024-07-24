@@ -26,15 +26,15 @@ this.perk_rf_vengeful_spite <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
+		local ret = this.skill.getTooltip();
+		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = ::MSU.Text.colorPositive(this.getBonus() + "%") + " increased damage dealt"
+			text = ::MSU.Text.colorPositive(this.getBonus() + "%") + " more damage dealt"
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )

@@ -24,10 +24,10 @@ this.perk_rf_death_dealer <- ::inherit("scripts/skills/skill", {
 		if (_skill.isAttack() && _skill.isAOE() && !_skill.isRanged())
 		{
 			_tooltip.push({
-				id = 10,
+				id = 100,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has " + ::MSU.Text.colorizePercentage(10) + " chance to hit due to " + this.getName()
+				text = "Has " + ::MSU.Text.colorizePercentage(10) + " chance to hit due to " + ::Reforged.NestedTooltips.getNestedPerkName(this)
 			});
 		}
 	}

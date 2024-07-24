@@ -21,35 +21,35 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
 		local bonus = this.getSkillBonus();
 		if (bonus > 0)
 		{
-			tooltip.extend([
+			ret.extend([
 				{
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_skill.png",
-					text = ::MSU.Text.colorPositive("+" + bonus) + " Melee Skill"
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Melee Skill|Concept.MeleeSkill]")
 				},
 				{
-					id = 10,
+					id = 11,
 					type = "text",
 					icon = "ui/icons/ranged_skill.png",
-					text = ::MSU.Text.colorPositive("+" + bonus) + " Ranged Skill"
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Ranged Skill|Concept.RangedSkill]")
 				},
 				{
-					id = 10,
+					id = 12,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = ::MSU.Text.colorPositive("+" + bonus) + " Melee Defense"
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Melee Defense|Concept.MeleeDefense]")
 				},
 				{
-					id = 10,
+					id = 13,
 					type = "text",
 					icon = "ui/icons/ranged_defense.png",
-					text = ::MSU.Text.colorPositive("+" + bonus) + " Ranged Defense"
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Ranged Defense|Concept.RangeDefense]")
 				}
 			]);
 		}
@@ -57,15 +57,15 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 		local resolveBonus = this.getResolveBonus();
 		if (resolveBonus > 0)
 		{
-			tooltip.push({
-				id = 10,
+			ret.push({
+				id = 14,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::MSU.Text.colorPositive("+" + this.getResolveBonus()) + " Resolve"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + this.getResolveBonus()) + " [Resolve|Concept.Resolve]")
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function getSkillBonus()

@@ -16,7 +16,7 @@ this.rf_halberd_impale_skill <- ::inherit("scripts/skills/actives/impale", {
 	{
 		local ret = this.impale.getTooltip();
 		ret.push({
-			id = 7,
+			id = 10,
 			type = "text",
 			icon = "ui/icons/armor_damage.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Has " + ::MSU.Text.colorizeValue(this.m.DamageArmorMultAdd * 100, {AddPercent = true}) + " [armor effectiveness|Concept.CrushingDamage]")

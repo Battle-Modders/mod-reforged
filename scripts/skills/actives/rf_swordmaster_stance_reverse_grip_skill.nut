@@ -20,24 +20,36 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 
 	function getTooltip()
 	{
-		local tooltip = this.rf_swordmaster_stance_abstract_skill.getTooltip();
+		local ret = this.rf_swordmaster_stance_abstract_skill.getTooltip();
 
-		local skillsString = this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded) ? "[Cudgel|Skill+cudgel_skill] and [Strike Down|Skill+strike_down_skill]" : "[Bash|Skill+bash] and [Knock Out|Skill+knock_out]";
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/special.png"
-			text = ::MSU.Text.colorNegative("Removes") + " all skills from the currently equipped sword and adds the " + ::Reforged.Mod.Tooltips.parseString(skillsString) + " skills"
-		});
+		if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.isDummyPlayer()))
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Removes") + " all skills from the currently equipped sword and " + ::MSU.Text.colorPositive("adds") + " the [Bash|Skill+bash] and [Knock Out|Skill+knock_out] or the [Cudgel|Skill+cudgel_skill] and [Strike Down|Skill+strike_down_skill] skills for one-handed and two-handed swords respectively")
+			});
+		}
+		else
+		{
+			local skillsString = this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded) ? "[Cudgel|Skill+cudgel_skill] and [Strike Down|Skill+strike_down_skill]" : "[Bash|Skill+bash] and [Knock Out|Skill+knock_out]";
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png"
+				text = ::MSU.Text.colorNegative("Removes") + " all skills from the currently equipped sword and adds the " + ::Reforged.Mod.Tooltips.parseString(skillsString) + " skills"
+			});
+		}
 
-		tooltip.push({
+		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/reach.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Concussive Strikes|Perk+perk_rf_concussive_strikes] perk")
 		});
 
-		tooltip.push({
+		ret.push({
 			id = 12,
 			type = "text",
 			icon = "ui/icons/reach.png",
@@ -46,7 +58,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
 		{
-			tooltip.push({
+			ret.push({
 				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
@@ -56,44 +68,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 
 		this.addEnabledTooltip(tooltip);
 
-		return tooltip;
-	}
-
-	function getNestedTooltip()
-	{
-		local tooltip = this.rf_swordmaster_stance_abstract_skill.getTooltip();
-
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/special.png"
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Removes") + " all skills from the currently equipped sword and " + ::MSU.Text.colorPositive("adds") + " the [Bash|Skill+bash] and [Knock Out|Skill+knock_out] or the [Cudgel|Skill+cudgel_skill] and [Strike Down|Skill+strike_down_skill] skills for one-handed and two-handed swords respectively")
-		});
-
-		tooltip.push({
-			id = 11,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Concussive Strikes|Perk+perk_rf_concussive_strikes] perk")
-		});
-
-		tooltip.push({
-			id = 12,
-			type = "text",
-			icon = "ui/icons/reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorNegative("one-third") + " of your weapon\'s [Reach|Concept.Reach]")
-		});
-
-		tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative("Requires a two-handed sword or a double-gripped one-handed sword")
-		});
-
-		this.addEnabledTooltip(tooltip);
-
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

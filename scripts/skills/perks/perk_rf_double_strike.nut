@@ -7,7 +7,7 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "perk.rf_double_strike";
 		this.m.Name = ::Const.Strings.PerkName.RF_DoubleStrike;
-		this.m.Description = "Having just landed a hit, this character is ready to perform a powerful followup strike! The next attack will inflict increased damage. If the attack misses, the effect is wasted.";
+		this.m.Description = "Having just landed a hit, this character is ready to perform a powerful followup strike! The next attack will inflict more damage. If the attack misses, the effect is wasted.";
 		this.m.Icon = "ui/perks/perk_rf_double_strike.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
@@ -20,22 +20,22 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 6,
+		local ret = this.skill.getTooltip();
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
 			text = "Single target attacks deal " + ::MSU.Text.colorizePercentage(this.m.DamageBonus) + " more damage"
 		});
 
-		tooltip.push({
-			id = 6,
+		ret.push({
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::MSU.Text.colorNegative("Will be lost upon moving, swapping an item, using any skill except a single-target attack, missing an attack, or waiting or ending the turn")
+			text = ::Reforged.Mod.Tooltips.parseString("Will be lost upon moving, swapping an item, using any skill except a single-target attack, missing an attack, or [waiting|Concept.Wait] or ending the [turn|Concept.Turn]")
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

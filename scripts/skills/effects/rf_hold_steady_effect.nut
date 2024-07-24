@@ -16,30 +16,30 @@ this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.extend([
+		ret.extend([
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorizeValue(10) + " Melee Defense"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(10) + " [Melee Defense|Concept.MeleeDefense]")
 			},
 			{
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorizeValue(10) + " Ranged Defense"
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(10) + " [Ranged Defense|Concept.RangeDefense]")
 			},
 			{
-				id = 10,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Immune to being Stunned, Knocked Back or Grabbed"
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [Stunned|Skill+stunned_effect], Knocked Back or Grabbed")
 			}
 		]);
 		
-		return tooltip;
+		return ret;
 	}
 
 	function onUpdate( _properties )

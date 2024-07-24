@@ -18,30 +18,30 @@ this.rf_take_aim_effect <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getTooltip();
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "For the next ranged attack:"
 		});
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 11,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
 			text = "Crossbows ignore any hitchance penalty from obstacles, and the shot cannot go astray"
 		});
 
-		tooltip.push({
-			id = 7,
+		ret.push({
+			id = 12,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = "Handgonnes have their Maximum Range increased by 1 and if used at shorter range, have their area of effect increased by 1 instead"
+			text = "Handgonnes have their Maximum Range increased by " + ::MSU.Text.colorPositive(1) + " and if used at shorter range, have their area of effect increased by " + ::MSU.Text.colorPositive(1) + " instead"
 		});
 
-		return tooltip;
+		return ret;
 	}
 
 	function isEnabled()

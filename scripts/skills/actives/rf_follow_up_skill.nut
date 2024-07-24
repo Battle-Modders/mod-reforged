@@ -24,26 +24,26 @@ this.rf_follow_up_skill <- ::inherit("scripts/skills/skill", {
 		local ret = this.skill.getDefaultUtilityTooltip();
 
 		ret.push({
-			id = 7,
+			id = 10,
 			type = "text",
-			icon = "ui/icons/warning.png",
+			icon = "ui/icons/regular_damage.png",
 			text = "The damage dealt is reduced by " + ::MSU.Text.colorNegative("30%") + " and by an additional " + ::MSU.Text.colorNegative("10%") + " for every next attack up to a maximum of " + ::MSU.Text.colorNegative("90%")
 		});
 
 		if (this.getContainer().getActor().isEngagedInMelee())
 		{
 			ret.push({
-				id = 7,
+				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("Cannot be used when engaged in melee")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while [engaged|Concept.ZoneOfControl] in melee"))
 			});
 		}
 
 		if (!this.isEnabled())
 		{
 			ret.push({
-				id = 7,
+				id = 21,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorNegative("Only usable with Two-Handed Melee weapons")

@@ -11,7 +11,7 @@ this.rf_cheap_trick_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_cheap_trick";
 		this.m.Name = "Cheap Trick";
-		this.m.Description = "Deceive your enemies and strike with precision, sacrificing power for accuracy with your next attack this turn.";
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Deceive your enemies and strike with precision, sacrificing power for accuracy with your next attack this [turn.|Concept.Turn]");
 		this.m.Icon = "skills/rf_cheap_trick_skill.png";
 		this.m.IconDisabled = "skills/rf_cheap_trick_skill_sw.png";
 		this.m.Overlay = "rf_cheap_trick_skill";

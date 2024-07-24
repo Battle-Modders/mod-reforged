@@ -16,7 +16,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "At the start of each turn, this character heals by " + ::MSU.Text.colorPositive("15%") + " of Maximum Hitpoints"
+				text = ::Reforged.Mod.Tooltips.parseString("At the start of each [turn|Concept.Turn], this character heals by " + ::MSU.Text.colorPositive("15%") + " of Maximum [Hitpoints|Concept.Hitpoints]")
 			},
 			{
 				id = 20,

@@ -1,7 +1,9 @@
 this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsSpent = true,
-		IsForceEnabled = false
+		IsForceEnabled = false,
+		APCostModifier = -2,
+		FatigueCostModifier = 0
 	},
 	function create()
 	{
@@ -30,39 +32,25 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_KataStep;
 	}
 
+	function getCostString()
+	{
+		if (this.getContainer().getActor().isPlacedOnMap())
+			return this.skill.getCostString();
+
+		local ret = "Costs " + (this.m.APCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.APCostModifier, {InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
+		ret += (this.m.FatigueCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCostModifier, {InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
+		return ::Reforged.Mod.Tooltips.parseString(ret);
+	}
+
 	function getTooltip()
 	{
-		local tooltip = this.skill.getTooltip();
+		local ret = this.skill.getDefaultUtilityTooltip();
 		local actor = this.getContainer().getActor();
-
-		if (!actor.isPlacedOnMap())
-		{
-			tooltip.push({
-				id = 3,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Costs " + ::MSU.Text.colorPositive("2") + " fewer Action Points than the movement cost of the starting tile"
-			});
-			tooltip.push({
-				id = 3,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Builds Fatigue equal to the movement cost of the starting tile"
-			});
-		}
-		else
-		{
-			tooltip.push({
-				id = 3,
-				type = "text",
-				text = this.getCostString()
-			});
-		}
 
 		if (!this.isEnabled())
 		{
-			tooltip.push({
-				id = 9,
+			ret.push({
+				id = 20,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
 				text = ::MSU.Text.colorNegative("Requires a Two-Handed Sword or a double gripped One-Handed sword")
@@ -73,8 +61,8 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		{
 			if (actor.getCurrentProperties().IsRooted)
 			{
-				tooltip.push({
-					id = 9,
+				ret.push({
+					id = 21,
 					type = "text",
 					icon = "ui/tooltips/warning.png",
 					text = ::MSU.Text.colorNegative("Cannot be used while rooted")
@@ -83,8 +71,8 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 
 			if (!this.anAdjacentEmptyTileHasAdjacentEnemy(actor.getTile()))
 			{
-				tooltip.push({
-					id = 9,
+				ret.push({
+					id = 22,
 					type = "text",
 					icon = "ui/tooltips/warning.png",
 					text = ::MSU.Text.colorNegative("Requires an empty tile adjacent to an enemy")
@@ -93,8 +81,8 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 
 			if (this.m.IsSpent)
 			{
-				tooltip.push({
-					id = 9,
+				ret.push({
+					id = 23,
 					type = "text",
 					icon = "ui/tooltips/warning.png",
 					text = ::MSU.Text.colorNegative("Can only be used immediately after a successful attack")
@@ -102,7 +90,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	function tileHasAdjacentEnemy( _tile )
@@ -198,8 +186,8 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 			local myTile = actor.getTile();
 			if (myTile != null)
 			{
-				this.m.FatigueCost = ::Math.max(0, (actor.getFatigueCosts()[myTile.Type] + _properties.MovementFatigueCostAdditional) * _properties.MovementFatigueCostMult);
-				this.m.ActionPointCost = ::Math.max(0, (actor.getActionPointCosts()[myTile.Type] + _properties.MovementAPCostAdditional - 2) * _properties.MovementAPCostMult);
+				this.m.FatigueCost = ::Math.max(0, (actor.getFatigueCosts()[myTile.Type] + _properties.MovementFatigueCostAdditional + this.m.FatigueCostModifier) * _properties.MovementFatigueCostMult);
+				this.m.ActionPointCost = ::Math.max(0, (actor.getActionPointCosts()[myTile.Type] + _properties.MovementAPCostAdditional + this.m.APCostModifier) * _properties.MovementAPCostMult);
 			}
 		}
 	}
