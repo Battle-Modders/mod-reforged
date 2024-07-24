@@ -39,7 +39,7 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using any skill or ending the [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using any skill or [waiting|Concept.Wait] or ending the [turn|Concept.Turn]")
 		});
 
 		return ret;
@@ -52,6 +52,11 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		this.removeSelf();
+	}
+
+	function onWaitTurn()
 	{
 		this.removeSelf();
 	}
