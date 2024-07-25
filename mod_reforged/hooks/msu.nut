@@ -103,6 +103,12 @@
 	return this.colorizeValue(::Math.round(_value * 100), _options);
 }
 
+::logInfo("Reforged::MSU -- adding ::MSU.Text.colorDamage");
+::MSU.Text.colorDamage <- function( _string )
+{
+	return ::MSU.Text.color(::Const.UI.Color.DamageValue, _string);
+}
+
 ::logInfo("Reforged::MSU -- adding ::MSU.Tile.getNeighbors");
 ::MSU.Tile.getNeighbors <- function( _tile, _function = null )
 {
