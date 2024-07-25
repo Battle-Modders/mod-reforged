@@ -69,7 +69,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 		local offhand = this.getContainer().getActor().getOffhandItem();
 		if (offhand != null && offhand.getStaminaModifier() > this.m.StaminaModifierThreshold)
 		{
-			foreach (skill in off.getSkills())
+			foreach (skill in offhand.getSkills())
 			{
 				skill.m.ActionPointCost = 0;
 			}
