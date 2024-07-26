@@ -42,3 +42,9 @@
 		::Const.Injury.ExcludedInjuries.RF_Undead
 	]
 );
+
+// Add our injuries to the default Face excluded injuries in MSU
+::Const.Injury.ExcludedInjuries.add("Face", [
+	"injury.rf_black_eye",
+	"injury.rf_dislocated_jaw"
+]);
