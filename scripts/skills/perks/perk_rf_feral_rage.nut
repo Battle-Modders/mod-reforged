@@ -1,7 +1,7 @@
 this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 	m = {
 		RageStacks = 0,
-		RageStacksPerTurn = -1,
+		RageStacksPerTurn = -3,
 		PerStackBraveryModifier = 2,
 		PerStackInitiativeModifier = 2,
 		PerStackMeleeDefenseModifier = -1,
@@ -101,7 +101,7 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
-		this.addRage(2);
+		this.addRage(1);
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )

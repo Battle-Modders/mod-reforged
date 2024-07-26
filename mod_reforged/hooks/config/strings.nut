@@ -1377,7 +1377,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain stacking rage during combat. You gain 2 rage for getting hit, 3 for making a kill, and 1 for every successful hit against an adjacent target. You lose 1 rage at the start of every [turn.|Concept.Turn]",
+				"Gain stacking rage during combat. You gain 1 rage for getting hit, 3 for making a kill, and 2 for every successful hit against an adjacent target. You lose 3 rage at the start of every [turn.|Concept.Turn]",
 				"Each stack of rage increases [Resolve|Concept.Bravery] and [Initiative|Concept.Initiative] by " + ::MSU.Text.colorPositive("+2") + " and Melee Damage by " + ::MSU.Text.colorPositive("3%") + ". Each stack lowers [Melee Defense|Concept.MeleeDefense] by " + ::MSU.Text.colorNegative("-1") + " and lowers damage received by " + ::MSU.Text.colorPositive("3%") + ", up to a maximum of 70%."
 			]
 		}]
