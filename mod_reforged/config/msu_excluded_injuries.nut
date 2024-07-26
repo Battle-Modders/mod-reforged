@@ -3,6 +3,8 @@
 	[
 		"injury.bruised_leg",
 		"injury.broken_nose",
+		"injury.broken_ribs",
+		"injury.fractured_ribs",
 		"injury.severe_concussion",
 		"injury.crushed_windpipe",
 		"injury.cut_artery",
@@ -10,6 +12,7 @@
 		"injury.ripped_ear",
 		"injury.split_nose",
 		"injury.pierced_cheek",
+		"injury.pierced_side",
 		"injury.grazed_neck",
 		"injury.cut_throat",
 		"injury.grazed_kidney",
@@ -26,14 +29,17 @@
 ::Const.Injury.ExcludedInjuries.add(
 	"RF_Skeleton",
 	[
+		"injury.burnt_face",
+		"injury.burnt_legs",
+		"injury.burnt_hands",
 		"injury.sprained_ankle",
 		"injury.deep_abdominal_cut",
+		"injury.cut_arm_sinew",
 		"injury.cut_leg_muscles",
 		"injury.cut_achilles_tendon",
 		"injury.deep_chest_cut",
 		"injury.pierced_leg_muscles",
 		"injury.pierced_chest",
-		"injury.pierced_side",
 		"injury.pierced_arm_muscles",
 		"injury.stabbed_guts",
 		"injury.rf_dislocated_jaw"
