@@ -3,6 +3,8 @@ this.perk_rf_sanguinary <- ::inherit("scripts/skills/skill", {
 		RequiredWeaponType = ::Const.Items.WeaponType.Cleaver,
 		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
 		IsSpent = true,
+		UsesRemaining = 0,
+		MaxUses = 2,
 		RestoredActionPoints = 3
 	},
 	function create()
@@ -11,13 +13,32 @@ this.perk_rf_sanguinary <- ::inherit("scripts/skills/skill", {
 		this.m.Name = ::Const.Strings.PerkName.RF_Sanguinary;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_Sanguinary;
 		this.m.Icon = "ui/perks/perk_rf_sanguinary.png";
-		this.m.Type = ::Const.SkillType.Perk;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
+	}
+
+	function isHidden()
+	{
+		return this.m.UsesRemaining == 0;
+	}
+
+	function getTooltip()
+	{
+		local ret = this.skill.getTooltip();
+		local attackString = this.m.RequiredDamageType == null ? "" : " " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType);
+		local weaponString = this.m.RequiredWeaponType == null ? "" : " from a " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType);
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString(format("The next %i%s attack(s) during your [turn|Concept.Turn]%s will recover %i [Action Points|Concept.ActionPoints] if they cause a fatality", this.m.UsesRemaining, attackString, weaponString, ::MSU.Text.colorPositive(this.m.ActionPointsRecovered)))
+		});
+		return ret;
 	}
 
 	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )
 	{
-		if (this.m.IsSpent || _fatalityType == ::Const.FatalityType.None || _killer == null || _killer.getID() != this.getContainer().getActor().getID() || !_killer.isPlacedOnMap() || !::Tactical.TurnSequenceBar.isActiveEntity(_killer))
+		if (this.m.IsSpent || this.m.UsesRemaining == 0 || _fatalityType == ::Const.FatalityType.None || _killer == null || _killer.getID() != this.getContainer().getActor().getID() || !_killer.isPlacedOnMap() || !::Tactical.TurnSequenceBar.isActiveEntity(_killer))
 			return;
 
 		if (_skill == null || !this.isSkillValid(_skill))
@@ -27,11 +48,23 @@ this.perk_rf_sanguinary <- ::inherit("scripts/skills/skill", {
 		_killer.setDirty(true);
 		this.spawnIcon("perk_rf_sanguinary", _killer.getTile());
 		this.m.IsSpent = true; // Ensures that it cannot trigger more than once per attack (e.g. even if you kill multiple opponents in an AOE attack)
+		this.m.UsesRemaining = ::Math.max(0, this.m.UsesRemaining - 1);
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		this.m.IsSpent = false;
+	}
+
+	function onTurnStart()
+	{
+		this.m.UsesRemaining = this.m.MaxUses;
+	}
+
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished()
+		this.m.UsesRemaining = 0;
 	}
 
 	function isSkillValid( _skill )

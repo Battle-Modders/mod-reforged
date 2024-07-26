@@ -1903,8 +1903,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"[Fatalities|Concept.Fatality] instantly restore " + ::MSU.Text.colorPositive(3) + " [Action Points.|Concept.ActionPoints]",
-				"Can trigger multiple times per [turn,|Concept.Turn] but only once per attack."
+				"The first 2 [fatalities|Concept.Fatality] during your [turn|Concept.Turn] instantly restore " + ::MSU.Text.colorPositive(3) + " [Action Points|Concept.ActionPoints] each.",
+				"Can only trigger once per attack."
 			]
 		}]
 	}),
