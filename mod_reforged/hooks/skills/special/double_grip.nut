@@ -209,7 +209,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/direct_damage.png",
-					text = ::MSU.Text.colorPositive("+25%") + " damage ignores armor"
+					text = ::MSU.Text.colorPositive("+20%") + " damage ignores armor"
 				});
 				ret.push({
 					id = 7,
