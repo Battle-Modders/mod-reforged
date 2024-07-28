@@ -53,3 +53,37 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.rf_tacticalTooltipAttributeList
+{
+	display: flex;
+	flex-direction:row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	width: 100%;
+}
+.rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry
+{
+	width: 7rem;
+	display:flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry.rf_tacticalTooltipAttributeEntryDoubleWide
+{
+	width: 14rem;
+}
+.rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry .rf_tacticalTooltipAttributeValue
+{
+	padding-left: 2px;
+}
+.rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry img
+{
+	width: 20px;
+	height: 20px;
+}
+
+.rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry > .rf_tacticalTooltipAttributeDelta
+{
+	font-size: 10px;
+}
