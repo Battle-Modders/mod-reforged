@@ -29,3 +29,10 @@
 		}
 	}
 });
+local tooltipImageKeywords = {
+	"ui/icons/reach.png" 				: "Concept.Reach",
+	"ui/icons/reach_attack.png" 		: "Concept.ReachAttackAdd",
+	"ui/icons/reach_defense.png" 		: "Concept.ReachDefendAdd"
+}
+
+::Reforged.Mod.Tooltips.setTooltipImageKeywords(tooltipImageKeywords);

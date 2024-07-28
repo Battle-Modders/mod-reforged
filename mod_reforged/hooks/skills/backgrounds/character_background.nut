@@ -9,8 +9,8 @@
 		return [{
 			id = 3,
 			type = "description",
-			text = "", // Needs text key or it'll be skipped
-			rawHTML = this.getProjectedAttributesHTML()
+			rawHTMLInText = true,
+			text = this.getProjectedAttributesHTML()
 		}];
 	}
 

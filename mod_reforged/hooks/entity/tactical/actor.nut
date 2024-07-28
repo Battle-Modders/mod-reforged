@@ -90,7 +90,8 @@
 			return value != "None" && (value == "All" || (value == "Player Only" && this.isPlayerControlled()) || (value == "AI Only" && !this.isPlayerControlled()))
 		}
 
-		if (verifySettingValue("TacticalTooltip_Attributes")) ret.extend(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
+		ret.insert(::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_Reach").getValue(), ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_ReachEye").getValue() ? ::Reforged.TacticalTooltip.getReachEye(this, 50) : ::Reforged.TacticalTooltip.getReach(this, 50));
+		if (verifySettingValue("TacticalTooltip_Attributes")) ret.append(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
 		if (verifySettingValue("TacticalTooltip_Effects")) ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
 		if (verifySettingValue("TacticalTooltip_Perks")) ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
 		if (verifySettingValue("TacticalTooltip_ActiveSkills")) ret.extend(::Reforged.TacticalTooltip.getActiveSkills(this, 400));
