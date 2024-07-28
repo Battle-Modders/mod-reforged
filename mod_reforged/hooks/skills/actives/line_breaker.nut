@@ -32,7 +32,7 @@
 				}
 			}
 
-			return null;			
+			return null;
 		}
 
 		local dir = _userTile.getDirectionTo(_targetTile);

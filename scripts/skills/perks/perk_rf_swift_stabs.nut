@@ -61,7 +61,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 					skill.m.ActionPointCost = ::Math.max(2, skill.m.ActionPointCost - 2);
 				}
 			}
-		}		
+		}
 	}
 
 	function onPayForItemAction( _skill, _items )

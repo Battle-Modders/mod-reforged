@@ -1,6 +1,6 @@
 this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsSpent = false	
+		IsSpent = false
 	},
 	function create()
 	{

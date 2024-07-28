@@ -7,7 +7,7 @@ this.rf_arrow_to_the_knee_debuff_effect <- ::inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "effects.rf_arrow_to_the_knee_debuff";
-		this.m.Name = "Took an Arrow to the Knee";		
+		this.m.Name = "Took an Arrow to the Knee";
 		this.m.Description = "This character used to move around freely like you, but then he took arrow to the knee.";
 		this.m.Icon = "skills/rf_arrow_to_the_knee_debuff_effect.png";
 		this.m.IconMini = "rf_arrow_to_the_knee_debuff_effect_mini";

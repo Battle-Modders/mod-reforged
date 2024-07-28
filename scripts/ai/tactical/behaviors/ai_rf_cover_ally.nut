@@ -21,7 +21,7 @@ this.ai_rf_cover_ally <- ::inherit("scripts/ai/tactical/behavior", {
 	{
 		this.m.TargetTile = null;
 		this.m.TargetEnemy = null;
-		this.m.TargetAlly = null;		
+		this.m.TargetAlly = null;
 		this.m.Skill = null;
 
 		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP)
@@ -37,7 +37,7 @@ this.ai_rf_cover_ally <- ::inherit("scripts/ai/tactical/behavior", {
 		if (!_entity.isEngagedInMelee())
 		{
 			return ::Const.AI.Behavior.Score.Zero;
-		}		
+		}
 
 		if (!this.getAgent().hasVisibleOpponent())
 		{
@@ -71,7 +71,7 @@ this.ai_rf_cover_ally <- ::inherit("scripts/ai/tactical/behavior", {
 			if (scoreInfo.Score > 0)
 			{
 				potentialTargets.push(scoreInfo);
-			}			
+			}
 		}
 
 		if (potentialTargets.len() == 0)
@@ -88,7 +88,7 @@ this.ai_rf_cover_ally <- ::inherit("scripts/ai/tactical/behavior", {
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		this.m.TargetTile = potentialTargets[0].Ally.getTile();		
+		this.m.TargetTile = potentialTargets[0].Ally.getTile();
 		this.m.TargetEnemy = potentialTargets[0].Enemy;
 
 		if (this.m.TargetTile == null)
@@ -157,7 +157,7 @@ this.ai_rf_cover_ally <- ::inherit("scripts/ai/tactical/behavior", {
 		if (entityEngageBehavior == null)
 		{
 			return ret;
-		}		
+		}
 		
 		local result = {
 			Actor = _entity,
@@ -181,7 +181,7 @@ this.ai_rf_cover_ally <- ::inherit("scripts/ai/tactical/behavior", {
 
 		local myTile = _entity.getTile();
 		local inZonesOfControl = myTile.getZoneOfControlCountOtherThan(_entity.getAlliedFactions());
-		local knownAllies = this.getAgent().getKnownAllies();		
+		local knownAllies = this.getAgent().getKnownAllies();
 
 		local potentialDestinations = [];
 
@@ -221,7 +221,7 @@ this.ai_rf_cover_ally <- ::inherit("scripts/ai/tactical/behavior", {
 						if (nextTile.hasNextTile(j))
 						{
 							local nextNextTile = nextTile.getNextTile(j);
-							if (nextNextTile.isSameTileAs(myTile))							
+							if (nextNextTile.isSameTileAs(myTile))
 							{
 								isReachable = true;
 								break;

@@ -10,7 +10,7 @@ this.rf_direct_damage_limiter <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "special.rf_direct_damage_limiter";
 		this.m.Type = ::Const.SkillType.Special;
 		this.m.Order = ::Const.SkillOrder.VeryLast + 10;
-		this.m.IsHidden = true;		
+		this.m.IsHidden = true;
 		this.m.IsSerialized = false;
 	}
 
@@ -46,7 +46,7 @@ this.rf_direct_damage_limiter <- ::inherit("scripts/skills/skill", {
 			{
 				_hitInfo.DamageDirect = ::Math.minf(this.m.Max, _hitInfo.DamageDirect);
 			}
-		}		
+		}
 	}
 
 	function onQueryTooltip( _skill, _tooltip )

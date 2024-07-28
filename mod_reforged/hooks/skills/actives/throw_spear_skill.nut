@@ -32,7 +32,7 @@
 		if (_skill == this)
 		{
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;			
+			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 		}
 	}
 

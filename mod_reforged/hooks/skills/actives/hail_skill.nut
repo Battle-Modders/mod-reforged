@@ -4,15 +4,15 @@
 
 	q.onUse = @() function( _user, _targetTile )
 	{
-		this.m.RerollDamageMult = 1.0;			
+		this.m.RerollDamageMult = 1.0;
 		this.m.IsUsingHitchance = true;
 
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectChop);
 		local target = _targetTile.getEntity();
 
-		local hitChance = this.getHitchance(target);						
+		local hitChance = this.getHitchance(target);
 		for (local i = 0; i < 2; i++)
-		{				
+		{
 			local roll = ::Math.rand(1, 100);
 			if (roll <= hitChance)
 			{
@@ -46,7 +46,7 @@
 
 			if (this.m.IsAttacking)
 			{
-				_properties.DamageTotalMult *= this.m.RerollDamageMult;		
+				_properties.DamageTotalMult *= this.m.RerollDamageMult;
 			}
 		}
 	}

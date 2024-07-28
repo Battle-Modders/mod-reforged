@@ -1,7 +1,7 @@
 this.perk_rf_momentum <- ::inherit("scripts/skills/skill", {
 	m = {
 		BonusPerTile = 5,
-		PrevTile = null,		
+		PrevTile = null,
 		TilesMovedThisTurn = 0,
 		BeforeSkillExecutedTile = null
 	},
@@ -156,7 +156,7 @@ this.perk_rf_momentum <- ::inherit("scripts/skills/skill", {
 	}
 
 	function onTurnEnd()
-	{		
+	{
 		this.m.TilesMovedThisTurn = 0;
 	}
 
@@ -166,7 +166,7 @@ this.perk_rf_momentum <- ::inherit("scripts/skills/skill", {
 	}
 
 	function onMovementFinished( _tile )
-	{		
+	{
 		this.m.TilesMovedThisTurn += _tile.getDistanceTo(this.m.PrevTile);
 	}
 });

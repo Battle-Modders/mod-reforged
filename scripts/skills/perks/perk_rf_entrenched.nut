@@ -97,7 +97,7 @@ this.perk_rf_entrenched <- ::inherit("scripts/skills/skill", {
 			_properties.RangedSkill += bonus;
 			_properties.RangedDefense += bonus;
 			_properties.Bravery += bonus;
-		}		
+		}
 	}
 
 	function onTurnStart()

@@ -108,7 +108,7 @@ this.ai_rf_follow_up <- ::inherit("scripts/ai/tactical/behavior", {
 					continue;
 				}
 
-				local allyTile = ally.getTile();				
+				local allyTile = ally.getTile();
 				local allyAttack = ally.getSkills().getAttackOfOpportunity();
 				
 				if (allyAttack.isInRange(targetTile, allyTile) && allyAttack.onVerifyTarget(allyTile, targetTile))

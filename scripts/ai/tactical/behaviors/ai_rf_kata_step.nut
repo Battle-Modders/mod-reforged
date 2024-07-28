@@ -1,5 +1,5 @@
 this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
-	m = {		
+	m = {
 		TargetTile = null,
 		Reason = "", // Printed if VerboseMode is true
 		MaxPathLength = 3,

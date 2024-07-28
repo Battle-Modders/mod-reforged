@@ -1,6 +1,6 @@
 this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsSpent = false	
+		IsSpent = false
 	},
 	function create()
 	{

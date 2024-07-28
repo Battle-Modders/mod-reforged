@@ -75,11 +75,11 @@
 					local adjacentTile = destTile.getNextTile(j);
 					if (isTileEmpty(adjacentTile) && _originTile.getDistanceTo(adjacentTile) == 1 && ::Math.abs(_originTile.Level - adjacentTile.Level) + ::Math.abs(adjacentTile.Level - destTile.Level) <= 1)
 						destTiles.push(destTile);
-				}				
+				}
 			}
 		}
 
-		// No valid destination tile at a distance of 1. So, therefore, choose 
+		// No valid destination tile at a distance of 1. So, therefore, choose
 		// the first valid clockwise destination tile at a distance of 2.
 		if (destTiles.len() != 0)
 			return destTiles[0];
