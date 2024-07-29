@@ -8,7 +8,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_gain_ground";
 		this.m.Name = "Gain Ground";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Keep going! After killing an enemy you may move into their tile ignoring [Zone of Control.|Concept.ZoneOfControl] Can only be used immediately after a successful kill.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Keep going! Immediatly after killing an adjacent target you may move into their tile ignoring [Zone of Control.|Concept.ZoneOfControl] and with reduced [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost.");
 		this.m.Icon = "skills/rf_gain_ground_skill.png";
 		this.m.IconDisabled = "skills/rf_gain_ground_skill_sw.png";
 		this.m.Overlay = "rf_gain_ground_skill";

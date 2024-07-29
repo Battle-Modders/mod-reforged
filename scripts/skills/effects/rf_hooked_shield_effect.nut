@@ -27,7 +27,7 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Reduces the [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangedDefense] granted by shields by " + ::MSU.Text.colorNegative("75%"))
+				text = ::Reforged.Mod.Tooltips.parseString("Reduces the [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] granted by shields by " + ::MSU.Text.colorNegative("75%"))
 			});
 		}
 		else

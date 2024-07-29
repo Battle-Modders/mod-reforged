@@ -19,7 +19,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("15%") + " more [Ranged Skill|Concept.RangedSkill]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("15%") + " more [Ranged Skill|Concept.RangeSkill]")
 			},
 			{
 				id = 13,
