@@ -1,48 +1,53 @@
 ::Const.Injury.ExcludedInjuries.add(
 	"RF_Undead",
 	[
-		"injury.bruised_leg",
+		// Blunt
+		"injury.rf_black_eye",
 		"injury.broken_nose",
 		"injury.broken_ribs",
+		"injury.bruised_leg",
+		"injury.crushed_windpipe",
 		"injury.fractured_ribs",
 		"injury.severe_concussion",
-		"injury.crushed_windpipe",
+		// Burning
+		"injury.rf_heat_stroke",
+		"injury.inhaled_flames",
+		// Cutting
 		"injury.cut_artery",
+		"injury.cut_throat",
 		"injury.exposed_ribs",
+		"injury.grazed_neck",
 		"injury.ripped_ear",
 		"injury.split_nose",
-		"injury.pierced_cheek",
-		"injury.pierced_side",
-		"injury.grazed_neck",
-		"injury.cut_throat",
+		// Piercing
 		"injury.grazed_kidney",
+		"injury.pierced_cheek",
 		"injury.pierced_lung",
-		"injury.grazed_neck",
-		"injury.cut_throat",
-		"injury.crushed_windpipe",
-		"injury.inhaled_flames",
-		"injury.rf_heat_stroke",
-		"injury.rf_black_eye"
+		"injury.pierced_side"
 	]
 );
 
 ::Const.Injury.ExcludedInjuries.add(
 	"RF_Skeleton",
 	[
+		// Blunt
+		"injury.rf_dislocated_jaw",
+		"injury.sprained_ankle",
+		// Burning
 		"injury.burnt_face",
 		"injury.burnt_legs",
 		"injury.burnt_hands",
-		"injury.sprained_ankle",
-		"injury.deep_abdominal_cut",
+		// Cutting
+		"injury.cut_achilles_tendon",
 		"injury.cut_arm_sinew",
 		"injury.cut_leg_muscles",
-		"injury.cut_achilles_tendon",
+		"injury.deep_abdominal_cut",
 		"injury.deep_chest_cut",
-		"injury.pierced_leg_muscles",
-		"injury.pierced_chest",
+		// Piercing
 		"injury.pierced_arm_muscles",
-		"injury.stabbed_guts",
-		"injury.rf_dislocated_jaw"
+		"injury.pierced_chest",
+		"injury.pierced_leg_muscles",
+		"injury.stabbed_guts"
 	],
 	[
 		::Const.Injury.ExcludedInjuries.RF_Undead
