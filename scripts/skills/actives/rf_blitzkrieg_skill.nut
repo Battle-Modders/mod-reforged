@@ -37,14 +37,14 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 		});
 
 		ret.push({
-			id = 19,
+			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = "Will not affect allies who are [fleeing|Concept.Morale], [stunned|Skill+stunned_effect], or [sleeping|Skill+sleeping_effect]"
+			text = "Does not affect allies who are [fleeing,|Concept.Morale] [stunned,|Skill+stunned_effect] or [sleeping|Skill+sleeping_effect]"
 		});
 
 		ret.push({
-			id = 20,
+			id = 21,
 			type = "text",
 			icon = "ui/icons/warning.png",
 			text = "Cannot be used more than once per day (company-wide)"
@@ -53,7 +53,7 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 		if (this.m.IsSpent)
 		{
 			ret.push({
-				id = 21,
+				id = 22,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorNegative("Has already been used by the company this day")

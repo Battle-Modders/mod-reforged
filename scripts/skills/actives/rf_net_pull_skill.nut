@@ -41,7 +41,7 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of " + ::MSU.Text.colorPositive("2") + " tiles and max height difference of 1"
+			text = "Has a range of " + ::MSU.Text.colorPositive("2") + " tiles"
 		});
 		ret.push({
 			id = 11,
@@ -60,12 +60,6 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Will expend the currently held net"
-		});
-		ret.push({
-			id = 20,
-			type = "text",
-			icon = "ui/icons/warning.png",
-			text = "There must be an open tile for the target to be pulled into"
 		});
 		return ret;
 	}
