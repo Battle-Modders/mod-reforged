@@ -13,8 +13,8 @@ this.pg_rf_soldier <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Trees = {
 			"default": [
 				[],
-				[],
 				["perk.rf_exude_confidence"],
+				[],
 				[],
 				["perk.rf_pattern_recognition"],
 				[],
