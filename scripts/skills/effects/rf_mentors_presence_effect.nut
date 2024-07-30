@@ -156,7 +156,7 @@ this.rf_mentors_presence_effect <- ::inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		if (actor.getMoraleState() != ::Const.MoraleState.Ignore && actor.getMoraleState() != ::Const.MoraleState.Fleeing)
 		{
-			actor.setMoraleState(::Math.min(::Const.MoraleState.Fleeing, actor.getMoraleState() + this.m.MoraleStateOnMentorDeathAdd));
+			actor.setMoraleState(::Math.max(::Const.MoraleState.Fleeing, actor.getMoraleState() + this.m.MoraleStateOnMentorDeathAdd));
 		}
 	}
 
