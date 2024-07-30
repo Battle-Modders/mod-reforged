@@ -11,9 +11,9 @@ this.pg_rf_knave <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 				["perk.rf_tricksters_purses"],
 				["perk.rf_cheap_trick"],
 				[],
-				[],
-				[],
 				["perk.rf_ghostlike"],
+				[],
+				[],
 				[]
 			]
 		};
