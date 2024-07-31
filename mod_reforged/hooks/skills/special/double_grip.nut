@@ -296,18 +296,14 @@
 		{
 			foreach (skill in this.getContainer().getActor().getMainhandItem().getSkills())
 			{
-				// We drop the actual FatigueCost instead of FatigueCostMult because skills do a hard-coded setting of FatigueCostMult
-				// inside their onAfterUpdate (which is very unfortunate, but yes), and double_grip has an earlier skill order
-				skill.m.FatigueCost = ::Math.min(skill.m.FatigueCost, ::Math.max(1, skill.m.FatigueCost * 0.75));
+				skill.m.FatigueCostMult *= 0.75;
 			}
 		}
 		else if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Sword)
 		{
 			foreach (skill in this.getContainer().getActor().getMainhandItem().getSkills())
 			{
-				// We drop the actual FatigueCost instead of FatigueCostMult because skills do a hard-coded setting of FatigueCostMult
-				// inside their onAfterUpdate (which is very unfortunate, but yes), and double_grip has an earlier skill order
-				skill.m.FatigueCost = ::Math.min(skill.m.FatigueCost, ::Math.max(1, skill.m.FatigueCost * 0.66));
+				skill.m.FatigueCostMult *= 0.66;
 			}
 		}
 	}
