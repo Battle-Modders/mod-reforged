@@ -563,7 +563,65 @@
 		Name = ::Const.Strings.PerkName.RF_WeaponMaster,
 		Tooltip = ::Const.Strings.PerkDescription.RF_WeaponMaster,
 		Icon = "ui/perks/perk_rf_weapon_master.png",
-		IconDisabled = "ui/perks/perk_rf_weapon_master_sw.png"
+		IconDisabled = "ui/perks/perk_rf_weapon_master_sw.png",
+		function verifyPrerequisites( _player, _tooltip )
+		{
+			local ret = true;
+			local perkTree = _player.getPerkTree();
+			local numWeaponPerkGroups = 0;
+			local hasSpentPerk = false;
+			foreach (pgID in ::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon").getGroups())
+			{
+				if (perkTree.hasPerkGroup(pgID))
+				{
+					numWeaponPerkGroups++;
+					if (!hasSpentPerk)
+					{
+						foreach (row in ::DynamicPerks.PerkGroups.findById(pgID).getTree())
+						{
+							foreach (perkID in row)
+							{
+								if (_player.getSkills().hasSkill(perkID))
+								{
+									hasSpentPerk = true;
+									break;
+								}
+							}
+							if (hasSpentPerk)
+							{
+								break;
+							}
+						}
+					}
+				}
+				if (hasSpentPerk && numWeaponPerkGroups == 2)
+				{
+					break;
+				}
+			}
+			if (numWeaponPerkGroups < 2)
+			{
+				_tooltip.push({
+					id = 3,
+					type = "hint",
+					icon = "ui/icons/icon_locked.png",
+					text = "Locked because this character does not have access to at least 2 weapon perk groups"
+				});
+				ret = false;
+			}
+			if (!hasSpentPerk)
+			{
+				_tooltip.push({
+					id = 4,
+					type = "hint",
+					icon = "ui/icons/icon_locked.png",
+					text = "Locked until this character has unlocked at least 1 weapon perk"
+				});
+				ret = false;
+			}
+
+			return ret;
+		}
 	},
 	{
 		ID = "perk.rf_bully",
