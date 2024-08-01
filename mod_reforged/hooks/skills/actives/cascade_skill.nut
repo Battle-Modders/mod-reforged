@@ -2,6 +2,14 @@
 	q.m.RerollDamageMult <- 1.0;
 	q.m.IsAttacking <- false;
 
+	q.create = @(__original) function()
+	{
+		__original();
+		// Vanilla FatigueCost is 13
+		// We increase the cost because our 3h flail can potentially combine the entire damage into a single attack
+		this.m.FatigueCost = 15;
+	}
+
 	q.onUse = @() function( _user, _targetTile )
 	{
 		this.m.RerollDamageMult = 1.0;
