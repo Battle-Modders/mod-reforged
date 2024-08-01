@@ -11,9 +11,13 @@
 
 		this.addSkill(::new("scripts/skills/actives/shoot_bolt"));
 
-		local reload = ::Reforged.new("scripts/skills/actives/reload_bolt", function(o) {
-			o.m.FatigueCost -= 5;
-		});
-		this.addSkill(reload);
+		// Always add reload skill to DummyPlayer so that it appears in nested tooltips of weapons
+		if (!this.m.IsLoaded || ::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
+		{
+			local reload = ::Reforged.new("scripts/skills/actives/reload_bolt", function(o) {
+				o.m.FatigueCost -= 5;
+			});
+			this.addSkill(reload);
+		}
 	}
 });

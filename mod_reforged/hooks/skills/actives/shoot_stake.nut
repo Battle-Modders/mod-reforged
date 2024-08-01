@@ -2,18 +2,6 @@
 	q.m.AdditionalAccuracy = 10;
 	q.m.AdditionalHitChance = -3;
 
-	// Overwrite vanilla function to prevent repeated adding of reload skill
-	q.onUse = @() function( _user, _targetTile	)
-	{
-		this.getItem().setLoaded(false);
-		return this.attackEntity(_user, _targetTile.getEntity());
-	}
-
-	// Overwrite the vanilla function to prevent removal of reload skill
-	q.onRemoved = @() function()
-	{
-	}
-
 	q.getTooltip = @() function()
 	{
 		local ret = this.getRangedTooltip(this.skill.getDefaultTooltip());

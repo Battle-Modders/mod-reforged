@@ -2,26 +2,6 @@
 	q.m.AdditionalAccuracy = 10;
 	q.m.AdditionalHitChance = -10;
 
-	// Overwrite vanilla function to prevent repeated adding of reload skill
-	q.onUse = @() function( _user, _targetTile	)
-	{
-		::Sound.play(this.m.SoundOnFire[::Math.rand(0, this.m.SoundOnFire.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, _user.getPos());
-		local tag = {
-			Skill = this,
-			User = _user,
-			TargetTile = _targetTile
-		};
-		::Time.scheduleEvent(::TimeUnit.Virtual, 500, this.onDelayedEffect.bindenv(this), tag);
-		this.getItem().setLoaded(false);
-
-		return true;
-	}
-
-	// Overwrite the vanilla function to prevent removal of reload skill
-	q.onRemoved = @() function()
-	{
-	}
-
 	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getDefaultTooltip();
