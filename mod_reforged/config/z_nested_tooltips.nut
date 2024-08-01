@@ -7,72 +7,6 @@ local getThresholdForInjury = function( _script )
 	}
 }
 
-local function getDisabledRootedSkills()
-{
-	local excludedScripts = [
-		"scripts/skills/effects/nightmare_effect", // unused vanilla effect
-		"scripts/skills/effects/serpent_ensnare_effect", // unused vanilla effect
-		"scripts/skills/effects/reforming_effect", // unused vanilla effect
-		"scripts/skills/effects/ps_poise_stunned_effect", // exclude due to duplication with stunned_effect
-		"scripts/skills/effects/kraken_ensnare_effect", // exclude to not spoil kraken fight and because it is very niche
-	];
-	local disabledSkills = [];
-	local rootedSkills = [];
-	local dummyPlayer = ::MSU.getDummyPlayer();
-	local properties = ::Const.CharacterProperties.getClone();
-	// Some effects access the tile effect of a character's tile during their onUpdate function
-	// so we switcheroo the getTile function to return a dummy tile otherwise it crashes.
-	// For a complete solution we should have a full class that emulates the vanill tile C++ object.
-	local getTile = dummyPlayer.getTile;
-	dummyPlayer.getTile = function()
-	{
-		return {
-			Properties = {
-				Effect = {
-					Type = ""
-				}
-			}
-		};
-	}
-
-	foreach (script in ::IO.enumerateFiles("scripts/skills/effects"))
-	{
-		if (excludedScripts.find(script) != null)
-			continue;
-
-		properties.IsStunned = false;
-		properties.IsRooted = false;
-
-		local skill = ::new(script);
-		skill.m.Container = dummyPlayer.getSkills();
-		// try/catch block because we don't want to throw exceptions, rather we skip such problematic skills
-		try
-		{
-			skill.onUpdate(properties);
-		}
-		catch (error)
-		{
-			continue;
-		}
-		if (properties.IsStunned)
-		{
-			disabledSkills.push(::Reforged.NestedTooltips.getNestedSkillName(skill));
-		}
-		if (properties.IsRooted)
-		{
-			rootedSkills.push(::Reforged.NestedTooltips.getNestedSkillName(skill));
-		}
-	}
-
-	dummyPlayer.getTile = getTile;
-	dummyPlayer.getSkills().update();
-
-	return [
-		disabledSkills,
-		rootedSkills
-	];
-}
-
 ::Reforged.NestedTooltips <- {
 	Tooltips = {
 		Concept = {}
@@ -148,11 +82,9 @@ local function getDisabledRootedSkills()
 		::Reforged.NestedTooltips.Tooltips.Concept[split(concept, ".").top()] <- ::MSU.Class.CustomTooltip(@(data) desc);
 	}
 
-	local disabledRootedSkills = getDisabledRootedSkills();
-
 	::MSU.Table.merge(::Reforged.NestedTooltips.Tooltips.Concept, {
-		Disabled = ::MSU.Class.BasicTooltip("Disabled", ::Reforged.Mod.Tooltips.parseString("A disabled character is unable to act and will skip their [turn|Concept.Turn]. Receiving a disabling [effect|Concept.StatusEffect] will set the current [Action Points|Concept.ActionPoints] of the character to 0.\n\n[Effects|Concept.StatusEffect] which can cause a character to become disabled include: " + disabledRootedSkills[0].reduce(@(a, b) a + ", " + b) + ".")),
-		Rooted = ::MSU.Class.BasicTooltip("Rooted", ::Reforged.Mod.Tooltips.parseString("A rooted character is stuck in place - unable to move or be moved from their position.\n\n[Effects|Concept.StatusEffect] which can cause a character to become rooted include: " + disabledRootedSkills[1].reduce(@(a, b) a + ", " + b) + ".")),
+		Disabled = ::MSU.Class.BasicTooltip("Disabled", ::Reforged.Mod.Tooltips.parseString("A disabled character is unable to act and will skip their [turn|Concept.Turn]. Receiving a disabling [effect|Concept.StatusEffect] will set the current [Action Points|Concept.ActionPoints] of the character to 0.\n\nExamples of [effects|Concept.StatusEffect] which may cause a character to become disabled include [Stunned|Skill+stunned_effect] and [Sleeping.|Skill+sleeping_effect]")),
+		Rooted = ::MSU.Class.BasicTooltip("Rooted", ::Reforged.Mod.Tooltips.parseString("A rooted character is stuck in place - unable to move or be moved from their position.\n\nExamples of [effects|Concept.StatusEffect] which can cause a character to become rooted include [Trapped in Net|Skill+net_effect] and [Trapped in Web.|Skill+web_effect]")),
 		Wait = ::MSU.Class.BasicTooltip("Wait", ::Reforged.Mod.Tooltips.parseString(format("If you are not the last character in the [turn order|Concept.Turn] in a [round,|Concept.Round] you may use the Wait action. This moves you to the end of the current [turn order,|Concept.Turn] allowing you to act again before the end of the [round.|Concept.Round]\n\nYou can only use Wait once per [turn.|Concept.Turn]%s", ::Const.CharacterProperties.InitiativeAfterWaitMult == 1.0 ? "" : "\n\nUsing Wait causes your [turn order|Concept.Turn] in the next [round|Concept.Round] to be calculated with " + ::MSU.Text.colorizeMult(::Const.CharacterProperties.InitiativeAfterWaitMult) + " " + (::Const.CharacterProperties.InitiativeAfterWaitMult > 1.0 ? "more" : "less") + " [Initiative.|Concept.Initiative]"))),
 		Perk = ::MSU.Class.BasicTooltip("Perk", ::Reforged.Mod.Tooltips.parseString("As characters gain levels, they unlock perk points which can be spent to unlock powerful perks. Perks grant a character permanent bonuses or unlock new skills for use. The character\'s current [perk tier|Concept.PerkTier] increases by 1 each time a perk point is spent.")),
 		StatusEffect = ::MSU.Class.BasicTooltip("Status Effect", ::Reforged.Mod.Tooltips.parseString("Status effects are positive or negative effects on a character, which are mostly temporary. A status effect can have various effects ranging from increasing/decreasing [attributes|Concept.CharacterAttribute] to unlocking new abilities.")),
