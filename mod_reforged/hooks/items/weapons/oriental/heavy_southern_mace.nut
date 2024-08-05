@@ -9,8 +9,8 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/bash"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/bash"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/knock_out"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/knock_out"));
 	}
 });

@@ -38,7 +38,7 @@ this.rf_swordstaff <- ::inherit("scripts/items/weapons/weapon", {
 		prong.m.IsIgnoredAsAOO = true;
 		this.addSkill(prong);
 
-		this.addSkill(::MSU.new("scripts/skills/actives/spearwall", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/spearwall", function(o) {
 			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 5;
 			o.m.Icon = "skills/active_124.png";

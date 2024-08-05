@@ -9,7 +9,7 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/cudgel_skill", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/cudgel_skill", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 1;
 			o.m.Icon = "skills/active_131.png";
@@ -17,7 +17,7 @@
 			o.m.Overlay = "active_131";
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/strike_down_skill", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/strike_down_skill", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 			o.m.Icon = "skills/active_132.png";
@@ -25,7 +25,7 @@
 			o.m.Overlay = "active_132";
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
 			o.m.ActionPointCost += 1;
 			o.m.FatigueCost += 2;
 		}));

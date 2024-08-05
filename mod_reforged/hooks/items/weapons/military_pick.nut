@@ -9,11 +9,11 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/hammer", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/hammer", function(o) {
 			o.m.FatigueCost -= 1;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/crush_armor", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/crush_armor", function(o) {
 			o.m.FatigueCost -= 2;
 		}));
 	}

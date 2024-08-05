@@ -7,7 +7,7 @@
 
 		this.addSkill(::new("scripts/skills/actives/shoot_bolt"));
 
-		local reload = ::MSU.new("scripts/skills/actives/reload_bolt", function(o) {
+		local reload = ::Reforged.new("scripts/skills/actives/reload_bolt", function(o) {
 			o.m.ActionPointCost += 1;
 		});
 		this.addSkill(reload);

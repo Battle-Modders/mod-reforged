@@ -10,7 +10,7 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/sling_stone_skill", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/sling_stone_skill", function(o) {
 			o.m.FatigueCost -= 2;
 		}));
 	}

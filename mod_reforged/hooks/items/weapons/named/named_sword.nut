@@ -5,8 +5,8 @@
 	{
 		this.named_weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/slash"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/slash"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/riposte"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
 	}
 });

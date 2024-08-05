@@ -9,7 +9,7 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/slash", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/slash", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 2;
 			o.m.Icon = "skills/active_77.png";
@@ -17,7 +17,7 @@
 			o.m.Overlay = "active_77";
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/puncture", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/puncture", function(o) {
 			o.m.FatigueCost -= 5;
 		}));
 	}

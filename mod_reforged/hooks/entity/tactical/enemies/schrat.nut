@@ -65,7 +65,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge + 1;
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_dent_armor", function(o) {
+		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_dent_armor", function(o) {
 			o.m.RequiredDamageType = null;
 		}));
 	}

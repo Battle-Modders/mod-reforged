@@ -24,12 +24,12 @@ this.named_rf_estoc <- ::inherit("scripts/items/weapons/named/named_weapon", {
 	{
 		this.named_weapon.onEquip()
 
-		this.addSkill(::MSU.new("scripts/skills/actives/rf_sword_thrust_skill", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/rf_sword_thrust_skill", function(o) {
 			o.m.FatigueCost += 3;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/lunge_skill"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/lunge_skill"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/riposte"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
 	}
 });

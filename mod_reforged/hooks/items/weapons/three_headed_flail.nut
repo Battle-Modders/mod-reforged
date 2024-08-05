@@ -9,8 +9,8 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/cascade_skill"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/cascade_skill"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/hail_skill"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/hail_skill"));
 	}
 });

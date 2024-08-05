@@ -17,17 +17,17 @@
 		this.weapon.onEquip();
 
 		local self = this;
-		this.addSkill(::MSU.new("scripts/skills/actives/slash", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/slash", function(o) {
 			o.m.DirectDamageMult = self.m.DirectDamageMult;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/overhead_strike", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 1;
 			o.m.DirectDamageMult = self.m.DirectDamageMult;
 			o.setStunChance(self.m.StunChance);
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/riposte"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
 	}
 });

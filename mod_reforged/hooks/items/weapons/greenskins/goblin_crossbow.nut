@@ -11,7 +11,7 @@
 
 		this.addSkill(::new("scripts/skills/actives/shoot_stake"));
 
-		local reload = ::MSU.new("scripts/skills/actives/reload_bolt");
+		local reload = ::Reforged.new("scripts/skills/actives/reload_bolt");
 		this.addSkill(reload);
 	}
 });

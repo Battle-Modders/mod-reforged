@@ -9,11 +9,11 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/stab", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/stab", function(o) {
 			o.m.FatigueCost -= 1;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/puncture", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/puncture", function(o) {
 			o.m.FatigueCost -= 3;
 		}));
 	}

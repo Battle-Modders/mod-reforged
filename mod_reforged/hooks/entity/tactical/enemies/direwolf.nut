@@ -47,7 +47,7 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_from_all_sides", function(o) {
+		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_from_all_sides", function(o) {
 			o.m.RequiredWeaponType = null;
 		}));
 	}

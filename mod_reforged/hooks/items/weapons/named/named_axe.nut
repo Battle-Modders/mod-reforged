@@ -5,9 +5,9 @@
 	{
 		this.named_weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/chop"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/chop"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
 			o.setApplyAxeMastery(true)
 		}));
 	}

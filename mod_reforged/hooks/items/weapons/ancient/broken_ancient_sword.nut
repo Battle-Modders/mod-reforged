@@ -9,11 +9,11 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/slash", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/slash", function(o) {
 			o.m.FatigueCost -= 2;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/riposte", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/riposte", function(o) {
 			o.m.FatigueCost -= 5;
 		}));
 	}

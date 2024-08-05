@@ -10,7 +10,7 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/impale", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/impale", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 3;
 			o.m.Icon = "skills/active_57.png";
@@ -18,7 +18,7 @@
 			o.m.Overlay = "active_57";
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/repel", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/repel", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 			o.m.Icon = "skills/active_58.png";

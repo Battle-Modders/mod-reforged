@@ -28,15 +28,15 @@ this.rf_two_handed_falchion <- ::inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/cleave", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/cleave", function(o) {
 			o.m.FatigueCost -= 1;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/decapitate", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/decapitate", function(o) {
 			o.m.FatigueCost -= 2;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/riposte", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/riposte", function(o) {
 			o.m.FatigueCost -= 3;
 		}));
 	}

@@ -9,9 +9,9 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/bash"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/bash"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/knock_out", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/knock_out", function(o) {
 			o.m.FatigueCost -= 10;
 			o.m.IsFromLute = true;
 			o.m.Icon = "skills/active_88.png";

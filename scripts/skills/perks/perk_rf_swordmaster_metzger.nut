@@ -37,7 +37,7 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 		if (!this.isEnabled() || _item.getSlotType() != ::Const.ItemSlot.Mainhand)
 			return;
 
-		_item.addSkill(::MSU.new("scripts/skills/actives/decapitate", function(o) {
+		_item.addSkill(::Reforged.new("scripts/skills/actives/decapitate", function(o) {
 			o.m.DirectDamageMult = _item.m.DirectDamageMult;
 			foreach (skill in _item.getSkills())
 			{
@@ -59,7 +59,7 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 		{
 			foreach (perkID in row)
 			{
-				this.getContainer().add(::MSU.new(::Const.Perks.findById(perkID).Script, function(o) {
+				this.getContainer().add(::Reforged.new(::Const.Perks.findById(perkID).Script, function(o) {
 					o.m.IsSerialized = false;
 					o.m.IsRefundable = false;
 				}));

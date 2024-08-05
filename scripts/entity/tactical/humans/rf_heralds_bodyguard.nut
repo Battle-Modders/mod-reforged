@@ -57,7 +57,7 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigilant"));
-		this.m.Skills.add(::MSU.new("scripts/skills/special/rf_bodyguard", function(o) { // TODO: Probably need a better way of doing this (hopefully when onCombatStart is available for AI actors) - Midas
+		this.m.Skills.add(::Reforged.new("scripts/skills/special/rf_bodyguard", function(o) { // TODO: Probably need a better way of doing this (hopefully when onCombatStart is available for AI actors) - Midas
 			o.onCombatStarted <- function()
 			{
 				local actor = this.getContainer().getActor();
@@ -132,7 +132,7 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 			]).roll()));
 		}
 
-		this.getBodyItem().setUpgrade(::MSU.new("scripts/items/armor_upgrades/rf_heraldic_cape_upgrade", function(o) {
+		this.getBodyItem().setUpgrade(::Reforged.new("scripts/items/armor_upgrades/rf_heraldic_cape_upgrade", function(o) {
 			o.setVariant(banner);
 		}));
 
@@ -176,7 +176,7 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 			if (weapon.getID() == "weapon.rf_poleaxe")
 			{
 				local entityNamePlural = ::Const.Strings.EntityNamePlural[this.getType()];
-				weapon.addSkill(::MSU.new("scripts/skills/actives/repel", function(o) {
+				weapon.addSkill(::Reforged.new("scripts/skills/actives/repel", function(o) {
 					o.m.Name = "Guard\'s Repel";
 					local getTooltip = o.getTooltip;
 					o.getTooltip = function()

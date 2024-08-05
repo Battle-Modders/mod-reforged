@@ -11,7 +11,7 @@
 
 		this.addSkill(::new("scripts/skills/actives/fire_handgonne_skill"));
 
-		local reload = ::MSU.new("scripts/skills/actives/reload_handgonne_skill", function(o) {
+		local reload = ::Reforged.new("scripts/skills/actives/reload_handgonne_skill", function(o) {
 			o.m.FatigueCost += 2;
 		});
 		this.addSkill(reload);

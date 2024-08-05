@@ -2,7 +2,7 @@
 	q.onAdded = @(__original) function()
 	{
 		__original();
-		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_from_all_sides", function(o) {
+		this.getContainer().add(::Reforged.new("scripts/skills/perks/perk_rf_from_all_sides", function(o) {
 			o.m.IsRefundable = false;
 			o.m.IsSerialized = false;
 		}));

@@ -28,10 +28,10 @@ this.rf_kriegsmesser <- ::inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/cleave"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/cleave"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/decapitate"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/decapitate"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/riposte"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
 	}
 });

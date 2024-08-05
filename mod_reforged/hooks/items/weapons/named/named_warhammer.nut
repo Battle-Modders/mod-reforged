@@ -5,8 +5,8 @@
 	{
 		this.named_weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/hammer"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/hammer"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/crush_armor"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/crush_armor"));
 	}
 });

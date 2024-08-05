@@ -108,7 +108,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			local perkID = row[0];
 
 			this.m.PerksAdded.push(perkID);
-			this.getContainer().add(::MSU.new(::Const.Perks.findById(perkID).Script, function(o) {
+			this.getContainer().add(::Reforged.new(::Const.Perks.findById(perkID).Script, function(o) {
 				o.m.IsSerialized = false;
 				o.m.IsRefundable = false;
 			}));

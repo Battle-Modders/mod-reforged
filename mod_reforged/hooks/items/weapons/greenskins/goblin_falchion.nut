@@ -16,7 +16,7 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/slash", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/slash", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 2;
 			o.m.Icon = "skills/active_78.png";
@@ -24,7 +24,7 @@
 			o.m.Overlay = "active_78";
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/riposte", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/riposte", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 		}));

@@ -34,23 +34,23 @@ this.rf_greatsword <- ::inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/overhead_strike", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 3;
 			o.setStunChance(this.m.StunChance);
 		}.bindenv(this)));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/split", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/split", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/swing", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/swing", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
 			o.m.ActionPointCost += 1;
 			o.m.FatigueCost += 5;
 		}));

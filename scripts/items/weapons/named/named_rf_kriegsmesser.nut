@@ -24,12 +24,12 @@ this.named_rf_kriegsmesser <- ::inherit("scripts/items/weapons/named/named_weapo
 	{
 		this.named_weapon.onEquip()
 
-		this.addSkill(::MSU.new("scripts/skills/actives/cleave", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/cleave", function(o) {
 			o.m.FatigueCost += 3;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/decapitate"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/decapitate"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/riposte"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
 	}
 });

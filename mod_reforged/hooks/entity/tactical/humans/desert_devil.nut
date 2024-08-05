@@ -34,7 +34,7 @@
 		//Reforged
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_kata", function(o) {o.m.IsForceEnabled = true;}));
+		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_kata", function(o) {o.m.IsForceEnabled = true;}));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 	}
 

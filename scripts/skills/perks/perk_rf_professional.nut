@@ -64,7 +64,7 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 
 		foreach (id in perkIDs)
 		{
-			this.getContainer().add(::MSU.new(actor.getPerkTree().getPerk(id).Script, function(o) {
+			this.getContainer().add(::Reforged.new(actor.getPerkTree().getPerk(id).Script, function(o) {
 				o.m.IsSerialized = false;
 				o.m.IsRefundable = false;
 			}));

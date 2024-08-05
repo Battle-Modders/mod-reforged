@@ -98,7 +98,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			this.m.IsMaceWeaponTypeAdded = true;
 		}
 
-		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_concussive_strikes", function(o) {
+		this.getContainer().add(::Reforged.new("scripts/skills/perks/perk_rf_concussive_strikes", function(o) {
 			o.m.IsRefundable = false;
 			o.m.IsSerialized = false;
 		}));
@@ -111,19 +111,19 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 
 		if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))
 		{
-			weapon.addSkill(::MSU.new("scripts/skills/actives/cudgel_skill", function(o) {
+			weapon.addSkill(::Reforged.new("scripts/skills/actives/cudgel_skill", function(o) {
 				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 			}));
-			weapon.addSkill(::MSU.new("scripts/skills/actives/strike_down_skill", function(o) {
+			weapon.addSkill(::Reforged.new("scripts/skills/actives/strike_down_skill", function(o) {
 				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 			}));
 		}
 		else
 		{
-			weapon.addSkill(::MSU.new("scripts/skills/actives/bash", function(o) {
+			weapon.addSkill(::Reforged.new("scripts/skills/actives/bash", function(o) {
 				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 			}));
-			weapon.addSkill(::MSU.new("scripts/skills/actives/knock_out", function(o) {
+			weapon.addSkill(::Reforged.new("scripts/skills/actives/knock_out", function(o) {
 				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 			}));
 		}

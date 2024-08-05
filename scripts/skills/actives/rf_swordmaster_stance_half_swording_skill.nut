@@ -88,7 +88,7 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 			weapon.removeSkill(skill);
 		}
 
-		weapon.addSkill(::MSU.new("scripts/skills/actives/stab", function(o) {
+		weapon.addSkill(::Reforged.new("scripts/skills/actives/stab", function(o) {
 			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 		}));
 		weapon.addSkill(::new("scripts/skills/actives/puncture"));

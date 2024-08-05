@@ -19,7 +19,7 @@ this.perk_rf_deep_impact <- ::inherit("scripts/skills/skill", {
 			return;
 
 		local self = this;
-		_item.addSkill(::MSU.new("scripts/skills/actives/rf_deep_impact_skill", function(o) {
+		_item.addSkill(::Reforged.new("scripts/skills/actives/rf_deep_impact_skill", function(o) {
 			o.m.RequiredWeaponType = self.m.RequiredWeaponType;
 			o.m.RequiredDamageType = self.m.RequiredDamageType;
 		}));
@@ -30,7 +30,7 @@ this.perk_rf_deep_impact <- ::inherit("scripts/skills/skill", {
 		if (this.m.RequiredWeaponType == null)
 		{
 			local self = this;
-			this.getContainer().add(::MSU.new("scripts/skills/actives/rf_deep_impact_skill", function(o) {
+			this.getContainer().add(::Reforged.new("scripts/skills/actives/rf_deep_impact_skill", function(o) {
 				o.m.RequiredWeaponType = self.m.RequiredWeaponType;
 				o.m.RequiredDamageType = self.m.RequiredDamageType;
 			}));

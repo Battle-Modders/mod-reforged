@@ -12,11 +12,11 @@ this.perk_rf_trick_shooter <- ::inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_hip_shooter", function(o) {
+		this.getContainer().add(::Reforged.new("scripts/skills/perks/perk_rf_hip_shooter", function(o) {
 			o.m.IsRefundable = false;
 			o.m.IsSerialized = false;
 		}));
-		this.getContainer().add(::MSU.new("scripts/skills/perks/perk_rf_flaming_arrows", function(o) {
+		this.getContainer().add(::Reforged.new("scripts/skills/perks/perk_rf_flaming_arrows", function(o) {
 			o.m.IsRefundable = false;
 			o.m.IsSerialized = false;
 		}));

@@ -5,8 +5,8 @@
 	{
 		this.named_weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/thrust"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/thrust"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/spearwall"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/spearwall"));
 	}
 });

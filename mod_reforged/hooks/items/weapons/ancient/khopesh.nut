@@ -9,8 +9,8 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/cleave"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/cleave"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/decapitate"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/decapitate"));
 	}
 });

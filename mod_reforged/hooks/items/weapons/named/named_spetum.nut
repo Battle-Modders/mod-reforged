@@ -5,10 +5,10 @@
 	{
 		this.named_weapon.onEquip();
 
-		local prong = ::MSU.new("scripts/skills/actives/prong_skill");
+		local prong = ::Reforged.new("scripts/skills/actives/prong_skill");
 		this.addSkill(prong);
 
-		this.addSkill(::MSU.new("scripts/skills/actives/spearwall", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/spearwall", function(o) {
 			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 5;
 			o.m.Icon = "skills/active_124.png";

@@ -24,7 +24,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 
 		// Reforged
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
+		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_cleaver"));

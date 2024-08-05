@@ -57,7 +57,7 @@
 	{
 		if (this.m.IsNew)
 		{
-			this.getContainer().add(::MSU.new("scripts/skills/perks/perk_mastery_sword", function(o) {
+			this.getContainer().add(::Reforged.new("scripts/skills/perks/perk_mastery_sword", function(o) {
 				o.m.IsRefundable = false;
 			}));
 		}

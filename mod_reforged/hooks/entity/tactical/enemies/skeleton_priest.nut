@@ -21,7 +21,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/miasma_skill"));
 
 		// Reforged
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
+		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
 	}

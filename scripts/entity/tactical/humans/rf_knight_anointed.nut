@@ -39,7 +39,7 @@ this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_mentor", function(o) {
+		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_mentor", function(o) {
 			o.m.MaxStudents = 2;
 		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));

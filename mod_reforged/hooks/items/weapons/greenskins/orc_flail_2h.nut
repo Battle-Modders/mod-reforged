@@ -9,8 +9,8 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/pound"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/pound"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/thresh"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/thresh"));
 	}
 });

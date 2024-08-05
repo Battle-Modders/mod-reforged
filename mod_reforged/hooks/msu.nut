@@ -1,7 +1,6 @@
 ::logWarning("------ Applying Reforged modifications to MSU ------");
 
-::logInfo("Reforged::MSU -- adding ::MSU.new");
-::MSU.new <- function( _script, _function = null )
+::Reforged.new <- function( _script, _function = null )
 {
 	local obj = ::new(_script);
 	if (_function != null) _function(obj);

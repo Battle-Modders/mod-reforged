@@ -38,10 +38,10 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;
-		this.m.Skills.add(::MSU.new("scripts/skills/perks/perk_rf_dent_armor", function(o) {
+		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_dent_armor", function(o) {
 			o.m.RequiredDamageType = null;
 		}));
-		this.m.Skills.add(::MSU.new("scripts/skills/effects/return_favor_effect", function(o) {
+		this.m.Skills.add(::Reforged.new("scripts/skills/effects/return_favor_effect", function(o) {
 			o.onTurnStart = function() {}; // don't remove on turn start i.e. make it permanent
 		}));
 	}

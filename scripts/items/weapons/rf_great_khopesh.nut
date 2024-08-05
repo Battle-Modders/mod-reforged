@@ -37,7 +37,7 @@ this.rf_great_khopesh <- ::inherit("scripts/items/weapons/weapon", {
 		this.addSkill(::new("scripts/skills/actives/rf_cleaving_split_skill"));
 		this.addSkill(::new("scripts/skills/actives/rf_cleaving_swing_skill"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
 			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 5;
 		}));

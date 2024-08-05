@@ -68,7 +68,7 @@ this.rf_cheap_trick_skill <- ::inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local self = this;
-		this.getContainer().add(::MSU.new("scripts/skills/effects/rf_cheap_trick_effect", function(o) {
+		this.getContainer().add(::Reforged.new("scripts/skills/effects/rf_cheap_trick_effect", function(o) {
 			o.m.HitChanceModifier = self.m.HitChanceModifier;
 			o.m.DamageRegularMult = self.m.DamageRegularMult;
 		}));

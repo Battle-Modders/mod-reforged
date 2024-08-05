@@ -33,17 +33,17 @@ this.rf_battle_axe <- ::inherit("scripts/items/weapons/weapon", {
 
 		local weapon = this;
 
-		this.addSkill(::MSU.new("scripts/skills/actives/chop", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/chop", function(o) {
 			o.m.FatigueCost += 2;
 			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/split_man", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/split_man", function(o) {
 			o.m.ActionPointCost -= 1;
 			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
 			o.setApplyAxeMastery(true);
 		}));
 	}

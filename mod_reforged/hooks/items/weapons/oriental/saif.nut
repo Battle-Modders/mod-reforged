@@ -10,14 +10,14 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/slash", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/slash", function(o) {
 			o.m.FatigueCost -= 2;
 			o.m.Icon = "skills/active_172.png";
 			o.m.IconDisabled = "skills/active_172_sw.png";
 			o.m.Overlay = "active_172";
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/gash_skill", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/gash_skill", function(o) {
 			o.m.FatigueCost -= 4;
 		}));
 	}

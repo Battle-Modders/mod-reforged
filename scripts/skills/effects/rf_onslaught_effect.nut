@@ -49,7 +49,7 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 		if (!this.getContainer().hasSkill("actives.rf_line_breaker"))
 		{
 			this.m.LineBreakerAdded = true;
-			this.getContainer().add(::MSU.new("scripts/skills/actives/rf_line_breaker_skill", function(o) {
+			this.getContainer().add(::Reforged.new("scripts/skills/actives/rf_line_breaker_skill", function(o) {
 				o.m.IsForceEnabled = true;
 			}));
 		}

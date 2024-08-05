@@ -10,13 +10,13 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/overhead_strike"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/overhead_strike"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/split"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/split"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/swing"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/swing"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
 			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 5;
 		}));

@@ -9,11 +9,11 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/thrust", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/thrust", function(o) {
 			o.m.FatigueCost -= 2;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/spearwall", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/spearwall", function(o) {
 			o.m.FatigueCost -= 6;
 		}));
 	}

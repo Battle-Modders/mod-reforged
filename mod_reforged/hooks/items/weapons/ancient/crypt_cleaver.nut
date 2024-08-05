@@ -10,13 +10,13 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::MSU.new("scripts/skills/actives/cleave", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/cleave", function(o) {
 			o.m.FatigueCost += 3;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/decapitate"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/decapitate"));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/split_shield", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
 			o.m.FatigueCost += 5;
 		}));
 	}

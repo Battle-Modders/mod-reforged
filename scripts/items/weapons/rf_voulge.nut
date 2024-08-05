@@ -33,7 +33,7 @@ this.rf_voulge <- ::inherit("scripts/items/weapons/weapon", {
 		this.weapon.onEquip();
 
 		local weapon = this;
-		this.addSkill(::MSU.new("scripts/skills/actives/cleave", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/cleave", function(o) {
 			o.m.Icon = "skills/rf_voulge_cleave_skill.png";
 			o.m.IconDisabled = "skills/rf_voulge_cleave_skill_sw.png";
 			o.m.Overlay = "rf_voulge_cleave_skill";
@@ -43,7 +43,7 @@ this.rf_voulge <- ::inherit("scripts/items/weapons/weapon", {
 			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 		}));
 
-		this.addSkill(::MSU.new("scripts/skills/actives/rf_gouge_skill", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/rf_gouge_skill", function(o) {
 			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 		}));
 	}
