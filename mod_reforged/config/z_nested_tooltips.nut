@@ -41,19 +41,37 @@ local getThresholdForInjury = function( _script )
 
 	function getNestedPerkName( _obj )
 	{
-		return format("[%s|Perk+%s]", ::Const.Perks.findById(_obj.getID()).Name, split(::IO.scriptFilenameByHash(_obj.ClassNameHash), "/").top());
+		local perkDef = ::Const.Perks.findById(_obj.getID());
+		return format("[%s|Perk+%s]", perkDef != null ? perkDef.Name : _obj.m.Name, _obj.ClassName);
+	}
+
+	function getNestedPerkImage( _obj )
+	{
+		local perkDef = ::Const.Perks.findById(_obj.getID());
+		return format("[Img/gfx/%s|Perk+%s]", perkDef != null ? perkDef.Icon : _obj.getIcon(), _obj.ClassName);
 	}
 
 	function getNestedSkillName( _obj )
 	{
 		// We use `.m.Name` instead of `getName()` because some skills (e.g. status effects)
 		// modify the name during getName() e.g. to add info about the number of stacks
-		return format("[%s|Skill+%s]", _obj.m.Name, split(::IO.scriptFilenameByHash(_obj.ClassNameHash), "/").top());
+		return format("[%s|Skill+%s]", _obj.m.Name, _obj.ClassName);
+	}
+
+	function getNestedSkillImage( _obj, _checkUsability = false )
+	{
+		local icon = !_checkUsability || _obj.isUsable() && _obj.isAffordable() ? _obj.getIconColored() : _obj.getIconDisabled();
+		return format("[Img/gfx/%s|Skill+%s]", icon, _obj.ClassName);
 	}
 
 	function getNestedItemName( _obj )
 	{
-		return format("[%s|Item+%s]", _obj.getName(), split(::IO.scriptFilenameByHash(_obj.ClassNameHash), "/").top());
+		return format("[%s|Item+%s]", _obj.getName(), _obj.ClassName);
+	}
+
+	function getNestedItemImage( _obj )
+	{
+		return format("[Img/gfx/%s|Item+%s]", _obj.getIcon(), _obj.ClassName);
 	}
 }
 
