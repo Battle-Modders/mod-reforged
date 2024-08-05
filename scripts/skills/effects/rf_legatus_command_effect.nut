@@ -29,7 +29,7 @@ this.rf_legatus_command_effect <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.DamageMult) + " less [Damage|Concept.Hitpoints] received")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.DamageReceivedMult) + " less [Damage|Concept.Hitpoints] received")
 			},
 			{
 				id = 12,
