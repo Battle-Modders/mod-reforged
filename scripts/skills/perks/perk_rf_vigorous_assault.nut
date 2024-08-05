@@ -4,7 +4,6 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 		APReduction = 1,
 		FatCostReduction = 10,
 		StartingTile = null,
-		IsIconSet = false,
 		CurrAPBonus = 0,
 		CurrFatBonus = 0
 	},
@@ -73,20 +72,6 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 		}
 
 		return true;
-	}
-
-	function onNewRound()
-	{
-		if (!this.m.IsIconSet)
-		{
-			if (this.getContainer().getActor().getFaction() == ::World.FactionManager.getFactionOfType(::Const.FactionType.Barbarians).getID())
-			{
-				this.m.Icon = "ui/perks/perk_rf_vigorous_assault_barbarian.png";
-				this.m.IconMini = "perk_rf_vigorous_assault_barbarian_mini";
-			}
-
-			this.m.IsIconSet = true;
-		}
 	}
 
 	function onAfterUpdate( _properties )
