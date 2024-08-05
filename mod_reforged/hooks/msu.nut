@@ -7,16 +7,6 @@
 	return obj;
 }
 
-::logInfo("Reforged::MSU -- adding ::MSU.Time.getSecondsRequiredToTravel");
-::MSU.Time <- {
-	function getSecondsRequiredToTravel( _numTiles, _speed, _onRoadOnly = false )	// This is a close copy of how vanilla calculates their distance duration
-	{
-		_speed *= ::Const.World.MovementSettings.GlobalMult;
-		if (_onRoadOnly) _speed *= ::Const.World.MovementSettings.RoadMult;
-		return _numTiles * 170.0 / _speed;
-	}
-}
-
 ::logInfo("Reforged::MSU -- adding onSkillsUpdated event");
 ::Reforged.HooksMod.hook("scripts/skills/skill_container", function(q) {
 	q.update = @(__original) function()
