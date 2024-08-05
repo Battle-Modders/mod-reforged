@@ -76,7 +76,7 @@
 				id = currentID,
 				type = "text",
 				icon = statusEffect.getIcon(),
-				text = ::Reforged.TacticalTooltip.getNestedSkillName(statusEffect)
+				text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedSkillName(statusEffect))
 			};
 			currentID++;
 
@@ -90,7 +90,7 @@
 		{
 			foreach( statusEffect in statusEffects )
 			{
-				entryText += ::Reforged.TacticalTooltip.getNestedSkillName(statusEffect) + ", ";
+				entryText += ::Reforged.NestedTooltips.getNestedSkillName(statusEffect) + ", ";
 			}
 			if (entryText != "") entryText = entryText.slice(0, -2);
 		}
@@ -98,14 +98,14 @@
 		{
 			foreach( statusEffect in statusEffects )
 			{
-				entryText += ::Reforged.TacticalTooltip.getNestedSkillImage(statusEffect);
+				entryText += ::Reforged.NestedTooltips.getNestedSkillImage(statusEffect);
 			}
 		}
 
 		effectList.push({
 			id = currentID,
 			type = "text",
-			text = entryText
+			text = ::Reforged.Mod.Tooltips.parseString(entryText)
 		});
 		currentID++;
 	}
@@ -139,7 +139,7 @@
 				id = currentID,
 				type = "text",
 				icon = perkDef != null ? perkDef.Icon : perk.getIcon(),
-				text = ::Reforged.TacticalTooltip.getNestedPerkName(perk)
+				text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedPerkName(perk))
 			};
 			currentID++;
 
@@ -156,7 +156,7 @@
 				if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
 					if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
-				entryText += ::Reforged.TacticalTooltip.getNestedPerkName(perk) + ", ";
+				entryText += ::Reforged.NestedTooltips.getNestedPerkName(perk) + ", ";
 			}
 			if (entryText != "") entryText = entryText.slice(0, -2);
 		}
@@ -167,14 +167,14 @@
 				if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
 					if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
-				entryText += ::Reforged.TacticalTooltip.getNestedPerkImage(perk);
+				entryText += ::Reforged.NestedTooltips.getNestedPerkImage(perk);
 			}
 		}
 
 		perkList.push({
 			id = currentID,
 			type = "text",
-			text = entryText
+			text = ::Reforged.Mod.Tooltips.parseString(entryText)
 		});
 		currentID++;
 	}
@@ -320,7 +320,7 @@
 				id = _startID++,
 				type = "text",
 				icon = skill.getIcon(),
-				text = format("%s (%s, %s)", ::Reforged.TacticalTooltip.getNestedSkillName(skill), ::MSU.Text.colorNegative(skill.getActionPointCost()), ::MSU.Text.colorPositive(skill.getFatigueCost()))
+				text = ::Reforged.Mod.Tooltips.parseString(format("%s (%s, %s)", ::Reforged.NestedTooltips.getNestedSkillName(skill), ::MSU.Text.colorNegative(skill.getActionPointCost()), ::MSU.Text.colorPositive(skill.getFatigueCost())))
 			});
 		}
 	}
@@ -331,7 +331,7 @@
 		{
 			foreach (skill in skills)
 			{
-				entryText += ::Reforged.TacticalTooltip.getNestedSkillName(skill) + ", ";
+				entryText += ::Reforged.NestedTooltips.getNestedSkillName(skill) + ", ";
 			}
 			if (entryText != "") entryText = entryText.slice(0, -2);
 		}
@@ -339,14 +339,14 @@
 		{
 			foreach (skill in skills)
 			{
-				entryText += ::Reforged.TacticalTooltip.getNestedSkillImage(skill);
+				entryText += ::Reforged.NestedTooltips.getNestedSkillImage(skill, true);
 			}
 		}
 
 		ret.push({
 			id = _startID,
 			type = "text",
-			text = entryText
+			text = ::Reforged.Mod.Tooltips.parseString(entryText)
 		});
 	}
 
@@ -385,34 +385,3 @@
 		text = "[u][size=15]" + _title + "[/size][/u]"
 	});
 };
-
-// These four functions are temporary at this spot. They should be made into more global reforged functions because they will be needed in other places aswell
-::Reforged.TacticalTooltip.getNestedPerkName <- function ( _perk, _displayName = null )
-{
-	if (_displayName == null) _displayName = _perk.m.Name;
-	local fileName = split(::IO.scriptFilenameByHash(_perk.ClassNameHash), "/").top();
-	local nestedText = ::Reforged.Mod.Tooltips.parseString(format("[%s|%s]", _displayName, "Perk+" + fileName));
-	return nestedText;
-}
-
-::Reforged.TacticalTooltip.getNestedPerkImage <- function ( _perk )
-{
-	local fileName = split(::IO.scriptFilenameByHash(_perk.ClassNameHash), "/").top();
-	local perkDef = ::Const.Perks.findById(_perk.getID());
-	return ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|%s]", perkDef != null ? perkDef.Icon : _perk.getIcon(), "Perk+" + fileName));
-}
-
-// All other kinds of skills like effects and actives
-::Reforged.TacticalTooltip.getNestedSkillName <- function ( _skill, _displayName = null )
-{
-	if (_displayName == null) _displayName = _skill.getName();
-	local fileName = split(::IO.scriptFilenameByHash(_skill.ClassNameHash), "/").top();
-	local nestedText = ::Reforged.Mod.Tooltips.parseString(format("[%s|%s]", _displayName, "Skill+" + fileName));
-	return nestedText;
-}
-
-::Reforged.TacticalTooltip.getNestedSkillImage <- function ( _skill )
-{
-	local fileName = split(::IO.scriptFilenameByHash(_skill.ClassNameHash), "/").top();
-	return ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|%s]", !_skill.isActive() || _skill.isAffordable() ? _skill.getIconColored() : _skill.getIconDisabled(), "Skill+" + fileName));
-}
