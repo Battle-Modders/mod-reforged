@@ -229,7 +229,7 @@
 
 // This removes all duplicate CharacterNames. This line is redundant for Vanilla + Reforged because our additional names are already checked for duplicates
 // Any mod that adds names after ours may re-introduce duplicates. This is not game-breaking but still undeLorded
-::Const.Strings.CharacterNames = ::MSU.Array.removeDuplicates(::Const.Strings.CharacterNames);
+::Const.Strings.CharacterNames = ::MSU.Array.uniques(::Const.Strings.CharacterNames);
 
 foreach(characterName in ::Const.Strings.CharacterNames)
 {
@@ -237,7 +237,7 @@ foreach(characterName in ::Const.Strings.CharacterNames)
 }
 
 // This removes all duplicate KnightNames. This is important because Vanilla has KnightNames that also exist as CharacterNames.
-::Const.Strings.KnightNames = ::MSU.Array.removeDuplicates(::Const.Strings.KnightNames);
+::Const.Strings.KnightNames = ::MSU.Array.uniques(::Const.Strings.KnightNames);
 ::Const.Strings.RF_KnightAnointedNames <- ::Const.Strings.KnightNames.map(@(name) ::String.replace(name, "Sir", "Lord"));
 
 // Remove The Robber Baron as a bandit leader name because we have a RobberBaron entity in Reforged
@@ -306,7 +306,7 @@ foreach(characterName in ::Const.Strings.CharacterNames)
 ]);
 
 // The array contains some duplicates even in vanilla
-::Const.Strings.SouthernNames = ::MSU.Array.removeDuplicates(::Const.Strings.SouthernNames);
+::Const.Strings.SouthernNames = ::MSU.Array.uniques(::Const.Strings.SouthernNames);
 
 foreach (i, name in ::Const.Strings.SouthernNames)
 {
@@ -326,5 +326,5 @@ foreach (i, name in ::Const.Strings.SouthernNames)
 	}
 }
 
-::Const.Strings.SouthernNamesLast = ::MSU.Array.removeDuplicates(::Const.Strings.SouthernNamesLast);
-::Const.Strings.SouthernOfficerTitles = ::MSU.Array.removeDuplicates(::Const.Strings.SouthernOfficerTitles);
+::Const.Strings.SouthernNamesLast = ::MSU.Array.uniques(::Const.Strings.SouthernNamesLast);
+::Const.Strings.SouthernOfficerTitles = ::MSU.Array.uniques(::Const.Strings.SouthernOfficerTitles);
