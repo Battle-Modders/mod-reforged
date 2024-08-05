@@ -58,7 +58,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 					id = 11,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = ::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " more damage and " + ::MSU.Text.colorizeFraction(this.m.DirectDamageModifier, {AddSign = true}) + " damage ignoring armor against:",
+					text = ::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " more damage and " + ::MSU.Text.colorizePct(this.m.DirectDamageModifier, {AddSign = true}) + " damage ignoring armor against:",
 					children = enemies
 				});
 

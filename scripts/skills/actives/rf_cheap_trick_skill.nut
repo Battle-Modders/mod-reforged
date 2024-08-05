@@ -33,7 +33,7 @@ this.rf_cheap_trick_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Gain " + ::MSU.Text.colorizePercentage(this.m.HitChanceModifier) + " chance to hit with your next attack"
+				text = "Gain " + ::MSU.Text.colorizeValue(this.m.HitChanceModifier, {AddSign = true, AddPercent = true}) + " chance to hit with your next attack"
 			});
 		}
 

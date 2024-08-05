@@ -27,7 +27,7 @@ this.perk_rf_death_dealer <- ::inherit("scripts/skills/skill", {
 				id = 100,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has " + ::MSU.Text.colorizePercentage(10) + " chance to hit due to " + ::Reforged.NestedTooltips.getNestedPerkName(this)
+				text = "Has " + ::MSU.Text.colorizeValue(10, {AddSign = true, AddPercent = true}) + " chance to hit due to " + ::Reforged.NestedTooltips.getNestedPerkName(this)
 			});
 		}
 	}

@@ -8,7 +8,7 @@
 		{
 			if (entry.id == 12 && entry.icon == "ui/icons/ranged_skill.png")
 			{
-				entry.text = "Has " + ::MSU.Text.colorizePercentage(this.m.HitChancePerTile) + " chance to hit per tile of distance"
+				entry.text = "Has " + ::MSU.Text.colorizeValue(this.m.HitChancePerTile, {AddSign = true, AddPercent = true}) + " chance to hit per tile of distance"
 			}
 		}
 		return ret;

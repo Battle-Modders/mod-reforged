@@ -44,7 +44,7 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next attack builds up " + ::MSU.Text.colorizePercentage(this.m.CurrFatBonus) + " less [Fatigue|Concept.Fatigue]")
+				text = ::Reforged.Mod.Tooltips.parseString("The next attack builds up " + ::MSU.Text.colorizeValue(this.m.CurrFatBonus, {AddSign = true, AddPercent = true}) + " less [Fatigue|Concept.Fatigue]")
 			});
 		}
 

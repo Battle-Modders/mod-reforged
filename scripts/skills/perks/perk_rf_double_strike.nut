@@ -25,7 +25,7 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "Single target attacks deal " + ::MSU.Text.colorizePercentage(this.m.DamageBonus) + " more damage"
+			text = "Single target attacks deal " + ::MSU.Text.colorizeValue(this.m.DamageBonus, {AddSign = true, AddPercent = true}) + " more damage"
 		});
 
 		ret.push({

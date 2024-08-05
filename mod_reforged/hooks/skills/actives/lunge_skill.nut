@@ -18,7 +18,7 @@
 			id = 6,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = "Has " + ::MSU.Text.colorizePercentage(this.m.HitChanceBonus) + " chance to hit"
+			text = "Has " + ::MSU.Text.colorizeValue(this.m.HitChanceBonus, {AddSign = true, AddPercent = true}) + " chance to hit"
 		});
 		return ret;
 	}

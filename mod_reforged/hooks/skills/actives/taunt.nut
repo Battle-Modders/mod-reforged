@@ -14,7 +14,7 @@
 					id = 10,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = ::Reforged.Mod.Tooltips.parseString("When used on an adjacent target, reduces its [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by " + ::MSU.Text.colorizeFraction(this.m.DefenseModifierFraction) + " of your current [Resolve|Concept.Bravery]")
+					text = ::Reforged.Mod.Tooltips.parseString("When used on an adjacent target, reduces its [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by " + ::MSU.Text.colorizePct(this.m.DefenseModifierFraction) + " of your current [Resolve|Concept.Bravery]")
 				});
 			}
 			else
@@ -23,7 +23,7 @@
 					id = 10,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = ::Reforged.Mod.Tooltips.parseString("When used on an adjacent target, reduces its [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by " + ::MSU.Text.colorizeValue(this.calculateDefenseModifier()) + " (" + ::MSU.Text.colorizeFraction(this.m.DefenseModifierFraction) + " of your current [Resolve|Concept.Bravery])")
+					text = ::Reforged.Mod.Tooltips.parseString("When used on an adjacent target, reduces its [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by " + ::MSU.Text.colorizeValue(this.calculateDefenseModifier()) + " (" + ::MSU.Text.colorizePct(this.m.DefenseModifierFraction) + " of your current [Resolve|Concept.Bravery])")
 				});
 			}
 		}

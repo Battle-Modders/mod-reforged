@@ -31,7 +31,7 @@ this.perk_rf_through_the_gaps <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = format("The next%s attack%s deals %s damage ignoring armor", damageTypeString, weaponTypeString, ::MSU.Text.colorizePercentage(::Math.floor(this.m.DirectDamageModifier * 100)))
+				text = format("The next%s attack%s deals %s damage ignoring armor", damageTypeString, weaponTypeString, ::MSU.Text.colorizeValue(::Math.floor(this.m.DirectDamageModifier * 100)), {AddSign = true, AddPercent = true})
 			});
 		}
 

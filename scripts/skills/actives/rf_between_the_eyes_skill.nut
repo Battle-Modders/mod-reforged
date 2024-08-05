@@ -76,7 +76,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Perform a " + ::Reforged.NestedTooltips.getNestedSkillName(aoo) + " with " + ::MSU.Text.colorizePercentage(bonus) + " chance to hit the head")
+				text = ::Reforged.Mod.Tooltips.parseString("Perform a " + ::Reforged.NestedTooltips.getNestedSkillName(aoo) + " with " + ::MSU.Text.colorizeValue(bonus, {AddSign = true, AddPercent = true}) + " chance to hit the head")
 			});
 		}
 

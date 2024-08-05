@@ -147,7 +147,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				icon = this.m.CurrBonus > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
-				text = ::MSU.Text.colorizePercentage(this.m.CurrBonus, {AddSign = false}) + (this.m.CurrBonus > 0 ? " Reach Advantage" : " Reach Disadvantage")
+				text = ::MSU.Text.colorizeValue(this.m.CurrBonus, {AddPercent = true}) + (this.m.CurrBonus > 0 ? " Reach Advantage" : " Reach Disadvantage")
 			});
 		}
 	}

@@ -59,7 +59,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Becomes disabled when starting a turn with " + ::MSU.Text.colorizeFraction(this.m.FatigueThreshold, {InvertColor = true}) + " or more [Fatigue|Concept.Fatigue] built")
+				text = ::Reforged.Mod.Tooltips.parseString("Becomes disabled when starting a turn with " + ::MSU.Text.colorizePct(this.m.FatigueThreshold, {InvertColor = true}) + " or more [Fatigue|Concept.Fatigue] built")
 			});
 		}
 		else
@@ -68,7 +68,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("Becomes disabled when starting a turn with %s (%s) or more [Fatigue|Concept.Fatigue] built", ::MSU.Text.colorizeFraction(this.m.FatigueThreshold, {InvertColor = true}), ::MSU.Text.colorNegative(::Math.round(this.m.FatigueThreshold * this.getContainer().getActor().getFatigue()))))
+				text = ::Reforged.Mod.Tooltips.parseString(format("Becomes disabled when starting a turn with %s (%s) or more [Fatigue|Concept.Fatigue] built", ::MSU.Text.colorizePct(this.m.FatigueThreshold, {InvertColor = true}), ::MSU.Text.colorNegative(::Math.round(this.m.FatigueThreshold * this.getContainer().getActor().getFatigue()))))
 			});
 		}
 

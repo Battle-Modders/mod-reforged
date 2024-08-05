@@ -23,13 +23,13 @@ this.rf_legatus_command_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizePercentage(this.m.DamageMult * 100 - 100, {AddSign = false}) + " more [Damage|Concept.Hitpoints] dealt")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.DamageMult) + " more [Damage|Concept.Hitpoints] dealt")
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizePercentage(100 - this.m.DamageMult * 100, {AddSign = false}) + " less [Damage|Concept.Hitpoints] received")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.DamageMult) + " less [Damage|Concept.Hitpoints] received")
 			},
 			{
 				id = 12,

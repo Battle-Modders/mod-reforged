@@ -40,7 +40,7 @@ this.perk_rf_swordlike <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has " + ::MSU.Text.colorizePercentage(this.m.Bonus) + " chance to hit because of " + ::MSU.Text.colorPositive(this.getName())
+				text = "Has " + ::MSU.Text.colorizeValue(this.m.Bonus, {AddSign = true, AddPercent = true}) + " chance to hit because of " + ::MSU.Text.colorPositive(this.getName())
 			});
 		}
 	}

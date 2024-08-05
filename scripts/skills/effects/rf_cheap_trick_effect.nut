@@ -25,7 +25,7 @@ this.rf_cheap_trick_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = ::MSU.Text.colorizePercentage(this.m.HitChanceModifier) + " chance to hit with your next attack"
+				text = ::MSU.Text.colorizeValue(this.m.HitChanceModifier, {AddSign = true, AddPercent = true}) + " chance to hit with your next attack"
 			});
 		}
 
@@ -84,7 +84,7 @@ this.rf_cheap_trick_effect <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
-				text = ::MSU.Text.colorizePercentage(this.m.HitChanceModifier) + " " + this.getName()
+				text = ::MSU.Text.colorizeValue(this.m.HitChanceModifier, {AddSign = true, AddPercent = true}) + " " + this.getName()
 			});
 		}
 	}

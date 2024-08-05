@@ -41,7 +41,7 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Current [Fatigue|Concept.Fatigue] is reduced by " + ::MSU.Text.colorizeFraction(this.m.FatigueRecoveredFraction))
+				text = ::Reforged.Mod.Tooltips.parseString("Current [Fatigue|Concept.Fatigue] is reduced by " + ::MSU.Text.colorizePct(this.m.FatigueRecoveredFraction))
 			},
 			{
 				id = 11,
