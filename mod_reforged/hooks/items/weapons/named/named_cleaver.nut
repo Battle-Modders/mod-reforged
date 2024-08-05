@@ -1,9 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_cleaver", function(q) {
-	q.create = @(__original) function()
-	{
-		this.m.BaseWeaponScript = "scripts/items/weapons/military_cleaver";
-		__original();
-	}
+	q.m.BaseItemScript = "scripts/items/weapons/military_cleaver";
 
 	q.onEquip = @() function()
 	{

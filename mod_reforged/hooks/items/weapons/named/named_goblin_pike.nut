@@ -1,9 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_goblin_pike", function(q) {
-	q.create = @(__original) function()
-	{
-		this.m.BaseWeaponScript = "scripts/items/weapons/greenskins/goblin_pike";
-		__original();
-	}
+	q.m.BaseItemScript = "scripts/items/weapons/greenskins/goblin_pike";
 
 	q.onEquip = @() function()
 	{

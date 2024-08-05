@@ -1,9 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_three_headed_flail", function(q) {
-	q.create = @(__original) function()
-	{
-		this.m.BaseWeaponScript = "scripts/items/weapons/three_headed_flail";
-		__original();
-	}
+	q.m.BaseItemScript = "scripts/items/weapons/three_headed_flail";
 
 	q.onEquip = @() function()
 	{

@@ -1,9 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_bardiche", function(q) {
-	q.create = @(__original) function()
-	{
-		this.m.BaseWeaponScript = "scripts/items/weapons/bardiche";
-		__original();
-	}
+	q.m.BaseItemScript = "scripts/items/weapons/bardiche";
 
 	q.onEquip = @() function()
 	{

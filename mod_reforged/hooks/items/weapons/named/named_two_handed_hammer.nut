@@ -1,9 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_two_handed_hammer", function(q) {
-	q.create = @(__original) function()
-	{
-		this.m.BaseWeaponScript = "scripts/items/weapons/two_handed_hammer";
-		__original();
-	}
+	q.m.BaseItemScript = "scripts/items/weapons/two_handed_hammer";
 
 	q.onEquip = @() function()
 	{

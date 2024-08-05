@@ -1,9 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_rusty_warblade", function(q) {
-	q.create = @(__original) function()
-	{
-		this.m.BaseWeaponScript = "scripts/items/weapons/barbarians/rusty_warblade";
-		__original();
-	}
+	q.m.BaseItemScript = "scripts/items/weapons/barbarians/rusty_warblade";
 
 	q.onEquip = @() function()
 	{

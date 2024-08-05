@@ -9,7 +9,7 @@ this.named_rf_poleflail <- ::inherit("scripts/items/weapons/named/named_weapon",
 		this.m.NameList = ::Const.Strings.TwoHandedFlailNames;
 		this.m.Description = "Impossible to confuse for the agricultural tool it is based upon, the beautiful craftmanship of a master weaponsmith is clear to see.";
 		this.m.Value = 4000;
-		this.m.BaseWeaponScript = "scripts/items/weapons/rf_poleflail";
+		this.m.BaseItemScript = "scripts/items/weapons/rf_poleflail";
 		this.randomizeValues();
 	}
 

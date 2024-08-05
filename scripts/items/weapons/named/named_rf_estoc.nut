@@ -9,7 +9,7 @@ this.named_rf_estoc <- ::inherit("scripts/items/weapons/named/named_weapon", {
 		this.m.NameList = ::Const.Strings.FencingSwordNames;
 		this.m.Description = "A well-forged estoc requires length and strength while remaining light enough to be quick and nimble in the hand. This blade is one of the finest examples you have ever laid eyes on.";
 		this.m.Value = 4200;
-		this.m.BaseWeaponScript = "scripts/items/weapons/rf_estoc";
+		this.m.BaseItemScript = "scripts/items/weapons/rf_estoc";
 		this.randomizeValues();
 	}
 

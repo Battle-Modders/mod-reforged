@@ -9,7 +9,7 @@ this.named_rf_battle_axe <- ::inherit("scripts/items/weapons/named/named_weapon"
 		this.m.NameList = ::Const.Strings.AxeNames;
 		this.m.Description = "A master smith has ensured that this axe sings as it swings, with pristine finishing to match.";
 		this.m.Value = 4000
-		this.m.BaseWeaponScript = "scripts/items/weapons/rf_battle_axe";
+		this.m.BaseItemScript = "scripts/items/weapons/rf_battle_axe";
 		this.randomizeValues();
 	}
 

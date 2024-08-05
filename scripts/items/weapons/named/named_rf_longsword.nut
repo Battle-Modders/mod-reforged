@@ -9,7 +9,7 @@ this.named_rf_longsword <- ::inherit("scripts/items/weapons/named/named_weapon",
 		this.m.NameList = ::Const.Strings.RF_LongswordNames;
 		this.m.Description = "This exquisite piece of craftsmanship has unrivaled quality. The blade sings as it swings through the air.";
 		this.m.Value = 4000;
-		this.m.BaseWeaponScript = "scripts/items/weapons/longsword";
+		this.m.BaseItemScript = "scripts/items/weapons/longsword";
 		this.randomizeValues();
 	}
 

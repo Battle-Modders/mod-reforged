@@ -1,4 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_weapon", function(q) {
+	q.getBaseItemFields = @(__original) function()
+	{
+		local ret = __original();
+		ret.push("Reach");
+		return ret;
+	}
+
 	q.onSerialize = @(__original) function( _out )
 	{
 		__original(_out);

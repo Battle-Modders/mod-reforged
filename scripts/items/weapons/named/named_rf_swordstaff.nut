@@ -9,7 +9,7 @@ this.named_rf_swordstaff <- ::inherit("scripts/items/weapons/named/named_weapon"
 		this.m.NameList = ::Const.Strings.SpetumNames;
 		this.m.Description = "A well-crafted Swordstaff as beautiful as it is deadly. This masterpiece would make a welcome addition to any mercenary company";
 		this.m.Value = 4200;
-		this.m.BaseWeaponScript = "scripts/items/weapons/rf_swordstaff";
+		this.m.BaseItemScript = "scripts/items/weapons/rf_swordstaff";
 		this.randomizeValues();
 	}
 

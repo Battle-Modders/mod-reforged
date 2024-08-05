@@ -1,10 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_shamshir", function(q) {
-	q.create = @(__original) function()
-	{
-		this.m.BaseWeaponScript = "scripts/items/weapons/shamshir";
-		__original();
-		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.RF_Southern;
-	}
+	q.m.BaseItemScript = "scripts/items/weapons/shamshir";
 
 	q.onEquip = @() function()
 	{

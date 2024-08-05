@@ -1,10 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_fencing_sword", function(q) {
-	q.create = @(__original) function()
-	{
-		this.m.BaseWeaponScript = "scripts/items/weapons/fencing_sword";
-		__original();
-		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.RF_Fencing;
-	}
+	q.m.BaseItemScript = "scripts/items/weapons/fencing_sword";
 
 	q.onEquip = @() function()
 	{

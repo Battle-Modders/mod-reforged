@@ -1,9 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_skullhammer", function(q) {
-	q.create = @(__original) function()
-	{
-		this.m.BaseWeaponScript = "scripts/items/weapons/barbarians/skull_hammer";
-		__original();
-	}
+	q.m.BaseItemScript = "scripts/items/weapons/barbarians/skull_hammer";
 
 	q.onEquip = @() function()
 	{
