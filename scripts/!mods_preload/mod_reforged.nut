@@ -94,7 +94,7 @@ foreach (requirement in requiredMods)
 
 	::Reforged.Mod.Debug.setFlag("ai", false);
 
-	::include("mod_reforged/hooks/msu.nut");
+	::include("mod_reforged/hooks/misc.nut");
 	::include("mod_reforged/ui/load.nut");
 
 	local function requireSettingValue( _setting, _value )
