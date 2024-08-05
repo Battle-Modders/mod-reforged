@@ -19,8 +19,9 @@
 		return ret;
 	}
 
-	q.onUpdateProperties = @( _properties )
+	q.onUpdateProperties = @(__original) function( _properties )
 	{
+		__original(_properties);
 		_properties.Threat += 10;
 	}
 });
