@@ -1,4 +1,8 @@
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
+	q.onSkillsUpdated <- function()
+	{
+	}
+
 	q.isDuelistValid <- function()
 	{
 		return this.isAttack() && !this.isRanged() && !this.isAOE() && this.getBaseValue("MaxRange") == 1;

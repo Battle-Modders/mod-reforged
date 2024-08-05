@@ -19,4 +19,31 @@
 			t[_attacker.getFaction()][_attacker.getID()] += damage;
 		}
 	}
+
+	q.update = @(__original) function()
+	{
+		__original();
+		if (!this.m.IsUpdating && this.getActor().isAlive())
+			this.onSkillsUpdated();
+	}
+
+	q.onSkillsUpdated <- function()
+	{
+		this.callSkillsFunctionWhenAlive("onSkillsUpdated", null, false);
+
+		local shouldUpdate = this.m.SkillsToAdd.len() > 0;
+		if (!shouldUpdate)
+		{
+			foreach (skill in this.m.Skills)
+			{
+				if (skill.isGarbage())
+				{
+					shouldUpdate = true;
+					break;
+				}
+			}
+		}
+
+		if (shouldUpdate) this.update();
+	}
 });
