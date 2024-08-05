@@ -28,7 +28,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
-		if (!::MSU.isEqual(this.getContainer().getActor(), ::MSU.isDummyPlayer()))
+		if (!::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
 		{
 			ret.push({
 				id = 10,

@@ -22,7 +22,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 	{
 		local ret = this.rf_swordmaster_stance_abstract_skill.getTooltip();
 
-		if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.isDummyPlayer()))
+		if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
 		{
 			ret.push({
 				id = 10,
