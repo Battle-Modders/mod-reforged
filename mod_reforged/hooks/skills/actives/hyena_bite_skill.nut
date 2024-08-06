@@ -1,4 +1,4 @@
-::Reforged.HooksMod.hook("scripts/skills/actives/hyena_bite", function(q) {
+::Reforged.HooksMod.hook("scripts/skills/actives/hyena_bite_skill", function(q) {
 	q.create = @(__original) function()
 	{
 		__original();
