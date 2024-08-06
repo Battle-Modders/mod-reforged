@@ -1,4 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/line_breaker", function(q) {
+	q.create = @(__original) function()
+	{
+		__original();
+		// Vanilla is missing a description for this skill
+		this.m.Description = "Shove them out of your way and move forward, breaking their ranks.";
+	}
+
 	// Vanilla does not have a tooltip function for this skill.
 	q.getTooltip = @() function()
 	{
