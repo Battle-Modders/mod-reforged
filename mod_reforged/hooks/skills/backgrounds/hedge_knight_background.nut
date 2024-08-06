@@ -47,4 +47,26 @@
 				return _collection.getMin() + 1;
 		}
 	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Has access to the [Lone Wolf|Perk+perk_lone_wolf] [perk|Concept.Perk] at tier 1 of the perk tree")
+		});
+		return ret;
+	}
+
+	q.onBuildPerkTree <- function()
+	{
+		local perkTree = this.getContainer().getActor().getPerkTree();
+		if (perkTree.hasPerk("perk.lone_wolf"))
+		{
+			perkTree.removePerk("perk.lone_wolf");
+		}
+		perkTree.addPerk("perk.lone_wolf", 1);
+	}
 });
