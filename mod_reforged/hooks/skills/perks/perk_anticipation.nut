@@ -45,7 +45,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "The chance is [increased|Concept.StackAdditively] by " + ::MSU.Text.colorizePercentage(this.m.ChancePerTile) " + for every tile between the attacker and you"
+				text = "The chance is [increased|Concept.StackAdditively] by " + ::MSU.Text.colorizeValue(this.m.ChancePerTile, {AddSign = true, AddPercent = true}) " + for every tile between the attacker and you"
 			});
 		}
 
