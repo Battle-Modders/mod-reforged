@@ -57,7 +57,7 @@
 		if (pool.len() == 0)
 			return;
 
-		for (local i = 0; i < this.m.NumTroopsToRecoverBeforeCombat && this.m.Troops.len() < this.m.NumTroopsMax; i++)
+		for (local i = 0; i < this.m.NumTroopsToRecoverBeforeCombat && this.m.Troops.len() <= this.m.NumTroopsMax; i++)
 		{
 			::Const.World.Common.addTroop(this, { Type = pool.roll() }, false);
 		}
