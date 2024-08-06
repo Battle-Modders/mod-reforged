@@ -40,5 +40,7 @@
 	}
 
 	q.onBeforeCombatStarted = @() function()
-	{}
+	{
+		this.location.onBeforeCombatStarted();
+	}
 });
