@@ -21,7 +21,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Can only be used once every " + ::MSU.Text.colorRed(3) + " turns");
+				text = ::Reforged.Mod.Tooltips.parseString("Can only be used once every " + ::MSU.Text.colorRed(3) + " turns")
 			}
 		]);
 		return ret;
