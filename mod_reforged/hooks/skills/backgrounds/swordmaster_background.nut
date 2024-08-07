@@ -9,6 +9,7 @@
 			"pg.rf_vigorous": 0.25,
 			"pg.rf_tactician": 2,
 
+			"pg.special.rf_professional": 0,
 			"pg.special.rf_fencer": -1
 		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
@@ -74,17 +75,5 @@
 			}));
 		}
 		return __original();
-	}
-
-	q.onBuildPerkTree <- function()
-	{
-		local perkTree = this.getContainer().getActor().getPerkTree();
-		local perksToRemove = [
-			"perk.rf_professional"
-		];
-		foreach (perk in perksToRemove)
-		{
-			if (perkTree.hasPerk(perk)) perkTree.removePerk(perk);
-		}
 	}
 });
