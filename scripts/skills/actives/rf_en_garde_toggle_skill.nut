@@ -1,7 +1,10 @@
 this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsOn = true,
-		FatigueRequired = 15
+		FatigueRequired = 15,
+		ReturnFavorSounds = [
+			"sounds/combat/return_favor_01.wav"
+		]
 	},
 	function create()
 	{
@@ -10,9 +13,6 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Toggle your [En Garde|Perk+perk_rf_en_garde] perk to be enabled or disabled.");
 		this.m.Icon = "skills/rf_en_garde_toggle_on.png";
 		this.m.IconDisabled = "skills/rf_en_garde_toggle_sw.png";
-		this.m.ReturnFavorSounds <- [
-			"sounds/combat/return_favor_01.wav"
-		];
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
@@ -20,6 +20,15 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsIgnoredAsAOO = true;
 		this.m.ActionPointCost = 0;
 		this.m.FatigueCost = 0;
+	}
+
+	function addResources()
+	{
+		this.skill.addResources();
+		foreach (r in this.m.ReturnFavorSounds)
+		{
+			::Tactical.addResource(r);
+		}
 	}
 
 	function getTooltip()
