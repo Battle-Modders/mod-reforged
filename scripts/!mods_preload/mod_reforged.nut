@@ -6,6 +6,7 @@
 	ItemTable = {},
 	QueueBucket = {
 		Late = [],
+		Verylate = [], // For experimental modules only
 		AfterHooks = [],
 		FirstWorldInit = []
 	}
@@ -138,6 +139,13 @@ foreach (requirement in requiredMods)
 		func();
 	}
 }, ::Hooks.QueueBucket.Late);
+
+::Reforged.HooksMod.queue(queueLoadOrder, function() {
+	foreach (func in ::Reforged.QueueBucket.VeryLate)
+	{
+		func();
+	}
+}, ::Hooks.QueueBucket.VeryLate);
 
 ::Reforged.HooksMod.queue(queueLoadOrder, function() {
 	foreach (func in ::Reforged.QueueBucket.AfterHooks)
