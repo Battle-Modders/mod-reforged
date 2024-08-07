@@ -152,7 +152,7 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 		}
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon != null)

@@ -63,7 +63,7 @@ this.rf_skeleton_light_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 		}
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)

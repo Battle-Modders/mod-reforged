@@ -49,9 +49,9 @@ this.rf_skeleton_medium_elite_polearm <- ::inherit("scripts/entity/tactical/enem
 		}
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
-		this.skeleton.onSetupEntity();
+		this.skeleton.onSpawned();
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{

@@ -119,7 +119,7 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null && !mainhandItem.isItemType(::Const.Items.ItemType.RangedWeapon)) // Rolled and equipped melee weapon. Did not roll throwing.
