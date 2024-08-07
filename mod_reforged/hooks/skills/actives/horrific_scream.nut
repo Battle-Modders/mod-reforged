@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target receives " + ::MSU.Text.colorRed(4) " + mental [morale checks|Concept.Morale]")
+			text = ::Reforged.Mod.Tooltips.parseString("The target receives " + ::MSU.Text.colorNegative(4) " + mental [morale checks|Concept.Morale]")
 		});
 		return ret;
 	}

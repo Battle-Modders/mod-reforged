@@ -14,13 +14,13 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target receives a negative mental [morale check|Concept.Morale] with a " + ::MSU.Text.colorRed(-15) + " penalty to [Resolve|Concept.Bravery]")
+			text = ::Reforged.Mod.Tooltips.parseString("The target receives a negative mental [morale check|Concept.Morale] with a " + ::MSU.Text.colorNegative(-15) + " penalty to [Resolve|Concept.Bravery]")
 		});
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target receives an additional mental [morale check|Concept.Morale] with a " + ::MSU.Text.colorRed(-5) " + penalty to [Resolve|Concept.Bravery]. If this [morale check|Concept.MoraleCheck] succeeds, the target gains the [Horrified|Skill+horrified_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("The target receives an additional mental [morale check|Concept.Morale] with a " + ::MSU.Text.colorNegative(-5) " + penalty to [Resolve|Concept.Bravery]. If this [morale check|Concept.MoraleCheck] succeeds, the target gains the [Horrified|Skill+horrified_effect] effect")
 		});
 		return ret;
 	}

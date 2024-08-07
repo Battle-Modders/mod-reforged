@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Can hit up to " + ::MSU.Text.colorGreen(3) + " targets")
+			text = ::Reforged.Mod.Tooltips.parseString("Can hit up to " + ::MSU.Text.colorPositive(3) + " targets")
 		});
 		ret.push({
 			id = 11,

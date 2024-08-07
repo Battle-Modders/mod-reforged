@@ -14,13 +14,13 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The targeted tiles gain miasma that lasts " + ::MSU.Text.colorGreen(3) + " [rounds|Concept.Round]")
+			text = ::Reforged.Mod.Tooltips.parseString("The targeted tiles gain miasma that lasts " + ::MSU.Text.colorPositive(3) + " [rounds|Concept.Round]")
 		});
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("All characters except the undead receive " + ::MSU.Text.colorRed(5) + " - " + ::MSU.Text.colorRed(10) + " damage when they end their [turn|Concept.Turn] in the miasma")
+			text = ::Reforged.Mod.Tooltips.parseString("All characters except the undead receive " + ::MSU.Text.colorNegative(5) + " - " + ::MSU.Text.colorNegative(10) + " damage when they end their [turn|Concept.Turn] in the miasma")
 		});
 		ret.push({
 			id = 12,

@@ -20,7 +20,7 @@
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Can only be used once every " + ::MSU.Text.colorRed(this.m.Cooldown) + " [turns|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("Can only be used once every " + ::MSU.Text.colorNegative(this.m.Cooldown) + " [turns|Concept.Turn]")
 		});
 		return ret;
 	}

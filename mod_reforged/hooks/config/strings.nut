@@ -1768,7 +1768,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Once per [turn,|Concept.Turn] the first use of your offhand item weighing less than " + ::MSU.Text.colorRed(10) + " costs no [Action Points.|Concept.ActionPoints]",
+				"Once per [turn,|Concept.Turn] the first use of your offhand item weighing less than " + ::MSU.Text.colorNegative(10) + " costs no [Action Points.|Concept.ActionPoints]",
 				"When equipped with a net, gain the [Trip Artist|NullEntitySkill+rf_trip_artist_effect] effect."
 			]
 		}]

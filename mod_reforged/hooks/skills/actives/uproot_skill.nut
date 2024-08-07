@@ -15,7 +15,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Will attack up to " + ::MSU.Text.colorGreen(3) + " targets in a straight line")
+				text = ::Reforged.Mod.Tooltips.parseString("Will attack up to " + ::MSU.Text.colorPositive(3) + " targets in a straight line")
 			},
 			{
 				id = 11,

@@ -17,7 +17,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "When hit while having at least " + ::MSU.Text.colorGreen(this.m.SpawnSaplingConditionThreshold) + " durability, spawns a small " + ::Const.Strings.EntityName[::Const.EntityType.Schrat] + " on an adjacent tile, losing " + ::MSU.Text.colorNegative(this.m.SpawnSaplingConditionLoss) + " points of durability"
+			text = "When hit while having at least " + ::MSU.Text.colorPositive(this.m.SpawnSaplingConditionThreshold) + " durability, spawns a small " + ::Const.Strings.EntityName[::Const.EntityType.Schrat] + " on an adjacent tile, losing " + ::MSU.Text.colorNegative(this.m.SpawnSaplingConditionLoss) + " points of durability"
 		});
 		return ret;
 	}

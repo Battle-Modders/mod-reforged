@@ -16,7 +16,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Built [Fatigue|Concept.Fatigue] is reduced by " + ::MSU.Text.colorGreen("15") + " when this effect is received")
+			text = ::Reforged.Mod.Tooltips.parseString("Built [Fatigue|Concept.Fatigue] is reduced by " + ::MSU.Text.colorPositive("15") + " when this effect is received")
 		});
 		ret.push({
 			id = 20,

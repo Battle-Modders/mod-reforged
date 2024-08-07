@@ -14,7 +14,7 @@
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Can only be used once every " + ::MSU.Text.colorRed(this.m.Cooldown) + " [turns|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("Can only be used once every " + ::MSU.Text.colorNegative(this.m.Cooldown) + " [turns|Concept.Turn]")
 		});
 		if (this.getContainer().getActor().isEngagedInMelee())
 		{
@@ -22,7 +22,7 @@
 				id = 21,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Cannot be used when [engaged|Concept.ZoneOfControl] in melee"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used when [engaged|Concept.ZoneOfControl] in melee"))
 			});
 		}
 		return ret;

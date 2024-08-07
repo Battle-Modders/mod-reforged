@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target builds " + ::MSU.Text.colorRed("10") + " [fatigue|Concept.Fatigue]")
+			text = ::Reforged.Mod.Tooltips.parseString("The target builds " + ::MSU.Text.colorNegative("10") + " [fatigue|Concept.Fatigue]")
 		});
 		ret.push({
 			id = 11,

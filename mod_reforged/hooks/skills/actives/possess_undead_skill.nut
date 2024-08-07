@@ -22,7 +22,7 @@
 				id = 21,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorRed("Cannot be used when [engaged|Concept.ZoneOfControl] in melee"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used when [engaged|Concept.ZoneOfControl] in melee"))
 			});
 		}
 		return ret;
