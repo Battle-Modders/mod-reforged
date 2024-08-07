@@ -10,20 +10,20 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_battle_fervor"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_heartless"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_savage_strength"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_berserk"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_rf_heartless"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_savage_strength"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -113,7 +113,7 @@
 			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_man_of_steel"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
 		return true;
 	}
 

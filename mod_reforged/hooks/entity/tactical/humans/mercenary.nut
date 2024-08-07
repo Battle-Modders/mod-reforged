@@ -18,15 +18,15 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_fast_adaption"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
+		// this.m.Skills.add(::new("scripts/skills/actives/rotation")); // Replaced with perk
+		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
@@ -74,7 +74,7 @@
 				"weapons/rf_greatsword"
 			]);
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(::new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
 		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
@@ -85,20 +85,20 @@
 
 				if (r == 0)
 				{
-					this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
+					this.m.Items.equip(::new("scripts/items/shields/wooden_shield"));
 				}
 				else if (r == 1)
 				{
-					this.m.Items.equip(this.new("scripts/items/shields/heater_shield"));
+					this.m.Items.equip(::new("scripts/items/shields/heater_shield"));
 				}
 				else if (r == 2)
 				{
-					this.m.Items.equip(this.new("scripts/items/shields/kite_shield"));
+					this.m.Items.equip(::new("scripts/items/shields/kite_shield"));
 				}
 			}
 			else
 			{
-				this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
+				this.m.Items.equip(::new("scripts/items/tools/throwing_net"));
 			}
 		}
 
@@ -110,15 +110,15 @@
 
 				if (r == 1)
 				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
+					this.m.Items.addToBag(::new("scripts/items/weapons/throwing_axe"));
 				}
 				else if (r == 2)
 				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
+					this.m.Items.addToBag(::new("scripts/items/weapons/javelin"));
 				}
 				else if (r == 3)
 				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
+					this.m.Items.addToBag(::new("scripts/items/weapons/throwing_spear"));
 				}
 			}
 			else
@@ -127,11 +127,11 @@
 
 				if (r == 1)
 				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
+					this.m.Items.addToBag(::new("scripts/items/weapons/throwing_axe"));
 				}
 				else if (r == 2)
 				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
+					this.m.Items.addToBag(::new("scripts/items/weapons/javelin"));
 				}
 			}
 		}
@@ -142,47 +142,47 @@
 
 			if (r == 1)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/sellsword_armor"));
+				this.m.Items.equip(::new("scripts/items/armor/sellsword_armor"));
 			}
 			else if (r == 2)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/padded_leather"));
+				this.m.Items.equip(::new("scripts/items/armor/padded_leather"));
 			}
 			else if (r == 3)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/patched_mail_shirt"));
+				this.m.Items.equip(::new("scripts/items/armor/patched_mail_shirt"));
 			}
 			else if (r == 4)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/basic_mail_shirt"));
+				this.m.Items.equip(::new("scripts/items/armor/basic_mail_shirt"));
 			}
 			else if (r == 5)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/mail_shirt"));
+				this.m.Items.equip(::new("scripts/items/armor/mail_shirt"));
 			}
 			else if (r == 6)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/reinforced_mail_hauberk"));
+				this.m.Items.equip(::new("scripts/items/armor/reinforced_mail_hauberk"));
 			}
 			else if (r == 7)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/mail_hauberk"));
+				this.m.Items.equip(::new("scripts/items/armor/mail_hauberk"));
 			}
 			else if (r == 8)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/lamellar_harness"));
+				this.m.Items.equip(::new("scripts/items/armor/lamellar_harness"));
 			}
 			else if (r == 9)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/footman_armor"));
+				this.m.Items.equip(::new("scripts/items/armor/footman_armor"));
 			}
 			else if (r == 10)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/light_scale_armor"));
+				this.m.Items.equip(::new("scripts/items/armor/light_scale_armor"));
 			}
 			else if (r == 11)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/leather_scale_armor"));
+				this.m.Items.equip(::new("scripts/items/armor/leather_scale_armor"));
 			}
 		}
 		else
@@ -191,31 +191,31 @@
 
 			if (r == 2)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/padded_leather"));
+				this.m.Items.equip(::new("scripts/items/armor/padded_leather"));
 			}
 			else if (r == 3)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/patched_mail_shirt"));
+				this.m.Items.equip(::new("scripts/items/armor/patched_mail_shirt"));
 			}
 			else if (r == 4)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/basic_mail_shirt"));
+				this.m.Items.equip(::new("scripts/items/armor/basic_mail_shirt"));
 			}
 			else if (r == 5)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/mail_shirt"));
+				this.m.Items.equip(::new("scripts/items/armor/mail_shirt"));
 			}
 			else if (r == 6)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/reinforced_mail_hauberk"));
+				this.m.Items.equip(::new("scripts/items/armor/reinforced_mail_hauberk"));
 			}
 			else if (r == 7)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/mail_hauberk"));
+				this.m.Items.equip(::new("scripts/items/armor/mail_hauberk"));
 			}
 			else if (r == 8)
 			{
-				this.m.Items.equip(this.new("scripts/items/armor/lamellar_harness"));
+				this.m.Items.equip(::new("scripts/items/armor/lamellar_harness"));
 			}
 		}
 
@@ -244,7 +244,7 @@
 				]);
 			}
 
-			this.m.Items.equip(this.new(helmets[::Math.rand(1, helmets.len() - 1)]));
+			this.m.Items.equip(::new(helmets[::Math.rand(1, helmets.len() - 1)]));
 		}
 
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);

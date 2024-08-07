@@ -18,15 +18,15 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_southern");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert")); // Given conditionally
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced by perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
+		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert")); // Given conditionally
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_fast_adaption"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		// this.m.Skills.add(::new("scripts/skills/actives/rotation")); // Replaced by perk
+		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));

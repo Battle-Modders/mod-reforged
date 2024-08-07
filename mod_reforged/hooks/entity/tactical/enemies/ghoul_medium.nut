@@ -6,6 +6,6 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium + 1;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
 	}
 });

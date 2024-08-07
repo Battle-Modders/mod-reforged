@@ -33,20 +33,20 @@
 
 		// 	if (::World.getTime().Days >= 60)
 		// 	{
-		// 		this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
+		// 		this.m.Skills.add(::new("scripts/skills/perks/perk_head_hunter"));
 		// 		b.RangedDefense += 5;
 		// 	}
 		// }
 
-		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/actives/throw_dirt_skill"));
+		// this.m.Skills.add(::new("scripts/skills/actives/rotation")); // Replaced with perk
+		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
+		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 20)
 		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
+		// 	this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
 		// }
 	}
 

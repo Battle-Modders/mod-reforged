@@ -92,7 +92,7 @@
 		local r = ::Math.rand(1, 100);
 		if (r <= 40)
 		{
-			this.m.Items.equip(this.new("scripts/items/weapons/named/named_greatsword"));
+			this.m.Items.equip(::new("scripts/items/weapons/named/named_greatsword"));
 		}
 		else if (r <= 70)
 		{

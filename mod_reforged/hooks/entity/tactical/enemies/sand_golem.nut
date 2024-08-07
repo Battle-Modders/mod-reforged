@@ -25,15 +25,15 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.45;
 		this.setSpriteOffset("status_rooted", this.createVec(-4, 7));
-		this.m.Skills.add(this.new("scripts/skills/racial/golem_racial"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		this.m.Skills.add(this.new("scripts/skills/actives/merge_golem_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/throw_golem_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/headbutt_skill"));
+		this.m.Skills.add(::new("scripts/skills/racial/golem_racial"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
+		this.m.Skills.add(::new("scripts/skills/actives/merge_golem_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/throw_golem_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/headbutt_skill"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall + 1;

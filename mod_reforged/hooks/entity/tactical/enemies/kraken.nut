@@ -47,9 +47,9 @@
 
 		this.addDefaultStatusSprites();
 		this.setSpriteOffset("arrow", this.createVec(20, 190));
-		this.m.Skills.add(this.new("scripts/skills/actives/kraken_devour_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
+		this.m.Skills.add(::new("scripts/skills/actives/kraken_devour_skill"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
 		local myTile = this.getTile();
 
 		for( local i = 0; i < 8; i = ++i )

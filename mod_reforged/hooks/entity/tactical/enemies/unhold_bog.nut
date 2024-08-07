@@ -35,27 +35,27 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.65;
 		this.setSpriteOffset("status_rooted", this.createVec(-10, 16));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/racial/unhold_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/sweep_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/sweep_zoc_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/fling_back_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battering_ram"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_stalwart"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/racial/unhold_racial"));
+		this.m.Skills.add(::new("scripts/skills/actives/sweep_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/sweep_zoc_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/fling_back_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/unstoppable_charge_skill"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge;
 		b.RangedDefense += 10;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_rattle"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_dismantle", function(o) {
 			o.m.RequiredDamageType = null;
 			o.m.RequiredWeaponType = null;
 		}));
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_formidable_approach"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 	}
 });

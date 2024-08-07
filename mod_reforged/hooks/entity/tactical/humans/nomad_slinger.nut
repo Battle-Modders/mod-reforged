@@ -24,14 +24,14 @@
 			dirt.Alpha = ::Math.rand(150, 255);
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/actives/throw_dirt_skill"));
+		// this.m.Skills.add(::new("scripts/skills/actives/rotation")); // Replaced with perk
+		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 30)
 		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
+		// 	this.m.Skills.add(::new("scripts/skills/perks/perk_head_hunter"));
 		// }
 
 		// Reforged

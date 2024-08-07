@@ -37,10 +37,10 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.54;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
-		this.m.Skills.add(this.new("scripts/skills/actives/hyena_bite_skill"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/actives/hyena_bite_skill"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium - 1;

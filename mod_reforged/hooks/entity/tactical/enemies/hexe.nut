@@ -38,9 +38,9 @@
 		charm_hair.Visible = false;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
-		this.m.Skills.add(this.new("scripts/skills/actives/charm_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/hex_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/fake_drink_night_vision_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/charm_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/hex_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/fake_drink_night_vision_skill"));
 
 		// Reforged
 		b.RangedDefense += 10;

@@ -10,17 +10,17 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_finesse"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 	}
 
 	q.assignRandomEquipment = @() function()
@@ -108,7 +108,7 @@
 			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		return true;
 	}
 

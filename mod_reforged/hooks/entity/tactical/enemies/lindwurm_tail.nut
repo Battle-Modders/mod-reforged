@@ -52,16 +52,16 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.54;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
-		this.m.Racial = this.new("scripts/skills/racial/lindwurm_racial");
+		this.m.Racial = ::new("scripts/skills/racial/lindwurm_racial");
 		this.m.Skills.add(this.m.Racial);
-		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_big_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_split_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_zoc_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/move_tail_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
+		this.m.Skills.add(::new("scripts/skills/actives/tail_slam_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/tail_slam_big_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/tail_slam_split_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/tail_slam_zoc_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/move_tail_skill"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_reach_advantage"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;

@@ -18,9 +18,9 @@
 		this.getSprite("shield_icon").Saturation = 0.85;
 		this.getSprite("shield_icon").setBrightness(0.85);
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
 	}
 
 	q.assignRandomEquipment = @() function()

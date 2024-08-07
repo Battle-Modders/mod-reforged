@@ -19,27 +19,27 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_nomads");
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_devastating_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_fast_adaption"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_berserk"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
+		this.m.Skills.add(::new("scripts/skills/actives/throw_dirt_skill"));
+		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		//Reforged
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_calculated_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
@@ -76,7 +76,7 @@
 		if (ret)
 		{
 			this.m.Skills.removeByID("perk.reach_advantage");
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_skirmisher"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		}
 
 		return ret;

@@ -15,8 +15,8 @@
 		this.addDefaultStatusSprites();
 		// b.IsSpecializedInSwords = true;
 		// b.IsSpecializedInCrossbows = true;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
-		this.m.Skills.add(this.new("scripts/skills/actives/goblin_whip"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
+		this.m.Skills.add(::new("scripts/skills/actives/goblin_whip"));
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));

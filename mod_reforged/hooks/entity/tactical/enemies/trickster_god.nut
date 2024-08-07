@@ -28,13 +28,13 @@
 		this.setSpriteOffset("status_rooted", this.createVec(-10, 16));
 		this.setSpriteOffset("status_stunned", this.createVec(-32, 30));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/racial/trickster_god_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/teleport_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/gore_skill"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_stalwart"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/racial/trickster_god_racial"));
+		this.m.Skills.add(::new("scripts/skills/actives/teleport_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/gore_skill"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;

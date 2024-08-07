@@ -43,20 +43,20 @@
 		this.getSprite("socket").setBrush("bust_base_wildmen_01");
 		this.getSprite("dirt").setBrush("bust_glowing_eyes");
 		this.getSprite("dirt").Visible = true;
-		this.m.Skills.add(this.new("scripts/skills/actives/barbarian_fury_skill"));
-		this.m.Skills.add(this.new("scripts/skills/racial/trickster_god_racial"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/actives/barbarian_fury_skill"));
+		this.m.Skills.add(::new("scripts/skills/racial/trickster_god_racial"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battering_ram"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// Reforged
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_menacing"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_vigorous_assault"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 	}
 
 	q.onSetupEntity = @() function()

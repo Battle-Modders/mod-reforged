@@ -49,10 +49,10 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.setSpriteOffset("status_rooted", this.createVec(-5, -5));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/racial/ghost_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/ghastly_touch"));
-		this.m.Skills.add(this.new("scripts/skills/actives/horrific_scream"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+		this.m.Skills.add(::new("scripts/skills/racial/ghost_racial"));
+		this.m.Skills.add(::new("scripts/skills/actives/ghastly_touch"));
+		this.m.Skills.add(::new("scripts/skills/actives/horrific_scream"));
 
 		// Reforged
 		this.m.BaseProperties.IsAffectedByReach = false;

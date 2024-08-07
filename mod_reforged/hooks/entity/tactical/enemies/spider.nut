@@ -67,13 +67,13 @@
 		this.setSpriteOffset("status_stunned", this.createVec(0, -20));
 		this.setSpriteOffset("arrow", this.createVec(0, -20));
 		this.setSize(::Math.rand(70, 90) * 0.01);
-		this.m.Skills.add(this.new("scripts/skills/actives/spider_bite_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/web_skill"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/footwork")); // Replaced by perk
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		this.m.Skills.add(this.new("scripts/skills/racial/spider_racial"));
+		this.m.Skills.add(::new("scripts/skills/actives/spider_bite_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/web_skill"));
+		// this.m.Skills.add(::new("scripts/skills/actives/footwork")); // Replaced by perk
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_fast_adaption"));
+		this.m.Skills.add(::new("scripts/skills/racial/spider_racial"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall;
@@ -106,7 +106,7 @@
 
 		if (_tile != null && ::Math.rand(1, 100) <= 10)
 		{
-			local loot = this.new("scripts/items/loot/webbed_valuables_item");
+			local loot = ::new("scripts/items/loot/webbed_valuables_item");
 			loot.drop(_tile);
 		}
 	}

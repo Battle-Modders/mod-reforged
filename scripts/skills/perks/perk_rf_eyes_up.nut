@@ -34,7 +34,7 @@ this.perk_rf_eyes_up <- ::inherit("scripts/skills/skill", {
 	{
 		if (_targetEntity.isAlive() && !_targetEntity.isDying() && this.m.ActorsAppliedTo.find(_targetEntity.getID()) == null)
 		{
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/rf_eyes_up_effect"));
+			_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_eyes_up_effect"));
 			this.m.ActorsAppliedTo.push(_targetEntity.getID());
 		}
 

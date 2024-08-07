@@ -14,10 +14,10 @@
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		local head_frenzy = this.getSprite("head_frenzy");
 		head_frenzy.setBrush(this.getSprite("head").getBrush().Name + "_frenzy");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 
 		// Reforged
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 	}
 });

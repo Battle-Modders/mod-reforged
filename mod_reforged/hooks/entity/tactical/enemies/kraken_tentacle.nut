@@ -23,13 +23,13 @@
 		this.setSpriteOffset("status_rooted", this.createVec(5, 25));
 		this.setSpriteOffset("arrow", this.createVec(0, 25));
 		this.setSpriteOffset("status_stunned", this.createVec(0, 25));
-		this.m.Skills.add(this.new("scripts/skills/actives/kraken_move_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/kraken_bite_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/kraken_ensnare_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		this.m.Skills.add(::new("scripts/skills/actives/kraken_move_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/kraken_bite_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/kraken_ensnare_skill"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
 		::Tactical.getTemporaryRoster().add(this);
 
 		// Reforged

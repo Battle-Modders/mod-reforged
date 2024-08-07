@@ -50,13 +50,13 @@
 		this.setSpriteOffset("status_rooted", this.createVec(0, 15));
 		this.setSpriteOffset("status_stunned", this.createVec(-5, 30));
 		this.setSpriteOffset("arrow", this.createVec(-5, 30));
-		this.m.Skills.add(this.new("scripts/skills/actives/gorge_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/racial/lindwurm_racial"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		this.m.Skills.add(::new("scripts/skills/actives/gorge_skill"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/racial/lindwurm_racial"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_reach_advantage"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
 
 		if (this.m.Tail == null)
 		{

@@ -48,9 +48,9 @@
 			head.Saturation = body.Saturation;
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 
 		// Reforged
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_strength_in_numbers"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 	}
 });

@@ -29,11 +29,11 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 10));
-		this.m.Skills.add(this.new("scripts/skills/actives/sleep_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/nightmare_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/alp_teleport_skill"));
-		this.m.Skills.add(this.new("scripts/skills/racial/alp_racial"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		this.m.Skills.add(::new("scripts/skills/actives/sleep_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/nightmare_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/alp_teleport_skill"));
+		this.m.Skills.add(::new("scripts/skills/racial/alp_racial"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
 
 		//Reforged
 		this.m.BaseProperties.IsAffectedByReach = false;

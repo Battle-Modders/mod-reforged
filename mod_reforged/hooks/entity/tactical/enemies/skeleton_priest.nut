@@ -17,8 +17,8 @@
 		this.m.CurrentProperties = clone b;
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
-		this.m.Skills.add(this.new("scripts/skills/actives/horror_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/miasma_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/horror_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/miasma_skill"));
 
 		// Reforged
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_inspiring_presence", function(o) {

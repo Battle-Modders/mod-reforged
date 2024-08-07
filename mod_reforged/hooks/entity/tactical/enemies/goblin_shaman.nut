@@ -14,9 +14,9 @@
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.getSprite("head").setBrush("bust_goblin_02_head_01");
 		this.addDefaultStatusSprites();
-		this.m.Skills.add(this.new("scripts/skills/racial/goblin_shaman_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/root_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/insects_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/grant_night_vision_skill"));
+		this.m.Skills.add(::new("scripts/skills/racial/goblin_shaman_racial"));
+		this.m.Skills.add(::new("scripts/skills/actives/root_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/insects_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/grant_night_vision_skill"));
 	}
 });

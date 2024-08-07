@@ -63,7 +63,7 @@
 		this.setSpriteOffset("status_rooted", this.createVec(7, 10));
 		this.setSpriteOffset("status_stunned", this.createVec(0, -20));
 		this.setSpriteOffset("arrow", this.createVec(0, -20));
-		this.m.Skills.add(this.new("scripts/skills/actives/explode_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/explode_skill"));
 		this.spawnEffect();
 
 		//Reforged

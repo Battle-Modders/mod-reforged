@@ -221,17 +221,17 @@ this.rf_bandit_baron <- ::inherit("scripts/entity/tactical/human", {
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver)) // Sword/Cleaver hybrid
 				{
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_cleaver"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
 				}
 				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
 				{
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_spear"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_spear"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_tempo"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
 				}
 				else
 				{

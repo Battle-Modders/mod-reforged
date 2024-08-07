@@ -18,12 +18,12 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
+		this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(::new("scripts/skills/actives/rotation")); // Replaced with perk
+		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		b.RangedDefense += 10;

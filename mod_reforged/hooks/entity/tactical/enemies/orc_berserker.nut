@@ -58,15 +58,15 @@
 		body_rage.Alpha = 220;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.6;
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
-		this.m.Skills.add(this.new("scripts/skills/actives/charge"));
-		this.m.Skills.add(this.new("scripts/skills/effects/berserker_rage_effect"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/special/double_grip"));
+		this.m.Skills.add(::new("scripts/skills/actives/hand_to_hand_orc"));
+		this.m.Skills.add(::new("scripts/skills/actives/charge"));
+		this.m.Skills.add(::new("scripts/skills/effects/berserker_rage_effect"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battering_ram"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_berserk"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;

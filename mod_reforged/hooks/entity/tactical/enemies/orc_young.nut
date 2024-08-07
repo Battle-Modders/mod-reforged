@@ -45,16 +45,16 @@
 		body_blood.Visible = false;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
-		this.m.Skills.add(this.new("scripts/skills/actives/charge"));
+		this.m.Skills.add(::new("scripts/skills/special/double_grip"));
+		this.m.Skills.add(::new("scripts/skills/actives/hand_to_hand_orc"));
+		this.m.Skills.add(::new("scripts/skills/actives/charge"));
 
 		if (::Const.DLC.Unhold)
 		{
-			this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
+			this.m.Skills.add(::new("scripts/skills/actives/wake_ally_skill"));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+		this.m.Skills.add(::new("scripts/skills/effects/captain_effect"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;
@@ -69,7 +69,7 @@
 
 		if (::Math.rand(1, 100) <= 25)
 		{
-			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/orc_javelin"));
+			this.m.Items.addToBag(::new("scripts/items/weapons/greenskins/orc_javelin"));
 		}
 
 		if (::Math.rand(1, 100) <= 75)
@@ -80,11 +80,11 @@
 
 				if (r == 1)
 				{
-					weapon = this.new("scripts/items/weapons/greenskins/orc_axe");
+					weapon = ::new("scripts/items/weapons/greenskins/orc_axe");
 				}
 				else if (r == 2)
 				{
-					weapon = this.new("scripts/items/weapons/greenskins/orc_cleaver");
+					weapon = ::new("scripts/items/weapons/greenskins/orc_cleaver");
 				}
 			}
 			else
@@ -93,11 +93,11 @@
 
 				if (r == 1)
 				{
-					weapon = this.new("scripts/items/weapons/greenskins/orc_wooden_club");
+					weapon = ::new("scripts/items/weapons/greenskins/orc_wooden_club");
 				}
 				else if (r == 2)
 				{
-					weapon = this.new("scripts/items/weapons/greenskins/orc_metal_club");
+					weapon = ::new("scripts/items/weapons/greenskins/orc_metal_club");
 				}
 			}
 		}
@@ -107,15 +107,15 @@
 
 			// if (r == 1)
 			// {
-			// 	weapon = this.new("scripts/items/weapons/greenskins/goblin_falchion");
+			// 	weapon = ::new("scripts/items/weapons/greenskins/goblin_falchion");
 			// }
 			if (r == 1)
 			{
-				weapon = this.new("scripts/items/weapons/hatchet");
+				weapon = ::new("scripts/items/weapons/hatchet");
 			}
 			else
 			{
-				weapon = this.new("scripts/items/weapons/morning_star");
+				weapon = ::new("scripts/items/weapons/morning_star");
 			}
 		}
 
@@ -130,41 +130,41 @@
 
 		if (::Math.rand(1, 100) <= 50)
 		{
-			this.m.Items.equip(this.new("scripts/items/shields/greenskins/orc_light_shield"));
+			this.m.Items.equip(::new("scripts/items/shields/greenskins/orc_light_shield"));
 		}
 
 		r = ::Math.rand(1, 5);
 
 		if (r == 1)
 		{
-			this.m.Items.equip(this.new("scripts/items/armor/greenskins/orc_young_very_light_armor"));
+			this.m.Items.equip(::new("scripts/items/armor/greenskins/orc_young_very_light_armor"));
 		}
 		else if (r == 2)
 		{
-			this.m.Items.equip(this.new("scripts/items/armor/greenskins/orc_young_light_armor"));
+			this.m.Items.equip(::new("scripts/items/armor/greenskins/orc_young_light_armor"));
 		}
 		else if (r == 3)
 		{
-			this.m.Items.equip(this.new("scripts/items/armor/greenskins/orc_young_medium_armor"));
+			this.m.Items.equip(::new("scripts/items/armor/greenskins/orc_young_medium_armor"));
 		}
 		else if (r == 4)
 		{
-			this.m.Items.equip(this.new("scripts/items/armor/greenskins/orc_young_heavy_armor"));
+			this.m.Items.equip(::new("scripts/items/armor/greenskins/orc_young_heavy_armor"));
 		}
 
 		r = ::Math.rand(1, 4);
 
 		if (r == 1)
 		{
-			this.m.Items.equip(this.new("scripts/items/helmets/greenskins/orc_young_light_helmet"));
+			this.m.Items.equip(::new("scripts/items/helmets/greenskins/orc_young_light_helmet"));
 		}
 		else if (r == 2)
 		{
-			this.m.Items.equip(this.new("scripts/items/helmets/greenskins/orc_young_medium_helmet"));
+			this.m.Items.equip(::new("scripts/items/helmets/greenskins/orc_young_medium_helmet"));
 		}
 		else if (r == 3)
 		{
-			this.m.Items.equip(this.new("scripts/items/helmets/greenskins/orc_young_heavy_helmet"));
+			this.m.Items.equip(::new("scripts/items/helmets/greenskins/orc_young_heavy_helmet"));
 		}
 	}
 

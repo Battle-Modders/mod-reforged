@@ -117,7 +117,7 @@
 
 					if (!nextTrait)
 					{
-						traits.push(this.new(trait[1]));
+						traits.push(::new(trait[1]));
 						break;
 					}
 				}

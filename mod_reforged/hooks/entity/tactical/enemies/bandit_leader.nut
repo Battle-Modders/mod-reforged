@@ -25,13 +25,13 @@
 		this.getSprite("shield_icon").Saturation = 0.85;
 		this.getSprite("shield_icon").setBrightness(0.85);
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_onslaught"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
@@ -187,17 +187,17 @@
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver)) // Sword/Cleaver hybrid
 				{
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_cleaver"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_sword"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
 				}
 				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) // Sword/Spear hybrid
 				{
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_spear"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_tempo"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_en_garde"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_spear"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_tempo"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
 				}
 				else
 				{
@@ -222,7 +222,7 @@
 		local offhandItem = this.getOffhandItem();
 		if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 		}
 	}
 });

@@ -72,7 +72,7 @@ this.rf_vampire_lord <- ::inherit("scripts/entity/tactical/enemies/vampire", {
 
 		this.m.Items.equip(::new("scripts/items/weapons/named/named_crypt_cleaver"));
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 		return true;
 	}
 

@@ -16,8 +16,8 @@
 		body.setBrush("bust_hyena_0" + ::Math.rand(4, 6));
 		local head = this.getSprite("head");
 		head.setBrush("bust_hyena_0" + ::Math.rand(4, 6) + "_head");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));

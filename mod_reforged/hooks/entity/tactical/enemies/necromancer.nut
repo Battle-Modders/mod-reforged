@@ -15,8 +15,8 @@
 		this.getSprite("head").Color = this.createColor("#ffffff");
 		this.getSprite("head").Saturation = 1.0;
 		this.getSprite("body").Saturation = 0.6;
-		this.m.Skills.add(this.new("scripts/skills/actives/raise_undead"));
-		this.m.Skills.add(this.new("scripts/skills/actives/possess_undead_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/raise_undead"));
+		this.m.Skills.add(::new("scripts/skills/actives/possess_undead_skill"));
 
 		// Reforged
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_inspiring_presence", function(o) {

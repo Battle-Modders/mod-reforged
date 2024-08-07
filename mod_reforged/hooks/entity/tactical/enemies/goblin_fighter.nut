@@ -23,7 +23,7 @@
 		// 	{
 		// 		b.MeleeDefense += 5;
 		// 		b.RangedDefense += 5;
-		// 		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
+		// 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 
 		// 		if (::World.getTime().Days >= 90)
 		// 		{

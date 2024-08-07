@@ -21,7 +21,7 @@
 		this.m.CurrentProperties = clone b;
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_reach_advantage"));
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));

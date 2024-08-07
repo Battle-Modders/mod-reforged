@@ -30,16 +30,16 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.45;
 		this.setSpriteOffset("status_rooted", this.createVec(-4, 7));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/actives/ghoul_claws"));
-		this.m.Skills.add(this.new("scripts/skills/actives/gruesome_feast"));
-		this.m.Skills.add(this.new("scripts/skills/effects/gruesome_feast_effect"));
-		this.m.Skills.add(this.new("scripts/skills/actives/swallow_whole_skill"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/actives/ghoul_claws"));
+		this.m.Skills.add(::new("scripts/skills/actives/gruesome_feast"));
+		this.m.Skills.add(::new("scripts/skills/effects/gruesome_feast_effect"));
+		this.m.Skills.add(::new("scripts/skills/actives/swallow_whole_skill"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall + 1;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_deep_cuts"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_cuts"));
 	}
 
 	// switcheroo function to replace loot drops with dummy object
@@ -77,7 +77,7 @@
 
 		if (_tile != null && ::Math.rand(1, 100) <= chanceToRoll)
 		{
-			local loot = this.new("scripts/items/loot/growth_pearls_item");
+			local loot = ::new("scripts/items/loot/growth_pearls_item");
 			loot.drop(_tile);
 		}
 	}

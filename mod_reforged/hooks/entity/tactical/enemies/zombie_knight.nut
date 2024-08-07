@@ -20,9 +20,9 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_reach_advantage"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));

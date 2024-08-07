@@ -19,17 +19,17 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_fast_adaption"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_lone_wolf"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_reach_advantage"));
+		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
@@ -72,7 +72,7 @@
 				]);
 			}
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(::new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 60)
@@ -80,11 +80,11 @@
 			local shields = [
 				"shields/heater_shield"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
+			this.m.Items.equip(::new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 		// else
 		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+		// 	this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		// }
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
@@ -92,7 +92,7 @@
 			local armor = [
 				"armor/adorned_heavy_mail_hauberk"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + armor[::Math.rand(0, armor.len() - 1)]));
+			this.m.Items.equip(::new("scripts/items/" + armor[::Math.rand(0, armor.len() - 1)]));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
@@ -104,7 +104,7 @@
 				"helmets/adorned_full_helm",
 				"helmets/full_helm"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + helmet[::Math.rand(0, helmet.len() - 1)]));
+			this.m.Items.equip(::new("scripts/items/" + helmet[::Math.rand(0, helmet.len() - 1)]));
 		}
 
 		// Reforged
@@ -120,11 +120,11 @@
 
 		if (::Reforged.Items.isDuelistValid(weapon))
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		}
 		else
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_man_of_steel"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
 		}
 	}
 

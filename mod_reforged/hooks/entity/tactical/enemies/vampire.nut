@@ -100,12 +100,12 @@
 		body_dirt.Visible = ::Math.rand(1, 100) <= 33;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/racial/vampire_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/darkflight"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes")); // replaced by enemy cleaver perk group
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
+		this.m.Skills.add(::new("scripts/skills/special/double_grip"));
+		this.m.Skills.add(::new("scripts/skills/racial/vampire_racial"));
+		this.m.Skills.add(::new("scripts/skills/actives/darkflight"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes")); // replaced by enemy cleaver perk group
+		this.m.Skills.add(::new("scripts/skills/perks/perk_nine_lives"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;

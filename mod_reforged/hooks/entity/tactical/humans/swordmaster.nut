@@ -20,13 +20,13 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_finesse"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 
 		this.m.MyVariant = ::MSU.Table.randValue(this.m.SwordmasterVariants);
 
@@ -242,13 +242,13 @@
 	{
 		if (this.m.MyArmorVariant == 0) // light armor
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
 		}
 		else // medium armor
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_skirmisher"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_poise"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
 		}
 
 		local mainhandItem = this.getMainhandItem();
@@ -259,8 +259,8 @@
 			{
 				case this.m.SwordmasterVariants.BladeDancer:
 					this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_exploit_opening"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
 
 					switch (mainhandItem.getID())
 					{
@@ -279,20 +279,20 @@
 					break;
 
 				case this.m.SwordmasterVariants.Metzger:
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_metzger"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_metzger"));
 					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
 					break;
 
 				case this.m.SwordmasterVariants.Precise:
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_fencer"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_precise"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_fencer"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_precise"));
 					break;
 
 				case this.m.SwordmasterVariants.Reaper:
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_death_dealer"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_swordmaster_reaper"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_sweeping_strikes"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_reaper"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 					break;
 			}
 		}
@@ -302,14 +302,14 @@
 			switch(this.m.MyVariant)
 			{
 				case this.m.SwordmasterVariants.Metzger:
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
 					break;
 
 				case this.m.SwordmasterVariants.BladeDancer:
 				case this.m.SwordmasterVariants.Versatile:
 				case this.m.SwordmasterVariants.Precise:
 				case this.m.SwordmasterVariants.Reaper:
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_pattern_recognition"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 					break;
 
 			}

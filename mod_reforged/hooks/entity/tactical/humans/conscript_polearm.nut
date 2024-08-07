@@ -15,12 +15,12 @@
 		}
 		else
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 		}
 	}
 
 	q.onSetupEntity = @() function()
 	{
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 	}
 });

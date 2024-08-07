@@ -32,18 +32,18 @@
 		this.addSprite("helmet_damage");
 		local body_blood = this.addSprite("body_blood");
 		body_blood.Visible = false;
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/footwork")); // Replaced with perk
+		this.m.Skills.add(::new("scripts/skills/effects/captain_effect"));
+		this.m.Skills.add(::new("scripts/skills/special/double_grip"));
+		this.m.Skills.add(::new("scripts/skills/actives/hand_to_hand"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(::new("scripts/skills/actives/footwork")); // Replaced with perk
 
 		if (::Const.DLC.Unhold)
 		{
-			this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
+			this.m.Skills.add(::new("scripts/skills/actives/wake_ally_skill"));
 		}
 
 		// Reforged
@@ -59,7 +59,7 @@
 			local loot = null;
 			if (this.isKindOf(this, "goblin_leader") || this.isKindOf(this, "goblin_shaman") || this.m.IsMiniboss)
 			{
-				loot = this.new("scripts/items/loot/goblin_rank_insignia_item.nut");
+				loot = ::new("scripts/items/loot/goblin_rank_insignia_item.nut");
 				loot.drop(_tile);
 			}
 			else

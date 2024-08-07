@@ -38,9 +38,9 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.58;
 		this.setSpriteOffset("status_rooted", this.createVec(-6, -29));
-		this.m.Skills.add(this.new("scripts/skills/actives/wolf_bite"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
+		this.m.Skills.add(::new("scripts/skills/actives/wolf_bite"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
 
 		//Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium - 1;

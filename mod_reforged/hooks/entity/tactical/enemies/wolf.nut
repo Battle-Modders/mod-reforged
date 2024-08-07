@@ -40,11 +40,11 @@
 		this.setSpriteOffset("status_rooted", this.createVec(-6, -39));
 		this.setSpriteOffset("status_stunned", this.createVec(-10, -40));
 		this.setSpriteOffset("arrow", this.createVec(-10, -40));
-		this.m.Skills.add(this.new("scripts/skills/actives/wolf_bite"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/actives/wolf_bite"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium - 1;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 	}
 });

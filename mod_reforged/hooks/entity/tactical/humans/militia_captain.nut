@@ -19,10 +19,10 @@
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_militia");
 		this.getSprite("accessory_special").setBrush("bust_militia_band_02");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert")); // given back conditionally (if shield)
-		// this.m.Skills.add(this.new("scripts/skills/actives/rally_the_troops")); // Replaced by perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
+		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert")); // given back conditionally (if shield)
+		// this.m.Skills.add(::new("scripts/skills/actives/rally_the_troops")); // Replaced by perk
+		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rally_the_troops", function(o) {

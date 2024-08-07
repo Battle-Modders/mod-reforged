@@ -53,15 +53,15 @@
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
-		this.m.Skills.add(this.new("scripts/skills/racial/schrat_racial"));
-		this.m.Skills.add(this.new("scripts/skills/effects/rf_sapling_harvest_effect"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/actives/grow_shield_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/uproot_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/uproot_zoc_skill"));
+		this.m.Skills.add(::new("scripts/skills/racial/schrat_racial"));
+		this.m.Skills.add(::new("scripts/skills/effects/rf_sapling_harvest_effect"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/actives/grow_shield_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/uproot_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/uproot_zoc_skill"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge + 1;

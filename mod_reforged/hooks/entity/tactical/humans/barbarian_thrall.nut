@@ -29,21 +29,21 @@
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_wildmen_01");
-		this.m.Skills.add(this.new("scripts/skills/actives/barbarian_fury_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_adrenalin"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/actives/barbarian_fury_skill"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_adrenalin"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
+		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 20)
 		// {
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 		// }
 
 		// Reforged
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rf_survival_instinct"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}
 
 	q.assignRandomEquipment = @(__original) function()

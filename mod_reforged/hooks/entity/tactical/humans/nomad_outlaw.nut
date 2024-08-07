@@ -46,18 +46,18 @@
 		// 	}
 		// }
 
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-		this.m.Skills.add(this.new("scripts/skills/actives/throw_dirt_skill"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		// this.m.Skills.add(this.new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
+		this.m.Skills.add(::new("scripts/skills/actives/throw_dirt_skill"));
+		// this.m.Skills.add(::new("scripts/skills/actives/rotation")); // Replaced with perk
+		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 40)
 		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
+		// 	this.m.Skills.add(::new("scripts/skills/effects/dodge_effect"));
 		// }
 
 		// Reforged

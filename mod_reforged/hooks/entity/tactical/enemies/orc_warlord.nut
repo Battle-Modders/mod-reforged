@@ -46,17 +46,17 @@
 		this.setSpriteOffset("status_rooted", this.createVec(0, 16));
 		this.setSpriteOffset("status_stunned", this.createVec(-5, 30));
 		this.setSpriteOffset("arrow", this.createVec(-5, 30));
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
-		this.m.Skills.add(this.new("scripts/skills/actives/warcry"));
-		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+		this.m.Skills.add(::new("scripts/skills/special/double_grip"));
+		this.m.Skills.add(::new("scripts/skills/actives/hand_to_hand_orc"));
+		this.m.Skills.add(::new("scripts/skills/actives/warcry"));
+		this.m.Skills.add(::new("scripts/skills/actives/line_breaker"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battering_ram"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_stalwart"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_bash"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+		this.m.Skills.add(::new("scripts/skills/effects/captain_effect"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;

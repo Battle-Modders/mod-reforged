@@ -38,15 +38,15 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.54;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
-		this.m.Skills.add(this.new("scripts/skills/actives/werewolf_bite"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/actives/werewolf_bite"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_berserk"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_from_all_sides", function(o) {
 			o.m.RequiredWeaponType = null;
 		}));

@@ -78,15 +78,15 @@
 		body_dirt.Visible = ::Math.rand(1, 100) <= 33;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
-		this.m.Skills.add(this.new("scripts/skills/racial/skeleton_racial"));
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
-		// this.m.Skills.add(this.new("scripts/skills/actives/rotation")); // Replaced with perk
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		this.m.Skills.add(::new("scripts/skills/racial/skeleton_racial"));
+		this.m.Skills.add(::new("scripts/skills/special/double_grip"));
+		this.m.Skills.add(::new("scripts/skills/actives/hand_to_hand"));
+		// this.m.Skills.add(::new("scripts/skills/actives/rotation")); // Replaced with perk
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;

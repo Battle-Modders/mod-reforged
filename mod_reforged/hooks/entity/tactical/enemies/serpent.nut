@@ -51,12 +51,12 @@
 		this.setSpriteOffset("status_rooted", this.createVec(-10, 20));
 		this.setSpriteOffset("status_stunned", this.createVec(-35, 20));
 		this.setSpriteOffset("arrow", this.createVec(0, 20));
-		this.m.Skills.add(this.new("scripts/skills/racial/serpent_racial"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber")); Replaced with ForceEnabled version
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-		this.m.Skills.add(this.new("scripts/skills/actives/serpent_hook_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/serpent_bite_skill"));
+		this.m.Skills.add(::new("scripts/skills/racial/serpent_racial"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber")); Replaced with ForceEnabled version
+		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
+		this.m.Skills.add(::new("scripts/skills/actives/serpent_hook_skill"));
+		this.m.Skills.add(::new("scripts/skills/actives/serpent_bite_skill"));
 		::Tactical.getTemporaryRoster().add(this);
 
 		// Reforged
@@ -88,7 +88,7 @@
 
 		if (_tile != null && ::Math.rand(1, 100) <= 15)
 		{
-			local loot = this.new("scripts/items/loot/rainbow_scale_item");
+			local loot = ::new("scripts/items/loot/rainbow_scale_item");
 			loot.drop(_tile);
 		}
 	}
