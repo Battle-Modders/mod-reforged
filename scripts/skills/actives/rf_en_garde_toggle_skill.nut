@@ -133,8 +133,19 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		this.m.IsOn = !this.m.IsOn;
-		this.m.Icon = this.m.IsOn ? "skills/rf_en_garde_toggle_on.png" : "skills/rf_en_garde_toggle_off.png";
+		this.setOnOff(!this.m.IsOn);
 		return true;
+	}
+
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		this.setOnOff(true);
+	}
+
+	function setOnOff( _onOrOff )
+	{
+		this.m.IsOn = _onOrOff;
+		this.m.Icon = _onOrOff ? "skills/rf_en_garde_toggle_on.png" : "skills/rf_en_garde_toggle_off.png";
 	}
 });
