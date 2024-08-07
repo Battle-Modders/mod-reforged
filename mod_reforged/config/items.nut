@@ -19,9 +19,6 @@
 
 	function getSkills( _item )
 	{
-		if (_item.isEquipped())
-			return _item.getSkills();
-
 		local copy = ::new(::IO.scriptFilenameByHash(_item.ClassNameHash));
 		local player = ::MSU.getDummyPlayer();
 		player.getItems().equip(copy);
