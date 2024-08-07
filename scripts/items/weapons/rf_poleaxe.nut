@@ -33,11 +33,13 @@ this.rf_poleaxe <- ::inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::Reforged.new("scripts/skills/actives/impale", function(o) {
-			o.m.Icon = "skills/rf_poleaxe_impale_skill.png";
-			o.m.IconDisabled = "skills/rf_poleaxe_impale_skill_sw.png";
-			o.m.Overlay = "rf_poleaxe_impale_skill";
-			o.m.IsIgnoredAsAOO = true;
+		this.addSkill(::Reforged.new("scripts/skills/actives/chop", function(o) {
+			o.m.Name = "Hew";
+			o.m.ActionPointCost = 6;
+			o.m.FatigueCost = 15;
+			o.m.Icon = "skills/rf_poleaxe_hew_skill.png";
+			o.m.IconDisabled = "skills/rf_poleaxe_hew_skill_sw.png";
+			o.m.Overlay = "rf_poleaxe_hew_skill";
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/strike_skill", function(o) {
@@ -48,13 +50,11 @@ this.rf_poleaxe <- ::inherit("scripts/items/weapons/weapon", {
 			o.m.IsIgnoredAsAOO = true;
 		}));
 
-		this.addSkill(::Reforged.new("scripts/skills/actives/chop", function(o) {
-			o.m.Name = "Hew";
-			o.m.ActionPointCost = 6;
-			o.m.FatigueCost = 15;
-			o.m.Icon = "skills/rf_poleaxe_hew_skill.png";
-			o.m.IconDisabled = "skills/rf_poleaxe_hew_skill_sw.png";
-			o.m.Overlay = "rf_poleaxe_hew_skill";
+		this.addSkill(::Reforged.new("scripts/skills/actives/impale", function(o) {
+			o.m.Icon = "skills/rf_poleaxe_impale_skill.png";
+			o.m.IconDisabled = "skills/rf_poleaxe_impale_skill_sw.png";
+			o.m.Overlay = "rf_poleaxe_impale_skill";
+			o.m.IsIgnoredAsAOO = true;
 		}));
 	}
 });
