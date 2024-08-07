@@ -193,7 +193,7 @@
 		__original(_killer, _skill, _tile, _fatalityType);
 	}
 
-	q.onSetupEntity = @() function()
+	q.onSpawned = @() function()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)

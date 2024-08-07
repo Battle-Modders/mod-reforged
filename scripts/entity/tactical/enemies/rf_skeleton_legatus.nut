@@ -71,7 +71,7 @@ this.rf_skeleton_legatus <- ::inherit("scripts/entity/tactical/rf_skeleton_comma
 		return true;
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)

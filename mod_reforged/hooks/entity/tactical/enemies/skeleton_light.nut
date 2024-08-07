@@ -49,7 +49,7 @@
 		}
 	}
 
-	q.onSetupEntity = @() function()
+	q.onSpawned = @() function()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null && mainhandItem.isItemType(::Const.Items.ItemType.MeleeWeapon)) // melee weapon equipped

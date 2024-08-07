@@ -59,7 +59,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 	}
 
-	q.onSetupEntity = @() function()
+	q.onSpawned = @() function()
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 	}

@@ -35,7 +35,7 @@
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}
 
-	q.onSetupEntity = @() function()
+	q.onSpawned = @() function()
 	{
 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
