@@ -1,5 +1,6 @@
 this.perk_rf_dismemberment <- ::inherit("scripts/skills/skill", {
 	m = {
+		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
 		RequiredWeaponType = ::Const.Items.WeaponType.Axe,
 		HPDamageFractionPerMoraleCheck = 0.33,
 		MaxMoraleChecks = 3,
@@ -67,7 +68,7 @@ this.perk_rf_dismemberment <- ::inherit("scripts/skills/skill", {
 
 	function isSkillValid( _skill )
 	{
-		if (_skill.isRanged() || !_skill.isAttack())
+		if (_skill.isRanged() || !_skill.isAttack() || (this.m.RequiredDamageType != null && !_skill.getDamageType().contains(this.m.RequiredDamageType)))
 			return false;
 
 		if (this.m.RequiredWeaponType == null)

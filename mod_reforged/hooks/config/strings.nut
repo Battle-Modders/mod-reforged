@@ -1225,7 +1225,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Dismantle = ::UPD.getDescription({
 		Fluff = "Strip them of their protection while they still wear it!",
-		Requirement = "Axe",
+		Requirement = "Axe and Cutting Damage",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1236,7 +1236,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Dismemberment = ::UPD.getDescription({
 		Fluff = "Welcome to the chopping block!",
-		Requirement = "Axe",
+		Requirement = "Axe and Cutting Damage",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
