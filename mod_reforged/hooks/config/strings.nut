@@ -654,7 +654,7 @@ local vanillaDescriptions = [
 					"Skills build up " + ::MSU.Text.colorNegative("25%") + " less [Fatigue.|Concept.Fatigue]",
 					"The [Action Point|Concept.ActionPoints] cost of [Spearwall|Skill+spearwall] is reduced by " + ::MSU.Text.colorPositive("1") + ".",
 					"[Spearwall|Skill+spearwall] is no longer disabled once an opponent manages to overcome it. Instead, [Spearwall|Skill+spearwall] can still be used and continues to give free attacks on any further opponent attempting to enter the [Zone of Control|Concept.ZoneOfControl]",
-					"When starting your [turn|Concept.Turn] with a spear equipped, the first spear attack during your [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints] and builds no [Fatigue,|Concept.Fatigue] but deals " + ::MSU.Text.colorNegative("25%") + " reduced damage. Expires upon switching your weapon.",
+					"When starting your [turn|Concept.Turn] with a spear equipped, the first spear attack during your [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints] and builds no [Fatigue,|Concept.Fatigue] but deals " + ::MSU.Text.colorNegative("25%") + " less damage. Expires upon switching your weapon.",
 					"The [Spetum|Item+spetum] and [Warfork|Item+warfork] no longer have a penalty for attacking targets directly adjacent."
 				]
 			}]
@@ -751,7 +751,7 @@ local vanillaDescriptions = [
 					"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
 					"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is greater than that of your target."
 					"[Brawny|Perk+perk_brawny] does not affect this perk.",
-					"Cannot be taken if you have [Poise.|Perk+perk_rf_poise]"
+					"Cannot be learned if you have [Poise.|Perk+perk_rf_poise]"
 
 				]
 			}]
@@ -1140,7 +1140,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Hits to the head with one-handed maces apply the [dazed|Skill+dazed_effect] effect for 1 [turn|Concept.Turn] and if the target is already [dazed,|Skill+dazed_effect] apply [stunned|Skill+stunned_effect] for one [turn.|Concept.Turn]",
+				"Hits to the head with one-handed maces [daze|Skill+dazed_effect] the target for 1 [turn|Concept.Turn] and if the target is already [dazed,|Skill+dazed_effect] [stun|Skill+stunned_effect] for one [turn instead.|Concept.Turn]",
 				"Hits to the head with two-handed maces [stun|Skill+stunned_effect] the target for 1 [turn.|Concept.Turn]"
 			]
 		}]
@@ -1461,12 +1461,12 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Ghostlike = ::UPD.getDescription({
 		Fluff = "Blink and you\'ll miss me.",
-		Requirement = "Total armor weight of 20 or less"
+		Requirement = "Total armor weight up to 20"
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When the number of adjacent allies is greater than or equal to the number of adjacent enemies, you may ignore [Zone of Control|Concept.ZoneOfControl] for your next movement action."
-				"When wielding a melee weapon with up to 4 [Reach|Concept.Reach] when you end your movement adjacent to an enemy, the next attack against that enemy deals " + ::MSU.Text.colorPositive("25%") + " more damage and " + ::MSU.Text.colorPositive("+20%") + " damage ignoring armor. This bonus expires upon using any action other than an attack."
+				"When wielding a melee weapon with up to 4 [Reach|Concept.Reach] when you end your movement adjacent to an enemy, the next attack against that enemy deals " + ::MSU.Text.colorPositive("25%") + " more damage and " + ::MSU.Text.colorPositive("+20%") + " damage ignoring armor. This bonus expires upon taking any action other than an attack."
 			]
 		}]
 	}),
@@ -1626,7 +1626,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"The [Action Point|Concept.ActionPoints] cost of spear attacks is reduced by " + ::MSU.Text.colorPositive(1) + ".",
-				"During your [turn,|Concept.Turn] the first attack from a spear deals " + ::MSU.Text.colorPositive("25%") + " increased damage."
+				"During your [turn,|Concept.Turn] the first attack from a spear deals " + ::MSU.Text.colorPositive("25%") + " more damage."
 			]
 		}]
 	}),
@@ -1675,7 +1675,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
 				"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is greater than that of your target."
 				"[Brawny|Perk+perk_brawny] does not affect this perk.",
-				"Cannot be taken if you have [Nimble.|Perk+perk_nimble]"
+				"Cannot be learned if you have [Nimble.|Perk+perk_nimble]"
 			]
 		}]
 	}),
@@ -2087,7 +2087,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				Description = [
 					"Gain the [Decapitate|Skill+decapitate] skill with swords.",
 					"Gain all the perks of the Cleaver perk group when using a sword. Swords now additionally qualify as Cleavers for the purposes of these perks.",
-					"Attacks from swords inflict [Bleeding|Skill+bleeding_effect] as if they were Cleavers."
+					"Attacks from swords inflict [Bleeding|Skill+bleeding_effect] on the target."
 				]
 			},
 			{
