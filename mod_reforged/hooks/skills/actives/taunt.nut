@@ -1,4 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/taunt", function(q) {
+	// This field is referenced in taunted_effect so if we change/delete it here we'll have to update that code too
 	q.m.DefenseModifierFraction <- 0.2;	// This percentage of the users resolve is removed from the targets defense
 	q.m.MaxRangeForDefenseDebuff <- 1;	// The target of your taunt must be at most this many tiles from you to receive the defense debuff
 

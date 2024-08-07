@@ -16,33 +16,47 @@
 	{
 		local ret = __original();
 
-		if (this.getTauntSource() != null)
+		if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
 		{
-			ret.push({
-				id = 9,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "This character has been taunted by " + ::MSU.Text.colorNegative(this.getTauntSource().getName())
-			});
-
-			if (this.getMeleeDefenseModifier() != 0)
+			local resolveFraction = ::new("scripts/skills/actives/taunt").m.DefenseModifierFraction;
+			if (resolveFraction != 0)
 			{
 				ret.push({
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getMeleeDefenseModifier()) + " [Melee Defense|Concept.MeleeDefense]")
+					text = ::Reforged.Mod.Tooltips.parseString("[Melee|Concept.MeleeDefense] and [Ranged|Concept.RangeDefense] defenses are reduced by " + ::MSU.Text.colorizePct(resolveFraction) + " of the [Taunter\'s|Skill+taunt] [Resolve|Concept.Bravery]")
 				});
 			}
-
-			if (this.getRangedDefenseModifier() != 0)
+		}
+		else
+		{
+			if (!::MSU.isNull(this.getTauntSource()))
 			{
 				ret.push({
-					id = 11,
+					id = 9,
 					type = "text",
-					icon = "ui/icons/ranged_defense.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getRangedDefenseModifier()) + " [Ranged Defense|Concept.RangeDefense]")
+					icon = "ui/icons/special.png",
+					text = "This character has been taunted by " + ::MSU.Text.colorNegative(this.getTauntSource().getName())
 				});
+				if (this.getMeleeDefenseModifier() != 0)
+				{
+					ret.push({
+						id = 10,
+						type = "text",
+						icon = "ui/icons/melee_defense.png",
+						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getMeleeDefenseModifier()) + " [Melee Defense|Concept.MeleeDefense]")
+					});
+				}
+				if (this.getRangedDefenseModifier() != 0)
+				{
+					ret.push({
+						id = 11,
+						type = "text",
+						icon = "ui/icons/ranged_defense.png",
+						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getRangedDefenseModifier()) + " [Ranged Defense|Concept.RangeDefense]")
+					});
+				}
 			}
 		}
 
