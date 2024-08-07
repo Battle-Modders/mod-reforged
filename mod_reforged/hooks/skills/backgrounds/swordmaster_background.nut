@@ -53,6 +53,18 @@
 		}
 	}
 
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Has the [Sword Mastery|Perk+perk_mastery_sword] perk permanently for free")
+		});
+		return ret;
+	}
+
 	q.onAdded = @(__original) function()
 	{
 		if (this.m.IsNew)
