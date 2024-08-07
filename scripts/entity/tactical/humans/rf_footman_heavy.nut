@@ -111,7 +111,7 @@ this.rf_footman_heavy <- ::inherit("scripts/entity/tactical/human" {
 		}
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon != null)

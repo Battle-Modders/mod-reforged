@@ -238,7 +238,7 @@
 		return true;
 	}
 
-	q.onSetupEntity <- function()
+	q.onSpawned = @() function()
 	{
 		if (this.m.MyArmorVariant == 0) // light armor
 		{

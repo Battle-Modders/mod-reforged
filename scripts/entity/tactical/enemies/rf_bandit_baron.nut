@@ -212,7 +212,7 @@ this.rf_bandit_baron <- ::inherit("scripts/entity/tactical/human", {
 		return true;
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)

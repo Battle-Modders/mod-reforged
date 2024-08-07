@@ -19,7 +19,7 @@
 		}
 	}
 
-	q.onSetupEntity = @() function()
+	q.onSpawned = @() function()
 	{
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 	}

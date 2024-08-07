@@ -240,10 +240,6 @@
 	{
 		this.m.IsWaitingTurn = _bool;
 	}
-
-	q.onSetupEntity <- function()
-	{
-	}
 });
 
 ::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {

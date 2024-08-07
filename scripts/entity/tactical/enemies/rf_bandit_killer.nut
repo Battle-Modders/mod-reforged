@@ -134,7 +134,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
 		if (this.m.HasNet)
 		{

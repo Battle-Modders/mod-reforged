@@ -59,7 +59,7 @@ this.rf_skeleton_heavy_lesser <- ::inherit("scripts/entity/tactical/skeleton", {
 		}
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
