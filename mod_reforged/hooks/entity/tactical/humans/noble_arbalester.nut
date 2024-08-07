@@ -60,7 +60,7 @@
 		}
 	}
 
-	q.onSetupEntity <- function()
+	q.onSpawned = @() function()
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon != null)

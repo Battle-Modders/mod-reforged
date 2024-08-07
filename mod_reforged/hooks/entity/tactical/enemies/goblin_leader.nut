@@ -22,7 +22,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 	}
 
-	q.onSetupEntity = @() function()
+	q.onSpawned = @() function()
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		::Reforged.Skills.addPerkGroup(this, "pg.rf_sword");

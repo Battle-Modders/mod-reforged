@@ -47,7 +47,7 @@ this.rf_skeleton_light_elite_polearm <- ::inherit("scripts/entity/tactical/enemi
 		}
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)

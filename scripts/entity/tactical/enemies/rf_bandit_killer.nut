@@ -135,7 +135,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
 		local offhand = this.getOffhandItem();
 		if (offhand != null && offhand.isItemType(::Const.Items.ItemType.Tool)) //rolled throwing net

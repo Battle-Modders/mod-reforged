@@ -56,9 +56,9 @@ this.rf_skeleton_decanus <- ::inherit("scripts/entity/tactical/rf_skeleton_comma
 		}
 	}
 
-	function onSetupEntity()
+	function onSpawned()
 	{
-		this.rf_skeleton_commander.onSetupEntity();
+		this.rf_skeleton_commander.onSpawned();
 		::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 4);
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_tempo"));
 	}

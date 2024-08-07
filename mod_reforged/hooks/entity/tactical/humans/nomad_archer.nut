@@ -50,7 +50,7 @@
 		// }
 	}
 
-	q.onSetupEntity = @() function()
+	q.onSpawned = @() function()
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}
