@@ -1,6 +1,9 @@
 ::Reforged.Items <- {
 	function isDuelistValid( _weapon )
 	{
+		if (!_weapon.isItemType(::Const.Items.ItemType.MeleeWeapon))
+			return false;
+
 		local function isSkillValid( _skill )
 		{
 			return _skill.getBaseValue("ActionPointCost") <= 4 && _skill.isDuelistValid();
