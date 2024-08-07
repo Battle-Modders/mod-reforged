@@ -42,7 +42,7 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/orientation/" + opponent.getOverlayImage() + ".png",
-				text = ::MSU.Text.colorPositive("+" + this.getBonus(opponent)) + " against " + opponent.getName()
+				text = ::MSU.Text.colorPositive("+" + this.getBonus(opponentID)) + " against " + opponent.getName()
 			});
 		}
 
