@@ -68,18 +68,7 @@
 	{
 		local perkTree = this.getContainer().getActor().getPerkTree();
 		local perksToRemove = [
-			"perk.rf_professional",
-			"perk.mastery.axe",
-			"perk.mastery.bow",
-			"perk.mastery.cleaver",
-			"perk.mastery.crossbow",
-			"perk.mastery.dagger",
-			"perk.mastery.flail",
-			"perk.mastery.hammer",
-			"perk.mastery.mace",
-			"perk.mastery.polearm",
-			"perk.mastery.spear",
-			"perk.mastery.throwing"
+			"perk.rf_professional"
 		];
 		foreach (perk in perksToRemove)
 		{
