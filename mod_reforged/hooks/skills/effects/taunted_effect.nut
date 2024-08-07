@@ -9,7 +9,7 @@
 
 	q.isHidden = @() function()
 	{
-		return this.getTauntSource() != null;
+		return ::MSU.isNull(this.getTauntSource());
 	}
 
 	q.getTooltip = @(__original) function()
