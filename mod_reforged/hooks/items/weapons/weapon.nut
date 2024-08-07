@@ -15,32 +15,6 @@
 			});
 		}
 
-		local skillsString = "";
-		if (::MSU.isNull(this.getContainer()))
-		{
-			local lastEquippedByFaction = this.m.LastEquippedByFaction;
-			::MSU.getDummyPlayer().getItems().equip(this);
-			foreach (skill in this.getSkills())
-			{
-				::MSU.NestedTooltips.setNestedSkillItem(this);
-				local name = ::Reforged.Mod.Tooltips.parseString(format("[%s|Skill+%s]", skill.getName(), split(::IO.scriptFilenameByHash(skill.ClassNameHash), "/").top()));
-				skillsString += format("- %s (%s, %s)\n", name, ::MSU.Text.colorPositive(skill.m.ActionPointCost), ::MSU.Text.colorNegative(skill.m.FatigueCost));
-			}
-			::MSU.getDummyPlayer().getItems().unequip(this);
-
-			this.m.LastEquippedByFaction = lastEquippedByFaction;
-		}
-
-		if (skillsString != "")
-		{
-			ret.push({
-				id = 20,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Skills: (" + ::MSU.Text.colorPositive("AP") + ", " + ::MSU.Text.colorNegative("Fatigue") + ")\n" + skillsString
-			});
-		}
-
 		if (this.m.WeaponType != ::Const.Items.WeaponType.None)
 		{
 			local masteries = "";
