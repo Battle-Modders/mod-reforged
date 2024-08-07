@@ -8,23 +8,15 @@
 
 		local ret = __original();
 		local skillsString = "";
-		if (::MSU.isNull(this.getContainer()))
+		foreach (skill in ::Reforged.Items.getSkills(this))
 		{
-			local lastEquippedByFaction = this.m.LastEquippedByFaction;
-			::MSU.NestedTooltips.setNestedSkillItem(this);
-			::MSU.getDummyPlayer().getItems().equip(this);
-			foreach (skill in this.getSkills())
-			{
-				local name = ::Reforged.Mod.Tooltips.parseString(format("[%s|Skill+%s]", skill.getName(), skill.ClassName));
-				skillsString += format("- %s (%s, %s)\n", name, ::MSU.Text.colorPositive(skill.m.ActionPointCost), ::MSU.Text.colorNegative(skill.m.FatigueCost));
-			}
-			::MSU.getDummyPlayer().getItems().unequip(this);
-
-			this.m.LastEquippedByFaction = lastEquippedByFaction;
+			local name = ::Reforged.Mod.Tooltips.parseString(format("[%s|Skill+%s]", skill.getName(), skill.ClassName));
+			skillsString += format("- %s (%s, %s)\n", name, ::MSU.Text.colorPositive(skill.m.ActionPointCost), ::MSU.Text.colorNegative(skill.m.FatigueCost));
 		}
 
 		if (skillsString != "")
 		{
+			::MSU.NestedTooltips.setNestedSkillItem(this);
 			ret.push({
 				id = 20,
 				type = "text",
