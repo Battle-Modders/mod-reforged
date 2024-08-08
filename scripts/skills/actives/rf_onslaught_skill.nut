@@ -36,13 +36,20 @@ this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
+			text = "Does not affect allies who are [fleeing,|Concept.Morale] [stunned,|Skill+stunned_effect] or [sleeping|Skill+sleeping_effect]"
+		});
+
+		ret.push({
+			id = 21,
+			type = "text",
+			icon = "ui/icons/warning.png",
 			text = "Cannot be used more than once per battle (company-wide)"
 		});
 
 		if (this.m.IsSpent)
 		{
 			ret.push({
-				id = 21,
+				id = 22,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorNegative("Has already been used by the company in this battle")

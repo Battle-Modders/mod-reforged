@@ -41,7 +41,7 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, the target is [stunned|Skill+stunned_effect] and you exchange positions with the target")
+			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, [stun|Skill+stunned_effect] and exchange positions with the target")
 		});
 
 		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())

@@ -33,11 +33,18 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Every ally within " + ::MSU.Text.colorPositive("4") + " tiles who has at least " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue] remaining and is not [stunned|Skill+stunned_effect] or [fleeing|Concept.Morale] will get the [Adrenaline|Skill+adrenaline_effect] effect and build " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue]")
+			text = ::Reforged.Mod.Tooltips.parseString("You and allies of your faction within " + ::MSU.Text.colorPositive("4") + " tiles who have at least " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue] remaining gain the [Adrenaline|Skill+adrenaline_effect] effect and build " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue]")
 		});
 
 		ret.push({
 			id = 20,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = "Does not affect allies who are [fleeing,|Concept.Morale] [stunned,|Skill+stunned_effect] or [sleeping|Skill+sleeping_effect]"
+		});
+
+		ret.push({
+			id = 21,
 			type = "text",
 			icon = "ui/icons/warning.png",
 			text = "Cannot be used more than once per day (company-wide)"
@@ -46,7 +53,7 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 		if (this.m.IsSpent)
 		{
 			ret.push({
-				id = 21,
+				id = 22,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::MSU.Text.colorNegative("Has already been used by the company this day")

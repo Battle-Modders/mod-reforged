@@ -37,7 +37,7 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 					id = 11,
 					type = "text",
 					icon = "ui/icons/ranged_skill.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Ranged Skill|Concept.RangedSkill]")
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Ranged Skill|Concept.RangeSkill]")
 				},
 				{
 					id = 12,

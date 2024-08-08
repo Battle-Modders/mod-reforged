@@ -24,7 +24,7 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Removes") + " all attack skills from the currently equipped sword and adds the [Stab|Skill+stab] and [Puncture|Skill+puncture] skills. The Stab skill does " + ::MSU.Text.colorNegative("50%") + " reduced damage")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Removes") + " all attack skills from the currently equipped sword and adds the [Stab|Skill+stab] and [Puncture|Skill+puncture] skills. The Stab skill deals " + ::MSU.Text.colorNegative("50%") + " reduced damage")
 		});
 
 		ret.push({

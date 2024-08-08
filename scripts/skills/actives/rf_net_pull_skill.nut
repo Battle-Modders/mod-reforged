@@ -4,7 +4,7 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_net_pull";
 		this.m.Name = "Net Pull";
-		this.m.Description = "Pull a target from 2 tiles away if there is space next to you. After being pulled, cast your net to pin down the target. A target can not be pulled up a level of height. Shieldwall, Spearwall and Riposte will be canceled for a successfully pulled target. A rooted target can not be pulled.";
+		this.m.Description = "Use your net to pull a target close and ensnare them.";
 		this.m.Icon = "skills/rf_net_pull_skill.png";
 		this.m.IconDisabled = "skills/rf_net_pull_skill_sw.png";
 		this.m.Overlay = "rf_net_pull_skill";
@@ -54,6 +54,12 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("The target will lose the [Shieldwall|Skill+shieldwall_effect], [Spearwall+Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
+		});
+		ret.push({
+			id = 15,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Will expend the currently held net"
 		});
 		return ret;
 	}

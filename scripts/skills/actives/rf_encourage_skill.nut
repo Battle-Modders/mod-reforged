@@ -51,7 +51,7 @@ this.rf_encourage_skill <- ::inherit("scripts/skills/skill", {
 				id = 16,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Can only be used on characters whose [morale|Concept.Morale] is lower than you per tile of distance they are away")
+				text = ::Reforged.Mod.Tooltips.parseString("Can only be used on characters who are of your faction and whose [morale|Concept.Morale] is lower than yours per tile of distance they are away")
 			}
 		]);
 

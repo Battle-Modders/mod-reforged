@@ -50,7 +50,7 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Will move to the targeted tile and attack a random adjacent enemy with " + ::MSU.Text.colorPositive((this.m.DamageMultBonus * 100) + "%") + " more damage"
+			text = "Will move to the targeted tile and attack a random adjacent enemy dealing " + ::MSU.Text.colorPositive((this.m.DamageMultBonus * 100) + "%") + " more damage"
 		});
 
 		ret.push({

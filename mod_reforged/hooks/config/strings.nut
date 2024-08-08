@@ -239,7 +239,7 @@ local vanillaDescriptions = [
 				Type = ::UPD.EffectType.Active,
 				Description = [
 					"Unlocks the [Rotation|Skill+rotation] skill which allows you to switch places with an adjacent allied character while ignoring [Zone of Control.|Concept.ZoneOfControl]",
-					"Does not work if either character is [stunned,|Skill+stunned_effect] [rooted|Skill+rooted_effect] or otherwise disabled."
+					"Cannot be used if either character is [stunned,|Skill+stunned_effect] [rooted|Skill+rooted_effect] or otherwise disabled."
 				]
 			}]
 		})
@@ -252,7 +252,7 @@ local vanillaDescriptions = [
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Reduce the [Hitpoint|Concept.Hitpoints] damage threshold for triggering [Morale Checks|Concept.Morale] with your attacks to 1.",
+					"The damage threshold for triggering [morale checks|Concept.Morale] with your attacks is reduced to 1.",
 					"These morale checks now have an additional penalty to [Resolve|Concept.Bravery] of " + ::MSU.Text.colorPositive("20%") + " of your [Resolve.|Concept.Resolve]"
 				]
 			}]
@@ -286,7 +286,7 @@ local vanillaDescriptions = [
 			Effects = [{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Unlocks the [Rally|Skill+rally_the_troops] skill which can raise [morale|Concept.Morale] of all nearby allies to a steady level.",
+					"Unlocks the [Rally|Skill+rally_the_troops] skill which can raise [morale|Concept.Morale] of all nearby allies of your faction to a steady level.",
 					"The higher the [Resolve|Concept.Bravery] of the character using this skill, the higher the chance to succeed."
 				]
 			}]
@@ -301,7 +301,7 @@ local vanillaDescriptions = [
 				Type = ::UPD.EffectType.Active,
 				Description = [
 					"Unlocks the [Adrenaline|Skill+adrenaline_skill] skill which puts you first in the [turn|Concept.Turn] order for the next [round,|Concept.Round] to have another [turn|Concept.Turn] before your enemies do.",
-					"Under the effects of [adrenaline|Skill+adrenaline_effect] you cannot receive and are not affected by [temporary injuries.|Concept.InjuryTemporary]"
+					"Under the effects of [Adrenaline|Skill+adrenaline_effect] you cannot receive and are not affected by [temporary injuries.|Concept.InjuryTemporary]"
 				]
 			}]
 		})
@@ -427,7 +427,7 @@ local vanillaDescriptions = [
 				{
 					Type = ::UPD.EffectType.Active,
 					Description = [
-						"Unlocks the [Indomitable|Skill+indomitable] skill that reduces incoming damage and grants immunity to being [culled,|Perk+perk_rf_cull] [stunned,|Skill+stunned_effect] knocked back or grabbed."
+						"Unlocks the [Indomitable|Skill+indomitable] skill that reduces incoming damage and grants immunity to being [stunned,|Skill+stunned_effect] knocked back or grabbed."
 					]
 				},
 				{
@@ -447,7 +447,7 @@ local vanillaDescriptions = [
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"With no adjacent ally of your faction, gain a " + ::MSU.Text.colorPositive("+15%") + " bonus to [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] [Melee Defense,|Concept.MeleeDefense] [Ranged Defense,|Concept.RangeDefense] and [Resolve.|Concept.Bravery]"
+					"When no ally of your faction is adjacent to you, gain a " + ::MSU.Text.colorPositive("15%") + " bonus to [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] [Melee Defense,|Concept.MeleeDefense] [Ranged Defense,|Concept.RangeDefense] and [Resolve.|Concept.Bravery]"
 				]
 			}]
 		})
@@ -534,11 +534,17 @@ local vanillaDescriptions = [
 					Type = ::UPD.EffectType.Passive,
 					Description = [
 						"Skills build up " + ::MSU.Text.colorNegative("25%") + " less [Fatigue.|Concept.Fatigue]",
-						"Unlocks the [Take Aim|Skill+rf_take_aim_skill] skill which allows you to target opponents behind obstacles with a [crossbow,|Item+crossbow] or hit more targets with a [handgonne.|Item+handgonne]"
 						"[Heavy crossbows|Item+heavy_crossbow] now require " + ::MSU.Text.colorNegative("4") + ", [Action Points|Concept.ActionPoints] to [reload,|Skill+reload_bolt] just like regular crossbows, allowing you to shoot, reload and move.",
 						"[Handgonnes|Item+handgonne] now require " + ::MSU.Text.colorNegative("6") + " [Action Points|Concept.ActionPoints] to [reload|Skill+reload_handgonne_skill] and can be fired every turn instead of every other turn."
 					]
-				}
+				},
+				{
+					Type = ::UPD.EffectType.Active,
+					Description = [
+						"Unlocks the [Take Aim|Skill+rf_take_aim_skill] skill which allows you to target opponents behind obstacles with a [crossbow|Item+crossbow] or hit more targets with a [handgonne.|Item+handgonne]"
+					]
+				},
+
 			]
 		})
 	},
@@ -648,7 +654,7 @@ local vanillaDescriptions = [
 					"Skills build up " + ::MSU.Text.colorNegative("25%") + " less [Fatigue.|Concept.Fatigue]",
 					"The [Action Point|Concept.ActionPoints] cost of [Spearwall|Skill+spearwall] is reduced by " + ::MSU.Text.colorPositive("1") + ".",
 					"[Spearwall|Skill+spearwall] is no longer disabled once an opponent manages to overcome it. Instead, [Spearwall|Skill+spearwall] can still be used and continues to give free attacks on any further opponent attempting to enter the [Zone of Control|Concept.ZoneOfControl]",
-					"When starting your [turn|Concept.Turn] with a spear equipped, the first spear attack during your [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints] and builds no [Fatigue,|Concept.Fatigue] but does " + ::MSU.Text.colorNegative("25%") + " less damage. Expires upon switching your weapon.",
+					"When starting your [turn|Concept.Turn] with a spear equipped, the first spear attack during your [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints] and builds no [Fatigue,|Concept.Fatigue] but deals " + ::MSU.Text.colorNegative("25%") + " less damage. Expires upon switching your weapon.",
 					"The [Spetum|Item+spetum] and [Warfork|Item+warfork] no longer have a penalty for attacking targets directly adjacent."
 				]
 			}]
@@ -673,9 +679,9 @@ local vanillaDescriptions = [
 				{
 					Type = ::UPD.EffectType.Active,
 					Description = [
-						"Unlocks the [Kata Step|Skill+rf_kata_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of movement.",
+						"Unlocks the [Kata Step|Skill+rf_kata_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost.",
 						"The target tile for the movement must be adjacent to an enemy.",
-						"Only works with Two-Handed swords or with One-Handed swords with the offhand free."
+						"Requires a two-handed sword or one-handed sword with the offhand free."
 					]
 				}
 			]
@@ -743,9 +749,9 @@ local vanillaDescriptions = [
 					"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorPositive("50%") + " and that to armor by " + ::MSU.Text.colorPositive("25%") + ".",
 					"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 15. The lighter your armor and helmet, the more you benefit.",
 					"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
-					"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is higher than that of your target."
+					"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is greater than that of your target."
 					"[Brawny|Perk+perk_brawny] does not affect this perk.",
-					"Cannot be picked if you have [Poise.|Perk+perk_rf_poise]"
+					"Cannot be learned if you have [Poise.|Perk+perk_rf_poise]"
 
 				]
 			}]
@@ -789,7 +795,7 @@ local vanillaDescriptions = [
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Swapping any item in battle a free action with no [Action Point|Concept.ActionPoints] cost once every [turn.|Concept.Turn]",
+					"Swapping any item in battle becomes a free action with no [Action Point|Concept.ActionPoints] cost once every [turn.|Concept.Turn]",
 					"Does not work when swapping a shield, or when swapping from one Two-Handed melee weapon to another Two-Handed melee weapon."
 				]
 			}]
@@ -800,6 +806,7 @@ local vanillaDescriptions = [
 		Key = "ShieldExpert",
 		Description = ::UPD.getDescription({
 			Fluff = "Learn to better deflect hits to the side instead of blocking them head on.",
+			Requirement = "Shield",
 			Effects = [
 				{
 					Type = ::UPD.EffectType.Passive,
@@ -840,8 +847,8 @@ local vanillaDescriptions = [
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Once per battle, upon receiving a killing blow, survive instead with a few hitpoints left and have all damage over time effects (e.g. bleeding, poisoned) cured.",
-					"When this effect triggeres, gain increased stats until your next turn"
+					"Once per battle, upon receiving a killing blow, survive instead with a few [Hitpoints|Concept.Hitpoints] left and have all damage over time effects (e.g. [bleeding|Skill+bleeding_effect], [poisoned|Skill+spider_poison_effect]) cured.",
+					"Upon triggering, gain increased [attributes|Concept.CharacterAttribute] until your next [turn.|Concept.Turn]"
 				]
 			}]
 		})
@@ -878,7 +885,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Angler = ::UPD.getDescription({
 		Fluff = "Throw nets in a way that perfectly billows around your targets.",
-		Requirement = "Net",
+		Requirement = "Throwing Net",
 		Effects = [
 			{
 				Type = ::UPD.EffectType.Passive,
@@ -900,7 +907,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"[Resolve|Concept.Bravery] is increased by " + ::MSU.Text.colorPositive("10%") + " at all times.",
-				"Additionally, at positive morale checks, [Resolve|Concept.Bravery] is increased by a further " + ::MSU.Text.colorPositive(10) + ".",
+				"Additionally, at positive morale checks, [Resolve|Concept.Bravery] is increased by a further " + ::MSU.Text.colorPositive("10%") + ".",
 				"When at Confident Morale, all the bonuses of this perk are doubled, and [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] [Melee Defense,|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] are increased by " + ::MSU.Text.colorPositive("5%") + "."
 			]
 		}]
@@ -982,7 +989,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Active,
 			Description = [
 				"Unlocks the [Between the Eyes|NullEntitySkill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head equal to " + ::MSU.Text.colorPositive("50%") + " of your [Melee Skill.|Concept.MeleeSkill]"
-				"The [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] Cost of your primary melee attack is added to the costs of this skill."
+				"The [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost of your primary melee attack is added to the costs of this skill."
 			]
 		}]
 	}),
@@ -1001,7 +1008,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Blitzkrieg|Skill+rf_blitzkrieg_skill] skill which allows you and the rest of your company to go first in the next round of combat."
+				"Unlocks the [Blitzkrieg|Skill+rf_blitzkrieg_skill] skill which allows you and the rest of your company to gain the [Adrenaline|Skill+adrenaline_effect] effect."
 			]
 		}]
 	}),
@@ -1084,7 +1091,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Attacks against characters with a lower [Morale|Concept.Morale] than you deal " + ::MSU.Text.colorPositive("10%") + " increased damage per level of [Morale|Concept.Morale] difference."
+				"Attacks against characters with a lower [morale|Concept.Morale] than you deal " + ::MSU.Text.colorPositive("10%") + " more damage per level of [morale|Concept.Morale] difference."
 			]
 		}]
 	}),
@@ -1121,7 +1128,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Using any skill that costs [Action Points,|Concept.ActionPoints] reduces the [Action Point|Concept.ActionPoints] cost of all other skills by " + ::MSU.Text.colorPositive("1") + " to a minimum of 3.",
+				"Using any skill that costs [Action Points|Concept.ActionPoints] reduces the [Action Point|Concept.ActionPoints] cost of all other skills by " + ::MSU.Text.colorPositive("1") + " to a minimum of 3.",
 				"The effect refreshes with each skill used.",
 				"Using [Wait|Concept.Wait] causes the effect to expire."
 			]
@@ -1133,8 +1140,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Hits to the head with one-handed maces apply the [Dazed|Skill+dazed_effect] effect for 1 [turn|Concept.Turn] and if the target is already [dazed,|Skill+dazed_effect] apply [Stunned|Skill+stunned_effect] for one [turn.|Concept.Turn]",
-				"Hits to the head with two-handed maces apply the [Stunned|Skill+stunned_effect] for 1 [turn.|Concept.Turn]"
+				"Hits to the head with one-handed maces [daze|Skill+dazed_effect] the target for 1 [turn|Concept.Turn] and if the target is already [dazed,|Skill+dazed_effect] [stun|Skill+stunned_effect] for one [turn|Concept.Turn] instead.",
+				"Hits to the head with two-handed maces [stun|Skill+stunned_effect] the target for 1 [turn.|Concept.Turn]"
 			]
 		}]
 	}),
@@ -1251,8 +1258,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"A successful hit increases the damage of your next attack(s) by " + ::MSU.Text.colorNegative("20%") + ".",
-				"The effect is lost upon moving, swapping an item, using any skill except a single-target attack, missing an attack, or waiting or ending your [turn.|Concept.Turn]"
+				"A successful hit increases the damage of your next attack by " + ::MSU.Text.colorNegative("20%") + ".",
+				"The effect is lost upon moving, swapping an item, using any skill except a single-target attack, missing an attack, or [waiting|Concept.Wait] or ending your [turn.|Concept.Turn]"
 			]
 		}]
 	}),
@@ -1338,7 +1345,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"Always start battles at Confident [morale.|Concept.Morale]",
-					::MSU.Text.colorPositive("50%") + " increased [Resolve|Concept.Resolve] against negative morale checks."
+					"[Resolve|Concept.Bravery] is increased by " + ::MSU.Text.colorPositive("50%") + " against negative [morale checks.|Concept.Morale]"
 				]
 			},
 			{
@@ -1377,7 +1384,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain stacking rage during combat. You gain 1 rage for getting hit, 3 for making a kill, and 2 for every successful hit against an adjacent target. You lose 3 rage at the start of every [turn.|Concept.Turn]",
+				"Gain stacking rage during combat. You gain 1 rage for getting hit, 3 for killing a target, and 2 for every successful hit against an adjacent target. You lose 3 rage at the start of every [turn.|Concept.Turn]",
 				"Each stack of rage increases [Resolve|Concept.Bravery] and [Initiative|Concept.Initiative] by " + ::MSU.Text.colorPositive("+2") + " and Melee Damage by " + ::MSU.Text.colorPositive("3%") + ". Each stack lowers [Melee Defense|Concept.MeleeDefense] by " + ::MSU.Text.colorNegative("-1") + " and lowers damage received by " + ::MSU.Text.colorPositive("3%") + ", up to a maximum of 70%."
 			]
 		}]
@@ -1418,7 +1425,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Gain " + ::MSU.Text.colorPositive("+1") + " [Reach.|Concept.Reach]",
-				"The bonus from each point of [Reach Advantage|Concept.ReachAdvantage] you have is increased by " + ::MSU.Text.colorPositive("+2") + ", without diminishing returns, against enemies in your [Zone of Control,|Concept.ZoneOfControl] until they hit you. After being hit this effect expires, but is reset if the [Zone of Control|Concept.ZoneOfControl] is broken."
+				"The bonus from each point of [Reach Advantage|Concept.ReachAdvantage] you have is increased by " + ::MSU.Text.colorPositive("+2") + ", without diminishing returns, against enemies in your [Zone of Control|Concept.ZoneOfControl] until they hit you. After being hit this effect expires, but is reset if the [Zone of Control|Concept.ZoneOfControl] is broken."
 			]
 		}]
 	}),
@@ -1459,7 +1466,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When the number of adjacent allies is greater than or equal to the number of adjacent enemies, you may ignore [Zone of Control|Concept.ZoneOfControl] for your next movement action."
-				"When wielding a melee weapon with up to 4 [Reach|Concept.Reach] when you end your movement adjacent to an enemy, the next attack against that enemy deals " + ::MSU.Text.colorPositive("25%") + " more damage and " + ::MSU.Text.colorPositive("+20%") + " damage ignoring armor. This bonus expires upon any action other than an attack."
+				"When wielding a melee weapon with up to 4 [Reach|Concept.Reach] when you end your movement adjacent to an enemy, the next attack against that enemy deals " + ::MSU.Text.colorPositive("25%") + " more damage and " + ::MSU.Text.colorPositive("+20%") + " damage ignoring armor. This bonus expires upon taking any action other than an attack."
 			]
 		}]
 	}),
@@ -1514,7 +1521,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Hold Steady|Skill+rf_hold_steady_skill] skill which allows you and nearby allies to gain increased defenses and resistance against certain [status effects,|Concept.StatusEffect] such as [stunned,|Skill+stunned_effect] and being knocked back or grabbed."
+				"Unlocks the [Hold Steady|Skill+rf_hold_steady_skill] skill which allows you and nearby allies to gain increased defenses and immunity to being [stunned,|Skill+stunned_effect] knocked back or grabbed."
 			]
 		}]
 	}),
@@ -1541,7 +1548,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Gain the [Encourage|Skill+rf_encourage_skill] skill that allows you to increase the [Morale|Concept.Morale] of an ally."
+					"Gain the [Encourage|Skill+rf_encourage_skill] skill which allows you to increase the [morale|Concept.Morale] of an ally."
 				]
 			}
 		]
@@ -1600,8 +1607,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
 	}),
 	RF_Kingfisher = ::UPD.getDescription({
-		Fluff = "\'There is no limit to how many times you can go fishing.\'",
-		Requirement = "Net",
+		Fluff = "\'Teach a man to fish and he'll be worth his salt to the end of his days.\'",
+		Requirement = "Throwing Net",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1619,7 +1626,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"The [Action Point|Concept.ActionPoints] cost of spear attacks is reduced by " + ::MSU.Text.colorPositive(1) + ".",
-				"During your turn, the first attack from a spear deals " + ::MSU.Text.colorPositive("25%") + " more damage."
+				"During your [turn,|Concept.Turn] the first attack from a spear deals " + ::MSU.Text.colorPositive("25%") + " more damage."
 			]
 		}]
 	}),
@@ -1665,9 +1672,10 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorNegative("30%") + " and to Armor by " + ::MSU.Text.colorNegative("20%") + ".",
 				"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 35.",
-				"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is higher than that of your target."
+				"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
+				"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is greater than that of your target."
 				"[Brawny|Perk+perk_brawny] does not affect this perk.",
-				"Cannot be picked if you have [Nimble.|Perk+perk_nimble]"
+				"Cannot be learned if you have [Nimble.|Perk+perk_nimble]"
 			]
 		}]
 	}),
@@ -1746,7 +1754,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The [Action Point|Concept.ActionPoints] Cost of reloading a Handgonne is reduced by " + ::MSU.Text.colorPositive(2) + ".",
+				"The [Action Point|Concept.ActionPoints] cost of reloading a [handgonne|Item+handgonne] is reduced by " + ::MSU.Text.colorPositive(2) + ".",
 				"When using a crossbow, for each point of current [Ranged Skill|Concept.RangeSkill] above 90, damage is increased by " + ::MSU.Text.colorPositive("1%") + " up to a maximum of " + ::MSU.Text.colorPositive("30%") + "."
 			]
 		}]
@@ -1764,7 +1772,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_OffhandTraining = ::UPD.getDescription({
 		Fluff = "Frequent use of tools with your offhand has given you an enviable level of ambidexterity!",
-		Requirement = "Buckler or Tool",
+		Requirement = "Offhand Item weighing less than 10",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1780,7 +1788,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"The first 2 throwing attacks during a combat have their [Action Point|Concept.ActionPoints] costs " + ::MSU.Text.colorPositive("halved") + ".",
-				"When using a throwing weapon which uses ammo, every time you stand over an enemy\'s corpse during your [turn,|Concept.Turn] gain " + ::MSU.Text.colorPositive(1) + " ammo and restore " + ::MSU.Text.colorPositive(4) + " [Action Points.|Concept.ActionPoints] Afterward, the next throwing attack has its [Fatigue|Concept.Fatigue] Cost " + ::MSU.Text.colorPositive("halved") + ".",
+				"When using a throwing weapon which uses ammo, every time you stand over an enemy\'s corpse during your [turn,|Concept.Turn] gain " + ::MSU.Text.colorPositive(1) + " ammo and restore " + ::MSU.Text.colorPositive(4) + " [Action Points.|Concept.ActionPoints] Afterward, the next throwing attack has its [Fatigue|Concept.Fatigue] cost " + ::MSU.Text.colorPositive("halved") + ".",
 				"A corpse can only be used once per combat and cannot be used by multiple characters with this perk."
 			]
 		}]
@@ -1807,10 +1815,11 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Phalanx = ::UPD.getDescription({
 		Fluff = "Learn the ancient art of fighting in a shielded formation.",
+		Requirement = "Shield",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When equipped with a shield, gain " + ::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach] per adjacent ally also equipped with a shield up to a maximum of " + ::MSU.Text.colorPositive("+2") + ". Does not work with bucklers.",
+				"Gain " + ::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach] per adjacent ally also equipped with a shield up to a maximum of " + ::MSU.Text.colorPositive("+2") + ". Does not work with bucklers.",
 				"[Shieldwall|Skill+shieldwall_effect] does not expire at the start of your [turn|Concept.Turn] if an adjacent ally is also using [Shieldwall.|Skill+shieldwall_effect]"
 			]
 		}]
@@ -1839,8 +1848,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.OneTimeEffect,
 			Description = [
-				"Upon reaching level 11, it has a " + ::MSU.Text.colorPositive("50%") + " chance of being replaced with \'Realized Potential\' which will double this character\'s salary, increase all attributes by " + ::MSU.Text.colorPositive("+15") + ", unlock new perk groups, and refund all perk points, including the one spent on this perk.",
-				"If unsuccessful, it is replaced by \'Failed Potential\' which does nothing."
+				"Upon reaching level 11, this perk has a " + ::MSU.Text.colorPositive("50%") + " chance of being replaced with \'Realized Potential\' which will double this character\'s salary, increase all attributes by " + ::MSU.Text.colorPositive("+15") + ", unlock new perk groups and refund all perk points, including the one spent on this perk.",
+				"If unsuccessful, this perk is replaced by \'Failed Potential\' which does nothing."
 			]
 		}],
 		Footer = ::MSU.Text.colorNegative("This perk cannot be picked after you have spent a perk point elsewhere. This perk cannot be refunded.")
@@ -1850,7 +1859,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Onslaught|Skill+rf_onslaught_skill] skill which allows you and nearby members of your company to gain increased [Initiative,|Concept.Initiative] [Melee Skill|Concept.MeleeSkill] and the [Line Breaker|Skill+rf_line_breaker_skill] skill for one [turn.|Concept.Turn] The first use of [Line Breaker|Skill+rf+rf_line_breaker_skill] has reduced [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost."
+				"Unlocks the [Onslaught|Skill+rf_onslaught_skill] skill which allows you and nearby members of your company to gain increased [Initiative,|Concept.Initiative] [Melee Skill|Concept.MeleeSkill] and one use of the [Line Breaker|Skill+rf_line_breaker_skill] skill for one [turn.|Concept.Turn] This use of [Line Breaker|Skill+rf+rf_line_breaker_skill] has a reduced [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost."
 			]
 		}]
 	}),
@@ -1913,7 +1922,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The [Fatigue|Concept.Fatigue] Cost of weapon skills is reduced by " + ::MSU.Text.colorNegative("25%") + "."
+				"The [Fatigue|Concept.Fatigue] cost of weapon skills is reduced by " + ::MSU.Text.colorNegative("25%") + "."
 			]
 		}]
 	}),
@@ -1935,7 +1944,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Allies within 2 tiles have the [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] costs of [Shieldwall|Skill+shieldwall] halved. Cannot reduce the [Action Point|Concept.ActionPoints] cost below " + ::MSU.Text.colorNegative(2) + ".",
 				"If you have the [Shieldwall|Skill+shieldwall] skill available, any ally who starts or ends their [turn|Concept.Turn] adjacent to you will use [Shieldwall|Skill+shieldwall] for free."
 				"You will use [Shieldwall|Skill+shieldwall] for free as long as you start or end your [turn|Concept.Turn] adjacent to an ally who has the [Shieldwall|Skill+shieldwall] skill available."
-				"Only members of your company are considered allies for this [perk.|Concept.Perk]"
+				"Only members of your company are considered allies for the purposes of this [perk.|Concept.Perk]"
 			]
 		}]
 	}),
@@ -1971,7 +1980,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"For each adjacent ally, gain " + ::MSU.Text.colorPositive("+2") + " [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] Melee  Defense and [Ranged Defense|Concept.RangeDefense] and " + ::MSU.Text.colorPositive("+5") + " [Resolve.|Concept.Bravery]"
+				"For each adjacent ally, gain " + ::MSU.Text.colorPositive("+2") + " [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] Melee Defense and [Ranged Defense|Concept.RangeDefense] and " + ::MSU.Text.colorPositive("+5") + " [Resolve.|Concept.Bravery]"
 			]
 		}]
 	}),
@@ -2024,7 +2033,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Gain additional [Initiative|Concept.Initiative] equal to the armor ignore percentage of your equipped sword.",
-				"When using a non-fencing sword, the [Action Point|Concept.ActionPoints] costs of non-AOE skills is reduced by " + ::MSU.Text.colorPositive(1) + " and these skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue.|Concept.Fatigue]",
+				"When using a non-fencing sword, the [Action Point|Concept.ActionPoints] cost of non-AOE skills is reduced by " + ::MSU.Text.colorPositive(1) + " and these skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue.|Concept.Fatigue]",
 				"Allows [Kata Step|Skill+rf_kata_step_skill] to be usable even while holding something, e.g. a shield, in your offhand.",
 				"[Kata Step|Skill+rf_kata_step_skill] costs " + ::MSU.Text.colorPositive(2) + " fewer [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive(2) + " less [Fatigue,|Concept.Fatigue] both down to a minimum of 0."
 			]
@@ -2077,7 +2086,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"Gain the [Decapitate|Skill+decapitate] skill with swords.",
-					"Gain all the perks of the Cleaver perk group when using a sword. Swords now additionally qualify as Cleavers for you for the purposes of these perks.",
+					"Gain all the perks of the Cleaver perk group when using a sword. Swords now additionally qualify as Cleavers for the purposes of these perks.",
 					"Attacks from swords inflict [Bleeding|Skill+bleeding_effect] on the target."
 				]
 			},
@@ -2108,7 +2117,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The [Action Point|Concept.ActionPoints] costs of AOE sword skills is reduced by " + ::MSU.Text.colorPositive(2) + " and the [Fatigue|Concept.Fatigue] Cost by " + ::MSU.Text.colorPositive("10%") + "."
+				"The [Action Point|Concept.ActionPoints] costs of AOE sword skills is reduced by " + ::MSU.Text.colorPositive(2) + " and the [Fatigue|Concept.Fatigue] cost by " + ::MSU.Text.colorPositive("10%") + "."
 			]
 		}],
 		Footer = ::MSU.Text.colorNegative("You can only pick ONE perk from the Swordmaster perk group.")
@@ -2144,7 +2153,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Every hit or miss against any target increases your [Initiative|Concept.Initiative] by " + ::MSU.Text.colorPositive("+15") + ". This bonus lasts over into your next [turn|Concept.Turn] but only until the first skill used or waiting that [turn.|Concept.Turn]",
+					"Every hit or miss against any target increases your [Initiative|Concept.Initiative] by " + ::MSU.Text.colorPositive("+15") + ". This bonus is carried over into your next [turn|Concept.Turn] but only until the first skill used or upon [waiting|Concept.Wait] that [turn.|Concept.Turn]",
 					"The first two hits against opponents who act after you in the current [round|Concept.Round] recover " + ::MSU.Text.colorPositive("2") + " [Action Points|Concept.ActionPoints] each. A miss against any target or a hit against a target who acted before you increments the counter, but does not recover any [Action Points.|Concept.ActionPoints]"
 				]
 			}
@@ -2165,7 +2174,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Whenever you attack or are attacked, hit or miss, gain a stacking " + ::MSU.Text.colorPositive("+5") + " [Initiative|Concept.Initiative] and " + ::MSU.Text.colorPositive("+5%") + " reduction to the [Fatigue|Concept.Fatigue] Cost of skills during your next [turn,|Concept.Turn] up to a maximum of " + ::MSU.Text.colorPositive("+25") + " and " + ::MSU.Text.colorPositive("+25%") + " respectively."
+				"Whenever you attack or are attacked, hit or miss, gain a stacking " + ::MSU.Text.colorPositive("+5") + " [Initiative|Concept.Initiative] and " + ::MSU.Text.colorPositive("+5%") + " reduction to the [Fatigue|Concept.Fatigue] cost of skills during your next [turn,|Concept.Turn] up to a maximum of " + ::MSU.Text.colorPositive("+25") + " and " + ::MSU.Text.colorPositive("+25%") + " respectively."
 			]
 		}]
 	}),
@@ -2215,7 +2224,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"As long as you have attacked at least once during your [turn,|Concept.Turn] if you end the [turn|Concept.Turn] with half or fewer of your [Action Points|Concept.ActionPoints] remaining, gain a stack, up to a maximum of 5 stacks.",
 				"Each stack increases [Action Points|Concept.ActionPoints] by " + ::MSU.Text.colorPositive("+1") + " and [Initiative|Concept.Initiative] by " + ::MSU.Text.colorPositive("+10") + ".",
-				"All the stacks are lost if you end your [turn|Concept.Turn] with more than half of your [Action Points|Concept.ActionPoints] remaining, use [Wait|Concept.Wait] or [Recover,|Skill+recover_skill] or get [Stunned,|Skill+stunned_effect] Rooted or [Staggered.|Skill+staggered_effect]"
+				"All stacks are lost if you end your [turn|Concept.Turn] with more than half of your [Action Points|Concept.ActionPoints] remaining, use [Wait|Concept.Wait] or [Recover,|Skill+recover_skill] or get [stunned,|Skill+stunned_effect] rooted or [Staggered.|Skill+staggered_effect]"
 			]
 		}]
 	}),
@@ -2225,13 +2234,13 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Immediately upon killing an opponent, if you move into the tile of the killed target, the [Action Point|Concept.ActionPoints] cost of the next skill used is " + ::MSU.Text.colorPositive("halved") + "."
+					"Immediately after killing an opponent, if you move into the tile of the killed target, the [Action Point|Concept.ActionPoints] cost of the next skill used is " + ::MSU.Text.colorPositive("halved") + "."
 				]
 			},
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Unlocks the [Gain Ground|Skill+rf_gain_ground_skill] skill which, immediately after killing an adjacent target, allows you to move into their tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of movement."
+					"Unlocks the [Gain Ground|Skill+rf_gain_ground_skill] skill which, immediately after killing an adjacent opponent, allows you to move into their tile ignoring [Zone of Control|Concept.ZoneOfControl] and with reduced [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost."
 				]
 			}
 		]
@@ -2251,7 +2260,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Whenever an ally dies next to you, gain a stacking " + ::MSU.Text.colorPositive("5%") + " increased damage for the remainder of the combat."
+				"Whenever an ally dies adjacent to you, gain a stacking " + ::MSU.Text.colorPositive("5%") + " increased damage for the remainder of the combat."
 			]
 		}]
 	}),
@@ -2270,7 +2279,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"For every 2 tiles moved, the [Action Point|Concept.ActionPoints] cost of your next attack is reduced by " + ::MSU.Text.colorPositive(1) + " to a minimum of " + ::MSU.Text.colorPositive(1) + ", and the [Fatigue|Concept.Fatigue] Cost is reduced by " + ::MSU.Text.colorPositive("10%") + ".",
+				"For every 2 tiles moved, the [Action Point|Concept.ActionPoints] cost of your next attack is reduced by " + ::MSU.Text.colorPositive(1) + " to a minimum of " + ::MSU.Text.colorPositive(1) + ", and the [Fatigue|Concept.Fatigue] cost is reduced by " + ::MSU.Text.colorPositive("10%") + ".",
 				"The bonus is lost upon waiting or ending your [turn,|Concept.Turn] using any skill, or swapping your weapon except to or from a throwing weapon."
 			]
 		}]
@@ -2299,7 +2308,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The penalty to [Maximum Fatigue|Concept.MaximumFatigue] and [Initiative|Concept.Initiative] from equipped items in your head, body, mainhand and offhand slots is reduced by " + ::MSU.Text.colorNegative("20%") + ". Stacks with [Brawny.|Perk+perk_brawny]"
+				"The penalty to [Maximum Fatigue|Concept.MaximumFatigue] and [Initiative|Concept.Initiative] from equipped items in your head, body, mainhand and offhand slots is reduced by " + ::MSU.Text.colorNegative("20%") + ". This effect stacks with [Brawny.|Perk+perk_brawny]"
 			]
 		}]
 	}),
