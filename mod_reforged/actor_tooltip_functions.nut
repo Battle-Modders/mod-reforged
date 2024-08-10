@@ -18,8 +18,8 @@
         rawHTMLInText = true
     };
     ret.text += formatString("gfx/ui/icons/melee_skill.png", currentProperties.getMeleeSkill(), currentProperties.getMeleeSkill() - baseProperties.getMeleeSkill());
-    ret.text += formatString("gfx/ui/icons/ranged_skill.png", currentProperties.getRangedDefense(), currentProperties.getRangedDefense() - baseProperties.getRangedDefense());
-    ret.text += formatString("gfx/ui/icons/bravery.png", currentProperties.getRangedSkill(), currentProperties.getRangedSkill() - baseProperties.getRangedSkill());
+    ret.text += formatString("gfx/ui/icons/ranged_skill.png", currentProperties.getRangedSkill(), currentProperties.getRangedSkill() - baseProperties.getRangedSkill());
+    ret.text += formatString("gfx/ui/icons/bravery.png", currentProperties.getRangedDefense(), currentProperties.getRangedDefense() - baseProperties.getRangedDefense());
     ret.text += formatString("gfx/ui/icons/melee_defense.png", currentProperties.getMeleeDefense(), currentProperties.getMeleeDefense() - baseProperties.getMeleeDefense());
     ret.text += formatString("gfx/ui/icons/ranged_defense.png", currentProperties.getBravery(), currentProperties.getBravery() - baseProperties.getBravery());
     ret.text += formatString("gfx/ui/icons/initiative.png", _actor.getInitiative(), _actor.getInitiative() - baseProperties.getInitiative());
@@ -32,23 +32,10 @@
 	local ret = {
         id = _startID++,
         type = "text",
-        text = "<div class='rf_tacticalTooltipAttributeList'>",
+        text = "<div class='rf_tacticalTooltipReachContainer'>",
         rawHTMLInText = true
     };
     ret.text += this.getReachElement(_actor);
-    ret.text += "</div>";
-    return ret;
-}
-::Reforged.TacticalTooltip.getReachEye <- function( _actor, _startID )
-{
-	local ret = {
-        id = _startID++,
-        type = "text",
-        text = "<div class='rf_tacticalTooltipAttributeList'>",
-        rawHTMLInText = true
-    };
-    ret.text += this.getReachElement(_actor);
-    ret.text += this.getVisionElement(_actor);
     ret.text += "</div>";
     return ret;
 }
@@ -64,7 +51,7 @@
 	local reachImg = "[img]gfx/ui/icons/reach.png[/img]";
 	local reachAtkImg = "[img]gfx/ui/icons/reach_attack.png[/img]";
 	local reachDefImg = "[img]gfx/ui/icons/reach_defense.png[/img]";
-	return format("<span class='rf_tacticalTooltipAttributeEntry rf_tacticalTooltipAttributeEntryDoubleWide'>%s %i (%s %i, %s %i)</span>", reachImg, reach, reachAtkImg, reachAtk, reachDefImg, reachDef);
+	return format("<span class='rf_tacticalTooltipReach'>%s %i (%s %i, %s %i)</span>", reachImg, reach, reachAtkImg, reachAtk, reachDefImg, reachDef);
 }
 
 // Unused at the moment

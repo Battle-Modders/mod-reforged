@@ -59,8 +59,8 @@
 	display: flex;
 	flex-direction:row;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
-	width: 100%;
+	justify-content: space-between;
+	width: 24rem;
 }
 .rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry
 {
@@ -86,6 +86,28 @@
 .rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry > .rf_tacticalTooltipAttributeDelta
 {
 	font-size: 10px;
+}
+
+.rf_tacticalTooltipReachContainer,
+.rf_tacticalTooltipWaitContainer
+{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	width: 24.0rem;
+}
+
+.rf_tacticalTooltipReach
+{
+	display:flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.rf_tacticalTooltipReach img
+{
+	object-fit: cover;
+	width: 20px;
+	height: 20px;
 }
 .ui-control-stats-progressbar.rf_reach,
 .ui-control-stats-progressbar-preview.rf_reach

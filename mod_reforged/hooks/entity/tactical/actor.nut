@@ -43,18 +43,20 @@
 		if (!this.isPlacedOnMap() || !this.isAlive() || this.isDying()) return ret;
 		if (this.isDiscovered() == false) return ret;
 		if (this.isHiddenToPlayer()) return ret;
-
-		if (this.m.IsActingEachTurn && !this.m.IsTurnDone && this.isWaitActionSpent())
+		foreach (entry in ret)
 		{
-			foreach (entry in ret)
+			if (entry.id == 4)
 			{
-				if (entry.id == 4)
-				{
-					// The first word in vanilla is "Acts" or "Acting" and we want to add the word "again" after that to show that
-					// this actor has used Wait. So we replace the first instance of space with "again" hyperlinked to Wait concept.
-					entry.text = ::Reforged.Mod.Tooltips.parseString(::MSU.String.replace(entry.text, " ", " [again|Concept.Wait] "));
-					break;
-				}
+				local text = entry.text;
+				// The first word in vanilla is "Acts" or "Acting" and we want to add the word "again" after that to show that
+				// this actor has used Wait. So we replace the first instance of space with "again" hyperlinked to Wait concept.
+				if (this.m.IsActingEachTurn && !this.m.IsTurnDone && this.isWaitActionSpent())
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.String.replace(entry.text, " ", " [again|Concept.Wait] "));
+
+				entry.text = "<div class = rf_tacticalTooltipWaitContainer>" + "[img]gfx/ui/icons/initiative.png[/img]" + text + "</div>";
+				entry.rawHTMLInText <- true;
+				delete entry.icon
+				break;
 			}
 		}
 
@@ -90,7 +92,7 @@
 			return value != "None" && (value == "All" || (value == "Player Only" && this.isPlayerControlled()) || (value == "AI Only" && !this.isPlayerControlled()))
 		}
 
-		ret.insert(::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_Reach").getValue(), ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_ReachEye").getValue() ? ::Reforged.TacticalTooltip.getReachEye(this, 50) : ::Reforged.TacticalTooltip.getReach(this, 50));
+		ret.insert(2, ::Reforged.TacticalTooltip.getReach(this, 50));
 		if (verifySettingValue("TacticalTooltip_Attributes")) ret.append(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
 		if (verifySettingValue("TacticalTooltip_Effects")) ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
 		if (verifySettingValue("TacticalTooltip_Perks")) ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
