@@ -87,3 +87,15 @@
 {
 	font-size: 10px;
 }
+.ui-control-stats-progressbar.rf_reach,
+.ui-control-stats-progressbar-preview.rf_reach
+{
+	background-color: #7a1e12;
+}
+.ui-control.progressbar.rf_reach .normal-bar,
+.ui-control.progressbar.rf_reach .preview-bar
+{
+    background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+    background-size: 12.7rem 2.2rem;
+    background-repeat: no-repeat;
+}
