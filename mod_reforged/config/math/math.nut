@@ -6,7 +6,7 @@
 		local _randomNumber = ::Math.rand(_min, _max);
 		for (; _luck > 0; _luck -= 100)
 		{
-			if (::Math.rand(1, 100) <= _luck);
+			if (::Math.rand(1, 100) <= _luck)
 			{
 				_randomNumber = this.__getCloser(_randomNumber, ::Math.rand(_min, _max), _target);
 			}
