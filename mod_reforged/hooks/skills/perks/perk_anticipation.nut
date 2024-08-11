@@ -1,20 +1,21 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_anticipation", function(q) {
-	// Public
-	q.m.UsesMax <- 2;
-	q.m.DamageReductionPerTile <- 10.0;
-	q.m.DamageReductionBase <- 0.0;
+	// Config
+	q.m.BaseChance = 0;
+	q.m.ChancePerTile <- 10;
+	q.m.MaxChance = 70;
+	q.m.MinDamageReceivedTotalMult = 0.7;
 
 	// Private
-	q.m.UsesRemaining <- 2;
-
-	// Temp
-	q.m.TempDamageReduction <- 0.0;		// This is used to keep track of the current damage reduction so that it can be later displayed in the combat log
-	q.m.IsAboutToConsumeUse <- false;
+	// These two fields are used to ensure that the damage reduction is the same in all instances of damage from a single attack from an attacker
+	q.m.SkillCount <- 0;
+	q.m.LastAttacker <- null;
+	// This is used to keep track of the current damage reduction so that it can be later displayed in the combat log
+	q.m.TempDamageReceivedTotalMult <- 1.0;
 
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.Description = "Use your fast senses to anticipate attacks against you, taking reduced damage from the first few attacks each battle.";
+		this.m.Description = "Use your fast senses to anticipate attacks against you, taking reduced damage.";
 		this.m.IconMini = "rf_anticipation_mini";
 
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on entities
@@ -22,98 +23,79 @@
 
 	q.isHidden <- function()
 	{
-		return (this.isEnabled() == false);
-	}
-
-	q.onCombatStarted <- function()
-	{
-		this.m.UsesRemaining = this.m.UsesMax;
-	}
-
-	q.onCombatFinished <- function()
-	{
-		this.m.UsesRemaining = this.m.UsesMax;	// So that for the purposes of the tooltip everything looks good
+		return this.getChance() == 0;
 	}
 
 	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
 
-		local damageReduction = this.calculateDamageReduction();
-		ret.extend([
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/melee_defense.png",
-				text = ::MSU.Text.colorNegative(damageReduction + "%") + " reduced damage received from all attacks"
-			},
-			{
+		local chance = this.getChance();
+		local mult = this.getDamageReceivedTotalMult();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/melee_defense.png",
+			text = ::MSU.Text.colorPositive(chance + "%") + " chance to receive " + ::MSU.Text.colorizeMult(mult, {InvertColor = true}) + " reduced damage from attacks"
+		});
+
+		if (this.m.ChancePerTile != 0)
+		{
+			ret.push({
 				id = 11,
 				type = "text",
-				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorNegative(this.m.DamageReductionPerTile + "%") + " additional reduced damage received from all attacks for every tile between the attacker and you"
-			},
-			{
-				id = 15,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::MSU.Text.colorPositive(this.m.UsesRemaining) + " uses remaining"
-			}
-		]);
+				icon = "ui/icons/melee_defense.png",
+				text = "The chance is [increased|Concept.StackAdditively] by " + ::MSU.Text.colorizeValue(this.m.ChancePerTile, {AddSign = true, AddPercent = true}) " + for every tile between the attacker and you"
+			});
+		}
 
 		return ret;
 	}
 
 	q.onBeforeDamageReceived <- function( _attacker, _skill, _hitinfo, _properties )
 	{
-		if (!this.isEnabled() || _skill == null || !_skill.isAttack())		// _skill can be null, for example when burning damage is applied
+		// Do not recalculate the damage received mult during damage instances from a single attack
+		if (this.m.SkillCount == ::Const.SkillCounter && ::MSU.isEqual(_attacker, this.m.LastAttacker))
+			return;
+
+		this.m.TempDamageReceivedTotalMult = 1.0;
+
+		if (_skill == null || !_skill.isAttack() || ::Math.rand(1, 100) > this.getChance(_attacker))
 		{
-			this.m.IsAboutToConsumeUse = false;
 			return;
 		}
 
-		this.m.TempDamageReduction = this.calculateDamageReduction(_attacker);	// We save this so that we can later display it in the combat log
-		_properties.DamageReceivedTotalMult *= (1.0 - (this.m.TempDamageReduction / 100.0));
+		this.m.SkillCount = ::Const.SkillCounter;
+		this.m.LastAttacker = _attacker == null ? null : ::MSU.asWeakTableRef(_attacker);
 
-		this.m.IsAboutToConsumeUse = true;	// We need this variable because in "onDamageReceived" we have no information whether that was caused by an "attack"
+		this.m.TempDamageReceivedTotalMult = this.getDamageReceivedTotalMult();
+		_properties.DamageReceivedTotalMult *= this.m.TempDamageReceivedTotalMult;
 	}
 
 	q.onDamageReceived <- function( _attacker, _damageHitpoints, _damageArmor )
 	{
-		if (this.m.IsAboutToConsumeUse == false) return;	// We only consume one use for each registered attack. But a single attack that deals damage multiple times will therefor have the damage of all instances reduced
-		this.m.IsAboutToConsumeUse = false;
+		if (this.m.TempDamageReceivedTotalMult == 1.0)
+			return;
 
-		this.m.UsesRemaining = ::Math.max(0, this.m.UsesRemaining - 1);
-
-		if (_attacker == null)	// This can for example happen when this character receives a mortar attack.
-		{
-			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated an attack, reducing damage received by " + ::MSU.Text.colorPositive(this.m.TempDamageReduction + "%"));
-		}
-		else
-		{
-			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated the attack of " + ::Const.UI.getColorizedEntityName(_attacker) + ", reducing damage received by " + ::MSU.Text.colorPositive(this.m.TempDamageReduction + "%"));
-		}
+		// _attacker can be null e.g. when receiving damage from mortar
+		::Tactical.EventLog.logEx(format("%s anticipated %s, reducing damage received by %s", ::Const.UI.getColorizedEntityName(this.getContainer().getActor()), _attacker == null ? "an attack" : "the attack of " + ::Const.UI.getColorizedEntityName(_attacker), ::MSU.Text.colorPositive(this.m.TempDamageReduction + "%")));
 	}
 
-
-	// private functions
-	q.isEnabled <- function()
+	q.getDamageReceivedTotalMult <- function( _attacker = null )
 	{
-		return (this.m.UsesRemaining > 0);
+		return ::Math.maxf(this.m.MinDamageReceivedTotalMult, 1.0 - this.getContainer().getActor().getCurrentProperties().getRangedDefense() * 0.01);
 	}
 
-	// returns a value between 0 and 100 indicitation the damage reduction in %
-	q.calculateDamageReduction <- function( _attacker = null )
+	function getChance( _attacker = null )
 	{
-		local damageReduction = this.m.DamageReductionBase;
-		damageReduction += ::Math.max(0, this.getContainer().getActor().getCurrentProperties().getRangedDefense());
+		local actor = this.getContainer().getActor();
+		local ret = this.m.BaseChance + actor.getRangedDefense();
 
-		if (_attacker != null && _attacker.isPlacedOnMap() && this.getContainer().getActor().isPlacedOnMap())
+		if (_attacker != null && _attacker.isPlacedOnMap() && actor.isPlacedOnMap())
 		{
-			// -1 because adjacent entities count as a distance of 1 but we want only the number of tiles between the entities
-			damageReduction += this.m.DamageReductionPerTile * (_attacker.getTile().getDistanceTo(this.getContainer().getActor().getTile()) - 1);
+			ret += this.m.ChancePerTile;
 		}
 
-		return ::Math.max(0, ::Math.min(100.0, damageReduction));
+		return ::Math.max(0, ::Math.min(this.m.MaxChance, ret));
 	}
 });
