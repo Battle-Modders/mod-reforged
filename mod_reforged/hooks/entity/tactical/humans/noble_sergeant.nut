@@ -1,4 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/noble_sergeant", function(q) {
+	q.create = @(__original) function()
+	{
+		__original();
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_military_sergeant_agent");
+		this.m.AIAgent.setActor(this);
+	}
+
 	q.onInit = @() function()
 	{
 		this.human.onInit();
