@@ -4,11 +4,15 @@
 // - Add a new function to all actors which can be used to modify the existing loot they drop on death, or to add new loot.
 
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
-	q.onDropLoot <- function( _originalLoot, _killer, _skill, _tile, _fatalityType )
+	q.prepareLoot <- function( _loot, _killer, _skill, _tile, _fatalityType )
+	{
+	}
+
+	q.dropLoot <- function( _loot, _tile )
 	{
 		if (_tile != null)
 		{
-			foreach (item in _originalLoot)
+			foreach (item in _loot)
 			{
 				item.drop(_tile);
 			}
@@ -24,8 +28,8 @@
 
 			// Switcheroo the ::new function to detect the creation of an item.
 			// Then switcheroo the `drop` function of the item to instead push the item
-			// to our local `loot` array. This will be used to pass this item to the `onDropLoot`
-			// function as the _originalLoot.
+			// to our local `loot` array. This will be used to pass this item to the `prepareLoot`
+			// function as the _loot.
 			local new = ::new;
 			::new = function( _script )
 			{
@@ -54,7 +58,8 @@
 			// It doesn't contain all the possible items that could be dropped, as items
 			// created for dropping are gated behind random rolls and if/else statements.
 
-			this.onDropLoot(loot, _killer, _skill, _tile, _fatalityType);
+			this.prepareLoot(loot, _killer, _skill, _tile, _fatalityType);
+			this.dropLoot(loot, _tile);
 		}
 	});
 });
