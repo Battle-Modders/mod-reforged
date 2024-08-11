@@ -54,7 +54,7 @@
 
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
-		if (_tile != null);
+		if (_tile != null)
 		{
 			local loot = null;
 			if (this.isKindOf(this, "goblin_leader") || this.isKindOf(this, "goblin_shaman") || this.m.IsMiniboss)
