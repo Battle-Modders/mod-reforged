@@ -339,4 +339,6 @@
 <sprite id="bust_rf_body_noble_09_dead" offsetX="6" offsetY="10" f="64FD" ic="FF2A2E34" width="131" height="125" img="entity\bodies\bust_rf_body_noble_09_dead.png" left="-57" right="59" top="-55" bottom="55" />
 <sprite id="bust_rf_body_noble_03_dead" offsetX="6" offsetY="10" f="64FD" ic="FF2A2E34" width="131" height="125" img="entity\bodies\bust_rf_body_noble_03_dead.png" left="-57" right="59" top="-57" bottom="55" />
 
+<sprite id="bust_rf_unhold_head_smiling" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF39455B" width="174" height="214" img="entity\beasts\bust_rf_unhold_head_smiling.png" left="-69" right="21" top="-24" bottom="68" />
+
 </brush>
