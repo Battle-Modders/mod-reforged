@@ -11,12 +11,6 @@
 		this.adjustBannerOffset();
 	}
 
-	q.onLeave = @(__original) function()
-	{
-		__original();
-		::World.State.setPause(true);
-	}
-
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
