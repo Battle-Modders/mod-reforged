@@ -8,5 +8,4 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium + 1;
 		this.getSkills().update()
 	}
-
 });

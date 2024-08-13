@@ -8,4 +8,3 @@
 	[1, "scripts/items/armor/padded_leather"],
 	[1, "scripts/items/armor/leather_lamellar"]
 ]);
-

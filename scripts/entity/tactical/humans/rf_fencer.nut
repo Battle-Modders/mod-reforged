@@ -143,6 +143,4 @@ this.rf_fencer <- ::inherit("scripts/entity/tactical/human" {
 
 		return true;
 	}
-
 });
-

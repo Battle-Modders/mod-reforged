@@ -322,6 +322,4 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 	{
 		if (this.m.IsCharging) this.m.IsCharging = false;
 	}
-
 });
-

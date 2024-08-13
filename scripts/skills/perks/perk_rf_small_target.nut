@@ -15,4 +15,3 @@ this.perk_rf_small_target <- ::inherit("scripts/skills/skill", {
 		_properties.HitChance[::Const.BodyPart.Head] += 10;
 	}
 });
-

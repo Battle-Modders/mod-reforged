@@ -95,7 +95,6 @@
 		}
 	}
 
-
 	// private functions
 	q.isEnabled <- function()
 	{

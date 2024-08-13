@@ -135,4 +135,3 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 });
-

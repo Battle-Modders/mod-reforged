@@ -35,4 +35,3 @@ this.perk_rf_rattle <- ::inherit("scripts/skills/skill", {
 		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });
-

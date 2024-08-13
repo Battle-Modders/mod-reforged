@@ -43,4 +43,3 @@ this.perk_rf_calculated_strikes <- ::inherit("scripts/skills/skill", {
 		return !_targetEntity.isTurnStarted() && !_targetEntity.isTurnDone();	// This is the same condition as vanilla overwhelm has
 	}
 });
-

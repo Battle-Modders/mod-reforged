@@ -259,6 +259,4 @@ this.rf_bandit_baron <- ::inherit("scripts/entity/tactical/human", {
 			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 		}
 	}
-
 });
-

@@ -7,4 +7,3 @@
 		this.m.ConditionMax = 135;
 	}
 });
-

@@ -77,4 +77,3 @@ this.rf_heraldic_cape_upgrade <- ::inherit("scripts/items/armor_upgrades/armor_u
 		_properties.Bravery += this.m.ResolveModifier;
 	}
 });
-

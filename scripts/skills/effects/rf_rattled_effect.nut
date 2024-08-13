@@ -38,4 +38,3 @@ this.rf_rattled_effect <- ::inherit("scripts/skills/skill", {
 		this.removeSelf();
 	}
 });
-

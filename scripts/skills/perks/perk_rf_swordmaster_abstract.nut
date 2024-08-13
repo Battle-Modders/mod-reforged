@@ -35,5 +35,4 @@ this.perk_rf_swordmaster_abstract <- ::inherit("scripts/skills/skill", {
 			});
 		}
 	}
-
 });

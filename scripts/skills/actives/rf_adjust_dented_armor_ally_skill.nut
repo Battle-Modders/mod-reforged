@@ -108,4 +108,3 @@ this.rf_adjust_dented_armor_ally_skill <- ::inherit("scripts/skills/skill", {
 		return true;
 	}
 });
-

@@ -38,4 +38,3 @@ this.rf_poleflail <- ::inherit("scripts/items/weapons/weapon", {
 		this.addSkill(::new("scripts/skills/actives/rf_lash_pole_skill"));
 	}
 });
-

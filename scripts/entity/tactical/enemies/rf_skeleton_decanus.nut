@@ -63,4 +63,3 @@ this.rf_skeleton_decanus <- ::inherit("scripts/entity/tactical/rf_skeleton_comma
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_tempo"));
 	}
 });
-

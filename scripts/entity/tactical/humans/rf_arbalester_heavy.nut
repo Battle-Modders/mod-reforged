@@ -79,4 +79,3 @@ this.rf_arbalester_heavy <- ::inherit("scripts/entity/tactical/human" {
 		}
 	}
 });
-

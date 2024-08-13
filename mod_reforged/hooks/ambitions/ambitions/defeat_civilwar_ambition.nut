@@ -5,4 +5,3 @@
 		this.m.ButtonIcon = "ui/traits/trait_icon_85.png";		// Oathtaker Noble
 	}
 });
-

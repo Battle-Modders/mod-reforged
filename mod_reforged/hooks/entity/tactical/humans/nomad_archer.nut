@@ -54,5 +54,4 @@
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}
-
 });

@@ -92,4 +92,3 @@ this.rf_squire <- ::inherit("scripts/entity/tactical/human" {
 		}
 	}
 });
-

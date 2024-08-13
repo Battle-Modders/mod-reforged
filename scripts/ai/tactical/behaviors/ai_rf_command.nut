@@ -389,4 +389,3 @@ this.ai_rf_command <- ::inherit("scripts/ai/tactical/behavior", {
 		return 0;
 	}
 });
-

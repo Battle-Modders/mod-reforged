@@ -174,4 +174,3 @@ this.rf_man_at_arms <- ::inherit("scripts/entity/tactical/human" {
 		return true;
 	}
 });
-

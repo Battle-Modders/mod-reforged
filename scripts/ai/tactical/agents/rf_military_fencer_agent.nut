@@ -26,4 +26,3 @@ this.rf_military_fencer_agent <- ::inherit("scripts/ai/tactical/agents/military_
 		this.m.Properties.EngageTargetMultipleOpponentsMult = 1.5; // Greater than 1 means less likely to engage multiple opponents
 	}
 });
-

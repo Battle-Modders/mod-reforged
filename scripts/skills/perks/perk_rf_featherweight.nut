@@ -19,4 +19,3 @@ this.perk_rf_featherweight <- ::inherit("scripts/skills/skill", {
 		}
 	}
 });
-

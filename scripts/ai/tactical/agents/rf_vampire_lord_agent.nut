@@ -55,4 +55,3 @@ this.rf_vampire_lord_agent <- ::inherit("scripts/ai/tactical/agents/vampire_agen
 		}
 	}
 });
-

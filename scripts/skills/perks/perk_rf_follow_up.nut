@@ -20,4 +20,3 @@ this.perk_rf_follow_up <- ::inherit("scripts/skills/skill", {
 		this.getContainer().removeByID("actives.rf_follow_up");
 	}
 });
-

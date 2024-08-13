@@ -24,4 +24,3 @@ this.perk_rf_between_the_eyes <- ::inherit("scripts/skills/skill", {
 		}
 	}
 });
-

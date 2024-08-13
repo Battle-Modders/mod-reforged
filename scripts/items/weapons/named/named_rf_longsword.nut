@@ -37,4 +37,3 @@ this.named_rf_longsword <- ::inherit("scripts/items/weapons/named/named_weapon",
 		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
 	}
 });
-

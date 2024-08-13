@@ -5,4 +5,3 @@
 		this.m.ButtonIcon = "ui/backgrounds/background_12.png";		// Caravan Hand
 	}
 });
-

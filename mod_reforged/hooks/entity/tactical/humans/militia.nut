@@ -21,7 +21,6 @@
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 
-
 		if (this.isArmedWithShield())
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));

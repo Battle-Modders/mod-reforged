@@ -5,4 +5,3 @@
 		this.m.ButtonIcon = "ui/perks/perk_rf_strength_in_numbers.png";	// peasant militia icon
 	}
 });
-

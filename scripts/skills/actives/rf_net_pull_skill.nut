@@ -189,4 +189,3 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 		_tag.Attacker.setDirty(true);
 	}
 });
-

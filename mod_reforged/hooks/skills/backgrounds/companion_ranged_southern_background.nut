@@ -29,7 +29,6 @@
 		});
 	}
 
-
 	q.getPerkGroupCollectionMin = @() function( _collection )
 	{
 		switch (_collection.getID())

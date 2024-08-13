@@ -73,4 +73,3 @@ this.rf_geist_tear_item <- ::inherit("scripts/items/item", {
 		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 	}
 });
-

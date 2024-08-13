@@ -95,7 +95,6 @@
 			if (armor != null) this.m.Items.equip(::new(armor));
 		}
 
-
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = ::Reforged.ItemTable.BanditHelmetLeader.roll({

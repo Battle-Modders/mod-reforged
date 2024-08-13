@@ -27,4 +27,3 @@ this.rf_lash_pole_skill <- ::inherit("scripts/skills/actives/lash_skill", {
 		}
 	}
 });
-

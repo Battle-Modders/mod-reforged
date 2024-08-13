@@ -156,4 +156,3 @@ this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
 		return true;
 	}
 });
-

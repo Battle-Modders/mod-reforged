@@ -114,4 +114,3 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 			::Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, null, null, false);
 	}
 });
-

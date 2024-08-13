@@ -94,4 +94,3 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 });
-

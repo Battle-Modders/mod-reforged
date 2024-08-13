@@ -8,4 +8,3 @@
 		this.m.StaminaModifier = -24;
 	}
 });
-

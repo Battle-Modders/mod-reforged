@@ -91,4 +91,3 @@ this.ai_rf_attack_lunge <- ::inherit("scripts/ai/tactical/behaviors/ai_attack_de
 		}
 	}
 });
-

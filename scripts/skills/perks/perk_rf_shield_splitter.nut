@@ -33,4 +33,3 @@ this.perk_rf_shield_splitter <- ::inherit("scripts/skills/skill", {
 		this.m.Shield = null;
 	}
 });
-

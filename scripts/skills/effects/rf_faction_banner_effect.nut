@@ -69,4 +69,3 @@ this.rf_faction_banner_effect <- ::inherit("scripts/skills/skill", {
 		}
 	}
 });
-

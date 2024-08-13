@@ -36,7 +36,6 @@
 	XP = 1000
 });
 
-
 // New Reforged Actors
 ::Const.Tactical.Actor.RF_SkeletonDecanus <- {
 	XP = 325,
@@ -164,4 +163,3 @@
 		0
 	]
 };
-

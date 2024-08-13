@@ -66,4 +66,3 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 		this.removeSelf();
 	}
 });
-

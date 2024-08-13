@@ -15,4 +15,3 @@ this.rf_bandit_fast_agent <- ::inherit("scripts/ai/tactical/agents/bandit_melee_
 		this.m.Properties.PreferCarefulEngage = true;
 	}
 });
-

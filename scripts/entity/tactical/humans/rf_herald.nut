@@ -98,4 +98,3 @@ this.rf_herald <- ::inherit("scripts/entity/tactical/human" {
 		}
 	}
 });
-

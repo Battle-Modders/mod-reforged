@@ -158,6 +158,5 @@
 		local weapon = _entity.getMainhandItem();
 		if (weapon != null) this.addMasteryOfWeapon(_entity, weapon);
 
-
 	}
 };

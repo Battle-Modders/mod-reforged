@@ -128,4 +128,3 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		this.m.PerksAdded.clear();
 	}
 });
-

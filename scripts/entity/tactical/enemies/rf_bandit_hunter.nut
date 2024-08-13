@@ -124,4 +124,3 @@ this.rf_bandit_hunter <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 });
-

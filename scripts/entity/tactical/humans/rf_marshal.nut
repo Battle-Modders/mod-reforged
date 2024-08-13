@@ -94,4 +94,3 @@ this.rf_marshal <- ::inherit("scripts/entity/tactical/human" {
 		}
 	}
 });
-

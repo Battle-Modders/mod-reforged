@@ -5,4 +5,3 @@
 		this.m.ButtonIcon = "skills/status_effect_111.png";		// Disarmed / Red X
 	}
 });
-

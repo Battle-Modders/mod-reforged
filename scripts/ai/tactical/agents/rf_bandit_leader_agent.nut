@@ -7,4 +7,3 @@ this.rf_bandit_leader_agent <- ::inherit("scripts/ai/tactical/agents/bandit_mele
 		this.m.Properties.OverallMagnetismMult *= 1.5;
 	}
 });
-

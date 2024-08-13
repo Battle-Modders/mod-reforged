@@ -7,4 +7,3 @@
 	[1, "scripts/items/armor/heavy_lamellar_armor"],
 	[1, "scripts/items/armor/coat_of_scales"]
 ]);
-

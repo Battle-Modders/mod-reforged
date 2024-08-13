@@ -102,4 +102,3 @@ this.rf_bandit_outlaw <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 });
-

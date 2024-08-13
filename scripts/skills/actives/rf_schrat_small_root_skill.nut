@@ -72,4 +72,3 @@ this.rf_schrat_small_root_skill <- ::inherit("scripts/skills/skill", {
 		return true;
 	}
 });
-

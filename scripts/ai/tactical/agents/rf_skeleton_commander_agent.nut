@@ -12,4 +12,3 @@ this.rf_skeleton_commander_agent <- ::inherit("scripts/ai/tactical/agents/skelet
 		this.m.Properties.OverallMagnetismMult *= 2.0;
 	}
 });
-

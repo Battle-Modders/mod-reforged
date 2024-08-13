@@ -99,4 +99,3 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 });
-

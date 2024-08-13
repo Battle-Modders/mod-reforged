@@ -147,4 +147,3 @@ this.rf_bandit_highwayman <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 });
-

@@ -30,4 +30,3 @@ this.rf_sling_item_dummy_skill <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 });
-

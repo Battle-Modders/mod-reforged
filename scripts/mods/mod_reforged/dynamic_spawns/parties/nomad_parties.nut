@@ -45,4 +45,3 @@ foreach(partyDef in parties)
 {
 	::DynamicSpawns.Public.registerParty(partyDef);
 }
-

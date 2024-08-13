@@ -108,7 +108,6 @@ this.rf_bandit_scoundrel <- ::inherit("scripts/entity/tactical/human", {
 			this.m.Items.equip(::new(armor));
 		}
 
-
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 50)
 		{
 			local helmet = ::Reforged.ItemTable.BanditHelmetBalanced.roll({
@@ -123,4 +122,3 @@ this.rf_bandit_scoundrel <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 });
-

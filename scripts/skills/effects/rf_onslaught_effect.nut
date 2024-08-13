@@ -97,4 +97,3 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 		if (this.m.LineBreakerAdded) this.getContainer().removeByID("actives.rf_line_breaker");
 	}
 });
-

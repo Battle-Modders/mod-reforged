@@ -168,4 +168,3 @@ this.rf_bandit_bandit <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 });
-

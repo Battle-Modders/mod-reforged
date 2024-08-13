@@ -42,4 +42,3 @@ this.rf_line_breaker_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 		return this.skill.isUsable() && (this.m.IsForceEnabled || actor.isArmedWithShield()) && !actor.getCurrentProperties().IsRooted && !actor.getCurrentProperties().IsStunned;
 	}
 });
-

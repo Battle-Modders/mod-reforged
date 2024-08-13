@@ -201,6 +201,4 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 			_entity.onDamageReceived(_tag.Attacker, _tag.Skill, _tag.HitInfoBash);
 		}
 	}
-
 });
-

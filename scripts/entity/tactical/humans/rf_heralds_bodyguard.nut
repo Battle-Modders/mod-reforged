@@ -195,4 +195,3 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 		}
 	}
 });
-

@@ -10,7 +10,6 @@
 		return this.skill.getDescription();
 	}
 
-
 	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();

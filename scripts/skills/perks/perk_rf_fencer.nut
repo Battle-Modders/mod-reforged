@@ -59,4 +59,3 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 		}
 	}
 });
-

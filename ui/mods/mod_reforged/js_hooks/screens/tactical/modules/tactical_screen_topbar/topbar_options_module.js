@@ -3,4 +3,3 @@ TacticalScreenTopbarOptionsModule.prototype.changeFleeButtonToWin = function ()
 {
 	this.mFleeButton.changeButtonImage(Path.GFX + Reforged.Asset.BUTTON_RETREAT_WIN);
 };
-

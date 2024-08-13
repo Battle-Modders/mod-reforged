@@ -67,4 +67,3 @@ this.rf_bearded_blade_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Container.removeByID("effects.rf_bearded_blade");
 	}
 });
-

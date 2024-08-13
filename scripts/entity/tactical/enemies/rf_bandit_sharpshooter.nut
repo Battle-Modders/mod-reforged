@@ -119,4 +119,3 @@ this.rf_bandit_sharpshooter <- ::inherit("scripts/entity/tactical/human", {
 		}
 	}
 });
-

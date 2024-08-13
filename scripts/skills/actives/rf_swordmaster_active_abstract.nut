@@ -41,5 +41,4 @@ this.rf_swordmaster_active_abstract <- ::inherit("scripts/skills/skill", {
 	{
 		return this.skill.isUsable() && this.isEnabled();
 	}
-
 });

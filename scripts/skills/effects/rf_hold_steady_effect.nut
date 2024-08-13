@@ -55,4 +55,3 @@ this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 		if (--this.m.TurnsLeft == 0) this.removeSelf();
 	}
 });
-

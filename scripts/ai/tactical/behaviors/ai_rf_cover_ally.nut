@@ -599,5 +599,4 @@ this.ai_rf_cover_ally <- ::inherit("scripts/ai/tactical/behavior", {
 
 		return 0;
 	}
-
 });

@@ -27,4 +27,3 @@ this.rf_flail_pole_skill <- ::inherit("scripts/skills/actives/flail_skill", {
 		}
 	}
 });
-

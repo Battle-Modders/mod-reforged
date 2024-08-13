@@ -22,4 +22,3 @@ this.rf_sallet_helmet_with_mail <- ::inherit("scripts/items/helmets/helmet", {
 		this.m.Vision = -2;
 	}
 });
-

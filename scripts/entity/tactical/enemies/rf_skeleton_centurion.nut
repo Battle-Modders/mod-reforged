@@ -60,4 +60,3 @@ this.rf_skeleton_centurion <- ::inherit("scripts/entity/tactical/rf_skeleton_com
 		}
 	}
 });
-

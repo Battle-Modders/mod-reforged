@@ -124,7 +124,6 @@ local parties = [
 		VisionMult = 1.0,
 		UpgradeChance = 0.1,
 
-
 		function generateIdealSize( _isLocation = false )
 		{
 			return 7;
