@@ -201,7 +201,7 @@
 			id = currentID,
 			type = "text",
 			icon = "ui/items/" + mainhandItem.getIcon(),
-			text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,%s,entity]", mainhandItem.getName(), split(::IO.scriptFilenameByHash(mainhandItem.ClassNameHash), "/").top(), mainhandItem.getInstanceID()))
+			text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity]", mainhandItem.getName(), mainhandItem.ClassName, mainhandItem.getInstanceID()))
 		});
 		currentID++;
 	}
@@ -211,7 +211,7 @@
 			id = currentID,
 			type = "text",
 			icon = "ui/items/" + offhandItem.getIcon(),
-			text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,%s,entity]", offhandItem.getName(), split(::IO.scriptFilenameByHash(offhandItem.ClassNameHash), "/").top(), offhandItem.getInstanceID()))
+			text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity]", offhandItem.getName(), offhandItem.ClassName, offhandItem.getInstanceID()))
 		});
 		currentID++;
 	}
@@ -221,7 +221,7 @@
 			id = currentID,
 			type = "text",
 			icon = "ui/items/" + accessory.getIcon(),
-			text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,%s,entity]", accessory.getName(), split(::IO.scriptFilenameByHash(accessory.ClassNameHash), "/").top(), accessory.getInstanceID()))
+			text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity]", accessory.getName(), accessory.ClassName, accessory.getInstanceID()))
 		});
 		currentID++;
 	}
@@ -245,7 +245,7 @@
 			id = currentID,
 			type = "text",
 			icon = "ui/items/" + bagItem.getIcon(),
-			text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,%s,entity]", bagItem.getName(), split(::IO.scriptFilenameByHash(bagItem.ClassNameHash), "/").top(), bagItem.getInstanceID()))
+			text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity]", bagItem.getName(), bagItem.ClassName, bagItem.getInstanceID()))
 		});
 		currentID++;
 	}
@@ -271,7 +271,7 @@
 				id = currentID,
 				type = "text",
 				icon = "ui/items/" + groundItem.getIcon(),
-				text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,%s,ground]", groundItem.getName(), split(::IO.scriptFilenameByHash(groundItem.ClassNameHash), "/").top(), groundItem.getInstanceID()))
+				text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:ground]", groundItem.getName(), groundItem.ClassName, groundItem.getInstanceID()))
 			});
 			currentID++;
 		}
