@@ -11,8 +11,12 @@
 		local itemID = this.getInstanceID();
 		foreach (skill in ::Reforged.Items.getSkills(this))
 		{
-			local name = ::Reforged.Mod.Tooltips.parseString(format("[%s|Skill+%s,itemId:%s,itemOwner:null]", skill.getName(), skill.ClassName, itemID));
-			skillsString += format("- %s (%s, %s)\n", name, ::MSU.Text.colorPositive(skill.m.ActionPointCost), ::MSU.Text.colorNegative(skill.m.FatigueCost));
+			if (skill.isHidden() && !skill.isType(::Const.SkillType.Perk))
+				continue;
+
+			local identifier = skill.isType(::Const.SkillType.Perk) && !skill.isType(::Const.SkillType.StatusEffect) ? "Perk" : "Skill";
+			local suffix = skill.isType(::Const.SkillType.Active) ? format(" (%s, %s)", ::MSU.Text.colorPositive(skill.m.ActionPointCost), ::MSU.Text.colorNegative(skill.m.FatigueCost)) : "";
+			skillsString += format("- [%s|%s+%s,itemId:%s,itemOwner:null]%s\n", skill.getName(), identifier, skill.ClassName, itemID, suffix);
 		}
 
 		if (skillsString != "")
@@ -21,7 +25,7 @@
 				id = 20,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Skills: (" + ::MSU.Text.colorPositive("AP") + ", " + ::MSU.Text.colorNegative("Fatigue") + ")\n" + skillsString
+				text = ::Reforged.Mod.Tooltips.parseString(format("Skills: (%s, %s)\n%s", ::MSU.Text.colorPositive("AP"), ::MSU.Text.colorNegative("Fatigue"), skillsString))
 			});
 		}
 
