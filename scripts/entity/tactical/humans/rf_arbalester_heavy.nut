@@ -25,9 +25,9 @@ this.rf_arbalester_heavy <- ::inherit("scripts/entity/tactical/human" {
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
 		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_entrenched"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_entrenched"));
 	}
 
 	function assignRandomEquipment()
