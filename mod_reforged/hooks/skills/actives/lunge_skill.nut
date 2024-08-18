@@ -14,7 +14,7 @@
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
-		ret.insert(tooltip.len() - 1, {
+		ret.insert(ret.len() - 1, {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
