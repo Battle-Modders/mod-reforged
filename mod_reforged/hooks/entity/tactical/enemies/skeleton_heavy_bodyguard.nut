@@ -21,9 +21,8 @@
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_reach_advantage"));
 
 		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
 	}
 
@@ -32,9 +31,7 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/ancient/ancient_sword"],
 				[1, "scripts/items/weapons/ancient/khopesh"],
-				[1, "scripts/items/weapons/ancient/warscythe"],
 				[1, "scripts/items/weapons/ancient/crypt_cleaver"],
 				[1, "scripts/items/weapons/ancient/rhomphaia"]
 			]).roll();
@@ -63,36 +60,26 @@
 		}
 	}
 
-	q.onSetupEntity <- function()
+	q.onSetupEntity = @() function()
 	{
-		local weapon = this.getMainhandItem();
-		if (weapon == null) return;
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
-		if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+		if (this.isArmedWithShield())
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
+		}
 
-			if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_en_garde"));
-			}
-			else
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_kata"));
-			}
-		}
-		else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
+		local weapon = this.getMainhandItem();
+		if (weapon != null)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_cleaver"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-		}
-		else if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+			if (weapon.isAoE())
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+			}
+			if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
 		}
 	}
 });
