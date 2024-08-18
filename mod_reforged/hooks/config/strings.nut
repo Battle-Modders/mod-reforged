@@ -206,7 +206,7 @@ local vanillaDescriptions = [
 		ID = "perk.bullseye",
 		Key = "Bullseye",
 		Description = ::UPD.getDescription({
-			Fluff = "Nailed it!",
+			Fluff = "One in the hand is worth two in the bush.",
 			Requirement = "Ranged Weapon",
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
@@ -270,6 +270,7 @@ local vanillaDescriptions = [
 		ID = "perk.rally_the_troops",
 		Key = "RallyTheTroops",
 		Description = ::UPD.getDescription({
+			Fluff = "A friendly horn of war has never ceased to steel the hearts of men.",
 			Effects = [{
 				Type = ::UPD.EffectType.Active,
 				Description = [
@@ -330,7 +331,7 @@ local vanillaDescriptions = [
 				Type = ::UPD.EffectType.Active,
 				Description = [
 					"Unlocks the [Taunt|Skill+taunt] skill which makes the targeted opponent take offensive actions instead of defensive ones, and attack the taunting character over another, potentially more vulnerable one.",
-					"When used on an adjacent target, reduces its [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by " + ::MSU.Text.colorPositive("20%") + " of the user's [Resolve.|Concept.Bravery]"
+					"When used on an adjacent target, reduces their [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by " + ::MSU.Text.colorPositive("20%") + " of the user's [Resolve.|Concept.Bravery]"
 				]
 			}]
 		})
@@ -339,6 +340,7 @@ local vanillaDescriptions = [
 		ID = "perk.recover",
 		Key = "Recover",
 		Description = ::UPD.getDescription({
+			Fluff = "Better to rest for a moment than lose your head forever.",
 			Effects = [{
 				Type = ::UPD.EffectType.Active,
 				Description = [
@@ -378,7 +380,7 @@ local vanillaDescriptions = [
 		ID = "perk.crippling_strikes",
 		Key = "CripplingStrikes",
 		Description = ::UPD.getDescription({
-			Fluff = "Cripple your enemies!",
+			Fluff = "Make sure to give it a nice twist when it\'s in there!",
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
@@ -443,7 +445,7 @@ local vanillaDescriptions = [
 		ID = "perk.mastery.axe",
 		Key = "SpecAxe",
 		Description = ::UPD.getDescription({
-			Fluff = "Master combat with axes and destroying shields.",
+			Fluff = "Master combat with axes and disable enemy armaments.",
 			Requirement = "Axe",
 			Effects = [
 				{
@@ -496,7 +498,7 @@ local vanillaDescriptions = [
 		ID = "perk.mastery.cleaver",
 		Key = "SpecCleaver",
 		Description = ::UPD.getDescription({
-			Fluff = "Master cleavers to inflict gruesome wounds.",
+			Fluff = "Master cleavers and fight with a bloodlust.",
 			Requirement = "Cleaver",
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
@@ -514,7 +516,7 @@ local vanillaDescriptions = [
 		ID = "perk.mastery.crossbow",
 		Key = "SpecCrossbow",
 		Description = ::UPD.getDescription({
-			Fluff = "Master crossbows and firearms, and learn where to aim best.",
+			Fluff = "Master crossbows and firearms, and how best to aim.",
 			Requirement = "Crossbow",
 			Effects = [
 				{
@@ -616,7 +618,7 @@ local vanillaDescriptions = [
 		ID = "perk.mastery.polearm",
 		Key = "SpecPolearm",
 		Description = ::UPD.getDescription({
-			Fluff = "Master polearms and keeping the enemy at bay.",
+			Fluff = "Master polearms and supporting your allies.",
 			Requirement = "Polearm",
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
@@ -778,7 +780,7 @@ local vanillaDescriptions = [
 		ID = "perk.quick_hands",
 		Key = "QuickHands",
 		Description = ::UPD.getDescription({
-			Fluff = "Looking for this?",
+			Fluff = "Fastest hands in the West.",
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
@@ -1258,7 +1260,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
 	}),
 	RF_FailedPotential = ::UPD.getDescription({
-		Fluff = "This character looked promising, but either due to bad luck or simply lack of talent, they have not shown the potential you thought they had. " + ::MSU.Text.colorNegative("This perk does nothing."),
+		Fluff = "This character looked promising, but either due to bad luck or simply lack of talent, they have not fulfilled the potential you thought they had. " + ::MSU.Text.colorNegative("This perk does nothing."),
 		Footer = ::MSU.Text.colorNegative("This perk cannot be refunded.")
 	}),
 	RF_FamilyPride = ::UPD.getDescription({
@@ -1384,7 +1386,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
 	}),
 	RF_HaleAndHearty = ::UPD.getDescription({
-		Fluff = "Years of hard labor have given you a stamina like none other!",
+		Fluff = "\'Who\'s this chunk of meat?\'",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1393,6 +1395,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
 	}),
 	RF_TrickstersPurses = ::UPD.getDescription({
+		Fluff = "My bags contain goodies of all sorts...",
 		Effects = [
 			{
 				Type = ::UPD.EffectType.Passive,
@@ -1728,7 +1731,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
 	}),
 	RF_RealizedPotential = ::UPD.getDescription({
-		Fluff = "From rags to riches! This character has truly come a long way. Who was once a dreg of society is now a full-fledged mercenary. " + ::MSU.Text.colorPositive("\n\nAll perk points have been refunded and attributes increased."),
+		Fluff = "From bones to brawn! This character has truly come a long way. Who was once a dreg of society is now a full-fledged mercenary. " + ::MSU.Text.colorPositive("\n\nAll perk points have been refunded and attributes increased."),
 		Footer = ::MSU.Text.colorNegative("This perk cannot be refunded.")
 	}),
 	RF_Rebuke = ::UPD.getDescription({
@@ -1760,7 +1763,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Footer = ::MSU.Text.colorNegative("This perk cannot be refunded.")
 	}),
 	RF_Sanguinary = ::UPD.getDescription({
-		Fluff = "Fountain of Blood!",
+		Fluff = "Make it rain blood!",
 		Requirement = "Cleaver and Cutting Attack",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
@@ -1789,7 +1792,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
 	}),
 	RF_ShieldSergeant = ::UPD.getDescription({
-		Fluff = "Lock and Shield",
+		Fluff = "SHIELDWAAAAAAAALL!!!",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -2128,7 +2131,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
 	}),
 	RF_WearThemDown = ::UPD.getDescription({
-		Fluff = "\'It ain\'t hard to dodge \'em when they\'re flailing around like fools...!\'"
+		Fluff = "Overwhelm your foes with metal and meat!"
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [

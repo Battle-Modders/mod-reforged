@@ -5,7 +5,7 @@ this.rf_brigandine_shirt <- ::inherit("scripts/items/armor/armor", {
 		this.armor.create();
 		this.m.ID = "armor.body.rf_brigandine_shirt";
 		this.m.Name = "Brigandine Shirt";
-		this.m.Description = "A cloth shirt with embedded, riveted and overlapping plates worn over linen and aketon. It provides great protection with minimal mobility loss.";
+		this.m.Description = "A cloth shirt with embedded, riveted and overlapping plates worn over linen and aketon. It provides good protection with minimal mobility loss.";
 		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;

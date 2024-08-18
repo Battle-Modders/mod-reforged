@@ -5,7 +5,7 @@ this.rf_visored_bascinet <- ::inherit("scripts/items/helmets/helmet", {
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_visored_bascinet";
 		this.m.Name = "Visored Bascinet";
-		this.m.Description = "A large bascinet with an attached visor and a foldable mouthpiece.";
+		this.m.Description = "A large bascinet with a hinged visor allowing for better breathing and vision outside of battle.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;

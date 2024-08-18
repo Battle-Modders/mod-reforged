@@ -5,7 +5,7 @@ this.rf_great_helm <- ::inherit("scripts/items/helmets/helmet", {
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_great_helm";
 		this.m.Name = "Great Helm";
-		this.m.Description = "A heavy, fully enclosed helm that extremely hinders vision but makes up for it with phenomenal protection.";
+		this.m.Description = "A heavy, fully enclosed helm that extremely hinders vision but makes up for it with unparalleled protection.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;

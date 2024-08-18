@@ -5,7 +5,7 @@ this.rf_half_closed_sallet_with_mail <- ::inherit("scripts/items/helmets/helmet"
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_half_closed_sallet_with_mail";
 		this.m.Name = "Half Closed Sallet with Mail";
-		this.m.Description = "A finely crafted half-closed Sallet over a mail coif. Provides excellent protection.";
+		this.m.Description = "A finely crafted half-closed sallet over a mail coif. Provides excellent protection.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;

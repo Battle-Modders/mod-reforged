@@ -5,7 +5,7 @@ this.rf_skull_cap_with_mail <- ::inherit("scripts/items/helmets/helmet", {
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_skull_cap_with_mail";
 		this.m.Name = "Skull Cap with Mail";
-		this.m.Description = "A skull cap over mail that providing strong overall protection.";
+		this.m.Description = "A skull cap over mail providing strong overall protection.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;
