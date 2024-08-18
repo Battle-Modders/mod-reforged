@@ -5,7 +5,7 @@ this.rf_half_closed_sallet <- ::inherit("scripts/items/helmets/helmet", {
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_half_closed_sallet";
 		this.m.Name = "Half Closed Sallet";
-		this.m.Description = "A finely crafted half-closed Sallet. Provides excellent defense with some vision loss.";
+		this.m.Description = "A finely crafted half-closed sallet. Provides excellent defense with some vision loss.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;

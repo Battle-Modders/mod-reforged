@@ -5,7 +5,7 @@ this.rf_sallet_helmet <- ::inherit("scripts/items/helmets/helmet", {
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_sallet_helmet";
 		this.m.Name = "Sallet Helmet";
-		this.m.Description = "A simple, well-made sallet helmet offering great protection.";
+		this.m.Description = "A simple, well-made sallet helmet offering good protection.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;
