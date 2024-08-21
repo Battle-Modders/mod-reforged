@@ -67,7 +67,7 @@ this.rf_skeleton_legatus <- ::inherit("scripts/entity/tactical/rf_skeleton_comma
 			this.m.Items.equip(::new(weapon));
 		}
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_inspiring_presence"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_inspiring_presence"));
 		return true;
 	}
 
