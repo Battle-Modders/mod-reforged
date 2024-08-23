@@ -76,7 +76,7 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 
 	function proc( _targetEntity )
 	{
-		if (!this.isEnabled())
+		if (!this.isEnabled() || !_targetEntity.isAlive() || _targetEntity.isDying() || !_targetEntity.isPlacedOnMap())
 		{
 			return;
 		}
