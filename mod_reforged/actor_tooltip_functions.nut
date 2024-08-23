@@ -19,9 +19,9 @@
     };
     ret.text += formatString("gfx/ui/icons/melee_skill.png", currentProperties.getMeleeSkill(), currentProperties.getMeleeSkill() - baseProperties.getMeleeSkill());
     ret.text += formatString("gfx/ui/icons/ranged_skill.png", currentProperties.getRangedSkill(), currentProperties.getRangedSkill() - baseProperties.getRangedSkill());
-    ret.text += formatString("gfx/ui/icons/bravery.png", currentProperties.getRangedDefense(), currentProperties.getRangedDefense() - baseProperties.getRangedDefense());
+    ret.text += formatString("gfx/ui/icons/bravery.png", currentProperties.getBravery(), currentProperties.getBravery() - baseProperties.getBravery());
     ret.text += formatString("gfx/ui/icons/melee_defense.png", currentProperties.getMeleeDefense(), currentProperties.getMeleeDefense() - baseProperties.getMeleeDefense());
-    ret.text += formatString("gfx/ui/icons/ranged_defense.png", currentProperties.getBravery(), currentProperties.getBravery() - baseProperties.getBravery());
+    ret.text += formatString("gfx/ui/icons/ranged_defense.png", currentProperties.getRangedDefense(), currentProperties.getRangedDefense() - baseProperties.getRangedDefense());
     ret.text += formatString("gfx/ui/icons/initiative.png", _actor.getInitiative(), _actor.getInitiative() - baseProperties.getInitiative());
     ret.text += "</div>";
     return ret;
