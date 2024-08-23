@@ -77,54 +77,28 @@ this.rf_follow_up_effect <- ::inherit("scripts/skills/skill", {
 	function proc( _targetEntity )
 	{
 		if (!this.isEnabled() || !_targetEntity.isAlive() || _targetEntity.isDying() || !_targetEntity.isPlacedOnMap())
-		{
 			return;
-		}
+
+		local targetTile = _targetEntity.getTile();
+		local attack = this.getContainer().getAttackOfOpportunity();
+		if (attack == null || !attack.verifyTargetAndRange(targetTile, this.getContainer().getActor().getTile()))
+			return;
 
 		local user = this.getContainer().getActor();
-		local targetTile = _targetEntity.getTile();
-
 		if (!user.getTile().hasLineOfSightTo(targetTile, user.getCurrentProperties().getVision()))
 			return;
 
-		local attack = this.getContainer().getAttackOfOpportunity();
-		if (attack != null && attack.verifyTargetAndRange(targetTile, this.getContainer().getActor().getTile()))
+		if (!user.isHiddenToPlayer() || targetTile.IsVisibleForPlayer)
 		{
-			if (!user.isHiddenToPlayer() || targetTile.IsVisibleForPlayer)
-			{
-				this.getContainer().setBusy(true);
-				::Time.scheduleEvent(::TimeUnit.Virtual, 300, function( _effect ) {
-					if (_targetEntity.isAlive() && !_targetEntity.isDying())
-					{
-						::logDebug("[" + user.getName() + "] is Following Up with skill [" + attack.getName() + "] on target [" + _targetEntity.getName() + "]");
-
-						if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
-						{
-							::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " is Following Up");
-						}
-
-						_effect.m.IsProccing = true;
-						attack.useForFree(targetTile);
-						_effect.m.ProcCount++;
-						_effect.m.IsProccing = false;
-					}
-
-					this.getContainer().setBusy(false);
-				}.bindenv(this), this);
-			}
-			else
-			{
-				if (_targetEntity.isAlive() && !_targetEntity.isDying())
-				{
-					::logDebug("[" + user.getName() + "] is Following Up with skill [" + attack.getName() + "] on target [" + _targetEntity.getName() + "]");
-
-					this.m.IsProccing = true;
-					attack.useForFree(targetTile);
-					this.m.ProcCount++;
-					this.m.IsProccing = false;
-				}
-			}
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " is Following Up");
 		}
+
+		::logDebug("[" + user.getName() + "] is Following Up with skill [" + attack.getName() + "] on target [" + _targetEntity.getName() + "]");
+
+		this.m.IsProccing = true;
+		attack.useForFree(targetTile);
+		this.m.ProcCount++;
+		this.m.IsProccing = false;
 	}
 
 	function onTurnStart()

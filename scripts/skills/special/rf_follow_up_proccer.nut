@@ -28,6 +28,8 @@ this.rf_follow_up_proccer <- ::inherit("scripts/skills/skill", {
 
 		this.m.SkillCount = ::Const.SkillCounter;
 
+		local targetTile = _targetEntity.getTile();
+
 		local allies = ::Tactical.Entities.getHostileActors(_targetEntity.getFaction(), _targetEntity.getTile(), 2);
 		foreach (ally in allies)
 		{
@@ -36,7 +38,20 @@ this.rf_follow_up_proccer <- ::inherit("scripts/skills/skill", {
 				local allySkill = ally.getSkills().getSkillByID("effects.rf_follow_up");
 				if (allySkill != null)
 				{
-					allySkill.proc(_targetEntity);
+					if (!ally.isHiddenToPlayer() || targetTile.IsVisibleForPlayer)
+					{
+						this.getContainer().setBusy(true);
+						allySkill.getContainer().setBusy(true);
+						::Time.scheduleEvent(::TimeUnit.Virtual, 300, function( _proccer ) {
+							allySkill.proc(_targetEntity);
+							allySkill.getContainer().setBusy(false);
+							_proccer.getContainer().setBusy(false);
+						}.bindenv(this), this);
+					}
+					else
+					{
+						allySkill.proc(_targetEntity);
+					}
 				}
 			}
 		}
