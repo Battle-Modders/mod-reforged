@@ -62,28 +62,28 @@
 	justify-content: space-between;
 	width: 24rem;
 }
-.rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry
+.rf_tacticalTooltipAttributeEntry
 {
 	width: 7rem;
 	display:flex;
 	justify-content: flex-start;
 	align-items: center;
 }
-.rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry.rf_tacticalTooltipAttributeEntryDoubleWide
+.rf_tacticalTooltipAttributeEntry.rf_tacticalTooltipAttributeEntryDoubleWide
 {
 	width: 14rem;
 }
-.rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry .rf_tacticalTooltipAttributeValue
+.rf_tacticalTooltipAttributeEntry .rf_tacticalTooltipAttributeValue
 {
 	padding-left: 2px;
 }
-.rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry img
+.rf_tacticalTooltipAttributeEntry img
 {
 	width: 20px;
 	height: 20px;
 }
 
-.rf_tacticalTooltipAttributeList > .rf_tacticalTooltipAttributeEntry > .rf_tacticalTooltipAttributeDelta
+.rf_tacticalTooltipAttributeEntry > .rf_tacticalTooltipAttributeDelta
 {
 	font-size: 10px;
 }
@@ -109,6 +109,11 @@
 	width: 20px;
 	height: 20px;
 }
+.rf_tacticalTooltipVision
+{
+	justify-content: flex-end;
+}
+
 .ui-control-stats-progressbar.rf_reach,
 .ui-control-stats-progressbar-preview.rf_reach
 {
