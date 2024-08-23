@@ -45,7 +45,7 @@
 {
 	local currentProperties = _actor.getCurrentProperties();
 	if (!_actor.getCurrentProperties().IsAffectedByReach)
-		return "";
+		return format("<span class='rf_tacticalTooltipReach'>%s - (%s -, %s -)</span>", reachImg, reachAtkImg, reachDefImg);
 	local reach = currentProperties.getReach();
 	local reachAtk = currentProperties.OffensiveReachIgnore;
 	local reachDef = currentProperties.DefensiveReachIgnore;
