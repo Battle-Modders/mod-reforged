@@ -96,6 +96,10 @@
 	align-items: center;
 	width: 24.0rem;
 }
+.rf_tacticalTooltipWaitContainer img
+{
+	padding-right: 4px;
+}
 
 .rf_tacticalTooltipReach
 {
