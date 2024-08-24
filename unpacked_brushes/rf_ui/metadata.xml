@@ -60,11 +60,9 @@
 	<sprite id="perk_rf_entrenched_mini" ic = "FF23165B" img="skills\mini\perk_rf_entrenched_mini.png" />
 	<sprite id="perk_rf_exploit_opening_mini" ic = "FF23165B" img="skills\mini\perk_rf_exploit_opening_mini.png" />
 	<sprite id="perk_rf_exude_confidence" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_exude_confidence.png" />
-	<sprite id="perk_rf_eyes_up_mini" ic = "FF23165B" img="skills\mini\perk_rf_eyes_up_mini.png" />
 	<sprite id="perk_rf_feral_rage_mini" ic = "FF23165B" img="skills\mini\perk_rf_feral_rage_mini.png" />
 	<sprite id="perk_rf_fresh_and_furious_mini" ic = "FF23165B" img="skills\mini\perk_rf_fresh_and_furious_mini.png" />
 	<sprite id="perk_rf_inspiring_presence_mini" ic = "FF23165B" img="skills\mini\perk_rf_inspiring_presence_mini.png" />
-	<sprite id="perk_rf_intimidate" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_intimidate.png" />
 	<sprite id="perk_rf_king_of_all_weapons_mini" ic = "FF23165B" img="skills\mini\perk_rf_king_of_all_weapons_mini.png" />
 	<sprite id="perk_rf_man_of_steel_mini" ic = "FF23165B" img="skills\mini\perk_rf_man_of_steel_mini.png" />
 	<sprite id="perk_rf_opportunist" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_opportunist.png" />
@@ -72,7 +70,6 @@
 	<sprite id="perk_rf_phalanx_mini" ic = "FF23165B" img="skills\mini\perk_rf_phalanx_mini.png" />
 	<sprite id="perk_rf_sanguinary" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_sanguinary.png" />
 	<sprite id="perk_rf_second_wind" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_second_wind.png" />
-	<sprite id="perk_rf_shield_splitter" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_shield_splitter.png" />
 	<sprite id="perk_rf_soul_link" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_soul_link.png" />
 	<sprite id="perk_rf_soul_link_mini" ic = "FF23165B" img="skills\mini\perk_rf_soul_link_mini.png" />
 	<sprite id="perk_rf_strength_in_numbers_mini" ic = "FF23165B" img="skills\mini\perk_rf_strength_in_numbers_mini.png" />

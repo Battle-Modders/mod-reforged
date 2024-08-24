@@ -1,13 +1,5 @@
 ::DynamicPerks.Perks.addPerks([
 	{
-		ID = "perk.rf_heft",
-		Script = "scripts/skills/perks/perk_rf_heft",
-		Name = ::Const.Strings.PerkName.RF_Heft,
-		Tooltip = ::Const.Strings.PerkDescription.RF_Heft,
-		Icon = "ui/perks/perk_rf_heft.png",
-		IconDisabled = "ui/perks/perk_rf_heft_sw.png"
-	},
-	{
 		ID = "perk.rf_calculated_strikes",
 		Script = "scripts/skills/perks/perk_rf_calculated_strikes",
 		Name = ::Const.Strings.PerkName.RF_CalculatedStrikes,
@@ -102,14 +94,6 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_BetweenTheRibs,
 		Icon = "ui/perks/perk_rf_between_the_ribs.png",
 		IconDisabled = "ui/perks/perk_rf_between_the_ribs_sw.png"
-	},
-	{
-		ID = "perk.rf_featherweight",
-		Script = "scripts/skills/perks/perk_rf_featherweight",
-		Name = ::Const.Strings.PerkName.RF_Featherweight,
-		Tooltip = ::Const.Strings.PerkDescription.RF_Featherweight,
-		Icon = "ui/perks/perk_rf_featherweight.png",
-		IconDisabled = "ui/perks/perk_rf_featherweight_sw.png"
 	},
 	{
 		ID = "perk.rf_swift_stabs",
@@ -240,14 +224,6 @@
 		IconDisabled = "ui/perks/perk_rf_leverage_sw.png"
 	},
 	{
-		ID = "perk.rf_intimidate",
-		Script = "scripts/skills/perks/perk_rf_intimidate",
-		Name = ::Const.Strings.PerkName.RF_Intimidate,
-		Tooltip = ::Const.Strings.PerkDescription.RF_Intimidate,
-		Icon = "ui/perks/perk_rf_intimidate.png",
-		IconDisabled = "ui/perks/perk_rf_intimidate_sw.png"
-	},
-	{
 		ID = "perk.rf_formidable_approach",
 		Script = "scripts/skills/perks/perk_rf_formidable_approach",
 		Name = ::Const.Strings.PerkName.RF_FormidableApproach,
@@ -312,14 +288,6 @@
 		IconDisabled = "ui/perks/perk_rf_hybridization_sw.png"
 	},
 	{
-		ID = "perk.rf_momentum",
-		Script = "scripts/skills/perks/perk_rf_momentum",
-		Name = ::Const.Strings.PerkName.RF_Momentum,
-		Tooltip = ::Const.Strings.PerkDescription.RF_Momentum,
-		Icon = "ui/perks/perk_rf_momentum.png",
-		IconDisabled = "ui/perks/perk_rf_momentum_sw.png"
-	},
-	{
 		ID = "perk.rf_opportunist",
 		Script = "scripts/skills/perks/perk_rf_opportunist",
 		Name = ::Const.Strings.PerkName.RF_Opportunist,
@@ -350,14 +318,6 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_TheRushOfBattle,
 		Icon = "ui/perks/perk_rf_the_rush_of_battle.png",
 		IconDisabled = "ui/perks/perk_rf_the_rush_of_battle_sw.png"
-	},
-	{
-		ID = "perk.rf_personal_armor",
-		Script = "scripts/skills/perks/perk_rf_personal_armor",
-		Name = ::Const.Strings.PerkName.RF_PersonalArmor,
-		Tooltip = ::Const.Strings.PerkDescription.RF_PersonalArmor,
-		Icon = "ui/perks/perk_rf_personal_armor.png",
-		IconDisabled = "ui/perks/perk_rf_personal_armor_sw.png"
 	},
 	{
 		ID = "perk.rf_strength_in_numbers",
@@ -414,14 +374,6 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_TargetPractice,
 		Icon = "ui/perks/perk_rf_target_practice.png",
 		IconDisabled = "ui/perks/perk_rf_target_practice_sw.png"
-	},
-	{
-		ID = "perk.rf_swordlike",
-		Script = "scripts/skills/perks/perk_rf_swordlike",
-		Name = ::Const.Strings.PerkName.RF_Swordlike,
-		Tooltip = ::Const.Strings.PerkDescription.RF_Swordlike,
-		Icon = "ui/perks/perk_rf_swordlike.png",
-		IconDisabled = "ui/perks/perk_rf_swordlike_sw.png"
 	},
 	{
 		ID = "perk.rf_sanguinary",
@@ -678,14 +630,6 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_VigorousAssault,
 		Icon = "ui/perks/perk_rf_vigorous_assault.png",
 		IconDisabled = "ui/perks/perk_rf_vigorous_assault_sw.png"
-	},
-	{
-		ID = "perk.rf_eyes_up",
-		Script = "scripts/skills/perks/perk_rf_eyes_up",
-		Name = ::Const.Strings.PerkName.RF_EyesUp,
-		Tooltip = ::Const.Strings.PerkDescription.RF_EyesUp,
-		Icon = "ui/perks/perk_rf_eyes_up.png",
-		IconDisabled = "ui/perks/perk_rf_eyes_up_sw.png"
 	},
 	{
 		ID = "perk.rf_blitzkrieg",
@@ -1076,14 +1020,6 @@
 		Tooltip = ::Const.Strings.PerkDescription.RF_Ghostlike,
 		Icon = "ui/perks/perk_rf_ghostlike.png",
 		IconDisabled = "ui/perks/perk_rf_ghostlike_sw.png"
-	},
-	{
-		ID = "perk.rf_shield_splitter",
-		Script = "scripts/skills/perks/perk_rf_shield_splitter",
-		Name = ::Const.Strings.PerkName.RF_ShieldSplitter,
-		Tooltip = ::Const.Strings.PerkDescription.RF_ShieldSplitter,
-		Icon = "ui/perks/perk_rf_shield_splitter.png",
-		IconDisabled = "ui/perks/perk_rf_shield_splitter_sw.png"
 	},
 	{
 		ID = "perk.rf_between_the_eyes",
