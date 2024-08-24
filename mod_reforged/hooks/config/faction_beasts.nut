@@ -1,27 +1,79 @@
 // Adjust Vanilla Actors
 ::MSU.Table.merge(::Const.Tactical.Actor.Direwolf, {
-	XP = 250,
-	MeleeSkill = 70,
-	MeleeDefense = 15,
-	RangedDefense = 15
+	XP = 250, // vanilla 200
+	ActionPoints = 12,
+	Hitpoints = 130,
+	Bravery = 50,
+	Stamina = 180,
+	MeleeSkill = 70, // vanilla 60
+	RangedSkill = 0,
+	MeleeDefense = 15, // vanilla 10
+	RangedDefense = 15, // vanilla 10
+	Initiative = 150,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 20,
+	Armor = [
+		30,
+		30
+	]
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.FrenziedDirewolf, {
-	XP = 300,
-	MeleeSkill = 75,
-	MeleeDefense = 20,
-	RangedDefense = 20
+	XP = 300, // vanilla 250
+	ActionPoints = 12,
+	Hitpoints = 150,
+	Bravery = 70,
+	Stamina = 180,
+	MeleeSkill = 75, // vanilla 65
+	RangedSkill = 0,
+	MeleeDefense = 20, // vanilla 10
+	RangedDefense = 20, // vanilla 10
+	Initiative = 150,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 20,
+	Armor = [
+		30,
+		30
+	]
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Hyena, {
-	XP = 250,
-	MeleeSkill = 70,
-	MeleeDefense = 15,
-	RangedDefense = 15
+	XP = 250, // vanilla 200
+	ActionPoints = 14,
+	Hitpoints = 120,
+	Bravery = 50,
+	Stamina = 180,
+	MeleeSkill = 70, // vanilla 60
+	RangedSkill = 0,
+	MeleeDefense = 15, // vanilla 10
+	RangedDefense = 15, // vanilla 10
+	Initiative = 90,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 20,
+	Armor = [
+		20,
+		20
+	]
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.FrenziedHyena, {
-	XP = 300,
-	MeleeSkill = 75,
-	MeleeDefense = 20,
-	RangedDefense = 20
+	XP = 300, // vanilla 250
+	ActionPoints = 14,
+	Hitpoints = 140,
+	Bravery = 70,
+	Stamina = 180,
+	MeleeSkill = 75, // vanilla 65
+	RangedSkill = 0,
+	MeleeDefense = 20, // vanilla 10
+	RangedDefense = 20, // vanilla 10
+	Initiative = 130,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 20,
+	Armor = [
+		20,
+		20
+	]
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Serpent, {
 	XP = 175,

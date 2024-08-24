@@ -17,7 +17,7 @@
 	],
 	FatigueRecoveryRate = 15
 });
-::MSU.Table.merge(::Const.Tactical.Actor.GoblinFighter, {
+::MSU.Table.merge(::Const.Tactical.Actor.GoblinFighter, { // Goblin Skirmisher
 	XP = 200,
 	ActionPoints = 9,
 	Hitpoints = 40,

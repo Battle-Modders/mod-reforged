@@ -1,21 +1,42 @@
 // Adjust Vanilla Actors
-::MSU.Table.merge(::Const.Tactical.Actor.SkeletonLight, {
-	XP = 200,
-	Hitpoints = 50,
-	Bravery = 55,
-	MeleeSkill = 60
+::MSU.Table.merge(::Const.Tactical.Actor.SkeletonLight, { // Ancient Auxiliary
+	XP = 200, // vanilla 150
+	ActionPoints = 9,
+	Hitpoints = 50, // vanilla 45
+	Bravery = 55, // vanilla 70
+	Stamina = 100,
+	MeleeSkill = 60, // vanilla 55
+	RangedSkill = 0,
+	MeleeDefense = 0,
+	RangedDefense = 0,
+	Initiative = 65,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
 });
-::MSU.Table.merge(::Const.Tactical.Actor.SkeletonMedium, {
-	XP = 300,
-	Hitpoints = 65,
-	Bravery = 75,
-	MeleeSkill = 70,
-	MeleeDefense = 5,
-	RangedDefense = 5,
-	Initiative = 70
+::MSU.Table.merge(::Const.Tactical.Actor.SkeletonMedium, { // Ancient Legionary
+	XP = 300, // vanilla 250
+	ActionPoints = 9,
+	Hitpoints = 65, // vanilla 55
+	Bravery = 75, // vanilla 90
+	Stamina = 100,
+	MeleeSkill = 70, // vanilla 65
+	RangedSkill = 0,
+	MeleeDefense = 5, // vanilla 0
+	RangedDefense = 5, // vanilla 0
+	Initiative = 70, // vanilla 65
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
 });
-::MSU.Table.merge(::Const.Tactical.Actor.SkeletonHeavy, { // Our Honor Guard is a higher tier unit than vanilla. The more proper comparison to vanilla Honor Guard is the Praetorian.
-	XP = 500, // Vanilla 350
+::MSU.Table.merge(::Const.Tactical.Actor.SkeletonHeavy, { // Our Honor Guard is a higher tier unit than vanilla. The more proper comparison to vanilla Honor Guard is the SkeletonHeavyLesser (Ancient Praetorian).
+	XP = 500, // vanilla 350
 	ActionPoints = 9,
 	Hitpoints = 90, // vanilla 65
 	Bravery = 100, // vanilla 110
@@ -32,8 +53,24 @@
 		0
 	]
 });
-::MSU.Table.merge(::Const.Tactical.Actor.SkeletonBoss, {
-	XP = 1000
+::MSU.Table.merge(::Const.Tactical.Actor.SkeletonBoss, { // The Conqueror
+	XP = 1000, // vanilla 600
+	ActionPoints = 9,
+	Hitpoints = 350,
+	Bravery = 120,
+	Stamina = 100,
+	MeleeSkill = 90,
+	RangedSkill = 0,
+	MeleeDefense = 20,
+	RangedDefense = 10,
+	Initiative = 70,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	],
+	DamageTotalMult = 1.35
 });
 
 // New Reforged Actors
@@ -91,7 +128,7 @@
 		0
 	]
 };
-::Const.Tactical.Actor.RF_SkeletonLightElite <- {
+::Const.Tactical.Actor.RF_SkeletonLightElite <- { // Ancient Miles
 	XP = 250,
 	ActionPoints = 9,
 	Hitpoints = 55,
@@ -109,7 +146,7 @@
 		0
 	]
 };
-::Const.Tactical.Actor.RF_SkeletonMediumElite <- {
+::Const.Tactical.Actor.RF_SkeletonMediumElite <- { // Ancient Palatinus
 	XP = 350,
 	ActionPoints = 9,
 	Hitpoints = 70,
@@ -127,7 +164,7 @@
 		0
 	]
 };
-::Const.Tactical.Actor.RF_SkeletonHeavyLesser <- {
+::Const.Tactical.Actor.RF_SkeletonHeavyLesser <- { // Ancient Praetorian
 	XP = 450,
 	ActionPoints = 9,
 	Hitpoints = 75,
