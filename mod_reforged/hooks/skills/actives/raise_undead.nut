@@ -4,6 +4,7 @@
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Reanimate a corpse to do your bidding!";
+		this.m.IconDisabled = "skills/active_26_sw.png";	// Vanilla uses a wrong icon here
 	}
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
