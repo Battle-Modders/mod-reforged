@@ -3,19 +3,25 @@
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
-		ret.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/shield_damage.png",
-			text = "Inflicts " + ::MSU.Text.colorDamage(this.getContainer().getActor().getMainhandItem().getShieldDamage()) + " damage to shields"
-		});
+		if (this.getShieldDamage() != 0)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/shield_damage.png",
+				text = "Inflicts " + ::MSU.Text.colorDamage(this.getShieldDamage()) + " damage to shields"
+			});
+		}
 
-		ret.push({
-			id = 11,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorDamage(this.RF_getFatigueDamage()) + " [Fatigue|Concept.Fatigue] on the target")
-		});
+		if (this.RF_getFatigueDamage() != 0)
+		{
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorDamage(this.RF_getFatigueDamage()) + " [Fatigue|Concept.Fatigue] on the target")
+			});
+		}
 
 		if (this.getMaxRange() > 1)
 		{
@@ -47,10 +53,9 @@
 		if (shield != null)
 		{
 			this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplitShield);
-			local damage = _user.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).getShieldDamage();
 
 			local conditionBefore = shield.getCondition();
-			shield.applyShieldDamage(damage);
+			shield.applyShieldDamage(this.getShieldDamage());
 
 			if (shield.getCondition() == 0)
 			{
@@ -98,8 +103,14 @@
 		return true;
 	}
 
+// New Functions
 	q.RF_getFatigueDamage <- function()
 	{
 		return this.getBaseValue("ActionPointCost") <= 4 ? 10 : 20;
+	}
+
+	q.getShieldDamage <- function()
+	{
+		return _user.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).getShieldDamage();
 	}
 });
