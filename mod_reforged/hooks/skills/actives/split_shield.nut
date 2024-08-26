@@ -27,16 +27,6 @@
 			});
 		}
 
-		if (this.getMaxRange() > 1 && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInAxes)
-		{
-			ret.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "Has " + ::MSU.Text.colorNegative("-15%") + " chance to hit targets directly adjacent because the weapon is too unwieldy"
-			});
-		}
-
 		return ret;
 	}
 
