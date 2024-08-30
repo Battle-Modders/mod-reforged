@@ -76,7 +76,7 @@
 				id = currentID,
 				type = "text",
 				icon = statusEffect.getIcon(),
-				text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedSkillName(statusEffect))
+				text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedSkillName(statusEffect, true))
 			};
 			currentID++;
 
