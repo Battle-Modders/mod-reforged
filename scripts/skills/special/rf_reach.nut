@@ -12,6 +12,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.VeryLast + 100;
 		this.m.IsSerialized = false;
+		this.m.IsHidden = true;
 	}
 
 	function getName()
