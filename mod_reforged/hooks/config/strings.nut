@@ -1068,8 +1068,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Increase the [Resolve|Concept.Bravery] of adjacent allies by " + ::MSU.Text.colorPositive("5%") + " of your [Melee Skill.|Concept.MeleeSkill] If multiple characters with this perk are present, only the highest bonus applies.",
-				"When not engaged in melee, whenever you attack, hit or miss, trigger a Positive Morale Check for adjacent members of your company with a penalty to [Resolve|Concept.Bravery] of " + ::MSU.Text.colorNegative("50%") + "."
+				"While not engaged in melee, whenever you attack, hit or miss, trigger a Positive [Morale Check|Concept.Morale] for adjacent members of your company."
 			]
 		}]
 	}),
