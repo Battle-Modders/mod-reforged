@@ -104,4 +104,10 @@ this.rf_take_aim_effect <- ::inherit("scripts/skills/skill", {
 	{
 		this.removeSelf();
 	}
+
+// Modular Vanilla Functions
+	function onActorInterrupted()
+	{
+		this.removeSelf();
+	}
 });
