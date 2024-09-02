@@ -58,7 +58,7 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if (::MSU.isNull(this.m.Ally) || !this.m.Ally.isPlacedOnMap() || _properties.IsRooted || _properties.IsStunned || this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing)
+		if (::MSU.isNull(this.m.Ally) || !this.m.Ally.isPlacedOnMap() || _properties.IsRooted)
 		{
 			this.removeSelf();
 			this.onRemoved();
@@ -103,5 +103,12 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 				this.m.Ally.getSkills().remove(skill);
 			}
 		}
+	}
+
+// Modular Vanilla Functions
+	function onActorInterrupted()
+	{
+		this.removeSelf();
+		this.onRemoved();	// Is this really necessary?
 	}
 });
