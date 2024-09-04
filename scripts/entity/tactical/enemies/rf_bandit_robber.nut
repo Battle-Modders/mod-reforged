@@ -1,7 +1,7 @@
 this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 	m = {
-		HasNet = 0, // 20% chance
-		IsThrower = 0 // 50% chance
+		HasNet = false,
+		IsThrower = false
 	},
 	function create()
 	{
@@ -41,8 +41,8 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 
-		this.m.HasNet = ::Math.rand(0, 4); // 4 has net
-		this.m.IsThrower = ::Math.rand(0, 1); // 1 is thrower
+		this.m.HasNet = ::Math.rand(1, 5) == 5; // 20% chance
+		this.m.IsThrower = ::Math.rand(1, 2) == 2; // 50% chance
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )
@@ -53,7 +53,7 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		if (this.m.HasNet == 4 && (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)))
+		if (this.m.HasNet == true && (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)))
 		{
 			this.m.Items.equip(::new("scripts/items/tools/throwing_net"))
 
@@ -87,7 +87,7 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 			}
 		}
 
-		if (this.m.IsThrower == 1)
+		if (this.m.IsThrower == true)
 		{
 			local throwingWeapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/javelin"],

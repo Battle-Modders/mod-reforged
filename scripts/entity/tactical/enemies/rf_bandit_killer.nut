@@ -1,8 +1,8 @@
 this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 	m = {
-		HasNet = 0, // 33% chance
-		IsRegularThrower = 0, // 50% chance
-		IsSpearThrower = 0 // 25% chance. only rolled if not regular thrower.
+		HasNet = false, // 33% chance
+		IsRegularThrower = false, // 50% chance
+		IsSpearThrower = false // 25% chance. only rolled if not regular thrower.
 	},
 	function create()
 	{
@@ -45,12 +45,12 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 
-		this.m.HasNet = ::Math.rand(0, 2); // 2 has net
-		this.m.IsRegularThrower = ::Math.rand(0, 1); // 1 is regular thrower
+		this.m.HasNet = ::Math.rand(1, 3) == 3; // 33% chance
+		this.m.IsRegularThrower = ::Math.rand(1, 2) == 2;  // 50% chance
 
-		if (this.m.IsRegularThrower != 1)
+		if (this.m.IsRegularThrower == false)
 		{
-			this.m.IsSpearThrower = ::Math.rand(0, 3); // 3 is spear thrower
+			this.m.IsSpearThrower = ::Math.rand(1, 4) == 4; // 25% chance
 		}
 	}
 
@@ -62,7 +62,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		if (this.m.HasNet == 2 && (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)))
+		if (this.m.HasNet == true && (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)))
 		{
 			this.m.Items.equip(::new("scripts/items/tools/throwing_net"))
 
@@ -98,7 +98,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 			}
 		}
 
-		if (this.m.IsRegularThrower == 1)
+		if (this.m.IsRegularThrower == true)
 		{
 			local throwingWeapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/javelin"],
@@ -107,7 +107,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 
 			this.m.Items.addToBag(::new(throwingWeapon));
 		}
-		else if (this.m.IsSpearThrower == 3)
+		else if (this.m.IsSpearThrower == true)
 		{
 			this.m.Items.addToBag(::new("scripts/items/weapons/throwing_spear"));
 		}
@@ -141,7 +141,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 
 	function onSetupEntity()
 	{
-		if (this.m.HasNet == 2) //rolled throwing net
+		if (this.m.HasNet == true) //rolled throwing net
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_angler"));
 		}
@@ -171,7 +171,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 			}
 		}
 
-		if (this.m.IsRegularThrower == 1 || this.m.IsSpearThrower == 3)
+		if (this.m.IsRegularThrower == true || this.m.IsSpearThrower == true)
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_opportunist"));
