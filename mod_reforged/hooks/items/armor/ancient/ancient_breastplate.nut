@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/armor/ancient/ancient_breastplate", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/armor/ancient/ancient_breastplate", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Condition = 175;
 		this.m.ConditionMax = 175;
 		this.m.StaminaModifier = -24;

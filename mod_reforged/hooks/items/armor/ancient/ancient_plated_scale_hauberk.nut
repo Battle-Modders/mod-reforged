@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/armor/ancient/ancient_plated_scale_hauberk", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/armor/ancient/ancient_plated_scale_hauberk", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Condition = 250;
 		this.m.ConditionMax = 250;
 		this.m.StaminaModifier = -34;
