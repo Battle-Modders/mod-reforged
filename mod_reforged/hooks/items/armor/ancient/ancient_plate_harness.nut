@@ -1,8 +1,7 @@
-::mods_hookExactClass("items/armor/ancient/ancient_plate_harness", function(o) {
-	local create = o.create;
-	o.create = function()
+::Reforged.HooksMod.hook("scripts/items/armor/ancient/ancient_plate_harness", function(q) {
+	q.create = @(__original) function()
 	{
-		create();
+		__original();
 		this.m.Condition = 235;
 		this.m.ConditionMax = 235;
 		this.m.StaminaModifier = -32;

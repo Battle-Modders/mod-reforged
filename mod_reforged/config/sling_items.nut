@@ -37,14 +37,15 @@
 	}
 
 	// We only show these skills while the respective items are in one of the bag slots
-	local isHidden = ::mods_getMember(o, "isHidden");
-	::mods_override(o, "isHidden", function() {
+	local isHidden = o.isHidden;
+	o.isHidden = function()
+	{
 		local mainhandItem = this.getContainer().getActor().getMainhandItem();
 		if (mainhandItem == null) return isHidden();
 		if (mainhandItem.isItemType(::Const.Items.ItemType.Weapon) == false) return isHidden();
 		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sling) == false) return isHidden();
 		return false;
-	});
+	}
 
 	// Overwrite so that the offhand item is not getting deleted
 	o.onUse = function( _user, _targetTile )
