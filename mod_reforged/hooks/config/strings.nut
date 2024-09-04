@@ -576,7 +576,7 @@ local vanillaDescriptions = [
 					"Skills build up " + ::MSU.Text.colorNegative("25%") + " less Fatigue.",
 					"[Lash|Skill+lash_skill] and [Hail|Skill+hail_skill] ignore the defense bonus of shields.",
 					"Gain the [From all Sides|Perk+perk_rf_from_all_sides] perk.",
-					"Pound ignores an additional " + ::MSU.Text.colorPositive("+10%") + " of armor on head hits.",
+					"Pound ignores an additional " + ::MSU.Text.colorPositive("+10%") + " of armor on [head hits|Concept.ChanceToHitHead].",
 					"Thresh gains " + ::MSU.Text.colorPositive("+5%") + " chance to hit.",
 					"Poleflails no longer have a penalty for attacking targets directly adjacent."
 				]
@@ -833,7 +833,7 @@ local vanillaDescriptions = [
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Hits to the head no longer cause critical damage to this character, which also lowers the risk of sustaining debilitating head [injuries|Concept.Injury] significantly."
+					"[Hits to the head|Concept.ChanceToHitHead] no longer cause critical damage to this character, which also lowers the risk of sustaining debilitating head [injuries|Concept.Injury] significantly."
 					"Grants passive immunity against [Cull.|Perk+perk_rf_cull]"
 				]
 			}]
@@ -969,7 +969,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorPositive("+15%") + " chance to hit the head and " + ::MSU.Text.colorPositive("33%") + " reduced threshold to inflict injuries when attacking a [rattled,|Skill+rf_rattled_effect] [stunned,|Skill+stunned_effect] [dazed,|Skill+dazed_effect] [netted,|Skill+net_effect] [sleeping,|Skill+sleeping_effect] [staggered,|Skill+staggered_effect] [webbed,|Skill+web_effect] or [rooted|Skill+rooted_effect] target."
+				"Gain " + ::MSU.Text.colorPositive("+15%") + " [chance to hit the head|Concept.ChanceToHitHead] and " + ::MSU.Text.colorPositive("33%") + " reduced threshold to inflict injuries when attacking a [rattled,|Skill+rf_rattled_effect] [stunned,|Skill+stunned_effect] [dazed,|Skill+dazed_effect] [netted,|Skill+net_effect] [sleeping,|Skill+sleeping_effect] [staggered,|Skill+staggered_effect] [webbed,|Skill+web_effect] or [rooted|Skill+rooted_effect] target."
 			]
 		}]
 	}),
@@ -988,7 +988,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Between the Eyes|NullEntitySkill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head equal to " + ::MSU.Text.colorPositive("50%") + " of your [Melee Skill.|Concept.MeleeSkill]"
+				"Unlocks the [Between the Eyes|NullEntitySkill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional [chance to hit the head|Concept.ChanceToHitHead] equal to " + ::MSU.Text.colorPositive("50%") + " of your [Melee Skill.|Concept.MeleeSkill]"
 				"The [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost of your primary melee attack is added to the costs of this skill."
 			]
 		}]
@@ -1139,8 +1139,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Hits to the head with one-handed maces [daze|Skill+dazed_effect] the target for 1 [turn|Concept.Turn] and if the target is already [dazed,|Skill+dazed_effect] [stun|Skill+stunned_effect] for one [turn|Concept.Turn] instead.",
-				"Hits to the head with two-handed maces [stun|Skill+stunned_effect] the target for 1 [turn.|Concept.Turn]"
+				"[Hits to the head|Concept.ChanceToHitHead] with one-handed maces [daze|Skill+dazed_effect] the target for 1 [turn|Concept.Turn] and if the target is already [dazed,|Skill+dazed_effect] [stun|Skill+stunned_effect] for one [turn|Concept.Turn] instead.",
+				"[Hits to the head|Concept.ChanceToHitHead] with two-handed maces [stun|Skill+stunned_effect] the target for 1 [turn.|Concept.Turn]"
 			]
 		}]
 	}),
@@ -1151,7 +1151,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Hits to the head which inflict at least 1 damage to [Hitpoints|Concept.Hitpoints] will instantly kill a target that has less than " + ::MSU.Text.colorNegative("33%") + " [Hitpoints|Concept.Hitpoints] remaining after the hit.",
+					"[Hits to the head|Concept.ChanceToHitHead] which inflict at least 1 damage to [Hitpoints|Concept.Hitpoints] will instantly kill a target that has less than " + ::MSU.Text.colorNegative("33%") + " [Hitpoints|Concept.Hitpoints] remaining after the hit.",
 					"If killed via culling, ignores [Nine Lives|Perk+perk_nine_lives] on the target and performs a decapitation fatality.",
 					"Targets who have [Steel Brow|Perk+perk_steel_brow] or are under the effects of [Indomitable|NullEntitySkill+indomitable_effect] are immune to being culled."
 				]
@@ -1159,7 +1159,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Unlocks the [Between the Eyes|NullEntitySkill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head.",
+					"Unlocks the [Between the Eyes|NullEntitySkill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional [chance to hit the head|Concept.ChanceToHitHead].",
 					"The [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of your primary melee attack is added to the costs of this skill."
 				]
 			}
@@ -1445,7 +1445,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Successful hits from Flails progressively reduce the target's [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] by a stacking " + ::MSU.Text.colorNegative(-5) + " for one [turn.|Concept.Turn]",
-				"The effect is doubled if the attacks hit the head."
+				"The effect is doubled if the attacks [chance to hit the head|Concept.ChanceToHitHead]."
 			]
 		}]
 	}),
@@ -1588,7 +1588,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Attacks have an additional " + ::MSU.Text.colorPositive("25%") + " chance to hit the head.",
+				"Attacks have an additional " + ::MSU.Text.colorPositive("25%") + " [chance to hit the head|Concept.ChanceToHitHead].",
 				"Headshots from firearms apply the [Shellshocked|Skill+shellshocked_effect] effect except on characters with " + ::Const.MoraleStateName[::Const.MoraleState.Ignore] + " [morale.|Concept.Morale]"
 			]
 		}]
@@ -1644,7 +1644,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When attacking a target at a range of 2 tiles, gain " + ::MSU.Text.colorNegative("+20%") + " chance to hit the head."
+				"When attacking a target at a range of 2 tiles, gain " + ::MSU.Text.colorNegative("+20%") + " [chance to hit the head|Concept.ChanceToHitHead]."
 			]
 		}]
 	}),
@@ -1764,7 +1764,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorPositive("+25%") + " chance to hit the head at a distance of 2 tiles. For every tile beyond that, this bonus is reduced by " + ::MSU.Text.colorNegative("-5%") + ".",
+				"Gain " + ::MSU.Text.colorPositive("+25%") + " [chance to hit the head|Concept.ChanceToHitHead] at a distance of 2 tiles. For every tile beyond that, this bonus is reduced by " + ::MSU.Text.colorNegative("-5%") + ".",
 				"The penalty to hitchance from obstructed line of sight is reduced by " + ::MSU.Text.colorPositive("50%") + " at a distance of 2 tiles."
 			]
 		}]
@@ -1952,7 +1952,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"All attacks, melee or ranged, gain " + ::MSU.Text.colorPositive("+10%") + " chance to hit the head."
+				"All attacks, melee or ranged, gain " + ::MSU.Text.colorPositive("+10%") + " [chance to hit the head|Concept.ChanceToHitHead]."
 			]
 		}]
 	}),
@@ -2318,7 +2318,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Every attack with flails increases your current [Reach|Concept.Reach] by " + ::MSU.Text.colorPositive("+1") + " until your next [turn.|Concept.Turn]",
-				"With two-handed flails, when attacking a target who has lower current [Reach|Concept.Reach] than you, gain " + ::MSU.Text.colorPositive("+10%") + " chance to hit the head per difference in current [Reach|Concept.Reach] between you and the target.",
+				"With two-handed flails, when attacking a target who has lower current [Reach|Concept.Reach] than you, gain " + ::MSU.Text.colorPositive("+10%") + " [chance to hit the head|Concept.ChanceToHitHead] per difference in current [Reach|Concept.Reach] between you and the target.",
 				"During your [turn,|Concept.Turn] when attacking with one-handed flails, perform a free extra attack with " + ::MSU.Text.colorNegative("50%") + " less damage against a different adjacent enemy who has lower current [Reach|Concept.Reach] than you. This extra attack does not increase your [Reach.|Concept.Reach]",
 				"Does not take into account abilities which ignore or modify [Reach|Concept.Reach] during an attack."
 			]
