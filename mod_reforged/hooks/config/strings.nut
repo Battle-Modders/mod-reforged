@@ -136,7 +136,6 @@
 	RF_Mauler = "Mauler",
 	RF_Menacing = "Menacing",
 	RF_Mentor = "Mentor",
-	RF_MuscleMemory = "Muscle Memory",
 	RF_NailedIt = "Nailed It",
 	RF_OffhandTraining = "Offhand Training",
 	RF_Opportunist = "Opportunist",

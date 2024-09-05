@@ -80,14 +80,6 @@
 		IconDisabled = "ui/perks/perk_rf_iron_sights_sw.png"
 	},
 	{
-		ID = "perk.rf_muscle_memory",
-		Script = "scripts/skills/perks/perk_rf_muscle_memory",
-		Name = ::Const.Strings.PerkName.RF_MuscleMemory,
-		Tooltip = ::Const.Strings.PerkDescription.RF_MuscleMemory,
-		Icon = "ui/perks/perk_rf_muscle_memory.png",
-		IconDisabled = "ui/perks/perk_rf_muscle_memory_sw.png"
-	},
-	{
 		ID = "perk.rf_between_the_ribs",
 		Script = "scripts/skills/perks/perk_rf_between_the_ribs",
 		Name = ::Const.Strings.PerkName.RF_BetweenTheRibs,
