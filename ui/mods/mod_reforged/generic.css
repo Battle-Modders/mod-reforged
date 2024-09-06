@@ -94,6 +94,7 @@
 	display:flex;
 	justify-content: center;
 	align-items: center;
+	white-space: pre-wrap;
 	width: 24.0rem;
 }
 .rf_tacticalTooltipWaitContainer img
