@@ -316,7 +316,7 @@ local vanillaDescriptions = [
 				Description = [
 					"Gain " + ::MSU.Text.colorPositive("+10") + " [Ranged Defense.|Concept.RangeDefense]",
 					"Damage received from attacks has a chance to be reduced by a percentage equal to your current [Ranged Defense|Concept.RangeDefense]. This chance is equal to your current [Ranged Defense|Concept.RangeDefense] and an additional " + ::MSU.Text.colorPositive("10%") + " per tile of distance between the attacker and you.",
-					"Neither the chance nor the damage reduction can be greater than " + ::MSU.Text.colorNegative("70%");
+					"Neither the chance nor the damage reduction can be greater than " + ::MSU.Text.colorNegative("70%")
 
 				]
 			}]

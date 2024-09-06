@@ -1,9 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_anticipation", function(q) {
 	// Config
-	q.m.BaseChance = 0;
+	q.m.BaseChance <- 0;
 	q.m.ChancePerTile <- 10;
-	q.m.MaxChance = 70;
-	q.m.MinDamageReceivedTotalMult = 0.7;
+	q.m.MaxChance <- 70;
+	q.m.MinDamageReceivedTotalMult <- 0.7;
+	q.m.RangedDefenseModifier <- 10;
 
 	// Private
 	// These two fields are used to ensure that the damage reduction is the same in all instances of damage from a single attack from an attacker
@@ -36,7 +37,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/melee_defense.png",
-			text = ::MSU.Text.colorPositive(chance + "%") + " chance to receive " + ::MSU.Text.colorizeMult(mult, {InvertColor = true}) + " reduced damage from attacks"
+			text = ::MSU.Text.colorPositive(chance + "%") + " chance to receive " + ::MSU.Text.colorizeMultWithText(mult, {InvertColor = true}) + " damage from attacks"
 		});
 
 		if (this.m.ChancePerTile != 0)
@@ -45,11 +46,16 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "The chance is [increased|Concept.StackAdditively] by " + ::MSU.Text.colorizeValue(this.m.ChancePerTile, {AddSign = true, AddPercent = true}) " + for every tile between the attacker and you"
+				text = "The chance is [increased|Concept.StackAdditively] by " + ::MSU.Text.colorizeValue(this.m.ChancePerTile, {AddSign = true, AddPercent = true}) + " for every tile between the attacker and you"
 			});
 		}
 
 		return ret;
+	}
+
+	q.onUpdate = @() function( _properties )
+	{
+		_properties.RangedDefense += this.m.RangedDefenseModifier;
 	}
 
 	q.onBeforeDamageReceived <- function( _attacker, _skill, _hitinfo, _properties )
@@ -86,14 +92,14 @@
 		return ::Math.maxf(this.m.MinDamageReceivedTotalMult, 1.0 - this.getContainer().getActor().getCurrentProperties().getRangedDefense() * 0.01);
 	}
 
-	function getChance( _attacker = null )
+	q.getChance <- function( _attacker = null )
 	{
 		local actor = this.getContainer().getActor();
-		local ret = this.m.BaseChance + actor.getRangedDefense();
+		local ret = this.m.BaseChance + actor.getCurrentProperties().getRangedDefense();
 
 		if (_attacker != null && _attacker.isPlacedOnMap() && actor.isPlacedOnMap())
 		{
-			ret += this.m.ChancePerTile;
+			ret += this.m.ChancePerTile * (_attacker.getTile().getDistanceTo(actor.getTile()) - 1);
 		}
 
 		return ::Math.max(0, ::Math.min(this.m.MaxChance, ret));
