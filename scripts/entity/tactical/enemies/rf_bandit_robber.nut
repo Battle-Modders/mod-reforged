@@ -56,32 +56,28 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 		if (this.m.HasNet && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			this.m.Items.equip(::new("scripts/items/tools/throwing_net"))
-
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-			{
-				local weapon = ::MSU.Class.WeightedContainer([
-					[1, "scripts/items/weapons/boar_spear"],
-					[1, "scripts/items/weapons/dagger"],
-					[1, "scripts/items/weapons/falchion"],
-					[1, "scripts/items/weapons/scramasax"],
-				]).roll();
-				this.m.Items.equip(::new(weapon));
-			}
 		}
-		else if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-		{
-			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/boar_spear"],
-				[1, "scripts/items/weapons/dagger"],
-				[1, "scripts/items/weapons/falchion"],
-				[1, "scripts/items/weapons/scramasax"],
 
-				[1, "scripts/items/weapons/hooked_blade"],
-				[1, "scripts/items/weapons/pike"],
-				[1, "scripts/items/weapons/rf_reinforced_wooden_poleflail"],
-				[1, "scripts/items/weapons/warfork"]
-			]).roll();
-			this.m.Items.equip(::new(weapon));
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			local weapons = ::MSU.Class.WeightedContainer.addMany(1, [
+				"scripts/items/weapons/boar_spear",
+				"scripts/items/weapons/dagger",
+				"scripts/items/weapons/falchion",
+				"scripts/items/weapons/scramasax",
+			]);
+
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) // both hands free
+			{
+				weapons.addMany(1, [
+					"scripts/items/weapons/hooked_blade",
+					"scripts/items/weapons/pike",
+					"scripts/items/weapons/rf_reinforced_wooden_poleflail",
+					"scripts/items/weapons/warfork"
+				]);
+			}
+
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 
 		if (this.m.IsThrower && this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))

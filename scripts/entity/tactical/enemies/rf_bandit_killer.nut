@@ -65,34 +65,30 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 		if (this.m.HasNet && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			this.m.Items.equip(::new("scripts/items/tools/throwing_net"))
-
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-			{
-				local weapon = ::MSU.Class.WeightedContainer([
-					[1, "scripts/items/weapons/boar_spear"],
-					[1, "scripts/items/weapons/rondel_dagger"],
-					[1, "scripts/items/weapons/arming_sword"],
-					[1, "scripts/items/weapons/scramasax"],
-				]).roll();
-				this.m.Items.equip(::new(weapon));
-			}
 		}
-		else if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-		{
-			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/arming_sword"],
-				[1, "scripts/items/weapons/boar_spear"],
-				[1, "scripts/items/weapons/rondel_dagger"],
-				[1, "scripts/items/weapons/scramasax"],
 
-				[1, "scripts/items/weapons/billhook"],
-				[1, "scripts/items/weapons/rf_poleflail"],
-				[1, "scripts/items/weapons/pike"],
-				[1, "scripts/items/weapons/spetum"],
-				[1, "scripts/items/weapons/rf_two_handed_falchion"],
-				[1, "scripts/items/weapons/warbrand"]
-			]).roll();
-			this.m.Items.equip(::new(weapon));
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			local weapons = ::MSU.Class.WeightedContainer.addMany(1, [
+				"scripts/items/weapons/boar_spear",
+				"scripts/items/weapons/rondel_dagger",
+				"scripts/items/weapons/arming_sword",
+				"scripts/items/weapons/scramasax",
+			]);
+
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) // both hands free
+			{
+				weapons.addMany(1, [
+					"scripts/items/weapons/billhook",
+					"scripts/items/weapons/rf_poleflail",
+					"scripts/items/weapons/pike",
+					"scripts/items/weapons/spetum",
+					"scripts/items/weapons/rf_two_handed_falchion",
+					"scripts/items/weapons/warbrand"
+				]);
+			}
+
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
