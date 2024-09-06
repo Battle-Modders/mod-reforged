@@ -59,7 +59,14 @@
 
 		for (local i = 0; i < this.m.NumTroopsToRecoverBeforeCombat && this.m.Troops.len() <= this.m.NumTroopsMax; i++)
 		{
-			::Const.World.Common.addTroop(this, { Type = pool.roll() }, false);
+			local type = pool.roll();
+			// Reduce the weight of these entities by 1 if they spawn  because
+			// we don't want them to be able to spawn beyond a certain number.
+			if (type == ::Const.World.Spawn.Troops.RF_SkeletonDecanus || ::Const.World.Spawn.Troops.RF_SkeletonCenturion || ::Const.World.Spawn.Troops.RF_SkeletonLegatus || ::Const.World.Spawn.Troops.RF_VampireLord)
+			{
+				pool.setWeight(type, pool.getWeight(type) - 1);
+			}
+			::Const.World.Common.addTroop(this, { Type = type }, false);
 		}
 	}
 
