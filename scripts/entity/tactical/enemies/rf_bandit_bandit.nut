@@ -61,7 +61,7 @@ this.rf_bandit_bandit <- ::inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		if (this.m.HasNet == true && (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)))
+		if (this.m.HasNet && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			this.m.Items.equip(::new("scripts/items/tools/throwing_net"))
 
@@ -76,38 +76,38 @@ this.rf_bandit_bandit <- ::inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(::new(weapon));
 			}
 		}
-		else
+		else if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-			{
-				local weapon = ::MSU.Class.WeightedContainer([
-					[1, "scripts/items/weapons/boar_spear"],
-					[1, "scripts/items/weapons/rondel_dagger"],
-					[1, "scripts/items/weapons/arming_sword"],
-					[1, "scripts/items/weapons/scramasax"],
+			local weapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/boar_spear"],
+				[1, "scripts/items/weapons/rondel_dagger"],
+				[1, "scripts/items/weapons/arming_sword"],
+				[1, "scripts/items/weapons/scramasax"],
 
-					[1, "scripts/items/weapons/rf_poleflail"],
-					[1, "scripts/items/weapons/pike"],
-					[1, "scripts/items/weapons/spetum"],
-					[1, "scripts/items/weapons/rf_two_handed_falchion"],
-					[1, "scripts/items/weapons/warbrand"]
-				]).roll();
-				this.m.Items.equip(::new(weapon));
-			}
-		}
-
-		if (this.m.IsRegularThrower == true)
-		{
-			local throwingWeapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/javelin"],
-				[1, "scripts/items/weapons/throwing_axe"]
+				[1, "scripts/items/weapons/rf_poleflail"],
+				[1, "scripts/items/weapons/pike"],
+				[1, "scripts/items/weapons/spetum"],
+				[1, "scripts/items/weapons/rf_two_handed_falchion"],
+				[1, "scripts/items/weapons/warbrand"]
 			]).roll();
-
-			this.m.Items.addToBag(::new(throwingWeapon));
+			this.m.Items.equip(::new(weapon));
 		}
-		else if (this.m.IsSpearThrower == true)
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
 		{
-			this.m.Items.addToBag(::new("scripts/items/weapons/throwing_spear"));
+			if (this.m.IsRegularThrower)
+			{
+				local throwingWeapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/javelin"],
+					[1, "scripts/items/weapons/throwing_axe"]
+				]).roll();
+
+				this.m.Items.addToBag(::new(throwingWeapon));
+			}
+			else if (this.m.IsSpearThrower)
+			{
+				this.m.Items.addToBag(::new("scripts/items/weapons/throwing_spear"));
+			}
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))

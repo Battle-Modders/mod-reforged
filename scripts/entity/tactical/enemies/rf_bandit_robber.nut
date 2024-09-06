@@ -53,7 +53,7 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		if (this.m.HasNet == true && (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)))
+		if (this.m.HasNet && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			this.m.Items.equip(::new("scripts/items/tools/throwing_net"))
 
@@ -68,26 +68,23 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(::new(weapon));
 			}
 		}
-		else
+		else if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-			{
-				local weapon = ::MSU.Class.WeightedContainer([
-					[1, "scripts/items/weapons/boar_spear"],
-					[1, "scripts/items/weapons/dagger"],
-					[1, "scripts/items/weapons/falchion"],
-					[1, "scripts/items/weapons/scramasax"],
+			local weapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/boar_spear"],
+				[1, "scripts/items/weapons/dagger"],
+				[1, "scripts/items/weapons/falchion"],
+				[1, "scripts/items/weapons/scramasax"],
 
-					[1, "scripts/items/weapons/hooked_blade"],
-					[1, "scripts/items/weapons/pike"],
-					[1, "scripts/items/weapons/rf_reinforced_wooden_poleflail"],
-					[1, "scripts/items/weapons/warfork"]
-				]).roll();
-				this.m.Items.equip(::new(weapon));
-			}
+				[1, "scripts/items/weapons/hooked_blade"],
+				[1, "scripts/items/weapons/pike"],
+				[1, "scripts/items/weapons/rf_reinforced_wooden_poleflail"],
+				[1, "scripts/items/weapons/warfork"]
+			]).roll();
+			this.m.Items.equip(::new(weapon));
 		}
 
-		if (this.m.IsThrower == true)
+		if (this.m.IsThrower && this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
 		{
 			local throwingWeapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/javelin"],

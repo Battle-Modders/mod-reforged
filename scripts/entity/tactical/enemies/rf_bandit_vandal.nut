@@ -64,14 +64,16 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 			this.m.Items.equip(::new(weapon));
 		}
 
-		local throwing = ::MSU.Class.WeightedContainer([
-			[1, "scripts/items/weapons/throwing_spear"]
-		]).rollChance(33);
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
+		{
+			local throwing = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/throwing_spear"]
+			]).rollChance(33);
 
-		if (throwing != null) this.m.Items.addToBag(::new(throwing));
+			if (throwing != null) this.m.Items.addToBag(::new(throwing));
+		}
 
-		local weapon = this.getMainhandItem();
-		if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local shield = ::MSU.Class.WeightedContainer([
 				[3, "scripts/items/shields/wooden_shield"],
