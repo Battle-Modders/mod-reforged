@@ -22,6 +22,7 @@
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_soul_link"));
 	}
 
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
