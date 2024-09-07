@@ -3,15 +3,27 @@
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
-		local shieldDamage = this._RF_getShieldDamage();
-		if (shieldDamage != 0)
+		if (::MSU.isNull(this.getContainer()) || this.getContainer().getActor().getMainhandItem() == null)
 		{
 			ret.push({
-				id = 7,
+				id = 10,
 				type = "text",
 				icon = "ui/icons/shield_damage.png",
-				text = format("Inflicts%s damage to shields", ::MSU.isNull(this.getContainer()) || this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID() ? "" : " " + ::MSU.Text.colorRed(shieldDamage))
+				text = "Inflicts damage to shields"
 			});
+		}
+		else
+		{
+			local shieldDamage = this._RF_getShieldDamage();
+			if (shieldDamage != 0)
+			{
+				ret.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/shield_damage.png",
+					text = format("Inflicts %s damage to shields", ::MSU.Text.colorDamage(shieldDamage))
+				});
+			}
 		}
 
 		if (this.RF_getFatigueDamage() != 0)
@@ -106,10 +118,12 @@
 	}
 
 // New Functions
+	// Returns the shield damage dealt by this skill
+	// Returns 0 if no shield damage could be retrieved
 	q.RF_getShieldDamage <- function( _targetEntity = null )
 	{
 		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
-			return 1; // return a non-zero number so the tooltip gets added
+			return 0; // return a non-zero number so the tooltip gets added
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		return weapon == null ? 0 : weapon.getShieldDamage();
