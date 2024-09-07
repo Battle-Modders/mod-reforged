@@ -38,37 +38,135 @@
 	FatigueRecoveryRate = 15 // vanilla 20
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.CaravanGuard, {
-	RangedDefense = 0
+	XP = 200,
+	ActionPoints = 9,
+	Hitpoints = 70,
+	Bravery = 60,
+	Stamina = 130,
+	MeleeSkill = 70,
+	RangedSkill = 40,
+	MeleeDefense = 10,
+	RangedDefense = 0, // vanilla 10
+	Initiative = 110,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.BountyHunter, {
-	RangedDefense = 0,
-	FatigueRecoveryRate = 15
+	XP = 300,
+	ActionPoints = 9,
+	Hitpoints = 80,
+	Bravery = 65,
+	Stamina = 125,
+	MeleeSkill = 75,
+	RangedSkill = 60,
+	MeleeDefense = 15,
+	RangedDefense = 0, // vanilla 8
+	Initiative = 120,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15 // vanilla 20
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Mercenary, {
-	FatigueRecoveryRate = 15
+	XP = 350,
+	ActionPoints = 9,
+	Hitpoints = 90,
+	Bravery = 70,
+	Stamina = 135,
+	MeleeSkill = 75,
+	RangedSkill = 65,
+	MeleeDefense = 20,
+	RangedDefense = 10,
+	Initiative = 125,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15 // vanilla 20
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Oathbringer, {
-	RangedDefense = 0,
-	FatigueRecoveryRate = 15
+	XP = 375,
+	ActionPoints = 9,
+	Hitpoints = 125,
+	Bravery = 130,
+	Stamina = 145,
+	MeleeSkill = 80,
+	RangedSkill = 50,
+	MeleeDefense = 20,
+	RangedDefense = 0, // vanilla 5
+	Initiative = 135,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15 // vanilla 25
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Swordmaster, {
-	XP = 550,
-	Hitpoints = 80,
-	Stamina = 130,
-	MeleeDefense = 60,
-	RangedDefense = 20,
-	Initiative = 130,
-	FatigueRecoveryRate = 15
+	XP = 550, // vanilla 450
+	ActionPoints = 9,
+	Hitpoints = 80, // vanilla 70
+	Bravery = 90,
+	Stamina = 130, // vanilla 115
+	MeleeSkill = 100,
+	RangedSkill = 50,
+	MeleeDefense = 60, // vanilla 80
+	RangedDefense = 20, // vanilla 15
+	Initiative = 130, // vanilla 115
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15 // vanilla 20
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.HedgeKnight, {
-	XP = 550,
-	MeleeSkill = 90,
-	RangedDefense = 0,
-	FatigueRecoveryRate = 15
+	XP = 550, // vanilla 450
+	ActionPoints = 9,
+	Hitpoints = 150,
+	Bravery = 90,
+	Stamina = 160,
+	MeleeSkill = 90, // vanilla 85
+	RangedSkill = 50,
+	MeleeDefense = 25,
+	RangedDefense = 0, // vanilla 15
+	Initiative = 105,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15 // vanilla 25
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.MasterArcher, {
-	XP = 550,
-	RangedSkill = 90,
-	RangedDefense = 45,
-	FatigueRecoveryRate = 15
+	XP = 550, // vanilla 450
+	ActionPoints = 9,
+	Hitpoints = 80,
+	Bravery = 70,
+	Stamina = 135,
+	MeleeSkill = 65,
+	RangedSkill = 90, // vanilla 85
+	MeleeDefense = 15,
+	RangedDefense = 45, // vanilla 25
+	Initiative = 140,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15 // vanilla 20
 });

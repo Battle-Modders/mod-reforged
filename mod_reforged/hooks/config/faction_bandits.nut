@@ -1,50 +1,98 @@
 // Adjust Vanilla Actors
 ::MSU.Table.merge(::Const.Tactical.Actor.Wardog, {
-	XP = 100,
-	Bravery = 50,
-	MeleeSkill = 55,
-	MeleeDefense = 25,
-	RangedDefense = 30
+	XP = 100, // vanilla 75
+	ActionPoints = 12,
+	Hitpoints = 50,
+	Bravery = 50, // vanilla 40
+	Stamina = 130,
+	MeleeSkill = 55, // vanilla 50
+	RangedSkill = 0,
+	MeleeDefense = 25, // vanilla 20
+	RangedDefense = 30, // vanilla 25
+	Initiative = 130,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15
 });
-::MSU.Table.merge(::Const.Tactical.Actor.BanditThug, {
+::MSU.Table.merge(::Const.Tactical.Actor.BanditThug, { // reforged thug is a different design than vanilla thug
 	XP = 150,
-	Hitpoints = 90,
-	Bravery = 50,
-	Stamina = 100,
+	ActionPoints = 9,
+	Hitpoints = 90, // vanilla 55
+	Bravery = 50, // vanilla 40
+	Stamina = 100, // vanilla 95
 	MeleeSkill = 55,
-	MeleeDefense = -5,
-	Initiative = 60
+	RangedSkill = 45,
+	MeleeDefense = -5, // vanilla 0
+	RangedDefense = 0,
+	Initiative = 60, // vanilla 95
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.BanditRaider, {
-	XP = 275,
-	Hitpoints = 80,
-	Bravery = 60,
+	XP = 275, // vanilla 250
+	ActionPoints = 9,
+	Hitpoints = 80, // vanilla 75
+	Bravery = 60, // vanilla 55
 	Stamina = 125,
-	MeleeSkill = 72,
-	RangedSkill = 60,
-	RangedDefense = 0,
-	Initiative = 110,
-	FatigueRecoveryRate = 15
+	MeleeSkill = 72, // vanilla 65
+	RangedSkill = 60, // vanilla 55
+	MeleeDefense = 10,
+	RangedDefense = 0, // vanilla 10
+	Initiative = 110, // vanilla 115
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15 // vanilla 20
 });
-::MSU.Table.merge(::Const.Tactical.Actor.BanditMarksman, {
-	XP = 275,
-	Hitpoints = 65,
-	Bravery = 55,
+::MSU.Table.merge(::Const.Tactical.Actor.BanditMarksman, { // reforged marksman is a higher tier entity
+	XP = 275, // vanilla 225
+	ActionPoints = 9,
+	Hitpoints = 65, // vanilla 60
+	Bravery = 55, // vanilla 50
 	Stamina = 115,
-	MeleeSkill = 55,
-	RangedSkill = 70,
-	RangedDefense = 15,
-	FatigueRecoveryRate = 15
+	MeleeSkill = 55, // vanilla 50
+	RangedSkill = 70, // vanilla 60
+	MeleeDefense = 5,
+	RangedDefense = 15, // vanilla 10
+	Initiative = 110,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15 // vanilla 20
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.BanditLeader, {
-	XP = 400,
-	Bravery = 80,
+	XP = 400, // vanilla 375
+	ActionPoints = 9,
+	Hitpoints = 100,
+	Bravery = 80, // vanilla 70
 	Stamina = 130,
-	MeleeSkill = 80,
-	RangedSkill = 45,
-	MeleeDefense = 20,
-	RangedDefense = 5,
-	FatigueRecoveryRate = 15
+	MeleeSkill = 80, // vanilla 75
+	RangedSkill = 45, // vanilla 65
+	MeleeDefense = 20, // vanilla 15
+	RangedDefense = 5, // vanilla 10
+	Initiative = 125,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15 // vanilla 20
 });
 
 // New Reforged Actors
