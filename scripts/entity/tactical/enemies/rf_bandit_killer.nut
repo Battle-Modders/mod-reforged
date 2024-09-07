@@ -69,7 +69,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapons = ::MSU.Class.WeightedContainer.addMany(1, [
+			local weapons = ::MSU.Class.WeightedContainer().addMany(1, [
 				"scripts/items/weapons/boar_spear",
 				"scripts/items/weapons/rondel_dagger",
 				"scripts/items/weapons/arming_sword",
