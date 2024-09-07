@@ -54,10 +54,10 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "If the attack is successful, the target is pushed back a tile and loses the [Shieldwall|Skill+shieldwall_effect], [Spearwall+Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects"
+			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, the target is pushed back a tile and loses the [Shieldwall|Skill+shieldwall_effect], [Spearwall|Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
 		});
 
-		this.addEnabledTooltip(tooltip);
+		this.addEnabledTooltip(ret);
 
 		return ret;
 	}
