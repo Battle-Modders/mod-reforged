@@ -154,7 +154,7 @@ this.rf_bandit_bandit <- ::inherit("scripts/entity/tactical/human", {
 				break;
 		}
 
-		if (this.m.IsRegularThrower == true || this.m.IsSpearThrower == true)
+		if (this.m.IsRegularThrower || this.m.IsSpearThrower)
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
 		}
