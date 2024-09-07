@@ -54,7 +54,7 @@
 		if (shield != null)
 		{
 			this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplitShield);
-			local damage = this.RF_getShieldDamage();
+			local damage = this.RF_getShieldDamage(targetEntity);
 
 			local conditionBefore = shield.getCondition();
 			shield.applyShieldDamage(damage);
@@ -106,7 +106,7 @@
 	}
 
 // New Functions
-	q.RF_getShieldDamage <- function()
+	q.RF_getShieldDamage <- function( _targetEntity = null )
 	{
 		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 			return 1; // return a non-zero number so the tooltip gets added
