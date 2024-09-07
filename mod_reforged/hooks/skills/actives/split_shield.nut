@@ -29,7 +29,7 @@
 		if (this.RF_getFatigueDamage() != 0)
 		{
 			ret.push({
-				id = 7,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Inflicts [color=" + ::Const.UI.Color.DamageValue + "]" + this.RF_getFatigueDamage() + "[/color] [Fatigue|Concept.Fatigue] on the target")
@@ -39,7 +39,7 @@
 		if (this.getMaxRange() > 1)
 		{
 			ret.push({
-				id = 8,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/vision.png",
 				text = "Has a range of " + ::MSU.Text.colorPositive(this.m.MaxRange) + " tiles"
