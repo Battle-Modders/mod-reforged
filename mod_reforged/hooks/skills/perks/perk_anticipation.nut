@@ -3,7 +3,7 @@
 	q.m.BaseChance <- 0;
 	q.m.ChancePerTile <- 10;
 	q.m.MaxChance <- 70;
-	q.m.MinDamageReceivedTotalMult <- 0.7;
+	q.m.MinDamageReceivedTotalMult <- 0.3;
 	q.m.RangedDefenseModifier <- 10;
 
 	// Private
@@ -46,7 +46,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "The chance is [increased|Concept.StackAdditively] by " + ::MSU.Text.colorizeValue(this.m.ChancePerTile, {AddSign = true, AddPercent = true}) + " for every tile between the attacker and you"
+				text = ::Reforged.Mod.Tooltips.parseString("The chance is [increased|Concept.StackAdditively] by " + ::MSU.Text.colorizeValue(this.m.ChancePerTile, {AddSign = true, AddPercent = true}) + " for every tile between the attacker and you")
 			});
 		}
 
@@ -84,7 +84,7 @@
 			return;
 
 		// _attacker can be null e.g. when receiving damage from mortar
-		::Tactical.EventLog.logEx(format("%s anticipated %s, reducing damage received by %s", ::Const.UI.getColorizedEntityName(this.getContainer().getActor()), _attacker == null ? "an attack" : "the attack of " + ::Const.UI.getColorizedEntityName(_attacker), ::MSU.Text.colorPositive(this.m.TempDamageReduction + "%")));
+		::Tactical.EventLog.logEx(format("%s anticipated %s, reducing damage received by %s", ::Const.UI.getColorizedEntityName(this.getContainer().getActor()), _attacker == null ? "an attack" : "the attack of " + ::Const.UI.getColorizedEntityName(_attacker), ::MSU.Text.colorizeMult(this.m.TempDamageReceivedTotalMult, {InvertColor = true})));
 	}
 
 	q.getDamageReceivedTotalMult <- function( _attacker = null )
