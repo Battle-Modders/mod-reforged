@@ -131,3 +131,9 @@
     background-size: 12.7rem 2.2rem;
     background-repeat: no-repeat;
 }
+/*Fixes Perk Unlock text being unreadable by setting the colors back to the default gold*/
+.unlock-perk-popup-dialog-content-container span,
+.unlock-perk-popup-dialog-content-container div.msu-nested-tooltip
+{
+  color: inherit !important;
+}
