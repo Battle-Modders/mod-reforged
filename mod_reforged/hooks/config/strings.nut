@@ -67,7 +67,6 @@
 ]);
 
 ::MSU.Table.merge(::Const.Strings.PerkName, {
-	RF_Alert = "Alert",
 	RF_Angler = "Angler",
 	RF_BattleFervor = "Battle Fervor",
 	RF_BackToBasics = "Back to Basics",
@@ -75,7 +74,6 @@
 	RF_CheapTrick = "Cheap Trick",
 	RF_Command = "Command",
 	RF_Skirmisher = "Skirmisher",
-	RF_Ballistics = "Ballistics",
 	RF_BearDown = "Bear Down",
 	RF_BestialVigor = "Bestial Vigor",
 	RF_BetweenTheEyes = "Between the Eyes",
@@ -91,7 +89,6 @@
 	RF_Centurion = "Centurion",
 	RF_Combo = "Combo",
 	RF_ConcussiveStrikes = "Concussive Strikes",
-	RF_Cull = "Cull",
 	RF_Decanus = "Decanus",
 	RF_Decisive = "Decisive",
 	RF_DeepCuts = "Deep Cuts",
@@ -106,10 +103,8 @@
 	RF_Entrenched = "Entrenched",
 	RF_ExploitOpening = "Exploit Opening",
 	RF_ExudeConfidence = "Exude Confidence",
-	RF_EyesUp = "Eyes Up",
 	RF_FailedPotential = "Failed Potential",
 	RF_FamilyPride = "Family Pride",
-	RF_Featherweight = "Featherweight",
 	RF_Fencer = "Fencer",
 	RF_FeralRage = "Feral Rage",
 	RF_FlailSpinner = "Flail Spinner",
@@ -121,15 +116,12 @@
 	RF_FruitsOfLabor = "Fruits of Labor",
 	RF_Ghostlike = "Ghostlike",
 	RF_HaleAndHearty = "Hale and Hearty",
-	RF_Heft = "Heft",
 	RF_TrickstersPurses = "Trickster\'s Purses",
 	RF_HipShooter = "Hip Shooter",
 	RF_HoldSteady = "Hold Steady",
 	RF_Hybridization = "Hybridization",
 	RF_Supporter = "Supporter",
 	InspiringPresence = "Inspiring Presence",
-	RF_InternalHemorrhage = "Internal Hemorrhage",
-	RF_Intimidate = "Intimidate",
 	RF_IronSights = "Iron Sights",
 	RF_Kata = "Kata",
 	RF_Kingfisher = "Kingfisher",
@@ -144,13 +136,10 @@
 	RF_Mauler = "Mauler",
 	RF_Menacing = "Menacing",
 	RF_Mentor = "Mentor",
-	RF_Momentum = "Momentum",
-	RF_MuscleMemory = "Muscle Memory",
 	RF_NailedIt = "Nailed It",
 	RF_OffhandTraining = "Offhand Training",
 	RF_Opportunist = "Opportunist",
 	RF_PatternRecognition = "Pattern Recognition",
-	RF_PersonalArmor = "Personal Armor",
 	RF_Phalanx = "Phalanx",
 	RF_PowerShot = "Power Shot",
 	RF_Professional = "Professional",
@@ -165,13 +154,11 @@
 	RF_SecondWind = "Second Wind",
 	RF_ShieldSergeant = "Shield Sergeant",
 	RF_SmallTarget = "Small Target",
-	RF_ShieldSplitter = "Shield Splitter",
 	RF_SoulLink = "Soul Link",
 	RF_StrengthInNumbers = "Strength in Numbers",
 	RF_SurvivalInstinct = "Survival Instinct",
 	RF_SweepingStrikes = "Sweeping Strikes",
 	RF_SwiftStabs = "Swift Stabs",
-	RF_Swordlike = "Swordlike",
 	RF_SwordmasterBladeDancer = "Blade Dancer",
 	RF_SwordmasterGrappler = "Grappler",
 	RF_SwordmasterJuggernaut = "Juggernaut",
@@ -874,15 +861,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 }
 
 ::MSU.Table.merge(::Const.Strings.PerkDescription, {
-	RF_Alert = ::UPD.getDescription({
-		Fluff = "What was that over there?",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"[Initiative|Concept.Initiative] is increased by " + ::MSU.Text.colorPositive("20%") + "."
-			]
-		}]
-	}),
 	RF_Angler = ::UPD.getDescription({
 		Fluff = "Throw nets in a way that perfectly billows around your targets.",
 		Requirement = "Throwing Net",
@@ -934,32 +912,12 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
 	}),
-	RF_Ballistics = ::UPD.getDescription({
-		Fluff = "Death from afar!",
-		Requirement = "Ranged Attack",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"The penalty to hit chance per tile of distance is reduced by " + ::MSU.Text.colorPositive("2%") + "."
-			]
-		}]
-	}),
 	BattleFlow = ::UPD.getDescription({
 		Fluff = "On to the next!",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Once per [turn,|Concept.Turn] killing an opponent reduces current [Fatigue|Concept.Fatigue] by " + ::MSU.Text.colorPositive("15%") + " of [Base|Concept.BaseAttribute] [Maximum Fatigue.|Concept.MaximumFatigue]"
-			]
-		}]
-	}),
-	RF_Ballistics = ::UPD.getDescription({
-		Fluff = "Take your time and get it right, just like the Captain says!",
-		Requirement = "Ranged Attack",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"The penalty to hit chance per tile of distance is reduced by " + ::MSU.Text.colorPositive(2) + "."
 			]
 		}]
 	}),
@@ -1144,27 +1102,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
 	}),
-	RF_Cull = ::UPD.getDescription({
-		Fluff = "Cull the weak!",
-		Requirement = "Axe",
-		Effects = [
-			{
-				Type = ::UPD.EffectType.Passive,
-				Description = [
-					"Hits to the head which inflict at least 1 damage to [Hitpoints|Concept.Hitpoints] will instantly kill a target that has less than " + ::MSU.Text.colorNegative("33%") + " [Hitpoints|Concept.Hitpoints] remaining after the hit.",
-					"If killed via culling, ignores [Nine Lives|Perk+perk_nine_lives] on the target and performs a decapitation fatality.",
-					"Targets who have [Steel Brow|Perk+perk_steel_brow] or are under the effects of [Indomitable|NullEntitySkill+indomitable_effect] are immune to being culled."
-				]
-			},
-			{
-				Type = ::UPD.EffectType.Active,
-				Description = [
-					"Unlocks the [Between the Eyes|NullEntitySkill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head.",
-					"The [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of your primary melee attack is added to the costs of this skill."
-				]
-			}
-		]
-	}),
 	RF_Decanus = ::UPD.getDescription({
 		Fluff = "Fight in formation!",
 		Effects = [{
@@ -1321,18 +1258,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
 	}),
-	RF_EyesUp = ::UPD.getDescription({
-		Fluff = "Rain down arrows upon your enemies from a higher angle, forcing them to divert their attention!",
-		Requirement = "Bow",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Every attack, hit or miss, applies a stacking debuff on the target reducing their [Melee Skill|Concept.MeleeSkill] and [Ranged Skill|Concept.RangeSkill] by " + ::MSU.Text.colorNegative("-5") + " and [Melee Defense|Concept.MeleeDefense] by " + ::MSU.Text.colorNegative("-3") + " for one [turn.|Concept.Turn]",
-				"Only applies half a stack if the primary target is wielding a shield. Additionally, applies half a stack to enemies adjacent to the primary target who are not wielding shields. Bucklers do not count as shields for this perk.",
-				"Can have a maximum of " + ::MSU.Text.colorPositive(10) + " stacks."
-			]
-		}]
-	}),
 	RF_FailedPotential = ::UPD.getDescription({
 		Fluff = "This character looked promising, but either due to bad luck or simply lack of talent, they have not shown the potential you thought they had. " + ::MSU.Text.colorNegative("This perk does nothing."),
 		Footer = ::MSU.Text.colorNegative("This perk cannot be refunded.")
@@ -1354,16 +1279,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 				]
 			}
 		]
-	}),
-	RF_Featherweight = ::UPD.getDescription({
-		Fluff = "Take advantage of your weapon\'s light weight to maneuver around the battlefield faster than your enemies!",
-		Requirement = "Unarmed or weapon with Fatigue Penalty of 3 or less",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Gain " + ::MSU.Text.colorPositive("+1") + " [Action Point.|Concept.ActionPoints]"
-			]
-		}]
 	}),
 	RF_Fencer = ::UPD.getDescription({
 		Fluff = "Master the art of fighting with a nimble sword.",
@@ -1478,16 +1393,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
 	}),
-	RF_Heft = ::UPD.getDescription({
-		Fluff = "Take advantage of the weight of your axe to inflict maximum damage!",
-		Requirement = "Axe",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Maximum Damage is increased by " + ::MSU.Text.colorPositive("30%") + " of the Maximum Damage of the currently equipped axe."
-			]
-		}]
-	}),
 	RF_TrickstersPurses = ::UPD.getDescription({
 		Effects = [
 			{
@@ -1559,26 +1464,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Any member of your company who is adjacent to an enemy, or is adjacent to an ally who is adjacent to an enemy, gains " + ::MSU.Text.colorPositive("+3") + " [Action Points|Concept.ActionPoints] as long as they start their [turn|Concept.Turn] adjacent to you."
-			]
-		}]
-	}),
-	RF_InternalHemorrhage = ::UPD.getDescription({
-		Fluff = "Learn to strike at your target\'s softest spots, causing intense internal bleeding.",
-		Requirement = "Blunt Damage",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Blunt Damage attacks now apply the [Hemorrhaging Internally|Skill+rf_internal_hemorrhage_effect] effect that deals " + ::MSU.Text.colorPositive("20%") + " of the damage dealt to [Hitpoints|Concept.Hitpoints] in that attack as damage to the target at the end of their [turn.|Concept.Turn]"
-			]
-		}]
-	}),
-	RF_Intimidate = ::UPD.getDescription({
-		Fluff = "\'Trust me, ye don\'t want to be on the other end of a spike on a pole!\'",
-		Requirement = "Weapon with 6 or more [Reach|Concept.Reach]",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Attacks, hit or miss, trigger an additional Negative Morale Check."
 			]
 		}]
 	}),
@@ -1737,27 +1622,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
 	}),
-	RF_Momentum = ::UPD.getDescription({
-		Fluff = "\'Ye\'ve gotta get a running start!\'",
-		Requirement = "Throwing Weapon",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Throwing attacks do " + ::MSU.Text.colorPositive("5%") + " more damage and have their [Action Point|Concept.ActionPoints] cost reduced by " + ::MSU.Text.colorPositive(1) + " per tile moved before throwing."
-			]
-		}]
-	}),
-	RF_MuscleMemory = ::UPD.getDescription({
-		Fluff = "Load.. aim.. fire... repeat!",
-		Requirement = "Crossbow or Handgonne",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"The [Action Point|Concept.ActionPoints] cost of reloading a [handgonne|Item+handgonne] is reduced by " + ::MSU.Text.colorPositive(2) + ".",
-				"When using a crossbow, for each point of current [Ranged Skill|Concept.RangeSkill] above 90, damage is increased by " + ::MSU.Text.colorPositive("1%") + " up to a maximum of " + ::MSU.Text.colorPositive("30%") + "."
-			]
-		}]
-	}),
 	RF_NailedIt = ::UPD.getDescription({
 		Fluff = "\'One javelin to the head will take \'em right out!\'",
 		Requirement = "Ranged attack",
@@ -1800,15 +1664,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Every time an opponent attacks you or you attack an opponent, gain a stacking " + ::MSU.Text.colorPositive("+3") + " [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense] against that opponent for the remainder of the combat.",
 				"Once the total bonus reaches " + ::MSU.Text.colorPositive(15) + ", all subsequent attacks increase it by " + ::MSU.Text.colorPositive("+1") + " only.",
 				"Only works when dealing or receiving melee attacks."
-			]
-		}]
-	}),
-	RF_PersonalArmor = ::UPD.getDescription({
-		Fluff = "Give your own armor some of that special treatment!",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Damage received to armor is reduced by " + ::MSU.Text.colorPositive("10%") + "."
 			]
 		}]
 	}),
@@ -1956,15 +1811,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
 	}),
-	RF_ShieldSplitter = ::UPD.getDescription({
-		Fluff = "\'If you can\'t get around it, try smashing through. It works!\'",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Upon destroying a shield with a melee attack, " + ::MSU.Text.colorPositive(4) + " [Action Points|Concept.ActionPoints] are instantly restored."
-			]
-		}]
-	}),
 	RF_SoulLink = ::UPD.getDescription({
 		Fluff = "Till death do us part!",
 		Effects = [{
@@ -2012,16 +1858,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"A successful attack with your mainhand dagger reduces the [Action Point|Concept.ActionPoints] cost of all its skills by " + ::MSU.Text.colorPositive("2") + " to a minimum of " + ::MSU.Text.colorPositive("2") + " for the remainder of this [turn.|Concept.Turn]",
 				"The effect expires upon missing an attack, switching your weapon, switching the target, killing the target, or using any skill that is not a dagger attack."
-			]
-		}]
-	}),
-	RF_Swordlike = ::UPD.getDescription({
-		Fluff = "Cleaver... sword... pretty much the same thing, right?",
-		Requirement = "Cleaver with a range of 1 tile"
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Cleaver attacks gain " + ::MSU.Text.colorPositive("+10%") + " chance to hit."
 			]
 		}]
 	}),
