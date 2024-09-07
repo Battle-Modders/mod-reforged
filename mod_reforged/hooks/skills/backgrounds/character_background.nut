@@ -1,4 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/character_background", function(q) {
+	q.create = @(__original) function()
+	{
+		__original();
+		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({});
+	}
+
 	q.isHired <- function()
 	{
 		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
