@@ -1,8 +1,40 @@
+.world-event-screen > .l-dialog-container .footer .l-button-container .ui-control
+{
+	display: flex;
+	padding: 1.0rem;
+}
+
 /* Restrict and Scale the height of Ambition-Icons to 50x50 pixels */
 .world-event-buttons .row.has-big-buttons .l-button img
 {
+	position: static;	/* So that this image works within the display: flex of its parent */
+
 	height: 5.0rem;
 	width: 5.0rem;
-	top: 1.0rem;
-	left: 1.0rem;
+	object-fit: cover;	/* So that this image remains un-streched */
+
+	order: -1;	/* So that this image is left of the button, even though it was added last */
+}
+
+/*.world-event-screen .l-dialog-container .footer .l-button-container .ui-control */
+/* If the dialog has .has-big-buttons then the font is slightly reduced to account for the presence of icons */
+.world-event-screen > .l-dialog-container .footer .l-button-container .has-big-buttons .ui-control .label
+{
+	position: static;	/* So that this image works within the display: flex of its parent */
+
+	/* correctly center the div */
+	margin: 0;
+	top: 0;
+	left: 0;
+
+	/* We have a little less Space sompared to vanilla. In order to support the same text, we reduce the text size */
+	font-size: 17px;	/* In Vanilla this is 18px */
+	max-height: 2.8em;	/* prevents the top of the third row from showing up */
+
+	/* Needed so the ellipsis actually appears when too much text is present */
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+
+	width: 100%;	/* So that text text takes up all the space possible */
 }
