@@ -54,6 +54,13 @@
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Immune to Poison")
+			},
+			{
+				id = 24,
+				type = "text",
+				icon = "ui/icons/morale.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [Morale|Concept.Morale]")
+
 			}
 		]);
 		return ret;
@@ -61,8 +68,10 @@
 
 	q.onAdded <- function()
 	{
-		local baseProperties = this.getContainer().getActor().getBaseProperties();
+		local actor = this.getContainer().getActor();
+		actor.m.MoraleState = ::Const.MoraleState.Ignore;
 
+		local baseProperties = actor.getBaseProperties();
 		baseProperties.IsAffectedByInjuries = false;
 		baseProperties.IsAffectedByNight = false;
 		baseProperties.IsImmuneToBleeding = true;
