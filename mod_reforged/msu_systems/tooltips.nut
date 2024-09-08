@@ -29,3 +29,11 @@
 		}
 	}
 });
+
+local tooltipImageKeywords = {
+	"ui/icons/reach.png" 				: "Concept.Reach",
+	"ui/icons/reach_attack.png" 		: "Concept.ReachIgnoreOffensive",
+	"ui/icons/reach_defense.png" 		: "Concept.ReachIgnoreDefensive"
+}
+
+::Reforged.Mod.Tooltips.setTooltipImageKeywords(tooltipImageKeywords);

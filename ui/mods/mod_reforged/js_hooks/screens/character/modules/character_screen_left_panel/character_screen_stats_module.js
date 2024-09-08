@@ -3,6 +3,7 @@ Reforged.Hooks.CharacterScreenStatsModule_setProgressbarValues = CharacterScreen
 CharacterScreenStatsModule.prototype.setProgressbarValues = function (_data)
 {
 	Reforged.Hooks.CharacterScreenStatsModule_setProgressbarValues.call(this, _data);
+	this.setProgressbarValue(this.mLeftStatsRows.Morale.Progressbar, _data, ProgressbarValueIdentifier.rf_Reach, ProgressbarValueIdentifier.rf_ReachMax, ProgressbarValueIdentifier.rf_ReachLabel);
 
 	var selectedBrother = this.mDataSource.getSelectedBrother();
 	if (selectedBrother === null) return;
@@ -12,7 +13,14 @@ CharacterScreenStatsModule.prototype.setProgressbarValues = function (_data)
 	var entityID = selectedBrother[CharacterScreenIdentifier.Entity.Id];
 	$.each(this.mLeftStatsRows, function (_key, _value)
 	{
-		_value.Row.bindTooltip({ entityId: entityID, contentType: 'ui-element', elementId: _value.TooltipId });
+		if (_value.TooltipId == "character-stats.Morale")
+		{
+			_value.Row.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Concept.Reach" });
+		}
+		else
+		{
+			_value.Row.bindTooltip({ entityId: entityID, contentType: 'ui-element', elementId: _value.TooltipId });
+		}		
 	});
 
 	$.each(this.mMiddleStatsRows, function (_key, _value)
@@ -20,3 +28,26 @@ CharacterScreenStatsModule.prototype.setProgressbarValues = function (_data)
 		_value.Row.bindTooltip({ entityId: entityID, contentType: 'ui-element', elementId: _value.TooltipId });
 	});
 }
+
+Reforged.Hooks.CharacterScreenStatsModule_createDIV = CharacterScreenStatsModule.prototype.createDIV;
+CharacterScreenStatsModule.prototype.createDIV = function (_parentDiv)
+{
+	this.mLeftStatsRows["Morale"].IconPath  = Path.GFX + Asset.rf_Reach;
+	this.mLeftStatsRows["Morale"].StyleName = ProgressbarStyleIdentifier.rf_Reach;
+	Reforged.Hooks.CharacterScreenStatsModule_createDIV.call(this, _parentDiv);
+}
+
+Reforged.Hooks.CharacterScreenStatsModule_setupEventHandler = CharacterScreenStatsModule.prototype.setupEventHandler;
+CharacterScreenStatsModule.prototype.setupEventHandler = function ()
+{
+	Reforged.Hooks.CharacterScreenStatsModule_setupEventHandler.call(this);
+	$.each(this.mLeftStatsRows, function (_key, _value)
+	{
+		if (_value.StyleName == ProgressbarStyleIdentifier.rf_Reach)
+		{
+			_value.Row.unbindTooltip();
+			_value.Row.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Concept.Reach" });
+			return false;
+		}
+	});
+};

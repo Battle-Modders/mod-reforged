@@ -53,3 +53,81 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.rf_tacticalTooltipAttributeList
+{
+	display: flex;
+	flex-direction:row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 24rem;
+}
+.rf_tacticalTooltipAttributeEntry
+{
+	width: 7rem;
+	display:flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.rf_tacticalTooltipAttributeEntry.rf_tacticalTooltipAttributeEntryDoubleWide
+{
+	width: 14rem;
+}
+.rf_tacticalTooltipAttributeEntry .rf_tacticalTooltipAttributeValue
+{
+	padding-left: 2px;
+}
+.rf_tacticalTooltipAttributeEntry img
+{
+	width: 20px;
+	height: 20px;
+}
+
+.rf_tacticalTooltipAttributeEntry > .rf_tacticalTooltipAttributeDelta
+{
+	font-size: 10px;
+}
+
+.rf_tacticalTooltipReachContainer,
+.rf_tacticalTooltipWaitContainer
+{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	white-space: pre-wrap;
+	width: 24.0rem;
+}
+.rf_tacticalTooltipWaitContainer img
+{
+	padding-right: 4px;
+}
+
+.rf_tacticalTooltipReach
+{
+	display:flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.rf_tacticalTooltipReach img
+{
+	object-fit: cover;
+	width: 20px;
+	height: 20px;
+}
+.rf_tacticalTooltipVision
+{
+	justify-content: flex-end;
+}
+
+.ui-control-stats-progressbar.rf_reach,
+.ui-control-stats-progressbar-preview.rf_reach
+{
+	background-color: #7a1e12;
+}
+.ui-control.progressbar.rf_reach .normal-bar,
+.ui-control.progressbar.rf_reach .preview-bar
+{
+    background-image: url("coui://gfx/ui/skin/inventory_bar_fill_neutral_127.png");
+    background-size: 12.7rem 2.2rem;
+    background-repeat: no-repeat;
+}

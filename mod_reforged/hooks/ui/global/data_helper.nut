@@ -48,4 +48,12 @@
 		}
 		return ret;
 	}
+
+	q.addStatsToUIData = @(__original) function( _entity, _target )
+	{
+		__original(_entity, _target);
+		local properties = _entity.getCurrentProperties();
+		_target.rf_reach <- properties.getReach();
+		_target.rf_reachMax <- 15; // arbitrary
+	}
 })
