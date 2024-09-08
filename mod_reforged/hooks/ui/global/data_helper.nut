@@ -49,7 +49,6 @@
 		return ret;
 	}
 
-
 	q.addStatsToUIData = @(__original) function( _entity, _target )
 	{
 		__original(_entity, _target);
