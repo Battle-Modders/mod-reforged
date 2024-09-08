@@ -70,6 +70,12 @@
 				entry.text = " " + entry.value + " / " + entry.valueMax;
 			}
 
+			// Insert reach information
+			if (entry.id == 5)
+			{
+				ret.insert(index, ::Reforged.TacticalTooltip.getReach(this, 50));
+			}
+
 			if (entry.id == 8)	// Replace Morale-Bar with Action-Point-Bar
 			{
 				local turnsToGo = ::Tactical.TurnSequenceBar.getTurnsUntilActive(this.getID());
@@ -92,7 +98,6 @@
 			return value != "None" && (value == "All" || (value == "Player Only" && this.isPlayerControlled()) || (value == "AI Only" && !this.isPlayerControlled()))
 		}
 
-		ret.insert(2, ::Reforged.TacticalTooltip.getReach(this, 50));
 		if (verifySettingValue("TacticalTooltip_Attributes")) ret.append(::Reforged.TacticalTooltip.getTooltipAttributesSmall(this, 100));
 		if (verifySettingValue("TacticalTooltip_Effects")) ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(this, 200));
 		if (verifySettingValue("TacticalTooltip_Perks")) ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(this, 300));
