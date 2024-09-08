@@ -83,7 +83,6 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 					"scripts/items/weapons/rf_poleflail",
 					"scripts/items/weapons/pike",
 					"scripts/items/weapons/spetum",
-					"scripts/items/weapons/rf_two_handed_falchion",
 					"scripts/items/weapons/warbrand"
 				]);
 			}

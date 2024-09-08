@@ -39,7 +39,8 @@
 				[1, "scripts/items/weapons/scramasax"],
 
 				[1, "scripts/items/weapons/longaxe"],
-				[1, "scripts/items/weapons/polehammer"]
+				[1, "scripts/items/weapons/polehammer"],
+				[1, "scripts/items/weapons/rf_two_handed_falchion"]
 			]).roll();
 			this.m.Items.equip(::new(weapon));
 		}

@@ -58,7 +58,8 @@ this.rf_bandit_highwayman <- ::inherit("scripts/entity/tactical/human", {
 				[1, "scripts/items/weapons/scramasax"],
 
 				[1, "scripts/items/weapons/longaxe"],
-				[1, "scripts/items/weapons/polehammer"]
+				[1, "scripts/items/weapons/polehammer"],
+				[1, "scripts/items/weapons/rf_two_handed_falchion"]
 			]).roll();
 			this.m.Items.equip(::new(weapon));
 		}
@@ -119,7 +120,11 @@ this.rf_bandit_highwayman <- ::inherit("scripts/entity/tactical/human", {
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
 			}
-			else // two handed weapon
+			else if (mainhandItem.isItemType(::Const.Items.ItemType.TwoHanded) && ::Reforged.Items.isDuelistValid(mainhandItem))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+			else
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
