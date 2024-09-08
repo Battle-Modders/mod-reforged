@@ -68,10 +68,13 @@ this.rf_bandit_scoundrel <- ::inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/bludgeon"],
 				[1, "scripts/items/weapons/butchers_cleaver"],
 				[1, "scripts/items/weapons/dagger"],
-				[1, "scripts/items/weapons/knife"],
+				[1, "scripts/items/weapons/hatchet"],
 				[1, "scripts/items/weapons/militia_spear"],
+				[1, "scripts/items/weapons/pickaxe"],
+				[1, "scripts/items/weapons/reinforced_wooden_flail"],
 				[1, "scripts/items/weapons/shortsword"],
 				[1, "scripts/items/weapons/wooden_flail"],
 				[1, "scripts/items/weapons/wooden_stick"],
