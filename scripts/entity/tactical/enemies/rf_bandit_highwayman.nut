@@ -34,6 +34,7 @@ this.rf_bandit_highwayman <- ::inherit("scripts/entity/tactical/human", {
 		this.getSprite("shield_icon").setBrightness(0.85);
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 	}
 
@@ -47,13 +48,6 @@ this.rf_bandit_highwayman <- ::inherit("scripts/entity/tactical/human", {
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local throwing = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/throwing_spear"]
-			]).rollChance(33);
-
-			if (throwing != null) this.m.Items.equip(::new(throwing));
-		}
-
 			local weapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/arming_sword"],
 				[1, "scripts/items/weapons/boar_spear"],
@@ -64,28 +58,30 @@ this.rf_bandit_highwayman <- ::inherit("scripts/entity/tactical/human", {
 				[1, "scripts/items/weapons/scramasax"],
 
 				[1, "scripts/items/weapons/longaxe"],
-				[1, "scripts/items/weapons/polehammer"]
+				[1, "scripts/items/weapons/polehammer"],
+				[1, "scripts/items/weapons/rf_two_handed_falchion"]
 			]).roll();
-			weapon = ::new(weapon);
+			this.m.Items.equip(::new(weapon));
+		}
 
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-			{
-				this.m.Items.equip(weapon);
-			}
-			else
-			{
-				this.m.Items.addToBag(weapon);
-			}
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
+		{
+			local throwing = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/throwing_spear"]
+			]).rollChance(33);
 
-			if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
-			{
-				local shield = ::MSU.Class.WeightedContainer([
-					[1, "scripts/items/shields/kite_shield"],
-					[1, "scripts/items/shields/heater_shield"]
-				]).roll();
+			if (throwing != null) this.m.Items.addToBag(::new(throwing));
+		}
 
-				this.m.Items.equip(::new(shield));
-			}
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			local shield = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/shields/kite_shield"],
+				[1, "scripts/items/shields/heater_shield"]
+			]).roll();
+
+			this.m.Items.equip(::new(shield));
+		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
@@ -119,31 +115,26 @@ this.rf_bandit_highwayman <- ::inherit("scripts/entity/tactical/human", {
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
 			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 				this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
 			}
-			else // two handed weapon
+			else if (mainhandItem.isItemType(::Const.Items.ItemType.TwoHanded) && ::Reforged.Items.isDuelistValid(mainhandItem))
 			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-				}
-				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Hammer))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-				}
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 			}
-		}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
 
-		local offhandItem = this.getOffhandItem();
-		if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+			local offhandItem = this.getOffhandItem();
+			if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+			}
 		}
 	}
 });

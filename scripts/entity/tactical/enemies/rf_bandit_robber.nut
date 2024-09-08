@@ -1,6 +1,7 @@
 this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 	m = {
-		MyVariant = 0
+		HasNet = false,
+		IsThrower = false
 	},
 	function create()
 	{
@@ -40,7 +41,8 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 
-		this.m.MyVariant = ::Math.rand(0, 1); // 1 is Thrower
+		this.m.HasNet = ::Math.rand(1, 5) == 5; // 20% chance
+		this.m.IsThrower = ::Math.rand(1, 2) == 2; // 50% chance
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )
@@ -51,45 +53,41 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		if (::Math.rand (1, 100) < 20 && (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)))
+		if (this.m.HasNet && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			this.m.Items.equip(::new("scripts/items/tools/throwing_net"))
 		}
 
-		if (this.m.MyVariant == 1) // Thrower
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			local weapons = ::MSU.Class.WeightedContainer().addMany(1, [
+				"scripts/items/weapons/boar_spear",
+				"scripts/items/weapons/dagger",
+				"scripts/items/weapons/falchion",
+				"scripts/items/weapons/scramasax",
+			]);
+
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) // both hands free
+			{
+				weapons.addMany(1, [
+					"scripts/items/weapons/hooked_blade",
+					"scripts/items/weapons/pike",
+					"scripts/items/weapons/rf_reinforced_wooden_poleflail",
+					"scripts/items/weapons/warfork"
+				]);
+			}
+
+			this.m.Items.equip(::new(weapons.roll()));
+		}
+
+		if (this.m.IsThrower && this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
 		{
 			local throwingWeapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/javelin"],
 				[1, "scripts/items/weapons/throwing_axe"]
 			]).roll();
 
-			this.m.Items.equip(::new(throwingWeapon));
-		}
-
-		local weapon = ::MSU.Class.WeightedContainer([
-			[1, "scripts/items/weapons/boar_spear"],
-			[1, "scripts/items/weapons/dagger"],
-			[1, "scripts/items/weapons/falchion"],
-			[1, "scripts/items/weapons/scramasax"],
-
-			[1, "scripts/items/weapons/hooked_blade"],
-			[1, "scripts/items/weapons/pike"],
-			[1, "scripts/items/weapons/reinforced_wooden_flail"],
-			[1, "scripts/items/weapons/warfork"]
-		]).roll();
-
-		weapon = ::new(weapon);
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) // both hands free
-		{
-			this.m.Items.equip(weapon);
-		}
-		else if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && weapon.isItemType(::Const.Items.ItemType.OneHanded)) // mainhand free and rolled 1h melee weapon
-		{
-			this.m.Items.equip(weapon);
-		}
-		else  // cannot equip melee weapon to hands
-		{
-			this.m.Items.addToBag(weapon);
+			this.m.Items.addToBag(::new(throwingWeapon));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
@@ -122,7 +120,7 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 	function onSetupEntity()
 	{
 		local mainhandItem = this.getMainhandItem();
-		if (mainhandItem != null && !mainhandItem.isItemType(::Const.Items.ItemType.RangedWeapon)) // Rolled and equipped melee weapon. Did not roll throwing.
+		if (mainhandItem != null)
 		{
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Dagger))
 			{
@@ -138,28 +136,6 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 			else
 			{
 				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
-			}
-		}
-
-		foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag)) // Check all bag slots for items. Melee weapon in bag
-		{
-			if (item.isItemType(::Const.Items.ItemType.MeleeWeapon))
-			{
-				if (item.isWeaponType(::Const.Items.WeaponType.Dagger))
-				{
-					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 3);
-					this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-				}
-				else if (item.isWeaponType(::Const.Items.WeaponType.Polearm))
-				{
-					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 4);
-				}
-				else
-				{
-					::Reforged.Skills.addPerkGroupOfWeapon(this, item, 3);
-				}
 			}
 		}
 	}
