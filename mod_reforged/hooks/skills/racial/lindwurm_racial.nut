@@ -25,7 +25,7 @@
 				id = 20,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Not affected by nighttime penalties"
+				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [Nighttime|Skill+night_effect]")
 			},
 			{
 				id = 24,
@@ -37,7 +37,7 @@
 				id = 26,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Immune to being disarmed"
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [disarmed|Skill+disarmed_effect]")
 			},
 			{
 				id = 27,
