@@ -64,7 +64,7 @@
 				id = 26,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Immune to being disarmed"
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [disarmed|Skill+disarmed_effect]")
 			},
 			{
 				id = 27,

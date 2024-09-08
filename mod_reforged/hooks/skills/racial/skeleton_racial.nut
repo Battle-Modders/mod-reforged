@@ -35,7 +35,7 @@
 				id = 20,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Not affected by nighttime penalties"
+				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [Nighttime|Skill+night_effect]")
 			},
 			{
 				id = 21,

@@ -76,7 +76,7 @@ this.rf_zombie_racial <- ::inherit("scripts/skills/skill", {
 			{
 				id = 24,
 				type = "text",
-				icon = "ui/icons/special.png",
+				icon = "ui/icons/morale.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Unaffected by [Morale|Concept.Morale]")
 			}
 		]);
