@@ -22,11 +22,11 @@ local requiredMods = [
 	"dlc_wildmen",
 	"dlc_desert",
 	"dlc_paladins",
-	"mod_dynamic_perks >= 0.2.4"
+	"mod_dynamic_perks >= 0.2.5"
 	"mod_dynamic_spawns >= 0.3.3",
 	"mod_item_tables >= 0.1.1",
 	"mod_upd",
-	"mod_stack_based_skills >= 0.5.0"
+	"mod_stack_based_skills >= 0.5.1"
 ];
 
 ::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
