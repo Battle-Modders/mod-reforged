@@ -5,7 +5,7 @@ this.rf_brigandine_harness <- ::inherit("scripts/items/armor/armor", {
 		this.armor.create();
 		this.m.ID = "armor.body.rf_brigandine_harness";
 		this.m.Name = "Brigandine Harness";
-		this.m.Description = "A brigandine shirt over mail with spaulders and splinted vambaces providing excellent protection with only moderate mobility loss.";
+		this.m.Description = "A brigandine shirt over mail with spaulders and splinted vambraces providing excellent protection with only moderate mobility loss.";
 		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;

@@ -563,8 +563,8 @@ local vanillaDescriptions = [
 					"Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue.|Concept.Fatigue]",
 					"[Lash|Skill+lash_skill] and [Hail|Skill+hail_skill] ignore the defense bonus of shields.",
 					"Gain the [From all Sides|Perk+perk_rf_from_all_sides] perk.",
-					"Pound ignores an additional " + ::MSU.Text.colorPositive("+10%") + " of armor on head hits.",
-					"Thresh gains " + ::MSU.Text.colorPositive("+5%") + " chance to hit.",
+					"[Pound|Skill+pound] ignores an additional " + ::MSU.Text.colorPositive("+10%") + " of armor on head hits.",
+					"[Thresh|Skill+thresh] gains " + ::MSU.Text.colorPositive("+5%") + " chance to hit.",
 					"Poleflails no longer have a penalty for attacking targets directly adjacent."
 				]
 			}]
@@ -658,9 +658,9 @@ local vanillaDescriptions = [
 					Type = ::UPD.EffectType.Passive,
 					Description = [
 						"Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue.|Concept.Fatigue]",
-						"Riposte no longer has a penalty to hitchance.",
-						"Gash has a " + ::MSU.Text.colorNegative("50%") + " lower threshold to inflict injuries.",
-						"Split and Swing no longer have a penalty to hitchance and gain " + ::MSU.Text.colorPositive("+5%") + " chance to hit."
+						"[Riposte|Skill+riposte] no longer has a penalty to hitchance.",
+						"[Gash|Skill+gash_skill] has a " + ::MSU.Text.colorNegative("50%") + " lower threshold to inflict injuries.",
+						"[Split|Skill+split] and [Swing|Skill+swing] no longer have a penalty to hitchance and gain " + ::MSU.Text.colorPositive("+5%") + " chance to hit."
 					]
 				},
 				{
