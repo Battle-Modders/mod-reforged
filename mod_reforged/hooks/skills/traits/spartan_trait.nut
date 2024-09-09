@@ -23,7 +23,7 @@
 			id = 11,
 			type = "text",
 			icon = "ui/icons/asset_daily_food.png",
-			text = "Lose " + ::MSU.Text.colorPositive("50%") + " less mood when going hungry"
+			text = "Lose " + ::MSU.Text.colorPositive("50%") + " less mood due to going hungry"
 		});
 
 		return ret;

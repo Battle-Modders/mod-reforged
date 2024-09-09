@@ -15,7 +15,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/asset_money.png",
-			text = ::MSU.Text.colorNegative("15%") + " more Daily wage"
+			text = ::MSU.Text.colorNegative("15%") + " more daily wage"
 		});
 		return ret;
 	}
