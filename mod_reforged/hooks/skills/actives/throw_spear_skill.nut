@@ -43,10 +43,16 @@
 		return ret;
 	}
 
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
 	{
+		__original(_skill, _targetEntity, _properties);
 		if (_skill == this)
 		{
+			// Revert the hard-coded vanilla values first
+			_properties.RangedSkill -= 20;
+			_properties.HitChanceAdditionalWithEachTile += 10;
+
+			// Adjust the same properties with our custom values
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 		}
