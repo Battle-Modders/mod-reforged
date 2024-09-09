@@ -7,17 +7,28 @@
 	{
 		local ret = this.skill.getDefaultTooltip();
 
-		ret.extend(this.getRangedTooltip());
+		local damage = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getShieldDamage();
+		if (damage != 0)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/shield_damage.png",
+				text = "Inflicts " + ::MSU.Text.colorDamage(damage) + " damage to shields"
+			});
+		}
 
 		if (this.m.FatigueDamage != 0)
 		{
 			ret.push({
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/tooltips/fatigue.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorDamage(this.m.FatigueDamage) + " [Fatigue|Concept.Fatigue] when hitting a shield")
 			});
 		}
+
+		ret.extend(this.getRangedTooltip());
 
 		if (this.getContainer().getActor().isEngagedInMelee())
 		{
