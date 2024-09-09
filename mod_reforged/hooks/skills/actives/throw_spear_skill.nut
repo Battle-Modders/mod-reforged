@@ -23,7 +23,7 @@
 			ret.push({
 				id = 11,
 				type = "text",
-				icon = "ui/tooltips/fatigue.png",
+				icon = "ui/icons/fatigue.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorDamage(this.m.FatigueDamage) + " [Fatigue|Concept.Fatigue] when hitting a shield")
 			});
 		}
