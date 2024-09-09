@@ -92,16 +92,26 @@
 .rf_tacticalTooltipWaitContainer
 {
 	display:flex;
-	justify-content: center;
 	align-items: center;
+	/* Without this, whitespace will be stripped */
 	white-space: pre-wrap;
-	width: 24.0rem;
+	/* Align with right column / progress bars	*/
+	width: 19.0rem;
+	margin-left: 3rem;
+}
+
+.rf_tacticalTooltipWaitContainer
+{
+	justify-content: center;
 }
 .rf_tacticalTooltipWaitContainer img
 {
 	padding-right: 4px;
 }
-
+.rf_tacticalTooltipReachContainer
+{
+	justify-content: space-between;
+}
 .rf_tacticalTooltipReach
 {
 	display:flex;
@@ -117,6 +127,7 @@
 .rf_tacticalTooltipVision
 {
 	justify-content: flex-end;
+	width: auto;
 }
 
 .ui-control-stats-progressbar.rf_reach,

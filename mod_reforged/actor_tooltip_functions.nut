@@ -44,14 +44,14 @@
 ::Reforged.TacticalTooltip.getReachElement <- function( _actor )
 {
 	local currentProperties = _actor.getCurrentProperties();
-	if (!_actor.getCurrentProperties().IsAffectedByReach)
-		return format("<span class='rf_tacticalTooltipReach'>%s - (%s -, %s -)</span>", reachImg, reachAtkImg, reachDefImg);
 	local reach = currentProperties.getReach();
 	local reachAtk = currentProperties.OffensiveReachIgnore;
 	local reachDef = currentProperties.DefensiveReachIgnore;
 	local reachImg = "[img]gfx/ui/icons/reach.png[/img]";
 	local reachAtkImg = "[img]gfx/ui/icons/reach_attack.png[/img]";
 	local reachDefImg = "[img]gfx/ui/icons/reach_defense.png[/img]";
+	if (!_actor.getCurrentProperties().IsAffectedByReach)
+		return format("<span class='rf_tacticalTooltipReach'>%s Unaffected</span>", reachImg);
 	return format("<span class='rf_tacticalTooltipReach'>%s %i (%s %i, %s %i)</span>", reachImg, reach, reachAtkImg, reachAtk, reachDefImg, reachDef);
 }
 
