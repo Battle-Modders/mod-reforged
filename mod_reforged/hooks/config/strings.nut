@@ -821,7 +821,6 @@ local vanillaDescriptions = [
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"Hits to the head no longer cause critical damage to this character, which also lowers the risk of sustaining debilitating head [injuries|Concept.Injury] significantly."
-					"Grants passive immunity against [Cull.|Perk+perk_rf_cull]"
 				]
 			}]
 		})
