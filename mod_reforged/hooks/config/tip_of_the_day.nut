@@ -22,6 +22,7 @@ for (local index = (::Const.TipOfTheDay.len() - 1); index >= 0; index--)
 }
 
 ::Const.TipOfTheDay.extend([
+	"Reforged: You can press \'Shift\' while hovering over a perk in your perk tree to highlight all other perks of the same group.",
 	"Non-player controlled characters will never run out of ammunition for bows, crossbows, and guns.",
 	"Reforged: While on a caravan mission, you can enter towns up to 2 tiles away instead of only on the same tile.",
 	"The Mod Options have a lot of customizations regarding quality of life.",
