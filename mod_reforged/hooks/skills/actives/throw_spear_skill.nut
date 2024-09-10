@@ -7,7 +7,7 @@
 	{
 		local ret = this.skill.getDefaultTooltip();
 
-		local damage = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getShieldDamage();
+		local damage = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).getShieldDamage();
 		if (damage != 0)
 		{
 			ret.push({
