@@ -43,18 +43,31 @@
 		return ret;
 	}
 
-	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	// Same as vanilla except we use the custom AdditionalAccuracy and AdditionalHitChance instead of hard-coded ones
+	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
 	{
-		__original(_skill, _targetEntity, _properties);
 		if (_skill == this)
 		{
-			// Revert the hard-coded vanilla values first
-			_properties.RangedSkill -= 20;
-			_properties.HitChanceAdditionalWithEachTile += 10;
-
-			// Adjust the same properties with our custom values
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
+
+			if (_targetEntity != null)
+			{
+				local shield = _targetEntity.getOffhandItem();
+
+				if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield))
+				{
+					this.m.IsUsingHitchance = false;
+				}
+				else
+				{
+					this.m.IsUsingHitchance = true;
+				}
+			}
+			else
+			{
+				this.m.IsUsingHitchance = true;
+			}
 		}
 	}
 
