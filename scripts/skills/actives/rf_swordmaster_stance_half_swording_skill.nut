@@ -30,7 +30,7 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 		ret.push({
 			id = 11,
 			type = "text",
-			icon = "ui/icons/reach.png",
+			icon = "ui/icons/rf_reach.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorNegative("half") + " of your weapon\'s [Reach|Concept.Reach]")
 		});
 

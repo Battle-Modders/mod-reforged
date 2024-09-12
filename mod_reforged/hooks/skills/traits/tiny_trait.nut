@@ -22,7 +22,7 @@
 		ret.push({
 			id = 13,
 			type = "text",
-			icon = "ui/icons/reach.png",
+			icon = "ui/icons/rf_reach.png",
 			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("-1") + " [Reach|Concept.Reach]")
 		});
 		return ret;

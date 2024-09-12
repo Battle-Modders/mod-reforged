@@ -27,7 +27,7 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 		ret.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/reach.png",
+			icon = "ui/icons/rf_reach.png",
 			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.Stacks) + " [Reach|Concept.Reach]")
 		});
 		ret.push({

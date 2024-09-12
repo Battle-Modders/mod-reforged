@@ -10,7 +10,7 @@
 			ret.push({
 				id = 20,
 				type = "text",
-				icon = "ui/icons/reach.png",
+				icon = "ui/icons/rf_reach.png",
 				text = "Has a reach of " + this.m.Reach
 			});
 		}

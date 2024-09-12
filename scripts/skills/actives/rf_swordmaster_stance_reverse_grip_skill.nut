@@ -45,14 +45,14 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		ret.push({
 			id = 11,
 			type = "text",
-			icon = "ui/icons/reach.png",
+			icon = "ui/icons/rf_reach.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Concussive Strikes|Perk+perk_rf_concussive_strikes] perk")
 		});
 
 		ret.push({
 			id = 12,
 			type = "text",
-			icon = "ui/icons/reach.png",
+			icon = "ui/icons/rf_reach.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorNegative("one-third") + " of your weapon\'s [Reach|Concept.Reach]")
 		});
 

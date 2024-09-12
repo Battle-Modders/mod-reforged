@@ -8,7 +8,7 @@
 			ret.push({
 				id = 10,
 				type = "text",
-				icon = "ui/icons/reach.png",
+				icon = "ui/icons/rf_reach.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Ignore " + ::MSU.Text.colorPositive(reachIgnore) + " [Reach Disadvantage|Concept.ReachAdvantage] when attacking")
 			});
 		}

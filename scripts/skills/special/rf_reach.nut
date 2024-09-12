@@ -34,7 +34,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 			ret.push({
 				id = 10,
 				type = "text",
-				icon = "ui/icons/reach.png",
+				icon = "ui/icons/rf_reach.png",
 				text = "Current Reach: " + this.getContainer().getActor().getCurrentProperties().getReach()
 			});
 		}

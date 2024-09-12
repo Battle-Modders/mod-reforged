@@ -31,9 +31,9 @@
 });
 
 local tooltipImageKeywords = {
-	"ui/icons/reach.png" 				: "Concept.Reach",
-	"ui/icons/reach_attack.png" 		: "Concept.ReachIgnoreOffensive",
-	"ui/icons/reach_defense.png" 		: "Concept.ReachIgnoreDefensive"
+	"ui/icons/rf_reach.png" 				: "Concept.Reach",
+	"ui/icons/rf_reach_attack.png" 		: "Concept.ReachIgnoreOffensive",
+	"ui/icons/rf_reach_defense.png" 		: "Concept.ReachIgnoreDefensive"
 }
 
 ::Reforged.Mod.Tooltips.setTooltipImageKeywords(tooltipImageKeywords);
