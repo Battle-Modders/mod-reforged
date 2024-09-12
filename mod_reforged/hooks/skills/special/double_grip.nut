@@ -344,7 +344,7 @@
 	{
 		__original(_attacker, _skill, _properties);
 
-		if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Dagger && _attacker != null)
+		if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Dagger)
 		{
 			local actor = this.getContainer().getActor();
 			// If I have already ended or started my turn this means the attacker is acting AFTER me in this round
