@@ -20,7 +20,7 @@
 		{
 			if (entry.id == 10 && entry.icon == "ui/icons/chance_to_hit_head.png")
 			{
-				entry.text = "Melee Damage is increased by " + ::MSU.Text.colorPositive("+15%") + " on a hit to the head";
+				entry.text = "Deal " + ::MSU.Text.colorPositive("15%") + " more Melee Damage on a hit to the head";
 				break;
 			}
 		}

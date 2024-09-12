@@ -9,11 +9,11 @@
 	{
 		local ret = __original();
 		ret.push({
-			id = 5,
+			id = 10,
 			type = "text",
 			icon = "ui/icons/asset_money.png",
-			text = "Chance to desert on low mood is reduced by " + ::MSU.Text.colorPositive("50%")
-		})
+			text = ::MSU.Text.colorPositive("50%") + " less chance to desert on low mood"
+		});
 		return ret;
 	}
 });

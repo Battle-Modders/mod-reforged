@@ -12,11 +12,11 @@
 	{
 		local ret = __original();
 		ret.push({
-			id = 5,
+			id = 10,
 			type = "text",
 			icon = "ui/icons/asset_money.png",
-			text = "Daily wage is increased by " + ::MSU.Text.colorNegative("15%")
-		})
+			text = ::MSU.Text.colorNegative("15%") + " more daily wage"
+		});
 		return ret;
 	}
 });
