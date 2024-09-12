@@ -5,7 +5,7 @@ this.rf_reinforced_footman_armor <- ::inherit("scripts/items/armor/armor", {
 		this.armor.create();
 		this.m.ID = "armor.body.rf_reinforced_footman_armor";
 		this.m.Name = "Reinforced Footman Armor";
-		this.m.Description = "This heavy armor of mail and gambeson has been reinforced with scale plates and a plate spauldor.";
+		this.m.Description = "This heavy armor of mail and gambeson has been reinforced with scale plates and a plate spaulder.";
 		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;

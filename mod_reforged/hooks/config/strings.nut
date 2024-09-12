@@ -382,7 +382,7 @@ local vanillaDescriptions = [
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Lowers the threshold to inflict [injuries|Concept.Injury] by " + ::MSU.Text.colorNegative("33%") + " for both melee and ranged attacks.",
+					"Lowers the [threshold|Concept.InjuryThreshold] to inflict [injuries|Concept.Injury] by " + ::MSU.Text.colorNegative("33%") + " for both melee and ranged attacks.",
 					"Allows attacks to inflict [injuries|Concept.Injury] on the Undead."
 				]
 			}]
@@ -563,8 +563,8 @@ local vanillaDescriptions = [
 					"Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue.|Concept.Fatigue]",
 					"[Lash|Skill+lash_skill] and [Hail|Skill+hail_skill] ignore the defense bonus of shields.",
 					"Gain the [From all Sides|Perk+perk_rf_from_all_sides] perk.",
-					"Pound ignores an additional " + ::MSU.Text.colorPositive("+10%") + " of armor on head hits.",
-					"Thresh gains " + ::MSU.Text.colorPositive("+5%") + " chance to hit.",
+					"[Pound|Skill+pound] ignores an additional " + ::MSU.Text.colorPositive("+10%") + " of armor on head hits.",
+					"[Thresh|Skill+thresh] gains " + ::MSU.Text.colorPositive("+5%") + " chance to hit.",
 					"Poleflails no longer have a penalty for attacking targets directly adjacent."
 				]
 			}]
@@ -658,9 +658,9 @@ local vanillaDescriptions = [
 					Type = ::UPD.EffectType.Passive,
 					Description = [
 						"Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue.|Concept.Fatigue]",
-						"Riposte no longer has a penalty to hitchance.",
-						"Gash has a " + ::MSU.Text.colorNegative("50%") + " lower threshold to inflict injuries.",
-						"Split and Swing no longer have a penalty to hitchance and gain " + ::MSU.Text.colorPositive("+5%") + " chance to hit."
+						"[Riposte|Skill+riposte] no longer has a penalty to hitchance.",
+						"[Gash|Skill+gash_skill] has a " + ::MSU.Text.colorNegative("50%") + " lower [threshold|Concept.InjuryThreshold] to inflict [injuries.|Concept.InjuryTemporary]",
+						"[Split|Skill+split] and [Swing|Skill+swing] no longer have a penalty to hitchance and gain " + ::MSU.Text.colorPositive("+5%") + " chance to hit."
 					]
 				},
 				{
@@ -685,7 +685,7 @@ local vanillaDescriptions = [
 				Description = [
 					"Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue.|Concept.Fatigue]",
 					"Damage is increased by " + ::MSU.Text.colorPositive("30%") + " when attacking at a distance of 2 tiles and by " + ::MSU.Text.colorPositive("20%") + " when attacking at a distance of 3 tiles.",
-					"Hits from throwing attacks now apply certain debuffs on the target. Piercing type attacks have a " + ::MSU.Text.colorPositive("50%") + " chance to inflict the \'Arrow to the Knee\' effect. Cutting type attacks always apply the [Overwhelmed|Skill+overwhelmed_effect] effect. Blunt type attacks have a " + ::MSU.Text.colorPositive("50%") + " chance to inflict [staggered|Skill+staggered_effect] and if the target is already [staggered,|Skill+staggered_effect] " + ::MSU.Text.colorPositive("100%") + " chance to inflict [stunned.|Skill+stunned_effect]"
+					"Hits from throwing attacks now apply certain debuffs on the target. Piercing type attacks have a " + ::MSU.Text.colorPositive("50%") + " chance to inflict the [Arrow to the Knee|Skill+rf_arrow_to_the_knee_debuff_effect] effect. Cutting type attacks always apply the [Overwhelmed|Skill+overwhelmed_effect] effect. Blunt type attacks have a " + ::MSU.Text.colorPositive("50%") + " chance to inflict [staggered|Skill+staggered_effect] and if the target is already [staggered,|Skill+staggered_effect] " + ::MSU.Text.colorPositive("100%") + " chance to inflict [stunned.|Skill+stunned_effect]"
 				]
 			}]
 		})
@@ -926,7 +926,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorPositive("+15%") + " chance to hit the head and " + ::MSU.Text.colorPositive("33%") + " reduced threshold to inflict injuries when attacking a [rattled,|Skill+rf_rattled_effect] [stunned,|Skill+stunned_effect] [dazed,|Skill+dazed_effect] [netted,|Skill+net_effect] [sleeping,|Skill+sleeping_effect] [staggered,|Skill+staggered_effect] [webbed,|Skill+web_effect] or [rooted|Skill+rooted_effect] target."
+				"Gain " + ::MSU.Text.colorPositive("+15%") + " chance to hit the head and " + ::MSU.Text.colorPositive("33%") + " reduced [threshold|Concept.InjuryThreshold] to inflict [injuries|Concept.InjuryTemporary] when attacking a [rattled,|Skill+rf_rattled_effect] [stunned,|Skill+stunned_effect] [dazed,|Skill+dazed_effect] [netted,|Skill+net_effect] [sleeping,|Skill+sleeping_effect] [staggered,|Skill+staggered_effect] [webbed,|Skill+web_effect] or [rooted|Skill+rooted_effect] target."
 			]
 		}]
 	}),
@@ -1129,7 +1129,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"During your [turn,|Concept.Turn] after a successful attack against a target, all subsequent attacks have a " + ::MSU.Text.colorNegative("33%") + " reduced threshold to inflict [injury|Concept.Injury] and will inflict an additional stack of [Bleeding|Skill+bleeding_effect] for " + ::MSU.Text.colorNegative(5) + " damage. This damage is increased to " + ::MSU.Text.colorNegative(10) + " if any of the attacks inflicted an [injury.|Concept.Injury]",
+				"During your [turn,|Concept.Turn] after a successful attack against a target, all subsequent attacks have a " + ::MSU.Text.colorNegative("33%") + " reduced [threshold|Concept.InjuryThreshold] to inflict [injury|Concept.InjuryTemporary] and will inflict an additional stack of [Bleeding|Skill+bleeding_effect] for " + ::MSU.Text.colorNegative(5) + " damage. This damage is increased to " + ::MSU.Text.colorNegative(10) + " if any of the attacks inflicted an [injury.|Concept.InjuryTemporary]",
 				"The effect expires upon switching your target, moving, swapping an item, waiting or ending a [turn,|Concept.Turn] or using any skill except a cutting attack."
 			]
 		}]
@@ -1183,7 +1183,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When inflicting an [injury|Concept.InjuryTemporary] with an attack, if you meet the [threshold|Concept.InjuryThreshold] for the lowest possible injury, instead inflict one with the highest [threshold.|Concept.InjuryThreshold]",
-				"This injury triggers at least one additional [morale check|Concept.Morale] on the target and can trigger up to " + ::MSU.Text.colorNegative(3) + " [morale checks,|Concept.Morale] one for every " + ::MSU.Text.colorPositive("33%") + " of [Hitpoints|Concept.Hitpoints] damage dealt compared to remaining [Hitpoints.|Concept.Hitpoints]"
+				"This [injury|Concept.InjuryTemporary] triggers at least one additional [morale check|Concept.Morale] on the target and can trigger up to " + ::MSU.Text.colorNegative(3) + " [morale checks,|Concept.Morale] one for every " + ::MSU.Text.colorPositive("33%") + " of [Hitpoints|Concept.Hitpoints] damage dealt compared to remaining [Hitpoints.|Concept.Hitpoints]"
 			]
 		}]
 	}),
@@ -1414,8 +1414,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The [Action Point|Concept.ActionPoints] cost of Quick Shot is reduced by " + ::MSU.Text.colorPositive(1) + ".",
-				"Each subsequent Quick Shot in a [turn|Concept.Turn] builds " + ::MSU.Text.colorNegative("10%") + " more [Fatigue.|Concept.Fatigue]"
+				"The [Action Point|Concept.ActionPoints] cost of [Quick Shot|Skill+quick_shot] is reduced by " + ::MSU.Text.colorPositive(1) + ".",
+				"Each subsequent [Quick Shot|Skill+quick_shot] in a [turn|Concept.Turn] builds " + ::MSU.Text.colorNegative("10%") + " more [Fatigue.|Concept.Fatigue]"
 			]
 		}]
 	}),
@@ -1701,8 +1701,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.OneTimeEffect,
 			Description = [
-				"Upon reaching level 11, this perk has a " + ::MSU.Text.colorPositive("50%") + " chance of being replaced with \'Realized Potential\' which will double this character\'s salary, increase all attributes by " + ::MSU.Text.colorPositive("+15") + ", unlock new perk groups and refund all perk points, including the one spent on this perk.",
-				"If unsuccessful, this perk is replaced by \'Failed Potential\' which does nothing."
+				"Upon reaching level 11, this perk has a " + ::MSU.Text.colorPositive("50%") + " chance of being replaced with [Realized Potential|Perk+perk_rf_realized_potential] which will double this character\'s salary, increase all attributes by " + ::MSU.Text.colorPositive("+15") + ", unlock new perk groups and refund all perk points, including the one spent on this perk.",
+				"If unsuccessful, this perk is replaced by [Failed Potential|Perk+perk_rf_failed_potential] which does nothing."
 			]
 		}],
 		Footer = ::MSU.Text.colorNegative("This perk cannot be picked after you have spent a perk point elsewhere. This perk cannot be refunded.")

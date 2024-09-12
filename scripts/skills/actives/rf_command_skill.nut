@@ -40,7 +40,7 @@ this.rf_command_skill <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "The target recovers " + ::MSU.Text.colorPositive(this.m.ActionPointsRecovered) + " [Action Point(s)|Concept.ActionPoints]"
+				text = ::Reforged.Mod.Tooltips.parseString("The target recovers " + ::MSU.Text.colorPositive(this.m.ActionPointsRecovered) + " [Action Point(s)|Concept.ActionPoints]")
 			},
 			{
 				id = 12,

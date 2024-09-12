@@ -5,7 +5,7 @@ this.rf_padded_skull_cap <- ::inherit("scripts/items/helmets/helmet", {
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_padded_skull_cap";
 		this.m.Name = "Padded Skull Cap";
-		this.m.Description = "A skull cap over aketon padding that provides strong protection, albiet with lackluster coverage.";
+		this.m.Description = "A skull cap over aketon padding that provides strong protection, albeit with lackluster coverage.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;
