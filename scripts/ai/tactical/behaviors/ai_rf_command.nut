@@ -78,7 +78,7 @@ this.ai_rf_command <- ::inherit("scripts/ai/tactical/behavior", {
 		foreach (a in allAllies)
 		{
 			// Skip allies who have already started their turn (and waited) or have ended their turn or are already in queue to act before all enemies or if the target is not valid for the skill
-			if (a.isTurnStarted() || a.isTurnDone() || ::Tactical.TurnSequenceBar.getTurnsUntilActive(a.getID()) < nextEnemyTurn || !this.m.Skill.onVerifyTarget(a.getTile()))
+			if (a.isTurnStarted() || a.isTurnDone() || ::Tactical.TurnSequenceBar.getTurnsUntilActive(a.getID()) < nextEnemyTurn || !this.m.Skill.onVerifyTarget(myTile, a.getTile()))
 			{
 				continue;
 			}
