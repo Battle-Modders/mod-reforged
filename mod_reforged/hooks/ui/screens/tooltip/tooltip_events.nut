@@ -36,7 +36,10 @@
 		// Extending
 		local ret = __original(_entityId, _elementId, _elementOwner);
 
-		ret.extend(this.getBaseAttributesTooltip(_entityId, _elementId, _elementOwner));
+		if (ret != null)
+		{
+			ret.extend(this.getBaseAttributesTooltip(_entityId, _elementId, _elementOwner));
+		}
 
 		return ret;
 	}
