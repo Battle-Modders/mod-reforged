@@ -1414,8 +1414,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The [Action Point|Concept.ActionPoints] cost of Quick Shot is reduced by " + ::MSU.Text.colorPositive(1) + ".",
-				"Each subsequent Quick Shot in a [turn|Concept.Turn] builds " + ::MSU.Text.colorNegative("10%") + " more [Fatigue.|Concept.Fatigue]"
+				"The [Action Point|Concept.ActionPoints] cost of [Quick Shot|Skill+quick_shot] is reduced by " + ::MSU.Text.colorPositive(1) + ".",
+				"Each subsequent [Quick Shot|Skill+quick_shot] in a [turn|Concept.Turn] builds " + ::MSU.Text.colorNegative("10%") + " more [Fatigue.|Concept.Fatigue]"
 			]
 		}]
 	}),
