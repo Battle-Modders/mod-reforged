@@ -37,8 +37,8 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 		if (this.getContainer().getActor().isPlacedOnMap())
 			return this.skill.getCostString();
 
-		local ret = "Costs " + (this.m.APCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.APCostModifier, {InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
-		ret += (this.m.FatigueCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCostModifier, {InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
+		local ret = "Costs " + (this.m.APCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.APCostModifier, {AddSign = true, InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
+		ret += (this.m.FatigueCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCostModifier, {AddSign = true, InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
 		return ::Reforged.Mod.Tooltips.parseString(ret);
 	}
 
