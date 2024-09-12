@@ -344,11 +344,16 @@
 	{
 		__original(_attacker, _skill, _properties);
 
-		if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Dagger && !_attacker.isTurnDone() && !_attacker.isTurnStarted())
+		if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Dagger)
 		{
-			local bonus = ::Math.floor(_properties.Initiative * 0.1);
-			_properties.MeleeDefense += bonus;
-			_properties.RangedDefense += bonus;
+			local actor = this.getContainer().getActor();
+			// If I have already ended or started my turn this means the attacker is acting AFTER me in this round
+			if (actor.m.IsTurnDone || actor.isTurnStarted())
+			{
+				local bonus = ::Math.floor(_properties.Initiative * 0.1);
+				_properties.MeleeDefense += bonus;
+				_properties.RangedDefense += bonus;
+			}
 		}
 	}
 
