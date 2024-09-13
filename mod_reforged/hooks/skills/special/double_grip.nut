@@ -49,7 +49,7 @@
 				break;
 
 			case ::Const.Items.WeaponType.Flail:
-				_properties.HitChanceMult[::Const.BodyPart.Head] += 0.1;
+				_properties.HitChance[::Const.BodyPart.Head] += 10;
 				_properties.DamageDirectAdd += 0.2;
 				break;
 
