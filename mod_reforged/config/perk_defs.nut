@@ -1,3 +1,24 @@
+// Missing Vanilla Perk Defs - Required so nested tooltips work correctly for them
+::DynamicPerks.Perks.addPerks([
+	{
+		ID = "perk.battering_ram",
+		Script = "scripts/skills/perks/perk_battering_ram",
+		Name = ::Const.Strings.PerkName.BatteringRam,
+		Tooltip = ::Const.Strings.PerkDescription.BatteringRam,
+		Icon = "skills/passive_03.png",
+		IconDisabled = "skills/passive_03.png"
+	},
+	{
+		ID = "perk.sundering_strikes",
+		Script = "scripts/skills/perks/perk_sundering_strikes",
+		Name = ::Const.Strings.PerkName.SunderingStrikes,
+		Tooltip = ::Const.Strings.PerkDescription.SunderingStrikes,
+		Icon = "ui/perks/perk_12.png",
+		IconDisabled = "ui/perks/perk_12.png"
+	}
+]);
+
+// Reforged Perk Defs
 ::DynamicPerks.Perks.addPerks([
 	{
 		ID = "perk.rf_calculated_strikes",
