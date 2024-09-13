@@ -22,7 +22,7 @@ this.rf_rattled_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/rf_reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ReachModifier) + " [Reach|Concept.Reach]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ReachModifier, {AddSign = true}) + " [Reach|Concept.Reach]")
 		});
 		
 		return ret;

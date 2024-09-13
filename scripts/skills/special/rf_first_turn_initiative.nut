@@ -29,7 +29,7 @@ this.rf_first_turn_initiative <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.skill.getDescription();
 
-		ret += "\nThis character gains 1 [Action Point|Concept.ActionPoints] for every " + ::MSU.Text.colorPositive(this.m.InitiativePerAP) + " [Initiative|Concept.Initiative] which is then modified by a flat " + ::MSU.Text.colorizeValue(this.m.FlatAPBonus) + " [Action Points.|Concept.ActionPoints]";
+		ret += "\nThis character gains 1 [Action Point|Concept.ActionPoints] for every " + ::MSU.Text.colorPositive(this.m.InitiativePerAP) + " [Initiative|Concept.Initiative] which is then modified by a flat " + ::MSU.Text.colorizeValue(this.m.FlatAPBonus, {AddSign = true}) + " [Action Points.|Concept.ActionPoints]";
 
 		return ::Reforged.Mod.Tooltips.parseString(ret);
 	}
@@ -42,7 +42,7 @@ this.rf_first_turn_initiative <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.CurrentAPBonus) + " [Action Point(s)|Concept.ActionPoints] for this [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.CurrentAPBonus, {AddSign = true}) + " [Action Point(s)|Concept.ActionPoints] for this [turn|Concept.Turn]")
 		});
 
 		return ret;

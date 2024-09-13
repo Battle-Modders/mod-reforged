@@ -47,7 +47,7 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizeValue(this.m.ActionPointsGained) + " [Action Points|Concept.ActionPoints] for this [turn|Concept.Turn]")
+				text = ::Reforged.Mod.Tooltips.parseString("Gain " + ::MSU.Text.colorizeValue(this.m.ActionPointsGained, {AddSign = true}) + " [Action Points|Concept.ActionPoints] for this [turn|Concept.Turn]")
 			},
 			{
 				id = 20,

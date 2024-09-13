@@ -23,7 +23,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/rf_reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getCount()) + " [Reach|Concept.Reach] when attacking or defending in melee")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getCount(), {AddSign = true}) + " [Reach|Concept.Reach] when attacking or defending in melee")
 		});
 
 		if (this.hasAdjacentShieldwall() || this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID())

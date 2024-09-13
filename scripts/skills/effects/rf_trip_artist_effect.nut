@@ -71,7 +71,7 @@ this.rf_trip_artist_effect <- ::inherit("scripts/skills/skill", {
 						id = 11,
 						type = "text",
 						icon = "ui/icons/special.png",
-						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(4 - weapon.getReach()) + " [Reach|Concept.Reach]")
+						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(4 - weapon.getReach(), {AddSign = true}) + " [Reach|Concept.Reach]")
 					});
 				}
 			}

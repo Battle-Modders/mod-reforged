@@ -25,7 +25,7 @@ this.perk_rf_vigilant <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.CurrBonus) + " [Action Points|Concept.ActionPoints]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.CurrBonus, {AddSign = true}) + " [Action Points|Concept.ActionPoints]")
 		});
 
 		return ret;

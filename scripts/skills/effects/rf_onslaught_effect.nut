@@ -25,13 +25,13 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(10) + " [Melee Skill|Concept.MeleeSkill]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(10, {AddSign = true}) + " [Melee Skill|Concept.MeleeSkill]")
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(20) + " [Initiative|Concept.Initiative]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(20, {AddSign = true}) + " [Initiative|Concept.Initiative]")
 			},
 			{
 				id = 12,

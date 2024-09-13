@@ -8,7 +8,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "special.rf_polearm_adjacency";
 		this.m.Name = "Crowded";
-		this.m.Description = "Long range melee weapons are harder to use in a crowded environment. When using such weapons, any melee attack with a base range of 2 or more tiles has its hit chance reduced by " + ::MSU.Text.colorizeValue(-this.m.MalusPerAlly) + " per adjacent ally (ignoring the first two adjacent allies) and " + ::MSU.Text.colorizeValue(-this.m.MalusPerEnemy, {AddSign = true, AddPercent = true}) + " per adjacent enemy.";
+		this.m.Description = "Long range melee weapons are harder to use in a crowded environment. When using such weapons, any melee attack with a base range of 2 or more tiles has its hit chance reduced by " + ::MSU.Text.colorizeValue(-this.m.MalusPerAlly, {AddSign = true, AddPercent = true}) + " per adjacent ally (ignoring the first two adjacent allies) and " + ::MSU.Text.colorizeValue(-this.m.MalusPerEnemy, {AddSign = true, AddPercent = true}) + " per adjacent enemy.";
 		this.m.Type = ::Const.SkillType.Special;
 		this.m.IsHidden = true;
 		this.m.IsSerialized = false;

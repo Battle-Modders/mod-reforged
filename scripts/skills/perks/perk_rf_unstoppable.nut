@@ -45,7 +45,7 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getAPBonus()) + " [Action Points|Concept.ActionPoints]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getAPBonus(), {AddSign = true}) + " [Action Points|Concept.ActionPoints]")
 			});
 		}
 
@@ -55,7 +55,7 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getInitiativeBonus()) + " [Initiative|Concept.Initiative]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getInitiativeBonus(), {AddSign = true}) + " [Initiative|Concept.Initiative]")
 			});
 		}
 

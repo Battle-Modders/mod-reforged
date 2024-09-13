@@ -68,7 +68,7 @@
 						id = 4,
 						type = "text",
 						icon = "/ui/icons/melee_skill.png",
-						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getMeleeSkill() - entity.getBaseProperties().MeleeSkill)
+						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getMeleeSkill() - entity.getBaseProperties().MeleeSkill, {AddSign = true})
 					}
 				];
 			case "character-stats.RangeSkill":
@@ -83,7 +83,7 @@
 						id = 4,
 						type = "text",
 						icon = "/ui/icons/ranged_skill.png",
-						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getRangedSkill() - entity.getBaseProperties().RangedSkill)
+						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getRangedSkill() - entity.getBaseProperties().RangedSkill, {AddSign = true})
 					}
 				];
 			case "character-stats.MeleeDefense":
@@ -98,7 +98,7 @@
 						id = 4,
 						type = "text",
 						icon = "/ui/icons/melee_defense.png",
-						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getMeleeDefense() - entity.getBaseProperties().MeleeDefense)
+						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getMeleeDefense() - entity.getBaseProperties().MeleeDefense, {AddSign = true})
 					}
 				];
 			case "character-stats.RangeDefense":
@@ -113,7 +113,7 @@
 						id = 4,
 						type = "text",
 						icon = "/ui/icons/ranged_defense.png",
-						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getRangedDefense() - entity.getBaseProperties().RangedDefense)
+						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getRangedDefense() - entity.getBaseProperties().RangedDefense, {AddSign = true})
 					}
 				];
 			case "character-stats.Hitpoints":
@@ -128,7 +128,7 @@
 						id = 4,
 						type = "text",
 						icon = "ui/icons/health.png",
-						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getHitpointsMax() - entity.getBaseProperties().Hitpoints)
+						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getHitpointsMax() - entity.getBaseProperties().Hitpoints, {AddSign = true})
 					}
 				];
 			case "character-stats.Fatigue":
@@ -143,14 +143,14 @@
 						id = 4,
 						type = "text",
 						icon = "ui/icons/fatigue.png",
-						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getFatigueMax() - entity.getBaseProperties().Stamina)
+						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getFatigueMax() - entity.getBaseProperties().Stamina, {AddSign = true})
 					},
 					{
 
 						id = 5,
 						type = "text",
 						icon = "ui/icons/fatigue.png",
-						text = "Fatigue Recovery: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getFatigueRecoveryRate())
+						text = "Fatigue Recovery: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getFatigueRecoveryRate(), {AddSign = true})
 					},
 					{
 						id = 6,
@@ -171,7 +171,7 @@
 						id = 4,
 						type = "text",
 						icon = "ui/icons/initiative.png",
-						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getInitiative() - entity.getBaseProperties().Initiative)
+						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getInitiative() - entity.getBaseProperties().Initiative, {AddSign = true})
 					}
 				];
 			case "character-stats.Bravery":
@@ -186,7 +186,7 @@
 						id = 4,
 						type = "text",
 						icon = "ui/icons/bravery.png",
-						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getBravery() - entity.getBaseProperties().Bravery)
+						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getBravery() - entity.getBaseProperties().Bravery, {AddSign = true})
 					}
 				];
 		}
