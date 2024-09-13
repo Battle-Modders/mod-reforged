@@ -62,7 +62,7 @@
 						id = 3,
 						type = "text",
 						icon = "/ui/icons/melee_skill.png",
-						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().MeleeSkill, {AddSign = false})
+						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().MeleeSkill)
 					},
 					{
 						id = 4,
@@ -77,7 +77,7 @@
 						id = 3,
 						type = "text",
 						icon = "/ui/icons/ranged_skill.png",
-						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().RangedSkill, {AddSign = false})
+						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().RangedSkill)
 					},
 					{
 						id = 4,
@@ -92,7 +92,7 @@
 						id = 3,
 						type = "text",
 						icon = "/ui/icons/melee_defense.png",
-						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().MeleeDefense, {AddSign = false})
+						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().MeleeDefense)
 					},
 					{
 						id = 4,
@@ -107,7 +107,7 @@
 						id = 3,
 						type = "text",
 						icon = "/ui/icons/ranged_defense.png",
-						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().RangedDefense, {AddSign = false})
+						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().RangedDefense)
 					},
 					{
 						id = 4,
@@ -122,7 +122,7 @@
 						id = 3,
 						type = "text",
 						icon = "ui/icons/health.png",
-						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().Hitpoints, {AddSign = false})
+						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().Hitpoints)
 					},
 					{
 						id = 4,
@@ -137,7 +137,7 @@
 						id = 3,
 						type = "text",
 						icon = "ui/icons/fatigue.png",
-						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().Stamina, {AddSign = false})
+						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().Stamina)
 					},
 					{
 						id = 4,
@@ -165,7 +165,7 @@
 						id = 3,
 						type = "text",
 						icon = "ui/icons/initiative.png",
-						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().Initiative, {AddSign = false})
+						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().Initiative)
 					},
 					{
 						id = 4,
@@ -180,7 +180,7 @@
 						id = 3,
 						type = "text",
 						icon = "ui/icons/bravery.png",
-						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().Bravery, {AddSign = false})
+						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().Bravery)
 					},
 					{
 						id = 4,

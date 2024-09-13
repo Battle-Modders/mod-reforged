@@ -80,7 +80,7 @@ this.rf_mentors_presence_effect <- ::inherit("scripts/skills/skill", {
 					id = 14,
 					type = "text",
 					icon = "ui/icons/bravery.png",
-					text = ::Reforged.Mod.Tooltips.parseString("Will lose " + ::MSU.Text.colorizeValue(this.m.MoraleStateOnMentorDeathAdd, {AddSign = false}) + " levels of [morale|Concept.Morale] upon the mentor\'s death")
+					text = ::Reforged.Mod.Tooltips.parseString("Will lose " + ::MSU.Text.colorizeValue(this.m.MoraleStateOnMentorDeathAdd) + " levels of [morale|Concept.Morale] upon the mentor\'s death")
 				}
 			]);
 		}
