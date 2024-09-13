@@ -58,7 +58,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.BraveryModifier) + " [Resolve|Concept.Bravery]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.BraveryModifier, {AddSign = true}) + " [Resolve|Concept.Bravery]")
 			});
 		}
 
@@ -68,7 +68,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.InitiativeModifier) + " [Initiative|Concept.Initiative]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.InitiativeModifier, {AddSign = true}) + " [Initiative|Concept.Initiative]")
 			});
 		}
 
@@ -81,7 +81,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 					id = 13,
 					type = "text",
 					icon = "ui/icons/melee_skill.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeSkillModifier) + " [Melee Skill|Concept.MeleeSkill] this [turn|Concept.Turn] against:"),
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeSkillModifier, {AddSign = true}) + " [Melee Skill|Concept.MeleeSkill] this [turn|Concept.Turn] against:"),
 					children = attackBonusEnemies.map(@(_a) { id = 10, type = "text", icon = "ui/orientation/" + _a.getOverlayImage() + ".png", text = _a.getName() })
 				});
 			}
@@ -96,7 +96,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 					id = 14,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeDefenseModifier) + " [Melee Defense|Concept.MeleeDefense] this [turn|Concept.Turn] against:"),
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeDefenseModifier, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense] this [turn|Concept.Turn] against:"),
 					children = defenseBonusEnemies.map(@(_a) { id = 10, type = "text", icon = "ui/orientation/" + _a.getOverlayImage() + ".png", text = _a.getName() })
 				});
 			}

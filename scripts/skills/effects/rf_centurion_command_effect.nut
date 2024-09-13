@@ -20,7 +20,7 @@ this.rf_centurion_command_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/initiative.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.InitiativeBonus) + " [Initiative|Concept.Initiative]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.InitiativeBonus, {AddSign = true}) + " [Initiative|Concept.Initiative]")
 		});
 
 		return ret;

@@ -27,7 +27,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/rf_reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ReachBonus) + " [Reach|Concept.Reach]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ReachBonus, {AddSign = true}) + " [Reach|Concept.Reach]")
 		});
 
 		local enemyList = [];
@@ -50,7 +50,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/rf_reach.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ReachBonus) + " [Reach|Concept.Reach] against attacks from:")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.ReachBonus, {AddSign = true}) + " [Reach|Concept.Reach] against attacks from:")
 				children = enemyList
 			});
 		}

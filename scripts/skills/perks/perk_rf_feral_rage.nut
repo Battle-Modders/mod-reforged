@@ -54,19 +54,19 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RageStacks * this.m.PerStackBraveryModifier) + " [Resolve|Concept.Bravery]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RageStacks * this.m.PerStackBraveryModifier, {AddSign = true}) + " [Resolve|Concept.Bravery]")
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RageStacks * this.m.PerStackInitiativeModifier) + " [Initiative|Concept.Initiative]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RageStacks * this.m.PerStackInitiativeModifier, {AddSign = true}) + " [Initiative|Concept.Initiative]")
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RageStacks * this.m.PerStackMeleeDefenseModifier) + " [Melee Defense|Concept.MeleeDefense]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RageStacks * this.m.PerStackMeleeDefenseModifier, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense]")
 			}
 		]);
 

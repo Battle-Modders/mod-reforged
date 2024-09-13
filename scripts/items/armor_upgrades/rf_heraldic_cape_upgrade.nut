@@ -39,13 +39,13 @@ this.rf_heraldic_cape_upgrade <- ::inherit("scripts/items/armor_upgrades/armor_u
 			id = 14,
 			type = "text",
 			icon = "ui/icons/armor_body.png",
-			text = ::MSU.Text.colorizeValue(this.m.ConditionModifier) + " Durability"
+			text = ::MSU.Text.colorizeValue(this.m.ConditionModifier, {AddSign = true}) + " Durability"
 		});
 		result.push({
 			id = 15,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::MSU.Text.colorizeValue(this.m.ResolveModifier) + " Resolve"
+			text = ::MSU.Text.colorizeValue(this.m.ResolveModifier, {AddSign = true}) + " Resolve"
 		});
 
 		if (this.m.StaminaModifier != 0)
@@ -54,7 +54,7 @@ this.rf_heraldic_cape_upgrade <- ::inherit("scripts/items/armor_upgrades/armor_u
 				id = 16,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::MSU.Text.colorizeValue(-1 * this.m.StaminaModifier) + " Maximum Fatigue"
+				text = ::MSU.Text.colorizeValue(-1 * this.m.StaminaModifier, {AddSign = true}) + " Maximum Fatigue"
 			});
 		}
 
@@ -67,7 +67,7 @@ this.rf_heraldic_cape_upgrade <- ::inherit("scripts/items/armor_upgrades/armor_u
 			id = 14,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::MSU.Text.colorizeValue(this.m.ResolveModifier) + " Resolve"
+			text = ::MSU.Text.colorizeValue(this.m.ResolveModifier, {AddSign = true}) + " Resolve"
 		});
 	}
 

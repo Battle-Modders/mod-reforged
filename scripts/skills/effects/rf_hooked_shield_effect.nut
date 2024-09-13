@@ -36,13 +36,13 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-::Math.floor(shield.getMeleeDefenseBonus() * 0.75)) + " [Melee Defense|Concept.MeleeDefense] from equipped shield")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-::Math.floor(shield.getMeleeDefenseBonus() * 0.75), {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense] from equipped shield")
 			});
 			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-::Math.floor(shield.getRangedDefenseBonus() * 0.75)) + " [Ranged Defense|Concept.RangeDefense] from equipped shield")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-::Math.floor(shield.getRangedDefenseBonus() * 0.75), {AddSign = true}) + " [Ranged Defense|Concept.RangeDefense] from equipped shield")
 			});
 		}
 		ret.push({

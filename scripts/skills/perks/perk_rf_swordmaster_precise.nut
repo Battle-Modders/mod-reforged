@@ -25,7 +25,7 @@ this.perk_rf_swordmaster_precise <- ::inherit("scripts/skills/perks/perk_rf_swor
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(skillModifier) + " [Melee Skill|Concept.MeleeSkill]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(skillModifier, {AddSign = true}) + " [Melee Skill|Concept.MeleeSkill]")
 			});
 		}
 
@@ -36,7 +36,7 @@ this.perk_rf_swordmaster_precise <- ::inherit("scripts/skills/perks/perk_rf_swor
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(defenseModifier) + " [Melee Defense|Concept.MeleeDefense]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(defenseModifier, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense]")
 			});
 		}
 

@@ -39,7 +39,7 @@ this.rf_encourage_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("Trigger a positive [Morale Check|Concept.Morale] for the target with a bonus of %s (%s) of your [Resolve|Concept.Bravery]", ::MSU.Text.colorizePct(this.m.EncourageBonusFraction), ::MSU.Text.colorizeValue(this.getEncourageBonus())))
+				text = ::Reforged.Mod.Tooltips.parseString(format("Trigger a positive [Morale Check|Concept.Morale] for the target with a bonus of %s (%s) of your [Resolve|Concept.Bravery]", ::MSU.Text.colorizePct(this.m.EncourageBonusFraction), ::MSU.Text.colorizeValue(this.getEncourageBonus(), {AddSign = true})))
 			},
 			{
 				id = 15,

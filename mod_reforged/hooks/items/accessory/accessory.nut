@@ -13,7 +13,7 @@
 				}
 				else
 				{
-					entry.text = "Maximum Fatigue " + ::MSU.Text.colorizeValue(this.getStaminaModifier())
+					entry.text = "Maximum Fatigue " + ::MSU.Text.colorizeValue(this.getStaminaModifier(), {AddSign = true})
 				}
 				break;
 			}

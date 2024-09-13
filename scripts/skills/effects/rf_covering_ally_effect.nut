@@ -29,28 +29,28 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/melee_defense.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfDefenseMalus) + " [Melee Defense|Concept.MeleeDefense]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfDefenseMalus, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense]")
 		});
 
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/ranged_defense.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfDefenseMalus) + " [Ranged Defense|Concept.RangeDefense]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfDefenseMalus, {AddSign = true}) + " [Ranged Defense|Concept.RangeDefense]")
 		});
 
 		ret.push({
 			id = 12,
 			type = "text",
 			icon = "ui/icons/melee_skill.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfSkillMalus) + " [Melee Skill|Concept.MeleeSkill]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfSkillMalus, {AddSign = true}) + " [Melee Skill|Concept.MeleeSkill]")
 		});
 
 		ret.push({
 			id = 13,
 			type = "text",
 			icon = "ui/icons/ranged_skill.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfSkillMalus) + " [Ranged Skill|Concept.RangeSkill]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.SelfSkillMalus, {AddSign = true}) + " [Ranged Skill|Concept.RangeSkill]")
 		});
 
 		return ret;
