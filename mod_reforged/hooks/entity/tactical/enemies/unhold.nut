@@ -28,7 +28,16 @@
 		injury_body.setBrush("bust_unhold_02_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		head.setBrush("bust_unhold_head_02");
+		// Reforged adds a chance to have smiling unhold face as head sprite
+		if (::Math.rand(1, 100) <= 5)
+		{
+			head.setBrush("bust_rf_unhold_head_smiling");
+		}
+		else
+		{
+			// Original vanilla face
+			head.setBrush("bust_unhold_head_02");
+		}
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
 		this.addSprite("helmet");
@@ -63,6 +72,13 @@
 	// switcheroo function to replace loot drops with dummy object
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
+		// Set smiling head back to normal vanilla head so that _dead sprites are vanilla ones
+		local headSprite = this.getSprite("head");
+		if (headSprite.getBrush().Name == "bust_rf_unhold_head_smiling")
+		{
+			headSprite.setBrush("bust_unhold_head_02");
+		}
+
 		local itemsToChange = [
 			"scripts/items/loot/deformed_valuables_item"
 		]
