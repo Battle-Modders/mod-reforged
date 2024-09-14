@@ -53,7 +53,7 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target will lose the [Shieldwall|Skill+shieldwall_effect], [Spearwall+Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
+			text = ::Reforged.Mod.Tooltips.parseString("The target will lose the [Shieldwall|Skill+shieldwall_effect], [Spearwall|Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
 		});
 		ret.push({
 			id = 15,
