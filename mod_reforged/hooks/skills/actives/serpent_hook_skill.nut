@@ -34,6 +34,12 @@
 			icon = "ui/icons/regular_damage.png",
 			text = ::Reforged.Mod.Tooltips.parseString("The target will receive damage when being pulled to a lower elevation")
 		});
+		ret.push({
+			id = 14,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
+		});
 		return ret;
 	}
 });
