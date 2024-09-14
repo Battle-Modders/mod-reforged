@@ -24,14 +24,18 @@ this.perk_rf_sanguinary <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local ret = this.skill.getTooltip();
+		local ret = [{
+			id = 1,
+			type = "title",
+			text = this.getName()
+		}];
 		local attackString = this.m.RequiredDamageType == null ? "" : " " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType);
 		local weaponString = this.m.RequiredWeaponType == null ? "" : " from a " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType);
 		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString(format("The next %i%s attack(s) during your [turn|Concept.Turn]%s will recover %i [Action Points|Concept.ActionPoints] if they cause a fatality", this.m.UsesRemaining, attackString, weaponString, ::MSU.Text.colorPositive(this.m.ActionPointsRecovered)))
+			text = ::Reforged.Mod.Tooltips.parseString(format("The next %i%s attack(s) during your [turn|Concept.Turn]%s will recover %s [Action Points|Concept.ActionPoints] if they cause a fatality", this.m.UsesRemaining, attackString, weaponString, ::MSU.Text.colorPositive(this.m.RestoredActionPoints)))
 		});
 		return ret;
 	}
