@@ -3,6 +3,7 @@
 	{
 		__original();
 		this.m.Description = "This character hides a substantial amount of sand in their pockets, ready to be thrown at someone.";
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 	}
 
 	q.onVerifyTarget = @(__original) function( _originTile, _targetTile )
