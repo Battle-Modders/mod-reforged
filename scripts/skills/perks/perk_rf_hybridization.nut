@@ -109,7 +109,7 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 
 	function isSkillValid( _skill )
 	{
-		if (!_skill.isRanged() || _skill.isAttack())
+		if (!_skill.isRanged() || !_skill.isAttack())
 			return false;
 
 		local weapon = _skill.getItem();
