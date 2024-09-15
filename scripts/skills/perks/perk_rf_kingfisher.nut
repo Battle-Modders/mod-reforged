@@ -19,7 +19,18 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 	{
 		if (this.m.IsForceEnabled) return true;
 
-		return this.getContainer().hasSkill("actives.throw_net"); // Ignores hidden skills
+		// Ensure that the actor has an offhand item with the throw_net skill
+		local offhandItem = this.getContainer().getActor().getOffhandItem();
+		if (offhandItem == null)
+			return false;
+
+		foreach (skill in offhandItem.getSkills())
+		{
+			if (skill.getID() == "actives.throw_net" && !skill.isHidden())
+				return true;
+		}
+
+		return false;
 	}
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
