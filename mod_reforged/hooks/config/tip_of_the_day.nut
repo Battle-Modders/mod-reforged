@@ -30,6 +30,6 @@ for (local index = (::Const.TipOfTheDay.len() - 1); index >= 0; index--)
 	"The more mods you add the harder it is to debug the game for the modder.",
 	"Reforged: Tavern rumors will never be about legendary locations you have already discovered.",
 	"Reforged: Enemies will only drop loot if your faction has dealt at least 50% of the total damage received by that enemy.",
-	"Reforged: Experience from slain enemies is awarded depending on how much damage was dealt to them by your brothers."
-	// "If you see colorful squares, do NOT save the game or you might end up with a corrupted savefile"	// We wait with adding this until we actually get reports of those happening under reforged
+	"Reforged: Experience from slain enemies is awarded depending on how much damage was dealt to them by your brothers.",
+	"If you see colorful squares, do NOT save the game or you might end up with a corrupted save file."
 ]);
