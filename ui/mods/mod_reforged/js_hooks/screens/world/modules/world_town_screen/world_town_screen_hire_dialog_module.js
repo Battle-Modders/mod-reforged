@@ -3,6 +3,7 @@ Reforged.Hooks.WorldTownScreenHireDialogModule_createDIV = WorldTownScreenHireDi
 WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 {
 	Reforged.Hooks.WorldTownScreenHireDialogModule_createDIV.call(this, _parentDiv);
+	var self = this;
 	this.mDetailsPanel.CharacterBackgroundPerksContainer = $("<div class='hire-screen-perks-container'/>")
 		.append($("<div class='name title-font-normal font-bold font-color-brother-name'>Perks</div>"))
 		.hide()
@@ -21,10 +22,13 @@ WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 		this.mDetailsPanel.CharacterBackgroundPerkGroupsContainer,
 		this.mDetailsPanel.CharacterBackgroundPerksContainer
 	];
-	$.each(this.mDetailsPanel.mModules, $.proxy(function(_idx, _module)
+	this.mDetailsPanel.SwitchModuleContainer = $("<div class='hire-screen-switch-module-container'/>")
+		.hide()
+		.appendTo(this.mDetailsPanel.Container);
+	this.mDetailsPanel.SwitchModuleButton = this.mDetailsPanel.SwitchModuleContainer.createImageButton(Path.GFX + Asset.BUTTON_PLAY, function ()
 	{
-		_module.on("click", this.toggleModuleIfValid.bind(this));
-	}, this));
+		self.toggleModuleIfValid();
+	}, '', 6);
 	this.mDetailsPanel.ActiveModule = this.mDetailsPanel.mModules[0];
 	this.mDetailsPanel.ActiveModuleIdx = 0;
 }
@@ -48,15 +52,17 @@ WorldTownScreenHireDialogModule.prototype.updateDetailsPanel = function(_element
 	Reforged.Hooks.WorldTownScreenHireDialogModule_updateDetailsPanel.call(this, _element);
 	if (!this.checkToggleModule())
 	{
-		this.mDetailsPanel.Container.unbindTooltip();
+		this.mDetailsPanel.SwitchModuleContainer.unbindTooltip();
 		this.toggleModule(0);
+		this.mDetailsPanel.SwitchModuleContainer.hide();
 	}
 	else
 	{
 		this.mDetailsPanel.mPerksModule.loadFromData(_element.data('entry').perkTree);
 		this.mDetailsPanel.mPerkGroupsModule.loadFromData(_element.data('entry').perkGroupsOrdered);
-		this.mDetailsPanel.Container.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "HireScreen.DescriptionContainer+1"});
+		this.mDetailsPanel.SwitchModuleContainer.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "HireScreen.DescriptionContainer+1"});
 		this.toggleModule(1);
+		this.mDetailsPanel.SwitchModuleContainer.show();
 	}
 }
 
@@ -85,6 +91,6 @@ WorldTownScreenHireDialogModule.prototype.toggleModule = function(_idx)
 		this.mDetailsPanel.ActiveModule.hide();
 		this.mDetailsPanel.ActiveModule = this.mDetailsPanel.mModules[this.mDetailsPanel.ActiveModuleIdx];
 		this.mDetailsPanel.ActiveModule.show();
-		this.mDetailsPanel.Container.updateTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "HireScreen.DescriptionContainer+" + this.mDetailsPanel.ActiveModuleIdx});
+		this.mDetailsPanel.SwitchModuleContainer.updateTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "HireScreen.DescriptionContainer+" + this.mDetailsPanel.ActiveModuleIdx});
 	}
 }
