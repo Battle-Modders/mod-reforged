@@ -107,14 +107,14 @@
 	flex-direction:row;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	width: 24rem;
+	width: 22.5rem;
 }
 .rf_tacticalTooltipAttributeEntry
 {
 	width: 7rem;
 	display:flex;
 	justify-content: flex-start;
-	align-items: center;
+	flex-shrink: 1;
 }
 .rf_tacticalTooltipAttributeEntry.rf_tacticalTooltipAttributeEntryDoubleWide
 {
@@ -130,10 +130,20 @@
 	height: 20px;
 }
 
-.rf_tacticalTooltipAttributeEntry > .rf_tacticalTooltipAttributeDelta
+.rf_tacticalTooltipAttributeDelta
 {
-	font-size: 10px;
+	padding-left: 1px;
+	font-size: 12px;
 }
+.rf_tacticalTooltipAttributeDelta > span
+{
+		/*With the default font, + is much wider than -*/
+	font-family: 'Arsenal-Regular', monospace;
+	font-weight: bolder;
+	vertical-align: -1px;
+}
+
+
 
 .rf_tacticalTooltipReachContainer,
 .rf_tacticalTooltipWaitContainer
