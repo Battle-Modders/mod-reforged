@@ -36,7 +36,7 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = "Will not affect allies who are [fleeing,|Concept.Morale] [stunned,|Skill+stunned_effect] or [sleeping|Skill+sleeping_effect]"
+			text = ::Reforged.Mod.Tooltips.parseString("Will not affect allies who are [fleeing,|Concept.Morale] [stunned,|Skill+stunned_effect] or [sleeping|Skill+sleeping_effect]")
 		});
 
 		ret.push({
