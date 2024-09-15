@@ -1157,7 +1157,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	RF_DiscoveredTalent = ::UPD.getDescription({
 		Fluff = "You don\'t know where it came from, but you\'ve suddenly started excelling at everything you do!",
 		Effects = [{
-			Type = ::UPD.EffectType.OneTimeEffect,
+			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Every time you spend a level-up, gain between " + ::MSU.Text.colorPositive(1) + " and " + ::MSU.Text.colorPositive(3) + " [talent|Concept.Talent] stars in a random attribute in which you have fewer than 3 stars.",
 				"Can only trigger once per attribute and cannot increase the number of [talent|Concept.Talent] stars in an attribute beyond 3."
