@@ -92,7 +92,7 @@ this.perk_rf_hybridization <- ::inherit("scripts/skills/skill", {
 				id = 15,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("Has %s chance to hit due to [%s|Skill+%s]", ::MSU.Text.colorizeValue(rangedBonus, {AddSign = true, AddPercent = true}), this.getName(), split(::IO.scriptFilenameByHash(this.ClassName), "/").top()))
+				text = ::Reforged.Mod.Tooltips.parseString(format("Has %s chance to hit due to [%s|Perk+%s]", ::MSU.Text.colorizeValue(rangedBonus, {AddSign = true, AddPercent = true}), this.m.Name, this.ClassName))
 			});
 		}
 	}
