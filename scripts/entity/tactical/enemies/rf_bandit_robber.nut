@@ -126,7 +126,7 @@ this.rf_bandit_robber <- ::inherit("scripts/entity/tactical/human", {
 			{
 				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 				this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
+				// this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));	TODO: Enable once AI behavior is implemented
 				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 			}
 			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))

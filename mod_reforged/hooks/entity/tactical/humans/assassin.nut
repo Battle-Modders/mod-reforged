@@ -28,7 +28,7 @@
 		//Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));	TODO: Enable once AI behavior is implemented
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
 	}
 
