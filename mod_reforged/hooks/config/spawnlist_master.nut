@@ -13,10 +13,6 @@
 ::Const.World.Spawn.Troops.Wardog.Cost = 6; // vanilla 8
 ::Const.World.Spawn.Troops.ArmoredWardog.Strength = 8; // vanilla 9
 ::Const.World.Spawn.Troops.ArmoredWardog.Cost = 8; // vanilla 8
-::Const.World.Spawn.Troops.BanditThug.Strength = 9;
-::Const.World.Spawn.Troops.BanditThug.Cost = 9;
-::Const.World.Spawn.Troops.BanditMarksmanLOW.Strength = 12;
-::Const.World.Spawn.Troops.BanditMarksmanLOW.Cost = 12;
 ::Const.World.Spawn.Troops.BanditMarksman.Strength = 30; // vanilla 15
 ::Const.World.Spawn.Troops.BanditMarksman.Cost = 25; // vanilla 15
 ::Const.World.Spawn.Troops.BanditRaiderWolf.Strength = 30; // vanilla 25
