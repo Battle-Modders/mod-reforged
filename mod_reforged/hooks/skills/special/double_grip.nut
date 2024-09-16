@@ -190,12 +190,6 @@
 					icon = "ui/icons/direct_damage.png",
 					text = ::MSU.Text.colorPositive("+10%") + " damage ignores armor"
 				});
-				ret.push({
-					id = 7,
-					type = "text",
-					icon = "ui/icons/special.png",
-					text = ::Reforged.Mod.Tooltips.parseString("[Thrust|Skill+thrust] can be used up to " + ::MSU.Text.colorPositive("2") + " tiles away but has " + ::MSU.Text.colorNegative("-40%") + " chance to hit if there is something between you and your target")
-				});
 				break;
 
 			case ::Const.Items.WeaponType.Sword:
@@ -286,13 +280,7 @@
 	{
 		__original(_properties);
 
-		if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Spear)
-		{
-			local thrust = this.getContainer().getSkillByID("actives.thrust");
-			if (thrust != null)
-				thrust.m.MaxRange += 1;
-		}
-		else if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Hammer)
+		if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Hammer)
 		{
 			foreach (skill in this.getContainer().getActor().getMainhandItem().getSkills())
 			{
@@ -311,28 +299,6 @@
 	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
 	{
 		__original(_skill, _targetEntity, _properties);
-
-		if (_targetEntity != null && this.m.CurrWeaponType == ::Const.Items.WeaponType.Spear && _skill.getID() == "actives.thrust")
-		{
-			local myTile = this.getContainer().getActor().getTile();
-			local targetTile = _targetEntity.getTile();
-
-			if (myTile.getDistanceTo(targetTile) != 2)
-				return;
-
-			// Drop MeleeSkill if there is a non-empty tile between me and the target
-			foreach (tile in ::MSU.Tile.getNeighbors(myTile).filter(@(_, t) !t.IsEmpty))
-			{
-				for (local i = 0; i < 6; i++)
-				{
-					if (tile.hasNextTile(i) && targetTile.isSameTileAs(tile.getNextTile(i)))
-					{
-						_properties.MeleeSkill -= 40;
-						return;
-					}
-				}
-			}
-		}
 
 		if (_skill.getID() == "actives.puncture" && this.m.CurrWeaponType == ::Const.Items.WeaponType.Dagger)
 		{
