@@ -11,7 +11,7 @@ this.perk_rf_sanguinary <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "perk.rf_sanguinary";
 		this.m.Name = ::Const.Strings.PerkName.RF_Sanguinary;
-		this.m.Description = ::Const.Strings.PerkDescription.RF_Sanguinary;
+		this.m.Description = "Gruesome kills revitalize you!";
 		this.m.Icon = "ui/perks/perk_rf_sanguinary.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
@@ -24,11 +24,7 @@ this.perk_rf_sanguinary <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local ret = [{
-			id = 1,
-			type = "title",
-			text = this.getName()
-		}];
+		local ret = this.skill.getTooltip();
 		local attackString = this.m.RequiredDamageType == null ? "" : " " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType);
 		local weaponString = this.m.RequiredWeaponType == null ? "" : " from a " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType);
 		ret.push({
