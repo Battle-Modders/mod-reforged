@@ -7,7 +7,7 @@
 			"pg.rf_fast": 1.2,
 			"pg.rf_unstoppable": 0.5,
 			"pg.rf_vicious": 0.5,
-			"pg.special.student": 2
+			"pg.special.rf_student": 2
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
