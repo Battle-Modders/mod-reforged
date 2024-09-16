@@ -41,7 +41,7 @@ this.rf_swordmaster_stance_meisterhau_skill <- ::inherit("scripts/skills/actives
 			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Kick,|Skill+rf_swordmaster_kick_skill] [Tackle|Skill+rf+swordmaster_tackle_skill] and [Push Through|Skill+rf+swordmaster_push_through_skill] skills")
 		});
 
-		this.addEnabledTooltip(tooltip);
+		this.addEnabledTooltip(ret);
 
 		return ret;
 	}

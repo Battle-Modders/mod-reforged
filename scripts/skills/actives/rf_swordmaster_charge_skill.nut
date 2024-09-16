@@ -70,7 +70,7 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			});
 		}
 
-		this.addEnabledTooltip(tooltip);
+		this.addEnabledTooltip(ret);
 
 		if (this.getContainer().getActor().isEngagedInMelee())
 		{

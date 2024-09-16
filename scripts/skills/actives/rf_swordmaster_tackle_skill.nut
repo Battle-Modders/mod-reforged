@@ -64,7 +64,7 @@ this.rf_swordmaster_tackle_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			});
 		}
 
-		this.addEnabledTooltip(tooltip);
+		this.addEnabledTooltip(ret);
 
 		return ret;
 	}

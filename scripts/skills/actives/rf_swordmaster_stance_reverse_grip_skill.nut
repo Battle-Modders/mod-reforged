@@ -66,7 +66,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			});
 		}
 
-		this.addEnabledTooltip(tooltip);
+		this.addEnabledTooltip(ret);
 
 		return ret;
 	}

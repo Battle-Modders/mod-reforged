@@ -60,7 +60,7 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 		}
 
 		local perk = this.getContainer().getSkillByID("perk.rf_swordmaster_grappler");
-		if (perk != null) perk.addEnabledTooltip(tooltip);
+		if (perk != null) perk.addEnabledTooltip(ret);
 
 		return ret;
 	}

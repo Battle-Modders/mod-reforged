@@ -44,7 +44,7 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 			});
 		}
 
-		this.addEnabledTooltip(tooltip);
+		this.addEnabledTooltip(ret);
 
 		return ret;
 	}
