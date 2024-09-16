@@ -44,7 +44,6 @@
 ::Const.World.Spawn.Troops.Knight.Strength = 45; // vanilla 40
 
 //Nomads
-::Const.World.Spawn.Troops.NomadOutlaw.Strength = 20; // vanilla 25
 ::Const.World.Spawn.Troops.NomadOutlaw.Cost = 20; // vanilla 25
 
 
