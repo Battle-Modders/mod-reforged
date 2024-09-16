@@ -4,7 +4,7 @@
 		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_tactician": 4,
-			"pg.special.student": -1
+			"pg.special.rf_student": -1
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
