@@ -22,6 +22,9 @@
 ::Const.World.Spawn.Troops.BanditLeader.Strength = 40; // vanilla 30
 ::Const.World.Spawn.Troops.BanditLeader.Cost = 40; // vanilla 25
 
+//Barbarians
+::Const.World.Spawn.Troops.BarbarianMarauder.Cost = 20; // vanilla 25
+
 //Civilian
 ::Const.World.Spawn.Troops.HedgeKnight.Strength = 45; // vanilla 40
 ::Const.World.Spawn.Troops.HedgeKnight.Cost = 45; // vanilla 40
