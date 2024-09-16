@@ -1,55 +1,55 @@
 //Ancient Dead
-::Const.World.Spawn.Troops.SkeletonLight.Strength = 15;
-::Const.World.Spawn.Troops.SkeletonLight.Cost = 12;
-::Const.World.Spawn.Troops.SkeletonMedium.Strength = 28;
-::Const.World.Spawn.Troops.SkeletonMedium.Cost = 28;
-::Const.World.Spawn.Troops.SkeletonMediumPolearm.Strength = 28;
-::Const.World.Spawn.Troops.SkeletonMediumPolearm.Cost = 28;
-::Const.World.Spawn.Troops.SkeletonHeavy.Strength = 50;
-::Const.World.Spawn.Troops.SkeletonHeavy.Cost = 50;
+::Const.World.Spawn.Troops.SkeletonLight.Strength = 15;  // Ancient Auxiliary - vanilla 14
+::Const.World.Spawn.Troops.SkeletonLight.Cost = 12; // Ancient Auxiliary - vanilla 13
+::Const.World.Spawn.Troops.SkeletonMedium.Strength = 28; // Ancient Legionary - vanilla 20
+::Const.World.Spawn.Troops.SkeletonMedium.Cost = 28; // Ancient Legionary - vanilla 20
+::Const.World.Spawn.Troops.SkeletonMediumPolearm.Strength = 28; // Ancient Legionary - vanilla 20
+::Const.World.Spawn.Troops.SkeletonMediumPolearm.Cost = 28; // Ancient Legionary - vanilla 25
+::Const.World.Spawn.Troops.SkeletonHeavy.Strength = 50; // Ancient Honor Guard - vanilla 30
+::Const.World.Spawn.Troops.SkeletonHeavy.Cost = 50; // Ancient Honor Guard - vanilla 35
 
 //Bandits
-::Const.World.Spawn.Troops.Wardog.Strength = 6;
-::Const.World.Spawn.Troops.Wardog.Cost = 6;
-::Const.World.Spawn.Troops.ArmoredWardog.Strength = 8;
-::Const.World.Spawn.Troops.ArmoredWardog.Cost = 8;
+::Const.World.Spawn.Troops.Wardog.Strength = 6; // vanilla 9
+::Const.World.Spawn.Troops.Wardog.Cost = 6; // vanilla 8
+::Const.World.Spawn.Troops.ArmoredWardog.Strength = 8; // vanilla 9
+::Const.World.Spawn.Troops.ArmoredWardog.Cost = 8; // vanilla 8
 ::Const.World.Spawn.Troops.BanditThug.Strength = 9;
 ::Const.World.Spawn.Troops.BanditThug.Cost = 9;
 ::Const.World.Spawn.Troops.BanditMarksmanLOW.Strength = 12;
 ::Const.World.Spawn.Troops.BanditMarksmanLOW.Cost = 12;
-::Const.World.Spawn.Troops.BanditMarksman.Strength = 30;
-::Const.World.Spawn.Troops.BanditMarksman.Cost = 25;
-::Const.World.Spawn.Troops.BanditRaiderWolf.Strength = 30;
-::Const.World.Spawn.Troops.BanditRaiderWolf.Cost = 30;
-::Const.World.Spawn.Troops.BanditRaider.Strength = 28;
-::Const.World.Spawn.Troops.BanditRaider.Cost = 25;
-::Const.World.Spawn.Troops.BanditLeader.Strength = 40;
-::Const.World.Spawn.Troops.BanditLeader.Cost = 40;
+::Const.World.Spawn.Troops.BanditMarksman.Strength = 30; // vanilla 15
+::Const.World.Spawn.Troops.BanditMarksman.Cost = 25; // vanilla 15
+::Const.World.Spawn.Troops.BanditRaiderWolf.Strength = 30; // vanilla 25
+::Const.World.Spawn.Troops.BanditRaiderWolf.Cost = 30; // vanilla 25
+::Const.World.Spawn.Troops.BanditRaider.Strength = 28; // vanilla 20
+::Const.World.Spawn.Troops.BanditRaider.Cost = 25; // vanilla 20
+::Const.World.Spawn.Troops.BanditLeader.Strength = 40; // vanilla 30
+::Const.World.Spawn.Troops.BanditLeader.Cost = 40; // vanilla 25
 
 //Civilian
-::Const.World.Spawn.Troops.HedgeKnight.Strength = 45;
-::Const.World.Spawn.Troops.HedgeKnight.Cost = 45;
-::Const.World.Spawn.Troops.MasterArcher.Strength = 45;
-::Const.World.Spawn.Troops.MasterArcher.Cost = 45;
-::Const.World.Spawn.Troops.Swordmaster.Strength = 45;
-::Const.World.Spawn.Troops.Swordmaster.Cost = 45;
+::Const.World.Spawn.Troops.HedgeKnight.Strength = 45; // vanilla 40
+::Const.World.Spawn.Troops.HedgeKnight.Cost = 45; // vanilla 40
+::Const.World.Spawn.Troops.MasterArcher.Strength = 45; // vanilla 40
+::Const.World.Spawn.Troops.MasterArcher.Cost = 45; // vanilla 40
+::Const.World.Spawn.Troops.Swordmaster.Strength = 45; // vanilla 40
+::Const.World.Spawn.Troops.Swordmaster.Cost = 45; // vanilla 40
 
 //Nobles
-::Const.World.Spawn.Troops.Footman.Strength = 25;
-::Const.World.Spawn.Troops.Billman.Strength = 25;
-::Const.World.Spawn.Troops.Arbalester.Strength = 25;
-::Const.World.Spawn.Troops.StandardBearer.Row = 3;
-::Const.World.Spawn.Troops.Sergeant.Strength = 40;
-::Const.World.Spawn.Troops.Sergeant.Cost = 30;
-::Const.World.Spawn.Troops.Greatsword.Strength = 35;
-::Const.World.Spawn.Troops.Greatsword.Variant = 1;
+::Const.World.Spawn.Troops.Footman.Strength = 25; // vanilla 20
+::Const.World.Spawn.Troops.Billman.Strength = 25; // vanilla 20
+::Const.World.Spawn.Troops.Arbalester.Strength = 25; // Crossbowman - vanilla 20
+::Const.World.Spawn.Troops.StandardBearer.Row = 3; // vanilla 2
+::Const.World.Spawn.Troops.Sergeant.Strength = 40; // vanilla 30
+::Const.World.Spawn.Troops.Sergeant.Cost = 30; // vanilla 25
+::Const.World.Spawn.Troops.Greatsword.Strength = 35; // vanilla 30
+::Const.World.Spawn.Troops.Greatsword.Variant = 1; // vanilla 0
 ::Const.World.Spawn.Troops.Greatsword.NameList <- ::Const.Strings.CharacterNames;
 ::Const.World.Spawn.Troops.Greatsword.TitleList <- ::Const.Strings.RF_ZweihanderTitles;
-::Const.World.Spawn.Troops.Knight.Strength = 45;
+::Const.World.Spawn.Troops.Knight.Strength = 45; // vanilla 40
 
 //Nomads
-::Const.World.Spawn.Troops.NomadOutlaw.Strength = 20;
-::Const.World.Spawn.Troops.NomadOutlaw.Cost = 20;
+::Const.World.Spawn.Troops.NomadOutlaw.Strength = 20; // vanilla 25
+::Const.World.Spawn.Troops.NomadOutlaw.Cost = 20; // vanilla 25
 
 
 // Cost is handled in bandit_units.nut
