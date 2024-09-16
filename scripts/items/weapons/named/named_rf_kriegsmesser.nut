@@ -24,9 +24,7 @@ this.named_rf_kriegsmesser <- ::inherit("scripts/items/weapons/named/named_weapo
 	{
 		this.named_weapon.onEquip()
 
-		this.addSkill(::Reforged.new("scripts/skills/actives/cleave", function(o) {
-			o.m.FatigueCost += 3;
-		}));
+		this.addSkill(::Reforged.new("scripts/skills/actives/cleave"));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/decapitate"));
 
