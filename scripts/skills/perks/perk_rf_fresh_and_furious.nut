@@ -93,15 +93,19 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		// Sometimes you use a non-free skill which uses a free skill inside its onUse function
-		// In this case, we want to ensure that if IsUsingFreeSkill is false, we don't set it to true
-		if (!this.m.IsUsingFreeSkill) return;
-		this.m.IsUsingFreeSkill = _forFree || _skill.getActionPointCost() == 0;
+		// Sometimes you use a _forFree skill inside the use of a skill that costs AP
+		// In that case we don't want to change the value for IsUsingFreeSkill that
+		// has already been set by the originally used skill.
+		if (_forFree)
+			return;
+
+		this.m.IsUsingFreeSkill = _skill.getActionPointCost() == 0;
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		this.m.IsSpent = !this.m.IsUsingFreeSkill;
+		if (!this.m.IsUsingFreeSkill)
+			this.m.IsSpent = true;
 
 		if (_skill.getID() == "actives.recover")
 			this.m.RequiresRecover = false;
