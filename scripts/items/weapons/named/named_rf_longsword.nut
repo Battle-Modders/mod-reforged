@@ -25,7 +25,6 @@ this.named_rf_longsword <- ::inherit("scripts/items/weapons/named/named_weapon",
 		this.named_weapon.onEquip();
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/slash", function(o) {
-			o.m.FatigueCost += 2;
 			o.m.DirectDamageMult = this.m.DirectDamageMult;
 		}.bindenv(this)));
 
