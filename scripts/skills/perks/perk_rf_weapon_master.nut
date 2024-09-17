@@ -47,71 +47,106 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		local hasFirstPerk = false;
-		local hasSecondPerk = false;
-		local hasThirdPerk = false;
-
-		foreach (groupID in ::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon").getGroups())
+		// Returns true if a bro has at least 1 perk from the given group in the given tier range
+		local function hasPerkFromGroup( _group, _tierStart, _tierEnd )
 		{
-			foreach (i, row in ::DynamicPerks.PerkGroups.findById(groupID).getTree())
+			local tree = _group.getTree();
+			for (local i = _tierStart - 1; i < _tierEnd; i++)
 			{
-				if (row.len() == 0)
-					continue;
+				foreach (perkID in tree[i])
+				{
+					if (hasSkill(perkID))
+						return true;
+				}
+			}
+			return false;
+		}
 
-				local perkID = row[0];
-				if (!hasSkill(perkID))
-					continue;
-
-				if (i < 3)
-					hasFirstPerk = true;
-				else if (i == 3)
-					hasSecondPerk = true;
-				else
-					hasThirdPerk = true;
+		// Adds to the bro the first perk it finds in the given group in the given tier range
+		local function addPerkFromGroup( _group, _tierStart, _tierEnd )
+		{
+			local tree = _group.getTree();
+			for (local i = _tierStart - 1; i < _tierEnd; i++)
+			{
+				local row = tree[i];
+				if (row.len() != 0)
+				{
+					local perkID = row[0];
+					this.m.PerksAdded.push(perkID);
+					this.getContainer().add(::Reforged.new(::Const.Perks.findById(perkID).Script, function(o) {
+						o.m.IsSerialized = false;
+						o.m.IsRefundable = false;
+					}));
+					break;
+				}
 			}
 		}
 
-		if (!hasFirstPerk && !hasSecondPerk && !hasThirdPerk)
-			return;
-
-		local pg;
-		local perkTree = this.getContainer().getActor().getPerkTree();
-
-		if (_item.isItemType(::Const.Items.ItemType.RangedWeapon))
+		local equippedWeaponPerkGroups = [];
+		local otherPerkGroups = [];
+		foreach (weaponTypeName, weaponType in ::Const.Items.WeaponType)
 		{
-			if (_item.isWeaponType(::Const.Items.WeaponType.Bow) && perkTree.hasPerkGroup("pg.rf_bow"))					pg = "pg.rf_bow";
-			else if (_item.isWeaponType(::Const.Items.WeaponType.Crossbow) && perkTree.hasPerkGroup("pg.rf_crossbow"))	pg = "pg.rf_crossbow";
-			else if (_item.isWeaponType(::Const.Items.WeaponType.Firearm) && perkTree.hasPerkGroup("pg.rf_crossbow"))	pg = "pg.rf_crossbow";
-			else if (_item.isWeaponType(::Const.Items.WeaponType.Throwing) && perkTree.hasPerkGroup("pg.rf_throwing"))	pg = "pg.rf_throwing";
-		}
-		else
-		{
-			if (_item.isWeaponType(::Const.Items.WeaponType.Axe) && perkTree.hasPerkGroup("pg.rf_axe")) 				pg = "pg.rf_axe";
-			else if (_item.isWeaponType(::Const.Items.WeaponType.Cleaver) && perkTree.hasPerkGroup("pg.rf_cleaver"))	pg = "pg.rf_cleaver";
-			else if (_item.isWeaponType(::Const.Items.WeaponType.Dagger) && perkTree.hasPerkGroup("pg.rf_dagger"))		pg = "pg.rf_dagger";
-			else if (_item.isWeaponType(::Const.Items.WeaponType.Flail) && perkTree.hasPerkGroup("pg.rf_flail"))		pg = "pg.rf_flail";
-			else if (_item.isWeaponType(::Const.Items.WeaponType.Hammer) && perkTree.hasPerkGroup("pg.rf_hammer"))		pg = "pg.rf_hammer";
-			else if (_item.isWeaponType(::Const.Items.WeaponType.Mace) && perkTree.hasPerkGroup("pg.rf_mace"))			pg = "pg.rf_mace";
-			else if (_item.isWeaponType(::Const.Items.WeaponType.Polearm) && perkTree.hasPerkGroup("pg.rf_polearm"))	pg = "pg.rf_polearm";
-			else if (_item.isWeaponType(::Const.Items.WeaponType.Spear) && perkTree.hasPerkGroup("pg.rf_spear"))		pg = "pg.rf_spear";
-			else if (_item.isWeaponType(::Const.Items.WeaponType.Sword) && perkTree.hasPerkGroup("pg.rf_sword"))		pg = "pg.rf_sword";
-		}
+			if (weaponTypeName == "Firearm")
+				weaponTypeName = "Crossbow";
 
-		if (pg == null)
-			return;
-
-		foreach (i, row in ::DynamicPerks.PerkGroups.findById(pg).getTree())
-		{
-			if (row.len() == 0 || (i < 3 && !hasFirstPerk) || (i == 3 && !hasSecondPerk) || (i > 3 && !hasThirdPerk))
+			local pg = ::DynamicPerks.PerkGroups.findById("pg.rf_" + weaponTypeName.tolower());
+			if (pg == null)
 				continue;
 
-			local perkID = row[0];
+			if (_item.isWeaponType(weaponType))
+			{
+				if (equippedWeaponPerkGroups.find(pg) == null)
+				{
+					equippedWeaponPerkGroups.push(pg);
+				}
+			}
+			else
+			{
+				otherPerkGroups.push(pg);
+			}
+		}
 
-			this.m.PerksAdded.push(perkID);
-			this.getContainer().add(::Reforged.new(::Const.Perks.findById(perkID).Script, function(o) {
-				o.m.IsSerialized = false;
-				o.m.IsRefundable = false;
-			}));
+		otherPerkGroups.sort(@(a, b) a.getID() <=> b.getID());
+		equippedWeaponPerkGroups.sort(@(a, b) a.getID() <=> b.getID());
+
+		local tierRanges = [
+			[1, 3],
+			[4, 4],
+			[5, 7]
+		];
+
+		// For 2-way hybrid weapons, if you have a perk from any one of the two weapon types'
+		// perk groups you get the perk from the other weapon type's perk group.
+		if (equippedWeaponPerkGroups.len() == 2)
+		{
+			local pg1 = equippedWeaponPerkGroups[0];
+			local pg2 = equippedWeaponPerkGroups[1];
+			foreach (range in tierRanges)
+			{
+				local tierStart = range[0];
+				local tierEnd = range[1];
+				if (hasPerkFromGroup(pg1, tierStart, tierEnd) && !hasPerkFromGroup(pg2, tierStart, tierEnd))
+				{
+					addPerkFromGroup(pg2, tierStart, tierEnd);
+				}
+				else if (hasPerkFromGroup(pg2, tierStart, tierEnd) && !hasPerkFromGroup(pg1, tierStart, tierEnd))
+				{
+					addPerkFromGroup(pg1, range[0], range[1]);
+				}
+			}
+		}
+
+		// You get the perk group of the alphabetically first weapon type of this weapon if you
+		// have a perk from a weapon perk group that doesn't belong to this weapon's weapon types.
+		foreach (pg in otherPerkGroups)
+		{
+			foreach (range in tierRanges)
+			{
+				if (hasPerkFromGroup(pg, range[0], range[1]))
+				{
+					addPerkFromGroup(equippedWeaponPerkGroups[0], range[0], range[1]);
+				}
+			}
 		}
 	}
 
