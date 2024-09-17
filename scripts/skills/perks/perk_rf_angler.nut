@@ -17,7 +17,10 @@ this.perk_rf_angler <- ::inherit("scripts/skills/skill", {
 		if (_skill.getID() == "actives.throw_net")
 		{
 			local breakFreeSkill = _targetEntity.getSkills().getSkillByID("actives.break_free");
-			breakFreeSkill.setBaseValue("ActionPointCost", ::Math.floor(breakFreeSkill.getBaseValue("ActionPointCost") * this.m.BreakFreeAPCostMult));
+			if (breakFreeSkill != null)
+			{
+				breakFreeSkill.setBaseValue("ActionPointCost", ::Math.floor(breakFreeSkill.getBaseValue("ActionPointCost") * this.m.BreakFreeAPCostMult));
+			}
 		}
 	}
 
