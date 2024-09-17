@@ -55,6 +55,9 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 		// ScheduleEvent is used because container.m.IsUpdating is true right now, so directly using skills is not good here
 		// and leads to improper removal/addition of skills
 		::Time.scheduleEvent(::TimeUnit.Virtual, 1, function( _perk ) {
+			if (!throwNetSkill.onVerifyTarget(actor.getTile(), _targetEntity.getTile()))
+				return;
+
 			local netItemScript = ::IO.scriptFilenameByHash(actor.getOffhandItem().ClassNameHash);
 
 			throwNetSkill.useForFree(_targetEntity.getTile());
