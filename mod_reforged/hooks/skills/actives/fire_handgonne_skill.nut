@@ -87,27 +87,28 @@
 		// The logic below is the same as vanilla's for adding the tiles except we condense it by using a local function
 		// and increase the number of tiles that are added in each direction.
 
-		local function addForwardTiles( _tile, _dir, _num )
+		local function addTiles( _tile, _startDir, _forwardDir, _num )
 		{
-			while (_num > 0 && _tile.hasNextTile(_dir))
+			local currDir = _startDir;
+			for (local i = 0; i < _num && _tile.hasNextTile(currDir); i++)
 			{
-				_tile = _tile.getNextTile(_dir);
+				_tile = _tile.getNextTile(currDir);
 				if (::Math.abs(_tile.Level - ownTile.Level) <= this.m.MaxLevelDifference)
 				{
 					ret.push(_tile);
 				}
-				_num--;
+				currDir = _forwardDir;
 			}
 		}
 
 		local dir = ownTile.getDirectionTo(_targetTile);
-		addForwardTiles(_targetTile, dir, 2);
+		addTiles(_targetTile, dir, dir, 2);
 
 		local left = dir - 1 < 0 ? 5 : dir - 1;
-		addForwardTiles(_targetTile, left, 3);
+		addTiles(_targetTile, left, dir, 3);
 
 		local right = dir + 1 > 5 ? 0 : dir + 1;
-		addForwardTiles(_targetTile, right, 3);
+		addTiles(_targetTile, right, dir, 3);
 
 		return ret;
 	}
