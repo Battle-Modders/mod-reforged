@@ -153,11 +153,18 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_targetEntity == null)
-			return;
+		this.removeEnemy(_targetEntity);
+	}
 
+	function onTargetMissed( _skill, _targetEntity )
+	{
+		this.removeEnemy(_targetEntity);
+	}
+
+	function removeEnemy( _entity )
+	{
 		local idx = this.m.Enemies.find(_targetEntity.getID());
 		if (idx != null)
 			this.m.Enemies.remove(idx);
