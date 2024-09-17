@@ -83,6 +83,13 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Cannot target someone who has the [Shieldwall|Skill+shieldwall_effect] effect")
+		});
+
 		return ret;
 	}
 
