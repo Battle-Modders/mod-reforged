@@ -30,20 +30,5 @@
 	q.onSkillsUpdated <- function()
 	{
 		this.callSkillsFunctionWhenAlive("onSkillsUpdated", null, false);
-
-		local shouldUpdate = this.m.SkillsToAdd.len() > 0;
-		if (!shouldUpdate)
-		{
-			foreach (skill in this.m.Skills)
-			{
-				if (skill.isGarbage())
-				{
-					shouldUpdate = true;
-					break;
-				}
-			}
-		}
-
-		if (shouldUpdate) this.update();
 	}
 });
