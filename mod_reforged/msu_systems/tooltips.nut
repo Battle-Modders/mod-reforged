@@ -35,7 +35,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "Have all your characters use \'Wait\' on their turn."
+						text = ::Reforged.Mod.Tooltips.parseString("Have all your characters use [Wait|Concept.Wait] on their [turn|Concept.Turn].")
 					}
 				];
 			})
