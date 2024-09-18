@@ -85,7 +85,17 @@
 			}
 		}
 
-		this.m.Reach = ::Math.round(this.m.Reach / count);
+		if (count == 0)
+		{
+			if (this.isItemType(::Const.Items.ItemType.MeleeWeapon))
+			{
+				this.m.Reach = this.isItemType(::Const.Items.ItemType.TwoHanded) ? 5 : 4;
+			}
+		}
+		else
+		{
+			this.m.Reach = ::Math.round(this.m.Reach / count);
+		}
 
 		if (this.isItemType(::Const.Items.ItemType.MeleeWeapon))
 		{
