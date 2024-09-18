@@ -41,6 +41,13 @@ this.rf_take_aim_effect <- ::inherit("scripts/skills/skill", {
 			text = "Handgonnes have their Maximum Range increased by " + ::MSU.Text.colorPositive(1) + " and if used at shorter range, have their area of effect increased by " + ::MSU.Text.colorPositive(1) + " instead"
 		});
 
+		ret.push({
+			id = 20,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon ending your [turn|Concept.Turn]")
+		});
+
 		return ret;
 	}
 
