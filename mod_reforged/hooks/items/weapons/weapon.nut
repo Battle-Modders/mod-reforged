@@ -99,17 +99,17 @@
 		}
 		else
 		{
-			ret = ::Math.round(this.m.Reach / count);
+			ret = ::Math.round(ret / count);
 		}
 
 		if (this.isItemType(::Const.Items.ItemType.MeleeWeapon))
 		{
-			if (this.m.Reach < 5 && this.isItemType(::Const.Items.ItemType.TwoHanded))
+			if (ret < 5 && this.isItemType(::Const.Items.ItemType.TwoHanded))
 			{
 				ret = 5;
 			}
 
-			if (this.isAoE() || (this.getRangeMax() > 1 && this.m.Reach < 6))
+			if (this.isAoE() || (this.getRangeMax() > 1 && ret < 6))
 			{
 				ret += 1;
 			}
