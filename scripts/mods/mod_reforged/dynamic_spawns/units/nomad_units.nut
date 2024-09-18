@@ -23,7 +23,7 @@ local units = [
 		ID = "Unit.RF.NomadLeader",
 		Troop = "NomadLeader",
 		Figure = "figure_nomad_05",
-		StartingResourceMin = 170 // In Vanilla they appear in a group of 170 cost
+		StartingResourceMin = 200 // In Vanilla they appear in a group of 170 cost
 	},
 	{
 		ID = "Unit.RF.DesertStalker",
