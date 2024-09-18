@@ -11,6 +11,8 @@
 });
 
 ::Reforged.HooksMod.hook("scripts/items/weapons/weapon", function(q) {
+	// We use an arbitrary large negative number (instead of e.g. null) so that
+	// arithmetic operations can be performed by mods on individual weapons.
 	q.m.Reach <- -999;
 
 	q.getTooltip = @(__original) function()
