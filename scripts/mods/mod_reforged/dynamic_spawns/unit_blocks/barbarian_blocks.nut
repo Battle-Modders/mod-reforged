@@ -1,12 +1,15 @@
 local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.BarbarianFrontline",
-		UnitDefs = [{ BaseID = "Unit.RF.BarbarianThrall" }, { BaseID = "Unit.RF.BarbarianMarauder" }, { BaseID = "Unit.RF.BarbarianChampion" }]
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianThrall" }, { BaseID = "Unit.RF.BarbarianMarauder" }]
+	},
+	{
+		ID = "UnitBlock.RF.BarbarianElite",
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianChampion" }]
 	},
 	{
 		ID = "UnitBlock.RF.BarbarianSupport",
 		UnitDefs = [{ BaseID = "Unit.RF.BarbarianDrummer" }]
-
 	},
 	{
 		ID = "UnitBlock.RF.BarbarianDog",
