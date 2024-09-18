@@ -2,7 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		if (this.m.Reach == 0 && this.isItemType(::Const.Items.ItemType.MeleeWeapon))
+		if (this.m.Reach == null)
 		{
 			this.assignDefaultReach();
 		}
@@ -10,7 +10,7 @@
 });
 
 ::Reforged.HooksMod.hook("scripts/items/weapons/weapon", function(q) {
-	q.m.Reach <- 0;
+	q.m.Reach <- null;
 
 	q.getTooltip = @(__original) function()
 	{
@@ -75,6 +75,8 @@
 
 	q.assignDefaultReach <- function()
 	{
+		this.m.Reach = 0;
+
 		local count = 0.0;
 		foreach (weaponType, reach in ::Reforged.Reach.WeaponTypeDefault)
 		{
