@@ -29,7 +29,7 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("You and your allies within " + ::MSU.Text.colorPositive(4) " tiles gain the [Holding Steady|Skill+rf_hold_steady_effect] effect for one [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("You and your allies within " + ::MSU.Text.colorPositive(4) + " tiles gain the [Holding Steady|Skill+rf_hold_steady_effect] effect for one [turn|Concept.Turn]")
 		});
 
 		ret.push({
