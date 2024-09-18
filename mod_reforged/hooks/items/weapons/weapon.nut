@@ -1,5 +1,16 @@
+::Reforged.HooksMod.hookTree("scripts/items/weapons/weapon", function(q) {
+	q.create = @(__original) function()
+	{
+		__original();
+		if (this.m.Reach == 0 && this.isItemType(::Const.Items.ItemType.MeleeWeapon))
+		{
+			this.assignDefaultReach();
+		}
+	}
+});
+
 ::Reforged.HooksMod.hook("scripts/items/weapons/weapon", function(q) {
-	q.m.Reach <- 1;
+	q.m.Reach <- 0;
 
 	q.getTooltip = @(__original) function()
 	{
@@ -60,5 +71,33 @@
 	q.getReach <- function()
 	{
 		return this.m.Reach;
+	}
+
+	q.assignDefaultReach <- function()
+	{
+		local count = 0.0;
+		foreach (weaponType, reach in ::Reforged.Reach.WeaponTypeDefault)
+		{
+			if (this.isWeaponType(::Const.Items.WeaponType[weaponType]))
+			{
+				count++;
+				this.m.Reach += reach;
+			}
+		}
+
+		this.m.Reach = ::Math.round(this.m.Reach / count);
+
+		if (this.isItemType(::Const.Items.ItemType.MeleeWeapon))
+		{
+			if (this.m.Reach < 5 && this.isItemType(::Const.Items.ItemType.TwoHanded))
+			{
+				this.m.Reach = 5;
+			}
+
+			if (this.isAoE() || (this.getRangeMax() > 1 && this.m.Reach < 6))
+			{
+				this.m.Reach += 1;
+			}
+		}
 	}
 });

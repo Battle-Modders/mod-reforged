@@ -18,6 +18,21 @@
 		Medium_2H = 6,
 		Long_2H = 7
 	},
+	WeaponTypeDefault = {
+		Axe = 3,
+		Bow = 0,
+		Cleaver = 4,
+		Crossbow = 0,
+		Dagger = 1,
+		Firearm = 0,
+		Flail = 4,
+		Hammer = 3,
+		Mace = 3,
+		Polearm = 7,
+		Spear = 5,
+		Sword = 4
+		Throwing = 0
+	},
 
 	function hasLineOfSight( _actor1, _actor2 )
 	{
