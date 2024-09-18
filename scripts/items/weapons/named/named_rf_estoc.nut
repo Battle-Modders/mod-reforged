@@ -25,7 +25,7 @@ this.named_rf_estoc <- ::inherit("scripts/items/weapons/named/named_weapon", {
 		this.named_weapon.onEquip()
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/rf_sword_thrust_skill", function(o) {
-			o.m.FatigueCost += 3;
+			o.m.FatigueCost += 2;
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/lunge_skill"));
