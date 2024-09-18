@@ -2,15 +2,15 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		if (this.m.Reach == null)
+		if (this.m.Reach < 0)
 		{
-			this.assignDefaultReach();
+			this.m.Reach += ::Math.max(0, 999 + this.getDefaultReach());
 		}
 	}
 });
 
 ::Reforged.HooksMod.hook("scripts/items/weapons/weapon", function(q) {
-	q.m.Reach <- null;
+	q.m.Reach <- -999;
 
 	q.getTooltip = @(__original) function()
 	{
@@ -73,9 +73,9 @@
 		return this.m.Reach;
 	}
 
-	q.assignDefaultReach <- function()
+	q.getDefaultReach <- function()
 	{
-		this.m.Reach = 0;
+		local ret = 0;
 
 		local count = 0.0;
 		foreach (weaponType, reach in ::Reforged.Reach.WeaponTypeDefault)
@@ -83,33 +83,37 @@
 			if (this.isWeaponType(::Const.Items.WeaponType[weaponType]))
 			{
 				count++;
-				this.m.Reach += reach;
+				ret += reach;
 			}
 		}
 
+		// If this weapon is of a weapontype for which we don't have a default
+		// reach defined, then fallback to certain hardcoded reach values
 		if (count == 0)
 		{
 			if (this.isItemType(::Const.Items.ItemType.MeleeWeapon))
 			{
-				this.m.Reach = this.isItemType(::Const.Items.ItemType.TwoHanded) ? 5 : 4;
+				ret = this.isItemType(::Const.Items.ItemType.TwoHanded) ? 5 : 4;
 			}
 		}
 		else
 		{
-			this.m.Reach = ::Math.round(this.m.Reach / count);
+			ret = ::Math.round(this.m.Reach / count);
 		}
 
 		if (this.isItemType(::Const.Items.ItemType.MeleeWeapon))
 		{
 			if (this.m.Reach < 5 && this.isItemType(::Const.Items.ItemType.TwoHanded))
 			{
-				this.m.Reach = 5;
+				ret = 5;
 			}
 
 			if (this.isAoE() || (this.getRangeMax() > 1 && this.m.Reach < 6))
 			{
-				this.m.Reach += 1;
+				ret += 1;
 			}
 		}
+
+		return ret;
 	}
 });
