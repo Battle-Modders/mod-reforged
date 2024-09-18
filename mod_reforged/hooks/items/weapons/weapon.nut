@@ -4,7 +4,8 @@
 		__original();
 		if (this.m.Reach < 0)
 		{
-			this.m.Reach += ::Math.max(0, 999 + this.getDefaultReach());
+			this.m.Reach += 999 + this.getDefaultReach();
+			this.m.Reach = ::Math.max(0, this.m.Reach);
 		}
 	}
 });
