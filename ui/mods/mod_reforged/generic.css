@@ -50,27 +50,27 @@
 .hire-screen-perkgroups-container
 {
 	height: 65%;
-	display: none;
 	padding-top: 2rem;
 	display:flex;
 	flex-direction:column;
 	justify-content: center;
 	align-items: center;
 }
+
 .perks-screen-perkgroups-container
 {
-	margin-top: 40px; /* vanilla is absolutely positioned and offset 40px from bottom... */
+	padding-top: 20px; /* vanilla is absolutely positioned and offset 40px from bottom... */
 	height: 100%;
 	display:flex;
 	flex-direction:column;
 	justify-content: center;
 	align-items: center;
 }
-.perks-screen-perkgroups-container .generic-perkgroups-module .generic-perkgroups-content-container .perks-row .dpf-l-perk-container
+.perks-screen-perkgroups-container .name
 {
-	max-width: 6rem;
-	min-width: 4rem;
+	padding-bottom: 1rem;
 }
+
 .perks-screen-switch-module-container,
 .hire-screen-switch-module-container
 {
@@ -93,11 +93,7 @@
 	top: 0.5rem;
 	right: 0.5rem;
 }
-.hire-screen-perkgroups-container .generic-perkgroups-module .generic-perkgroups-content-container .perks-row .dpf-l-perk-container
-{
-	max-width: 6rem;
-	min-width: 4rem;
-}
+
 
 
 /*Attributes in the stats screen*/
