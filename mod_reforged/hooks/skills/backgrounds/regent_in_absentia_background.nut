@@ -50,8 +50,8 @@
 	{
 		if (this.m.IsNew)
 		{
-			this.getPerkTree().addPerkGroup("pg.rf_noble");
-			this.getSkills().add(::Reforged.new("scripts/skills/perks/perk_rf_family_pride", function(o) {
+			this.getContainer().getActor().getPerkTree().addPerkGroup("pg.rf_noble");
+			this.getContainer().add(::Reforged.new("scripts/skills/perks/perk_rf_family_pride", function(o) {
 				o.m.IsRefundable = false;
 			}));
 		}
