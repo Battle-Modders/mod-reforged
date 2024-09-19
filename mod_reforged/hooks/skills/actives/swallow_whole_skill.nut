@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target goes inside your belly, gaining the [Swallowed Whole|Skills+swallowed_whole_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("The target goes inside your belly, gaining the [Swallowed Whole|Skill+swallowed_whole_effect] effect")
 		});
 		ret.push({
 			id = 11,

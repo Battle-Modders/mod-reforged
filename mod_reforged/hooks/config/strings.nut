@@ -1715,7 +1715,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Onslaught|Skill+rf_onslaught_skill] skill which allows you and nearby members of your company to gain increased [Initiative,|Concept.Initiative] [Melee Skill|Concept.MeleeSkill] and one use of the [Line Breaker|Skill+rf_line_breaker_skill] skill for one [turn.|Concept.Turn] This use of [Line Breaker|Skill+rf+rf_line_breaker_skill] has a reduced [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost."
+				"Unlocks the [Onslaught|Skill+rf_onslaught_skill] skill which allows you and nearby members of your company to gain increased [Initiative,|Concept.Initiative] [Melee Skill|Concept.MeleeSkill] and one use of the [Line Breaker|Skill+rf_line_breaker_skill] skill for one [turn.|Concept.Turn] This use of [Line Breaker|Skill+rf_line_breaker_skill] has a reduced [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost."
 			]
 		}]
 	}),
