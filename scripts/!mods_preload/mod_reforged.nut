@@ -1,5 +1,5 @@
 ::Reforged <- {
-	Version = "0.6.6",
+	Version = "0.6.7",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
 	GitHubURL = "https://github.com/Battle-Modders/mod-reforged",
