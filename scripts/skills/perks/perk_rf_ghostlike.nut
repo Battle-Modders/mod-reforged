@@ -165,7 +165,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 	function removeEnemy( _entity )
 	{
-		local idx = this.m.Enemies.find(_targetEntity.getID());
+		local idx = this.m.Enemies.find(_entity.getID());
 		if (idx != null)
 			this.m.Enemies.remove(idx);
 	}
