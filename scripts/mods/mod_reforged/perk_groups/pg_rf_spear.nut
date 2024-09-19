@@ -5,20 +5,15 @@ this.pg_rf_spear <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.ID = "pg.rf_spear";
 		this.m.Name = "Spear";
 		this.m.Icon = "ui/perk_groups/rf_spear.png";
-		this.m.FlavorText = [
-			"spears"
+		this.m.Tree = [
+			[],
+			["perk.rf_through_the_gaps"],
+			[],
+			["perk.mastery.spear"],
+			[],
+			["perk.rf_king_of_all_weapons"],
+			[]
 		];
-		this.m.Trees = {
-			"default": [
-				[],
-				["perk.rf_through_the_gaps"],
-				[],
-				["perk.mastery.spear"],
-				[],
-				["perk.rf_king_of_all_weapons"],
-				[]
-			]
-		};
 	}
 
 	function getSelfMultiplier( _perkTree )

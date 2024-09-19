@@ -6,21 +6,16 @@ this.pg_special_rf_fencer <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
 		this.m.ID = "pg.special.rf_fencer";
 		this.m.Name = "Special Perks";
 		this.m.Icon = "ui/perk_groups/rf_fencer.png";
-		this.m.FlavorText = [
-			"Has all the makings of a capable fencer."
-		];
 		this.m.Chance = 25;
-		this.m.Trees = {
-			"default": [
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				["perk.rf_fencer"]
-			]
-		};
+		this.m.Tree = [
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			["perk.rf_fencer"]
+		];
 	}
 
 	function getMultiplier( _perkTree )

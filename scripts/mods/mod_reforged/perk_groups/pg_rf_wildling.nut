@@ -5,22 +5,15 @@ this.pg_rf_wildling <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.ID = "pg.rf_wildling";
 		this.m.Name = "Wildling";
 		this.m.Icon = "ui/perk_groups/rf_wildling.png";
-		this.m.FlavorText = [
-			"hails from the wild",
-			"is wild and savage",
-			"looks like a feral predator"
+		this.m.Tree = [
+			["perk.pathfinder"],
+			["perk.rf_bestial_vigor"],
+			[],
+			[],
+			["perk.rf_savage_strength"],
+			["perk.rf_feral_rage"],
+			[]
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.pathfinder"],
-				["perk.rf_bestial_vigor"],
-				[],
-				[],
-				["perk.rf_savage_strength"],
-				["perk.rf_feral_rage"],
-				[]
-			]
-		};
 		this.m.PerkTreeMultipliers = {
 			"pg.special.rf_leadership": 0,
 			"pg.rf_tactician": 0,

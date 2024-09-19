@@ -5,20 +5,15 @@ this.pg_rf_light_armor <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.ID = "pg.rf_light_armor";
 		this.m.Name = "Light Armor";
 		this.m.Icon = "ui/perk_groups/rf_light_armor.png";
-		this.m.FlavorText = [
-			"light armor"
+		this.m.Tree = [
+			[],
+			["perk.relentless"],
+			["perk.dodge"],
+			[],
+			[],
+			["perk.nimble"],
+			[]
 		];
-		this.m.Trees = {
-			"default": [
-				[],
-				["perk.relentless"],
-				["perk.dodge"],
-				[],
-				[],
-				["perk.nimble"],
-				[]
-			]
-		};
 	}
 
 	function getSelfMultiplier( _perkTree )

@@ -6,21 +6,16 @@ this.pg_special_rf_marksmanship <- ::inherit(::DynamicPerks.Class.SpecialPerkGro
 		this.m.ID = "pg.special.rf_marksmanship";
 		this.m.Name = "Special Perks";
 		this.m.Icon = "ui/perk_groups/rf_marksmanship.png";
-		this.m.FlavorText = [
-			"Has the talent to become a formidable marksman."
-		];
 		this.m.Chance = 10;
-		this.m.Trees = {
-			"default": [
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				["perk.rf_marksmanship"]
-			]
-		};
+		this.m.Tree = [
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			["perk.rf_marksmanship"]
+		];
 	}
 
 	function getMultiplier( _perkTree )

@@ -5,20 +5,15 @@ this.pg_rf_crossbow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.ID = "pg.rf_crossbow";
 		this.m.Name = "Crossbow";
 		this.m.Icon = "ui/perk_groups/rf_crossbow.png";
-		this.m.FlavorText = [
-			"crossbows"
+		this.m.Tree = [
+			["perk.rf_power_shot"],
+			[],
+			[],
+			["perk.mastery.crossbow"],
+			["perk.rf_iron_sights"],
+			[],
+			[]
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.rf_power_shot"],
-				[],
-				[],
-				["perk.mastery.crossbow"],
-				["perk.rf_iron_sights"],
-				[],
-				[]
-			]
-		};
 	}
 
 	function getSelfMultiplier( _perkTree )

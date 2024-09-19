@@ -6,21 +6,16 @@ this.pg_special_rf_man_of_steel <- ::inherit(::DynamicPerks.Class.SpecialPerkGro
 		this.m.ID = "pg.special.rf_man_of_steel";
 		this.m.Name = "Special Perks";
 		this.m.Icon = "ui/perk_groups/rf_man_of_steel.png";
-		this.m.FlavorText = [
-			"Is tough as if made of steel!"
-		];
 		this.m.Chance = 10;
-		this.m.Trees = {
-			"default": [
-				[],
-				[],
-				[],
-				[],
-				[],
-				[],
-				["perk.rf_man_of_steel"]
-			]
-		};
+		this.m.Tree = [
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			["perk.rf_man_of_steel"]
+		];
 	}
 
 	function getMultiplier( _perkTree )

@@ -5,13 +5,8 @@ this.pg_rf_always_1 <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.ID = "pg.rf_always_1";
 		this.m.Name = "General";
 		this.m.Icon = "ui/perk_groups/rf_always_1.png";
-		this.m.FlavorText = [
-			""
+		this.m.Tree = [
+			["perk.bags_and_belts"]
 		];
-		this.m.Trees = {
-			"default": [
-				["perk.bags_and_belts"]
-			]
-		};
 	}
 });
