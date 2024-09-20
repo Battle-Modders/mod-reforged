@@ -34,12 +34,18 @@ this.rf_encourage_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
+		local actualResolveBonus = "";
+		if (this.getContainer().getActor().getID() != ::MSU.getDummyPlayer().getID())
+		{
+			actualResolveBonus = " (" + ::MSU.Text.colorizeValue(this.getEncourageBonus(), {AddSign = true}) + ")";
+		}
+
 		ret.extend([
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("Trigger a positive [Morale Check|Concept.Morale] for the target with a bonus of %s (%s) of your [Resolve|Concept.Bravery]", ::MSU.Text.colorizePct(this.m.EncourageBonusFraction), ::MSU.Text.colorizeValue(this.getEncourageBonus(), {AddSign = true})))
+				text = ::Reforged.Mod.Tooltips.parseString(format("Trigger a positive [Morale Check|Concept.Morale] for the target with a bonus of %s%s of your [Resolve|Concept.Bravery]", ::MSU.Text.colorizePct(this.m.EncourageBonusFraction), actualResolveBonus))
 			},
 			{
 				id = 15,
