@@ -9,6 +9,14 @@
 		IconDisabled = "skills/passive_03.png"
 	},
 	{
+		ID = "perk.devastating_strikes",
+		Script = "scripts/skills/perks/perk_devastating_strikes",
+		Name = ::Const.Strings.PerkName.DevastatingStrikes,
+		Tooltip = ::Const.Strings.PerkDescription.DevastatingStrikes,
+		Icon = "skills/status_effect_06.png",	// Unused vanilla art of an angry black wolf face
+		IconDisabled = "skills/status_effect_0.png"
+	},
+	{
 		ID = "perk.sundering_strikes",
 		Script = "scripts/skills/perks/perk_sundering_strikes",
 		Name = ::Const.Strings.PerkName.SunderingStrikes,
