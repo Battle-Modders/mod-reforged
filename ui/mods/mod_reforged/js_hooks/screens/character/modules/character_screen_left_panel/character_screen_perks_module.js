@@ -5,7 +5,6 @@ CharacterScreenPerksModule.prototype.createDIV = function (_parentDiv)
 	var self = this;
 	Reforged.Hooks.CharacterScreenPerksModule_createDIV.call(this, _parentDiv);
 	this.mContainer.SwitchModuleContainer = $("<div class='perks-screen-switch-module-container'/>")
-		.hide()
 		.appendTo(this.mContainer);
 	this.mContainer.SwitchModuleContainer.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "HireScreen.DescriptionContainer+0"}); // re-use text from hire screen
 	this.mContainer.SwitchModuleButton = this.mContainer.SwitchModuleContainer.createImageButton(Path.GFX + Asset.BUTTON_PLAY, function ()
@@ -26,21 +25,6 @@ CharacterScreenPerksModule.prototype.createDIV = function (_parentDiv)
 	];
 	var self = this;
 	this.mActiveModule = this.mModules[0];
-}
-
-
-Reforged.Hooks.CharacterScreenPerksModule_show = CharacterScreenPerksModule.prototype.show;
-CharacterScreenPerksModule.prototype.show = function ()
-{
-	Reforged.Hooks.CharacterScreenPerksModule_show.call(this);
-	this.mContainer.SwitchModuleContainer.show();
-}
-
-Reforged.Hooks.CharacterScreenPerksModule_hide = CharacterScreenPerksModule.prototype.hide;
-CharacterScreenPerksModule.prototype.hide = function ()
-{
-	Reforged.Hooks.CharacterScreenPerksModule_hide.call(this);
-	this.mContainer.SwitchModuleContainer.hide();
 }
 
 CharacterScreenPerksModule.prototype.toggleModule = function(_idx)
