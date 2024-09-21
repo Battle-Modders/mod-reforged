@@ -92,7 +92,7 @@
 						id = 3,
 						type = "text",
 						icon = "/ui/icons/melee_defense.png",
-						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().MeleeDefense)
+						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().MeleeDefense, {AddSign = entity.getBaseProperties().MeleeDefense < 0})
 					},
 					{
 						id = 4,
@@ -107,7 +107,7 @@
 						id = 3,
 						type = "text",
 						icon = "/ui/icons/ranged_defense.png",
-						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().RangedDefense)
+						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().RangedDefense, {AddSign = entity.getBaseProperties().RangedDefense < 0})
 					},
 					{
 						id = 4,
