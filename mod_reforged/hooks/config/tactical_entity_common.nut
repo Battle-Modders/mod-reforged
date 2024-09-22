@@ -1,5 +1,6 @@
 // We overwrite the vanilla function to remove all damage multiplier and add the burning damage type
-::Const.Tactical.Common.onApplyFire = function( _tile, _entity )
+// We add a new optional parameter so that the fire damage can sometimes be attributed to its source
+::Const.Tactical.Common.onApplyFire = function( _tile, _entity, _attacker = null )
 {
 	if (_entity.getCurrentProperties().IsImmuneToFire) return;
 
@@ -22,7 +23,7 @@
 	hitInfo.FatalityChanceMult = 0.0;
 	hitInfo.Injuries = ::Const.Injury.Burning;
 	hitInfo.IsPlayingArmorSound = false;
-	_entity.onDamageReceived(_entity, null, hitInfo);
+	_entity.onDamageReceived(_attacker, null, hitInfo);
 
 	if ((!_entity.isAlive() || _entity.isDying()) && !_entity.isPlayerControlled() && (_tile.Properties.Effect == null || _tile.Properties.Effect.IsByPlayer))
 	{
