@@ -23,6 +23,19 @@
 		__original();
 	}
 
+	q.convertEntityToUIData = @(__original) function( _entity, isLastEntity = false )
+	{
+		local ret = __original(_entity, isLastEntity);
+
+		// Replace Morale values with Reach values. Morale is no longer displayed as a bar
+		local currentReach = _entity.getCurrentProperties().getReach();
+		ret.morale = currentReach;
+		ret.moraleMax = 15; // arbitrary maximum value
+		ret.moraleLabel = currentReach + " Reach";
+
+		return ret;
+	}
+
 	// We replace the vanilla function for performance reason and because it is a simple function. We don't want to query an entitys skills twice for no reason.
 	q.convertEntityStatusEffectsToUIData = @() function( _entity )
 	{
