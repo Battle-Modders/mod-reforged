@@ -1,6 +1,6 @@
 this.perk_rf_fruits_of_labor <- ::inherit("scripts/skills/skill", {
 	m = {
-		Bonus = 10
+		BonusPct = 0.1
 	},
 	function create()
 	{
@@ -16,9 +16,7 @@ this.perk_rf_fruits_of_labor <- ::inherit("scripts/skills/skill", {
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 
-		local mult = this.m.Bonus * 0.01;
-
-		_properties.Hitpoints += ::Math.floor(mult * baseProperties.Hitpoints);
-		_properties.Stamina += ::Math.floor(mult * baseProperties.Stamina);
+		_properties.Hitpoints += ::Math.round(baseProperties.Hitpoints * this.m.BonusPct);
+		_properties.Stamina += ::Math.round(baseProperties.Stamina * this.m.BonusPct);
 	}
 });
