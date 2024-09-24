@@ -14,7 +14,6 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_rf_bloodlust.png";
 		this.m.IconMini = "perk_rf_bloodlust_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		this.m.Order = ::Const.SkillOrder.BeforeLast; // So that it runs onAfterUpdate after active skills to properly reduce their fatigue cost
 	}
 
 	function isHidden()
@@ -71,17 +70,6 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 		_properties.BraveryMult *= mult;
 		_properties.InitiativeMult *= mult;
 		_properties.FatigueRecoveryRateMult *= mult;
-	}
-
-	function onAfterUpdate( _properties )
-	{
-		if (this.m.Stacks == 0)
-			return;
-
-		foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
-		{
-			skill.m.FatigueCostMult *= 1.0 - (this.m.MultPerStack * this.m.Stacks);
-		}
 	}
 
 	function onTurnStart()
