@@ -14,7 +14,7 @@ this.rf_breastplate <- ::inherit("scripts/items/armor/armor", {
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
-		this.m.Value = 3400;
+		this.m.Value = 3600;
 		this.m.Condition = 210;
 		this.m.ConditionMax = 210;
 		this.m.StaminaModifier = -24;

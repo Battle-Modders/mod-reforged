@@ -14,9 +14,9 @@ this.rf_breastplate_harness <- ::inherit("scripts/items/armor/armor", {
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
-		this.m.Value = 8500;
+		this.m.Value = 9000;
 		this.m.Condition = 340;
 		this.m.ConditionMax = 340;
-		this.m.StaminaModifier = -40;
+		this.m.StaminaModifier = -44;
 	}
 });

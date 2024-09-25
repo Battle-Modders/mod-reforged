@@ -14,9 +14,9 @@ this.rf_kastenbrust_plate_harness <- ::inherit("scripts/items/armor/armor", {
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
-		this.m.Value = 9000;
+		this.m.Value = 10000;
 		this.m.Condition = 360;
 		this.m.ConditionMax = 360;
-		this.m.StaminaModifier = -42;
+		this.m.StaminaModifier = -50;
 	}
 });

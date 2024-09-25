@@ -17,6 +17,6 @@ this.rf_reinforced_footman_armor <- ::inherit("scripts/items/armor/armor", {
 		this.m.Value = 4000;
 		this.m.Condition = 260;
 		this.m.ConditionMax = 260;
-		this.m.StaminaModifier = -32;
+		this.m.StaminaModifier = -36;
 	}
 });
