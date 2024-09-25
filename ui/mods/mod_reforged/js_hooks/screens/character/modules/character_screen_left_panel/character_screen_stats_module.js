@@ -36,18 +36,3 @@ CharacterScreenStatsModule.prototype.createDIV = function (_parentDiv)
 	this.mLeftStatsRows["Morale"].StyleName = ProgressbarStyleIdentifier.rf_Reach;
 	Reforged.Hooks.CharacterScreenStatsModule_createDIV.call(this, _parentDiv);
 }
-
-Reforged.Hooks.CharacterScreenStatsModule_setupEventHandler = CharacterScreenStatsModule.prototype.setupEventHandler;
-CharacterScreenStatsModule.prototype.setupEventHandler = function ()
-{
-	Reforged.Hooks.CharacterScreenStatsModule_setupEventHandler.call(this);
-	$.each(this.mLeftStatsRows, function (_key, _value)
-	{
-		if (_value.StyleName == ProgressbarStyleIdentifier.rf_Reach)
-		{
-			_value.Row.unbindTooltip();
-			_value.Row.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Concept.Reach" });
-			return false;
-		}
-	});
-};
