@@ -15,12 +15,12 @@ CharacterScreenStatsModule.prototype.setProgressbarValues = function (_data)
 	{
 		if (_value.TooltipId == "character-stats.Morale")
 		{
-			_value.Row.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Concept.Reach" });
+			_value.Row.bindTooltip({ entityId: entityID, contentType: 'msu-generic', elementId: "Concept.Reach", modId: Reforged.ID });
 		}
 		else
 		{
 			_value.Row.bindTooltip({ entityId: entityID, contentType: 'ui-element', elementId: _value.TooltipId });
-		}		
+		}
 	});
 
 	$.each(this.mMiddleStatsRows, function (_key, _value)
