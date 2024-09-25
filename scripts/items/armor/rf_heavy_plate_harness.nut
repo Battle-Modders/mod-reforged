@@ -14,9 +14,9 @@ this.rf_heavy_plate_harness <- ::inherit("scripts/items/armor/armor", {
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
-		this.m.Value = 10500;
+		this.m.Value = 15000;
 		this.m.Condition = 380;
 		this.m.ConditionMax = 380;
-		this.m.StaminaModifier = -44;
+		this.m.StaminaModifier = -50;
 	}
 });

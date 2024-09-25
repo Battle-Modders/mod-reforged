@@ -14,9 +14,9 @@ this.rf_brigandine_harness <- ::inherit("scripts/items/armor/armor", {
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
-		this.m.Value = 5400;
-		this.m.Condition = 260;
-		this.m.ConditionMax = 260;
+		this.m.Value = 6000;
+		this.m.Condition = 270;
+		this.m.ConditionMax = 270;
 		this.m.StaminaModifier = -28;
 	}
 });

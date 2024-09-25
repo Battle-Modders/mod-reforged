@@ -17,6 +17,6 @@ this.rf_foreign_plate_harness <- ::inherit("scripts/items/armor/armor", {
 		this.m.Value = 12000;
 		this.m.Condition = 360;
 		this.m.ConditionMax = 360;
-		this.m.StaminaModifier = -40;
+		this.m.StaminaModifier = -46;
 	}
 });

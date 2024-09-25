@@ -14,7 +14,7 @@ this.rf_brigandine_armor <- ::inherit("scripts/items/armor/armor", {
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
-		this.m.Value = 4400;
+		this.m.Value = 4600;
 		this.m.Condition = 230;
 		this.m.ConditionMax = 230;
 		this.m.StaminaModifier = -26;

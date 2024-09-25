@@ -15,8 +15,8 @@ this.rf_brigandine_shirt <- ::inherit("scripts/items/armor/armor", {
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 3000;
-		this.m.Condition = 180;
-		this.m.ConditionMax = 180;
-		this.m.StaminaModifier = -19;
+		this.m.Condition = 190;
+		this.m.ConditionMax = 190;
+		this.m.StaminaModifier = -21;
 	}
 });
