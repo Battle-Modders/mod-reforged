@@ -7,7 +7,6 @@
 		__original();
 		this.m.Icon = ::Const.Perks.findById(this.getID()).Icon; // Vanilla uses the wrong icon i.e. `perk_10.png` which is the Anticipation icon.
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character has mastered the art of fighting with the spear allowing him to attack for free once per [turn.|Concept.Turn]");
 	}
 
