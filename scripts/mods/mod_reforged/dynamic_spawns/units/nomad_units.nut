@@ -12,7 +12,8 @@ local units = [
 	{
 		ID = "Unit.RF.NomadOutlaw",
 		Troop = "NomadOutlaw",
-		Figure = "figure_nomad_02"	 // Official "Outlaw" figure
+		Figure = "figure_nomad_02",	 // Official "Outlaw" figure
+		StartingResourceMin = 150
 	},
 	{
 		ID = "Unit.RF.NomadArcher",
@@ -23,7 +24,7 @@ local units = [
 		ID = "Unit.RF.NomadLeader",
 		Troop = "NomadLeader",
 		Figure = "figure_nomad_05",
-		StartingResourceMin = 200 // In Vanilla they appear in a group of 170 cost
+		StartingResourceMin = 250 // In Vanilla they appear in a group of 170 cost
 	},
 	{
 		ID = "Unit.RF.DesertStalker",
