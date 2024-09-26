@@ -3,6 +3,8 @@
 	{
 		__original();
 		this.m.Reach = 6;
+		this.m.Condition = 56.0;
+		this.m.ConditionMax = 56.0;
 	}
 
 	q.onEquip = @() function()
