@@ -95,7 +95,10 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = this.isAxeMasteryApplied() && _properties.IsSpecializedInAxes ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		if (this.isAxeMasteryApplied() && _properties.IsSpecializedInAxes)
+		{
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )

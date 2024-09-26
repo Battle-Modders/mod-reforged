@@ -86,7 +86,10 @@ this.rf_gouge_skill <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		if (_properties.IsSpecializedInCleavers)
+		{
+			this.m.FatigueCostMult *= ::Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	function onUse( _user, _targetTile )

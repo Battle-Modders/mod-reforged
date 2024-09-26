@@ -43,7 +43,10 @@
 	// Overwrite vanilla function to remove changing of this.m.AdditionalAccuracy and this.m.DirectDamageMult
 	q.onAfterUpdate = @() function( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInCrossbows ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		if (_properties.IsSpecializedInCrossbows)
+		{
+			this.m.FatigueCostMult *= ::Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )

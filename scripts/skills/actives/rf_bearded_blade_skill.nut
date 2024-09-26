@@ -37,7 +37,10 @@ this.rf_bearded_blade_skill <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInAxes ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		if (_properties.IsSpecializedInAxes)
+		{
+			this.m.FatigueCostMult *= ::Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )

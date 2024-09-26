@@ -50,7 +50,10 @@ this.rf_sword_thrust_skill <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		if (_properties.IsSpecializedInSwords)
+		{
+			this.m.FatigueCostMult *= ::Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	function onUse( _user, _targetTile )

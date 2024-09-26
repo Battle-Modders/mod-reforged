@@ -45,7 +45,10 @@ this.rf_cleaving_swing_skill <- ::inherit("scripts/skills/actives/swing", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		if (_properties.IsSpecializedInCleavers)
+		{
+			this.m.FatigueCostMult *= ::Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
