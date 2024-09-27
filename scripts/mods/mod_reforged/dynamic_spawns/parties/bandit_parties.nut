@@ -10,7 +10,7 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 1.0 },
 			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30, ExclusionChance = 0.20 },
 			{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.30, ExclusionChance = 0.20 },
-			{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40, ExclusionChance = 0.10 },
+			{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40 },
 			{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20, ExclusionChance = 0.10 }
 		]
 
