@@ -51,10 +51,25 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 	}
 
-	q.assignRandomEquipment = @(__original) function()
-	{
-		__original();
+	// q.assignRandomEquipment = @() function()
+	// {
+	// }
 
+	q.makeMiniboss = @(__original) function()
+	{
+		local ret = __original();
+		if (ret)
+		{
+			this.m.Skills.removeByID("perk.underdog");
+			this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
+		}
+
+		return ret;
+	}
+
+	q.onSpawned = @() function()
+	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
 		local weapon = this.getMainhandItem();
@@ -77,18 +92,5 @@
 				break;
 			}
 		}
-	}
-
-	q.makeMiniboss = @(__original) function()
-	{
-		local ret = __original();
-		if (ret)
-		{
-			this.m.Skills.removeByID("perk.underdog");
-			this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_unstoppable"));
-		}
-
-		return ret;
 	}
 });
