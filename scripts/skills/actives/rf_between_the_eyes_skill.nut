@@ -29,7 +29,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 	{
 		if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
 		{
-			local ret = this.skill.getTooltip();
+			local ret = this.skill.getDefaultUtilityTooltip();
 			ret.push({
 				id = 10,
 				type = "text",
