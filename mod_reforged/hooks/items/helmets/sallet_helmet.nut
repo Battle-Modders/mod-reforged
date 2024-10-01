@@ -3,8 +3,8 @@
 	{
 		__original();
 		this.m.Name = "Open Faced Sallet Helmet";
-		this.m.Value = 1500;
-		this.m.Condition = 125;
-		this.m.ConditionMax = 125;
+		this.m.Value = 1500; // vanilla 1200
+		this.m.Condition = 125; // vanilla 120
+		this.m.ConditionMax = 125; // vanilla 120
 	}
 });

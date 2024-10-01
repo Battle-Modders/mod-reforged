@@ -3,7 +3,7 @@
 	{
 		__original();
 		this.m.ReachIgnore = 1;
-		this.m.Condition = 30;
-		this.m.ConditionMax = 30;
+		this.m.Condition = 30; // vanilla 16
+		this.m.ConditionMax = 30; // vanilla 16
 	}
 });

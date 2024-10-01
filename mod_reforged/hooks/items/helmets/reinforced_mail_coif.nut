@@ -2,7 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.Value = 600;
-		this.m.StaminaModifier = -4;
+		this.m.Value = 600; // vanilla 300
+		this.m.StaminaModifier = -4; // vanilla -5
 	}
 });

@@ -2,9 +2,9 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.Value = 2000;
-		this.m.Condition = 135;
-		this.m.ConditionMax = 135;
-		this.m.StaminaModifier = -12;
+		this.m.Value = 2000; // vanilla 2500
+		this.m.Condition = 135; // vanilla 160
+		this.m.ConditionMax = 135; // vanilla 160
+		this.m.StaminaModifier = -12; // vanilla -15
 	}
 });

@@ -2,6 +2,6 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.StaminaModifier = -11;
+		this.m.StaminaModifier = -11; // vanilla -12
 	}
 });
