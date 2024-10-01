@@ -3,7 +3,7 @@
 	{
 		__original();
 		this.m.StaminaModifier = -8; // Vanilla is -10.
-		this.m.Condition = 40;
-		this.m.ConditionMax = 40;
+		this.m.Condition = 40; // vanilla 18
+		this.m.ConditionMax = 40; // vanilla 18
 	}
 });
