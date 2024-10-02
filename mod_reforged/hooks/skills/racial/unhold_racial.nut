@@ -28,7 +28,7 @@
 				id = 21,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Immune to being [rotated|Skill+rotation]"
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [rotated|Skill+rotation]")
 			}
 		]);
 		return ret;
