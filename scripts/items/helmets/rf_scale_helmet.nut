@@ -16,8 +16,8 @@ this.rf_scale_helmet <- ::inherit("scripts/items/helmets/helmet", {
 		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 300;
-		this.m.Condition = 95;
-		this.m.ConditionMax = 95;
+		this.m.Condition = 90;
+		this.m.ConditionMax = 90;
 		this.m.StaminaModifier = -5;
 		this.m.Vision = -1;
 	}
