@@ -115,37 +115,49 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			[5, 7]
 		];
 
+		local perkTree = this.getContainer().getActor().getPerkTree();
+
 		// For 2-way hybrid weapons, if you have a perk from any one of the two weapon types'
 		// perk groups you get the perk from the other weapon type's perk group.
 		if (equippedWeaponPerkGroups.len() == 2)
 		{
 			local pg1 = equippedWeaponPerkGroups[0];
 			local pg2 = equippedWeaponPerkGroups[1];
-			foreach (range in tierRanges)
+			if (perkTree.hasPerkGroup(pg1) && perkTree.hasPerkGroup(pg2))
 			{
-				local tierStart = range[0];
-				local tierEnd = range[1];
-				if (hasPerkFromGroup(pg1, tierStart, tierEnd) && !hasPerkFromGroup(pg2, tierStart, tierEnd))
+				foreach (range in tierRanges)
 				{
-					addPerkFromGroup(pg2, tierStart, tierEnd);
-				}
-				else if (hasPerkFromGroup(pg2, tierStart, tierEnd) && !hasPerkFromGroup(pg1, tierStart, tierEnd))
-				{
-					addPerkFromGroup(pg1, range[0], range[1]);
+					local tierStart = range[0];
+					local tierEnd = range[1];
+					if (hasPerkFromGroup(pg1, tierStart, tierEnd) && !hasPerkFromGroup(pg2, tierStart, tierEnd))
+					{
+						addPerkFromGroup(pg2, tierStart, tierEnd);
+					}
+					else if (hasPerkFromGroup(pg2, tierStart, tierEnd) && !hasPerkFromGroup(pg1, tierStart, tierEnd))
+					{
+						addPerkFromGroup(pg1, range[0], range[1]);
+					}
 				}
 			}
 		}
 
 		// You get the perk group of the alphabetically first weapon type of this weapon if you
 		// have a perk from a weapon perk group that doesn't belong to this weapon's weapon types.
-		foreach (pg in otherPerkGroups)
+		foreach (pg in equippedWeaponPerkGroups)
 		{
-			foreach (range in tierRanges)
+			if (perkTree.hasPerkGroup(pg.getID()))
 			{
-				if (hasPerkFromGroup(pg, range[0], range[1]))
+				foreach (otherPG in otherPerkGroups)
 				{
-					addPerkFromGroup(equippedWeaponPerkGroups[0], range[0], range[1]);
+					foreach (range in tierRanges)
+					{
+						if (hasPerkFromGroup(otherPG, range[0], range[1]))
+						{
+							addPerkFromGroup(pg, range[0], range[1]);
+						}
+					}
 				}
+				break;
 			}
 		}
 	}
