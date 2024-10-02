@@ -74,7 +74,7 @@ this.perk_rf_soul_link <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if (this.hasLink()) _properties.DamageReceivedTotalMult *= (1.0 - this.m.TransferedPart);
+		if (this.hasLink()) _properties.DamageReceivedRegularMult *= (1.0 - this.m.TransferedPart);
 	}
 
 	function hasLink()
