@@ -93,7 +93,24 @@ local getThresholdForInjury = function( _script )
 		InjuryTemporary = ::MSU.Class.BasicTooltip("Temporary Injury", ::Reforged.Mod.Tooltips.parseString("Temporary injuries are received during combat when the damage to [Hitpoints|Concept.Hitpoints] received by a character exceeds the injury threshold. These injuries heal over time, but can be treated at a Temple for faster healing."))
 		InjuryPermanent = ::MSU.Class.BasicTooltip("Permanent Injury", ::Reforged.Mod.Tooltips.parseString("Permanent injuries are received when a character is \'struck down\' during combat instead of being killed. These injuries, and the maluses they incur, are forever.")),
 		InjuryThreshold = ::MSU.Class.BasicTooltip("Injury Threshold", ::Reforged.Mod.Tooltips.parseString("If the damage received to [Hitpoints|Concept.Hitpoints] is at least " + ::MSU.Text.colorNegative(::Const.Combat.InjuryMinDamage) + " and is greater than a certain percentage of the current [Hitpoints,|Concept.Hitpoints] the character receives an [injury.|Concept.InjuryTemporary] This percentage can be modified by certain [perks|Concept.Perk] or traits of both the attacker and the target.\n\nCertain [injuries|Concept.InjuryTemporary] require this percentage to be at least a certain value before they can be inflicted, with heavier [injuries|Concept.InjuryTemporary] requiring a higher percentage.\n\nFor example the threshold for [Cut Arm|Skill+cut_arm_injury] is " + ::MSU.Text.colorNegative(getThresholdForInjury("injury/cut_arm_injury") + "%") + " and that of [Split Hand|Skill+split_hand_injury] is " + ::MSU.Text.colorNegative(getThresholdForInjury("injury/split_hand_injury") + "%") + ".")),
-		Reach = ::MSU.Class.BasicTooltip("Reach", ::Reforged.Mod.Tooltips.parseString("Reach is a depiction of how far a character\'s attacks can reach, making melee combat easier against targets with shorter reach.\n\n[Melee skill|Concept.MeleeSkill] is increased when attacking opponents with shorter reach, and reduced against opponents with longer reach. Reach has diminishing returns, starting at " + ::Reforged.Reach.BonusPerReach + " and dropping by 1 to a minimum of 1. It only applies when attacking a target adjacent to you or up to 2 tiles away with nothing between you and the target.\n\nAfter a successful hit, the target\'s [Reach Advantage|Concept.ReachAdvantage] is lost until the attacker waits or ends their turn.\n\nShields can negate some or all of the target\'s [Reach Advantage.|Concept.ReachAdvantage] Characters who are rooted have their Reach halved. Those without an [attack of opportunity|Concept.ZoneOfControl] have no Reach.")),
+		Reach = ::MSU.Class.CustomTooltip(function(_data){
+			local ret = [
+			{
+				id = 1,
+				type = "title",
+				text = "Reach"
+			},
+			{
+				id = 2,
+				type = "description",
+				text = ::Reforged.Mod.Tooltips.parseString("Reach is a depiction of how far a character\'s attacks can reach, making melee combat easier against targets with shorter reach.\n\n[Melee skill|Concept.MeleeSkill] is increased when attacking opponents with shorter reach, and reduced against opponents with longer reach. Reach has diminishing returns, starting at " + ::Reforged.Reach.BonusPerReach + " and dropping by 1 to a minimum of 1. It only applies when attacking a target adjacent to you or up to 2 tiles away with nothing between you and the target.\n\nAfter a successful hit, the target\'s [Reach Advantage|Concept.ReachAdvantage] is lost until the attacker waits or ends their turn.\n\nShields can negate some or all of the target\'s [Reach Advantage.|Concept.ReachAdvantage] Characters who are rooted have their Reach halved. Those without an [attack of opportunity|Concept.ZoneOfControl] have no Reach.")
+			}]
+			if ("entityId" in _data && "TooltipEvents" in this.getroottable())
+			{
+				ret.extend(::TooltipEvents.getBaseAttributesTooltip( _data.entityId, _data.elementId, null));
+			}
+			return ret;
+		}),
 		ReachIgnoreOffensive = ::MSU.Class.BasicTooltip("Offensive Reach Ignore", ::Reforged.Mod.Tooltips.parseString(@"This represents the amount of [Reach Disadvantage|Concept.ReachDisadvantage] that a character can ignore when attacking a target with higher [Reach.|Concept.Reach]")),
 		ReachIgnoreDefensive = ::MSU.Class.BasicTooltip("Defensive Reach Ignore", ::Reforged.Mod.Tooltips.parseString(@"This represents the amount of [Reach Disadvantage|Concept.ReachDisadvantage] that a character can ignore when defending against an attacker who has higher [Reach.|Concept.Reach]")),
 		ReachAdvantage = ::MSU.Class.BasicTooltip("Reach Advantage", ::Reforged.Mod.Tooltips.parseString("A character is considered to have Reach Advantage when their [Reach|Concept.Reach] is greater than that of the other character during an attack. The Reach Advantage in this case refers to the difference in the two characters' [Reach|Concept.Reach] values.\n\nIf a character has a shield equipped, the shield can help negate the Reach Advantage of an attacker, and with the [Duelist|Perk+perk_duelist] perk, can also help negate that of a target.")),
