@@ -22,7 +22,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The next spear attack costs " + ::MSU.Text.colorPositive("0") + " [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive("0") + " [Fatigue|Concept.Fatigue] but does " + ::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " less damage")
+			text = ::Reforged.Mod.Tooltips.parseString("The next piercing spear attack costs " + ::MSU.Text.colorPositive("0") + " [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive("0") + " [Fatigue|Concept.Fatigue] but does " + ::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " less damage")
 		});
 		ret.push({
 			id = 20,
@@ -111,7 +111,7 @@
 
 	q.isSkillValid <- function( _skill )
 	{
-		if (_skill.isRanged() || !_skill.isAttack())
+		if (_skill.isRanged() || !_skill.isAttack() || !_skill.getDamageType().contains(::Const.Damage.DamageType.Piercing))
 			return false;
 
 		local weapon = _skill.getItem();
