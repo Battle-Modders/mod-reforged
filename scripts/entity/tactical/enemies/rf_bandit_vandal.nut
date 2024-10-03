@@ -58,8 +58,7 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 				[1, "scripts/items/weapons/scramasax"],
 				[1, "scripts/items/weapons/shortsword"],
 
-				[1, "scripts/items/weapons/rf_two_handed_falchion"],
-				[1, "scripts/items/weapons/warbrand"]
+				[1, "scripts/items/weapons/rf_two_handed_falchion"]
 			]).roll();
 			this.m.Items.equip(::new(weapon));
 		}

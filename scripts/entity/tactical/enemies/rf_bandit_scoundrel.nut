@@ -79,7 +79,8 @@ this.rf_bandit_scoundrel <- ::inherit("scripts/entity/tactical/human", {
 				[1, "scripts/items/weapons/wooden_flail"],
 				[1, "scripts/items/weapons/wooden_stick"],
 
-				[1, "scripts/items/weapons/pitchfork"]
+				[1, "scripts/items/weapons/pitchfork"],
+				[1, "scripts/items/weapons/woodcutters_axe"]
 			]).roll();
 
 			this.m.Items.equip(::new(weapon));
