@@ -44,20 +44,6 @@
 		return ret;
 	}
 
-// MSU Functions
-	q.onQueryMSUTooltipData = @(__original) function( _data )
-	{
-		local ret = __original(_data);
-
-		if (ret != null)
-		{
-			local entity = "entityId" in _data ? _data.entityId : null;	// Some MSU tooltips have no entity
-			ret.extend(this.getBaseAttributesTooltip( entity, _data.elementId, null ));
-		}
-
-		return ret;
-	}
-
 // New Functions
 	q.getBaseAttributesTooltip <- function( _entityId, _elementId, _elementOwner )
 	{
