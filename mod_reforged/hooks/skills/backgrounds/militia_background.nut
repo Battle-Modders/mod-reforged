@@ -3,6 +3,7 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
+			"pg.special.rf_leadership": 5,
 		};
 
 		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
