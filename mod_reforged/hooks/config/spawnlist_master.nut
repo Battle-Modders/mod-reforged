@@ -14,11 +14,11 @@
 ::Const.World.Spawn.Troops.ArmoredWardog.Strength = 8; // vanilla 9
 ::Const.World.Spawn.Troops.ArmoredWardog.Cost = 8; // vanilla 8
 ::Const.World.Spawn.Troops.BanditMarksman.Strength = 30; // vanilla 15
-::Const.World.Spawn.Troops.BanditMarksman.Cost = 25; // vanilla 15
+::Const.World.Spawn.Troops.BanditMarksman.Cost = 22; // vanilla 15
 ::Const.World.Spawn.Troops.BanditRaiderWolf.Strength = 30; // vanilla 25
-::Const.World.Spawn.Troops.BanditRaiderWolf.Cost = 30; // vanilla 25
+::Const.World.Spawn.Troops.BanditRaiderWolf.Cost = 25; // vanilla 25
 ::Const.World.Spawn.Troops.BanditRaider.Strength = 28; // vanilla 20
-::Const.World.Spawn.Troops.BanditRaider.Cost = 25; // vanilla 20
+::Const.World.Spawn.Troops.BanditRaider.Cost = 22; // vanilla 20
 ::Const.World.Spawn.Troops.BanditLeader.Strength = 40; // vanilla 30
 ::Const.World.Spawn.Troops.BanditLeader.Cost = 40; // vanilla 25
 
@@ -62,7 +62,7 @@
 		ID = ::Const.EntityType.RF_BanditRobber,
 		Variant = 0,
 		Strength = 20,
-		Cost = 18,
+		Cost = 16,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_robber"
 	},
@@ -70,7 +70,7 @@
 		ID = ::Const.EntityType.RF_BanditHunter,
 		Variant = 0,
 		Strength = 18,
-		Cost = 18,
+		Cost = 16,
 		Row = 1,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_hunter"
 	},
@@ -78,7 +78,7 @@
 		ID = ::Const.EntityType.RF_BanditVandal,
 		Variant = 0,
 		Strength = 20,
-		Cost = 18,
+		Cost = 16,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_vandal"
 	},
@@ -86,7 +86,7 @@
 		ID = ::Const.EntityType.RF_BanditPillager,
 		Variant = 0,
 		Strength = 20,
-		Cost = 18,
+		Cost = 16,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_pillager"
 	},
@@ -94,7 +94,7 @@
 		ID = ::Const.EntityType.RF_BanditOutlaw,
 		Variant = 0,
 		Strength = 28,
-		Cost = 25,
+		Cost = 22,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_outlaw"
 	},
@@ -102,7 +102,7 @@
 		ID = ::Const.EntityType.RF_BanditBandit,
 		Variant = 0,
 		Strength = 28,
-		Cost = 25,
+		Cost = 22,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_bandit"
 	},
@@ -110,7 +110,7 @@
 		ID = ::Const.EntityType.RF_BanditHighwayman,
 		Variant = 0,
 		Strength = 36,
-		Cost = 30,
+		Cost = 26,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_highwayman"
 	},
@@ -118,7 +118,7 @@
 		ID = ::Const.EntityType.RF_BanditMarauder,
 		Variant = 0,
 		Strength = 36,
-		Cost = 30,
+		Cost = 26,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_marauder"
 	},
@@ -126,7 +126,7 @@
 		ID = ::Const.EntityType.RF_BanditSharpshooter,
 		Variant = 0,
 		Strength = 36,
-		Cost = 30,
+		Cost = 26,
 		Row = 1,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_sharpshooter"
 	},
@@ -134,7 +134,7 @@
 		ID = ::Const.EntityType.RF_BanditKiller,
 		Variant = 0,
 		Strength = 36,
-		Cost = 30,
+		Cost = 26,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_killer"
 	},
