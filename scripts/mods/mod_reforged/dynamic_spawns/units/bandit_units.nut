@@ -2,7 +2,8 @@ local units = [
 	{
 		ID = "Unit.RF.BanditThug",
 		Troop = "BanditThug",
-		Figure = "figure_rf_bandit_thug"
+		Figure = "figure_rf_bandit_thug",
+		StartingResourceMin = 100
 	},
 	{
 		ID = "Unit.RF.Wardog",
@@ -62,13 +63,13 @@ local units = [
 		ID = "Unit.RF.RF_BanditPillager",
 		Troop = "RF_BanditPillager",
 		Figure = "figure_rf_bandit_pillager",
-		StartingResourceMin = 100
+		StartingResourceMin = 140
 	},
 	{
 		ID = "Unit.RF.RF_BanditOutlaw",
 		Troop = "RF_BanditOutlaw",
 		Figure = "figure_rf_bandit_outlaw",
-		StartingResourceMin = 150
+		StartingResourceMin = 185
 	},
 	{
 		ID = "Unit.RF.RF_BanditBandit",
@@ -86,7 +87,7 @@ local units = [
 		ID = "Unit.RF.RF_BanditMarauder",
 		Troop = "RF_BanditMarauder",
 		Figure = "figure_bandit_03",
-		StartingResourceMin = 225
+		StartingResourceMin = 250
 	},
 	{
 		ID = "Unit.RF.RF_BanditSharpshooter",
