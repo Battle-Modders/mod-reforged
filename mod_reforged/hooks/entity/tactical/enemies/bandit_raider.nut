@@ -40,7 +40,7 @@
 
 				[1, "scripts/items/weapons/longaxe"],
 				[1, "scripts/items/weapons/polehammer"],
-				[1, "scripts/items/weapons/rf_two_handed_falchion"]
+				[1, "scripts/items/weapons/warbrand"]
 			]).roll();
 			this.m.Items.equip(::new(weapon));
 		}
