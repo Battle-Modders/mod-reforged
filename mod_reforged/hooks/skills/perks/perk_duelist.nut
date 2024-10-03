@@ -1,18 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_duelist", function(q) {
 	q.onUpdate = @() function( _properties )
 	{
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.TwoHanded))
+		local shield = this.getContainer().getActor().getOffhandItem();
+		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield))
 		{
-			_properties.Reach += 1;
-		}
-		else
-		{
-			local shield = this.getContainer().getActor().getOffhandItem();
-			if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield))
-			{
-				_properties.OffensiveReachIgnore += shield.getReachIgnore();
-			}
+			_properties.OffensiveReachIgnore += shield.getReachIgnore();
 		}
 	}
 

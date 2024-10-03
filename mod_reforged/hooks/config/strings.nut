@@ -400,7 +400,6 @@ local vanillaDescriptions = [
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"Additional damage ignores armor. This bonus is " + ::MSU.Text.colorPositive("25%") + " for one-handed weapons, " + ::MSU.Text.colorPositive("35%") + " for one-handed weapon with shield, and " + ::MSU.Text.colorPositive("15%") + " for two-handed weapons.",
-					"Gain " + ::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach] when using two-handed weapons.",
 					"Shields now also negate the [Reach Advantage|Concept.ReachAdvantage] of the target when attacking."
 				]
 			}],
