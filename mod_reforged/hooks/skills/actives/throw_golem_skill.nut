@@ -3,7 +3,7 @@
 	{
 		__original();
 		// Vanilla is missing a description for this skill
-		this.m.Description = "Throw a boulder of your sand and stone at a target, splitting yourself into smaller living!";
+		this.m.Description = "Throw a boulder of your sand and stone at a target, splitting yourself into smaller living bits!";
 	}
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
@@ -16,7 +16,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Will spawn a " + ::Const.Strings.EntityName[entityType] + " adjacent to the target")
+				text = format("Will spawn %s%s adjacent to the target", ::Const.Strings.getArticle(::Const.Strings.EntityName[entityType]), ::Const.Strings.EntityName[entityType])
 			},
 			{
 				id = 11,
