@@ -44,6 +44,7 @@
 		{
 			local sapling = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/schrat_small", ::MSU.Array.rand(neighboringTiles).Coords);
 			sapling.setFaction(actor.isPlayerControlled() ? ::Const.Faction.PlayerAnimals : actor.getFaction());
+			sapling.m.ConfidentMoraleBrush = "icon_confident";
 			sapling.riseFromGround();
 			this.setCondition(::Math.max(0, this.getCondition() - this.m.SpawnSaplingConditionLoss));
 		}
