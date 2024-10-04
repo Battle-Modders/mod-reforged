@@ -73,7 +73,14 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 	{
 		if (!this.isEnabled()) return null;
 
-		if (this.getContainer().getActor().getFatigueMax() - this.getContainer().getActor().getFatigue() < this.m.FatigueRequired) return null;
+		if (this.getContainer().getActor().getFatigueMax() - this.getContainer().getActor().getFatigue() < this.m.FatigueRequired)
+		{
+			local meisterhau = this.getContainer().getSkillByID("actives.rf_swordmaster_stance_meisterhau");
+			if (meisterhau == null || !meisterhau.m.IsOn)
+			{
+				return null;
+			}
+		}
 
 		local riposte = this.getContainer().getSkillByID("actives.riposte");
 		if (riposte != null)
