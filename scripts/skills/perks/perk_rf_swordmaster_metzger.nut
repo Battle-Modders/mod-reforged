@@ -37,17 +37,20 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 		if (!this.isEnabled() || _item.getSlotType() != ::Const.ItemSlot.Mainhand)
 			return;
 
-		_item.addSkill(::Reforged.new("scripts/skills/actives/decapitate", function(o) {
-			o.m.DirectDamageMult = _item.m.DirectDamageMult;
-			foreach (skill in _item.getSkills())
-			{
-				if (skill.isAttack() && !skill.isRanged() && !skill.isIgnoredAsAOO())
+		if (!this.getContainer().hasSkill("actives.decapitate"))
+		{
+			_item.addSkill(::Reforged.new("scripts/skills/actives/decapitate", function(o) {
+				o.m.DirectDamageMult = _item.m.DirectDamageMult;
+				foreach (skill in _item.getSkills())
 				{
-					o.m.ActionPointCost = skill.getBaseValue("ActionPointCost"); // Set the AP cost of Decapitate to that of the AOO of the weapon
-					break;
+					if (skill.isAttack() && !skill.isRanged() && !skill.isIgnoredAsAOO())
+					{
+						o.m.ActionPointCost = skill.getBaseValue("ActionPointCost"); // Set the AP cost of Decapitate to that of the AOO of the weapon
+						break;
+					}
 				}
-			}
-		}));
+			}));
+		}
 
 		if (!_item.isWeaponType(::Const.Items.WeaponType.Cleaver))
 		{
