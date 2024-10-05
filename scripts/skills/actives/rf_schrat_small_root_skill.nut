@@ -4,7 +4,7 @@ this.rf_schrat_small_root_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_schrat_small_root";
 		this.m.Name = "Root";
-		this.m.Description = "";
+		this.m.Description = "Envelop an enemy with your body and limbs to pin them in place.";
 		this.m.Icon = "skills/active_122.png";
 		this.m.IconDisabled = "skills/active_122.png";
 		this.m.Overlay = "active_122";
@@ -38,6 +38,24 @@ this.rf_schrat_small_root_skill <- ::inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 		this.m.MaxLevelDifference = 1;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.ThrowNet;
+	}
+
+	function getTooltip()
+	{
+		local ret = this.skill.getDefaultUtilityTooltip();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Will apply the [Rooted|Skill+rooted_effect] effect on the target")
+		});
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("You will die upon using this skill")
+		});
+		return ret;
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
