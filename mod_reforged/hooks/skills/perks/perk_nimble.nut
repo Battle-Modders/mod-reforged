@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_nimble", function(q) {
+	q.m.StaminaModifierThresholdMult <- 0.15;
+
 	q.isHidden = @() function()
 	{
 		return ::Math.floor(this.getHitpointsDamage() * 100) >= 100 && ::Math.floor(this.getArmorDamage() * 100) >= 100;
@@ -56,20 +58,27 @@
 			text = ::MSU.Text.colorPositive("Effective Hitpoints: ") + currHPString + " / " + maxHPString
 		});
 
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/fatigue.png",
+			text = "The effectiveness is reduced above combined head and body armor weight of " + this.getStaminaModifierThreshold()
+		});
+
 		return ret;
 	}
 
 	q.getHitpointsDamage <- function()
 	{
 		local fat = this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
-		fat = ::Math.min(0, fat + 15);
+		fat = ::Math.min(0, fat + this.getStaminaModifierThreshold());
 		return ::Math.minf(1.0, 1.0 - 0.5 + ::Math.pow(::Math.abs(fat), 1.23) * 0.01);
 	}
 
 	q.getArmorDamage <- function()
 	{
 		local fat = this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
-		fat = ::Math.min(0, fat + 15);
+		fat = ::Math.min(0, fat + this.getStaminaModifierThreshold());
 		return ::Math.minf(1.0, 1.0 - 0.25 + ::Math.pow(::Math.abs(fat), 1.23) * 0.01);
 	}
 
@@ -90,5 +99,15 @@
 		{
 			_properties.OffensiveReachIgnore += 1;
 		}
+	}
+
+	q.getStaminaModifierThreshold <- function()
+	{
+		local b = this.getContainer().getActor().getBaseProperties().getClone();
+		foreach (trait in this.getContainer().getSkillsByFunction(@(s) s.isType(::Const.SkillType.Trait) || s.isType(::Const.SkillType.PermanentInjury)))
+		{
+			trait.onUpdate(b);
+		}
+		return ::Math.max(0, this.m.StaminaModifierThresholdMult * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
 	}
 });

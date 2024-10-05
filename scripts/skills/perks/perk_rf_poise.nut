@@ -1,5 +1,7 @@
 this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		StaminaModifierThresholdMult = 0.35
+	},
 	function create()
 	{
 		this.m.ID = "perk.rf_poise";
@@ -67,20 +69,27 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 			text = ::MSU.Text.colorPositive("Effective Hitpoints: ") + currHPString + " / " + maxHPString
 		});
 
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/fatigue.png",
+			text = "The effectiveness is reduced above combined head and body armor weight of " + this.getStaminaModifierThreshold()
+		});
+
 		return ret;
 	}
 
 	function getHitpointsDamage()
 	{
 		local fat = this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
-		fat = ::Math.min(0, fat + 35);
+		fat = ::Math.min(0, fat + this.getStaminaModifierThreshold());
 		return ::Math.minf(1.0, 1.0 - 0.3 + ::Math.pow(::Math.abs(fat), 1.23) * 0.01);
 	}
 
 	function getArmorDamage()
 	{
 		local fat = this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
-		fat = ::Math.min(0, fat + 35);
+		fat = ::Math.min(0, fat + this.getStaminaModifierThreshold());
 		return ::Math.minf(1.0, 1.0 - 0.2 + ::Math.pow(::Math.abs(fat), 1.23) * 0.01);
 	}
 
@@ -101,5 +110,15 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 		{
 			_properties.OffensiveReachIgnore += 1;
 		}
+	}
+
+	q.getStaminaModifierThreshold <- function()
+	{
+		local b = this.getContainer().getActor().getBaseProperties().getClone();
+		foreach (trait in this.getContainer().getSkillsByFunction(@(s) s.isType(::Const.SkillType.Trait) || s.isType(::Const.SkillType.PermanentInjury)))
+		{
+			trait.onUpdate(b);
+		}
+		return ::Math.max(0, this.m.StaminaModifierThresholdMult * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
 	}
 });
