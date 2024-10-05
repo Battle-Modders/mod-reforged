@@ -36,6 +36,9 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_kata", function(o) {
+			o.m.IsForceEnabled = true;
+		}));
 	}
 
 	q.assignRandomEquipment = @(__original) function()
