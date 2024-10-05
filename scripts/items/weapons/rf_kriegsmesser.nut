@@ -16,7 +16,7 @@ this.rf_kriegsmesser <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.Value = 2400;
 		this.m.Condition = 64.0;
 		this.m.ConditionMax = 64.0;
-		this.m.StaminaModifier = -10;
+		this.m.StaminaModifier = -12;
 		this.m.RegularDamage = 60;
 		this.m.RegularDamageMax = 80;
 		this.m.ArmorDamageMult = 1.0;
