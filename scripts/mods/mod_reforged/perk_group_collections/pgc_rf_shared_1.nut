@@ -3,7 +3,7 @@ this.pgc_rf_shared_1 <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 	function create()
 	{
 		this.m.ID = "pgc.rf_shared_1";
-		this.m.Name = "Trait";
+		this.m.Name = "Shared";
 		this.m.OrderOfAssignment = 2;
 		this.m.Min = 2;
 		this.m.TooltipPrefix = "He";
