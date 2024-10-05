@@ -94,6 +94,13 @@
 			this.m.RF_OnSpawnBlockerCount--;
 		}
 
+		q.makeMiniboss = @(__original) function()
+		{
+			this.m.RF_OnSpawnBlockerCount++;
+			__original();
+			this.m.RF_OnSpawnBlockerCount--;
+		}
+
 		// Prevent onSpawn from being triggered for the resurrecting
 		// entity before it got all its skills and picked up equipment.
 		q.onResurrected = @(__original) function( _info )
