@@ -88,7 +88,6 @@ local parties = [
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.5 }
 				},
 				{ BaseID = "UnitBlock.RF.OrcWarrior", RatioMin = 0.00, RatioMax = 0.80, StartingResourceMin = 150,
-					function getExclusionChance() {return this.getParty().getStartingResources() < 300 ? 0.6 : 0.3; },
 					function getSpawnWeight() { return base.getSpawnWeight() * 2.0 }
 				},
 				{ BaseID = "UnitBlock.RF.OrcBoss", RatioMin = 0.00, RatioMax = 0.08, HardMax = 1, StartingResourceMin = 200,
@@ -120,7 +119,6 @@ local parties = [
 					function getExclusionChance() {	return this.getParty().getStartingResources() < 300 ? 0.5 : 0.5; }
 				},
 				{ BaseID = "UnitBlock.RF.OrcWarrior", RatioMin = 0.00, RatioMax = 0.80,
-					function getExclusionChance() { return this.getParty().getStartingResources() < 300 ? 0.6 : 0.3; },
 					function getSpawnWeight() { return base.getSpawnWeight() * 2.0 }
 				},
 				{ BaseID = "UnitBlock.RF.OrcBoss", RatioMin = 0.01, RatioMax = 0.05, HardMax = 1 }	// Vanilla never spawns more than one Boss here
