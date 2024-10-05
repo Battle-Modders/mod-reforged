@@ -112,7 +112,7 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	q.getStaminaModifierThreshold <- function()
+	function getStaminaModifierThreshold()
 	{
 		local b = this.getContainer().getActor().getBaseProperties().getClone();
 		foreach (trait in this.getContainer().getSkillsByFunction(@(s) s.isType(::Const.SkillType.Trait) || s.isType(::Const.SkillType.PermanentInjury)))
