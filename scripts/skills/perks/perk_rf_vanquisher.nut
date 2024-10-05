@@ -1,6 +1,7 @@
 this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 	m = {
 		ValidTiles = [],
+		IsSpent = true,
 		IsInEffect = false
 	},
 	function create()
@@ -54,9 +55,10 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 
 	function onMovementFinished( _tile )
 	{
-		if (this.isTileValid(_tile))
+		if (!this.m.IsSpent && this.isTileValid(_tile))
 		{
 			this.m.IsInEffect = true;
+			this.m.IsSpent = true;
 			this.spawnIcon("perk_rf_vanquisher", _tile);
 		}
 	}
@@ -106,6 +108,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 
 	function onTurnStart()
 	{
+		this.m.IsSpent = false;
 		this.m.IsInEffect = false;
 		this.m.ValidTiles.clear();
 	}
@@ -119,6 +122,7 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
+		this.m.IsSpent = true;
 		this.m.IsInEffect = false;
 		this.m.ValidTiles.clear();
 	}

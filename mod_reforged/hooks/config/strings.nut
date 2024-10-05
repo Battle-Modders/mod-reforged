@@ -2071,7 +2071,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Immediately after killing an opponent, if you move into the tile of the killed target, the [Action Point|Concept.ActionPoints] cost of the next skill used is " + ::MSU.Text.colorPositive("halved") + "."
+					"Once per [turn|Concept.Turn], immediately after killing an opponent, if you move into the tile of the killed target, the [Action Point|Concept.ActionPoints] cost of the next skill used is " + ::MSU.Text.colorPositive("halved") + "."
 				]
 			},
 			{
