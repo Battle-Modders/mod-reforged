@@ -13,27 +13,6 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40 },
 			{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20, ExclusionChance = 0.10 }
 		]
-
-		function generateIdealSize( _isLocation = false )
-		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 300)
-			{
-				return 12;
-			}
-			else if (startingResources >= 216)
-			{
-				return 10;
-			}
-			else if (startingResources >= 164)
-			{
-				return 8;
-			}
-			else
-			{
-				return 6;
-			}
-		}
 	},
 	{
 		ID = "BanditScouts", // Only spawn from restore location contract
@@ -49,27 +28,6 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40, ExclusionChance = 0.10 },
 			{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20, ExclusionChance = 0.10 }
 		]
-
-		function generateIdealSize( _isLocation = false )
-		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 300)
-			{
-				return 12;
-			}
-			else if (startingResources >= 216)
-			{
-				return 10;
-			}
-			else if (startingResources >= 164)
-			{
-				return 8;
-			}
-			else
-			{
-				return 6;
-			}
-		}
 	},
 	{
 		ID = "BanditRaiders",  // Spawn from defend settlment contract, discover location contract, escort caravan contract, investigate cemetary contract, patrol contract, return item contract, root out undead contract and send bandit ambushers action.
@@ -86,27 +44,6 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.10, StartingResourceMin = 320 },
 			{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.00, RatioMax = 0.11, ExclusionChance = 0.75, StartingResourceMin = 250, DeterminesFigure = true }
 		]
-
-		function generateIdealSize( _isLocation = false )
-		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 300)
-			{
-				return 12;
-			}
-			else if (startingResources >= 216)
-			{
-				return 10;
-			}
-			else if (startingResources >= 164)
-			{
-				return 8;
-			}
-			else
-			{
-				return 6;
-			}
-		}
 	},
 	{
 		ID = "BanditDefenders",  // Spawn from deliver item contract, drive away bandits contract, bandit camp locations, bandit hideout locations, bandit ruins locations, man in forest event and defend bandits action.
@@ -123,27 +60,6 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.10 },
 			{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.0, RatioMax = 0.11, StartingResourceMin = 250 }
 		]
-
-		function generateIdealSize( _isLocation = false )
-		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 300)
-			{
-				return 12;
-			}
-			else if (startingResources >= 216)
-			{
-				return 10;
-			}
-			else if (startingResources >= 164)
-			{
-				return 8;
-			}
-			else
-			{
-				return 6;
-			}
-		}
 	},
 	{
 		ID = "BanditBoss",
@@ -160,27 +76,6 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.35 },
 			{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.01, RatioMax = 0.11 }  // One boss is always guaranteed
 		]
-
-		function generateIdealSize( _isLocation = false )
-		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 300)
-			{
-				return 12;
-			}
-			else if (startingResources >= 216)
-			{
-				return 10;
-			}
-			else if (startingResources >= 164)
-			{
-				return 8;
-			}
-			else
-			{
-				return 6;
-			}
-		}
 	},
 	{
 		ID = "BanditsDisguisedAsDirewolves", // Only spawn from roaming beasts contract.
@@ -192,11 +87,6 @@ local parties = [
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BanditDisguisedDirewolf" }
 		],
-
-		function generateIdealSize( _isLocation = false )
-		{
-			return 8;
-		}
 	}
 ]
 
