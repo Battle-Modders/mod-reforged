@@ -1,5 +1,7 @@
 this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		StaminaModifierThresholdMult = 0.35
+	},
 	function create()
 	{
 		this.m.ID = "perk.rf_poise";
@@ -117,6 +119,6 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 		{
 			trait.onUpdate(b);
 		}
-		return ::Math.max(0, 0.35 * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
+		return ::Math.max(0, this.m.StaminaModifierThresholdMult * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
 	}
 });

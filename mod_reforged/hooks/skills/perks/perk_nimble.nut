@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_nimble", function(q) {
+	q.m.StaminaModifierThresholdMult <- 0.15;
+
 	q.isHidden = @() function()
 	{
 		return ::Math.floor(this.getHitpointsDamage() * 100) >= 100 && ::Math.floor(this.getArmorDamage() * 100) >= 100;
@@ -106,6 +108,6 @@
 		{
 			trait.onUpdate(b);
 		}
-		return ::Math.max(0, 0.15 * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
+		return ::Math.max(0, this.m.StaminaModifierThresholdMult * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
 	}
 });
