@@ -21,7 +21,7 @@ this.rf_greatsword <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ShieldDamage = 16;
 		this.m.Condition = 60.0;
 		this.m.ConditionMax = 60.0;
-		this.m.StaminaModifier = -10;
+		this.m.StaminaModifier = -12;
 		this.m.RegularDamage = 65;
 		this.m.RegularDamageMax = 85;
 		this.m.ArmorDamageMult = 1.0;

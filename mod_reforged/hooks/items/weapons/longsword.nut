@@ -7,7 +7,7 @@
 		this.m.RegularDamageMax = 75;
 		this.m.DirectDamageMult = 0.3;
 		this.m.ArmorDamageMult = 0.8;
-		this.m.StaminaModifier = -8;
+		this.m.StaminaModifier = -10;
 		this.m.ChanceToHitHead = 10;
 		this.m.Value = 2400;
 	}

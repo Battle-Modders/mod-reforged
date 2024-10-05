@@ -3,6 +3,7 @@
 	{
 		__original();
 		this.m.Name = "Zweihander";
+		this.m.StaminaModifier = -14;
 		this.m.Reach = 7;
 	}
 
