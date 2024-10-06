@@ -1,9 +1,9 @@
 this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 	m = {
-		APRecovered = 4,
-		FatCostRed = 50,
+		FatigueCostMult = 0.5,
 		IsPrimed = false,
-		AttacksRemaining = 2
+		AttacksRemaining = 2,
+		TurnsRemaining = 2
 	},
 	function create()
 	{
@@ -17,20 +17,22 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return !this.m.IsPrimed && this.m.AttacksRemaining == 0;
+		return !this.getContainer().getActor().isPlacedOnMap() || (!this.m.IsPrimed && (this.m.AttacksRemaining == 0 || this.m.TurnsRemaining == 0));
 	}
 
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 
-		if (this.m.AttacksRemaining > 0)
+		local weaponTypeName = ::Const.Items.getWeaponTypeName(::Const.Items.WeaponType.Throwing);
+
+		if (this.m.AttacksRemaining != 0 && this.m.TurnsRemaining != 0)
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next " + ::MSU.Text.colorPositive(this.m.AttacksRemaining) + " throwing attack(s) in this battle have their [Action Point|Concept.ActionPoints] costs halved")
+				text = ::Reforged.Mod.Tooltips.parseString(format("The next %i %s attack(s) during this battle have their [Action Point|Concept.ActionPoints] costs %s. This effect expires in %s [turn(s)|Concept.Turn]", this.m.AttacksRemaining, weaponTypeName, ::MSU.Text.colorPositive("halved"), ::MSU.Text.colorNegative(this.m.TurnsRemaining)))
 			});
 		}
 
@@ -40,7 +42,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next throwing attack before [waiting|Concept.Wait] or ending the [turn|Concept.Turn] builds " + ::MSU.Text.colorPositive(this.m.FatCostRed + "%") + " less [Fatigue|Concept.Fatigue]")
+				text = ::Reforged.Mod.Tooltips.parseString(format("The next %s attack before [waiting|Concept.Wait] or ending the [turn|Concept.Turn] costs %s [Action Points|Concept.ActionPoints] and builds %s [Fatigue|Concept.Fatigue]", weaponTypeName, ::MSU.Text.colorPositive("no"), ::MSU.Text.colorizeMultWithText(this.m.FatigueCostMult, {InvertColor = true})))
 			});
 		}
 
@@ -59,12 +61,8 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 	{
 		if (!_tile.IsCorpseSpawned) return false;
 
-		// TEMPORARY: The ("IsValidForOpportunist" in corpse) check is done because of an issue in MSU where onOtherActorDeath is only called via
-		// base actor.nut onDeath function and when a goblin_wolfrider dies and spawns a wolf corpse, it doesn't call the base onDeath function,
-		// which means that the event doesn't get called and therefore the IsValidForOpportunist key does not get added to the corpse.
-		// Once MSU implements a "hookLeaves" way to do onOtherActorDeath it should no longer be necessary. -- LordMidas
 		local corpse = _tile.Properties.get("Corpse");
-		return ("IsValidForOpportunist" in corpse) && corpse.IsValidForOpportunist && this.getContainer().getActor().getAlliedFactions().find(corpse.Faction) == null;
+		return corpse.IsValidForOpportunist && this.getContainer().getActor().getAlliedFactions().find(corpse.Faction) == null;
 	}
 
 	function onQueryTileTooltip( _tile, _tooltip )
@@ -80,67 +78,49 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function isEnabled()
+	function onMovementFinished( _tile )
 	{
-		if (this.getContainer().getActor().isDisarmed()) return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing) || weapon.getAmmoMax() == 0)
-		{
-			return false;
-		}
-
-		return true;
-	}
-
-	function onUpdate( _properties )
-	{
-		local actor = this.getContainer().getActor();
-
-		if (!actor.isPlacedOnMap() || !this.isEnabled() || !::Tactical.TurnSequenceBar.isActiveEntity(actor))
-		{
+		if (!this.canProcOntile(_tile))
 			return;
-		}
 
-		if (actor.m.IsMoving)
-		{
-			local tile = actor.getTile();
+		local actor = this.getContainer().getActor();
+		if (!::Tactical.TurnSequenceBar.isActiveEntity(actor))
+			return;
 
-			if (tile == null || !this.canProcOntile(tile))
-			{
-				return;
-			}
+		local weapon = actor.getMainhandItem();
+		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.Weapon) || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing) || weapon.getAmmoMax() == 0)
+			return;
 
-			local weapon = actor.getMainhandItem();
+		weapon.setAmmo(::Math.min(weapon.getAmmoMax(), weapon.getAmmo() + 1));
+		this.spawnIcon("perk_rf_opportunist", _tile);
+		_tile.Properties.get("Corpse").IsValidForOpportunist = false;
 
-			weapon.setAmmo(::Math.min(weapon.getAmmoMax(), weapon.getAmmo() + 1));
-			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
-			actor.setDirty(true);
-			this.spawnIcon("perk_rf_opportunist", tile);
-			tile.Properties.get("Corpse").IsValidForOpportunist = false;
-
-			this.m.IsPrimed = true;
-		}
+		this.m.IsPrimed = true;
 	}
 
 	function onAfterUpdate( _properties )
 	{
-		if (this.isEnabled())
-		{
-			foreach (skill in this.getContainer().getActor().getMainhandItem().getSkills())
-			{
-				if (skill.isAttack() && skill.isRanged())
-				{
-					if (this.m.IsPrimed)
-					{
-						skill.m.FatigueCostMult *= this.m.FatCostRed * 0.01;
-					}
+		local actor = this.getContainer().getActor();
+		if (!actor.isPlacedOnMap())
+			return;
 
-					if (this.getContainer().getActor().isPlacedOnMap() && this.m.AttacksRemaining > 0 && skill.m.ActionPointCost > 1)
-					{
-						skill.m.ActionPointCost /= 2;
-					}
-				}
+		local weapon = actor.getMainhandItem();
+		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.Weapon) || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
+			return;
+
+		foreach (skill in weapon.getSkills())
+		{
+			if (!this.isSkillValid(skill))
+				continue;
+
+			if (this.m.IsPrimed)
+			{
+				skill.m.ActionPointCost = 0;
+				skill.m.FatigueCostMult *= this.m.FatigueCostMult;
+			}
+			else if (this.m.AttacksRemaining != 0 && this.m.TurnsRemaining != 0 && skill.m.ActionPointCost > 1)
+			{
+				skill.m.ActionPointCost /= 2;
 			}
 		}
 	}
@@ -152,16 +132,18 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted ( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		this.m.IsPrimed = false;
-		if (_skill.isAttack() && _skill.isRanged() && _skill.m.IsWeaponSkill && this.isEnabled())
+		if (this.m.AttacksRemaining != 0 && this.isSkillValid(_skill))
 		{
-			this.m.AttacksRemaining = ::Math.max(0, this.m.AttacksRemaining - 1);
+			this.m.AttacksRemaining--;
 		}
+		this.m.IsPrimed = false;
 	}
 
 	function onTurnEnd()
 	{
 		this.m.IsPrimed = false;
+		if (this.m.TurnsRemaining != 0)
+			this.m.TurnsRemaining--;
 	}
 
 	function onWaitTurn()
@@ -174,5 +156,15 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		this.skill.onCombatFinished();
 		this.m.IsPrimed = false;
 		this.m.AttacksRemaining = 2;
+		this.m.TurnsRemaining = 2;
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (!_skill.isAttack() || !_skill.isRanged())
+			return false;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Throwing);
 	}
 });
