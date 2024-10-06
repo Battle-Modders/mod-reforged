@@ -51,9 +51,56 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 	}
 
-	// q.assignRandomEquipment = @() function()
-	// {
-	// }
+	q.assignRandomEquipment = @() function()
+	{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			local weapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/fighting_spear"],
+				[1, "scripts/items/weapons/oriental/heavy_southern_mace"],
+				[1, "scripts/items/weapons/shamshir"],
+				[1, "scripts/items/weapons/three_headed_flail"],
+
+				[1, "scripts/items/weapons/greataxe"],
+				[1, "scripts/items/weapons/oriental/two_handed_scimitar"]
+			]).roll();
+			this.m.Items.equip(::new(weapon));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
+		{
+			local throwing = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/javelin"],
+				[1, "scripts/items/weapons/throwing_spear"]
+			]).rollChance(33);
+
+			if (throwing != null) this.m.Items.addToBag(::new(throwing));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			this.m.Items.equip(::new("scripts/items/shields/oriental/metal_round_shield"));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local armor = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/armor/light_scale_armor"],
+				[1, "scripts/items/armor/oriental/southern_long_mail_with_padding"],
+				[1, "scripts/items/armor/lamellar_harness"]
+			]).roll();
+			this.m.Items.equip(::new(armor));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			local helmet = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/helmets/oriental/southern_helmet_with_coif"],
+				[1, "scripts/items/helmets/steppe_helmet_with_mail"]
+			]).roll();
+			this.m.Items.equip(::new(helmet));
+		}
+	}
 
 	q.makeMiniboss = @(__original) function()
 	{
@@ -71,12 +118,6 @@
 	q.onSpawned = @() function()
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-
-		local weapon = this.getMainhandItem();
-		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.OneHanded) && this.getOffhandItem() == null)
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
-		}
 
 		if (this.isArmedWithShield())
 		{
