@@ -1991,7 +1991,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"Every hit or miss against any target increases your [Initiative|Concept.Initiative] by " + ::MSU.Text.colorPositive("+15") + ". This bonus is carried over into your next [turn|Concept.Turn] but only until the first skill used or upon [waiting|Concept.Wait] that [turn.|Concept.Turn]",
-					"The first two hits against opponents who act after you in the current [round|Concept.Round] recover " + ::MSU.Text.colorPositive("2") + " [Action Points|Concept.ActionPoints] each. A miss against any target or a hit against a target who acted before you increments the counter, but does not recover any [Action Points.|Concept.ActionPoints]"
+					"The first two hits against opponents who act after you in the current [round|Concept.Round] recover " + ::MSU.Text.colorPositive("2") + " [Action Points|Concept.ActionPoints] each but cause the [Initiative|Concept.Initiative] bonus to expire."
 				]
 			}
 		]

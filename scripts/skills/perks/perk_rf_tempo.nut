@@ -52,7 +52,7 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next " + this.m.AttacksRemaining + " hit(s) against a target that acts after you in this [round|Concept.Round] will recover " + ::MSU.Text.colorPositive(this.m.APRecovery) + " [Action Points|Concept.ActionPoints]")
+				text = ::Reforged.Mod.Tooltips.parseString("The next " + this.m.AttacksRemaining + " hit(s) against a target that acts after you in this [round|Concept.Round] will recover " + ::MSU.Text.colorPositive(this.m.APRecovery) + " [Action Points|Concept.ActionPoints] but cause the [Initiative|Concept.Initiative] bonus to expire")
 			});
 		}
 
@@ -110,6 +110,8 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 			{
 				local actor = this.getContainer().getActor();
 				actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + this.m.APRecovery));
+				this.m.Stacks = 0;
+				return;
 			}
 		}
 
@@ -122,8 +124,6 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 			return;
 
 		this.gainStackIfApplicable(_skill, _targetEntity);
-		if (this.m.AttacksRemaining > 0 && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
-			this.m.AttacksRemaining--;
 	}
 
 	// Lose all bonus upon equipping an invalid weapon
