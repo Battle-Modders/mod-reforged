@@ -1,6 +1,5 @@
 this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 	m = {
-		RequiredWeaponType = ::Const.Items.WeaponType.Throwing,
 		FatigueCostMult = 0.5,
 		IsPrimed = false,
 		AttacksRemaining = 2,
@@ -25,7 +24,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.skill.getTooltip();
 
-		local weaponTypeName = this.m.RequiredWeaponType == null ? "" : " " +  ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType);
+		local weaponTypeName = ::Const.Items.getWeaponTypeName(::Const.Items.WeaponType.Throwing);
 
 		if (this.m.AttacksRemaining != 0 && this.m.TurnsRemaining != 0)
 		{
@@ -33,7 +32,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("The next %i%s attack(s) during this [turn|Concept.Turn] have their [Action Point|Concept.ActionPoints] costs " + ::MSU.Text.colorPositive("halved") + ". This effect expires in %i [turn(s)|Concept.Turn]", this.m.AttacksRemaining, weaponTypeName, ::MSU.Text.colorNegative(this.m.TurnsRemaining)))
+				text = ::Reforged.Mod.Tooltips.parseString(format("The next %i %s attack(s) during this battle have their [Action Point|Concept.ActionPoints] costs %s. This effect expires in %s [turn(s)|Concept.Turn]", this.m.AttacksRemaining, weaponTypeName, ::MSU.Text.colorPositive("halved"), ::MSU.Text.colorNegative(this.m.TurnsRemaining)))
 			});
 		}
 
@@ -43,7 +42,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("The next%s attack before [waiting|Concept.Wait] or ending the [turn|Concept.Turn] costs %s [Action Points|Concept.ActionPoints] and builds %s [Fatigue|Concept.Fatigue]", weaponTypeName, ::MSU.Text.colorPositive("no"), ::MSU.Text.colorizeMultWithText(this.m.FatigueCostMult, {InvertColor = true})))
+				text = ::Reforged.Mod.Tooltips.parseString(format("The next %s attack before [waiting|Concept.Wait] or ending the [turn|Concept.Turn] costs %s [Action Points|Concept.ActionPoints] and builds %s [Fatigue|Concept.Fatigue]", weaponTypeName, ::MSU.Text.colorPositive("no"), ::MSU.Text.colorizeMultWithText(this.m.FatigueCostMult, {InvertColor = true})))
 			});
 		}
 
@@ -85,15 +84,15 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 			return;
 
 		local actor = this.getContainer().getActor();
-		if (!::Tactical.Entities.TurnSequenceBar.isActiveEntity(actor))
+		if (!::Tactical.TurnSequenceBar.isActiveEntity(actor))
 			return;
 
 		local weapon = actor.getMainhandItem();
-		if (weapon.getAmmoMax() == 0)
+		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.Weapon) || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing) || weapon.getAmmoMax() == 0)
 			return;
 
 		weapon.setAmmo(::Math.min(weapon.getAmmoMax(), weapon.getAmmo() + 1));
-		this.spawnIcon("perk_rf_opportunist", tile);
+		this.spawnIcon("perk_rf_opportunist", _tile);
 		_tile.Properties.get("Corpse").IsValidForOpportunist = false;
 
 		this.m.IsPrimed = true;
@@ -105,7 +104,11 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		if (!actor.isPlacedOnMap())
 			return;
 
-		foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
+		local weapon = actor.getMainhandItem();
+		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.Weapon) || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
+			return;
+
+		foreach (skill in weapon.getSkills())
 		{
 			if (!this.isSkillValid(skill))
 				continue;
@@ -122,14 +125,6 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		if (this.m.AttacksRemaining != 0 && this.isSkillValid(_skill))
-		{
-			this.m.AttacksRemaining--;
-		}
-	}
-
 	function onPayForItemAction( _skill, _items )
 	{
 		this.m.IsPrimed = false;
@@ -137,6 +132,10 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted ( _skill, _targetTile, _targetEntity, _forFree )
 	{
+		if (this.m.AttacksRemaining != 0 && this.isSkillValid(_skill))
+		{
+			this.m.AttacksRemaining--;
+		}
 		this.m.IsPrimed = false;
 	}
 
@@ -165,10 +164,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		if (!_skill.isAttack() || !_skill.isRanged())
 			return false;
 
-		if (this.m.RequiredWeaponType == null)
-			return true;
-
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Throwing);
 	}
 });
