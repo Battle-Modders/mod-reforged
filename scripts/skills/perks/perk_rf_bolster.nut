@@ -38,8 +38,8 @@ this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 
 		local weapon = _skill.getItem();
 		if (::MSU.isNull(weapon))
-			return this.m.RequiredWeaponType == null;
+			return this.m.RequiredWeaponType == null && this.m.RequiredWeaponReach == null;
 
-		return weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.getReach() >= this.m.RequiredWeaponReach && (this.m.RequiredWeaponType == null || weapon.isWeaponType(this.m.RequiredWeaponType));
+		return weapon.isItemType(::Const.Items.ItemType.Weapon) && (this.m.RequiredWeaponReach == null || weapon.getReach() >= this.m.RequiredWeaponReach) && (this.m.RequiredWeaponType == null || weapon.isWeaponType(this.m.RequiredWeaponType));
 	}
 });
