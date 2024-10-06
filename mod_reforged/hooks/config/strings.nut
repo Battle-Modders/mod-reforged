@@ -1652,7 +1652,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Throwing attacks during the first [round|Concept.Round] of battle hvae their [Action Point|Concept.ActionPoints] costs " + ::MSU.Text.colorPositive("halved") + ".",
+				"The first two throwing attacks during a battle have their [Action Point|Concept.ActionPoints] costs " + ::MSU.Text.colorPositive("halved") + ". This effect only lasts until the end of your second [turn.|Concept.Turn]",
 				"When using a throwing weapon which uses ammo, whenever you end your movement over an enemy\'s corpse during your [turn,|Concept.Turn] recover " + ::MSU.Text.colorPositive(1) + " ammo. Immediately afterward, the next throwing attack costs " + ::MSU.Text.colorPositive("no") + " [ActionPoints|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive("50%") + " less [Fatigue.|Concept.Fatigue]",
 				"A corpse can only be used once per combat and cannot be used by multiple characters with this perk."
 			]

@@ -3,6 +3,8 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		RequiredWeaponType = ::Const.Items.WeaponType.Throwing,
 		FatigueCostMult = 0.5,
 		IsPrimed = false,
+		AttacksRemaining = 2,
+		TurnsRemaining = 2
 	},
 	function create()
 	{
@@ -16,20 +18,22 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return !this.m.IsPrimed && ::Time.getRound() != 1;
+		return !this.m.IsPrimed && (this.m.AttacksRemaining == 0 || this.m.TurnsRemaining == 0);
 	}
 
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 
-		if (::Time.getRound() == 1)
+		local weaponTypeName = this.m.RequiredWeaponType == null ? "" : " " +  ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType);
+
+		if (this.m.AttacksRemaining != 0 && this.m.TurnsRemaining != 0)
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Throwing attack(s) during this [turn|Concept.Turn] have their [Action Point|Concept.ActionPoints] costs " + ::MSU.Text.colorPositive("halved"))
+				text = ::Reforged.Mod.Tooltips.parseString(format("The next %i%s attack(s) during this [turn|Concept.Turn] have their [Action Point|Concept.ActionPoints] costs " + ::MSU.Text.colorPositive("halved") + ". This effect expires in %i [turn(s)|Concept.Turn]", this.m.AttacksRemaining, weaponTypeName, ::MSU.Text.colorNegative(this.m.TurnsRemaining)))
 			});
 		}
 
@@ -39,7 +43,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next throwing attack before [waiting|Concept.Wait] or ending the [turn|Concept.Turn] costs " + ::MSU.Text.colorPositive("no") + " [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorizeMultWithText(this.m.FatigueCostMult, {InvertColor = true}) + " [Fatigue|Concept.Fatigue]")
+				text = ::Reforged.Mod.Tooltips.parseString(format("The next%s attack before [waiting|Concept.Wait] or ending the [turn|Concept.Turn] costs %s [Action Points|Concept.ActionPoints] and builds %s [Fatigue|Concept.Fatigue]", weaponTypeName, ::MSU.Text.colorPositive("no"), ::MSU.Text.colorizeMultWithText(this.m.FatigueCostMult, {InvertColor = true})))
 			});
 		}
 
@@ -97,21 +101,32 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		foreach (skill in weapon.getSkills())
+		local actor = this.getContainer().getActor();
+		if (!actor.isPlacedOnMap())
+			return;
+
+		foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 		{
-			if (this.isSkillValid(skill))
+			if (!this.isSkillValid(skill))
+				continue;
+
+			if (this.m.IsPrimed)
 			{
-				if (::Time.getRound() == 1)
-				{
-					skill.m.ActionPointCost /= 0;
-				}
-				if (this.m.IsPrimed)
-				{
-					skill.m.ActionPointCost = 0;
-					skill.m.FatigueCostMult *= this.m.FatigueCostMult;
-				}
+				skill.m.ActionPointCost = 0;
+				skill.m.FatigueCostMult *= this.m.FatigueCostMult;
 			}
+			else if (this.m.AttacksRemaining != 0 && this.m.TurnsRemaining != 0 && skill.m.ActionPointCost > 1)
+			{
+				skill.m.ActionPointCost /= 2;
+			}
+		}
+	}
+
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (this.m.AttacksRemaining != 0 && this.isSkillValid(_skill) && _skill.getActionPointCost() != 0 && !_forFree)
+		{
+			this.m.AttacksRemaining--;
 		}
 	}
 
@@ -128,6 +143,8 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 	function onTurnEnd()
 	{
 		this.m.IsPrimed = false;
+		if (this.m.TurnsRemaining != 0)
+			this.m.TurnsRemaining--;
 	}
 
 	function onWaitTurn()
@@ -139,6 +156,8 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 	{
 		this.skill.onCombatFinished();
 		this.m.IsPrimed = false;
+		this.m.AttacksRemaining = 2;
+		this.m.TurnsRemaining = 2;
 	}
 
 	function isSkillValid( _skill )
