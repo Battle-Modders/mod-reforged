@@ -1,3 +1,5 @@
+// still need to figure out frost unhold spawns and adjust spawns after that resource value
+
 local parties = [
 	{
 		ID = "Barbarians",
@@ -9,7 +11,8 @@ local parties = [
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BarbarianFrontline", RatioMin = 0.60, RatioMax = 1.00, DeterminesFigure = true },	// Vanilla: doesn't care about size
 			{ BaseID = "UnitBlock.RF.BarbarianSupport", RatioMin = 0.00, RatioMax = 0.07, ReqPartySize = 10 },			// Vanilla: Start spawning in armies of 15+; At 24+ a second drummer spawns
-			{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.00, RatioMax = 0.15, ReqPartySize = 5 },		// Vanilla: Start spawning in armies of 6+
+			{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.00, RatioMax = 1.00, },		// Vanilla: Start spawning in armies of 6+
+			// want to add for dogs: if dogs in party >= 3 then reduce spawn chance by x
 			{ BaseID = "UnitBlock.RF.BarbarianBeastmaster", RatioMin = 0.00, RatioMax = 0.10, ReqPartySize = 5 }		// Vanilla: Start spawning in armies of 7+ (singular case) but more like 9+
 		]
 	},
@@ -23,6 +26,7 @@ local parties = [
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BarbarianHunterFrontline", RatioMin = 0.60, RatioMax = 1.0, DeterminesFigure = true },
 			{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.20, RatioMax = 0.45 }
+			// want to add for dogs: if dogs in party >= 3 then reduce spawn chance by x
 		]
 	},
 	{
