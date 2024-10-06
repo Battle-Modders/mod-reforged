@@ -3,7 +3,45 @@
 
 	q.isHidden = @() function()
 	{
-		return this.isInValidPosition();
+		return !this.isInValidPosition();
+	}
+
+	q.getTooltip = @() function()
+	{
+		local ret = this.skill.getTooltip();
+		ret.extend([
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/melee_skill.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.BonusMult) + " [Melee Skill|Concept.MeleeSkill]")
+			},
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/ranged_skill.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.BonusMult) + " [Ranged Skill|Concept.RangeSkill]")
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.BonusMult) + " [Melee Defense|Concept.MeleeDefense]")
+			},
+			{
+				id = 13,
+				type = "text",
+				icon = "ui/icons/ranged_defense.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.BonusMult) + " [Ranged Defense|Concept.RangeDefense]")
+			},
+			{
+				id = 14,
+				type = "text",
+				icon = "ui/icons/bravery.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.BonusMult) + " [Resolve|Concept.Bravery]")
+			}
+		]);
+		return ret;
 	}
 
 	q.onUpdate = @() function( _properties )
@@ -24,6 +62,8 @@
 		local actor = this.getContainer().getActor();
 		if (!actor.isPlacedOnMap())
 			return false;
+
+		local myTile = actor.getTile();
 
 		local numAlliesWithinTwoTiles = 0;
 
