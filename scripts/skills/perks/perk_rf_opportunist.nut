@@ -124,7 +124,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (this.m.AttacksRemaining != 0 && this.isSkillValid(_skill) && _skill.getActionPointCost() != 0 && !_forFree)
+		if (this.m.AttacksRemaining != 0 && this.isSkillValid(_skill))
 		{
 			this.m.AttacksRemaining--;
 		}
