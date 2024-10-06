@@ -197,7 +197,8 @@ local vanillaDescriptions = [
 				Description = [
 					"Armor damage taken is reduced by a percentage equal to " + ::MSU.Text.colorPositive("5%") + " of the current total armor value of both body and head armor.",
 					"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachDisadvantage] reduce this disadvantage by 1 for every 300 current combined head and body armor durability you have."
-					"Does not affect damage from mental attacks or status effects."
+					"Does not affect damage from mental attacks or status effects.",
+					"Cannot be learned if you have [Nimble|Perk+perk_nimble] or [Poise.|Perk+perk_rf_poise]"
 				]
 			}]
 		})
@@ -739,7 +740,7 @@ local vanillaDescriptions = [
 					"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
 					"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is greater than that of your target."
 					"[Brawny|Perk+perk_brawny] does not affect this perk.",
-					"Cannot be learned if you have [Poise.|Perk+perk_rf_poise]"
+					"Cannot be learned if you have [Poise|Perk+perk_rf_poise] or [Battleforged.|Perk+perk_battle_forged]"
 
 				]
 			}]
@@ -1561,7 +1562,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
 				"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is greater than that of your target."
 				"[Brawny|Perk+perk_brawny] does not affect this perk.",
-				"Cannot be learned if you have [Nimble.|Perk+perk_nimble]"
+				"Cannot be learned if you have [Nimble|Perk+perk_nimble] or [Battleforged.|Perk+perk_battle_forged]"
 			]
 		}]
 	}),

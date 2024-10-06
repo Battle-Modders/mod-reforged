@@ -981,6 +981,9 @@
 		{
 			local poison = _player.getSkills().getSkillByID("perk.nimble");
 			if (poison != null)
+				poison = _player.getSkills().getSkillByID("perk.battle_forged");
+
+			if (poison != null)
 			{
 				_tooltip.push({
 					id = 3,
@@ -1200,12 +1203,35 @@
 {
 	local poison = _player.getSkills().getSkillByID("perk.rf_poise");
 	if (poison != null)
+		poison = _player.getSkills().getSkillByID("perk.battle_forged");
+
+	if (poison != null)
 	{
 		_tooltip.push({
 			id = 3,
 			type = "hint",
 			icon = "ui/icons/icon_locked.png",
 			text = "Locked because this character has the " + poison.getName() + " perk"
+		});
+		return false;
+	}
+
+	return true;
+}
+
+::Const.Perks.findById("perk.battle_forged").verifyPrerequisites <- function( _player, _tooltip )
+{
+	local poison = _player.getSkills().getSkillByID("perk.rf_poise");
+	if (poison != null)
+		poison = _player.getSkills().getSkillByID("perk.nimble");
+
+	if (poison != null)
+	{
+		_tooltip.push({
+			id = 3,
+			type = "hint",
+			icon = "ui/icons/icon_locked.png",
+			text = "Locked because this character has the " + ::Reforged.NestedTooltips.getNestedPerkName(poison) + " perk"
 		});
 		return false;
 	}
