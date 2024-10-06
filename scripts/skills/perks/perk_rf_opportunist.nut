@@ -18,7 +18,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return !this.m.IsPrimed && (this.m.AttacksRemaining == 0 || this.m.TurnsRemaining == 0);
+		return !this.getContainer().getActor().isPlacedOnMap() || (!this.m.IsPrimed && (this.m.AttacksRemaining == 0 || this.m.TurnsRemaining == 0));
 	}
 
 	function getTooltip()
