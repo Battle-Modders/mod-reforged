@@ -123,7 +123,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		{
 			local pg1 = equippedWeaponPerkGroups[0];
 			local pg2 = equippedWeaponPerkGroups[1];
-			if (perkTree.hasPerkGroup(pg1) && perkTree.hasPerkGroup(pg2))
+			if (perkTree.hasPerkGroup(pg1.getID()) && perkTree.hasPerkGroup(pg2.getID()))
 			{
 				foreach (range in tierRanges)
 				{
