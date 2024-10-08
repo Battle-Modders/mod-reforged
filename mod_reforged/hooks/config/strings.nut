@@ -643,7 +643,7 @@ local vanillaDescriptions = [
 					"Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue.|Concept.Fatigue]",
 					"The [Action Point|Concept.ActionPoints] cost of [Spearwall|Skill+spearwall] is reduced by " + ::MSU.Text.colorPositive("1") + ".",
 					"[Spearwall|Skill+spearwall] is no longer disabled once an opponent manages to overcome it. Instead, [Spearwall|Skill+spearwall] can still be used and continues to give free attacks on any further opponent attempting to enter the [Zone of Control|Concept.ZoneOfControl]",
-					"When starting your [turn|Concept.Turn] with a spear equipped, the first spear attack during your [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints] and builds no [Fatigue,|Concept.Fatigue] but deals " + ::MSU.Text.colorNegative("25%") + " less damage. Expires upon switching your weapon.",
+					"When starting your [turn|Concept.Turn] with a spear equipped, the first piercing spear attack during your [turn|Concept.Turn] costs no [Action Points|Concept.ActionPoints] and builds no [Fatigue,|Concept.Fatigue] but deals " + ::MSU.Text.colorNegative("25%") + " less damage. Expires upon switching your weapon.",
 					"The [Spetum|Item+spetum] and [Warfork|Item+warfork] no longer have a penalty for attacking targets directly adjacent."
 				]
 			}]
