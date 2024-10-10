@@ -98,7 +98,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (!this.isEnabled() || !_skill.isAttack() || !_skill.m.IsWeaponSkill)
+		if (!this.isEnabled() || !_skill.isAttack() || !_skill.m.IsWeaponSkill && !_forFree)
 		{
 			this.m.IsSpent = true;
 		}
