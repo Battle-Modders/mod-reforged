@@ -1,3 +1,7 @@
+local characterScreenPage = ::Reforged.Mod.ModSettings.addPage("Character Screen");
+
+characterScreenPage.addBooleanSetting("CharacterScreen_ShowAttributeProjection", true, "Show Attribute Projection", "If enabled, the character background tooltip will display projected attribute values, estimating how much each attribute could grow if all level-ups are invested into that attribute.");
+
 local tacticalTooltipPage = ::Reforged.Mod.ModSettings.addPage("Tactical Tooltips");
 
 tacticalTooltipPage.addEnumSetting("TacticalTooltip_Attributes", "All", ["All", "AI Only", "Player Only", "None"], "Show Attributes", "Show attributes such as Melee Skill, Melee Defense etc. for entities in the Tactical Tooltip.");
