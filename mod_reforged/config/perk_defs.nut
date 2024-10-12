@@ -989,7 +989,7 @@
 					id = 3,
 					type = "hint",
 					icon = "ui/icons/icon_locked.png",
-					text = "Locked because this character has the " + poison.getName() + " perk"
+					text = ::Reforged.Mod.Tooltips.parseString("Locked because this character has the " + ::Reforged.NestedTooltips.getNestedPerkName(poison) + " perk")
 				});
 				return false;
 			}
@@ -1211,7 +1211,7 @@
 			id = 3,
 			type = "hint",
 			icon = "ui/icons/icon_locked.png",
-			text = "Locked because this character has the " + poison.getName() + " perk"
+			text = ::Reforged.Mod.Tooltips.parseString("Locked because this character has the " + ::Reforged.NestedTooltips.getNestedPerkName(poison) + " perk")
 		});
 		return false;
 	}
@@ -1231,7 +1231,7 @@
 			id = 3,
 			type = "hint",
 			icon = "ui/icons/icon_locked.png",
-			text = "Locked because this character has the " + ::Reforged.NestedTooltips.getNestedPerkName(poison) + " perk"
+			text = ::Reforged.Mod.Tooltips.parseString("Locked because this character has the " + ::Reforged.NestedTooltips.getNestedPerkName(poison) + " perk")
 		});
 		return false;
 	}
