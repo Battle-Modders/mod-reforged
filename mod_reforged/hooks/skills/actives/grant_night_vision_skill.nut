@@ -16,6 +16,12 @@
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("The target and allies adjacent to the target will no longer be affected by [Nighttime|Skill+night_effect] for the course of this battle")
 		});
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
+		});
 		return ret;
 	}
 });

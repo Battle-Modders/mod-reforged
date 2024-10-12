@@ -11,6 +11,12 @@
 	{
 		local ret = this.skill.getDefaultTooltip();
 		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
+		});
+		ret.push({
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",

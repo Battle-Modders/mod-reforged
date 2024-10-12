@@ -16,6 +16,12 @@
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Will trigger up to " + ::MSU.Text.colorNegative("2") + " [morale checks|Concept.Morale] on the target and if any are successful, the target gains the [Charmed|Skill+charmed_effect] effect")
 		});
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
+		});
 		return ret;
 	}
 });

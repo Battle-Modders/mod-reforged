@@ -16,6 +16,14 @@
 			icon = "ui/icons/bravery.png",
 			text = ::Reforged.Mod.Tooltips.parseString("The target receives " + ::MSU.Text.colorNegative(4) + " mental [morale checks|Concept.Morale]")
 		});
+
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
+		});
+
 		return ret;
 	}
 });
