@@ -60,11 +60,15 @@
 	{
 		local ret = __original();
 
-		local player = this.getContainer().getActor();
-		if (::Const.XP.MaxLevelWithPerkpoints - player.getLevel() + player.getLevelUps() > 0)
+		if (::Reforged.Mod.ModSettings.getSetting("CharacterScreen_ShowAttributeProjection").getValue())
 		{
-			ret.extend(this.getProjectedAttributesTooltip());
+			local player = this.getContainer().getActor();
+			if (::Const.XP.MaxLevelWithPerkpoints - player.getLevel() + player.getLevelUps() > 0)
+			{
+				ret.extend(this.getProjectedAttributesTooltip());
+			}
 		}
+
 		return ret;
 	}
 })
