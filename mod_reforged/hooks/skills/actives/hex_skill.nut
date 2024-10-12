@@ -16,6 +16,12 @@
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("The target gains the [Hex|Skill+hex_slave_effect]")
 		});
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
+		});
 		return ret;
 	}
 });

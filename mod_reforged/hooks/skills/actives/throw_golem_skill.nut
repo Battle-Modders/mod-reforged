@@ -23,6 +23,12 @@
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Will reduce your size and spawn two " + ::Const.Strings.EntityNamePlural[entityType] + " of this size adjacent to you")
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
 			}
 		]);
 		return ret;

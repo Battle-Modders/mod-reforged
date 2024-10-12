@@ -28,6 +28,12 @@
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Blows away existing tile effects like Fire or Smoke")
 		});
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
+		});
 		return ret;
 	}
 });

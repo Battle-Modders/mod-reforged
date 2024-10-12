@@ -23,6 +23,12 @@
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Knocked back targets will lose the [Shieldwall|Skill+shieldwall_effect], [Spearwall|Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
 			}
 		]);
 		return ret;
