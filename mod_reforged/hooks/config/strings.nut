@@ -1351,7 +1351,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"The [Action Point|Concept.ActionPoints] cost of the first skill that costs [Action Points|Concept.ActionPoints] used every [turn|Concept.Turn] is " + ::MSU.Text.colorPositive("halved") + ".",
-				"The effect becomes disabled if you start a [turn|Concept.Turn] with " + ::MSU.Text.colorNegative("30%") + " or more [Fatigue|Concept.Fatigue] built and remains disabled until you use [Recover.|Skill+recover]"
+				"The effect becomes disabled if you start a [turn|Concept.Turn] with " + ::MSU.Text.colorNegative("30%") + " or more [Fatigue|Concept.Fatigue] built and remains disabled until you use [Recover.|Skill+recover_skill]"
 			]
 		}]
 	}),

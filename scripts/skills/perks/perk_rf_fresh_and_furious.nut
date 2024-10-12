@@ -39,7 +39,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Disabled until this character uses [Recover|Skill+recover]"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Disabled until this character uses [Recover|Skill+recover_skill]"))
 			});
 		}
 		else
