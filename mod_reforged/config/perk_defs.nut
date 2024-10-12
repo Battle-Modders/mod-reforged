@@ -980,7 +980,7 @@
 		function verifyPrerequisites( _player, _tooltip )
 		{
 			local poison = _player.getSkills().getSkillByID("perk.nimble");
-			if (poison != null)
+			if (poison == null)
 				poison = _player.getSkills().getSkillByID("perk.battle_forged");
 
 			if (poison != null)
@@ -1202,7 +1202,7 @@
 ::Const.Perks.findById("perk.nimble").verifyPrerequisites <- function( _player, _tooltip )
 {
 	local poison = _player.getSkills().getSkillByID("perk.rf_poise");
-	if (poison != null)
+	if (poison == null)
 		poison = _player.getSkills().getSkillByID("perk.battle_forged");
 
 	if (poison != null)
@@ -1222,7 +1222,7 @@
 ::Const.Perks.findById("perk.battle_forged").verifyPrerequisites <- function( _player, _tooltip )
 {
 	local poison = _player.getSkills().getSkillByID("perk.rf_poise");
-	if (poison != null)
+	if (poison == null)
 		poison = _player.getSkills().getSkillByID("perk.nimble");
 
 	if (poison != null)
