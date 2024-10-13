@@ -2,6 +2,10 @@
 	local characterScreenPage = ::Reforged.Mod.ModSettings.addPage("Character Screen");
 
 	characterScreenPage.addBooleanSetting("CharacterScreen_ShowAttributeProjection", true, "Show Attribute Projection", "If enabled, the character background tooltip will display projected attribute values, estimating how much each attribute could grow if all level-ups are invested into that attribute.");
+
+	characterScreenPage.addDivider("MiscDivider1");
+	characterScreenPage.addBooleanSetting("CharacterScreen_ShowBaseAttributeRangesHiring", true, "Show Base Attribute Ranges (Hiring)", "If enabled, the maximum and minimum Base Attribute Ranges for every background is displayed during Hiring, when hovering over the background icon.");
+	characterScreenPage.addEnumSetting("CharacterScreen_ShowBaseAttributeRangesRegular", "Only New Recruits", ["Always", "Only New Recruits", "Never"], "Show Base Attribute Ranges (Regular)", "When this condition is met, the minimum and maximum Base Attribute Ranges for backgrounds are displayed, when looking at their tooltips. \'Only New Recruits\' stops displaying the info, once you have spent one level-up.");
 }
 
 {	// Tactical Tooltips

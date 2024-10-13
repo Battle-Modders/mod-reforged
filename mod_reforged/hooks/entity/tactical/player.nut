@@ -179,5 +179,7 @@
 		__original(_v);
 		local discoveredTalent = this.getSkills().getSkillByID("perk.rf_discovered_talent");
 		if (discoveredTalent != null) discoveredTalent.addStars();
+
+		this.getFlags().set("RF_HasSpentLevelUp", true);
 	}
 });
