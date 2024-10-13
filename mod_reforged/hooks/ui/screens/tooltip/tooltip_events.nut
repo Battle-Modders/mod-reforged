@@ -189,6 +189,42 @@
 						text = "Modifier: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().getBravery() - entity.getBaseProperties().Bravery, {AddSign = true})
 					}
 				];
+			case "Concept.Reach":
+				local weapon = entity.getMainhandItem();
+				local weaponReach = weapon == null ? 0 : weapon.getReach();
+				local reachModifier = entity.getCurrentProperties().getReach() - entity.getBaseProperties().Reach - weaponReach;
+				return [
+					{
+						id = 3,
+						type = "text",
+						icon = "ui/icons/rf_reach.png",
+						text = "Base: " + ::MSU.Text.colorizeValue(entity.getBaseProperties().Reach)
+					},
+					{
+						id = 3,
+						type = "text",
+						icon = "ui/icons/rf_reach.png",
+						text = "Weapon: " + ::MSU.Text.colorizeValue(weaponReach)
+					},
+					{
+						id = 3,
+						type = "text",
+						icon = "ui/icons/rf_reach.png",
+						text = "Modifier: " + ::MSU.Text.colorizeValue(reachModifier, {AddSign = true})
+					},
+					{
+						id = 4,
+						type = "text",
+						icon = "ui/icons/rf_reach_attack.png",
+						text = "Offensive: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().OffensiveReachIgnore, {AddSign = true})
+					},
+					{
+						id = 5,
+						type = "text",
+						icon = "ui/icons/rf_reach_defense.png",
+						text = "Defensive: " + ::MSU.Text.colorizeValue(entity.getCurrentProperties().DefensiveReachIgnore, {AddSign = true})
+					}
+				];
 		}
 
 		return [];
