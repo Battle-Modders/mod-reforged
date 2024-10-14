@@ -740,8 +740,7 @@ local vanillaDescriptions = [
 					"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
 					"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is greater than that of your target."
 					"[Brawny|Perk+perk_brawny] does not affect this perk.",
-					"Cannot be learned if you have [Poise|Perk+perk_rf_poise] or [Battleforged.|Perk+perk_battle_forged]"
-
+					"Cannot be learned if you have [Poise|Perk+perk_rf_poise] or [Battle Forged.|Perk+perk_battle_forged]"
 				]
 			}]
 		})
@@ -1562,7 +1561,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
 				"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is greater than that of your target."
 				"[Brawny|Perk+perk_brawny] does not affect this perk.",
-				"Cannot be learned if you have [Nimble|Perk+perk_nimble] or [Battleforged.|Perk+perk_battle_forged]"
+				"Cannot be learned if you have [Nimble|Perk+perk_nimble] or [Battle Forged.|Perk+perk_battle_forged]"
 			]
 		}]
 	}),
@@ -1654,7 +1653,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"The first two throwing attacks during a battle have their [Action Point|Concept.ActionPoints] costs " + ::MSU.Text.colorPositive("halved") + ". This effect only lasts until the end of your second [turn.|Concept.Turn]",
-				"When using a throwing weapon which uses ammo, whenever you end your movement over an enemy\'s corpse during your [turn,|Concept.Turn] recover " + ::MSU.Text.colorPositive(1) + " ammo. Immediately afterward, the next throwing attack costs " + ::MSU.Text.colorPositive("no") + " [ActionPoints|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive("50%") + " less [Fatigue.|Concept.Fatigue]",
+				"When using a throwing weapon which uses ammo, whenever you end your movement over an enemy\'s corpse during your [turn,|Concept.Turn] recover " + ::MSU.Text.colorPositive(1) + " ammo. Immediately afterward, the next throwing attack costs " + ::MSU.Text.colorPositive("no") + " [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive("50%") + " less [Fatigue.|Concept.Fatigue]",
 				"A corpse can only be used once per combat and cannot be used by multiple characters with this perk."
 			]
 		}]
