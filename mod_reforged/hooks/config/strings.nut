@@ -523,7 +523,7 @@ local vanillaDescriptions = [
 					Type = ::UPD.EffectType.Passive,
 					Description = [
 						"Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue.|Concept.Fatigue]",
-						"[Heavy crossbows|Item+heavy_crossbow] now require " + ::MSU.Text.colorNegative("4") + ", [Action Points|Concept.ActionPoints] to [reload,|Skill+reload_bolt] just like regular crossbows, allowing you to shoot, reload and move.",
+						"[Heavy crossbows|Item+heavy_crossbow] now require " + ::MSU.Text.colorNegative("4") + " [Action Points|Concept.ActionPoints] to [reload,|Skill+reload_bolt] just like regular crossbows, allowing you to shoot, reload and move.",
 						"[Handgonnes|Item+handgonne] now require " + ::MSU.Text.colorNegative("6") + " [Action Points|Concept.ActionPoints] to [reload|Skill+reload_handgonne_skill] and can be fired every turn instead of every other turn."
 					]
 				},
@@ -1827,7 +1827,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"For each adjacent ally, gain " + ::MSU.Text.colorPositive("+2") + " [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] Melee Defense and [Ranged Defense|Concept.RangeDefense] and " + ::MSU.Text.colorPositive("+5") + " [Resolve.|Concept.Bravery]"
+				"For each adjacent ally, gain " + ::MSU.Text.colorPositive("+2") + " [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] and " + ::MSU.Text.colorPositive("+5") + " [Resolve.|Concept.Bravery]"
 			]
 		}]
 	}),
