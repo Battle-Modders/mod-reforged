@@ -2,7 +2,7 @@
 	XP = 250,
 	ActionPoints = 9,
 	Hitpoints = 40,
-	Bravery = 45,
+	Bravery = 55, // vanilla 45
 	Stamina = 100,
 	MeleeSkill = 60,
 	RangedSkill = 75,
@@ -21,7 +21,7 @@
 	XP = 200,
 	ActionPoints = 9,
 	Hitpoints = 40,
-	Bravery = 55,
+	Bravery = 65, // vanilla 55
 	Stamina = 100,
 	MeleeSkill = 75,
 	RangedSkill = 65,
@@ -40,7 +40,7 @@
 	XP = 150,
 	ActionPoints = 13,
 	Hitpoints = 60,
-	Bravery = 60,
+	Bravery = 70, // vanilla 60
 	Stamina = 150,
 	MeleeSkill = 75,
 	RangedSkill = 50,
@@ -59,7 +59,7 @@
 	XP = 400,
 	ActionPoints = 9,
 	Hitpoints = 70,
-	Bravery = 70,
+	Bravery = 80, // vanilla 70
 	Stamina = 130,
 	MeleeSkill = 75,
 	RangedSkill = 80,
@@ -78,7 +78,7 @@
 	XP = 350,
 	ActionPoints = 9,
 	Hitpoints = 70,
-	Bravery = 70,
+	Bravery = 80, // vanilla 70
 	Stamina = 90,
 	MeleeSkill = 60,
 	RangedSkill = 60,
