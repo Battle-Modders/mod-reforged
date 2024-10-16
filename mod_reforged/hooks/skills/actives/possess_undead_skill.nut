@@ -16,6 +16,12 @@
 			icon = "ui/icons/warning.png",
 			text = ::Reforged.Mod.Tooltips.parseString("You gain the [Possessing Undead|Skill+possessing_undead_effect] effect and the target gains the [Possessed Undead|Skill+possessed_undead_effect] effect")
 		});
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
+		});
 		if (this.getContainer().getActor().isEngagedInMelee())
 		{
 			ret.push({

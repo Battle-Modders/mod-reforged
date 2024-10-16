@@ -16,6 +16,12 @@
 			icon = "ui/icons/bravery.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Raises the target\'s [morale|Concept.Morale] to Confident unless they are Fleeing in which case raises it to Steady instead")
 		});
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
+		});
 		return ret;
 	}
 });

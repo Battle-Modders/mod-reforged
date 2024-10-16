@@ -17,6 +17,12 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Will mark a tile and its surrounding tiles for impact for this character\'s next [turn|Concept.Turn]. Upon impact, characters in the tiles take damage and may be [Shellshocked|Skill+shellshocked_effect]")
 		});
 		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
+		});
+		ret.push({
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
