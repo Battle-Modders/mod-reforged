@@ -62,7 +62,7 @@
 		ID = ::Const.EntityType.RF_BanditRobber,
 		Variant = 0,
 		Strength = 20,
-		Cost = 16,
+		Cost = 18,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_robber"
 	},
@@ -70,7 +70,7 @@
 		ID = ::Const.EntityType.RF_BanditHunter,
 		Variant = 0,
 		Strength = 18,
-		Cost = 16,
+		Cost = 18,
 		Row = 1,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_hunter"
 	},
@@ -78,7 +78,7 @@
 		ID = ::Const.EntityType.RF_BanditVandal,
 		Variant = 0,
 		Strength = 20,
-		Cost = 16,
+		Cost = 18,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_vandal"
 	},
@@ -86,7 +86,7 @@
 		ID = ::Const.EntityType.RF_BanditPillager,
 		Variant = 0,
 		Strength = 20,
-		Cost = 16,
+		Cost = 18,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_bandit_pillager"
 	},
