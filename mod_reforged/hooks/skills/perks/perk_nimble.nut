@@ -1,5 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_nimble", function(q) {
 	q.m.StaminaModifierThresholdMult <- 0.15;
+	q.m.WeightThresholdMin <- 15;	// This perks weight threshold can never be lower than this
 
 	q.isHidden = @() function()
 	{
@@ -108,6 +109,6 @@
 		{
 			trait.onUpdate(b);
 		}
-		return ::Math.max(0, this.m.StaminaModifierThresholdMult * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
+		return ::Math.max(this.m.WeightThresholdMin, this.m.StaminaModifierThresholdMult * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
 	}
 });
