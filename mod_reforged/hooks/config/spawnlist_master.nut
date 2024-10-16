@@ -43,10 +43,6 @@
 ::Const.World.Spawn.Troops.Greatsword.TitleList <- ::Const.Strings.RF_ZweihanderTitles;
 ::Const.World.Spawn.Troops.Knight.Strength = 45; // vanilla 40
 
-//Nomads
-::Const.World.Spawn.Troops.NomadOutlaw.Cost = 20; // vanilla 25
-
-
 // Cost is handled in bandit_units.nut
 ::MSU.Table.merge(::Const.World.Spawn.Troops, {
 	// Bandits
