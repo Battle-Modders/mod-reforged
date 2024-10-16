@@ -1,6 +1,6 @@
 this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 	m = {
-		StaminaModifierThresholdMult = 0.35,
+		StaminaModifierThresholdMult = 0.30,
 		WeightThresholdMin = 35	// This perks weight threshold can never be lower than this
 	},
 	function create()
