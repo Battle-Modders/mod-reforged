@@ -1,6 +1,7 @@
 this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 	m = {
-		StaminaModifierThresholdMult = 0.35
+		StaminaModifierThresholdMult = 0.35,
+		WeightThresholdMin = 35	// This perks weight threshold can never be lower than this
 	},
 	function create()
 	{
@@ -119,6 +120,6 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 		{
 			trait.onUpdate(b);
 		}
-		return ::Math.max(0, this.m.StaminaModifierThresholdMult * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
+		return ::Math.max(this.m.WeightThresholdMin, this.m.StaminaModifierThresholdMult * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
 	}
 });
