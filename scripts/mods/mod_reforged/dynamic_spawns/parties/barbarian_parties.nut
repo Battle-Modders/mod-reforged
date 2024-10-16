@@ -12,6 +12,23 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.00, RatioMax = 0.15, ReqPartySize = 5 },		// Vanilla: Start spawning in armies of 6+
 			{ BaseID = "UnitBlock.RF.BarbarianBeastmaster", RatioMin = 0.00, RatioMax = 0.10, ReqPartySize = 5 }		// Vanilla: Start spawning in armies of 7+ (singular case) but more like 9+
 		]
+
+		function generateIdealSize( _isLocation = false )
+		{
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 216)
+			{
+				return 12;
+			}
+			else if (startingResources >= 164)
+			{
+				return 10;
+			}
+			else
+			{
+				return 8;
+			}
+		}
 	},
 	{
 		ID = "BarbarianHunters",
@@ -24,6 +41,23 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BarbarianHunterFrontline", RatioMin = 0.60, RatioMax = 1.0, DeterminesFigure = true },
 			{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.20, RatioMax = 0.45 }
 		]
+
+		function generateIdealSize( _isLocation = false )
+		{
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 216)
+			{
+				return 12;
+			}
+			else if (startingResources >= 164)
+			{
+				return 10;
+			}
+			else
+			{
+				return 8;
+			}
+		}
 	},
 	{
 		ID = "BarbarianKing",

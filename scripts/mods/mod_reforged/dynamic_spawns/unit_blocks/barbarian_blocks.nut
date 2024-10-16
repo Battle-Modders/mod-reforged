@@ -18,7 +18,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BarbarianHunterFrontline",
-		UnitDefs = [{ BaseID = "Unit.RF.BarbarianThrall" }]
+		UnitDefs = [{ BaseID = "Unit.RF.BarbarianThrall" }, { BaseID = "Unit.RF.BarbarianMarauder" }]
 	},
 
 	{
