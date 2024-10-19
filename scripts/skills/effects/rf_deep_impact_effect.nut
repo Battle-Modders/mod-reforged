@@ -10,7 +10,7 @@ this.rf_deep_impact_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Description = "This character has received a very heavy blow, significantly reducing their combat effectiveness.";
 		this.m.Icon = "ui/perks/perk_rf_deep_impact.png";
 		this.m.Overlay = "rf_deep_impact_effect";
-		this.m.IconMini = "perk_rf_deep_impact_mini";
+		this.m.IconMini = "rf_deep_impact_effect_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsRemovedAfterBattle = true;
 	}
