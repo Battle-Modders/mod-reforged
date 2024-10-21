@@ -37,6 +37,16 @@
 		local ret = this.attackEntity(_user, target);
 		this.m.IsAttacking = false;
 		this.m.IsUsingHitchance = true;
+
+		// Play an additional sound effect, if we hit more than once
+		if (ret && this.m.RerollDamageMult > 0.5)
+		{
+			::Time.scheduleEvent(::TimeUnit.Virtual, 100, this.onPlayHitSound.bindenv(this), {
+				Sound = ::MSU.Array.rand(this.m.SoundOnHit),
+				Pos = target.getPos()
+			});
+		}
+
 		return ret;
 	}
 
