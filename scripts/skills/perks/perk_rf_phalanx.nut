@@ -1,5 +1,9 @@
 this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		ShieldWallActionPointsMult = 0.5,
+		ShieldWallActionPointsMininum = 2,	// This perk can't reduce the AP of shieldwall below this value
+		ShieldWallFatigueMult = 0.5
+	},
 	function create()
 	{
 		this.m.ID = "perk.rf_phalanx";
@@ -32,7 +36,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("[Shieldwall|Skill+shieldwall_effect] will not expire at the start of your [turn|Concept.Turn] as you are next to an ally with [Shieldwall|Skill+shieldwall_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("[Shieldwall|Skill+shieldwall] costs " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallActionPointsMult, {InvertColor = true}) + " [Action Points|Concept.ActionPoints] (to a minimum of " + ::MSU.Text.colorPositive(this.m.ShieldWallActionPointsMininum) + ") and " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallFatigueMult, {InvertColor = true}) + " [Fatigue|Concept.Fatigue]")
 			});
 		}
 
@@ -55,17 +59,15 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onTurnStart()
+	function onAfterUpdate( _properties )
 	{
 		if (this.hasAdjacentShieldwall())
 		{
-			foreach (skill in this.getContainer().m.Skills)
+			local shieldwallSkill = this.getContainer().getSkillByID("actives.shieldwall");
+			if (shieldwallSkill != null)
 			{
-				if (skill.getID() == "effects.shieldwall")
-				{
-					skill.m.IsGarbage = false; // Because Phalanx skill order is after Shieldwall effect, so we retroactively set it to not be garbage
-					return;
-				}
+				shieldwallSkill.m.ActionPointCost = ::Math.max(shieldwallSkill.m.ActionPointCost * this.m.ShieldWallActionPointsMult, this.m.ShieldWallActionPointsMininum);
+				shieldwallSkill.m.FatigueCostMult *= this.m.ShieldWallFatigueMult;
 			}
 		}
 	}
@@ -114,13 +116,13 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function onQueryTooltip( _skill, _tooltip )
 	{
-		if (_skill.getID() == "effects.shieldwall" && this.hasAdjacentShieldwall())
+		if (_skill.getID() == "actives.shieldwall" && this.hasAdjacentShieldwall())
 		{
 			_tooltip.push({
 				id = 15,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Will not expire as you have [Phalanx|Perk+perk_rf_phalanx] and are next to an ally with [Shieldwall|Skill+shieldwall_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Costs " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallActionPointsMult, {InvertColor = true}) + " [Action Points|Concept.ActionPoints] (to a minimum of " + ::MSU.Text.colorPositive(this.m.ShieldWallActionPointsMininum) + ") and " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallFatigueMult, {InvertColor = true}) + " [Fatigue|Concept.Fatigue] because of " + ::Reforged.NestedTooltips.getNestedSkillName(this))
 			});
 		}
 	}
