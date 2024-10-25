@@ -1676,7 +1676,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Gain " + ::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach] per adjacent ally also equipped with a shield. Does not work with bucklers.",
-				"[Shieldwall|Skill+shieldwall_effect] does not expire at the start of your [turn|Concept.Turn] if an adjacent ally is also using [Shieldwall.|Skill+shieldwall_effect]"
+				"[Shieldwall|Skill+shieldwall] costs " + ::MSU.Text.colorPositive("50%") + " less [Action Points|Concept.ActionPoints] (up to a minimum of " + ::MSU.Text.colorPositive(2) + ") and " + ::MSU.Text.colorPositive("50%") + " less [Fatigue|Concept.Fatigue] if an adjacent ally has the [Shieldwall Effect.|Skill+shieldwall_effect]"
 			]
 		}]
 	}),
