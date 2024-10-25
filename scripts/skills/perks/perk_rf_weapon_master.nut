@@ -111,9 +111,13 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 
 		local tierRanges = [
 			[1, 3],
-			[4, 4],
-			[5, 7]
+			[4, 4]
 		];
+
+		if (equippedWeaponPerkGroups.len() == 1)	// The third perk is only granted if you are using a non-hybrid weapon
+		{
+			tierRanges.push([5, 7]);
+		}
 
 		local perkTree = this.getContainer().getActor().getPerkTree();
 
