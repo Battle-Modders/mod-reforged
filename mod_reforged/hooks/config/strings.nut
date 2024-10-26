@@ -422,7 +422,7 @@ local vanillaDescriptions = [
 				{
 					Type = ::UPD.EffectType.Passive,
 					Description = [
-						"During combat, gain the [Retribution|NullEntitySkill+rf_retribution_effect] effect."
+						"During combat, gain [Retribution|NullEntitySkill+rf_retribution_effect] when you take a hit from an enemy."
 					]
 				}
 			]

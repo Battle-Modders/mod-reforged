@@ -1,6 +1,7 @@
 this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 	m = {
 		Stacks = 0,
+		MaximumStackSize = 1,
 		BonusPerStack = 25
 	},
 	function create()
@@ -29,7 +30,7 @@ this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Stacking " + ::MSU.Text.colorPositive(this.m.BonusPerStack + "%") + " more damage dealt for every hit received"
+				text = ::MSU.Text.colorPositive((this.m.BonusPerStack) + "%") + " more damage dealt"
 			});
 		}
 		else
@@ -63,7 +64,7 @@ this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 		if (_attacker.getID() == actor.getID() || _attacker.isAlliedWith(actor))
 			return;
 
-		this.m.Stacks += 1;
+		this.m.Stacks = ::Math.min(this.m.MaximumStackSize, this.m.Stacks + 1);
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
