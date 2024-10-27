@@ -49,20 +49,14 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )
-	{
-		if (_corpseTile != null && _corpseTile.IsCorpseSpawned)
-		{
-			_corpseTile.Properties.get("Corpse").IsValidForOpportunist <- true;
-		}
-	}
-
 	function canProcOntile( _tile )
 	{
 		if (!_tile.IsCorpseSpawned) return false;
 
 		local corpse = _tile.Properties.get("Corpse");
-		return corpse.IsValidForOpportunist && this.getContainer().getActor().getAlliedFactions().find(corpse.Faction) == null;
+		if ("WasUsedForOpportunist" in corpse)  return false;
+
+		return this.getContainer().getActor().getAlliedFactions().find(corpse.Faction) == null;
 	}
 
 	function onQueryTileTooltip( _tile, _tooltip )
@@ -93,7 +87,7 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 
 		weapon.setAmmo(::Math.min(weapon.getAmmoMax(), weapon.getAmmo() + 1));
 		this.spawnIcon("perk_rf_opportunist", _tile);
-		_tile.Properties.get("Corpse").IsValidForOpportunist = false;
+		_tile.Properties.get("Corpse").WasUsedForOpportunist <- true;	// The value does not matter, only the presence of that tag
 
 		this.m.IsPrimed = true;
 	}
