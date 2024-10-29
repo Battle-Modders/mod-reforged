@@ -19,8 +19,6 @@ this.rf_skeleton_medium_elite_polearm <- ::inherit("scripts/entity/tactical/enem
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
 		b.Initiative -= 20;
-
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 	}
 
 	function assignRandomEquipment()
@@ -52,11 +50,13 @@ this.rf_skeleton_medium_elite_polearm <- ::inherit("scripts/entity/tactical/enem
 	function onSpawned()
 	{
 		this.skeleton.onSpawned();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		this.m.Skills.removeByID("perk.rf_bolster");
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
 			if (weapon.isAoE())
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 			else
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
 		}
