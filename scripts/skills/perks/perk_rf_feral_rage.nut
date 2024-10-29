@@ -5,8 +5,8 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 		PerStackBraveryModifier = 2,
 		PerStackInitiativeModifier = 2,
 		PerStackMeleeDefenseModifier = -1,
-		PerStackDamageMult = 0.03,
-		PerStackDamageReductionMult = 0.03,
+		PerStackDamageMult = 0.02,
+		PerStackDamageReductionMult = 0.02,
 		MaxDamageReductionMult = 0.3
 	},
 	function create()
