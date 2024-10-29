@@ -68,7 +68,8 @@
 			}
 			else
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
+				// this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up")); // Disabled due to crashing the game on a follow up kill
+				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 			}
 		}
 	}
