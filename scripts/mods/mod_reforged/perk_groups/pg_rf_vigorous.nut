@@ -7,7 +7,7 @@ this.pg_rf_vigorous <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Icon = "ui/perk_groups/rf_vigorous.png";
 		this.m.Tree = [
 			["perk.rf_survival_instinct"],
-			["perk.hold_out"],
+			["perk.steel_brow"],
 			["perk.fortified_mind"],
 			["perk.rf_decisive"],
 			[],
