@@ -17,8 +17,8 @@ this.rf_great_khopesh <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ArmamentIcon = "icon_rf_great_khopesh_01";
 		this.m.Value = 2800;
 		this.m.ShieldDamage = 28;
-		this.m.Condition = 48.0;
-		this.m.ConditionMax = 48.0;
+		this.m.Condition = 60.0;
+		this.m.ConditionMax = 60.0;
 		this.m.StaminaModifier = -16;
 		this.m.RegularDamage = 85;
 		this.m.RegularDamageMax = 100;
