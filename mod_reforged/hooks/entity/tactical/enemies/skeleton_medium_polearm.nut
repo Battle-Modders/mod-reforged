@@ -64,11 +64,11 @@
 
 			if (mainhandItem.isAoE())
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 			}
 			else
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
 			}
 		}
 	}
