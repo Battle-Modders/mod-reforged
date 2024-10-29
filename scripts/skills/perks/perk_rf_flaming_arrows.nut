@@ -18,6 +18,8 @@ this.perk_rf_flaming_arrows <- ::inherit("scripts/skills/skill", {
 		if (aimedShot != null)
 		{
 			aimedShot.m.ProjectileType = ::Const.ProjectileType.FlamingArrow;
+			aimedShot.m.Icon = "skills/rf_flaming_arrows_skill.png";
+			aimedShot.m.IconDisabled = "skills/rf_flaming_arrows_skill_sw.png";
 		}
 	}
 
@@ -27,6 +29,8 @@ this.perk_rf_flaming_arrows <- ::inherit("scripts/skills/skill", {
 		if (aimedShot != null)
 		{
 			aimedShot.resetField("ProjectileType");
+			aimedShot.resetField("Icon");
+			aimedShot.resetField("IconDisabled");
 		}
 	}
 
