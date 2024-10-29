@@ -6,7 +6,7 @@ this.rf_halberd <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ID = "weapon.rf_halberd";
 		this.m.Name = "Halberd";
 		this.m.Description = "A long polearm with pike-like point and a blade for striking over some distance and a hammer to destroy armor.";
-		this.m.Categories = "Polearm/Axe/Hammer, Two-Handed";
+		this.m.Categories = "Axe/Hammer, Two-Handed";
 		this.m.IconLarge = "weapons/melee/rf_halberd_01.png";
 		this.m.Icon = "weapons/melee/rf_halberd_01_70x70.png";
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
