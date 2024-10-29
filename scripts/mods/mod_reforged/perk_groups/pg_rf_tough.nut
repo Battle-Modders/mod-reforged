@@ -7,7 +7,7 @@ this.pg_rf_tough <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Icon = "ui/perk_groups/rf_tough.png";
 		this.m.Tree = [
 			["perk.colossus"],
-			["perk.steel_brow"],
+			["perk.hold_out"],
 			["perk.taunt"],
 			[],
 			["perk.rf_vanquisher"],
