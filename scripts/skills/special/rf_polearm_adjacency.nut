@@ -1,14 +1,14 @@
 this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 	m = {
-		MalusPerAlly = 5,
+		MalusPerAlly = 0, // not currently utilizing this feature
 		MalusPerEnemy = 10,
-		NumAlliesToIgnore = 2
+		NumAlliesToIgnore = 0 // not currently utilizing this feature
 	},
 	function create()
 	{
 		this.m.ID = "special.rf_polearm_adjacency";
 		this.m.Name = "Crowded";
-		this.m.Description = "Long range melee weapons are harder to use in a crowded environment. When using such weapons, any melee attack with a base range of 2 or more tiles has its hit chance reduced by " + ::MSU.Text.colorizeValue(-this.m.MalusPerAlly, {AddSign = true, AddPercent = true}) + " per adjacent ally (ignoring the first two adjacent allies) and " + ::MSU.Text.colorizeValue(-this.m.MalusPerEnemy, {AddSign = true, AddPercent = true}) + " per adjacent enemy.";
+		this.m.Description = "Long range melee weapons are harder to use in a crowded environment. When using such weapons, any melee attack with a base range of 2 or more tiles has its hit chance reduced by " + ::MSU.Text.colorizeValue(-this.m.MalusPerEnemy, {AddSign = true, AddPercent = true}) + " per adjacent enemy.";
 		this.m.Type = ::Const.SkillType.Special;
 		this.m.IsHidden = true;
 		this.m.IsSerialized = false;
@@ -81,7 +81,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = ::Reforged.Mod.Tooltips.parseString("May have [reduced chance to hit|Skill+rf_polearm_adjacency] when standing next to others")
+				text = ::Reforged.Mod.Tooltips.parseString("May have [reduced chance to hit|Skill+rf_polearm_adjacency] when standing next to enemies")
 			});
 		}
 	}
