@@ -25,7 +25,6 @@
 				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [],
 				"pgc.rf_armor": [
-					"pg.rf_light_armor",
 					"pg.rf_medium_armor"
 				],
 				"pgc.rf_fighting_style": [
