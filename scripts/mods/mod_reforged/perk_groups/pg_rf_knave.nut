@@ -15,7 +15,8 @@ this.pg_rf_knave <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			[]
 		];
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_dagger": -1
+			"pg.rf_dagger": -1,
+			"pg.rf_light_armor": -1
 		};
 	}
 });
