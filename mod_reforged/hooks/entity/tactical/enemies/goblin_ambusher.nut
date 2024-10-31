@@ -18,7 +18,7 @@
 		// if (!this.m.IsLow)
 		// {
 			// b.IsSpecializedInBows = true;
-			// b.Vision = 8;
+			b.Vision = 8;
 
 			// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 180)
 			// {
