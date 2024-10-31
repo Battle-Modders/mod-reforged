@@ -19,13 +19,13 @@ CharacterScreenStatsModule.prototype.setProgressbarValues = function (_data)
 		}
 		else
 		{
-			_value.Row.bindTooltip({ entityId: entityID, contentType: 'ui-element', elementId: _value.TooltipId });
+			_value.Row.bindTooltip({ contentType: 'ui-element', elementId: _value.TooltipId, entityId: entityID });
 		}
 	});
 
 	$.each(this.mMiddleStatsRows, function (_key, _value)
 	{
-		_value.Row.bindTooltip({ entityId: entityID, contentType: 'ui-element', elementId: _value.TooltipId });
+		_value.Row.bindTooltip({ contentType: 'ui-element', elementId: _value.TooltipId, entityId: entityID });
 	});
 }
 
