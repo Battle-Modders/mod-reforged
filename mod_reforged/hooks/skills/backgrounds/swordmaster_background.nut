@@ -9,6 +9,7 @@
 			"pg.rf_vigorous": 0.25,
 			"pg.rf_tactician": 2,
 
+			"pg.special.rf_gifted": -1,
 			"pg.special.rf_fencer": -1
 		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
