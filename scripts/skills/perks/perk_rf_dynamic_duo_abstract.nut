@@ -196,7 +196,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 	{
 		if (_targetEntity != null && _skill.isAttack() && !_skill.isRanged() && this.isEnabled())
 		{
-			this.m.PartnerSkill.addEntityForAttackBonus(_targetEntity);
+			this.m.PartnerSkill.addEntityForDefenseBonus(_targetEntity);
 		}
 	}
 
