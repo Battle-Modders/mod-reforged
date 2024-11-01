@@ -58,6 +58,15 @@
 				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 			}
 		}
+
+		foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))
+		{
+			if (item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
+				break;
+			}
+		}
 	}
 
 	q.makeMiniboss = @(__original) function()
