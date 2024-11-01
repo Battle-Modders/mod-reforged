@@ -26,11 +26,11 @@ this.named_rf_longsword <- ::inherit("scripts/items/weapons/named/named_weapon",
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/slash", function(o) {
 			o.m.DirectDamageMult = this.m.DirectDamageMult;
+			o.m.FatigueCost += 3;
 		}.bindenv(this)));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/overhead_strike", function(o) {
 			o.m.ActionPointCost -= 1;
-			o.m.FatigueCost -= 1;
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
