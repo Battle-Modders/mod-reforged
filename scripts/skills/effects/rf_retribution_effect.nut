@@ -8,7 +8,7 @@ this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.rf_retribution";
 		this.m.Name = "Retribution";
-		this.m.Description = "This character hits significantly harder after taking a hit.";
+		this.m.Description = "This character hits significantly harder after taking a hit from an enemy.";
 		this.m.Icon = "ui/perks/perk_rf_retribution.png";
 		this.m.IconMini = "";	// A mini-icon would be useful
 		this.m.Type = ::Const.SkillType.StatusEffect;
@@ -61,7 +61,7 @@ this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
 		local actor = this.getContainer().getActor();
-		if (_attacker.getID() == actor.getID() || _attacker.isAlliedWith(actor))
+		if (_attacker == null || _attacker.getID() == actor.getID() || _attacker.isAlliedWith(actor))
 			return;
 
 		this.m.Stacks = ::Math.min(this.m.MaximumStackSize, this.m.Stacks + 1);
