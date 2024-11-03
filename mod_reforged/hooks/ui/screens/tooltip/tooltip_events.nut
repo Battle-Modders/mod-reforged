@@ -44,6 +44,18 @@
 		return ret;
 	}
 
+	q.tactical_helper_findGroundItem = @(__original) function( _entity, _itemId )
+	{
+		if (_entity.isPlacedOnMap())
+		{
+			return __original(_entity, _itemId);
+		}
+		else	// This can happen under Reforged, when the player views a combat tooltip while the targeted character is moving (e.g. using Rotate)
+		{
+			return null;	// Fix a crash, when accessing ground items under moving entities
+		}
+	}
+
 // New Functions
 	q.getBaseAttributesTooltip <- function( _entityId, _elementId, _elementOwner )
 	{
