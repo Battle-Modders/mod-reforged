@@ -38,23 +38,36 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 	}
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @() function()
 	{
-		__original();
-		local weapon = this.getMainhandItem();
-		if (weapon != null)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-			}
-			else
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-			}
+			local weapon = ::MSU.Class.WeightedContainer([
+				[2, "scripts/items/weapons/oriental/shamshir"],
+
+				[1, "scripts/items/weapons/oriental/swordlance"],
+				[1, "scripts/items/weapons/rf_voulge"]
+			]).roll();
+			this.m.Items.equip(::new(weapon));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			this.m.Items.equip(::new("scripts/items/shields/oriental/southern_light_shield"));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local armor = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/armor/oriental/assassin_robe"],
+				[1, "scripts/items/armor/leather_scale_armor"]
+			]).roll();
+			this.m.Items.equip(::new(armor));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			this.m.Items.equip(::new("scripts/items/helmets/oriental/blade_dancer_head_wrap"));
 		}
 	}
 
@@ -68,17 +81,45 @@
 			local mainhandItem = this.getMainhandItem();
 			if (mainhandItem != null)
 			{
-				if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
+				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
 				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
 				}
-				else
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
 				{
 					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
 				}
 			}
 		}
 
 		return ret;
+	}
+
+	q.onSpawned = @() function()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
+			{
+				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
+			{
+				::Reforged.Skills.addMasteryOfEquippedWeapon(this, 4);
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+			{
+				::Reforged.Skills.addMasteryOfEquippedWeapon(this);
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+		}
 	}
 });
