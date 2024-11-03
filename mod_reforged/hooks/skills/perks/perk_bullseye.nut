@@ -9,7 +9,7 @@
 		local actor = this.getContainer().getActor();
 		if (actor.getCurrentProperties().RangedAttackBlockedChanceMult == 0 || ::Const.Tactical.Common.getBlockedTiles(actor.getTile(), _targetEntity.getTile(), actor.getFaction()).len() == 0)
 		{
-			_properties.DamageDirectAdd += 0.25;
+			_properties.DamageDirectAdd += 0.20;
 		}
 	}
 
