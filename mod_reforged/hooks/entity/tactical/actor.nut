@@ -147,13 +147,14 @@
 
 	q.getSurroundedCount = @(__original) function()
 	{
+		// We need the honest un-clamped vanilla surround amount.
+		// So we set StartSurroundCountAt to 0 and then additionally counter the manual -1, which vanilla does before calling 'max' and also set
 		local startSurroundCountAt = this.m.CurrentProperties.StartSurroundCountAt;
-		this.m.CurrentProperties.StartSurroundCountAt = ::Const.CharacterProperties.StartSurroundCountAt;
-
+		this.m.CurrentProperties.StartSurroundCountAt = -1;
 		local count = __original();
+		this.m.CurrentProperties.StartSurroundCountAt = startSurroundCountAt;
 
 		local myTile = this.getTile();
-
 		foreach (enemy in ::Tactical.Entities.getHostileActors(this.getFaction(), myTile, 2, true))
 		{
 			if (!enemy.hasZoneOfControl() || enemy.isNonCombatant() || !enemy.getTile().hasLineOfSightTo(myTile, enemy.getCurrentProperties().getVision()))
@@ -173,9 +174,7 @@
 			}
 		}
 
-		this.m.CurrentProperties.StartSurroundCountAt = startSurroundCountAt;
-
-		return ::Math.max(0, count - startSurroundCountAt);
+		return ::Math.max(0, count - 1 - startSurroundCountAt);
 	}
 
 	q.isTurnDone = @(__original) function()
