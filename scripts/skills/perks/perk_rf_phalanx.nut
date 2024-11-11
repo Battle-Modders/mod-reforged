@@ -122,7 +122,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 				id = 15,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Costs " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallActionPointsMult, {InvertColor = true}) + " [Action Points|Concept.ActionPoints] (to a minimum of " + ::MSU.Text.colorPositive(this.m.ShieldWallActionPointsMininum) + ") and " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallFatigueMult, {InvertColor = true}) + " [Fatigue|Concept.Fatigue]")
+				text = ::Reforged.Mod.Tooltips.parseString("Costs " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallActionPointsMult, {InvertColor = true}) + " [Action Points|Concept.ActionPoints] (to a minimum of " + ::MSU.Text.colorPositive(this.m.ShieldWallActionPointsMininum) + ") and " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallFatigueMult, {InvertColor = true}) + " [Fatigue|Concept.Fatigue] because of " + ::Reforged.NestedTooltips.getNestedSkillName(this))
 			});
 		}
 	}
