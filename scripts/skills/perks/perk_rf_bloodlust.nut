@@ -4,7 +4,7 @@ this.perk_rf_bloodlust <- ::inherit("scripts/skills/skill", {
 		Stacks = 0,
 		MaxStacks = 2,
 		StacksPerTrigger = 2,
-		MultPerStack = 0.25
+		MultPerStack = 0.15
 	},
 	function create()
 	{
