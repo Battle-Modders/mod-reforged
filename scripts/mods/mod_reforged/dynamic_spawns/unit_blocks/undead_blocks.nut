@@ -42,7 +42,7 @@ local unitBlocks = [
 		DeterminesFigure = true,
 		UnitDefs = [
 			{ BaseID = "Unit.RF.Vampire" },
-			{ BaseID = "Unit.RF.RF_VampireLord", Cost = ::Const.World.Spawn.Troops.Vampire.Cost * 2, HardMax = 1 }
+			{ BaseID = "Unit.RF.RF_VampireLord", Cost = ::Const.World.Spawn.Troops.Vampire.Cost * 2, HardMax = 2 }
 		]
 	},
 	{

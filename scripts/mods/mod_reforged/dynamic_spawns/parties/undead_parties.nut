@@ -13,29 +13,21 @@ local parties = [
 				function generateIdealSize( _isLocation = false )
 				{
 					local startingResources = this.getSpawnProcess().getStartingResources();
-					if (startingResources >= 350)
+					if (startingResources >= 500)
 					{
 						return 12;
 					}
-					else if (startingResources >= 300)
-					{
-						return 11;
-					}
-					else if (startingResources >= 250)
+					else if (startingResources >= 400)
 					{
 						return 10;
 					}
-					else if (startingResources >= 180)
+					else if (startingResources >= 350)
 					{
 						return 9;
 					}
-					else if (startingResources >= 120)
-					{
-						return 7;
-					}
 					else
 					{
-						return 5;
+						return 10;
 					}
 				}
 
@@ -126,7 +118,7 @@ local parties = [
 
 		function generateIdealSize( _isLocation = false )
 		{
-			return 7;
+			return 4;
 		}
 
 		UnitBlockDefs = [
