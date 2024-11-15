@@ -1,6 +1,6 @@
 this.rf_rattled_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		ReachModifier = -2
+		ReachModifier = -3
 	},
 	function create()
 	{
