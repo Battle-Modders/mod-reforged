@@ -1,6 +1,6 @@
 this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 	m = {
-		FatigueRecoveredFraction = 1.0,
+		FatigueRecoveredFraction = 0.5,
 		ActionPointsGained = 3,
 		IsSpent = false,
 		IsBonusActive = false
