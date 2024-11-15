@@ -16,13 +16,18 @@ local parties = [
 		function generateIdealSize( _isLocation = false )
 		{
 			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 216)
+
+			if (startingResources >= 550)
 			{
 				return 12;
 			}
-			else if (startingResources >= 164)
+			else if (startingResources >= 450)
 			{
 				return 10;
+			}
+			else if (startingResources >= 216)
+			{
+				return 8;
 			}
 			else
 			{
