@@ -1725,8 +1725,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Every hit applies the [Rattled|Skill+rf_rattled_effect] effect for one [turn.|Concept.Turn]",
-				"Does not work against targets immune to being [stunned|Skill+stunned_effect] or [dazed.|Skill+dazed_effect]"
+				"Every hit applies the [Rattled|Skill+rf_rattled_effect] effect for one [turn.|Concept.Turn]"
 			]
 		}]
 	}),

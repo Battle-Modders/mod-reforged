@@ -17,7 +17,7 @@ this.perk_rf_rattle <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_targetEntity.isAlive() || _targetEntity.getCurrentProperties().IsImmuneToStun || _targetEntity.getCurrentProperties().IsImmuneToDaze || !this.isSkillValid(_skill))
+		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
 			return;
 
 		_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_rattled_effect"));
