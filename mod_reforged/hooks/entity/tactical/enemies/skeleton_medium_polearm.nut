@@ -31,7 +31,7 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-				[3, "scripts/items/weapons/ancient/bladed_pike"],
+				[2, "scripts/items/weapons/ancient/bladed_pike"],
 				[1, "scripts/items/weapons/ancient/warscythe"]
 			]).roll();
 
