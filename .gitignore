@@ -4,3 +4,4 @@
 brushes/
 gfx/*.png
 !gfx/*/.png
+*.zip
