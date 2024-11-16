@@ -47,7 +47,7 @@ this.perk_rf_offhand_training <- ::inherit("scripts/skills/skill", {
 		if (this.m.IsSpent || _forFree || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 			return;
 
-		if (_skill.getItem() != null && ::MSU.isEqual(_skill.getItem(), this.getContainer().getActor().getOffhandItem()))
+		if (!::MSU.isNull(_skill.getItem()) && ::MSU.isEqual(_skill.getItem(), this.getContainer().getActor().getOffhandItem()))
 		{
 			// Using a net unequips the net and therefore the item of the used skill becomes null
 			// Therefore we must check the item BEFORE use and then flip the member variable for free use AFTER use
