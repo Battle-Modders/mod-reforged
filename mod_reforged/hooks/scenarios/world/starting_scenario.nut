@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hookTree("scripts/scenarios/world/starting_scenario", function(q) {
-	q.onSpawnAssets = @(__original) function()
+	q.onSpawnPlayer = @(__original) function()
 	{
 		__original();
 
