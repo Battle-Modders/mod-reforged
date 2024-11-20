@@ -16,7 +16,7 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return !this.getContainer().getActor().isPlacedOnMap() || (this.getSkillBonus() == 0 && this.getResolveBonus() == 0);
+		return this.getSkillBonus() == 0 && this.getResolveBonus() == 0;
 	}
 
 	function getTooltip()
@@ -70,21 +70,26 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 
 	function getSkillBonus()
 	{
+		if (!this.getContainer().getActor().isPlacedOnMap())
+		{
+			return 0;
+		}
+
 		return ::Tactical.Entities.getAlliedActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true).len() * this.m.SkillBonus;
 	}
 
 	function getResolveBonus()
 	{
+		if (!this.getContainer().getActor().isPlacedOnMap())
+		{
+			return 0;
+		}
+
 		return ::Tactical.Entities.getAlliedActors(this.getContainer().getActor().getFaction(), this.getContainer().getActor().getTile(), 1, true).len() * this.m.ResolveBonus;
 	}
 
 	function onUpdate( _properties )
 	{
-		if (!this.getContainer().getActor().isPlacedOnMap())
-		{
-			return;
-		}
-
 		local bonus = this.getSkillBonus();
 		if (bonus > 0)
 		{
