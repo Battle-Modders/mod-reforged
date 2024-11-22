@@ -158,7 +158,7 @@ this.perk_rf_flaming_arrows <- ::inherit("scripts/skills/skill", {
 
 			if (tile.IsOccupiedByActor)
 			{
-				::Const.Tactical.Common.onApplyFire(tile, tile.getEntity());
+				::Const.Tactical.Common.onApplyFire(tile, tile.getEntity(), _data.User);
 			}
 		}
 
