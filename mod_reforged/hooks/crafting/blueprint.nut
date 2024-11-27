@@ -3,7 +3,6 @@
 	// Return true, if the player has at least one ingredient needed for this blueprint
 	q.isPartlyCraftable <- function()
 	{
-		::logWarning("isPartlyCraftable " + this.getName());
 		foreach (item in ::World.Assets.getStash().getItems())
 		{
 			if (item == null) continue;

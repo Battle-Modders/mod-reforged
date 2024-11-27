@@ -3,7 +3,6 @@
 	q.getQualifiedBlueprints = @(__original) function()
 	{
 		local settingValue = ::Reforged.Mod.ModSettings.getSetting("CraftingBlueprintVisibility").getValue();
-		::logWarning("settingValue " + settingValue);
 		switch (settingValue)
 		{
 			case "Always":
