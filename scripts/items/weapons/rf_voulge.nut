@@ -37,7 +37,7 @@ this.rf_voulge <- ::inherit("scripts/items/weapons/weapon", {
 			o.m.Icon = "skills/rf_voulge_cleave_skill.png";
 			o.m.IconDisabled = "skills/rf_voulge_cleave_skill_sw.png";
 			o.m.Overlay = "rf_voulge_cleave_skill";
-			o.m.MaxRange = 2;
+			o.m.RangeMax = 2;
 			o.m.ActionPointCost = 6;
 			o.m.FatigueCost = 15;
 			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
