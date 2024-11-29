@@ -19,8 +19,8 @@ this.rf_halberd <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.ConditionMax = 84.0;
 		this.m.StaminaModifier = -18;
 		this.m.RangeMin = 1;
-		this.m.RangeMax = 2;
-		this.m.RangeIdeal = 2;
+		this.m.RangeMax = 3;
+		this.m.RangeIdeal = 3;
 		this.m.RegularDamage = 60;
 		this.m.RegularDamageMax = 80;
 		this.m.ArmorDamageMult = 1.4;
