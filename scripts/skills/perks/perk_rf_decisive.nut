@@ -93,20 +93,20 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.Stacks = 0;
+		this.setStacks(0);
 	}
 
 	function onTurnEnd()
 	{
 		if (this.getContainer().getActor().isWaitActionSpent() == false)
 		{
-			this.m.Stacks = ::Math.min(this.m.Stacks + 1, this.m.MaxStacks);
+			this.setStacks(::Math.min(this.m.Stacks + 1, this.m.MaxStacks))
 		}
 	}
 
 	function onWaitTurn()
 	{
-		this.m.Stacks = 0;
+		this.setStacks(0);
 	}
 
 	function onUpdate( _properties )
@@ -130,6 +130,11 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 	}
 
 // New Functions
+	function setStacks( _stacks )
+	{
+		this.m.Stacks = _stacks;
+	}
+
 	function getResolveModifier()
 	{
 		return this.m.Stacks >= 1 ? this.m.ResolveModifier : 0;
