@@ -9,7 +9,8 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 		MaxStacks = 3,
 
 		// Private
-		Stacks = 0
+		Stacks = 0,
+		OriginalIconMini = "perk_rf_decisive_mini"
 	},
 	function create()
 	{
@@ -17,7 +18,7 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 		this.m.Name = ::Const.Strings.PerkName.RF_Decisive;
 		this.m.Description = "This character is capable of making quick and confident decisions without any hesitation.";
 		this.m.Icon = "ui/perks/perk_rf_decisive.png";
-		this.m.IconMini = "perk_rf_decisive_mini";
+		this.m.IconMini = "";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}
@@ -25,11 +26,6 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 	function getName()
 	{
 		return this.m.Stacks == 0 ? this.m.Name : this.m.Name + " (x" + this.m.Stacks + ")";
-	}
-
-	function isHidden()
-	{
-		return this.m.Stacks == 0;
 	}
 
 	function getTooltip()
@@ -133,6 +129,14 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 	function setStacks( _stacks )
 	{
 		this.m.Stacks = _stacks;
+		if (this.m.Stacks == 0)
+		{
+			this.m.IconMini = "";
+		}
+		else
+		{
+			this.m.IconMini = this.m.OriginalIconMini;
+		}
 	}
 
 	function getResolveModifier()
