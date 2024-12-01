@@ -41,7 +41,7 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of " + ::MSU.Text.colorPositive("2") + " tiles"
+			text = "Has a range of " + ::MSU.Text.colorPositive(this.getMaxRange()) + " tiles"
 		});
 		ret.push({
 			id = 11,
