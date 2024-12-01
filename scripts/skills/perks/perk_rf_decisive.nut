@@ -112,6 +112,7 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		_properties.Bravery += this.getResolveModifier();
+		_properties.Initiative += this.getInitiativeModifier();
 		_properties.DamageTotalMult *= this.getDamageMult();
 		_properties.TargetAttractionMult *= this.getAttractionMult();	// This is on par with other vanilla effects which increase the damage output. All of them make the character more likely to be targeted
 	}
