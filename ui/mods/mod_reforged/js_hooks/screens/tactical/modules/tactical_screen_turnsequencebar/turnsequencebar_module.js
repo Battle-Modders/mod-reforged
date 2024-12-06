@@ -1,6 +1,9 @@
 Reforged.Hooks.TacticalScreenTurnSequenceBarModule_createDIV = TacticalScreenTurnSequenceBarModule.prototype.createDIV;
 TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 {
+	this.mLeftStatsRows["Morale"].ImagePath = Path.GFX + Asset.rf_Reach;
+	this.mLeftStatsRows["Morale"].StyleName = ProgressbarStyleIdentifier.rf_Reach;
+
 	Reforged.Hooks.TacticalScreenTurnSequenceBarModule_createDIV.call(this, _parentDiv);
 
 	// Declare Variables
@@ -52,6 +55,16 @@ TacticalScreenTurnSequenceBarModule.prototype.bindTooltips = function ()
 {
 	this.mWaitTurnAllButton.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Tactical.Button.WaitTurnAllButton" });
 	Reforged.Hooks.TacticalScreenTurnSequenceBarModule_bindTooltips.call(this);
+
+	$.each(this.mLeftStatsRows, function (_key, _value)
+	{
+		if (_value.StyleName == ProgressbarStyleIdentifier.rf_Reach)
+		{
+			_value.Row.unbindTooltip();
+			_value.Row.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Concept.Reach" });
+			return false;	// break out of the for loop early as we are done
+		}
+	});
 }
 
 Reforged.Hooks.TacticalScreenTurnSequenceBarModule_unbindTooltips = TacticalScreenTurnSequenceBarModule.prototype.unbindTooltips;
