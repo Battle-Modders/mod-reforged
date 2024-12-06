@@ -87,7 +87,11 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 	{
 		if (this.isEnabled() && _skill.isAttack() && _skill.m.IsWeaponSkill)
 		{
-			this.spinFlail(_skill, _targetTile);
+			// Our character might have perished from something like a counter attack
+			if (!::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()))
+			{
+				this.spinFlail(_skill, _targetTile);
+			}
 		}
 	}
 });
