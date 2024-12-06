@@ -31,6 +31,12 @@ this.rf_dynamic_duo_select_partner_skill <- ::inherit("scripts/skills/skill", {
 			icon = "ui/icons/warning.png",
 			text = "The selected character will remain your partner until one of you dies or leaves the company"
 		});
+		ret.push({
+			id = 21,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = "Cannot select someone who is already part of a dynamic duo"
+		});
 		return ret;
 	}
 
