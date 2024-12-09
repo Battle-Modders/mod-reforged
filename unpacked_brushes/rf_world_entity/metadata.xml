@@ -22,4 +22,6 @@
 	<sprite id="figure_rf_skeleton_medium" offsetY="20" ic="FF324D64" width="68" height="106" img="world_entity\party\figure_rf_skeleton_medium.png" left="-22" right="20" top="-41" bottom="19" />
 	<sprite id="figure_rf_skeleton_medium_elite" offsetY="20" ic="FF324D64" width="68" height="106" img="world_entity\party\figure_rf_skeleton_medium_elite.png" left="-22" right="20" top="-41" bottom="19" />
 	<sprite id="figure_rf_vampire_lord" offsetY="20" ic="FF324D64" width="68" height="106" img="world_entity\party\figure_rf_vampire_lord.png" left="-22" right="20" top="-41" bottom="19" />
+
+	<sprite id="world_bandit_fort_01" ic="FF303B3D" width="240" height="180" img="world_entity\location\rf_bandit_fort_01.png" />
 </brush>
