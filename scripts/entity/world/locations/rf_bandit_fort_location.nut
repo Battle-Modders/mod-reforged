@@ -2,7 +2,7 @@ this.rf_bandit_fort_location <- this.inherit("scripts/entity/world/location", {
 	m = {},
 	function getDescription()
 	{
-		return "A stone fortress, where elite bandits train, plan their raids, and revel in luxury from their plundered treasures.";
+		return "A stone fortress where elite bandits train, plan their raids and revel in luxury from their plundered treasures.";
 	}
 
 	function create()
@@ -47,11 +47,10 @@ this.rf_bandit_fort_location <- this.inherit("scripts/entity/world/location", {
 			"loot/signet_ring_item",
 
 			// New compared to bandit_camp
-			"loot/looted_valuables_item",
 			"loot/valuable_furs_item",
 		];
 
-		// Heavily polute the pool so that further additions are very unlikely
+		// Heavily pollute the pool so that further additions are very unlikely
 		treasure.extend(treasure);
 		treasure.extend(treasure);
 		treasure.extend(treasure);
