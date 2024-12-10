@@ -5,6 +5,10 @@
 		local settingValue = ::Reforged.Mod.ModSettings.getSetting("CraftingBlueprintVisibility").getValue();
 		switch (settingValue)
 		{
+			case "Vanilla":		// Do nothing, because this is equal to the catch-all return at the very end
+			{
+				return __original();
+			}
 			case "Always":
 			{
 				local ret = [];
@@ -53,10 +57,7 @@
 				}
 				return ret;
 			}
-			case "Vanilla":		// Do nothing, because this is equal to the catch-all return at the very end
 		}
-
-		return __original();
 	}
 
 	// Rewrite Vanilla function to re-use the logic of getQualifiedBlueprints, instead of re-implementing it
