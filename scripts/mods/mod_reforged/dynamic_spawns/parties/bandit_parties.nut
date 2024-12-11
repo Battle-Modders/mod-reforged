@@ -14,7 +14,7 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20, ExclusionChance = 0.10 }
 		]
 
-		function generateIdealSize( _isLocation = false )
+		function generateIdealSize()
 		{
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 216)
@@ -46,7 +46,7 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.20, ExclusionChance = 0.10 }
 		]
 
-		function generateIdealSize( _isLocation = false )
+		function generateIdealSize()
 		{
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 216)
@@ -79,7 +79,7 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.00, RatioMax = 0.11, ExclusionChance = 0.75, StartingResourceMin = 250, DeterminesFigure = true }
 		]
 
-		function generateIdealSize( _isLocation = false )
+		function generateIdealSize()
 		{
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 216)
@@ -112,7 +112,7 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.0, RatioMax = 0.11, StartingResourceMin = 250 }
 		]
 
-		function generateIdealSize( _isLocation = false )
+		function generateIdealSize()
 		{
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 216)
@@ -145,7 +145,7 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.01, RatioMax = 0.11 }  // One boss is always guaranteed
 		]
 
-		function generateIdealSize( _isLocation = false )
+		function generateIdealSize()
 		{
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 216)

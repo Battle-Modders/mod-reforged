@@ -13,7 +13,7 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BarbarianBeastmaster", RatioMin = 0.00, RatioMax = 0.10, ReqPartySize = 5 }		// Vanilla: Start spawning in armies of 7+ (singular case) but more like 9+
 		]
 
-		function generateIdealSize( _isLocation = false )
+		function generateIdealSize()
 		{
 			local startingResources = this.getSpawnProcess().getStartingResources();
 
@@ -47,7 +47,7 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.20, RatioMax = 0.45 }
 		]
 
-		function generateIdealSize( _isLocation = false )
+		function generateIdealSize()
 		{
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 216)

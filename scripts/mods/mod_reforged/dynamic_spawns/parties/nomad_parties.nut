@@ -11,7 +11,7 @@ local parties = [
 			{ BaseID = "UnitBlock.RF.NomadRanged", RatioMin = 0.2, RatioMax = 0.50, DeterminesFigure = true }
 		]
 
-		function generateIdealSize( _isLocation = false )
+		function generateIdealSize()
 		{
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 216)
@@ -43,7 +43,7 @@ local parties = [
 			function getSpawnWeight() { return base.getSpawnWeight() * 0.2; } }
 		]
 
-		function generateIdealSize( _isLocation = false )
+		function generateIdealSize()
 		{
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 216)
@@ -75,7 +75,7 @@ local parties = [
 			function getSpawnWeight() { return base.getSpawnWeight() * 0.2; } }
 		]
 
-		function generateIdealSize( _isLocation = false )
+		function generateIdealSize()
 		{
 			local startingResources = this.getSpawnProcess().getStartingResources();
 			if (startingResources >= 216)
