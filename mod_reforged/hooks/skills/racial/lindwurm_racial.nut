@@ -19,7 +19,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Upon receiving a hit from an adjacent enemy that deals at least " + ::MSU.Text.colorPositive("10") + " damage to [Hitpoints,|Concept.Hitpoints] apply [Lindwurm Acid|Skill+lindwurm_acid_effect] to them")
+				text = ::Reforged.Mod.Tooltips.parseString("Upon receiving a hit from an adjacent enemy that deals at least " + ::MSU.Text.colorPositive("11") + " damage to [Hitpoints,|Concept.Hitpoints] apply [Lindwurm Acid|Skill+lindwurm_acid_effect] to them")
 			},
 			{
 				id = 20,
