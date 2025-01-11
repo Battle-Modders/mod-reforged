@@ -1,6 +1,5 @@
 this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false,
 		IsInEffect = false,
 		ReachBonus = 3,
 		TargetsAffected = []
@@ -56,21 +55,6 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 		}
 
 		return ret;
-	}
-
-	function isEnabled()
-	{
-		if (this.m.IsForceEnabled) return true;
-
-		if (this.getContainer().getActor().isDisarmed()) return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || weapon.getReach() < 3)
-		{
-			return false;
-		}
-
-		return true;
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
