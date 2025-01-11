@@ -482,7 +482,7 @@ local vanillaDescriptions = [
 					Type = ::UPD.EffectType.Passive,
 					Description = [
 						"Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue.|Concept.Fatigue]",
-						"View range and maximum shooting range with bows is increased by " + ::MSU.Text.colorPositive("+1") + "."
+						"[Vision|Concept.SightDistance] and maximum shooting range with bows is increased by " + ::MSU.Text.colorPositive("+1") + "."
 					]
 				},
 				{
