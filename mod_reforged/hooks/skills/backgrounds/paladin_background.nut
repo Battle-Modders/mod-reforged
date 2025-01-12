@@ -3,11 +3,10 @@
 	{
 		__original();
 		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 2,
 			"pg.rf_fast": 2,
 			"pg.special.rf_leadership": 20,
 			"pg.rf_tactician": 4,
-			"pg.rf_unstoppable": 3,
+			"pg.rf_unstoppable": 2,
 			"pg.rf_dagger": 0
 		};
 
