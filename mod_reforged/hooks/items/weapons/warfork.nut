@@ -21,7 +21,6 @@
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/spearwall", function(o) {
 			o.m.ActionPointCost += 1;
-			o.m.FatigueCost -= 6;
 			o.m.Icon = "skills/active_173.png";
 			o.m.IconDisabled = "skills/active_173_sw.png";
 			o.m.Overlay = "active_173";
