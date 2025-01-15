@@ -40,6 +40,9 @@
 		]);
 
 		this.m.ExcludedTalents.push(::Const.Attributes.RangedDefense);
+
+		this.m.HiringCost = 2400; // vanilla 400
+		this.m.DailyCost = 45; // vanilla 35
 	}
 
 	q.getPerkGroupCollectionMin = @() function( _collection )
