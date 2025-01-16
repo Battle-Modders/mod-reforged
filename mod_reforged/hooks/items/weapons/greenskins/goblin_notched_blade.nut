@@ -18,7 +18,7 @@
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/puncture", function(o) {
-			o.m.FatigueCost -= 5;
+			o.m.FatigueCost -= 3;
 		}));
 	}
 });

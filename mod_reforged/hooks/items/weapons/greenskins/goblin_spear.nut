@@ -11,17 +11,17 @@
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/thrust", function(o) {
 			o.m.ActionPointCost -= 1;
-			o.m.FatigueCost -= 4;
+			o.m.FatigueCost -= 2;
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/spearwall", function(o) {
 			o.m.ActionPointCost -= 1;
-			o.m.FatigueCost -= 12;
+			o.m.FatigueCost -= 6;
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/riposte", function(o) {
 			o.m.ActionPointCost -= 1;
-			o.m.FatigueCost -= 10;
+			o.m.FatigueCost -= 5;
 		}));
 	}
 });
