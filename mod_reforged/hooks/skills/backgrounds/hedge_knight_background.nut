@@ -7,12 +7,9 @@
 			"pg.rf_fast": 0,
 			"pg.special.rf_leadership": 0,
 			"pg.rf_tactician": 0,
-			"pg.rf_unstoppable": 2,
-			"pg.rf_vicious": 2,
 			"pg.rf_dagger": 0,
 			"pg.rf_polearm": 0.25,
 			"pg.rf_spear": 0.2,
-			"pg.rf_throwing": 0.9,
 
 			"pg.special.rf_man_of_steel": -1
 		};
