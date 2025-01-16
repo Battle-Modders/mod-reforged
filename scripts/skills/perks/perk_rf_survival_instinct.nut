@@ -107,9 +107,9 @@ this.perk_rf_survival_instinct <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.MissStacks = 0;
 
-		if (this.m.HitStacks > 2)
+		if (this.m.HitStacks > this.m.HitStacksMax)
 		{
-			this.m.HitStacks = 2;
+			this.m.HitStacks = this.m.HitStacksMax;
 		}
 	}
 
