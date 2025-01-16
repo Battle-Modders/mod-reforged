@@ -126,7 +126,7 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 		if (paths.len() == 1)
 		{
 			if (::Const.AI.VerboseMode)
-				::logInfo("* Nowhere to go with " this.m.Skill.getName());
+				::logInfo("* Nowhere to go with " + this.m.Skill.getName());
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
