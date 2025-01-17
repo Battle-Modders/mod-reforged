@@ -48,7 +48,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_berserk"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));	// This is now replaced with "Calculated Strikes"
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
@@ -57,6 +57,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// Reforged
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_feral_rage"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
