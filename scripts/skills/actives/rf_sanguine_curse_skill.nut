@@ -52,6 +52,12 @@ this.rf_sanguine_curse_skill <- ::inherit("scripts/skills/skill", {
 			text = ::Reforged.Mod.Tooltips.parseString("The target is inflicted with [Sanguine Curse|NullEntitySkill+rf_sanguine_curse_effect]")
 		});
 		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
+		});
+		ret.push({
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
