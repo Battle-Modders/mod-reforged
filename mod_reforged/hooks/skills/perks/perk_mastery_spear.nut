@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_spear", function(q) {
 	q.m.IsSpent <- true;
-	q.m.DamageTotalMult <- 0.75;
+	q.m.FatigueCostMultMult <- 0.5;
 
 	q.create = @(__original) function()
 	{
 		__original();
 		this.m.Icon = ::Const.Perks.findById(this.getID()).Icon; // Vanilla uses the wrong icon i.e. `perk_10.png` which is the Anticipation icon.
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character has mastered the art of fighting with the spear allowing him to attack for free once per [turn.|Concept.Turn]");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character has mastered the art of fighting with the spear allowing him to perform an extra attack once per [turn.|Concept.Turn]");
 	}
 
 	q.isHidden = @() function()
@@ -22,7 +22,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The next piercing spear attack costs " + ::MSU.Text.colorPositive("0") + " [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive("0") + " [Fatigue|Concept.Fatigue] but does " + ::MSU.Text.colorizeMult(this.m.DamageTotalMult) + " less damage")
+			text = ::Reforged.Mod.Tooltips.parseString("The next piercing spear attack costs " + ::MSU.Text.colorPositive("0") + " [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorizeMult(this.m.FatigueCostMultMult, {InvertColor = true}) + " less [Fatigue|Concept.Fatigue]")
 		});
 		ret.push({
 			id = 20,
@@ -54,7 +54,7 @@
 				if (this.isSkillValid(skill))
 				{
 					skill.m.ActionPointCost = 0;
-					skill.m.FatigueCostMult *= 0;
+					skill.m.FatigueCostMult *= this.m.FatigueCostMultMult;
 				}
 			}
 		}
@@ -80,14 +80,6 @@
 				return;
 			}
 		}
-	}
-
-	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
-	{
-		__original(_skill, _targetEntity, _properties);
-
-		if (!this.m.IsSpent && this.isSkillValid(_skill) && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
-			_properties.DamageTotalMult *= this.m.DamageTotalMult;
 	}
 
 	q.onTurnStart = @(__original) function()
