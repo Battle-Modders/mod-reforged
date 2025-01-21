@@ -3,7 +3,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		IsSpent = true,
 		IsForceEnabled = false,
 		APCostModifier = -2,
-		FatigueCostModifier = 0
+		FatigueCostModifier = 2
 	},
 	function create()
 	{
