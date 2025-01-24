@@ -10,7 +10,7 @@
 			"pg.rf_dagger": 0,
 			"pg.rf_polearm": 0.25,
 			"pg.rf_spear": 0.2,
-			"pg.rf_sword": 0.9,
+			"pg.rf_sword": 0.9
 
 			"pg.special.rf_man_of_steel": -1
 		};
