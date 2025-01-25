@@ -14,6 +14,7 @@ this.rf_old_swordmaster_background <- ::inherit("scripts/skills/backgrounds/swor
 			"trait.fat"
 		]);
 		this.m.BeardChance = 100;
+		this.m.Level = 3;
 	}
 });
 
