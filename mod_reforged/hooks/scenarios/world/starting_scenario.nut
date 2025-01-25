@@ -3,40 +3,13 @@
 	{
 		__original();
 
-		// The following code will guarantee that every starting brother has at least one weapon group corresponding to their currently equipped weapon
-		// However it might overwrite another weapon group that was given to that background specifically or which was highly likely to be on it
-		foreach (brother in ::World.getPlayerRoster().getAll())
+		// For each bro in the player party, if the bro's background uses a dynamic perk tree instead of a fixed template one,
+		// we regenerate the perk tree so that all the factors such as equipped weapon etc. are taken into account.
+		foreach (bro in ::World.getPlayerRoster().getAll())
 		{
-			local weapon = brother.getMainhandItem();
-			if (::MSU.isNull(weapon) || !weapon.isItemType(::Const.Items.ItemType.Weapon))
+			if (::new(::IO.scriptFilenameByHash(bro.getBackground().ClassNameHash)).m.PerkTree.getTemplate() == null)
 			{
-				continue;
-			}
-
-			local perkGroupIds = ::Reforged.getWeaponPerkGroups(weapon);
-			if (perkGroupIds.len() == 0) // The weapon had no weapon groups associated with it (e.g. Lute)
-			{
-				continue;
-			}
-
-			local newPerkGroupId = ::MSU.Array.rand(perkGroupIds);	// We choose one random weapon group belonging to our currently equipped weapon
-			local perkTree = brother.getPerkTree();
-			if (perkTree.hasPerkGroup(newPerkGroupId))	// If we already have that weapon group, we are done and do nothing
-			{
-				continue;
-			}
-
-			local existingWeaponGroups = [];
-			local category = ::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon");
-			foreach (groupID in category.getGroups())
-			{
-				if (perkTree.hasPerkGroup(groupID)) existingWeaponGroups.push(groupID);
-			}
-
-			if (existingWeaponGroups.len() != 0)	// If an origin character does not have any weapon group to begin, we will keep it that way. It was probably for good reason
-			{
-				perkTree.removePerkGroup(::MSU.Array.rand(existingWeaponGroups));
-				perkTree.addPerkGroup(newPerkGroupId);
+				bro.getPerkTree().build();
 			}
 		}
 	}
