@@ -24,7 +24,7 @@ this.rf_random_solo <- this.inherit("scripts/scenarios/world/starting_scenario",
 		bro.getSprite("miniboss").setBrush("bust_miniboss_lone_wolf");
 
 		// Background, Stars, Level
-		bro.setStartValuesEx([::MSU.Array.rand(::Const.MV_HireableCharacterBackgrounds)]);
+		bro.setStartValuesEx(::Const.MV_HireableCharacterBackgrounds);
 		bro.m.Attributes = [];
 		for (local i = 0; i < bro.m.Talents.len(); ++i)
 		{
