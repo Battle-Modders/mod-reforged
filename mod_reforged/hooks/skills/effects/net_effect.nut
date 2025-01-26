@@ -7,32 +7,42 @@
 	{
 		local ret = this.skill.getTooltip();
 
-		ret.extend([
-			{
-				id = 9,
-				type = "text",
-				icon = "ui/icons/action_points.png",
-				text = ::MSU.Text.colorNegative("Unable to move")
-			},
-			{
+		ret.push({
+			id = 9,
+			type = "text",
+			icon = "ui/icons/action_points.png",
+			text = ::MSU.Text.colorNegative("Unable to move")
+		});
+
+		if (this.m.MeleeDefenseMult != 1.0)
+		{
+			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.MeleeDefenseMult) + " [Melee Defense|Concept.MeleeDefense]")
-			},
-			{
+			});
+		}
+
+		if (this.m.RangedDefenseMult != 1.0)
+		{
+			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RangedDefenseMult) + " [Ranged Defense|Concept.RangeDefense]")
-			},
-			{
+			});
+		}
+
+		if (this.m.InitiativeMult != 1.0)
+		{
+			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.InitiativeMult) + " [Initiative|Concept.Initiative]")
-			}
-		]);
+			});
+		}
 
 		return ret;
 	}
