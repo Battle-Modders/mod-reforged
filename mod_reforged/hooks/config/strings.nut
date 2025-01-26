@@ -1320,7 +1320,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Flaming Arrow|Skill+rf_flaming_arrows_skill] skill with bows."
+				"Unlocks the [Flaming Arrow|Skill+rf_flaming_arrows_skill] skill."
 			]
 		}]
 	}),

@@ -94,16 +94,12 @@ this.rf_flaming_arrows_skill <- ::inherit("scripts/skills/actives/aimed_shot", {
 		this.m.MaxRange += this.m.RangeModifier;
 	}
 
-	function onUse( _user, _targetTile )
+	function consumeAmmo()
 	{
-		// One ammo is consumed during the subsequent aimed_shot.onUse, so this manual loop consumes the additional ammo
-		// Start the loop at 1 because we want to consume 1 less ammo as 1 is consumed by aimed shot function call.
-		for (local i = 1; i < this.m.AmmoConsumed; i++)
+		for (local i = 0; i < this.m.AmmoConsumed; i++)
 		{
-			this.consumeAmmo();
+			this.aimed_shot.consumeAmmo();
 		}
-
-		return this.aimed_shot.onUse(_user, _targetTile);
 	}
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
@@ -191,7 +187,7 @@ this.rf_flaming_arrows_skill <- ::inherit("scripts/skills/actives/aimed_shot", {
 					tile.Properties.Effect = clone p;
 					local particles = [];
 
-					for( local i = 0; i < ::Const.Tactical.FireParticles.len(); i = ++i )
+					for (local i = 0; i < ::Const.Tactical.FireParticles.len(); i++)
 					{
 						particles.push(::Tactical.spawnParticleEffect(true, ::Const.Tactical.FireParticles[i].Brushes, tile, ::Const.Tactical.FireParticles[i].Delay, ::Const.Tactical.FireParticles[i].Quantity, ::Const.Tactical.FireParticles[i].LifeTimeQuantity, ::Const.Tactical.FireParticles[i].SpawnRate, ::Const.Tactical.FireParticles[i].Stages));
 					}
