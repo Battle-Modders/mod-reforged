@@ -24,13 +24,13 @@ this.rf_old_swordmaster_scenario_intro_event <- ::inherit("scripts/events/event"
 			],
 			function start( _event )
 			{
-				local locations = ::World.EntityManager.getLocations();
-				foreach (l in locations)
+				foreach (l in ::World.EntityManager.getLocations())
 				{
 					if (l.getTypeID() == "location.fountain_of_youth")
 					{
 						::logInfo("Removing the Fountain of Youth (Grotesque Tree) location");
 						::World.EntityManager.removeLocation(l);
+						break;
 					}
 				}
 			}
