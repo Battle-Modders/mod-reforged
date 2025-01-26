@@ -154,7 +154,7 @@ this.rf_mentors_presence_effect <- ::inherit("scripts/skills/skill", {
 	function onMentorDeath( _fatalityType )
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.getMoraleState() != ::Const.MoraleState.Ignore && actor.getMoraleState() != ::Const.MoraleState.Fleeing)
+		if (actor.getMoraleState() != ::Const.MoraleState.Ignore && actor.getMoraleState() != ::Const.MoraleState.Fleeing && actor.isPlacedOnMap())
 		{
 			actor.setMoraleState(::Math.max(::Const.MoraleState.Fleeing, actor.getMoraleState() + this.m.MoraleStateOnMentorDeathAdd));
 		}
