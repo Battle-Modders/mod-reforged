@@ -2019,7 +2019,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Attacks deal a random " + ::MSU.Text.colorPositive("+10%") + " to " + ::MSU.Text.colorPositive("+25%") + " damage ignoring armor."
+				"Attacks have a random " + ::MSU.Text.colorPositive("+10%") + " to " + ::MSU.Text.colorPositive("+25%") + " armor penetration."
 			]
 		}]
 	}),
