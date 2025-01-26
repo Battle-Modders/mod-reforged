@@ -1,3 +1,4 @@
+// All event text written by ThePlahunter
 this.rf_old_swordmaster_scenario_no_recruits_force_end_event <- ::inherit("scripts/events/event", {
 	m = {
 		Swordmaster = null	

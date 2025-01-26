@@ -1,3 +1,4 @@
+// All event text written by ThePlahunter
 this.rf_old_swordmaster_scenario_student_local_duel_event <- ::inherit("scripts/events/event", {
 	m = {		
 		Candidates = [],		

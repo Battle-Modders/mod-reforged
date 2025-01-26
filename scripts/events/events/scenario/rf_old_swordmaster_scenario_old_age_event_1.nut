@@ -1,3 +1,4 @@
+// All event text written by ThePlahunter
 this.rf_old_swordmaster_scenario_old_age_event_1 <- this.inherit("scripts/events/event", {
 	m = {
 		Swordmaster = null
