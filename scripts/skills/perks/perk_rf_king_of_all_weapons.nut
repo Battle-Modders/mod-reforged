@@ -2,7 +2,7 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredDamageType = ::Const.Damage.DamageType.Piercing,
 		RequiredWeaponType = ::Const.Items.WeaponType.Spear,
-		IsSpent = true
+		Chance = 40
 	},
 	function create()
 	{
@@ -24,13 +24,13 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.skill.getTooltip();
 
-		local damageTypeString = this.m.RequiredDamageType == null ? "" : " " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType).tolower();
+		local damageTypeString = this.m.RequiredDamageType == null ? "" : " " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType);
 		local weaponTypeString = this.m.RequiredWeaponType == null ? "" : " from a " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower();
 		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/direct_damage.png",
-			text = ::Reforged.Mod.Tooltips.parseString(format("The next%s attack%s during your [turn|Concept.Turn] will target the body part with the lower armor", damageTypeString, weaponTypeString))
+			text = ::Reforged.Mod.Tooltips.parseString(format("All%s attack%s during your [turn|Concept.Turn] have a %s chance to target the body part with the lower armor", damageTypeString, weaponTypeString, ::MSU.Text.colorPositive(this.m.Chance + "%")))
 		});
 
 		return ret;
@@ -38,10 +38,10 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (this.m.IsSpent || !this.isSkillValid(_skill))
+		if (!this.isSkillValid(_skill))
 			return;
 
-		if (_targetEntity != null)
+		if (_targetEntity != null && ::Math.rand(1, 100) <= this.m.Chance)
 		{
 			local headArmor = _targetEntity.getArmor(::Const.BodyPart.Head);
 			local bodyArmor = _targetEntity.getArmor(::Const.BodyPart.Body);
@@ -59,23 +59,6 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 				_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
 			}
 		}
-	}
-
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		if (this.isSkillValid(_skill) && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
-			this.m.IsSpent = true;
-	}
-
-	function onTurnStart()
-	{
-		this.m.IsSpent = false;
-	}
-
-	function onCombatFinished()
-	{
-		this.skill.onCombatFinished();
-		this.m.IsSpent = true;
 	}
 
 	function isSkillValid( _skill )

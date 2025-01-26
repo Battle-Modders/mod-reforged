@@ -1511,7 +1511,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The first piercing attack from a spear always targets the body part with the lower armor."
+				"Attacks have a " + ::MSU.Text.colorPositive("40%") + " chance to target the body part with the lower armor."
 			]
 		}]
 	}),
