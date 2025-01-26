@@ -58,7 +58,7 @@ this.rf_naked <- ::inherit("scripts/skills/skill", {
 				id = 100,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Gains no penalties from " + ::Reforged.NestedTooltips.getNestedSkillName(this))
+				text = ::Reforged.Mod.Tooltips.parseString("Suffers no penalties from " + ::Reforged.NestedTooltips.getNestedSkillName(this))
 			});
 		}
 	}
