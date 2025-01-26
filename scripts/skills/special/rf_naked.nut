@@ -14,7 +14,11 @@ this.rf_naked <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/rf_naked.png";
 		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
 		this.m.IsSerialized = false;
-		this.m.IsHidden = true;
+	}
+
+	function isHidden()
+	{
+		return !this.isEnabled();
 	}
 
 	function getTooltip()
@@ -38,7 +42,7 @@ this.rf_naked <- ::inherit("scripts/skills/skill", {
 				return {
 					id = 20,
 					type = "text",
-					icon = obj.getIconColored()
+					icon = obj.getIconColored(),
 					text = obj.m.Name
 				};
 			});
@@ -47,7 +51,7 @@ this.rf_naked <- ::inherit("scripts/skills/skill", {
 				id = 20,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The following backgrounds are unaffected: "
+				text = "The following backgrounds are unaffected: ",
 				children = excluded
 			});
 		}
@@ -68,11 +72,6 @@ this.rf_naked <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function isHidden()
-	{
-		return !this.isEnabled();
-	}
-
 	function onUpdate( _properties )
 	{
 		if (this.isEnabled())
@@ -84,7 +83,16 @@ this.rf_naked <- ::inherit("scripts/skills/skill", {
 	function isEnabled()
 	{
 		local actor = this.getContainer().getActor();
-		// Background can be null during deserialization of game, so we need a null check for that
-		return ::MSU.isKindOf(actor, "player") && ::MSU.isNull(actor.getBodyItem()) && !::MSU.isNull(actor.getBackground()) && this.m.ExcludedBackgrounds.find(actor.getBackground().ClassName) == null;
+
+		if (!::MSU.isNull(actor.getBodyItem()))
+			return false;
+
+		if (::MSU.isKindOf(actor, "player"))
+		{
+			// Background can be null during deserialization of game, so we need a null check for that
+			return !::MSU.isNull(actor.getBackground()) && this.m.ExcludedBackgrounds.find(actor.getBackground().ClassName) == null;
+		}
+
+		return true;
 	}
 });
