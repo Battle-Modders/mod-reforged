@@ -35,7 +35,7 @@ this.rf_old_swordmaster_background <- ::inherit("scripts/skills/backgrounds/swor
 					"pg.rf_sword"
 				],
 				"pgc.rf_armor": [
-					"pg.rf_light"
+					"pg.rf_light_armor"
 				],
 				"pgc.rf_fighting_style": []
 			}
@@ -53,7 +53,7 @@ this.rf_old_swordmaster_background <- ::inherit("scripts/skills/backgrounds/swor
 				return 1; // We only want this background to have the Sword perk group
 
 			case "pgc.rf_armor":
-				return 1; // We only want this background to have Light armor perk group
+				return 1; // We only want this background to have the Light Armor perk group
 
 			case "pgc.rf_fighting_style":
 				return _collection.getMin() + 1;
