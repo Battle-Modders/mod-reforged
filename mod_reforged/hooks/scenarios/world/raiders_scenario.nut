@@ -1,4 +1,4 @@
-::Reforged.HooksMod.hook("scripts/scenarios/world/rangers_scenario", function(q) {
+::Reforged.HooksMod.hook("scripts/scenarios/world/raiders_scenario", function(q) {
 	q.create = @(__original) function()
 	{
 		__original();
