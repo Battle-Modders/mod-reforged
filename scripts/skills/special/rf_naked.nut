@@ -26,24 +26,29 @@ this.rf_naked <- ::inherit("scripts/skills/skill", {
 			ret.push({
 				id = 10,
 				type = "text",
-				icon = "ui/icons/resolve.png",
+				icon = "ui/icons/bravery.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.BraveryMult) + " [Resolve|Concept.Bravery]")
 			});
 		}
 
 		if (this.m.ExcludedBackgrounds.len() != 0)
 		{
-			local excluded = "";
-			foreach (bg in this.m.ExcludedBackgrounds)
-			{
-				excluded += format("[Img/gfx/%s|Skill+%s]", ::new("scripts/skills/backgrounds/" + bg).getIconColored(), bg);
-			}
+			local excluded = this.m.ExcludedBackgrounds.map(function( _filename) {
+				local obj = ::new("scripts/skills/backgrounds/" + _filename);
+				return {
+					id = 20,
+					type = "text",
+					icon = obj.getIconColored()
+					text = obj.m.Name
+				};
+			});
 
 			ret.push({
 				id = 20,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The following backgrounds are unaffected: " + excluded)
+				text = "The following backgrounds are unaffected: "
+				children = excluded
 			});
 		}
 
@@ -79,6 +84,7 @@ this.rf_naked <- ::inherit("scripts/skills/skill", {
 	function isEnabled()
 	{
 		local actor = this.getContainer().getActor();
-		return ::MSU.isKindOf(actor, "player") && ::MSU.isNull(actor.getBodyItem()) && this.m.ExcludedBackgrounds.find(actor.getBackground().ClassName) == null)
+		// Background can be null during deserialization of game, so we need a null check for that
+		return ::MSU.isKindOf(actor, "player") && ::MSU.isNull(actor.getBodyItem()) && !::MSU.isNull(actor.getBackground()) && this.m.ExcludedBackgrounds.find(actor.getBackground().ClassName) == null;
 	}
 });
