@@ -70,7 +70,7 @@ this.rf_old_swordmaster_scenario_intro_event <- ::inherit("scripts/events/event"
 
 	function onPrepare()
 	{
-		this.m.Title = "Full Circle";
+		this.m.Title = "The Last Lesson";
 	}
 
 	function onPrepareVariables( _vars )
