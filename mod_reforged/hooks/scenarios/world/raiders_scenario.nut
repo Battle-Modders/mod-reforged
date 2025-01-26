@@ -2,7 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.Descriptions += "[color=#bcad8c]Adrenaline:[/color] All recruits have access to the Adrenaline perk.";
+		this.m.Description += "[color=#bcad8c]Adrenaline:[/color] All recruits have access to the Adrenaline perk.";
 	}
 
 	q.onBuildPerkTree = @(__original) function( _bro )

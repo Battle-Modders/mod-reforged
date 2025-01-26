@@ -2,7 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.Descriptions += "[color=#bcad8c]Brave Hunters:[/color] All recruits have access to the Fortified Mind perk.";
+		this.m.Description += "[color=#bcad8c]Brave Hunters:[/color] All recruits have access to the Fortified Mind perk.";
 	}
 
 	q.onBuildPerkTree = @(__original) function( _bro )

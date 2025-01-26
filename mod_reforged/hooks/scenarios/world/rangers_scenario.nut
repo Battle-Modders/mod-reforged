@@ -2,7 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.Descriptions += "[color=#bcad8c]Pathfinders:[/color] All recruits have access to the Pathfinder perk.";
+		this.m.Description += "[color=#bcad8c]Pathfinders:[/color] All recruits have access to the Pathfinder perk.";
 	}
 
 	q.onBuildPerkTree = @(__original) function( _bro )
