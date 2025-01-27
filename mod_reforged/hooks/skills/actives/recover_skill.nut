@@ -15,11 +15,13 @@
 
 	q.onAnySkillExecuted = @(__original) function( _skill, _targetTile, _targetEntity, _forFree )
 	{
+		__original(_skill, _targetTile, _targetEntity, _forFree);
 		this.m.IsUsable = false;
 	}
 
 	q.onMovementStarted = @(__original) function( _tile, _numTiles )
 	{
+		__original(_tile, _numTiles);
 		this.m.IsUsable = false;
 	}
 
