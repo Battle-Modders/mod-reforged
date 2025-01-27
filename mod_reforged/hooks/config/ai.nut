@@ -1,0 +1,10 @@
+::MSU.AI.addBehavior("RF_AttackLunge", "RF.AttackLunge", ::Const.AI.Behavior.Order.EngageMelee - 1, ::Const.AI.Behavior.Score.Attack);
+::MSU.AI.addBehavior("RF_CoverAlly", "RF.CoverAlly", ::Const.AI.Behavior.Order.Adrenaline, 60);
+::MSU.AI.addBehavior("RF_FollowUp", "RF.FollowUp", ::Const.AI.Behavior.Order.AttackDefault, 1);
+::MSU.AI.addBehavior("RF_HoldSteady", "RF.HoldSteady", ::Const.AI.Behavior.Order.BoostMorale, ::Const.AI.Behavior.Score.BoostMorale);
+::MSU.AI.addBehavior("RF_Onslaught", "RF.Onslaught", ::Const.AI.Behavior.Order.BoostMorale, ::Const.AI.Behavior.Score.BoostMorale);
+::MSU.AI.addBehavior("RF_KataStep", "RF.KataStep", ::Const.AI.Behavior.Order.Disengage, ::Const.AI.Behavior.Score.Disengage);
+::MSU.AI.addBehavior("RF_Blitzkrieg", "RF.Blitzkrieg", ::Const.AI.Behavior.Order.Rally, ::Const.AI.Behavior.Score.Rally);
+::MSU.AI.addBehavior("RF_SanguineCurse", "RF.SanguineCurse", ::Const.AI.Behavior.Order.Hex, ::Const.AI.Behavior.Score.Hex);
+::MSU.AI.addBehavior("RF_Bodyguard", "RF.Bodyguard", ::Const.AI.Behavior.Order.Protect, ::Const.AI.Behavior.Score.Protect);
+::MSU.AI.addBehavior("RF_Command", "RF.Command", ::Const.AI.Behavior.Order.PossessUndead, ::Const.AI.Behavior.Score.PossessUndead);
