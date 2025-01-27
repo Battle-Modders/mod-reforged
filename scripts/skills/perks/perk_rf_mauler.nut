@@ -63,7 +63,7 @@ this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 
 	function isSkillValid( _skill )
 	{
-		if (!_skill.isAttack() || (!this.m.RequiredWeaponType != null && !_skill.getDamageType().contains(::Const.Damage.DamageType.Cutting)))
+		if (!_skill.isAttack() || (!this.m.RequiredDamageType != null && !_skill.getDamageType().contains(this.m.RequiredDamageType)))
 			return false;
 
 		if (this.m.RequiredWeaponType == null)
