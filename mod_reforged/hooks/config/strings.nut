@@ -213,7 +213,7 @@ local vanillaDescriptions = [
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"The penalty to hitchance when shooting at a target you have no clear line of shooting to is reduced from " + ::MSU.Text.colorNegative("75%") + " to " + ::MSU.Text.colorNegative("50%") + ".",
-					"Against targets who are not in cover, gain " + ::MSU.Text.colorPositive("10%") + " armor penetration when using a bow and " + ::MSU.Text.colorPositive("+20%") + " otherwise."
+					"Against targets who are not in cover, gain " + ::MSU.Text.colorPositive("+10%") + " armor penetration when using a bow and " + ::MSU.Text.colorPositive("+20%") + " otherwise."
 				]
 			}]
 		})

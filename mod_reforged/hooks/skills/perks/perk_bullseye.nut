@@ -33,6 +33,6 @@
 	q.getDirectDamageModifier <- function( _skill )
 	{
 		local weapon = _skill.getItem();
-		return ::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Bow) ? 0.1 : 0.2;
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Bow) ? 0.1 : 0.2;
 	}
 });
