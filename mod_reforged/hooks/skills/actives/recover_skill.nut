@@ -7,7 +7,7 @@
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Cannot be used after movement or having used a skill")
+			text = "Cannot be used after movement or having used a skill"
 		});
 
 		return ret;
