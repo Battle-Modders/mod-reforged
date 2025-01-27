@@ -670,7 +670,7 @@ local vanillaDescriptions = [
 					Description = [
 						"Unlocks the [Kata Step|Skill+rf_kata_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost.",
 						"The target tile for the movement must be adjacent to an enemy.",
-						"Requires a two-handed sword or one-handed sword with the offhand free."
+						"Requires a cutting attack from a two-handed or double-gripped sword."
 					]
 				}
 			]
@@ -1289,6 +1289,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Skills build up " + ::MSU.Text.colorPositive("20%") + " less [Fatigue|Concept.Fatigue] and gain " + ::MSU.Text.colorPositive("+10%") + " chance to hit.",
+				"The Damage Type requirement from [Kata Step|Skill+rf_kata_step_skill] is removed.",
 				"When using a one-handed fencing sword, the [Action Point|Concept.ActionPoints] costs of [Sword Thrust,|Skill+rf_sword_thrust_skill] [Riposte|Skill+riposte] and [Lunge|Skill+lunge_skill] are reduced by " + ::MSU.Text.colorPositive(1) + ".",
 				"When using a two-handed fencing sword, the range of [Lunge|Skill+lunge_skill] is increased by " + ::MSU.Text.colorPositive(1) + " tile."
 			]

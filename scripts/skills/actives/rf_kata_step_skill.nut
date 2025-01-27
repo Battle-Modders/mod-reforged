@@ -1,7 +1,9 @@
 this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	m = {
+		RequiredWeaponType = ::Const.Items.WeaponType.Sword,
+		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
+		RequireOffhandFree = true, // Require equipping two-handed weapon, or having off-hand free. Is only checked when a RequiredWeaponType is not null.
 		IsSpent = true,
-		IsForceEnabled = false,
 		APCostModifier = -2,
 		FatigueCostModifier = 2
 	},
@@ -9,7 +11,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_kata_step";
 		this.m.Name = "Kata Step";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Use the flow of your sword\'s swings to take a step through [Zone of Control|Concept.ZoneOfControl] without triggering attacks of opportunity. Can only be used immediately after a successful attack.");
+		this.m.Description = "Move around your opponents combining skillful footwork with the flow of your weapon\'s swings.";
 		this.m.Icon = "skills/rf_kata_step_skill.png";
 		this.m.IconDisabled = "skills/rf_kata_step_skill_sw.png";
 		this.m.Overlay = "rf_kata_step_skill";
@@ -32,6 +34,14 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_KataStep;
 	}
 
+	function softReset()
+	{
+		this.skill.softReset();
+		this.resetField("RequiredWeaponType");
+		this.resetField("RequiredDamageType");
+		this.resetField("RequireOffhandFree");
+	}
+
 	function getCostString()
 	{
 		if (this.getContainer().getActor().isPlacedOnMap())
@@ -45,17 +55,30 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
-		local actor = this.getContainer().getActor();
+
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Move to an adjacent tile ignoring [Zone of Control|Concept.ZoneOfControl]")
+		});
 
 		if (!this.isEnabled())
 		{
-			ret.push({
-				id = 20,
-				type = "text",
-				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorNegative("Requires a Two-Handed Sword or a double gripped One-Handed sword")
-			});
+			local damageTypeString = this.m.RequiredDamageType == null ? " an attack" : " a " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType).tolower() + " attack";
+			local weaponTypeString = this.m.RequiredWeaponType == null ? "" : format(" from a %s%s", this.m.RequireOffhandFree ? "double-gripped or two-handed" : "", " " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower());
+			if (this.m.RequiredDamageType != null || this.m.RequiredWeaponType != null)
+			{
+				ret.push({
+					id = 20,
+					type = "text",
+					icon = "ui/tooltips/warning.png",
+					text = ::MSU.Text.colorNegative(format("Requires%s%s", damageTypeString, weaponTypeString))
+				});
+			}
 		}
+
+		local actor = this.getContainer().getActor();
 
 		if (actor.isPlacedOnMap())
 		{
@@ -138,21 +161,23 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 
 	function isEnabled()
 	{
-		if (this.m.IsForceEnabled) return true;
+		local actor = this.getContainer().getActor();
+		local weapon = actor.getMainhandItem();
 
-		if (this.getContainer().getActor().isDisarmed()) return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Sword))
-			return false;
-
-		if (!this.getContainer().getActor().isDoubleGrippingWeapon() && !weapon.isItemType(::Const.Items.ItemType.TwoHanded))
+		if (this.m.RequiredWeaponType != null)
 		{
-			local bladeDancerPerk = this.getContainer().getSkillByID("perk.rf_swordmaster_blade_dancer");
-			if (bladeDancerPerk == null || !bladeDancerPerk.isEnabled())
-			{
+			if (weapon == null || actor.isDisarmed() || (this.m.RequireOffhandFree && actor.getOffhandItem() != null))
 				return false;
+		}
+
+		if (this.m.RequiredDamageType != null)
+		{
+			foreach (skill in this.m.RequiredWeaponType != null ? weapon.getSkills() : this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
+			{
+				if (this.isSkillValid(skill))
+					return true;
 			}
+			return false;
 		}
 
 		return true;
@@ -177,9 +202,6 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate ( _properties )
 	{
-		this.m.FatigueCost = 0;
-		this.m.ActionPointCost = 0;
-
 		local actor = this.getContainer().getActor();
 		if (actor.isPlacedOnMap())
 		{
@@ -194,21 +216,15 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (this.isEnabled() && _skill.isAttack() && _skill.getItem() != null &&
-			_skill.getItem().getID() == this.getContainer().getActor().getMainhandItem().getID() &&
-			::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor())
-			)
+		if (this.isEnabled() && this.isSkillValid(_skill) && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 		{
 			this.m.IsSpent = false;
 		}
 	}
 
-	function onUpdate( _properties )
+	function onMovementFinished( _tile )
 	{
-		if (this.getContainer().getActor().m.IsMoving)
-		{
-			this.m.IsSpent = true;
-		}
+		this.m.IsSpent = true;
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
@@ -240,5 +256,17 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.skill.onCombatFinished();
 		this.m.IsSpent = true;
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (!_skill.isAttack() || _skill.isRanged() || (this.m.RequiredDamageType != null && !_skill.getDamageType().contains(this.m.RequiredDamageType)))
+			return false;
+
+		if (this.m.RequiredWeaponType == null)
+			return true;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });

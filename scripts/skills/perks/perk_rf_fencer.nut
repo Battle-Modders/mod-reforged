@@ -26,6 +26,15 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 		return true;
 	}
 
+	function onUpdate( _properties )
+	{
+		local kataStep = this.getContainer().getSkillByID("actives.rf_kata_step");
+		if (kataStep != null)
+		{
+			kataStep.m.RequiredDamageType = null;
+		}
+	}
+
 	function onAfterUpdate( _properties )
 	{
 		if (!this.isEnabled()) return;

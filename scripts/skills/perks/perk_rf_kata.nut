@@ -1,6 +1,8 @@
 this.perk_rf_kata <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsForceEnabled = false
+		RequiredWeaponType = ::Const.Items.WeaponType.Sword,
+		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
+		RequireOffhandFree = true, // Require equipping two-handed weapon, or having off-hand free
 	},
 	function create()
 	{
@@ -15,7 +17,9 @@ this.perk_rf_kata <- ::inherit("scripts/skills/skill", {
 	function onAdded()
 	{
 		local kataStep = ::new("scripts/skills/actives/rf_kata_step_skill");
-		kataStep.m.IsForceEnabled = this.m.IsForceEnabled;
+		kataStep.m.RequiredDamageType = this.m.RequiredDamageType;
+		kataStep.m.RequiredWeaponType = this.m.RequiredWeaponType;
+		kataStep.m.RequireOffhandFree = this.m.RequireOffhandFree;
 		this.getContainer().add(kataStep);
 	}
 

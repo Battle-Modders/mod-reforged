@@ -37,7 +37,9 @@
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_kata", function(o) {
-			o.m.IsForceEnabled = true;
+			o.m.RequiredDamageType = null;
+			o.m.RequiredWeaponType = null;
+			o.m.RequireOffhandFree = false;
 		}));
 	}
 

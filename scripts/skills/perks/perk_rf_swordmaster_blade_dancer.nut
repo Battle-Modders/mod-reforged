@@ -49,6 +49,7 @@ this.perk_rf_swordmaster_blade_dancer <- ::inherit("scripts/skills/perks/perk_rf
 		{
 			kataStep.m.ActionPointCost = ::Math.max(0, kataStep.m.ActionPointCost + this.m.KataStepAPCostModifier);
 			kataStep.m.FatigueCost = ::Math.max(0, kataStep.m.FatigueCost + this.m.KataStepFatigueCostModifier);
+			kataStep.m.RequireOffhandFree = false;
 		}
 	}
 });
