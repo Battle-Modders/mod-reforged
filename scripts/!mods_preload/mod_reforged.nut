@@ -45,8 +45,8 @@ foreach (requirement in requiredMods)
 
 // TODO: Establish a cleaner way to organize "Early" bucket hooks on a per-file basis
 ::Reforged.HooksMod.queue(queueLoadOrder, function() {
-	::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
-		q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
+	::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
+		q.kill = @(__original) function( _killer = null, _skill = null, _fatalityType = ::Const.FatalityType.None, _silent = false )
 		{
 			local playerRelevantDamage = 0.0;
 			if (::Const.Faction.Player in this.m.RF_DamageReceived)
@@ -54,12 +54,15 @@ foreach (requirement in requiredMods)
 			if (::Const.Faction.PlayerAnimals in this.m.RF_DamageReceived)
 				playerRelevantDamage +=  this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total;
 
-			// If player + player animals did at least 50% of total damage to this actor, we set the _killer to null to ensure that the loot properly drops from this actor.
-			// This is because vanilla drops loot if _killer is null or belongs to Player or PlayerAnimals faction.
-			// Warning: This will break any mod that hooks the original onDeath and expects _killer to represent the actual killer
+			// If player + player animals did at least 50% of total damage to this actor, and the killer was not a player or player animal,
+			// we set the _killer to null to ensure that the loot properly drops from this actor.
+			// This is because vanilla drops loot during onDeath if _killer is null or belongs to Player or PlayerAnimals faction.
 			if (playerRelevantDamage / this.m.RF_DamageReceived.Total >= 0.5)
 			{
-				_killer = null;
+				if (_killer.getFaction() != ::Const.Faction.Player && _killer.getFaction() != ::Const.Faction.PlayerAnimals)
+				{
+					_killer = null;
+				}
 			}
 			// Otherwise set the killer to the dying entity itself, so loot doesn't spawn for the player
 			else if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
@@ -67,7 +70,7 @@ foreach (requirement in requiredMods)
 				_killer = this;
 			}
 
-			__original(_killer, _skill, _tile, _fatalityType);
+			__original(_killer, _skill, _fatalityType, _silent);
 		}
 	});
 
