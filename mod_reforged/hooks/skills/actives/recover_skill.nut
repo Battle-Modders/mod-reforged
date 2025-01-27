@@ -7,9 +7,22 @@
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Will end your [turn|Concept.Turn]")
+		});
+		ret.push({
+			id = 21,
+			type = "text",
+			icon = "ui/icons/warning.png",
 			text = "Cannot be used after movement or having used a skill"
 		});
 
+		return ret;
+	}
+
+	q.onUse = @(__original) function( _user, _targetTile )
+	{
+		local ret =__original(_user, _targetTile);
+		_user.m.IsTurnDone = true;
 		return ret;
 	}
 
