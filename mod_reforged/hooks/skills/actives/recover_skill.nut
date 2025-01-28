@@ -66,6 +66,6 @@
 	// to show that the skill won't be usable after the previewed action.
 	q.isAffordablePreview = @(__original) function()
 	{
-		return __original() && !this.getContainer().getActor().isPreviewing();
+		return !this.getContainer().getActor().isPreviewing() && __original();
 	}
 });
