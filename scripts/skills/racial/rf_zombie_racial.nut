@@ -97,4 +97,9 @@ this.rf_zombie_racial <- ::inherit("scripts/skills/skill", {
 		baseProperties.FatigueEffectMult = this.m.FatigueEffectMult;
 		baseProperties.FatigueDealtPerHitMult += this.m.FatigueDealtPerHitMultModifier;	// In vanilla normal zombies don't have this bonus
 	}
+
+	function onUpdate( _properties )
+	{
+		_properties.Stamina += 50;	// Fix heavily armored zombies not moving at all because they reach super low stamina and level 4 encumbrance
+	}
 });
