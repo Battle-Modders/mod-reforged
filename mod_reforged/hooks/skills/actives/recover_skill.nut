@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/recover_skill", function(q) {
-	q.m.HasMovedOrUsedSkill <- false
+	q.m.HasMovedOrUsedSkill <- false;
 
 	q.getTooltip = @(__original) function()
 	{
@@ -12,7 +12,7 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Will end your [turn|Concept.Turn]")
 		});
 
-		local warning = "Cannot be used after movement or having used a skill"
+		local warning = "Cannot be used after movement or having used a skill";
 		local colorNegative = this.m.HasMovedOrUsedSkill || !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isPreviewing();
 		ret.push({
 			id = 21,
