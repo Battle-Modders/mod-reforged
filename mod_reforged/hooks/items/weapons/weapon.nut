@@ -78,11 +78,9 @@
 			return false;
 		}
 
-		local actor = this.getContainer().getActor();
-		// Same condition as vanilla has for isPlayer
-		if (this.m.LastEquippedByFaction == this.Const.Faction.Player || this.getContainer() != null && !::MSU.isNull(actor) && this.isKindOf(actor.get(), "player"))
+		if (this.m.LastEquippedByFaction == ::Const.Faction.Player || !::MSU.isNull(this.getContainer()) && ::MSU.isKindOf(this.getContainer().getActor(), "player"))
 		{
-			return true;	// Player Weapons now always drop guranteed
+			return true;
 		}
 
 		local ret = __original();
