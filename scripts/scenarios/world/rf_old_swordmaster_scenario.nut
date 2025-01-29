@@ -182,8 +182,8 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 	{
 		for (local i = _list.len() - 1; i >= 0; i--)
 		{
-			local id = _list[i];
-			if (id == "background.swordmaster" || id == "background.retired_soldier")
+			local name = _list[i];
+			if (name == "swordmaster_background" || name == "retired_soldier_background")
 			{
 				_list.remove(i);
 			}
