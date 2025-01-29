@@ -1511,7 +1511,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Attacks have a " + ::MSU.Text.colorPositive("40%") + " chance to target the body part with the lower armor."
+				"Attacks have a chance equal to " + ::MSU.Text.colorPositive("50%") + " of your current [Melee Skill|Concept.MeleeSkill] to target the body part with the lower armor."
 			]
 		}]
 	}),

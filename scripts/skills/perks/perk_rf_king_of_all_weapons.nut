@@ -1,8 +1,7 @@
 this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredDamageType = ::Const.Damage.DamageType.Piercing,
-		RequiredWeaponType = ::Const.Items.WeaponType.Spear,
-		Chance = 40
+		RequiredWeaponType = ::Const.Items.WeaponType.Spear
 	},
 	function create()
 	{
@@ -30,7 +29,7 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString(format("All%s attacks%s during your [turn|Concept.Turn] have a %s chance to target the body part with the lower armor", damageTypeString, weaponTypeString, ::MSU.Text.colorPositive(this.m.Chance + "%")))
+			text = ::Reforged.Mod.Tooltips.parseString(format("All%s attacks%s during your [turn|Concept.Turn] have a %s chance to target the body part with the lower armor", damageTypeString, weaponTypeString, ::MSU.Text.colorPositive(this.getChance() + "%")))
 		});
 
 		return ret;
@@ -41,7 +40,7 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 		if (!this.isSkillValid(_skill))
 			return;
 
-		if (_targetEntity != null && ::Math.rand(1, 100) <= this.m.Chance)
+		if (_targetEntity != null && ::Math.rand(1, 100) <= this.getChance())
 		{
 			local headArmor = _targetEntity.getArmor(::Const.BodyPart.Head);
 			local bodyArmor = _targetEntity.getArmor(::Const.BodyPart.Body);
@@ -59,6 +58,11 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 				_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
 			}
 		}
+	}
+
+	function getChance()
+	{
+		return ::Math.floor(this.getContainer().getActor().getCurrentProperties().getMeleeSkill() * 0.5);
 	}
 
 	function isSkillValid( _skill )
