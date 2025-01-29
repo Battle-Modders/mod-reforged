@@ -9,7 +9,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_kata_step";
 		this.m.Name = "Kata Step";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Use the flow of your sword\'s swings to take a step through [Zone of Control|Concept.ZoneOfControl] without triggering attacks of opportunity. Can only be used immediately after a successful attack.");
+		this.m.Description = "Use the flow of your sword\'s swings to dance around your opponent.";
 		this.m.Icon = "skills/rf_kata_step_skill.png";
 		this.m.IconDisabled = "skills/rf_kata_step_skill_sw.png";
 		this.m.Overlay = "rf_kata_step_skill";
@@ -37,9 +37,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		if (this.getContainer().getActor().isPlacedOnMap())
 			return this.skill.getCostString();
 
-		local ret = "Costs " + (this.m.APCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.APCostModifier, {AddSign = true, InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
-		ret += (this.m.FatigueCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCostModifier, {AddSign = true, InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
-		return ::Reforged.Mod.Tooltips.parseString(ret);
+		return "Cost is equal to the movement cost of the starting tile";
 	}
 
 	function getTooltip()
@@ -47,13 +45,40 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		local ret = this.skill.getDefaultUtilityTooltip();
 		local actor = this.getContainer().getActor();
 
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Move to an adjacent tile, ignoring " + ::Reforged.Mod.Tooltips.parseString("[Zone of Control|Concept.ZoneOfControl]")
+		});
+
+		if (this.m.APCostModifier != 0)
+		{
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/action_points.png",
+				text = "Costs " + ::MSU.Text.colorizeValue(this.m.APCostModifier, {AddSign = true, InvertColor = true}) + ::Reforged.Mod.Tooltips.parseString(" [Action Point(s)|Concept.ActionPoints]")
+			});
+		}
+
+		if (this.m.FatigueCostModifier != 0)
+		{
+			ret.push({
+				id = 12,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = "Costs " + ::MSU.Text.colorizeValue(this.m.FatigueCostModifier, {AddSign = true, InvertColor = true}) + ::Reforged.Mod.Tooltips.parseString(" [Fatigue|Concept.Fatigue]")
+			});
+		}
+
 		if (!this.isEnabled())
 		{
 			ret.push({
 				id = 20,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorNegative("Requires a Two-Handed Sword or a double gripped One-Handed sword")
+				text = ::MSU.Text.colorNegative("Requires a two-handed or double gripped sword")
 			});
 		}
 
@@ -78,16 +103,16 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 					text = ::MSU.Text.colorNegative("Requires an empty tile adjacent to an enemy")
 				});
 			}
+		}
 
-			if (this.m.IsSpent)
-			{
-				ret.push({
-					id = 23,
-					type = "text",
-					icon = "ui/tooltips/warning.png",
-					text = ::MSU.Text.colorNegative("Can only be used immediately after a successful attack")
-				});
-			}
+		if (this.m.IsSpent)
+		{
+			ret.push({
+				id = 23,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = ::MSU.Text.colorNegative("Can only be used immediately after a successful attack")
+			});
 		}
 
 		return ret;
