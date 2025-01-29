@@ -1045,6 +1045,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Bully = ::UPD.getDescription({
 		Fluff = "Did you say stop?",
+		Requirement = "Melee Attack",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
