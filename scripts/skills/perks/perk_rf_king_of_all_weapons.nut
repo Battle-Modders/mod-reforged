@@ -29,8 +29,8 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 		ret.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/direct_damage.png",
-			text = ::Reforged.Mod.Tooltips.parseString(format("All%s attack%s during your [turn|Concept.Turn] have a %s chance to target the body part with the lower armor", damageTypeString, weaponTypeString, ::MSU.Text.colorPositive(this.m.Chance + "%")))
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString(format("All%s attacks%s during your [turn|Concept.Turn] have a %s chance to target the body part with the lower armor", damageTypeString, weaponTypeString, ::MSU.Text.colorPositive(this.m.Chance + "%")))
 		});
 
 		return ret;
