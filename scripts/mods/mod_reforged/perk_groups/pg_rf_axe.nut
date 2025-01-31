@@ -7,12 +7,12 @@ this.pg_rf_axe <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Icon = "ui/perk_groups/rf_axe.png";
 		this.m.Tree = [
 			[],
-			["perk.rf_dismemberment"],
+			["perk.rf_dismantle"],
 			[],
 			["perk.mastery.axe"],
 			[],
-			[],
-			["perk.rf_dismantle"]
+			["perk.rf_dismemberment"],
+			[]
 		];
 	}
 });
