@@ -31,7 +31,7 @@ this.rf_sprint_effect <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMult(this.m.FatigueMult, {InvertColor = true, AddSign = true}) + " [Fatigue|Concept.Fatigue] built per tile traveled")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.FatigueMult, {InvertColor = true}) + " [Fatigue|Concept.Fatigue] built per tile traveled")
 			});
 		}
 
