@@ -14,6 +14,16 @@ for (local index = (::Const.TipOfTheDay.len() - 1); index >= 0; index--)
 		case "The 'Fast Adaptation' perk reduces variance of randomness.":
 		case "Losing is fun.":
 		case "Some people will use you and throw you away.":
+		case "With the \'Beast Slayers\' origin you\'ll have an easier time tracking beasts and get more trophies from any of those you slay.":
+		case "With the \'Lone Wolf\' origin you\'ll have a player character in the world. If you die, the campaign ends.":
+		case "With the \'Peasant Militia\' origin you can take up to 16 men into battle at once.":
+		case "With the \'Cultists\' origin your god will demand sacrifices from you, but also bestow boons upon those loyal to him.":
+		case "With the \'Band of Poachers\' origin you\'ll move faster on the worldmap.":
+		case "With the \'Trading Caravan\' origin you\'ll get better prices for both buying and selling.":
+		case "With the \'Manhunters\' origin you can make prisoners after every battle against humans and force them to fight for you.":
+		case "With the \'Gladiators\' origin you start with three powerful characters, but losing all three will end your campaign.":
+		case "With the \'Anatomists\' origin, defeating new enemies grants potions that mutate your men and grant them special abilities.":
+		case "With the \'Oathtakers\' origin, instead of ambitions you\'ll pick oaths that grant special boons and burdens.":
 			::Const.TipOfTheDay.remove(index);
 			break;
 		case "Flails ignore the defense bonus of shields.":
