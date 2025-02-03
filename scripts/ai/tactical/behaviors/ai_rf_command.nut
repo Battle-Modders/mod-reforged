@@ -78,7 +78,7 @@ this.ai_rf_command <- ::inherit("scripts/ai/tactical/behavior", {
 		foreach (a in allAllies)
 		{
 			// Skip allies who have already started their turn (and waited) or have ended their turn or are already in queue to act before all enemies or if the target is not valid for the skill
-			if (a.isTurnStarted() || a.isTurnDone() || ::Tactical.TurnSequenceBar.getTurnsUntilActive(a.getID()) < nextEnemyTurn || !this.m.Skill.onVerifyTarget(myTile, a.getTile()))
+			if (a.isTurnStarted() || a.isTurnDone() || ::Tactical.TurnSequenceBar.getTurnsUntilActive(a.getID()) < nextEnemyTurn || !this.m.Skill.isUsableOn(a.getTile()))
 			{
 				continue;
 			}
@@ -252,7 +252,7 @@ this.ai_rf_command <- ::inherit("scripts/ai/tactical/behavior", {
 			}
 			else
 			{
-				if (currentDanger >= ::Const.AI.Behavior.PossessUndeadMaxDanger || !this.m.Skill.onVerifyTarget(myTile, t.Tile))
+				if (currentDanger >= ::Const.AI.Behavior.PossessUndeadMaxDanger || !this.m.Skill.isUsableOn(t.Tile))
 				{
 					continue;
 				}
