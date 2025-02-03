@@ -28,6 +28,12 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 		return this.m.Stacks == 0 ? this.m.Name : this.m.Name + " (x" + this.m.Stacks + ")";
 	}
 
+	// During combat we always display this effect on player characters even with 0 stacks as a helpful reminder
+	function isHidden()
+	{
+		return !::Tactical.isActive() || this.m.Stacks == 0 && !this.getContainer().getActor().isPlayerControlled();
+	}
+
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
