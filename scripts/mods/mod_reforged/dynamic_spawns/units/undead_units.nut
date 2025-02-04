@@ -20,12 +20,13 @@ local units = [
 	{
 		ID = "Unit.RF.SkeletonHeavy",
 		Troop = "SkeletonHeavy",
+		Figure = "figure_skeleton_03",
 		StartingResourceMin = 300
 	},
 	{
 		ID = "Unit.RF.SkeletonHeavyBodyguard",
 		Troop = "SkeletonHeavyBodyguard",
-		Figure = "figure_zombie_03"
+		Figure = "figure_skeleton_03"
 	},
 	{
 		ID = "Unit.RF.Vampire",
