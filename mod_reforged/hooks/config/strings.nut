@@ -736,7 +736,7 @@ local vanillaDescriptions = [
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorPositive("50%") + " and that to armor by " + ::MSU.Text.colorPositive("25%") + ".",
-					"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 15% of your [Base|Concept.BaseAttribute] [Fatigue|Concept.Fatigue] including [traits|Concept.Trait] and [permanent injuries|Concept.InjuryPermanent]. This perk will always provide the full bonus when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] of 15 or below.",
+					"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 15% of your [Base|Concept.BaseAttribute] [Fatigue|Concept.Fatigue] including [traits|Concept.Trait] and [permanent injuries.|Concept.InjuryPermanent] This perk will always provide the full bonus when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] of 15 or below.",
 					"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
 					"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is greater than that of your target."
 					"[Brawny|Perk+perk_brawny] does not affect this perk.",
@@ -1558,7 +1558,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Damage to [Hitpoints|Concept.Hitpoints] is reduced by " + ::MSU.Text.colorPositive("30%") + " and to Armor by " + ::MSU.Text.colorPositive("20%") + ".",
-				"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 30% of your [Base|Concept.BaseAttribute] [Fatigue|Concept.Fatigue] including [traits|Concept.Trait] and [permanent injuries|Concept.InjuryPermanent]. This perk will always provide the full bonus when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] of 35 or below.",
+				"The bonus drops exponentially when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] above 30% of your [Base|Concept.BaseAttribute] [Fatigue|Concept.Fatigue] including [traits|Concept.Trait] and [permanent injuries.|Concept.InjuryPermanent] This perk will always provide the full bonus when wearing head and body armor with a total penalty to [Maximum Fatigue|Concept.MaximumFatigue] of 35 or below.",
 				"Does not affect damage from mental attacks or status effects, but can help to avoid receiving them.",
 				"When attacking a target against whom you have a [Reach Disadvantage,|Concept.ReachAdvantage] reduce this disadvantage by " + ::MSU.Text.colorPositive(1) + " if your [Initiative|Concept.Initiative] is greater than that of your target."
 				"[Brawny|Perk+perk_brawny] does not affect this perk.",

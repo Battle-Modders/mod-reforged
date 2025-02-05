@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will mark a tile and its surrounding tiles for impact for this character\'s next [turn|Concept.Turn]. Upon impact, characters in the tiles take damage and may be [Shellshocked|Skill+shellshocked_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("Will mark a tile and its surrounding tiles for impact for this character\'s next [turn.|Concept.Turn] Upon impact, characters in the tiles take damage and may be [Shellshocked|Skill+shellshocked_effect]")
 		});
 		ret.push({
 			id = 11,
