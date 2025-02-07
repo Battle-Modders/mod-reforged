@@ -9,7 +9,7 @@
 		local actor = this.getContainer().getActor();
 		if (actor.getCurrentProperties().RangedAttackBlockedChanceMult == 0 || ::Const.Tactical.Common.getBlockedTiles(actor.getTile(), _targetEntity.getTile(), actor.getFaction()).len() == 0)
 		{
-			_properties.DamageDirectAdd += 0.20;
+			_properties.DamageDirectAdd += this.getDirectDamageModifier(_skill);
 		}
 	}
 
@@ -28,5 +28,11 @@
 				text = this.getName()
 			});
 		}
+	}
+
+	q.getDirectDamageModifier <- function( _skill )
+	{
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Bow) ? 0.1 : 0.2;
 	}
 });
