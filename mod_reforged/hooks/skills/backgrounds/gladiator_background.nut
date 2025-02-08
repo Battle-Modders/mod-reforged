@@ -54,15 +54,11 @@
 			local flags = this.getContainer().getActor().getFlags();
 			if (!flags.has("ArenaFights"))
 			{
-				local fights = ::Math.rand(3, 15);
+				local fights = ::Math.rand(5, 15);
 				flags.set("ArenaFightsWon", fights);
 				flags.set("ArenaFights", fights);
 
-				if (fights < 5)
-				{
-					this.getContainer().add(::new("scripts/skills/traits/arena_pit_fighter_trait"));
-				}
-				else if (fights < 12)
+				if (fights < 12)
 				{
 					this.getContainer().add(::new("scripts/skills/traits/arena_fighter_trait"));
 				}
