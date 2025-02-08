@@ -1706,7 +1706,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.OneTimeEffect,
 			Description = [
 				"Upon reaching level 11, this perk has a " + ::MSU.Text.colorPositive("50%") + " chance of being replaced with [Realized Potential|Perk+perk_rf_realized_potential].",
-				"If unsuccessful, this perk is replaced by [Failed Potential|Perk+perk_rf_failed_potential] which does nothing."
+				"If unsuccessful, this perk is replaced by [Failed Potential|Perk+perk_rf_failed_potential] which does nothing.",
+				"A [Player Character|Skill+player_character_trait] has a " + ::MSU.Text.colorPositive("100%") + " chance to succeed."
 			]
 		}],
 		Footer = ::MSU.Text.colorNegative("This perk cannot be picked after you have spent a perk point elsewhere. This perk cannot be refunded.")

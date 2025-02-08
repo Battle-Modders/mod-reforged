@@ -31,6 +31,11 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 			local perkTree = actor.getPerkTree();
 			perkTree.removePerk(this.getID());
 
+			if (this.getContainer().hasSkill("trait.player"))
+			{
+				this.m.WillSucceed = true;
+			}
+
 			if (this.m.WillSucceed)
 			{
 				perkTree.addPerk("perk.rf_realized_potential", 1);
