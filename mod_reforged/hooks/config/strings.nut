@@ -1705,7 +1705,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.OneTimeEffect,
 			Description = [
-				"Upon reaching level 11, this perk has a " + ::MSU.Text.colorPositive("50%") + " chance of being replaced with [Realized Potential|Perk+perk_rf_realized_potential] which will double this character\'s salary, increase all attributes by " + ::MSU.Text.colorPositive("+15") + ", unlock new perk groups and refund all perk points, including the one spent on this perk.",
+				"Upon reaching level 11, this perk has a " + ::MSU.Text.colorPositive("50%") + " chance of being replaced with [Realized Potential|Perk+perk_rf_realized_potential].",
 				"If unsuccessful, this perk is replaced by [Failed Potential|Perk+perk_rf_failed_potential] which does nothing."
 			]
 		}],
@@ -1731,7 +1731,25 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
 	}),
 	RF_RealizedPotential = ::UPD.getDescription({
-		Fluff = "From bones to brawn! This character has truly come a long way. Who was once a dreg of society is now a full-fledged mercenary. " + ::MSU.Text.colorPositive("\n\nAll perk points have been refunded and attributes increased."),
+		Fluff = "From bones to brawn! This character has truly come a long way. Who was once a dreg of society is now a full-fledged mercenary.",
+		Effects = [
+			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"Require " + ::MSU.Text.colorNegative("100%") + " more daily wage.",
+				]
+			},
+			{
+				Type = ::UPD.EffectType.OneTimeEffect,
+				Description = [
+					"Refund all spent Perk Points.",
+					"Gain " + ::MSU.Text.colorPositive("+1") + " Perk Point.",
+					"Gain " + ::MSU.Text.colorPositive("1") + " random Shared Perk Group.",
+					"Gain " + ::MSU.Text.colorPositive("2") + " random Weapon Perk Groups.",
+					"All Attributes are increased by " + ::MSU.Text.colorPositive("+15") + "."
+				]
+			}
+		],
 		Footer = ::MSU.Text.colorNegative("This perk cannot be refunded.")
 	}),
 	RF_Rebuke = ::UPD.getDescription({
