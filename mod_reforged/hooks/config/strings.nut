@@ -507,7 +507,8 @@ local vanillaDescriptions = [
 					"Gain the [Bloodlust|Perk+perk_rf_bloodlust] perk.",
 					"Attacks from cleavers apply an additional stack of [Bleeding.|Skill+bleeding_effect]",
 					"[Disarm|Skill+disarm_skill] only has half the penalty to hit.",
-					"[Gouge|Skill+rf_gouge_skill] has a " + ::MSU.Text.colorNegative("50%") + " lower [threshold|Concept.InjuryThreshold] to inflict [injuries.|Concept.InjuryTemporary]"
+					"[Gouge|Skill+rf_gouge_skill] has a " + ::MSU.Text.colorNegative("50%") + " lower [threshold|Concept.InjuryThreshold] to inflict [injuries.|Concept.InjuryTemporary]",
+					"The [Voulge|Item+rf_voulge] no longer has a penalty for attacking targets directly adjacent."
 				]
 			}]
 		})
