@@ -1,9 +1,7 @@
 this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 	m = {
-		// We use two pools because each pool is tracked separately and expires at the end of the next turn
-		StackPool1 = 0,
-		StackPool2 = 0,
-		CurrPool = true, // Which pool is currently gaining stacks. true is pool 1 and false is pool 2. Flipped onTurnEnd.
+		NewStacks = 0, // Gained from start of a turn until start of next turn at which point are converted into OldStacks.
+		OldStacks = 0, // Reset to 0 at the end of a turn.
 		BonusPerStack = 5,
 		MaxStacks = 5
 	},
@@ -43,7 +41,7 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 			text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorPositive(bonus + "%") + " less [Fatigue|Concept.Fatigue]")
 		});
 
-		local stacksToLose = this.m.CurrPool ? this.getStacks() - this.m.StackPool1 : this.getStacks() - this.m.StackPool2;
+		local stacksToLose = this.getStacks() - this.m.NewStacks;
 		if (stacksToLose > 0)
 		{
 			ret.push({
@@ -88,13 +86,12 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 
 	function addStacks( _num )
 	{
-		local pool = this.m.CurrPool ? "StackPool1" : "StackPool2";
-		this.m[pool] = ::Math.min(this.m.MaxStacks, this.m[pool] + _num);
+		this.m.NewStacks = ::Math.min(this.m.MaxStacks, this.m.NewStacks + 1);
 	}
 
 	function getStacks()
 	{
-		return ::Math.min(this.m.MaxStacks, this.m.StackPool1 + this.m.StackPool2);
+		return ::Math.min(this.m.MaxStacks, this.m.NewStacks + this.m.OldStacks);
 	}
 
 	function getBonus()
@@ -124,28 +121,23 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 
 	function onTurnEnd()
 	{
-		if (this.m.CurrPool)
-		{
-			this.m.StackPool2 = 0;
-		}
-		else
-		{
-			this.m.StackPool1 = 0;
-		}
+		this.m.OldStacks = 0;
 	}
 
 	function onTurnStart()
 	{
-		// Any stacks gained before the start of the first turn should be in the first pool
+		// Any stacks gained before the start of the first turn should be considered NewStacks
 		if (::Time.getRound() != 1)
-			this.m.CurrPool = !this.m.CurrPool;
+		{
+			this.m.OldStacks = this.m.NewStacks;
+			this.m.NewStacks = 0;
+		}
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.StackPool1 = 0;
-		this.m.StackPool2 = 0;
-		this.m.CurrPool = true;
+		this.m.NewStacks = 0;
+		this.m.OldStacks = 0;
 	}
 });
