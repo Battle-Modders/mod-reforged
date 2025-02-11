@@ -16,6 +16,8 @@
 	// Part of perk_rf_shield_sergeant functionality
 	q.onTurnStart = @(__original) function()
 	{
+		__original();
+
 		local hasPerk = this.getContainer().hasSkill("perk.rf_shield_sergeant");
 
 		foreach (ally in ::Tactical.Entities.getFactionActors(actor.getFaction(), actor.getTile(), 1, true))
