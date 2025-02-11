@@ -57,11 +57,29 @@ this.rf_billman_heavy <- ::inherit("scripts/entity/tactical/human" {
 				[1, "scripts/items/armor/light_scale_armor"]
 			]).roll();
 
-			local armor = ::new(script);
-			if (script == "scripts/items/armor/mail_hauberk")
-				armor.setVariant(28);
+			if (script != null)
+			{
+				local armor = ::new(script);
+				if (script == "scripts/items/armor/mail_hauberk")
+					armor.setVariant(28);
 
-			this.m.Items.equip(armor);
+				this.m.Items.equip(armor);
+
+				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
+				{
+					local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
+						Apply = function ( _script, _weight )
+						{
+							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
+							if (conditionModifier > 30) return 0.0;
+							return _weight;
+						}
+					})
+
+					if (armorAttachment != null)
+						armor.setUpgrade(::new(armorAttachment));
+				}
+			}
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))

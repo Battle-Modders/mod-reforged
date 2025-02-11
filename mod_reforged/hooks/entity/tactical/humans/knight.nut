@@ -58,6 +58,22 @@
 			]).roll()));
 		}
 
+		local bodyItem = this.getBodyItem();
+		if (bodyItem != null && !bodyItem.isItemType(::Const.Items.ItemType.Named) && ::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier2)
+		{
+			local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
+					if (conditionModifier < 30) return 0.0;
+					return _weight;
+				}
+			})
+
+			if (armorAttachment != null)
+				bodyItem.setUpgrade(::new(armorAttachment));
+		}
+
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local script = ::MSU.Class.WeightedContainer([

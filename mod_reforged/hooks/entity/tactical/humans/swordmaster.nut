@@ -54,18 +54,31 @@
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
+			local armor;
 			if (this.m.MyArmorVariant == 0) // light armor
 			{
-				this.m.Items.equip(::new("scripts/items/armor/noble_mail_armor"));
+				armor = "scripts/items/armor/noble_mail_armor";
 			}
 			else // medium armor
 			{
-				local armor = ::MSU.Class.WeightedContainer([
+				armor = ::MSU.Class.WeightedContainer([
 					[1, "scripts/items/armor/rf_breastplate"],
 					[1, "scripts/items/armor/rf_brigandine_armor"]
 				]).roll();
+			}
 
-				this.m.Items.equip(::new(armor));
+			this.m.Items.equip(::new(armor));
+
+			if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier3)
+			{
+				local armorAttachment = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/armor_upgrades/direwolf_pelt_upgrade"],
+					[1, "scripts/items/armor_upgrades/leather_shoulderguards_upgrade"],
+					[1, "scripts/items/armor_upgrades/double_mail_upgrade"]
+				]).roll();
+
+				if (armorAttachment != null)
+					this.getBodyItem().setUpgrade(::new(armorAttachment));
 			}
 		}
 

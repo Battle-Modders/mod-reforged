@@ -85,6 +85,16 @@ this.rf_fencer <- ::inherit("scripts/entity/tactical/human" {
 				]).roll()));
 			}
 		}
+
+		local bodyItem = this.getBodyItem();
+		if (bodyItem != null && !bodyItem.isItemType(::Const.Items.ItemType.Named) && ::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
+		{
+			bodyItem.setUpgrade(::new(::MSU.Class.WeightedContainer([
+				[1, "scripts/items/armor_upgrades/direwolf_pelt_upgrade"],
+				[1, "scripts/items/armor_upgrades/leather_shoulderguards_upgrade"],
+				[1, "scripts/items/armor_upgrades/double_mail_upgrade"]
+			]).roll()));
+		}
 	}
 
 	function onSpawned()
