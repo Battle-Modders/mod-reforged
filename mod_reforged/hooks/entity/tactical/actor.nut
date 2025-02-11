@@ -160,7 +160,7 @@
 				continue;
 
 			local perk = enemy.getSkills().getSkillByID("perk.rf_long_reach");
-			if (perk == null || !perk.isEnabled())
+			if (perk == null)
 				continue;
 
 			foreach (skill in enemy.getSkills().getAllSkillsOfType(::Const.SkillType.Active))
