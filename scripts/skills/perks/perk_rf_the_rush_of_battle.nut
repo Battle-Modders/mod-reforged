@@ -1,6 +1,7 @@
 this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 	m = {
-		Stacks = 0,
+		NewStacks = 0, // Gained from start of a turn until start of next turn at which point are converted into OldStacks.
+		OldStacks = 0, // Reset to 0 at the end of a turn.
 		BonusPerStack = 5,
 		MaxStacks = 5
 	},
@@ -17,7 +18,8 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 
 	function getName()
 	{
-		return this.m.Stacks > 1 ? this.m.Name + " (x" + this.m.Stacks + ")" : this.m.Name;
+		local stacks = this.getStacks();
+		return stacks > 1 ? this.m.Name + " (x" + stacks + ")" : this.m.Name;
 	}
 
 	function getTooltip()
@@ -39,19 +41,30 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 			text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorPositive(bonus + "%") + " less [Fatigue|Concept.Fatigue]")
 		});
 
+		local stacksToLose = this.getStacks() - this.m.NewStacks;
+		if (stacksToLose > 0)
+		{
+			ret.push({
+				id = 12,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Will lose " + ::MSU.Text.colorNegative(stacksToLose) + " stack(s) at the end of this [turn|Concept.Turn]")
+			});
+		}
+
 		return ret;
 	}
 
 	function isHidden()
 	{
-		return this.m.Stacks == 0;
+		return this.getStacks() == 0;
 	}
 
 	function onMissed( _attacker, _skill )
 	{
 		if (_attacker != null && _skill.isAttack())
 		{
-			this.m.Stacks = ::Math.min(this.m.MaxStacks, this.m.Stacks + 1);
+			this.addStacks(1);
 		}
 	}
 
@@ -59,7 +72,7 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill != null && _skill.isAttack() && _attacker != null && _attacker.getID() != this.getContainer().getActor().getID())
 		{
-			this.m.Stacks = ::Math.min(this.m.MaxStacks, this.m.Stacks + 1);
+			this.addStacks(1);
 		}
 	}
 
@@ -67,18 +80,28 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill.isAttack())
 		{
-			this.m.Stacks = ::Math.min(this.m.MaxStacks, this.m.Stacks + 1);
+			this.addStacks(1);
 		}
+	}
+
+	function addStacks( _num )
+	{
+		this.m.NewStacks = ::Math.min(this.m.MaxStacks, this.m.NewStacks + 1);
+	}
+
+	function getStacks()
+	{
+		return ::Math.min(this.m.MaxStacks, this.m.NewStacks + this.m.OldStacks);
 	}
 
 	function getBonus()
 	{
-		return this.m.Stacks * this.m.BonusPerStack;
+		return this.getStacks() * this.m.BonusPerStack;
 	}
 
 	function onUpdate( _properties )
 	{
-		if (this.m.Stacks > 0)
+		if (this.getStacks() > 0)
 		{
 			local bonus = this.getBonus();
 			_properties.Initiative += bonus;
@@ -87,7 +110,7 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		if (this.m.Stacks > 0)
+		if (this.getStacks() > 0)
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
@@ -98,17 +121,23 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 
 	function onTurnEnd()
 	{
-		this.m.Stacks = 0;
+		this.m.OldStacks = 0;
 	}
 
-	function onCombatStarted()
+	function onTurnStart()
 	{
-		this.m.Stacks = 0;
+		// Any stacks gained before the start of the first turn should be considered NewStacks
+		if (::Time.getRound() != 1)
+		{
+			this.m.OldStacks = this.m.NewStacks;
+			this.m.NewStacks = 0;
+		}
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.Stacks = 0;
+		this.m.NewStacks = 0;
+		this.m.OldStacks = 0;
 	}
 });

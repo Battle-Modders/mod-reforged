@@ -2030,7 +2030,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Whenever you attack or are attacked, hit or miss, gain a stacking " + ::MSU.Text.colorPositive("+5") + " [Initiative|Concept.Initiative] and " + ::MSU.Text.colorPositive("+5%") + " reduction to the [Fatigue|Concept.Fatigue] cost of skills until the end of your [turn,|Concept.Turn] up to a maximum of " + ::MSU.Text.colorPositive("+25") + " and " + ::MSU.Text.colorPositive("+25%") + " respectively."
+				"Whenever you attack or are attacked, hit or miss, gain a stacking " + ::MSU.Text.colorPositive("+5") + " [Initiative|Concept.Initiative] and " + ::MSU.Text.colorPositive("+5%") + " reduction to the [Fatigue|Concept.Fatigue] cost of skills until the end of your next [turn,|Concept.Turn] up to a maximum of " + ::MSU.Text.colorPositive("+25") + " and " + ::MSU.Text.colorPositive("+25%") + " respectively.",
+				"Stacks gained during each [turn|Concept.Turn] are tracked separately."
 			]
 		}]
 	}),
