@@ -1,6 +1,7 @@
 this.perk_rf_long_reach <- ::inherit("scripts/skills/skill", {
 	m = {
-		RequiredWeaponType = ::Const.Items.WeaponType.Polearm
+		RequiredWeaponType = null,
+		RequiredWeaponReach = 7
 	},
 	function create()
 	{
@@ -12,28 +13,16 @@ this.perk_rf_long_reach <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}
 
-	function isEnabled()
-	{
-		if (this.m.RequiredWeaponType == null)
-			return true;
-
-		if (this.getContainer().getActor().isDisarmed())
-			return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		return weapon != null && weapon.isWeaponType(this.m.RequiredWeaponType);
-	}
-
 	// Is called from actor.getSurroundCount to check if the character has a valid skill to apply the surround bonus
 	function isSkillValid( _skill )
 	{
 		if (!_skill.isAttack())
 			return false;
 
-		if (this.m.RequiredWeaponType == null)
-			return true;
-
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
+		if (::MSU.isNull(weapon) || !weapon.isItemType(::Const.Items.ItemType.Weapon))
+			return false;
+
+		return weapon.getReach() >= this.m.RequiredWeaponReach && (this.m.RequiredWeaponType == null || weapon.isWeaponType(this.m.RequiredWeaponType));
 	}
 });
