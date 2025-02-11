@@ -16,7 +16,6 @@ this.pgc_rf_weapon <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 			"pg.rf_flail",
 			"pg.rf_hammer",
 			"pg.rf_mace",
-			"pg.rf_polearm",
 			"pg.rf_spear",
 			"pg.rf_sword",
 			"pg.rf_throwing"
