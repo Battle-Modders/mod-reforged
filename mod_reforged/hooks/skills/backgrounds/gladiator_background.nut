@@ -48,7 +48,6 @@
 
 	q.onAdded = @(__original) function()
 	{
-		__original();
 		if (this.m.IsNew)
 		{
 			local flags = this.getContainer().getActor().getFlags();
@@ -68,5 +67,7 @@
 				}
 			}
 		}
+
+		__original();
 	}
 });

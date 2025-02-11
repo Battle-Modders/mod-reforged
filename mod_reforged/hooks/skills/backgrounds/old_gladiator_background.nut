@@ -44,7 +44,6 @@
 
 	q.onAdded = @(__original) function()
 	{
-		__original();
 		if (this.m.IsNew)
 		{
 			local flags = this.getContainer().getActor().getFlags();
@@ -57,5 +56,7 @@
 				this.getContainer().add(::new("scripts/skills/traits/arena_veteran_trait"));
 			}
 		}
+
+		__original();
 	}
 });
