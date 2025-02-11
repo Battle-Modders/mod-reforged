@@ -13,7 +13,28 @@ this.perk_rf_long_reach <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}
 
-	// Is called from actor.getSurroundCount to check if the character has a valid skill to apply the surround bonus
+	// This gets called by 'getSurroundedCount' from 'actor.nut' for every character at a distance of 2 tiles from _targetEntity, who has perk_rf_long_reach
+	// @return true if we are surrounding _targetEntity, or false otherwise
+	function countsAsSurrounding( _targetEntity )
+	{
+		local actor = this.getContainer().getActor();
+		local myTile = actor.getTile();
+		local targetTile = _targetEntity.getTile();
+
+		if (!actor.hasZoneOfControl() || !myTile.hasLineOfSightTo(targetTile, actor.getCurrentProperties().getVision()))
+			return false;
+
+		foreach (skill in actor.getSkills().getAllSkillsOfType(::Const.SkillType.Active))
+		{
+			if (this.isSkillValid(skill) && skill.verifyTargetAndRange(myTile, targetTile))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	function isSkillValid( _skill )
 	{
 		if (!_skill.isAttack())
