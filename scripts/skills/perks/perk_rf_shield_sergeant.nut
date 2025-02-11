@@ -24,5 +24,5 @@ this.perk_rf_shield_sergeant <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	// This perk has part of its functionality written in a hook on skills/actives/shieldwall
+	// This perk has part of its functionality written in hooks on skills/actives/shieldwall and skills/effects/shieldwall_effect
 });
