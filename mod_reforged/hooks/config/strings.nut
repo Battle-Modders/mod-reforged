@@ -2009,8 +2009,9 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Every hit or miss against any target increases your [Initiative|Concept.Initiative] by " + ::MSU.Text.colorPositive("+15") + ". This bonus is carried over into your next [turn|Concept.Turn] but only until the first skill used or upon [waiting|Concept.Wait] that [turn.|Concept.Turn]",
-					"The first two hits against opponents who act after you in the current [round|Concept.Round] recover " + ::MSU.Text.colorPositive("2") + " [Action Points|Concept.ActionPoints] each but cause the [Initiative|Concept.Initiative] bonus to expire."
+					"Gain " + ::MSU.Text.colorPositive(1) + " stack for every hit or miss against any target during your [turn|Concept.Turn]."
+					"Each stack increases your [Initiative|Concept.Initiative] by " + ::MSU.Text.colorPositive("+15") + ". This bonus is carried over into your next [turn|Concept.Turn] but only until the first skill used or upon [waiting|Concept.Wait] that [turn.|Concept.Turn]",
+					"During a [turn|Concept.Turn] gain " + ::MSU.Text.colorPositive("half") + " of the stacks gained during the previous [turn|Concept.Turn] as additional [Action Points|Concept.ActionPoints] and attacks build up " + ::MSU.Text.colorPositive("5%") + " less [Fatigue|Concept.Fatigue] per such stack."
 				]
 			}
 		]
