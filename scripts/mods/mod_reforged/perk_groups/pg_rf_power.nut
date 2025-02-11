@@ -8,10 +8,10 @@ this.pg_rf_power <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Tree = [
 			["perk.crippling_strikes"],
 			["perk.rf_vigorous_assault"],
-			["perk.rotation"],
-			[],
+			["perk.rf_leverage"],
+			["perk.mastery.polearm"],
 			["perk.rf_sweeping_strikes"],
-			[],
+			["perk.rf_long_reach"],
 			["perk.rf_formidable_approach"]
 		];
 	}
