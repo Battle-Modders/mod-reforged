@@ -153,24 +153,11 @@
 		local count = __original();
 		this.m.CurrentProperties.StartSurroundCountAt = startSurroundCountAt;
 
-		local myTile = this.getTile();
-		foreach (enemy in ::Tactical.Entities.getHostileActors(this.getFaction(), myTile, 2, true))
+		foreach (enemy in ::Tactical.Entities.getHostileActors(this.getFaction(), this.getTile(), 2, true))
 		{
-			if (!enemy.hasZoneOfControl() || enemy.isNonCombatant() || !enemy.getTile().hasLineOfSightTo(myTile, enemy.getCurrentProperties().getVision()))
-				continue;
-
 			local perk = enemy.getSkills().getSkillByID("perk.rf_long_reach");
-			if (perk == null)
-				continue;
-
-			foreach (skill in enemy.getSkills().getAllSkillsOfType(::Const.SkillType.Active))
-			{
-				if (perk.isSkillValid(skill) && skill.verifyTargetAndRange(myTile, enemy.getTile()))
-				{
-					count++;
-					break;
-				}
-			}
+			if (perk != null && perk.countsAsSurrounding(this))
+				count++;
 		}
 
 		return ::Math.max(0, count - 1 - startSurroundCountAt);
