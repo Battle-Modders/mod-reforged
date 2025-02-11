@@ -4,5 +4,14 @@
 
 	UI = {
 		WorldBannerYOffset = 50
+	},
+
+	// Chance that units of a certain tier can spawn with armor attachments.
+	// Is used directly within entity files to roll for the chance
+	ArmorAttachmentChance = {
+		Tier4 = 40,
+		Tier3 = 30,
+		Tier2 = 20,
+		Tier1 = 10
 	}
 }

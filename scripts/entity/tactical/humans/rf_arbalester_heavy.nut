@@ -52,11 +52,31 @@ this.rf_arbalester_heavy <- ::inherit("scripts/entity/tactical/human" {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+			local armor = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/armor/leather_lamellar"],
 				[1, "scripts/items/armor/basic_mail_shirt"],
 				[1, "scripts/items/armor/mail_shirt"]
-			]).roll()));
+			]).roll();
+
+			if (armor != null)
+			{
+				this.m.Items.equip(::new(armor));
+
+				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
+				{
+					local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
+						Apply = function ( _script, _weight )
+						{
+							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
+							if (conditionModifier > 20) return 0.0;
+							return _weight;
+						}
+					})
+
+					if (armorAttachment != null)
+						this.getBodyItem().setUpgrade(::new(armorAttachment));
+				}
+			}
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))

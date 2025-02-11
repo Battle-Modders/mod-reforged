@@ -29,5 +29,23 @@
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+
+		if (this.getBodyItem() != null)
+		{
+			if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier2)
+			{
+				local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
+					Apply = function ( _script, _weight )
+					{
+						local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
+						if (conditionModifier > 20) return 0.0;
+						return _weight;
+					}
+				})
+
+				if (armorAttachment != null)
+					this.getBodyItem().setUpgrade(::new(armorAttachment));
+			}
+		}
 	}
 });

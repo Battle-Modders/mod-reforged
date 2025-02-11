@@ -67,6 +67,38 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 					if (conditionMax < 35 || conditionMax > 55) return 0.0;
 					return _weight;
 				}
+			});
+
+			if (armor != null)
+			{
+				this.m.Items.equip(::new(armor));
+
+				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier2)
+				{
+					local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
+						Apply = function ( _script, _weight )
+						{
+							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
+							if (conditionModifier > 10) return 0.0;
+							return _weight;
+						}
+					})
+
+					if (armorAttachment != null)
+						this.getBodyItem().setUpgrade(::new(armorAttachment));
+				}
+			}
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local armor = ::Reforged.ItemTable.BanditArmorTough.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+					if (conditionMax < 35 || conditionMax > 55) return 0.0;
+					return _weight;
+				}
 			})
 			this.m.Items.equip(::new(armor));
 		}

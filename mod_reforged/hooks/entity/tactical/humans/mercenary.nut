@@ -219,6 +219,32 @@
 			}
 		}
 
+		if (this.getBodyItem() != null && ::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
+		{
+			local armor = this.getBodyItem();
+			local conditionMax = armor.getConditionMax();
+
+			local conditionModifierCutoff = 40;
+			if (conditionMax < 90)
+				conditionModifierCutoff = 20;
+			else if (conditionMax < 150)
+				conditionModifierCutoff = 30;
+
+			local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
+					if (conditionModifier > conditionModifierCutoff) return 0.0;
+					return _weight;
+				}
+			});
+
+			if (armorAttachment != null)
+			{
+				armor.setUpgrade(::new(armorAttachment));
+			}
+		}
+
 		if (::Math.rand(1, 100) <= 95)
 		{
 			local helmets = [
