@@ -1671,13 +1671,14 @@ foreach (vanillaDesc in vanillaDescriptions)
 		}]
 	}),
 	RF_Phalanx = ::UPD.getDescription({
-		Fluff = "Learn the ancient art of fighting in a shielded formation.",
-		Requirement = "Shield",
+		Fluff = "Learn the ancient art of fighting in a formation.",
+		Requirement = "Melee Piercing Attack and either a Shield or Two-Handed Weapon",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Gain " + ::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach] per adjacent ally also equipped with a shield. Does not work with bucklers.",
-				"[Shieldwall|Skill+shieldwall] costs " + ::MSU.Text.colorPositive("50%") + " less [Action Points|Concept.ActionPoints] (to a minimum of " + ::MSU.Text.colorPositive(2) + ") and " + ::MSU.Text.colorPositive("50%") + " less [Fatigue|Concept.Fatigue] if an adjacent ally has the [Shieldwall Effect.|Skill+shieldwall_effect]"
+				"When attacking or defending in melee, gain " + ::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach] per adjacent ally who has a melee piercing attack and either a shield or two-handed weapon.",
+				"Ignore the defense malus from being [surrounded|Concept.Surrounding] by enemies up to the number of such adjacent allies. This includes enemies with the [Backstabber|Perk+perk_backstabber] perk.",
+				"Does not work with bucklers."
 			]
 		}]
 	}),

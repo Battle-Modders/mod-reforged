@@ -1,14 +1,14 @@
 this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 	m = {
-		ShieldWallActionPointsMult = 0.5,
-		ShieldWallActionPointsMininum = 2,	// This perk can't reduce the AP of shieldwall below this value
-		ShieldWallFatigueMult = 0.5
+		RequiredDamageType = ::Const.Damage.DamageType.Piercing,
+		ReachModifier = 1, // per valid ally
+		StartSurroundCountAtModifier = 1 // per valid ally
 	},
 	function create()
 	{
 		this.m.ID = "perk.rf_phalanx";
 		this.m.Name = ::Const.Strings.PerkName.RF_Phalanx;
-		this.m.Description = "This character is highly skilled in fighting in a shielded formation and gains bonuses when adjacent to allies with shields.";
+		this.m.Description = "This character is highly skilled in fighting in formation.";
 		this.m.Icon = "ui/perks/perk_rf_phalanx.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.BeforeLast;
@@ -16,27 +16,33 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.getCount() == 0;
+		return this.getAllyCount() == 0;
 	}
 
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 
-		ret.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/rf_reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.getCount(), {AddSign = true}) + " [Reach|Concept.Reach] when attacking or defending in melee")
-		});
+		local count = this.getAllyCount();
 
-		if (this.hasAdjacentShieldwall() || this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID())
+		if (this.m.ReachModifier != 0)
+		{
+			local damageTypeString = this.m.RequiredDamageType == null ? "" : " with a " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType).tolower() + " attack";
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/rf_reach.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(count, {AddSign = true}) + " [Reach|Concept.Reach] when defending or when attacking" + damageTypeString)
+			});
+		}
+
+		if (this.m.StartSurroundCountAtModifier != 0)
 		{
 			ret.push({
 				id = 11,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("[Shieldwall|Skill+shieldwall] costs " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallActionPointsMult, {InvertColor = true}) + " [Action Points|Concept.ActionPoints] (to a minimum of " + ::MSU.Text.colorPositive(this.m.ShieldWallActionPointsMininum) + ") and " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallFatigueMult, {InvertColor = true}) + " [Fatigue|Concept.Fatigue]")
+				icon = "ui/icons/melee_defense.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Ignore the defense malus from being [surrounded|Concept.Surrounding] by up to " + ::MSU.Text.colorizeValue(count) + " opponents")
 			});
 		}
 
@@ -45,9 +51,9 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_targetEntity != null && _skill.isAttack() && !_skill.isRanged())
+		if (_skill.isAttack() && !_skill.isRanged() && (this.m.RequiredDamageType == null || _skill.getDamageType().contains(this.m.RequiredDamageType)))
 		{
-			_properties.Reach += this.getCount();
+			_properties.Reach += this.getAllyCount();
 		}
 	}
 
@@ -55,35 +61,30 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill.isAttack() && !_skill.isRanged())
 		{
-			_properties.Reach += this.getCount();
+			_properties.Reach += this.getAllyCount();
 		}
 	}
 
-	function onAfterUpdate( _properties )
+	function onUpdate( _properties )
 	{
-		if (this.hasAdjacentShieldwall())
+		if (this.isActorValid(this.getContainer().getActor()))
 		{
-			local shieldwallSkill = this.getContainer().getSkillByID("actives.shieldwall");
-			if (shieldwallSkill != null)
-			{
-				shieldwallSkill.m.ActionPointCost = ::Math.max(shieldwallSkill.m.ActionPointCost * this.m.ShieldWallActionPointsMult, this.m.ShieldWallActionPointsMininum);
-				shieldwallSkill.m.FatigueCostMult *= this.m.ShieldWallFatigueMult;
-			}
+			_properties.StartSurroundCountAt += this.m.StartSurroundCountAtModifier * this.getAllyCount();
 		}
 	}
 
-	function getCount()
+	function getAllyCount()
 	{
 		local ret = 0;
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || !actor.isArmedWithShield() || actor.getOffhandItem().getID().find("buckler") != null)
+		if (!actor.isPlacedOnMap() || !this.isActorValid(actor))
 		{
 			return ret;
 		}
 
-		foreach (ally in ::Tactical.Entities.getAlliedActors(actor.getFaction(), actor.getTile(), 1))
+		foreach (ally in ::Tactical.Entities.getAlliedActors(actor.getFaction(), actor.getTile(), 1, true))
 		{
-			if (ally.isArmedWithShield() && actor.getOffhandItem().getID().find("buckler") == null && ally.getID() != actor.getID())
+			if (this.isActorValid(ally))
 			{
 				ret += 1;
 			}
@@ -92,56 +93,24 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onGetHitFactors( _skill, _targetTile, _tooltip )
-	{
-		if (_skill.isAttack() && !_skill.isRanged() && _targetTile.IsOccupiedByActor && this.getCount() != 0 && ::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetTile.getEntity()))
-		{
-			_tooltip.push({
-				icon = "ui/tooltips/positive.png",
-				text = this.getName()
-			});
-		}
-	}
-
-	function onGetHitFactorsAsTarget( _skill, _targetTile, _tooltip )
-	{
-		if (_skill.isAttack() && !_skill.isRanged() && this.getCount() != 0 && ::Reforged.Reach.hasLineOfSight(_skill.getContainer().getActor(), this.getContainer().getActor()))
-		{
-			_tooltip.push({
-				icon = "ui/tooltips/negative.png",
-				text = this.getName()
-			});
-		}
-	}
-
-	function onQueryTooltip( _skill, _tooltip )
-	{
-		if (_skill.getID() == "actives.shieldwall" && this.hasAdjacentShieldwall())
-		{
-			_tooltip.push({
-				id = 15,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Costs " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallActionPointsMult, {InvertColor = true}) + " [Action Points|Concept.ActionPoints] (to a minimum of " + ::MSU.Text.colorPositive(this.m.ShieldWallActionPointsMininum) + ") and " + ::MSU.Text.colorizeMultWithText(this.m.ShieldWallFatigueMult, {InvertColor = true}) + " [Fatigue|Concept.Fatigue] because of " + ::Reforged.NestedTooltips.getNestedSkillName(this))
-			});
-		}
-	}
-
-	function hasAdjacentShieldwall()
+	function isActorValid( _actor )
 	{
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap())
+		if (actor.isArmedWithShield())
+		{
+			return actor.getOffhandItem().getID().find("buckler") == null;
+		}
+
+		local weapon = actor.getMainhandItem();
+		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.TwoHanded))
 			return false;
 
-		local myTile = actor.getTile();
-		for (local i = 0; i < 6; i++)
+		foreach (skill in weapon.getSkills())
 		{
-			if (!myTile.hasNextTile(i))
-				continue;
-
-			local nextTile = myTile.getNextTile(i);
-			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAlliedWith(actor) && nextTile.getEntity().getSkills().hasSkill("effects.shieldwall"))
+			if (skill.isAttack() && !skill.isRanged() && (this.m.RequiredDamageType == null || skill.getDamageType().contains(this.m.RequiredDamageType)))
+			{
 				return true;
+			}
 		}
 
 		return false;
