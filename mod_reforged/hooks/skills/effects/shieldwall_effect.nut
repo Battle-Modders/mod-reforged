@@ -18,6 +18,7 @@
 	{
 		__original();
 
+		local actor = this.getContainer().getActor();
 		local hasPerk = this.getContainer().hasSkill("perk.rf_shield_sergeant");
 
 		foreach (ally in ::Tactical.Entities.getFactionActors(actor.getFaction(), actor.getTile(), 1, true))
