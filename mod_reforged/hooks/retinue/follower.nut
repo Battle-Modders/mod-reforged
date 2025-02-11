@@ -1,4 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/retinue/follower", function(q) {
+	q.m.Perks <- null
+	q.create = @(__original) function()
+	{
+		__original();
+		this.m.Perks = ::new("skills/rf_follower_skill_container");
+	}
 	q.getUIData <- function()
 	{
 		return {
