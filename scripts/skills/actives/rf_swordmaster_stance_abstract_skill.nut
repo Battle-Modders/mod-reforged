@@ -12,7 +12,7 @@ this.rf_swordmaster_stance_abstract_skill <- ::inherit("scripts/skills/actives/r
 
 	function getTooltip()
 	{
-		local ret = this.skill.getTooltip();
+		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
 			id = 10,
 			type = "text",
