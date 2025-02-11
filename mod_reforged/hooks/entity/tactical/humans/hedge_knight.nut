@@ -41,26 +41,44 @@
 			this.m.Items.equip(::new(weapon));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		if (this.m.IsMiniboss)
 		{
-			local armor = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/armor/heavy_lamellar_armor"],
-				[1, "scripts/items/armor/coat_of_plates"],
-				[1, "scripts/items/armor/coat_of_scales"]
-			]).roll();
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+			{
+				this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+					[1, "scripts/items/armor/rf_breastplate_armor"],
+					[1, "scripts/items/armor/rf_breastplate_harness"]
+				]).roll()));
+			}
 
-			this.m.Items.equip(::new(armor));
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+			{
+				this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+					[1, "scripts/items/helmets/rf_half_closed_sallet_with_mail"],
+					[1, "scripts/items/helmets/rf_visored_bascinet"],
+					[1, "scripts/items/helmets/rf_half_closed_sallet_with_bevor"]
+				]).roll()));
+			}
 		}
-
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		else
 		{
-			local helmet = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/helmets/closed_flat_top_with_mail"],
-				[0.5, "scripts/items/helmets/conic_helmet_with_faceguard"],
-				[1, "scripts/items/helmets/full_helm"]
-			]).roll();
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+			{
+				this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+					[1, "scripts/items/armor/heavy_lamellar_armor"],
+					[1, "scripts/items/armor/coat_of_plates"],
+					[1, "scripts/items/armor/coat_of_scales"]
+				]).roll()));
+			}
 
-			this.m.Items.equip(::new(helmet));
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+			{
+				this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+					[1, "scripts/items/helmets/closed_flat_top_with_mail"],
+					[0.5, "scripts/items/helmets/conic_helmet_with_faceguard"],
+					[1, "scripts/items/helmets/full_helm"]
+				]).roll()));
+			}
 		}
 	}
 

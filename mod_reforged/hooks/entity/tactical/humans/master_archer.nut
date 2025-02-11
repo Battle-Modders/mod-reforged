@@ -52,23 +52,28 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::MSU.Class.WeightedContainer([
+			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
 				[1, "scripts/items/armor/thick_tunic"],
 				[1, "scripts/items/armor/padded_surcoat"],
 				[1, "scripts/items/armor/gambeson"]
-			]).roll();
-
-			this.m.Items.equip(::new(armor));
+			]).roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/helmets/hood"],
-				[1, "scripts/items/helmets/hunters_hat"]
-			]).rollChance(33);
+			if (this.m.IsMiniboss)
+			{
+				this.m.Items.equip(::new("scripts/items/helmets/greatsword_hat"));
+			}
+			else
+			{
+				local helmet = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/helmets/hood"],
+					[1, "scripts/items/helmets/hunters_hat"]
+				]).rollChance(33);
 
-			if (helmet != null) this.m.Items.equip(::new(helmet));
+				if (helmet != null) this.m.Items.equip(::new(helmet));
+			}
 		}
 	}
 
