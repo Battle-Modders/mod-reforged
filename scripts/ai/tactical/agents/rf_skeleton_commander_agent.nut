@@ -7,7 +7,7 @@ this.rf_skeleton_commander_agent <- ::inherit("scripts/ai/tactical/agents/skelet
 
 	function onUpdate()
 	{
-		this.skeleton_melee_agent.create();
+		this.skeleton_melee_agent.onUpdate();
 		this.m.Properties.OverallFormationMult *= 1.5;
 		this.m.Properties.OverallMagnetismMult *= 2.0;
 	}
