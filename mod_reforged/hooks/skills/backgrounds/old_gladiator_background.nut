@@ -41,4 +41,22 @@
 				return _collection.getMin() + 1;
 		}
 	}
+
+	q.onAdded = @(__original) function()
+	{
+		if (this.m.IsNew)
+		{
+			local flags = this.getContainer().getActor().getFlags();
+			if (!flags.has("ArenaFights"))
+			{
+				local fights = ::Math.rand(15, 25);
+				flags.set("ArenaFightsWon", fights);
+				flags.set("ArenaFights", fights);
+
+				this.getContainer().add(::new("scripts/skills/traits/arena_veteran_trait"));
+			}
+		}
+
+		__original();
+	}
 });
