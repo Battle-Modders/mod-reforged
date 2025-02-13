@@ -44,7 +44,6 @@
 	"the Glorious",
 	"the Favored"
 ];
-
 ::Const.Strings.RF_ManAtArmsTitles <- [
 	"the Bull of %factionname%",
 	"the Shield of %factionname%",
@@ -72,7 +71,6 @@
 	"the Undefeated",
 	"Ironborn"
 ];
-
 ::Const.Strings.RF_FencerTitles <- [
 	"the Proud",
 	"the Hero",
