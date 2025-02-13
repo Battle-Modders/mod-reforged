@@ -226,6 +226,15 @@
 	"Wolfhart",
 	"Wulfric"
 ]);
+::Const.Strings.SwordmasterTitles.extend([
+	"the Leopard",
+	"the Keen",
+	"Bladesage",
+	"the Duelist",
+	"the Whirlwind",
+	"the Iron Tempest",
+	"the Dancing Steel"
+]);
 
 // This removes all duplicate CharacterNames. This line is redundant for Vanilla + Reforged because our additional names are already checked for duplicates
 // Any mod that adds names after ours may re-introduce duplicates. This is not game-breaking but still undeLorded
