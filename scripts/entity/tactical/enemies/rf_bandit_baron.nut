@@ -92,12 +92,14 @@ this.rf_bandit_baron <- ::inherit("scripts/entity/tactical/human", {
 			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 			{
 				local weapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/greataxe"],
+					[1, "scripts/items/weapons/greatsword"],
 					[1, "scripts/items/weapons/longsword"],
 					[1, "scripts/items/weapons/rf_kriegsmesser"],
 					[1, "scripts/items/weapons/rf_swordstaff"],
 					[1, "scripts/items/weapons/two_handed_flail"],
-					[1, "scripts/items/weapons/two_handed_flanged_mace"],
-					[1, "scripts/items/weapons/greatsword"]
+					[1, "scripts/items/weapons/two_handed_hammer"],
+					[1, "scripts/items/weapons/two_handed_flanged_mace"]
 				]).roll();
 
 				this.m.Items.equip(::new(weapon));
@@ -106,8 +108,8 @@ this.rf_bandit_baron <- ::inherit("scripts/entity/tactical/human", {
 			{
 				local weapon = ::MSU.Class.WeightedContainer([
 					[1, "scripts/items/weapons/fighting_axe"],
-					[1, "scripts/items/weapons/military_cleaver"],
 					[1, "scripts/items/weapons/fighting_spear"],
+					[1, "scripts/items/weapons/military_cleaver"],
 					[1, "scripts/items/weapons/noble_sword"],
 					[1, "scripts/items/weapons/warhammer"],
 					[1, "scripts/items/weapons/winged_mace"]
@@ -156,23 +158,10 @@ this.rf_bandit_baron <- ::inherit("scripts/entity/tactical/human", {
 		local r = ::Math.rand(1, 100);
 		if (r <= 25)
 		{
-			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/named/named_axe"],
-				[1, "scripts/items/weapons/named/named_cleaver"],
-				[1, "scripts/items/weapons/named/named_spear"],
-				[1, "scripts/items/weapons/named/named_sword"],
-				[1, "scripts/items/weapons/named/named_hammer"],
-				[1, "scripts/items/weapons/named/named_mace"],
-
-				[1, "scripts/items/weapons/named/named_rf_longsword"],
-				[1, "scripts/items/weapons/named/named_rf_kriegsmesser"],
-				[1, "scripts/items/weapons/named/named_rf_swordstaff"],
-				[1, "scripts/items/weapons/named/named_two_handed_flail"],
-				[1, "scripts/items/weapons/named/named_two_handed_mace"],
-				[1, "scripts/items/weapons/named/named_greatsword"]
-			]).roll();
-
-			this.m.Items.equip(::new(weapon));
+			local weapon = ::Reforged.ItemTable.NamedNorthernWeaponMelee.roll({
+				Exclude = ["scripts/items/weapons/named/named_spetum"],
+			});
+			if (weapon != null) this.m.Items.equip(::new(weapon));
 		}
 		else if (r <= 45)
 		{
