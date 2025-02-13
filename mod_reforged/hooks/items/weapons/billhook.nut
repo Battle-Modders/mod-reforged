@@ -3,5 +3,6 @@
 	{
 		__original();
 		this.m.Reach = 6;
+		this.setWeaponType(::Const.Items.WeaponType.Axe);
 	}
 });

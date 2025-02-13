@@ -7,6 +7,11 @@
 			this.m.Reach += 999 + this.getDefaultReach();
 			this.m.Reach = ::Math.max(0, this.m.Reach);
 		}
+
+		if (this.m.WeaponType == ::Const.Items.WeaponType.Polearm)
+		{
+			::Reforged.Items.convertPolearmWeapon(this);
+		}
 	}
 });
 

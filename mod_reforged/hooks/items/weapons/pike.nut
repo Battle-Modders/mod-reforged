@@ -3,5 +3,6 @@
 	{
 		__original();
 		this.m.Reach = 7;
+		this.setWeaponType(::Const.Items.WeaponType.Spear);
 	}
 });

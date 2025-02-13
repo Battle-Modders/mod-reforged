@@ -61,4 +61,30 @@
 
 		return ret;
 	}
+
+	// Converts a weapon with Polearm WeaponType into a regular WeaponType e.g. Axe or Spear
+	function convertPolearmWeapon( _weapon )
+	{
+		foreach (s in this.getSkills(_weapon))
+		{
+			if (!s.isIgnoredAsAOO())
+			{
+				local damageType = s.getDamageType();
+				if (damageType.contains(::Const.Damage.DamageType.Cutting))
+				{
+					_weapon.setWeaponType(::Const.Items.WeaponType.Axe);
+				}
+				else if (damageType.contains(::Const.Damage.DamageType.Piercing))
+				{
+					_weapon.setWeaponType(::Const.Items.WeaponType.Spear);
+				}
+				else if (damageType.contains(::Const.Damage.DamageType.Blunt))
+				{
+					_weapon.setWeaponType(::Const.Items.WeaponType.Mace);
+				}
+
+				return;
+			}
+		}
+	}
 };
