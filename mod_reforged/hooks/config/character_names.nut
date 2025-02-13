@@ -243,6 +243,10 @@ foreach(characterName in ::Const.Strings.CharacterNames)
 // Remove The Robber Baron as a bandit leader name because we have a RobberBaron entity in Reforged
 ::MSU.Array.removeByValue(::Const.Strings.BanditLeaderNames, "The Robber Baron");
 
+// Remove the Fencer and Bladedancer as Swordmaster titles name because we have Swordmaster perks with these names and if the Swordmaster doesn't have the appropriate perk it can be confusing
+::MSU.Array.removeByValue(::Const.Strings.SwordmasterTitles, "the Fencer");
+::MSU.Array.removeByValue(::Const.Strings.SwordmasterTitles, "Bladedancer");
+
 ::Const.Strings.SouthernNames.extend([
 	"Adil",
 	"Akil",
