@@ -1026,7 +1026,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"While not engaged in melee, whenever you attack, hit or miss, trigger a Positive [Morale Check|Concept.Morale] for adjacent members of your company."
+				"While not [engaged in melee,|Concept.ZoneOfControl] whenever you attack, hit or miss, trigger a Positive [Morale Check|Concept.Morale] for adjacent members of your company."
 			]
 		}]
 	}),
@@ -1238,7 +1238,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When standing adjacent to an ally wielding a melee weapon who is not engaged in melee, gain " + ::MSU.Text.colorPositive("+7") + " [Ranged Skill,|Concept.RangeSkill] [Ranged Defense,|Concept.RangeDefense] and [Resolve.|Concept.Bravery] The bonus increases by " + ::MSU.Text.colorPositive("+2") + " every [turn|Concept.Turn] up to a maximum of " + ::MSU.Text.colorPositive("+15") + " as long as you continue to start your [turn|Concept.Turn] adjacent to any ally wielding a melee weapon who is not engaged in melee."
+				"When standing adjacent to an ally wielding a melee weapon who is not [engaged in melee|Concept.ZoneOfControl], gain " + ::MSU.Text.colorPositive("+7") + " [Ranged Skill,|Concept.RangeSkill] [Ranged Defense,|Concept.RangeDefense] and [Resolve.|Concept.Bravery] The bonus increases by " + ::MSU.Text.colorPositive("+2") + " every [turn|Concept.Turn] up to a maximum of " + ::MSU.Text.colorPositive("+15") + " as long as you continue to start your [turn|Concept.Turn] adjacent to any ally wielding a melee weapon who is not [engaged in melee.|Concept.ZoneOfControl]"
 			]
 		}]
 	}),
