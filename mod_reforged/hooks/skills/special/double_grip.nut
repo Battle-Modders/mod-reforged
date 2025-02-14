@@ -13,6 +13,18 @@
 		this.m.Order = ::Const.SkillOrder.First;
 	}
 
+	// Make swapping to bagged non-hybrid dagger a free action
+	q.getItemActionCost = @() function( _items )
+	{
+		foreach (item in _items)
+		{
+			if (item != null && item.isInBag() && item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Dagger, true, true))
+			{
+				return 0;
+			}
+		}
+	}
+
 	// Overwrite vanilla function to allow double-gripping with southern swords with offhand item with the perk_rf_en_garde perk
 	q.canDoubleGrip = @() function()
 	{
