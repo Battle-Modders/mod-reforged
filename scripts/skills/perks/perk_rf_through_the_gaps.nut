@@ -2,8 +2,8 @@ this.perk_rf_through_the_gaps <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredDamageType = ::Const.Damage.DamageType.Piercing,
 		RequiredWeaponType = ::Const.Items.WeaponType.Spear,
-		DirectDamageModifierMin = 0.10,
-		DirectDamageModifierMax = 0.25
+		DamageDirectModifierMin = 0.10,
+		DamageDirectModifierMax = 0.25
 	},
 	function create()
 	{
@@ -17,27 +17,10 @@ this.perk_rf_through_the_gaps <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (this.m.IsSpent || !this.isSkillValid(_skill))
-			return;
-
-		_properties.DirectDamageAdd += _targetEntity == null ? this.m.DirectDamageModifierMax : ::MSU.Math.randf(this.m.DirectDamageModifierMin, this.m.DirectDamageModifierMax);
-	}
-
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		if (this.isSkillValid(_skill) && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
-			this.m.IsSpent = true;
-	}
-
-	function onTurnStart()
-	{
-		this.m.IsSpent = false;
-	}
-
-	function onCombatFinished()
-	{
-		this.skill.onCombatFinished();
-		this.m.IsSpent = true;
+		if (this.isSkillValid(_skill))
+		{
+			_properties.DamageDirectAdd += _targetEntity == null ? this.m.DamageDirectModifierMax : ::MSU.Math.randf(this.m.DamageDirectModifierMin, this.m.DamageDirectModifierMax);
+		}
 	}
 
 	function isSkillValid( _skill )

@@ -14,11 +14,6 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.VeryLast;
 	}
 
-	function isHidden()
-	{
-		return this.m.IsSpent;
-	}
-
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
