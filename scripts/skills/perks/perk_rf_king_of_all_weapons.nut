@@ -10,24 +10,8 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 		this.m.Description = "This character is exceptionally skilled with the spear, which is known by many to be the king of all weapons.";
 		this.m.Icon = "ui/perks/perk_rf_king_of_all_weapons.png";
 		this.m.IconMini = "perk_rf_king_of_all_weapons_mini";
-		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		this.m.Order = ::Const.SkillOrder.VeryLast;
-	}
-
-	function getTooltip()
-	{
-		local ret = this.skill.getTooltip();
-
-		local damageTypeString = this.m.RequiredDamageType == null ? "" : " " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType);
-		local weaponTypeString = this.m.RequiredWeaponType == null ? "" : " from a " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower();
-		ret.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = format("All%s attacks%s have a %s chance to target the body part with the lower armor", damageTypeString, weaponTypeString, ::MSU.Text.colorPositive(this.getChance() + "%"))
-		});
-
-		return ret;
+		this.m.Type = ::Const.SkillType.Perk;
+		this.m.Order = ::Const.SkillOrder.Perk;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -58,6 +42,19 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 	function getChance()
 	{
 		return ::Math.floor(this.getContainer().getActor().getCurrentProperties().getMeleeSkill() * 0.5);
+	}
+
+	function onQueryTooltip( _skill, _tooltip )
+	{
+		if (this.isSkillValid(_skill))
+		{
+			_tooltip.push({
+				id = 100,
+				type = "text",
+				icon = ::Const.Perks.findById(this.getID()).Icon,
+				text = ::Reforged.Mod.Tooltips.parseString(format("Has %s chance to target the body part with the lower armor", ::MSU.Text.colorPositive(this.getChance() + "%")))
+			});
+		}
 	}
 
 	function isSkillValid( _skill )
