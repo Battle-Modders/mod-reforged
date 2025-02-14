@@ -18,7 +18,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Reduces the [Resolve|Concept.Bravery] of any opponent engaged in melee by " + ::MSU.Text.colorNegative(10))
+				text = ::Reforged.Mod.Tooltips.parseString("Reduces the [Resolve|Concept.Bravery] of any adjacent opponent by " + ::MSU.Text.colorNegative(10) + " during [morale checks|Concept.Morale]")
 			});
 		}
 		return ret;
