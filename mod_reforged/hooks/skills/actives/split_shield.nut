@@ -100,6 +100,6 @@
 
 	q.RF_getFatigueDamage <- function()
 	{
-		return this.getBaseValue("ActionPointCost") <= 4 ? 10 : 20;
+		return ::MSU.isNull(this.getItem()) ? this.getContainer().getActor().getMainhandItem().getShieldDamage() : this.getItem().getShieldDamage();
 	}
 });
