@@ -52,6 +52,13 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 				text = "Partner: " + partner.getName()
 			});
 
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Swap places with your partner and put them next in the [turn|Concept.Turn] order")
+			});
+
 			if (actor.isPlacedOnMap())
 			{
 				if (!partner.isPlacedOnMap())
@@ -145,7 +152,9 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		::Tactical.getNavigator().switchEntities(_user, _targetTile.getEntity(), null, null, 1.0);
+		local target = _targetTile.getEntity();
+		::Tactical.getNavigator().switchEntities(_user, target, null, null, 1.0);
+		::Tactical.TurnSequenceBar.moveEntityToFront(target.getID());
 		this.m.IsSpent = true;
 		return true;
 	}

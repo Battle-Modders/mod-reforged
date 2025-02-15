@@ -1215,7 +1215,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Gain the [Shuffle|Skill+rf_dynamic_duo_shuffle_skill] skill that allows you to swap places with your partner once per [turn|Concept.Turn] for free."
+					"Gain the [Shuffle|Skill+rf_dynamic_duo_shuffle_skill] skill that allows you to swap places with your partner once per [turn|Concept.Turn] for free, and puts them next in the [turn|Concept.Turn] order immediately after you."
 				]
 			}
 		]
