@@ -1466,7 +1466,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Any member of your company who is adjacent to an enemy, or is adjacent to an ally who is adjacent to an enemy, gains " + ::MSU.Text.colorPositive("+3") + " [Action Points|Concept.ActionPoints] as long as they start their [turn|Concept.Turn] adjacent to you."
+				"Any ally who is adjacent to an enemy, or is adjacent to an ally who is adjacent to an enemy, gains " + ::MSU.Text.colorPositive("+3") + " [Action Points|Concept.ActionPoints] as long as they start their [turn|Concept.Turn] adjacent to you.",
+				"Only members of your company are considered allies for this [perk.|Concept.Perk]"
 			]
 		}]
 	}),
