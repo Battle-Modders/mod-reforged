@@ -24,6 +24,12 @@
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Allies who start their [turn|Concept.Turn] adjacent to this character when they are [engaged|Concept.ZoneOfControl] in melee or are adjacent to an ally [engaged|Concept.ZoneOfControl] in melee will gain the [Feeling Inspired|Skill+rf_inspiring_presence_buff_effect] effect")
 		});
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Only same faction members are considered allies for this [perk|Concept.Perk]")
+		});
 		return ret;
 	}
 
