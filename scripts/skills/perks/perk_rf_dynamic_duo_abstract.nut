@@ -155,8 +155,8 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 	{
 		if (this.isEnabled())
 		{
-			_properties.Bravery += 20;
-			_properties.Initiative += 20;
+			_properties.Bravery += this.m.BraveryModifier;
+			_properties.Initiative += this.m.InitiativeModifier;
 		}
 	}
 
