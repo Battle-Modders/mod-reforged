@@ -32,7 +32,7 @@
 		this.callSkillsFunctionWhenAlive("onSkillsUpdated", null, false);
 	}
 
-	// Vanilla Fix: A missing 'isNull' in Vanillas implementation causes crashes and glitchy behavior in some situations
+	// VanillaFix: A missing 'isNull' in Vanillas implementation causes crashes and glitchy behavior in some situations
 	q.querySortedByItems = @(__original) function( _filter, _notFilter = 0 )
 	{
 		// Instead of overwriting the original function, we clean the WeakTableRefs in every skill, that are no longer valid anyways

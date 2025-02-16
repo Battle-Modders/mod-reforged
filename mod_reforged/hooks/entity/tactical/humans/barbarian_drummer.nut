@@ -16,7 +16,7 @@
 		tattoo_head.setBrush("tattoo_0" + tattoos[::Math.rand(0, tattoos.len() - 1)] + "_head");
 		tattoo_head.Visible = true;
 		local b = this.m.BaseProperties;
-		b.setValues(::Const.Tactical.Actor.BarbarianDrummer);	// Vanilla Fix: In Vanilla this is ::Const.Tactical.Actor.BarbarianMarauder
+		b.setValues(::Const.Tactical.Actor.BarbarianDrummer);	// VanillaFix: In Vanilla this is ::Const.Tactical.Actor.BarbarianMarauder
 		b.TargetAttractionMult = 1.1;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;

@@ -56,7 +56,7 @@
 		return result;
 	}
 
-	// Vanilla Fix: this function does not remove entities that it pushes out of the turn sequence bar temporarily
+	// VanillaFix: this function does not remove entities that it pushes out of the turn sequence bar temporarily
 	q.moveEntityToFront = @(__original) function( _entityId )
 	{
 		__original(_entityId);

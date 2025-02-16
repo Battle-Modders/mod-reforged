@@ -4,7 +4,7 @@
 		__original();
 		if (this.getUpgrade() != null)
 		{
-			this.getUpgrade().onCombatStarted();	// Vanilla Fix: this is never called in vanilla
+			this.getUpgrade().onCombatStarted();	// VanillaFix: this is never called in vanilla
 		}
 	}
 });

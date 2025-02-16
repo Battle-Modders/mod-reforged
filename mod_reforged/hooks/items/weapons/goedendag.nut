@@ -3,8 +3,8 @@
 	{
 		__original();
 		this.m.Reach = 5;
-		this.m.IsAoE = false;	// Vanilla Fix: For some reason this flag is set to true
-		this.m.IsAgainstShields = false;	// Vanilla Fix: For some reason this flag is set to true
+		this.m.IsAoE = false;	// VanillaFix: For some reason this flag is set to true
+		this.m.IsAgainstShields = false;	// VanillaFix: For some reason this flag is set to true
 	}
 
 	q.onEquip = @() function()
