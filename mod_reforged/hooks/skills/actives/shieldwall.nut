@@ -43,18 +43,28 @@
 	q.onTurnStart <- function()
 	{
 		// Part of perk_rf_shield_sergeant functionality
+		this.RF_checkForShieldSergeant();
+	}
+
+	q.onTurnEnd <- function()
+	{
+		// Part of perk_rf_shield_sergeant functionality
+		this.RF_checkForShieldSergeant();
+	}
+
+	// Part of perk_rf_shield_sergeant functionality
+	q.RF_checkForShieldSergeant <- function()
+	{
 		local actor = this.getContainer().getActor();
 		if (actor.getCurrentProperties().IsStunned || actor.getMoraleState() == ::Const.MoraleState.Fleeing || this.getContainer().hasSkill("effects.shieldwall"))
 		{
 			return;
 		}
 
-		foreach (ally in ::Tactical.Entities.getFactionActors(actor.getFaction(), actor.getTile(), 1))
+		local hasPerk = this.getContainer().hasSkill("perk.rf_shield_sergeant");
+
+		foreach (ally in ::Tactical.Entities.getFactionActors(actor.getFaction(), actor.getTile(), 1, true))
 		{
-			if (ally.getID() == actor.getID()) continue;
-
-			local hasPerk = this.getContainer().hasSkill("perk.rf_shield_sergeant");
-
 			if (::Math.abs(ally.getTile().Level - actor.getTile().Level) <= 1 && ally.getSkills().hasSkill("actives.shieldwall") && (hasPerk || ally.getSkills().hasSkill("perk.rf_shield_sergeant")))
 			{
 				this.getContainer().add(::new("scripts/skills/effects/shieldwall_effect"));
@@ -66,11 +76,5 @@
 				return;
 			}
 		}
-	}
-
-	q.onTurnEnd <- function()
-	{
-		// Part of perk_rf_shield_sergeant functionality
-		this.onTurnStart();
 	}
 });
