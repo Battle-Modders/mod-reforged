@@ -7,38 +7,38 @@
 	local currentProperties = _actor.getCurrentProperties();
 	local baseProperties = _actor.getBaseProperties();
 	local function formatString( _img, _attributeCurrent, _attributeDelta )
-    {
-    	local attributeDeltaText = _attributeDelta == 0 ? "" : "(" + ::MSU.Text.colorizeValue(_attributeDelta, {AddSign = true}) + ")";
-    	return format("<span class='rf_tacticalTooltipAttributeEntry'><img src='coui://%s'/> <span class='rf_tacticalTooltipAttributeValue'>%i</span><span class='rf_tacticalTooltipAttributeDelta'>%s</span></span>", _img, _attributeCurrent, attributeDeltaText);
-    }
-    local ret = {
-        id = _startID++,
-        type = "text",
-        text = "<div class='rf_tacticalTooltipAttributeList'>",
-        rawHTMLInText = true
-    };
-    ret.text += formatString("gfx/ui/icons/melee_skill.png", currentProperties.getMeleeSkill(), currentProperties.getMeleeSkill() - baseProperties.getMeleeSkill());
-    ret.text += formatString("gfx/ui/icons/ranged_skill.png", currentProperties.getRangedSkill(), currentProperties.getRangedSkill() - baseProperties.getRangedSkill());
-    ret.text += formatString("gfx/ui/icons/bravery.png", currentProperties.getBravery(), currentProperties.getBravery() - baseProperties.getBravery());
-    ret.text += formatString("gfx/ui/icons/melee_defense.png", currentProperties.getMeleeDefense(), currentProperties.getMeleeDefense() - baseProperties.getMeleeDefense());
-    ret.text += formatString("gfx/ui/icons/ranged_defense.png", currentProperties.getRangedDefense(), currentProperties.getRangedDefense() - baseProperties.getRangedDefense());
-    ret.text += formatString("gfx/ui/icons/initiative.png", _actor.getInitiative(), _actor.getInitiative() - baseProperties.getInitiative());
-    ret.text += "</div>";
-    return ret;
+	{
+		local attributeDeltaText = _attributeDelta == 0 ? "" : "(" + ::MSU.Text.colorizeValue(_attributeDelta, {AddSign = true}) + ")";
+		return format("<span class='rf_tacticalTooltipAttributeEntry'><img src='coui://%s'/> <span class='rf_tacticalTooltipAttributeValue'>%i</span><span class='rf_tacticalTooltipAttributeDelta'>%s</span></span>", _img, _attributeCurrent, attributeDeltaText);
+	}
+	local ret = {
+		id = _startID++,
+		type = "text",
+		text = "<div class='rf_tacticalTooltipAttributeList'>",
+		rawHTMLInText = true
+	};
+	ret.text += formatString("gfx/ui/icons/melee_skill.png", currentProperties.getMeleeSkill(), currentProperties.getMeleeSkill() - baseProperties.getMeleeSkill());
+	ret.text += formatString("gfx/ui/icons/ranged_skill.png", currentProperties.getRangedSkill(), currentProperties.getRangedSkill() - baseProperties.getRangedSkill());
+	ret.text += formatString("gfx/ui/icons/bravery.png", currentProperties.getBravery(), currentProperties.getBravery() - baseProperties.getBravery());
+	ret.text += formatString("gfx/ui/icons/melee_defense.png", currentProperties.getMeleeDefense(), currentProperties.getMeleeDefense() - baseProperties.getMeleeDefense());
+	ret.text += formatString("gfx/ui/icons/ranged_defense.png", currentProperties.getRangedDefense(), currentProperties.getRangedDefense() - baseProperties.getRangedDefense());
+	ret.text += formatString("gfx/ui/icons/initiative.png", _actor.getInitiative(), _actor.getInitiative() - baseProperties.getInitiative());
+	ret.text += "</div>";
+	return ret;
 }
 
 ::Reforged.TacticalTooltip.getReach <- function( _actor, _startID )
 {
 	local ret = {
-        id = _startID++,
-        type = "text",
-        text = "<div class='rf_tacticalTooltipReachContainer'>",
-        rawHTMLInText = true
-    };
-    ret.text += this.getReachElement(_actor);
-    ret.text += this.getVisionElement(_actor);
-    ret.text += "</div>";
-    return ret;
+		id = _startID++,
+		type = "text",
+		text = "<div class='rf_tacticalTooltipReachContainer'>",
+		rawHTMLInText = true
+	};
+	ret.text += this.getReachElement(_actor);
+	ret.text += this.getVisionElement(_actor);
+	ret.text += "</div>";
+	return ret;
 }
 
 ::Reforged.TacticalTooltip.getReachElement <- function( _actor )
@@ -58,11 +58,11 @@
 ::Reforged.TacticalTooltip.getVisionElement <- function( _actor )
 {
 	local function formatString( _img, _attributeCurrent, _attributeDelta )
-    {
-    	local attributeDeltaText = _attributeDelta == 0 ? "" : "(" + ::MSU.Text.colorizeValue(_attributeDelta, {AddSign = true}) + ")";
-    	return format("<span class='rf_tacticalTooltipAttributeEntry rf_tacticalTooltipVision'><img src='coui://%s'/> <span class='rf_tacticalTooltipAttributeValue'>%i</span><span class='rf_tacticalTooltipAttributeDelta'>%s</span></span>", _img, _attributeCurrent, attributeDeltaText);
-    }
-    return formatString("gfx/ui/icons/vision.png", _actor.getCurrentProperties().getVision(), _actor.getCurrentProperties().getVision() - _actor.getBaseProperties().getVision());
+	{
+		local attributeDeltaText = _attributeDelta == 0 ? "" : "(" + ::MSU.Text.colorizeValue(_attributeDelta, {AddSign = true}) + ")";
+		return format("<span class='rf_tacticalTooltipAttributeEntry rf_tacticalTooltipVision'><img src='coui://%s'/> <span class='rf_tacticalTooltipAttributeValue'>%i</span><span class='rf_tacticalTooltipAttributeDelta'>%s</span></span>", _img, _attributeCurrent, attributeDeltaText);
+	}
+	return formatString("gfx/ui/icons/vision.png", _actor.getCurrentProperties().getVision(), _actor.getCurrentProperties().getVision() - _actor.getBaseProperties().getVision());
 }
 
 // Returns a list of all effects in tooltip-form
