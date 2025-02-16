@@ -67,12 +67,15 @@
 		__original(_killer, _skill, _tile, _fatalityType);
 		::new = new;
 
-		local chanceToRoll = ::MSU.isKindOf(this, "hyena_high") ? 30 : 20;
-
-		if (_tile != null && ::Math.rand(1, 100) <= chanceToRoll)
+		if (_tile != null && (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals))
 		{
-			local loot = ::new("scripts/items/loot/sabertooth_item");
-			loot.drop(_tile);
+			local chanceToRoll = ::MSU.isKindOf(this, "hyena_high") ? 30 : 20;
+
+			if (_tile != null && ::Math.rand(1, 100) <= chanceToRoll)
+			{
+				local loot = ::new("scripts/items/loot/sabertooth_item");
+				loot.drop(_tile);
+			}
 		}
 	}
 });
