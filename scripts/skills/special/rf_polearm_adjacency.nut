@@ -1,28 +1,57 @@
 this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 	m = {
-		MalusPerAlly = 0, // not currently utilizing this feature
-		MalusPerEnemy = 10,
-		NumAlliesToIgnore = 0 // not currently utilizing this feature
+		MeleeSkillModifierPerEnemy = -10,
+		MeleeSkillModifierPerAlly = 0,
+		NumEnemiesToIgnore = 0,
+		NumAlliesToIgnore = 0
 	},
 	function create()
 	{
 		this.m.ID = "special.rf_polearm_adjacency";
 		this.m.Name = "Crowded";
-		this.m.Description = "Long range melee weapons are harder to use in a crowded environment. When using such weapons, any melee attack with a base range of 2 or more tiles has its hit chance reduced by " + ::MSU.Text.colorizeValue(-this.m.MalusPerEnemy, {AddSign = true, AddPercent = true}) + " per adjacent enemy.";
+		this.m.Description = "Long range melee weapons are harder to use in a crowded environment. When using such weapons, any melee attack with a base range of 2 or more tiles may have its hitchance reduced.";
 		this.m.Type = ::Const.SkillType.Special;
 		this.m.IsHidden = true;
 		this.m.IsSerialized = false;
 	}
 
-	function isEnabled()
+	// Reset all our fields because certain skills/effects may modify them temporarily during update
+	function softReset()
 	{
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null && weapon.getRangeMax() > 1)
+		this.skill.softReset();
+		foreach (k, _ in this.m)
 		{
-			return true;
+			this.resetField(k);
+		}
+	}
+
+	function getTooltip()
+	{
+		local ret = this.skill.getTooltip();
+
+		if (this.m.MeleeSkillModifierPerEnemy != 0 && this.m.NumEnemiesToIgnore < 6)
+		{
+			local numIgnoreString = this.m.NumEnemiesToIgnore == 0 ? "" : " excluding " + this.m.NumEnemiesToIgnore + " enemies";
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = ::Reforged.Mod.Tooltips.parseString(format("%s chance to hit per adjacent enemy%s", ::MSU.Text.colorizeValue(this.m.MeleeSkillModifierPerEnemy, {AddSign = true, AddPercent = true}), numIgnoreString))
+			});
 		}
 
-		return false;
+		if (this.m.MeleeSkillModifierPerAlly != 0 && this.m.NumAlliesToIgnore < 6)
+		{
+			local numIgnoreString = this.m.NumAlliesToIgnore == 0 ? "" : " excluding " + this.m.NumAlliesToIgnore + " allies";
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = ::Reforged.Mod.Tooltips.parseString(format("%s chance to hit per adjacent ally%s", ::MSU.Text.colorizeValue(this.m.MeleeSkillModifierPerEnemy, {AddSign = true, AddPercent = true}), numIgnoreString))
+			});
+		}
+
+		return ret;
 	}
 
 	function isEnabledForSkill( _skill )
@@ -32,12 +61,12 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		_properties.MeleeSkill -= this.getMalusForSkill(_skill);
+		_properties.MeleeSkill += this.getModifierForSkill(_skill);
 	}
 
-	function getMalusForSkill( _skill )
+	function getModifierForSkill( _skill )
 	{
-		if (!this.isEnabledForSkill(_skill) || !this.isEnabled())
+		if (!this.isEnabledForSkill(_skill))
 			return 0;
 
 		local user = this.getContainer().getActor();
@@ -58,30 +87,30 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 			else numEnemies++;
 		}
 
-		return (this.m.MalusPerAlly * ::Math.max(0, numAllies - this.m.NumAlliesToIgnore)) + (this.m.MalusPerEnemy * numEnemies);
+		return (this.m.MeleeSkillModifierPerAlly * ::Math.max(0, numAllies - this.m.NumAlliesToIgnore)) + (this.m.MeleeSkillModifierPerEnemy * ::Math.max(0, numEnemies - this.m.NumEnemiesToIgnore));
 	}
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
-		local malus = this.getMalusForSkill(_skill);
-		if (malus > 0)
+		local modifier = this.getModifierForSkill(_skill);
+		if (modifier < 0)
 		{
 			_tooltip.push({
 				icon = "ui/tooltips/negative.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-malus, {AddSign = true, AddPercent = true}) + " [Crowded|Skill+rf_polearm_adjacency]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(modifier, {AddPercent = true}) + " " + ::Reforged.NestedTooltips.getNestedSkillName(this))
 			});
 		}
 	}
 
 	function onQueryTooltip( _skill, _tooltip )
 	{
-		if (this.isEnabled() && this.isEnabledForSkill(_skill))
+		if (this.isEnabledForSkill(_skill))
 		{
 			_tooltip.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = ::Reforged.Mod.Tooltips.parseString("May have [reduced chance to hit|Skill+rf_polearm_adjacency] when standing next to enemies")
+				text = ::Reforged.Mod.Tooltips.parseString("Can be affected by " + ::Reforged.NestedTooltips.getNestedSkillName(this))
 			});
 		}
 	}
