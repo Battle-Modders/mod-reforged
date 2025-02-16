@@ -13,7 +13,9 @@
 		this.m.Order = ::Const.SkillOrder.First;
 	}
 
-	// Make swapping to bagged non-hybrid dagger a free action
+	// Make swapping to bagged non-hybrid dagger a free action.
+	// This has nothing to do with double grip bonus but is implemented in double_grip just for convenience
+	// because double_grip is present on all relevant characters.
 	q.getItemActionCost = @() function( _items )
 	{
 		foreach (item in _items)
