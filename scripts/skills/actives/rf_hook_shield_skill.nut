@@ -138,7 +138,7 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 				if (shieldWall != null)
 				{
 					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " hooks " + ::Const.UI.getColorizedEntityName(targetEntity) + "\'s shield removing their " + shieldWall.m.Name);
-					targetEntity.getSkills().removeByID("effects.shieldWall");
+					targetEntity.getSkills().remove(shieldWall);
 				}
 				else
 				{
