@@ -1875,7 +1875,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_SwiftStabs = ::UPD.getDescription({
 		Fluff = "Create an opening, then finish them!",
-		Requirement = "Non-hybrid Dagger"
+		Requirement = "Dagger and Piercing Attack"
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
