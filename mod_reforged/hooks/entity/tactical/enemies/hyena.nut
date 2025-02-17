@@ -71,7 +71,7 @@
 		{
 			local chanceToRoll = ::MSU.isKindOf(this, "hyena_high") ? 30 : 20;
 
-			if (_tile != null && ::Math.rand(1, 100) <= chanceToRoll)
+			if (::Math.rand(1, 100) <= chanceToRoll)
 			{
 				local loot = ::new("scripts/items/loot/sabertooth_item");
 				loot.drop(_tile);
