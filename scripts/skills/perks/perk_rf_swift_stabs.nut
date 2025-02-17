@@ -1,5 +1,9 @@
 this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 	m = {
+		RequiredWeaponType = ::Const.Items.WeaponType.Dagger,
+		RequiredDamageType = ::Const.Damage.DamageType.Piercing,
+		ActionPointCostModifier = -2,
+		ActionPointCostMin = 2,
 		IsSpent = true
 	},
 	function create()
@@ -18,26 +22,17 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 		return this.m.IsSpent;
 	}
 
-	function isEnabled()
-	{
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null && weapon.isWeaponType(::Const.Items.WeaponType.Dagger, true, true))
-		{
-			return true;
-		}
-
-		return false;
-	}
-
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 
+		local weaponTypeString = this.m.RequiredWeaponType == null ? "" : " " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower();
+		local damageTypeString = this.m.RequiredDamageType == null ? "" : " " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType).tolower();
 		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The [Action Point|Concept.ActionPoints] costs of Dagger attacks are reduced")
+			text = ::Reforged.Mod.Tooltips.parseString(format("[Action Point|Concept.ActionPoints] costs of%s%s attacks are %s by %s to a minimum of %s", damageTypeString, weaponTypeString, ::MSU.Text.colorizeValue(this.m.ActionPointCostModifier, {InvertColor = true, AddSign = true}), this.m.ActionPointCostMin))
 		});
 
 		ret.push({
@@ -52,13 +47,13 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate(_properties)
 	{
-		if (!this.m.IsSpent && this.isEnabled())
+		if (!this.m.IsSpent)
 		{
-			foreach (skill in this.getContainer().getActor().getMainhandItem().getSkills())
+			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
-				if (skill.isAttack() && !skill.isRanged() && skill.m.ActionPointCost > 2)
+				if (this.isSkillValid(skill) && skill.m.ActionPointCost > this.m.ActionPointCostMin)
 				{
-					skill.m.ActionPointCost = ::Math.max(2, skill.m.ActionPointCost - 2);
+					skill.m.ActionPointCost = ::Math.max(this.m.ActionPointCostMin, skill.m.ActionPointCost + this.m.ActionPointCostModifier);
 				}
 			}
 		}
@@ -81,7 +76,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_targetEntity.isAlive() && !_targetEntity.isDying() && this.isEnabled() && _skill.isAttack() && _skill.m.IsWeaponSkill)
+		if (_targetEntity.isAlive() && !_targetEntity.isDying() && this.isSkillValid(_skill))
 		{
 			this.m.IsSpent = false;
 		}
@@ -98,7 +93,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (!this.isEnabled() || !_skill.isAttack() || !_skill.m.IsWeaponSkill && !_forFree)
+		if (!this.isSkillValid(_skill) && !_forFree)
 		{
 			this.m.IsSpent = true;
 		}
@@ -108,5 +103,17 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 	{
 		this.skill.onCombatFinished();
 		this.m.IsSpent = true;
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (!_skill.isAttack() || _skill.isRanged() || (this.m.RequiredDamageType != null && !_skill.getDamageType().contains(this.m.RequiredDamageType)))
+			return false;
+
+		if (this.m.RequiredWeaponType == null)
+			return true;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });
