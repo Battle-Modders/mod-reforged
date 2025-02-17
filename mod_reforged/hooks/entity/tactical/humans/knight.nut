@@ -52,10 +52,29 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+			local armor = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/armor/coat_of_plates"],
 				[1, "scripts/items/armor/coat_of_scales"]
-			]).roll()));
+			]).roll();
+
+			if (armor != null)
+				this.m.Items.equip(::new(armor));
+		}
+
+		local bodyItem = this.getBodyItem();
+		if (bodyItem != null && !bodyItem.isItemType(::Const.Items.ItemType.Named) && ::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier2)
+		{
+			local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
+				Apply = function ( _script, _weight )
+				{
+					local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
+					if (conditionModifier < 30) return 0.0;
+					return _weight;
+				}
+			})
+
+			if (armorAttachment != null)
+				bodyItem.setUpgrade(::Reforged.new(armorAttachment));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
