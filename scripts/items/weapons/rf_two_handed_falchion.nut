@@ -17,9 +17,9 @@ this.rf_two_handed_falchion <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.Condition = 56.0;
 		this.m.ConditionMax = 56.0;
 		this.m.StaminaModifier = -10;
-		this.m.RegularDamage = 45;
+		this.m.RegularDamage = 50;
 		this.m.RegularDamageMax = 65;
-		this.m.ArmorDamageMult = 1.0;
+		this.m.ArmorDamageMult = 0.9;
 		this.m.DirectDamageMult = 0.25;
 		this.m.Reach = 4;
 	}
