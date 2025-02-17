@@ -75,17 +75,17 @@
 			if (this.m.MyArmorVariant == 0) // light armor
 			{
 				helmet = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/helmets/mail_coif"],
 					[1, "scripts/items/helmets/greatsword_hat"],
-					[1, "scripts/items/helmets/reinforced_mail_coif"]
+					[1, "scripts/items/helmets/reinforced_mail_coif"],
+					[1, "scripts/items/helmets/nasal_helmet"]
 				]).roll();
 			}
 			else // medium armor
 			{
 				helmet = ::MSU.Class.WeightedContainer([
-					[1, "scripts/items/helmets/greatsword_faction_helm"],
-					[1, "scripts/items/helmets/rf_padded_sallet_helmet"],
-					[1, "scripts/items/helmets/barbute_helmet"],
-					[1, "scripts/items/helmets/rf_half_closed_sallet"]
+					[1, "scripts/items/helmets/rf_greatsword_helm"],
+					[1, "scripts/items/helmets/nasal_helmet_with_mail"]
 				]).roll();
 			}
 		this.m.Items.equip(::new(helmet));
