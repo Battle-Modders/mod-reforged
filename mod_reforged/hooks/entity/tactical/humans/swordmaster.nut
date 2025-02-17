@@ -82,10 +82,8 @@
 			else // medium armor
 			{
 				helmet = ::MSU.Class.WeightedContainer([
-					[1, "scripts/items/helmets/greatsword_faction_helm"],
-					[1, "scripts/items/helmets/rf_padded_sallet_helmet"],
-					[1, "scripts/items/helmets/barbute_helmet"],
-					[1, "scripts/items/helmets/rf_half_closed_sallet"]
+					[1, "scripts/items/helmets/rf_greatsword_helm"],
+					[1, "scripts/items/helmets/barbute_helmet"]
 				]).roll();
 			}
 		this.m.Items.equip(::new(helmet));
