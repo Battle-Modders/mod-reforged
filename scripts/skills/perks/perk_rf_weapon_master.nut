@@ -1,7 +1,7 @@
 this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 	m = {
 		OldPerks = [], // Contains perks stored temporarily during battle while swapping a weapon
-		PerksAdded = [],
+		PerksAdded = []
 	},
 	function create()
 	{
