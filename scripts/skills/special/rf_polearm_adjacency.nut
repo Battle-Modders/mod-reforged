@@ -27,11 +27,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 
 	function isEnabledForSkill( _skill )
 	{
-		if (_skill.getMaxRange() <= 1 || !_skill.isAttack() || _skill.isRanged() || !_skill.m.IsWeaponSkill)
-			return false;
-
-		local spearwallEffect = this.getContainer().getSkillByID("effects.spearwall");
-		return spearwallEffect == null || spearwallEffect.m.BaseAttackName != _skill.getName();
+		return _skill.getMaxRange() > 1 && _skill.isAttack() && !_skill.isRanged() && _skill.m.IsWeaponSkill;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -79,16 +75,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 
 	function onQueryTooltip( _skill, _tooltip )
 	{
-		if (_skill.getID() == "actives.spearwall" || _skill.getID() == "effects.spearwall")
-		{
-			_tooltip.push({
-				id = 100,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Attacks from %s are not affected by %s", ::Reforged.NestedTooltips.getNestedSkillName(_skill), ::Reforged.NestedTooltips.getNestedSkillName(this))
-			});
-		}
-		else if (this.isEnabled() && this.isEnabledForSkill(_skill))
+		if (this.isEnabled() && this.isEnabledForSkill(_skill))
 		{
 			_tooltip.push({
 				id = 10,
