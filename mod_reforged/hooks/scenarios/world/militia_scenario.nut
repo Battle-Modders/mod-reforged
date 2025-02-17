@@ -13,9 +13,9 @@
 		}
 	}
 
-	q.onBuildPerkTree = @(__original) function( _bro )
+	q.onBuildPerkTree = @(__original) function( _perkTree )
 	{
-		__original(_bro);
-		_bro.getPerkTree().addPerkGroup("pg.rf_militia");
+		__original(_perkTree);
+		_perkTree.addPerkGroup("pg.rf_militia");
 	}
 });

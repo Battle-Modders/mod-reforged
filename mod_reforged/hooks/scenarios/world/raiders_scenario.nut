@@ -13,14 +13,14 @@
 		}
 	}
 
-	q.onBuildPerkTree = @(__original) function( _bro )
+	q.onBuildPerkTree = @(__original) function( _perkTree )
 	{
-		__original(_bro);
+		__original(_perkTree);
 		// We remove it and add it so that it goes on the first tier
-		if (_bro.getPerkTree().hasPerk("perk.adrenaline"))
+		if (_perkTree.hasPerk("perk.adrenaline"))
 		{
-			_bro.getPerkTree().removePerk("perk.adrenaline");
+			_perkTree.removePerk("perk.adrenaline");
 		}
-		_bro.getPerkTree().addPerk("perk.adrenaline");
+		_perkTree.addPerk("perk.adrenaline");
 	}
 });

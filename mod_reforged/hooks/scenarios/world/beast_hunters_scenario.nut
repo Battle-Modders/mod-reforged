@@ -13,14 +13,14 @@
 		}
 	}
 
-	q.onBuildPerkTree = @(__original) function( _bro )
+	q.onBuildPerkTree = @(__original) function( _perkTree )
 	{
-		__original(_bro);
+		__original(_perkTree);
 		// We remove it and add it so that it goes on the first tier
-		if (_bro.getPerkTree().hasPerk("perk.fortified_mind"))
+		if (_perkTree.hasPerk("perk.fortified_mind"))
 		{
-			_bro.getPerkTree().removePerk("perk.fortified_mind");
+			_perkTree.removePerk("perk.fortified_mind");
 		}
-		_bro.getPerkTree().addPerk("perk.fortified_mind");
+		_perkTree.addPerk("perk.fortified_mind");
 	}
 });
