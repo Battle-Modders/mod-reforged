@@ -39,6 +39,7 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
 		this.m.IsIgnoredAsAOO = true;
+		this.m.IsTooCloseShown = true;
 		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 3;
 		this.m.FatigueCost = 25;
