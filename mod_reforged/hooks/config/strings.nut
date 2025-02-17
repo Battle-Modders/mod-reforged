@@ -1672,11 +1672,11 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Phalanx = ::UPD.getDescription({
 		Fluff = "Learn the ancient art of fighting in a formation.",
-		Requirement = "Melee Piercing Attack and either a Shield or Two-Handed Weapon",
+		Requirement = "Two-Handed Weapon with Piercing Attack, or Shield",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When attacking or defending in melee, gain " + ::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach] per adjacent ally who has a melee piercing attack and either a shield or two-handed weapon.",
+				"When attacking or defending in melee, gain " + ::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach] per adjacent ally who is wielding a two-handed weapon with a piercing attack or a shield.",
 				"Ignore the defense malus from being [surrounded|Concept.Surrounding] by enemies up to the number of such adjacent allies. This includes enemies with the [Backstabber|Perk+perk_backstabber] perk.",
 				"Does not work with bucklers."
 			]

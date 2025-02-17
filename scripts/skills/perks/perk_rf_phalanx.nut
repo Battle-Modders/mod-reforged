@@ -1,6 +1,7 @@
 this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 	m = {
-		RequiredDamageType = ::Const.Damage.DamageType.Piercing
+		RequiredDamageType = ::Const.Damage.DamageType.Piercing,
+		ShieldIgnoresDamageTypeRequirement = true
 	},
 	function create()
 	{
@@ -10,6 +11,12 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_rf_phalanx.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
+	}
+
+	function softReset()
+	{
+		this.skill.softReset();
+		this.resetField("RequiredDamageType");
 	}
 
 	function isHidden()
@@ -65,6 +72,11 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
+		if (this.getContainer().getActor().isArmedWithShield() && this.m.ShieldIgnoresDamageTypeRequirement)
+		{
+			this.m.RequiredDamageType = null;
+		}
+
 		if (this.isEnabled())
 		{
 			_properties.StartSurroundCountAt += this.getStartSurroundCountAtModifier();
@@ -107,9 +119,16 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 
 		local weapon = actor.getMainhandItem();
-		if (weapon == null || weapon.isItemType(::Const.Items.ItemType.OneHanded) && (!actor.isArmedWithShield() || actor.getOffhandItem().getID().find("buckler") != null))
-		{
+		if (weapon == null)
 			return false;
+
+		if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
+		{
+			if (!actor.isArmedWithShield() || actor.getOffhandItem().getID().find("buckler") != null)
+				return false;
+
+			if (this.m.ShieldIgnoresDamageTypeRequirement)
+				return true;
 		}
 
 		foreach (skill in weapon.getSkills())
