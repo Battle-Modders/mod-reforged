@@ -70,36 +70,18 @@
 			if (armor != null)
 			{
 				this.m.Items.equip(::new(armor));
-				local armorAttachment = null;
 
-				if (this.m.MyArmorVariant == 0) // light armor
+				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier3)
 				{
-					if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier2)
-					{
-						armorAttachment = ::MSU.Class.WeightedContainer([
-							[1, "scripts/items/armor_upgrades/hyena_fur_upgrade"],
-							[1, "scripts/items/armor_upgrades/direwolf_pelt_upgrade"]
-						]).roll();
-					}
-				}
+					local armorAttachment = ::MSU.Class.WeightedContainer([
+						[1, "scripts/items/armor_upgrades/direwolf_pelt_upgrade"],
+						[1, "scripts/items/armor_upgrades/leather_shoulderguards_upgrade"],
+						[1, "scripts/items/armor_upgrades/double_mail_upgrade"]
+					]).roll();
 
-				else if (this.m.MyArmorVariant == 1) // medium armor
-				{
-					if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
-					{
-						armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
-							Apply = function ( _script, _weight )
-							{
-								local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
-								if (conditionModifier < 30) return 0.0;
-								return _weight;
-							}
-						})
-					}
+					if (armorAttachment != null)
+						this.getBodyItem().setUpgrade(::Reforged.new(armorAttachment));
 				}
-
-				if (armorAttachment != null)
-					this.getBodyItem().setUpgrade(::Reforged.new(armorAttachment));
 			}
 		}
 
