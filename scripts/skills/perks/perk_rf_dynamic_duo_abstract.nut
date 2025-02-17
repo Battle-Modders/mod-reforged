@@ -162,9 +162,17 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_targetEntity != null && _skill.isAttack() && !_skill.isRanged() && this.hasEntityForAttackBonus(_targetEntity) && this.isEnabled())
+		if (_targetEntity == null || !_skill.isAttack() || _skill.isRanged() || !this.isEnabled())
+			return;
+
+		if (this.hasEntityForAttackBonus(_targetEntity))
 		{
 			_properties.MeleeSkill += this.m.MeleeSkillModifier;
+		}
+		else if (_skill.isAOE() && ::MSU.isEqual(_targetEntity, this.getPartner()))
+		{
+			_properties.MeleeSkillMult = 0;
+			_properties.DamageTotalMult *= 0.5;
 		}
 	}
 
