@@ -1,6 +1,8 @@
 this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 	m = {
-		ApplyAxeMastery = true
+		ApplyAxeMastery = true,
+		LastTargetID = null,
+		IsSpent = false
 	},
 	function isAxeMasteryApplied()
 	{
@@ -37,9 +39,10 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
 		this.m.IsIgnoredAsAOO = true;
+		this.m.IsTooCloseShown = true;
 		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 3;
-		this.m.FatigueCost = 15;
+		this.m.FatigueCost = 25;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.KnockOut;
@@ -53,11 +56,18 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Applies the [Hooked Shield|Skill+rf_hooked_shield_effect] effect on the target")
+			text = ::Reforged.Mod.Tooltips.parseString("Removes [Shieldwall|Skill+shieldwall_effect] from the target. Otherwise applies the [Hooked Shield|Skill+rf_hooked_shield_effect] effect")
 		});
 
 		ret.push({
 			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Once per [turn,|Concept.Turn] when used against the same target twice, the second use refunds all of its [Action Point|Concept.ActionPoints] cost")
+		});
+
+		ret.push({
+			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Ignores the bonus to [Melee Defense|Concept.MeleeDefense] granted by shields")
@@ -83,13 +93,6 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
-		ret.push({
-			id = 12,
-			type = "text",
-			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Cannot target someone who has the [Shieldwall|Skill+shieldwall_effect] effect")
-		});
-
 		return ret;
 	}
 
@@ -110,20 +113,38 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 		if (targetEntity.isAlliedWith(this.getContainer().getActor()))
 			return false;
 
-		return targetEntity.isArmedWithShield() && this.skill.onVerifyTarget(_originTile, _targetTile) && !targetEntity.getSkills().hasSkill("effects.shieldwall") && !targetEntity.getSkills().hasSkill("effects.rf_hooked_shield");
+		return targetEntity.isArmedWithShield() && this.skill.onVerifyTarget(_originTile, _targetTile) && !targetEntity.getSkills().hasSkill("effects.rf_hooked_shield");
 	}
 
 	function onUse( _user, _targetTile )
 	{
 		local targetEntity = _targetTile.getEntity();
+
+		if (!this.m.IsSpent && targetEntity.getID() == this.m.LastTargetID)
+		{
+			_user.setActionPoints(::Math.min(_user.getActionPointsMax(), _user.getActionPoints() + this.getActionPointCost()));
+			this.m.IsSpent = true;
+		}
+
+		this.m.LastTargetID = targetEntity.getID();
+
 		local shield = targetEntity.getOffhandItem();
 		if (shield != null)
 		{
 			this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplitShield);
 			if (this.attackEntity(_user, targetEntity))
 			{
-				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " hooks " + ::Const.UI.getColorizedEntityName(targetEntity) + "\'s shield");
-				targetEntity.getSkills().add(::new("scripts/skills/effects/rf_hooked_shield_effect"));
+				local shieldWall = targetEntity.getSkills().getSkillByID("effects.shieldwall");
+				if (shieldWall != null)
+				{
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " hooks " + ::Const.UI.getColorizedEntityName(targetEntity) + "\'s shield removing their " + shieldWall.m.Name);
+					targetEntity.getSkills().remove(shieldWall);
+				}
+				else
+				{
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " hooks " + ::Const.UI.getColorizedEntityName(targetEntity) + "\'s shield");
+					targetEntity.getSkills().add(::new("scripts/skills/effects/rf_hooked_shield_effect"));
+				}
 				if (!::Tactical.getNavigator().isTravelling(_targetTile.getEntity()))
 				{
 					::Tactical.getShaker().shake(targetEntity, _user.getTile(), 5, ::Const.Combat.ShakeEffectSplitShieldColor, ::Const.Combat.ShakeEffectSplitShieldHighlight, ::Const.Combat.ShakeEffectSplitShieldFactor, 1.0, [
@@ -156,5 +177,21 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 				}
 			}
 		}
+	}
+
+	function onTurnStart()
+	{
+		this.m.IsSpent = false;
+	}
+
+	function onGetHitFactors( _skill, _targetTile, _tooltip )
+	{
+		if (_skill != this || this.m.IsSpent || !_targetTile.IsOccupiedByActor || _targetTile.getEntity().getID() != this.m.LastTargetID)
+			return;
+
+		_tooltip.push({
+			icon = "ui/icons/action_points.png",
+			text = "Refund Action Points on hit"
+		});
 	}
 });

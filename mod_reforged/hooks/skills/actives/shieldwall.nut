@@ -7,13 +7,6 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Grants immunity against [Hook Shield|Skill+rf_hook_shield_skill]")
-		});
-
-		ret.push({
-			id = 11,
-			type = "text",
-			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Removes the penalty to shield defenses from built [Fatigue|Concept.Fatigue]")
 		});
 
