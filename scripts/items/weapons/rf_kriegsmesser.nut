@@ -19,7 +19,7 @@ this.rf_kriegsmesser <- ::inherit("scripts/items/weapons/weapon", {
 		this.m.StaminaModifier = -12;
 		this.m.RegularDamage = 60;
 		this.m.RegularDamageMax = 80;
-		this.m.ArmorDamageMult = 1.0;
+		this.m.ArmorDamageMult = 0.9;
 		this.m.DirectDamageMult = 0.25;
 		this.m.Reach = 5;
 	}
