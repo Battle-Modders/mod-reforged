@@ -71,16 +71,19 @@
 		__original(_killer, _skill, _tile, _fatalityType);
 		::new = new;
 
-		local chanceToRoll = ::MSU.isKindOf(this, "direwolf_high") ? 30 : 20;
-
-		local n = 1 + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0);
-
-		for (local i = 0; i < n; i++)
+		if (_tile != null && (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals))
 		{
-			if (_tile != null && ::Math.rand(1, 100) <= chanceToRoll)
+			local chanceToRoll = ::MSU.isKindOf(this, "direwolf_high") ? 30 : 20;
+
+			local n = 1 + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0);
+
+			for (local i = 0; i < n; i++)
 			{
-				local loot = ::new("scripts/items/loot/sabertooth_item");
-				loot.drop(_tile);
+				if (::Math.rand(1, 100) <= chanceToRoll)
+				{
+					local loot = ::new("scripts/items/loot/sabertooth_item");
+					loot.drop(_tile);
+				}
 			}
 		}
 	}

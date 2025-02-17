@@ -86,7 +86,7 @@
 		__original(_killer, _skill, _tile, _fatalityType);
 		::new = new;
 
-		if (_tile != null && ::Math.rand(1, 100) <= 15)
+		if (_tile != null && (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals) && ::Math.rand(1, 100) <= 15)
 		{
 			local loot = ::new("scripts/items/loot/rainbow_scale_item");
 			loot.drop(_tile);

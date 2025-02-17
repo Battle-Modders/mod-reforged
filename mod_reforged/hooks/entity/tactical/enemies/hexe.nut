@@ -67,7 +67,7 @@
 		__original(_killer, _skill, _tile, _fatalityType);
 		::new = new;
 
-		if (_tile != null)
+		if (_tile != null && (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals))
 		{
 			local n = 1 + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0);
 

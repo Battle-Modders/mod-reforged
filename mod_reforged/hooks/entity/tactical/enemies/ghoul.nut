@@ -61,24 +61,27 @@
 		__original(_killer, _skill, _tile, _fatalityType);
 		::new = new;
 
-		local chanceToRoll;
-		if (this.m.Size == 1)
+		if (_tile != null && (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals))
 		{
-			chanceToRoll = 10;
-		}
-		else if (this.m.Size == 2)
-		{
-			chanceToRoll = 25;
-		}
-		else // this.m.Size == 3
-		{
-			chanceToRoll = 50;
-		}
+			local chanceToRoll;
+			if (this.m.Size == 1)
+			{
+				chanceToRoll = 10;
+			}
+			else if (this.m.Size == 2)
+			{
+				chanceToRoll = 25;
+			}
+			else // this.m.Size == 3
+			{
+				chanceToRoll = 50;
+			}
 
-		if (_tile != null && ::Math.rand(1, 100) <= chanceToRoll)
-		{
-			local loot = ::new("scripts/items/loot/growth_pearls_item");
-			loot.drop(_tile);
+			if (::Math.rand(1, 100) <= chanceToRoll)
+			{
+				local loot = ::new("scripts/items/loot/growth_pearls_item");
+				loot.drop(_tile);
+			}
 		}
 	}
 });
