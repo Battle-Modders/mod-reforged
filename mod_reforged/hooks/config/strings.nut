@@ -1321,9 +1321,9 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Fluff = "Burn them all!",
 		Requirement = "Bow",
 		Effects = [{
-			Type = ::UPD.EffectType.Passive,
+			Type = ::UPD.EffectType.Active,
 			Description = [
-				"A successful [Aimed Shot|Skill+aimed_shot] will now light the target tile on fire for 2 rounds and trigger an additional morale check for the target and adjacent enemies."
+				"Unlocks the [Flaming Arrow|Skill+rf_flaming_arrows_skill] skill."
 			]
 		}]
 	}),
