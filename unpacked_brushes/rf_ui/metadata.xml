@@ -15,6 +15,7 @@
 	<sprite id="rf_cover_ally_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_cover_ally_skill.png" />
 	<sprite id="rf_deep_impact_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_deep_impact_skill.png" />
 	<sprite id="rf_dynamic_duo_shuffle_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_dynamic_duo_shuffle_skill.png" />
+	<sprite id="rf_flaming_arrows_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_flaming_arrows_skill.png" />
 	<sprite id="rf_follow_up_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_follow_up_skill.png" />
 	<sprite id="rf_gain_ground_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_gain_ground_skill.png" />
 	<sprite id="rf_gouge_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_gouge_skill.png" />
