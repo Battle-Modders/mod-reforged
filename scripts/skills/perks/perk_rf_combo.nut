@@ -1,7 +1,8 @@
 this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 	m = {
-		UsedSkillID = "",
-		UsedSkillName = "",
+		ActionPointCostModifier = -1,
+		ActionPointCostMin = 3,
+		IsInEffect = false,
 		IsUsingValidSkill = false // Set during onBeforeAnySkillExecuted to check if during onAnySkillExecuted we should activate the perk's effect
 	},
 	function create()
@@ -11,28 +12,29 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		this.m.Description = "The good old one-two!";
 		this.m.Icon = "ui/perks/perk_rf_combo.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		this.m.Order = ::Const.SkillOrder.Any;
+		this.m.Order = ::Const.SkillOrder.Perk;
 	}
 
 	function isHidden()
 	{
-		return this.m.UsedSkillID == "";
+		return !this.m.IsInEffect;
 	}
 
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
+		local minimumString = this.m.ActionPointCostMin == 0 ? "" : " to a minimum of " + this.m.ActionPointCostMin;
 		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The [Action Point|Concept.ActionPointCost] cost of all skills except " + this.m.UsedSkillName + " is reduced by " + ::MSU.Text.colorPositive("1"))
+			text = ::Reforged.Mod.Tooltips.parseString(format("Skills cost %s [Action Point(s)|Concept.ActionPoints]%s", ::MSU.Text.colorizeValue(this.m.ActionPointCostModifier, {InvertColor = true, AddSign = true}), minimumString))
 		});
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using [Wait|Concept.Wait] or ending your [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using a skill [waiting|Concept.Wait] or ending your [turn|Concept.Turn]")
 		});
 		return ret;
 	}
@@ -47,29 +49,26 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (this.m.IsUsingValidSkill)
+		if (this.m.IsInEffect)
 		{
-			this.m.UsedSkillID = _skill.getID();
-			this.m.UsedSkillName = _skill.getName();
+			this.m.IsInEffect = false;
+		}
+		else if (this.m.IsUsingValidSkill)
+		{
+			this.m.IsInEffect = true;
 		}
 	}
 
 	function onAfterUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		local usedSkillID = this.m.UsedSkillID;
-		if (actor.isPreviewing() && actor.getPreviewSkill() != null)
-		{
-			usedSkillID = actor.getPreviewSkill().getID();
-		}
-
-		if (usedSkillID != "")
+		if (this.m.IsInEffect || actor.isPreviewing() && actor.getPreviewSkill() != null)
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
-				if (skill.getID() != usedSkillID && skill.m.ActionPointCost > 3)
+				if (skill.m.ActionPointCost > this.m.ActionPointCostMin)
 				{
-					skill.m.ActionPointCost -= 1;
+					skill.m.ActionPointCost += this.m.ActionPointCostModifier;
 				}
 			}
 		}
@@ -77,17 +76,17 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 
 	function onWaitTurn()
 	{
-		this.m.UsedSkillID = "";
+		this.m.IsInEffect = false;
 	}
 
 	function onTurnEnd()
 	{
-		this.m.UsedSkillID = "";
+		this.m.IsInEffect = false;
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.UsedSkillID = "";
+		this.m.IsInEffect = false;
 	}
 });
