@@ -1868,8 +1868,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"AOE attacks, hit or miss, increase your [Reach|Concept.Reach] by " + ::MSU.Text.colorPositive("+3") + ". The affected targets' [Reach|Concept.Reach] is reduced by " + ::MSU.Text.colorPositive("-3") + " for their attacks against you.",
-				"The [effect|Concept.StatusEffect] lasts until the start of your next [turn.|Concept.Turn]"
+				"AOE attacks, hit or miss, increase your [Reach|Concept.Reach] by " + ::MSU.Text.colorPositive("+3") + ". Additionally, the targeted enemies\' [Reach|Concept.Reach] reduced by " + ::MSU.Text.colorPositive("-3") + " for their attacks against you.",
+				"The [effect|Concept.StatusEffect] does not stack and lasts until the start of your next [turn.|Concept.Turn]"
 			]
 		}]
 	}),
