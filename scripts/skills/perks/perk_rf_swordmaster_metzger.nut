@@ -120,6 +120,6 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 
 	function isSkillValid( _skill )
 	{
-		return _skill.isAttack() && _skill.m.IsWeaponSkill && _skill.getID() != "actives.cleave";
+		return _skill.isAttack() && _skill.m.IsWeaponSkill && _skill.getID() != "actives.cleave" && _skill.getDamageType().contains(::Const.Damage.DamageType.Cutting);
 	}
 });
