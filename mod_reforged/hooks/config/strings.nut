@@ -1660,7 +1660,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_PatternRecognition = ::UPD.getDescription({
 		Fluff = "Your experience in battle has led to you being able to quickly adapt to an opponent\'s fighting style!",
-		Requirement = "Melee Weapon",
+		Requirement = "Melee Attack",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
