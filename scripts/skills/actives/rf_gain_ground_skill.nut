@@ -2,7 +2,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		ValidTiles = []
 		APCostModifier = -2,
-		FatigueCostModifier = -2
+		FatigueCostModifier = 0
 	},
 	function create()
 	{
