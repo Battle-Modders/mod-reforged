@@ -157,7 +157,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 	function onQueryTooltip( _skill, _tooltip )
 	{
 		// Check if a status effect is inflicting Rooted status and if yes then add tooltip about reach malus
-		if (_skill.isType(::Const.SkillType.StatusEffect))
+		if (this.m.RootedReachMult != 1.0 && _skill.isType(::Const.SkillType.StatusEffect))
 		{
 			local properties = ::Const.CharacterProperties.getClone();
 
