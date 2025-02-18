@@ -144,6 +144,6 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function isEnabled()
 	{
-		return this.isActorValid(_actor);
+		return this.isActorValid(this.getContainer().getActor());
 	}
 });
