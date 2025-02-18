@@ -62,7 +62,16 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 	function onAfterUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		if (this.m.IsInEffect || actor.isPreviewing() && actor.getPreviewSkill() != null)
+		local applyEffect = this.m.IsInEffect;
+
+		// When previewing an applicable skill while already in effect, we want to show the effect will be lost
+		// If not already in effect, we want to show that the effect will be available after the previewed skill is used
+		if (actor.isPreviewing() && actor.getPreviewSkill() != null && actor.getPreviewSkill().getActionPointCost() != 0)
+		{
+			applyEffect = !this.m.IsInEffect;
+		}
+
+		if (applyEffect)
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
