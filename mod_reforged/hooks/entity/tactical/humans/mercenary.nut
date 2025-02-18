@@ -219,6 +219,62 @@
 			}
 		}
 
+		if (this.getBodyItem() != null)
+		{
+			local armor = this.getBodyItem();
+			local armorAttachment = null;
+
+			if (armor.getConditionMax() < 90)
+			{
+				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
+				{
+					armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
+						Apply = function ( _script, _weight )
+						{
+							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
+							if (conditionModifier > 20) return 0.0;
+							return _weight;
+						}
+					})
+				}
+			}
+
+			else if (armor.getConditionMax() >= 90 && armor.getConditionMax() < 150)
+			{
+				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
+				{
+					armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
+						Apply = function ( _script, _weight )
+						{
+							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
+							if (conditionModifier > 30) return 0.0;
+							return _weight;
+						}
+					})
+				}
+			}
+
+			else if (armor.getConditionMax() >= 150)
+			{
+				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
+				{
+					armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
+						Apply = function ( _script, _weight )
+						{
+							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
+							if (conditionModifier > 40) return 0.0;
+							return _weight;
+						}
+					})
+				}
+			}
+
+			if (armorAttachment != null)
+			{
+				this.getBodyItem().setUpgrade(::Reforged.new(armorAttachment));
+			}
+		}
+
 		if (::Math.rand(1, 100) <= 95)
 		{
 			local helmets = [

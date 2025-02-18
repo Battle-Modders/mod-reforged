@@ -117,30 +117,69 @@ this.rf_bandit_baron <- ::inherit("scripts/entity/tactical/human", {
 			}
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		if (this.m.IsMiniboss)
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorLeader.roll({
-				Apply = function ( _script, _weight )
-				{
-					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 260 || conditionMax > 300) return 0.0;
-					return _weight;
-				}
-			})
-			if (armor != null) this.m.Items.equip(::new(armor));
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+			{
+				this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+					[1, "scripts/items/armor/rf_brigandine_harness"],
+					[1, "scripts/items/armor/rf_breastplate_armor"],
+					[1, "scripts/items/armor/coat_of_plates"]
+				]).roll()));
+			}
+
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+			{
+				this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+					[1, "scripts/items/helmets/rf_sallet_helmet_with_bevor"],
+					[1, "scripts/items/helmets/rf_half_closed_sallet_with_mail"],
+					[1, "scripts/items/helmets/rf_visored_bascinet"]
+				]).roll()));
+			}
+		}
+		else
+		{
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+			{
+				local armor = ::Reforged.ItemTable.BanditArmorLeader.roll({
+					Apply = function ( _script, _weight )
+					{
+						local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+						if (conditionMax < 260 || conditionMax > 300) return 0.0;
+						return _weight;
+					}
+				})
+				if (armor != null) this.m.Items.equip(::new(armor))
+			}
+
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+			{
+				local helmet = ::Reforged.ItemTable.BanditHelmetLeader.roll({
+					Apply = function ( _script, _weight )
+					{
+						local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
+						if (conditionMax < 260 || conditionMax > 290) return 0.0;
+						return _weight;
+					}
+				})
+				if (helmet != null) this.m.Items.equip(::new(helmet));
+			}
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		local bodyItem = this.getBodyItem();
+		if (bodyItem != null && !bodyItem.isItemType(::Const.Items.ItemType.Named) && ::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetLeader.roll({
+			local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
 				Apply = function ( _script, _weight )
 				{
-					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 260 || conditionMax > 290) return 0.0;
+					local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
+					if (conditionModifier > 40) return 0.0;
 					return _weight;
 				}
-			})
-			if (helmet != null) this.m.Items.equip(::new(helmet));
+			});
+
+			if (armorAttachment != null)
+				bodyItem.setUpgrade(::Reforged.new(armorAttachment));
 		}
 	}
 
