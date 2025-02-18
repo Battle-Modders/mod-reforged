@@ -169,7 +169,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 
 			if (properties.IsRooted)
 			{
-				ret.push({
+				_tooltip.push({
 					id = 100,
 					type = "text",
 					icon = "ui/icons/rf_reach.png",
