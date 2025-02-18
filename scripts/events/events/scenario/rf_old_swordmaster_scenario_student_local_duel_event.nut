@@ -193,7 +193,7 @@ this.rf_old_swordmaster_scenario_student_local_duel_event <- ::inherit("scripts/
 		});
 		this.m.Screens.push({
 			ID = "Defeat",
-			Text = "[img]gfx/ui/events/event_124.png[/img]{Time ticks slowly as you, along with many of your anxious students, await %champion%\'s return. A few of the students pace about, fidgeting and staring out towards the horizon, expecting to see a triumphant trio at any moment. Such a dereliction of duty brings you to slight unease, but you know it\'s most likely warranted given the circumstance. Even you stare out towards the horizon at times, looking for any sign of the return of your students, praying to the gods for good news and a victorious ward.\n\nA grave has already been dug behind %champion%\'s tent, a grim reminder of what failure entails. You even caught a student digging through their personal belongings, and upon questioning declared that if he was dead he no longer needed them.\n\nAs the sun begins to set… two figures hefting a third atop a shield crest the hilltop. A wail of despair rises from %partner% as he spots them. Confusion engulfs the camp until the reality of the situation settles in… you can hardly believe it yourself.\n\nAs they walk into the camp, %champion% seems oddly at peace. A quick death, a single decisive blow that ended the fight. A fortunate way to die, at least. Not too much suffering in a single blade stroke. Something you are quite familiar with dispensing.\n\nhe\'s lowered into the grave quite unceremoniously, albeit with love and respect, and %randombro% approaches with a small prayer book, eyes glistening with tears. A few calming words are read out, his final rites given by one of his own friends… before he is buried. A wooden totem is driven into the ground with his name crudely carved into it. A much less noble resting place than someone so brave deserved.}",
+			Text = "[img]gfx/ui/events/event_124.png[/img]{Time ticks slowly as you, along with many of your anxious students, await %champion%\'s return. A few of the students pace about, fidgeting and staring out towards the horizon, expecting to see a triumphant trio at any moment. Such a dereliction of duty brings you to slight unease, but you know it\'s most likely warranted given the circumstance. Even you stare out towards the horizon at times, looking for any sign of the return of your students, praying to the gods for good news and a victorious ward.\n\nA grave has already been dug behind %champion%\'s tent, a grim reminder of what failure entails. You even caught a student digging through their personal belongings, and upon questioning declared that if he was dead he no longer needed them.\n\nAs the sun begins to set… two figures hefting a third atop a shield crest the hilltop. A wail of despair rises from %partner% as he spots them. Confusion engulfs the camp until the reality of the situation settles in… you can hardly believe it yourself.\n\nAs they walk into the camp, %champion% seems oddly at peace. A quick death, a single decisive blow that ended the fight. A fortunate way to die, at least. Not too much suffering in a single blade stroke. Something you are quite familiar with dispensing.\n\nHe\'s lowered into the grave quite unceremoniously, albeit with love and respect, and %randombro% approaches with a small prayer book, eyes glistening with tears. A few calming words are read out, his final rites given by one of his own friends… before he is buried. A wooden totem is driven into the ground with his name crudely carved into it. A much less noble resting place than someone so brave deserved.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -202,48 +202,25 @@ this.rf_old_swordmaster_scenario_student_local_duel_event <- ::inherit("scripts/
 			{
 				_event.m.Title = "After the battle...";
 
-				foreach( bro in _event.m.Candidates )
+				::MSU.Array.removeByValue(_event.m.Candidates, _event.m.Champion);
+
+				foreach (bro in _event.m.Candidates)
 				{
-					_event.m.Candidates.sort(function ( _a, _b )
+					if (bro == _event.m.Partner)
+						continue;
+
+					if (_event.canHaveRandomBros(bro, _event.m.Partner))
 					{
-						if (_a.getXP() > _b.getXP())
-						{
-							return -1;
-						}
-						else if (_a.getXP() < _b.getXP())
-						{
-							return 1;
-						}
-
-						return 0;
-					});
-				}
-
-				if (_event.setupRandomBros())
-				{
-					local e = ::Math.min(4, _event.m.Candidates.len());
-
-					local toRemove = [];
-
-					for (local i = 0; i < e; i++)
-					{
-						local bro = _event.m.Candidates[i];
-						toRemove.push(i);
-
 						this.Options.push({
 							Text = "I need you to avenge us, " + bro.getName() + ".",
 							function getResult( _event )
 							{
 								_event.m.Champion = bro;
+								_event.setupRandomBros();
 								_event.startCombat(_event);
 								return 0;
 							}
 						});
-					}
-
-					foreach (idx in toRemove)
-					{
-						_event.m.Candidates.remove(idx);
 					}
 				}
 
@@ -283,11 +260,16 @@ this.rf_old_swordmaster_scenario_student_local_duel_event <- ::inherit("scripts/
 			return;
 		}
 
-		local towns = ::World.EntityManager.getSettlements();
+		local bros = ::World.getPlayerRoster().getAll();
+		if (bros.len() < 5)
+		{
+			return;
+		}
+
 		local town;
 		local playerTile = ::World.State.getPlayer().getTile();
 
-		foreach (t in towns)
+		foreach (t in ::World.EntityManager.getSettlements())
 		{
 			if (t.getSize() > 2 || (t.getSize() > 1 && t.isMilitary()))
 			{
@@ -306,15 +288,9 @@ this.rf_old_swordmaster_scenario_student_local_duel_event <- ::inherit("scripts/
 
 		this.m.Candidates = [];
 
-		local bros = ::World.getPlayerRoster().getAll();
-		if (bros.len() < 5)
-		{
-			return;
-		}
-
 		local non_canditates = [];
 
-		foreach (i, bro in bros)
+		foreach (bro in bros)
 		{
 			if (bro.getSkills().hasSkill("effects.rf_old_swordmaster_scenario_avatar"))
 			{
@@ -339,17 +315,30 @@ this.rf_old_swordmaster_scenario_student_local_duel_event <- ::inherit("scripts/
 
 		this.m.Score = this.m.Candidates.len() * 25;
 		
-		local idx = ::Math.rand(0, this.m.Candidates.len() - 1);
-		this.m.Champion = this.m.Candidates[idx];
-		this.m.Candidates.remove(idx);
+		this.m.Champion = this.m.Candidates.remove(::Math.rand(0, this.m.Candidates.len() - 1));
 
 		non_canditates.extend(this.m.Candidates);
 
-		idx = ::Math.rand(0, non_canditates.len() - 1);
-		this.m.Partner = non_canditates[idx];
-		non_canditates.remove(idx);
+		this.m.Partner = non_canditates.remove(::Math.rand(0, non_canditates.len() - 1));
+
+		this.m.Candidates.sort(@(_a, _b) _a.getXP() <=> _b.getXP());
+		this.m.Candidates.reverse();
 
 		this.setupRandomBros();
+	}
+
+	function canHaveRandomBros( _champion, _partner )
+	{
+		local count = 0;
+		foreach (bro in ::World.getPlayerRoster().getAll())
+		{
+			if (bro != _champion && bro != _partner && !bro.getSkills().hasSkill("effects.rf_old_swordmaster_scenario_avatar"))
+			{
+				count++;
+			}
+		}
+
+		return count >= 2;
 	}
 
 	function setupRandomBros()
@@ -368,12 +357,8 @@ this.rf_old_swordmaster_scenario_student_local_duel_event <- ::inherit("scripts/
 			return false;
 		}
 
-		local idx = ::Math.rand(0, randomBros.len() - 1);
-		this.m.RandomBro = randomBros[idx];
-		randomBros.remove(idx);
-
-		idx = ::Math.rand(0, randomBros.len() - 1);
-		this.m.RandomBro2 = randomBros[idx];
+		this.m.RandomBro = randomBros.remove(::Math.rand(0, randomBros.len() - 1));
+		this.m.RandomBro2 = randomBros.remove(::Math.rand(0, randomBros.len() - 1));
 
 		return true;
 	}
