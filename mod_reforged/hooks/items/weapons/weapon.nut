@@ -71,6 +71,21 @@
 		}
 	}
 
+	q.isDroppedAsLoot = @(__original) function()
+	{
+		if (!this.item.isDroppedAsLoot())
+		{
+			return false;
+		}
+
+		if (this.m.LastEquippedByFaction == ::Const.Faction.Player || !::MSU.isNull(this.getContainer()) && ::MSU.isKindOf(this.getContainer().getActor(), "player"))
+		{
+			return true;	// Player Weapons now always drop guaranteed
+		}
+
+		return __original();
+	}
+
 	q.getReach <- function()
 	{
 		return this.m.Reach;
