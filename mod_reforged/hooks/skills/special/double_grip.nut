@@ -330,7 +330,7 @@
 			// If I have already ended or started my turn this means the attacker is acting AFTER me in this round
 			if (actor.m.IsTurnDone || actor.isTurnStarted())
 			{
-				local bonus = ::Math.floor(_properties.Initiative * 0.1);
+				local bonus = ::Math.floor(actor.getCurrentProperties().getInitiative() * 0.1);
 				_properties.MeleeDefense += bonus;
 				_properties.RangedDefense += bonus;
 			}
@@ -348,6 +348,28 @@
 			if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
 			{
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
+			}
+		}
+	}
+
+	q.onGetHitFactorsAsTarget = @(__original) function( _skill, _targetTile, _tooltip )
+	{
+		__original(_skill, _targetTile, _tooltip);
+
+		if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Dagger)
+		{
+			local actor = this.getContainer().getActor();
+			// If I have already ended or started my turn this means the attacker is acting AFTER me in this round
+			if (actor.m.IsTurnDone || actor.isTurnStarted())
+			{
+				local bonus = ::Math.floor(actor.getCurrentProperties().getInitiative() * 0.1);
+				if (bonus != 0)
+				{
+					_tooltip.push({
+						icon = "ui/tooltips/positive.png",
+						text = ::MSU.Text.colorNegative(bonus + "%") + " " + this.getName() + " with dagger"
+					});
+				}
 			}
 		}
 	}
