@@ -126,7 +126,7 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 
 	function getFatigueCostMultMult()
 	{
-		return ::Math.maxf(1.0 - this.m.Stacks * 0.05);
+		return ::Math.maxf(0.0, 1.0 - this.m.Stacks * 0.05);
 	}
 
 	function gainStackIfApplicable( _skill, _targetEntity )
