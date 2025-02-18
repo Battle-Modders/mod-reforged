@@ -1,6 +1,7 @@
 this.rf_reach <- ::inherit("scripts/skills/skill", {
 	m = {
 		CurrBonus = 0,
+		RootedReachMult = 0.5,
 		HitEnemies = []
 	},
 	function create()
@@ -49,7 +50,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		}
 		else if (_properties.IsRooted)
 		{
-			_properties.ReachMult = 0.5;
+			_properties.ReachMult = this.m.RootedReachMult;
 		}
 	}
 
@@ -150,6 +151,31 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 				icon = this.m.CurrBonus > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
 				text = ::MSU.Text.colorizeValue(this.m.CurrBonus, {AddPercent = true}) + (this.m.CurrBonus > 0 ? " Reach Advantage" : " Reach Disadvantage")
 			});
+		}
+	}
+
+	function onQueryTooltip( _skill, _tooltip )
+	{
+		// Check if a status effect is inflicting Rooted status and if yes then add tooltip about reach malus
+		if (this.m.RootedReachMult != 1.0 && _skill.isType(::Const.SkillType.StatusEffect))
+		{
+			local properties = ::Const.CharacterProperties.getClone();
+
+			// Make a clone of _skill in case the onUpdate function of _skill does some changes to its or other skills' member variables etc.
+			local skill = ::new(::IO.scriptFilenameByHash(_skill.ClassNameHash));
+			skill.m.Container = ::MSU.getDummyPlayer().getSkills();
+			skill.onUpdate(properties);
+			skill.m.Container = null;
+
+			if (properties.IsRooted)
+			{
+				_tooltip.push({
+					id = 100,
+					type = "text",
+					icon = "ui/icons/rf_reach.png",
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RootedReachMult) + " [Reach|Concept.Reach]")
+				});
+			}
 		}
 	}
 });
