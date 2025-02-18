@@ -15,8 +15,8 @@ this.rf_take_aim_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
-		this.m.ActionPointCost = 2;
-		this.m.FatigueCost = 20;
+		this.m.ActionPointCost = 6;
+		this.m.FatigueCost = 25;
 	}
 
 	function getTooltip()
