@@ -10,7 +10,7 @@ this.rf_herald <- ::inherit("scripts/entity/tactical/human" {
 		this.m.Hairs = ::Const.Hair.Military;
 		this.m.HairColors = ::Const.HairColors.Old;
 		this.m.Beards = ::Const.Beards.Tidy;
-		this.m.AIAgent = ::new("scripts/ai/tactical/agents/military_standard_bearer_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/military_melee_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
