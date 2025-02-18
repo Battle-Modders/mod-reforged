@@ -4,7 +4,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 		RequiredDamageType = ::Const.Damage.DamageType.Piercing,
 		ActionPointCostModifier = -2,
 		ActionPointCostMin = 2,
-		IsSpent = true
+		IsInEffect = false
 	},
 	function create()
 	{
@@ -19,7 +19,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.IsSpent;
+		return !this.m.IsInEffect;
 	}
 
 	function getTooltip()
@@ -47,7 +47,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate(_properties)
 	{
-		if (!this.m.IsSpent)
+		if (this.m.IsInEffect)
 		{
 			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 			{
@@ -61,48 +61,48 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 
 	function onPayForItemAction( _skill, _items )
 	{
-		this.m.IsSpent = true;
+		this.m.IsInEffect = false;
 	}
 
 	function onTurnEnd()
 	{
-		this.m.IsSpent = true;
+		this.m.IsInEffect = false;
 	}
 
 	function onWaitTurn()
 	{
-		this.m.IsSpent = true;
+		this.m.IsInEffect = false;
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (_targetEntity.isAlive() && !_targetEntity.isDying() && this.isSkillValid(_skill))
 		{
-			this.m.IsSpent = false;
+			this.m.IsInEffect = true;
 		}
 		else
 		{
-			this.m.IsSpent = true;
+			this.m.IsInEffect = false;
 		}
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
 	{
-		this.m.IsSpent = true;
+		this.m.IsInEffect = false;
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (!this.isSkillValid(_skill) && !_forFree)
 		{
-			this.m.IsSpent = true;
+			this.m.IsInEffect = false;
 		}
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.IsSpent = true;
+		this.m.IsInEffect = false;
 	}
 
 	function isSkillValid( _skill )
