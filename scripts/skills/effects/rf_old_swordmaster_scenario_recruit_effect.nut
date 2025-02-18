@@ -117,7 +117,7 @@ this.rf_old_swordmaster_scenario_recruit_effect <- ::inherit("scripts/skills/eff
 
 	function getBonus()
 	{
-		return this.getContainer().getActor().getLevel() * 599;
+		return this.getContainer().getActor().getLevel();
 	}
 
 	function onUpdate( _properties )
