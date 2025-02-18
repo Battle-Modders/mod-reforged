@@ -23,11 +23,13 @@ this.rf_take_aim_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
+		local takeAimEffect = ::new("scripts/skills/effects/rf_take_aim_effect");
 		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Taking Aim|Skill+rf_take_aim_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Taking Aim|Skill+rf_take_aim_effect] effect"),
+			children = takeAimEffect.getTooltip().slice(2) // slice 2 to remove name and description
 		});
 
 		return ret;
