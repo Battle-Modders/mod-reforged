@@ -181,7 +181,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = ::Reforged.Mod.Tooltips.parseString("Hits apply the [Dazed|Skill+dazed_effect] effect")
+					text = ::Reforged.Mod.Tooltips.parseString("Hits that deal at least " + ::MSU.Text.colorDamage(::Const.Combat.MinDamageToApplyBleeding) + " to [Hitpoints|Concept.Hitpoints] apply the [Dazed|Skill+dazed_effect] effect")
 				});
 				break;
 
@@ -341,7 +341,7 @@
 	{
 		__original(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
 
-		if (_targetEntity.isAlive() && this.m.CurrWeaponType == ::Const.Items.WeaponType.Mace && !_targetEntity.getCurrentProperties().IsImmuneToDaze)
+		if (_targetEntity.isAlive() && this.m.CurrWeaponType == ::Const.Items.WeaponType.Mace && !_targetEntity.getCurrentProperties().IsImmuneToDaze && _damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
 		{
 			_targetEntity.getSkills().add(::new("scripts/skills/effects/dazed_effect"));
 			local actor = this.getContainer().getActor();
