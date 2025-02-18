@@ -1583,7 +1583,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Armor penetrating damage received is reduced by " + ::MSU.Text.colorPositive("10%") + " of the current durability of the armor piece hit."
+				"Armor penetrating damage received is reduced by a percentage equal to " + ::MSU.Text.colorPositive("10%") + " of the current durability of the armor piece hit."
 			]
 		}]
 	}),
