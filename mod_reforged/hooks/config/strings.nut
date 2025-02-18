@@ -1099,7 +1099,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Hits to the head with one-handed maces [daze|Skill+dazed_effect] the target for 1 [turn|Concept.Turn] and if the target is already [dazed,|Skill+dazed_effect] [stun|Skill+stunned_effect] for one [turn|Concept.Turn] instead.",
+				"Hits to the head with one-handed maces [stun|Skill+stunned_effect] for 1 [turn|Concept.Turn] if the target is already [dazed|Skill+dazed_effect] or if the attack inflicts [dazed|Skill+dazed_effect]. Otherwise inflict [dazed|Skill+dazed_effect] for 1 [turn|Concept.Turn] instead.",
 				"Hits to the head with two-handed maces [stun|Skill+stunned_effect] the target for 1 [turn.|Concept.Turn]"
 			]
 		}]
