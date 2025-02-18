@@ -1663,12 +1663,12 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_PatternRecognition = ::UPD.getDescription({
 		Fluff = "Your experience in battle has led to you being able to quickly adapt to an opponent\'s fighting style!",
+		Requirement = "Melee Attack",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Every time an opponent attacks you or you attack an opponent, gain a stacking " + ::MSU.Text.colorPositive("+3") + " [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense] against that opponent for the remainder of the combat.",
-				"Once the total bonus reaches " + ::MSU.Text.colorPositive(15) + ", all subsequent attacks increase it by " + ::MSU.Text.colorPositive("+1") + " only.",
-				"Only works when dealing or receiving melee attacks."
+				"Every time an opponent attacks you in melee or you attack an opponent, gain a stacking " + ::MSU.Text.colorPositive("+3") + " [Melee Skill|Concept.MeleeSkill] and [Melee Defense|Concept.MeleeDefense] against that opponent for the remainder of the combat.",
+				"Once the total bonus reaches " + ::MSU.Text.colorPositive(15) + ", all subsequent attacks increase it by " + ::MSU.Text.colorPositive("+1") + " only."
 			]
 		}]
 	}),
