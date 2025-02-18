@@ -116,15 +116,13 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function isActorValid( _actor )
 	{
-		local actor = this.getContainer().getActor();
-
-		local weapon = actor.getMainhandItem();
+		local weapon = _actor.getMainhandItem();
 		if (weapon == null)
 			return false;
 
 		if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 		{
-			if (!actor.isArmedWithShield() || actor.getOffhandItem().getID().find("buckler") != null)
+			if (!_actor.isArmedWithShield() || _actor.getOffhandItem().getID().find("buckler") != null)
 				return false;
 
 			if (this.m.ShieldIgnoresDamageTypeRequirement)
