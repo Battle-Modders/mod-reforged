@@ -18,7 +18,7 @@ this.pg_rf_ranged <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 
 	function getSelfMultiplier( _perkTree )
 	{
-		local ret = 0;
+		local ret = 0.0;
 		if (_perkTree.hasPerkGroup("pg.rf_bow")) ret += 1.0;
 		if (_perkTree.hasPerkGroup("pg.rf_crossbow")) ret += 1.0;
 		if (_perkTree.hasPerkGroup("pg.rf_throwing")) ret += 1.0;
@@ -26,9 +26,21 @@ this.pg_rf_ranged <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		if (ret == 0)
 			return ret;
 
-		local talents = _perkTree.getActor().getTalents();
-		if (talents.len() != 0) ret += talents[::Const.Attributes.RangedSkill]; // += is intended
+		local guarantee = true;
+		foreach (pgID in ::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon").getGroups())
+		{
+			if (pgID != "pg.rf_bow" && pgID != "pg.rf_crossbow" && pgID != "pg.rf_throwing" && _perkTree.hasPerkGroup(pgID))
+			{
+				guarantee = false;
+				break;
+			}
+		}
 
-		return ret;
+		if (guarantee)
+			return -1;
+
+		local rSkill = _perkTree.getProjectedAttributesAvg()[::Const.Attributes.RangedSkill];
+
+		return rSkill < 75 ? ret * 0.5 : ret + 0.02 * ::Math.max(0, rSkill - 75);
 	}
 });

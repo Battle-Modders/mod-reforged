@@ -15,4 +15,22 @@ this.pg_rf_shield <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			[]
 		];
 	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		local canGet = false;
+		foreach (pgID in ::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon").getGroups())
+		{
+			if (pgID != "pg.rf_bow" && pgID != "pg.rf_crossbow" && pgID != "pg.rf_throwing" && pgID != "pg.rf_polearm" && _perkTree.hasPerkGroup(pgID))
+			{
+				canGet = true;
+				break;
+			}
+		}
+
+		if (!canGet)
+			return 0;
+
+		return 1.5 - 0.02 * ::Math.max(0, _perkTree.getProjectedAttributesAvg()[::Const.Attributes.MeleeDefense] - 5);
+	}
 });

@@ -15,4 +15,9 @@ this.pg_rf_cleaver <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			[]
 		];
 	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		return 1.0 + 0.01 * ::Math.max(0, _perkTree.getProjectedAttributesAvg()[::Const.Attributes.MeleeSkill] - 70);
+	}
 });
