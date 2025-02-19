@@ -7,7 +7,7 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 		SkillCount = 0,
 		LastTargetID = 0,
 		APBonusThisTurn = 0,
-		FatBonusThisTurn = 0
+		FatBonusThisTurn = 1.0
 	},
 	function create()
 	{
@@ -239,7 +239,7 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 		this.m.Stacks = 0;
 		this.m.HasCarriedOverInitiative = false;
 		this.m.APBonusThisTurn = 0;
-		this.m.FatBonusThisTurn = 0;
+		this.m.FatBonusThisTurn = 1.0;
 	}
 
 	function isSkillValid( _skill )
