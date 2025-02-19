@@ -15,4 +15,9 @@ this.pg_rf_axe <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			[]
 		];
 	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		return 0.7 + 0.025 * ::Math.max(0, _perkTree.getProjectedAttributesAvg()[::Const.Attributes.MeleeSkill] - 70);
+	}
 });
