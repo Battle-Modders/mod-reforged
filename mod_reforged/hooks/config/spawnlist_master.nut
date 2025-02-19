@@ -1,6 +1,6 @@
 //Ancient Dead
-::Const.World.Spawn.Troops.SkeletonLight.Strength = 15;  // Ancient Auxiliary - vanilla 14
-::Const.World.Spawn.Troops.SkeletonLight.Cost = 12; // Ancient Auxiliary - vanilla 13
+::Const.World.Spawn.Troops.SkeletonLight.Strength = 17;  // Ancient Auxiliary - vanilla 14
+::Const.World.Spawn.Troops.SkeletonLight.Cost = 16; // Ancient Auxiliary - vanilla 13
 ::Const.World.Spawn.Troops.SkeletonMedium.Strength = 28; // Ancient Legionary - vanilla 20
 ::Const.World.Spawn.Troops.SkeletonMedium.Cost = 28; // Ancient Legionary - vanilla 20
 ::Const.World.Spawn.Troops.SkeletonMediumPolearm.Strength = 28; // Ancient Legionary - vanilla 20
@@ -149,16 +149,16 @@
 	RF_SkeletonLightElite = {
 		ID = ::Const.EntityType.RF_SkeletonLightElite,
 		Variant = 0,
-		Strength = 20,
-		Cost = 20,
+		Strength = 22,
+		Cost = 22,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_light_elite"
 	},
 	RF_SkeletonLightElitePolearm = {
 		ID = ::Const.EntityType.RF_SkeletonLightElite,
 		Variant = 0,
-		Strength = 20,
-		Cost = 20,
+		Strength = 22,
+		Cost = 22,
 		Row = 1,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_light_elite_polearm"
 	},
