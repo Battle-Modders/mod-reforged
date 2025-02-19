@@ -25,7 +25,7 @@ local requiredMods = [
 	"dlc_paladins",
 	"mod_dynamic_perks >= 0.3.2"
 	"mod_dynamic_spawns >= 0.3.5",
-	"mod_item_tables >= 0.1.1",
+	"mod_item_tables >= 0.1.3",
 	"mod_upd",
 	"mod_stack_based_skills >= 0.5.1"
 ];
