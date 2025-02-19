@@ -70,6 +70,11 @@
 	q.addItemMultipliers = @(__original) function( _multipliers )
 	{
 		__original(_multipliers);
+
+		// Only if you have many weapon perk groups then we guarantee that you roll the perk group of the weapon you come equipped with
+		if (this.getActor().getBackground().getPerkGroupCollectionMin(::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon")) <= 3)
+			return;
+
 		local weapon = this.getActor().getMainhandItem();
 		if (!::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon))
 		{
