@@ -3,10 +3,10 @@ this.rf_random_solo <- this.inherit("scripts/scenarios/world/starting_scenario",
 	function create()
 	{
 		this.m.ID = "scenario.rf_random_solo";
-		this.m.Name = "Random Solo";
+		this.m.Name = "Reforged - Random Solo";
 		this.m.Description = "[p=c][img]gfx/ui/events/rf_random_solo_intro.png[/img][/p][p]A random start into the world.\n\n[color=#bcad8c]Random Start:[/color] Start with a single random character.\n[color=#bcad8c]Avatar:[/color] If your starting character dies, the campaign ends.\n[color=#bcad8c]Talented:[/color] Your starting character is level 4 and always has 3 stars in his talents.[/p]";
 		this.m.Difficulty = 3;
-		this.m.Order = 12;
+		this.m.Order = 1;
 	}
 
 	function onSpawnAssets()

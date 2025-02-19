@@ -3,10 +3,10 @@ this.rf_random_trio <- this.inherit("scripts/scenarios/world/starting_scenario",
 	function create()
 	{
 		this.m.ID = "scenario.rf_random_trio";
-		this.m.Name = "Random Trio";
+		this.m.Name = "Reforged - Random Trio";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_80.png[/img][/p][p]A random start into the world, without any particular advantages or disadvantages.\n\n[color=#bcad8c]Random Start:[/color] Start with a roster of 3 random brothers.\n[color=#bcad8c]Talented:[/color] Your starting characters are level 2 and always have 2 stars in their talents.[/p]";
 		this.m.Difficulty = 2;
-		this.m.Order = 13;
+		this.m.Order = 1;
 	}
 
 	function onSpawnAssets()
