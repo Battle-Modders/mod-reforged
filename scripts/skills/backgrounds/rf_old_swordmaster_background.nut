@@ -22,7 +22,8 @@ this.rf_old_swordmaster_background <- ::inherit("scripts/skills/backgrounds/swor
 			"pg.rf_tactician": 0,
 			"pg.rf_ranged": 0,
 
-			"pg.special.rf_leadership": -1
+			"pg.special.rf_leadership": -1,
+			"pg.special.rf_fencer": -1
 		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
