@@ -47,7 +47,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("%s chance to hit per adjacent ally%s", ::MSU.Text.colorizeValue(this.m.MeleeSkillModifierPerEnemy, {AddSign = true, AddPercent = true}), numIgnoreString))
+				text = ::Reforged.Mod.Tooltips.parseString(format("%s chance to hit per adjacent ally%s", ::MSU.Text.colorizeValue(this.m.MeleeSkillModifierPerAlly, {AddSign = true, AddPercent = true}), numIgnoreString))
 			});
 		}
 
