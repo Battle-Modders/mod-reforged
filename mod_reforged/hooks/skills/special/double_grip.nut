@@ -283,7 +283,6 @@
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon.isWeaponType(::Const.Items.WeaponType.Axe)) 			this.m.CurrWeaponType = ::Const.Items.WeaponType.Axe;
-		else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver)) this.m.CurrWeaponType = ::Const.Items.WeaponType.Cleaver;
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Dagger))	this.m.CurrWeaponType = ::Const.Items.WeaponType.Dagger;
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Flail))	this.m.CurrWeaponType = ::Const.Items.WeaponType.Flail;
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Hammer))	this.m.CurrWeaponType = ::Const.Items.WeaponType.Hammer;
@@ -304,6 +303,7 @@
 				this.m.CurrWeaponType = ::Const.Items.WeaponType.Sword;
 			}
 		}
+		else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver)) this.m.CurrWeaponType = ::Const.Items.WeaponType.Cleaver; // Check cleaver after Sword so fencing and southern are assigned properly
 
 		this.applyBonusOnUpdate(_properties);
 	}
