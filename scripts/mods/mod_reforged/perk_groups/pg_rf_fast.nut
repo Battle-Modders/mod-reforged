@@ -10,9 +10,9 @@ this.pg_rf_fast <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			["perk.quick_hands"],
 			[],
 			["perk.rf_dynamic_duo"],
-			["perk.rf_combo"],
+			["perk.rf_calculated_strikes"],
 			["perk.overwhelm"],
-			["perk.rf_calculated_strikes"]
+			["perk.rf_combo"]
 		];
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_swift": 1.2
