@@ -11,11 +11,10 @@
 			"pg.rf_tactician": 10,
 			"pg.rf_unstoppable": 2,
 			"pg.rf_vicious": 2,
-			"pg.rf_dagger": 0
+			"pg.rf_dagger": 0,
+			"pg.rf_bow": 0,
+			"pg.rf_crossbow": 0
 		};
-
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeSpecialist);
 
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {

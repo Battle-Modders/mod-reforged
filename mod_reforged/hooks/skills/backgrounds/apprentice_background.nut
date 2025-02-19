@@ -6,8 +6,6 @@
 			"pg.special.rf_student": -1
 		};
 
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeBackground);
-
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pg.rf_exclusive_1": [],

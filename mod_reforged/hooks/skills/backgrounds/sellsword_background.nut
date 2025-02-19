@@ -8,8 +8,6 @@
 			"pg.rf_vicious": 2
 		};
 
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeSpecialist);
-
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
