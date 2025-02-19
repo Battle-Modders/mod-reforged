@@ -954,7 +954,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_BetweenTheRibs = ::UPD.getDescription({
 		Fluff = "Striking when an enemy is distracted allows this character to aim for the vulnerable bits!",
-		Requirement = "Dagger and Piercing Attack",
+		Requirement = "Piercing Attack with Dagger",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1033,7 +1033,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_BoneBreaker = ::UPD.getDescription({
 		Fluff = "Snap, crunch, crumble. Music to your ears!",
-		Requirement = "Mace and Blunt Attack",
+		Requirement = "Blunt Attack with Mace",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1094,7 +1094,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_ConcussiveStrikes = ::UPD.getDescription({
 		Fluff = "A strike to the head from this character means goodnight!",
-		Requirement = "Mace and Blunt Attack"
+		Requirement = "Blunt Attack with Mace"
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1138,7 +1138,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_DeepImpact = ::UPD.getDescription({
 		Fluff = "\'Roll out the barrel, feel it in your bones!\'",
-		Requirement = "Hammer and Blunt Attack",
+		Requirement = "Blunt Attack with Hammer",
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
@@ -1169,7 +1169,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Dismantle = ::UPD.getDescription({
 		Fluff = "Strip them of their protection while they still wear it!",
-		Requirement = "Axe and Cutting Damage",
+		Requirement = "Cutting Attack with Axe",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1180,7 +1180,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Dismemberment = ::UPD.getDescription({
 		Fluff = "Welcome to the chopping block!",
-		Requirement = "Axe and Cutting Damage",
+		Requirement = "Cutting Attack with Axe",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1511,7 +1511,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_KingOfAllWeapons = ::UPD.getDescription({
 		Fluff = "One King to rule them all!",
-		Requirement = "Spear and Piercing Damage",
+		Requirement = "Piercing Attack with Spear",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1589,7 +1589,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Mauler = ::UPD.getDescription({
 		Fluff = "Flesh is the canvas on which you paint!",
-		Requirement = "Cleaver and Cutting Attack",
+		Requirement = "Cutting Attack with Cleaver",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1726,7 +1726,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Rattle = ::UPD.getDescription({
 		Fluff = "Rattle your enemies to their bones to weaken them!",
-		Requirement = "Hammer and Blunt Damage",
+		Requirement = "Blunt Attack with Hammer",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1786,7 +1786,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_Sanguinary = ::UPD.getDescription({
 		Fluff = "Make it rain blood!",
-		Requirement = "Cleaver and Cutting Attack",
+		Requirement = "Cutting Attack with Cleaver",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -1876,7 +1876,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_SwiftStabs = ::UPD.getDescription({
 		Fluff = "Create an opening, then finish them!",
-		Requirement = "Dagger and Piercing Attack"
+		Requirement = "Piercing Attack with Dagger"
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
@@ -2041,7 +2041,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_ThroughTheGaps = ::UPD.getDescription({
 		Fluff = "Learn to call your strikes and target gaps in your opponents\' armor!",
-		Requirement = "Spear and Piercing Attack",
+		Requirement = "Piercing Attack with Spear",
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
