@@ -1,4 +1,6 @@
 <brush name="gfx/rf_world_entity.png" version="17">
+	<sprite id="figure_player_100" offsetY="20" ic="FF3D4654" width="68" height="106" img="world_entity\party\figure_player_100.png" left="-23" right="25" top="-41" bottom="5" />
+
 	<sprite id="figure_rf_bandit_bandit" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_bandit.png" left="-18" right="22" top="-38" bottom="6" />
 	<sprite id="figure_rf_bandit_baron" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_baron.png" left="-18" right="22" top="-38" bottom="6" />
 	<sprite id="figure_rf_bandit_highwayman" offsetY="20" ic="FF364E6D" width="68" height="106" img="world_entity\party\figure_rf_bandit_highwayman.png" left="-18" right="22" top="-38" bottom="6" />
