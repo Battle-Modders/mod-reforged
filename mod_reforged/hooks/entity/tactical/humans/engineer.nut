@@ -16,5 +16,6 @@
 
 		//Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 	}
 });
