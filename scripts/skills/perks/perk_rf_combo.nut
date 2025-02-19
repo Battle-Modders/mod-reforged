@@ -34,7 +34,7 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using a skill [waiting|Concept.Wait] or ending your [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using a skill, [waiting|Concept.Wait] or ending your [turn|Concept.Turn]")
 		});
 		return ret;
 	}
