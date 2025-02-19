@@ -33,12 +33,7 @@ local parties = [
 
 		function getUpgradeChance()
 		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 200)
-			{
-				return 0.85;
-			}
-			return base.getUpgradeChance()
+			return base.getUpgradeChance() + (this.getStartingResources() > 200 ? 0.1 : 0);
 		}
 	},
 	{
@@ -76,12 +71,7 @@ local parties = [
 
 		function getUpgradeChance()
 		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 200)
-			{
-				return 0.85;
-			}
-			return base.getUpgradeChance()
+			return base.getUpgradeChance() + (this.getStartingResources() > 200 ? 0.1 : 0);
 		}
 	},
 	{
@@ -120,12 +110,7 @@ local parties = [
 
 		function getUpgradeChance()
 		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 200)
-			{
-				return 0.85;
-			}
-			return base.getUpgradeChance()
+			return base.getUpgradeChance() + (this.getStartingResources() > 200 ? 0.1 : 0);
 		}
 	},
 	{
@@ -164,12 +149,7 @@ local parties = [
 
 		function getUpgradeChance()
 		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 200)
-			{
-				return 0.85;
-			}
-			return base.getUpgradeChance()
+			return base.getUpgradeChance() + (this.getStartingResources() > 200 ? 0.1 : 0);
 		}
 	},
 	{
@@ -208,12 +188,7 @@ local parties = [
 
 		function getUpgradeChance()
 		{
-			local startingResources = this.getSpawnProcess().getStartingResources();
-			if (startingResources >= 200)
-			{
-				return 0.85;
-			}
-			return base.getUpgradeChance()
+			return base.getUpgradeChance() + (this.getStartingResources() > 200 ? 0.1 : 0);
 		}
 	},
 	{
