@@ -57,7 +57,7 @@ this.rf_old_swordmaster_scenario_recruit_effect <- ::inherit("scripts/skills/eff
 			]);
 		}
 
-		if (this.m.FreePerkChancePerLevel != 0)
+		if (this.getFreePerkChance() != 0)
 		{
 			local hasPotentialPerk = false;
 
@@ -71,7 +71,7 @@ this.rf_old_swordmaster_scenario_recruit_effect <- ::inherit("scripts/skills/eff
 							id = 14,
 							type = "text",
 							icon = "ui/icons/special.png",
-							text = ::Reforged.Mod.Tooltips.parseString(format("Upon gaining a [level|Concept.Level], has a %s chance to learn a random [perk|Concept.Perk] from the Sword perk group. Will refund the [perk|Concept.Perk] points spent on already picked [perks|Concept.Perk].", ::MSU.Text.colorizeValue(this.m.FreePerkChancePerLevel, {AddPercent = true})))
+							text = ::Reforged.Mod.Tooltips.parseString(format("Upon gaining a [level|Concept.Level], has a %s chance to learn a random [perk|Concept.Perk] from the Sword perk group. Will refund the [perk|Concept.Perk] points spent on already picked [perks|Concept.Perk].", ::MSU.Text.colorizeValue(this.getFreePerkChance(), {AddPercent = true})))
 						});
 
 						hasPotentialPerk = true;
@@ -136,9 +136,14 @@ this.rf_old_swordmaster_scenario_recruit_effect <- ::inherit("scripts/skills/eff
 		}
 	}
 
+	function getFreePerkChance()
+	{
+		return this.getContainer().getActor().getPerkTree().hasPerkGroup("pg.rf_sword") ? this.m.FreePerkChancePerLevel : 0;
+	}
+
 	function onUpdateLevel()
 	{
-		if (this.m.FreePerkChancePerLevel == 0 || ::Math.rand(1, 100) > this.m.FreePerkChancePerLevel)
+		if (::Math.rand(1, 100) > this.getFreePerkChance())
 			return;
 
 		local actor = this.getContainer().getActor();
