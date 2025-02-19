@@ -12,7 +12,7 @@ local units = [
 		ID = "Unit.RF.Officer",
 		Troop = "Officer",
 		Figure = "figure_southern_02",
-		StartingResourceMin = 250 // In Vanilla they appear in a group of 250 cost
+		StartingResourceMin = 280 // In Vanilla they appear in a group of 250 cost
 	},
 	{
 		ID = "Unit.RF.Gunner",
@@ -31,6 +31,7 @@ local units = [
 	{
 		ID = "Unit.RF.Assassin",
 		Troop = "Assassin"
+		StartingResourceMin = 250
 	},
 	{
 		ID = "Unit.RF.Slave",

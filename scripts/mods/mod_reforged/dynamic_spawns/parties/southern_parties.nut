@@ -8,12 +8,12 @@ local parties = [
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.SouthernFrontline", RatioMin = 0.50, RatioMax = 0.90, DeterminesFigure = true },			// Vanilla: doesn't care about size
+			{ BaseID = "UnitBlock.RF.SouthernFrontline", RatioMin = 0.50, RatioMax = 0.70, DeterminesFigure = true },			// Vanilla: doesn't care about size
 			{ BaseID = "UnitBlock.RF.SouthernBackline", RatioMin = 0.10, RatioMax = 0.40 },				// Vanilla: doesn't care about size
-			{ BaseID = "UnitBlock.RF.SouthernRanged", RatioMin = 0.00, RatioMax = 0.30 },		// Vanilla: doesn't care about size
-			{ BaseID = "UnitBlock.RF.Assassin", RatioMin = 0.00, RatioMax = 0.13, ReqPartySize = 7 },		// Vanilla: Start spawning at 8+
-			{ BaseID = "UnitBlock.RF.Officer", RatioMin = 0.00, RatioMax = 0.08, ReqPartySize = 5, DeterminesFigure = true },		// Vanilla: Start spawning at 15+
-			{ BaseID = "UnitBlock.RF.Siege", RatioMin = 0.00, RatioMax = 0.07, ReqPartySize = 16 }		// Vanilla: Start spawning at 19+
+			{ BaseID = "UnitBlock.RF.SouthernRanged", RatioMin = 0.00, RatioMax = 0.35 },		// Vanilla: doesn't care about size
+			{ BaseID = "UnitBlock.RF.Assassin", RatioMin = 0.00, RatioMax = 0.2, ReqPartySize = 7 },		// Vanilla: Start spawning at 8+
+			{ BaseID = "UnitBlock.RF.Officer", RatioMin = 0.00, RatioMax = 0.15, ReqPartySize = 5, DeterminesFigure = true },		// Vanilla: Start spawning at 15+
+			{ BaseID = "UnitBlock.RF.Siege", RatioMin = 0.00, RatioMax = 0.13, ReqPartySize = 14 }		// Vanilla: Start spawning at 19+
 		]
 	},
 	{
