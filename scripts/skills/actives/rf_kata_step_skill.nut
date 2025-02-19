@@ -79,38 +79,34 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		}
 
 		local actor = this.getContainer().getActor();
-
-		if (actor.isPlacedOnMap())
+		if (actor.getCurrentProperties().IsRooted)
 		{
-			if (actor.getCurrentProperties().IsRooted)
-			{
-				ret.push({
-					id = 21,
-					type = "text",
-					icon = "ui/tooltips/warning.png",
-					text = ::MSU.Text.colorNegative("Cannot be used while rooted")
-				});
-			}
+			ret.push({
+				id = 21,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = ::MSU.Text.colorNegative("Cannot be used while rooted")
+			});
+		}
 
-			if (!this.anAdjacentEmptyTileHasAdjacentEnemy(actor.getTile()))
-			{
-				ret.push({
-					id = 22,
-					type = "text",
-					icon = "ui/tooltips/warning.png",
-					text = ::MSU.Text.colorNegative("Requires an empty tile adjacent to an enemy")
-				});
-			}
+		if (!actor.isPlacedOnMap() || !this.anAdjacentEmptyTileHasAdjacentEnemy(actor.getTile()))
+		{
+			ret.push({
+				id = 22,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = ::MSU.Text.colorNegative("Can only be used on an empty tile adjacent to an enemy")
+			});
+		}
 
-			if (this.m.IsSpent)
-			{
-				ret.push({
-					id = 23,
-					type = "text",
-					icon = "ui/tooltips/warning.png",
-					text = ::MSU.Text.colorNegative("Can only be used immediately after a successful attack")
-				});
-			}
+		if (this.m.IsSpent)
+		{
+			ret.push({
+				id = 23,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = ::MSU.Text.colorNegative("Can only be used immediately after a successful attack")
+			});
 		}
 
 		return ret;
