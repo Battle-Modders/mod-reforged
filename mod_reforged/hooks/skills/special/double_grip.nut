@@ -249,6 +249,24 @@
 		return ret;
 	}
 
+	q.getName = @() function()
+	{
+		switch (this.m.CurrWeaponType)
+		{
+			case null:
+				return this.m.Name;
+
+			case "SouthernSword":
+				return format("%s (%s)", this.m.Name, "Southern Sword");
+
+			case "FencingSword":
+				return format("%s (%s)", this.m.Name, "Fencing Sword");
+
+			default:
+				return format("%s (%s)", this.m.Name, ::Const.Items.getWeaponTypeName(this.m.CurrWeaponType));
+		}
+	}
+
 	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
