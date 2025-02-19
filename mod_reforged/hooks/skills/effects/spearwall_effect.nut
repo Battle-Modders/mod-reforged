@@ -26,6 +26,7 @@
 			if (crowded != null)
 			{
 				crowded.m.NumEnemiesToIgnore = 99;
+				crowded.m.NumAlliesToIgnore = 99;
 			}
 		}
 	}
