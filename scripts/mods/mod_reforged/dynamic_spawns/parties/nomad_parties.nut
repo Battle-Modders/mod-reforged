@@ -35,6 +35,7 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		IdealSizeLocationMult = 1.2,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.NomadFrontline", RatioMin = 0.25, RatioMax = 1.00, DeterminesFigure = true },
 			{ BaseID = "UnitBlock.RF.NomadRanged", RatioMin = 0.00, RatioMax = 0.35, DeterminesFigure = true },
@@ -67,6 +68,7 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		IdealSizeLocationMult = 1.2,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.NomadFrontline", RatioMin = 0.25, RatioMax = 1.00, DeterminesFigure = true },
 			{ BaseID = "UnitBlock.RF.NomadRanged", RatioMin = 0.00, RatioMax = 0.35, DeterminesFigure = true },

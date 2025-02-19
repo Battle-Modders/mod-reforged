@@ -27,8 +27,18 @@ local parties = [
 			}
 			else
 			{
-				return 8;
+				return 9;
 			}
+		}
+
+		function getUpgradeChance()
+		{
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 200)
+			{
+				return 0.85;
+			}
+			return base.getUpgradeChance()
 		}
 	},
 	{
@@ -38,6 +48,7 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		IdealSizeLocationMult = 1.2,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 1.0 },
 			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30, ExclusionChance = 0.20 },
@@ -59,8 +70,18 @@ local parties = [
 			}
 			else
 			{
-				return 8;
+				return 9;
 			}
+		}
+
+		function getUpgradeChance()
+		{
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 200)
+			{
+				return 0.85;
+			}
+			return base.getUpgradeChance()
 		}
 	},
 	{
@@ -70,6 +91,7 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		IdealSizeLocationMult = 1.2,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 1.0 },
 			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30, ExclusionChance = 0.10 },
@@ -92,8 +114,18 @@ local parties = [
 			}
 			else
 			{
-				return 8;
+				return 9;
 			}
+		}
+
+		function getUpgradeChance()
+		{
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 200)
+			{
+				return 0.85;
+			}
+			return base.getUpgradeChance()
 		}
 	},
 	{
@@ -103,6 +135,7 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		IdealSizeLocationMult = 1.2,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 1.0 },
 			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30, ExclusionChance = 0.20 },
@@ -125,8 +158,18 @@ local parties = [
 			}
 			else
 			{
-				return 8;
+				return 9;
 			}
+		}
+
+		function getUpgradeChance()
+		{
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 200)
+			{
+				return 0.85;
+			}
+			return base.getUpgradeChance()
 		}
 	},
 	{
@@ -136,6 +179,7 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
+		IdealSizeLocationMult = 1.2,
 		UnitBlockDefs = [
 			{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.30, RatioMax = 1.0 },
 			{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.30, ExclusionChance = 0.20 },
@@ -158,8 +202,18 @@ local parties = [
 			}
 			else
 			{
-				return 8;
+				return 9;
 			}
+		}
+
+		function getUpgradeChance()
+		{
+			local startingResources = this.getSpawnProcess().getStartingResources();
+			if (startingResources >= 200)
+			{
+				return 0.85;
+			}
+			return base.getUpgradeChance()
 		}
 	},
 	{
