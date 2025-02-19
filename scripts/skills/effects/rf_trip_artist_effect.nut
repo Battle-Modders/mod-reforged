@@ -54,7 +54,7 @@ this.rf_trip_artist_effect <- ::inherit("scripts/skills/skill", {
 			}
 			else
 			{
-				if (!this.m.IsSpent)
+				if (!this.m.IsSpent || !::Tactical.isActive())
 				{
 					ret.push({
 						id = 10,
