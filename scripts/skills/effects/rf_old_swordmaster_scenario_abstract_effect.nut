@@ -31,7 +31,7 @@ this.rf_old_swordmaster_scenario_abstract_effect <- ::inherit("scripts/skills/sk
 
 		if (!this.isWeaponAllowed(_item))
 		{
-			this.m.WrongWeaponName = weapon.getName();
+			this.m.WrongWeaponName = _item.getName();
 		}
 	}
 
