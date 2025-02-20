@@ -18,4 +18,10 @@ this.pg_rf_vigorous <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			"pg.rf_shield": 1.2
 		};
 	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		local talents = _perkTree.getActor().getTalents();
+		return talents.len() == 0 ? 1.0 : ::Math.max(1, talents[::Const.Attributes.Fatigue]) * 1.2;
+	}
 });

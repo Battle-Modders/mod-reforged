@@ -18,6 +18,7 @@ this.pg_rf_trained <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 
 	function getSelfMultiplier( _perkTree )
 	{
-		return 0.5;
+		local talents = _perkTree.getActor().getTalents();
+		return talents.len() == 0 ? 0.5 : 0.5 * ::Math.max(1, talents[::Const.Attributes.MeleeDefense]) * 1.2;
 	}
 });
