@@ -3,6 +3,7 @@
 	// because we go through weapon types alphabetically and choose the first applicable type
 	q.m.CurrWeaponType <- null;
 	q.m.MeleeDamageMult_Dagger <- 1.2;
+	q.m.IsFreeSwapSpent <- true;
 
 	q.create = @(__original) function()
 	{
@@ -18,13 +19,28 @@
 	// because double_grip is present on all relevant characters.
 	q.getItemActionCost = @() function( _items )
 	{
+		if (this.m.IsFreeSwapSpent)
+			return;
+
 		foreach (item in _items)
 		{
-			if (item != null && item.isInBag() && item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Dagger, true, true))
+			if (item != null && item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Dagger, true, true))
 			{
 				return 0;
 			}
 		}
+	}
+
+	q.onPayForItemAction = @(__original) function( _skill, _items )
+	{
+		__original(_skill, _items);
+		this.m.IsFreeSwapSpent = true;
+	}
+
+	q.onTurnStart = @(__original) function()
+	{
+		__original();
+		this.m.IsFreeSwapSpent = false;
 	}
 
 	// Overwrite vanilla function to allow double-gripping with southern swords with offhand item with the perk_rf_en_garde perk
