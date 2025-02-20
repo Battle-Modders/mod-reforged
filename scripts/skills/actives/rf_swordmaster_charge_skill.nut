@@ -82,6 +82,16 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			});
 		}
 
+		if 	(this.getContainer().getActor().getCurrentProperties().IsRooted)
+		{
+			ret.push({
+				id = 22,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used when rooted"))
+			});
+		}
+
 		return ret;
 	}
 
@@ -100,7 +110,7 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 
 	function isUsable()
 	{
-		return this.rf_swordmaster_active_abstract.isUsable() && this.isEnabled() &&	!this.getContainer().getActor().isEngagedInMelee();
+		return this.rf_swordmaster_active_abstract.isUsable() && this.isEnabled() && !this.getContainer().getActor().getCurrentProperties().IsRooted && !this.getContainer().getActor().isEngagedInMelee();
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
