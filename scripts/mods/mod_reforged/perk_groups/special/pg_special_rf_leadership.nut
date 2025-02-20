@@ -17,4 +17,10 @@ this.pg_special_rf_leadership <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup
 			["perk.inspiring_presence"]
 		];
 	}
+
+	function getSelfMultiplier( _perkTree )
+	{
+		local talents = _perkTree.getActor().getTalents();
+		return talents.len() == 0 ? 1.0 : ::Math.max(1, talents[::Const.Attributes.Bravery]) * 2.0;
+	}
 });
