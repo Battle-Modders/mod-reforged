@@ -669,7 +669,7 @@ local vanillaDescriptions = [
 				{
 					Type = ::UPD.EffectType.Active,
 					Description = [
-						"Unlocks the [Kata Step|Skill+rf_kata_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost.",
+						"Unlocks the [Kata Step|Skill+rf_kata_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost but " + ::MSU.Text.colorNegative("+2") + " [Fatigue|Concept.Fatigue] cost.",
 						"The target tile for the movement must be adjacent to an enemy.",
 						"Requires a cutting attack from a two-handed or double-gripped sword."
 					]
