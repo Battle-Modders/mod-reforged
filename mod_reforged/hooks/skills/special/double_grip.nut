@@ -384,7 +384,7 @@
 				if (bonus != 0)
 				{
 					_tooltip.push({
-						icon = "ui/tooltips/positive.png",
+						icon = "ui/tooltips/negative.png",
 						text = ::MSU.Text.colorNegative(bonus + "%") + " " + this.getName() + " with dagger"
 					});
 				}
