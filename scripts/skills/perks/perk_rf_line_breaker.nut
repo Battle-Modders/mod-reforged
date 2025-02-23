@@ -28,9 +28,10 @@ this.perk_rf_line_breaker <- ::inherit("scripts/skills/skill", {
 		{
 			local effect = ::new("scripts/skills/effects/staggered_effect");
 			_targetEntity.getSkills().add(effect);
-			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
+			local actor = this.getContainer().getActor();
+			if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
 			{
-				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has staggered " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turns");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has staggered " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turns");
 			}
 		}
 	}
