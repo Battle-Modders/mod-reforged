@@ -26,7 +26,7 @@ this.rf_old_swordmaster_scenario_abstract_effect <- ::inherit("scripts/skills/sk
 
 	function onEquip( _item )
 	{
-		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand || !_item.isItemType(::Const.Items.ItemType.MeleeWeapon) || this.getContainer().getActor().isPlacedOnMap())
+		if (_item.getSlotType() != ::Const.ItemSlot.Mainhand || !_item.isItemType(::Const.Items.ItemType.MeleeWeapon) || !this.getContainer().getActor().isPlacedOnMap())
 			return;
 
 		if (!this.isWeaponAllowed(_item))
