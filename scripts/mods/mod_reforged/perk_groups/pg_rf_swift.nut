@@ -18,16 +18,16 @@ this.pg_rf_swift <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 
 	function getSelfMultiplier( _perkTree )
 	{
-		local ret = 1.0;
+		local canGet = false;
 		foreach (pgID in ::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon").getGroups())
 		{
 			if (pgID != "pg.rf_bow" && pgID != "pg.rf_crossbow" && pgID != "pg.rf_throwing" && pgID != "pg.rf_polearm" && _perkTree.hasPerkGroup(pgID))
 			{
-				ret = 0;
+				canGet = true;
 				break;
 			}
 		}
 
-		return ret;
+		return canGet ? 1.0 : 0.0;
 	}
 });
