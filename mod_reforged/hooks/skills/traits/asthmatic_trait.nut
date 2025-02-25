@@ -4,7 +4,7 @@
 		__original();
 		this.m.PerkTreeMultipliers = {
 			"pg.rf_vigorous": 0,
-			"perk.rf_man_of_steel": 0
+			"pg.special.rf_man_of_steel": 0
 		};
 	}
 });
