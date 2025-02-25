@@ -1,10 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/clubfooted_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 0,
-			"pg.rf_fast": 0
-		};
+		switch (_groupID)
+		{
+			case "pg.rf_agile":
+			case "pg.rf_fast":
+				return 0;
+		}
 	}
 });

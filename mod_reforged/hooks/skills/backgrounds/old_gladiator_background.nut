@@ -2,20 +2,6 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 0.5,
-			"pg.rf_fast": 0.5,
-			"pg.rf_tough": 0.5,
-			"pg.special.rf_leadership": 0,
-			"pg.rf_vigorous": 0.5,
-			"pg.rf_tactician": 10,
-			"pg.rf_unstoppable": 2,
-			"pg.rf_vicious": 2,
-			"pg.rf_dagger": 0,
-			"pg.rf_bow": 0,
-			"pg.rf_crossbow": 0
-		};
-
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
@@ -57,5 +43,30 @@
 		}
 
 		__original();
+	}
+
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.special.rf_leadership":
+			case "pg.rf_dagger":
+			case "pg.rf_bow":
+			case "pg.rf_crossbow":
+				return 0;
+
+			case "pg.rf_agile":
+			case "pg.rf_fast":
+			case "pg.rf_tough":
+			case "pg.rf_vigorous":
+				return 0.5;
+
+			case "pg.rf_tactician":
+				return 10;
+
+			case "pg.rf_unstoppable":
+			case "pg.rf_vicious":
+				return 2;
+		}
 	}
 });

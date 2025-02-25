@@ -14,21 +14,31 @@ this.pg_rf_wildling <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			["perk.rf_feral_rage"],
 			[]
 		];
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_leadership": 0,
-			"pg.rf_tactician": 0,
-			"pg.rf_trained": 0,
-			"pg.rf_bow": 0,
-			"pg.rf_crossbow": 0,
-			"pg.rf_dagger": 0,
-			"pg.rf_spear": 0.8,
-			"pg.rf_sword": 0.9,
-			"pg.rf_ranged": 0,
-			"pg.rf_shield": 0,
-			"pg.special.rf_back_to_basics": 0,
-			"pg.special.rf_discovered_talent": 0,
-			"pg.special.rf_gifted": 0,
-			"pg.special.rf_student": 0
-		};
+	}
+
+	function getPerkGroupMultiplier( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.special.rf_leadership":
+			case "pg.rf_tactician":
+			case "pg.rf_trained":
+			case "pg.rf_bow":
+			case "pg.rf_crossbow":
+			case "pg.rf_dagger":
+			case "pg.rf_ranged":
+			case "pg.rf_shield":
+			case "pg.special.rf_back_to_basics":
+			case "pg.special.rf_discovered_talent":
+			case "pg.special.rf_gifted":
+			case "pg.special.rf_student":
+				return 0;
+
+			case "pg.rf_spear":
+				return 0.8;
+
+			case "pg.rf_sword":
+				return 0.9;
+		}
 	}
 });

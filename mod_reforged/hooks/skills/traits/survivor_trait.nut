@@ -1,9 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/survivor_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_vigorous": -1
-		};
+		switch (_groupID)
+		{
+			case "pg.rf_vigorous":
+				return -1;
+		}
 	}
 });

@@ -15,16 +15,6 @@ this.rf_old_swordmaster_background <- ::inherit("scripts/skills/backgrounds/swor
 		]);
 		this.m.BeardChance = 100;
 		this.m.Level = 3;
-
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 0,
-			"pg.rf_fast": 0,
-			"pg.rf_tactician": 0,
-			"pg.rf_ranged": 0,
-
-			"pg.special.rf_leadership": -1,
-			"pg.special.rf_fencer": -1
-		};
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
@@ -58,6 +48,22 @@ this.rf_old_swordmaster_background <- ::inherit("scripts/skills/backgrounds/swor
 
 			case "pgc.rf_fighting_style":
 				return _collection.getMin() + 1;
+		}
+	}
+
+	function getPerkGroupMultiplier( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.special.rf_leadership":
+			case "pg.special.rf_fencer":
+				return -1;
+
+			case "pg.rf_agile":
+			case "pg.rf_fast":
+			case "pg.rf_tactician":
+			case "pg.rf_ranged":
+				return 0;
 		}
 	}
 });

@@ -14,8 +14,14 @@ this.pg_rf_raider <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			[],
 			[]
 		];
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_vicious": 3
-		};
+	}
+
+	function getPerkGroupMultiplier( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_vicious":
+				return 3;
+		}
 	}
 });

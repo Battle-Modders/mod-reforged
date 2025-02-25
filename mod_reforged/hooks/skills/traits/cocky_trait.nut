@@ -1,11 +1,16 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/cocky_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_fast": 1.5,
-			"pg.rf_trained": 0.5,
-			"pg.rf_shield": 0
-		};
+		switch (_groupID)
+		{
+			case "pg.rf_shield":
+				return 0;
+
+			case "pg.rf_fast":
+				return 1.5;
+
+			case "pg.rf_trained":
+				return 0.5;
+		}
 	}
 });

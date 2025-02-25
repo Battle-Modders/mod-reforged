@@ -1,18 +1,4 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/brute_trait", function(q) {
-	q.create = @(__original) function()
-	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_trained": 0,
-			"pg.rf_axe": 1.5,
-			"pg.rf_flail": 2,
-			"pg.rf_mace": 1.5,
-			"pg.rf_spear": 0,
-			"pg.rf_sword": 0.9,
-			"pg.special.rf_back_to_basics": 0
-		};
-	}
-
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
@@ -25,5 +11,26 @@
 			}
 		}
 		return ret;
+	}
+
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_trained":
+			case "pg.rf_spear":
+			case "pg.special.rf_back_to_basics":
+				return 0;
+
+			case "pg.rf_axe":
+			case "pg.rf_mace":
+				return 1.5;
+
+			case "pg.rf_flail":
+				return 2;
+
+			case "pg.rf_sword":
+				return 0.9;
+		}
 	}
 });

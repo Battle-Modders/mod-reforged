@@ -1,11 +1,16 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/drunkard_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_leadership": 0.25,
-			"pg.rf_trained": 0.5,
-			"pg.special.rf_marksmanship": 0
-		};
+		switch (_groupID)
+		{
+			case "pg.special.rf_marksmanship":
+				return 0;
+
+			case "pg.special.rf_leadership":
+				return 0.25;
+
+			case "pg.rf_trained":
+				return 0.5;
+		}
 	}
 });

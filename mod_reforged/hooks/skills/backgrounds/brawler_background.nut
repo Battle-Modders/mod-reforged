@@ -2,13 +2,6 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_leadership": 3,
-			"pg.rf_unstoppable": 2
-		};
-
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);
-
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
@@ -20,5 +13,20 @@
 				"pgc.rf_fighting_style": []
 			}
 		});
+	}
+
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	{
+		if (::Reforged.Skills.getPerkGroupMultiplier_MeleeOnly(_groupID) == 0)
+			return 0;
+
+		switch (_groupID)
+		{
+			case "pg.special.rf_leadership":
+				return 3;
+
+			case "pg.rf_unstoppable":
+				return 2;
+		}
 	}
 });

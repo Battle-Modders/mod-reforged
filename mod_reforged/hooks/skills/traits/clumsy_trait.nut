@@ -1,10 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/clumsy_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_trained": 0,
-			"pg.special.rf_back_to_basics": 0
-		};
+		switch (_groupID)
+		{
+			case "pg.rf_trained":
+			case "pg.special.rf_back_to_basics":
+				return 0;
+		}
 	}
 });

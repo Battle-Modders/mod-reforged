@@ -1,12 +1,4 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/disloyal_trait", function(q) {
-	q.create = @(__original) function()
-	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_leadership": 0
-		};
-	}
-
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
@@ -17,5 +9,14 @@
 			text = ::MSU.Text.colorNegative("100%") + " more chance to desert on low mood"
 		});
 		return ret;
+	}
+
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.special.rf_leadership":
+				return 0;
+		}
 	}
 });

@@ -1,11 +1,12 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/fainthearted_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_leadership": 0.5,
-			"pg.rf_vigorous": 0.5,
-			"pg.rf_unstoppable": 0.5
-		};
+		switch (_groupID)
+		{
+			case "pg.special.rf_leadership":
+			case "pg.rf_vigorous":
+			case "pg.rf_unstoppable":
+				return 0.5;
+		}
 	}
 });

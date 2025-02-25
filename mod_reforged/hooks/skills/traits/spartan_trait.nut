@@ -1,13 +1,4 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/spartan_trait", function(q) {
-	q.create = @(__original) function()
-	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_tough": 0.5,
-			"pg.rf_vigorous": 0.5
-		};
-	}
-
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
@@ -27,5 +18,15 @@
 		});
 
 		return ret;
+	}
+
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_tough":
+			case "pg.rf_vigorous":
+				return 0.5;
+		}
 	}
 });

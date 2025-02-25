@@ -14,10 +14,18 @@ this.pg_rf_soldier <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			[],
 			[]
 		];
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_trained": -1,
-			"pg.special.rf_back_to_basics": 2.5,
-			"pg.special.rf_professional": -1
-		};
+	}
+
+	function getPerkGroupMultiplier( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_trained":
+			case "pg.special.rf_professional":
+				return -1;
+
+			case "pg.special.rf_back_to_basics":
+				return 2.5;
+		}
 	}
 });

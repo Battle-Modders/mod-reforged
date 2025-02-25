@@ -1,12 +1,15 @@
 ::Reforged.Skills <- {
-	PerkTreeMultipliers = {
-		MeleeOnly = {
-			"pg.rf_bow": 0,
-			"pg.rf_crossbow": 0,
-			"pg.rf_throwing": 0,
-			"pg.rf_ranged": 0
+	function getPerkGroupMultiplier_MeleeOnly( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_bow":
+			case "pg.rf_crossbow":
+			case "pg.rf_throwing":
+			case "pg.rf_ranged":
+				return 0;
 		}
-	},
+	}
 
 	function addPerkGroup( _entity, _perkGroupID, _maxTier = 7 )
 	{

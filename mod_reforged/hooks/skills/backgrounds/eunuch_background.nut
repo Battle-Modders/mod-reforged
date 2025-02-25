@@ -3,10 +3,7 @@
 	{
 		__original();
 		this.m.BeardChance = 0;
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_tactician": 4,
-			"pg.special.rf_student": 2
-		};
+
 
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -29,6 +26,18 @@
 			case "pgc.rf_weapon":
 			case "pgc.rf_armor":
 				return _collection.getMin() - 1;
+		}
+	}
+
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_tactician":
+				return 4;
+
+			case "pg.special.rf_student":
+				return 2;
 		}
 	}
 });

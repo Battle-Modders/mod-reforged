@@ -2,20 +2,6 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 0.75,
-			"pg.rf_fast": 0.75,
-			"pg.special.rf_leadership": 0,
-			"pg.rf_tactician": 0,
-			"pg.rf_vicious": 1.5,
-			"pg.rf_dagger": 0,
-			"pg.rf_spear": 0,
-			"pg.rf_sword": 0.9,
-			"pg.rf_heavy_armor": 3
-		};
-
-		::MSU.Table.merge(this.m.PerkTreeMultipliers, ::Reforged.Skills.PerkTreeMultipliers.MeleeOnly);
-
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
@@ -41,6 +27,34 @@
 		{
 			case "pgc.rf_shared_1":
 				return _collection.getMin() + 1;
+		}
+	}
+
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	{
+		if (::Reforged.Skills.getPerkGroupMultiplier_MeleeOnly(_groupID) == 0)
+			return 0;
+
+		switch (_groupID)
+		{
+			case "pg.rf_agile":
+			case "pg.rf_fast":
+				return 0.75;
+
+			case "pg.special.rf_leadership":
+			case "pg.rf_tactician":
+			case "pg.rf_dagger":
+			case "pg.rf_spear":
+				return 0;
+
+			case "pg.rf_vicious":
+				return 1.5;
+
+			case "pg.rf_sword":
+				return 0.9;
+
+			case "pg.rf_heavy_armor":
+				return 3;
 		}
 	}
 });

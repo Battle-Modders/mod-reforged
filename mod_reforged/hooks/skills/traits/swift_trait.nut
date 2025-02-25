@@ -1,9 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/swift_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_agile": 2
-		};
+		switch (_groupID)
+		{
+			case "pg.rf_agile":
+				return 2;
+		}
 	}
 });

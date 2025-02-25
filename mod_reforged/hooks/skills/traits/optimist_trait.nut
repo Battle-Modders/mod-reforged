@@ -1,10 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/optimist_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_leadership": 2,
-			"pg.rf_unstoppable": 2
-		};
+		switch (_groupID)
+		{
+			case "pg.special.rf_leadership":
+			case "pg.rf_unstoppable":
+				return 2;
+		}
 	}
 });

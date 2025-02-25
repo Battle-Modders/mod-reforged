@@ -3,9 +3,15 @@
 	{
 		__original();
 		this.m.Description = "This character is prone to bleeding and will do so more than most others."; // "more than" as opposed to vanilla "longer than"
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_vigorous": 0
-		};
+	}
+
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_vigorous":
+				return 0;
+		}
 	}
 
 	q.getTooltip = @(__original) function()

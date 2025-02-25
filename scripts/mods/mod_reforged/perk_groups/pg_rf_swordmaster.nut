@@ -21,9 +21,17 @@ this.pg_rf_swordmaster <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			[],
 			[]
 		];
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_sword": -1,
-			"pg.rf_ranged": 0
-		};
+	}
+
+	function getPerkGroupMultiplier( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_sword":
+				return -1;
+
+			case "pg.rf_ranged":
+				return 0;
+		}
 	}
 });

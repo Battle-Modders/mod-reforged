@@ -1,10 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/fearless_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_leadership": 5,
-			"pg.rf_unstoppable": -1
-		};
+		switch (_groupID)
+		{
+			case "pg.rf_unstoppable":
+				return -1;
+
+			case "pg.special.rf_leadership":
+				return 5;
+		}
 	}
 });

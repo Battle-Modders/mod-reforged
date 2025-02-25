@@ -14,9 +14,6 @@ this.pg_rf_bow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			[],
 			["perk.rf_trick_shooter"]
 		];
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_ranged": 1.5
-		};
 	}
 
 	function getSelfMultiplier( _perkTree )
@@ -25,5 +22,14 @@ this.pg_rf_bow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		local rSkill = _perkTree.getProjectedAttributesAvg()[::Const.Attributes.RangedSkill];
 
 		return rSkill < 80 ? ret * 0.5 : ret + 0.04 * ::Math.max(0, rSkill - 80);
+	}
+
+	function getPerkGroupMultiplier( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_ranged":
+				return 1.5;
+		}
 	}
 });

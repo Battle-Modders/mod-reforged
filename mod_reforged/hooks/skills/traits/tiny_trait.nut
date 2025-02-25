@@ -1,12 +1,4 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/tiny_trait", function(q) {
-	q.create = @(__original) function()
-	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_tough": 0
-		};
-	}
-
 	q.getTooltip = @(__original) function()
 	{
 		local ret = __original();
@@ -26,6 +18,15 @@
 			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("-1") + " [Reach|Concept.Reach]")
 		});
 		return ret;
+	}
+
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_tough":
+				return 0;
+		}
 	}
 
 	q.onUpdate = @(__original) function( _properties )

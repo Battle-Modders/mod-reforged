@@ -14,8 +14,14 @@ this.pg_rf_vicious <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			[],
 			["perk.fearsome"]
 		];
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_shield": 0.8
-		};
+	}
+
+	function getPerkGroupMultiplier( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_shield":
+				return 0.8;
+		}
 	}
 });

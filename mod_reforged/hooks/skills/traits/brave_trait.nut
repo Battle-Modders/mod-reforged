@@ -1,9 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/brave_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_leadership": 2
-		};
+		switch (_groupID)
+		{
+			case "pg.special.rf_leadership":
+				return 2;
+		}
 	}
 });

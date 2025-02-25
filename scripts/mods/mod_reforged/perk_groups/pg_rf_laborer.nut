@@ -14,9 +14,15 @@ this.pg_rf_laborer <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			[],
 			[]
 		];
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_tough": 1.5,
-			"pg.rf_vigorous": 1.5
-		};
+	}
+
+	function getPerkGroupMultiplier( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_tough":
+			case "pg.rf_vigorous":
+				return 1.5;
+		}
 	}
 });

@@ -1,12 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/dumb_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_discovered_talent": 0,
-			"pg.special.rf_gifted": 0,
-			"pg.special.rf_rising_star": 0,
-			"pg.special.rf_student": 0
-		};
+		switch (_groupID)
+		{
+			case "pg.special.rf_discovered_talent":
+			case "pg.special.rf_gifted":
+			case "pg.special.rf_rising_star":
+			case "pg.special.rf_student":
+				return 0;
+		}
 	}
 });

@@ -14,11 +14,17 @@ this.pg_rf_pauper <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			[],
 			[]
 		];
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_discovered_talent": 0,
-			"pg.special.rf_gifted": 0,
-			"pg.special.rf_rising_star": 0,
-			"pg.special.rf_student": 0
-		};
+	}
+
+	function getPerkGroupMultiplier( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.special.rf_discovered_talent":
+			case "pg.special.rf_gifted":
+			case "pg.special.rf_rising_star":
+			case "pg.special.rf_student":
+				return 0;
+		}
 	}
 });

@@ -1,9 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/tough_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_tough": -1
-		};
+		switch (_groupID)
+		{
+			case "pg.rf_tough":
+				return -1;
+		}
 	}
 });

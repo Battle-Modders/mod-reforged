@@ -14,14 +14,20 @@ this.pg_rf_tough <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 			["perk.rf_second_wind"],
 			["perk.killing_frenzy"]
 		];
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_power": 1.2
-		};
 	}
 
 	function getSelfMultiplier( _perkTree )
 	{
 		local talents = _perkTree.getActor().getTalents();
 		return talents.len() == 0 ? 1.0 : ::Math.max(1, talents[::Const.Attributes.Hitpoints]) * 1.2;
+	}
+
+	function getPerkGroupMultiplier( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.rf_power":
+				return 1.2;
+		}
 	}
 });

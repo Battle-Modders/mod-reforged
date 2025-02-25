@@ -1,9 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/deathwish_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.rf_unstoppable": -1
-		};
+		switch (_groupID)
+		{
+			case "pg.rf_unstoppable":
+				return -1;
+		}
 	}
 });

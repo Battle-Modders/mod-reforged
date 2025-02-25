@@ -1,11 +1,12 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/paranoid_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_leadership": 0,
-			"pg.rf_tactician": 0,
-			"pg.rf_unstoppable": 0
-		};
+		switch (_groupID)
+		{
+			case "pg.special.rf_leadership":
+			case "pg.rf_tactician":
+			case "pg.rf_unstoppable":
+				return 0;
+		}
 	}
 });

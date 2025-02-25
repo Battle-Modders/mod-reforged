@@ -3,19 +3,6 @@
 	{
 		__original();
 		this.m.BeardChance = 90;
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_leadership": 0,
-			"pg.rf_tactician": 0,
-			"pg.rf_trained": 0,
-			"pg.rf_unstoppable": 3,
-			"pg.rf_vicious": 2,
-			"pg.rf_bow": 0,
-			"pg.rf_crossbow": 0,
-			"pg.rf_dagger": 0,
-			"pg.rf_polearm": 0,
-			"pg.rf_ranged": 0
-		};
-
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
@@ -40,6 +27,28 @@
 		{
 			case "pgc.rf_weapon":
 				return _collection.getMin() + 2;
+		}
+	}
+
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	{
+		switch (_groupID)
+		{
+			case "pg.special.rf_leadership":
+			case "pg.rf_tactician":
+			case "pg.rf_trained":
+			case "pg.rf_bow":
+			case "pg.rf_crossbow":
+			case "pg.rf_dagger":
+			case "pg.rf_polearm":
+			case "pg.rf_ranged":
+				return 0;
+
+			case "pg.rf_unstoppable":
+				return 3;
+
+			case "pg.rf_vicious":
+				return 2;
 		}
 	}
 });

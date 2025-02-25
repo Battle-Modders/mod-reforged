@@ -1,9 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/irrational_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_back_to_basics": 0
-		};
+		switch (_groupID)
+		{
+			case "pg.special.rf_back_to_basics":
+				return 0;
+		}
 	}
 });

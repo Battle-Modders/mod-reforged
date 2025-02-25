@@ -1,12 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/bright_trait", function(q) {
-	q.create = @(__original) function()
+	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		__original();
-		this.m.PerkTreeMultipliers = {
-			"pg.special.rf_discovered_talent": 2,
-			"pg.special.rf_gifted": 2,
-			"pg.special.rf_rising_star": 2,
-			"pg.special.rf_student": 2
-		};
+		switch (_groupID)
+		{
+			case "pg.special.rf_discovered_talent":
+			case "pg.special.rf_gifted":
+			case "pg.special.rf_rising_star":
+			case "pg.special.rf_student":
+				return 2;
+		}
 	}
 });
