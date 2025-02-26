@@ -42,7 +42,8 @@
 
 	q.assignRandomEquipment = @() function()
 	{
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 50)
+		// Get shield if 1h named weapon otherwise roll chance for it
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && (!this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) || ::Math.rand(1, 100) <= 50))
 		{
 			local shield = ::MSU.Class.WeightedContainer([
 				[1.0, "scripts/items/shields/heater_shield"],
