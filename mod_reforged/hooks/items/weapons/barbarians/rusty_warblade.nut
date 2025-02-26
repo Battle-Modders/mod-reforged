@@ -6,6 +6,7 @@
 		this.m.ArmorDamageMult = 1.3;
 		this.m.RegularDamage = 90;
 		this.m.RegularDamageMax = 110;
+		this.m.ShieldDamage = 24;
 	}
 
 	q.onEquip = @() function()
@@ -25,6 +26,7 @@
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
+			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 5;
 		}));
 	}
