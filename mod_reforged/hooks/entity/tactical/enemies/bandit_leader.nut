@@ -59,11 +59,11 @@
 			{
 				local weapon = ::MSU.Class.WeightedContainer([
 					[1, "scripts/items/weapons/greataxe"],
-					[1, "scripts/items/weapons/greatsword"],
 					[1, "scripts/items/weapons/rf_greatsword"],
-					[1, "scripts/items/weapons/longsword"],
 					[1, "scripts/items/weapons/rf_kriegsmesser"],
-					[1, "scripts/items/weapons/rf_swordstaff"]
+					[1, "scripts/items/weapons/longsword"],
+					[1, "scripts/items/weapons/rf_swordstaff"],
+					[1, "scripts/items/weapons/greatsword"]
 				]).roll();
 
 				this.m.Items.equip(::new(weapon));
