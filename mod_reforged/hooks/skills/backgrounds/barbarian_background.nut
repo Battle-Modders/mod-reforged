@@ -5,13 +5,13 @@
 		this.m.BeardChance = 90;
 		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
-				"pgc.rf_exclusive_1": [
+				"pgc.rf_exclusive_1": @(_perkTree) [
 					::MSU.Class.WeightedContainer([
 						[20, "pg.rf_laborer"],
 						[50, "pg.rf_raider"],
 						[10, "pg.rf_trapper"],
 						[20, "pg.rf_wildling"]
-					])
+					]).roll()
 				],
 				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [],
