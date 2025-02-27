@@ -31,9 +31,6 @@
 			case "pg.special.rf_leadership":
 				return 0;
 
-			case "pg.rf_dagger":
-				return 2;
-
 			case "pg.rf_flail":
 				return 2;
 
