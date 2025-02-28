@@ -70,30 +70,31 @@
 		return this.m.ProjectedAttributesAvg;
 	}
 
-	q.addItemMultipliers = @(__original) function( _multipliers )
+	q.getPerkGroupMultiplierSources_All = @(__original) function()
 	{
-		__original(_multipliers);
-
 		// Only if you have many weapon perk groups then we guarantee that you roll the perk group of the weapon you come equipped with
 		if (this.getActor().getBackground().getPerkGroupCollectionMin(::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon")) <= 3)
-			return;
+			return __original();
+
+		local ret = __original();
 
 		local weapon = this.getActor().getMainhandItem();
 		if (!::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon))
 		{
 			local ids = ::Reforged.getWeaponPerkGroups(weapon);
-			switch (ids.len())
+			if (ids.len() != 0)
 			{
-				case 0:
-					break;
-
-				case 1:
-					_multipliers[ids[0]] <- -1;
-					break;
-
-				default:
-					_multipliers[::MSU.Array.rand(ids)] <- -1;
+				local id = ::MSU.Array.rand(ids);
+				ret.push({
+					function getPerkGroupMultiplier( _groupID, _perkTree )
+					{
+						if (_groupID == id)
+							return -1;
+					}
+				});
 			}
 		}
+
+		return ret;
 	}
 });
