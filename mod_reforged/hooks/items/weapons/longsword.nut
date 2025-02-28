@@ -11,6 +11,7 @@
 		this.m.StaminaModifier = -10;
 		this.m.ChanceToHitHead = 10;
 		this.m.Value = 2400;
+		this.m.ShieldDamage = 0;
 	}
 
 	q.onEquip = @() function()
