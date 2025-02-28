@@ -59,19 +59,32 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 			});
 		}
 
-		local perk = this.getContainer().getSkillByID("perk.rf_swordmaster_grappler");
-		if (perk != null) perk.addEnabledTooltip(ret);
+		if (!this.isEnabled())
+		{
+			ret.push({
+				id = 21,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::MSU.Text.colorNegative("Requires a sword")
+			});
+		}
 
 		return ret;
 	}
 
+	function isEnabled()
+	{
+		if (this.getContainer().getActor().isDisarmed())
+			return false;
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return weapon != null && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Sword);
+	}
+
 	function isUsable()
 	{
-		local perk = this.getContainer().getSkillByID("perk.rf_swordmaster_grappler");
-		if (perk == null || !perk.isEnabled()) return false;
-
 		local actor = this.getContainer().getActor();
-		return this.line_breaker.isUsable() && !actor.getCurrentProperties().IsRooted && !actor.getCurrentProperties().IsStunned;
+		return this.line_breaker.isUsable() && !actor.getCurrentProperties().IsRooted && !actor.getCurrentProperties().IsStunned && this.isEnabled();
 	}
 
 	function onUse( _user, _targetTile )
