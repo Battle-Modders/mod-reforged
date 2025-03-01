@@ -105,10 +105,13 @@
 	q.getStaminaModifierThreshold <- function()
 	{
 		local b = this.getContainer().getActor().getBaseProperties().getClone();
+		local wasUpdating = this.getContainer().m.IsUpdating;
+		this.getContainer().m.IsUpdating = true;
 		foreach (trait in this.getContainer().getSkillsByFunction(@(s) s.isType(::Const.SkillType.Trait) || s.isType(::Const.SkillType.PermanentInjury)))
 		{
 			trait.onUpdate(b);
 		}
+		this.getContainer().m.IsUpdating = wasUpdating;
 		return ::Math.max(this.m.WeightThresholdMin, this.m.StaminaModifierThresholdMult * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
 	}
 });

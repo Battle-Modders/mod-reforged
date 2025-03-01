@@ -164,11 +164,14 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 			// Make a clone of _skill in case the onUpdate function of _skill does some changes to its or other skills' member variables etc.
 			local skill = ::new(::IO.scriptFilenameByHash(_skill.ClassNameHash));
 			skill.m.Container = ::MSU.getDummyPlayer().getSkills();
+			local wasUpdating = skill.m.Container.m.IsUpdating;
+			skill.m.Container.m.IsUpdating = true;
 			try	// Some skills (e.g. shieldwall_effect) expect certain external conditions to be present (e.g. a certain item equipped)
 			{
 				skill.onUpdate(properties);
 			}
 			catch ( _error ) {}
+			skill.m.Container.m.IsUpdating = wasUpdating;
 			skill.m.Container = null;
 
 			if (properties.IsRooted)

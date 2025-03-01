@@ -9,10 +9,13 @@
 		local talents = actor.getTalents();
 		local properties = this.getActor().getBaseProperties().getClone();
 
+		local wasUpdating = actor.getSkills().m.IsUpdating;
+		actor.getSkills().m.IsUpdating = true;
 		foreach (s in this.getActor().getSkills().getSkillsByFunction(@( _skill ) _skill.isType(::Const.SkillType.Trait) || _skill.isType(::Const.SkillType.PermanentInjury)))
 		{
 			s.onUpdate(properties);
 		}
+		actor.getSkills().m.IsUpdating = wasUpdating;
 
 		foreach (attributeName, attribute in ::Const.Attributes)
 		{
