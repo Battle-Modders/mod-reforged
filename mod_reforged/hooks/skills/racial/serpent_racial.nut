@@ -51,25 +51,36 @@
 
 	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
 	{
-		local d = _skill.getDamageType();
-		if (d.contains(::Const.Damage.DamageType.Burning))
-		{
-			_properties.DamageReceivedRegularMult *= 1.0 - d.getProbability(::Const.Damage.DamageType.Burning) * 0.33;
-		}
+		this.RF_applyDamageResistance(_attacker, _skill, null, _properties);
 	}
 
 	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
 	{
-		switch (_hitInfo.DamageType)
+		this.RF_applyDamageResistance(_attacker, _skill, _hitInfo, _properties);
+	}
+
+	// if _skill is null only then _hitInfo is checked
+	q.RF_applyDamageResistance <- function( _attacker, _skill, _hitInfo, _properties )
+	{
+		if (_skill != null)
 		{
-			case null:
-				break;
+			local d = _skill.getDamageType();
+			if (d.contains(::Const.Damage.DamageType.Burning))
+			{
+				_properties.DamageReceivedRegularMult *= 1.0 - d.getProbability(::Const.Damage.DamageType.Burning) * 0.33;
+			}
+		}
+		else if (_hitInfo != null)
+		{
+			switch (_hitInfo.DamageType)
+			{
+				case null:
+					break;
 
-			case ::Const.Damage.DamageType.Burning:
-				_properties.DamageReceivedRegularMult *= 0.66;
-				break;
-
-			// In Vanilla they also take reduced damage from firearms and mortars. But those are currently not covered here
+				case ::Const.Damage.DamageType.Burning:
+					_properties.DamageReceivedRegularMult *= 0.66;
+					break;
+			}
 		}
 	}
 });

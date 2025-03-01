@@ -99,38 +99,47 @@
 
 	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
 	{
-		if (_skill.getID() == "actives.throw_golem")
-		{
-			_properties.DamageReceivedTotalMult = 0.0;
-			return;
-		}
-
-		local d = _skill.getDamageType();
-		local mult = 0.0;
-		if (d.contains(::Const.Damage.DamageType.Burning))
-		{
-			mult += d.getProbability(::Const.Damage.DamageType.Burning) * 0.9;
-		}
-		if (d.contains(::Const.Damage.DamageType.Piercing))
-		{
-			mult += d.getProbability(::Const.Damage.DamageType.Piercing) * (_skill.isRanged() ? 0.66 : 0.5);
-		}
-		if (_skill.isRanged() && d.contains(::Const.Damage.DamageType.Blunt))
-		{
-			mult += d.getProbability(::Const.Damage.DamageType.Blunt) * 0.66;
-		}
-		_properties.DamageReceivedRegularMult *= 1.0 - mult;
+		this.RF_applyDamageResistance(_attacker, _skill, null, _properties);
 	}
 
 	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
 	{
-		if (_skill != null && _skill.getID() == "actives.throw_golem")
-		{
-			_properties.DamageReceivedTotalMult = 0.0;
-			return;
-		}
+		this.RF_applyDamageResistance(_attacker, _skill, _hitInfo, _properties);
+	}
 
-		switch (_hitInfo.DamageType)
+	// if _skill is null only then _hitInfo is checked
+	q.RF_applyDamageResistance <- function( _attacker, _skill, _hitInfo, _properties )
+	{
+		if (_skill != null)
+		{
+			if (_skill.getID() == "actives.throw_golem")
+			{
+				_properties.DamageReceivedTotalMult = 0.0;
+				return;
+			}
+
+			local d = _skill.getDamageType();
+			local mult = 0.0;
+			if (d.contains(::Const.Damage.DamageType.Burning))
+			{
+				mult += d.getProbability(::Const.Damage.DamageType.Burning) * 0.9;
+			}
+			if (d.contains(::Const.Damage.DamageType.Piercing))
+			{
+				// This streamlines the following differences in vanilla:
+				// - javelins dealing 50% damage
+				// - handgonne and one-use throwing spear dealing 100% damage
+				mult += d.getProbability(::Const.Damage.DamageType.Piercing) * (_skill.isRanged() ? 0.66 : 0.5);
+			}
+			if (_skill.isRanged() && d.contains(::Const.Damage.DamageType.Blunt))
+			{
+				// In Vanilla this reduction only exists for slinging of stones. Here it expands to bolas and potential future blunt ranged attacks
+				mult += d.getProbability(::Const.Damage.DamageType.Blunt) * 0.66;
+			}
+
+			_properties.DamageReceivedRegularMult *= 1.0 - mult;
+		}
+		else if (_hitInfo != null)
 		{
 			case null:
 				break;
@@ -139,37 +148,8 @@
 				_properties.DamageReceivedRegularMult *= 0.1;
 				break;
 
-			case ::Const.Damage.DamageType.Blunt:
-				if (_skill != null)
-				{
-					if (_skill.isRanged())	// In Vanilla this reduction only exists for slinging of stones. Here it expands to bolas and potential future blunt ranged attacks
-					{
-						_properties.DamageReceivedRegularMult *= 0.33;
-					}
-				}
-				break;
-
 			case ::Const.Damage.DamageType.Piercing:
-				if (_skill == null)
-				{
-					_properties.DamageReceivedRegularMult *= 0.5;
-				}
-				else
-				{
-					if (_skill.isRanged())
-					{
-						_properties.DamageReceivedRegularMult *= 0.33;
-						/* This streamlines the following differences in vanilla:
-							Arrows dealing only 10% damage
-							javelins and handgonne dealing only 25% damage
-							one-use throwing spear dealing 100% damage
-						*/
-					}
-					else
-					{
-						_properties.DamageReceivedRegularMult *= 0.5;
-					}
-				}
+				_properties.DamageReceivedRegularMult *= 0.5;
 				break;
 		}
 	}
