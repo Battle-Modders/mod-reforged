@@ -35,6 +35,7 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsShieldRelevant = false;
+		this.m.IsShieldwallRelevant = false;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -70,7 +71,14 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Ignores the bonus to [Melee Defense|Concept.MeleeDefense] granted by shields")
+			text = ::Reforged.Mod.Tooltips.parseString("Ignores the bonus to [Melee Defense|Concept.MeleeDefense] granted by shields and [Shieldwall|Skill+shieldwall_effect]")
+		});
+
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Cannot be used against a target using [Shieldwall|Skill+shieldwall_effect] adjacent to an ally using [Shieldwall|Skill+shieldwall_effect]")
 		});
 
 		if (this.getMaxRange() > 1)
@@ -113,7 +121,21 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 		if (targetEntity.isAlliedWith(this.getContainer().getActor()))
 			return false;
 
-		return targetEntity.isArmedWithShield() && this.skill.onVerifyTarget(_originTile, _targetTile) && !targetEntity.getSkills().hasSkill("effects.rf_hooked_shield");
+		if (!targetEntity.isArmedWithShield() || !this.skill.onVerifyTarget(_originTile, _targetTile) || targetEntity.getSkills().hasSkill("effects.rf_hooked_shield"))
+			return false;
+
+		if (targetEntity.getSkills().hasSkill("effects.shieldwall"))
+		{
+			foreach (ally in ::Tactical.Entities.getAlliedActors(targetEntity.getFaction(), _targetTile, 1, true))
+			{
+				if (ally.getSkills().hasSkill("effects.shieldwall"))
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	function onUse( _user, _targetTile )
