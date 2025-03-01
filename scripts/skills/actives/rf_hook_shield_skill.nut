@@ -100,7 +100,7 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 	{
 		if (this.isAxeMasteryApplied() && _properties.IsSpecializedInAxes)
 		{
-			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
+			this.m.FatigueCostMult *= ::Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 
