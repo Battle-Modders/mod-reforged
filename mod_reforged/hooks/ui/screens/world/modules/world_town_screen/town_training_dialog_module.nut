@@ -83,7 +83,7 @@
 		}
 		local entity = this.Tactical.getEntityByID(entityID);
 		entity.getPerkTree().addPerkGroup(trainingID);
-		entity.getFlags().set("rf_perkGroupAdded", true);
+		entity.getFlags().set("rf_perkGroupAdded", trainingID);
 
 		local price = 3000; //tbd
 		this.World.Assets.addMoney(-price);
