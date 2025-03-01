@@ -1,0 +1,21 @@
+::Reforged.HooksMod.hook("scripts/items/item_container", function(q) {
+	q.equip = @(__original) function( _item )
+	{
+		// Disallow equipping invalid weapons in the Old Swordmaster origin
+		if ("Assets" in ::World && !::MSU.isNull(::World.Assets) && !::MSU.isNull(::World.Assets.getOrigin()) && ::World.Assets.getOrigin().getID() == "scenario.rf_old_swordmaster")
+		{
+			local effect;
+			foreach (skill in this.getActor().getSkills().m.Skills)
+			{
+				if (::MSU.isKindOf(skill, "rf_old_swordmaster_scenario_abstract_effect"))
+				{
+					if (!skill.isWeaponAllowed(_item))
+						return false;
+					break;
+				}
+			}
+		}
+
+		return __original(_item);
+	}
+});
