@@ -90,22 +90,20 @@
 	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
 	{
 		local d = _skill.getDamageType();
+		local mult = 0.0;
 		if (d.contains(::Const.Damage.DamageType.Blunt))
 		{
-			if (_skill.isRanged())
-				_properties.DamageReceivedRegularMult *= 0.33;
+			mult += d.getProbability(::Const.Damage.DamageType.Blunt) * 0.66;
 		}
-		else if (d.contains(::Const.Damage.DamageType.Piercing))
+		if (d.contains(::Const.Damage.DamageType.Piercing))
 		{
-			_properties.DamageReceivedRegularMult *= _skill.isRanged() ? 0.33 : 0.5;
+			mult += d.getProbability(::Const.Damage.DamageType.Piercing) * (_skill.isRanged() ? 0.66 : 0.5);
 		}
-		else if (d.contains(::Const.Damage.DamageType.Cutting))
+		if (d.contains(::Const.Damage.DamageType.Cutting) && (_skill.getID() == "actives.wardog_bite" || _skill.getID() == "actives.wolf_bite" || _skill.getID() == "actives.warhound_bite"))
 		{
-			if (_skill.getID() == "actives.wardog_bite" || _skill.getID() == "actives.wolf_bite" || _skill.getID() == "actives.warhound_bite")
-			{
-				_properties.DamageReceivedRegularMult *= 0.33;
-			}
+			mult += d.getProbability(::Const.Damage.DamageType.Cutting) * 0.66;
 		}
+		_properties.DamageReceivedRegularMult *= 1.0 - mult;
 	}
 
 	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )

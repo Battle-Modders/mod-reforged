@@ -106,19 +106,20 @@
 		}
 
 		local d = _skill.getDamageType();
+		local mult = 0.0;
 		if (d.contains(::Const.Damage.DamageType.Burning))
 		{
-			_properties.DamageReceivedRegularMult *= 0.1;
+			mult += d.getProbability(::Const.Damage.DamageType.Burning) * 0.9;
 		}
-		else if (d.contains(::Const.Damage.DamageType.Blunt))
+		if (d.contains(::Const.Damage.DamageType.Piercing))
 		{
-			if (_skill.isRanged())
-				_properties.DamageReceivedRegularMult *= 0.33;
+			mult += d.getProbability(::Const.Damage.DamageType.Piercing) * (_skill.isRanged() ? 0.66 : 0.5);
 		}
-		else if (d.contains(::Const.Damage.DamageType.Piercing))
+		if (_skill.isRanged() && d.contains(::Const.Damage.DamageType.Blunt))
 		{
-			_properties.DamageReceivedRegularMult *= _skill.isRanged() ? 0.33 : 0.5;
+			mult += d.getProbability(::Const.Damage.DamageType.Blunt) * 0.66;
 		}
+		_properties.DamageReceivedRegularMult *= 1.0 - mult;
 	}
 
 	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )

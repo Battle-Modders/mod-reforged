@@ -51,9 +51,10 @@
 
 	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
 	{
-		if (_skill.getDamageType().contains(::Const.Damage.DamageType.Burning))
+		local d = _skill.getDamageType();
+		if (d.contains(::Const.Damage.DamageType.Burning))
 		{
-			_properties.DamageReceivedRegularMult *= 0.66;
+			_properties.DamageReceivedRegularMult *= 1.0 - d.getProbability(::Const.Damage.DamageType.Burning) * 0.33;
 		}
 	}
 

@@ -81,14 +81,16 @@
 	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
 	{
 		local d = _skill.getDamageType();
+		local mult = 0.0;
 		if (d.contains(::Const.Damage.DamageType.Burning))
 		{
-			_properties.DamageReceivedRegularMult *= 0.25;
+			mult += d.getProbability(::Const.Damage.DamageType.Burning) * 0.75;
 		}
-		else if (d.contains(::Const.Damage.DamageType.Piercing))
+		if (d.contains(::Const.Damage.DamageType.Piercing))
 		{
-			_properties.DamageReceivedRegularMult *= _skill.isRanged() ? 0.33 : 0.5;
+			mult += d.getProbability(::Const.Damage.DamageType.Piercing) * (_skill.isRanged() ? 0.66 : 0.5);
 		}
+		_properties.DamageReceivedRegularMult *= 1.0 - mult;
 	}
 
 	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
