@@ -3,14 +3,13 @@ this.rf_vampire_lord_agent <- ::inherit("scripts/ai/tactical/agents/vampire_agen
 	function create()
 	{
 		this.vampire_agent.create();
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Swing] = 3.0;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Split] = 3.0;
 	}
 
 	function onUpdate()
 	{
 		this.vampire_agent.onUpdate();
-
-		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Swing] *= 3.0;
-		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Split] *= 3.0;
 
 		// Don't use Darkflight first when at Max AP and able to use Swing or Split effectively.
 		local actor = this.getActor();
