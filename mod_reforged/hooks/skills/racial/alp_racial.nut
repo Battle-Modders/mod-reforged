@@ -87,6 +87,27 @@
 		baseProperties.IsImmuneToPoison = true;
 	}
 
+	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
+	{
+		local d = _skill.getDamageType();
+		if (d.contains(::Const.Damage.DamageType.Blunt))
+		{
+			if (_skill.isRanged())
+				_properties.DamageReceivedRegularMult *= 0.33;
+		}
+		else if (d.contains(::Const.Damage.DamageType.Piercing))
+		{
+			_properties.DamageReceivedRegularMult *= _skill.isRanged() ? 0.33 : 0.5;
+		}
+		else if (d.contains(::Const.Damage.DamageType.Cutting))
+		{
+			if (_skill.getID() == "actives.wardog_bite" || _skill.getID() == "actives.wolf_bite" || _skill.getID() == "actives.warhound_bite")
+			{
+				_properties.DamageReceivedRegularMult *= 0.33;
+			}
+		}
+	}
+
 	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)

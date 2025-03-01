@@ -49,6 +49,14 @@
 		baseProperties.IsImmuneToDisarm = true;
 	}
 
+	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
+	{
+		if (_skill.getDamageType().contains(::Const.Damage.DamageType.Burning))
+		{
+			_properties.DamageReceivedRegularMult *= 0.66;
+		}
+	}
+
 	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)

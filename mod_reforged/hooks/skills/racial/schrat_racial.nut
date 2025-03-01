@@ -118,6 +118,19 @@
 		baseProperties.IsIgnoringArmorOnAttack = true;
 	}
 
+	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
+	{
+		local d = _skill.getDamageType();
+		if (d.contains(::Const.Damage.DamageType.Burning))
+		{
+			_properties.DamageReceivedRegularMult *= 2.0;
+		}
+		else if (d.contains(::Const.Damage.DamageType.Piercing))
+		{
+			_properties.DamageReceivedRegularMult *= _skill.isRanged() ? 0.25 : 0.5;
+		}
+	}
+
 	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)

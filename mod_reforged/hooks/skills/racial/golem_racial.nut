@@ -97,6 +97,30 @@
 		baseProperties.IsImmuneToStun = true;
 	}
 
+	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
+	{
+		if (_skill.getID() == "actives.throw_golem")
+		{
+			_properties.DamageReceivedTotalMult = 0.0;
+			return;
+		}
+
+		local d = _skill.getDamageType();
+		if (d.contains(::Const.Damage.DamageType.Burning))
+		{
+			_properties.DamageReceivedRegularMult *= 0.1;
+		}
+		else if (d.contains(::Const.Damage.DamageType.Blunt))
+		{
+			if (_skill.isRanged())
+				_properties.DamageReceivedRegularMult *= 0.33;
+		}
+		else if (d.contains(::Const.Damage.DamageType.Piercing))
+		{
+			_properties.DamageReceivedRegularMult *= _skill.isRanged() ? 0.33 : 0.5;
+		}
+	}
+
 	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
 	{
 		if (_skill != null && _skill.getID() == "actives.throw_golem")
