@@ -71,25 +71,25 @@ this.rf_old_swordmaster_scenario_avatar_effect <- ::inherit("scripts/skills/effe
 					id = 14,
 					type = "text",
 					icon = "ui/icons/health.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-skillMalus, {AddSign = true}) + " [Hitpoints|Concept.Hitpoints")
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-skillMalus, {AddSign = true}) + " [Hitpoints|Concept.Hitpoints]")
 				},
 				{
 					id = 15,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-skillMalus, {AddSign = true}) + " [Maximum Fatigue|Concept.Fatigue")
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(-skillMalus, {AddSign = true}) + " [Maximum Fatigue|Concept.Fatigue]")
 				},
 				{
 					id = 16,
 					type = "text",
 					icon = "ui/icons/initiative.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(::Math.floor(-skillMalus * 1.5), {AddSign = true}) + " [Initiative|Concept.Initiative")
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(::Math.floor(-skillMalus * 1.5), {AddSign = true}) + " [Initiative|Concept.Initiative]")
 				},
 				{
 					id = 17,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorizeValue(2 * skillMalus, {AddSign = true}) + " [Fatigue|Concept.Fatigue")
+					text = ::Reforged.Mod.Tooltips.parseString("Build " + ::MSU.Text.colorizeMultWithText(1.0 + 2 * skillMalus * 0.01, {InvertColor = true}) + " [Fatigue|Concept.Fatigue]")
 				}
 			]);
 		}
