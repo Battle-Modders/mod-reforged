@@ -36,12 +36,13 @@
 	{
 		if (settlement == _settlement) continue;
 		if (!(settlement.hasBuilding("building.training_hall"))) continue;
-		if (!("rf_perkGroupOffer" in settlement.m)){
-			::logWarning("Reforged: Settlement with Name " + settlement.getName() + " does not have rf_perkGroupOffer key!");
-			settlement.m.rf_perkGroupOffer <- [];
-			// continue;
+		local perkGroupOffer = settlement.getFlags().get("rf_perkGroupOffer");
+		if (!perkGroupOffer){
+			::logWarning("Reforged: Settlement with Name " + settlement.getName() + " does not have perkGroupOffers!");
+			continue;
 		}
-		foreach (perkGroupId in settlement.m.rf_perkGroupOffer)
+		perkGroupOffer = split(perkGroupOffer, ",");
+		foreach (perkGroupId in perkGroupOffer)
 		{
 			if (!(perkGroupId in reverseMap))
 			{
@@ -79,7 +80,7 @@
 		if (!settlement.hasBuilding("building.training_hall"))
 			continue;
 		local groups = this.getPerkGroupsForTrainingHall(settlement);
-		settlement.m.rf_perkGroupOffer <- groups;
+		settlement.getFlags().set("rf_perkGroupOffer", groups.reduce(@(a, b) a + "," + b));
 		allGroupsAssigned.extend(groups);
 	}
 	return allGroupsAssigned;

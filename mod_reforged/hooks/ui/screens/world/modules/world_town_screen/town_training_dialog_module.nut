@@ -3,15 +3,17 @@
 	{
 		local ret = __original();
 		local settlement = this.World.State.getCurrentTown();
-		if (!("rf_perkGroupOffer" in settlement.m)){
-			::logWarning("Reforged: Settlement with Name " + settlement.getName() + " does not have rf_perkGroupOffer key! (during queryRosterInformation hook)");
+		local perkGroupOffer = settlement.getFlags().get("rf_perkGroupOffer");
+		if (perkGroupOffer == false){
+			::logWarning("Reforged: Settlement with Name " + settlement.getName() + " does not have rf_perkGroupOffer flag! (during queryRosterInformation hook)");
 			return ret;
 		}
+		perkGroupOffer = split(perkGroupOffer, ",");
 
 		local function getPerkGroupUIData(_bro)
 		{
 			local perkGroupUIData = [];
-			foreach (idx, perkGroupId in settlement.m.rf_perkGroupOffer)
+			foreach (idx, perkGroupId in perkGroupOffer)
 			{
 				if (_bro.getPerkTree().hasPerkGroup(perkGroupId)) continue;
 				local perkgroup = ::DynamicPerks.PerkGroups.findById(perkGroupId);
