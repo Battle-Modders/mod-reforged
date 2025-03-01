@@ -11,7 +11,14 @@
 					]).roll()
 				],
 				"pgc.rf_shared_1": [],
-				"pgc.rf_weapon": [],
+				"pgc.rf_weapon": function( _perkTree ) {
+					local ret = [];
+					local pgs = ::MSU.Class.WeightedContainer().addMany(1, ["pg.rf_bow", "pg.rf_crossbow", "pg.rf_throwing"]);
+					ret.push(pgs.roll());
+					pgs.remove(ret[0]);
+					ret.push(pgs.roll());
+					return ret;
+				},
 				"pgc.rf_armor": [
 					"pg.rf_light_armor",
 					"pg.rf_medium_armor"
