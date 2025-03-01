@@ -10,6 +10,7 @@ this.rf_trip_artist_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_rf_trip_artist.png";
 		// this.m.IconMini = "rf_trip_artist_mini";
 		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.IsSerialized = false;
 	}
 
 	function isEnabled()
