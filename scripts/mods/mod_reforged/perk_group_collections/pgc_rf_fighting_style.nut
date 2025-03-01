@@ -6,7 +6,6 @@ this.pgc_rf_fighting_style <- ::inherit(::DynamicPerks.Class.PerkGroupCollection
 		this.m.Name = "Fighting Style";
 		this.m.OrderOfAssignment = 5;
 		this.m.Min = 2;
-		this.m.TooltipPrefix = "Prefers using";
 		this.m.Groups = [
 			"pg.rf_power",
 			"pg.rf_ranged",

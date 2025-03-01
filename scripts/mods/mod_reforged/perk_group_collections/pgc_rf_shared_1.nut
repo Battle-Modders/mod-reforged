@@ -6,7 +6,6 @@ this.pgc_rf_shared_1 <- ::inherit(::DynamicPerks.Class.PerkGroupCollection, {
 		this.m.Name = "Shared";
 		this.m.OrderOfAssignment = 2;
 		this.m.Min = 2;
-		this.m.TooltipPrefix = "He";
 		this.m.Groups = [
 			"pg.rf_agile",
 			"pg.rf_fast",
