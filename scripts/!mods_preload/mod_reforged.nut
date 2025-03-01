@@ -116,6 +116,10 @@ foreach (requirement in requiredMods)
 }, ::Hooks.QueueBucket.VeryLate);
 
 ::Reforged.HooksMod.queue(queueLoadOrder, function() {
+	foreach (file in ::IO.enumerateFiles("mod_reforged_AfterHooks"))
+	{
+		::include(file);
+	}
 	foreach (func in ::Reforged.QueueBucket.AfterHooks)
 	{
 		func();
