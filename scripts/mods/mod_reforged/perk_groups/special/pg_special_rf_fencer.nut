@@ -23,11 +23,12 @@ this.pg_special_rf_fencer <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
 		if (!_perkTree.hasPerkGroup("pg.rf_sword"))
 			return 0;
 
-		if (_perkTree.getActor().getBaseProperties().Initiative * _perkTree.getActor().getBaseProperties().InitiativeMult < 100)
+		local p = _perkTree.getProjectedAttributesAvg();
+		local initiative = p[::Const.Attributes.Initiative] - 150;
+		local meleeSkill = p[::Const.Attributes.MeleeSkill] - 85;
+		if (initiative < 0 || meleeSkill < 0)
 			return 0;
 
-		local talents = _perkTree.getActor().getTalents();
-
-		return talents.len() == 0 ? 0 : talents[::Const.Attributes.Initiative] * talents[::Const.Attributes.MeleeSkill];
+		return 1.0 + (initiative + meleeSkill) * 0.05;
 	}
 });
