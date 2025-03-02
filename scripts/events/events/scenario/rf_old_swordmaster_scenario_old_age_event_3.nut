@@ -20,9 +20,7 @@ this.rf_old_swordmaster_scenario_old_age_event_3 <- this.inherit("scripts/events
 					function getResult( _event )
 					{
 						_event.m.Swordmaster.getSkills().removeByID("perk.rf_swordmaster_precise");
-						_event.m.Swordmaster.getPerkTree().removePerk("perk.rf_swordmaster_precise");
 						_event.m.Swordmaster.getSkills().removeByID("perk.rf_swordmaster_blade_dancer");
-						_event.m.Swordmaster.getPerkTree().removePerk("perk.rf_swordmaster_blade_dancer");
 						return 0;
 					}
 
