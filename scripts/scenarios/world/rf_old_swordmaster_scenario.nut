@@ -61,7 +61,7 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 
 		::World.Assets.getStash().add(::new("scripts/items/supplies/cured_venison_item"));
 		::World.Assets.getStash().add(::new("scripts/items/weapons/fencing_sword"));
-		::World.Assets.getStash().add(::new("scripts/items/weapons/rf_estoc"));
+		::World.Assets.getStash().add(::new("scripts/items/weapons/rf_greatsword"));
 		::World.Assets.getStash().add(::new("scripts/items/weapons/arming_sword"));
 		::World.Assets.getStash().add(::new("scripts/items/weapons/arming_sword"));
 
