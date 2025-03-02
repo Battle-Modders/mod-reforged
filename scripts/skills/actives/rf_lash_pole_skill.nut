@@ -9,6 +9,20 @@ this.rf_lash_pole_skill <- ::inherit("scripts/skills/actives/lash_skill", {
 		this.m.MaxRange = 2;
 	}
 
+	function getTooltip()
+	{
+		local ret = this.lash_skill.getTooltip();
+
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorPositive(this.getMaxRange()) + " tiles"
+		});
+
+		return ret;
+	}
+
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		this.lash_skill.onAnySkillUsed(_skill, _targetEntity, _properties);
