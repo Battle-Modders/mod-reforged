@@ -7,6 +7,7 @@ this.rf_flail_pole_skill <- ::inherit("scripts/skills/actives/flail_skill", {
 		this.m.ActionPointCost = 5;
 		this.m.FatigueCost = 15;
 		this.m.MaxRange = 2;
+		this.m.IsTooCloseShown = true;
 	}
 
 	function getTooltip()
