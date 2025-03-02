@@ -7,6 +7,7 @@ this.rf_lash_pole_skill <- ::inherit("scripts/skills/actives/lash_skill", {
 		this.m.ActionPointCost = 5;
 		this.m.FatigueCost = 25;
 		this.m.MaxRange = 2;
+		this.m.IsTooCloseShown = true;
 	}
 
 	function getTooltip()
