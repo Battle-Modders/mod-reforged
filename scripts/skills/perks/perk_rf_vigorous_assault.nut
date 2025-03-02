@@ -105,24 +105,24 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 				local numEnemiesApproachable = 0;
 				local myTile = actor.getTile();
 
-				foreach (faction in ::Tactical.getAllInstances())
+				foreach (faction, actors in ::Tactical.getAllInstances())
 				{
 					if (actor.isAlliedWith(faction))
 						continue;
 
-					foreach (enemy in faction)
+					foreach (enemy in actors)
 					{
 						if (!enemy.isPlacedOnMap())
 							continue;
 
 						local distance = enemy.getTile().getDistanceTo(myTile);
-						if (distance == aoo.getMaxRange())
+						if (distance <= aoo.getMaxRange())
 						{
 							numEnemiesInRange++;
 							break;
 						}
 
-						if (distance == this.m.BonusEveryXTiles + aoo.getMaxRange())
+						if (distance >= this.m.BonusEveryXTiles + aoo.getMaxRange())
 						{
 							numEnemiesApproachable++;
 						}
