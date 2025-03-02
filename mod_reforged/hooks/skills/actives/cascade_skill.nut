@@ -2,6 +2,29 @@
 	q.m.RerollDamageMult <- 1.0;
 	q.m.IsAttacking <- false;
 
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+
+		foreach (entry in ret)
+		{
+			switch (entry.id)
+			{
+				// Modify the vanilla 3 separate strikes tooltip to mention our method of three attack rolls but single strike
+				case 7:
+					entry.text = "Will make three separate attack rolls for one third of the damage each, combined into one strike";
+					break;
+
+				// Improve the vanilla entry about ignoring Shields to also mention Shieldwall
+				case 8:
+					entry.text = ::Reforged.Mod.Tooltips.parseString(format("Ignores the bonus to [Melee Defense|Concept.MeleeDefense] granted by shields %s[Shieldwall|Skill+shieldwall_effect]", this.m.IsShieldwallRelevant ? "but not by " : "and "));
+					break;
+			}
+		}
+
+		return ret;
+	}
+
 	q.create = @(__original) function()
 	{
 		__original();
