@@ -1,8 +1,7 @@
 // Part of this effect's functionality is in fire_handgonne_skill
 this.rf_take_aim_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		DiversionMaxLevelDifference = null,
-		FireHandgonneSkill = null // WeakTableRef to allow us to hook the getAffectedTiles function
+		DiversionMaxLevelDifference = null
 	},
 	function create()
 	{
