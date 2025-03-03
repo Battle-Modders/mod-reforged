@@ -160,34 +160,35 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 			// 	bro.getBaseProperties().DailyWageMult *= 0.5;
 			// 	bro.getSkills().update();
 			// }
-
-			local perkTree = bro.getPerkTree();
-
-			if (perkTree.hasPerk("perk.mastery.sword"))
-			{
-				foreach (pgID in ::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon").getGroups())
-				{
-					switch (pgID)
-					{
-						case "pg.rf_sword":
-						case "pg.rf_bow":
-						case "pg.rf_crossbow":
-						case "pg.rf_throwing":
-							break;
-
-						default:
-							if (perkTree.hasPerkGroup(pgID))
-								perkTree.removePerkGroup(pgID);
-					}
-				}
-
-				perkTree.addPerkGroup("pg.rf_swordmaster");
-			}
 		}
 
 		foreach (bro in garbage)
 		{
 			_roster.remove(bro);
+		}
+	}
+
+	function onBuildPerkTree( _perkTree )
+	{
+		if (_perkTree.hasPerkGroup("pg.rf_sword"))
+		{
+			foreach (pgID in ::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon").getGroups())
+			{
+				switch (pgID)
+				{
+					case "pg.rf_sword":
+					case "pg.rf_bow":
+					case "pg.rf_crossbow":
+					case "pg.rf_throwing":
+						break;
+
+					default:
+						if (_perkTree.hasPerkGroup(pgID))
+							_perkTree.removePerkGroup(pgID);
+				}
+			}
+
+			_perkTree.addPerkGroup("pg.rf_swordmaster");
 		}
 	}
 
