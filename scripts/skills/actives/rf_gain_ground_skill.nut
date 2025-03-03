@@ -78,20 +78,6 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 		return this.isTileValid(_targetTile) && this.skill.onVerifyTarget(_originTile, _targetTile);
 	}
 
-	function onAfterUpdate( _properties )
-	{
-		this.m.FatigueCost = 0;
-		this.m.ActionPointCost = 0;
-
-		local actor = this.getContainer().getActor();
-		if (actor.isPlacedOnMap())
-		{
-			local myTile = actor.getTile();
-			this.m.FatigueCost = ::Math.max(0, actor.getFatigueCosts()[myTile.Type] + this.m.FatigueCostModifier);
-			this.m.ActionPointCost = ::Math.max(0, actor.getActionPointCosts()[myTile.Type] + this.m.APCostModifier);
-		}
-	}
-
 	function onUse( _user, _targetTile )
 	{
 		::Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
@@ -123,27 +109,47 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	function onWaitTurn()
 	{
 		this.m.ValidTiles.clear();
+		this.setupCosts(this.getContainer().getActor().getTile());
+	}
+
+	function onResumeTurn()
+	{
+		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onTurnStart()
 	{
 		this.m.ValidTiles.clear();
+		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onTurnEnd()
 	{
 		this.m.ValidTiles.clear();
+		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onMovementFinished( _tile )
 	{
 		this.m.ValidTiles.clear();
+		this.setupCosts(_tile);
+	}
+
+	function onCombatStarted()
+	{
+		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
 		this.m.ValidTiles.clear();
+	}
+
+	function setupCosts( _tile )
+	{
+		this.setBaseValue("FatigueCost", ::Math.max(0, actor.getFatigueCosts()[myTile.Type] + this.m.FatigueCostModifier));
+		this.setBaseValue("ActionPointCost", ::Math.max(0, actor.getActionPointCosts()[myTile.Type] + this.m.APCostModifier));
 	}
 
 	function isTileValid( _tile )

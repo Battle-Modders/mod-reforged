@@ -196,20 +196,6 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onAfterUpdate ( _properties )
-	{
-		local actor = this.getContainer().getActor();
-		if (actor.isPlacedOnMap())
-		{
-			local myTile = actor.getTile();
-			if (myTile != null)
-			{
-				this.m.FatigueCost = ::Math.max(0, actor.getFatigueCosts()[myTile.Type] + this.m.FatigueCostModifier);
-				this.m.ActionPointCost = ::Math.max(0, actor.getActionPointCosts()[myTile.Type] + this.m.APCostModifier);
-			}
-		}
-	}
-
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (this.isEnabled() && this.isSkillValid(_skill) && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
@@ -221,6 +207,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	function onMovementFinished( _tile )
 	{
 		this.m.IsSpent = true;
+		this.setupCosts(_tile);
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
@@ -236,22 +223,36 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	function onWaitTurn()
 	{
 		this.m.IsSpent = true;
+		this.setupCosts(this.getContainer().getActor().getTile());
+	}
+
+	function onResumeTurn()
+	{
+		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onTurnStart()
 	{
 		this.m.IsSpent = true;
+		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onCombatStarted()
 	{
 		this.m.IsSpent = true;
+		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
 		this.m.IsSpent = true;
+	}
+
+	function setupCosts( _tile )
+	{
+		this.setBaseValue("FatigueCost", ::Math.max(0, actor.getFatigueCosts()[myTile.Type] + this.m.FatigueCostModifier));
+		this.setBaseValue("ActionPointCost", ::Math.max(0, actor.getActionPointCosts()[myTile.Type] + this.m.APCostModifier));
 	}
 
 	function isSkillValid( _skill )
