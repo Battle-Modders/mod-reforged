@@ -2,7 +2,10 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		ValidTiles = []
 		APCostModifier = -2,
-		FatigueCostModifier = 0
+		FatigueCostModifier = 0,
+
+		__BaseActionPointCost = 0,
+		__BaseFatigueCost = 0
 	},
 	function create()
 	{
@@ -66,6 +69,12 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 		}
 
 		return ret;
+	}
+
+	function onAdded()
+	{
+		this.m.BaseActionPointCost = this.m.ActionPointCost;
+		this.m.BaseFatigueCost = this.m.FatigueCost;
 	}
 
 	function isUsable()
@@ -144,12 +153,14 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.skill.onCombatFinished();
 		this.m.ValidTiles.clear();
+		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost);
+		this.setBaseValue("ActionPointCost", this.m.__BaseActionPointCost);
 	}
 
 	function setupCosts( _tile )
 	{
-		this.setBaseValue("FatigueCost", ::Math.max(0, actor.getFatigueCosts()[myTile.Type] + this.m.FatigueCostModifier));
-		this.setBaseValue("ActionPointCost", ::Math.max(0, actor.getActionPointCosts()[myTile.Type] + this.m.APCostModifier));
+		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost + ::Math.max(0, actor.getFatigueCosts()[myTile.Type] + this.m.FatigueCostModifier));
+		this.setBaseValue("ActionPointCost", this.m.__BaseActionPointCost + ::Math.max(0, actor.getActionPointCosts()[myTile.Type] + this.m.APCostModifier));
 	}
 
 	function isTileValid( _tile )

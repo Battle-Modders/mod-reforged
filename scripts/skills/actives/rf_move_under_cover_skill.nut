@@ -1,5 +1,8 @@
 this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		__BaseActionPointCost = 0,
+		__BaseFatigueCost = 0
+	},
 	function create()
 	{
 		this.m.ID = "actives.rf_move_under_cover";
@@ -126,9 +129,16 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost);
+		this.setBaseValue("ActionPointCost", this.m.__BaseActionPointCost);
+	}
+
 	function setupCosts( _tile )
 	{
-		this.setBaseValue("FatigueCost", ::Math.max(0, actor.getFatigueCosts()[myTile.Type]));
-		this.setBaseValue("ActionPointCost", ::Math.max(0, actor.getActionPointCosts()[myTile.Type]));
+		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost + ::Math.max(0, actor.getFatigueCosts()[myTile.Type]));
+		this.setBaseValue("ActionPointCost", this.m.__BaseActionPointCost + ::Math.max(0, actor.getActionPointCosts()[myTile.Type]));
 	}
 });

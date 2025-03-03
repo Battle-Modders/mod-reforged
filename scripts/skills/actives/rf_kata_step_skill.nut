@@ -5,7 +5,10 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		RequireOffhandFree = true, // Require equipping two-handed weapon, or having off-hand free. Is only checked when a RequiredWeaponType is not null.
 		IsSpent = true,
 		APCostModifier = -2,
-		FatigueCostModifier = 2
+		FatigueCostModifier = 2,
+
+		__BaseActionPointCost = 0,
+		__BaseFatigueCost = 0
 	},
 	function create()
 	{
@@ -110,6 +113,12 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		}
 
 		return ret;
+	}
+
+	function onAdded()
+	{
+		this.m.BaseActionPointCost = this.m.ActionPointCost;
+		this.m.BaseFatigueCost = this.m.FatigueCost;
 	}
 
 	function tileHasAdjacentEnemy( _tile )
@@ -247,12 +256,14 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.skill.onCombatFinished();
 		this.m.IsSpent = true;
+		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost);
+		this.setBaseValue("ActionPointCost", this.m.__BaseActionPointCost);
 	}
 
 	function setupCosts( _tile )
 	{
-		this.setBaseValue("FatigueCost", ::Math.max(0, actor.getFatigueCosts()[myTile.Type] + this.m.FatigueCostModifier));
-		this.setBaseValue("ActionPointCost", ::Math.max(0, actor.getActionPointCosts()[myTile.Type] + this.m.APCostModifier));
+		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost + ::Math.max(0, actor.getFatigueCosts()[myTile.Type] + this.m.FatigueCostModifier));
+		this.setBaseValue("ActionPointCost", this.m.__BaseActionPointCost + ::Math.max(0, actor.getActionPointCosts()[myTile.Type] + this.m.APCostModifier));
 	}
 
 	function isSkillValid( _skill )
