@@ -69,11 +69,9 @@
 		this.m.HasMovedOrUsedSkill = false;
 	}
 
-	// We have to return true during previewing otherwise the affordability preview system
-	// does not update the visuals during preview.
 	q.isUsable = @(__original) function()
 	{
-		return this.getContainer().getActor().isPreviewing() || !this.m.HasMovedOrUsedSkill && __original();
+		return !this.m.HasMovedOrUsedSkill && __original();
 	}
 
 	// We have to show during preview that it won't be affordable so that the visuals update
