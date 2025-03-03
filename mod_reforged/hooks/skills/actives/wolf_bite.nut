@@ -31,7 +31,7 @@
 				_properties.DamageRegularMax -= weapon.m.RegularDamageMax;
 				_properties.DamageArmorMult /= weapon.m.ArmorDamageMult;
 				_properties.DamageDirectAdd -= weapon.m.DirectDamageAdd;
-				_properties.HitChance[this.Const.BodyPart.Head] -= weapon.m.ChanceToHitHead;
+				_properties.HitChance[::Const.BodyPart.Head] -= weapon.m.ChanceToHitHead;
 			}
 
 			// Then add the damage of this skill. This is copied from what vanilla does in onUpdate of this skill
