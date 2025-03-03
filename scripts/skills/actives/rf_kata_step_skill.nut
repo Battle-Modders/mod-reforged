@@ -263,6 +263,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	function setupCosts( _tile )
 	{
 		local actor = this.getContainer().getActor();
+		local myTile = actor.getTile();
 		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost + ::Math.max(0, actor.getFatigueCosts()[myTile.Type] + this.m.FatigueCostModifier));
 		this.setBaseValue("ActionPointCost", this.m.__BaseActionPointCost + ::Math.max(0, actor.getActionPointCosts()[myTile.Type] + this.m.APCostModifier));
 	}
