@@ -31,6 +31,20 @@
 		return ret;
 	}
 
+	q.getFatigueRecovered <- function()
+	{
+		return ::Math.ceil(this.getContainer().getActor().getFatigue() * 0.5);
+	}
+
+	q.onCostsPreview = @(__original) function( _costsPreview )
+	{
+		__original(_costsPreview);
+		if (::MSU.isEqual(this.getContainer().getActor().getPreviewSkill(), this))
+		{
+			_costsPreview.fatiguePreview -= this.getFatigueRecovered();
+		}
+	}
+
 	q.onAnySkillExecuted = @(__original) function( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		__original(_skill, _targetTile, _targetEntity, _forFree);
