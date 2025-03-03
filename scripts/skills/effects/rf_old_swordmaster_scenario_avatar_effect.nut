@@ -94,17 +94,10 @@ this.rf_old_swordmaster_scenario_avatar_effect <- ::inherit("scripts/skills/effe
 			]);
 		}
 
-		ret.push({
-			id = 21,
-			type = "text",
-			icon = "ui/icons/warning.png",
-			text = "Will get very angry if anyone in the company uses a melee weapon other than a Sword in combat"
-		});
-
 		if (this.m.DaysWithoutRecruits > 0)
 		{
 			ret.push({
-				id = 22,
+				id = 21,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = "The campaign will end if a total of " + ::MSU.Text.colorNegative(this.m.DaysWithoutRecruitsMax) + " days pass with fewer than " + ::MSU.Text.colorNegative(this.m.NumRecruitsRequired) + " recruits in your company. Currently " + ::MSU.Text.colorNegative(this.m.DaysWithoutRecruits) + " such days have passed"

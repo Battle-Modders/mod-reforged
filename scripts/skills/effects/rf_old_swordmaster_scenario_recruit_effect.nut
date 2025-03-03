@@ -105,13 +105,6 @@ this.rf_old_swordmaster_scenario_recruit_effect <- ::inherit("scripts/skills/eff
 			}
 		}
 
-		ret.push({
-			id = 20,
-			type = "text",
-			icon = "ui/icons/warning.png",
-			text = "Will get very angry if anyone in the company uses a melee weapon other than a Sword in combat"
-		});
-
 		return ret;
 	}
 
