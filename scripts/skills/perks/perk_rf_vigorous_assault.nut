@@ -85,17 +85,6 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 
 		// Reduce the AP cost preemptively by assuming a movement of this.m.BonusEveryXTiles for AI to allow for
 		// AI behaviors which check for AP cost of attacks for setting tile scores when calculating where to go
-		if (!actor.isPlayerControlled())
-		{
-			local aoo = this.getContainer().getAttackOfOpportunity();
-			if (aoo != null && ::Tactical.Entities.getHostileActors(actor.getFaction(), actor.getTile(), aoo.getMaxRange()).len() == 0)
-			{
-				this.m.NumTilesMoved = ::Math.max(this.m.BonusEveryXTiles, this.m.NumTilesMoved);
-			}
-		}
-
-		// Reduce the AP cost preemptively by assuming a movement of this.m.BonusEveryXTiles for AI to allow for
-		// AI behaviors which check for AP cost of attacks for setting tile scores when calculating where to go
 		if (!actor.isPlayerControlled() && this.m.NumTilesMoved < this.m.BonusEveryXTiles && actor.isPlacedOnMap())
 		{
 			local aoo = this.getContainer().getAttackOfOpportunity();
