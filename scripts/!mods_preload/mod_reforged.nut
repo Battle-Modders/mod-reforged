@@ -14,7 +14,7 @@
 
 local requiredMods = [
 	"vanilla >= 1.5.0-15",
-	"mod_modular_vanilla >= 0.3.5",
+	"mod_modular_vanilla >= 0.3.6",
 	"mod_msu >= 1.5.0",
 	"mod_nested_tooltips >= 0.1.7",
 	"mod_modern_hooks >= 0.4.10"
@@ -23,7 +23,7 @@ local requiredMods = [
 	"dlc_wildmen",
 	"dlc_desert",
 	"dlc_paladins",
-	"mod_dynamic_perks >= 0.3.2"
+	"mod_dynamic_perks >= 0.4.0"
 	"mod_dynamic_spawns >= 0.3.5",
 	"mod_item_tables >= 0.1.3",
 	"mod_upd",
