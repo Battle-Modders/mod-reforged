@@ -64,7 +64,7 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Once per [turn,|Concept.Turn] when used against the same target twice, the second use refunds all of its [Action Point|Concept.ActionPoints] cost")
+			text = ::Reforged.Mod.Tooltips.parseString("Once per [turn,|Concept.Turn] the second successful use against the same target refunds all of its [Action Point|Concept.ActionPoints] cost")
 		});
 
 		ret.push({
@@ -142,6 +142,33 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local targetEntity = _targetTile.getEntity();
 
+		local shield = targetEntity.getOffhandItem();
+		if (shield == null)
+			return false;
+
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplitShield);
+		if (!this.attackEntity(_user, targetEntity))
+			return false;
+
+		local shieldWall = targetEntity.getSkills().getSkillByID("effects.shieldwall");
+		if (shieldWall != null)
+		{
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " hooks " + ::Const.UI.getColorizedEntityName(targetEntity) + "\'s shield removing their " + shieldWall.m.Name);
+			targetEntity.getSkills().remove(shieldWall);
+		}
+		else
+		{
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " hooks " + ::Const.UI.getColorizedEntityName(targetEntity) + "\'s shield");
+			targetEntity.getSkills().add(::new("scripts/skills/effects/rf_hooked_shield_effect"));
+		}
+		if (!::Tactical.getNavigator().isTravelling(_targetTile.getEntity()))
+		{
+			::Tactical.getShaker().shake(targetEntity, _user.getTile(), 5, ::Const.Combat.ShakeEffectSplitShieldColor, ::Const.Combat.ShakeEffectSplitShieldHighlight, ::Const.Combat.ShakeEffectSplitShieldFactor, 1.0, [
+				"shield_icon"
+			], 1.0);
+		}
+		::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, targetEntity.getPos());
+
 		if (!this.m.IsSpent && targetEntity.getID() == this.m.LastTargetID)
 		{
 			_user.setActionPoints(::Math.min(_user.getActionPointsMax(), _user.getActionPoints() + this.getActionPointCost()));
@@ -150,35 +177,7 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 
 		this.m.LastTargetID = targetEntity.getID();
 
-		local shield = targetEntity.getOffhandItem();
-		if (shield != null)
-		{
-			this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplitShield);
-			if (this.attackEntity(_user, targetEntity))
-			{
-				local shieldWall = targetEntity.getSkills().getSkillByID("effects.shieldwall");
-				if (shieldWall != null)
-				{
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " hooks " + ::Const.UI.getColorizedEntityName(targetEntity) + "\'s shield removing their " + shieldWall.m.Name);
-					targetEntity.getSkills().remove(shieldWall);
-				}
-				else
-				{
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " hooks " + ::Const.UI.getColorizedEntityName(targetEntity) + "\'s shield");
-					targetEntity.getSkills().add(::new("scripts/skills/effects/rf_hooked_shield_effect"));
-				}
-				if (!::Tactical.getNavigator().isTravelling(_targetTile.getEntity()))
-				{
-					::Tactical.getShaker().shake(targetEntity, _user.getTile(), 5, ::Const.Combat.ShakeEffectSplitShieldColor, ::Const.Combat.ShakeEffectSplitShieldHighlight, ::Const.Combat.ShakeEffectSplitShieldFactor, 1.0, [
-						"shield_icon"
-					], 1.0);
-				}
-				::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, targetEntity.getPos());
-				return true;
-			}
-		}
-
-		return false;
+		return true;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
