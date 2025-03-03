@@ -11,6 +11,21 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 		this.m.IsFixedLook = true;
 	}
 
+	function onInit()
+	{
+		local ambitions = ::World.Ambitions.m.Ambitions;
+		for (local i = ambitions.len() - 1; i >= 0; i--)
+		{
+			switch (ambitions[i].getID())
+			{
+				case "ambition.hammer_mastery":
+				case "ambition.ranged_mastery":
+					ambitions.remove(i);
+					break;
+			}
+		}
+	}
+
 	function isValid()
 	{
 		return ::Const.DLC.Wildmen;
