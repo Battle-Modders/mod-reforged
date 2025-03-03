@@ -1,8 +1,5 @@
 this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
-	m = {
-		__BaseActionPointCost = 0,
-		__BaseFatigueCost = 0
-	},
+	m = {},
 	function create()
 	{
 		this.m.ID = "actives.rf_move_under_cover";
@@ -44,9 +41,6 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.m.__BaseActionPointCost = this.m.ActionPointCost;
-		this.m.__BaseFatigueCost = this.m.FatigueCost;
-
 		local actor = this.getContainer().getActor();
 		if (actor.isPlayerControlled())
 		{
@@ -102,55 +96,21 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 
+	function onAfterUpdate( _properties )
+	{
+		local actor = this.getContainer().getActor();
+		if (!actor.isPlacedOnMap())
+			return;
+
+		local myTile = actor.getTile();
+		this.m.ActionPointCost += actor.getActionPointCosts()[myTile.Type];
+		this.m.FatigueCost += actor.getFatigueCosts()[myTile.Type];
+	}
+
 	function onUse( _user, _targetTile )
 	{
 		::Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
 		this.removeSelf();
 		return true;
-	}
-
-	function onWaitTurn()
-	{
-		this.setupCosts(this.getContainer().getActor().getTile());
-	}
-
-	function onResumeTurn()
-	{
-		this.setupCosts(this.getContainer().getActor().getTile());
-	}
-
-	function onTurnStart()
-	{
-		this.setupCosts(this.getContainer().getActor().getTile());
-	}
-
-	function onTurnEnd()
-	{
-		this.setupCosts(this.getContainer().getActor().getTile());
-	}
-
-	function onMovementFinished( _tile )
-	{
-		this.setupCosts(_tile);
-	}
-
-	function onCombatStarted()
-	{
-		this.setupCosts(this.getContainer().getActor().getTile());
-	}
-
-	function onCombatFinished()
-	{
-		this.skill.onCombatFinished();
-		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost);
-		this.setBaseValue("ActionPointCost", this.m.__BaseActionPointCost);
-	}
-
-	function setupCosts( _tile )
-	{
-		local actor = this.getContainer().getActor();
-		local myTile = actor.getTile();
-		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost + actor.getFatigueCosts()[myTile.Type]);
-		this.setBaseValue("ActionPointCost",this.m.__BaseActionPointCost + actor.getActionPointCosts()[myTile.Type]);
 	}
 });

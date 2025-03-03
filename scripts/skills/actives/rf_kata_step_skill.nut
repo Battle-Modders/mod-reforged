@@ -3,10 +3,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		RequiredWeaponType = ::Const.Items.WeaponType.Sword,
 		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
 		RequireOffhandFree = true, // Require equipping two-handed weapon, or having off-hand free. Is only checked when a RequiredWeaponType is not null.
-		IsSpent = true,
-
-		__BaseActionPointCost = 0,
-		__BaseFatigueCost = 0
+		IsSpent = true
 	},
 	function create()
 	{
@@ -119,12 +116,6 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAdded()
-	{
-		this.m.__BaseActionPointCost = this.m.ActionPointCost;
-		this.m.__BaseFatigueCost = this.m.FatigueCost;
-	}
-
 	function tileHasAdjacentEnemy( _tile )
 	{
 		if (_tile == null) return false;
@@ -209,6 +200,17 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		return true;
 	}
 
+	function onAfterUpdate( _properties )
+	{
+		local actor = this.getContainer().getActor();
+		if (!actor.isPlacedOnMap())
+			return;
+
+		local myTile = actor.getTile();
+		this.m.ActionPointCost += actor.getActionPointCosts()[myTile.Type];
+		this.m.FatigueCost += actor.getFatigueCosts()[myTile.Type];
+	}
+
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (this.isEnabled() && this.isSkillValid(_skill) && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
@@ -220,7 +222,6 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	function onMovementFinished( _tile )
 	{
 		this.m.IsSpent = true;
-		this.setupCosts(_tile);
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
@@ -236,40 +237,22 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	function onWaitTurn()
 	{
 		this.m.IsSpent = true;
-		this.setupCosts(this.getContainer().getActor().getTile());
-	}
-
-	function onResumeTurn()
-	{
-		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onTurnStart()
 	{
 		this.m.IsSpent = true;
-		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onCombatStarted()
 	{
 		this.m.IsSpent = true;
-		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
 		this.m.IsSpent = true;
-		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost);
-		this.setBaseValue("ActionPointCost", this.m.__BaseActionPointCost);
-	}
-
-	function setupCosts( _tile )
-	{
-		local actor = this.getContainer().getActor();
-		local myTile = actor.getTile();
-		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost + actor.getFatigueCosts()[myTile.Type]);
-		this.setBaseValue("ActionPointCost",this.m.__BaseActionPointCost + actor.getActionPointCosts()[myTile.Type]);
 	}
 
 	function isSkillValid( _skill )

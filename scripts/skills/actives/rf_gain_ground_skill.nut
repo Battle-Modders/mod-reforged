@@ -1,9 +1,6 @@
 this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		ValidTiles = []
-
-		__BaseActionPointCost = 0,
-		__BaseFatigueCost = 0
 	},
 	function create()
 	{
@@ -75,12 +72,6 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAdded()
-	{
-		this.m.__BaseActionPointCost = this.m.ActionPointCost;
-		this.m.__BaseFatigueCost = this.m.FatigueCost;
-	}
-
 	function isUsable()
 	{
 		return this.m.ValidTiles.len() != 0 && this.skill.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted;
@@ -89,6 +80,17 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	function onVerifyTarget( _originTile, _targetTile )
 	{
 		return this.isTileValid(_targetTile) && this.skill.onVerifyTarget(_originTile, _targetTile);
+	}
+
+	function onAfterUpdate( _properties )
+	{
+		local actor = this.getContainer().getActor();
+		if (!actor.isPlacedOnMap())
+			return;
+
+		local myTile = actor.getTile();
+		this.m.ActionPointCost += actor.getActionPointCosts()[myTile.Type];
+		this.m.FatigueCost += actor.getFatigueCosts()[myTile.Type];
 	}
 
 	function onUse( _user, _targetTile )
@@ -122,51 +124,27 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	function onWaitTurn()
 	{
 		this.m.ValidTiles.clear();
-		this.setupCosts(this.getContainer().getActor().getTile());
-	}
-
-	function onResumeTurn()
-	{
-		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onTurnStart()
 	{
 		this.m.ValidTiles.clear();
-		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onTurnEnd()
 	{
 		this.m.ValidTiles.clear();
-		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onMovementFinished( _tile )
 	{
 		this.m.ValidTiles.clear();
-		this.setupCosts(_tile);
-	}
-
-	function onCombatStarted()
-	{
-		this.setupCosts(this.getContainer().getActor().getTile());
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
 		this.m.ValidTiles.clear();
-		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost);
-		this.setBaseValue("ActionPointCost", this.m.__BaseActionPointCost);
-	}
-
-	function setupCosts( _tile )
-	{
-		local actor = this.getContainer().getActor();
-		local myTile = actor.getTile();
-		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost + actor.getFatigueCosts()[myTile.Type]);
-		this.setBaseValue("ActionPointCost",this.m.__BaseActionPointCost + actor.getActionPointCosts()[myTile.Type]);
 	}
 
 	function isTileValid( _tile )
