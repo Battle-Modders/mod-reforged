@@ -27,6 +27,13 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 		this.m.MaxLevelDifference = 1;
 	}
 
+	// Vanilla does not ensure a non-negative value return (should probably be fixed over at MSU)
+	function getActionPointCost()
+	{
+		return ::Math.max(0, this.skill.getActionPointCost());
+	}
+
+
 	function getTooltip()
 	{
 		return this.getDefaultUtilityTooltip();
@@ -91,19 +98,13 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCost = 0;
-		this.m.ActionPointCost = 0;
-
 		local actor = this.getContainer().getActor();
-		if (actor.isPlacedOnMap())
-		{
-			local myTile = actor.getTile();
-			if (myTile != null)
-			{
-				this.m.FatigueCost = ::Math.max(0, actor.getFatigueCosts()[myTile.Type]);
-				this.m.ActionPointCost = ::Math.max(0, actor.getActionPointCosts()[myTile.Type]);
-			}
-		}
+		if (!actor.isPlacedOnMap())
+			return;
+
+		local myTile = actor.getTile();
+		this.m.ActionPointCost += actor.getActionPointCosts()[myTile.Type];
+		this.m.FatigueCost += actor.getFatigueCosts()[myTile.Type];
 	}
 
 	function onUse( _user, _targetTile )

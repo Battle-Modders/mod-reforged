@@ -1,8 +1,6 @@
 this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		ValidTiles = []
-		APCostModifier = -2,
-		FatigueCostModifier = 0
 	},
 	function create()
 	{
@@ -24,7 +22,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsVisibleTileNeeded = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsDisengagement = true;
-		this.m.ActionPointCost = 0;
+		this.m.ActionPointCost = -2;
 		this.m.FatigueCost = 0;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
@@ -32,13 +30,19 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_KataStep;
 	}
 
+	// Vanilla does not ensure a non-negative value return (should probably be fixed over at MSU)
+	function getActionPointCost()
+	{
+		return ::Math.max(0, this.skill.getActionPointCost());
+	}
+
 	function getCostString()
 	{
 		if (this.getContainer().getActor().isPlacedOnMap())
 			return this.skill.getCostString();
 
-		local ret = "Costs " + (this.m.APCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.APCostModifier, {AddSign = true, InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
-		ret += (this.m.FatigueCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCostModifier, {AddSign = true, InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
+		local ret = "Costs " + (this.m.ActionPointCost == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.ActionPointCost, {AddSign = true, InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
+		ret += (this.m.FatigueCost == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCost, {AddSign = true, InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
 		return ::Reforged.Mod.Tooltips.parseString(ret);
 	}
 
@@ -80,16 +84,13 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCost = 0;
-		this.m.ActionPointCost = 0;
-
 		local actor = this.getContainer().getActor();
-		if (actor.isPlacedOnMap())
-		{
-			local myTile = actor.getTile();
-			this.m.FatigueCost = ::Math.max(0, actor.getFatigueCosts()[myTile.Type] + this.m.FatigueCostModifier);
-			this.m.ActionPointCost = ::Math.max(0, actor.getActionPointCosts()[myTile.Type] + this.m.APCostModifier);
-		}
+		if (!actor.isPlacedOnMap())
+			return;
+
+		local myTile = actor.getTile();
+		this.m.ActionPointCost += actor.getActionPointCosts()[myTile.Type];
+		this.m.FatigueCost += actor.getFatigueCosts()[myTile.Type];
 	}
 
 	function onUse( _user, _targetTile )

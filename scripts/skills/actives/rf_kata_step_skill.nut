@@ -3,9 +3,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		RequiredWeaponType = ::Const.Items.WeaponType.Sword,
 		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
 		RequireOffhandFree = true, // Require equipping two-handed weapon, or having off-hand free. Is only checked when a RequiredWeaponType is not null.
-		IsSpent = true,
-		APCostModifier = -2,
-		FatigueCostModifier = 2
+		IsSpent = true
 	},
 	function create()
 	{
@@ -26,8 +24,8 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsTargetingActor = false;
 		this.m.IsVisibleTileNeeded = false;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.ActionPointCost = 0;
-		this.m.FatigueCost = 0;
+		this.m.ActionPointCost = -2;
+		this.m.FatigueCost = 2;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 		this.m.MaxLevelDifference = 1;
@@ -42,13 +40,19 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		this.resetField("RequireOffhandFree");
 	}
 
+	// Vanilla does not ensure a non-negative value return (should probably be fixed over at MSU)
+	function getActionPointCost()
+	{
+		return ::Math.max(0, this.skill.getActionPointCost());
+	}
+
 	function getCostString()
 	{
 		if (this.getContainer().getActor().isPlacedOnMap())
 			return this.skill.getCostString();
 
-		local ret = "Costs " + (this.m.APCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.APCostModifier, {AddSign = true, InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
-		ret += (this.m.FatigueCostModifier == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCostModifier, {AddSign = true, InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
+		local ret = "Costs " + (this.m.ActionPointCost == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.ActionPointCost, {AddSign = true, InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
+		ret += (this.m.FatigueCost == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCost, {AddSign = true, InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
 		return ::Reforged.Mod.Tooltips.parseString(ret);
 	}
 
@@ -196,18 +200,15 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onAfterUpdate ( _properties )
+	function onAfterUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.isPlacedOnMap())
-		{
-			local myTile = actor.getTile();
-			if (myTile != null)
-			{
-				this.m.FatigueCost = ::Math.max(0, actor.getFatigueCosts()[myTile.Type] + this.m.FatigueCostModifier);
-				this.m.ActionPointCost = ::Math.max(0, actor.getActionPointCosts()[myTile.Type] + this.m.APCostModifier);
-			}
-		}
+		if (!actor.isPlacedOnMap())
+			return;
+
+		local myTile = actor.getTile();
+		this.m.ActionPointCost += actor.getActionPointCosts()[myTile.Type];
+		this.m.FatigueCost += actor.getFatigueCosts()[myTile.Type];
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
