@@ -1,11 +1,7 @@
 this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 	m = {
 		BonusEveryXTiles = 2,
-		APReduction = 1,
-		FatCostReduction = 10,
-		StartingTile = null,
-		CurrAPBonus = 0,
-		CurrFatBonus = 0
+		NumTilesMoved = 0
 	},
 	function create()
 	{
@@ -15,35 +11,37 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_rf_vigorous_assault.png";
 		this.m.IconMini = "perk_rf_vigorous_assault_mini";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		this.m.Order = ::Const.SkillOrder.Last;
+		this.m.Order = ::Const.SkillOrder.Perk;
 	}
 
 	function isHidden()
 	{
-		return this.m.CurrAPBonus == 0 && this.m.CurrFatBonus == 0;
+		return this.m.NumTilesMoved / this.m.BonusEveryXTiles == 0;
 	}
 
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 
-		if (this.m.CurrAPBonus > 0)
+		local actionPointCostModifier = this.getActionPointCostModifier();
+		if (actionPointCostModifier != 0)
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next attack costs " + ::MSU.Text.colorPositive("-" + this.m.CurrAPBonus) + " [Action Point(s)|Concept.ActionPoints]")
+				text = ::Reforged.Mod.Tooltips.parseString("The next attack costs " + ::MSU.Text.colorizeValue(actionPointCostModifier, {AddSign = true, InvertColor = true}) + " [Action Point(s)|Concept.ActionPoints]")
 			});
 		}
 
-		if (this.m.CurrFatBonus > 0)
+		local fatigueCostMultMult = this.getFatigueCostMultMult();
+		if (fatigueCostMultMult != 1.0)
 		{
 			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next attack builds up " + ::MSU.Text.colorizeValue(this.m.CurrFatBonus, {AddSign = true, AddPercent = true}) + " less [Fatigue|Concept.Fatigue]")
+				text = ::Reforged.Mod.Tooltips.parseString("The next attack builds up " + ::MSU.Text.colorizeMultWithText(this.getFatigueCostMultMult(), {InvertColor = true}) + " [Fatigue|Concept.Fatigue]")
 			});
 		}
 
@@ -60,18 +58,13 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 	function isEnabled()
 	{
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || this.m.StartingTile == null)
+		if (!actor.isPlacedOnMap())
 		{
 			return false;
 		}
 
 		local weapon = actor.getMainhandItem();
-		if (weapon != null && (!weapon.isItemType(::Const.Items.ItemType.MeleeWeapon) && !weapon.isWeaponType(::Const.Items.WeaponType.Throwing)))
-		{
-			return false;
-		}
-
-		return true;
+		return weapon != null && weapon.isItemType(::Const.Items.ItemType.Weapon) && (weapon.isItemType(::Const.Items.ItemType.MeleeWeapon) || weapon.isWeaponType(::Const.Items.WeaponType.Throwing));
 	}
 
 	function onAfterUpdate( _properties )
@@ -80,84 +73,103 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 		if (actor.isPreviewing() && actor.getPreviewSkill() != null) // The effect of this skill expires upon using any skill, so we reflect that in the preview
 			return;
 
-		this.resetBonus();
-
-		if (!this.isEnabled() || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
-		{
+		if (!this.isEnabled())
 			return;
+
+		// Switcheroo NumTilesMoved so that the bonus calculation functions give desired result during previewing
+		local numTilesMoved_backup = this.m.NumTilesMoved;
+		if (actor.isPreviewing())
+		{
+			this.m.NumTilesMoved += actor.getPreviewMovement().Tiles;
 		}
-
-		local distanceMoved = this.m.StartingTile.getDistanceTo(actor.isPreviewing() ? actor.getPreviewMovement().End : actor.getTile());
-		local aoo = this.getContainer().getAttackOfOpportunity();
-
-		local mult = distanceMoved / this.m.BonusEveryXTiles;
 
 		// Reduce the AP cost preemptively by assuming a movement of this.m.BonusEveryXTiles for AI to allow for
 		// AI behaviors which check for AP cost of attacks for setting tile scores when calculating where to go
-		if (!actor.isPlayerControlled() && aoo != null && distanceMoved < this.m.BonusEveryXTiles)
+		if (!actor.isPlayerControlled() && this.m.NumTilesMoved < this.m.BonusEveryXTiles && actor.isPlacedOnMap())
 		{
-			local myTile = actor.getTile();
-			local actors = ::Tactical.Entities.getAllInstancesAsArray();
-
-			local numEnemiesInRange = 0;
-			local numEnemiesApproachable = 0;
-
-			foreach (a in actors)
+			local aoo = this.getContainer().getAttackOfOpportunity();
+			if (aoo != null)
 			{
-				if (!a.isAlliedWith(actor))
+				local numEnemiesInRange = 0;
+				local numEnemiesApproachable = 0;
+				local myTile = actor.getTile();
+
+				foreach (faction, actors in ::Tactical.getAllInstances())
 				{
-					local distance = a.getTile().getDistanceTo(myTile);
+					if (actor.isAlliedWith(faction))
+						continue;
 
-					if (distance == aoo.getMaxRange())
+					foreach (enemy in actors)
 					{
-						numEnemiesInRange++;
-						break;
+						if (!enemy.isPlacedOnMap())
+							continue;
+
+						local distance = enemy.getTile().getDistanceTo(myTile);
+						if (distance <= aoo.getMaxRange())
+						{
+							numEnemiesInRange++;
+							break;
+						}
+
+						if (distance >= this.m.BonusEveryXTiles + aoo.getMaxRange())
+						{
+							numEnemiesApproachable++;
+						}
 					}
 
-					if (distance == this.m.BonusEveryXTiles + aoo.getMaxRange())
-					{
-						numEnemiesApproachable++;
-					}
+				}
+
+				if (numEnemiesInRange == 0 && numEnemiesApproachable > 0)
+				{
+					this.m.NumTilesMoved = this.m.BonusEveryXTiles;
 				}
 			}
-
-			if (numEnemiesInRange == 0 && numEnemiesApproachable > 0)
-			{
-				mult = 1;
-			}
 		}
 
-		this.m.CurrAPBonus = this.m.APReduction * mult;
-		this.m.CurrFatBonus = this.m.FatCostReduction * mult;
-
-		if (this.m.CurrAPBonus != 0 && this.m.CurrFatBonus != 0)
+		foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
 		{
-			foreach (skill in this.getContainer().getSkillsByFunction(@(_skill) _skill.isAttack()))
+			if (this.isSkillValid(skill))
 			{
-				skill.m.ActionPointCost -= ::Math.max(0, ::Math.min(skill.m.ActionPointCost - 1, this.m.CurrAPBonus));
-				skill.m.FatigueCostMult *= 1.0 - this.m.CurrFatBonus * 0.01;
+				local actionPointCostModifier = this.getActionPointCostModifier();
+				if (skill.m.ActionPointCost + actionPointCostModifier > 0)
+				{
+					skill.m.ActionPointCost += actionPointCostModifier;
+				}
+				skill.m.FatigueCostMult *= this.getFatigueCostMultMult();
 			}
 		}
+
+		this.m.NumTilesMoved = numTilesMoved_backup;
+	}
+
+	function getActionPointCostModifier()
+	{
+		return -this.m.NumTilesMoved / this.m.BonusEveryXTiles;
+	}
+
+	function getFatigueCostMultMult()
+	{
+		return ::Math.maxf(0.0, 1.0 - 0.1 * (this.m.NumTilesMoved / this.m.BonusEveryXTiles));
+	}
+
+	function onMovementStarted( _tile, _numTiles )
+	{
+		this.m.NumTilesMoved += _numTiles;
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (this.getContainer().getActor().isPlacedOnMap())
-		{
-			this.m.StartingTile = this.getContainer().getActor().getTile();
-		}
+		this.m.NumTilesMoved = 0;
 	}
 
 	function onWaitTurn()
 	{
-		this.m.StartingTile = null;
-		this.resetBonus();
+		this.m.NumTilesMoved = 0;
 	}
 
 	function onResumeTurn()
 	{
-		this.m.StartingTile = this.getContainer().getActor().getTile();
-		this.resetBonus();
+		this.m.NumTilesMoved = 0;
 	}
 
 	function onPayForItemAction( _skill, _items )
@@ -170,32 +182,34 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		this.m.StartingTile = this.getContainer().getActor().getTile();
-		this.resetBonus();
+		this.m.NumTilesMoved = 0;
+	}
+
+	function onTurnStart()
+	{
+		this.m.NumTilesMoved = 0;
+	}
+
+	function onTurnEnd()
+	{
+		this.m.NumTilesMoved = 0;
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.StartingTile = null;
-		this.resetBonus();
+		this.m.NumTilesMoved = 0;
 	}
 
-	function onTurnStart()
+	function isSkillValid( _skill )
 	{
-		this.m.StartingTile = this.getContainer().getActor().getTile();
-		this.resetBonus();
-	}
+		if (!_skill.isAttack())
+			return false;
 
-	function onTurnEnd()
-	{
-		this.m.StartingTile = null;
-		this.resetBonus();
-	}
+		if (!_skill.isRanged())
+			return true;
 
-	function resetBonus()
-	{
-		this.m.CurrAPBonus = 0;
-		this.m.CurrFatBonus = 0;
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Throwing);
 	}
 });
