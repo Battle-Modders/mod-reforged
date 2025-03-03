@@ -85,7 +85,7 @@
 
 	q.isTargeted = @() function()
 	{
-		return this.m.IsTargeted ? true : ::Reforged.Mod.ModSettings.getSetting("AllSkillsTargeted").getValue();
+		return this.m.IsTargeted ? true : ::Reforged.Mod.Keybinds.isKeybindPressed("PreviewNonTargetedSkill");
 	}
 });
 
@@ -108,11 +108,6 @@
 
 	q.onVerifyTarget = @(__original) function( _userTile, _targetTile )
 	{
-		if (!this.m.IsTargeted && ::Reforged.Mod.ModSettings.getSetting("AllSkillsTargeted").getValue())
-		{
-			return _userTile.isSameTileAs(_targetTile);
-		}
-
-		return __original(_userTile, _targetTile);
+		return this.m.IsTargeted ? __original(_userTile, _targetTile) : _userTile.isSameTileAs(_targetTile);
 	}
 });
