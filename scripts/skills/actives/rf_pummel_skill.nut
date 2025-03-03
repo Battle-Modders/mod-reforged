@@ -18,7 +18,7 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 6;
-		this.m.FatigueCost = 20;
+		this.m.FatigueCost = 25;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.LineBreaker;
 	}
 
@@ -77,6 +77,14 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 	function isUsable()
 	{
 		return this.line_breaker.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted && this.getValidAttack() != null;
+	}
+
+	function onAfterUpdate( _properties )
+	{
+		if (_properties.IsSpecializedInHammers)
+		{
+			this.m.FatigueCostMult *= ::Const.Combat.WeaponSpecFatigueMult;
+		}
 	}
 
 	function onUse( _user, _targetTile )
