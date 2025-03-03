@@ -82,6 +82,11 @@
 
 		return ret;
 	}
+
+	q.isTargeted = @() function()
+	{
+		return this.m.IsTargeted ? true : ::Reforged.Mod.Keybinds.isKeybindPressed("PreviewNonTargetedSkill");
+	}
 });
 
 ::Reforged.HooksMod.hookTree("scripts/skills/skill", function(q) {
@@ -99,5 +104,27 @@
 				this.m.IconDisabled = ::String.replace(this.m.Icon, ".png", "_sw.png");
 			}
 		}
+	}
+
+	q.getTooltip = @(__original) function()
+	{
+		local ret = __original();
+
+		if (::Tactical.isActive() && this.isActive() && !this.m.IsTargeted)
+		{
+			ret.push({
+				id = 100,
+				type = "hint",
+				icon = "ui/icons/rf_mouse_left_button_ctrl.png",
+				text = format("Hold %s when selecting to preview usage", ::Reforged.Mod.ModSettings.getSetting("PreviewNonTargetedSkill").getValue())
+			});
+		}
+
+		return ret;
+	}
+
+	q.onVerifyTarget = @(__original) function( _userTile, _targetTile )
+	{
+		return this.m.IsTargeted ? __original(_userTile, _targetTile) : _userTile.isSameTileAs(_targetTile);
 	}
 });
