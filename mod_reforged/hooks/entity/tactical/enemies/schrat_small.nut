@@ -39,5 +39,6 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall;
 		this.m.Skills.add(::new("scripts/skills/actives/rf_schrat_small_root_skill"));
+		this.m.IsActingImmediately = true;
 	}
 });

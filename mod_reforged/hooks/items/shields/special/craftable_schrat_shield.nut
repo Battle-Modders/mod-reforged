@@ -42,7 +42,7 @@
 
 		if (neighboringTiles.len() != 0)
 		{
-			local sapling = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/schrat_small", ::MSU.Array.rand(neighboringTiles).Coords);
+			local sapling = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/rf_schrat_small_from_shield", ::MSU.Array.rand(neighboringTiles).Coords);
 			sapling.setFaction(actor.isPlayerControlled() ? ::Const.Faction.PlayerAnimals : actor.getFaction());
 			sapling.m.ConfidentMoraleBrush = "icon_confident";
 			sapling.riseFromGround();
