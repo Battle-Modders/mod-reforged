@@ -30,6 +30,13 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 		this.m.MaxLevelDifference = 1;
 	}
 
+	// Vanilla does not ensure a non-negative value return (should probably be fixed over at MSU)
+	function getActionPointCost()
+	{
+		return ::Math.max(0, this.skill.getActionPointCost());
+	}
+
+
 	function getTooltip()
 	{
 		return this.getDefaultUtilityTooltip();
@@ -143,7 +150,7 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 		local myTile = actor.getTile();
-		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost + ::Math.max(0, actor.getFatigueCosts()[myTile.Type]));
-		this.setBaseValue("ActionPointCost", this.m.__BaseActionPointCost + ::Math.max(0, actor.getActionPointCosts()[myTile.Type]));
+		this.setBaseValue("FatigueCost", this.m.__BaseFatigueCost + actor.getFatigueCosts()[myTile.Type]);
+		this.setBaseValue("ActionPointCost",this.m.__BaseActionPointCost + actor.getActionPointCosts()[myTile.Type]);
 	}
 });
