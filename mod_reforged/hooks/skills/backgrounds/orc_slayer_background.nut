@@ -37,7 +37,7 @@
 
 	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
-		if (::Reforged.Skills.getPerkGroupMultiplier_MeleeOnly(_groupID) == 0)
+		if (::Reforged.Skills.getPerkGroupMultiplier_MeleeOnly(_groupID, _perkTree) == 0)
 			return 0;
 
 		switch (_groupID)
