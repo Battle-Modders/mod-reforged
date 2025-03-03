@@ -73,8 +73,8 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.m.BaseActionPointCost = this.m.ActionPointCost;
-		this.m.BaseFatigueCost = this.m.FatigueCost;
+		this.m.__BaseActionPointCost = this.m.ActionPointCost;
+		this.m.__BaseFatigueCost = this.m.FatigueCost;
 	}
 
 	function isUsable()

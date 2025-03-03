@@ -37,6 +37,9 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
+		this.m.__BaseActionPointCost = this.m.ActionPointCost;
+		this.m.__BaseFatigueCost = this.m.FatigueCost;
+
 		local actor = this.getContainer().getActor();
 		if (actor.isPlayerControlled())
 		{
