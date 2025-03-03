@@ -51,4 +51,18 @@
 			_targetEntity.raiseRootsFromGround("bust_roots", "bust_roots_back");
 		}
 	}
+
+	q.onQueryTooltip = @(__original) function( _skill, _tooltip )
+	{
+		// The ZOC skill is not shown in the actor's tactical tooltip in Reforged. So we add the "rooting" behavior to the tooltip of the active uproot skill.
+		if (_skill.getID() == "actives.uproot")
+		{
+			_tooltip.push({
+				id = 100,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Will [root|Skill+rooted_effect] the target upon a successful [attack of opportunity|Concept.ZoneOfControl]")
+			});
+		}
+	}
 });
