@@ -82,6 +82,11 @@
 
 		return ret;
 	}
+
+	q.isTargeted = @() function()
+	{
+		return this.m.IsTargeted ? true : ::Reforged.Mod.ModSettings.getSetting("AllSkillsTargeted").getValue();
+	}
 });
 
 ::Reforged.HooksMod.hookTree("scripts/skills/skill", function(q) {
@@ -99,5 +104,15 @@
 				this.m.IconDisabled = ::String.replace(this.m.Icon, ".png", "_sw.png");
 			}
 		}
+	}
+
+	q.onVerifyTarget = @(__original) function( _userTile, _targetTile )
+	{
+		if (!this.m.IsTargeted && ::Reforged.Mod.ModSettings.getSetting("AllSkillsTargeted").getValue())
+		{
+			return _userTile.isSameTileAs(_targetTile);
+		}
+
+		return __original(_userTile, _targetTile);
 	}
 });

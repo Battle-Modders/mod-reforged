@@ -29,6 +29,7 @@
 {	// Misc
 	local miscTooltipPage = ::Reforged.Mod.ModSettings.addPage("Misc");
 	miscTooltipPage.addEnumSetting("CraftingBlueprintVisibility", "One Ingredient Available", ["Always", "One Ingredient Available", "All Ingredients Available", "Vanilla"], "Blueprints Visible When", "Crafting Recipes in the Taxidermist will be displayed when this condition is met.\nNote that individual Blueprints (like Snake Oil) may still have custom rules preventing them from being shown.\n\n\'Vanilla\' means that the visibility behavior is unchanged from how it works in the base game.");
+	miscTooltipPage.addBooleanSetting("AllSkillsTargeted", false, "All Skills Targeted", "Causes all skills to behave as targeted skills so that non-targeted skills such as Shieldwall, Rally the Troops etc. require you to click them to enable the skill preview mode and then use those skills on your character. This has the benefit of allowing you to preview the costs of those skills.")
 }
 
 ::Reforged.Mod.Keybinds.addSQKeybind("Tactical_WaitRound", "h", ::MSU.Key.State.Tactical, function()
