@@ -94,7 +94,7 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 				local numEnemiesApproachable = 0;
 				local myTile = actor.getTile();
 
-				foreach (faction, actors in ::Tactical.getAllInstances())
+				foreach (faction, actors in ::Tactical.Entities.getAllInstances())
 				{
 					if (actor.isAlliedWith(faction))
 						continue;
