@@ -32,6 +32,16 @@ this.rf_take_aim_skill <- ::inherit("scripts/skills/skill", {
 			children = takeAimEffect.getTooltip().slice(2) // slice 2 to remove name and description
 		});
 
+		if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()) || !this.getContainer().getActor().getMainhandItem().isLoaded())
+		{
+			ret.push({
+				id = 20,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::MSU.Text.colorNegative("Requires a loaded weapon")
+			});
+		}
+
 		return ret;
 	}
 
@@ -49,7 +59,10 @@ this.rf_take_aim_skill <- ::inherit("scripts/skills/skill", {
 	function isUsable()
 	{
 		local actor = this.getContainer().getActor();
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.rf_take_aim") && !actor.isEngagedInMelee() && this.isEnabled();
+		if (!this.isEnabled())
+			return false;
+
+		return this.skill.isUsable() && actor.getMainhandItem().isLoaded() && !this.getContainer().hasSkill("effects.rf_take_aim") && !actor.isEngagedInMelee();
 	}
 
 	function isHidden()
