@@ -153,7 +153,22 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 					}
 
 					this.m.IsPerformingExtraAttack = true;
-					_skill.useForFree(targetTile);
+					if (user.isPlayerControlled())
+					{
+						_skill.useForFree(targetTile);
+					}
+					// Make it non-lethal for NPC users
+					// Hopefully this reduces/elminiates the cases where AI evaluation gets stuck due to killing someone with a delayed attack.
+					// Once a proper solution to that issue is found and implemented, this can be reverted.
+					else
+					{
+						// This implementation has a side-effect of preventing the target from receiving injuries.
+						local wasAbleToDie = target.m.IsAbleToDie;
+						target.m.IsAbleToDie = false;
+						_skill.useForFree(targetTile);
+						target.m.IsAbleToDie = wasAbleToDie;
+					}
+
 					this.m.IsPerformingExtraAttack = false;
 				}
 				this.getContainer().setBusy(false);
