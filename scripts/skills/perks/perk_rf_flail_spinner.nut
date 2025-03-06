@@ -53,7 +53,7 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 						}
 
 						perk.m.IsSpinningFlail = true;
-						if (_user.isPlayerControlled())
+						if (user.isPlayerControlled())
 						{
 							_skill.useForFree(_targetTile);
 						}
