@@ -153,7 +153,7 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 					}
 
 					this.m.IsPerformingExtraAttack = true;
-					if (_user.isPlayerControlled())
+					if (user.isPlayerControlled())
 					{
 						_skill.useForFree(targetTile);
 					}
