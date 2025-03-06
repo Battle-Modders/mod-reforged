@@ -141,4 +141,18 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 		if (!::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType))
 			return aoo;
 	}
+
+	// Pummel is just the container for the attack and not a reliable source for the accurate expected hitchance
+	// Therefore we ask the skill we will be using during execution for the hitchance
+	function getHitchance( _targetEntity )
+	{
+		if (this.getValidAttack() == null)
+		{
+			return this.skill.getHitchance(_targetEntity);
+		}
+		else
+		{
+			return this.getValidAttack().getHitchance(_targetEntity);
+		}
+	}
 });
