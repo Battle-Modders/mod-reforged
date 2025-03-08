@@ -76,15 +76,10 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 
 	function onTurnEnd()
 	{
-		if (!this.m.IsGainingStackThisTurn)
-		{
-			return;
-		}
-
 		local actor = this.getContainer().getActor();
 		if (actor.getActionPoints() > actor.getActionPointsMax() / 2)
 			this.m.Stacks = 0;
-		else
+		else if (this.m.IsGainingStackThisTurn)
 			this.m.Stacks = ::Math.min(this.m.MaxStacks, this.m.Stacks + 1);
 	}
 
