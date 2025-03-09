@@ -15,7 +15,7 @@ this.perk_rf_second_wind <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return ::Tactical.isActive() && !this.getContainer().getActor().isWaitActionSpent();
+		return !::Tactical.isActive() || this.getContainer().getActor().isWaitActionSpent();
 	}
 
 	function getTooltip()
