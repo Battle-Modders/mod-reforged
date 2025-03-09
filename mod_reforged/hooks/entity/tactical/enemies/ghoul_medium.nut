@@ -1,11 +1,2 @@
-::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/ghoul_medium", function(q) {
-	q.onInit = @() function()
-	{
-		this.ghoul.onInit();
-		this.grow(true);
-
-		// Reforged
-		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium + 1;
-		this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-	}
-});
+// The changes to these ghouls are done via a hook on `grow()` function of ghoul.nut
+// because these ghouls are created via base ghoul.onInit and then calling grow
