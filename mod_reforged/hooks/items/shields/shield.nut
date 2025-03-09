@@ -93,6 +93,6 @@
 			return 1.0;
 		}
 
-		return 1.0 - (actor.getCurrentProperties().IsSpecializedInShields ? 0.25 : 0.5) * actor.getFatigue() / actor.getFatigueMax();
+		return 1.0 - (actor.getCurrentProperties().IsSpecializedInShields ? 0.25 : 0.5) * actor.getFatiguePct();
 	}
 });
