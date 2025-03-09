@@ -4,8 +4,6 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		ActionPointCostMin = 3,
 		IsInEffect = false,
 		IsUsingValidSkill = false // Set during onBeforeAnySkillExecuted to check if during onAnySkillExecuted we should activate the perk's effect
-
-		SkillCount = 0 // Used to prevent "free" skill usages as a result of using a skill from turning off this perk's effect
 	},
 	function create()
 	{
@@ -43,10 +41,9 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (::Const.SkillCounter == this.m.SkillCount)
+		if (this.m.IsInEffect && _forFree)
 			return;
 
-		this.m.SkillCount = ::Const.SkillCounter;
 		// We do this in onBeforeAnySkillExecuted because some skills remove themselves after executing them
 		// or some other effects may be triggered which may change the skill's ActionPointCost after execution
 		// and in both these cases getActionPointCost() will not give us the intended value in onAnySkillExecuted
