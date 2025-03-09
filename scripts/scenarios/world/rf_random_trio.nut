@@ -95,14 +95,10 @@ this.rf_random_trio <- this.inherit("scripts/scenarios/world/starting_scenario",
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-	}
-
-	function onInit()
-	{
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			::Music.setTrackList(::Const.Music.IntroTracks, ::Const.Music.CrossFadeTime);
-			// ::World.Events.fire("event.early_access_scenario_intro");
+			::World.Events.fire("event.rf_random_trio_scenario_intro");
 		}, null);
 	}
 });
