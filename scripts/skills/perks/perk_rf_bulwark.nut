@@ -48,6 +48,16 @@ this.perk_rf_bulwark <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate(_properties)
 	{
-		_properties.Bravery += this.getBonus();
+		local bonus = this.getBonus();
+
+		_properties.Bravery += bonus;
+
+		foreach (moraleCheckType in ::Const.MoraleCheckType)
+		{
+			if (moraleCheckType != ::Const.MoraleCheckType.MentalAttack)
+			{
+				_properties.NegativeMoraleCheckBravery[moraleCheckType] += bonus;
+			}
+		}
 	}
 });
