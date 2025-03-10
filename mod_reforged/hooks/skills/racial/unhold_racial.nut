@@ -50,10 +50,16 @@
 
 	q.onAdded <- function()
 	{
-		local baseProperties = this.getContainer().getActor().getBaseProperties();
+		local actor = this.getContainer().getActor();
+		local baseProperties = actor.getBaseProperties();
 
 		baseProperties.IsImmuneToDisarm = true;
 		baseProperties.IsImmuneToRotation = true;
+
+		if (::MSU.isKindOf(actor, "unhold_armored") || ::MSU.isKindOf(actor, "unhold_frost_armored"))
+		{
+			this.m.Name = "Armored " + this.m.Name;
+		}
 	}
 
 	q.onTurnStart = @(__original) function()
