@@ -31,7 +31,7 @@ this.rf_naked <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.BraveryMult) + " [Resolve|Concept.Bravery]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.BraveryMult) + " [Resolve|Concept.Bravery]" + (::Tactical.isActive() ? "" : " during battle"))
 			});
 		}
 
@@ -74,7 +74,7 @@ this.rf_naked <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if (this.isEnabled())
+		if (this.isEnabled() && ::Tactical.isActive())
 		{
 			_properties.BraveryMult *= this.m.BraveryMult;
 		}
