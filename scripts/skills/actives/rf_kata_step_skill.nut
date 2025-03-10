@@ -2,7 +2,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredWeaponType = ::Const.Items.WeaponType.Sword,
 		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
-		RequireOffhandFree = true, // Require equipping two-handed weapon, or having off-hand free. Is only checked when a RequiredWeaponType is not null.
+		RequireOffhandFree = true, // Require equipping two-handed weapon, or double-grip in effect on one-handed. Is only checked when a RequiredWeaponType is not null.
 		IsSpent = true
 	},
 	function create()
@@ -166,7 +166,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 
 		if (this.m.RequiredWeaponType != null)
 		{
-			if (weapon == null || actor.isDisarmed() || (this.m.RequireOffhandFree && actor.getOffhandItem() != null))
+			if (weapon == null || actor.isDisarmed() || (this.m.RequireOffhandFree && !weapon.isItemType(::Const.Items.ItemType.TwoHanded) && !actor.isDoubleGrippingWeapon()))
 				return false;
 		}
 
