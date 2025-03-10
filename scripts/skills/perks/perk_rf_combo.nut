@@ -41,6 +41,9 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
+		if (this.m.IsInEffect && _forFree)
+			return;
+
 		// We do this in onBeforeAnySkillExecuted because some skills remove themselves after executing them
 		// or some other effects may be triggered which may change the skill's ActionPointCost after execution
 		// and in both these cases getActionPointCost() will not give us the intended value in onAnySkillExecuted
