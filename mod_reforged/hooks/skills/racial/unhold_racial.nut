@@ -21,14 +21,14 @@
 		// This is about the vanila behavior coded in this skill's `onUpdate` function.
 		// We show it here in the absence of a better UI that shows turn order initiative in addition to regular initiative.
 		local actor = this.getContainer().getActor();
-		if (::isKindOf(actor, "unhold_armored") || ::isKindOf(actor, "unhold_frost_armored") || ::MSU.isEqual(actor, ::MSU.getDummyPlayer()))
+		if (::MSU.isKindOf(actor, "unhold_armored") || ::MSU.isKindOf(actor, "unhold_frost_armored") || ::MSU.isEqual(actor, ::MSU.getDummyPlayer()))
 		{
 			local roundsForInitiativeBonus = ::Tactical.isActive() ? (::Tactical.State.isScenarioMode() ? 3 : 2) : "few";
 			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString("[Turn|Concept.Turn] order is determined with " + ::MSU.Text.colorPositive("+40") + " [Initiative|Concept.Initiative] during the first " + roundsForInitiativeBonus " + [rounds|Concept.Round]")
+				text = ::Reforged.Mod.Tooltips.parseString("[Turn|Concept.Turn] order is determined with " + ::MSU.Text.colorPositive("+40") + " [Initiative|Concept.Initiative] during the first " + roundsForInitiativeBonus + " [rounds|Concept.Round]")
 			});
 		}
 
