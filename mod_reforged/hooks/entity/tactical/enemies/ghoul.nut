@@ -42,7 +42,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_cuts"));
 	}
 
-	q.grow = @(__original) ( _instant = false )
+	q.grow = @(__original) function( _instant = false )
 	{
 		local sizeBefore = this.m.Size;
 
