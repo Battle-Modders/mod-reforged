@@ -41,4 +41,23 @@
 		this.m.Skills.add(::new("scripts/skills/actives/rf_schrat_small_root_skill"));
 		this.m.IsActingImmediately = true;
 	}
+
+	// Return 0 during the call from onOtherActorDeath when using my own skill to kill myself so that my death
+	// in this case does not trigger morale checks because vanilla returns early in onOtherActorDeath if `getXPValue() <= 1`
+	q.getXPValue = @(__original) function()
+	{
+		local infos = ::getstackinfos(2);
+		if (split(infos.src, "/").top() == "actor.nut")
+		{
+			// Just checking for infos.func is not enough because hooked functions appear as "unknown"
+			// so we check for the local variables in that case and compare those to the parameters of the vanilla `onOtherActorDeath` function
+			local locals = infos.locals;
+			if ("_skill" in locals && locals._skill.getID() == "actives.rf_schrat_small_root" && (infos.func == "onOtherActorDeath" || infos.func == "unknown" && "_victim" in locals && "_killer" in locals))
+			{
+				return 1;
+			}
+		}
+
+		return __original();
+	}
 });
