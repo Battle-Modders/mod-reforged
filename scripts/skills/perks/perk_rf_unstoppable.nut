@@ -63,7 +63,7 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using [Wait|Concept.Wait] or [Recover|Skill+recover_skill] or getting [stunned,|Skill+stunned_effect] rooted, or [staggered|Skill+staggered_effect] or ending the [turn|Concept.Turn] with more than " + (this.getContainer().getActor().getActionPointsMax() / 2) + " [Action Points|Concept.ActionPoints] remaining")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using [Wait|Concept.Wait] or [Recover|Skill+recover_skill] or getting [stunned,|Skill+stunned_effect] rooted, or [staggered|Skill+staggered_effect] or ending the [turn|Concept.Turn] with more than " + ::Math.floor(this.getContainer().getActor().getActionPointsMax() / 2) + " [Action Points|Concept.ActionPoints] remaining")
 		});
 
 		return ret;
