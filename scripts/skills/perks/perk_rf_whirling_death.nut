@@ -144,7 +144,7 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 			this.getContainer().setBusy(true);
 			::Time.scheduleEvent(::TimeUnit.Virtual, 100, function ( _perk )
 			{
-				if (target.isAlive())
+				if (user.isAlive() && target.isAlive())
 				{
 					::logDebug("[" + user.getName() + "] is attacking [" + target.getName() + "] with skill [" + _skill.getName() + "] due to " + _perk.m.Name);
 					if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
@@ -177,7 +177,7 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			if (target.isAlive())
+			if (user.isAlive() && target.isAlive())
 			{
 				::logDebug("[" + user.getName() + "] is attacking [" + target.getName() + "] with skill [" + _skill.getName() + "] due to " + this.m.Name);
 

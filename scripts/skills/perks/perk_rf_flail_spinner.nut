@@ -44,7 +44,7 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 				this.getContainer().setBusy(true);
 				::Time.scheduleEvent(::TimeUnit.Virtual, 300, function ( perk )
 				{
-					if (targetEntity.isAlive())
+					if (user.isAlive() && targetEntity.isAlive())
 					{
 						this.logDebug("[" + user.getName() + "] is Spinning The Flail on target [" + targetEntity.getName() + "] with skill [" + _skill.getName() + "]");
 						if (!user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
@@ -77,7 +77,7 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 			}
 			else
 			{
-				if (targetEntity.isAlive())
+				if (user.isAlive() && targetEntity.isAlive())
 				{
 					this.logDebug("[" + user.getName() + "] is Spinning The Flail on target [" + targetEntity.getName() + "] with skill [" + _skill.getName() + "]");
 					this.m.IsSpinningFlail = true;
