@@ -11,35 +11,55 @@
 	q.getTooltip <- function()
 	{
 		local ret = this.skill.getTooltip();
-		ret.extend([
-			{
-				id = 10,
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/health.png",
+			text = ::Reforged.Mod.Tooltips.parseString("At the start of each [turn|Concept.Turn], this character heals by " + ::MSU.Text.colorPositive("15%") + " of Maximum [Hitpoints|Concept.Hitpoints]")
+		});
+
+		// This is about the vanila behavior coded in this skill's `onUpdate` function.
+		// We show it here in the absence of a better UI that shows turn order initiative in addition to regular initiative.
+		local actor = this.getContainer().getActor();
+		if (::MSU.isKindOf(actor, "unhold_armored") || ::MSU.isKindOf(actor, "unhold_frost_armored") || ::MSU.isEqual(actor, ::MSU.getDummyPlayer()))
+		{
+			local roundsForInitiativeBonus = ::Tactical.isActive() ? (::Tactical.State.isScenarioMode() ? 3 : 2) : "few";
+			ret.push({
+				id = 11,
 				type = "text",
-				icon = "ui/icons/health.png",
-				text = ::Reforged.Mod.Tooltips.parseString("At the start of each [turn|Concept.Turn], this character heals by " + ::MSU.Text.colorPositive("15%") + " of Maximum [Hitpoints|Concept.Hitpoints]")
-			},
-			{
-				id = 20,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Immune to being disarmed"
-			},
-			{
-				id = 21,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [rotated|Skill+rotation]")
-			}
-		]);
+				icon = "ui/icons/initiative.png",
+				text = ::Reforged.Mod.Tooltips.parseString("[Turn|Concept.Turn] order is determined with " + ::MSU.Text.colorPositive("+40") + " [Initiative|Concept.Initiative] during the first " + roundsForInitiativeBonus + " [rounds|Concept.Round]")
+			});
+		}
+
+		ret.push({
+			id = 20,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Immune to being disarmed"
+		})
+		ret.push({
+			id = 21,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Immune to being [rotated|Skill+rotation]")
+		});
+
 		return ret;
 	}
 
 	q.onAdded <- function()
 	{
-		local baseProperties = this.getContainer().getActor().getBaseProperties();
+		local actor = this.getContainer().getActor();
+		local baseProperties = actor.getBaseProperties();
 
 		baseProperties.IsImmuneToDisarm = true;
 		baseProperties.IsImmuneToRotation = true;
+
+		if (::MSU.isKindOf(actor, "unhold_armored") || ::MSU.isKindOf(actor, "unhold_frost_armored"))
+		{
+			this.m.Name = "Armored " + this.m.Name;
+		}
 	}
 
 	q.onTurnStart = @(__original) function()
