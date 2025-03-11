@@ -8,7 +8,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "actives.rf_kata_step";
-		this.m.Name = "Kata Step";
+		this.m.Name = "Passing Step";
 		this.m.Description = "Move around your opponents combining skillful footwork with the flow of your weapon\'s swings.";
 		this.m.Icon = "skills/rf_kata_step_skill.png";
 		this.m.IconDisabled = "skills/rf_kata_step_skill_sw.png";
