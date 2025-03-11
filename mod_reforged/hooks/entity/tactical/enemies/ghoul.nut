@@ -34,12 +34,37 @@
 		this.m.Skills.add(::new("scripts/skills/actives/ghoul_claws"));
 		this.m.Skills.add(::new("scripts/skills/actives/gruesome_feast"));
 		this.m.Skills.add(::new("scripts/skills/effects/gruesome_feast_effect"));
-		this.m.Skills.add(::new("scripts/skills/actives/swallow_whole_skill"));
+		// this.m.Skills.add(::new("scripts/skills/actives/swallow_whole_skill")); // only added during grow function for size 3
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall + 1;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_cuts"));
+	}
+
+	q.grow = @(__original) function( _instant = false )
+	{
+		local sizeBefore = this.m.Size;
+
+		__original(_instant);
+
+		if (this.m.Size > sizeBefore)
+		{
+			switch (this.m.Size)
+			{
+				case 2:
+					this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium + 1;
+					this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+					break;
+
+				case 3:
+					this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge + 1;
+					this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
+					this.m.Skills.add(::new("scripts/skills/actives/swallow_whole_skill"));
+					break;
+			}
+		}
 	}
 
 	// switcheroo function to replace loot drops with dummy object
