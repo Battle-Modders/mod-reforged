@@ -6,7 +6,7 @@ this.pg_special_rf_fencer <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
 		this.m.ID = "pg.special.rf_fencer";
 		this.m.Name = "Special Perks";
 		this.m.Icon = "ui/perk_groups/rf_fencer.png";
-		this.m.Chance = 25;
+		this.m.Chance = 100;
 		this.m.Tree = [
 			[],
 			[],
@@ -20,15 +20,16 @@ this.pg_special_rf_fencer <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
 
 	function getMultiplier( _perkTree )
 	{
-		if (!_perkTree.hasPerkGroup("pg.rf_sword"))
+		if (!_perkTree.hasPerkGroup("pg.rf_sword") || (!_perkTree.hasPerkGroup("pg.rf_light_armor") && !_perkTree.hasPerkGroup("pg.rf_medium_armor")))
 			return 0;
 
 		local p = _perkTree.getProjectedAttributesAvg();
-		local initiative = p[::Const.Attributes.Initiative] - 150;
-		local meleeSkill = p[::Const.Attributes.MeleeSkill] - 85;
-		if (initiative < 0 || meleeSkill < 0)
+		if (p[::Const.Attributes.Initiative] < 130)
 			return 0;
 
-		return 1.0 + (initiative + meleeSkill) * 0.05;
+		if (p[::Const.Attributes.Initiative] + p[::Const.Attributes.MeleeSkill] > 238)
+			return -1;
+
+		return 0;
 	}
 });
