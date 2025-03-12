@@ -1,5 +1,6 @@
 this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 	m = {
+		SurcoatChance = 100,		// Chance for this character to spawn with a cosmetic tabard of its faction
 		HelmetAdornment = {
 			Sprite = "",
 			SpriteDamaged = "",
@@ -109,7 +110,11 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 	{
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
-		this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
+		if (::Math.rand(1, 100) <= this.m.SurcoatChance)
+		{
+			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
+		}
+
 		this.m.HelmetAdornment.Sprite = "faction_helmet_2_" + (banner < 10 ? "0" + banner : banner);
 		this.m.HelmetAdornment.SpriteDamaged = this.m.HelmetAdornment.Sprite + "_damaged";
 		this.m.HelmetAdornment.SpriteDead = this.m.HelmetAdornment.Sprite + "_dead";
