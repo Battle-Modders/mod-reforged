@@ -33,6 +33,16 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 		return ::Math.max(0, this.skill.getActionPointCost());
 	}
 
+	function getCostString()
+	{
+		if (this.getContainer().getActor().isPlacedOnMap())
+			return this.skill.getCostString();
+
+		local ret = "Costs " + (this.m.ActionPointCost == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.ActionPointCost, {AddSign = true, InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
+		ret += (this.m.FatigueCost == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCost, {AddSign = true, InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
+		return ::Reforged.Mod.Tooltips.parseString(ret);
+	}
+
 
 	function getTooltip()
 	{
