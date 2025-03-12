@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/noble_sergeant", function(q) {
+	q.m.SurcoatChance <- 100;	// Chance for this character to spawn with a cosmetic tabard of its faction
+
 	q.create = @(__original) function()
 	{
 		__original();
@@ -39,7 +41,7 @@
 	{
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
-		if (::Math.rand(1, 100) <= 80)
+		if (::Math.rand(1, 100) <= this.m.SurcoatChance)
 		{
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}

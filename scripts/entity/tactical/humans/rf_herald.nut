@@ -1,5 +1,7 @@
 this.rf_herald <- ::inherit("scripts/entity/tactical/human" {
-	m = {},
+	m = {
+		SurcoatChance = 100		// Chance for this character to spawn with a cosmetic tabard of its faction
+	},
 	function create()
 	{
 		this.m.Type = ::Const.EntityType.RF_Herald;
@@ -66,7 +68,10 @@ this.rf_herald <- ::inherit("scripts/entity/tactical/human" {
 	{
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
-		this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
+		if (::Math.rand(1, 100) <= this.m.SurcoatChance)
+		{
+			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
+		}
 		this.getSprite("rf_surcoat_adornment").setBrush("bust_body_noble_0" + ::MSU.Array.rand([1, 3, 9]));
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))

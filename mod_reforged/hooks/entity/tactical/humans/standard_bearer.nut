@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/standard_bearer", function(q) {
+	q.m.SurcoatChance <- 100;	// Chance for this character to spawn with a cosmetic tabard of its faction
+
 	q.onInit = @() function()
 	{
 		this.human.onInit();
@@ -19,7 +21,10 @@
 	{
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
-		this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
+		if (::Math.rand(1, 100) <= this.m.SurcoatChance)
+		{
+			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
+		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
