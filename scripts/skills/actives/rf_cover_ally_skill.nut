@@ -42,7 +42,7 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("If the target stays adjacent to you until the start of the next [round|Concept.Round], their [turn|Concept.Turn] order is calculated with " + ::MSU.Text.colorPositive("+5000") + " [Initiative|Concept.Initiative]")
+				text = ::Reforged.Mod.Tooltips.parseString("Will put the target first in the next [round\'s|Concept.Round] [turn|Concept.Turn] while under your cover")
 			}
 		]);
 
