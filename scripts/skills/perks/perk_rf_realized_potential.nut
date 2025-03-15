@@ -32,7 +32,7 @@ this.perk_rf_realized_potential <- ::inherit("scripts/skills/skill", {
 
 			// Adjust Wage and Attributes
 			local b = actor.getBaseProperties();
-			b.DailyWageMult *= 2;
+			b.DailyWageMult *= this.m.DailyWageMult;
 			b.MeleeSkill += this.m.AttributeModifier;
 			b.MeleeDefense += this.m.AttributeModifier;
 			b.RangedSkill += this.m.AttributeModifier;
