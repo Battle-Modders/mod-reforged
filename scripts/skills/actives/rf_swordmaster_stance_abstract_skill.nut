@@ -57,6 +57,16 @@ this.rf_swordmaster_stance_abstract_skill <- ::inherit("scripts/skills/actives/r
 		this.m.IsOn = false;
 	}
 
+	function onRemoved()
+	{
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon != null)
+		{
+			this.getContainer().getActor().getItems().unequip(weapon);
+			this.getContainer().getActor().getItems().equip(weapon);
+		}
+	}
+
 	function onUse( _user, _targetTile )
 	{
 		if (this.m.IsOn) this.toggleOff();
