@@ -34,7 +34,7 @@ local requiredMods = [
 ::Reforged.HooksMod.require(requiredMods);
 ::Reforged.HooksMod.conflictWith([
 	"mod_legends",
-	"mod_wms", // Weapon Mastery Standardization by LordMidas. The functionality is integrated into Reforged. https://www.nexusmods.com/battlebrothers/mods/366
+	"mod_WMS", // Weapon Mastery Standardization by LordMidas. The functionality is integrated into Reforged. https://www.nexusmods.com/battlebrothers/mods/366
 	"mod_betterFencing", // Better Fencing by LordMidas. The functionality is integrated into Reforged. https://www.nexusmods.com/battlebrothers/mods/369
 	"tnf_modRNG" // Part of Tweaks and Fixes by LeVilainJoueur. https://www.nexusmods.com/battlebrothers/mods/69
 ]);
