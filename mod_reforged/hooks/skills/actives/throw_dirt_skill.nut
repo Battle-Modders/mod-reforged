@@ -16,11 +16,13 @@
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
+		local distractedEffect = ::new("scripts/skills/effects/distracted_effect");
 		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Applies the [Distracted|Skill+distracted_effect] effect on the target")
+			text = ::Reforged.Mod.Tooltips.parseString("Applies the [Distracted|Skill+distracted_effect] effect on the target"),
+			children = distractedEffect.getTooltip().slice(2) // slice 2 to remove name and description
 		});
 
 		return ret;
