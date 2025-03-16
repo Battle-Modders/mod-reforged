@@ -56,13 +56,13 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			text = ::Reforged.Mod.Tooltips.parseString("Lose " + ::MSU.Text.colorNegative("one-third") + " of your weapon\'s [Reach|Concept.Reach]")
 		});
 
-		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().isDoubleGrippingWeapon())
+		if (!this.getContainer().getActor().isArmedWithTwoHandedWeapon() && !this.getContainer().getActor().getItems().hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			ret.push({
 				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::MSU.Text.colorNegative("Requires a two-handed sword or a double-gripped one-handed sword")
+				text = ::MSU.Text.colorNegative("Requires a two-handed sword or a one-handed sword with the offhand free")
 			});
 		}
 
