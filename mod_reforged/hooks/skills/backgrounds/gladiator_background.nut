@@ -36,7 +36,9 @@
 
 	q.onAdded = @(__original) function()
 	{
-		if (this.m.IsNew)
+		// The PlayerRoster check is to prevent adding the traits to gladiators from the start of the gladiator origin
+		// because they get their own traits manually added during onSpawnAssets
+		if (this.m.IsNew && ::World.getPlayerRoster().getAll().find(this.getContainer().getActor().get()) == null)
 		{
 			local flags = this.getContainer().getActor().getFlags();
 			if (!flags.has("ArenaFights"))
