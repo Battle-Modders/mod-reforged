@@ -106,7 +106,8 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		local skills = weapon.getSkills();
 		foreach (skill in skills)
 		{
-			weapon.removeSkill(skill);
+			if (skill.isAttack())
+				weapon.removeSkill(skill);
 		}
 
 		if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))

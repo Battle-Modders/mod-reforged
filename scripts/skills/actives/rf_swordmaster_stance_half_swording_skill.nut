@@ -85,7 +85,8 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		foreach (skill in weapon.getSkills())
 		{
-			weapon.removeSkill(skill);
+			if (skill.isAttack())
+				weapon.removeSkill(skill);
 		}
 
 		weapon.addSkill(::Reforged.new("scripts/skills/actives/stab", function(o) {
