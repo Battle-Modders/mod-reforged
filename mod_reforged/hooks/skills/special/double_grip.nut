@@ -401,7 +401,7 @@
 				{
 					_tooltip.push({
 						icon = "ui/tooltips/negative.png",
-						text = ::MSU.Text.colorNegative(bonus + "%") + " " + this.getName() + " with dagger"
+						text = ::MSU.Text.colorNegative(bonus + "%") + " " + this.getName()
 					});
 				}
 			}
