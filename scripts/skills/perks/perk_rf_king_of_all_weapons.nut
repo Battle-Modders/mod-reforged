@@ -41,7 +41,7 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 
 	function getChance()
 	{
-		return ::Math.floor(this.getContainer().getActor().getCurrentProperties().getMeleeSkill() * 0.5);
+		return ::Math.floor(this.getContainer().getActor().getCurrentProperties().getMeleeSkill() * 0.66);
 	}
 
 	function onQueryTooltip( _skill, _tooltip )
