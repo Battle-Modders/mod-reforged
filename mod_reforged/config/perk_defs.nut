@@ -85,12 +85,12 @@
 		IconDisabled = "ui/perks/perk_rf_entrenched_sw.png"
 	},
 	{
-		ID = "perk.rf_power_shot",
-		Script = "scripts/skills/perks/perk_rf_power_shot",
-		Name = ::Const.Strings.PerkName.RF_PowerShot,
-		Tooltip = ::Const.Strings.PerkDescription.RF_PowerShot,
-		Icon = "ui/perks/perk_rf_power_shot.png",
-		IconDisabled = "ui/perks/perk_rf_power_shot_sw.png"
+		ID = "perk.rf_steady_brace",
+		Script = "scripts/skills/perks/perk_rf_steady_brace",
+		Name = ::Const.Strings.PerkName.RF_SteadyBrace,
+		Tooltip = ::Const.Strings.PerkDescription.RF_SteadyBrace,
+		Icon = "ui/perks/perk_rf_steady_brace.png",
+		IconDisabled = "ui/perks/perk_rf_steady_brace_sw.png"
 	},
 	{
 		ID = "perk.rf_iron_sights",
