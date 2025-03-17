@@ -14,10 +14,19 @@
 		// Always add reload skill to DummyPlayer so that it appears in nested tooltips of weapons
 		if (!this.m.IsLoaded || ::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
 		{
-			local reload = ::Reforged.new("scripts/skills/actives/reload_bolt", function(o) {
-				o.m.ActionPointCost += 1;
-			});
-			this.addSkill(reload);
+			this.addSkill(::new("scripts/skills/actives/reload_bolt"));
+		}
+	}
+
+	q.onAfterUpdateProperties = @(__original) function( _properties )
+	{
+		__original(_properties);
+		foreach (s in this.getSkills())
+		{
+			if (s.getID() == "actives.reload_bolt")
+			{
+				s.m.ActionPointCost += 1;
+			}
 		}
 	}
 });
