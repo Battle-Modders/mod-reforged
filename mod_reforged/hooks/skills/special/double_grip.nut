@@ -2,7 +2,7 @@
 	// Is set during onUpdate so that hybrid weapons are properly dealt with in functions other than onUpdate
 	// because we go through weapon types alphabetically and choose the first applicable type
 	q.m.CurrWeaponType <- null;
-	q.m.MeleeDamageMult_Dagger <- 1.2;
+	q.m.MeleeDamageMult_Dagger <- 1.25;
 	q.m.IsFreeSwapSpent <- true;
 
 	q.create = @(__original) function()
@@ -68,6 +68,7 @@
 			case ::Const.Items.WeaponType.Axe:
 				_properties.MeleeDamageMult *= 1.15;
 				_properties.DamageDirectAdd += 0.15;
+				_properties.HitChance[::Const.BodyPart.Head] += 20;
 				break;
 
 			case ::Const.Items.WeaponType.Cleaver:
@@ -79,6 +80,8 @@
 				break;
 
 			case ::Const.Items.WeaponType.Flail:
+				_properties.Reach += 1;
+				_properties.MeleeDamageMult *= 1.1;
 				_properties.HitChance[::Const.BodyPart.Head] += 10;
 				_properties.DamageDirectAdd += 0.2;
 				break;
@@ -88,7 +91,7 @@
 				break;
 
 			case ::Const.Items.WeaponType.Mace:
-				_properties.MeleeDamageMult *= 1.15;
+				_properties.MeleeDamageMult *= 1.2;
 				break;
 
 			case ::Const.Items.WeaponType.Spear:
@@ -130,6 +133,12 @@
 					icon = "ui/icons/direct_damage.png",
 					text = ::MSU.Text.colorPositive("+15%") + " damage ignores armor"
 				});
+				ret.push({
+					id = 7,
+					type = "text",
+					icon = "ui/icons/chance_to_hit_head.png",
+					text = ::MSU.Text.colorPositive("+20%") + " chance to hit the head"
+				});
 				break;
 
 			case ::Const.Items.WeaponType.Cleaver:
@@ -138,6 +147,12 @@
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
 					text = ::MSU.Text.colorPositive("30%") + " more damage"
+				});
+				ret.push({
+					id = 7,
+					type = "text",
+					icon = "ui/icons/fatigue.png",
+					text = ::Reforged.Mod.Tooltips.parseString("Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue|Concept.Fatigue]")
 				});
 				break;
 
@@ -157,6 +172,18 @@
 				break;
 
 			case ::Const.Items.WeaponType.Flail:
+				ret.push({
+					id = 7,
+					type = "text",
+					icon = "ui/icons/rf_reach.png",
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach]")
+				});
+				ret.push({
+					id = 7,
+					type = "text",
+					icon = "ui/icons/chance_to_hit_head.png",
+					text = ::MSU.Text.colorPositive("10%") + " more damage"
+				});
 				ret.push({
 					id = 7,
 					type = "text",
@@ -191,7 +218,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = ::MSU.Text.colorPositive("15%") + " more damage"
+					text = ::MSU.Text.colorPositive("20%") + " more damage"
 				});
 				ret.push({
 					id = 7,
@@ -328,7 +355,7 @@
 	{
 		__original(_properties);
 
-		if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Hammer)
+		if (this.m.CurrWeaponType == ::Const.Items.WeaponType.Hammer || this.m.CurrWeaponType == ::Const.Items.WeaponType.Cleaver)
 		{
 			foreach (skill in this.getContainer().getActor().getMainhandItem().getSkills())
 			{
