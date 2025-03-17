@@ -26,13 +26,6 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 			text = ::Reforged.Mod.Tooltips.parseString("Will apply [Arrow to the Knee|Skill+rf_arrow_to_the_knee_debuff_effect] effect to the target on a hit")
 		});
 
-		ret.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] the target on a hit")
-		});
-
 		local ammo = this.getAmmo();
 
 		if (ammo > 0)
@@ -72,7 +65,6 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 		if (_skill == this && _targetEntity.isAlive())
 		{
 			_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_arrow_to_the_knee_debuff_effect"));
-			_targetEntity.getSkills().add(::new("scripts/skills/effects/staggered_effect"));
 		}
 	}
 
