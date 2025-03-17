@@ -41,6 +41,7 @@
 			o.m.IsForceEnabled = true;
 		}));
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rally_the_troops", function(o) {
+			o.m.ActionPointCost = 1;
 			o.m.Cooldown = 3;
 		}));
 	}
