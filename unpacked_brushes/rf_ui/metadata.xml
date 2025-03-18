@@ -35,6 +35,7 @@
 	<sprite id="rf_poleaxe_strike_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_poleaxe_strike_skill.png" />
 	<sprite id="rf_pummel_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_pummel_skill.png" />
 	<sprite id="rf_sanguine_curse_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sanguine_curse_skill.png" />
+	<sprite id="rf_shield_bash_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_shield_bash_skill.png" />
 	<sprite id="rf_sling_acid_flask_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sling_acid_flask_skill.png" />
 	<sprite id="rf_sling_daze_bomb_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sling_daze_bomb_skill.png" />
 	<sprite id="rf_sling_fire_bomb_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sling_fire_bomb_skill.png" />

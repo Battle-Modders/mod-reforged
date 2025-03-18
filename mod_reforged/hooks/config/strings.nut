@@ -1543,18 +1543,26 @@ foreach (vanillaDesc in vanillaDescriptions)
 	RF_LineBreaker = ::UPD.getDescription({
 		Fluff = "\'Make way for the bad guy!\'",
 		Requirement = "Shield",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"The [Knock Back|Skill+knock_back] skill gains " + ::MSU.Text.colorPositive("+15%") + " chance to hit and now applies the [Staggered|Skill+staggered_effect] effect."
-			]
-		},
-		{
-			Type = ::UPD.EffectType.Active,
-			Description = [
-				"Unlocks the [Line Breaker|Skill+rf_line_breaker_skill] skill which allows you to knock back an enemy and take their place, all in one action."
-			]
-		}]
+		Effects = [
+			{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"[Knock Back|Skill+knock_back] gains " + ::MSU.Text.colorPositive("+15%") + " chance to hit."
+				]
+			},
+			{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Unlocks the [Shield Bash|Skill+rf_shield_bash_skill] skill which allows you to [daze|Skill+dazed_effect] a target."
+				]
+			},
+			{
+				Type = ::UPD.EffectType.Active,
+				Description = [
+					"Unlocks the [Line Breaker|Skill+rf_line_breaker_skill] skill which allows you to knock back an enemy and take their place, all in one action."
+				]
+			}
+		]
 	}),
 	RF_Poise = ::UPD.getDescription({
 		Fluff = "Specialize in Medium Armor! Not as nimble as some but more lithe than others!",
