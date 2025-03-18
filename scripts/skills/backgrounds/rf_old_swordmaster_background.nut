@@ -11,7 +11,11 @@ this.rf_old_swordmaster_background <- ::inherit("scripts/skills/backgrounds/swor
 			::Const.Attributes.RangedDefense
 		];
 		this.m.Excluded.extend([
-			"trait.fat"
+			"trait.fat",
+			"trait.survivor",
+			"trait.greedy",
+			"trait.loyal",
+			"trait.disloyal"
 		]);
 		this.m.BeardChance = 100;
 		this.m.Level = 3;
