@@ -15,6 +15,8 @@ this.perk_rf_line_breaker <- ::inherit("scripts/skills/skill", {
 	function onAdded()
 	{
 		this.getContainer().add(::new("scripts/skills/actives/rf_line_breaker_skill"));
+		local offhand = this.getContainer().getActor().getOffhandItem();
+		if (offhand != null) this.onEquip(offhand);
 	}
 
 	function onRemoved()
@@ -22,17 +24,11 @@ this.perk_rf_line_breaker <- ::inherit("scripts/skills/skill", {
 		this.getContainer().removeByID("actives.rf_line_breaker");
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	function onEquip( _item )
 	{
-		if (_skill.getID() == "actives.knock_back" && _targetEntity.isAlive() && !_targetEntity.isDying())
+		if (::MSU.isKindOf(_item, "shield"))
 		{
-			local effect = ::new("scripts/skills/effects/staggered_effect");
-			_targetEntity.getSkills().add(effect);
-			local actor = this.getContainer().getActor();
-			if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-			{
-				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has staggered " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turns");
-			}
+			_item.addSkill(::new("scripts/skills/actives/rf_shield_bash_skill"));
 		}
 	}
 
@@ -52,19 +48,6 @@ this.perk_rf_line_breaker <- ::inherit("scripts/skills/skill", {
 			_tooltip.push({
 				icon = "ui/tooltips/positive.png",
 				text = ::MSU.Text.colorizeValue(this.m.KnockBackMeleeSkillBonus, {AddPercent = true}) + " " + this.getName()
-			});
-		}
-	}
-
-	function onQueryTooltip( _skill, _tooltip )
-	{
-		if (_skill.getID() == "actives.knock_back")
-		{
-			_tooltip.push({
-				id = 100,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] the target if successfully knocked back")
 			});
 		}
 	}
