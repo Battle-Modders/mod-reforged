@@ -40,6 +40,9 @@
 
 	q.isSkillValid <- function( _skill )
 	{
+		if (!_skill.isAttack())
+			return false;
+
 		local weapon = _skill.getItem();
 		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Cleaver);
 	}
