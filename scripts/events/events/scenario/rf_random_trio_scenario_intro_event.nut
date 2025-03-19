@@ -36,7 +36,7 @@ this.rf_random_trio_scenario_intro_event <- ::inherit("scripts/events/event", {
 		foreach (i, bro in ::World.getPlayerRoster().getAll())
 		{
 			_vars.push([
-				"bro" + i,
+				"bro" + (i+1),
 				bro.getNameOnly()
 			]);
 		}
