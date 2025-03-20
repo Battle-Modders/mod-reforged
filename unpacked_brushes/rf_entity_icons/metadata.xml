@@ -30,7 +30,7 @@
 	<sprite id="icon_rf_poleaxe_01_bloodied" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_rf_poleaxe_01_bloodied.png" left="-62" right="22" top="-64" bottom="54" />
 
 	<sprite id="icon_rf_poleflail_01" offsetY="35" ic="FF727272" width="104" height="142" img="icons\icon_rf_poleflail_01.png" left="-72" right="18" top="-51" bottom="58" />
-	<sprite id="icon_rf_poleflail_01" offsetY="35" ic="FF727272" width="104" height="142" img="icons\icon_rf_poleflail_01.png" left="-72" right="18" top="-51" bottom="58" />
+	<sprite id="icon_rf_poleflail_01_bloodied" offsetY="35" ic="FF727272" width="104" height="142" img="icons\icon_rf_poleflail_01_bloodied.png" left="-72" right="18" top="-51" bottom="58" />
 	<sprite id="icon_rf_poleflail_named_01" offsetY="35" ic="FF394046" width="150" height="160" img="icons\icon_rf_poleflail_named_01.png" left="-67" right="17" top="-54" bottom="46" />
 	<sprite id="icon_rf_poleflail_named_01_bloodied" offsetY="35" ic="FF353B45" width="150" height="160" img="icons\icon_rf_poleflail_named_01_bloodied.png" left="-67" right="17" top="-54" bottom="46" />
 
