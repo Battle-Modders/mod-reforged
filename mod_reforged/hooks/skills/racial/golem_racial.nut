@@ -77,6 +77,12 @@
 				type = "text",
 				icon = "ui/icons/morale.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [Morale|Concept.Morale]")
+			},
+			{
+				id = 29,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Immune to Headshots"
 			}
 		]);
 		return ret;
@@ -93,6 +99,7 @@
 		baseProperties.IsImmuneToBleeding = true;
 		baseProperties.IsImmuneToDisarm = true;
 		baseProperties.IsImmuneToFire = true;
+		baseProperties.IsImmuneToHeadshots = true;
 		baseProperties.IsImmuneToPoison = true;
 		baseProperties.IsImmuneToStun = true;
 	}

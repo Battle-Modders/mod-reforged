@@ -9,6 +9,7 @@
 		// b.IsImmuneToKnockBackAndGrab = true;		// Now handled by racial effect
 		// b.IsImmuneToStun = true;					// Now handled by racial effect
 		// b.IsImmuneToRoot = true;					// Now handled by racial effect
+		b.IsImmuneToHeadshots = true;
 		// b.IsIgnoringArmorOnAttack = true;		// Now handled by racial effect
 		// b.IsAffectedByNight = false;				// Now handled by racial effect
 		// b.IsAffectedByInjuries = false;			// Now handled by racial effect
@@ -32,7 +33,7 @@
 		this.m.Skills.add(::new("scripts/skills/racial/schrat_racial"));		// Now saplings receive the same damage-received multipliers
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));	// Is redundant because of IsImmuneToCriticals, but we leave it for now to visualize this kind of immunity
 		// this.m.Skills.add(::new("scripts/skills/actives/uproot_small_skill"));
 		this.m.Skills.add(::new("scripts/skills/actives/uproot_small_zoc_skill"));
 

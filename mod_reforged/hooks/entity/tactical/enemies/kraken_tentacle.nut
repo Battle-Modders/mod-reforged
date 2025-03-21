@@ -7,6 +7,7 @@
 		b.IsAffectedByNight = false;
 		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsImmuneToPoison = true;
+		b.IsImmuneToHeadshots = true;
 		b.IsMovable = false;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToDisarm = true;
@@ -28,7 +29,7 @@
 		this.m.Skills.add(::new("scripts/skills/actives/kraken_ensnare_skill"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));	// Is redundant because of IsImmuneToCriticals, but we leave it for now to visualize this kind of immunity
 		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
 		::Tactical.getTemporaryRoster().add(this);
 
