@@ -31,21 +31,4 @@
 	{
 		this.callSkillsFunctionWhenAlive("onSkillsUpdated", null, false);
 	}
-
-	// VanillaFix: A missing 'isNull' in Vanillas implementation causes crashes and glitchy behavior in some situations
-	q.querySortedByItems = @(__original) function( _filter, _notFilter = 0 )
-	{
-		// Instead of overwriting the original function, we clean the WeakTableRefs in every skill, that are no longer valid anyways
-		foreach (skill in this.m.Skills)
-		{
-			if (::MSU.isNull(skill.getItem()))
-			{
-				// Vanilla only ever checks for '!= null' so that's what we prepare for them here
-				// We can't use the setItem function, because some skills have an inferior implementation, that wraps 'null' into a WeakTableRef again
-				skill.m.Item = null;
-			}
-		}
-
-		return __original(_filter, _notFilter);
-	}
 });
