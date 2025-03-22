@@ -56,6 +56,18 @@
 		return ret;
 	}
 
+	q.getValue = @(__original) function()
+	{
+		if (this.m.ConditionMax == 0)	// VanillaFix: A this.m.ConditionMax of 0 causes a division by 0
+		{
+			return this.m.Value;
+		}
+		else
+		{
+			return __original();
+		}
+	}
+
 	q.onEquip = @(__original) function()
 	{
 		__original();
