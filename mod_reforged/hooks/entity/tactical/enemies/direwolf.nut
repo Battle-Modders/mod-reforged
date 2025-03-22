@@ -82,4 +82,51 @@
 
 		return _loot;
 	}
+
+	// VanillaFix: Vanillas direwolfs sometimes cause scripterrors.
+	// We overwrite this temporarily with a fixed version using mostly the copy-pasted vanilla implementation, until vanillas fixes that on their end
+	q.getLootForTile = @() function( _killer, _loot )
+	{
+		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
+		{
+			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
+
+			local chanceToRoll = ::MSU.isKindOf(this, "direwolf_high") ? 30 : 20;	// This line new compared to vanilla
+
+			for( local i = 0; i < n; i = ++i )
+			{
+				if (this.Math.rand(1, 100) <= 50)
+				{
+					if (this.Const.DLC.Unhold)
+					{
+						local r = this.Math.rand(1, 100);
+
+						if (r <= 70)
+						{
+							_loot.push(this.new("scripts/items/misc/werewolf_pelt_item"));
+						}
+						else
+						{
+							_loot.push(this.new("scripts/items/misc/adrenaline_gland_item"));
+						}
+					}
+					else
+					{
+						_loot.push(this.new("scripts/items/misc/werewolf_pelt_item"));
+					}
+				}
+				else if (this.Math.rand(1, 100) <= 33)
+				{
+					_loot.push(this.new("scripts/items/supplies/strange_meat_item"));
+				}
+
+				if (::Math.rand(1, 100) <= chanceToRoll)	// This line is different from vanilla
+				{
+					_loot.push(this.new("scripts/items/loot/sabertooth_item"));	// This line is different from vanilla, as we fixed their typo
+				}
+			}
+		}
+
+		return _loot;
+	}
 });
