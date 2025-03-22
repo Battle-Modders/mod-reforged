@@ -66,7 +66,7 @@ local parties = [
 	},
 	{
 		ID = "BarbarianKing",
-		DefaultFigure = "figure_wildman_06",
+		DefaultFigure = "figure_wildman_04",
 		StaticUnitDefs = [
 			{ BaseID = "Unit.RF.BarbarianChosen" },
 			{ BaseID = "Unit.RF.BarbarianMarauder" }  // always spawn with one reaver to make early game contracts more balanced

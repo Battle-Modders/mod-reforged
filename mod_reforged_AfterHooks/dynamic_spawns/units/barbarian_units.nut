@@ -24,7 +24,7 @@ local units = [
 	{
 		ID = "Unit.RF.BarbarianChosen",
 		Troop = "BarbarianChosen",		// This is the Barbarian King. Weird Vanilla Naming Scheme
-		Figure = "figure_wildman_06"
+		Figure = "figure_wildman_04"
 	},
 	{
 		ID = "Unit.RF.Warhound",
