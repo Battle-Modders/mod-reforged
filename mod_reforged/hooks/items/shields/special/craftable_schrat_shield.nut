@@ -46,7 +46,7 @@
 			sapling.setFaction(actor.isPlayerControlled() ? ::Const.Faction.PlayerAnimals : actor.getFaction());
 			sapling.m.ConfidentMoraleBrush = "icon_confident";
 			sapling.riseFromGround();
-			this.setCondition(::Math.max(0, this.getCondition() - this.m.SpawnSaplingConditionLoss));
+			this.setCondition(::Math.max(0, this.m.Condition - this.m.SpawnSaplingConditionLoss));	// We don't use getCondition because that returns a rounded value, causing us to lose decimale places
 		}
 	}
 });
