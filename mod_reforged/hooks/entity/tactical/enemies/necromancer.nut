@@ -25,13 +25,18 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_soul_link"));
 	}
 
-	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
+	q.getLootForTile = @(__original) function( _killer, _loot )
 	{
-		if (_tile != null && ::Math.rand(1, 100) <= 67)
+		__original(_killer, _loot);
+
+		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
 		{
-			local loot = ::new("scripts/items/loot/signet_ring_item");
-			loot.drop(_tile);
+			if (::Math.rand(1, 100) <= 67)
+			{
+				_loot.push(::new("scripts/items/loot/signet_ring_item"));
+			}
 		}
-		__original(_killer, _skill, _tile, _fatalityType);
+
+		return _loot;
 	}
 });

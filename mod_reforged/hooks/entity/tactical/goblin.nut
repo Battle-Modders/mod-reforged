@@ -52,26 +52,28 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
 	}
 
-	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
+	q.getLootForTile = @(__original) function( _killer, _loot )
 	{
-		if (_tile != null)
+		__original(_killer, _loot);
+
+		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
 		{
-			local loot = null;
 			if (this.isKindOf(this, "goblin_leader") || this.isKindOf(this, "goblin_shaman") || this.m.IsMiniboss)
 			{
-				loot = ::new("scripts/items/loot/goblin_rank_insignia_item.nut");
-				loot.drop(_tile);
+				_loot.push(::new("scripts/items/loot/goblin_rank_insignia_item.nut"));
 			}
 			else
 			{
-				loot = ::MSU.Class.WeightedContainer([
+				local loot = ::MSU.Class.WeightedContainer([
 					[1.0, "scripts/items/loot/goblin_carved_ivory_iconographs_item.nut"],
 					[0.5, "scripts/items/loot/goblin_minted_coins_item.nut"]
 				]).rollChance(20);
 
-				if (loot != null) ::new(loot).drop(_tile);
+				if (loot != null) _loot.push(::new(loot));
 			}
-			__original(_killer, _skill, _tile, _fatalityType);
 		}
+
+		return _loot;
 	}
+
 });

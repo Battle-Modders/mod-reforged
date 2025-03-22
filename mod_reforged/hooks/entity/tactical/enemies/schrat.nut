@@ -70,28 +70,25 @@
 		}));
 	}
 
-	// switcheroo function to replace loot drops with dummy object
-	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
+	q.getLootForTile = @(__original) function( _killer, _loot )
 	{
+		__original(_killer, _loot);
+
+		// We implement our own drop rate for schrat loot, so we delete any that was spawned by vanilla
 		local itemsToChange = [
 			"scripts/items/misc/ancient_wood_item",
 			"scripts/items/misc/glowing_resin_item",
 			"scripts/items/misc/heart_of_the_forest_item"
 		]
-		local new = ::new;
-		::new = function(_scriptName)
+		for (local i = _loot.len() - 1; i > 0; i--)
 		{
-			local item = new(_scriptName);
-			if (itemsToChange.find(_scriptName) != null)
+			if (itemsToChange.find(_loot[i].getID()) != null)
 			{
-				item.drop <- @(...)null;
+				_loot.remove(i);
 			}
-			return item;
 		}
-		__original(_killer, _skill, _tile, _fatalityType);
-		::new = new;
 
-		if (_tile != null && (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals))
+		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
 		{
 			local n = 1 + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0);
 
@@ -103,8 +100,10 @@
 					[1.0, "scripts/items/misc/heart_of_the_forest_item"]
 				]).roll();
 
-				::new(loot).drop(_tile);
+				_loot.push(::new(loot));
 			}
 		}
+
+		return _loot;
 	}
 });
