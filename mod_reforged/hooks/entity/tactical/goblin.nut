@@ -54,13 +54,13 @@
 
 	q.getLootForTile = @(__original) function( _killer, _loot )
 	{
-		__original(_killer, _loot);
+		local ret = __original(_killer, _loot);
 
 		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
 		{
 			if (this.isKindOf(this, "goblin_leader") || this.isKindOf(this, "goblin_shaman") || this.m.IsMiniboss)
 			{
-				_loot.push(::new("scripts/items/loot/goblin_rank_insignia_item.nut"));
+				ret.push(::new("scripts/items/loot/goblin_rank_insignia_item.nut"));
 			}
 			else
 			{
@@ -69,11 +69,11 @@
 					[0.5, "scripts/items/loot/goblin_minted_coins_item.nut"]
 				]).rollChance(20);
 
-				if (loot != null) _loot.push(::new(loot));
+				if (loot != null) ret.push(::new(loot));
 			}
 		}
 
-		return _loot;
+		return ret;
 	}
 
 });

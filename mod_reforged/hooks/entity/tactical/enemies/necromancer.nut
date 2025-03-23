@@ -27,16 +27,16 @@
 
 	q.getLootForTile = @(__original) function( _killer, _loot )
 	{
-		__original(_killer, _loot);
+		local ret = __original(_killer, _loot);
 
 		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
 		{
 			if (::Math.rand(1, 100) <= 67)
 			{
-				_loot.push(::new("scripts/items/loot/signet_ring_item"));
+				ret.push(::new("scripts/items/loot/signet_ring_item"));
 			}
 		}
 
-		return _loot;
+		return ret;
 	}
 });

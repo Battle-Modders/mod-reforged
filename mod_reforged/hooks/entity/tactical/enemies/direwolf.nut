@@ -54,14 +54,14 @@
 
 	q.getLootForTile = @(__original) function( _killer, _loot )
 	{
-		__original(_killer, _loot);
+		local ret = __original(_killer, _loot);
 
 		// We implement our own drop rate for sabertooths, so we delete any that was spawned by vanilla
-		for (local i = _loot.len() - 1; i > 0; i--)
+		for (local i = ret.len() - 1; i > 0; i--)
 		{
-			if (_loot[i].getID() == "misc.sabertooth")
+			if (ret[i].getID() == "misc.sabertooth")
 			{
-				_loot.remove(i);
+				ret.remove(i);
 			}
 		}
 
@@ -75,12 +75,12 @@
 			{
 				if (::Math.rand(1, 100) <= chanceToRoll)
 				{
-					_loot.push(::new("scripts/items/loot/sabertooth_item"));
+					ret.push(::new("scripts/items/loot/sabertooth_item"));
 				}
 			}
 		}
 
-		return _loot;
+		return ret;
 	}
 
 	// VanillaFix: Vanillas direwolfs sometimes cause scripterrors.

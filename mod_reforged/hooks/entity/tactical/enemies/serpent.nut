@@ -69,14 +69,14 @@
 
 	q.getLootForTile = @(__original) function( _killer, _loot )
 	{
-		__original(_killer, _loot);
+		local ret = __original(_killer, _loot);
 
 		// We implement our own drop rate for rainbow scales, so we delete any that was spawned by vanilla
-		for (local i = _loot.len() - 1; i > 0; i--)
+		for (local i = ret.len() - 1; i > 0; i--)
 		{
-			if (_loot[i].getID() == "misc.rainbow_scale")
+			if (ret[i].getID() == "misc.rainbow_scale")
 			{
-				_loot.remove(i);
+				ret.remove(i);
 			}
 		}
 
@@ -84,10 +84,10 @@
 		{
 			if (::Math.rand(1, 100) <= 15)
 			{
-				_loot.push(::new("scripts/items/loot/rainbow_scale_item"));
+				ret.push(::new("scripts/items/loot/rainbow_scale_item"));
 			}
 		}
 
-		return _loot;
+		return ret;
 	}
 });

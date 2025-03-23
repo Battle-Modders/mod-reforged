@@ -50,14 +50,14 @@
 
 	q.getLootForTile = @(__original) function( _killer, _loot )
 	{
-		__original(_killer, _loot);
+		local ret = __original(_killer, _loot);
 
 		// We implement our own drop rate for jade brooches, so we delete any that was spawned by vanilla
-		for (local i = _loot.len() - 1; i > 0; i--)
+		for (local i = ret.len() - 1; i > 0; i--)
 		{
-			if (_loot[i].getID() == "misc.jade_broche")
+			if (ret[i].getID() == "misc.jade_broche")
 			{
-				_loot.remove(i);
+				ret.remove(i);
 			}
 		}
 
@@ -72,10 +72,10 @@
 					[1.3, "scripts/items/loot/signet_ring_item"]
 				]).rollChance(70);
 
-				if (loot != null) _loot.push(::new(loot));
+				if (loot != null) ret.push(::new(loot));
 			}
 		}
 
-		return _loot;
+		return ret;
 	}
 });

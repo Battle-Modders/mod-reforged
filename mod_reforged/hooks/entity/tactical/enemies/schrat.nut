@@ -72,7 +72,7 @@
 
 	q.getLootForTile = @(__original) function( _killer, _loot )
 	{
-		__original(_killer, _loot);
+		local ret = __original(_killer, _loot);
 
 		// We implement our own drop rate for schrat loot, so we delete any that was spawned by vanilla
 		local itemsToChange = [
@@ -80,11 +80,11 @@
 			"scripts/items/misc/glowing_resin_item",
 			"scripts/items/misc/heart_of_the_forest_item"
 		]
-		for (local i = _loot.len() - 1; i > 0; i--)
+		for (local i = ret.len() - 1; i > 0; i--)
 		{
-			if (itemsToChange.find(_loot[i].getID()) != null)
+			if (itemsToChange.find(ret[i].getID()) != null)
 			{
-				_loot.remove(i);
+				ret.remove(i);
 			}
 		}
 
@@ -100,10 +100,10 @@
 					[1.0, "scripts/items/misc/heart_of_the_forest_item"]
 				]).roll();
 
-				_loot.push(::new(loot));
+				ret.push(::new(loot));
 			}
 		}
 
-		return _loot;
+		return ret;
 	}
 });
