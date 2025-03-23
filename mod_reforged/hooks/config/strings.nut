@@ -1088,7 +1088,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Using any skill that costs [Action Points|Concept.ActionPoints] reduces the [Action Point|Concept.ActionPoints] cost of all skills by " + ::MSU.Text.colorPositive("1") + " to a minimum of 3.",
-				"The effect expires upon using any skill or [waiting|Concept.Wait] or ending your [turn.|Concept.Turn]"
+				"The effect expires upon using any non-free skill, [waiting|Concept.Wait] or ending your [turn.|Concept.Turn]"
 			]
 		}]
 	}),
