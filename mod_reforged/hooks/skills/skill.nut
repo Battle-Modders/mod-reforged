@@ -30,6 +30,8 @@
 				case "Resistance against ranged weapons":	// This was never followed through for anything other than skeletons
 				case "Resistance against piercing attacks":	// This was never followed through for anything other than skeletons
 				case "Nighttime":			// Already displayed on the stats of the character and in the effects section
+				case "On bad terrain":		// Terrain effects usually have their effects viewable in the actor tooltip
+				case "Target on bad terrain":	// Terrain effects usually have their effects viewable in the actor tooltip
 					ret.remove(index);
 					break;
 
