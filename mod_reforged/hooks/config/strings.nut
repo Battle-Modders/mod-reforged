@@ -408,6 +408,20 @@ local vanillaDescriptions = [
 		})
 	},
 	{
+		ID = "perk.hold_out",
+		Key = "HoldOut",
+		Description = ::UPD.getDescription({
+			Fluff = "Keep it together!",
+			Effects = [{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"Any negative [status effect|Concept.StatusEffect] with a finite duration (e.g. [Disarmed,|Skill+disarmed_effect] [Charmed|Skill+charmed_effect]) has its duration reduced to " + ::MSU.Text.colorPositive(1) + " [turn.|Concept.Turn]",
+					"[Status effects|Concept.StatusEffect] that have their effects grow weaker over several [turns|Concept.Turn] (e.g. [Goblin Poison|Skill+goblin_poison_effect]) are at their weakest state from the start."
+				]
+			}]
+		})
+	},
+	{
 		ID = "perk.indomitable",
 		Key = "Indomitable",
 		Description = ::UPD.getDescription({
