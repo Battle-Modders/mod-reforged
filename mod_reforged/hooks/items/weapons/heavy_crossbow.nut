@@ -18,15 +18,13 @@
 		}
 	}
 
-	q.onAfterUpdateProperties = @(__original) function( _properties )
+	q.addSkill = @(__original) function( _skill )
 	{
-		__original(_properties);
-		foreach (s in this.getSkills())
+		if (_skill.getID() == "actives.reload_bolt")
 		{
-			if (s.getID() == "actives.reload_bolt")
-			{
-				s.m.ActionPointCost += 1;
-			}
+			_skill.m.ActionPointCost += 1;
 		}
+
+		__original(_properties);
 	}
 });
