@@ -72,22 +72,17 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 		// Attacking the same target as previous attack
 		if (this.m.TargetID == _targetEntity.getID())
 		{
-			if (_damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
+		if (_damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
 			{
 				local actor = this.getContainer().getActor();
-				local effect = ::new("scripts/skills/effects/bleeding_effect");
+				_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));
 
 				if (_targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len() > this.m.NumInjuriesBefore)
 				{
-					effect.setDamage(10);
+					_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));
 				}
 
 				_targetEntity.getSkills().add(effect);
-
-				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-				{
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " made a particularly Deep Cut inflicting additional Bleeding on " + ::Const.UI.getColorizedEntityName(_targetEntity));
-				}
 			}
 		}
 		else // Set our target

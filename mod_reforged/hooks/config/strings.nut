@@ -1145,7 +1145,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"During your [turn,|Concept.Turn] after a successful attack against a target, all subsequent attacks have a " + ::MSU.Text.colorNegative("33%") + " reduced [threshold|Concept.InjuryThreshold] to inflict [injury|Concept.InjuryTemporary] and will inflict an additional stack of [Bleeding|Skill+bleeding_effect] for " + ::MSU.Text.colorNegative(5) + " damage. This damage is increased to " + ::MSU.Text.colorNegative(10) + " if any of the attacks inflicted an [injury.|Concept.InjuryTemporary]",
+				"During your [turn,|Concept.Turn] after a successful attack against a target, all subsequent attacks have a " + ::MSU.Text.colorNegative("33%") + " reduced [threshold|Concept.InjuryThreshold] to inflict [injury|Concept.InjuryTemporary] and will inflict [Bleeding|Skill+bleeding_effect]. If any of the attacks inflicted an [injury.|Concept.InjuryTemporary], the attacks inflict additional [Bleeding.|Skill+bleeding_effect]",
 				"The effect expires upon switching your target, moving, swapping an item, waiting or ending a [turn,|Concept.Turn] or using any skill except a cutting attack."
 			]
 		}]
