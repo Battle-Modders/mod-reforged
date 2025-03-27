@@ -110,6 +110,7 @@
 	<sprite id="rf_dynamic_duo_partner_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_dynamic_duo.png" />
 	<sprite id="rf_en_garde_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_en_garde.png" />
 	<sprite id="rf_en_garde_effect_mini" ic = "FF23165B" img="skills\mini\rf_en_garde_effect_mini.png" />
+	<sprite id="rf_falcon_released_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_falcon_released_effect.png" />
 	<sprite id="rf_follow_up_effect_mini" ic = "FF23165B" img="skills\mini\rf_follow_up_effect_mini.png" />
 	<sprite id="rf_from_all_sides_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_from_all_sides.png" />
 	<sprite id="rf_from_all_sides_effect_mini" ic = "FF23165B" img="skills\mini\rf_from_all_sides_effect_mini.png" />
