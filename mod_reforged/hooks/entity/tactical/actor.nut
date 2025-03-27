@@ -208,6 +208,7 @@
 
 	// Overwrite vanilla function. The logic is the same as vanilla except the following changes:
 	// Scale the strength of the morale checks with the ratio of the fleeing ally's XP value to my XP value.
+	// Add Resolve based on the number of allies present on the map.
 	q.onOtherActorFleeing = @() function( _actor )
 	{
 		if (!this.m.IsAlive || this.m.IsDying || !this.m.CurrentProperties.IsAffectedByFleeingAllies)
@@ -217,6 +218,17 @@
 		local xpRatioMult = _actor.getXPValue() / ::Math.maxf(1, this.getXPValue());
 
 		local difficulty = ::Const.Morale.AllyFleeingBaseDifficulty - _actor.getXPValue() * ::Const.Morale.AllyFleeingXPMult * xpRatioMult + ::Math.pow(_actor.getTile().getDistanceTo(this.getTile()), ::Const.Morale.AllyFleeingDistancePow);
+
+		foreach (i, faction in ::Tactical.getAllInstances())
+		{
+			if (this.isAlliedWith(i))
+			{
+				difficulty += faction.filter(@(_a) _a.getMoraleState() != ::Const.MoraleState.Fleeing).len() * ::Const.Morale.RF_AllyFleeingBraveryModifierPerAlly;
+			}
+		}
+		// Remove the bonus from counting the actor himself which got added above
+		difficulty -= ::Const.Morale.RF_AllyFleeingBraveryModifierPerAlly;
+
 		this.checkMorale(-1, difficulty);
 	}
 
