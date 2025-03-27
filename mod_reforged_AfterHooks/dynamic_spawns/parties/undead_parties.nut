@@ -5,6 +5,7 @@ local parties = [
 			[3, {
 				ID = "UndeadArmy_0",
 				HardMin = 4,
+				TierWidth = 2,
 				DefaultFigure = "figure_skeleton_01",
 				MovementSpeedMult = 0.9,
 				VisibilityMult = 1.0,
@@ -141,6 +142,7 @@ local parties = [
 			[2, {
 				ID = "VampiresAndSkeletons_0",
 				HardMin = 7,
+				TierWidth = 2,
 				DefaultFigure = "figure_vampire_01",
 				MovementSpeedMult = 1.0,
 				VisibilityMult = 1.0,
@@ -204,6 +206,7 @@ local parties = [
 			[1, {
 				ID = "VampiresAndSkeletons_2",
 				HardMin = 5,
+				TierWidth = 2,
 				DefaultFigure = "figure_vampire_01",
 				MovementSpeedMult = 1.0,
 				VisibilityMult = 1.0,
