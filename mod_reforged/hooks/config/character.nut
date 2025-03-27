@@ -36,3 +36,5 @@ local getClone = ::Const.CharacterProperties.getClone;
 ::Const.ProjectileSprite.push("rf_projectile_flaming_arrow");
 
 ::Const.Movement.AutoEndTurnBelowAP = 1;
+
+::Const.Morale.RF_AllyFleeingBraveryModifierPerAlly <- 1;
