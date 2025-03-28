@@ -1,4 +1,9 @@
 // Vanilla Adjustments
+::MSU.Array.removeValues(::Const.Strings.BillNames, [
+	"Bardiche",	// There is already a vanilla weapon with this name
+	"Voulge"	// There is already a reforged weapon with this name
+]);
+
 ::MSU.Array.removeValues(::Const.Strings.CrossbowNames, [
 	"Betrayer"		// moved over to dagger names
 ]);
