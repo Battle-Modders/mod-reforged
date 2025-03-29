@@ -256,39 +256,45 @@
 		// - The brothers who did damage are considered "Killers". They share the Killer XP based on the
 		// percentage of damage done by each bro relative to other bros who did damage.
 		// - The group XP is then shared equally among all bros in the company.
+		// - In both the above points the XP received by a bro is scaled with the ratio of the target's XP value to the bro's XP value.
 
 		local bros = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
+		local victimXPValue = this.getXPValue().tofloat();
 
 		if (::Const.Faction.Player in this.m.RF_DamageReceived)
 		{
-			local XPavailable = this.getXPValue() * this.m.RF_DamageReceived[::Const.Faction.Player].Total / this.m.RF_DamageReceived.Total;
+			local XPavailable = victimXPValue * this.m.RF_DamageReceived[::Const.Faction.Player].Total / this.m.RF_DamageReceived.Total;
 			local XPkiller = XPavailable * ::Const.XP.XPForKillerPct; // This will be divided among all bros who did damage. The rest will be divided equally among other bros.
 			local XPgroup = ::Math.max(1, ::Math.floor((XPavailable - XPkiller) / bros.len()));
 			local brosDamage = this.m.RF_DamageReceived[::Const.Faction.Player];
 
 			foreach (bro in bros)
 			{
+				local xpMult = victimXPValue / bro.getXPValue();
 				if (bro.getID() in brosDamage)
 				{
-					bro.addXP(::Math.max(1, ::Math.round(XPkiller * brosDamage[bro.getID()] / brosDamage.Total))); // We use Math.round vs vanilla Math.floor so that the XPkiller is fully used instead of missing 1-2 xp
+					bro.addXP(::Math.max(1, ::Math.round(xpMult * XPkiller * brosDamage[bro.getID()] / brosDamage.Total))); // We use Math.round vs vanilla Math.floor so that the XPkiller is fully used instead of missing 1-2 xp
 				}
 
 				if (!bro.getCurrentProperties().IsAllyXPBlocked)
 				{
-					bro.addXP(XPgroup);
+					bro.addXP(::Math.floor(xpMult * XPgroup));
 				}
 			}
 		}
 
 		if (::Const.Faction.PlayerAnimals in this.m.RF_DamageReceived)
 		{
-			local XPgroup = (this.getXPValue() * this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total / this.m.RF_DamageReceived.Total) * (1.0 - ::Const.XP.XPForKillerPct);
+			local XPgroup = (victimXPValue * this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total / this.m.RF_DamageReceived.Total) * (1.0 - ::Const.XP.XPForKillerPct);
 			XPgroup = ::Math.max(1, ::Math.floor(XPgroup / bros.len()));
 
 			foreach (bro in bros)
 			{
 				if (!bro.getCurrentProperties().IsAllyXPBlocked)
-					bro.addXP(XPgroup);
+				{
+					local xpMult = victimXPValue / bro.getXPValue();
+					bro.addXP(::Math.floor(xpMult * XPgroup));
+				}
 			}
 		}
 	}
