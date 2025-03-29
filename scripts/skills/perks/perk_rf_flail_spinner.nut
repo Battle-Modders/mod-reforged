@@ -63,10 +63,10 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 						else
 						{
 							// This implementation has a side-effect of preventing the target from receiving injuries.
-							local wasAbleToDie = _targetEntity.m.IsAbleToDie;
-							_targetEntity.m.IsAbleToDie = false;
+							local wasAbleToDie = targetEntity.m.IsAbleToDie;
+							targetEntity.m.IsAbleToDie = false;
 							_skill.useForFree(_targetTile);
-							_targetEntity.m.IsAbleToDie = wasAbleToDie;
+							targetEntity.m.IsAbleToDie = wasAbleToDie;
 						}
 						perk.m.IsSpinningFlail = false;
 					}
