@@ -117,10 +117,10 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 			_properties.Reach += 2;
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
 		// Lose the net if you end up at any tile more than 1 distance away from the target you have trapped
-		if (this.m.IsSpent && !::MSU.isNull(this.m.NetEffect) && this.m.NetEffect.getContainer().getActor().getTile().getDistanceTo(_tile) > 1)
+		if (this.m.IsSpent && !::MSU.isNull(this.m.NetEffect) && this.m.NetEffect.getContainer().getActor().getTile().getDistanceTo(this.getContainer().getActor().getTile()) > 1)
 		{
 			this.m.NetEffect.m.KingfisherPerk = null;
 			this.setSpent(false, false);

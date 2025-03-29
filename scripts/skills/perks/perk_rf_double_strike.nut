@@ -81,7 +81,7 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 		this.m.IsInEffect = false;
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
 		this.m.IsInEffect = false;
 	}

@@ -136,7 +136,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 		this.m.ValidTiles.clear();
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
 		this.m.ValidTiles.clear();
 	}

@@ -127,12 +127,12 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 		this.m.Enemies.clear();
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
 		if (!this.isDamageEnabled())
 			return;
 
-		foreach (tile in ::MSU.Tile.getNeighbors(_tile))
+		foreach (tile in ::MSU.Tile.getNeighbors(this.getContainer().getActor().getTile()))
 		{
 			if (tile.IsOccupiedByActor && !tile.getEntity().isAlliedWith(this.getContainer().getActor()))
 			{

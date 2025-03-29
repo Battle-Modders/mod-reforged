@@ -53,13 +53,17 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 			this.m.ValidTiles.push(_deathTile);
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
-		if (!this.m.IsSpent && this.isTileValid(_tile))
+		if (this.m.IsSpent)
+			return;
+
+		local tile = this.getContainer().getActor().getTile();
+		if (this.isTileValid(tile))
 		{
 			this.m.IsInEffect = true;
 			this.m.IsSpent = true;
-			this.spawnIcon("perk_rf_vanquisher", _tile);
+			this.spawnIcon("perk_rf_vanquisher", tile);
 		}
 	}
 
