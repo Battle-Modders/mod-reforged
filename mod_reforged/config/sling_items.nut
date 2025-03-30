@@ -1,4 +1,6 @@
 // This class combines common properties of the new sling-an-item skills
+// Important: When using this function you must also overwrite the onUse of that skill and call the new __onUse in that overwrite
+//		That is the only way we can preserve hookTree hooks targeting onUse
 ::Reforged.Skills.adjustSlingItemSkill <- function( o )
 {
 	o.m.ID = ::MSU.String.replace(o.m.ID, "throw", "sling");
@@ -47,30 +49,6 @@
 		return false;
 	}
 
-	// Overwrite so that the offhand item is not getting deleted
-	o.onUse = function( _user, _targetTile )
-	{
-		if (this.m.IsShowingProjectile && this.m.ProjectileType != 0)
-		{
-			local flip = !this.m.IsProjectileRotated && _targetTile.Pos.X > _user.getPos().X;
-
-			if (_user.getTile().getDistanceTo(_targetTile) >= ::Const.Combat.SpawnProjectileMinDist)
-			{
-				::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
-			}
-		}
-
-		this.getItem().removeSelf(); // Vanilla unequips the offhand item. But we instead need to consume the respective Item from whereever it is
-
-		local delayPerDistance = 80.0;
-		local tileDistance = _user.getTile().getDistanceTo(_targetTile);	// Vanilla uses a fixed
-		::Time.scheduleEvent(::TimeUnit.Real, delayPerDistance * tileDistance, this.onApply.bindenv(this), {
-			Skill = this,
-			User = _user,
-			TargetTile = _targetTile
-		});
-	}
-
 	local isUsable = o.isUsable;
 	o.isUsable = function()
 	{
@@ -98,5 +76,30 @@
 			o.onApply <- value;		// We save function under a common name in our sling-child-class
 			break;
 		}
+	}
+
+// New Functions
+	// New onUse logic, that needs to be manually called by the sling skill in their overwrite of onUse
+	o.__onUse <- function( _user, _targetTile )
+	{
+		if (this.m.IsShowingProjectile && this.m.ProjectileType != 0)
+		{
+			local flip = !this.m.IsProjectileRotated && _targetTile.Pos.X > _user.getPos().X;
+
+			if (_user.getTile().getDistanceTo(_targetTile) >= ::Const.Combat.SpawnProjectileMinDist)
+			{
+				::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
+			}
+		}
+
+		this.getItem().removeSelf(); // Vanilla unequips the offhand item. But we instead need to consume the respective Item from whereever it is
+
+		local delayPerDistance = 80.0;
+		local tileDistance = _user.getTile().getDistanceTo(_targetTile);	// Vanilla uses a fixed delay
+		::Time.scheduleEvent(::TimeUnit.Real, delayPerDistance * tileDistance, this.onApply.bindenv(this), {
+			Skill = this,
+			User = _user,
+			TargetTile = _targetTile
+		});
 	}
 }
