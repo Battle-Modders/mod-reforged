@@ -79,8 +79,10 @@
 		return true;
 	}
 
+	local onUpdate = o.onUpdate;
 	o.onUpdate = function( _properties )
 	{
+		onUpdate(_properties);
 		local mainhandItem = this.getContainer().getActor().getMainhandItem();
 		if (mainhandItem == null) return;
 		if (mainhandItem.isItemType(::Const.Items.ItemType.Weapon) == false) return;
