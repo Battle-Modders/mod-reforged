@@ -33,9 +33,9 @@ this.rf_faction_banner_effect <- ::inherit("scripts/skills/skill", {
 			return;
 
 		local numEnemies = 0;
-		foreach (faction in ::Tactical.Entities.getAllInstances())
+		foreach (factionID, faction in ::Tactical.Entities.getAllInstances())
 		{
-			if (faction == actor.getFaction())
+			if (factionID == actor.getFaction())
 				continue;
 
 			foreach (entity in faction)
