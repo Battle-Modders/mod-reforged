@@ -29,7 +29,7 @@
 		this.m.Skills.add(::new("scripts/skills/racial/golem_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-		// this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));	// Redundant because of IsImmuneToCriticals
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));	// Redundant because of IsImmuneToHeadshots
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(::new("scripts/skills/actives/merge_golem_skill"));
