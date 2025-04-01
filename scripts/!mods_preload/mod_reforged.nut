@@ -132,4 +132,5 @@ foreach (requirement in requiredMods)
 		func();
 	}
 	delete ::Reforged.QueueBucket;
+	delete ::Reforged.InheritHelper;
 }, ::Hooks.QueueBucket.FirstWorldInit);
