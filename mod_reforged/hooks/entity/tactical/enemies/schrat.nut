@@ -76,9 +76,9 @@
 
 		// We implement our own drop rate for schrat loot, so we delete any that was spawned by vanilla
 		local itemsToChange = [
-			"scripts/items/misc/ancient_wood_item",
-			"scripts/items/misc/glowing_resin_item",
-			"scripts/items/misc/heart_of_the_forest_item"
+			"misc.ancient_wood",
+			"misc.glowing_resin",
+			"misc.heart_of_the_forest"
 		]
 		for (local i = ret.len() - 1; i > 0; i--)
 		{
