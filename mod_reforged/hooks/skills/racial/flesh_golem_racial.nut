@@ -12,7 +12,8 @@
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
 	}
 
-	q.getTooltip <- function()
+	// Vanilla doesn't have a getTooltip function defined for this skill
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -20,13 +21,13 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/asset_medicine.png",	// This is not an ideal icon but more unique than special, and at least closely related
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.InjuryThresholdMult) + " [Injury Threshold|Concept.InjuryThreshold]"),
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.InjuryThresholdMult) + " [Injury Threshold|Concept.InjuryThreshold]")
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "Moving costs " + ::MSU.Text.colorizeValue(this.m.MovementAPCostModifier, {AddSign = true, InvertColor = true}) + ::Reforged.Mod.Tooltips.parseString(" [Action Points|Concept.ActionPoints]")
+				text = "Moving costs " + ::MSU.Text.colorizeValue(this.m.MovementAPCostModifier, {AddSign = true, InvertColor = true}) + ::Reforged.Mod.Tooltips.parseString(" [Action Points|Concept.ActionPoints] per tile")
 			}
 		]);
 		return ret;

@@ -8,7 +8,8 @@
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on the enemies
 	}
 
-	q.getTooltip <- function()
+	// Vanilla doesn't have a getTooltip function defined for this skill
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -82,7 +83,7 @@
 				id = 29,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Immune to Headshots"
+				text = "Cannot receive hits to the head"
 			}
 		]);
 		return ret;

@@ -1,5 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/grand_diviner_racial", function(q) {
-	q.getTooltip <- function()
+	// Vanilla doesn't have a getTooltip function defined for this skill
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
