@@ -1,0 +1,3 @@
+::Reforged.InheritHelper <- {
+
+};
