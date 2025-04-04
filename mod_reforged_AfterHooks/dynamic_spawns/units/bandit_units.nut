@@ -10,7 +10,7 @@ local units = [
 		Troop = "Wardog"
 	},
 	{
-		ID = "Unit.RF.BanditMarksmanLOW",
+		ID = "Unit.RF.BanditMarksmanLOW",	// Brigand Poacher
 		Troop = "BanditMarksmanLOW",
 		Figure = "figure_bandit_01", // Vanilla bandit poacher figure
 	},
