@@ -30,4 +30,14 @@
 		local newDistance = ::Math.abs(_newValue - _target);
 		return (newDistance < oldDistance) ? _newValue : _oldValue;
 	}
+
+	function seededRand( _seed, _min, _max )
+	{
+		::Math.seedRandom(_seed);
+		local ret = ::Math.rand(_min, _max);
+		// + _seed so that calls to this function in the same frame with different seeds
+		// don't always set the random seed to the same value
+		::Math.seedRandom(::Time.getVirtualTimeF() + _seed);
+		return ret;
+	}
 }
