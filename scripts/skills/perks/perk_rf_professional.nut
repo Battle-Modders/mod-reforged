@@ -45,7 +45,7 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 			if (options.len() == 0)
 				return;
 
-			chosenPerkGroupID = ::MSU.Array.rand(options);
+			chosenPerkGroupID = options[::Reforged.Math.seededRand(actor.getUID() + ::toHash(this.getID()), 0, options.len() - 1)];
 
 			actor.getFlags().set("RF_ProfessionalPerkGroupID", chosenPerkGroupID);
 		}
