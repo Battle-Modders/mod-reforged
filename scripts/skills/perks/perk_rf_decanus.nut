@@ -23,7 +23,7 @@ this.perk_rf_decanus <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
 		this.updateAllies();
 	}

@@ -16,6 +16,7 @@
 		b.IsMovable = false;
 		// b.IsImmuneToDisarm = true;			// Now handled by racial effect
 		// b.IsImmuneToRoot = true;				// Now handled by racial effect
+		b.IsImmuneToHeadshots = true;
 
 		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 180)
 		// {

@@ -25,13 +25,27 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_soul_link"));
 	}
 
+	// Vanilla does not utilize its getLoot-framework for necromancers, so we need to add that here
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
-		if (_tile != null && ::Math.rand(1, 100) <= 67)
-		{
-			local loot = ::new("scripts/items/loot/signet_ring_item");
-			loot.drop(_tile);
-		}
+		local tileLoot = this.getLootForTile(_killer, []);
+		this.dropLoot(_tile, tileLoot, this.m.IsCorpseFlipped);
+
 		__original(_killer, _skill, _tile, _fatalityType);
+	}
+
+	q.getLootForTile = @(__original) function( _killer, _loot )
+	{
+		local ret = __original(_killer, _loot);
+
+		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
+		{
+			if (::Math.rand(1, 100) <= 67)
+			{
+				ret.push(::new("scripts/items/loot/signet_ring_item"));
+			}
+		}
+
+		return ret;
 	}
 });

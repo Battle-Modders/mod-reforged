@@ -219,7 +219,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
 		this.m.IsSpent = true;
 	}

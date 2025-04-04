@@ -8,7 +8,8 @@
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on the enemies
 	}
 
-	q.getTooltip <- function()
+	// Vanilla doesn't have a getTooltip function defined for this skill
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -77,6 +78,12 @@
 				type = "text",
 				icon = "ui/icons/morale.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [Morale|Concept.Morale]")
+			},
+			{
+				id = 29,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Cannot receive hits to the head"
 			}
 		]);
 		return ret;
@@ -93,6 +100,7 @@
 		baseProperties.IsImmuneToBleeding = true;
 		baseProperties.IsImmuneToDisarm = true;
 		baseProperties.IsImmuneToFire = true;
+		baseProperties.IsImmuneToHeadshots = true;
 		baseProperties.IsImmuneToPoison = true;
 		baseProperties.IsImmuneToStun = true;
 	}

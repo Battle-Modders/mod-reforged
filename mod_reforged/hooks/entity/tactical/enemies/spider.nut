@@ -85,29 +85,27 @@
 		}));
 	}
 
-	// switcheroo function to replace loot drops with dummy object
-	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
+	q.getLootForTile = @(__original) function( _killer, _loot )
 	{
-		local itemsToChange = [
-			"scripts/items/loot/webbed_valuables_item"
-		]
-		local new = ::new;
-		::new = function(_scriptName)
-		{
-			local item = new(_scriptName);
-			if (itemsToChange.find(_scriptName) != null)
-			{
-				item.drop <- @(...)null;
-			}
-			return item;
-		}
-		__original(_killer, _skill, _tile, _fatalityType);
-		::new = new;
+		__original(_killer, _loot);
 
-		if (_tile != null && (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals) && ::Math.rand(1, 100) <= 10)
+		// We implement our own drop rate for webbed valuables, so we delete any that was spawned by vanilla
+		for (local i = _loot.len() - 1; i > 0; i--)
 		{
-			local loot = ::new("scripts/items/loot/webbed_valuables_item");
-			loot.drop(_tile);
+			if (_loot[i].getID() == "misc.webbed_valuables")
+			{
+				_loot.remove(i);
+			}
 		}
+
+		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
+		{
+			if (::Math.rand(1, 100) <= 10)
+			{
+				_loot.push(::new("scripts/items/loot/webbed_valuables_item"));
+			}
+		}
+
+		return _loot;
 	}
 });

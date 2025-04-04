@@ -35,7 +35,6 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsShieldRelevant = false;
-		this.m.IsShieldwallRelevant = false;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;

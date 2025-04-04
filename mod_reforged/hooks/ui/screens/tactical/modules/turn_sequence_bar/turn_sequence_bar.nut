@@ -56,20 +56,6 @@
 		return result;
 	}
 
-	// VanillaFix: this function does not remove entities that it pushes out of the turn sequence bar temporarily
-	q.moveEntityToFront = @(__original) function( _entityId )
-	{
-		__original(_entityId);
-
-		// This is an exact copy on how vanilla handles the 'function insertEntity'
-		if (this.m.CurrentEntities.len() > this.m.MaxVisibleEntities)
-		{
-			local indexToRemove = ::Math.min(this.m.CurrentEntities.len(), this.m.MaxVisibleEntities);
-			this.m.JSHandle.asyncCall("removeEntity", this.m.CurrentEntities[indexToRemove].getID());
-			this.m.LastRemoveTime = ::Time.getRealTimeF();
-		}
-	}
-
 // New Functions:
 	q.onWaitTurnAllButtonPressed <- function()
 	{

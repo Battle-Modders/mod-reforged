@@ -72,9 +72,10 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
-		if (!this.canProcOntile(_tile))
+		local tile = this.getContainer().getActor().getTile();
+		if (!this.canProcOntile(tile))
 			return;
 
 		local actor = this.getContainer().getActor();
@@ -86,8 +87,8 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 			return;
 
 		weapon.setAmmo(::Math.min(weapon.getAmmoMax(), weapon.getAmmo() + 1));
-		this.spawnIcon("perk_rf_opportunist", _tile);
-		_tile.Properties.get("Corpse").WasUsedForOpportunist <- true;	// The value does not matter, only the presence of that tag
+		this.spawnIcon("perk_rf_opportunist", tile);
+		tile.Properties.get("Corpse").WasUsedForOpportunist <- true;	// The value does not matter, only the presence of that tag
 
 		this.m.IsPrimed = true;
 	}

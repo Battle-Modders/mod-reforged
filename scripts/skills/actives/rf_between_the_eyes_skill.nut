@@ -96,7 +96,6 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 			this.m.MinRange = aoo.m.MinRange;
 			this.m.MaxRange = aoo.m.MaxRange;
 			this.m.IsShieldRelevant = aoo.m.IsShieldRelevant;
-			this.m.IsShieldwallRelevant = aoo.m.IsShieldwallRelevant;
 		}
 		else
 		{

@@ -71,9 +71,9 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 		_properties.RangedSkill += this.m.SelfSkillMalus;
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
-		if (::MSU.isNull(this.m.Ally) || !this.m.Ally.isPlacedOnMap() || _tile.getDistanceTo(this.m.Ally.getTile()) > 1)
+		if (::MSU.isNull(this.m.Ally) || !this.m.Ally.isPlacedOnMap() || this.getContainer().getActor().getTile().getDistanceTo(this.m.Ally.getTile()) > 1)
 		{
 			this.removeSelf();
 		}

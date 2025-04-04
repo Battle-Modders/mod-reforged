@@ -9,6 +9,7 @@
 		b.IsImmuneToRoot = true;
 		b.IsImmuneToBleeding = true;
 		b.IsImmuneToPoison = true;
+		b.IsImmuneToHeadshots = true;
 		b.IsAffectedByNight = false;
 		b.IsMovable = false;
 		b.IsAffectedByInjuries = false;

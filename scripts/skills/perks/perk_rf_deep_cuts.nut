@@ -124,7 +124,7 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 		this.m.TargetID = null;
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
 		this.m.TargetID = null;
 	}

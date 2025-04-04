@@ -26,7 +26,6 @@
 				// We remove these entries from ever displaying because they are mostly redundant and take away space
 				case "Fast Adaption":		// This should be handled by the perk itself if it really feels like this information is important
 				case "Armed with shield":	// Already displayed on the stats of the character and shield is visible
-				case "Shieldwall":			// Already displayed on the stats of the character and in the effects section
 				case "Riposte":				// This has nothing to do with hitchance and there is already a mini-icon for it anyways
 				case "Resistance against ranged weapons":	// This was never followed through for anything other than skeletons
 				case "Resistance against piercing attacks":	// This was never followed through for anything other than skeletons

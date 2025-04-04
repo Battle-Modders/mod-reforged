@@ -183,14 +183,19 @@
 		this.getSprite("old_rf_vampire_blood_head").setHorizontalFlipping(flip);
 	}
 
-	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
+	q.getLootForTile = @(__original) function( _killer, _loot )
 	{
-		if (_tile != null && ::Math.rand(1, 100) <= 20)
+		local ret = __original(_killer, _loot);
+
+		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
 		{
-			local loot = ::new("scripts/items/loot/signet_ring_item");
-			loot.drop(_tile);
+			if (::Math.rand(1, 100) <= 20)
+			{
+				ret.push(::new("scripts/items/loot/signet_ring_item"));
+			}
 		}
-		__original(_killer, _skill, _tile, _fatalityType);
+
+		return ret;
 	}
 
 	q.onSpawned = @() function()

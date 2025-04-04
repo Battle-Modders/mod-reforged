@@ -23,7 +23,7 @@ this.perk_rf_centurion <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
 		this.updateAllies();
 	}
