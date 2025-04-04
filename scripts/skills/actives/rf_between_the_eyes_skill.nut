@@ -155,7 +155,7 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (skill == this || this.m.IsAttacking)
+		if (_skill == this || this.m.IsAttacking)
 		{
 			_properties.HitChance[::Const.BodyPart.Head] += this.getBonus();
 		}
