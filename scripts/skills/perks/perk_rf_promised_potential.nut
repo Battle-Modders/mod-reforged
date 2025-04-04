@@ -1,6 +1,6 @@
 this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 	m = {
-		WillSucceed = false
+		Chance = 50
 	},
 	function create()
 	{
@@ -13,14 +13,6 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 		this.m.IsRefundable = false;
 	}
 
-	function onAdded()
-	{
-		if (this.m.IsNew)
-		{
-			this.m.WillSucceed = ::Math.rand(1, 100) <= 50 - (this.getContainer().getActor().getPerkPointsSpent() * 10);
-		}
-	}
-
 	function onUpdateLevel()
 	{
 		local actor = this.getContainer().getActor();
@@ -31,12 +23,7 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 			local perkTree = actor.getPerkTree();
 			perkTree.removePerk(this.getID());
 
-			if (this.getContainer().hasSkill("trait.player"))
-			{
-				this.m.WillSucceed = true;
-			}
-
-			if (this.m.WillSucceed)
+			if (this.willSucceed())
 			{
 				perkTree.addPerk("perk.rf_realized_potential", 1);
 				this.getContainer().add(::new("scripts/skills/perks/perk_rf_realized_potential"));
@@ -51,15 +38,8 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onSerialize( _out )
+	function willSucceed()
 	{
-		this.skill.onSerialize(_out);
-		_out.writeBool(this.m.WillSucceed);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.skill.onDeserialize(_in);
-		this.m.WillSucceed = _in.readBool();
+		return this.getContainer().hasSkill("trait.player") || ::Reforged.Math.seededRand(this.getContainer().getActor().getUID() + ::toHash(this.getID()), 1, 100) <= this.m.Chance;
 	}
 });
