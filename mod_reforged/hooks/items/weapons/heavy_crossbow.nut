@@ -25,6 +25,6 @@
 			_skill.m.ActionPointCost += 1;
 		}
 
-		__original(_properties);
+		__original(_skill);
 	}
 });
