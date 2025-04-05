@@ -12,14 +12,8 @@ local unitBlocks = [
 		ID = "UnitBlock.RF.Ghoul",
 		UnitDefs = [
 			{ BaseID = "Unit.RF.GhoulLOW" },
-			{ BaseID = "Unit.RF.Ghoul", function getHardMax() {
-					return ::Math.min(base.getHardMax(), this.getSpawnProcess().getTotal() * 0.7);
-				}
-			},
-			{ BaseID = "Unit.RF.GhoulHIGH", function getHardMax() {
-					return ::Math.min(base.getHardMax(), this.getSpawnProcess().getTotal() * 0.2);
-				}
-			}
+			{ BaseID = "Unit.RF.Ghoul", RatioMax = 0.7 },
+			{ BaseID = "Unit.RF.GhoulHIGH", RatioMax = 0.2 }
 		]
 	},
 	{
