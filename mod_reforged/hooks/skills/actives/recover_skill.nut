@@ -9,7 +9,7 @@
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will end your [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("Will set your [Action Points|Concept.ActionPoints] to " + ::MSU.Text.colorNegative(0) + " and end your [turn|Concept.Turn]")
 		});
 
 		local warning = "Cannot be used after movement or having used a skill";
@@ -28,6 +28,7 @@
 	{
 		local ret =__original(_user, _targetTile);
 		_user.m.IsTurnDone = true;
+		_user.setActionPoints(0);
 		return ret;
 	}
 
