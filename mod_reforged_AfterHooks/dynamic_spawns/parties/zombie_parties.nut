@@ -6,9 +6,11 @@ local parties = [
 		MovementSpeedMult = 0.8,
 		VisibilityMult = 1.0,
 		VisionMult = 0.8,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true }
+			]
+		}
 	},
 	{
 		ID = "Ghosts",
@@ -17,9 +19,11 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 0.75,
 		VisionMult = 1.0,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Ghost" }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.Ghost" }
+			]
+		}
 	},
 	{
 		ID = "ZombiesAndGhouls",
@@ -28,10 +32,12 @@ local parties = [
 		MovementSpeedMult = 0.8,
 		VisibilityMult = 1.0,
 		VisionMult = 0.8,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true },
-			{ BaseID = "UnitBlock.RF.GhoulLowOnly", RatioMin = 0.10, RatioMax = 0.30 }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true },
+				{ BaseID = "UnitBlock.RF.GhoulLowOnly", RatioMin = 0.10, RatioMax = 0.30 }
+			]
+		}
 	},
 	{
 		ID = "ZombiesAndGhosts",
@@ -40,10 +46,12 @@ local parties = [
 		MovementSpeedMult = 0.8,
 		VisibilityMult = 1.0,
 		VisionMult = 0.8,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true },
-			{ BaseID = "UnitBlock.RF.Ghost", RatioMin = 0.12, RatioMax = 0.35 }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true },
+				{ BaseID = "UnitBlock.RF.Ghost", RatioMin = 0.12, RatioMax = 0.35 }
+			]
+		}
 	},
 	{
 		ID = "Necromancer",
@@ -52,11 +60,13 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.50, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.RF.Ghost", RatioMin = 0.00, RatioMax = 0.20 },
-			{ BaseID = "UnitBlock.RF.NecromancerWithBodyguards", RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.50, RatioMax = 1.00 },
+				{ BaseID = "UnitBlock.RF.Ghost", RatioMin = 0.00, RatioMax = 0.20 },
+				{ BaseID = "UnitBlock.RF.NecromancerWithBodyguards", RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true }
+			]
+		}
 	},
 	{
 		ID = "NecromancerSouthern",
@@ -65,11 +75,13 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.ZombieSouthern", RatioMin = 0.65, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.RF.NecromancerWithNomads", RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true },
-			{ BaseID = "UnitBlock.RF.ZombieElite", 	RatioMin = 0.00, RatioMax = 0.12 }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.ZombieSouthern", RatioMin = 0.65, RatioMax = 1.00 },
+				{ BaseID = "UnitBlock.RF.NecromancerWithNomads", RatioMin = 0.04, RatioMax = 0.09, DeterminesFigure = true },
+				{ BaseID = "UnitBlock.RF.ZombieElite", 	RatioMin = 0.00, RatioMax = 0.12 }
+			]
+		}
 	},
 	{	// Only un-armored zombies
 		ID = "ZombiesLight",
@@ -78,47 +90,59 @@ local parties = [
 		MovementSpeedMult = 0.8,
 		VisibilityMult = 1.0,
 		VisionMult = 0.8,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.ZombieLight" }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.ZombieLight" }
+			]
+		}
 	},
 
 	// SubParties
 	{
 		ID = "SubPartyYeoman",
 		HardMin = 1,
-		StaticUnitDefs = [
-			{ BaseID = "Unit.RF.ZombieYeomanBodyguard" }
-		]
+		StaticDefs = {
+			Units = [
+				{ BaseID = "Unit.RF.ZombieYeomanBodyguard" }
+			]
+		}
 	},
 	{
 		ID = "SubPartyKnight",
 		HardMin = 1,
-		StaticUnitDefs = [
-			{ BaseID = "Unit.RF.ZombieKnightBodyguard" }
-		]
+		StaticDefs = {
+			Units = [
+				{ BaseID = "Unit.RF.ZombieKnightBodyguard" }
+			]
+		}
 	},
 	{
 		ID = "SubPartyYeomanKnight",
 		HardMin = 2,
-		StaticUnitDefs = [
-			{ BaseID = "Unit.RF.ZombieYeomanBodyguard" },
+		StaticDefs = {
+			Units = [
+				{ BaseID = "Unit.RF.ZombieYeomanBodyguard" },
 			{ BaseID = "Unit.RF.ZombieKnightBodyguard" }
-		]
+			]
+		}
 	},
 	{
 		ID = "SubPartyKnightKnight",
 		HardMin = 2,
-		StaticUnitDefs = [
-			{ BaseID = "Unit.RF.ZombieKnightBodyguard" },
+		StaticDefs = {
+			Units = [
+				{ BaseID = "Unit.RF.ZombieKnightBodyguard" },
 			{ BaseID = "Unit.RF.ZombieKnightBodyguard" }
-		]
+			]
+		}
 	},
 	{	// The amount is set from outside
 		ID = "SubPartyNomad",
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.ZombieNomadBodyguard" }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.ZombieNomadBodyguard" }
+			]
+		}
 	}
 ]
 
