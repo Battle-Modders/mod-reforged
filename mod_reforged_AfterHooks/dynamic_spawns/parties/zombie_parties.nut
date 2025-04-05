@@ -122,7 +122,7 @@ local parties = [
 		StaticDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.ZombieYeomanBodyguard" },
-			{ BaseID = "Unit.RF.ZombieKnightBodyguard" }
+				{ BaseID = "Unit.RF.ZombieKnightBodyguard" }
 			]
 		}
 	},
@@ -132,7 +132,7 @@ local parties = [
 		StaticDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.ZombieKnightBodyguard" },
-			{ BaseID = "Unit.RF.ZombieKnightBodyguard" }
+				{ BaseID = "Unit.RF.ZombieKnightBodyguard" }
 			]
 		}
 	},

@@ -39,9 +39,9 @@ local parties = [
 		DynamicDefs = {
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.GoblinFrontline", RatioMin = 0.35, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.RF.GoblinRanged", RatioMin = 0.15, RatioMax = 0.50 },
-			{ BaseID = "UnitBlock.RF.GoblinFlank", RatioMin = 0.00, RatioMax = 0.35 },
-			{ BaseID = "UnitBlock.RF.GoblinBoss", RatioMin = 0.01, RatioMax = 0.15, StartingResourceMin = 250 }	// One boss is guaranteed at 250+ resources
+				{ BaseID = "UnitBlock.RF.GoblinRanged", RatioMin = 0.15, RatioMax = 0.50 },
+				{ BaseID = "UnitBlock.RF.GoblinFlank", RatioMin = 0.00, RatioMax = 0.35 },
+				{ BaseID = "UnitBlock.RF.GoblinBoss", RatioMin = 0.01, RatioMax = 0.15, StartingResourceMin = 250 }	// One boss is guaranteed at 250+ resources
 			]
 		}
 	},

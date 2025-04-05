@@ -13,7 +13,7 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.Ghoul", RatioMin = 0.00, RatioMax = 0.20, PartySizeMin = 20 },	// Vanilla does not spawn T3 Ghouls. We allow it here
 				{ BaseID = "UnitBlock.RF.SkeletonFrontline", RatioMin = 0.15, RatioMax = 1.00 },
 				{ BaseID = "UnitBlock.RF.SkeletonBackline", RatioMin = 0.09, RatioMax = 0.35 },
-				{ BaseID = "UnitBlock.RF.SkeletonElite", 	RatioMin = 0.00, RatioMax = 0.11, PartySizeMin = 18 },
+				{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.00, RatioMax = 0.11, PartySizeMin = 18 },
 				{ BaseID = "UnitBlock.RF.ScourgeSupport", RatioMin = 0.00, RatioMax = 0.12,  PartySizeMin = 17 },
 				{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.00, RatioMax = 0.11, PartySizeMin = 18 },
 				{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.0, PartySizeMin = 10 },

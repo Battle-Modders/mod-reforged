@@ -10,7 +10,8 @@ local parties = [
 		DynamicDefs = {
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.NobleFrontline", RatioMin = 0.30, RatioMax = 1.00 },
-				{ BaseID = "UnitBlock.RF.NobleBackline", RatioMax = 0.40,
+				{ BaseID = "UnitBlock.RF.NobleBackline", RatioMax = 0.40 },
+				{ BaseID = "UnitBlock.RF.NobleRanged", RatioMax = 0.30,
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.75; }
 				},
 				{ BaseID = "UnitBlock.RF.NobleElite",  RatioMax = 0.20 },

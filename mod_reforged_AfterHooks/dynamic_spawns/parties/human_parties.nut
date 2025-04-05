@@ -61,8 +61,8 @@ local parties = [
 		DynamicDefs = {
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BountyHunter", RatioMin = 0.60, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.RF.BountyHunterRanged", RatioMin = 0.15, RatioMax = 0.30 },
-			{ BaseID = "UnitBlock.RF.Wardog", RatioMin = 0.05, RatioMax = 0.15 }
+				{ BaseID = "UnitBlock.RF.BountyHunterRanged", RatioMin = 0.15, RatioMax = 0.30 },
+				{ BaseID = "UnitBlock.RF.Wardog", RatioMin = 0.05, RatioMax = 0.15 }
 			]
 		}
 	},
@@ -76,9 +76,9 @@ local parties = [
 		DynamicDefs = {
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.MercenaryFrontline", RatioMin = 0.60, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.RF.MercenaryRanged", RatioMin = 0.12, RatioMax = 0.30 },
-			{ BaseID = "UnitBlock.RF.MercenaryElite", RatioMin = 0.10, RatioMax = 0.25, PartySizeMin = 10 },	// Start spawning at 11+. Only exception is HedgeKnight which appears a in a group of 6 aswell
-			{ BaseID = "UnitBlock.RF.Wardog", RatioMin = 0.00, RatioMax = 0.12 }
+				{ BaseID = "UnitBlock.RF.MercenaryRanged", RatioMin = 0.12, RatioMax = 0.30 },
+				{ BaseID = "UnitBlock.RF.MercenaryElite", RatioMin = 0.10, RatioMax = 0.25, PartySizeMin = 10 },	// Start spawning at 11+. Only exception is HedgeKnight which appears a in a group of 6 aswell
+				{ BaseID = "UnitBlock.RF.Wardog", RatioMin = 0.00, RatioMax = 0.12 }
 			]
 		}
 	},
