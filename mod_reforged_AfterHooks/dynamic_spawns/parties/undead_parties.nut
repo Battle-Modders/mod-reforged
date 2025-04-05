@@ -36,10 +36,10 @@ local parties = [
 					{ BaseID = "UnitBlock.RF.SkeletonBackline", RatioMin = 0.00, RatioMax = 0.40 },
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.00, RatioMax = 0.30, function getSpawnWeight(){ return base.getSpawnWeight() * 0.3 } },
 					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.00, RatioMax = 0.30, ExclusionChance = 0.75, StartingResourceMin = 220, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 }, function getUpgradeWeight(){ return base.getUpgradeWeight() * 0.2 } },
-					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMin = 0.00, RatioMax = 0.20, HardMax = 3, StartingResourceMin = 180, ReqPartySize = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
-					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMin = 0.00, RatioMax = 0.15, HardMax = 2, StartingResourceMin = 250, ReqPartySize = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 }  },
-					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMin = 0.00, RatioMax = 0.10, HardMax = 1, StartingResourceMin = 300, ReqPartySize = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } },
-					{ BaseID = "UnitBlock.RF.SkeletonSupport", RatioMin = 0.00, RatioMax = 0.10, ReqPartySize = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } }
+					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMin = 0.00, RatioMax = 0.20, HardMax = 3, StartingResourceMin = 180, PartySizeMin = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
+					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMin = 0.00, RatioMax = 0.15, HardMax = 2, StartingResourceMin = 250, PartySizeMin = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 }  },
+					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMin = 0.00, RatioMax = 0.10, HardMax = 1, StartingResourceMin = 300, PartySizeMin = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } },
+					{ BaseID = "UnitBlock.RF.SkeletonSupport", RatioMin = 0.00, RatioMax = 0.10, PartySizeMin = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } }
 				]
 			}],
 			[1, {
@@ -160,9 +160,9 @@ local parties = [
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonFrontline", RatioMin = 0.01, RatioMax = 1.00 },
 					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.40, HardMin = 3, function getSpawnWeight(){ return base.getSpawnWeight() * 0.5 }, function getUpgradeWeight(){ return base.getUpgradeWeight() * 0.1 } },
-					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.20, StartingResourceMin = 180, HardMax = 3, ReqPartySize = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
-					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, StartingResourceMin = 250, HardMax = 2, ReqPartySize = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.15 } },
-					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, StartingResourceMin = 300, HardMax = 1, ReqPartySize = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } }
+					{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.20, StartingResourceMin = 180, HardMax = 3, PartySizeMin = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
+					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, StartingResourceMin = 250, HardMax = 2, PartySizeMin = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.15 } },
+					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, StartingResourceMin = 300, HardMax = 1, PartySizeMin = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } }
 				]
 			}],
 			[1, {
@@ -183,8 +183,8 @@ local parties = [
 				UnitBlockDefs = [
 					{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.70 },
 					{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.50, HardMin = 3, function getUpgradeWeight(){ return base.getUpgradeWeight() * 0.2 } },
-					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, HardMax = 2, StartingResourceMin = 250, ReqPartySize = 4, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
-					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, HardMax = 1, StartingResourceMin = 300, ReqPartySize = 5, function getSpawnWeight(){ return base.getSpawnWeight() * 0.15 } }
+					{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, HardMax = 2, StartingResourceMin = 250, PartySizeMin = 4, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
+					{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, HardMax = 1, StartingResourceMin = 300, PartySizeMin = 5, function getSpawnWeight(){ return base.getSpawnWeight() * 0.15 } }
 				]
 			}],
 			[1, {
