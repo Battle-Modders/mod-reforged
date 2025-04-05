@@ -8,14 +8,14 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.GoblinRegular", RatioMin = 0.00, RatioMax = 0.50, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.GoblinFlank", RatioMin = 0.00, RatioMax = 0.50, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.GoblinBoss", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 350, DeterminesFigure = true },
+				{ BaseID = "UnitBlock.RF.GoblinRegular", RatioMin = 0.00, RatioMax = 0.50 },
+				{ BaseID = "UnitBlock.RF.GoblinFlank", RatioMin = 0.00, RatioMax = 0.50 },
+				{ BaseID = "UnitBlock.RF.GoblinBoss", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 350 },
 
-				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.00, RatioMax = 0.80, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.OrcWarrior", RatioMin = 0.00, RatioMax = 0.50, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.OrcBerserker", RatioMin = 0.00, RatioMax = 0.33, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.OrcBoss", RatioMin = 0.00, RatioMax = 0.07, StartingResourceMin = 350, DeterminesFigure = true }
+				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.00, RatioMax = 0.80 },
+				{ BaseID = "UnitBlock.RF.OrcWarrior", RatioMin = 0.00, RatioMax = 0.50 },
+				{ BaseID = "UnitBlock.RF.OrcBerserker", RatioMin = 0.00, RatioMax = 0.33 },
+				{ BaseID = "UnitBlock.RF.OrcBoss", RatioMin = 0.00, RatioMax = 0.07, StartingResourceMin = 350 }
 			]
 		}
 	}

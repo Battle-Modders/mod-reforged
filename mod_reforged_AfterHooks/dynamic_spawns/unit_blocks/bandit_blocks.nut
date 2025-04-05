@@ -1,7 +1,6 @@
 local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.BanditBalanced",
-		DeterminesFigure = true,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.RF_BanditScoundrel" },
@@ -13,7 +12,6 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditFast",
-		DeterminesFigure = true,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.RF_BanditRobber" }, // added for balanced spawns and upgrading compared to Balanced, Tough and Ranged
@@ -25,7 +23,6 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditTough",
-		DeterminesFigure = true,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.BanditThug" },
@@ -37,7 +34,6 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditRanged",
-		DeterminesFigure = true,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.BanditMarksmanLOW" },
@@ -49,7 +45,6 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditDog",
-		DeterminesFigure = true,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.Wardog" },
@@ -59,7 +54,6 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditElite",
-		DeterminesFigure = true,
 		DynamicDefs = {
 			Units = ::MSU.Class.WeightedContainer([
 				[1, { BaseID = "Unit.RF.MasterArcher" }],
@@ -70,7 +64,6 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditBoss",
-		DeterminesFigure = true,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.BanditLeader" },

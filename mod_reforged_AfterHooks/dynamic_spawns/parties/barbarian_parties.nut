@@ -8,7 +8,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.BarbarianFrontline", RatioMin = 0.60, RatioMax = 1.00, DeterminesFigure = true },	// Vanilla: doesn't care about size
+				{ BaseID = "UnitBlock.RF.BarbarianFrontline", RatioMin = 0.60, RatioMax = 1.00 },	// Vanilla: doesn't care about size
 				{ BaseID = "UnitBlock.RF.BarbarianSupport", RatioMin = 0.00, RatioMax = 0.07, PartySizeMin = 10 },			// Vanilla: Start spawning in armies of 15+; At 24+ a second drummer spawns
 				{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.00, RatioMax = 0.15, PartySizeMin = 5 },		// Vanilla: Start spawning in armies of 6+
 				{ BaseID = "UnitBlock.RF.BarbarianBeastmaster", RatioMin = 0.00, RatioMax = 0.10, PartySizeMin = 5 }
@@ -46,7 +46,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.BarbarianHunterFrontline", RatioMin = 0.60, RatioMax = 1.0, DeterminesFigure = true },
+				{ BaseID = "UnitBlock.RF.BarbarianHunterFrontline", RatioMin = 0.60, RatioMax = 1.0 },
 				{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.20, RatioMax = 0.45 }
 			]
 		}

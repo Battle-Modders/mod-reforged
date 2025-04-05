@@ -8,8 +8,8 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.55, RatioMax = 1.00, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.OrcBerserker", DeterminesFigure = true, StartingResourceMin = 75, ExclusionChance = 0.45,
+				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.55, RatioMax = 1.00 },
+				{ BaseID = "UnitBlock.RF.OrcBerserker",  StartingResourceMin = 75, ExclusionChance = 0.45,
 					function getSpawnWeight() {	return base.getSpawnWeight() * (this.getParty().getStartingResources() < 150 ? 0.75 : 15); }
 				}
 			]
@@ -24,7 +24,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = true },
+				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.00, RatioMax = 1.00 },
 				{ BaseID = "UnitBlock.RF.OrcWarrior", RatioMin = 0.00, RatioMax = 0.09, StartingResourceMin = 150,
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.2; }
 				}
@@ -40,7 +40,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.15, RatioMax = 1.00, DeterminesFigure = true,
+				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.15, RatioMax = 1.00,
 					function getSpawnWeight() {	// Lategame Parties will have fewer Young in them
 						local mult = 1.0;
 						local res = this.getParty().getStartingResources();
@@ -50,15 +50,15 @@ local parties = [
 						return base.getSpawnWeight() * mult;
 					}
 				},
-				{ BaseID = "UnitBlock.RF.OrcBerserker", RatioMin = 0.00, RatioMax = 0.45, DeterminesFigure = true, StartingResourceMin = 175,
+				{ BaseID = "UnitBlock.RF.OrcBerserker", RatioMin = 0.00, RatioMax = 0.45,  StartingResourceMin = 175,
 					function getExclusionChance() {return this.getParty().getStartingResources() < 300 ? 0.7 : 0.5; },
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.5 }
 				},
-				{ BaseID = "UnitBlock.RF.OrcWarrior", RatioMin = 0.00, RatioMax = 0.80, DeterminesFigure = true, StartingResourceMin = 200,
+				{ BaseID = "UnitBlock.RF.OrcWarrior", RatioMin = 0.00, RatioMax = 0.80,  StartingResourceMin = 200,
 					function getExclusionChance() {return this.getParty().getStartingResources() < 300 ? 0.6 : 0.3; },
 					function getSpawnWeight() { return base.getSpawnWeight() *  2.0 }
 				},
-				{ BaseID = "UnitBlock.RF.OrcBoss", RatioMin = 0.00, RatioMax = 0.08, HardMax = 1, DeterminesFigure = true, StartingResourceMin = 400,
+				{ BaseID = "UnitBlock.RF.OrcBoss", RatioMin = 0.00, RatioMax = 0.08, HardMax = 1,  StartingResourceMin = 400,
 					function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() <= 450 ? 0.1 : 1.25); }	// Vanilla never spawns more than one Boss here
 				}
 			]
@@ -73,7 +73,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.15, RatioMax = 1.00, DeterminesFigure = true,
+				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.15, RatioMax = 1.00,
 					function getSpawnWeight() { // Lategame Parties will have fewer Young in them
 						local mult = 1.0;
 						local res = this.getParty().getStartingResources();
@@ -105,7 +105,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.15, RatioMax = 1.00, DeterminesFigure = true,
+				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.15, RatioMax = 1.00,
 					function getSpawnWeight() { // Lategame Parties will have fewer Young in them
 						local mult = 1.0;
 						local res = this.getParty().getStartingResources();
@@ -148,8 +148,8 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.OrcYoung", DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.OrcBerserker", DeterminesFigure = true,
+				{ BaseID = "UnitBlock.RF.OrcYoung" },
+				{ BaseID = "UnitBlock.RF.OrcBerserker",
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.5; }
 				}
 			]

@@ -9,15 +9,14 @@ local parties = [
 		UpgradeChance = 0.50,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.NobleFrontline", RatioMin = 0.30, RatioMax = 1.00, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.NobleBackline", RatioMax = 0.40, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.NobleRanged", RatioMax = 0.30, DeterminesFigure = true,
+				{ BaseID = "UnitBlock.RF.NobleFrontline", RatioMin = 0.30, RatioMax = 1.00 },
+				{ BaseID = "UnitBlock.RF.NobleBackline", RatioMax = 0.40,
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.75; }
 				},
-				{ BaseID = "UnitBlock.RF.NobleElite",  RatioMax = 0.20, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.NobleSupport", RatioMax = 0.2, HardMax = 2, DeterminesFigure = true, PartySizeMin = 9, ExclusionChance = 0.05 },
-				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMax = 0.2, HardMax = 2, DeterminesFigure = true, PartySizeMin = 8, ExclusionChance = 0.3 },
-				{ BaseID = "UnitBlock.RF.NobleLeader", HardMax = 2, PartySizeMin = 10, DeterminesFigure = true },
+				{ BaseID = "UnitBlock.RF.NobleElite",  RatioMax = 0.20 },
+				{ BaseID = "UnitBlock.RF.NobleSupport", RatioMax = 0.2, HardMax = 2,  PartySizeMin = 9, ExclusionChance = 0.05 },
+				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMax = 0.2, HardMax = 2,  PartySizeMin = 8, ExclusionChance = 0.3 },
+				{ BaseID = "UnitBlock.RF.NobleLeader", HardMax = 2, PartySizeMin = 10 },
 				{ BaseID = "UnitBlock.RF.NobleFlank", RatioMax = 0.25, HardMax = 3, ExclusionChance = 0.4 }
 			]
 		}
