@@ -12,7 +12,7 @@ local parties = [
 
 				function generateIdealSize()
 				{
-					local startingResources = this.getSpawnProcess().getStartingResources();
+					local startingResources = this.getTopParty().getStartingResources();
 					if (startingResources >= 500)
 					{
 						return 12;
@@ -138,7 +138,7 @@ local parties = [
 
 				function generateIdealSize()
 				{
-					local startingResources = this.getSpawnProcess().getStartingResources();
+					local startingResources = this.getTopParty().getStartingResources();
 					if (startingResources >= 400)
 					{
 						return 11;
@@ -197,7 +197,7 @@ local parties = [
 
 				function generateIdealSize()
 				{
-					local startingResources = this.getSpawnProcess().getStartingResources();
+					local startingResources = this.getTopParty().getStartingResources();
 					if (startingResources >= 400)
 					{
 						return 10;
