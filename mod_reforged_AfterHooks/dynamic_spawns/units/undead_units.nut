@@ -110,7 +110,11 @@ local units = [
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 300,
 		Cost = 40,
-		SubPartyDef = {BaseID = "SubPartyPrae", IsUsingTopPartyResources = false}
+		StaticDefs = {
+			Parties = [
+				{ BaseID = "SubPartyPrae", IsUsingTopPartyResources = false }
+			]
+		}
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestPP",
@@ -118,7 +122,11 @@ local units = [
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 325,
 		Cost = 40,
-		SubPartyDef = {BaseID = "SubPartyPrae2", IsUsingTopPartyResources = false}
+		StaticDefs = {
+			Parties = [
+				{ BaseID = "SubPartyPrae2", IsUsingTopPartyResources = false }
+			]
+		}
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestPH",
@@ -126,7 +134,11 @@ local units = [
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 350,
 		Cost = 40,
-		SubPartyDef = {BaseID = "SubPartyPraeHonor", IsUsingTopPartyResources = false}
+		StaticDefs = {
+			Parties = [
+				{ BaseID = "SubPartyPraeHonor", IsUsingTopPartyResources = false }
+			]
+		}
 	},
 	{
 		ID = "Unit.RF.SkeletonPriestHH",
@@ -134,7 +146,11 @@ local units = [
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 375,
 		Cost = 40,
-		SubPartyDef = {BaseID = "SubPartyHonor2", IsUsingTopPartyResources = false}
+		StaticDefs = {
+			Parties = [
+				{ BaseID = "SubPartyHonor2", IsUsingTopPartyResources = false }
+			]
+		}
 	}
 ];
 

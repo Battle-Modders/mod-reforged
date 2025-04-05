@@ -6,9 +6,11 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.CultistAmbush", RatioMin = 0.00, RatioMax = 1.00 }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.CultistAmbush", RatioMin = 0.00, RatioMax = 1.00 }
+			]
+		}
 	},
 	{
 		ID = "Peasants",
@@ -17,9 +19,11 @@ local parties = [
 		MovementSpeedMult = 0.75,
 		VisibilityMult = 1.0,
 		VisionMult = 0.75,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.Peasant", RatioMin = 0.00, RatioMax = 1.00 }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.Peasant", RatioMin = 0.00, RatioMax = 1.00 }
+			]
+		}
 	},
 	{
 		ID = "PeasantsArmed",
@@ -28,9 +32,11 @@ local parties = [
 		MovementSpeedMult = 0.75,
 		VisibilityMult = 1.0,
 		VisionMult = 0.75,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.PeasantArmed", RatioMin = 0.00, RatioMax = 1.00 }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.PeasantArmed", RatioMin = 0.00, RatioMax = 1.00 }
+			]
+		}
 	},
 	{
 		ID = "PeasantsSouthern",
@@ -39,9 +45,11 @@ local parties = [
 		MovementSpeedMult = 0.75,
 		VisibilityMult = 1.0,
 		VisionMult = 0.75,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.SouthernPeasant", RatioMin = 0.00, RatioMax = 1.00 }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.SouthernPeasant", RatioMin = 0.00, RatioMax = 1.00 }
+			]
+		}
 	},
 	{
 		ID = "BountyHunters",
@@ -50,11 +58,13 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.BountyHunter", RatioMin = 0.60, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.RF.BountyHunterRanged", RatioMin = 0.15, RatioMax = 0.30 },
-			{ BaseID = "UnitBlock.RF.Wardog", RatioMin = 0.05, RatioMax = 0.15 }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.BountyHunter", RatioMin = 0.60, RatioMax = 1.00 },
+				{ BaseID = "UnitBlock.RF.BountyHunterRanged", RatioMin = 0.15, RatioMax = 0.30 },
+				{ BaseID = "UnitBlock.RF.Wardog", RatioMin = 0.05, RatioMax = 0.15 }
+			]
+		}
 	},
 	{
 		ID = "Mercenaries",
@@ -63,12 +73,14 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.MercenaryFrontline", RatioMin = 0.60, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.RF.MercenaryRanged", RatioMin = 0.12, RatioMax = 0.30 },
-			{ BaseID = "UnitBlock.RF.MercenaryElite", RatioMin = 0.10, RatioMax = 0.25, ReqPartySize = 10 },	// Start spawning at 11+. Only exception is HedgeKnight which appears a in a group of 6 aswell
-			{ BaseID = "UnitBlock.RF.Wardog", RatioMin = 0.00, RatioMax = 0.12 }
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.MercenaryFrontline", RatioMin = 0.60, RatioMax = 1.00 },
+				{ BaseID = "UnitBlock.RF.MercenaryRanged", RatioMin = 0.12, RatioMax = 0.30 },
+				{ BaseID = "UnitBlock.RF.MercenaryElite", RatioMin = 0.10, RatioMax = 0.25, PartySizeMin = 10 },	// Start spawning at 11+. Only exception is HedgeKnight which appears a in a group of 6 aswell
+				{ BaseID = "UnitBlock.RF.Wardog", RatioMin = 0.00, RatioMax = 0.12 }
+			]
+		}
 	},
 	{
 		ID = "Militia",
@@ -77,11 +89,13 @@ local parties = [
 		MovementSpeedMult = 0.9,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.MilitiaFrontline", RatioMin = 0.60, RatioMax = 1.00 },
-			{ BaseID = "UnitBlock.RF.MilitiaRanged", RatioMin = 0.12, RatioMax = 0.35 },
-			{ BaseID = "UnitBlock.RF.MilitiaCaptain", RatioMin = 0.09, RatioMax = 0.09, ReqPartySize = 12 }	// Vanilla: starts spawning in groups of 13+; Vanilla never spawns more than one
-		]
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.MilitiaFrontline", RatioMin = 0.60, RatioMax = 1.00 },
+				{ BaseID = "UnitBlock.RF.MilitiaRanged", RatioMin = 0.12, RatioMax = 0.35 },
+				{ BaseID = "UnitBlock.RF.MilitiaCaptain", RatioMin = 0.09, RatioMax = 0.09, PartySizeMin = 12 }	// Vanilla: starts spawning in groups of 13+; Vanilla never spawns more than one
+			]
+		}
 	},
 	{
 		ID = "Caravan",
@@ -90,14 +104,18 @@ local parties = [
 		MovementSpeedMult = 0.5,
 		VisibilityMult = 1.0,
 		VisionMult = 0.25,
-		StaticUnitDefs = [
-			{ BaseID = "Unit.RF.CaravanDonkey" }
-		],
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.17, RatioMax = 0.20, ReqPartySize = 6 },	// Vanilla: Second Donkey starts spawning at 7+
-			{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.35, RatioMax = 0.80, DeterminesFigure = false },
-			{ BaseID = "UnitBlock.RF.CaravanGuard", RatioMin = 0.15, RatioMax = 0.55, DeterminesFigure = false }
-		]
+		StaticDefs = {
+			Units = [
+				{ BaseID = "Unit.RF.CaravanDonkey" }
+			]
+		},
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.17, RatioMax = 0.20, PartySizeMin = 6 },	// Vanilla: Second Donkey starts spawning at 7+
+				{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.35, RatioMax = 0.80, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.CaravanGuard", RatioMin = 0.15, RatioMax = 0.55, DeterminesFigure = false }
+			]
+		}
 	},
 	{
 		ID = "CaravanEscort",	// Caravans spawned for player escort contract
@@ -106,14 +124,18 @@ local parties = [
 		MovementSpeedMult = 0.5,
 		VisibilityMult = 1.0,
 		VisionMult = 0.25,
-		StaticUnitDefs = [
-			{ BaseID = "Unit.RF.CaravanDonkey" },	// In vanilla an escorted caravan can also have only a single Donkey. I chose to force 2 donkey every time instead
-			{ BaseID = "Unit.RF.CaravanDonkey" }
-		],
-		UnitBlockDefs = [
-			{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.15, RatioMax = 0.35, ReqPartySize = 5 },	// Vanilla: Third donkey spawns at 6+
-			{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.50, RatioMax = 1.00, DeterminesFigure = false }
-		]
+		StaticDefs = {
+			Units = [
+				{ BaseID = "Unit.RF.CaravanDonkey" },	// In vanilla an escorted caravan can also have only a single Donkey. I chose to force 2 donkey every time instead
+				{ BaseID = "Unit.RF.CaravanDonkey" }
+			]
+		},
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.15, RatioMax = 0.35, PartySizeMin = 5 },	// Vanilla: Third donkey spawns at 6+
+				{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.50, RatioMax = 1.00, DeterminesFigure = false }
+			]
+		}
 	}
 ]
 

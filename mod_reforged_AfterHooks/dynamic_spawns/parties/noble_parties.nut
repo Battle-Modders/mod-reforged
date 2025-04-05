@@ -9,25 +9,15 @@ local parties = [
 		UpgradeChance = 0.50,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.NobleFrontline", RatioMin = 0.30, RatioMax = 1.00, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.NobleBackline", RatioMax = 0.40, DeterminesFigure = true,
-					function getSpawnWeight() { return base.getSpawnWeight() * 1.0; }
-				},
-				{ BaseID = "UnitBlock.RF.NobleRanged", RatioMax = 0.30, DeterminesFigure = true,
+				{ BaseID = "UnitBlock.RF.NobleFrontline", RatioMin = 0.30, RatioMax = 1.00 },
+				{ BaseID = "UnitBlock.RF.NobleBackline", RatioMax = 0.40 },
+				{ BaseID = "UnitBlock.RF.NobleRanged", RatioMax = 0.30,
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.75; }
 				},
-				{ BaseID = "UnitBlock.RF.NobleElite",  RatioMax = 0.20, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.NobleSupport", RatioMax = 0.2, HardMax = 2, DeterminesFigure = true, ReqPartySize = 9, ExclusionChance = 0.05
-					function getSpawnWeight() {	return base.getSpawnWeight() * (this.getTopParty().getTotal() == this.getPartySizeMin() ? 10.0 : 1.0); }
-					function getUpgradeWeight() { return base.getUpgradeWeight() * 7.0; }
-				},
-				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMax = 0.2, HardMax = 2, DeterminesFigure = true, ReqPartySize = 8, ExclusionChance = 0.3
-					function getSpawnWeight() {	return base.getSpawnWeight() * (this.getTopParty().getTotal() == this.getPartySizeMin() ? 10.0 : 1.0); }
-					function getUpgradeWeight() { return base.getUpgradeWeight() * 2.0; }
-				},
-				{ BaseID = "UnitBlock.RF.NobleLeader", HardMax = 2, ReqPartySize = 10, DeterminesFigure = true,
-					function getUpgradeWeight() { return base.getUpgradeWeight() * 5.0; }
-				},
+				{ BaseID = "UnitBlock.RF.NobleElite",  RatioMax = 0.20 },
+				{ BaseID = "UnitBlock.RF.NobleSupport", RatioMax = 0.2, HardMax = 2,  PartySizeMin = 9, ExclusionChance = 0.05 },
+				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMax = 0.2, HardMax = 2,  PartySizeMin = 8, ExclusionChance = 0.3 },
+				{ BaseID = "UnitBlock.RF.NobleLeader", HardMax = 2, PartySizeMin = 10 },
 				{ BaseID = "UnitBlock.RF.NobleFlank", RatioMax = 0.25, HardMax = 3, ExclusionChance = 0.4 }
 			]
 		}
@@ -68,8 +58,8 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.NobleBackline", RatioMin = 0.00, RatioMax = 0.40, DeterminesFigure = false },
 				{ BaseID = "UnitBlock.RF.NobleRanged", RatioMin = 0.00, RatioMax = 0.30, DeterminesFigure = false },
 				{ BaseID = "UnitBlock.RF.NobleElite", RatioMin = 0.00, RatioMax = 0.20, DeterminesFigure = false },
-				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMin = 0.00, RatioMax = 0.05, ReqPartySize = 10, DeterminesFigure = false, function canUpgrade() { return false; } },  // Vanilla: spawns at 12, at 15 and at 18 once respectively
-				{ BaseID = "UnitBlock.RF.NobleDonkey", RatioMin = 0.01, RatioMax = 0.08, ReqPartySize = 13 }	// Vanilla: second donkey spawns at 14+
+				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMin = 0.00, RatioMax = 0.05, PartySizeMin = 10, DeterminesFigure = false, function canUpgrade() { return false; } },  // Vanilla: spawns at 12, at 15 and at 18 once respectively
+				{ BaseID = "UnitBlock.RF.NobleDonkey", RatioMin = 0.01, RatioMax = 0.08, PartySizeMin = 13 }	// Vanilla: second donkey spawns at 14+
 			]
 		}
 	}
