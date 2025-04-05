@@ -1,12 +1,14 @@
 local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.ScourgeSupport",
-		UnitDefs = ::MSU.Class.WeightedContainer([
-			[1, { BaseID = "Unit.RF.SkeletonPriestPH" }],
-			[1, { BaseID = "Unit.RF.SkeletonPriestHH" }],
-			[1, { BaseID = "Unit.RF.NecromancerYK" }],
-			[1, { BaseID = "Unit.RF.NecromancerKK" }]
-		])
+		DynamicDefs = {
+			Units = ::MSU.Class.WeightedContainer([
+				[1, { BaseID = "Unit.RF.SkeletonPriestPH" }],
+				[1, { BaseID = "Unit.RF.SkeletonPriestHH" }],
+				[1, { BaseID = "Unit.RF.NecromancerYK" }],
+				[1, { BaseID = "Unit.RF.NecromancerKK" }]
+			])
+		}
 	}
 ]
 
