@@ -1,6 +1,8 @@
 ::Reforged.HooksHelper <- {
 	function dualWeapon( q )
 	{
+		// These are strings which are the script paths to the weapons in this dual wield weapon
+		// e.g. "scripts/items/weapons/bludgeon" and "scripts/items/weapons/pickaxe".
 		q.m.Weapon1 <- null;
 		q.m.Weapon2 <- null;
 
@@ -52,6 +54,9 @@
 			__original(_skill);
 		}
 
+		// This function must be overwritten by the respective dual wield weapon using this hooks helper function.
+		// return either Weapon1 or Weapon2 based on which weapon _skill is meant to represent e.g. for bash skill
+		// return Weapon1 if Weapon1 is Bludgeon.
 		q.RF_getWeaponForSkill <- function( _skill )
 		{
 		}
@@ -73,6 +78,9 @@
 
 			this[superName].onAnySkillUsed(_skill, _targetEntity, _properties);
 
+			// We subtract the damage of the dual weapon this skill belongs to and then add the damage of
+			// the specific weapon within the dual weapon this skill is meant to represent.
+			// This is because with our implementation, the dual weapons no longer have 0 damage like in vanilla.
 			local weapon = this.getItem();
 			_properties.DamageRegularMin += this.m.RF_Weapon.m.RegularDamage - weapon.m.RegularDamage;
 			_properties.DamageRegularMax += this.m.RF_Weapon.m.RegularDamageMax - weapon.m.RegularDamageMax;
