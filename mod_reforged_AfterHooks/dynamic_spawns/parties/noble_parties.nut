@@ -17,17 +17,9 @@ local parties = [
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.75; }
 				},
 				{ BaseID = "UnitBlock.RF.NobleElite",  RatioMax = 0.20, DeterminesFigure = true },
-				{ BaseID = "UnitBlock.RF.NobleSupport", RatioMax = 0.2, HardMax = 2, DeterminesFigure = true, ReqPartySize = 9, ExclusionChance = 0.05
-					function getSpawnWeight() {	return base.getSpawnWeight() * (this.getTopParty().getTotal() == this.getPartySizeMin() ? 10.0 : 1.0); }
-					function getUpgradeWeight() { return base.getUpgradeWeight() * 7.0; }
-				},
-				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMax = 0.2, HardMax = 2, DeterminesFigure = true, ReqPartySize = 8, ExclusionChance = 0.3
-					function getSpawnWeight() {	return base.getSpawnWeight() * (this.getTopParty().getTotal() == this.getPartySizeMin() ? 10.0 : 1.0); }
-					function getUpgradeWeight() { return base.getUpgradeWeight() * 2.0; }
-				},
-				{ BaseID = "UnitBlock.RF.NobleLeader", HardMax = 2, ReqPartySize = 10, DeterminesFigure = true,
-					function getUpgradeWeight() { return base.getUpgradeWeight() * 5.0; }
-				},
+				{ BaseID = "UnitBlock.RF.NobleSupport", RatioMax = 0.2, HardMax = 2, DeterminesFigure = true, ReqPartySize = 9, ExclusionChance = 0.05 },
+				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMax = 0.2, HardMax = 2, DeterminesFigure = true, ReqPartySize = 8, ExclusionChance = 0.3 },
+				{ BaseID = "UnitBlock.RF.NobleLeader", HardMax = 2, ReqPartySize = 10, DeterminesFigure = true },
 				{ BaseID = "UnitBlock.RF.NobleFlank", RatioMax = 0.25, HardMax = 3, ExclusionChance = 0.4 }
 			]
 		}
