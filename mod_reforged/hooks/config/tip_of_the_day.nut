@@ -24,6 +24,48 @@ for (local index = (::Const.TipOfTheDay.len() - 1); index >= 0; index--)
 		case "With the \'Gladiators\' origin you start with three powerful characters, but losing all three will end your campaign.":
 		case "With the \'Anatomists\' origin, defeating new enemies grants potions that mutate your men and grant them special abilities.":
 		case "With the \'Oathtakers\' origin, instead of ambitions you\'ll pick oaths that grant special boons and burdens.":
+		case "Consider putting injured characters in reserve until their wounds have healed.":
+		case "Consider building up a reserve roster and rotating your men, so you can more easily deal with losses down the road.":
+		case "Having men of different backgrounds in your company may enable you to perform different actions in events.": // Vanilla has another tip which conveys this information more concisely and completely.
+		case "You don\'t have to be a hero, you\'re running a business.":
+		case "Drag and drop your men in the inventory screen to where you want them to be in your formation.":
+		case "Consider forming a shieldwall when surrounded.":
+		case "Conserve your stamina when in prolonged engagements.":
+		case "Success in Battle Brothers is also about picking the right fights.":
+		case "Undead are unaffected by fatigue and morale.":
+		case "Crossbows require less skill to fire accurately than bows, but are slower to use.":
+		case "Each type of weapon has advantages and disadvantages.":
+		case "Clubs and maces can stun or incapacitate targets.":
+		case "Try to save some crowns for when things turn sour.":
+		case "Longswords and Greatswords can hit multiple targets with one strike.":
+		case "Spears are good defensive weapons due to their Spearwall ability.":
+		case "Use terrain and chokepoints to your advantage.":
+		case "The higher their level, the more your men will demand in wages.":
+		case "Skeletons are highly resistant to ranged attacks and fire.":
+		case "Heavy armor offers great protection, but also slows down the wearer and makes him tire more quickly.":
+		case "Heavy helmets can be hard to breathe in and limit the field of vision.":
+		case "Warhammers and Military Picks can make short work of heavy armor.":
+		case "The Billhook, Pike and Longaxe can attack over 2 tiles, unlike most other melee weapons.":
+		case "A human is no match for an adult orc physically.":
+		case "Orcs rely on raw power and physical prowess.":
+		case "A goblin is no match for an adult human physically, so they rely on wit and dirty tricks.":
+		case "Geists are lost between the physical world and the world beyond, constantly shifting between the two.":
+		case "Two-handed axes can hit up to 6 targets with a single round swing.":
+		case "Roads are the fastest way to travel over land, but not always the safest.":
+		case "Forests can hide many dangers within.":
+		case "Always keep a good stock of provisions - lest your men starve and desert you!":
+		case "Wiedergangers are the dead walking again.":
+		case "Difficult terrain, such as mountains and swamp, has your men use more supplies on the worldmap.":
+		case "If you can not win, retreat to fight another day.": // vanilla has another tip that conveys the same message
+		case "Try to negotiate better payment for your contracts.":
+		case "Try to negotiate payment modalities that guarantee you the most money for contracts.":
+		case "Throwing weapons can be deadly on short distances, but their accuracy drops sharply the farther away the target.":
+		case "You can find contract offers in the top left of settlement screens.":
+		case "Cleavers can inflict bleeding wounds.":
+		case "Stunned characters get no attack of opportunity when someone moves inside their zone of control.":
+		case "The minimum hit chance for any attack is 5%, and the maximum hit chance for any attack is 95%.":
+		case "The natural habitat of direwolves is the forest.":
+		case "You can enable faster AI turns in the options menu.":
 			::Const.TipOfTheDay.remove(index);
 			break;
 		case "Flails ignore the defense bonus of shields.":
