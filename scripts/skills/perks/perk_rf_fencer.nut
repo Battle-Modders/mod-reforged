@@ -28,10 +28,10 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		local kataStep = this.getContainer().getSkillByID("actives.rf_kata_step");
-		if (kataStep != null)
+		local passingStep = this.getContainer().getSkillByID("actives.rf_passing_step");
+		if (passingStep != null)
 		{
-			kataStep.m.RequiredDamageType = null;
+			passingStep.m.RequiredDamageType = null;
 		}
 	}
 

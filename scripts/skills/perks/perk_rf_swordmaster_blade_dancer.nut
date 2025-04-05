@@ -2,8 +2,8 @@ this.perk_rf_swordmaster_blade_dancer <- ::inherit("scripts/skills/perks/perk_rf
 	m = {
 		WeaponSkillAPCostModifier = -1,
 		WeaponSkillFatigueCostMult  = 0.75,
-		KataStepAPCostModifier = -2,
-		KataStepFatigueCostModifier = -2
+		PassingStepAPCostModifier = -2,
+		PassingStepFatigueCostModifier = -2
 	},
 	function create()
 	{
@@ -44,12 +44,12 @@ this.perk_rf_swordmaster_blade_dancer <- ::inherit("scripts/skills/perks/perk_rf
 			}
 		}
 
-		local kataStep = this.getContainer().getSkillByID("actives.rf_kata_step")
-		if (kataStep != null)
+		local passingStep = this.getContainer().getSkillByID("actives.rf_passing_step")
+		if (passingStep != null)
 		{
-			kataStep.m.ActionPointCost += this.m.KataStepAPCostModifier;
-			kataStep.m.FatigueCost += this.m.KataStepFatigueCostModifier;
-			kataStep.m.RequireOffhandFree = false;
+			passingStep.m.ActionPointCost += this.m.PassingStepAPCostModifier;
+			passingStep.m.FatigueCost += this.m.PassingStepFatigueCostModifier;
+			passingStep.m.RequireOffhandFree = false;
 		}
 	}
 });

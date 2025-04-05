@@ -2,12 +2,12 @@
 	q.onAdded = @(__original) function()
 	{
 		__original()
-		this.getContainer().add(::new("scripts/skills/actives/rf_kata_step_skill"));
+		this.getContainer().add(::new("scripts/skills/actives/rf_passing_step_skill"));
 	}
 
 	q.onRemoved = @(__original) function()
 	{
 		__original();
-		this.getContainer().removeByID("actives.rf_kata_step");
+		this.getContainer().removeByID("actives.rf_passing_step");
 	}
 });

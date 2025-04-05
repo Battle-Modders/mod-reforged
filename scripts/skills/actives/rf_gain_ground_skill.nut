@@ -27,7 +27,7 @@ this.rf_gain_ground_skill <- ::inherit("scripts/skills/skill", {
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 		this.m.MaxLevelDifference = 1;
-		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_KataStep;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_PassingStep;
 	}
 
 	// Vanilla does not ensure a non-negative value return (should probably be fixed over at MSU)

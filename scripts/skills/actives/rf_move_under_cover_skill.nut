@@ -70,9 +70,9 @@ this.rf_move_under_cover_skill <- ::inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			if (actor.getAIAgent().findBehavior(::Const.AI.Behavior.ID.RF_KataStep) == null)
+			if (actor.getAIAgent().findBehavior(::Const.AI.Behavior.ID.RF_PassingStep) == null)
 			{
-				actor.getAIAgent().addBehavior(::new("scripts/ai/tactical/behaviors/ai_rf_kata_step"));
+				actor.getAIAgent().addBehavior(::new("scripts/ai/tactical/behaviors/ai_rf_passing_step"));
 				actor.getAIAgent().finalizeBehaviors();
 			}
 		}

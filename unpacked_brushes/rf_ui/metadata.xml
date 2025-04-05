@@ -25,11 +25,11 @@
 	<sprite id="rf_halberd_sunder_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_halberd_sunder_skill.png" />
 	<sprite id="rf_hold_steady_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_hold_steady_skill.png" />
 	<sprite id="rf_hook_shield_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_hook_shield_skill.png" />
-	<sprite id="rf_kata_step_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_kata_step_skill.png" />
 	<sprite id="rf_line_breaker_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_line_breaker_skill.png" />
 	<sprite id="rf_move_under_cover_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_move_under_cover_skill.png" />
 	<sprite id="rf_net_pull_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_net_pull_skill.png" />
 	<sprite id="rf_onslaught_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_onslaught_skill.png" />
+	<sprite id="rf_passing_step_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_passing_step_skill.png" />
 	<sprite id="rf_poleaxe_hew_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_poleaxe_hew_skill.png" />
 	<sprite id="rf_poleaxe_impale_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_poleaxe_impale_skill.png" />
 	<sprite id="rf_poleaxe_strike_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_poleaxe_strike_skill.png" />

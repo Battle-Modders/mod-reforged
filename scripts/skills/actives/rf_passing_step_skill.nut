@@ -1,4 +1,4 @@
-this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
+this.rf_passing_step_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredWeaponType = ::Const.Items.WeaponType.Sword,
 		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
@@ -7,12 +7,12 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.rf_kata_step";
+		this.m.ID = "actives.rf_passing_step";
 		this.m.Name = "Passing Step";
 		this.m.Description = "Move around your opponents combining skillful footwork with the flow of your weapon\'s swings.";
-		this.m.Icon = "skills/rf_kata_step_skill.png";
-		this.m.IconDisabled = "skills/rf_kata_step_skill_sw.png";
-		this.m.Overlay = "rf_kata_step_skill";
+		this.m.Icon = "skills/rf_passing_step_skill.png";
+		this.m.IconDisabled = "skills/rf_passing_step_skill_sw.png";
+		this.m.Overlay = "rf_passing_step_skill";
 		this.m.SoundOnUse = [
 			"sounds/combat/footwork_01.wav"
 		];
@@ -29,7 +29,7 @@ this.rf_kata_step_skill <- ::inherit("scripts/skills/skill", {
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 		this.m.MaxLevelDifference = 1;
-		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_KataStep;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_PassingStep;
 	}
 
 	function softReset()
