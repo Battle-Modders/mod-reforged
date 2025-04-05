@@ -47,7 +47,7 @@ local units = [
 		StartingResourceMin = 200, // In Vanilla they appear in a group of 195 cost
 		StaticDefs = {
 			Parties = [
-				{BaseID = "OneUnhold", IsUsingTopPartyResources = false }
+				{ BaseID = "OneUnhold", IsUsingTopPartyResources = false }
 			]
 		}
 	},
@@ -58,7 +58,7 @@ local units = [
 		StartingResourceMin = 400, // In Vanilla they appear in a group of 400 cost
 		StaticDefs = {
 			Parties = [
-				{BaseID = "TwoUnhold", IsUsingTopPartyResources = false}
+				{ BaseID = "TwoUnhold", IsUsingTopPartyResources = false }
 			]
 		}
 	},
@@ -69,7 +69,7 @@ local units = [
 		StartingResourceMin = 200, // In Vanilla they appear in a group of 195 cost
 		StaticDefs = {
 			Parties = [
-				{BaseID = "OneFrostUnhold", IsUsingTopPartyResources = false}
+				{ BaseID = "OneFrostUnhold", IsUsingTopPartyResources = false }
 			]
 		}
 	},
@@ -80,7 +80,7 @@ local units = [
 		StartingResourceMin = 430, // In Vanilla they appear in a group of 430 cost
 		StaticDefs = {
 			Parties = [
-				{BaseID = "TwoFrostUnhold", IsUsingTopPartyResources = false}
+				{ BaseID = "TwoFrostUnhold", IsUsingTopPartyResources = false }
 			]
 		}
 	}

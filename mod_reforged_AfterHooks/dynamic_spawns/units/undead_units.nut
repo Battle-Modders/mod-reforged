@@ -112,7 +112,7 @@ local units = [
 		Cost = 40,
 		StaticDefs = {
 			Parties = [
-				{BaseID = "SubPartyPrae", IsUsingTopPartyResources = false}
+				{ BaseID = "SubPartyPrae", IsUsingTopPartyResources = false }
 			]
 		}
 	},
@@ -124,7 +124,7 @@ local units = [
 		Cost = 40,
 		StaticDefs = {
 			Parties = [
-				{BaseID = "SubPartyPrae2", IsUsingTopPartyResources = false}
+				{ BaseID = "SubPartyPrae2", IsUsingTopPartyResources = false }
 			]
 		}
 	},
@@ -136,7 +136,7 @@ local units = [
 		Cost = 40,
 		StaticDefs = {
 			Parties = [
-				{BaseID = "SubPartyPraeHonor", IsUsingTopPartyResources = false}
+				{ BaseID = "SubPartyPraeHonor", IsUsingTopPartyResources = false }
 			]
 		}
 	},
@@ -148,7 +148,7 @@ local units = [
 		Cost = 40,
 		StaticDefs = {
 			Parties = [
-				{BaseID = "SubPartyHonor2", IsUsingTopPartyResources = false}
+				{ BaseID = "SubPartyHonor2", IsUsingTopPartyResources = false }
 			]
 		}
 	}

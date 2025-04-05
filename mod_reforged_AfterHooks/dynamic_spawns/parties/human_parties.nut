@@ -93,7 +93,7 @@ local parties = [
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.MilitiaFrontline", RatioMin = 0.60, RatioMax = 1.00 },
 				{ BaseID = "UnitBlock.RF.MilitiaRanged", RatioMin = 0.12, RatioMax = 0.35 },
-				{ BaseID = "UnitBlock.RF.MilitiaCaptain", RatioMin = 0.09, RatioMax = 0.09, PartySizeMin = 12 }
+				{ BaseID = "UnitBlock.RF.MilitiaCaptain", RatioMin = 0.09, RatioMax = 0.09, PartySizeMin = 12 }	// Vanilla: starts spawning in groups of 13+; Vanilla never spawns more than one
 			]
 		}
 	},

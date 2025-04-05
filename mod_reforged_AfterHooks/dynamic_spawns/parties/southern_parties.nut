@@ -14,7 +14,7 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.SouthernRanged", RatioMin = 0.00, RatioMax = 0.35 },		// Vanilla: doesn't care about size
 				{ BaseID = "UnitBlock.RF.Assassin", RatioMin = 0.00, RatioMax = 0.2, PartySizeMin = 7 },		// Vanilla: Start spawning at 8+
 				{ BaseID = "UnitBlock.RF.Officer", RatioMin = 0.00, RatioMax = 0.15, PartySizeMin = 5 },		// Vanilla: Start spawning at 15+
-				{ BaseID = "UnitBlock.RF.Siege", RatioMin = 0.00, RatioMax = 0.13, PartySizeMin = 14 }
+				{ BaseID = "UnitBlock.RF.Siege", RatioMin = 0.00, RatioMax = 0.13, PartySizeMin = 14 }	// Vanilla: Start spawning at 19+
 			]
 		}
 	},
@@ -36,7 +36,7 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.Slave", RatioMin = 0.00, RatioMax = 0.25, DeterminesFigure = false },
 				{ BaseID = "UnitBlock.RF.SouthernBackline", RatioMin = 0.10, RatioMax = 0.40, DeterminesFigure = false },
 				{ BaseID = "UnitBlock.RF.Officer", RatioMin = 0.00, RatioMax = 0.08, PartySizeMin = 14, DeterminesFigure = false },
-				{ BaseID = "UnitBlock.RF.SouthernCaravanDonkey", RatioMin = 0.01, RatioMax = 0.12, PartySizeMin = 14 }
+				{ BaseID = "UnitBlock.RF.SouthernCaravanDonkey", RatioMin = 0.01, RatioMax = 0.12, PartySizeMin = 14 }	// Vanilla: Second starts spawning at 14, then 16+
 			]
 		}
 		// In Vanilla this party is also able to spawn just with mercenaries. But this is so rare that I chose to not try to mirror that behavior here
@@ -109,7 +109,7 @@ local parties = [
 		HardMax = 2,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.Engineer"}
+				{ BaseID = "UnitBlock.RF.Engineer" }
 			]
 		}
 	}

@@ -113,7 +113,7 @@ local units = [
 		Cost = 50,
 		StaticDefs = {
 			Parties = [
-				{BaseID = "SpiderBodyguards", HardMin = 1, HardMax = 1, IsUsingTopPartyResources = false}
+				{ BaseID = "SpiderBodyguards", HardMin = 1, HardMax = 1, IsUsingTopPartyResources = false }
 			]
 		}
 	},
@@ -124,7 +124,7 @@ local units = [
 		Cost = 50,
 		StaticDefs = {
 			Parties = [
-				{BaseID = "SpiderBodyguards", HardMin = 2, HardMax = 2, IsUsingTopPartyResources = false}
+				{ BaseID = "SpiderBodyguards", HardMin = 2, HardMax = 2, IsUsingTopPartyResources = false }
 			]
 		}
 	},
@@ -135,7 +135,7 @@ local units = [
 		Cost = 50,
 		StaticDefs = {
 			Parties = [
-				{BaseID = "DirewolfBodyguards", HardMin = 1, HardMax = 1, IsUsingTopPartyResources = false}
+				{ BaseID = "DirewolfBodyguards", HardMin = 1, HardMax = 1, IsUsingTopPartyResources = false }
 			]
 		}
 	},
@@ -146,7 +146,7 @@ local units = [
 		Cost = 50,
 		StaticDefs = {
 			Parties = [
-				{BaseID = "DirewolfBodyguards", HardMin = 2, HardMax = 2, IsUsingTopPartyResources = false}
+				{ BaseID = "DirewolfBodyguards", HardMin = 2, HardMax = 2, IsUsingTopPartyResources = false }
 			]
 		}
 	},

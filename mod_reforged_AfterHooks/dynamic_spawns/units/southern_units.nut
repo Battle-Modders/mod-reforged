@@ -28,7 +28,7 @@ local units = [
 		StartingResourceMin = 340, // In Vanilla they appear in a group of 340 cost
 		StaticDefs = {
 			Parties = [
-				{BaseID = "MortarEngineers", IsUsingTopPartyResources = false}
+				{ BaseID = "MortarEngineers", IsUsingTopPartyResources = false }
 			]
 		}
 	},
