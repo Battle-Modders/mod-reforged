@@ -349,12 +349,12 @@
 		IconDisabled = "ui/perks/perk_rf_tempo_sw.png"
 	},
 	{
-		ID = "perk.rf_kata",
-		Script = "scripts/skills/perks/perk_rf_kata",
-		Name = ::Const.Strings.PerkName.RF_Kata,
-		Tooltip = ::Const.Strings.PerkDescription.RF_Kata,
-		Icon = "ui/perks/perk_rf_kata.png",
-		IconDisabled = "ui/perks/perk_rf_kata_sw.png"
+		ID = "perk.rf_passing_step",
+		Script = "scripts/skills/perks/perk_rf_passing_step",
+		Name = ::Const.Strings.PerkName.RF_PassingStep,
+		Tooltip = ::Const.Strings.PerkDescription.RF_PassingStep,
+		Icon = "ui/perks/perk_rf_passing_step.png",
+		IconDisabled = "ui/perks/perk_rf_passing_step_sw.png"
 	},
 	{
 		ID = "perk.rf_en_garde",

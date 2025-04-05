@@ -123,7 +123,6 @@
 	RF_Supporter = "Supporter",
 	InspiringPresence = "Inspiring Presence",
 	RF_IronSights = "Iron Sights",
-	RF_Kata = "Passing Step", // TODO: Change the keys and filenames when doing a save-incompatible build
 	RF_Kingfisher = "Kingfisher",
 	RF_KingOfAllWeapons = "King of all Weapons",
 	RF_Legatus = "Legatus",
@@ -139,6 +138,7 @@
 	RF_NailedIt = "Nailed It",
 	RF_OffhandTraining = "Offhand Training",
 	RF_Opportunist = "Opportunist",
+	RF_PassingStep = "Passing Step",
 	RF_PatternRecognition = "Pattern Recognition",
 	RF_Phalanx = "Phalanx",
 	RF_PowerShot = "Power Shot",
@@ -683,7 +683,7 @@ local vanillaDescriptions = [
 				{
 					Type = ::UPD.EffectType.Active,
 					Description = [
-						"Unlocks the [Passing Step|Skill+rf_kata_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost but " + ::MSU.Text.colorNegative("+2") + " [Fatigue|Concept.Fatigue] cost.",
+						"Unlocks the [Passing Step|Skill+rf_passing_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost but " + ::MSU.Text.colorNegative("+2") + " [Fatigue|Concept.Fatigue] cost.",
 						"The target tile for the movement must be adjacent to an enemy.",
 						"Requires a cutting attack from a two-handed or double-gripped sword."
 					]
@@ -1304,7 +1304,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Skills build up " + ::MSU.Text.colorPositive("20%") + " less [Fatigue|Concept.Fatigue] and gain " + ::MSU.Text.colorPositive("+10%") + " chance to hit.",
-				"The Damage Type requirement from [Passing Step|Skill+rf_kata_step_skill] is removed.",
+				"The Damage Type requirement from [Passing Step|Skill+rf_passing_step_skill] is removed.",
 				"When using a one-handed fencing sword, the [Action Point|Concept.ActionPoints] costs of [Sword Thrust,|Skill+rf_sword_thrust_skill] [Riposte|Skill+riposte] and [Lunge|Skill+lunge_skill] are reduced by " + ::MSU.Text.colorPositive(1) + ".",
 				"When using a two-handed fencing sword, the range of [Lunge|Skill+lunge_skill] is increased by " + ::MSU.Text.colorPositive(1) + " tile."
 			]
@@ -1498,18 +1498,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
 	}),
-	RF_Kata = ::UPD.getDescription({
-		Fluff = "Practiced footwork allows you to dance around your opponents!",
-		Requirement = "Sword",
-		Effects = [{
-			Type = ::UPD.EffectType.Active,
-			Description = [
-				"Unlocks the [Passing Step|Skill+rf_kata_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of movement.",
-				"The target tile for the movement must be adjacent to an enemy.",
-				"Only works with Two-Handed swords or with One-Handed swords with the offhand free."
-			]
-		}]
-	}),
 	RF_Kingfisher = ::UPD.getDescription({
 		Fluff = "\'Teach a man to fish and he'll be worth his salt to the end of his days.\'",
 		Requirement = "Throwing Net",
@@ -1672,6 +1660,18 @@ foreach (vanillaDesc in vanillaDescriptions)
 				"The first two throwing attacks during a battle have their [Action Point|Concept.ActionPoints] costs " + ::MSU.Text.colorPositive("halved") + ". This effect only lasts until the end of your second [turn.|Concept.Turn]",
 				"When using a throwing weapon which uses ammo, whenever you end your movement over an enemy\'s corpse during your [turn,|Concept.Turn] recover " + ::MSU.Text.colorPositive(1) + " ammo. Immediately afterward, the next throwing attack costs " + ::MSU.Text.colorPositive("no") + " [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive("50%") + " less [Fatigue.|Concept.Fatigue]",
 				"A corpse can only be used once per combat and cannot be used by multiple characters with this perk."
+			]
+		}]
+	}),
+	RF_PassingStep = ::UPD.getDescription({
+		Fluff = "Practiced footwork allows you to dance around your opponents!",
+		Requirement = "Sword",
+		Effects = [{
+			Type = ::UPD.EffectType.Active,
+			Description = [
+				"Unlocks the [Passing Step|Skill+rf_passing_step_skill] skill which, immediately after a successful attack, allows you to move one tile ignoring [Zone of Control|Concept.ZoneOfControl] with reduced [Action Point|Concept.ActionPoints] cost and [Fatigue|Concept.Fatigue] cost of movement.",
+				"The target tile for the movement must be adjacent to an enemy.",
+				"Only works with Two-Handed swords or with One-Handed swords with the offhand free."
 			]
 		}]
 	}),
@@ -1907,8 +1907,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Gain additional [Initiative|Concept.Initiative] equal to the armor ignore percentage of your equipped sword.",
 				"When using a non-fencing sword, the [Action Point|Concept.ActionPoints] cost of non-AOE skills is reduced by " + ::MSU.Text.colorPositive(1) + " and these skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue.|Concept.Fatigue]",
-				"Allows [Passing Step|Skill+rf_kata_step_skill] to be usable even while holding something, e.g. a shield, in your offhand.",
-				"[Passing Step|Skill+rf_kata_step_skill] costs " + ::MSU.Text.colorPositive(2) + " fewer [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive(2) + " less [Fatigue,|Concept.Fatigue] both down to a minimum of 0."
+				"Allows [Passing Step|Skill+rf_passing_step_skill] to be usable even while holding something, e.g. a shield, in your offhand.",
+				"[Passing Step|Skill+rf_passing_step_skill] costs " + ::MSU.Text.colorPositive(2) + " fewer [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive(2) + " less [Fatigue,|Concept.Fatigue] both down to a minimum of 0."
 			]
 		}],
 		Footer = ::MSU.Text.colorNegative("You can only pick ONE perk from the Swordmaster perk group.")

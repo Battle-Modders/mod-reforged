@@ -113,7 +113,7 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
 			{
-				this.m.Skills.removeByID("actives.rf_kata_step_skill");
+				this.m.Skills.removeByID("actives.rf_passing_step_skill");
 			}
 		}
 	}

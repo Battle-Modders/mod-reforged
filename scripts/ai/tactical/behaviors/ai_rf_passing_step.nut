@@ -1,10 +1,10 @@
-this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
+this.ai_rf_passing_step <- ::inherit("scripts/ai/tactical/behavior", {
 	m = {
 		TargetTile = null,
 		Reason = "", // Printed if VerboseMode is true
 		MaxPathLength = 3,
 		PossibleSkills = [
-			"actives.rf_kata_step",
+			"actives.rf_passing_step",
 			"actives.rf_move_under_cover",
 			"actives.footwork",
 			"actives.rf_gain_ground"
@@ -13,8 +13,8 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 	},
 	function create()
 	{
-		this.m.ID = ::Const.AI.Behavior.ID.RF_KataStep;
-		this.m.Order = ::Const.AI.Behavior.Order.RF_KataStep;
+		this.m.ID = ::Const.AI.Behavior.ID.RF_PassingStep;
+		this.m.Order = ::Const.AI.Behavior.Order.RF_PassingStep;
 		this.m.IsThreaded = true;
 		this.behavior.create();
 	}
@@ -350,14 +350,14 @@ this.ai_rf_kata_step <- ::inherit("scripts/ai/tactical/behavior", {
 		if (bestPath.Tiles[0].isSameTileAs(myTile))
 		{
 			if (::Const.AI.VerboseMode)
-				::logInfo("* KataStep: It is best to stay on my tile.");
+				::logInfo("* PassingStep: It is best to stay on my tile.");
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		this.m.Reason = bestPath.Reason;
 		this.m.TargetTile = bestPath.Tiles[0];
 
-		return ::Const.AI.Behavior.Score.RF_KataStep * score * bestPath.Score * ::Math.minf(2.0, 1.0 / this.getProperties().OverallDefensivenessMult);
+		return ::Const.AI.Behavior.Score.RF_PassingStep * score * bestPath.Score * ::Math.minf(2.0, 1.0 / this.getProperties().OverallDefensivenessMult);
 	}
 
 	function onExecute( _entity )

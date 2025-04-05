@@ -36,7 +36,7 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
-		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_kata", function(o) {
+		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_passing_step", function(o) {
 			o.m.RequiredDamageType = null;
 			o.m.RequiredWeaponType = null;
 			o.m.RequireOffhandFree = false;
