@@ -1,6 +1,6 @@
 this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsSpent = true,
+		IsInEffect = false,
 		DirectDamageAddModifier = 0.2,
 		RangedSkillModifier = 20
 	},
@@ -16,7 +16,7 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.IsSpent || !this.isEnabled();
+		return !this.m.IsInEffect || !this.isEnabled();
 	}
 
 	function getTooltip()
@@ -52,7 +52,7 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (this.m.IsSpent || !this.isSkillValid(_skill))
+		if (!this.m.IsInEffect || !this.isSkillValid(_skill))
 			return;
 
 		local weapon = _skill.getItem();
@@ -69,23 +69,23 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 
 	function onPayForItemAction( _skill, _items )
 	{
-		this.m.IsSpent = true;
+		this.m.IsInEffect = false;
 	}
 
 	function onMovementFinished( _tile )
 	{
-		this.m.IsSpent = true;
+		this.m.IsInEffect = false;
 	}
 
 	function onTurnStart()
 	{
-		this.m.IsSpent = false;
+		this.m.IsInEffect = true;
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.IsSpent = true;
+		this.m.IsInEffect = false;
 	}
 
 	function isSkillValid( _skill )
