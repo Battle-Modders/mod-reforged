@@ -16,20 +16,7 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		if (this.m.IsSpent)
-			return true;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null)
-			return true;
-
-		foreach (s in weapon.getSkills())
-		{
-			if (this.isSkillValid(s))
-				return false;
-		}
-
-		return true;
+		return this.m.IsSpent || !this.isEnabled();
 	}
 
 	function getTooltip()
@@ -42,7 +29,7 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Crossbow shots have " + ::MSU.Text.colorizeMult(1.0 + this.m.DirectDamageAddModifier, {AddSign = true}) + " armor penetration")
+				text = ::Reforged.Mod.Tooltips.parseString("Crossbows have " + ::MSU.Text.colorizeMult(1.0 + this.m.DirectDamageAddModifier, {AddSign = true}) + " armor penetration")
 			});
 		}
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
@@ -51,7 +38,7 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Firearm shots have " + ::MSU.Text.colorizeValue(this.m.RangedSkillModifier, {AddSign = true, AddPercent = true}) + " chance to hit")
+				text = ::Reforged.Mod.Tooltips.parseString("Firearms have " + ::MSU.Text.colorizeValue(this.m.RangedSkillModifier, {AddSign = true, AddPercent = true}) + " chance to hit")
 			});
 		}
 
@@ -59,7 +46,7 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon moving or changing your weapon")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon moving or swapping any item")
 		});
 	}
 
@@ -108,5 +95,20 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 
 		local weapon = _skill.getItem();
 		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Crossbow | ::Const.Items.WeaponType.Firearm);
+	}
+
+	function isEnabled()
+	{
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon == null)
+			return false;
+
+		foreach (s in weapon.getSkills())
+		{
+			if (this.isSkillValid(s))
+				return true;
+		}
+
+		return false;
 	}
 });

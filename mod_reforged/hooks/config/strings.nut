@@ -1840,7 +1840,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"If you have not moved from your position during your [turn|Concept.Turn], the first ranged attack from crossbows has " + ::MSU.Text.colorPositive("+20%") + " armor penetration and that from firearms has " + ::MSU.Text.colorPositive("+20%") + " chance to hit."
+				"If you have not moved from your position during your [turn|Concept.Turn], ranged attacks from crossbows have " + ::MSU.Text.colorPositive("+20%") + " armor penetration and those from firearms have " + ::MSU.Text.colorPositive("+20%") + " chance to hit."
 			]
 		}]
 	}),
