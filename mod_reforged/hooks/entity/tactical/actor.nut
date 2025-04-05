@@ -1,6 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
 	q.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
 	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
+	q.m.RF_CanDropLoot <- true; // Is set to false during onDeath if Players+PlayerAnimals did not do enough damage to this entity
 
 	q.create = @(__original) function()
 	{
@@ -246,7 +247,7 @@
 
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
-		__original(_killer, _skill, _tile, _fatalityType);
+		local playerRelevantDamage = 0.0;
 
 		// The following is an override of the XP gain system. We award XP based on ratio of total damage dealt to an entity.
 
@@ -261,6 +262,8 @@
 
 		if (::Const.Faction.Player in this.m.RF_DamageReceived)
 		{
+			playerRelevantDamage += this.m.RF_DamageReceived[::Const.Faction.Player].Total;
+
 			local XPavailable = this.getXPValue() * this.m.RF_DamageReceived[::Const.Faction.Player].Total / this.m.RF_DamageReceived.Total;
 			local XPkiller = XPavailable * ::Const.XP.XPForKillerPct; // This will be divided among all bros who did damage. The rest will be divided equally among other bros.
 			local XPgroup = ::Math.max(1, ::Math.floor((XPavailable - XPkiller) / bros.len()));
@@ -282,6 +285,8 @@
 
 		if (::Const.Faction.PlayerAnimals in this.m.RF_DamageReceived)
 		{
+			playerRelevantDamage +=  this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total;
+
 			local XPgroup = (this.getXPValue() * this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total / this.m.RF_DamageReceived.Total) * (1.0 - ::Const.XP.XPForKillerPct);
 			XPgroup = ::Math.max(1, ::Math.floor(XPgroup / bros.len()));
 
@@ -291,5 +296,29 @@
 					bro.addXP(XPgroup);
 			}
 		}
+
+		this.m.RF_CanDropLoot = ::isKindOf(this, "player") || playerRelevantDamage / this.m.RF_DamageReceived.Total >= 0.5;
+
+		__original(_killer, _skill, _tile, _fatalityType);
 	}
+});
+
+::Reforged.QueueBucket.Late.push(function() {
+	::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
+		q.getLootForTile = @(__original) function( _killer, _loot )
+		{
+			// Change _killer to null to guarantee loot drop as vanilla checks for killer being null or belonging to Player or PlayerAnimals faction.
+			// Warning: this may be problematic for a mod that hooks this function and expects _killer to be the actual killer.
+			// Note: We do this in Late bucket so that mods that queue their hookTree after Reforged still receive the null _killer.
+			return this.m.RF_CanDropLoot ? __original(null, _loot) : [];
+		}
+
+		q.dropLoot = @(__original) function( _tile, _loot, _flip = false )
+		{
+			// This ensures that loot added to getLootForTile by other mods not considering Reforged restrictions
+			// still doesn't drop as long as our requirements aren't fulfilled.
+			if (this.m.RF_CanDropLoot)
+				__original(_tile, _loot, _flip = false);
+		}
+	});
 });
