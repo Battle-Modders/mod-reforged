@@ -6,7 +6,7 @@ this.pg_rf_crossbow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		this.m.Name = "Crossbow";
 		this.m.Icon = "ui/perk_groups/rf_crossbow.png";
 		this.m.Tree = [
-			["perk.rf_power_shot"],
+			["perk.rf_steady_brace"],
 			[],
 			[],
 			["perk.mastery.crossbow"],

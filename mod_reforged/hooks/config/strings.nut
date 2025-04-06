@@ -141,7 +141,6 @@
 	RF_PassingStep = "Passing Step",
 	RF_PatternRecognition = "Pattern Recognition",
 	RF_Phalanx = "Phalanx",
-	RF_PowerShot = "Power Shot",
 	RF_Professional = "Professional",
 	RF_PromisedPotential = "Promised Potential",
 	RF_Onslaught = "Onslaught",
@@ -155,6 +154,7 @@
 	RF_ShieldSergeant = "Shield Sergeant",
 	RF_SmallTarget = "Small Target",
 	RF_SoulLink = "Soul Link",
+	RF_SteadyBrace = "Steady Brace",
 	RF_StrengthInNumbers = "Strength in Numbers",
 	RF_SurvivalInstinct = "Survival Instinct",
 	RF_SweepingStrikes = "Sweeping Strikes",
@@ -1698,16 +1698,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 			]
 		}]
 	}),
-	RF_PowerShot = ::UPD.getDescription({
-		Fluff = "Learn where to aim to hinder your enemies the most!",
-		Requirement = "Crossbow or Firearm",
-		Effects = [{
-			Type = ::UPD.EffectType.Passive,
-			Description = [
-				"Attacks from crossbows and firearms have a " + ::MSU.Text.colorPositive("50%") + " chance to inflict [staggered|Skill+staggered_effect] for one [turn.|Concept.Turn]"
-			]
-		}]
-	}),
 	RF_Professional = ::UPD.getDescription({
 		Fluff = "You\'re a professional, experienced fighter!",
 		Effects = [{
@@ -1855,6 +1845,16 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Link your soul with adjacent allies redirecting a portion of all incoming damage to [Hitpoints|Concept.Hitpoints] to a random adjacent ally. Does not work with allies that also have this perk."
+			]
+		}]
+	}),
+	RF_SteadyBrace = ::UPD.getDescription({
+		Fluff = "Hold your ground and take your time to line up a more accurate shot.",
+		Requirement = "Crossbow or Firearm",
+		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"If you have not moved from your position during your [turn|Concept.Turn], ranged attacks from crossbows have " + ::MSU.Text.colorPositive("+20%") + " armor penetration and those from firearms have " + ::MSU.Text.colorPositive("+20%") + " chance to hit."
 			]
 		}]
 	}),
