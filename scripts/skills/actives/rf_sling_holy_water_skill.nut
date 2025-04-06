@@ -12,4 +12,4 @@ local create = obj.create;
 	}
 });
 
-this.rf_sling_acid_flask_skill <- ::inherit("scripts/skills/actives/throw_holy_water", obj);
+this.rf_sling_holy_water_skill <- ::inherit("scripts/skills/actives/throw_holy_water", obj);

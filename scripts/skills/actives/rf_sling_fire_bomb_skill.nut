@@ -12,4 +12,4 @@ local create = obj.create;
 	}
 });
 
-this.rf_sling_acid_flask_skill <- ::inherit("scripts/skills/actives/throw_fire_bomb_skill", obj);
+this.rf_sling_fire_bomb_skill <- ::inherit("scripts/skills/actives/throw_fire_bomb_skill", obj);
