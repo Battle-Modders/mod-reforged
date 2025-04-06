@@ -1948,7 +1948,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_SwordmasterJuggernaut = ::UPD.getDescription({
 		Fluff = "There\'s a fine line between bravery and stupidity.",
-		Requirement = "Two-Handed Sword"
+		Requirement = "Two-Handed Non-Fencing Sword"
 		Effects = [
 			{
 				Type = ::UPD.EffectType.Active,
