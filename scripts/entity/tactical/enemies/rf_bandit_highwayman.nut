@@ -98,13 +98,13 @@ this.rf_bandit_highwayman <- ::inherit("scripts/entity/tactical/human", {
 			{
 				this.m.Items.equip(::new(armor));
 
-				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
+				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier2)
 				{
 					local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
 						Apply = function ( _script, _weight )
 						{
 							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
-							if (conditionModifier > 40) return 0.0;
+							if (conditionModifier < 30 || conditionModifier >= 40) return 0.0;
 							return _weight;
 						}
 					})
