@@ -90,19 +90,6 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 			}
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
-		{
-			local armor = ::Reforged.ItemTable.BanditArmorTough.roll({
-				Apply = function ( _script, _weight )
-				{
-					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 35 || conditionMax > 55) return 0.0;
-					return _weight;
-				}
-			})
-			this.m.Items.equip(::new(armor));
-		}
-
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 20)
 		{
 			local helmet = ::Reforged.ItemTable.BanditHelmetTough.roll({
