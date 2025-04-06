@@ -136,13 +136,13 @@
 		}
 
 		local bodyItem = this.getBodyItem();
-		if (bodyItem != null && !bodyItem.isItemType(::Const.Items.ItemType.Named) && ::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
+		if (bodyItem != null && !bodyItem.isItemType(::Const.Items.ItemType.Named) && ::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier2)
 		{
 			local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
-					if (conditionModifier > 40) return 0.0;
+					if (conditionModifier < 30) return 0.0;
 					return _weight;
 				}
 			});

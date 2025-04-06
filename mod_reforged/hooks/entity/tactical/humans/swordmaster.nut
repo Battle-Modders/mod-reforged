@@ -71,14 +71,21 @@
 
 			if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier3)
 			{
-				local armorAttachment = ::MSU.Class.WeightedContainer([
-					[1, "scripts/items/armor_upgrades/direwolf_pelt_upgrade"],
-					[1, "scripts/items/armor_upgrades/leather_shoulderguards_upgrade"],
-					[1, "scripts/items/armor_upgrades/double_mail_upgrade"]
-				]).roll();
+				local armorAttachment;
+				if (this.m.MyArmorVariant == 0) // light armor
+				{
+					armorAttachment = ::MSU.Class.WeightedContainer([
+						[1, "scripts/items/armor_upgrades/direwolf_pelt_upgrade"],
+						[1, "scripts/items/armor_upgrades/leather_shoulderguards_upgrade"],
+						[1, "scripts/items/armor_upgrades/double_mail_upgrade"]
+					]).roll();
+				}
+				else
+				{
+					armorAttachment = "scripts/items/armor_upgrades/direwolf_pelt_upgrade";
+				}
 
-				if (armorAttachment != null)
-					this.getBodyItem().setUpgrade(::new(armorAttachment));
+				this.getBodyItem().setUpgrade(::new(armorAttachment));
 			}
 		}
 

@@ -93,8 +93,8 @@ this.rf_fencer <- ::inherit("scripts/entity/tactical/human" {
 		{
 			bodyItem.setUpgrade(::new(::MSU.Class.WeightedContainer([
 				[1, "scripts/items/armor_upgrades/direwolf_pelt_upgrade"],
-				[1, "scripts/items/armor_upgrades/leather_shoulderguards_upgrade"],
-				[1, "scripts/items/armor_upgrades/double_mail_upgrade"]
+				[2, "scripts/items/armor_upgrades/leather_shoulderguards_upgrade"],
+				[2, "scripts/items/armor_upgrades/double_mail_upgrade"]
 			]).roll()));
 		}
 	}
