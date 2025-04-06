@@ -1,6 +1,7 @@
 local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.SkeletonFrontline",
+		TierWidth = 2,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.SkeletonLight" },
@@ -12,6 +13,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.SkeletonBackline",
+		TierWidth = 2,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.RF_SkeletonLightElitePolearm" },  // added for balanced spawns and upgrading compared to Frontline

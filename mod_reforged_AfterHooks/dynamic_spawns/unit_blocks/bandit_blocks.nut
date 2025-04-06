@@ -1,6 +1,7 @@
 local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.BanditBalanced",
+		TierWidth = 2,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.RF_BanditScoundrel" },
@@ -12,6 +13,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditFast",
+		TierWidth = 2,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.RF_BanditRobber" }, // added for balanced spawns and upgrading compared to Balanced, Tough and Ranged
@@ -23,6 +25,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditTough",
+		TierWidth = 2,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.BanditThug" },
@@ -34,6 +37,7 @@ local unitBlocks = [
 	},
 	{
 		ID = "UnitBlock.RF.BanditRanged",
+		TierWidth = 2,
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.BanditMarksmanLOW" },
