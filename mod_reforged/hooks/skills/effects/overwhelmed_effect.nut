@@ -1,8 +1,9 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/overwhelmed_effect", function(q) {
 	q.onUpdate = @() function( _properties )
 	{
-		_properties.MeleeSkillMult = ::Math.maxf(0.0, _properties.MeleeSkillMult - 0.1 * this.m.Count);
-		_properties.RangedSkillMult = ::Math.maxf(0.0, _properties.RangedSkillMult - 0.1 * this.m.Count);
+		local hitchanceMult = 1.0 - this.m.Count * 0.1;
+		_properties.MeleeSkillMult *= hitchanceMult;
+		_properties.RangedSkillMult *= hitchanceMult;
 	}
 
 	q.onRefresh = @(__original) function()
