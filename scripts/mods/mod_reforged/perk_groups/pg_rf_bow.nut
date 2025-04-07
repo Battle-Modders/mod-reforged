@@ -21,7 +21,7 @@ this.pg_rf_bow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		local ret = 0.8;
 		local rSkill = _perkTree.getProjectedAttributesAvg()[::Const.Attributes.RangedSkill];
 
-		return rSkill < 80 ? ret * 0.5 : ret + 0.04 * ::Math.max(0, rSkill - 80);
+		return rSkill < 80 ? ret * 0.5 : ret + 0.2 * ::Math.max(0, rSkill - 80);
 	}
 
 	function getPerkGroupMultiplier( _groupID, _perkTree )
