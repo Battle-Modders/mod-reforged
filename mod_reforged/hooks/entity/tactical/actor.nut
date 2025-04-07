@@ -219,7 +219,7 @@
 
 		local difficulty = ::Const.Morale.AllyFleeingBaseDifficulty - _actor.getXPValue() * ::Const.Morale.AllyFleeingXPMult * xpRatioMult + ::Math.pow(_actor.getTile().getDistanceTo(this.getTile()), ::Const.Morale.AllyFleeingDistancePow);
 
-		foreach (i, faction in ::Tactical.getAllInstances())
+		foreach (i, faction in ::Tactical.Entities.getAllInstances())
 		{
 			if (this.isAlliedWith(i))
 			{
