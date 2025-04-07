@@ -932,7 +932,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Once per [turn,|Concept.Turn] killing an opponent reduces current [Fatigue|Concept.Fatigue] by " + ::MSU.Text.colorPositive("15%") + " of [Base|Concept.BaseAttribute] [Maximum Fatigue.|Concept.MaximumFatigue]"
+				"Once per [turn,|Concept.Turn] killing an opponent reduces current [Fatigue|Concept.Fatigue] by " + ::MSU.Text.colorPositive("10%") + " of [Base|Concept.BaseAttribute] [Maximum Fatigue.|Concept.MaximumFatigue]"
 			]
 		}]
 	}),
