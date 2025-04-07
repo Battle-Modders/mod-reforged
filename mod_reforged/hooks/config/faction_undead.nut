@@ -72,6 +72,24 @@
 	],
 	DamageTotalMult = 1.35
 });
+::MSU.Table.merge(::Const.Tactical.Actor.GrandDiviner, {
+	XP = 500,
+	ActionPoints = 9,
+	Hitpoints = 115,
+	Bravery = 130,
+	Stamina = 110,
+	MeleeSkill = 80,
+	RangedSkill = 0,
+	MeleeDefense = 15,
+	RangedDefense = 35, // vanilla 20
+	Initiative = 105,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	]
+});
 
 // New Reforged Actors
 ::Const.Tactical.Actor.RF_SkeletonDecanus <- {
