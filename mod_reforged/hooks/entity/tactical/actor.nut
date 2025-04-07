@@ -223,7 +223,7 @@
 		{
 			if (this.isAlliedWith(i))
 			{
-				difficulty += faction.filter(@(_a) _a.getMoraleState() != ::Const.MoraleState.Fleeing).len() * ::Const.Morale.RF_AllyFleeingBraveryModifierPerAlly;
+				difficulty += faction.filter(@(_, _a) _a.getMoraleState() != ::Const.MoraleState.Fleeing).len() * ::Const.Morale.RF_AllyFleeingBraveryModifierPerAlly;
 			}
 		}
 		// Remove the bonus from counting the actor himself which got added above
