@@ -14,10 +14,10 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.NobleRanged", RatioMax = 0.30,
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.75; }
 				},
-				{ BaseID = "UnitBlock.RF.NobleElite",  RatioMax = 0.20 },
+				{ BaseID = "UnitBlock.RF.NobleElite",  RatioMax = 0.20, PartySizeMin = 15 }, // vanilla greatswords spawn at 19+
 				{ BaseID = "UnitBlock.RF.NobleSupport", RatioMax = 0.2, HardMax = 2,  PartySizeMin = 9, ExclusionChance = 0.05 },
-				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMax = 0.2, HardMax = 2,  PartySizeMin = 8, ExclusionChance = 0.3 },
-				{ BaseID = "UnitBlock.RF.NobleLeader", HardMax = 2, PartySizeMin = 10 },
+				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMax = 0.2, HardMax = 2,  PartySizeMin = 10, ExclusionChance = 0.3 }, // vanilla sergeants spawn at 8+
+				{ BaseID = "UnitBlock.RF.NobleLeader", HardMax = 2, PartySizeMin = 18 }, // vanilla knights spawn at 18+
 				{ BaseID = "UnitBlock.RF.NobleFlank", RatioMax = 0.25, HardMax = 3, ExclusionChance = 0.4 }
 			]
 		}
@@ -57,8 +57,8 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.NobleFrontline", RatioMin = 0.40, RatioMax = 0.60, DeterminesFigure = false },
 				{ BaseID = "UnitBlock.RF.NobleBackline", RatioMin = 0.00, RatioMax = 0.40, DeterminesFigure = false },
 				{ BaseID = "UnitBlock.RF.NobleRanged", RatioMin = 0.00, RatioMax = 0.30, DeterminesFigure = false },
-				{ BaseID = "UnitBlock.RF.NobleElite", RatioMin = 0.00, RatioMax = 0.20, DeterminesFigure = false },
-				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMin = 0.00, RatioMax = 0.05, PartySizeMin = 10, DeterminesFigure = false, function canUpgrade() { return false; } },  // Vanilla: spawns at 12, at 15 and at 18 once respectively
+				{ BaseID = "UnitBlock.RF.NobleElite", RatioMin = 0.00, RatioMax = 0.20, PartySizeMin = 16, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.NobleOfficer", RatioMin = 0.00, RatioMax = 0.05, PartySizeMin = 12, DeterminesFigure = false, function canUpgrade() { return false; } },  // Vanilla: spawns at 12, at 15 and at 18 once respectively
 				{ BaseID = "UnitBlock.RF.NobleDonkey", RatioMin = 0.01, RatioMax = 0.08, PartySizeMin = 13 }	// Vanilla: second donkey spawns at 14+
 			]
 		}
