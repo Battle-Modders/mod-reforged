@@ -81,8 +81,6 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 				{
 					_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));
 				}
-
-				_targetEntity.getSkills().add(effect);
 			}
 		}
 		else // Set our target
