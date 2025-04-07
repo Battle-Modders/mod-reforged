@@ -1,7 +1,7 @@
 this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsInEffect = false,
-		DirectDamageAddModifier = 0.2,
+		DamageDirectAddModifier = 0.2,
 		RangedSkillModifier = 20
 	},
 	function create()
@@ -29,7 +29,7 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Crossbows have " + ::MSU.Text.colorizeMult(1.0 + this.m.DirectDamageAddModifier, {AddSign = true}) + " armor penetration")
+				text = ::Reforged.Mod.Tooltips.parseString("Crossbows have " + ::MSU.Text.colorizeMult(1.0 + this.m.DamageDirectAddModifier, {AddSign = true}) + " armor penetration")
 			});
 		}
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
@@ -59,7 +59,7 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 
 		if (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow))
 		{
-			_properties.DirectDamageAdd += this.m.DirectDamageAddModifier;
+			_properties.DamageDirectAdd += this.m.DamageDirectAddModifier;
 		}
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
 		{
