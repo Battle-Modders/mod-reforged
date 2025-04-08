@@ -81,7 +81,7 @@ for (local index = (::Const.TipOfTheDay.len() - 1); index >= 0; index--)
 	"Morale Checks are harder for every adjacent enemy and easier for every adjacent ally.",
 	"Reforged: Click on an active contract to focus on its target on the world map, if it is known to you.",
 	"Reforged: Tavern rumors will never be about legendary locations you have already discovered.",
-	// "Reforged: Enemies will only drop loot if your faction has dealt at least 50% of the total damage received by that enemy." // This feature is removed due to mod compatibility issues, and should be re-included if we can find a good way.
+	"Reforged: Enemies will drop loot only if your faction has dealt at least 50% of the total damage received by that enemy, regardless of the killer.",
 	"Reforged: Experience from slain enemies is awarded depending on how much damage was dealt to them by your brothers.",
 	"If you see colorful squares, do NOT save the game or you might end up with a corrupted save file.",
 	"Reforged: Weapons worn by your characters will always drop and be recovered after the battle, even if they break."
