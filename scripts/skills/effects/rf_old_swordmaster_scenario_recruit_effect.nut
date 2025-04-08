@@ -158,15 +158,24 @@ this.rf_old_swordmaster_scenario_recruit_effect <- ::inherit("scripts/skills/eff
 		if (potentialPerks.len() != 0)
 		{
 			local chosenID = ::MSU.Array.rand(potentialPerks);
-			if (this.getContainer().hasSkill(chosenID))
+			local preExistingPerk = this.getContainer().getSkillByID(chosenID);
+
+			if (preExistingPerk != null && preExistingPerk.isRefundable())
 			{
 				actor.m.PerkPoints++;
 				actor.m.PerkPointsSpent--;
 			}
 
-			this.getContainer().add(::Reforged.new(::Const.Perks.findById(chosenID).Script, function(o) {
-				o.m.IsRefundable = false;
-			}))
+			if (preExistingPerk != null && preExistingPerk.isSerialized())
+			{
+				preExistingPerk.m.IsRefundable = false;
+			}
+			else
+			{
+				this.getContainer().add(::Reforged.new(::Const.Perks.findById(chosenID).Script, function(o) {
+					o.m.IsRefundable = false;
+				}));
+			}
 
 			this.m.FreePerksGainedIDs.push(chosenID);
 		}
