@@ -41,6 +41,8 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		if (!_item.isItemType(::Const.Items.ItemType.Weapon))
 			return;
 
+		this.m.PerksAdded.clear();
+
 		local function hasSkill( _id )
 		{
 			if (this.getContainer().hasSkill(_id))
