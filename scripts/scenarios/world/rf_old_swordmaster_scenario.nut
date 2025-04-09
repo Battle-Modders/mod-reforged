@@ -82,6 +82,7 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 		::World.Assets.getStash().add(::new("scripts/items/weapons/arming_sword"));
 
 		bro.getSkills().add(::new("scripts/skills/effects/rf_old_swordmaster_scenario_avatar_effect"));
+		bro.getSkills().add(::new("scripts/skills/effects/rf_old_swordmaster_scenario_exhausted_effect"));
 		bro.getSkills().add(::new("scripts/skills/traits/old_trait"));
 
 		foreach (item in bro.getItems().getAllItems())
