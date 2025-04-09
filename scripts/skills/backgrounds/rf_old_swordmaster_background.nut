@@ -70,5 +70,22 @@ this.rf_old_swordmaster_background <- ::inherit("scripts/skills/backgrounds/swor
 				return 0;
 		}
 	}
+
+	function getTooltip()
+	{
+		local ret = this.swordmaster_background.getTooltip();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Is always content with being in reserve"
+		});
+		return ret;
+	}
+
+	function onUpdate( _properties )
+	{
+		_properties.IsContentWithBeingInReserve = true;
+	}
 });
 
