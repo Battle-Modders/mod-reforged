@@ -42,6 +42,8 @@ this.perk_rf_realized_potential <- ::inherit("scripts/skills/skill", {
 			b.Initiative += this.m.AttributeModifier;
 			b.Bravery += this.m.AttributeModifier;
 
+			::Math.seedRandom(actor.getUID() + ::toHash(this.getID()));
+
 			// Add new Perk Groups
 			local perkTree = actor.getPerkTree();
 			local exclude = this.m.ExcludedPerkGroups;
@@ -49,13 +51,15 @@ this.perk_rf_realized_potential <- ::inherit("scripts/skills/skill", {
 			{
 				for (local i = 0; i < numGroups; i++)
 				{
-					local newPerkGroup = category.getWeightedRandomPerkGroup(perkTree, @(_pgID) exclude.find(_pgID)) == null);
+					local newPerkGroup = ::DynamicPerks.PerkGroupCategories.findById(categoryID).getWeightedRandomPerkGroup(perkTree, @(_pgID) exclude.find(_pgID) == null);
 					if (newPerkGroup != null)
 					{
 						perkTree.addPerkGroup(newPerkGroup);
 					}
 				}
 			}
+
+			::Math.seedRandom(::Time.getRealTime());
 
 			// Adjust bro's perk tree so that no row is longer than 13 perks (so that it fits in the UI properly)
 			foreach (i, row in perkTree.getTree())
