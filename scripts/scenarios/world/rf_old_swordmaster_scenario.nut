@@ -9,6 +9,8 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 		this.m.Difficulty = 1;
 		this.m.Order = 1;
 		this.m.IsFixedLook = true;
+
+		this.m.RF_RebuildPerkTreeAfterSpawn = false;
 	}
 
 	function onInit()
