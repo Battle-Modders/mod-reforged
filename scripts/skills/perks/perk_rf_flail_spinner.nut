@@ -2,7 +2,11 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 	m = {
 		Chance = 50,
 		DamageMult = 0.5,
-		IsSpinningFlail = false
+		IsSpinningFlail = false,
+
+		// These two fields are used to make the extra attack non-lethal for NPC users
+		LastTargetID = null,
+		TargetWasAbleToDie = true
 	},
 	function create()
 	{
@@ -53,21 +57,7 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 						}
 
 						perk.m.IsSpinningFlail = true;
-						if (user.isPlayerControlled())
-						{
-							_skill.useForFree(_targetTile);
-						}
-						// Make it non-lethal for NPC users
-						// Hopefully this reduces/elminiates the cases where AI evaluation gets stuck due to killing someone with a delayed attack.
-						// Once a proper solution to that issue is found and implemented, this can be reverted.
-						else
-						{
-							// This implementation has a side-effect of preventing the target from receiving injuries.
-							local wasAbleToDie = targetEntity.m.IsAbleToDie;
-							targetEntity.m.IsAbleToDie = false;
-							_skill.useForFree(_targetTile);
-							targetEntity.m.IsAbleToDie = wasAbleToDie;
-						}
+						_skill.useForFree(_targetTile);
 						perk.m.IsSpinningFlail = false;
 					}
 
@@ -86,6 +76,30 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 					this.m.IsSpinningFlail = false;
 				}
 			}
+		}
+	}
+
+	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
+	{
+		this.m.LastTargetID = null;
+
+		// Make it non-lethal for NPC users
+		// Hopefully this reduces/elminiates the cases where AI evaluation gets stuck due to killing someone with a delayed attack.
+		// Once a proper solution to that issue is found and implemented, this can be reverted.
+		// This implementation has a side-effect of preventing the target from receiving injuries.
+		if (this.m.IsSpinningFlail && !this.getContainer().getActor().isPlayerControlled())
+		{
+			this.m.LastTargetID = _targetEntity.getID();
+			this.m.TargetWasAbleToDie = _targetEntity.m.IsAbleToDie;
+			_targetEntity.m.IsAbleToDie = false;
+		}
+	}
+
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	{
+		if (_targetEntity.getID() == this.m.LastTargetID)
+		{
+			_targetEntity.m.IsAbleToDie = this.m.TargetWasAbleToDie;
 		}
 	}
 
