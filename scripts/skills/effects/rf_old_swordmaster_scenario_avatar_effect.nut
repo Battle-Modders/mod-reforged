@@ -122,6 +122,23 @@ this.rf_old_swordmaster_scenario_avatar_effect <- ::inherit("scripts/skills/effe
 		return 0;
 	}
 
+	function MV_getPlayerPartyStrengthMult()
+	{
+		if (::world.Flags.has("RF_OldSwordmasterScenario_OldAgeEvent_4"))
+			return 1.0;
+
+		if (::world.Flags.has("RF_OldSwordmasterScenario_OldAgeEvent_3"))
+			return 2.5;
+
+		if (::world.Flags.has("RF_OldSwordmasterScenario_OldAgeEvent_2"))
+			return 2.0;
+
+		if (::world.Flags.has("RF_OldSwordmasterScenario_OldAgeEvent_1"))
+			return 3.0;
+
+		return 4.0;
+	}
+
 	function onUpdate( _properties )
 	{
 		this.rf_old_swordmaster_scenario_abstract_effect.onUpdate(_properties);

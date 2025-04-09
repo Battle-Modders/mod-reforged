@@ -153,6 +153,11 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 		return false;
 	}
 
+	function MV_getPlayerPartyStrengthMult()
+	{
+		return 2.0;
+	}
+
 	function onHired( _bro )
 	{
 		_bro.getSkills().add(::new("scripts/skills/effects/rf_old_swordmaster_scenario_recruit_effect"));
