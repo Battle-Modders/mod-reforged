@@ -1,18 +1,23 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_spetum", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/spetum";
 
+	q.create = @(__original) function()
+	{
+		__original();
+		// Vanilla 2800. Increased due to attacking twice with perk in Reforged.
+		this.m.Value = 3500;
+	}
+
 	q.onEquip = @() function()
 	{
 		this.named_weapon.onEquip();
 
-		local prong = ::Reforged.new("scripts/skills/actives/prong_skill", function(o) {
-			o.m.ActionPointCost -= 1;
-		});
+		local prong = ::new("scripts/skills/actives/prong_skill");
 
 		this.addSkill(prong);
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/spearwall", function(o) {
-			o.m.ActionPointCost += 1;
+			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 5;
 			o.m.Icon = "skills/active_124.png";
 			o.m.IconDisabled = "skills/active_124_sw.png";

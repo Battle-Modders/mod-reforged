@@ -18,7 +18,6 @@
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/thresh", function(o) {
-			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 			o.m.Icon = "skills/active_130.png";
 			o.m.IconDisabled = "skills/active_130_sw.png";
