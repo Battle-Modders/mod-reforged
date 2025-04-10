@@ -24,7 +24,6 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 			local perkGroups = [
 				"pg.rf_axe",
 				"pg.rf_cleaver",
-				"pg.rf_dagger",
 				"pg.rf_flail",
 				"pg.rf_hammer",
 				"pg.rf_mace",
