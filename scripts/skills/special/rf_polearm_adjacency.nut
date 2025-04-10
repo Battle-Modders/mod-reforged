@@ -36,7 +36,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("%s chance to hit per adjacent enemy%s", ::MSU.Text.colorizeValue(this.m.MeleeSkillModifierPerEnemy, {AddSign = true, AddPercent = true}), numIgnoreString))
+				text = ::Reforged.Mod.Tooltips.parseString(format("%s chance to hit per adjacent enemy with lower [Reach|Concept.Reach] than you%s", ::MSU.Text.colorizeValue(this.m.MeleeSkillModifierPerEnemy, {AddSign = true, AddPercent = true}), numIgnoreString))
 			});
 		}
 
@@ -76,6 +76,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 		local numAllies = 0;
 		local numEnemies = 0;
 		local myTile = user.getTile();
+		local myReach = user.getCurrentProperties().getReach();
 		for (local i = 0; i < 6; i++)
 		{
 			if (!myTile.hasNextTile(i)) continue;
@@ -83,8 +84,10 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 			if (!nextTile.IsOccupiedByActor) continue;
 
 			local nextEntity = nextTile.getEntity();
-			if (nextEntity.isAlliedWith(user)) numAllies++;
-			else numEnemies++;
+			if (nextEntity.isAlliedWith(user))
+				numAllies++;
+			else if (nextEntity.getCurrentProperties().getReach() < myReach)
+				numEnemies++;
 		}
 
 		return (this.m.MeleeSkillModifierPerAlly * ::Math.max(0, numAllies - this.m.NumAlliesToIgnore)) + (this.m.MeleeSkillModifierPerEnemy * ::Math.max(0, numEnemies - this.m.NumEnemiesToIgnore));
