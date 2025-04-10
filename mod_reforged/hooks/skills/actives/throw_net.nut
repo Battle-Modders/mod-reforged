@@ -21,6 +21,6 @@
 
 	q.onVerifyTarget = @(__original) function( _originTile, _targetTile )
 	{
-		return __original(_originTile, _targetTile) && !_targetTile.getEntity().getCurrentProperties().IsImmuneToRoot;
+		return __original(_originTile, _targetTile) && !_targetTile.getEntity().getCurrentProperties().IsImmuneToRoot && _targetTile.getEntity().getBaseProperties().Reach < ::Reforged.Reach.Default.BeastHuge;
 	}
 });
