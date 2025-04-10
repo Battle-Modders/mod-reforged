@@ -27,7 +27,7 @@ this.rf_shield_bash_skill <- ::inherit("scripts/skills/skill", {
 		this.m.HitChanceBonus = 25;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.ActionPointCost = 4;
-		this.m.FatigueCost = 20;
+		this.m.FatigueCost = 15;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Distract;
