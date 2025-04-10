@@ -24,7 +24,7 @@ this.rf_encourage_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.ActionPointCost = 3;
+		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 15;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 2;

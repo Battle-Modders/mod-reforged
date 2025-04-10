@@ -2,7 +2,7 @@ this.perk_rf_supporter <- ::inherit("scripts/skills/skill", {
 	m = {
 		// Config
 		MinDistanceAPRecovery = 1,
-		ActionPointsRecovered = 2,
+		ActionPointsRecovered = 3,
 
 		// Private
 		IsSpent = false,
