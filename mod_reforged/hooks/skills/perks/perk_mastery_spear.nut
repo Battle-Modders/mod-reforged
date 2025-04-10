@@ -40,10 +40,6 @@
 	{
 		__original(_properties);
 
-		local spearwall = this.getContainer().getSkillByID("actives.spearwall");
-		if (spearwall != null && spearwall.m.ActionPointCost > 0)
-			spearwall.m.ActionPointCost -= 1;
-
 		if (this.m.IsSpent)
 			return;
 
