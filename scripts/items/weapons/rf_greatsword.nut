@@ -41,12 +41,10 @@ this.rf_greatsword <- ::inherit("scripts/items/weapons/weapon", {
 		}.bindenv(this)));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/split", function(o) {
-			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/swing", function(o) {
-			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 		}));
 
