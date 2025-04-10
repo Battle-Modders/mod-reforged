@@ -15,7 +15,6 @@
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/round_swing", function(o) {
-			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 		}));
 
