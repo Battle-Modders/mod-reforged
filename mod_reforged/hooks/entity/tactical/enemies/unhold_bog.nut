@@ -48,7 +48,7 @@
 		this.m.Skills.add(::new("scripts/skills/actives/unstoppable_charge_skill"));
 
 		// Reforged
-		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge;
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;
 		b.RangedDefense += 10;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rattle"));
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_dismantle", function(o) {

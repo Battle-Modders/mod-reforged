@@ -6,7 +6,7 @@
 		this.grow(true);
 
 		// Reforged
-		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge + 1;
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge + 1;
 		this.getSkills().update()
 	}
 });
