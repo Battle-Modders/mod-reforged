@@ -9,6 +9,8 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 		this.m.Difficulty = 1;
 		this.m.Order = 1;
 		this.m.IsFixedLook = true;
+
+		this.m.RF_RebuildPerkTreeAfterSpawn = false;
 	}
 
 	function onInit()
@@ -82,6 +84,7 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 		::World.Assets.getStash().add(::new("scripts/items/weapons/arming_sword"));
 
 		bro.getSkills().add(::new("scripts/skills/effects/rf_old_swordmaster_scenario_avatar_effect"));
+		bro.getSkills().add(::new("scripts/skills/effects/rf_old_swordmaster_scenario_exhausted_effect"));
 		bro.getSkills().add(::new("scripts/skills/traits/old_trait"));
 
 		foreach (item in bro.getItems().getAllItems())
@@ -152,6 +155,11 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 		return false;
 	}
 
+	function MV_getPlayerPartyStrengthMult()
+	{
+		return 2.0;
+	}
+
 	function onHired( _bro )
 	{
 		_bro.getSkills().add(::new("scripts/skills/effects/rf_old_swordmaster_scenario_recruit_effect"));
@@ -210,7 +218,7 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 
 	function isRecruitValid( _bro )
 	{
-		return _bro.getBackground().onChangeAttributes().MeleeSkill[0] < 8;
+		return _bro.getBackground().getID() == "background.wildman" || _bro.getBackground().onChangeAttributes().MeleeSkill[0] < 8;
 	}
 });
 

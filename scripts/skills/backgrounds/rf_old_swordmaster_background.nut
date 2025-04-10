@@ -11,7 +11,11 @@ this.rf_old_swordmaster_background <- ::inherit("scripts/skills/backgrounds/swor
 			::Const.Attributes.RangedDefense
 		];
 		this.m.Excluded.extend([
-			"trait.fat"
+			"trait.fat",
+			"trait.survivor",
+			"trait.greedy",
+			"trait.loyal",
+			"trait.disloyal"
 		]);
 		this.m.BeardChance = 100;
 		this.m.Level = 3;
@@ -65,6 +69,23 @@ this.rf_old_swordmaster_background <- ::inherit("scripts/skills/backgrounds/swor
 			case "pg.rf_ranged":
 				return 0;
 		}
+	}
+
+	function getTooltip()
+	{
+		local ret = this.swordmaster_background.getTooltip();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Is always content with being in reserve"
+		});
+		return ret;
+	}
+
+	function onUpdate( _properties )
+	{
+		_properties.IsContentWithBeingInReserve = true;
 	}
 });
 

@@ -122,6 +122,11 @@ this.rf_old_swordmaster_scenario_avatar_effect <- ::inherit("scripts/skills/effe
 		return 0;
 	}
 
+	function MV_getPlayerPartyStrengthMult()
+	{
+		return 3.0;
+	}
+
 	function onUpdate( _properties )
 	{
 		this.rf_old_swordmaster_scenario_abstract_effect.onUpdate(_properties);
