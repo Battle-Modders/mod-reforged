@@ -67,6 +67,8 @@
 
 	q.getProjectedAttributesAvg <- function()
 	{
+		if (this.m.ProjectedAttributesAvg == null)
+			this.setupProjectedAttributesAvg();
 		return this.m.ProjectedAttributesAvg;
 	}
 

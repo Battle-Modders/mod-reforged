@@ -42,26 +42,19 @@ this.perk_rf_realized_potential <- ::inherit("scripts/skills/skill", {
 			b.Initiative += this.m.AttributeModifier;
 			b.Bravery += this.m.AttributeModifier;
 
+			::Math.seedRandom(actor.getUID() + ::toHash(this.getID()));
+
 			// Add new Perk Groups
 			local perkTree = actor.getPerkTree();
-			local exclude = clone this.m.ExcludedPerkGroups;
-
+			local exclude = this.m.ExcludedPerkGroups;
 			foreach (categoryID, numGroups in this.m.NewPerkGroups)
 			{
-				local category = ::DynamicPerks.PerkGroupCategories.findById(categoryID);
-				foreach (groupID in category.getGroups())
-				{
-					if (perkTree.hasPerkGroup(groupID))
-						exclude.push(groupID);
-				}
-
 				for (local i = 0; i < numGroups; i++)
 				{
-					local newPerkGroup = category.getRandomGroup(exclude);
+					local newPerkGroup = category.getWeightedRandomPerkGroup(perkTree, @(_pgID) exclude.find(_pgID)) == null);
 					if (newPerkGroup != null)
 					{
 						perkTree.addPerkGroup(newPerkGroup);
-						exclude.push(newPerkGroup);
 					}
 				}
 			}
