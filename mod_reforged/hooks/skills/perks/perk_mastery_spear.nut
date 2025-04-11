@@ -1,5 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_spear", function(q) {
 	q.m.IsSpent <- true;
+	q.m.TilesMoved <- 0;
+	q.m.MaxTilesAllowed <- 1;
 	q.m.FatigueCostMultMult <- 0.5;
 
 	q.create = @(__original) function()
@@ -28,7 +30,7 @@
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = "Will expire upon switching your weapon!"
+			text = "Will expire upon switching your weapon or moving" + (this.m.MaxTilesAllowed == 0 ? "" : "more than " + this.m.MaxTilesAllowed + " tile(s)")
 		});
 
 		return ret;
@@ -82,9 +84,19 @@
 		}
 	}
 
+	q.onMovementStarted = @(__original) function( _tile, _numTiles )
+	{
+		this.m.TilesMoved += _numTiles;
+		if (this.m.TilesMoved > this.m.MaxTilesAllowed)
+			this.m.IsSpent = true;
+		__original(_tile, _numTiles);
+	}
+
 	q.onTurnStart = @(__original) function()
 	{
 		__original();
+
+		this.m.TilesMoved = 0;
 
 		local actor = this.getContainer().getActor();
 		if (actor.isDisarmed())
@@ -99,6 +111,7 @@
 	{
 		__original();
 		this.m.IsSpent = true;
+		this.m.TilesMoved = 0;
 	}
 
 	q.isSkillValid <- function( _skill )
