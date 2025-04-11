@@ -44,16 +44,21 @@
 			return;
 
 		local actor = this.getContainer().getActor();
-
-		if (!actor.isPreviewing() || actor.getPreviewMovement() != null || !this.isSkillValid(actor.getPreviewSkill()))
+		if (actor.isPreviewing())
 		{
-			foreach (skill in this.getContainer().m.Skills)
+			if (actor.getPreviewMovement() != null && actor.getPreviewMovement().Tiles + this.m.TilesMoved >= this.m.MaxTilesAllowed)
+				return;
+
+			if (actor.getPreviewSkill() != null && this.isSkillValid(actor.getPreviewSkill()))
+				return;
+		}
+
+		foreach (skill in this.getContainer().m.Skills)
+		{
+			if (this.isSkillValid(skill))
 			{
-				if (this.isSkillValid(skill))
-				{
-					skill.m.ActionPointCost = 0;
-					skill.m.FatigueCostMult *= this.m.FatigueCostMultMult;
-				}
+				skill.m.ActionPointCost = 0;
+				skill.m.FatigueCostMult *= this.m.FatigueCostMultMult;
 			}
 		}
 	}
