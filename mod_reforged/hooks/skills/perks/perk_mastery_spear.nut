@@ -1,5 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_spear", function(q) {
 	q.m.IsSpent <- true;
+	q.m.TilesMoved <- 0;
+	q.m.MaxTilesAllowed <- 1;
 	q.m.FatigueCostMultMult <- 0.5;
 
 	q.create = @(__original) function()
@@ -28,7 +30,7 @@
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = "Will expire upon switching your weapon!"
+			text = "Will expire upon switching your weapon or moving" + (this.m.MaxTilesAllowed == 0 ? "" : "more than " + this.m.MaxTilesAllowed + " tile(s)")
 		});
 
 		return ret;
@@ -38,24 +40,25 @@
 	{
 		__original(_properties);
 
-		local spearwall = this.getContainer().getSkillByID("actives.spearwall");
-		if (spearwall != null && spearwall.m.ActionPointCost > 0)
-			spearwall.m.ActionPointCost -= 1;
-
 		if (this.m.IsSpent)
 			return;
 
 		local actor = this.getContainer().getActor();
-
-		if (!actor.isPreviewing() || actor.getPreviewMovement() != null || !this.isSkillValid(actor.getPreviewSkill()))
+		if (actor.isPreviewing())
 		{
-			foreach (skill in this.getContainer().m.Skills)
+			if (actor.getPreviewMovement() != null && actor.getPreviewMovement().Tiles + this.m.TilesMoved >= this.m.MaxTilesAllowed)
+				return;
+
+			if (actor.getPreviewSkill() != null && this.isSkillValid(actor.getPreviewSkill()))
+				return;
+		}
+
+		foreach (skill in this.getContainer().m.Skills)
+		{
+			if (this.isSkillValid(skill))
 			{
-				if (this.isSkillValid(skill))
-				{
-					skill.m.ActionPointCost = 0;
-					skill.m.FatigueCostMult *= this.m.FatigueCostMultMult;
-				}
+				skill.m.ActionPointCost = 0;
+				skill.m.FatigueCostMult *= this.m.FatigueCostMultMult;
 			}
 		}
 	}
@@ -82,9 +85,19 @@
 		}
 	}
 
+	q.onMovementStarted = @(__original) function( _tile, _numTiles )
+	{
+		this.m.TilesMoved += _numTiles;
+		if (this.m.TilesMoved > this.m.MaxTilesAllowed)
+			this.m.IsSpent = true;
+		__original(_tile, _numTiles);
+	}
+
 	q.onTurnStart = @(__original) function()
 	{
 		__original();
+
+		this.m.TilesMoved = 0;
 
 		local actor = this.getContainer().getActor();
 		if (actor.isDisarmed())
@@ -99,6 +112,7 @@
 	{
 		__original();
 		this.m.IsSpent = true;
+		this.m.TilesMoved = 0;
 	}
 
 	q.isSkillValid <- function( _skill )
