@@ -4,7 +4,7 @@ this.rf_old_swordmaster_scenario_exhausted_effect <- ::inherit("scripts/skills/s
 	},
 	function create()
 	{
-		this.m.ID = "effects.rf_old_swordmaster_exhausted";
+		this.m.ID = "effects.rf_old_swordmaster_scenario_exhausted";
 		this.m.Name = "Exhausted";
 		this.m.Description = "This character is exhausted after having participated in a battle.";
 		this.m.Icon = "skills/rf_old_swordmaster_scenario_exhausted_effect.png";
@@ -69,7 +69,7 @@ this.rf_old_swordmaster_scenario_exhausted_effect <- ::inherit("scripts/skills/s
 	{
 		if (this.m.IsNew)
 		{
-			this.m.StartTime = -this.getEndTime();
+			this.m.StartTime = 0;
 		}
 	}
 
@@ -114,6 +114,9 @@ this.rf_old_swordmaster_scenario_exhausted_effect <- ::inherit("scripts/skills/s
 
 	function getExhaustionMult()
 	{
+		if (this.m.StartTime == 0)
+			return 1.0;
+
 		return ::Math.maxf(0.0, ::Math.minf(1.0, (this.getCurrTime() - this.m.StartTime) / (this.getEndTime() - this.m.StartTime)));
 	}
 
