@@ -37,7 +37,23 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 		if (!this.isEnabled() || _item.getSlotType() != ::Const.ItemSlot.Mainhand)
 			return;
 
-		if (!this.getContainer().hasSkill("actives.decapitate"))
+		// during deserialization if the user has an item that adds decapitate
+		// then it is added to SkillsToAdd so we have to check there as well before trying to add our own
+		local function hasSkill( _id )
+		{
+			if (this.getContainer().hasSkill(_id))
+				return true;
+
+			foreach (s in this.getContainer().m.SkillsToAdd)
+			{
+				if (s.getID() == _id && !s.isGarbage())
+					return true;
+			}
+
+			return false;
+		}
+
+		if (!hasSkill("actives.decapitate"))
 		{
 			_item.addSkill(::Reforged.new("scripts/skills/actives/decapitate", function(o) {
 				o.m.DirectDamageMult = _item.m.DirectDamageMult;
