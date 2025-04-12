@@ -56,7 +56,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 
 	function isEnabledForSkill( _skill )
 	{
-		return _skill.getMaxRange() > 1 && _skill.isAttack() && !_skill.isRanged() && _skill.m.IsWeaponSkill;
+		return _skill.getMaxRange() > 1 && _skill.isUsingHitchance() && _skill.isAttack() && !_skill.isRanged() && _skill.m.IsWeaponSkill;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
