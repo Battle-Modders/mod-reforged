@@ -2,6 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
+		this.m.Name = "Sipar"; // Remove "Shield" from the name.
 		this.m.Condition = 300; // vanilla 60
 		this.m.ConditionMax = 300; // vanilla 60
 		this.m.MeleeDefense = 25; // vanilla 18
