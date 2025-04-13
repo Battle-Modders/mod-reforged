@@ -234,6 +234,28 @@
 	{
 		this.m.IsWaitingTurn = _bool;
 	}
+
+	// Functionality to restrict loot drops based on damage dealt by players to this actor.
+	// Is called from actor.getLootForTile and item_container.canDropItems
+	q.RF_canDropLootForPlayer <- function( _killer )
+	{
+		// Bros always drop loot, no matter who kills them
+		if (this.getFaction() == ::Const.Faction.Player || ::isKindOf(this, "player"))
+			return true;
+
+		// Allies never drop loot for the player
+		if (this.isAlliedWithPlayer())
+			return false;
+
+		local playerRelevantDamage = 0.0;
+		if (::Const.Faction.Player in this.m.RF_DamageReceived)
+			playerRelevantDamage += this.m.RF_DamageReceived[::Const.Faction.Player].Total;
+		if (::Const.Faction.PlayerAnimals in this.m.RF_DamageReceived)
+			playerRelevantDamage +=  this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total;
+
+		// If player + player animals did at least 50% of total damage to this actor, they gain the loot
+		return playerRelevantDamage / this.m.RF_DamageReceived.Total >= 0.5;
+	}
 });
 
 ::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
@@ -297,8 +319,6 @@
 			}
 		}
 
-		this.m.RF_CanDropLoot = ::isKindOf(this, "player") || playerRelevantDamage / this.m.RF_DamageReceived.Total >= 0.5;
-
 		__original(_killer, _skill, _tile, _fatalityType);
 	}
 });
@@ -310,15 +330,23 @@
 			// Change _killer to null to guarantee loot drop as vanilla checks for killer being null or belonging to Player or PlayerAnimals faction.
 			// Warning: this may be problematic for a mod that hooks this function and expects _killer to be the actual killer.
 			// Note: We do this in Late bucket so that mods that queue their hookTree after Reforged still receive the null _killer.
-			return this.m.RF_CanDropLoot ? __original(null, _loot) : [];
-		}
+			if (_killer == null || this.RF_canDropLootForPlayer(_killer))
+			{
+				return __original(null, _loot);
+			}
 
-		q.dropLoot = @(__original) function( _tile, _loot, _flip = false )
-		{
-			// This ensures that loot added to getLootForTile by other mods not considering Reforged restrictions
-			// still doesn't drop as long as our requirements aren't fulfilled.
-			if (this.m.RF_CanDropLoot)
-				__original(_tile, _loot, _flip = false);
+			// Switcheroo getFaction to return None so that the generic vanilla faction check
+			// for loot fails i.e. _killer being of faction Player or PlayerAnimals.
+			local getFaction = _killer.getFaction;
+			_killer.getFaction = @() ::Const.Faction.None;
+
+			// This will now only contain loot that is independent of the generic vanilla conditions of killer faction check
+			// which means loot that is meant to always drop from this character.
+			local ret = __original(_killer, _loot);
+
+			_killer.getFaction = getFaction; // Revert the getFaction switcheroo
+
+			return ret;
 		}
 	});
 });
