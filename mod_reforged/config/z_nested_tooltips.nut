@@ -78,8 +78,8 @@ local getThresholdForInjury = function( _script )
 ::Reforged.QueueBucket.FirstWorldInit.push(function() {
 	foreach (concept in ::Reforged.NestedTooltips.AutoConcepts)
 	{
-		local desc = ::TooltipScreen.m.TooltipEvents.general_queryUIElementTooltipData(::MSU.getDummyPlayer().getID(), concept, null);
-		::Reforged.NestedTooltips.Tooltips.Concept[split(concept, ".").top()] <- ::MSU.Class.CustomTooltip(@(data) desc);
+		local c = concept;
+		::Reforged.NestedTooltips.Tooltips.Concept[split(concept, ".").top()] <- ::MSU.Class.CustomTooltip(@(_) ::TooltipScreen.m.TooltipEvents.general_queryUIElementTooltipData(::MSU.getDummyPlayer().getID(), c, null));
 	}
 
 	::MSU.Table.merge(::Reforged.NestedTooltips.Tooltips.Concept, {
