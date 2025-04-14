@@ -67,7 +67,7 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 		if (!_skill.isAttack() || (this.m.RequiredDamageType != null && !_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt)))
 			return false;
 
-		if (!this.m.RequiredWeaponType == null)
+		if (this.m.RequiredWeaponType == null)
 			return true;
 
 		local weapon = _skill.getItem();
