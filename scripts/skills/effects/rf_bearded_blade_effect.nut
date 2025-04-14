@@ -90,7 +90,7 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 
 	function onMissed( _attacker, _skill )
 	{
-		if (_skill.isRanged() || !_attacker.isAlive() || ::Math.rand(1, 100) <= this.m.HitChance)
+		if (_skill.isRanged() || !_attacker.isAlive() || _attacker.isAlliedWith(this.getContainer().getActor()) || ::Math.rand(1, 100) <= this.m.HitChance)
 			return;
 
 		local weapon = _attacker.getMainhandItem();
