@@ -38,7 +38,7 @@ this.rf_old_swordmaster_scenario_exhausted_effect <- ::inherit("scripts/skills/s
 				id = 12,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(exhaustionMult) + " [Ranged Skill|Concept.RangedSkill]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(exhaustionMult) + " [Ranged Skill|Concept.RangeSkill]")
 			},
 			{
 				id = 13,
