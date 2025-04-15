@@ -17,7 +17,7 @@ TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 	var self = this;
 	this.mWaitTurnAllButton = layout.createImageButton(Path.GFX + Reforged.Asset.BUTTON_WAIT_ALL_TURNS, function ()
 	{
-		self.notifyBackendWaitTurnAllButtonPressed();
+		self.RF_notifyBackendWaitTurnAllButtonPressed();
 	}, '', 6);
 	this.mWaitTurnAllButtonContainer = buttonBackground;
 
@@ -107,12 +107,12 @@ TacticalScreenTurnSequenceBarModule.prototype.showStatsPanel = function (_show, 
 }
 
 // New Functions:
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendWaitTurnAllButtonPressed = function ()
+TacticalScreenTurnSequenceBarModule.prototype.RF_notifyBackendWaitTurnAllButtonPressed = function ()
 {
-	SQ.call(this.mSQHandle, 'onWaitTurnAllButtonPressed');
+	SQ.call(this.mSQHandle, 'RF_onWaitTurnAllButtonPressed');
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.setWaitTurnAllButtonVisible = function (_visible)
+TacticalScreenTurnSequenceBarModule.prototype.RF_setWaitTurnAllButtonVisible = function (_visible)
 {
 	this.mWaitTurnAllButton.enableButton(_visible);
 }
