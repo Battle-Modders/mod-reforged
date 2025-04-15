@@ -330,7 +330,7 @@
 			// Change _killer to null to guarantee loot drop as vanilla checks for killer being null or belonging to Player or PlayerAnimals faction.
 			// Warning: this may be problematic for a mod that hooks this function and expects _killer to be the actual killer.
 			// Note: We do this in Late bucket so that mods that queue their hookTree after Reforged still receive the null _killer.
-			if (_killer == null || this.RF_canDropLootForPlayer(_killer))
+			if (this.RF_canDropLootForPlayer(_killer))
 			{
 				return __original(null, _loot);
 			}
