@@ -39,7 +39,7 @@
 	}
 	else
 	{
-		::Tactical.TurnSequenceBar.onWaitTurnAllButtonPressed();
+		::Tactical.TurnSequenceBar.RF_onWaitTurnAllButtonPressed();
 		return true;
 	}
 }, "Wait Turn with all Characters");

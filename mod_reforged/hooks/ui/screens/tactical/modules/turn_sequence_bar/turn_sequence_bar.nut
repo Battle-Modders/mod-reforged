@@ -18,7 +18,7 @@
 
 	q.initNextRound = @(__original) function()
 	{
-		this.m.JSHandle.call("setWaitTurnAllButtonVisible", true);
+		this.m.JSHandle.call("RF_setWaitTurnAllButtonVisible", true);
 		this.m.IsWaitingRound = false;
 		__original();
 	}
@@ -57,7 +57,7 @@
 	}
 
 // New Functions:
-	q.onWaitTurnAllButtonPressed <- function()
+	q.RF_onWaitTurnAllButtonPressed <- function()
 	{
 		if (this.m.IsWaitingRound || this.getActiveEntity() == null || !this.getActiveEntity().isPlayerControlled())
 		{
@@ -67,7 +67,7 @@
 		::Tactical.State.showDialogPopup("Wait Round", "Have all your characters use \'Wait\' on this round?", function ()
 		{
 			this.m.IsWaitingRound = true;
-			this.m.JSHandle.call("setWaitTurnAllButtonVisible", false);
+			this.m.JSHandle.call("RF_setWaitTurnAllButtonVisible", false);
 
 			foreach (e in this.m.CurrentEntities)
 			{
