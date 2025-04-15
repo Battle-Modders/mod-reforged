@@ -13,8 +13,8 @@
 		Script = "scripts/skills/perks/perk_devastating_strikes",
 		Name = ::Const.Strings.PerkName.DevastatingStrikes,
 		Tooltip = ::Const.Strings.PerkDescription.DevastatingStrikes,
-		Icon = "skills/status_effect_06.png",	// Unused vanilla art of an angry black wolf face
-		IconDisabled = "skills/status_effect_0.png"
+		Icon = "ui/perks/perk_devastating_strikes.png",	// Art added by Reforged
+		IconDisabled = "ui/perks/perk_devastating_strikes_sw.png" // Art added by Reforged
 	},
 	{
 		ID = "perk.sundering_strikes",
