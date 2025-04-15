@@ -337,6 +337,11 @@
 
 			// Switcheroo getFaction to return None so that the generic vanilla faction check
 			// for loot fails i.e. _killer being of faction Player or PlayerAnimals.
+			if (_killer == null)
+			{
+				_killer = ::MSU.getDummyPlayer();
+			}
+
 			local getFaction = _killer.getFaction;
 			_killer.getFaction = @() ::Const.Faction.None;
 
