@@ -1,6 +1,12 @@
 this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 	m = {
-		AttributesRolled = []
+		AttributesRolled = [],
+		MaxStars = 3,
+		StarsChance = ::MSU.Class.WeightedContainer([ // [chance, numStars]
+			[70, 1],
+			[20, 2],
+			[10, 3]
+		])
 	},
 	function create()
 	{
@@ -20,7 +26,7 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 		local potential = [];
 		foreach (attribute in ::Const.Attributes)
 		{
-			if (attribute != ::Const.Attributes.COUNT && actor.getTalents()[attribute] < 3 && this.m.AttributesRolled.find(attribute) == null)
+			if (attribute != ::Const.Attributes.COUNT && actor.getTalents()[attribute] < this.m.MaxStars && this.m.AttributesRolled.find(attribute) == null)
 				potential.push(attribute);
 		}
 
@@ -30,15 +36,10 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 		::Math.seedRandom(1000 * actor.getUID() + ::toHash(this.getID()) + this.m.AttributesRolled.len() * 10000);
 
 		local choice = ::MSU.Array.rand(potential);
-		local toAdd = ::MSU.Class.WeightedContainer([
-			[70, 1],
-			[20, 2],
-			[10, 3]
-		]).roll();
 
 		::Math.seedRandom(::Time.getRealTime());
 
-		actor.getTalents()[choice] = ::Math.min(3, actor.getTalents()[choice] + toAdd);
+		actor.getTalents()[choice] = ::Math.min(this.m.MaxStars, actor.getTalents()[choice] + this.StarsChance.roll());
 
 		actor.m.Attributes.clear();
 		actor.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - actor.getLevel() + actor.m.LevelUps);
