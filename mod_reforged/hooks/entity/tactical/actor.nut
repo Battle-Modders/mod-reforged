@@ -1,6 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
 	q.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
 	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
+	q.m.RF_CanDropLoot <- true; // Is set to false during onDeath if Players+PlayerAnimals did not do enough damage to this entity
 
 	q.create = @(__original) function()
 	{
@@ -245,6 +246,28 @@
 	{
 		this.m.IsWaitingTurn = _bool;
 	}
+
+	// Functionality to restrict loot drops based on damage dealt by players to this actor.
+	// Is called from actor.getLootForTile and item_container.canDropItems
+	q.RF_canDropLootForPlayer <- function( _killer )
+	{
+		// Bros always drop loot, no matter who kills them
+		if (this.getFaction() == ::Const.Faction.Player || ::isKindOf(this, "player"))
+			return true;
+
+		// Allies never drop loot for the player
+		if (this.isAlliedWithPlayer())
+			return false;
+
+		local playerRelevantDamage = 0.0;
+		if (::Const.Faction.Player in this.m.RF_DamageReceived)
+			playerRelevantDamage += this.m.RF_DamageReceived[::Const.Faction.Player].Total;
+		if (::Const.Faction.PlayerAnimals in this.m.RF_DamageReceived)
+			playerRelevantDamage +=  this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total;
+
+		// If player + player animals did at least 50% of total damage to this actor, they gain the loot
+		return playerRelevantDamage / this.m.RF_DamageReceived.Total >= 0.5;
+	}
 });
 
 ::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
@@ -258,7 +281,7 @@
 
 	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
 	{
-		__original(_killer, _skill, _tile, _fatalityType);
+		local playerRelevantDamage = 0.0;
 
 		// The following is an override of the XP gain system. We award XP based on ratio of total damage dealt to an entity.
 
@@ -273,6 +296,8 @@
 
 		if (::Const.Faction.Player in this.m.RF_DamageReceived)
 		{
+			playerRelevantDamage += this.m.RF_DamageReceived[::Const.Faction.Player].Total;
+
 			local XPavailable = this.getXPValue() * this.m.RF_DamageReceived[::Const.Faction.Player].Total / this.m.RF_DamageReceived.Total;
 			local XPkiller = XPavailable * ::Const.XP.XPForKillerPct; // This will be divided among all bros who did damage. The rest will be divided equally among other bros.
 			local XPgroup = ::Math.max(1, ::Math.floor((XPavailable - XPkiller) / bros.len()));
@@ -294,6 +319,8 @@
 
 		if (::Const.Faction.PlayerAnimals in this.m.RF_DamageReceived)
 		{
+			playerRelevantDamage +=  this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total;
+
 			local XPgroup = (this.getXPValue() * this.m.RF_DamageReceived[::Const.Faction.PlayerAnimals].Total / this.m.RF_DamageReceived.Total) * (1.0 - ::Const.XP.XPForKillerPct);
 			XPgroup = ::Math.max(1, ::Math.floor(XPgroup / bros.len()));
 
@@ -303,5 +330,40 @@
 					bro.addXP(XPgroup);
 			}
 		}
+
+		__original(_killer, _skill, _tile, _fatalityType);
 	}
+});
+
+::Reforged.QueueBucket.Late.push(function() {
+	::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
+		q.getLootForTile = @(__original) function( _killer, _loot )
+		{
+			// Change _killer to null to guarantee loot drop as vanilla checks for killer being null or belonging to Player or PlayerAnimals faction.
+			// Warning: this may be problematic for a mod that hooks this function and expects _killer to be the actual killer.
+			// Note: We do this in Late bucket so that mods that queue their hookTree after Reforged still receive the null _killer.
+			if (this.RF_canDropLootForPlayer(_killer))
+			{
+				return __original(null, _loot);
+			}
+
+			// Switcheroo getFaction to return None so that the generic vanilla faction check
+			// for loot fails i.e. _killer being of faction Player or PlayerAnimals.
+			if (_killer == null)
+			{
+				_killer = ::MSU.getDummyPlayer();
+			}
+
+			local getFaction = _killer.getFaction;
+			_killer.getFaction = @() ::Const.Faction.None;
+
+			// This will now only contain loot that is independent of the generic vanilla conditions of killer faction check
+			// which means loot that is meant to always drop from this character.
+			local ret = __original(_killer, _loot);
+
+			_killer.getFaction = getFaction; // Revert the getFaction switcheroo
+
+			return ret;
+		}
+	});
 });

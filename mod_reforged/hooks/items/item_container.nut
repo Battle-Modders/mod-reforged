@@ -18,4 +18,10 @@
 
 		return __original(_item);
 	}
+
+	// Overwrite vanilla function completely because we use our custom checks for loot drop
+	q.canDropItems = @() function( _killer )
+	{
+		return this.getActor().RF_canDropLootForPlayer(_killer);
+	}
 });
