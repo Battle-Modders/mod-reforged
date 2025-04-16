@@ -48,6 +48,8 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 			icon = "ui/icons/warning.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon moving or swapping any item")
 		});
+
+		return ret;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
