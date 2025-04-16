@@ -3,9 +3,9 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 		AttributesRolled = [],
 		MaxStars = 3,
 		StarsChance = ::MSU.Class.WeightedContainer([ // [chance, numStars]
-			[70, 1],
-			[20, 2],
-			[10, 3]
+			[60, 1],
+			[25, 2],
+			[15, 3]
 		])
 	},
 	function create()
