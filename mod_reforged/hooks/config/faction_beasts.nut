@@ -75,6 +75,25 @@
 		20
 	]
 });
+::MSU.Table.merge(::Const.Tactical.Actor.Lindwurm, {
+	XP = 800,
+	ActionPoints = 7,
+	Hitpoints = 1100,
+	Bravery = 180,
+	Stamina = 400,
+	MeleeSkill = 65, // vanilla 75 - lowered due to reach
+	RangedSkill = 0,
+	MeleeDefense = 5, // vanilla 10 - lowered due to reach
+	RangedDefense = -10,
+	Initiative = 80,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 30,
+	Armor = [
+		400,
+		200
+	]
+});
 ::MSU.Table.merge(::Const.Tactical.Actor.Serpent, {
 	XP = 175,
 	ActionPoints = 9,
@@ -111,5 +130,62 @@
 	Armor = [
 		20,
 		20
+	]
+});
+::MSU.Table.merge(::Const.Tactical.Actor.Unhold, {
+	XP = 400,
+	ActionPoints = 9,
+	Hitpoints = 500,
+	Bravery = 130,
+	Stamina = 400,
+	MeleeSkill = 70,
+	RangedSkill = 0,
+	MeleeDefense = 5, // vanilla 10 - lowered due to reach
+	RangedDefense = 0,
+	Initiative = 75,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 30,
+	Armor = [
+		0,
+		0
+	]
+});
+::MSU.Table.merge(::Const.Tactical.Actor.UnholdBog, {
+	XP = 400,
+	ActionPoints = 9,
+	Hitpoints = 500,
+	Bravery = 130,
+	Stamina = 400,
+	MeleeSkill = 70,
+	RangedSkill = 0,
+	MeleeDefense = 5, // vanilla 10 - lowered due to reach
+	RangedDefense = 15, // vanilla 5 - increased to offer variance compared to standard unhold
+	Initiative = 75,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 30,
+	Armor = [
+		0,
+		0
+	]
+});
+::MSU.Table.merge(::Const.Tactical.Actor.UnholdFrost, {
+	XP = 450,
+	ActionPoints = 9,
+	Hitpoints = 600,
+	Bravery = 150,
+	Stamina = 400,
+	MeleeSkill = 70, // vanilla 75 - lowered due to reach
+	RangedSkill = 0,
+	MeleeDefense = 5, // vanilla 10 - lowered due to reach
+	RangedDefense = 0,
+	Initiative = 85,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 30,
+	Armor = [
+		90,
+		90
 	]
 });
