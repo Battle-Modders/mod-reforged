@@ -136,49 +136,54 @@ this.rf_old_swordmaster_scenario_recruit_effect <- ::inherit("scripts/skills/eff
 
 	function onUpdateLevel()
 	{
-		if (::Math.rand(1, 100) > this.getFreePerkChance())
-			return;
-
 		local actor = this.getContainer().getActor();
-		if (!actor.getPerkTree().hasPerkGroup("pg.rf_sword"))
-			return;
 
-		local potentialPerks = [];
-		foreach (row in ::DynamicPerks.PerkGroups.findById("pg.rf_sword").getTree())
+		::Math.seedRandom(1000 * actor.getUID() + ::toHash(this.getID()) + actor.getLevel());
+
+		if (::Math.rand(1, 100) <= this.getFreePerkChance() && actor.getPerkTree().hasPerkGroup("pg.rf_sword"))
 		{
-			foreach (perkID in row)
+			local potentialPerks = [];
+			foreach (row in ::DynamicPerks.PerkGroups.findById("pg.rf_sword").getTree())
 			{
-				if (this.m.FreePerksGainedIDs.find(perkID) == null)
+				foreach (perkID in row)
 				{
-					potentialPerks.push(perkID);
+					if (this.m.FreePerksGainedIDs.find(perkID) == null)
+					{
+						potentialPerks.push(perkID);
+					}
 				}
 			}
+
+			if (potentialPerks.len() != 0)
+			{
+				local chosenID = ::MSU.Array.rand(potentialPerks);
+				local preExistingPerk = this.getContainer().getSkillByID(chosenID);
+
+				if (preExistingPerk != null && preExistingPerk.isRefundable())
+				{
+					actor.m.PerkPoints++;
+					actor.m.PerkPointsSpent--;
+				}
+
+				if (preExistingPerk != null && preExistingPerk.isSerialized())
+				{
+					preExistingPerk.m.IsRefundable = false;
+				}
+				else
+				{
+					this.getContainer().add(::Reforged.new(::Const.Perks.findById(chosenID).Script, function(o) {
+						o.m.IsRefundable = false;
+					}));
+				}
+
+				this.m.FreePerksGainedIDs.push(chosenID);
+			}
 		}
 
-		if (potentialPerks.len() != 0)
-		{
-			local chosenID = ::MSU.Array.rand(potentialPerks);
-			local preExistingPerk = this.getContainer().getSkillByID(chosenID);
-
-			if (preExistingPerk != null && preExistingPerk.isRefundable())
-			{
-				actor.m.PerkPoints++;
-				actor.m.PerkPointsSpent--;
-			}
-
-			if (preExistingPerk != null && preExistingPerk.isSerialized())
-			{
-				preExistingPerk.m.IsRefundable = false;
-			}
-			else
-			{
-				this.getContainer().add(::Reforged.new(::Const.Perks.findById(chosenID).Script, function(o) {
-					o.m.IsRefundable = false;
-				}));
-			}
-
-			this.m.FreePerksGainedIDs.push(chosenID);
-		}
+		// add actor.getUID() so that if multiple bros call this function sequentially
+		// the RNG is seeded with a different seed every time leading to intermittent rand calls being truly random.
+		// * 100 to increase the difference in seed.
+		::Math.seedRandom(::Time.getRealTime() + actor.getUID() * 100);
 	}
 
 	function onSerialize(_out)
