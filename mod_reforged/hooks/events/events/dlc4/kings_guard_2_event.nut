@@ -6,7 +6,7 @@
 		this.m.Screens[0].start = function( _event )
 		{
 			start(_event);
-			local kingsguard_perkTree = ::new("scripts/skills/backgrounds/kings_guard_background").m.PerkTree;
+			local kingsguard_perkTree = ::new("scripts/skills/backgrounds/kings_guard_background").createPerkTreeBlueprint();
 			kingsguard_perkTree.setActor(_event.m.Dude);
 			kingsguard_perkTree.build();
 			_event.m.Dude.getPerkTree().merge(kingsguard_perkTree);

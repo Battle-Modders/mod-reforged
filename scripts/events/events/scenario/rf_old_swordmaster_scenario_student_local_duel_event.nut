@@ -460,11 +460,6 @@ this.rf_old_swordmaster_scenario_student_local_duel_event <- ::inherit("scripts/
 		local newBackground = ::new("scripts/skills/backgrounds/rf_renowned_swordmaster_background");
 		newBackground.m.IsNew = false;
 
-		newBackground.m.PerkTree.setTemplate(_actor.getPerkTree().toTemplate());
-		newBackground.m.PerkTree.build();
-		newBackground.m.PerkTree.setActor(_actor);
-		_actor.m.PerkTree = newBackground.m.PerkTree;
-
 		_actor.getSkills().removeByID(currentBackground.getID());
 		_actor.getSkills().add(newBackground);
 

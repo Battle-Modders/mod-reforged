@@ -3,9 +3,11 @@
 	{
 		__original();
 		this.m.BeardChance = 0;
+	}
 
-
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+	q.createPerkTreeBlueprint = @() function()
+	{
+		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [],
 				"pgc.rf_shared_1": [],
