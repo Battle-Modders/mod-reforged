@@ -9,6 +9,8 @@
 		BeastMedium = 5,
 		BeastLarge = 7,
 		BeastHuge = 9,
+		BeastEnormous = 11,
+		BeastGargantuan 13,
 
 		Dagger = 1,
 		Short_1H = 2,

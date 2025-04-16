@@ -96,8 +96,8 @@
 		}
 
 		// Reforged
-		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge + 2;
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastGargantuan;
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 	}
 });
