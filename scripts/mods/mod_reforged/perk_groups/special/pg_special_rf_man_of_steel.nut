@@ -18,7 +18,7 @@ this.pg_special_rf_man_of_steel <- ::inherit(::DynamicPerks.Class.SpecialPerkGro
 		];
 	}
 
-	function getMultiplier( _perkTree )
+	function getSelfMultiplier( _perkTree )
 	{
 		if (!_perkTree.hasPerkGroup("pg.rf_heavy_armor"))
 			return 0;

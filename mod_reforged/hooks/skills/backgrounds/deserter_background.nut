@@ -1,8 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/deserter_background", function(q) {
-	q.create = @(__original) function()
+	q.createPerkTreeBlueprint = @() function()
 	{
-		__original();
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					"pg.rf_soldier"

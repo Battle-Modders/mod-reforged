@@ -11,10 +11,9 @@
 		Initiative = 	[100, 110],
 	}
 
-	q.create = @(__original) function()
+	q.createPerkTreeBlueprint = @() function()
 	{
-		__original();
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({});
+		return ::new(::DynamicPerks.Class.PerkTree).init({});
 	}
 
 	q.isHired <- function()

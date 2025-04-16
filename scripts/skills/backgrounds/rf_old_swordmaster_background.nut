@@ -19,7 +19,11 @@ this.rf_old_swordmaster_background <- ::inherit("scripts/skills/backgrounds/swor
 		]);
 		this.m.BeardChance = 100;
 		this.m.Level = 3;
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+	}
+
+	function createPerkTreeBlueprint()
+	{
+		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					"pg.rf_soldier",

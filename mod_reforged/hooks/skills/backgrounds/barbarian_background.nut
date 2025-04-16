@@ -3,7 +3,11 @@
 	{
 		__original();
 		this.m.BeardChance = 90;
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+	}
+
+	q.createPerkTreeBlueprint = @() function()
+	{
+		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": @(_perkTree) [
 					::MSU.Class.WeightedContainer([

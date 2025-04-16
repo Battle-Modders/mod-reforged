@@ -2,7 +2,20 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.PerkTree = ::new(::DynamicPerks.Class.PerkTree).init({
+		this.m.Excluded.extend([
+			"trait.asthmatic",
+			"trait.cocky"
+		]);
+
+		this.m.ExcludedTalents.push(::Const.Attributes.RangedDefense);
+
+		this.m.HiringCost = 2400; // vanilla 400
+		this.m.DailyCost = 45; // vanilla 35
+	}
+
+	q.createPerkTreeBlueprint = @() function()
+	{
+		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
 				"pgc.rf_exclusive_1": [
 					"pg.rf_soldier",
@@ -23,16 +36,6 @@
 				]
 			}
 		});
-
-		this.m.Excluded.extend([
-			"trait.asthmatic",
-			"trait.cocky"
-		]);
-
-		this.m.ExcludedTalents.push(::Const.Attributes.RangedDefense);
-
-		this.m.HiringCost = 2400; // vanilla 400
-		this.m.DailyCost = 45; // vanilla 35
 	}
 
 	q.getPerkGroupCollectionMin = @() function( _collection )

@@ -18,7 +18,7 @@ this.pg_special_rf_fencer <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
 		];
 	}
 
-	function getMultiplier( _perkTree )
+	function getSelfMultiplier( _perkTree )
 	{
 		if (!_perkTree.hasPerkGroup("pg.rf_sword") || (!_perkTree.hasPerkGroup("pg.rf_light_armor") && !_perkTree.hasPerkGroup("pg.rf_medium_armor")))
 			return 0;
