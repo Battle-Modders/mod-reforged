@@ -1,12 +1,7 @@
 this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 	m = {
 		AttributesRolled = [],
-		MaxStars = 3,
-		StarsChance = ::MSU.Class.WeightedContainer([ // [chance, numStars]
-			[60, 1],
-			[25, 2],
-			[15, 3]
-		])
+		MaxStars = 3
 	},
 	function create()
 	{
@@ -39,12 +34,22 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 
 		::Math.seedRandom(::Time.getRealTime());
 
-		actor.getTalents()[choice] = ::Math.min(this.m.MaxStars, actor.getTalents()[choice] + this.StarsChance.roll());
+		actor.getTalents()[choice] = ::Math.min(this.m.MaxStars, actor.getTalents()[choice] + this.rollStars(choice));
 
 		actor.m.Attributes.clear();
 		actor.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - actor.getLevel() + actor.m.LevelUps);
 
 		this.m.AttributesRolled.push(choice);
+	}
+
+	// We pass _attribute in case someone wants to do complex logic with it
+	function rollStars( _attribute )
+	{
+		return ::MSU.Class.WeightedContainer([ // [chance, numStars]
+			[60, 1],
+			[25, 2],
+			[15, 3]
+		]).roll();
 	}
 
 	function onSerialize( _out )
