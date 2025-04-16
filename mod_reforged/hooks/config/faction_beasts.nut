@@ -81,7 +81,7 @@
 	Hitpoints = 1100,
 	Bravery = 180,
 	Stamina = 400,
-	MeleeSkill = 65, // vanilla 75
+	MeleeSkill = 65, // vanilla 75 - lowered due to reach
 	RangedSkill = 0,
 	MeleeDefense = 5, // vanilla 10 - lowered due to reach
 	RangedDefense = -10,
@@ -160,7 +160,7 @@
 	MeleeSkill = 70,
 	RangedSkill = 0,
 	MeleeDefense = 5, // vanilla 10 - lowered due to reach
-	RangedDefense = 5,
+	RangedDefense = 15, // vanilla 5 - increased to offer variance compared to standard unhold
 	Initiative = 75,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
@@ -176,9 +176,9 @@
 	Hitpoints = 600,
 	Bravery = 150,
 	Stamina = 400,
-	MeleeSkill = 70, // vanilla 75
+	MeleeSkill = 70, // vanilla 75 - lowered due to reach
 	RangedSkill = 0,
-	MeleeDefense = 5, // vanilla 10
+	MeleeDefense = 5, // vanilla 10 - lowered due to reach
 	RangedDefense = 0,
 	Initiative = 85,
 	FatigueEffectMult = 1.0,
