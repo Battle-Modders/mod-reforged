@@ -1,6 +1,7 @@
 this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 	m = {
 		AttributesRolled = [],
+		// Will not roll for attributes already at this many stars and will not set any attribute to be more than this many stars
 		MaxStars = 3
 	},
 	function create()
@@ -31,10 +32,9 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 		::Math.seedRandom(1000 * actor.getUID() + ::toHash(this.getID()) + this.m.AttributesRolled.len() * 10000);
 
 		local choice = ::MSU.Array.rand(potential);
+		actor.getTalents()[choice] = ::Math.min(this.m.MaxStars, actor.getTalents()[choice] + this.rollStars(choice));
 
 		::Math.seedRandom(::Time.getRealTime());
-
-		actor.getTalents()[choice] = ::Math.min(this.m.MaxStars, actor.getTalents()[choice] + this.rollStars(choice));
 
 		actor.m.Attributes.clear();
 		actor.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - actor.getLevel() + actor.m.LevelUps);
@@ -43,6 +43,7 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 	}
 
 	// We pass _attribute in case someone wants to do complex logic with it
+	// _attribute is a value from ::Const.Attributes
 	function rollStars( _attribute )
 	{
 		return ::MSU.Class.WeightedContainer([ // [chance, numStars]
