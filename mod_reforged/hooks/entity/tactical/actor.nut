@@ -354,14 +354,18 @@
 				_killer = ::MSU.getDummyPlayer();
 			}
 
-			local getFaction = _killer.getFaction;
-			_killer.getFaction = @() ::Const.Faction.None;
+			// Have to get the actual table in order to switcheroo functions inside the class
+			// otherwise it throws key not found error.
+			local killerTable = _killer instanceof ::WeakTableRef ? _killer.get() : _killer;
+
+			local getFaction = killerTable.getFaction;
+			killerTable.getFaction = @() ::Const.Faction.None;
 
 			// This will now only contain loot that is independent of the generic vanilla conditions of killer faction check
 			// which means loot that is meant to always drop from this character.
 			local ret = __original(_killer, _loot);
 
-			_killer.getFaction = getFaction; // Revert the getFaction switcheroo
+			killerTable.getFaction = getFaction; // Revert the getFaction switcheroo
 
 			return ret;
 		}
