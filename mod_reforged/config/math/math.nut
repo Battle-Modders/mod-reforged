@@ -33,12 +33,15 @@
 
 	function seededRand( _min, _max, ... )
 	{
+		if (vargv.len() == 0)
+			throw "must pass at least one seed argument";
+
 		::Reforged.Math.seedRandom(vargv);
 
 		local ret = ::Math.rand(_min, _max);
-		// + _seed so that calls to this function in the same frame with different seeds
+		// + vargv[0] so that calls to this function in the same frame with different seeds
 		// don't always set the random seed to the same value
-		::Math.seedRandom(::Time.getVirtualTimeF() + _seed);
+		::Math.seedRandom(::Time.getVirtualTimeF() + vargv[0]);
 		return ret;
 	}
 
