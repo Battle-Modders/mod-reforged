@@ -38,3 +38,10 @@ local getClone = ::Const.CharacterProperties.getClone;
 ::Const.Movement.AutoEndTurnBelowAP = 1;
 
 ::Const.Morale.RF_AllyFleeingBraveryModifierPerAlly <- 1;
+
+::Const.RF_ActionPointsStateName <- [
+	"Spent",
+	"Slowing Down",
+	"Measured",
+	"Primed"
+];
