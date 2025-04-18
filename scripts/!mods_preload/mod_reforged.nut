@@ -35,8 +35,10 @@ local requiredMods = [
 ::Reforged.HooksMod.conflictWith([
 	"mod_legends",
 	"mod_WMS [Is already included and/or enhanced in Reforged]", // Weapon Mastery Standardization by LordMidas. The functionality is integrated into Reforged. https://www.nexusmods.com/battlebrothers/mods/366
-	"mod_betterFencing [Is already included and/or enhanced in Reforged]" // Better Fencing by LordMidas. The functionality is integrated into Reforged. https://www.nexusmods.com/battlebrothers/mods/369
-
+	"mod_betterFencing [Is already included and/or enhanced in Reforged]", // Better Fencing by LordMidas. The functionality is integrated into Reforged. https://www.nexusmods.com/battlebrothers/mods/369
+	"mod_numbers [Causes enemies to have wrong names]", // Numbers for text by lichtfield. https://www.nexusmods.com/battlebrothers/mods/316
+	"mod_tactical_hit_factors [A similar feature is included in Reforged]" // Tactical hit factors by MrBrut. https://www.nexusmods.com/battlebrothers/mods/283
+	"mod_tactical_tooltip [A similar feature is included in Reforged]" // Tactical tooltip by MrBrut. https://www.nexusmods.com/battlebrothers/mods/266
 ]);
 
 // Some mods don't register with hooks, so we have to check for their existence by their filename
