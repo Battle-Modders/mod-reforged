@@ -1,8 +1,8 @@
 this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsInEffect = false,
-		DamageDirectAddModifier = 0.2,
-		RangedSkillModifier = 20
+		DamageDirectAddModifier = 0.1,
+		RangedSkillModifier = 10
 	},
 	function create()
 	{
