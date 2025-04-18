@@ -1464,7 +1464,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Once per [turn,|Concept.Turn] after you use a skill targeting an adjacent ally, recover " + ::MSU.Text.colorPositive("2") + " [Action Points.|Concept.ActionPoints]"
+					"Once per [turn,|Concept.Turn] after you use a skill targeting an adjacent ally, recover " + ::MSU.Text.colorPositive("3") + " [Action Points.|Concept.ActionPoints]"
 				]
 			},
 			{
