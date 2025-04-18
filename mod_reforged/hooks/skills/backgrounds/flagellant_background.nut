@@ -26,7 +26,7 @@
 		switch (_groupID)
 		{
 			case "pg.special.rf_leadership":
-				return 10;
+				return 5;
 
 			case "pg.rf_vigorous":
 			case "pg.rf_vicious":
