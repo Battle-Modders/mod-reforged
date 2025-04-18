@@ -1,34 +1,37 @@
-::Const.CharacterProperties.PositiveMoraleCheckBravery <- array(::Const.MoraleCheckType.len(), 0);
-::Const.CharacterProperties.PositiveMoraleCheckBraveryMult <- array(::Const.MoraleCheckType.len(), 1.0);
-::Const.CharacterProperties.NegativeMoraleCheckBravery <- array(::Const.MoraleCheckType.len(), 0);
-::Const.CharacterProperties.NegativeMoraleCheckBraveryMult <- array(::Const.MoraleCheckType.len(), 1.0);
+local original_getClone = ::Const.CharacterProperties.getClone;
+::MSU.Table.merge(::Const.CharacterProperties, {
+	PositiveMoraleCheckBravery = array(::Const.MoraleCheckType.len(), 0),
+	PositiveMoraleCheckBraveryMult = array(::Const.MoraleCheckType.len(), 1.0),
+	NegativeMoraleCheckBravery = array(::Const.MoraleCheckType.len(), 0),
+	NegativeMoraleCheckBraveryMult =array(::Const.MoraleCheckType.len(), 1.0),
+	Reach = 0,
+	ReachMult = 1.0,
+	IsAffectedByReach = true,
+	DefensiveReachIgnore = 0,
+	OffensiveReachIgnore = 0,
+	BonusPerReachAdvantage = 0,
 
-::Const.CharacterProperties.getFatigueRecoveryRate <- function()
-{
-	return ::Math.floor(this.FatigueRecoveryRate * this.FatigueRecoveryRateMult);
-}
+	function getReach()
+	{
+		return ::Math.floor(this.Reach * this.ReachMult);
+	}
 
-local getClone = ::Const.CharacterProperties.getClone;
-::Const.CharacterProperties.getClone = function()
-{
-	local ret = getClone();
-	ret.PositiveMoraleCheckBravery = clone this.PositiveMoraleCheckBravery;
-	ret.PositiveMoraleCheckBraveryMult = clone this.PositiveMoraleCheckBraveryMult;
-	ret.NegativeMoraleCheckBravery = clone this.NegativeMoraleCheckBravery;
-	ret.NegativeMoraleCheckBraveryMult = clone this.NegativeMoraleCheckBraveryMult;
-	return ret;
-}
+	function getFatigueRecoveryRate()
+	{
+		return ::Math.floor(this.FatigueRecoveryRate * this.FatigueRecoveryRateMult);
+	}
 
-::Const.CharacterProperties.Reach <- 0;
-::Const.CharacterProperties.ReachMult <- 1.0;
-::Const.CharacterProperties.getReach <- function()
-{
-	return ::Math.floor(this.Reach * this.ReachMult);
-}
-::Const.CharacterProperties.IsAffectedByReach <- true;
-::Const.CharacterProperties.DefensiveReachIgnore <- 0;
-::Const.CharacterProperties.OffensiveReachIgnore <- 0;
-::Const.CharacterProperties.BonusPerReachAdvantage <- 0;
+	function getClone()
+	{
+		local ret = original_getClone();
+		ret.PositiveMoraleCheckBravery = clone this.PositiveMoraleCheckBravery;
+		ret.PositiveMoraleCheckBraveryMult = clone this.PositiveMoraleCheckBraveryMult;
+		ret.NegativeMoraleCheckBravery = clone this.NegativeMoraleCheckBravery;
+		ret.NegativeMoraleCheckBraveryMult = clone this.NegativeMoraleCheckBraveryMult;
+		return ret;
+	}
+});
+
 
 ::Const.ProjectileType.FlamingArrow <- ::Const.ProjectileType.COUNT;
 ::Const.ProjectileType.COUNT += 1;
