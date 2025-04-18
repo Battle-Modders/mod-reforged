@@ -61,6 +61,8 @@
 					seed += ::toHash(s);
 					break;
 
+				case "bool":
+					s = s ? 2 : 1; // 2:1 instead of 1:0 so that false also produces some difference in seed
 				case "integer":
 				case "float":
 					seed += s * 10000;
@@ -93,6 +95,10 @@
 				case "integer":
 				case "float":
 					seed += s.tostring();
+					break;
+
+				case "bool":
+					seed += s ? "true" : "false";
 					break;
 
 				default:
