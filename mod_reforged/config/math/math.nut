@@ -31,7 +31,9 @@
 		return (newDistance < oldDistance) ? _newValue : _oldValue;
 	}
 
-	function seededRand( _min, _max, ... )
+	// Uses values passed in vargv to seed the random number generator, then returns ::Math.rand(_min, _max)
+	// also resets the random seed before returning.
+	function randWithSeed( _min, _max, ... )
 	{
 		if (vargv.len() == 0)
 			throw "must pass at least one seed argument";
