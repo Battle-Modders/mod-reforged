@@ -68,12 +68,12 @@
 
 	q.getMalusMult <- function()
 	{
-		return 1.0 - ::Math.minf(this.m.MaxMalusMult, 2 * this.m.Stacks.tofloat() / this.getContainer().getActor().getHitpoints());
+		return ::Math.maxf(0, 1.0 - ::Math.minf(this.m.MaxMalusMult, 2 * this.m.Stacks.tofloat() / this.getContainer().getActor().getHitpoints()) * this.getContainer().getActor().getCurrentProperties().RF_BleedingEffectMult);
 	}
 
 	q.getDamage = @() function()
 	{
-		local ret = this.getContainer().hasSkill("trait.bleeder") ? this.m.Stacks * 2 : this.m.Stacks;
+		return ::Math.floor(this.m.Stacks * this.getContainer().getActor().getCurrentProperties().RF_BleedingEffectMult);
 		return this.getContainer().hasSkill("effects.hyena_potion") ? ::Math.floor(ret * 0.5) : ret;
 	}
 

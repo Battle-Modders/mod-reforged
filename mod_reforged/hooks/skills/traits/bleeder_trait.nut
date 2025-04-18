@@ -5,6 +5,12 @@
 		this.m.Description = "This character is prone to bleeding and will do so more than most others."; // "more than" as opposed to vanilla "longer than"
 	}
 
+	q.onUpdate = @(__original) function( _properties )
+	{
+		__original(_properties);
+		_properties.RF_BleedingEffectMult *= 2.0;
+	}
+
 	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
 	{
 		switch (_groupID)
@@ -21,7 +27,7 @@
 		{
 			if (entry.id == 10)
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Will receive " + ::MSU.Text.colorNegative("double") + " damage from [Bleeding|Skill+bleeding_effect]");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("The effects of [Bleeding|Skill+bleeding_effect] are " + ::MSU.Text.colorNegative("doubled"));
 				break;
 			}
 		}
