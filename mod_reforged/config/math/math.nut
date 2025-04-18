@@ -47,6 +47,7 @@
 		return ret;
 	}
 
+	// Uses values passed in vargv to generate a seed as number and passes it to ::Math.seedRandom
 	function seedRandom( ... )
 	{
 		if ("Assets" in ::World && !::MSU.isNull(::World.Assets))
@@ -78,6 +79,7 @@
 		::Math.seedRandom(seed);
 	}
 
+	// Uses values passed in vargv to generate a seed as string and passes it to ::Math.seedRandomString
 	function seedRandomString( ... )
 	{
 		if ("Assets" in ::World && !::MSU.isNull(::World.Assets))
