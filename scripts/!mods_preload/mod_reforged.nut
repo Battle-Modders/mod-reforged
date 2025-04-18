@@ -37,19 +37,27 @@ local requiredMods = [
 	"mod_WMS [Is already included and/or enhanced in Reforged]", // Weapon Mastery Standardization by LordMidas. The functionality is integrated into Reforged. https://www.nexusmods.com/battlebrothers/mods/366
 	"mod_betterFencing [Is already included and/or enhanced in Reforged]", // Better Fencing by LordMidas. The functionality is integrated into Reforged. https://www.nexusmods.com/battlebrothers/mods/369
 	"mod_numbers [Causes enemies to have wrong names]", // Numbers for text by lichtfield. https://www.nexusmods.com/battlebrothers/mods/316
-	"mod_tactical_hit_factors [A similar feature is included in Reforged]" // Tactical hit factors by MrBrut. https://www.nexusmods.com/battlebrothers/mods/283
+	"mod_tactical_hit_factors [A similar feature is included in Reforged]", // Tactical hit factors by MrBrut. https://www.nexusmods.com/battlebrothers/mods/283
 	"mod_tactical_tooltip [A similar feature is included in Reforged]" // Tactical tooltip by MrBrut. https://www.nexusmods.com/battlebrothers/mods/266
 ]);
 
 // Some mods don't register with hooks, so we have to check for their existence by their filename
 local function checkConflictWithFilename()
 {
+	local conflicts = [
+		// Show Enemy Stats by LiaAshborn. https://www.nexusmods.com/battlebrothers/mods/98
+		"mod_show_enemy_stats": "Show Enemy Stats is not compatible with Reforged. A similar feature is already included in Reforged.",
+		// Smart Recruiter by Leonionin. conflicts on hiring screen and breaks our perk tree display there. https://www.nexusmods.com/battlebrothers/mods/172
+		"mod_smart_recruiter": "Smart Recruiter is not compatible with Reforged. Use Clever Recruiter by Enduriel instead." //
+	];
 	foreach (file in ::IO.enumerateFiles("data/"))
 	{
-		if (file.find("mod_smart_recruiter") != null)
+		foreach (filename, reason in conflicts)
 		{
-			::Hooks.errorAndQuit("Smart Recruiter is not compatible with Reforged. Use Clever Recruiter by Enduriel instead.");
-			break;
+			if (file.find(filename) != null)
+			{
+				::Hooks.errorAndQuit(reason);
+			}
 		}
 	}
 }
