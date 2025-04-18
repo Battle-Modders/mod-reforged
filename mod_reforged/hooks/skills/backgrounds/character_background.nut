@@ -124,7 +124,7 @@
 		}
 		else if (showBaseAttributeRangeRegular == "Only New Recruits")
 		{
-			if (!this.getContainer().getActor().getFlags().has("RF_HasSpentLevelUp"))
+			if (!this.getContainer().getActor().m.LevelUpsSpent > 0)
 			{
 				ret.extend(this.getBaseAttributesTooltip(false));
 			}
