@@ -35,10 +35,8 @@ local requiredMods = [
 ::Reforged.HooksMod.conflictWith([
 	"mod_legends",
 	"mod_WMS [Is already included and/or enhanced in Reforged]", // Weapon Mastery Standardization by LordMidas. The functionality is integrated into Reforged. https://www.nexusmods.com/battlebrothers/mods/366
-	"mod_betterFencing [Is already included and/or enhanced in Reforged]", // Better Fencing by LordMidas. The functionality is integrated into Reforged. https://www.nexusmods.com/battlebrothers/mods/369
-	"quicker [Use Swifter by Enduriel instead]", // Quicker by JCSato. https://www.nexusmods.com/battlebrothers/mods/368
-	"mod_faster [Use Swifter by Enduriel instead]", // Faster by AdamMil. https://www.nexusmods.com/battlebrothers/mods/48
-	"mod_settlement_situations_worldmap_tooltip [Use Settlement Situations MSU by Enduriel instead]" // Settlement Situations Worldmap Tooltip by MrBrut. https://www.nexusmods.com/battlebrothers/mods/313
+	"mod_betterFencing [Is already included and/or enhanced in Reforged]" // Better Fencing by LordMidas. The functionality is integrated into Reforged. https://www.nexusmods.com/battlebrothers/mods/369
+
 ]);
 
 // Some mods don't register with hooks, so we have to check for their existence by their filename
