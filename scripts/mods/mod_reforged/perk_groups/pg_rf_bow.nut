@@ -23,13 +23,4 @@ this.pg_rf_bow <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 
 		return rSkill < 80 ? ret * 0.5 : ret + 0.2 * ::Math.max(0, rSkill - 80);
 	}
-
-	function getPerkGroupMultiplier( _groupID, _perkTree )
-	{
-		switch (_groupID)
-		{
-			case "pg.rf_ranged":
-				return 1.5;
-		}
-	}
 });
