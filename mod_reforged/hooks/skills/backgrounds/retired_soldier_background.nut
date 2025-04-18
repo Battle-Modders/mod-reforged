@@ -45,7 +45,7 @@
 				return 10;
 
 			case "pg.rf_tactician":
-				return 7.5;
+				return 15;
 
 			case "pg.rf_vigorous":
 				return 0.5;

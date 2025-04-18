@@ -36,7 +36,7 @@
 		switch (_groupID)
 		{
 			case "pg.rf_tactician":
-				return 4;
+				return 2;
 
 			case "pg.special.rf_student":
 				return 2;
