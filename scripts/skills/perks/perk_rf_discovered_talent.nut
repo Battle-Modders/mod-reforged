@@ -27,7 +27,7 @@ this.perk_rf_discovered_talent <- ::inherit("scripts/skills/skill", {
 		if (potential.len() == 0)
 			return;
 
-		::Math.seedRandom(1000 * actor.getUID() + ::toHash(this.getID()) + this.m.AttributesRolled.len() * 10000);
+		::Reforged.Math.seedRandom(actor.getUID(), this.getID(), this.m.AttributesRolled.len());
 
 		local choice = ::MSU.Array.rand(potential);
 		local toAdd = ::MSU.Class.WeightedContainer([
