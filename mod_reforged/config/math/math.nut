@@ -33,11 +33,69 @@
 
 	function seededRand( _seed, _min, _max )
 	{
-		::Math.seedRandom(_seed);
+		::Reforged.Math.seedRandom(_seed);
 		local ret = ::Math.rand(_min, _max);
 		// + _seed so that calls to this function in the same frame with different seeds
 		// don't always set the random seed to the same value
 		::Math.seedRandom(::Time.getVirtualTimeF() + _seed);
 		return ret;
+	}
+
+	function seedRandom( ... )
+	{
+		if ("Assets" in ::World && !::MSU.isNull(::World.Assets))
+		{
+			vargv.push(::World.Assets.getCampaignID());
+		}
+
+		local seed = 0;
+		foreach (s in vargv)
+		{
+			switch (typeof s)
+			{
+				case "string":
+					seed += ::toHash(s);
+					break;
+
+				case "integer":
+				case "float":
+					seed += s * 10000;
+					break;
+
+				default:
+					throw ::MSU.Exception.InvalidType(s);
+			}
+		}
+
+		::Math.seedRandom(seed);
+	}
+
+	function seedRandomString( ... )
+	{
+		if ("Assets" in ::World && !::MSU.isNull(::World.Assets))
+		{
+			vargv.push(::World.Assets.getCampaignID().tostring());
+		}
+
+		local seed = 0;
+		foreach (s in vargv)
+		{
+			switch (typeof s)
+			{
+				case "string":
+					seed += s;
+					break;
+
+				case "integer":
+				case "float":
+					seed += s.tostring();
+					break;
+
+				default:
+					throw ::MSU.Exception.InvalidType(s);
+			}
+		}
+
+		::Math.seedRandomString(seed);
 	}
 }
