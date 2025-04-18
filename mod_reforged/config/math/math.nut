@@ -31,9 +31,10 @@
 		return (newDistance < oldDistance) ? _newValue : _oldValue;
 	}
 
-	function seededRand( _seed, _min, _max )
+	function seededRand( _min, _max, ... )
 	{
-		::Reforged.Math.seedRandom(_seed);
+		::Reforged.Math.seedRandom(vargv);
+
 		local ret = ::Math.rand(_min, _max);
 		// + _seed so that calls to this function in the same frame with different seeds
 		// don't always set the random seed to the same value
