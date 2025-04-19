@@ -4,6 +4,8 @@
 	q.m.StacksForMoraleCheck <- 3;
 	q.m.MaxMalusMult <- 0.5;
 
+	q.m.LastBleedSkillCounter <- 0;	// is set to the current SkillCounter, whenever a bleed is received. It's used to prevent overlay icon spam from the same skill
+
 	q.create = @(__original) function()
 	{
 		__original();
@@ -125,6 +127,12 @@
 		}
 	}
 
+	q.onAdded = @(__original) function()
+	{
+		__original();
+		this.m.LastBleedSkillCounter = ::Const.SkillCounter;
+	}
+
 	q.onRefresh <- function()
 	{
 		local actor = this.getContainer().getActor();
@@ -136,7 +144,12 @@
 		}
 
 		this.m.Stacks++;
-		this.spawnIcon(this.m.Overlay, actor.getTile());
+
+		if (this.m.LastBleedSkillCounter != ::Const.SkillCounter)	// We only spawn the overlay icon once per skill execution to prevent noise from skills adding multiple instances at once
+		{
+			this.spawnIcon(this.m.Overlay, actor.getTile());
+		}
+		this.m.LastBleedSkillCounter = ::Const.SkillCounter;
 
 		if (++this.m.StacksThisTurn == this.m.StacksForMoraleCheck)
 			actor.checkMorale(-1, ::Const.Morale.OnHitBaseDifficulty * (1.0 - actor.getHitpoints() / actor.getHitpointsMax()));
