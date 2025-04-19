@@ -42,7 +42,7 @@ this.perk_rf_realized_potential <- ::inherit("scripts/skills/skill", {
 			b.Initiative += this.m.AttributeModifier;
 			b.Bravery += this.m.AttributeModifier;
 
-			::Math.seedRandom(1000 * actor.getUID() + ::toHash(this.getID()));
+			::Reforged.Math.seedRandom(actor.getUID(), this.getID());
 
 			// Add new Perk Groups
 			local perkTree = actor.getPerkTree();

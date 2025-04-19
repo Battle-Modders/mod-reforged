@@ -138,7 +138,7 @@ this.rf_old_swordmaster_scenario_recruit_effect <- ::inherit("scripts/skills/eff
 	{
 		local actor = this.getContainer().getActor();
 
-		::Math.seedRandom(1000 * actor.getUID() + ::toHash(this.getID()) + actor.getLevel() * 10000);
+		::Reforged.Math.seedRandom(actor.getUID(), this.getID(), actor.getLevel());
 
 		if (::Math.rand(1, 100) <= this.getFreePerkChance() && actor.getPerkTree().hasPerkGroup("pg.rf_sword"))
 		{
