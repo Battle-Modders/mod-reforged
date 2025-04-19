@@ -11,6 +11,7 @@
 {	// Tactical Tooltips
 	local tacticalTooltipPage = ::Reforged.Mod.ModSettings.addPage("Tactical Tooltips");
 
+	tacticalTooltipPage.addEnumSetting("TacticalTooltip_Values", "All", ["All", "AI Only", "Player Only", "None"], "Show Values", "Show Hitpoints, Armor etc. as values instead of immersive words.");
 	tacticalTooltipPage.addEnumSetting("TacticalTooltip_Attributes", "All", ["All", "AI Only", "Player Only", "None"], "Show Attributes", "Show attributes such as Melee Skill, Melee Defense etc. for entities in the Tactical Tooltip.");
 	tacticalTooltipPage.addEnumSetting("TacticalTooltip_Effects", "All", ["All", "AI Only", "Player Only", "None"], "Show Effects", "Show status effects for entities in the Tactical Tooltip.");
 	tacticalTooltipPage.addEnumSetting("TacticalTooltip_Perks", "All", ["All", "AI Only", "Player Only", "None"], "Show Perks", "Show perks for entities in the Tactical Tooltip.");

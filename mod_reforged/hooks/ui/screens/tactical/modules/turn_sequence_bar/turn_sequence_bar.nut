@@ -36,6 +36,31 @@
 		ret.moraleMax = 15; // arbitrary maximum value
 		ret.moraleLabel = reach + " (" + reachAtk + ", " + reachDef + ")";
 
+		local isShowingValue = false;
+		switch (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_Values").getValue())
+		{
+			case "All":
+				isShowingValue = true;
+				break;
+			case "Player Only":
+				isShowingValue = ::MSU.isKindOf(_entity, "player");
+				break;
+			case "AI Only":
+				isShowingValue = !::MSU.isKindOf(_entity, "player");
+				break;
+		}
+
+		if (!isShowingValue)
+		{
+			// All these entries are not added by vanilla in this function, but they are used by vanilla
+			// in the js function. So if we just add them here, it works automatically.
+			ret.armorHeadLabel <-  ::Const.ArmorStateName[_entity.getArmorState(::Const.BodyPart.Head)];
+			ret.armorBodyLabel <- ::Const.ArmorStateName[_entity.getArmorState(::Const.BodyPart.Body)];
+			ret.fatigueLabel <-  ::Const.FatigueStateName[_entity.getFatigueState()];
+			ret.hitpointsLabel <- ::Const.HitpointsStateName[_entity.getHitpointsState()];
+			ret.actionPointsLabel <- ::Const.RF_ActionPointsStateName[_entity.RF_getActionPointsState()];
+		}
+
 		return ret;
 	}
 

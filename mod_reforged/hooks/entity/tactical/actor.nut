@@ -60,14 +60,31 @@
 			}
 		}
 
+		local isShowingValue = false;
+		switch (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_Values").getValue())
+		{
+			case "All":
+				isShowingValue = true;
+				break;
+			case "Player Only":
+				isShowingValue = ::isKindOf(this, "player");
+				break;
+			case "AI Only":
+				isShowingValue = !::isKindOf(this, "player");
+				break;
+		}
+
 		// Adjust existing progressbars displayed by Vanilla
 		for (local index = (ret.len() - 1); index >= 0; index--)	// we move through it backwards to safely remove entries during it
 		{
 			local entry = ret[index];
 			// Display the actual values for Armor (5, 6), Health (7) and Fatigue (9)
-			if (entry.id == 5 || entry.id == 6 || entry.id == 7 || entry.id == 9)
+			if (isShowingValue)
 			{
-				entry.text = " " + entry.value + " / " + entry.valueMax;
+				if (entry.id == 5 || entry.id == 6 || entry.id == 7 || entry.id == 9)
+				{
+					entry.text = " " + entry.value + " / " + entry.valueMax;
+				}
 			}
 
 			// Insert reach information
@@ -78,12 +95,10 @@
 
 			if (entry.id == 8)	// Replace Morale-Bar with Action-Point-Bar
 			{
-				local turnsToGo = ::Tactical.TurnSequenceBar.getTurnsUntilActive(this.getID());
-
 				entry.icon = "ui/icons/action_points.png",
 				entry.value = this.getActionPoints(),
 				entry.valueMax = this.getActionPointsMax(),
-				entry.text = "" + this.getActionPoints() + " / " + this.getActionPointsMax() + "",
+				entry.text = isShowingValue ? (this.getActionPoints() + " / " + this.getActionPointsMax()) : ::Const.RF_ActionPointsStateName[this.RF_getActionPointsState()],
 				entry.style = "action-points-slim";
 				continue;
 			}
@@ -245,6 +260,11 @@
 	q.setWaitTurn <- function( _bool )
 	{
 		this.m.IsWaitingTurn = _bool;
+	}
+
+	q.RF_getActionPointsState <- function()
+	{
+		return ::Math.min(::Const.RF_ActionPointsStateName.len() - 1, ::Math.max(0, ::Math.floor(this.getActionPoints() / (this.getActionPointsMax() * 1.0) * (::Const.RF_ActionPointsStateName.len() - 1))));
 	}
 
 	// Functionality to restrict loot drops based on damage dealt by players to this actor.
