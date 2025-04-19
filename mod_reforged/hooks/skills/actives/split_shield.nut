@@ -3,24 +3,43 @@
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
-		ret.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/shield_damage.png",
-			text = "Inflicts " + ::MSU.Text.colorDamage(this.getContainer().getActor().getMainhandItem().getShieldDamage()) + " damage to shields"
-		});
+		if (::MSU.isNull(this.getContainer()) || this.getContainer().getActor().getMainhandItem() == null)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/shield_damage.png",
+				text = "Inflicts damage to shields"
+			});
+		}
+		else
+		{
+			local shieldDamage = this._RF_getShieldDamage();
+			if (shieldDamage != 0)
+			{
+				ret.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/shield_damage.png",
+					text = format("Inflicts %s damage to shields", ::MSU.Text.colorDamage(shieldDamage))
+				});
+			}
+		}
 
-		ret.push({
-			id = 11,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorDamage(this.RF_getFatigueDamage()) + " [Fatigue|Concept.Fatigue] on the target")
-		});
+		if (this.RF_getFatigueDamage() != 0)
+		{
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorDamage(this.RF_getFatigueDamage()) + " [Fatigue|Concept.Fatigue] on the target")
+			});
+		}
 
 		if (this.getMaxRange() > 1)
 		{
 			ret.push({
-				id = 8,
+				id = 12,
 				type = "text",
 				icon = "ui/icons/vision.png",
 				text = "Has a range of " + ::MSU.Text.colorPositive(this.m.MaxRange) + " tiles"
@@ -47,7 +66,7 @@
 		if (shield != null)
 		{
 			this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplitShield);
-			local damage = _user.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).getShieldDamage();
+			local damage = this.RF_getShieldDamage(targetEntity);
 
 			local conditionBefore = shield.getCondition();
 			shield.applyShieldDamage(damage);
@@ -56,19 +75,19 @@
 			{
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses Smash Shield and destroys " + ::Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and destroys " + ::Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield");
 				}
 			}
 			else
 			{
 				if (this.m.SoundOnHit.len() != 0)
 				{
-					::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _targetTile.getEntity().getPos());
+					::Sound.play(::MSU.Array.rand(this.m.SoundOnHit), ::Const.Sound.Volume.Skill, _targetTile.getEntity().getPos());
 				}
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses Smash Shield and hits " + ::Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield for [b]" + (conditionBefore - shield.getCondition()) + "[/b] damage");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and hits " + ::Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield for [b]" + (conditionBefore - shield.getCondition()) + "[/b] damage");
 				}
 			}
 
@@ -91,6 +110,18 @@
 		}
 
 		return true;
+	}
+
+// New Functions
+	// Returns the shield damage dealt by this skill
+	// Returns 0 if no shield damage could be retrieved
+	q.RF_getShieldDamage <- function( _targetEntity = null )
+	{
+		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
+			return 0; // return a non-zero number so the tooltip gets added
+
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		return weapon == null ? 0 : weapon.getShieldDamage();
 	}
 
 	q.RF_getFatigueDamage <- function()
