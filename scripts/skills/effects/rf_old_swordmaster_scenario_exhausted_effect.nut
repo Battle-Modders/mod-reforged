@@ -1,5 +1,9 @@
 this.rf_old_swordmaster_scenario_exhausted_effect <- ::inherit("scripts/skills/skill", {
 	m = {
+		// onCombatFinished is called for all bros, including the ones who didn't take part in combat
+		// so this variable is used to track whether this bro took part in battle so that we only set the StartTime
+		// in onCombatFinished if the bro was present in the battle
+		IsParticipatingInBattle = false,
 		StartTime = 0 // Total in-game seconds based on ::World.getTime(),
 	},
 	function create()
@@ -125,10 +129,19 @@ this.rf_old_swordmaster_scenario_exhausted_effect <- ::inherit("scripts/skills/s
 		return ::Math.floor((this.getEndTime() - this.getCurrTime()) / ::World.getTime().SecondsPerDay);
 	}
 
+	function onCombatStarted()
+	{
+		this.m.IsParticipatingInBattle = true;
+	}
+
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.StartTime = this.getCurrTime();
+		if (this.m.IsParticipatingInBattle)
+		{
+			this.m.StartTime = this.getCurrTime();
+			this.m.IsParticipatingInBattle = false;
+		}
 	}
 
 	function onSerialize( _out )
