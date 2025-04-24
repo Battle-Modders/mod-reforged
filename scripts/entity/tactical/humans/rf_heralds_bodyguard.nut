@@ -58,20 +58,24 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigilant"));
-		this.m.Skills.add(::Reforged.new("scripts/skills/special/rf_bodyguard", function(o) { // TODO: Probably need a better way of doing this (hopefully when onCombatStart is available for AI actors) - Midas
-			o.onCombatStarted <- function()
+		this.m.Skills.add(::new("scripts/skills/special/rf_bodyguard"));
+	}
+
+	function onCombatStart()
+	{
+		this.human.onCombatStart();
+		local bodyguardSkill = this.getSkills().getSkillByID("special.rf_bodyguard");
+		if (bodyguardSkill != null)
+		{
+			foreach (ally in ::Tactical.Entities.getInstancesOfFaction(this.getFaction()))
 			{
-				local actor = this.getContainer().getActor();
-				foreach (ally in ::Tactical.Entities.getInstancesOfFaction(actor.getFaction()))
+				if (ally.getType() == ::Const.EntityType.RF_Herald)
 				{
-					if (ally.getType() == ::Const.EntityType.RF_Herald)
-					{
-						this.setVIP(ally);
-						return;
-					}
+					bodyguardSkill.setVIP(ally);
+					return;
 				}
 			}
-		}));
+		}
 	}
 
 	function onFactionChanged()
