@@ -8,7 +8,7 @@
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on the enemies
 	}
 
-	q.getTooltip <- function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.push({
@@ -48,7 +48,7 @@
 		return ret;
 	}
 
-	q.onAdded <- function()
+	q.onAdded = @() function()
 	{
 		local actor = this.getContainer().getActor();
 		local baseProperties = actor.getBaseProperties();

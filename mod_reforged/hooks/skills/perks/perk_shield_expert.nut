@@ -8,7 +8,7 @@
 		if (shield != null) this.onEquip(shield);
 	}
 
-	q.onEquip <- function( _item )
+	q.onEquip = @() function( _item )
 	{
 		if (_item.isItemType(::Const.Items.ItemType.Shield) && _item.getID().find("buckler") == null)
 		{
@@ -18,7 +18,7 @@
 
 	// This is called via skill_container.buildPropertiesForDefense
 	// If the attack misses, we will recover the character's fatigue back to this value
-	q.onBeingAttacked <- function( _attacker, _skill, _properties )
+	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
 	{
 		this.m.FatigueBeforeMiss = this.getContainer().getActor().getFatigue();
 	}
@@ -28,7 +28,7 @@
 	// actor.onMissed. So instead of that, this recover system is cleaner for now.
 	// If MSU adds another character property `FatigueLossOnBeingMissed` and hooks actor.onMissed
 	// to incorporate that then we can use that for a more accurate solution.
-	q.onMissed <- function( _attacker, _skill )
+	q.onMissed = @() function( _attacker, _skill )
 	{
 		local actor = this.getContainer().getActor();
 		if (actor.getFatigue() > this.m.FatigueBeforeMiss)

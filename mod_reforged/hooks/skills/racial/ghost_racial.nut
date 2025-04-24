@@ -9,7 +9,7 @@
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
 	}
 
-	q.getTooltip <- function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -84,7 +84,7 @@
 		return ret;
 	}
 
-	q.onAdded <- function()
+	q.onAdded = @() function()
 	{
 		local actor = this.getContainer().getActor();
 		actor.m.MoraleState = ::Const.MoraleState.Ignore;

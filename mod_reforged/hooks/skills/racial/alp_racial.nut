@@ -7,7 +7,7 @@
 		this.m.IsHidden = false;
 	}
 
-	q.getTooltip <- function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -75,7 +75,7 @@
 		return ret;
 	}
 
-	q.onAdded <- function()
+	q.onAdded = @() function()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 

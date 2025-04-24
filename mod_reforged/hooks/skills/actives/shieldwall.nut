@@ -33,13 +33,13 @@
 		}
 	}
 
-	q.onTurnStart <- function()
+	q.onTurnStart = @() function()
 	{
 		// Part of perk_rf_shield_sergeant functionality
 		this.RF_checkForShieldSergeant();
 	}
 
-	q.onTurnEnd <- function()
+	q.onTurnEnd = @() function()
 	{
 		// Part of perk_rf_shield_sergeant functionality
 		this.RF_checkForShieldSergeant();

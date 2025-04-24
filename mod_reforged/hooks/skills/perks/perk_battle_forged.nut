@@ -15,7 +15,7 @@
 		return ret;
 	}
 
-	q.onAnySkillUsed <- function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
 	{
 		if (_targetEntity != null && _skill.isAttack() && !_skill.isRanged())
 		{

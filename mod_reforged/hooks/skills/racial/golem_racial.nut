@@ -89,7 +89,7 @@
 		return ret;
 	}
 
-	q.onAdded <- function()
+	q.onAdded = @() function()
 	{
 		local actor = this.getContainer().getActor();
 		actor.m.MoraleState = ::Const.MoraleState.Ignore;

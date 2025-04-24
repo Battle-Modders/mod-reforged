@@ -6,7 +6,7 @@
 		if (weapon != null) this.onEquip(weapon);
 	}
 
-	q.onEquip <- function( _item )
+	q.onEquip = @() function( _item )
 	{
 		if (_item.isItemType(::Const.Items.ItemType.Weapon) && _item.isWeaponType(::Const.Items.WeaponType.Bow))
 		{
