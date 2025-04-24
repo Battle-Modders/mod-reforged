@@ -5,7 +5,7 @@
 		this.m.Reach = 6;
 	}
 
-	q.onCombatStarted <- function()
+	q.onCombatStarted = @() function()
 	{
 		foreach (ally in ::Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction()))
 		{

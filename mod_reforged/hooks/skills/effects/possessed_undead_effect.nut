@@ -5,7 +5,7 @@
 		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character is possessed until the end of their [turn.|Concept.Turn]")
 	}
 
-	q.getTooltip <- function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([

@@ -70,7 +70,7 @@
 		return ret;
 	}
 
-	q.onBuildPerkTree <- function()
+	q.onBuildPerkTree = @() function()
 	{
 		local perkTree = this.getContainer().getActor().getPerkTree();
 		if (perkTree.hasPerk("perk.lone_wolf"))

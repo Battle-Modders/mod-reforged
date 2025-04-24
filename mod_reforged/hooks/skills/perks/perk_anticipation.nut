@@ -20,22 +20,22 @@
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on entities
 	}
 
-	q.isHidden <- function()
+	q.isHidden = @() function()
 	{
 		return (this.isEnabled() == false);
 	}
 
-	q.onCombatStarted <- function()
+	q.onCombatStarted = @() function()
 	{
 		this.m.UsesRemaining = this.m.UsesMax;
 	}
 
-	q.onCombatFinished <- function()
+	q.onCombatFinished = @() function()
 	{
 		this.m.UsesRemaining = this.m.UsesMax;	// So that for the purposes of the tooltip everything looks good
 	}
 
-	q.getTooltip <- function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 
@@ -64,7 +64,7 @@
 		return ret;
 	}
 
-	q.onBeforeDamageReceived <- function( _attacker, _skill, _hitinfo, _properties )
+	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitinfo, _properties )
 	{
 		if (!this.isEnabled() || _skill == null || !_skill.isAttack())		// _skill can be null, for example when burning damage is applied
 		{
@@ -78,7 +78,7 @@
 		this.m.IsAboutToConsumeUse = true;	// We need this variable because in "onDamageReceived" we have no information whether that was caused by an "attack"
 	}
 
-	q.onDamageReceived <- function( _attacker, _damageHitpoints, _damageArmor )
+	q.onDamageReceived = @() function( _attacker, _damageHitpoints, _damageArmor )
 	{
 		if (this.m.IsAboutToConsumeUse == false) return;	// We only consume one use for each registered attack. But a single attack that deals damage multiple times will therefor have the damage of all instances reduced
 		this.m.IsAboutToConsumeUse = false;

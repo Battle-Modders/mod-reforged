@@ -10,12 +10,12 @@
 		this.m.IconMini = "perk_rf_inspiring_presence_mini";
 	}
 
-	q.isHidden <- function()
+	q.isHidden = @() function()
 	{
 		return !this.isEnabled();
 	}
 
-	q.getTooltip <- function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.push({

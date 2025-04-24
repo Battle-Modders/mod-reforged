@@ -94,7 +94,7 @@
 		return __original();
 	}
 
-	q.onBuildPerkTree <- function()
+	q.onBuildPerkTree = @() function()
 	{
 		local perkTree = this.getContainer().getActor().getPerkTree();
 		if (perkTree.hasPerk("perk.rf_professional"))

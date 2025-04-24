@@ -19,7 +19,7 @@
 		return __original() && this.m.TurnsRemaining == 0;
 	}
 
-	q.onTurnEnd <- function()
+	q.onTurnEnd = @() function()
 	{
 		this.m.TurnsRemaining = ::Math.max(0, this.m.TurnsRemaining - 1);
 	}

@@ -94,7 +94,7 @@
 		_properties.DamageReceivedArmorMult *= this.getArmorDamage();
 	}
 
-	q.onAnySkillUsed <- function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
 	{
 		if (!this.isHidden() && _targetEntity != null && _skill.isAttack() && !_skill.isRanged() && _targetEntity.getInitiative() < this.getContainer().getActor().getInitiative())
 		{

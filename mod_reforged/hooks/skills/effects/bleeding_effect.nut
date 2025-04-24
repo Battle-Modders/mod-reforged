@@ -14,7 +14,7 @@
 		this.m.IsStacking = false;
 	}
 
-	q.getTooltip <- function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.push({
@@ -59,7 +59,7 @@
 		return ret;
 	}
 
-	q.getName <- function()
+	q.getName = @() function()
 	{
 		return this.m.Stacks == 1 ? this.m.Name : this.m.Name + " (x" + this.m.Stacks + ")";
 	}
@@ -141,7 +141,7 @@
 		this.m.SkillCount = ::Const.SkillCounter;
 	}
 
-	q.onRefresh <- function()
+	q.onRefresh = @() function()
 	{
 		local actor = this.getContainer().getActor();
 		if (actor.getCurrentProperties().IsResistantToAnyStatuses && ::Math.rand(1, 100) <= 50)
@@ -175,7 +175,7 @@
 			actor.checkMorale(-1, ::Const.Morale.OnHitBaseDifficulty * (1.0 - actor.getHitpoints() / actor.getHitpointsMax()));
 	}
 
-	q.onTurnStart <- function()
+	q.onTurnStart = @() function()
 	{
 		this.m.StacksThisTurn = 0;
 	}

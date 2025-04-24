@@ -33,7 +33,7 @@
 		return ret;
 	}
 
-	q.onTargetHit <- function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	q.onTargetHit = @() function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (_skill == this && _targetEntity.isAlive() && _targetEntity.getType() != ::Const.EntityType.Schrat && _targetEntity.getType() != ::Const.EntityType.SchratSmall)
 		{

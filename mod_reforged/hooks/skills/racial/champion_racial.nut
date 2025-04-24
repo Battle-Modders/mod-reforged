@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/champion_racial", function(q) {
-	q.getTooltip <- function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([

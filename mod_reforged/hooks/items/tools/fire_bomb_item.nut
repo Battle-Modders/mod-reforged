@@ -5,7 +5,7 @@
 		this.m.Value = 420; // approximately 30% reduced from vanilla value of 600
 	}
 
-	q.onPutIntoBag <- function()
+	q.onPutIntoBag = @() function()
 	{
 		local skill = ::new("scripts/skills/actives/rf_sling_fire_bomb_skill");
 		skill.setItem(this);

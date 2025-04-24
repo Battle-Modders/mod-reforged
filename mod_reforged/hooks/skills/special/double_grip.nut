@@ -61,7 +61,7 @@
 		return offhand.getStaminaModifier() > -10 && weapon.isItemType(::Const.Items.ItemType.RF_Southern) && weapon.isWeaponType(::Const.Items.WeaponType.Sword) && this.getContainer().hasSkill("perk.rf_en_garde");
 	}
 
-	q.applyBonusOnUpdate <- function( _properties )
+	q.applyBonusonUpdate = @() function( _properties )
 	{
 		switch (this.m.CurrWeaponType)
 		{

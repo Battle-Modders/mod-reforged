@@ -64,7 +64,7 @@
 	}
 
 	// Set IsUsingHitChance to true before target hit so that the Nimble perk works properly
-	q.onBeforeTargetHit <- function( _skill, _targetEntity, _hitInfo )
+	q.onBeforeTargetHit = @() function( _skill, _targetEntity, _hitInfo )
 	{
 		this.m.IsUsingHitchance = true;
 	}

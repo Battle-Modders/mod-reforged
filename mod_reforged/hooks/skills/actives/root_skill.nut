@@ -34,12 +34,12 @@
 		return __original(_user, _targetTile);
 	}
 
-	q.isUsable <- function()
+	q.isUsable = @() function()
 	{
 		return this.skill.isUsable() && this.m.TurnsRemaining == 0;
 	}
 
-	q.onTurnEnd <- function()
+	q.onTurnEnd = @() function()
 	{
 		this.m.TurnsRemaining = ::Math.max(0, this.m.TurnsRemaining - 1);
 	}

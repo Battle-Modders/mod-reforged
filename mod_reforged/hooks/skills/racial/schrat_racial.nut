@@ -12,13 +12,13 @@
 		return this.skill.isHidden();
 	}
 
-	q.getName <- function()
+	q.getName = @() function()
 	{
 		if (this.getContainer().getActor().isArmedWithShield()) return (this.skill.getName() + " (Shielded)");
 		return this.skill.getName();
 	}
 
-	q.getTooltip <- function()
+	q.getTooltip = @() function()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -101,7 +101,7 @@
 		return ret;
 	}
 
-	q.onAdded <- function()
+	q.onAdded = @() function()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 

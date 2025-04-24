@@ -11,7 +11,7 @@
 		this.getContainer().removeByID("actives.rf_take_aim");
 	}
 
-	q.onAfterUpdate <- function( _properties )
+	q.onAfterUpdate = @() function( _properties )
 	{
 		local reload = this.getContainer().getSkillByID("actives.reload_bolt");
 		if (reload != null && reload.m.ActionPointCost > 4 && reload.getBaseValue("ActionPointCost") > 4)
