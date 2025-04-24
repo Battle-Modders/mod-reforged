@@ -33,12 +33,12 @@
 		{
 			local masteries = "";
 
-			foreach (key, weaponType in ::Const.Items.WeaponType)
+			foreach (weaponType in ::Const.Items.WeaponType)
 			{
-				if (key in ::Reforged.WMS.WeaponTypeAlias) key = ::Reforged.WMS.WeaponTypeAlias[key];
-				if (this.isWeaponType(weaponType) && (key in ::Reforged.WMS.WeaponTypeMastery))
+				if (weaponType in ::Reforged.WMS.WeaponTypeAlias) weaponType = ::Reforged.WMS.WeaponTypeAlias[weaponType];
+				if (this.isWeaponType(weaponType) && (weaponType in ::Reforged.WMS.WeaponTypeMastery))
 				{
-					masteries += key + ", ";
+					masteries += ::Const.Items.getWeaponTypeName(weaponType) + ", ";
 				}
 			}
 
