@@ -55,6 +55,8 @@ this.perk_rf_vanquisher <- ::inherit("scripts/skills/skill", {
 
 	function onMovementFinished()
 	{
+		this.m.IsInEffect = false;
+
 		if (this.m.IsSpent)
 			return;
 
