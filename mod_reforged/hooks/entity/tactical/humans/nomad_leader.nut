@@ -56,16 +56,20 @@
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer([
+			local weapons = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/fighting_spear"],
 				[1, "scripts/items/weapons/oriental/heavy_southern_mace"],
 				[1, "scripts/items/weapons/shamshir"],
 				[1, "scripts/items/weapons/three_headed_flail"],
-
-				[1, "scripts/items/weapons/greataxe"],
-				[1, "scripts/items/weapons/oriental/two_handed_scimitar"]
-			]).roll();
-			this.m.Items.equip(::new(weapon));
+			]);
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapons.addArray([
+					[1, "scripts/items/weapons/greataxe"],
+					[1, "scripts/items/weapons/oriental/two_handed_scimitar"]
+				]);
+			}
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
