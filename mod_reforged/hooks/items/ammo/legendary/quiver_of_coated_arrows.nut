@@ -8,7 +8,7 @@
 			{
 				// Change the bleeding related entry to multiple stacks of bleeding instead of 2 turns of bleeding
 				// because of different bleeding mechanics in Reforged
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorDamage(this.m.BleedDamage / 5) " + stacks of [Bleeding|Skill+bleeding_effect]")
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorDamage(this.m.BleedDamage / 5) + " + stacks of [Bleeding|Skill+bleeding_effect]")
 				break;
 			}
 		}
