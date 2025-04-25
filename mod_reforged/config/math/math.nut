@@ -50,6 +50,9 @@
 	// Uses values passed in vargv to generate a seed as number and passes it to ::Math.seedRandom
 	function seedRandom( ... )
 	{
+		if (vargv.len() == 0)
+			throw "must pass at least one seed argument";
+
 		if ("Assets" in ::World && !::MSU.isNull(::World.Assets))
 		{
 			vargv.push(::World.Assets.getCampaignID());
@@ -82,6 +85,9 @@
 	// Uses values passed in vargv to generate a seed as string and passes it to ::Math.seedRandomString
 	function seedRandomString( ... )
 	{
+		if (vargv.len() == 0)
+			throw "must pass at least one seed argument";
+
 		if ("Assets" in ::World && !::MSU.isNull(::World.Assets))
 		{
 			vargv.push(::World.Assets.getCampaignID().tostring());
