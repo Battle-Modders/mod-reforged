@@ -44,7 +44,7 @@ this.perk_rf_professional <- ::inherit("scripts/skills/skill", {
 			if (options.len() == 0)
 				return;
 
-			chosenPerkGroupID = options[::Reforged.Math.seededRand(1000 * actor.getUID() + ::toHash(this.getID()), 0, options.len() - 1)];
+			chosenPerkGroupID = options[::Reforged.Math.randWithSeed(0, options.len() - 1, actor.getUID(), this.getID())];
 
 			actor.getFlags().set("RF_ProfessionalPerkGroupID", chosenPerkGroupID);
 		}

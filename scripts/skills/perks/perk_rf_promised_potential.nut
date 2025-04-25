@@ -40,6 +40,6 @@ this.perk_rf_promised_potential <- ::inherit("scripts/skills/skill", {
 
 	function willSucceed()
 	{
-		return this.getContainer().hasSkill("trait.player") || ::Reforged.Math.seededRand(1000 * this.getContainer().getActor().getUID() + ::toHash(this.getID()), 1, 100) <= this.m.Chance;
+		return this.getContainer().hasSkill("trait.player") || ::Reforged.Math.randWithSeed(1, 100, this.getContainer().getActor().getUID(), this.getID()) <= this.m.Chance;
 	}
 });

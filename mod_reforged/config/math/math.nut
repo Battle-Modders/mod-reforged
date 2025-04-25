@@ -31,13 +31,91 @@
 		return (newDistance < oldDistance) ? _newValue : _oldValue;
 	}
 
-	function seededRand( _seed, _min, _max )
+	// Uses values passed in vargv to seed the random number generator, then returns ::Math.rand(_min, _max)
+	// also resets the random seed before returning.
+	function randWithSeed( _min, _max, ... )
 	{
-		::Math.seedRandom(_seed);
+		if (vargv.len() == 0)
+			throw "must pass at least one seed argument";
+
+		::Reforged.Math.seedRandom(vargv);
+
 		local ret = ::Math.rand(_min, _max);
-		// + _seed so that calls to this function in the same frame with different seeds
+		// + vargv[0] so that calls to this function in the same frame with different seeds
 		// don't always set the random seed to the same value
-		::Math.seedRandom(::Time.getVirtualTimeF() + _seed);
+		::Math.seedRandom(::Time.getVirtualTimeF() + vargv[0]);
 		return ret;
+	}
+
+	// Uses values passed in vargv to generate a seed as number and passes it to ::Math.seedRandom
+	function seedRandom( ... )
+	{
+		if (vargv.len() == 0)
+			throw "must pass at least one seed argument";
+
+		if ("Assets" in ::World && !::MSU.isNull(::World.Assets))
+		{
+			vargv.push(::World.Assets.getCampaignID());
+		}
+
+		local seed = 0;
+		foreach (s in vargv)
+		{
+			switch (typeof s)
+			{
+				case "string":
+					seed += ::toHash(s);
+					break;
+
+				case "bool":
+					s = s ? 2 : 1; // 2:1 instead of 1:0 so that false also produces some difference in seed
+				case "integer":
+				case "float":
+					seed += s * 10000;
+					break;
+
+				default:
+					throw ::MSU.Exception.InvalidType(s);
+			}
+		}
+
+		::Math.seedRandom(seed);
+	}
+
+	// Uses values passed in vargv to generate a seed as string and passes it to ::Math.seedRandomString
+	function seedRandomString( ... )
+	{
+		if (vargv.len() == 0)
+			throw "must pass at least one seed argument";
+
+		if ("Assets" in ::World && !::MSU.isNull(::World.Assets))
+		{
+			vargv.push(::World.Assets.getCampaignID().tostring());
+		}
+
+		local seed = "";
+		foreach (s in vargv)
+		{
+			switch (typeof s)
+			{
+				case "string":
+					seed += s;
+					break;
+
+				case "integer":
+				case "float":
+					seed += s.tostring();
+					break;
+
+				case "bool":
+					seed += s ? "true" : "false";
+					break;
+
+				default:
+					throw ::MSU.Exception.InvalidType(s);
+			}
+		}
+
+		::Math.seedRandomString(seed);
 	}
 }
