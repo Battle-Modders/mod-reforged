@@ -10,6 +10,7 @@ local original_getClone = ::Const.CharacterProperties.getClone;
 	DefensiveReachIgnore = 0,
 	OffensiveReachIgnore = 0,
 	BonusPerReachAdvantage = 0,
+	RF_BleedingEffectMult = 1.0
 
 	function getReach()
 	{
