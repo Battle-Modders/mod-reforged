@@ -93,7 +93,7 @@
 			vargv.push(::World.Assets.getCampaignID().tostring());
 		}
 
-		local seed = 0;
+		local seed = "";
 		foreach (s in vargv)
 		{
 			switch (typeof s)
