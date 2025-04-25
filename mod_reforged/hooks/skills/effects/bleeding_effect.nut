@@ -54,7 +54,7 @@
 			id = 13,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("If at least " + ::MSU.Text.colorNegative(this.m.StacksForMoraleCheck) + " stacks are received in a single [turn,|Concept.Turn] a negative [morale check|Concept.Morale] is immediately triggered")
+			text = ::Reforged.Mod.Tooltips.parseString("If at least " + ::MSU.Text.colorNegative(this.getStacksForMoraleCheck()) + " stacks are received in a single [turn,|Concept.Turn] a negative [morale check|Concept.Morale] is immediately triggered")
 		});
 		return ret;
 	}
@@ -71,13 +71,20 @@
 
 	q.getMalusMult <- function()
 	{
-		return 1.0 - ::Math.minf(this.m.MaxMalusMult, 2 * this.m.Stacks.tofloat() / this.getContainer().getActor().getHitpoints());
+		local actor = this.getContainer().getActor();
+		local debuff = ::Math.minf(this.m.MaxMalusMult, 2 * this.m.Stacks.tofloat() / actor.getHitpoints());
+		debuff *= actor.getCurrentProperties().RF_BleedingEffectMult;
+		return ::Math.maxf(0, 1.0 - debuff);
 	}
 
 	q.getDamage = @() function()
 	{
-		local ret = this.getContainer().hasSkill("trait.bleeder") ? this.m.Stacks * 2 : this.m.Stacks;
-		return this.getContainer().hasSkill("effects.hyena_potion") ? ::Math.floor(ret * 0.5) : ret;
+		return ::Math.floor(this.m.Stacks * this.getContainer().getActor().getCurrentProperties().RF_BleedingEffectMult);
+	}
+
+	q.getStacksForMoraleCheck <- function()
+	{
+		return ::Math.max(1, this.m.StacksForMoraleCheck / this.getContainer().getActor().getCurrentProperties().RF_BleedingEffectMult);
 	}
 
 	// The vanilla file has an empty onUpdate function
@@ -164,7 +171,7 @@
 
 		this.m.SkillCount = ::Const.SkillCounter;
 
-		if (++this.m.StacksThisTurn == this.m.StacksForMoraleCheck)
+		if (++this.m.StacksThisTurn == this.getStacksForMoraleCheck())
 			actor.checkMorale(-1, ::Const.Morale.OnHitBaseDifficulty * (1.0 - actor.getHitpoints() / actor.getHitpointsMax()));
 	}
 
