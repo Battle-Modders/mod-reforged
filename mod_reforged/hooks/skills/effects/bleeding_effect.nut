@@ -4,6 +4,9 @@
 	q.m.StacksForMoraleCheck <- 3;
 	q.m.MaxMalusMult <- 0.5;
 
+	// Used to speed up the bleed icon spam from multiple bleeds in a single attack
+	q.m.SkillCount <- 0;
+
 	q.create = @(__original) function()
 	{
 		__original();
@@ -125,6 +128,12 @@
 		}
 	}
 
+	q.onAdded = @(__original) function()
+	{
+		__original();
+		this.m.SkillCount = ::Const.SkillCounter;
+	}
+
 	q.onRefresh <- function()
 	{
 		local actor = this.getContainer().getActor();
@@ -136,7 +145,24 @@
 		}
 
 		this.m.Stacks++;
-		this.spawnIcon(this.m.Overlay, actor.getTile());
+
+		if (this.m.SkillCount != ::Const.SkillCounter)
+		{
+			this.spawnIcon(this.m.Overlay, actor.getTile());
+		}
+		// Speed up the icons from multiple bleed instances received in a single skill, after the first instance
+		else
+		{
+			local original_SkillIconStayDuration = ::Const.Tactical.Settings.SkillIconStayDuration;
+			local original_SkillIconOffsetY = ::Const.Tactical.Settings.SkillIconOffsetY;
+			::Const.Tactical.Settings.SkillIconStayDuration *= 0.3;
+			::Const.Tactical.Settings.SkillIconOffsetY *= 0.6;
+			this.spawnIcon(this.m.Overlay, actor.getTile());
+			::Const.Tactical.Settings.SkillIconStayDuration = original_SkillIconStayDuration;
+			::Const.Tactical.Settings.SkillIconOffsetY = original_SkillIconOffsetY;
+		}
+
+		this.m.SkillCount = ::Const.SkillCounter;
 
 		if (++this.m.StacksThisTurn == this.m.StacksForMoraleCheck)
 			actor.checkMorale(-1, ::Const.Morale.OnHitBaseDifficulty * (1.0 - actor.getHitpoints() / actor.getHitpointsMax()));
