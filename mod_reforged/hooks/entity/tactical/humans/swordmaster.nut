@@ -69,7 +69,8 @@
 
 			this.m.Items.equip(::new(armor));
 
-			if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier3)
+			local bodyItem = this.getBodyItem();
+			if (bodyItem != null && !bodyItem.isItemType(::Const.Items.ItemType.Named) && ::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier3)
 			{
 				local armorAttachment;
 				if (this.m.MyArmorVariant == 0) // light armor
