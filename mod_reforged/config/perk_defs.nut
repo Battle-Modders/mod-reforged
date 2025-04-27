@@ -17,6 +17,14 @@
 		IconDisabled = "ui/perks/perk_devastating_strikes_sw.png" // Art added by Reforged
 	},
 	{
+		ID = "perk.stalwart",
+		Script = "scripts/skills/perks/perk_stalwart",
+		Name = ::Const.Strings.PerkName.Stalwart,
+		Tooltip = ::Const.Strings.PerkDescription.Stalwart,
+		Icon = "ui/perks/perk_stalwart.png", // Art added by Reforged
+		IconDisabled = "ui/perks/perk_stalwart_sw.png" // Art added by Reforged
+	},
+	{
 		ID = "perk.sundering_strikes",
 		Script = "scripts/skills/perks/perk_sundering_strikes",
 		Name = ::Const.Strings.PerkName.SunderingStrikes,
