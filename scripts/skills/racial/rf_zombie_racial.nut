@@ -47,6 +47,13 @@ this.rf_zombie_racial <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/orientation/zombie_01_orientation.png",
+			text = "Humans killed by you will rise as Wiedergangers after some time",	// This is implemented in onActorKilled of zombie.nut
+		});
+
 		ret.extend([
 			{
 				id = 20,
