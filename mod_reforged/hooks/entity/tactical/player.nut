@@ -37,7 +37,15 @@
 
 	q.getProjectedAttributes <- function()
 	{
-		local baseProperties = this.getBaseProperties();
+		local properties = this.getBaseProperties().getClone();
+
+		local wasUpdating = this.getSkills().m.IsUpdating;
+		this.getSkills().m.IsUpdating = true;
+		foreach (s in this.getSkills().getSkillsByFunction(@( _skill ) _skill.isType(::Const.SkillType.Trait) || _skill.isType(::Const.SkillType.PermanentInjury)))
+		{
+			s.onUpdate(properties);
+		}
+		this.getSkills().m.IsUpdating = wasUpdating;
 
 		local ret = {};
 		foreach (attributeName, attribute in ::Const.Attributes)
@@ -49,7 +57,23 @@
 			if (this.m.Talents[attribute] == 3) attributeMax++;
 
 			local levelUpsRemaining = ::Math.max(::Const.XP.MaxLevelWithPerkpoints - this.getLevel() + this.getLevelUps(), 0);
-			local attributeValue = attributeName == "Fatigue" ? baseProperties["Stamina"] : baseProperties[attributeName]; // Thank you Overhype
+
+			local attributeValue;
+			switch (attributeName)
+			{
+				// Fatigue and Hitpoints getter functions are in actor and they use CurrentProperties
+				// so we temporarily switcheroo the CurrentProperties to get our desired values
+				case "Fatigue":
+				case "Hitpoints":
+					local original_CurrentProperties = this.m.CurrentProperties;
+					this.m.CurrentProperties = properties;
+					attributeValue = this["get" + attributeName + "Max"]();
+					this.m.CurrentProperties = original_CurrentProperties;
+					break;
+
+				default:
+					attributeValue = properties["get" + attributeName]();
+			}
 
 			// For each "randomized" level-up for 2-star talents, decrease min projection by 1 and increase max projection by 1
 			local attributeTotalMod = 0;

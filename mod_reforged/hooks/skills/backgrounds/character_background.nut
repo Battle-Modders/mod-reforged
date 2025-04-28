@@ -50,7 +50,7 @@
 			return format("<span class='attributePredictionItem'><img src='coui://%s'/> <span class='attributePredictionSingle'>%i</span> <span class='attributePredictionRange'>[%i - %i]</span></span>", _img, (min + max) / 2, min, max);
 		}
 
-		local ret = "<div class='attributePredictionHeader'>Projection of this character\'s base attribute ranges at level " + ::Const.XP.MaxLevelWithPerkpoints + ".</div>";
+		local ret = ::Reforged.Mod.Tooltips.parseString("<div class='attributePredictionHeader'>Projection of this character\'s [base|Concept.BaseAttribute] [attributes|Concept.CharacterAttribute] at [level|Concept.Level] " + ::Const.XP.MaxLevelWithPerkpoints + " including the effects of traits and [permanent injuries.|Concept.InjuryPermanent]</div>");
 		ret += "<div class='attributePredictionContainer'>";
 		ret += formatString("gfx/ui/icons/health.png", ::Const.Attributes.Hitpoints);
 		ret += formatString("gfx/ui/icons/melee_skill.png", ::Const.Attributes.MeleeSkill);
