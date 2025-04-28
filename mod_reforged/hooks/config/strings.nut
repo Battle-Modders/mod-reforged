@@ -900,7 +900,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"[Resolve|Concept.Bravery] is increased by " + ::MSU.Text.colorPositive("10%") + " at all times.",
-				"Additionally, at positive morale checks, [Resolve|Concept.Bravery] is increased by a further " + ::MSU.Text.colorPositive("10%") + ".",
+				"Additionally, at positive morale checks, [Resolve|Concept.Bravery] is increased by a further " + ::MSU.Text.colorPositive("+10") + ".",
 				"When at Confident Morale, all the bonuses of this perk are doubled, and [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] [Melee Defense,|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] are increased by " + ::MSU.Text.colorPositive("5%") + "."
 			]
 		}]
