@@ -23,7 +23,7 @@ this.rf_zombie_racial <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Builds no [Fatigue|Concept.Fatigue]")
+				text = ::Reforged.Mod.Tooltips.parseString("Build no [Fatigue|Concept.Fatigue]")
 			});
 		}
 		else if (this.m.FatigueEffectMult != 1.0)
@@ -43,7 +43,7 @@ this.rf_zombie_racial <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.color(::Const.UI.Color.DamageValue, bonusFatiguePerHit) + " extra [Fatigue|Concept.Fatigue] on a hit")
+				text = ::Reforged.Mod.Tooltips.parseString("Inflict " + ::MSU.Text.color(::Const.UI.Color.DamageValue, bonusFatiguePerHit) + " extra [Fatigue|Concept.Fatigue] on a hit")
 			});
 		}
 
