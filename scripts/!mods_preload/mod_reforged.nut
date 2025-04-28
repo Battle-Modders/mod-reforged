@@ -52,18 +52,18 @@ local requiredMods = [
 // Some mods don't register with hooks, so we have to check for their existence by their filename
 local function checkConflictWithFilename()
 {
-	local conflicts = [
+	local conflicts = {
 		// Show Enemy Stats by LiaAshborn. https://www.nexusmods.com/battlebrothers/mods/98
 		"mod_show_enemy_stats": "Show Enemy Stats is not compatible with Reforged. A similar feature is already included in Reforged.",
 		// Smart Recruiter by Leonionin. https://www.nexusmods.com/battlebrothers/mods/172
 		// Conflicts on hiring screen and breaks our perk tree display there
 		"mod_smart_recruiter": "Smart Recruiter is not compatible with Reforged. Use Clever Recruiter by Enduriel instead." //
-	];
-	foreach (file in ::IO.enumerateFiles("data/"))
+	};
+	foreach (filePath in ::IO.enumerateFiles("data/"))
 	{
 		foreach (filename, reason in conflicts)
 		{
-			if (file.find(filename) != null)
+			if (filePath.find(filename) != null)
 			{
 				::Hooks.errorAndQuit(reason);
 			}
