@@ -34,7 +34,7 @@
 				return 3;
 
 			case "pg.special.rf_leadership":
-				return 7.5;
+				return 5;
 
 			case "pg.rf_tactician":
 				return 4;
