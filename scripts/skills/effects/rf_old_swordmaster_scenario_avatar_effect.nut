@@ -134,9 +134,9 @@ this.rf_old_swordmaster_scenario_avatar_effect <- ::inherit("scripts/skills/effe
 			return 2.0;
 
 		if (::World.Flags.has("RF_OldSwordmasterScenario_OldAgeEvent_1"))
-			return 3.0;
+			return 2.5;
 
-		return 4.0;
+		return 3.0;
 	}
 
 	function onUpdate( _properties )
