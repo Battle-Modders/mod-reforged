@@ -218,7 +218,7 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 
 	function isRecruitValid( _bro )
 	{
-		return _bro.getBackground().getID() == "background.wildman" || _bro.getBackground().onChangeAttributes().MeleeSkill[0] < 8;
+		return _bro.getBackground().getID() != "background.wildman" && _bro.getBackground().onChangeAttributes().MeleeSkill[0] < 8;
 	}
 });
 
