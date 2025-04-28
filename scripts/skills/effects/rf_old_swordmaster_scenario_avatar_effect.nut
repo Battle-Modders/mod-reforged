@@ -4,8 +4,6 @@ this.rf_old_swordmaster_scenario_avatar_effect <- ::inherit("scripts/skills/effe
 		NumRecruitsRequired = 5,
 		DaysWithoutRecruits = 0,
 		DaysWithoutRecruitsMax = 15,
-		BrothersMax = 12,
-		BrothersMaxInCombat = 10,
 		MaxMalus = 30
 	},
 	function create()
@@ -142,9 +140,6 @@ this.rf_old_swordmaster_scenario_avatar_effect <- ::inherit("scripts/skills/effe
 	function onUpdate( _properties )
 	{
 		this.rf_old_swordmaster_scenario_abstract_effect.onUpdate(_properties);
-
-		::World.Assets.m.BrothersMax = this.m.BrothersMax;
-		::World.Assets.m.BrothersMaxInCombat = this.m.BrothersMaxInCombat;
 			
 		local actor = this.getContainer().getActor();
 		if (this.isEnabled())
