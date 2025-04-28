@@ -6,7 +6,7 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 		this.m.ID = "scenario.rf_old_swordmaster";
 		this.m.Name = "Reforged - Old Swordmaster";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_17.png[/img][/p][p]You are a legendary swordmaster, eager to pass on your skills to others! " + ::MSU.Text.colorNegative("Read the text in the intro event for details on how this origin works!") +"\n\n[color=#bcad8c]Teacher:[/color] Upon leveling up, every recruit has a chance to gain a free Sword perk.\n[color=#bcad8c]Swords Only:[/color] Your company can only use swords but gain special bonuses when using them. Ranged Weapons and Banner are allowed.\n[color=#bcad8c]Handpicked:[/color] Limited to " + avatarEffect.m.BrothersMax + " total characters and maximum " + avatarEffect.m.BrothersMaxInCombat + " in battle.\n[color=#bcad8c]Young Blood:[/color] Highly proficient melee backgrounds are not available for hire.\n[color=#bcad8c]Avatar:[/color] If your swordmaster dies, the campaign ends.[/p]";
-		this.m.Difficulty = 1;
+		this.m.Difficulty = 2;
 		this.m.Order = 1;
 		this.m.IsFixedLook = true;
 
