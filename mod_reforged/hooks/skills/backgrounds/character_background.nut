@@ -124,7 +124,7 @@
 		}
 		else if (showBaseAttributeRangeRegular == "Only New Recruits")
 		{
-			if (!this.getContainer().getActor().m.LevelUpsSpent > 0) // LevelUpsSpent is added by MSU
+			if (this.getContainer().getActor().m.LevelUpsSpent > 0) // LevelUpsSpent is added by MSU
 			{
 				ret.extend(this.getBaseAttributesTooltip(false));
 			}
