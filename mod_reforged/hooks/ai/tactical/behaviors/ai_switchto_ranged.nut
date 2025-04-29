@@ -10,7 +10,7 @@
 
 		foreach (enemy in this.getAgent().getKnownOpponents())
 		{
-			if (::MSU.isNull(enemy) || enemy.Actor.getMoraleState() == ::Const.MoraleState.Fleeing || enemy.Actor.isArmedWithRangedWeapon())
+			if (::MSU.isNull(enemy.Actor) || enemy.Actor.getMoraleState() == ::Const.MoraleState.Fleeing || enemy.Actor.isArmedWithRangedWeapon())
 			{
 				continue;
 			}
