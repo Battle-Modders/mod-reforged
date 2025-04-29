@@ -32,7 +32,8 @@
 	{
 		foreach (filename, reason in conflicts)
 		{
-			if (filePath.find(filename) != null)
+			// Add "data/" because we don't want to check inside subfolders
+			if (filePath.find("data/" + filename) != null)
 			{
 				::Hooks.errorAndQuit(reason);
 			}
