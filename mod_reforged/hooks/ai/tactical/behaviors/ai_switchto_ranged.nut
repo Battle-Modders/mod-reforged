@@ -6,7 +6,6 @@
 		this.m.WeaponToEquip = null;
 
 		local myTile = _entity.getTile();
-		local switchMaxDangerDist = ::Math.max(_entity.getIdealRange(), ::Const.AI.Behavior.SwitchToRangedMaxDangerDist);
 
 		foreach (enemy in this.getAgent().getKnownOpponents())
 		{
@@ -15,13 +14,12 @@
 				continue;
 			}
 
-			if (enemy.Actor.getTile().getZoneOfControlCountOtherThan(enemy.Actor.getAlliedFactions()) >= ::Const.AI.Behavior.SwitchToRangedIgnoreDangerMinZones)
+			if (myTile.getDistanceTo(enemy.Tile) > ::Math.max(_entity.getIdealRange(), ::Const.AI.Behavior.SwitchToRangedMaxDangerDist))
 			{
 				continue;
 			}
 
-			local dist = myTile.getDistanceTo(enemy.Tile);
-			if (dist > switchMaxDangerDist)
+			if (enemy.Tile.getZoneOfControlCountOtherThan(enemy.Actor.getAlliedFactions()) >= ::Const.AI.Behavior.SwitchToRangedIgnoreDangerMinZones)
 			{
 				continue;
 			}
