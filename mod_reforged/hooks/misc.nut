@@ -28,3 +28,13 @@
 	}
 	return ret;
 }
+
+// Expands the vanilla ::Const.LevelXP array to allow leveling characters beyond the vanilla max of 33
+// is called from player.addXP and player.onInit so the array is dynamically expanded when needed
+::Reforged.expandLevelXP <- function( _len )
+{
+	while (::Const.LevelXP.len() < _len)
+	{
+		::Const.LevelXP.push(::Const.LevelXP.top() + 4000 + 1000 * (::Const.LevelXP.len() - 11));
+	}
+}
