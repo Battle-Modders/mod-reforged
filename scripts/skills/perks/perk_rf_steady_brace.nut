@@ -74,7 +74,7 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 		this.m.IsInEffect = false;
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
 		this.m.IsInEffect = false;
 	}

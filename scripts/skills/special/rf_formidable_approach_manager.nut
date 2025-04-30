@@ -25,9 +25,10 @@ this.rf_formidable_approach_manager <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onMovementFinished( _tile )
+	function onMovementFinished()
 	{
 		local myPerk = this.getContainer().getSkillByID("perk.rf_formidable_approach");
+		local myTile = this.getContainer().getActor().getTile();
 
 		// Iterate over the enemies we were next to before we started our movement
 		foreach (id in this.m.Enemies)
@@ -35,7 +36,7 @@ this.rf_formidable_approach_manager <- ::inherit("scripts/skills/skill", {
 			local enemy = ::Tactical.getEntityByID(id);
 			if (enemy == null) continue;
 
-			if (!enemy.isPlacedOnMap() || enemy.getTile().getDistanceTo(_tile) > 1)
+			if (!enemy.isPlacedOnMap() || enemy.getTile().getDistanceTo(myTile) > 1)
 			{
 				// We have exited an enemy's Zone of Control
 				local perk = enemy.getSkills().getSkillByID("perk.rf_formidable_approach");
@@ -45,7 +46,7 @@ this.rf_formidable_approach_manager <- ::inherit("scripts/skills/skill", {
 		}
 
 		// Iterate over the enemies next to our new tile
-		foreach (tile in ::MSU.Tile.getNeighbors(_tile))
+		foreach (tile in ::MSU.Tile.getNeighbors(myTile))
 		{
 			// Ignore allies. Additionatlly, ignore enemies we were already next to when starting our movement
 			if (!tile.IsOccupiedByActor || tile.getEntity().isAlliedWith(this.getContainer().getActor()) || this.m.Enemies.find(tile.getEntity().getID()) != null)
