@@ -2,6 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
+		this.m.IsDoubleGrippable = false;	// VanillaFix: Vanilla has set to true, allowing this weapon to be double gripped, even though it already is two-handed
 		this.m.Reach = 2;
 	}
 
