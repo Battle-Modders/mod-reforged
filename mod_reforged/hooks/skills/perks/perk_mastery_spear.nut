@@ -132,7 +132,6 @@
 		__original();
 		this.m.IsSpent = true;
 		this.m.TilesMoved = 0;
-		this.m.PrevTile = null;
 	}
 
 	q.isSkillValid <- function( _skill )
