@@ -35,6 +35,7 @@
 		return __original(_xp, _scale);
 	}
 
+	// Returns this bro's projected base attributes at level 11 including the effects of traits and permanent injuries
 	q.getProjectedAttributes <- function()
 	{
 		local properties = this.getBaseProperties().getClone();
