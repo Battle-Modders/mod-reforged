@@ -14,6 +14,10 @@
 		this.getSkills().add(::new("scripts/skills/effects/rf_encumbrance_effect"));
 		this.getSkills().add(::new("scripts/skills/special/rf_veteran_levels"));
 		this.getSkills().add(::new("scripts/skills/special/rf_naked"));
+
+		// +2 because we want to expand the array at least 1 level above this bro so that player.getXPForNextLevel works properly.
+		// We do this in onInit in so that when loading a game or spawning a player with high enough level, the array is expanded immediately.
+		::Reforged.expandLevelXP(this.m.Level + 2);
 	}
 
 	q.addXP = @(__original) function( _xp, _scale = true )
@@ -21,10 +25,8 @@
 		if (::Reforged.Config.XPOverride)
 			return;
 
-		while (this.m.Level >= ::Const.LevelXP.len())
-		{
-			::Const.LevelXP.push(::Const.LevelXP.top() + 4000 + 1000 * (::Const.LevelXP.len() - 11));
-		}
+		// +2 because we want to expand the array at least 1 level above this bro so that player.getXPForNextLevel works properly
+		::Reforged.expandLevelXP(this.m.Level + 2);
 
 		// Temporary buff to vanilla drill sergeant until our Retinue Rework
 		if (("State" in ::World) && ::World.State != null && _scale && ::World.Retinue.hasFollower("follower.drill_sergeant"))
