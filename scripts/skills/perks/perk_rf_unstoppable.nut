@@ -104,7 +104,7 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onUpdate( _properties )
+	function onAfterUpdate( _properties )
 	{
 		if (_properties.IsStunned || _properties.IsRooted || this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing || this.getContainer().hasSkill("effects.staggered"))
 		{
