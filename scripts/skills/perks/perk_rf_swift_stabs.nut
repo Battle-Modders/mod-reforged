@@ -91,7 +91,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 		this.m.IsInEffect = false;
 	}
 
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (!this.isSkillValid(_skill) && !_forFree)
 		{

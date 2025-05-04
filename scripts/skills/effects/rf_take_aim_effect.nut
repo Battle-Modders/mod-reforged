@@ -88,7 +88,7 @@ this.rf_take_aim_effect <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (this.m.DiversionMaxLevelDifference != null)
 		{
