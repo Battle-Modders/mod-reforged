@@ -57,6 +57,8 @@
 		if ("Assets" in ::World && !::MSU.isNull(::World.Assets))
 		{
 			vargv.push(::World.Assets.getCampaignID());
+			vargv.push(::World.Assets.getSeedString());
+			vargv.push(::World.Assets.getName());
 		}
 
 		local seed = 0;
@@ -92,6 +94,8 @@
 		if ("Assets" in ::World && !::MSU.isNull(::World.Assets))
 		{
 			vargv.push(::World.Assets.getCampaignID().tostring());
+			vargv.push(::World.Assets.getSeedString());
+			vargv.push(::World.Assets.getName());
 		}
 
 		local seed = "";
