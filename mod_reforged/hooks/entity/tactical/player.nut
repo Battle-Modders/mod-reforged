@@ -48,6 +48,13 @@
 		}
 		this.getSkills().m.IsUpdating = wasUpdating;
 
+		local levelUpsRemaining = ::Math.max(::Const.XP.MaxLevelWithPerkpoints - this.getLevel() + this.getLevelUps(), 0);
+
+		// Fatigue and Hitpoints getter functions are in actor and they use CurrentProperties
+		// so we temporarily switcheroo the CurrentProperties to get our desired values
+		local original_CurrentProperties = this.m.CurrentProperties;
+		this.m.CurrentProperties = properties;
+
 		local ret = {};
 		foreach (attributeName, attribute in ::Const.Attributes)
 		{
@@ -57,25 +64,18 @@
 			local attributeMax = ::Const.AttributesLevelUp[attribute].Max;
 			if (this.m.Talents[attribute] == 3) attributeMax++;
 
-			local levelUpsRemaining = ::Math.max(::Const.XP.MaxLevelWithPerkpoints - this.getLevel() + this.getLevelUps(), 0);
-
 			local attributeValue;
 			switch (attributeName)
 			{
-				// Fatigue and Hitpoints getter functions are in actor and they use CurrentProperties
-				// so we temporarily switcheroo the CurrentProperties to get our desired values
+
 				case "Fatigue":
 				case "Hitpoints":
-					local original_CurrentProperties = this.m.CurrentProperties;
-					this.m.CurrentProperties = properties;
 					attributeValue = this["get" + attributeName + "Max"]();
-					this.m.CurrentProperties = original_CurrentProperties;
 					break;
 
 				default:
 					attributeValue = properties["get" + attributeName]();
 			}
-
 			// For each "randomized" level-up for 2-star talents, decrease min projection by 1 and increase max projection by 1
 			local attributeTotalMod = 0;
 			if (this.m.Talents[attribute] == 2)
@@ -91,6 +91,8 @@
 				attributeValue + attributeTotalMod + attributeMax * levelUpsRemaining
 			];
 		}
+
+		this.m.CurrentProperties = original_CurrentProperties;
 
 		return ret;
 	}
