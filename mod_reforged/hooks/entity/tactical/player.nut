@@ -40,6 +40,7 @@
 	{
 		local properties = this.getBaseProperties().getClone();
 
+		// Apply the effects from all traits and permanent injuries
 		local wasUpdating = this.getSkills().m.IsUpdating;
 		this.getSkills().m.IsUpdating = true;
 		foreach (s in this.getSkills().getSkillsByFunction(@( _skill ) _skill.isType(::Const.SkillType.Trait) || _skill.isType(::Const.SkillType.PermanentInjury)))
@@ -47,6 +48,31 @@
 			s.onUpdate(properties);
 		}
 		this.getSkills().m.IsUpdating = wasUpdating;
+
+		// Returns the value of the attribute by including _flatChange and then calling the relevant getter function.
+		// _flatChange is the projected base change to an attribute due to levelups.
+		// This needs to be done because multiplier changes e.g. StaminaMult, which are applied inside the getter functions
+		// can be modified by traits/permanent injuries. So we modify the flat value with levelups then call the getter.
+		local function getProjection( _attributeName, _flatChange )
+		{
+			// Thank you Overhype
+			local propertyName = _attributeName == "Fatigue" ? "Stamina" : _attributeName;
+
+			local ret = 0;
+			properties[propertyName] += _flatChange;
+			switch (_attributeName)
+			{
+				case "Fatigue":
+				case "Hitpoints":
+					ret = this["get" + _attributeName + "Max"]();
+					break;
+
+				default:
+					ret = properties["get" + _attributeName]();
+			}
+			properties[propertyName] -= _flatChange;
+			return ret;
+		}
 
 		local levelUpsRemaining = ::Math.max(::Const.XP.MaxLevelWithPerkpoints - this.getLevel() + this.getLevelUps(), 0);
 
@@ -60,35 +86,24 @@
 		{
 			if (attribute == ::Const.Attributes.COUNT) continue;
 
-			local attributeMin = ::Const.AttributesLevelUp[attribute].Min + ::Math.min(this.m.Talents[attribute], 2);
-			local attributeMax = ::Const.AttributesLevelUp[attribute].Max;
-			if (this.m.Talents[attribute] == 3) attributeMax++;
+			local levelupMin = ::Const.AttributesLevelUp[attribute].Min + ::Math.min(this.m.Talents[attribute], 2);
+			local levelupMax = ::Const.AttributesLevelUp[attribute].Max;
+			if (this.m.Talents[attribute] == 3) levelupMax++;
 
-			local attributeValue;
-			switch (attributeName)
-			{
-
-				case "Fatigue":
-				case "Hitpoints":
-					attributeValue = this["get" + attributeName + "Max"]();
-					break;
-
-				default:
-					attributeValue = properties["get" + attributeName]();
-			}
 			// For each "randomized" level-up for 2-star talents, decrease min projection by 1 and increase max projection by 1
 			local attributeTotalMod = 0;
 			if (this.m.Talents[attribute] == 2)
 			{
 				foreach (value in this.m.Attributes[attribute])
 				{
-					if (value != attributeMax) attributeTotalMod++;
+					if (value != levelupMax)
+						attributeTotalMod++;
 				}
 			}
 
 			ret[attribute] <- [
-				attributeValue - attributeTotalMod + attributeMin * levelUpsRemaining,
-				attributeValue + attributeTotalMod + attributeMax * levelUpsRemaining
+				getProjection(attributeName, levelupMin * levelUpsRemaining - attributeTotalMod),
+				getProjection(attributeName, levelupMax * levelUpsRemaining + attributeTotalMod)
 			];
 		}
 
