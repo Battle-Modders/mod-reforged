@@ -78,16 +78,19 @@ this.rf_deep_impact_skill <- ::inherit("scripts/skills/skill", {
 		local aoo = this.getContainer().getAttackOfOpportunity();
 		if (aoo != null && this.isSkillValid(aoo))
 		{
-			this.m.DamageType = aoo.getDamageType().weakref();
 			this.m.ActionPointCost = aoo.m.ActionPointCost;
 			this.m.FatigueCostMult = aoo.m.FatigueCostMult;
 			this.m.MinRange = aoo.m.MinRange;
 			this.m.MaxRange = aoo.m.MaxRange;
 		}
-		else
-		{
-			this.m.DamageType = null;
-		}
+	}
+
+	// MSU function
+	// overwrite to return AOO damage type instead of our own
+	function getDamageType()
+	{
+		local aoo = this.getContainer().getAttackOfOpportunity();
+		return aoo != null && this.isSkillValid(aoo) ? aoo.getDamageType() : this.skill.getDamageType();
 	}
 
 	function isUsable()

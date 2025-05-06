@@ -88,7 +88,6 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		local aoo = this.getContainer().getAttackOfOpportunity();
 		if (aoo != null)
 		{
-			this.m.DamageType = aoo.getDamageType().weakref();
 			this.m.ActionPointCost += aoo.m.ActionPointCost;
 			this.m.FatigueCost += aoo.m.FatigueCost;
 			this.m.FatigueCostMult = aoo.m.FatigueCostMult;
@@ -97,10 +96,14 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 			this.m.MaxRange = aoo.m.MaxRange;
 			this.m.IsShieldRelevant = aoo.m.IsShieldRelevant;
 		}
-		else
-		{
-			this.m.DamageType = null;
-		}
+	}
+
+	// MSU function
+	// overwrite to return AOO damage type instead of our own
+	function getDamageType()
+	{
+		local aoo = this.getContainer().getAttackOfOpportunity();
+		return aoo == null ? this.skill.getDamageType() : aoo.getDamageType();
 	}
 
 	function isUsable()
