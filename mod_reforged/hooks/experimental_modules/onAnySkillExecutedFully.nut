@@ -146,3 +146,18 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		return ret;
 	}
 });
+
+::Reforged.HooksMod.hook("scripts/states/tactical_state", function(q) {
+	q.executeEntitySkill = @(__original) function( _activeEntity, _targetTile )
+	{
+		// Prevent executing a skill while the previously executed skill has not fully finished executing
+		// including all its delayed effects
+		if (::Reforged.ScheduleSkills.len() != 0)
+		{
+			::Tactical.EventLog.log(::MSU.Text.colorNegative("Already executing a skill!"));
+			return;
+		}
+
+		__original(_activeEntity, _targetTile);
+	}
+});
