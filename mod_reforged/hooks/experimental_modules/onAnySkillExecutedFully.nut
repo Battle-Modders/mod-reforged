@@ -29,7 +29,8 @@
 
 	function onScheduleComplete()
 	{
-		if (--this.Count == 0)
+		// Check for <= 0 because when we call this manually, this.Count will be 0 and will drop to -1
+		if (--this.Count <= 0)
 		{
 			if (!::MSU.isNull(this.Container))
 				this.Container.onAnySkillExecutedFully(this.Skill, this.TargetTile, this.TargetEntity, this.ForFree);
@@ -139,7 +140,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		// If no delayed event was scheduled we trigger the onAnySkillExecutedFully manually
 		if (scheduleSkill.Count == 0)
 		{
-			container.onAnySkillExecutedFully(this, _targetTile, targetEntity, _forFree);
+			scheduleSkill.onScheduleComplete();
 		}
 
 		return ret;
