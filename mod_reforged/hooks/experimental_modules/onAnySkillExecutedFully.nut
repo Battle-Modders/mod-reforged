@@ -54,14 +54,14 @@ local scheduleEvent = ::Time.scheduleEvent;
 
 	::Reforged.ScheduleSkills[caller].Count++;
 
-	local function foo( _arg1 )
+	local function scheduledCallbackWrapper( _arg1 )
 	{
 		if (_func != null)
 			_func(_arg1);
 		::Reforged.ScheduleSkills[caller].onScheduleComplete();
 	}
 
-	scheduleEvent(_timeUnit, _time, foo, _data);
+	scheduleEvent(_timeUnit, _time, scheduledCallbackWrapper, _data);
 }
 
 local teleport = ::TacticalNavigator.teleport;
@@ -76,14 +76,14 @@ local teleport = ::TacticalNavigator.teleport;
 
 	::Reforged.ScheduleSkills[caller].Count++;
 
-	local function foo( _arg1, _arg2 )
+	local function scheduledCallbackWrapper( _arg1, _arg2 )
 	{
 		if (_func != null)
 			_func(_arg1, _arg2);
 		::Reforged.ScheduleSkills[caller].onScheduleComplete();
 	}
 
-	teleport(_user, _targetTile, foo, _data, _bool, _float);
+	teleport(_user, _targetTile, scheduledCallbackWrapper, _data, _bool, _float);
 }
 
 local switchEntities = ::TacticalNavigator.switchEntities;
@@ -98,14 +98,14 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 
 	::Reforged.ScheduleSkills[caller].Count++;
 
-	local function foo( _arg1, _arg2 )
+	local function scheduledCallbackWrapper( _arg1, _arg2 )
 	{
 		if (_func != null)
 			_func(_arg1, _arg2);
 		::Reforged.ScheduleSkills[caller].onScheduleComplete();
 	}
 
-	switchEntities(_user, _targetEntity, foo, _data, _float);
+	switchEntities(_user, _targetEntity, scheduledCallbackWrapper, _data, _float);
 }
 
 ::Reforged.HooksMod.hook("scripts/skills/skill_container", function(q) {
