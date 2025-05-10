@@ -1623,7 +1623,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Lower the [Resolve|Concept.Bravery] of adjacent enemies by " + ::MSU.Text.colorNegative("-10") + "."
+				"Lower the [Resolve|Concept.Bravery] of adjacent enemies by " + ::MSU.Text.colorNegative("-10") + " during [morale checks.|Concept.Morale]"
 			]
 		}]
 	}),
