@@ -47,7 +47,7 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		this.m.IsUsingValidSkill = !_forFree && _skill.getActionPointCost() != 0;
 	}
 
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (this.m.IsInEffect)
 		{

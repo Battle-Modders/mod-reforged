@@ -52,7 +52,7 @@ this.perk_rf_retribution <- ::inherit("scripts/skills/skill", {
 		this.m.Stacks += 1;
 	}
 
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (_skill.isAttack())
 		{

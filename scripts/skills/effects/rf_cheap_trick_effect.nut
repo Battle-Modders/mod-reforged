@@ -70,7 +70,7 @@ this.rf_cheap_trick_effect <- ::inherit("scripts/skills/skill", {
 	}
 
 // MSU Functions
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (this.isSkillValid(_skill))
 		{

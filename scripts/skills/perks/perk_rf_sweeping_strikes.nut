@@ -57,7 +57,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (_skill.isAttack() && !_skill.isRanged() && _skill.isAOE() && _targetEntity != null)
 		{
