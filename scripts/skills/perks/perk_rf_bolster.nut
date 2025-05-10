@@ -9,6 +9,7 @@ this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 		this.m.Name = ::Const.Strings.PerkName.RF_Bolster;
 		this.m.Description = ::Const.Strings.PerkDescription.RF_Bolster;
 		this.m.Icon = "ui/perks/perk_rf_bolster.png";
+		this.m.Overlay = "perk_rf_bolster";
 		this.m.Type = ::Const.SkillType.Perk;
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}
@@ -24,9 +25,7 @@ this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 			local moraleState = ally.getMoraleState();
 			if (moraleState < ::Const.MoraleState.Confident)
 			{
-				ally.checkMorale(1, ::Const.Morale.RallyBaseDifficulty);
-				if (ally.getMoraleState() > moraleState)
-					this.spawnIcon("perk_rf_bolster", ally.getTile());
+				ally.checkMorale(1, ::Const.Morale.RallyBaseDifficulty, ::Const.MoraleCheckType.Default, this.m.Overlay);
 			}
 		}
 	}
