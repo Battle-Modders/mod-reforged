@@ -1262,7 +1262,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Whenever an opponent misses a Melee attack against you, gain " + ::MSU.Text.colorPositive("+10%") + " chance to hit against them, or ignore their shield, whichever is greater, for your next attack."
+				"Against opponents who have missed a melee attack against you gain " + ::MSU.Text.colorPositive("+10%") + " chance to hit or ignore the defense granted by shield, whichever is greater, and deal " + ::MSU.Text.colorPositive("20%") + " more damage. Expires upon your next attack or [waiting|Concept.Wait] or ending your [turn.|Concept.Turn]"
 			]
 		}]
 	}),
