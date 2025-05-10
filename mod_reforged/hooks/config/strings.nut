@@ -1398,7 +1398,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"When the number of adjacent allies is greater than or equal to the number of adjacent enemies, you may ignore [Zone of Control|Concept.ZoneOfControl] for your next movement action."
-				"When wielding a melee weapon with up to 4 [Reach|Concept.Reach] when you end your movement adjacent to an enemy, the next attack against that enemy deals " + ::MSU.Text.colorPositive("25%") + " more damage and " + ::MSU.Text.colorPositive("+20%") + " damage ignoring armor. This bonus expires upon taking any action other than an attack."
+				"When wielding a melee weapon with up to 4 [Reach|Concept.Reach] when you end your movement next to a [surrounded|Concept.Surrounding] enemy, the next attack against that enemy deals " + ::MSU.Text.colorPositive("25%") + " more damage and " + ::MSU.Text.colorPositive("+20%") + " damage ignoring armor. This bonus expires upon taking any action other than an attack."
 			]
 		}]
 	}),
