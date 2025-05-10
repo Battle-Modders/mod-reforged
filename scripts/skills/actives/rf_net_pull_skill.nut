@@ -26,6 +26,7 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsOffensiveToolSkill = true;
 		this.m.IsIgnoredAsAOO = true;
+		this.m.IsUsingHitchance = false;
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 25;
 		this.m.MinRange = 2;
