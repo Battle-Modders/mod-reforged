@@ -392,8 +392,11 @@
 			if (actor.m.IsTurnDone || actor.isTurnStarted())
 			{
 				local bonus = ::Math.floor(actor.getCurrentProperties().getInitiative() * 0.1);
-				_properties.MeleeDefense += bonus;
-				_properties.RangedDefense += bonus;
+				if (bonus > 0)
+				{
+					_properties.MeleeDefense += bonus;
+					_properties.RangedDefense += bonus;
+				}
 			}
 		}
 	}
