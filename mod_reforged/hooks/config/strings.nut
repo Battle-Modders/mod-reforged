@@ -1221,7 +1221,6 @@ foreach (vanillaDesc in vanillaDescriptions)
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"Allows you to choose another member of your company as your partner. You will remain partners until one of you dies or leaves the company. You and your partner gain the following bonuses when there is no ally next to you or your partner.",
-					"[Resolve|Concept.Bravery] and [Initiative|Concept.Initiative] are increased by " + ::MSU.Text.colorPositive("+20") + ".",
 					"Gain " + ::MSU.Text.colorPositive("+10") + " [Melee Skill|Concept.MeleeSkill] against enemies that attack your partner, and " + ::MSU.Text.colorPositive("+10") + " [Melee Defense|Concept.MeleeDefense] against enemies attacked by your partner, for one [turn.|Concept.Turn]",
 					"A partner\'s melee [AOE|Concept.AOE] attacks never have more than " + ::MSU.Text.colorPositive(::ModularVanilla.Const.HitChanceMin + "%") + " chance to hit their partner and inflict " + ::MSU.Text.colorPositive("50%") + " less damage.",
 					"The partner does not need to learn this [perk|Concept.Perk] in order to gain the benefits."
