@@ -5,7 +5,7 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 		this.quick_shot.create();
 		this.m.ID = "actives.rf_arrow_to_the_knee";
 		this.m.Name = "Arrow to the Knee";
-		this.m.Description = "A debilitating shot aimed at the knees of your target to cripple their ability to move and defend themselves.";
+		this.m.Description = "A debilitating shot aimed at the knees of your target to cripple their ability to move and defend themselves. Can only be used against targets who can receive leg injuries.";
 		this.m.Icon = "skills/rf_arrow_to_the_knee_skill.png";
 		this.m.IconDisabled = "skills/rf_arrow_to_the_knee_skill_sw.png";
 		this.m.Overlay = "rf_arrow_to_the_knee_skill";
@@ -60,9 +60,14 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 		return ret;
 	}
 
+	function onVerifyTarget( _originTile, _targetTile )
+	{
+		return this.skill.onVerifyTarget(_originTile, _targetTile) && this.RF_isTargetValid(_targetTile.getEntity());
+	}
+
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_skill == this && _targetEntity.isAlive())
+		if (_skill == this && _targetEntity.isAlive() && this.RF_isTargetValid(_targetEntity))
 		{
 			_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_arrow_to_the_knee_debuff_effect"));
 		}
@@ -75,5 +80,16 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 		{
 			_properties.HitChanceMult[::Const.BodyPart.Head] *= 0.0;
 		}
+	}
+
+	// Valid target is someone who is not immune to injuries and can receive a leg type injury
+	function RF_isTargetValid( _targetEntity )
+	{
+		if (!_targetEntity.getCurrentProperties().IsAffectedByInjuries)
+			return false;
+
+		// Const.Injuries.ExcludedInjuries is an MSU feature
+		local legInjuries = ::Const.Injuries.ExcludedInjuries.get(::Const.Injuries.ExcludedInjuries.Leg);
+		return legInjuries.filter(@(_, _id) _targetEntity.m.ExcludedInjuries.find(_id) == null).len() != 0;
 	}
 });
