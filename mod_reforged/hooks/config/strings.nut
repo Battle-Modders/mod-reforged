@@ -433,12 +433,6 @@ local vanillaDescriptions = [
 					Description = [
 						"Unlocks the [Indomitable|Skill+indomitable] skill that reduces incoming damage and grants immunity to being [stunned,|Skill+stunned_effect] knocked back or grabbed."
 					]
-				},
-				{
-					Type = ::UPD.EffectType.Passive,
-					Description = [
-						"During combat, gain [Retribution|NullEntitySkill+rf_retribution_effect] when you take a hit from an enemy."
-					]
 				}
 			]
 		})
