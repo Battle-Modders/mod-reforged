@@ -3,8 +3,6 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 		PartnerSkill = null,
 		AttackBonusEnemies = [],
 		DefenseBonusEnemies = [],
-		BraveryModifier = 20,
-		InitiativeModifier = 20,
 		MeleeSkillModifier = 10,
 		MeleeDefenseModifier = 10
 	},
@@ -51,26 +49,6 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 			icon = "ui/icons/special.png",
 			text = "Partner: " + this.m.PartnerSkill.getContainer().getActor().getName()
 		});
-
-		if (this.m.BraveryModifier != 0)
-		{
-			ret.push({
-				id = 11,
-				type = "text",
-				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.BraveryModifier, {AddSign = true}) + " [Resolve|Concept.Bravery]")
-			});
-		}
-
-		if (this.m.InitiativeModifier != 0)
-		{
-			ret.push({
-				id = 12,
-				type = "text",
-				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.InitiativeModifier, {AddSign = true}) + " [Initiative|Concept.Initiative]")
-			});
-		}
 
 		if (this.m.MeleeSkillModifier != 0)
 		{
@@ -149,15 +127,6 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 	function getPartner()
 	{
 		return ::MSU.isNull(this.m.PartnerSkill) ? null : this.m.PartnerSkill.getContainer().getActor();
-	}
-
-	function onUpdate( _properties )
-	{
-		if (this.isEnabled())
-		{
-			_properties.Bravery += this.m.BraveryModifier;
-			_properties.Initiative += this.m.InitiativeModifier;
-		}
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
