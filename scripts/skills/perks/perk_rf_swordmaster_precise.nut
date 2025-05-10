@@ -66,7 +66,8 @@ this.perk_rf_swordmaster_precise <- ::inherit("scripts/skills/perks/perk_rf_swor
 
 	function getDirectDamageModifier()
 	{
-		local ret = this.getContainer().getActor().getLevel() * 0.01;
+		local actor = this.getContainer().getActor();
+		local ret = ::MSU.isKindOf(actor, "player") ? actor.getLevel() * 0.01 : 0;
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.RF_Fencing))
 		{
@@ -77,11 +78,13 @@ this.perk_rf_swordmaster_precise <- ::inherit("scripts/skills/perks/perk_rf_swor
 
 	function getMeleeSkillModifier()
 	{
-		return this.getContainer().getActor().getLevel();
+		local actor = this.getContainer().getActor();
+		return ::MSU.isKindOf(actor, "player") ? actor.getLevel() : 0;
 	}
 
 	function getMeleeDefenseModifier()
 	{
-		return this.getContainer().getActor().getLevel();
+		local actor = this.getContainer().getActor();
+		return ::MSU.isKindOf(actor, "player") ? actor.getLevel() : 0;
 	}
 });
