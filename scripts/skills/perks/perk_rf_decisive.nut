@@ -1,8 +1,8 @@
 this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 	m = {
 		// Config
-		ResolveModifier = 15,	// Gained with 1+ stacks
-		InitiativeModifier = 15, // Gained with 1+ stacks
+		BraveryMult = 1.15,	// Gained with 1+ stacks
+		InitiativeMult = 1.15, // Gained with 1+ stacks
 		FatigueCostMult = 0.85,		// Gained with 2+ stacks
 		DamageMult = 1.15,		// Gained with 3+ stacks
 		AttractionMult = 1.1,	// Gained with 3+ stacks
@@ -38,25 +38,25 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.skill.getTooltip();
 
-		local resolveModifier = this.getResolveModifier();
-		if (resolveModifier != 0)
+		local braveryMult = this.getBraveryMult();
+		if (braveryMult != 1.0)
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(resolveModifier, {AddSign = true}) + " [Resolve|Concept.Bravery]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(braveryMult) + " [Resolve|Concept.Bravery]")
 			});
 		}
 
-		local initiativeModifier = this.getInitiativeModifier();
-		if (initiativeModifier != 0)
+		local initiativeMult = this.getInitiativeMult();
+		if (initiativeMult != 1.0)
 		{
 			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(initiativeModifier, {AddSign = true}) + " [Initiative|Concept.Initiative]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(initiativeMult) + " [Initiative|Concept.Initiative]")
 			});
 		}
 
@@ -113,8 +113,8 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.Bravery += this.getResolveModifier();
-		_properties.Initiative += this.getInitiativeModifier();
+		_properties.BraveryMult *= this.getBraveryMult();
+		_properties.InitiativeMult *= this.getInitiativeMult();
 		_properties.DamageTotalMult *= this.getDamageMult();
 		_properties.TargetAttractionMult *= this.getAttractionMult();	// This is on par with other vanilla effects which increase the damage output. All of them make the character more likely to be targeted
 	}
@@ -145,14 +145,14 @@ this.perk_rf_decisive <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function getResolveModifier()
+	function getBraveryMult()
 	{
-		return this.m.Stacks >= 1 ? this.m.ResolveModifier : 0;
+		return this.m.Stacks >= 1 ? this.m.BraveryMult : 1.0;
 	}
 
-	function getInitiativeModifier()
+	function getInitiativeMult()
 	{
-		return this.m.Stacks >= 1 ? this.m.InitiativeModifier : 0;
+		return this.m.Stacks >= 1 ? this.m.InitiativeMult : 1.0;
 	}
 
 	function getFatigueMult()
