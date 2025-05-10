@@ -4,11 +4,6 @@
 	"mod_WMS [Is already included and/or enhanced in Reforged]",
 	// Better Fencing by LordMidas. https://www.nexusmods.com/battlebrothers/mods/369
 	"mod_betterFencing [Is already included and/or enhanced in Reforged]",
-	// This id is used by two mods, both are incompatible for the same reason:
-	// Numbers for text by lichtfield. https://www.nexusmods.com/battlebrothers/mods/316.
-	// Number's Detailed by wyoian https://www.nexusmods.com/battlebrothers/mods/94.
-	// Cause issues because they overwrite config/strings.
-	"mod_numbers [Causes enemies to have wrong names. Use More Indirect Numeral Adjectives by UnauthorizedShell instead]",
 	// Tactical hit factors by MrBrut. https://www.nexusmods.com/battlebrothers/mods/283
 	"mod_tactical_hit_factors [A similar feature is included in Reforged]",
 	// Tactical tooltip by MrBrut. https://www.nexusmods.com/battlebrothers/mods/266
@@ -19,6 +14,11 @@
 ::Reforged.checkConflictWithFilename <- function()
 {
 	local conflicts = {
+		// This filename is used by two mods, both are incompatible for the same reason:
+		// Numbers for text by lichtfield. https://www.nexusmods.com/battlebrothers/mods/316.
+		// Number's Detailed by wyoian https://www.nexusmods.com/battlebrothers/mods/94.
+		// Cause issues because they overwrite config/strings.
+		"mod_numbers": "mod_numbers is incompatible with Reforged. Causes enemies to have wrong names. Use More Indirect Numeral Adjectives by UnauthorizedShell instead.",
 		// Show Enemy Stats by LiaAshborn. https://www.nexusmods.com/battlebrothers/mods/98
 		"mod_show_enemy_stats": "Show Enemy Stats is not compatible with Reforged. A similar feature is already included in Reforged.",
 		// Smart Recruiter by Leonionin. https://www.nexusmods.com/battlebrothers/mods/172
