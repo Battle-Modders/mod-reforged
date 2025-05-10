@@ -14,6 +14,9 @@
 ::Reforged.checkConflictWithFilename <- function()
 {
 	local conflicts = {
+		// Detailed Status Effects by LiaAshborn. https://www.nexusmods.com/battlebrothers/mods/103
+		// Incompatible because it overwrites getTooltip of actor and player and causes Reforged tactical tooltip to not work.
+		"mod_detailed_status_effects": "Detailed Status Effects is incompatible with Reforged. Reforged has its own tactical tooltip which shows the detailed information via nested tooltips.",
 		// This filename is used by two mods, both are incompatible for the same reason:
 		// Numbers for text by lichtfield. https://www.nexusmods.com/battlebrothers/mods/316.
 		// Number's Detailed by wyoian https://www.nexusmods.com/battlebrothers/mods/94.
