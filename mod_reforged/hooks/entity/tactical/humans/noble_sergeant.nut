@@ -28,11 +28,12 @@
 			sprite.Visible = true;
 		}
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
 	}
