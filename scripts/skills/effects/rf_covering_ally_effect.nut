@@ -104,4 +104,13 @@ this.rf_covering_ally_effect <- ::inherit("scripts/skills/skill", {
 			}
 		}
 	}
+
+// MSU Functions
+	function onUnequip( _item )
+	{
+		if (_item.isItemType(::Const.Items.ItemType.Shield))
+		{
+			this.removeSelf();
+		}
+	}
 });
