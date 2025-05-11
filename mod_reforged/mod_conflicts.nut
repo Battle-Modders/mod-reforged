@@ -29,7 +29,10 @@
 		"mod_smart_recruiter": "Smart Recruiter is not compatible with Reforged. Use Clever Recruiter by Enduriel instead.",
 		// Uncapped Levels and Perk Points by KillersToys https://www.nexusmods.com/battlebrothers/mods/260
 		// Overwrites config/character.
-		"mod_uncapped_levels": "Uncapped Levels and Perk Points is incompatible with Reforged. In Reforged the maximum player level is uncapped."
+		"mod_uncapped_levels": "Uncapped Levels and Perk Points is incompatible with Reforged. In Reforged the maximum player level is uncapped.",
+		// Part of "Tweaks and Fixes" by LeVilainJoueur. https://www.nexusmods.com/battlebrothers/mods/69
+		// Modifies hire screen causing the perk trees from Reforged to not appear there
+		"tnf_tryout": "tnf_tryout is incompatible with Reforged. Use Clever Recruiter by Enduriel instead."
 	};
 	foreach (filePath in ::IO.enumerateFiles("data/"))
 	{
