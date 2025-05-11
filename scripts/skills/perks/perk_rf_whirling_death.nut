@@ -5,10 +5,6 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 		IsPerformingExtraAttack = false, // Is flipped during the extra attack to reduce its damage using onAnySkillUsed
 		DamageTotalMult = 0.5, // Multiplier for the damage dealt during the extra attack
 		ChanceToHitHeadPerReachDiff = 10 // Is used for two-handed flails
-
-		// These two fields are used to make the extra attack non-lethal for NPC users
-		LastTargetID = null,
-		TargetWasAbleToDie = true
 	},
 	function create()
 	{
@@ -89,30 +85,6 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 						this.doExtraAttack(_skill, _targetTile);
 				}
 			}
-		}
-	}
-
-	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
-	{
-		this.m.LastTargetID = null;
-
-		// Make it non-lethal for NPC users
-		// Hopefully this reduces/elminiates the cases where AI evaluation gets stuck due to killing someone with a delayed attack.
-		// Once a proper solution to that issue is found and implemented, this can be reverted.
-		// This implementation has a side-effect of preventing the target from receiving injuries.
-		if (this.m.IsPerformingExtraAttack && !this.getContainer().getActor().isPlayerControlled())
-		{
-			this.m.LastTargetID = _targetEntity.getID();
-			this.m.TargetWasAbleToDie = _targetEntity.m.IsAbleToDie;
-			_targetEntity.m.IsAbleToDie = false;
-		}
-	}
-
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (_targetEntity.getID() == this.m.LastTargetID)
-		{
-			_targetEntity.m.IsAbleToDie = this.m.TargetWasAbleToDie;
 		}
 	}
 
