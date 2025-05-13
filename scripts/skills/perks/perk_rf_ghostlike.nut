@@ -134,7 +134,7 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 
 		foreach (tile in ::MSU.Tile.getNeighbors(this.getContainer().getActor().getTile()))
 		{
-			if (tile.IsOccupiedByActor && !tile.getEntity().isAlliedWith(this.getContainer().getActor()))
+			if (tile.IsOccupiedByActor && !tile.getEntity().isAlliedWith(this.getContainer().getActor()) && tile.getEntity().getSurroundedCount() != 0)
 			{
 				this.m.Enemies.push(tile.getEntity().getID());
 			}
