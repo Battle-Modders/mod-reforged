@@ -1,6 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_spear", function(q) {
 	q.m.IsSpent <- true;
 	q.m.TilesMoved <- 0;
+	q.m.PrevTile <- null; // Used to account for movement due to teleportation
 	q.m.MaxTilesAllowed <- 1;
 	q.m.FatigueCostMultMult <- 0.5;
 
@@ -87,10 +88,27 @@
 
 	q.onMovementStarted = @(__original) function( _tile, _numTiles )
 	{
-		this.m.TilesMoved += _numTiles;
+		// _numTiles == 0 means teleportation
+		if (_numTiles == 0)
+			this.m.PrevTile = _tile;
+		else
+			this.m.TilesMoved += _numTiles;
+
+		__original(_tile, _numTiles);
+	}
+
+	q.onMovementFinished = @(__original) function()
+	{
+		__original();
+
+		if (this.m.PrevTile != null)
+		{
+			this.m.TilesMoved += this.getContainer().getActor().getTile().getDistanceTo(this.m.PrevTile);
+			this.m.PrevTile = null;
+		}
+
 		if (this.m.TilesMoved > this.m.MaxTilesAllowed)
 			this.m.IsSpent = true;
-		__original(_tile, _numTiles);
 	}
 
 	q.onTurnStart = @(__original) function()
