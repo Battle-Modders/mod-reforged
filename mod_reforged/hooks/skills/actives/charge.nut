@@ -22,7 +22,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorPositive("100%") + " chance to stun adjacent enemies upon arrival, reduced by the defense granted by target\'s shield and [Shieldwall|Skill+shieldwall_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorPositive("100%") + " chance to stun a random adjacent enemy upon arrival, reduced by the defense granted by target\'s shield and [Shieldwall|Skill+shieldwall_effect]")
 			},
 			{
 				id = 12,
