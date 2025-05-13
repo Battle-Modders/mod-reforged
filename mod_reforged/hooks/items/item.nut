@@ -9,6 +9,7 @@
 		local ret = __original();
 		local skillsString = "";
 		local itemID = this.getInstanceID();
+		::NestedTooltips.addItemForNestedTooltip(this);
 		foreach (skill in ::Reforged.Items.getSkills(this))
 		{
 			if (skill.isHidden() && !skill.isType(::Const.SkillType.Perk))

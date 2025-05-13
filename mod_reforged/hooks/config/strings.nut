@@ -437,7 +437,7 @@ local vanillaDescriptions = [
 				{
 					Type = ::UPD.EffectType.Passive,
 					Description = [
-						"During combat, gain [Retribution|NullEntitySkill+rf_retribution_effect] when you take a hit from an enemy."
+						"During combat, gain [Retribution|Skill+rf_retribution_effect] when you take a hit from an enemy."
 					]
 				}
 			]
@@ -961,7 +961,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Between the Eyes|NullEntitySkill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head equal to " + ::MSU.Text.colorPositive("50%") + " of your [Melee Skill.|Concept.MeleeSkill]"
+				"Unlocks the [Between the Eyes|Skill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head equal to " + ::MSU.Text.colorPositive("50%") + " of your [Melee Skill.|Concept.MeleeSkill]"
 				"The [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost of your primary melee attack is added to the costs of this skill."
 			]
 		}]
@@ -1021,7 +1021,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Cheap Trick|NullEntitySkill+rf_cheap_trick_skill] skill which increases the hitchance of your next attack but reduces its damage."
+				"Unlocks the [Cheap Trick|Skill+rf_cheap_trick_skill] skill which increases the hitchance of your next attack but reduces its damage."
 			]
 		}]
 	}),
@@ -1632,7 +1632,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The student of this character gains the [Mentor\'s Presence|NullEntitySkill+rf_mentors_presence_effect] effect.",
+				"The student of this character gains the [Mentor\'s Presence|Skill+rf_mentors_presence_effect] effect.",
 				"If the student dies, this character will immediately recover " + ::MSU.Text.colorPositive("50%") + " of built [Fatigue|Concept.Fatigue] and gain the [Adrenaline|Skill+adrenaline_effect] effect."
 			]
 		}]
@@ -1655,7 +1655,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Once per [turn,|Concept.Turn] the first use of your offhand item weighing less than " + ::MSU.Text.colorNegative(10) + " costs no [Action Points.|Concept.ActionPoints]",
-				"When equipped with a net, gain the [Trip Artist|NullEntitySkill+rf_trip_artist_effect] effect."
+				"When equipped with a net, gain the [Trip Artist|Skill+rf_trip_artist_effect] effect."
 			]
 		}]
 	}),
