@@ -1,9 +1,10 @@
 this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 	m = {
 		Stacks = 0,
+		HasAttackedThisTurn = false,
 
 		MaxStacks = 4,
-		MultPerStack = 0.05
+		PctPerStack = 0.05 // Stats are increased by this much percent for every stack
 	},
 	function create()
 	{
@@ -69,15 +70,42 @@ this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 				text = ::Reforged.Mod.Tooltips.parseString("Will expire upon losing [Confident|Concept.Morale] morale")
 			}
 		]);
+
+		if (!this.m.HasAttackedThisTurn)
+		{
+			ret.push({
+				id = 21,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Unless this character attacks, one stack will be lost upon ending this [turn|Concept.Turn]")
+			});
+		}
 		return ret;
 	}
 
 	function onTurnStart()
 	{
+		this.m.HasAttackedThisTurn = false;
 		if (this.m.Stacks < this.m.MaxStacks && this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Confident)
 		{
 			this.m.Stacks++;
 			this.spawnIcon(this.m.Overlay, this.getContainer().getActor().getTile());
+		}
+	}
+
+	function onTurnEnd()
+	{
+		if (this.m.Stacks != 0 && !this.m.HasAttackedThisTurn)
+		{
+			this.m.Stacks--;
+		}
+	}
+
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (_skill.isAttack())
+		{
+			this.m.HasAttackedThisTurn = true;
 		}
 	}
 
@@ -101,6 +129,7 @@ this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 	{
 		this.skill.onCombatFinished();
 		this.m.Stacks = 0;
+		this.m.HasAttackedThisTurn = false;
 	}
 
 	function RF_getMult()
