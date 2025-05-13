@@ -134,6 +134,6 @@ this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 
 	function RF_getMult()
 	{
-		return 1.0 + this.m.Stacks * this.m.MultPerStack;
+		return 1.0 + this.m.Stacks * this.m.PctPerStack;
 	}
 });
