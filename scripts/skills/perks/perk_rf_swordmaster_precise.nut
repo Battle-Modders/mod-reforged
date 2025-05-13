@@ -68,7 +68,7 @@ this.perk_rf_swordmaster_precise <- ::inherit("scripts/skills/perks/perk_rf_swor
 	{
 		local actor = this.getContainer().getActor();
 		local ret = ::MSU.isKindOf(actor, "player") ? actor.getLevel() * 0.01 : 0;
-		local weapon = this.getContainer().getActor().getMainhandItem();
+		local weapon = actor.getMainhandItem();
 		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.RF_Fencing))
 		{
 			ret += 0.25;
