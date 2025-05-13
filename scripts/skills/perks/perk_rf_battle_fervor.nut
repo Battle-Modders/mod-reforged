@@ -16,6 +16,11 @@ this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}
 
+	function getName()
+	{
+		return this.m.Stacks <= 1 ? this.m.Name : this.m.Name + " (x" + this.m.Stacks + ")";
+	}
+
 	function isHidden()
 	{
 		return this.m.Stacks == 0;
