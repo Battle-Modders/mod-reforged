@@ -68,7 +68,12 @@
 				// This actor MUST NOT get killed during this if this spawning is via a resurrection because
 				// tactical_entity_manager.onResurrect calls entity.riseFromGround after entity.onResurrected
 				// and riseFromGround tries to access the entity's tile.
+
+				// We block the other actor from triggering his RF_onSpawn due to the update from his onActorSpawned event
+				// otherwise the stack keeps getting bigger and bigger and may lead to a stack overflow with too many actors.
+				actor.m.RF_OnSpawnBlockerCount++;
 				actor.getSkills().onActorSpawned(this);
+				actor.m.RF_OnSpawnBlockerCount--;
 			}
 		}
 	}
