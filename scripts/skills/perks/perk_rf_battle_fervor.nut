@@ -90,12 +90,9 @@ this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 			return;
 
 		local actor = this.getContainer().getActor();
-		if (actor.getMoraleState() != ::Const.MoraleState.Confident || !actor.checkMorale(0, ::Const.Morale.RallyBaseDifficulty))
-			return;
-
-		this.m.Stacks++;
-		if (actor.isPlacedOnMap())
+		if (actor.getMoraleState() == ::Const.MoraleState.Confident && actor.checkMorale(0, ::Const.Morale.RallyBaseDifficulty))
 		{
+			this.m.Stacks++;
 			this.spawnIcon(this.m.Overlay, actor.getTile());
 		}
 	}
