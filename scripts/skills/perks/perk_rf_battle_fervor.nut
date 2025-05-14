@@ -86,10 +86,17 @@ this.perk_rf_battle_fervor <- ::inherit("scripts/skills/skill", {
 	function onTurnStart()
 	{
 		this.m.HasAttackedThisTurn = false;
-		if (this.m.Stacks < this.m.MaxStacks && this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Confident)
+		if (this.m.Stacks == this.m.MaxStacks)
+			return;
+
+		local actor = this.getContainer().getActor();
+		if (actor.getMoraleState() != ::Const.MoraleState.Confident || !actor.checkMorale(0, ::Const.Morale.RallyBaseDifficulty))
+			return;
+
+		this.m.Stacks++;
+		if (actor.isPlacedOnMap())
 		{
-			this.m.Stacks++;
-			this.spawnIcon(this.m.Overlay, this.getContainer().getActor().getTile());
+			this.spawnIcon(this.m.Overlay, actor.getTile());
 		}
 	}
 
