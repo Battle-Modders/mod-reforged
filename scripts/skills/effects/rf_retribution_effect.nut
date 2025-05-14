@@ -67,7 +67,7 @@ this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 		this.m.Stacks = ::Math.min(this.m.MaximumStackSize, this.m.Stacks + 1);
 	}
 
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (_skill.isAttack())
 		{
