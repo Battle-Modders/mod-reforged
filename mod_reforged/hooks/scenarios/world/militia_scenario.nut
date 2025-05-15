@@ -16,6 +16,23 @@
 	q.onBuildPerkTree = @(__original) function( _perkTree )
 	{
 		__original(_perkTree);
-		_perkTree.addPerkGroup("pg.rf_militia");
+
+		// Instead of directly adding militia perk group, we iterate over its rows and add
+		// the perks to the perk tree because some perks may have come from other perk groups
+		// at tiers different from the tiers that militia perk group has them at.
+		foreach (i, row in ::DynamicPerks.PerkGroups.findById("pg.rf_militia").getTree())
+		{
+			foreach (perkID in row)
+			{
+				if (_perkTree.hasPerk(perkID))
+				{
+					if (_perkTree.getPerkTier(perkID) == i + 1)
+						continue;
+					else
+						_perkTree.removePerk(perkID);
+				}
+				_perkTree.addPerk(perkID, i + 1);
+			}
+		}
 	}
 });
