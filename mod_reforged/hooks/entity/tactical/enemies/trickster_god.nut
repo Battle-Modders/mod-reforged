@@ -38,6 +38,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastEnormous;
+		this.m.Skills.add(::new("scripts/skills/actives/rf_gore_zoc_skill"));
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_dent_armor", function(o) {
 			o.m.RequiredDamageType = null;
 		}));
