@@ -2,10 +2,10 @@
 ::MSU.Table.merge(::Const.Tactical.Actor.Footman, {
 	XP = 300, // vanilla 250
 	ActionPoints = 9,
-	Hitpoints = 70,
+	Hitpoints = 75, // vanilla 70
 	Bravery = 60,
 	Stamina = 120,
-	MeleeSkill = 70,
+	MeleeSkill = 75, // vanilla 70
 	RangedSkill = 50,
 	MeleeDefense = 10,
 	RangedDefense = 0, // vanilla 5
@@ -27,7 +27,7 @@
 	MeleeSkill = 75, // vanilla 70
 	RangedSkill = 50,
 	MeleeDefense = 10,
-	RangedDefense = 5,
+	RangedDefense = 10, // vanilla 5
 	Initiative = 100, // vanilla 80
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
@@ -119,11 +119,11 @@
 	Hitpoints = 135,
 	Bravery = 100, // vanilla 90
 	Stamina = 150, // vanilla 140
-	MeleeSkill = 90,
+	MeleeSkill = 95, // vanilla 90
 	RangedSkill = 60,
-	MeleeDefense = 20,
-	RangedDefense = 0, // vanilla 10
-	Initiative = 110, // vanilla 115
+	MeleeDefense = 25,
+	RangedDefense = 5, // vanilla 10
+	Initiative = 115,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
 	Armor = [
@@ -156,10 +156,10 @@
 ::Const.Tactical.Actor.RF_FootmanHeavy <- {
 	XP = 400,
 	ActionPoints = 9,
-	Hitpoints = 80,
+	Hitpoints = 85,
 	Bravery = 70,
 	Stamina = 130,
-	MeleeSkill = 75,
+	MeleeSkill = 80,
 	RangedSkill = 50,
 	MeleeDefense = 15,
 	RangedDefense = 0,
@@ -181,7 +181,7 @@
 	MeleeSkill = 80,
 	RangedSkill = 50,
 	MeleeDefense = 10,
-	RangedDefense = 10,
+	RangedDefense = 15,
 	Initiative = 110,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
@@ -292,11 +292,11 @@
 	Hitpoints = 150,
 	Bravery = 120,
 	Stamina = 170,
-	MeleeSkill = 90,
+	MeleeSkill = 100,
 	RangedSkill = 60,
 	MeleeDefense = 25,
-	RangedDefense = 0,
-	Initiative = 120,
+	RangedDefense = 10,
+	Initiative = 125,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
 	Armor = [
