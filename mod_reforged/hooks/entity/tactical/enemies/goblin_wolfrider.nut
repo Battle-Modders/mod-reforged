@@ -54,6 +54,8 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/racial/rf_goblin_wolfrider_racial"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fast_adaption"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
 
 		// In vanilla goblin_wolfriders have a bug that they get the bonus damage from wolf_bite for ALL attacks
 		// until they use that skill. We have "fixed" that in Reforged. The fix is in the hook on wolf_bite.
