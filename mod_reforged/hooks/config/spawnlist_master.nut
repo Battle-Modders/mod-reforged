@@ -231,6 +231,18 @@
 		TitleList = ::Const.Strings.RF_AncientDeadCommanderTitles
 	},
 
+	// Zombies
+	RF_Banshee = {
+		ID = ::Const.EntityType.RF_Banshee,
+		Variant = 1,
+		Strength = 50,
+		Cost = 50,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_banshee",
+		NameList = ::Const.Strings.RF_BansheeNames,
+		TitleList = ::Const.Strings.RF_BansheeTitles
+	},
+
 	// Noble
 	RF_FootmanHeavy = {
 		ID = ::Const.EntityType.RF_FootmanHeavy,

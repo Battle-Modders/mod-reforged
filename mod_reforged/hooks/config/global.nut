@@ -36,7 +36,9 @@ local entityTypes = [
 	"RF_Fencer",
 	"RF_KnightAnointed",
 	"RF_Squire",
-	"RF_HeraldsBodyguard"
+	"RF_HeraldsBodyguard",
+
+	"RF_Banshee"
 ]
 
 local entityIcon = [
@@ -70,6 +72,8 @@ local entityIcon = [
 	"rf_fencer_orientation",
 	"rf_knight_anointed_orientation",
 	"rf_squire_orientation",
+	"rf_heralds_bodyguard_orientation",
+
 	"rf_heralds_bodyguard_orientation"
 ]
 
@@ -132,6 +136,9 @@ local getDefaultFaction = ::Const.EntityType.getDefaultFaction;
 			case ::Const.EntityType.RF_Squire:
 			case ::Const.EntityType.RF_HeraldsBodyguard:
 				return ::Const.FactionType.NobleHouse;
+
+			case ::Const.EntityType.RF_Banshee:
+				return ::Const.FactionType.Zombies;
 		}
 	}
 

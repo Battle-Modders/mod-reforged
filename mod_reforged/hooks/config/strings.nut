@@ -29,7 +29,9 @@
 	"Fencer",
 	"Anointed Knight",
 	"Squire",
-	"Herald\'s Bodyguard"
+	"Herald\'s Bodyguard",
+
+	"Klagmutter"
 ]);
 
 ::Const.Strings.EntityNamePlural.extend([
@@ -64,6 +66,8 @@
 	"Anointed Knights",
 	"Squires",
 	"Herald\'s Bodyguards"
+
+	"Klagmutters"
 ]);
 
 ::MSU.Table.merge(::Const.Strings.PerkName, {
@@ -183,6 +187,7 @@
 	RF_WeaponMaster = "Weapon Master",
 	RF_WearThemDown = "Wear Them Down",
 	RF_WearsItWell = "Wears it Well",
+	RF_WhimperingVeil = "Whimpering Veil",
 	RF_WhirlingDeath = "Whirling Death"
 });
 
@@ -2186,6 +2191,15 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"The penalty to [Maximum Fatigue|Concept.MaximumFatigue] and [Initiative|Concept.Initiative] from equipped items in your head, body, mainhand and offhand slots is reduced by " + ::MSU.Text.colorPositive("20%") + ". This effect stacks with [Brawny.|Perk+perk_brawny]"
+			]
+		}]
+	}),
+	RF_WhimperingVeil = ::UPD.getDescription({
+		Fluff = "Mourn with me.",
+		Effects = [{
+			Type = ::UPD.EffectType.Passive,
+			Description = [
+				"Receive no damage from attackers who are below [Steady morale|Concept.Morale] or are suffering from [Grieving Malaise|Skill+rf_grieving_malaise]."
 			]
 		}]
 	}),

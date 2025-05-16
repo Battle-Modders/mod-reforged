@@ -1206,6 +1206,14 @@
 		IconDisabled = "ui/perks/perk_rf_terrifying_visage_sw.png"
 	},
 	{
+		ID = "perk.rf_whimpering_veil",
+		Script = "scripts/skills/perks/perk_rf_whimpering_veil",
+		Name = ::Const.Strings.PerkName.RF_WhimperingVeil,
+		Tooltip = ::Const.Strings.PerkDescription.RF_WhimperingVeil,
+		Icon = "ui/perks/perk_rf_whimpering_veil.png",
+		IconDisabled = "ui/perks/perk_rf_whimpering_veil_sw.png"
+	},
+	{
 		ID = "perk.rf_dynamic_duo",
 		Script = "scripts/skills/perks/perk_rf_dynamic_duo",
 		Name = ::Const.Strings.PerkName.RF_DynamicDuo,

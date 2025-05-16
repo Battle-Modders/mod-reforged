@@ -341,4 +341,6 @@
 
 <sprite id="bust_rf_unhold_head_smiling" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF39455B" width="174" height="214" img="entity\beasts\bust_rf_unhold_head_smiling.png" left="-69" right="21" top="-24" bottom="68" />
 
+<sprite id="bust_rf_banshee_01" offsetY="35" b7="0" ic="FFBF9151" width="104" height="142" img="entity\undead\bust_rf_banshee_01.png" left="-50" right="72" top="-69" bottom="83" />
+
 </brush>

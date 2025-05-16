@@ -218,3 +218,21 @@
 		0
 	]
 };
+::Const.Tactical.Actor.RF_Banshee <- {
+	XP = 400,
+	ActionPoints = 9,
+	Hitpoints = 1,
+	Bravery = 130,
+	Stamina = 100,
+	MeleeSkill = 65,
+	RangedSkill = 0,
+	MeleeDefense = 30,
+	RangedDefense = 999,
+	Initiative = 95,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
+};
