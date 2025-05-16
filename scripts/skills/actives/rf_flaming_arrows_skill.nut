@@ -1,8 +1,7 @@
 this.rf_flaming_arrows_skill <- ::inherit("scripts/skills/actives/aimed_shot", {
 	m = {
 		TargetTile = null,
-		RangeModifier = -2,
-		AmmoConsumed = 2
+		RangeModifier = -1
 	},
 	function create()
 	{
@@ -16,9 +15,8 @@ this.rf_flaming_arrows_skill <- ::inherit("scripts/skills/actives/aimed_shot", {
 		this.m.ProjectileType = ::Const.ProjectileType.FlamingArrow;
 		this.m.InjuriesOnBody = ::Const.Injury.BurningAndPiercingBody;
 		this.m.InjuriesOnHead = ::Const.Injury.BurningAndPiercingHead;
-		this.m.AdditionalAccuracy = -10;
+		this.m.AdditionalAccuracy = 0;
 		this.m.AdditionalHitChance = -4;
-		this.m.DirectDamageMult += 0.1; // Additional armor penetrating damage to reflect additional "fire" damage.
 	}
 
 	function getTooltip()
@@ -92,14 +90,6 @@ this.rf_flaming_arrows_skill <- ::inherit("scripts/skills/actives/aimed_shot", {
 	{
 		this.aimed_shot.onAfterUpdate(_properties);
 		this.m.MaxRange += this.m.RangeModifier;
-	}
-
-	function consumeAmmo()
-	{
-		for (local i = 0; i < this.m.AmmoConsumed; i++)
-		{
-			this.aimed_shot.consumeAmmo();
-		}
 	}
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
