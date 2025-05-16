@@ -42,4 +42,28 @@
 			o.m.RequiredWeaponType = null;
 		}));
 	}
+
+	q.getLootForTile = @(__original) function( _killer, _loot )
+	{
+		local ret = __original(_killer, _loot);
+
+		// We implement our own drop rate for glittering rocks, so we delete any that was spawned by vanilla
+		for (local i = ret.len() - 1; i > 0; i--)
+		{
+			if (ret[i].getID() == "misc.glittering_rock")
+			{
+				ret.remove(i);
+			}
+		}
+
+		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
+		{
+			if (::Math.rand(1, 100) <= 25)
+			{
+				ret.push(::new("scripts/items/loot/glittering_rock_item"));
+			}
+		}
+
+		return ret;
+	}
 });
