@@ -35,6 +35,7 @@ this.rf_marshal <- ::inherit("scripts/entity/tactical/human" {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_blitzkrieg"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
