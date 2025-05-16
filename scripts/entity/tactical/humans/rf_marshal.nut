@@ -28,13 +28,14 @@ this.rf_marshal <- ::inherit("scripts/entity/tactical/human" {
 		this.getSprite("socket").setBrush("bust_base_military");
 		this.getSprite("accessory_special").setBrush("rf_marshal_trophy");
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_captain"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_decisive"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_blitzkrieg"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
