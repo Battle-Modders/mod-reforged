@@ -54,6 +54,7 @@
 	<sprite id="rf_voulge_cleave_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_voulge_cleave_skill.png" />
 
 	<!-- Perks and their Minis -->
+	<sprite id="perk_rf_battle_fervor" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_battle_fervor.png" />
 	<sprite id="perk_rf_bloodlust_mini" ic = "FF23165B" img="skills\mini\perk_rf_bloodlust_mini.png" />
 	<sprite id="perk_rf_bolster" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_bolster.png" />
 	<sprite id="perk_rf_bulwark_mini" ic = "FF23165B" img="skills\mini\perk_rf_bulwark_mini.png" />
