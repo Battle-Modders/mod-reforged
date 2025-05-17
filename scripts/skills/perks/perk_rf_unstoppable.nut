@@ -63,7 +63,7 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using [Wait|Concept.Wait] or [Recover|Skill+recover_skill] or getting [stunned,|Skill+stunned_effect] rooted, or [staggered|Skill+staggered_effect] or ending the [turn|Concept.Turn] with more than " + ::Math.floor(this.getContainer().getActor().getActionPointsMax() / 2) + " [Action Points|Concept.ActionPoints] remaining")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon swapping a two-handed item or shield, using [Wait|Concept.Wait] or [Recover|Skill+recover_skill] or getting [stunned,|Skill+stunned_effect] rooted, or [staggered|Skill+staggered_effect] or ending the [turn|Concept.Turn] with more than " + ::Math.floor(this.getContainer().getActor().getActionPointsMax() / 2) + " [Action Points|Concept.ActionPoints] remaining")
 		});
 
 		return ret;
@@ -81,6 +81,18 @@ this.perk_rf_unstoppable <- ::inherit("scripts/skills/skill", {
 			this.m.Stacks = 0;
 		else if (this.m.IsGainingStackThisTurn)
 			this.m.Stacks = ::Math.min(this.m.MaxStacks, this.m.Stacks + 1);
+	}
+
+	function onPayForItemAction( _skill, _items )
+	{
+		foreach (item in _items)
+		{
+			if (item != null && item.isItemType(::Const.Items.ItemType.TwoHanded) || item.isItemType(::Const.Items.ItemType.Shield))
+			{
+				this.m.Stacks = 0;
+				return;
+			}
+		}
 	}
 
 	function onWaitTurn()

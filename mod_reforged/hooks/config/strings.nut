@@ -2100,7 +2100,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"As long as you have attacked at least once during your [turn,|Concept.Turn] if you end the [turn|Concept.Turn] with half or fewer of your [Action Points|Concept.ActionPoints] remaining, gain a stack, up to a maximum of 5 stacks.",
 				"Each stack increases [Action Points|Concept.ActionPoints] by " + ::MSU.Text.colorPositive("+1") + " and [Initiative|Concept.Initiative] by " + ::MSU.Text.colorPositive("+10") + ".",
-				"All stacks are lost if you end your [turn|Concept.Turn] with more than half of your [Action Points|Concept.ActionPoints] remaining, use [Wait|Concept.Wait] or [Recover,|Skill+recover_skill] or get [stunned,|Skill+stunned_effect] rooted or [Staggered.|Skill+staggered_effect]"
+				"All stacks are lost if you end your [turn|Concept.Turn] with more than half of your [Action Points|Concept.ActionPoints] remaining, swap a two-handed item or shield, use [Wait|Concept.Wait] or [Recover,|Skill+recover_skill] or get [stunned,|Skill+stunned_effect] rooted or [staggered.|Skill+staggered_effect]"
 			]
 		}]
 	}),
