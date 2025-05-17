@@ -78,39 +78,51 @@
 		baseProperties.IsImmuneToPoison = true;
 	}
 
+	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
+	{
+		this.RF_applyDamageResistance(_attacker, _skill, null, _properties);
+	}
+
 	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
 	{
-		switch (_hitInfo.DamageType)
+		this.RF_applyDamageResistance(_attacker, _skill, _hitInfo, _properties);
+	}
+
+	// if _skill is null only then _hitInfo is checked
+	q.RF_applyDamageResistance <- function( _attacker, _skill, _hitInfo, _properties )
+	{
+		if (_skill != null)
 		{
-			case null:
-				break;
+			local d = _skill.getDamageType();
+			local mult = 0.0;
+			if (d.contains(::Const.Damage.DamageType.Burning))
+			{
+				mult += d.getProbability(::Const.Damage.DamageType.Burning) * 0.75;
+			}
+			if (d.contains(::Const.Damage.DamageType.Piercing))
+			{
+				// This streamlines the following differences in vanilla:
+				// - javelins dealing 50% damage
+				// - handgonne and one-use throwing spear dealing 100% damage
+				mult += d.getProbability(::Const.Damage.DamageType.Piercing) * (_skill.isRanged() ? 0.66 : 0.5);
+			}
 
-			case ::Const.Damage.DamageType.Burning:
-				_properties.DamageReceivedRegularMult *= 0.25;
-				break;
+			_properties.DamageReceivedRegularMult *= 1.0 - mult;
+		}
+		else if (_hitInfo != null)
+		{
+			switch (_hitInfo.DamageType)
+			{
+				case null:
+					break;
 
-			case ::Const.Damage.DamageType.Piercing:
-				if (_skill == null)
-				{
+				case ::Const.Damage.DamageType.Burning:
+					_properties.DamageReceivedRegularMult *= 0.25;
+					break;
+
+				case ::Const.Damage.DamageType.Piercing:
 					_properties.DamageReceivedRegularMult *= 0.5;
-				}
-				else
-				{
-					if (_skill.isRanged())
-					{
-						_properties.DamageReceivedRegularMult *= 0.33;
-						/* This streamlines the following differences in vanilla:
-							Arrows dealing only 10% damage
-							javelins dealing only 25% damage
-							one-use throwing spear dealing 50% damage
-						*/
-					}
-					else
-					{
-						_properties.DamageReceivedRegularMult *= 0.5;
-					}
-				}
-				break;
+			}
 		}
 	}
 });

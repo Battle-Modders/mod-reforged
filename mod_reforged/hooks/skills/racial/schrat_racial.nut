@@ -118,42 +118,56 @@
 		baseProperties.IsIgnoringArmorOnAttack = true;
 	}
 
+	q.onBeingAttacked = @() function( _attacker, _skill, _properties )
+	{
+		this.RF_applyDamageResistance(_attacker, _skill, null, _properties);
+	}
+
 	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
 	{
-		switch (_hitInfo.DamageType)
-		{
-			case null:
-				break;
-
-			case ::Const.Damage.DamageType.Burning:
-				_properties.DamageReceivedRegularMult *= 2.0;	// In Vanilla this is 1.33 for firelance and 3.0 for burning ground
-				break;
-
-			case ::Const.Damage.DamageType.Piercing:
-				if (_skill == null)
-				{
-					_properties.DamageReceivedRegularMult *= 0.50;
-				}
-				else
-				{
-					if (_skill.isRanged())
-					{
-						_properties.DamageReceivedRegularMult *= 0.25;
-						/* This streamlines the following differences in vanilla:
-							javelins dealing 50% damage
-							handgonne and one-use throwing spear dealing 100% damage
-						*/
-					}
-					else
-					{
-						_properties.DamageReceivedRegularMult *= 0.50;	// New: In Vanilla piercing melee attacks are not reduced
-					}
-				}
-				break;
-		}
+		this.RF_applyDamageResistance(_attacker, _skill, _hitInfo, _properties);
 	}
 
 	// We exported everything this function does into its own effect (rf_sapling_harvest).
 	// By overwriting this method we also nullify all other mods hooking into this before us but there is clean solution to this
 	q.onDamageReceived = @() function( _attacker, _damageHitpoints, _damageArmor ) {};
+
+	// if _skill is null only then _hitInfo is checked
+	q.RF_applyDamageResistance <- function( _attacker, _skill, _hitInfo, _properties )
+	{
+		if (_skill != null)
+		{
+			local d = _skill.getDamageType();
+			local mult = 0.0;
+			if (d.contains(::Const.Damage.DamageType.Burning))
+			{
+				mult += d.getProbability(::Const.Damage.DamageType.Burning) * -1.0; // In Vanilla this 1.33 for firelance and 3.0 for burning ground
+			}
+			if (d.contains(::Const.Damage.DamageType.Piercing))
+			{
+				// This streamlines the following differences in vanilla:
+				// - javelins dealing 50% damage
+				// - handgonne and one-use throwing spear dealing 100% damage
+				mult += d.getProbability(::Const.Damage.DamageType.Piercing) * (_skill.isRanged() ? 0.75 : 0.5);
+			}
+
+			_properties.DamageReceivedRegularMult *= 1.0 - mult;
+		}
+		else if (_hitInfo != null)
+		{
+			switch (_hitInfo.DamageType)
+			{
+				case null:
+					break;
+
+				case ::Const.Damage.DamageType.Burning:
+					_properties.DamageReceivedRegularMult *= 2.0; // In Vanilla this is 1.33 for firelance and 3.0 for burning ground
+					break;
+
+				case ::Const.Damage.DamageType.Piercing:
+					_properties.DamageReceivedRegularMult *= 0.50; // New: In Vanilla piercing melee attacks are not reduced
+					break;
+			}
+		}
+	}
 });
