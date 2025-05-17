@@ -49,6 +49,7 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Goblin;
 
+		this.m.Skills.add(::new("scripts/skills/racial/rf_goblin_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
 	}
 

@@ -877,7 +877,8 @@ foreach (vanillaDesc in vanillaDescriptions)
 			{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Enemies [netted|Skill+net_effect] by you have a " + ::MSU.Text.colorNegative("50%") + " increased [Action Point|Concept.ActionPoints] cost for using the [Break Free|Skill+break_free_skill] skill."
+					"You can [throw nets|Skill+throw_net] one further tile away up to a maximum of 3 tiles.",
+					"Enemies [netted|Skill+net_effect] by you at a distance of 2 or fewer tiles have a " + ::MSU.Text.colorNegative("50%") + " increased [Action Point|Concept.ActionPoints] cost for using the [Break Free|Skill+break_free_skill] skill."
 				]
 			},
 			{

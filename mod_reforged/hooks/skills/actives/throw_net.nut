@@ -2,6 +2,8 @@
 	q.create = @(__original) function()
 	{
 		__original();
+		this.m.ActionPointCost = 5; // vanilla is 4
+		this.m.MaxRange = 2; // vanilla is 3
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.ThrowNet;
 	}
 
