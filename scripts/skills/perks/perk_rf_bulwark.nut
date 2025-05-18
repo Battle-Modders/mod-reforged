@@ -27,7 +27,7 @@ this.perk_rf_bulwark <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Resolve|Concept.Bravery] at positive [morale checks|Concept.Morale]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + bonus) + " [Resolve|Concept.Bravery] at [morale checks|Concept.Morale]")
 		});
 
 		ret.push({
