@@ -120,7 +120,7 @@ this.rf_old_swordmaster_scenario_avatar_effect <- ::inherit("scripts/skills/effe
 		return 0;
 	}
 
-	function MV_getPlayerPartyStrengthMult()
+	function getPlayerPartyStrengthMult()
 	{
 		if (::World.Flags.has("RF_OldSwordmasterScenario_OldAgeEvent_4"))
 			return 1.0;
@@ -140,6 +140,8 @@ this.rf_old_swordmaster_scenario_avatar_effect <- ::inherit("scripts/skills/effe
 	function onUpdate( _properties )
 	{
 		this.rf_old_swordmaster_scenario_abstract_effect.onUpdate(_properties);
+
+		_properties.MV_StrengthMult *= this.getPlayerPartyStrengthMult();
 			
 		local actor = this.getContainer().getActor();
 		if (this.isEnabled())
