@@ -1,7 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_spear", function(q) {
 	q.m.IsSpent <- true;
 	q.m.TilesMoved <- 0;
-	q.m.MaxTilesAllowed <- 1;
 	q.m.FatigueCostMultMult <- 0.5;
 
 	q.create = @(__original) function()
@@ -26,11 +25,13 @@
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("The next piercing spear attack costs " + ::MSU.Text.colorPositive("0") + " [Action Points|Concept.ActionPoints] and builds " + ::MSU.Text.colorizeMult(this.m.FatigueCostMultMult, {InvertColor = true}) + " less [Fatigue|Concept.Fatigue]")
 		});
+
+		local maxTilesAllowed = this.getMaxTilesAllowed();
 		ret.push({
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = "Will expire upon switching your weapon or moving" + (this.m.MaxTilesAllowed == 0 ? "" : "more than " + this.m.MaxTilesAllowed + " tile(s)")
+			text = "Will expire upon switching your weapon or moving" + (maxTilesAllowed == 0 ? "" : "more than " + maxTilesAllowed + " tile(s)")
 		});
 
 		return ret;
@@ -46,7 +47,7 @@
 		local actor = this.getContainer().getActor();
 		if (actor.isPreviewing())
 		{
-			if (actor.getPreviewMovement() != null && actor.getPreviewMovement().Tiles + this.m.TilesMoved >= this.m.MaxTilesAllowed)
+			if (actor.getPreviewMovement() != null && actor.getPreviewMovement().Tiles + this.m.TilesMoved >= this.getMaxTilesAllowed())
 				return;
 
 			if (actor.getPreviewSkill() != null && this.isSkillValid(actor.getPreviewSkill()))
@@ -88,7 +89,7 @@
 	q.onMovementStarted = @(__original) function( _tile, _numTiles )
 	{
 		this.m.TilesMoved += _numTiles;
-		if (this.m.TilesMoved > this.m.MaxTilesAllowed)
+		if (this.m.TilesMoved > this.getMaxTilesAllowed())
 			this.m.IsSpent = true;
 		__original(_tile, _numTiles);
 	}
@@ -122,5 +123,11 @@
 
 		local weapon = _skill.getItem();
 		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Spear);
+	}
+
+	q.getMaxTilesAllowed <- function()
+	{
+		local weapon = this.getMainhandItem();
+		return weapon == null || weapon.isItemType(::Const.Items.ItemType.OneHanded) ? 1 : 0;
 	}
 });
