@@ -16,5 +16,6 @@
 	[1, "scripts/items/weapons/named/named_two_handed_flail"],
 	[1, "scripts/items/weapons/named/named_two_handed_hammer"],
 	[1, "scripts/items/weapons/named/named_two_handed_mace"],
+	[1, "scripts/items/weapons/named/named_rf_voulge"],
 	[1, "scripts/items/weapons/named/named_warbrand"]
 ]);
