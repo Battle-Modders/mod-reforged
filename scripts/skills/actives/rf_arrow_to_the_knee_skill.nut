@@ -5,7 +5,7 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 		this.quick_shot.create();
 		this.m.ID = "actives.rf_arrow_to_the_knee";
 		this.m.Name = "Arrow to the Knee";
-		this.m.Description = "A debilitating shot aimed at the knees of your target to cripple their ability to move and defend themselves. Can only be used against targets who can receive leg injuries.";
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("A debilitating shot aimed at the knees of your target to cripple their ability to move and defend themselves. Can only be used against targets who can receive leg [injuries.|Concept.InjuryTemporary]");
 		this.m.Icon = "skills/rf_arrow_to_the_knee_skill.png";
 		this.m.IconDisabled = "skills/rf_arrow_to_the_knee_skill_sw.png";
 		this.m.Overlay = "rf_arrow_to_the_knee_skill";
