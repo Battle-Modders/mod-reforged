@@ -2,7 +2,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
-		this.m.StaminaModifier = -6;
+		this.m.StaminaModifier = -10; // vanilla -14
 		this.m.Reach = 6;
 	}
 
@@ -11,7 +11,6 @@
 		this.weapon.onEquip();
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/impale", function(o) {
-			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 3;
 			o.m.Icon = "skills/active_57.png";
 			o.m.IconDisabled = "skills/active_57_sw.png";
@@ -19,7 +18,6 @@
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/repel", function(o) {
-			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 			o.m.Icon = "skills/active_58.png";
 			o.m.IconDisabled = "skills/active_58_sw.png";
