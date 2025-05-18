@@ -130,10 +130,9 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 		{
 			if (this.isSkillValid(skill))
 			{
-				local actionPointCostModifier = this.getActionPointCostModifier();
-				if (skill.m.ActionPointCost + actionPointCostModifier > 0)
+				if (skill.m.ActionPointCost > 1)
 				{
-					skill.m.ActionPointCost += actionPointCostModifier;
+					skill.m.ActionPointCost = ::Math.max(1, skill.m.ActionPointCost + this.getActionPointCostModifier());
 				}
 				skill.m.FatigueCostMult *= this.getFatigueCostMultMult();
 			}
