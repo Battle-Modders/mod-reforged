@@ -89,8 +89,8 @@ local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.CaravanGuard",
 		DynamicDefs = {
-			Units = [{ BaseID = "Unit.RF.CaravanGuard" }, { BaseID = "Unit.RF.Mercenary" }]
-		}		// In Vanilla they also allow ranged mercenaries here
+			Units = [{ BaseID = "Unit.RF.CaravanGuard" }]
+		}
 	},
 
 // Militia
