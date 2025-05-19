@@ -19,7 +19,7 @@ this.pg_rf_throwing <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 	function getSelfMultiplier( _perkTree )
 	{
 		local ret = 1.5;
-		local rSkill = _perkTree.getProjectedAttributesAvg()[::Const.Attributes.RangedSkill];
+		local rSkill = _perkTree.RF_getProjectedAttributesAvg()[::Const.Attributes.RangedSkill];
 
 		return rSkill < 70 ? ret * 0.5 : ret - 0.03 * ::Math.max(0, rSkill - 70);
 	}

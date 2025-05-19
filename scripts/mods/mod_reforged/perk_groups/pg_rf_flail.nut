@@ -18,6 +18,6 @@ this.pg_rf_flail <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 
 	function getSelfMultiplier( _perkTree )
 	{
-		return 1.2 - 0.01 * ::Math.max(0, _perkTree.getProjectedAttributesAvg()[::Const.Attributes.MeleeSkill] - 70);
+		return 1.2 - 0.01 * ::Math.max(0, _perkTree.RF_getProjectedAttributesAvg()[::Const.Attributes.MeleeSkill] - 70);
 	}
 });

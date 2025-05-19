@@ -1,18 +1,18 @@
 ::Reforged.HooksMod.hook(::DynamicPerks.Class.PerkTree, function(q) {
-	q.m.ProjectedAttributesAvg <- null;
+	q.m.RF_ProjectedAttributesAvg <- null;
 
-	q.setupProjectedAttributesAvg <- { function setupProjectedAttributesAvg()
+	q.RF_setupProjectedAttributesAvg <- { function RF_setupProjectedAttributesAvg()
 	{
-		this.m.ProjectedAttributesAvg = this.getActor().getProjectedAttributes();
-		::MSU.Table.apply(this.m.ProjectedAttributesAvg, @(_, _entry) (_entry[0] + _entry[1]) * 0.5);
-	}}.setupProjectedAttributesAvg;
+		this.m.RF_ProjectedAttributesAvg = this.getActor().getProjectedAttributes();
+		::MSU.Table.apply(this.m.RF_ProjectedAttributesAvg, @(_, _entry) (_entry[0] + _entry[1]) * 0.5);
+	}}.RF_setupProjectedAttributesAvg;
 
-	q.getProjectedAttributesAvg <- { function getProjectedAttributesAvg()
+	q.RF_getProjectedAttributesAvg <- { function RF_getProjectedAttributesAvg()
 	{
-		if (this.m.ProjectedAttributesAvg == null)
-			this.setupProjectedAttributesAvg();
-		return this.m.ProjectedAttributesAvg;
-	}}.getProjectedAttributesAvg;
+		if (this.m.RF_ProjectedAttributesAvg == null)
+			this.RF_setupProjectedAttributesAvg();
+		return this.m.RF_ProjectedAttributesAvg;
+	}}.RF_getProjectedAttributesAvg;
 
 	q.getPerkGroupMultiplierSources_All = @(__original) { function getPerkGroupMultiplierSources_All()
 	{

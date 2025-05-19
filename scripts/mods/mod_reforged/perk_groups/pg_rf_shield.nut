@@ -31,6 +31,6 @@ this.pg_rf_shield <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		if (!canGet)
 			return 0;
 
-		return 1.5 - 0.02 * ::Math.max(0, _perkTree.getProjectedAttributesAvg()[::Const.Attributes.MeleeDefense] - 5);
+		return 1.5 - 0.02 * ::Math.max(0, _perkTree.RF_getProjectedAttributesAvg()[::Const.Attributes.MeleeDefense] - 5);
 	}
 });
