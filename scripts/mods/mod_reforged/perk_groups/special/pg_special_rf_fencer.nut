@@ -23,7 +23,7 @@ this.pg_special_rf_fencer <- ::inherit(::DynamicPerks.Class.SpecialPerkGroup, {
 		if (!_perkTree.hasPerkGroup("pg.rf_sword") || (!_perkTree.hasPerkGroup("pg.rf_light_armor") && !_perkTree.hasPerkGroup("pg.rf_medium_armor")))
 			return 0;
 
-		local p = _perkTree.getProjectedAttributesAvg();
+		local p = _perkTree.RF_getProjectedAttributesAvg();
 		if (p[::Const.Attributes.Initiative] < 130)
 			return 0;
 

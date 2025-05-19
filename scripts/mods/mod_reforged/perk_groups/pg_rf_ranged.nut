@@ -22,7 +22,7 @@ this.pg_rf_ranged <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		if (_perkTree.hasPerkGroup("pg.rf_bow")) ret += 1.0;
 		if (_perkTree.hasPerkGroup("pg.rf_crossbow")) ret += 1.0;
 
-		if (ret != 0 && _perkTree.getProjectedAttributesAvg()[::Const.Attributes.RangedSkill] >= 80)
+		if (ret != 0 && _perkTree.RF_getProjectedAttributesAvg()[::Const.Attributes.RangedSkill] >= 80)
 			return -1;
 
 		if (_perkTree.hasPerkGroup("pg.rf_throwing")) ret += 1.0;
@@ -43,7 +43,7 @@ this.pg_rf_ranged <- ::inherit(::DynamicPerks.Class.PerkGroup, {
 		if (guarantee)
 			return -1;
 
-		local rSkill = _perkTree.getProjectedAttributesAvg()[::Const.Attributes.RangedSkill];
+		local rSkill = _perkTree.RF_getProjectedAttributesAvg()[::Const.Attributes.RangedSkill];
 
 		return rSkill < 75 ? ret * 0.5 : ret + 0.02 * ::Math.max(0, rSkill - 75);
 	}
