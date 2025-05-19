@@ -21,7 +21,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.getReachModifier() == 0 && this.getStartSurroundCountAtModifier() == 0;
+		return !this.isEnabled() || (this.getReachModifier() == 0 && this.getStartSurroundCountAtModifier() == 0);
 	}
 
 	function getTooltip()
@@ -56,7 +56,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill.isAttack() && !_skill.isRanged() && (this.m.RequiredDamageType == null || _skill.getDamageType().contains(this.m.RequiredDamageType)))
+		if (_skill.isAttack() && !_skill.isRanged() && this.isEnabled() && (this.m.RequiredDamageType == null || _skill.getDamageType().contains(this.m.RequiredDamageType)))
 		{
 			_properties.Reach += this.getReachModifier();
 		}
@@ -64,7 +64,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function onBeingAttacked( _attacker, _skill, _properties )
 	{
-		if (_skill.isAttack() && !_skill.isRanged())
+		if (_skill.isAttack() && !_skill.isRanged() && this.isEnabled())
 		{
 			_properties.Reach += this.getReachModifier();
 		}
