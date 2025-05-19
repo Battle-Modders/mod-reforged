@@ -130,7 +130,7 @@
 				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 			}
 
-			if (this.m.isMiniboss)
+			if (this.m.IsMiniboss)
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
 				{
