@@ -49,4 +49,6 @@
 
 	<sprite id="icon_rf_voulge_01" offsetY="35" ic="FF434752" width="130" height="142" img="icons\icon_rf_voulge_01.png" left="-58" right="16" top="-63" bottom="55" />
 	<sprite id="icon_rf_voulge_01_bloodied" offsetY="35" ic="FF434752" width="130" height="142" img="icons\icon_rf_voulge_01_bloodied.png" left="-58" right="16" top="-63" bottom="55" />
+	<sprite id="icon_rf_voulge_named_01" offsetY="35" ic="FF434752" width="130" height="142" img="icons\icon_rf_voulge_named_01.png" left="-58" right="16" top="-63" bottom="55" />
+	<sprite id="icon_rf_voulge_named_01_bloodied" offsetY="35" ic="FF434752" width="130" height="142" img="icons\icon_rf_voulge_named_01_bloodied.png" left="-58" right="16" top="-63" bottom="55" />
 </brush>
