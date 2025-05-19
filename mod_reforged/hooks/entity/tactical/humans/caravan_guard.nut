@@ -29,10 +29,43 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
 	}
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @() function()
 	{
-		__original();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			local weapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/boar_spear"],
+				[1, "scripts/items/weapons/falchion"],
+				[1, "scripts/items/weapons/hand_axe"],
+				[1, "scripts/items/weapons/scramasax"]
+			]).roll();
+			this.m.Items.equip(::new(weapon));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag) && ::Math.rand(1, 100) <= 35)
+		{
+			local throwing = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/throwing_axe"],
+				[1, "scripts/items/weapons/javelin"]
+			]).roll();
+
+			this.m.Items.addToBag(::new(throwing));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local armor = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/armor/gambeson"],
+				[1, "scripts/items/armor/padded_leather"],
+				[1, "scripts/items/armor/leather_lamellar"]
+			]).roll();
+			this.m.Items.equip(::new(armor));
+		}
 
 		if (this.getBodyItem() != null)
 		{
@@ -50,6 +83,27 @@
 				if (armorAttachment != null)
 					this.getBodyItem().setUpgrade(::new(armorAttachment));
 			}
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			local helmet = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/helmets/aketon_cap"],
+				[1, "scripts/items/helmets/full_aketon_cap"],
+				[1, "scripts/items/helmets/mail_coif"],
+				[1, "scripts/items/helmets/nasal_helmet"],
+				[1, "scripts/items/helmets/dented_nasal_helmet"]
+			]).roll();
+			this.m.Items.equip(::new(helmet));
+		}
+	}
+
+	q.onSpawned = @() function()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 		}
 	}
 });
