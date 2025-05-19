@@ -80,6 +80,12 @@ local function getSchedulerSkill()
 local scheduleEvent = ::Time.scheduleEvent;
 ::Time.scheduleEvent = function( _timeUnit, _time, _func, _data )
 {
+	if (_timeUnit == ::TimeUnit.Rounds)
+	{
+		scheduleEvent(_timeUnit, _time, _func, _data);
+		return;
+	}
+
 	local caller = getSchedulerSkill();
 	if (caller == null)
 	{
