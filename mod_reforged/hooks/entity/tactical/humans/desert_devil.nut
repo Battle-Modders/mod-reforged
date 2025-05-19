@@ -115,7 +115,8 @@
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
 			{
 				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_combo"));
 			}
 			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
 			{
@@ -131,23 +132,19 @@
 
 			if (this.m.isMiniboss)
 			{
-
+				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+				}
+				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
+				}
 			}
 		}
-
-		if (this.m.isMiniboss)
-		{
-			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
-			}
-			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-			}
-			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
-			}
-		}
+	}
 });
