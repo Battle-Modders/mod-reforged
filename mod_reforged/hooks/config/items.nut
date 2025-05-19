@@ -8,6 +8,7 @@ local namedMeleeWeapons = [
 	"weapons/named/named_rf_swordstaff",
 	"weapons/named/named_rf_kriegsmesser",
 	"weapons/named/named_rf_longsword",
+	"weapons/named/named_rf_poleaxe",
 	"weapons/named/named_rf_voulge"
 ];
 
