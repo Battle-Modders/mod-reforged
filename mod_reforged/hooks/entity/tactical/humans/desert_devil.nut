@@ -75,15 +75,62 @@
 		}
 	}
 
-	q.makeMiniboss = @(__original) function()
+	q.makeMiniboss = @() function()
 	{
-		local ret = __original();
-		if (ret)
+		if (!this.actor.makeMiniboss())
 		{
-			this.m.BaseProperties.DamageDirectMult *= 0.8; //Reverts 1.25 bonus from vanilla
+			return false;
+		}
 
-			local mainhandItem = this.getMainhandItem();
-			if (mainhandItem != null)
+		this.getSprite("miniboss").setBrush("bust_miniboss");
+
+		if (::Math.rand(1, 100) <= 75)
+		{
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+			{
+				local weapon = ::MSU.Class.WeightedContainer([
+					[2, "scripts/items/weapons/named/named_shamshir"],
+					[1, "scripts/items/weapons/named/named_swordlance"],
+					[1, "scripts/items/weapons/named/named_rf_voulge"]
+				]).roll();
+				this.m.Items.equip(::new(weapon));
+			}
+		}
+		else
+		{
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+			{
+				this.m.Items.equip(::new("scripts/items/armor/named/black_leather_armor"));
+			}
+		}
+
+		return true;
+	}
+
+	q.onSpawned = @() function()
+	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_combo"));
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4)
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+
+			if (this.m.IsMiniboss)
 			{
 				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
 				{
@@ -97,32 +144,6 @@
 				{
 					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
 				}
-			}
-		}
-
-		return ret;
-	}
-
-	q.onSpawned = @() function()
-	{
-		local mainhandItem = this.getMainhandItem();
-		if (mainhandItem != null)
-		{
-			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
-			}
-			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4)
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-			}
-			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 			}
 		}
 	}

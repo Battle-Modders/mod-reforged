@@ -156,6 +156,7 @@ this.rf_man_at_arms <- ::inherit("scripts/entity/tactical/human" {
 				[1, "scripts/items/weapons/named/named_greataxe"],
 				[1, "scripts/items/weapons/named/named_rf_kriegsmesser"],
 				[1, "scripts/items/weapons/named/named_rf_longsword"],
+				[1, "scripts/items/weapons/named/named_rf_poleaxe"],
 				[1, "scripts/items/weapons/named/named_rf_swordstaff"],
 				[1, "scripts/items/weapons/named/named_two_handed_mace"],
 				[1, "scripts/items/weapons/named/named_two_handed_flail"]
