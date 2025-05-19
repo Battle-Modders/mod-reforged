@@ -39,14 +39,49 @@
 	}
 };
 
+// Looks through the stackinfos and returns the skill which called a scheduling function e.g. ::Time.scheduleEvent.
+// This only includes skills which are present in ::Reforged.ScheduleSkills and that means only skills that are being used.
+// Returns null if the function was called by anything else.
+local function getSchedulerSkill()
+{
+	// 0 = "getstackinfos"; 1 = "getSchedulerSkill"; 2 = scheduler function e.g. ::Time.scheduleEvent which wants to know the skill that called it
+	local level = 3;
+	local infos = ::getstackinfos(level);
+
+	// frameUpdate is an MSU keybinds system function which calls ::Time.scheduleEvent on every frame
+	if (infos.func == "frameUpdate")
+		return null;
+
+	do
+	{
+		// We skip native functions, this includes calls from .call or .acall etc.
+		if (infos.src == "NATIVE")
+		{
+			infos = ::getstackinfos(++level);
+			continue;
+		}
+
+		local caller = infos.locals["this"];
+		if (caller in ::Reforged.ScheduleSkills)
+		{
+			return caller;
+		}
+
+		infos = ::getstackinfos(++level);
+	}
+	while(infos != null);
+
+	return null;
+}
+
 // We overwrite the three functions `scheduleEvent`, `teleport` and `switchEntities` to add a custom callback function
 // that triggers the onScheduleComplete event inside ScheduledSkill class.
 
 local scheduleEvent = ::Time.scheduleEvent;
 ::Time.scheduleEvent = function( _timeUnit, _time, _func, _data )
 {
-	local caller = ::getstackinfos(2).locals["this"];
-	if (!::isKindOf(caller, "skill") || !(caller in ::Reforged.ScheduleSkills))
+	local caller = getSchedulerSkill();
+	if (caller == null)
 	{
 		scheduleEvent(_timeUnit, _time, _func, _data);
 		return;
@@ -67,8 +102,8 @@ local scheduleEvent = ::Time.scheduleEvent;
 local teleport = ::TacticalNavigator.teleport;
 ::TacticalNavigator.teleport <- function( _user, _targetTile, _func, _data, _bool, _float = 1.0 )
 {
-	local caller = ::getstackinfos(2).locals["this"];
-	if (!::isKindOf(caller, "skill") || !(caller in ::Reforged.ScheduleSkills))
+	local caller = getSchedulerSkill();
+	if (caller == null)
 	{
 		teleport(_user, _targetTile, _func, _data, _bool, _float);
 		return;
@@ -89,8 +124,8 @@ local teleport = ::TacticalNavigator.teleport;
 local switchEntities = ::TacticalNavigator.switchEntities;
 ::TacticalNavigator.switchEntities <- function( _user, _targetEntity, _func, _data, _float )
 {
-	local caller = ::getstackinfos(2).locals["this"];
-	if (!::isKindOf(caller, "skill") || !(caller in ::Reforged.ScheduleSkills))
+	local caller = getSchedulerSkill();
+	if (caller == null)
 	{
 		switchEntities(_user, _targetEntity, _func, _data, _float);
 		return;
