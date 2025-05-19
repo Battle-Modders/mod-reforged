@@ -88,8 +88,8 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 		if (!_targetEntity.getCurrentProperties().IsAffectedByInjuries)
 			return false;
 
-		// Const.Injuries.ExcludedInjuries is an MSU feature
-		local legInjuries = ::Const.Injuries.ExcludedInjuries.get(::Const.Injuries.ExcludedInjuries.Leg);
+		// Const.Injury.ExcludedInjuries is an MSU feature
+		local legInjuries = ::Const.Injury.ExcludedInjuries.get(::Const.Injury.ExcludedInjuries.Leg);
 		return legInjuries.filter(@(_, _id) _targetEntity.m.ExcludedInjuries.find(_id) == null).len() != 0;
 	}
 });
