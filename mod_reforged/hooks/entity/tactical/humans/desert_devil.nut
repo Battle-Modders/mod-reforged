@@ -75,32 +75,36 @@
 		}
 	}
 
-	q.makeMiniboss = @(__original) function()
+	q.makeMiniboss = @() function()
 	{
-		local ret = __original();
-		if (ret)
+		if (!this.actor.makeMiniboss())
 		{
-			this.m.BaseProperties.DamageDirectMult *= 0.8; //Reverts 1.25 bonus from vanilla
+			return false;
+		}
 
-			local mainhandItem = this.getMainhandItem();
-			if (mainhandItem != null)
+		this.getSprite("miniboss").setBrush("bust_miniboss");
+
+		if (::Math.rand(1, 100) <= 75)
+		{
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 			{
-				if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
-				}
-				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-				}
-				else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
-				}
+				local weapon = ::MSU.Class.WeightedContainer([
+					[2, "scripts/items/weapons/named/named_shamshir"],
+					[1, "scripts/items/weapons/named/named_swordlance"],
+					[1, "scripts/items/weapons/named/named_rf_voulge"]
+				]).roll();
+				this.m.Items.equip(::new(weapon));
+			}
+		}
+		else
+		{
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+			{
+				this.m.Items.equip(::new("scripts/items/armor/named/black_leather_armor"));
 			}
 		}
 
-		return ret;
+		return true;
 	}
 
 	q.onSpawned = @() function()
@@ -124,6 +128,26 @@
 				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 			}
+
+			if (this.m.isMiniboss)
+			{
+
+			}
 		}
-	}
+
+		if (this.m.isMiniboss)
+		{
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_swordmaster_blade_dancer"));
+			}
+		}
 });

@@ -114,6 +114,7 @@
 			local weapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/named/named_bardiche"],
 				[1, "scripts/items/weapons/named/named_greataxe"],
+				[1, "scripts/items/weapons/named/named_rf_poleaxe"],
 				[1, "scripts/items/weapons/named/named_two_handed_flail"],
 				[1, "scripts/items/weapons/named/named_two_handed_hammer"],
 				[1, "scripts/items/weapons/named/named_two_handed_mace"]
