@@ -894,9 +894,9 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"[Resolve|Concept.Bravery] is increased by " + ::MSU.Text.colorPositive("10%") + " at all times.",
-				"Additionally, at positive morale checks, [Resolve|Concept.Bravery] is increased by a further " + ::MSU.Text.colorPositive("+10") + ".",
-				"When at Confident Morale, all the bonuses of this perk are doubled, and [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] [Melee Defense,|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] are increased by " + ::MSU.Text.colorPositive("5%") + "."
+				"Receive a [morale check|Concept.Morale] at the start of every [turn|Concept.Turn] if you are [Confident|Concept.Morale] and if successful, gain a stack. For each stack, [Resolve,|Concept.Bravery] [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] are increased by " + ::MSU.Text.colorPositive("5%") + ".",
+				"Lose " + ::MSU.Text.colorNegative(1) + " stack upon ending a [turn|Concept.Turn] without having attacked.",
+				"Cannot have more than 4 stacks."
 			]
 		}]
 	}),
