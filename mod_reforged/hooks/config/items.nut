@@ -7,7 +7,8 @@ local namedMeleeWeapons = [
 	"weapons/named/named_rf_poleflail",
 	"weapons/named/named_rf_swordstaff",
 	"weapons/named/named_rf_kriegsmesser",
-	"weapons/named/named_rf_longsword"
+	"weapons/named/named_rf_longsword",
+	"weapons/named/named_rf_voulge"
 ];
 
 ::Const.Items.NamedMeleeWeapons.extend(namedMeleeWeapons);
