@@ -10,7 +10,7 @@
 // queued for a skill and how many have been completed. Once all are completed this class triggers
 // the onAnySkillExecutedFully event for the container this skill belonged to and then deletes the key from ScheduledSkills.
 // Note: It holds a strong reference to the skill, so the skill can never become null while this is keeping track of it.
-::Reforged.ScheduleSkill = class {
+::Reforged.ScheduleSkill <- class {
 	Skill = null;
 	Container = null;
 	TargetTile = null;
