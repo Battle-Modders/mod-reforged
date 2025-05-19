@@ -96,7 +96,8 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		return;
 	}
 
-	::Reforged.ScheduleSkills[caller].Count++;
+	// Increase count by 2 because the callback is called for both entities
+	::Reforged.ScheduleSkills[caller].Count += 2;
 
 	local function scheduledCallbackWrapper( _arg1, _arg2 )
 	{
