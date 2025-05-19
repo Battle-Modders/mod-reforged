@@ -198,3 +198,15 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		__original(_activeEntity, _targetTile);
 	}
 });
+
+::Reforged.HooksMod.hook("scripts/ai/tactical/agent", function(q) {
+	// Prevent the AI from executing a skill while the previously executed skill has not fully finished executing
+	// including all its delayed effects
+	q.think = @(__original) function( _evaluateOnly = false )
+	{
+		if (::Reforged.ScheduleSkills.len() != 0)
+			return;
+
+		__original(_evaluateOnly);
+	}
+});
