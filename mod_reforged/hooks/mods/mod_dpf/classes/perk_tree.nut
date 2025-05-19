@@ -7,16 +7,6 @@
 		::MSU.Table.apply(this.m.ProjectedAttributesAvg, @(_, _entry) (_entry[0] + _entry[1]) * 0.5);
 	}}.setupProjectedAttributesAvg;
 
-	q.buildFromDynamicMap = @(__original) { function buildFromDynamicMap()
-	{
-		if (!::MSU.isNull(this.getActor()))
-		{
-			this.setupProjectedAttributesAvg();
-		}
-		__original();
-		this.m.ProjectedAttributesAvg = null;
-	}}.buildFromDynamicMap;
-
 	q.getProjectedAttributesAvg <- { function getProjectedAttributesAvg()
 	{
 		if (this.m.ProjectedAttributesAvg == null)
