@@ -62,12 +62,7 @@ local function getSchedulerSkill()
 		}
 
 		local caller = infos.locals["this"];
-		if (caller in ::Reforged.ScheduleSkills)
-		{
-			return caller;
-		}
-
-		infos = ::getstackinfos(++level);
+		return caller in ::Reforged.ScheduleSkills ? caller : null;
 	}
 	while(infos != null);
 
