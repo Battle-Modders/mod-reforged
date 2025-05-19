@@ -27,7 +27,7 @@ this.perk_rf_angler <- ::inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		local throwNet = this.getSkills().getSkillByID("actives.throw_net");
+		local throwNet = this.getContainer().getSkillByID("actives.throw_net");
 		if (throwNet != null && throwNet.m.MaxRange < 3)
 		{
 			throwNet.m.MaxRange += 1;

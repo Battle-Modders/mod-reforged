@@ -145,7 +145,7 @@
 
 	q.getMaxTilesAllowed <- function()
 	{
-		local weapon = this.getMainhandItem();
+		local weapon = this.getContainer().getActor().getMainhandItem();
 		return weapon == null || weapon.isItemType(::Const.Items.ItemType.OneHanded) ? 1 : 0;
 	}
 });

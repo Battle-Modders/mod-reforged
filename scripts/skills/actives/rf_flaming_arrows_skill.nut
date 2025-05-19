@@ -37,16 +37,6 @@ this.rf_flaming_arrows_skill <- ::inherit("scripts/skills/actives/aimed_shot", {
 			text = ::Reforged.Mod.Tooltips.parseString("If a target is hit, will light the tile on fire for " + ::MSU.Text.colorNegative(2) + " [rounds|Concept.Round]")
 		});
 
-		if (this.m.AmmoConsumed > 1)
-		{
-			ret.push({
-				id = 12,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = "Consumes " + ::MSU.Text.colorRed(this.m.AmmoConsumed) + " ammo"
-			});
-		}
-
 		local ammo = this.getAmmo();
 
 		if (ammo > 0)
@@ -79,11 +69,6 @@ this.rf_flaming_arrows_skill <- ::inherit("scripts/skills/actives/aimed_shot", {
 		}
 
 		return ret;
-	}
-
-	function isUsable()
-	{
-		return this.getAmmo() >= this.m.AmmoConsumed && this.aimed_shot.isUsable();
 	}
 
 	function onAfterUpdate( _properties )

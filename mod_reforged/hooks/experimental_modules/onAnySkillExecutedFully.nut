@@ -131,7 +131,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 
 	q.use = @(__original) function( _targetTile, _forFree = false )
 	{
-		local scheduleSkill = ::Reforged.ScheduleSkill(this, _targetTile, targetEntity, _forFree);
+		local scheduleSkill = ::Reforged.ScheduleSkill(this, _targetTile, _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null, _forFree);
 		::Reforged.ScheduleSkills[this] <- scheduleSkill;
 
 		// The original MSU events of onBeforeAnySkillExecuted and onAnySkilLExecuted will trigger here`
