@@ -35,15 +35,15 @@ this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
 		this.getSprite("socket").setBrush("bust_base_military");
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_mentor", function(o) {
 			o.m.MaxStudents = 2;
 		}));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 	}
 
