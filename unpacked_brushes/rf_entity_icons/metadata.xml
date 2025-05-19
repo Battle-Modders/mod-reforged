@@ -28,6 +28,9 @@
 
 	<sprite id="icon_rf_poleaxe_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_rf_poleaxe_01.png" left="-62" right="22" top="-64" bottom="54" />
 	<sprite id="icon_rf_poleaxe_01_bloodied" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_rf_poleaxe_01_bloodied.png" left="-62" right="22" top="-64" bottom="54" />
+	<sprite id="icon_rf_poleaxe_named_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_rf_poleaxe_named_01.png" left="-62" right="22" top="-64" bottom="54" />
+	<sprite id="icon_rf_poleaxe_named_01_bloodied" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_rf_poleaxe_named_01_bloodied.png" left="-62" right="22" top="-64" bottom="54" />
+
 
 	<sprite id="icon_rf_poleflail_01" offsetY="35" ic="FF727272" width="104" height="142" img="icons\icon_rf_poleflail_01.png" left="-72" right="18" top="-51" bottom="58" />
 	<sprite id="icon_rf_poleflail_01_bloodied" offsetY="35" ic="FF727272" width="104" height="142" img="icons\icon_rf_poleflail_01_bloodied.png" left="-72" right="18" top="-51" bottom="58" />
