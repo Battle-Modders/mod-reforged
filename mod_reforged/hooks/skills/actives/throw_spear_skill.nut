@@ -77,10 +77,9 @@
 		{
 			local targetEntity = _tag.TargetTile.getEntity();
 			local hitInfo = clone ::Const.Tactical.HitInfo;
-			hitInfo.PropertiesForBeingHit = targetEntity.getCurrentProperties();
+			hitInfo.MV_PropertiesForBeingHit = targetEntity.getCurrentProperties();
 			hitInfo.DamageFatigue = this.m.FatigueDamage;
-			// calcFatigueDamageReceived is a modular vanilla function.
-			targetEntity.setFatigue(::Math.min(targetEntity.getFatigueMax(), targetEntity.getFatigue() + targetEntity.calcFatigueDamageReceived(this, hitInfo)));
+			targetEntity.setFatigue(::Math.min(targetEntity.getFatigueMax(), targetEntity.getFatigue() + targetEntity.MV_calcFatigueDamageReceived(this, hitInfo)));
 		}
 
 		return __original(_tag);
