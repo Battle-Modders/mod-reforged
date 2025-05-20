@@ -205,7 +205,10 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 	q.think = @(__original) function( _evaluateOnly = false )
 	{
 		if (::Reforged.ScheduleSkills.len() != 0)
+		{
+			__original(true);
 			return;
+		}
 
 		__original(_evaluateOnly);
 	}
