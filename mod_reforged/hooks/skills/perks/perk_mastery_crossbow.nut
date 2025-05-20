@@ -12,7 +12,7 @@
 	q.onEquip = @(__original) function( _item )
 	{
 		__original(_item);
-		if (_item.isItemType(::Const.Items.ItemType.Weapon) && _item.isWeaponType(::Const.Items.WeaponType.Crossbow) || _item.isWeaponType(::Const.Items.WeaponType.Firearm))
+		if (_item.isItemType(::Const.Items.ItemType.Weapon) && (_item.isWeaponType(::Const.Items.WeaponType.Crossbow) || _item.isWeaponType(::Const.Items.WeaponType.Firearm)))
 		{
 			// This check is a way to ensure that we are equipping a crossbow/handgonne and not a firearm like Firelance
 			if (::MSU.isIn("isLoaded", _item, true))
