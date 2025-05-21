@@ -16,18 +16,8 @@
 	TargetTile = null;
 	TargetEntity = null;
 	ForFree = false;
-	Agent = null;
 
 	Count = 0;
-
-	// State of the actor as it was when the first delayed event was scheduled during a skill use
-	// Is used to tell the agent to restart its evaluation if something important changed on the battlefield
-	// which may make the results of previously evaluated behaviors potentially invalid.
-	APBefore = 0;
-	MoraleStateBefore = ::Const.MoraleState.Steady;
-	// The following is set to true when any actor dies or moves while a delayed event is scheduled.
-	// Is set from hooks on actor.onDeath and actor.onMovementFinish
-	ForceReevaluate = false;
 
 	constructor( _skill, _targetTile, _targetEntity, _forFree )
 	{
@@ -36,7 +26,6 @@
 		this.TargetTile = _targetTile;
 		this.TargetEntity = _targetEntity;
 		this.ForFree = _forFree;
-		this.Agent = this.Container.getActor().getAIAgent();
 	}
 
 	function onScheduleComplete()
@@ -46,27 +35,8 @@
 		{
 			if (!::MSU.isNull(this.Container))
 				this.Container.onAnySkillExecutedFully(this.Skill, this.TargetTile, this.TargetEntity, this.ForFree);
-			// this.Count == 0 check because if count is -1 that means no delayed event was scheduled.
-			if (this.Count == 0 && this.didStateChange())
-				this.Agent.m.RF_ForceReevaluate = true;
 			delete ::Reforged.ScheduleSkills[this.Skill];
 		}
-	}
-
-	function saveStartingState()
-	{
-		local actor = this.Container.getActor();
-		this.APBefore = actor.getActionPoints();
-		this.MoraleStateBefore = actor.getMoraleState();
-	}
-
-	function didStateChange()
-	{
-		local actor = this.Container.getActor();
-		if (::MSU.isNull(actor) || !actor.isAlive())
-			return true;
-
-		return this.ForceReevaluate || actor.getMoraleState() != this.MoraleStateBefore || actor.getActionPoints() != this.APBefore;
 	}
 };
 
@@ -102,16 +72,12 @@ local function getSchedulerSkill()
 
 // Returns a wrapped callback function for schedule functions e.g. ::Time.scheduleEvent. The callback
 // is wrapped to trigger the onScheduleComplete() function for the schedule.
-// Also increments the schedule Count of the relevant skill and saves the actor state when at Count 0.
-// Note: _countBump is necessary as a param because ::Tactical.switchEntities needs to increase count by 2 on every call
-// as its callback is triggered twice: once for each entity being switched.
+// Also increments the schedule Count of the relevant skill.
+// Note: _countBump is necessary as a param because ::Tactical.switchEntities needs to increase
+// count by 2 on every call as its callback is triggered twice: once for each entity being switched.
 local function getWrapper( _caller, _func, _numArgs, _countBump = 1 )
 {
 	local schedule = ::Reforged.ScheduleSkills[_caller];
-	if (schedule.Count == 0)
-	{
-		schedule.saveStartingState();
-	}
 	schedule.Count += _countBump;
 
 	if (_numArgs == 1)
@@ -237,53 +203,279 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 	}
 });
 
+// A class that is used to save and compare state of the actor in the time between evaluation and execution of behavior.
+::Reforged.AgentState <- class
+{
+	Agent = null;
+	MoraleState = ::Const.MoraleState.Steady;
+	ActionPoints = 0;
+	Attributes = null;
+
+	__IsStateSaved = false;
+
+	function constructor( _agent )
+	{
+		this.Agent = ::MSU.asWeakTableRef(_agent);
+		this.Attributes = [];
+	}
+
+	function save()
+	{
+		local actor = this.Agent.getActor();
+		this.MoraleState = actor.getMoraleState();
+		this.ActionPoints = actor.getActionPoints();
+		this.Attributes = this.__getAttributes();
+		this.__IsStateSaved = true;
+	}
+
+	function clear()
+	{
+		this.__IsStateSaved = false;
+	}
+
+	function isStateSaved()
+	{
+		return this.__IsStateSaved;
+	}
+
+	function hasChanged()
+	{
+		local actor = this.Agent.getActor();
+		if (actor.getMoraleState() != this.MoraleState || actor.getActionPoints() != this.ActionPoints)
+		{
+			return true;
+		}
+
+		foreach (i, val in this.__getAttributes())
+		{
+			if (val != this.Attributes[i])
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	function __getAttributes()
+	{
+		local ret = array(::Const.Attributes.len() - 1);
+
+		local actor = this.Agent.getActor();
+		local p = actor.getCurrentProperties();
+		foreach (attrName, attr in ::Const.Attributes)
+		{
+			switch (attrName)
+			{
+				case "Fatigue":
+				case "Hitpoints":
+					ret[attr] = actor["get" + attrName]();
+					break;
+				case "COUNT":
+					continue;
+				default:
+					ret[attr] = p["get" + attrName]();
+					break;
+			}
+		}
+		return ret;
+	}
+}
+
+// Note the hookTree because we need to overwrite this function in all the children.
+::Reforged.HooksMod.hookTree("scripts/ai/tactical/behavior", function(q) {
+	// Vanilla calls onBeforeExecute for the picked behavior at the end of agent.evaluate. This happens even before
+	// the agent.execute runs i.e. way before the agent is actually even able to execute skills. Vailla probably does
+	// this for performance as the evaluation can run in parallel to tasks including delayed events.
+	// This is problematic because the picked behavior may no longer be valid to execute after the delayed events
+	// are complete. Therefore, we prevent vanilla from running this function on behaviors and instead rewrite
+	// this logic in our hook on agent.execute.
+	q.onBeforeExecute = @(__original) function( _entity )
+	{
+		if (this.getAgent().RF_canExecute())
+		{
+			__original(_entity);
+		}
+	}
+
+	// Same comment as the function above. Vanilla does this at the end of agent.evaluate after picking a behavior.
+	// We stop it here and instead rewrite this logic in our hook on agent.execute.
+	q.onReset = @(__original) function()
+	{
+		if (this.getAgent().RF_canExecute())
+		{
+			__original();
+		}
+	}
+});
+
 ::Reforged.HooksMod.hook("scripts/ai/tactical/agent", function(q) {
+	q.m.RF_AgentState <- null;
+	// The following is set to true whenever any actor dies or moves. Then we tell the agent to reevaluate.
 	q.m.RF_ForceReevaluate <- false;
-	// Prevent the AI from executing a skill while the previously executed skill has not fully finished executing
-	// including all its delayed effects
+
+	q.create = @(__original) function()
+	{
+		__original();
+		this.m.RF_AgentState = ::Reforged.AgentState(this);
+	}
+
+	// At the beginning of a fresh evaluation i.e. when this.m.NextBehaviorToEvaluate is -3, we save the agent's state.
+	// Then during agent.execute we will compare the state with this state to see if anything has changed.
+	q.evaluate = @(__original) function( _entity )
+	{
+		if (this.m.NextBehaviorToEvaluate == -3)
+		{
+			this.m.RF_ForceReevaluate = false;
+			this.m.RF_AgentState.save();
+		}
+		__original(_entity);
+	}
+
+	// Prevent the AI from executing any behavior while there are delayed events scheduled.
+	q.RF_canExecute <- function()
+	{
+		return ::Reforged.ScheduleSkills.len() == 0 && !::Time.hasEventScheduled(::TimeUnit.Virtual);
+	}
+
+	// This function is called from agent.think again and again while the executed behavior continues to return false.
+	// Once it returns true, the behavior execution is considered complete and the agent can evaluate again.
+	// During this situation i.e. while it is returning false, a new evaluation CANNOT start, so we don't need to
+	// worry about saving state again. Instead, the first time this function is called, we compare state and then
+	// clear the saved state. The state will be saved automatically again from our hook on agent.evaluate when
+	// a new evaluation starts after this function returns true.
+	q.execute = @(__original) function( _entity )
+	{
+		if (this.m.ActiveBehavior != null && this.m.RF_AgentState.isStateSaved())
+		{
+			// If state was changed then we reset and force a complete reevaluation and don't allow the behavior
+			// execution to happen.
+			if (this.m.RF_ForceReevaluate || this.m.RF_AgentState.hasChanged())
+			{
+				this.RF_reset();
+				return true;
+			}
+			// Clear the agent state because it is not needed after the first check.
+			this.m.RF_AgentState.clear();
+
+			// This part is a copy of vanilla logic from the end of agent.evaluate which we have moved to this
+			// place because otherwise it makes irreversible changes e.g. via behavior.onBeforeExecute even before
+			// the behavior was executed. As we may prevent behavior execution, it is important to prevent this too.
+			this.m.ActiveBehavior.onBeforeExecute(_entity);
+			foreach (b in this.m.Behaviors)
+			{
+				b.onReset();
+			}
+		}
+		return __original(_entity);
+	}
+
 	q.think = @(__original) function( _evaluateOnly = false )
 	{
-		if (::Reforged.ScheduleSkills.len() != 0)
+		// Prevent the AI from executing a skill while there are scheduled events
+		if (!_evaluateOnly && !this.RF_canExecute())
 		{
 			__original(true);
 			return;
 		}
 
-		if (this.m.RF_ForceReevaluate)
-		{
-			this.m.RF_ForceReevaluate = false;
-
-			// This resets the `agent.think` function to start its logic from the beginning
-			this.m.NextBehaviorToEvaluate = -3;
-
-			// Throw away all existing generator functions of threaded behaviors
-			// forcing them to start a fresh evaluation
-			foreach (b in this.m.Behaviors)
-			{
-				b.m.Thread = null;
-			}
-		}
-
 		__original(_evaluateOnly);
+	}
+
+	q.RF_reset <- function()
+	{
+		this.m.RF_ForceReevaluate = false;
+
+		// This resets the `agent.think` function to start its logic from the beginning
+		this.m.NextBehaviorToEvaluate = -3;
+		this.m.IsEvaluating = true;
+		this.m.ActiveBehavior = null;
+
+		// Throw away all existing generator functions of threaded behaviors
+		// forcing them to start a fresh evaluation
+		foreach (b in this.m.Behaviors)
+		{
+			b.m.Thread = null;
+			b.onReset();
+		}
 	}
 });
 
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
-	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
-	{
-		foreach (s in ::Reforged.ScheduleSkills)
-		{
-			s.ForceReevaluate = true;
-		}
-		__original(_killer, _skill, _tile, _fatalityType);
-	}
+	// Vanilla has a bug where switchEntities callbacks don't trigger when outside player vision
+	// so we trigger them manually during onMovementFinish instead.
+	// We use an array because one callback may trigger another and we to support a stack of those.
+	q.m.RF_switchEntitiesCallbacks <- [];
 
+	// Force the currently active entity to throw away his picked behavior and reevalute if anyone moved
 	q.onMovementFinish = @(__original) function( _tile )
 	{
-		foreach (s in ::Reforged.ScheduleSkills)
-		{
-			s.ForceReevaluate = true;
-		}
 		__original(_tile);
+
+		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
+		if (activeEntity != null)
+		{
+			activeEntity.getAIAgent().m.RF_ForceReevaluate = true;
+		}
+		else
+		{
+			::logError(format("onMovementFinish activeEntity null. %s (%i) ", this.getName(), this.getID()));
+		}
+	}
+
+	// Force the currently active entity to throw away his picked behavior and reevalute if anyone moved
+	q.onMovementStart = @(__original) function( _tile, _numTiles )
+	{
+		__original(_tile, _numTiles);
+
+		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
+		if (activeEntity != null)
+		{
+			activeEntity.getAIAgent().m.RF_ForceReevaluate = true;
+		}
+		else
+		{
+			::logError(format("onMovementStart activeEntity null. %s (%i) ", this.getName(), this.getID()));
+		}
+	}
+
+	// Force the currently active entity to throw away his picked behavior and reevalute if anyone got removed from map
+	q.onRemovedFromMap = @(__original) function()
+	{
+		__original();
+
+		// Some stuff may be removed from map before combat start?!e.g. if you use Breditor then the  Breditor fake bro
+		// is removed before combat start and this causes an error here because TurnSequenceBar is not present yet.
+		// So we need this ::Tactical.isActive() check.
+		if (::Tactical.isActive())
+		{
+			local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
+			if (activeEntity != null)
+			{
+				activeEntity.getAIAgent().m.RF_ForceReevaluate = true;
+			}
+			else
+			{
+				::logError(format("onRemovedFromMap activeEntity null. %s (%i) ", this.getName(), this.getID()));
+			}
+		}
+	}
+
+	// Force the currently active entity to throw away his picked behavior and reevalute if anyone got placed on map
+	q.onPlacedOnMap = @(__original) function()
+	{
+		__original();
+
+		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
+		if (activeEntity != null)
+		{
+			activeEntity.getAIAgent().m.RF_ForceReevaluate = true;
+		}
+		// Without this Round check, we get spammed with errors when entities are placed at combat start time
+		else if (::Time.getRound() >= 1)
+		{
+			// This spams errors at combat start because Active
+			::logError(format("onPlacedOnMap activeEntity null. %s (%i) ", this.getName(), this.getID()));
+		}
 	}
 });
