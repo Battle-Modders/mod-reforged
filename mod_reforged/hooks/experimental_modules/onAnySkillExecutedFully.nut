@@ -31,9 +31,18 @@
 
 	function onScheduleComplete()
 	{
+		if (this.WasScheduled)
+			::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ID: %s, Count: %i", this.Skill.getID(), this.Count), "onAnySkillExecutedFully");
+		else
+			::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ID: %s, Count: %i -- Nothing was scheduled (normal skill)", this.Skill.getID(), this.Count), "onAnySkillExecutedFully");
 		// Check for <= 0 because when we call this manually, this.Count will be 0 and will drop to -1
 		if (--this.Count <= 0)
 		{
+			if (this.WasScheduled)
+				::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ID: %s, Count: %i - Schedule Complete", this.Skill.getID(), this.Count), "onAnySkillExecutedFully");
+			else
+				::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ID: %s, Count: %i - Schedule Complete -- Nothing was scheduled (normal skill)", this.Skill.getID(), this.Count), "onAnySkillExecutedFully");
+
 			if (!::MSU.isNull(this.Container))
 				this.Container.onAnySkillExecutedFully(this.Skill, this.TargetTile, this.TargetEntity, this.ForFree);
 			delete ::Reforged.ScheduleSkills[this.Skill];
@@ -126,6 +135,8 @@ local scheduleEvent = ::Time.scheduleEvent;
 		return;
 	}
 
+	::Reforged.Mod.Debug.printLog(format("scheduleEvent -- ID: %s, Count: %i", caller.getID(), ::Reforged.ScheduleSkills[caller].Count + 1), "onAnySkillExecutedFully");
+
 	scheduleEvent(_timeUnit, _time, getWrapper(caller, _func, 1), _data);
 }
 
@@ -139,6 +150,8 @@ local teleport = ::TacticalNavigator.teleport;
 		return;
 	}
 
+	::Reforged.Mod.Debug.printLog(format("teleport -- ID: %s, Count: %i", caller.getID(), ::Reforged.ScheduleSkills[caller].Count + 1), "onAnySkillExecutedFully");
+
 	teleport(_user, _targetTile, getWrapper(caller, _func, 2), _data, _bool, _float);
 }
 
@@ -151,6 +164,8 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		switchEntities(_user, _targetEntity, _func, _data, _float);
 		return;
 	}
+
+	::Reforged.Mod.Debug.printLog(format("switchEntities -- ID: %s, Count: %i", caller.getID(), ::Reforged.ScheduleSkills[caller].Count + 2), "onAnySkillExecutedFully");
 
 	// Increase count by 2 because the callback is called for both entities
 	local cbEntry = [getWrapper(caller, _func, 2, 2), _data];
@@ -239,6 +254,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 
 	function save()
 	{
+		::Reforged.Mod.Debug.printLog(format("AgentState.save() -- %s (%i)", this.Agent.getActor().getName(), this.Agent.getActor().getID()), "onAnySkillExecutedFully");
 		local actor = this.Agent.getActor();
 		this.MoraleState = actor.getMoraleState();
 		this.ActionPoints = actor.getActionPoints();
@@ -249,12 +265,14 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 
 	function clear()
 	{
+		::Reforged.Mod.Debug.printWarning(format("AgentState.clear() -- %s (%i)", this.Agent.getActor().getName(), this.Agent.getActor().getID()), "onAnySkillExecutedFully");
 		this.__IsStateSaved = false;
 		this.__IsInvalid = false;
 	}
 
 	function invalidate()
 	{
+		::Reforged.Mod.Debug.printWarning(format("AgentState.invalidate() -- %s (%i)", this.Agent.getActor().getName(), this.Agent.getActor().getID()), "onAnySkillExecutedFully");
 		this.__IsInvalid = true;
 	}
 
@@ -355,6 +373,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 	// Then during agent.execute we will compare the state with this state to see if anything has changed.
 	q.evaluate = @(__original) function( _entity )
 	{
+		::Reforged.Mod.Debug.printLog(format("evaluate -- %s (%i), NextBehaviorToEvaluate: %i", this.getActor().getName(), this.getActor().getID(), this.m.NextBehaviorToEvaluate), "onAnySkillExecutedFully");
 		if (this.m.NextBehaviorToEvaluate == -3)
 		{
 			this.m.RF_AgentState.save();
@@ -387,6 +406,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 	// a new evaluation starts after this function returns true.
 	q.execute = @(__original) function( _entity )
 	{
+		::Reforged.Mod.Debug.printWarning(format("execute -- %s (%i), ActiveBehavior: %s", this.getActor().getName(), this.getActor().getID(), this.m.ActiveBehavior == null ? null : this.m.ActiveBehavior.getName()), "onAnySkillExecutedFully");
 		if (this.m.ActiveBehavior != null && this.m.RF_AgentState.isStateSaved())
 		{
 			// If state was changed then we reset and force a complete reevaluation and don't allow the behavior
@@ -425,6 +445,8 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 
 	q.RF_reset <- function()
 	{
+		::Reforged.Mod.Debug.printWarning(format("RF_reset -- %s (%i)", this.getActor().getName(), this.getActor().getID()), "onAnySkillExecutedFully");
+
 		// This resets the `agent.think` function to start its logic from the beginning
 		this.m.NextBehaviorToEvaluate = -3;
 		this.m.IsEvaluating = true;
