@@ -229,6 +229,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 	Attributes = null;
 
 	__IsStateSaved = false;
+	__IsInvalid = false; // If true then state is considered changed even if nothing changed
 
 	function constructor( _agent )
 	{
@@ -243,11 +244,23 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		this.ActionPoints = actor.getActionPoints();
 		this.Attributes = this.__getAttributes();
 		this.__IsStateSaved = true;
+		this.__IsInvalid = false;
 	}
 
 	function clear()
 	{
 		this.__IsStateSaved = false;
+		this.__IsInvalid = false;
+	}
+
+	function invalidate()
+	{
+		this.__IsInvalid = true;
+	}
+
+	function isInvalid()
+	{
+		return this.__IsInvalid;
 	}
 
 	function isStateSaved()
@@ -257,6 +270,9 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 
 	function hasChanged()
 	{
+		if (this.__IsInvalid)
+			true;
+
 		local actor = this.Agent.getActor();
 		if (actor.getMoraleState() != this.MoraleState || actor.getActionPoints() != this.ActionPoints)
 		{
@@ -328,8 +344,6 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 
 ::Reforged.HooksMod.hook("scripts/ai/tactical/agent", function(q) {
 	q.m.RF_AgentState <- null;
-	// The following is set to true whenever any actor dies or moves. Then we tell the agent to reevaluate.
-	q.m.RF_ForceReevaluate <- false;
 
 	q.create = @(__original) function()
 	{
@@ -343,14 +357,13 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 	{
 		if (this.m.NextBehaviorToEvaluate == -3)
 		{
-			this.m.RF_ForceReevaluate = false;
 			this.m.RF_AgentState.save();
 		}
 		// This should fix the crash during evaluation when entities die/move due to delayed effects
 		// because such functions e.g. ai_engage_melee are generators so they yield and continue evaluation
 		// but if we catch it and force a complete reset of evaluation that should avoid the crash easily.
-		// Note: RF_ForceReevaluate is set to true when any entity dies or moves.
-		else if (this.m.RF_ForceReevaluate)
+		// Note: State becomes Invalid when any entity moves or is placed/removed on map.
+		else if (this.m.RF_AgentState.isInvalid())
 		{
 			this.RF_reset();
 			// Have to return here otherwise the __original will bump this.m.NextBehaviorToEvalute to 2
@@ -378,7 +391,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		{
 			// If state was changed then we reset and force a complete reevaluation and don't allow the behavior
 			// execution to happen.
-			if (this.m.RF_ForceReevaluate || this.m.RF_AgentState.hasChanged())
+			if (this.m.RF_AgentState.hasChanged())
 			{
 				this.RF_reset();
 				return true;
@@ -412,8 +425,6 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 
 	q.RF_reset <- function()
 	{
-		this.m.RF_ForceReevaluate = false;
-
 		// This resets the `agent.think` function to start its logic from the beginning
 		this.m.NextBehaviorToEvaluate = -3;
 		this.m.IsEvaluating = true;
@@ -443,7 +454,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
 		if (activeEntity != null)
 		{
-			activeEntity.getAIAgent().m.RF_ForceReevaluate = true;
+			activeEntity.getAIAgent().m.RF_AgentState.invalidate();
 		}
 		else
 		{
@@ -466,7 +477,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
 		if (activeEntity != null)
 		{
-			activeEntity.getAIAgent().m.RF_ForceReevaluate = true;
+			activeEntity.getAIAgent().m.RF_AgentState.invalidate();
 		}
 		else
 		{
@@ -487,7 +498,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 			local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
 			if (activeEntity != null)
 			{
-				activeEntity.getAIAgent().m.RF_ForceReevaluate = true;
+				activeEntity.getAIAgent().m.RF_AgentState.invalidate();
 			}
 			else
 			{
@@ -504,7 +515,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
 		if (activeEntity != null)
 		{
-			activeEntity.getAIAgent().m.RF_ForceReevaluate = true;
+			activeEntity.getAIAgent().m.RF_AgentState.invalidate();
 		}
 		// Without this Round check, we get spammed with errors when entities are placed at combat start time
 		else if (::Time.getRound() >= 1)
