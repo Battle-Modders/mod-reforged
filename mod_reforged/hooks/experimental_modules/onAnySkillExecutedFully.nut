@@ -18,6 +18,7 @@
 	ForFree = false;
 
 	Count = 0;
+	WasScheduled = false;
 
 	constructor( _skill, _targetTile, _targetEntity, _forFree )
 	{
@@ -37,6 +38,12 @@
 				this.Container.onAnySkillExecutedFully(this.Skill, this.TargetTile, this.TargetEntity, this.ForFree);
 			delete ::Reforged.ScheduleSkills[this.Skill];
 		}
+	}
+
+	function addCount( _num = 1 )
+	{
+		this.Count += _num;
+		this.WasScheduled = true;
 	}
 };
 
@@ -78,7 +85,7 @@ local function getSchedulerSkill()
 local function getWrapper( _caller, _func, _numArgs, _countBump = 1 )
 {
 	local schedule = ::Reforged.ScheduleSkills[_caller];
-	schedule.Count += _countBump;
+	schedule.addCount(_countBump);
 
 	if (_numArgs == 1)
 	{
@@ -146,7 +153,14 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 	}
 
 	// Increase count by 2 because the callback is called for both entities
-	switchEntities(_user, _targetEntity, getWrapper(caller, _func, 2, 2), _data, _float);
+	local cbEntry = [getWrapper(caller, _func, 2, 2), _data];
+
+	// Vanilla has a bug where switchEntities callbacks don't trigger when outside player vision
+	// so we trigger them manually during actor.onMovementFinish instead and set the native callback to null
+	_user.m.RF_switchEntitiesCallbacks.push(cbEntry);
+	_targetEntity.m.RF_switchEntitiesCallbacks.push(cbEntry);
+
+	switchEntities(_user, _targetEntity, null, null, _float);
 }
 
 ::Reforged.HooksMod.hook("scripts/skills/skill_container", function(q) {
@@ -179,7 +193,10 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		local ret = __original(_targetTile, _forFree);
 
 		// If no delayed event was scheduled we trigger the onAnySkillExecutedFully manually
-		if (scheduleSkill.Count == 0)
+		// Note: We can't just check for .Count == 0 because in fog of war teleport/switchEntities
+		// happens immediately without delay, so Count will be 0 here even if those happened and the
+		// event would have already been properly handled leading to errors when calling it manually again.
+		if (!scheduleSkill.WasScheduled)
 		{
 			scheduleSkill.onScheduleComplete();
 		}
@@ -420,6 +437,13 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		else
 		{
 			::logError(format("onMovementFinish activeEntity null. %s (%i) ", this.getName(), this.getID()));
+		}
+
+		// Call the switchEntities callbacks from last to first as expected.
+		while (this.m.RF_switchEntitiesCallbacks.len() != 0)
+		{
+			local entry = this.m.RF_switchEntitiesCallbacks.pop();
+			entry[0](this, entry[1]);
 		}
 	}
 
