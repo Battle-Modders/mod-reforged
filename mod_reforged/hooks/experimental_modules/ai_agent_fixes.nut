@@ -320,3 +320,18 @@
 		}
 	}}.onPlacedOnMap;
 });
+
+::Reforged.HooksMod.hookTree("scripts/skills/skill", function(q) {
+	// Invalidate agent state whenever any Active skill is removed from him.
+	// This covers all cases where a delayed effect may cause the skill which had been chosen
+	// by a behavior to now be removed from the actor.
+	// Examples: Weapon breaking after an attack. The breakage is a delayed event in vanilla.
+	q.onRemoved = @(__original) { function onRemoved()
+	{
+		__original();
+		if (this.isActive())
+		{
+			this.getContainer().getActor().getAIAgent().m.RF_AgentState.invalidate();
+		}
+	}}.onRemoved;
+});
