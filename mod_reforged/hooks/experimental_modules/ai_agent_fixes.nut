@@ -41,7 +41,7 @@
 
 	function invalidate()
 	{
-		::Reforged.Mod.Debug.printWarning(format("AgentState.invalidate() -- %s (%i)", this.Agent.getActor().getName(), this.Agent.getActor().getID()), "AIAgentFixes");
+		::Reforged.Mod.Debug.printWarning(format("AgentState.invalidate() -- %s (%i) - Cause: %s.%s", this.Agent.getActor().getName(), this.Agent.getActor().getID(), split(::getstackinfos(2).src, "/").top(), ::getstackinfos(2).func), "AIAgentFixes");
 		this.__IsInvalid = true;
 	}
 
@@ -110,37 +110,37 @@
 	// This is problematic because the picked behavior may no longer be valid to execute after the delayed events
 	// are complete. Therefore, we prevent vanilla from running this function on behaviors and instead rewrite
 	// this logic in our hook on agent.execute.
-	q.onBeforeExecute = @(__original) function( _entity )
+	q.onBeforeExecute = @(__original) { function onBeforeExecute( _entity )
 	{
 		if (this.getAgent().m.RF_AgentState.isExecuting())
 		{
 			__original(_entity);
 		}
-	}
+	}}.onBeforeExecute;
 
 	// Same comment as the function above. Vanilla does this at the end of agent.evaluate after picking a behavior.
 	// We stop it here and instead rewrite this logic in our hook on agent.execute.
-	q.onReset = @(__original) function()
+	q.onReset = @(__original) { function onReset()
 	{
 		if (this.getAgent().m.RF_AgentState.isExecuting())
 		{
 			__original();
 		}
-	}
+	}}.onReset;
 });
 
 ::Reforged.HooksMod.hook("scripts/ai/tactical/agent", function(q) {
 	q.m.RF_AgentState <- null;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.RF_AgentState = ::Reforged.AgentState(this);
-	}
+	}}.create;
 
 	// At the beginning of a fresh evaluation i.e. when this.m.NextBehaviorToEvaluate is -3, we save the agent's state.
 	// Then during agent.execute we will compare the state with this state to see if anything has changed.
-	q.evaluate = @(__original) function( _entity )
+	q.evaluate = @(__original) { function evaluate( _entity )
 	{
 		::Reforged.Mod.Debug.printLog(format("evaluate -- %s (%i), NextBehaviorToEvaluate: %i", this.getActor().getName(), this.getActor().getID(), this.m.NextBehaviorToEvaluate), "AIAgentFixes");
 		if (this.m.NextBehaviorToEvaluate == -3)
@@ -159,17 +159,17 @@
 			return;
 		}
 		__original(_entity);
-	}
+	}}.evaluate;
 
 	// Prevent the AI from executing any behavior while there are delayed events scheduled.
 	// hasEventScheduled covers delayed effects from `::Time.scheduleEvent`.
 	// IsTravelling covers delayed effects from `teleport` and `switchEntities`.
 	// During isExecuting we need to return true so that agent.think can properly call agent.execute
 	// because in our hook on agent.think we convert it to only evaluate when this function is false.
-	q.RF_canExecute <- function()
+	q.RF_canExecute <- { function RF_canExecute()
 	{
 		return this.m.RF_AgentState.isExecuting() || (!::Time.hasEventScheduled(::TimeUnit.Virtual) && !::Tactical.getNavigator().IsTravelling);
-	}
+	}}.RF_canExecute;
 
 	// This function is called from agent.think again and again while the executed behavior continues to return false.
 	// Once it returns true, the behavior execution is considered complete and the agent can evaluate again.
@@ -177,7 +177,7 @@
 	// worry about saving state again. Instead, the first time this function is called, we compare state and then
 	// clear the saved state. The state will be saved automatically again from our hook on agent.evaluate when
 	// a new evaluation starts after this function returns true.
-	q.execute = @(__original) function( _entity )
+	q.execute = @(__original) { function execute(_entity )
 	{
 		::Reforged.Mod.Debug.printWarning(format("execute -- %s (%i), ActiveBehavior: %s", this.getActor().getName(), this.getActor().getID(), this.m.ActiveBehavior == null ? null : this.m.ActiveBehavior.getName()), "AIAgentFixes");
 		if (this.m.ActiveBehavior != null && !this.m.RF_AgentState.isExecuting())
@@ -203,9 +203,9 @@
 			}
 		}
 		return __original(_entity);
-	}
+	}}.execute;
 
-	q.think = @(__original) function( _evaluateOnly = false )
+	q.think = @(__original) { function think( _evaluateOnly = false )
 	{
 		// Prevent the AI from executing a skill while there are scheduled events
 		if (!_evaluateOnly && !this.RF_canExecute())
@@ -215,9 +215,9 @@
 		}
 
 		__original(_evaluateOnly);
-	}
+	}}.think;
 
-	q.RF_reset <- function()
+	q.RF_reset <- { function RF_reset()
 	{
 		::Reforged.Mod.Debug.printWarning(format("RF_reset -- %s (%i)", this.getActor().getName(), this.getActor().getID()), "AIAgentFixes");
 
@@ -233,7 +233,7 @@
 			b.m.Thread = null;
 			b.onReset();
 		}
-	}
+	}}.RF_reset;
 });
 
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
@@ -243,7 +243,7 @@
 	q.m.RF_switchEntitiesCallbacks <- [];
 
 	// Force the currently active entity to throw away his picked behavior and reevalute if anyone moved
-	q.onMovementFinish = @(__original) function( _tile )
+	q.onMovementFinish = @(__original) { function onMovementFinish( _tile )
 	{
 		__original(_tile);
 
@@ -263,10 +263,10 @@
 			local entry = this.m.RF_switchEntitiesCallbacks.pop();
 			entry[0](this, entry[1]);
 		}
-	}
+	}}.onMovementFinish;
 
 	// Force the currently active entity to throw away his picked behavior and reevalute if anyone moved
-	q.onMovementStart = @(__original) function( _tile, _numTiles )
+	q.onMovementStart = @(__original) { function onMovementStart( _tile, _numTiles )
 	{
 		__original(_tile, _numTiles);
 
@@ -279,10 +279,10 @@
 		{
 			::logError(format("onMovementStart activeEntity null. %s (%i) ", this.getName(), this.getID()));
 		}
-	}
+	}}.onMovementStart;
 
 	// Force the currently active entity to throw away his picked behavior and reevalute if anyone got removed from map
-	q.onRemovedFromMap = @(__original) function()
+	q.onRemovedFromMap = @(__original) { function onRemovedFromMap()
 	{
 		__original();
 
@@ -301,10 +301,10 @@
 				::logError(format("onRemovedFromMap activeEntity null. %s (%i) ", this.getName(), this.getID()));
 			}
 		}
-	}
+	}}.onRemovedFromMap;
 
 	// Force the currently active entity to throw away his picked behavior and reevalute if anyone got placed on map
-	q.onPlacedOnMap = @(__original) function()
+	q.onPlacedOnMap = @(__original) { function onPlacedOnMap()
 	{
 		__original();
 
@@ -318,5 +318,5 @@
 		{
 			::logError(format("onPlacedOnMap activeEntity null. %s (%i) ", this.getName(), this.getID()));
 		}
-	}
+	}}.onPlacedOnMap;
 });
