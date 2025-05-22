@@ -346,6 +346,17 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 			this.m.RF_ForceReevaluate = false;
 			this.m.RF_AgentState.save();
 		}
+		// This should fix the crash during evaluation when entities die/move due to delayed effects
+		// because such functions e.g. ai_engage_melee are generators so they yield and continue evaluation
+		// but if we catch it and force a complete reset of evaluation that should avoid the crash easily.
+		// Note: RF_ForceReevaluate is set to true when any entity dies or moves.
+		else if (this.m.RF_ForceReevaluate)
+		{
+			this.RF_reset();
+			// Have to return here otherwise the __original will bump this.m.NextBehaviorToEvalute to 2
+			// causing us to never save the new state again (which is done few lines above in this function).
+			return;
+		}
 		__original(_entity);
 	}
 
