@@ -112,7 +112,7 @@
 	// this logic in our hook on agent.execute.
 	q.onBeforeExecute = @(__original) function( _entity )
 	{
-		if (this.getAgent().RF_canExecute())
+		if (this.getAgent().m.RF_AgentState.isExecuting())
 		{
 			__original(_entity);
 		}
@@ -122,7 +122,7 @@
 	// We stop it here and instead rewrite this logic in our hook on agent.execute.
 	q.onReset = @(__original) function()
 	{
-		if (this.getAgent().RF_canExecute())
+		if (this.getAgent().m.RF_AgentState.isExecuting())
 		{
 			__original();
 		}
