@@ -31,7 +31,8 @@
 	"Squire",
 	"Herald\'s Bodyguard",
 
-	"Hollenhund"
+	"Hollenhund",
+	"Klagmutter"
 ]);
 
 ::Const.Strings.EntityNamePlural.extend([
@@ -67,7 +68,8 @@
 	"Squires",
 	"Herald\'s Bodyguards",
 
-	"Hollenhunds"
+	"Hollenhunds",
+	"Klagmutters"
 ]);
 
 ::MSU.Table.merge(::Const.Strings.PerkName, {

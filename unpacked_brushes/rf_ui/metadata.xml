@@ -53,6 +53,7 @@
 	<sprite id="rf_sword_stab_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sword_stab_skill.png" />
 	<sprite id="rf_take_aim_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_take_aim_skill.png" />
 	<sprite id="rf_voulge_cleave_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_voulge_cleave_skill.png" />
+	<sprite id="rf_wail_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_wail_skill.png" />
 
 	<!-- Perks and their Minis -->
 	<sprite id="perk_rf_battle_fervor" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_battle_fervor.png" />
@@ -120,6 +121,7 @@
 	<sprite id="rf_from_all_sides_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_from_all_sides.png" />
 	<sprite id="rf_from_all_sides_effect_mini" ic = "FF23165B" img="skills\mini\rf_from_all_sides_effect_mini.png" />
 	<sprite id="rf_grave_chill_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_grave_chill_effect.png" />
+	<sprite id="rf_grieving_malaise_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_grieving_malaise_effect.png" />
 	<sprite id="rf_hold_steady_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_hold_steady.png" />
 	<sprite id="rf_hold_steady_effect_mini" ic = "FF23165B" img="skills\mini\rf_hold_steady_effect_mini.png" />
 	<sprite id="rf_hooked_shield_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_hooked_shield_effect.png" />
@@ -141,6 +143,7 @@
 	<sprite id="rf_sprint_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_sprint_effect.png" />
 	<sprite id="rf_sprint_effect_mini" ic = "FF23165B" img="skills\mini\rf_sprint_effect_mini.png" />
 	<sprite id="rf_take_aim_effect_mini" ic = "FF23165B" img="skills\mini\rf_take_aim_effect_mini.png" />
+	<sprite id="rf_whimpering_veil_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_whimpering_veil_effect.png" />
 	<sprite id="rf_worn_down_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_wear_them_down.png" />
 	<sprite id="rf_worn_down_effect_mini" ic = "FF23165B" img="skills\mini\rf_worn_down_effect_mini.png" />
 

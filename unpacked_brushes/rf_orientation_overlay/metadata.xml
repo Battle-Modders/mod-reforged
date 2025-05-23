@@ -37,4 +37,5 @@
 	<sprite id="rf_standard_bearer_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_standard_bearer_orientation.png" />
 
 	<sprite id="rf_hollenhund_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_hollenhund_orientation.png" />
+	<sprite id="rf_banshee_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_banshee_orientation.png" />
 </brush>

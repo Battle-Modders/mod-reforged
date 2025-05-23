@@ -38,7 +38,8 @@ local entityTypes = [
 	"RF_Squire",
 	"RF_HeraldsBodyguard",
 
-	"RF_Hollenhund"
+	"RF_Hollenhund",
+	"RF_Banshee"
 ]
 
 local entityIcon = [
@@ -74,7 +75,8 @@ local entityIcon = [
 	"rf_squire_orientation",
 	"rf_heralds_bodyguard_orientation",
 
-	"rf_hollenhund_orientation"
+	"rf_hollenhund_orientation",
+	"rf_banshee_orientation"
 ]
 
 foreach (entityType in entityTypes)
@@ -138,6 +140,7 @@ local getDefaultFaction = ::Const.EntityType.getDefaultFaction;
 				return ::Const.FactionType.NobleHouse;
 
 			case ::Const.EntityType.RF_Hollenhund:
+			case ::Const.EntityType.RF_Banshee:
 				return ::Const.FactionType.Zombies;
 		}
 	}

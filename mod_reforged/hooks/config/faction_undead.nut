@@ -218,7 +218,6 @@
 		0
 	]
 };
-
 ::Const.Tactical.Actor.RF_Hollenhund <- {
 	XP = 400,
 	ActionPoints = 12,
@@ -230,6 +229,24 @@
 	MeleeDefense = 30,
 	RangedDefense = 50,
 	Initiative = 110,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
+};
+::Const.Tactical.Actor.RF_Banshee <- {
+	XP = 550,
+	ActionPoints = 9,
+	Hitpoints = 1,
+	Bravery = 100,
+	Stamina = 100,
+	MeleeSkill = 80,
+	RangedSkill = 0,
+	MeleeDefense = 30,
+	RangedDefense = 999,
+	Initiative = 100,
 	FatigueEffectMult = 0.0,
 	MoraleEffectMult = 0.0,
 	Armor = [
