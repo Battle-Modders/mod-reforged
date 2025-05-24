@@ -341,4 +341,16 @@
 
 <sprite id="bust_rf_unhold_head_smiling" offsetX="-5" offsetY="35" f1="-30" f2="10" ic="FF39455B" width="174" height="214" img="entity\beasts\bust_rf_unhold_head_smiling.png" left="-69" right="21" top="-24" bottom="68" />
 
+<sprite id="bust_rf_hollenhund_01" offsetY="35" b7="0" ic="FFBF9151" width="104" height="142" img="entity\undead\bust_rf_hollenhund_01.png" left="-75" right="57" top="-69" bottom="65" />
+<sprite id="bust_rf_hollenhund_02" offsetY="35" b7="0" ic="FFBF9151" width="104" height="142" img="entity\undead\bust_rf_hollenhund_02.png" left="-75" right="57" top="-69" bottom="65" />
+<sprite id="bust_rf_hollenhund_03" offsetY="35" b7="0" ic="FFBF9151" width="104" height="142" img="entity\undead\bust_rf_hollenhund_03.png" left="-75" right="57" top="-69" bottom="65" />
+<sprite id="bust_rf_hollenhund_spirit_01" offsetY="35" b7="0" ic="FFBF9151" width="104" height="142" img="entity\undead\bust_rf_hollenhund_spirit_01.png" left="-75" right="57" top="-69" bottom="65" />
+<sprite id="bust_rf_hollenhund_spirit_02" offsetY="35" b7="0" ic="FFBF9151" width="104" height="142" img="entity\undead\bust_rf_hollenhund_spirit_02.png" left="-75" right="57" top="-69" bottom="65" />
+<sprite id="bust_rf_hollenhund_spirit_03" offsetY="35" b7="0" ic="FFBF9151" width="104" height="142" img="entity\undead\bust_rf_hollenhund_spirit_03.png" left="-75" right="57" top="-69" bottom="65" />
+  <sprite id="bust_rf_hollenhund_01_body_dead" offsetX="4" offsetY="24" f="6403" ic="FF1B1E2A" width="179" height="154" img="entity\undead\bust_rf_hollenhund_01_body_dead.png" left="-84" right="82" top="-61" bottom="59" />
+  <sprite id="bust_rf_hollenhund_01_head_dead" offsetX="4" offsetY="24" f="6401" ic="FF232939" width="179" height="154" img="entity\undead\bust_rf_hollenhund_01_head_dead.png" left="-44" right="30" top="-58" bottom="6" />
+<sprite id="bust_rf_hollenhund_01_injured" offsetY="35" b7="0" ic="FFBF9151" width="104" height="142" img="entity\undead\bust_rf_hollenhund_01_injured.png" left="-75" right="57" top="-69" bottom="65" />
+
+
+
 </brush>

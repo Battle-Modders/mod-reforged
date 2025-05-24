@@ -218,3 +218,22 @@
 		0
 	]
 };
+
+::Const.Tactical.Actor.RF_Hollenhund <- {
+	XP = 400,
+	ActionPoints = 12,
+	Hitpoints = 150,
+	Bravery = 90,
+	Stamina = 100,
+	MeleeSkill = 80,
+	RangedSkill = 0,
+	MeleeDefense = 30,
+	RangedDefense = 50,
+	Initiative = 110,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
+};

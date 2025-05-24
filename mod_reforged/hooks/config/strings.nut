@@ -29,7 +29,9 @@
 	"Fencer",
 	"Anointed Knight",
 	"Squire",
-	"Herald\'s Bodyguard"
+	"Herald\'s Bodyguard",
+
+	"Hollenhund"
 ]);
 
 ::Const.Strings.EntityNamePlural.extend([
@@ -63,7 +65,9 @@
 	"Fencers",
 	"Anointed Knights",
 	"Squires",
-	"Herald\'s Bodyguards"
+	"Herald\'s Bodyguards",
+
+	"Hollenhunds"
 ]);
 
 ::MSU.Table.merge(::Const.Strings.PerkName, {

@@ -231,6 +231,15 @@
 		TitleList = ::Const.Strings.RF_AncientDeadCommanderTitles
 	},
 
+	RF_Hollenhund = {
+		ID = ::Const.EntityType.RF_Hollenhund,
+		Variant = 0,
+		Strength = 50,
+		Cost = 50,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_hollenhund",
+	},
+
 	// Noble
 	RF_FootmanHeavy = {
 		ID = ::Const.EntityType.RF_FootmanHeavy,
