@@ -25,4 +25,19 @@
 	{
 		return __original(_originTile, _targetTile) && !_targetTile.getEntity().getCurrentProperties().IsImmuneToRoot && _targetTile.getEntity().getBaseProperties().Reach < ::Reforged.Reach.Default.BeastHuge;
 	}
+
+	q.onNetSpawn = @(__original) function( _data )
+	{
+		// Prevent crash from the TargetEntity having died/removed from map due to a delayed effect
+		// while onNetSpawn was scheduled.
+		// Doesn't cause any issue in vanilla because throw_net is never used in such a context.
+		// Causes crash in Reforged due to perks which trigger delayed attacks and throw_net on hit
+		// e.g. Flail Spinner and Kingfisher at the time of writing this comment.
+		if (!_data.TargetEntity.isPlacedOnMap())
+		{
+			return;
+		}
+
+		__original(_data);
+	}
 });
