@@ -5,6 +5,7 @@
 	MoraleState = ::Const.MoraleState.Steady;
 	ActionPoints = 0;
 	Attributes = null;
+	Properties = null;
 
 	// Is set to `true` during execution of a behavior which is returning `false` many times.
 	// Because many behaviors keep returning `false` several times and agent.execute continues to be called
@@ -20,6 +21,7 @@
 	{
 		this.Agent = ::MSU.asWeakTableRef(_agent);
 		this.Attributes = [];
+		this.Properties = {};
 	}
 
 	function save()
@@ -29,6 +31,7 @@
 		this.MoraleState = actor.getMoraleState();
 		this.ActionPoints = actor.getActionPoints();
 		this.Attributes = this.__getAttributes();
+		this.Properties = this.__getProperties();
 		this.__IsExecuting = false;
 		this.__IsInvalid = false;
 	}
@@ -74,6 +77,15 @@
 			}
 		}
 
+		local p = actor.getCurrentProperties();
+		foreach (k, v in this.__getProperties())
+		{
+			if (p[k] != v)
+			{
+				return true;
+			}
+		}
+
 		return false;
 	}
 
@@ -99,6 +111,15 @@
 			}
 		}
 		return ret;
+	}
+
+	function __getProperties()
+	{
+		local p = this.Agent.getActor().getCurrentProperties();
+		return {
+			IsRooted = p.IsRooted,
+			IsStunned = p.IsStunned
+		};
 	}
 }
 
