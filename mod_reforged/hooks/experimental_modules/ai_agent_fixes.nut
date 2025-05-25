@@ -163,7 +163,7 @@
 	// Then during agent.execute we will compare the state with this state to see if anything has changed.
 	q.evaluate = @(__original) { function evaluate( _entity )
 	{
-		::Reforged.Mod.Debug.printLog(format("evaluate -- %s (%i), NextBehaviorToEvaluate: %i", this.getActor().getName(), this.getActor().getID(), this.m.NextBehaviorToEvaluate), "AIAgentFixes");
+		::Reforged.Mod.Debug.printLog(format("evaluate -- %s (%i), NextBehaviorToEvaluate: %i (%s)", this.getActor().getName(), this.getActor().getID(), this.m.NextBehaviorToEvaluate, this.m.NextBehaviorToEvaluate < 0 ? "" : this.m.Behaviors[this.m.NextBehaviorToEvaluate].getName()), "AIAgentFixes");
 		if (this.m.NextBehaviorToEvaluate == -3)
 		{
 			this.m.RF_AgentState.save();
