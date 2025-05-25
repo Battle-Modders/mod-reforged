@@ -65,10 +65,6 @@ local function getSchedulerSkill()
 	local level = 3;
 	local infos = ::getstackinfos(level);
 
-	// frameUpdate is an MSU keybinds system function which calls ::Time.scheduleEvent on every frame
-	if (infos.func == "frameUpdate")
-		return null;
-
 	do
 	{
 		// We skip native functions, this includes calls from .call or .acall etc.
@@ -122,7 +118,7 @@ local function getWrapper( _caller, _func, _numArgs, _countBump = 1 )
 local scheduleEvent = ::Time.scheduleEvent;
 ::Time.scheduleEvent = function( _timeUnit, _time, _func, _data )
 {
-	if (_timeUnit == ::TimeUnit.Rounds)
+	if (_timeUnit != ::TimeUnit.Virtual)
 	{
 		scheduleEvent(_timeUnit, _time, _func, _data);
 		return;
@@ -225,7 +221,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 	{
 		// Prevent executing a skill while the previously executed skill has not fully finished executing
 		// including all its delayed effects
-		if (::Reforged.ScheduleSkills.len() != 0)
+		if (::Time.hasEventScheduled(::TimeUnit.Virtual))
 		{
 			::Tactical.EventLog.log(::MSU.Text.colorNegative("Already executing a skill!"));
 			return;
