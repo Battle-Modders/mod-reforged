@@ -6,8 +6,15 @@
 	ActionPoints = 0;
 	Attributes = null;
 
-	__IsStateSaved = false;
-	__IsInvalid = false; // If true then state is considered changed even if nothing changed
+	// Is set to `true` during execution of a behavior which is returning `false` many times.
+	// Because many behaviors keep returning `false` several times and agent.execute continues to be called
+	// again and again until that behavior's execution is complete.
+	// We use this in agent.execute to allow the behavior to execute until the next evaluation starts.
+	// Is reset back to `false` whenever agent state is saved (which is saved at evaluation start).
+	__IsExecuting = false;
+
+	// If true then state is considered changed even if nothing changed
+	__IsInvalid = false;
 
 	function constructor( _agent )
 	{
@@ -22,15 +29,14 @@
 		this.MoraleState = actor.getMoraleState();
 		this.ActionPoints = actor.getActionPoints();
 		this.Attributes = this.__getAttributes();
-		this.__IsStateSaved = true;
+		this.__IsExecuting = false;
 		this.__IsInvalid = false;
 	}
 
-	function clear()
+	function declareExecution()
 	{
-		::Reforged.Mod.Debug.printWarning(format("AgentState.clear() -- %s (%i)", this.Agent.getActor().getName(), this.Agent.getActor().getID()), "AIAgentFixes");
-		this.__IsStateSaved = false;
-		this.__IsInvalid = false;
+		::Reforged.Mod.Debug.printWarning(format("AgentState.declareExecution() -- %s (%i)", this.Agent.getActor().getName(), this.Agent.getActor().getID()), "AIAgentFixes");
+		this.__IsExecuting = true;
 	}
 
 	function invalidate()
@@ -44,9 +50,9 @@
 		return this.__IsInvalid;
 	}
 
-	function isStateSaved()
+	function isExecuting()
 	{
-		return this.__IsStateSaved;
+		return this.__IsExecuting;
 	}
 
 	function hasChanged()
@@ -156,9 +162,13 @@
 	}
 
 	// Prevent the AI from executing any behavior while there are delayed events scheduled.
+	// hasEventScheduled covers delayed effects from `::Time.scheduleEvent`.
+	// IsTravelling covers delayed effects from `teleport` and `switchEntities`.
+	// During isExecuting we need to return true so that agent.think can properly call agent.execute
+	// because in our hook on agent.think we convert it to only evaluate when this function is false.
 	q.RF_canExecute <- function()
 	{
-		return ::Reforged.ScheduleSkills.len() == 0 && !::Time.hasEventScheduled(::TimeUnit.Virtual);
+		return this.m.RF_AgentState.isExecuting() || (!::Time.hasEventScheduled(::TimeUnit.Virtual) && !::Tactical.getNavigator().IsTravelling);
 	}
 
 	// This function is called from agent.think again and again while the executed behavior continues to return false.
@@ -170,7 +180,7 @@
 	q.execute = @(__original) function( _entity )
 	{
 		::Reforged.Mod.Debug.printWarning(format("execute -- %s (%i), ActiveBehavior: %s", this.getActor().getName(), this.getActor().getID(), this.m.ActiveBehavior == null ? null : this.m.ActiveBehavior.getName()), "AIAgentFixes");
-		if (this.m.ActiveBehavior != null && this.m.RF_AgentState.isStateSaved())
+		if (this.m.ActiveBehavior != null && !this.m.RF_AgentState.isExecuting())
 		{
 			// If state was changed then we reset and force a complete reevaluation and don't allow the behavior
 			// execution to happen.
@@ -179,8 +189,9 @@
 				this.RF_reset();
 				return true;
 			}
-			// Clear the agent state because it is not needed after the first check.
-			this.m.RF_AgentState.clear();
+			// Tell the state that we are now in the process of executing a behavior
+			// so that until this behavior is fully complete we allow calls to this function to pass through.
+			this.m.RF_AgentState.declareExecution();
 
 			// This part is a copy of vanilla logic from the end of agent.evaluate which we have moved to this
 			// place because otherwise it makes irreversible changes e.g. via behavior.onBeforeExecute even before
