@@ -217,11 +217,16 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 });
 
 ::Reforged.HooksMod.hook("scripts/states/tactical_state", function(q) {
+	q.RF_canExecuteSkill <- { function RF_canExecuteSkill()
+	{
+		return !::Time.hasEventScheduled(::TimeUnit.Virtual) && !::Tactical.getNavigator().IsTravelling;
+	}}.RF_canExecuteSkill;
+
 	q.executeEntitySkill = @(__original) function( _activeEntity, _targetTile )
 	{
 		// Prevent executing a skill while the previously executed skill has not fully finished executing
 		// including all its delayed effects
-		if (::Time.hasEventScheduled(::TimeUnit.Virtual))
+		if (!this.RF_canExecuteSkill())
 		{
 			::Tactical.EventLog.log(::MSU.Text.colorNegative("Already executing a skill!"));
 			return;
