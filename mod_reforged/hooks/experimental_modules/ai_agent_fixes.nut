@@ -61,7 +61,7 @@
 	function hasChanged()
 	{
 		if (this.__IsInvalid)
-			true;
+			return true;
 
 		local actor = this.Agent.getActor();
 		if (actor.getMoraleState() != this.MoraleState || actor.getActionPoints() != this.ActionPoints)
