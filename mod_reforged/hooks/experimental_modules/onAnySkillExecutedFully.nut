@@ -32,16 +32,16 @@
 	function onScheduleComplete()
 	{
 		if (this.WasScheduled)
-			::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ID: %s, Count: %i", this.Skill.getID(), this.Count), "onAnySkillExecutedFully");
+			::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ClassName: %s, Count: %i", this.Skill.ClassName, this.Count), "onAnySkillExecutedFully");
 		else
-			::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ID: %s, Count: %i -- Nothing was scheduled (normal skill)", this.Skill.getID(), this.Count), "onAnySkillExecutedFully");
+			::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ClassName: %s, Count: %i -- Nothing was scheduled (normal skill)", this.Skill.ClassName, this.Count), "onAnySkillExecutedFully");
 		// Check for <= 0 because when we call this manually, this.Count will be 0 and will drop to -1
 		if (--this.Count <= 0)
 		{
 			if (this.WasScheduled)
-				::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ID: %s, Count: %i - Schedule Complete", this.Skill.getID(), this.Count), "onAnySkillExecutedFully");
+				::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ClassName: %s, Count: %i - Schedule Complete", this.Skill.ClassName, this.Count), "onAnySkillExecutedFully");
 			else
-				::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ID: %s, Count: %i - Schedule Complete -- Nothing was scheduled (normal skill)", this.Skill.getID(), this.Count), "onAnySkillExecutedFully");
+				::Reforged.Mod.Debug.printLog(format("onScheduleComplete -- ClassName: %s, Count: %i - Schedule Complete -- Nothing was scheduled (normal skill)", this.Skill.ClassName, this.Count), "onAnySkillExecutedFully");
 
 			if (!::MSU.isNull(this.Container))
 				this.Container.onAnySkillExecutedFully(this.Skill, this.TargetTile, this.TargetEntity, this.ForFree);
@@ -75,7 +75,8 @@ local function getSchedulerSkill()
 		}
 
 		local caller = infos.locals["this"];
-		return caller in ::Reforged.ScheduleSkills ? caller : null;
+		// Technically we only need to return `caller` but we return the function name as well for debug logging
+		return caller in ::Reforged.ScheduleSkills ? [caller, infos.func, infos.src, infos.line] : null;
 	}
 	while(infos != null);
 
@@ -116,7 +117,7 @@ local function getWrapper( _caller, _func, _numArgs, _countBump = 1 )
 // that triggers the onScheduleComplete event inside ScheduledSkill class.
 
 local scheduleEvent = ::Time.scheduleEvent;
-::Time.scheduleEvent = function( _timeUnit, _time, _func, _data )
+::Time.scheduleEvent = { function scheduleEvent( _timeUnit, _time, _func, _data )
 {
 	if (_timeUnit != ::TimeUnit.Virtual)
 	{
@@ -131,13 +132,13 @@ local scheduleEvent = ::Time.scheduleEvent;
 		return;
 	}
 
-	::Reforged.Mod.Debug.printLog(format("scheduleEvent -- ID: %s, Count: %i", caller.getID(), ::Reforged.ScheduleSkills[caller].Count + 1), "onAnySkillExecutedFully");
+	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i", caller[0].ClassName, caller[1], caller[2], caller[3], _func == null ? "null" : (_func.getinfos().name == null ? "unknown" : _func.getinfos().name), ::Reforged.ScheduleSkills[caller[0]].Count + 1), "onAnySkillExecutedFully");
 
-	scheduleEvent(_timeUnit, _time, getWrapper(caller, _func, 1), _data);
-}
+	scheduleEvent(_timeUnit, _time, getWrapper(caller[0], _func, 1), _data);
+}}.scheduleEvent;
 
 local teleport = ::TacticalNavigator.teleport;
-::TacticalNavigator.teleport <- function( _user, _targetTile, _func, _data, _bool, _float = 1.0 )
+::TacticalNavigator.teleport <- { function teleport( _user, _targetTile, _func, _data, _bool, _float = 1.0 )
 {
 	local caller = getSchedulerSkill();
 	if (caller == null)
@@ -146,13 +147,13 @@ local teleport = ::TacticalNavigator.teleport;
 		return;
 	}
 
-	::Reforged.Mod.Debug.printLog(format("teleport -- ID: %s, Count: %i", caller.getID(), ::Reforged.ScheduleSkills[caller].Count + 1), "onAnySkillExecutedFully");
+	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i", caller[0].ClassName, caller[1], caller[2], caller[3], _func == null ? "null" : (_func.getinfos().name == null ? "unknown" : _func.getinfos().name), ::Reforged.ScheduleSkills[caller[0]].Count + 1), "onAnySkillExecutedFully");
 
-	teleport(_user, _targetTile, getWrapper(caller, _func, 2), _data, _bool, _float);
-}
+	teleport(_user, _targetTile, getWrapper(caller[0], _func, 2), _data, _bool, _float);
+}}.teleport
 
 local switchEntities = ::TacticalNavigator.switchEntities;
-::TacticalNavigator.switchEntities <- function( _user, _targetEntity, _func, _data, _float )
+::TacticalNavigator.switchEntities <- { function switchEntities( _user, _targetEntity, _func, _data, _float )
 {
 	local caller = getSchedulerSkill();
 	if (caller == null)
@@ -161,10 +162,10 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		return;
 	}
 
-	::Reforged.Mod.Debug.printLog(format("switchEntities -- ID: %s, Count: %i", caller.getID(), ::Reforged.ScheduleSkills[caller].Count + 2), "onAnySkillExecutedFully");
+	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i", caller[0].ClassName, caller[1], caller[2], caller[3], _func == null ? "null" : (_func.getinfos().name == null ? "unknown" : _func.getinfos().name), ::Reforged.ScheduleSkills[caller[0]].Count + 1), "onAnySkillExecutedFully");
 
 	// Increase count by 2 because the callback is called for both entities
-	local cbEntry = [getWrapper(caller, _func, 2, 2), _data];
+	local cbEntry = [getWrapper(caller[0], _func, 2, 2), _data];
 
 	// Vanilla has a bug where switchEntities callbacks don't trigger when outside player vision
 	// so we trigger them manually during actor.onMovementFinish instead and set the native callback to null
@@ -172,7 +173,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 	_targetEntity.m.RF_switchEntitiesCallbacks.push(cbEntry);
 
 	switchEntities(_user, _targetEntity, null, null, _float);
-}
+}}.switchEntities;
 
 ::Reforged.HooksMod.hook("scripts/skills/skill_container", function(q) {
 	q.onAnySkillExecutedFully <- function( _skill, _targetTile, _targetEntity, _forFree )
