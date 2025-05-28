@@ -101,7 +101,10 @@ local function getWrapper( _info, _func, _numArgs, _countBump = 1 )
 		return function( _arg1 )
 		{
 			if (_func != null)
+			{
+				::Reforged.Mod.Debug.printLog("Triggering callback: " + _info.Callback, "onAnySkillExecutedFully");
 				_func(_arg1);
+			}
 			schedule.onScheduleComplete(_info);
 		}
 	}
@@ -110,7 +113,10 @@ local function getWrapper( _info, _func, _numArgs, _countBump = 1 )
 		return function( _arg1, _arg2 )
 		{
 			if (_func != null)
+			{
+				::Reforged.Mod.Debug.printLog("Triggering callback: " + _info.Callback, "onAnySkillExecutedFully");
 				_func(_arg1, _arg2);
+			}
 			schedule.onScheduleComplete(_info);
 		}
 	}
@@ -228,6 +234,30 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 
 		return ret;
 	}
+});
+
+// This is for debugging only - show a popup to the user to send us the log in cases where the skill schedule
+// was not completed.
+::Reforged.QueueBucket.VeryLate.push(function() {
+	local funcs = [
+		"onTurnStart",
+		"onTurnEnd"
+	];
+
+	::Reforged.HooksMod.hookTree("scripts/skills/skill", function(q) {
+		foreach (func in funcs)
+		{
+			q[func] = @(__original) function()
+			{
+				__original();
+				if (this.m.RF_Schedule != null)
+				{
+					::logError("Schedule not null for " + this.ClassName);
+					::Reforged.Mod.Debug.addPopupMessage("There is important debugging information in the game\'s log. Please send your log.html to the developers for debugging. You can share the file on the Reforged Discord server. Your log.html is found in C:\\Users\\YourName\\Documents\\Battle Brothers\\log.html", ::MSU.Popup.State.Full);
+				}
+			}
+		}
+	});
 });
 
 ::Reforged.HooksMod.hook("scripts/states/tactical_state", function(q) {
