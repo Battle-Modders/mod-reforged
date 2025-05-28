@@ -33,9 +33,9 @@
 }
 
 {	// Debug
-	local debugPage = ::Reforged.Mod.ModSettings.addPage("Debug");
-	debugPage.addBooleanSetting("Debug_onAnySkillExecutedFully", false, "onAnySkillExecutedFully", "Enable for debug logging of onAnySkillExecutedFully module").addBeforeChangeCallback(@( _newValue ) ::Reforged.Mod.Debug.setFlag("onAnySkillExecutedFully", _newValue));
-	debugPage.addBooleanSetting("Debug_AIAgentFixes", false, "AIAgentFixes", "Enable for debug logging of AIAgentFixes module").addBeforeChangeCallback(@( _newValue ) ::Reforged.Mod.Debug.setFlag("AIAgentFixes", _newValue));
+	// local debugPage = ::Reforged.Mod.ModSettings.addPage("Debug");
+	// debugPage.addBooleanSetting("Debug_onAnySkillExecutedFully", false, "onAnySkillExecutedFully", "Enable for debug logging of onAnySkillExecutedFully module").addBeforeChangeCallback(@( _newValue ) ::Reforged.Mod.Debug.setFlag("onAnySkillExecutedFully", _newValue));
+	// debugPage.addBooleanSetting("Debug_AIAgentFixes", false, "AIAgentFixes", "Enable for debug logging of AIAgentFixes module").addBeforeChangeCallback(@( _newValue ) ::Reforged.Mod.Debug.setFlag("AIAgentFixes", _newValue));
 }
 
 ::Reforged.Mod.Keybinds.addSQKeybind("Tactical_WaitRound", "h", ::MSU.Key.State.Tactical, function()

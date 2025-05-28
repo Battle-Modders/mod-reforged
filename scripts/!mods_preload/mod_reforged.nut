@@ -68,8 +68,8 @@ foreach (requirement in requiredMods)
 	delete ::Reforged.checkConflictWithFilename;
 
 	::Reforged.Mod.Debug.setFlag("ai", false);
-	::Reforged.Mod.Debug.setFlag("onAnySkillExecutedFully", false);
-	::Reforged.Mod.Debug.setFlag("AIAgentFixes", false);
+	::Reforged.Mod.Debug.setFlag("onAnySkillExecutedFully", true);
+	::Reforged.Mod.Debug.setFlag("AIAgentFixes", true);
 
 	::include("mod_reforged/hooks/misc.nut");
 	::include("mod_reforged/ui/load.nut");
