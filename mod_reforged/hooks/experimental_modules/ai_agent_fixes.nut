@@ -42,9 +42,9 @@
 		this.__IsExecuting = true;
 	}
 
-	function invalidate()
+	function invalidate( _cause = null )
 	{
-		::Reforged.Mod.Debug.printWarning(format("AgentState.invalidate() -- %s (%i) - Cause: %s.%s", this.Agent.getActor().getName(), this.Agent.getActor().getID(), split(::getstackinfos(2).src, "/").top(), ::getstackinfos(2).func), "AIAgentFixes");
+		::Reforged.Mod.Debug.printWarning(format("AgentState.invalidate() -- %s (%i) - Cause: %s", this.Agent.getActor().getName(), this.Agent.getActor().getID(), _cause != null ? _cause : split(::getstackinfos(2).src, "/").top() + "." + ::getstackinfos(2).func), "AIAgentFixes");
 		this.__IsInvalid = true;
 	}
 
@@ -271,7 +271,7 @@
 		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
 		if (activeEntity != null)
 		{
-			activeEntity.getAIAgent().m.RF_AgentState.invalidate();
+			activeEntity.getAIAgent().m.RF_AgentState.invalidate(format("%s (%i).onMovementFinish", this.getName(), this.getID()));
 		}
 		else
 		{
@@ -294,7 +294,7 @@
 		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
 		if (activeEntity != null)
 		{
-			activeEntity.getAIAgent().m.RF_AgentState.invalidate();
+			activeEntity.getAIAgent().m.RF_AgentState.invalidate(format("%s (%i).onMovementStart", this.getName(), this.getID()));
 		}
 		else
 		{
@@ -315,7 +315,7 @@
 			local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
 			if (activeEntity != null)
 			{
-				activeEntity.getAIAgent().m.RF_AgentState.invalidate();
+				activeEntity.getAIAgent().m.RF_AgentState.invalidate(format("%s (%i).onRemovedFromMap", this.getName(), this.getID()));
 			}
 			else
 			{
@@ -332,7 +332,7 @@
 		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
 		if (activeEntity != null)
 		{
-			activeEntity.getAIAgent().m.RF_AgentState.invalidate();
+			activeEntity.getAIAgent().m.RF_AgentState.invalidate(format("%s (%i).onPlacedOnMap", this.getName(), this.getID()));
 		}
 		// Without this Round check, we get spammed with errors when entities are placed at combat start time
 		else if (::Time.getRound() >= 1)
@@ -352,7 +352,7 @@
 		__original();
 		if (this.isActive())
 		{
-			this.getContainer().getActor().getAIAgent().m.RF_AgentState.invalidate();
+			this.getContainer().getActor().getAIAgent().m.RF_AgentState.invalidate(this.ClassName + ".onRemoved");
 		}
 	}}.onRemoved;
 });
