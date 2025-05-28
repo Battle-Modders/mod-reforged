@@ -124,6 +124,13 @@ foreach (requirement in requiredMods)
 	{
 		func();
 	}
+	// Dev Console sets AI.ParallelizationMode to false in older versions.
+	// We enable it so that users who have older Dev Console in their data folder don't suffer.
+	if (::Hooks.hasMod("mod_dev_console"))
+	{
+		::Const.AI.ParallelizationMode = true;
+	}
+
 }, ::Hooks.QueueBucket.AfterHooks);
 
 ::Reforged.HooksMod.queue(queueLoadOrder, function() {
