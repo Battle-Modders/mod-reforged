@@ -156,13 +156,13 @@ local scheduleEvent = ::Time.scheduleEvent;
 	scheduleEvent(_timeUnit, _time, getWrapper(info, _func, 1), _data);
 }}.scheduleEvent;
 
-local teleport = ::TacticalNavigator.teleport;
-::TacticalNavigator.teleport <- { function teleport( _user, _targetTile, _func, _data, _bool, _float = 1.0 )
+local teleport_6 = ::TacticalNavigator["__sqrat_ol_ teleport_6"];
+::TacticalNavigator["__sqrat_ol_ teleport_6"] <- { function teleport( _user, _targetTile, _func, _data, _bool, _float )
 {
 	local info = getSchedulerInfo();
 	if (info == null)
 	{
-		teleport(_user, _targetTile, _func, _data, _bool, _float);
+		teleport_6(_user, _targetTile, _func, _data, _bool, _float);
 		return;
 	}
 
@@ -172,13 +172,38 @@ local teleport = ::TacticalNavigator.teleport;
 	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null)
 	{
 		::Reforged.Mod.Debug.printLog(format("Other Caller: %s.%s (%s : %i), Callback: %s", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
-		teleport(_user, _targetTile, _func, _data, _bool, _float);
+		teleport_6(_user, _targetTile, _func, _data, _bool, _float);
 		return;
 	}
 
 	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback, info.Skill.m.RF_Schedule.Count + 1), "onAnySkillExecutedFully");
 
-	teleport(_user, _targetTile, getWrapper(info, _func, 2), _data, _bool, _float);
+	teleport_6(_user, _targetTile, getWrapper(info, _func, 2), _data, _bool, _float);
+}}.teleport;
+
+local teleport_5 = ::TacticalNavigator["__sqrat_ol_ teleport_5"];
+::TacticalNavigator["__sqrat_ol_ teleport_5"] <- { function teleport( _user, _targetTile, _func, _data, _bool )
+{
+	local info = getSchedulerInfo();
+	if (info == null)
+	{
+		teleport_5(_user, _targetTile, _func, _data, _bool, _float);
+		return;
+	}
+
+	// This is just put in there for debug printing
+	info.Callback <- _func == null ? "null" : (_func.getinfos().name == null ? "unknown" : _func.getinfos().name);
+
+	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null)
+	{
+		::Reforged.Mod.Debug.printLog(format("Other Caller: %s.%s (%s : %i), Callback: %s", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
+		teleport_5(_user, _targetTile, _func, _data, _bool, _float);
+		return;
+	}
+
+	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback, info.Skill.m.RF_Schedule.Count + 1), "onAnySkillExecutedFully");
+
+	teleport_5(_user, _targetTile, getWrapper(info, _func, 2), _data, _bool);
 }}.teleport;
 
 local switchEntities = ::TacticalNavigator.switchEntities;
