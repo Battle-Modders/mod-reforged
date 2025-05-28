@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/ancient/broken_bladed_pike", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 6;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -19,5 +19,5 @@
 		this.addSkill(::Reforged.new("scripts/skills/actives/repel", function(o) {
 			o.m.FatigueCost -= 2;
 		}));
-	}
+	}}.onEquip;
 });

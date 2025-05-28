@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/orc_warlord", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -62,15 +62,15 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;
 		this.m.Skills.add(::new("scripts/skills/racial/rf_orc_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @(__original) function()
+	q.makeMiniboss = @(__original) { function makeMiniboss()
 	{
 		local ret = __original();
 		if (ret)
@@ -79,9 +79,9 @@
 		}
 
 		return ret;
-	}
+	}}.makeMiniboss;
 
-	q.onSkillsUpdated = @(__original) function()
+	q.onSkillsUpdated = @(__original) { function onSkillsUpdated()
 	{
 		__original();
 		local weapon = this.getMainhandItem();
@@ -92,5 +92,5 @@
 			this.m.Skills.removeByID("actives.rf_bearded_blade_skill");
 			this.m.Skills.removeByID("actives.rf_hook_shield_skill");
 		}
-	}
+	}}.onSkillsUpdated;
 });

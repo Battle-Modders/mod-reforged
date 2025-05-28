@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/mercenary_low", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -28,9 +28,9 @@
 		// Reforged
 		b.RangedDefense += 10;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
@@ -39,5 +39,5 @@
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 		}
-	}
+	}}.assignRandomEquipment;
 });

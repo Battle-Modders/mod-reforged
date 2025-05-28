@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/heavy_crossbow", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 0;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -16,9 +16,9 @@
 		{
 			this.addSkill(::new("scripts/skills/actives/reload_bolt"));
 		}
-	}
+	}}.onEquip;
 
-	q.addSkill = @(__original) function( _skill )
+	q.addSkill = @(__original) { function addSkill( _skill )
 	{
 		if (_skill.getID() == "actives.reload_bolt")
 		{
@@ -26,5 +26,5 @@
 		}
 
 		__original(_skill);
-	}
+	}}.addSkill;
 });

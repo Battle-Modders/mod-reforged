@@ -1,14 +1,14 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/noble_sergeant", function(q) {
 	q.m.SurcoatChance <- 100;	// Chance for this character to spawn with a cosmetic tabard of its faction
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_military_sergeant_agent");
 		this.m.AIAgent.setActor(this);
-	}
+	}}.create;
 
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -37,9 +37,9 @@
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
@@ -74,9 +74,9 @@
 
 			this.m.Items.equip(armor);
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
@@ -90,5 +90,5 @@
 				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 			}
 		}
-	}
+	}}.onSpawned;
 });

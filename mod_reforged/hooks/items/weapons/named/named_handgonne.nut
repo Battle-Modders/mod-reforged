@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_handgonne", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/oriental/handgonne";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -14,5 +14,5 @@
 				o.m.FatigueCost += 2;
 			}));
 		}
-	}
+	}}.onEquip;
 });

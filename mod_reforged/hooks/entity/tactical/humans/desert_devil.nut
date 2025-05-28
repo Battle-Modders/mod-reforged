@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/desert_devil", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -40,9 +40,9 @@
 			o.m.RequireOffhandFree = false;
 		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -73,9 +73,9 @@
 		{
 			this.m.Items.equip(::new("scripts/items/helmets/oriental/blade_dancer_head_wrap"));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @() function()
+	q.makeMiniboss = @() { function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -105,9 +105,9 @@
 		}
 
 		return true;
-	}
+	}}.makeMiniboss;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
@@ -146,5 +146,5 @@
 				}
 			}
 		}
-	}
+	}}.onSpawned;
 });

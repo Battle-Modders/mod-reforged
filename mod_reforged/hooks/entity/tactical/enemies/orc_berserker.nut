@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/orc_berserker", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -74,15 +74,15 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	}
+	}}.assignRandomEquipment;
 
-	q.onSkillsUpdated = @(__original) function()
+	q.onSkillsUpdated = @(__original) { function onSkillsUpdated()
 	{
 		__original();
 		local weapon = this.getMainhandItem();
@@ -93,5 +93,5 @@
 			this.m.Skills.removeByID("actives.rf_bearded_blade_skill");
 			this.m.Skills.removeByID("actives.rf_hook_shield_skill");
 		}
-	}
+	}}.onSkillsUpdated;
 });

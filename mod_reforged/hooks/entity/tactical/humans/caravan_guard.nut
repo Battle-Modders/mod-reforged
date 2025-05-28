@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/caravan_guard", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -27,9 +27,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -96,14 +96,14 @@
 			]).roll();
 			this.m.Items.equip(::new(helmet));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 		}
-	}
+	}}.onSpawned;
 });

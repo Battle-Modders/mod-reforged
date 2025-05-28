@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/throw_smoke_bomb_skill", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		foreach (index, entry in ret)
@@ -28,5 +28,5 @@
 		]);
 
 		return ret;
-	}
+	}}.getTooltip;
 });

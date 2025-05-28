@@ -1,12 +1,12 @@
 ::Reforged.HooksMod.hook("scripts/states/world_state", function(q) {
-	q.startNewCampaign = @(__original) function()
+	q.startNewCampaign = @(__original) { function startNewCampaign()
 	{
 		__original();
 		this.setAutoPause(false);	// VanillaFix: Fix scenarios without intro event locking up the game
-	}
+	}}.startNewCampaign;
 
 	// Add functionality to allow using more vars in troop names e.g. for champions
-	q.startScriptedCombat = @(__original) function( _properties = null, _isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true )
+	q.startScriptedCombat = @(__original) { function startScriptedCombat( _properties = null, _isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true )
 	{
 		if (_properties != null)
 		{
@@ -18,9 +18,9 @@
 		}
 
 		return __original(_properties, _isPlayerInitiated, _isCombatantsVisible, _allowFormationPicking);
-	}
+	}}.startScriptedCombat;
 
-	q.onMouseInput = @(__original) function( _mouse )
+	q.onMouseInput = @(__original) { function onMouseInput( _mouse )
 	{
 		local ret = __original(_mouse);
 
@@ -46,5 +46,5 @@
 		}
 
 		return ret;
-	}
+	}}.onMouseInput;
 });

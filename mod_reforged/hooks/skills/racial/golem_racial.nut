@@ -1,15 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/golem_racial", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Name = "Golem";
 		this.m.Icon = "ui/orientation/sand_golem_orientation.png";
 		this.m.IsHidden = false;
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on the enemies
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -87,9 +87,9 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAdded = @() function()
+	q.onAdded = @() { function onAdded()
 	{
 		local actor = this.getContainer().getActor();
 		actor.m.MoraleState = ::Const.MoraleState.Ignore;
@@ -103,9 +103,9 @@
 		baseProperties.IsImmuneToHeadshots = true;
 		baseProperties.IsImmuneToPoison = true;
 		baseProperties.IsImmuneToStun = true;
-	}
+	}}.onAdded;
 
-	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
+	q.onBeforeDamageReceived = @() { function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
 		if (_skill != null && _skill.getID() == "actives.throw_golem")
 		{
@@ -155,5 +155,5 @@
 				}
 				break;
 		}
-	}
+	}}.onBeforeDamageReceived;
 });

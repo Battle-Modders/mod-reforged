@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/ai/tactical/agent", function(q) {
-	q.addBehavior = @(__original) function( _behavior )
+	q.addBehavior = @(__original) { function addBehavior( _behavior )
 	{
 		local obj = this;
 		while ("SuperName" in obj)
@@ -12,5 +12,5 @@
 		}
 
 		return __original(_behavior);
-	}
+	}}.addBehavior;
 });

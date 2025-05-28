@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/fire_mortar_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Fire a shell high in the air to wreak havoc upon returning to earth with a blasting impact.";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
@@ -29,5 +29,5 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Can only be used once every " + ::MSU.Text.colorNegative(this.m.Cooldown) + " [turns|Concept.Turn]")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 });

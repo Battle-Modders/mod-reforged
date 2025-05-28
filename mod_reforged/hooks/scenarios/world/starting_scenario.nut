@@ -4,7 +4,7 @@
 });
 
 ::Reforged.HooksMod.hookTree("scripts/scenarios/world/starting_scenario", function(q) {
-	q.onSpawnPlayer = @(__original) function()
+	q.onSpawnPlayer = @(__original) { function onSpawnPlayer()
 	{
 		__original();
 
@@ -20,5 +20,5 @@
 				}
 			}
 		}
-	}
+	}}.onSpawnPlayer;
 });

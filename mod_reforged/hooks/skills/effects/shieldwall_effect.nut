@@ -1,6 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/shieldwall_effect", function(q) {
 	// Part of perk_rf_shield_sergeant functionality
-	q.onTurnStart = @(__original) function()
+	q.onTurnStart = @(__original) { function onTurnStart()
 	{
 		__original();
 
@@ -19,5 +19,5 @@
 				return;
 			}
 		}
-	}
+	}}.onTurnStart;
 });

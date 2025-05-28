@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/swallow_whole_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Devour an adjacent target whole!";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
@@ -29,5 +29,5 @@
 		// 	text = ::Reforged.Mod.Tooltips.parseString("The target loses the [Shieldwall|Skill+shieldwall_effect], [Spearwall|Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
 		// });
 		return ret;
-	}
+	}}.getTooltip;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/sand_golem", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -41,9 +41,9 @@
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_concussive_strikes", function(o) {
 			o.m.RequiredWeaponType = null;
 		}));
-	}
+	}}.onInit;
 
-	q.getLootForTile = @(__original) function( _killer, _loot )
+	q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
 	{
 		local ret = __original(_killer, _loot);
 
@@ -65,5 +65,5 @@
 		}
 
 		return ret;
-	}
+	}}.getLootForTile;
 });

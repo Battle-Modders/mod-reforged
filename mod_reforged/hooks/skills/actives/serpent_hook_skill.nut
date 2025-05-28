@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/serpent_hook_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Wrap your body around the target and pull them towards a more vulnerable position!";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
@@ -41,5 +41,5 @@
 			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
 		});
 		return ret;
-	}
+	}}.getTooltip;
 });

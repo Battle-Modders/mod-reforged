@@ -2,7 +2,7 @@
 	q.m.AdditionalAccuracy = 0;
 	q.m.AdditionalHitChance = -4;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getRangedTooltip(this.skill.getDefaultTooltip());
 
@@ -38,16 +38,16 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAfterUpdate = @(__original) function( _properties )
+	q.onAfterUpdate = @(__original) { function onAfterUpdate( _properties )
 	{
 		local additionalAccuracy = this.m.AdditionalAccuracy;
 		__original(_properties);
 		this.m.AdditionalAccuracy = additionalAccuracy;
-	}
+	}}.onAfterUpdate;
 
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
@@ -59,5 +59,5 @@
 				_properties.DamageDirectMult += 0.05;
 			}
 		}
-	}
+	}}.onAnySkillUsed;
 });

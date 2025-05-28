@@ -1,6 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/items/accessory/accessory", function(q) {
 	// Vanilla does not compare compare/display the Stamina using 'getStaminaModifier' which is why this value is not updated correctly in the tooltip for unleashables
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		foreach(index, entry in ret)
@@ -19,10 +19,10 @@
 			}
 		}
 		return ret;
-	}
+	}}.getTooltip;
 
 	// In vanilla this function is empty. We replace that function because chances are higher that another mod also "fixes" this StaminaModifier than that they introduce a completely different own global accessory effect
-	q.onUpdateProperties = @() function( _properties )
+	q.onUpdateProperties = @() { function onUpdateProperties( _properties )
 	{
 		// In vanilla, some accessories count as equipped while in the bag and manually call 'onEquip' in 'onPutIntoBag'
 		// Therefore, we exclude accessories in the bag so that their StaminaModifier isn't applied twice (once here and once via bag_fatigue skill)
@@ -30,5 +30,5 @@
 		{
 			_properties.Stamina += this.getStaminaModifier();
 		}
-	}
+	}}.onUpdateProperties;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/scenarios/world/beast_hunters_scenario", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		local additionalDesc = "\n[color=#bcad8c]Brave Hunters:[/color] All recruits have access to the Fortified Mind perk.";
@@ -11,9 +11,9 @@
 		{
 			this.m.Description += additionalDesc;
 		}
-	}
+	}}.create;
 
-	q.onBuildPerkTree = @(__original) function( _perkTree )
+	q.onBuildPerkTree = @(__original) { function onBuildPerkTree( _perkTree )
 	{
 		__original(_perkTree);
 		// We remove it and add it so that it goes on the first tier
@@ -22,5 +22,5 @@
 			_perkTree.removePerk("perk.fortified_mind");
 		}
 		_perkTree.addPerk("perk.fortified_mind");
-	}
+	}}.onBuildPerkTree;
 });

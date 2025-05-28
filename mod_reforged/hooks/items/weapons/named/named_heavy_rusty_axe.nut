@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_heavy_rusty_axe", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/barbarians/heavy_rusty_axe";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -22,5 +22,5 @@
 			o.m.FatigueCost += 5;
 			o.setApplyAxeMastery(true);
 		}));
-	}
+	}}.onEquip;
 });

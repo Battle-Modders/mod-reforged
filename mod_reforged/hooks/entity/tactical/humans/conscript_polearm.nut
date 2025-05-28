@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/conscript_polearm", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.conscript.onInit();
 
 		// Reforged
 		this.m.Skills.removeByID("perk.dodge");
-	}
+	}}.onInit;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 
@@ -22,5 +22,5 @@
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 		}
-	}
+	}}.onSpawned;
 });

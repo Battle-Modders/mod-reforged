@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/alp_racial", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Name = "Alp";
 		this.m.Icon = "ui/orientation/alp_01_orientation.png";
 		this.m.IsHidden = false;
-	}
+	}}.create;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -73,9 +73,9 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAdded = @() function()
+	q.onAdded = @() { function onAdded()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 
@@ -85,9 +85,9 @@
 		baseProperties.IsImmuneToDisarm = true;
 		baseProperties.IsImmuneToKnockBackAndGrab = true;
 		baseProperties.IsImmuneToPoison = true;
-	}
+	}}.onAdded;
 
-	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
+	q.onBeforeDamageReceived = @() { function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)
 		{
@@ -135,5 +135,5 @@
 				}
 				break;
 		}
-	}
+	}}.onBeforeDamageReceived;
 });

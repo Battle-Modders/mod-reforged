@@ -1,14 +1,14 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/adrenaline_effect", function(q) {
 	q.m.GrantsInjuryImmunity <- true;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 
 		this.m.Order = ::Const.SkillOrder.TemporaryInjury - 100;	// This effect needs to flip the IsAffectedByInjuries flag before any of the injuries had the time to inflict their effects
-	}
+	}}.create;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -23,9 +23,9 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onUpdate = @(__original) function( _properties )
+	q.onUpdate = @(__original) { function onUpdate( _properties )
 	{
 		__original(_properties);
 
@@ -33,5 +33,5 @@
 		{
 			_properties.IsAffectedByInjuries = false;
 		}
-	}
+	}}.onUpdate;
 });

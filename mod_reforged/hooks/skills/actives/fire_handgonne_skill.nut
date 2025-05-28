@@ -2,7 +2,7 @@
 	q.m.AdditionalAccuracy = 10;
 	q.m.AdditionalHitChance = -10;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultTooltip();
 		ret.push({
@@ -59,19 +59,19 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 		}
-	}
+	}}.onAnySkillUsed;
 
 	// Implementation of Extended AOE due to rf_take_aim_effect
-	q.getAffectedTiles = @(__original) function( _targetTile )
+	q.getAffectedTiles = @(__original) { function getAffectedTiles( _targetTile )
 	{
 		// For targeting beyond 2 tiles keep normal behavior
 		if (_targetTile.getDistanceTo(this.getContainer().getActor().getTile()) != 2 || !this.getContainer().hasSkill("effects.rf_take_aim"))
@@ -111,5 +111,5 @@
 		addTiles(_targetTile, right, dir, 3);
 
 		return ret;
-	}
+	}}.getAffectedTiles;
 });

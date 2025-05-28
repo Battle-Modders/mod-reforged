@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/kraken_move_ensnared_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "This character is being dragged towards the Kraken!";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
@@ -17,5 +17,5 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Every turn you are moved towards the Kraken")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 });

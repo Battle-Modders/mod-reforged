@@ -1,6 +1,6 @@
 // Ancient Legionary
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_medium", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
@@ -19,9 +19,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -57,9 +57,9 @@
 		{
 			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_legionary_helmet"));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
@@ -74,5 +74,5 @@
 				this.m.Skills.removeByID("actives.rf_passing_step_skill");
 			}
 		}
-	}
+	}}.onSpawned;
 });

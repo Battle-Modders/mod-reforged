@@ -1,14 +1,14 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/gash_skill", function(q) {
 	q.m.BleedStacks <- 3;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.HitChanceBonus = 5;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Gash;
-	}
+	}}.create;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
 		ret.push({
@@ -48,17 +48,17 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
 			_properties.MeleeSkill += this.m.HitChanceBonus;
 		}
-	}
+	}}.onAnySkillUsed;
 
-	q.onTargetHit = @(__original) function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	q.onTargetHit = @(__original) { function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		__original(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
 		if (_skill == this && _targetEntity.isAlive() && _damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding && !_targetEntity.getCurrentProperties().IsImmuneToBleeding)
@@ -69,5 +69,5 @@
 				_targetEntity.getSkills().add(bleed);
 			}
 		}
-	}
+	}}.onTargetHit;
 });

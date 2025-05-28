@@ -1,21 +1,21 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_inspiring_presence", function(q) {
 	q.m.IsForceEnabled <- false;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Description = "This character has an inspiring presence on the battlefield.";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Icon = "ui/perks/perk_rf_inspiring_presence.png";
 		this.m.IconMini = "perk_rf_inspiring_presence_mini";
-	}
+	}}.create;
 
-	q.isHidden = @() function()
+	q.isHidden = @() { function isHidden()
 	{
 		return !this.isEnabled();
-	}
+	}}.isHidden;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.push({
@@ -31,9 +31,9 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Only same faction members are considered allies for this [perk|Concept.Perk]")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.isEnabled <- function()
+	q.isEnabled <- { function isEnabled()
 	{
 		if (this.m.IsForceEnabled)
 		{
@@ -47,10 +47,10 @@
 		}
 
 		return false;
-	}
+	}}.isEnabled;
 
 	// Overwrite the vanilla function to be empty.
-	q.onCombatStarted = @() function()
+	q.onCombatStarted = @() { function onCombatStarted()
 	{
-	}
+	}}.onCombatStarted;
 });

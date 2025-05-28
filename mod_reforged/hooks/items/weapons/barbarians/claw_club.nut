@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/barbarians/claw_club", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 3;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -22,5 +22,5 @@
 			o.m.IconDisabled = "skills/active_186_sw.png";
 			o.m.Overlay = "active_186";
 		}));
-	}
+	}}.onEquip;
 });

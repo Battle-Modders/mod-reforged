@@ -1,6 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/ui/global/data_helper", function(q)
 {
-	q.convertEntityHireInformationToUIData = @(__original) function( _entity )
+	q.convertEntityHireInformationToUIData = @(__original) { function convertEntityHireInformationToUIData( _entity )
 	{
 		local ret = __original(_entity);
 		if (ret == null || _entity.getBackground() == null)
@@ -19,13 +19,13 @@
 			if (!_entity.isPerkUnlockable(id)) ret.lockedPerks.push(id);
 		}
 		return ret;
-	}
+	}}.convertEntityHireInformationToUIData;
 
-	q.addStatsToUIData = @(__original) function( _entity, _target )
+	q.addStatsToUIData = @(__original) { function addStatsToUIData( _entity, _target )
 	{
 		__original(_entity, _target);
 		local properties = _entity.getCurrentProperties();
 		_target.rf_reach <- properties.getReach();
 		_target.rf_reachMax <- 15; // arbitrary
-	}
+	}}.addStatsToUIData;
 })

@@ -1,12 +1,12 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/adrenaline_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.FatigueCost = 10;	// In vanilla this is 20
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Adrenaline;
-	}
+	}}.create;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -18,5 +18,5 @@
 		});
 
 		return ret;
-	}
+	}}.getTooltip;
 });

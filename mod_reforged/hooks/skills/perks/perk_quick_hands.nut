@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_quick_hands", function(q) {
-	q.getItemActionCost = @(__original) function(_items)
+	q.getItemActionCost = @(__original) { function getItemActionCost(_items)
 	{
 		local twoHandedItemsCount = 0;
 		foreach (item in _items)
@@ -21,5 +21,5 @@
 		}
 
 		return __original(_items);
-	}
+	}}.getItemActionCost;
 });

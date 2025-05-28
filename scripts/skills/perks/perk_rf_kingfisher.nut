@@ -76,23 +76,23 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 
 			// Hook the net_effect on the target to reset our perk when the net expires or the target dies
 			netEffect.m.KingfisherPerk <- ::MSU.asWeakTableRef(this);
-			netEffect.resetKingfisher <- function()
+			netEffect.resetKingfisher <- { function resetKingfisher()
 			{
 				if (!::MSU.isNull(this.m.KingfisherPerk))
 					this.m.KingfisherPerk.setSpent(false);
-			}
+			}}.resetKingfisher;
 			local onRemoved = netEffect.onRemoved;
-			netEffect.onRemoved <- function()
+			netEffect.onRemoved <- { function onRemoved()
 			{
 				onRemoved();
 				this.resetKingfisher();
-			}
+			}}.onRemoved;
 			local onDeath = netEffect.onDeath;
-			netEffect.onDeath <- function( _fatalityType )
+			netEffect.onDeath <- { function onDeath( _fatalityType )
 			{
 				onDeath(_fatalityType);
 				this.resetKingfisher();
-			}
+			}}.onDeath;
 
 			this.m.NetEffect = ::MSU.asWeakTableRef(netEffect);
 

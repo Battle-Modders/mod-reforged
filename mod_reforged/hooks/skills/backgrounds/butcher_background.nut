@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/butcher_background", function(q) {
-	q.createPerkTreeBlueprint = @() function()
+	q.createPerkTreeBlueprint = @() { function createPerkTreeBlueprint()
 	{
 		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -14,18 +14,18 @@
 				"pgc.rf_fighting_style": []
 			}
 		});
-	}
+	}}.createPerkTreeBlueprint;
 
-	q.getPerkGroupCollectionMin = @() function( _collection )
+	q.getPerkGroupCollectionMin = @() { function getPerkGroupCollectionMin( _collection )
 	{
 		switch (_collection.getID())
 		{
 			case "pgc.rf_armor":
 				return _collection.getMin() - 1;
 		}
-	}
+	}}.getPerkGroupCollectionMin;
 
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		switch (_groupID)
 		{
@@ -39,9 +39,9 @@
 			case "pg.rf_spear":
 				return 0.8;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		ret.push({
@@ -51,9 +51,9 @@
 			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+10%") + " chance to hit with [Butcher\'s Cleaver|Item+butchers_cleaver]")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		__original(_skill, _targetEntity, _properties);
 
@@ -62,5 +62,5 @@
 		{
 			_properties.MeleeSkill += 10;
 		}
-	}
+	}}.onAnySkillUsed;
 });

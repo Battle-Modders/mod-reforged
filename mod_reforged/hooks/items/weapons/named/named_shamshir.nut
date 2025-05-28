@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_shamshir", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/shamshir";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -12,5 +12,5 @@
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/gash_skill"));
-	}
+	}}.onEquip;
 });

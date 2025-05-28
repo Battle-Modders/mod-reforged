@@ -1,14 +1,14 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/unhold_racial", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Name = "Unhold";
 		this.m.Icon = "ui/orientation/unhold_01_orientation.png";
 		this.m.IsHidden = false;
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on the enemies
-	}
+	}}.create;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.push({
@@ -46,9 +46,9 @@
 		});
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAdded = @() function()
+	q.onAdded = @() { function onAdded()
 	{
 		local actor = this.getContainer().getActor();
 		local baseProperties = actor.getBaseProperties();
@@ -60,9 +60,9 @@
 		{
 			this.m.Name = "Armored " + this.m.Name;
 		}
-	}
+	}}.onAdded;
 
-	q.onTurnStart = @(__original) function()
+	q.onTurnStart = @(__original) { function onTurnStart()
 	{
 		__original();
 		local bleed = this.getContainer().getSkillByID("effects.bleeding");
@@ -73,5 +73,5 @@
 				bleed.removeSelf();
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " had some of his bleeding wounds close");
 		}
-	}
+	}}.onTurnStart;
 });

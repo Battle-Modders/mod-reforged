@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook(::DynamicPerks.Class.PerkTree, function(q) {
 	q.m.ProjectedAttributesAvg <- null;
 
-	q.setupProjectedAttributesAvg <- function()
+	q.setupProjectedAttributesAvg <- { function setupProjectedAttributesAvg()
 	{
 		this.m.ProjectedAttributesAvg = {};
 
@@ -53,9 +53,9 @@
 
 			this.m.ProjectedAttributesAvg[attribute] <- value;
 		}
-	}
+	}}.setupProjectedAttributesAvg;
 
-	q.buildFromDynamicMap = @(__original) function()
+	q.buildFromDynamicMap = @(__original) { function buildFromDynamicMap()
 	{
 		if (!::MSU.isNull(this.getActor()))
 		{
@@ -63,16 +63,16 @@
 		}
 		__original();
 		this.m.ProjectedAttributesAvg = null;
-	}
+	}}.buildFromDynamicMap;
 
-	q.getProjectedAttributesAvg <- function()
+	q.getProjectedAttributesAvg <- { function getProjectedAttributesAvg()
 	{
 		if (this.m.ProjectedAttributesAvg == null)
 			this.setupProjectedAttributesAvg();
 		return this.m.ProjectedAttributesAvg;
-	}
+	}}.getProjectedAttributesAvg;
 
-	q.getPerkGroupMultiplierSources_All = @(__original) function()
+	q.getPerkGroupMultiplierSources_All = @(__original) { function getPerkGroupMultiplierSources_All()
 	{
 		// Only if you have many weapon perk groups then we guarantee that you roll the perk group of the weapon you come equipped with
 		if (this.getActor().getBackground().getPerkGroupCollectionMin(::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon")) <= 3)
@@ -98,5 +98,5 @@
 		}
 
 		return ret;
-	}
+	}}.getPerkGroupMultiplierSources_All;
 });

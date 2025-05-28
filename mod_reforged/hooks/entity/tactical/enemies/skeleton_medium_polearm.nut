@@ -1,6 +1,6 @@
 // Ancient Legionary
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_medium_polearm", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
@@ -24,9 +24,9 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -52,9 +52,9 @@
 		{
 			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_legionary_helmet"));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
@@ -72,5 +72,5 @@
 				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 			}
 		}
-	}
+	}}.onSpawned;
 });

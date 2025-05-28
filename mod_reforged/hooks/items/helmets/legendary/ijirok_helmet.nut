@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/helmets/legendary/ijirok_helmet", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Vision = -3;	// In Vanilla this is 0
-	}
+	}}.create;
 });

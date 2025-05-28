@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/drunkard_trait", function(q) {
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		switch (_groupID)
 		{
@@ -12,5 +12,5 @@
 			case "pg.rf_trained":
 				return 0.5;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 });

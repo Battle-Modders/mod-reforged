@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/oriental/firelance", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 5;
@@ -7,5 +7,5 @@
 		// because this is primarily a spear with a secondary one-use firearm attack
 		this.setWeaponType(::Const.Items.WeaponType.Spear);
 		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.MeleeWeapon; // Vanilla doesn't have this causing our systems to not identify this as a melee weapon
-	}
+	}}.create;
 });

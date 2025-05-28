@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/warbrand", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 6;
 		this.m.Condition = 56.0; // vanilla 64
 		this.m.ConditionMax = 56.0; // vanilla 64
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -24,5 +24,5 @@
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 10;
 		}));
-	}
+	}}.onEquip;
 });

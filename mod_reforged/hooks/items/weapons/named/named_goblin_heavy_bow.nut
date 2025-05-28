@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_goblin_heavy_bow", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/greenskins/goblin_heavy_bow";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -12,5 +12,5 @@
 		this.addSkill(::Reforged.new("scripts/skills/actives/aimed_shot", function(o) {
 			o.m.FatigueCost -= 3;
 		}));
-	}
+	}}.onEquip;
 });

@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/throw_golem_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Throw a boulder of your sand and stone at a target, splitting yourself into smaller living bits!";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
 		local entityType = ::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()) ? ::Const.EntityType.SandGolem : this.getContainer().getActor().getType();
@@ -32,5 +32,5 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 });

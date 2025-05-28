@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/noble_footman", function(q) {
 	q.m.SurcoatChance <- 100;	// Chance for this character to spawn with a cosmetic tabard of its faction
 
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -17,9 +17,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_fast_adaption"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
@@ -119,10 +119,10 @@
 			helmet.setPlainVariant();
 			this.m.Items.equip(helmet);
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	}
+	}}.onSpawned;
 });

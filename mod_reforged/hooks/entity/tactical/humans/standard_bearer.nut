@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/standard_bearer", function(q) {
 	q.m.SurcoatChance <- 100;	// Chance for this character to spawn with a cosmetic tabard of its faction
 
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -15,9 +15,9 @@
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_inspiring_presence"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rally_the_troops"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
@@ -102,5 +102,5 @@
 			helmet.setPlainVariant();
 			this.m.Items.equip(helmet);
 		}
-	}
+	}}.assignRandomEquipment;
 });

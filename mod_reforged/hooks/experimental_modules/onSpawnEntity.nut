@@ -8,18 +8,18 @@
 	// This actor MUST NOT get killed during this if this spawning is via a resurrection because
 	// tactical_entity_manager.onResurrect calls entity.riseFromGround after entity.onResurrected
 	// and riseFromGround tries to access the entity's tile.
-	q.onActorSpawned <- function( _entity )
+	q.onActorSpawned <- { function onActorSpawned( _entity )
 	{
-	}
+	}}.onActorSpawned;
 });
 
 ::Reforged.HooksMod.hook("scripts/skills/skill_container", function(q) {
-	q.onActorSpawned <- function( _entity )
+	q.onActorSpawned <- { function onActorSpawned( _entity )
 	{
 		this.callSkillsFunction("onActorSpawned", [
 			_entity
 		]);
-	}
+	}}.onActorSpawned;
 });
 
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
@@ -35,22 +35,22 @@
 
 	// This function should be used to do something with this entity after it has fully spawned
 	// e.g. add perks based on its equipment, or something else.
-	q.onSpawned <- function()
+	q.onSpawned <- { function onSpawned()
 	{
-	}
+	}}.onSpawned;
 
 	// Internal function to check if it is valid to call onSpawn
-	q.RF_canCallOnSpawn <- function()
+	q.RF_canCallOnSpawn <- { function RF_canCallOnSpawn()
 	{
 		// Faction is 0 when an actor is first actor.onPlacedOnMap and
 		// later the faction is set correctly via actor.setFaction.
 		return !this.m.RF_HasOnSpawnBeenCalled && this.m.RF_OnSpawnBlockerCount == 0 && this.isPlacedOnMap() && this.getFaction() != 0;
-	}
+	}}.RF_canCallOnSpawn;
 
 	// Internal function to handle calling of onSpawn. We expose the public onSpawned function separately
 	// so that the conditions inside this function can be handled safely by the backend as onSpawned is meant
 	// to be overwritten by child classes.
-	q.RF_onSpawn <- function()
+	q.RF_onSpawn <- { function RF_onSpawn()
 	{
 		if (!this.RF_canCallOnSpawn())
 			return;
@@ -76,7 +76,7 @@
 				actor.m.RF_OnSpawnBlockerCount--;
 			}
 		}
-	}
+	}}.RF_onSpawn;
 });
 
 ::Reforged.QueueBucket.VeryLate.push(function() {
@@ -84,43 +84,43 @@
 		// We call onSpawn from here because there is otherwise no real way to know
 		// when an entity has finished spawning with all the skills + equipment. We keep trying
 		// to call onSpawn and block it during resurrection/skills/equipment assigning manually.
-		q.onSkillsUpdated = @(__original) function()
+		q.onSkillsUpdated = @(__original) { function onSkillsUpdated()
 		{
 			__original();
 			this.RF_onSpawn();
-		}
+		}}.onSkillsUpdated;
 
 		// Prevent onSpawn from being triggered while the entity is still getting
 		// its equipment assigned or skills assigned during assignRandomEquipment.
-		q.assignRandomEquipment = @(__original) function()
+		q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 		{
 			this.m.RF_OnSpawnBlockerCount++;
 			__original();
 			this.m.RF_OnSpawnBlockerCount--;
-		}
+		}}.assignRandomEquipment;
 
-		q.makeMiniboss = @(__original) function()
+		q.makeMiniboss = @(__original) { function makeMiniboss()
 		{
 			this.m.RF_OnSpawnBlockerCount++;
 			__original();
 			this.m.RF_OnSpawnBlockerCount--;
-		}
+		}}.makeMiniboss;
 
 		// Prevent onSpawn from being triggered for the resurrecting
 		// entity before it got all its skills and picked up equipment.
-		q.onResurrected = @(__original) function( _info )
+		q.onResurrected = @(__original) { function onResurrected( _info )
 		{
 			this.m.RF_OnSpawnBlockerCount++;
 			__original(_info);
 			this.m.RF_OnSpawnBlockerCount--;
 			this.RF_onSpawn();
-		}
+		}}.onResurrected;
 
-		q.onAfterInit = @(__original) function()
+		q.onAfterInit = @(__original) { function onAfterInit()
 		{
 			__original();
 			this.m.RF_HasOnSpawnBeenCalled = false;
-		}
+		}}.onAfterInit;
 	});
 
 	// Alternative approach instead of hooking actor.onResurrected

@@ -1,12 +1,12 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_leader", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_bandit_leader_agent");
 		this.m.AIAgent.setActor(this);
-	}
+	}}.create;
 
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -39,9 +39,9 @@
 			o.m.ActionPointCost = 1;
 			o.m.Cooldown = 3;
 		}));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		// Get shield if 1h named weapon otherwise roll chance for it
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && (!this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) || ::Math.rand(1, 100) <= 50))
@@ -150,9 +150,9 @@
 			if (armorAttachment != null)
 				bodyItem.setUpgrade(::new(armorAttachment));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @() function()
+	q.makeMiniboss = @() { function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -210,9 +210,9 @@
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		return true;
-	}
+	}}.makeMiniboss;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
@@ -258,5 +258,5 @@
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 		}
-	}
+	}}.onSpawned;
 });

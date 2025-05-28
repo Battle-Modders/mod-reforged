@@ -1,6 +1,6 @@
 // Ancient Priest
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_priest", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.skeleton.onInit();
 		this.getSprite("body").setBrush("bust_skeleton_body_02");
@@ -24,5 +24,5 @@
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_inspiring_presence", function(o) {
 			o.m.IsForceEnabled = true;
 		}));
-	}
+	}}.onInit;
 });

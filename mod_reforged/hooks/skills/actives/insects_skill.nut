@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/insects_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Summon a swarm of insects to surround an enemy, reducing their ability to focus on combat!";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
@@ -23,5 +23,5 @@
 			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
 		});
 		return ret;
-	}
+	}}.getTooltip;
 });

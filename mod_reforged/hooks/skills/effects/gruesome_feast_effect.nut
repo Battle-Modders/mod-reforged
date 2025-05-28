@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/gruesome_feast_effect", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Having feasted on a corpse, this monster has grown larger and more powerful.";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 
@@ -116,5 +116,5 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 });

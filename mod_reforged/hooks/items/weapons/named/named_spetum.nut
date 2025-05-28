@@ -1,14 +1,14 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_spetum", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/spetum";
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla 2800. Increased due to attacking twice with perk in Reforged.
 		this.m.Value = 3500;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -24,5 +24,5 @@
 			o.m.Overlay = "active_124";
 			o.m.BaseAttackName = prong.getName();
 		}));
-	}
+	}}.onEquip;
 });

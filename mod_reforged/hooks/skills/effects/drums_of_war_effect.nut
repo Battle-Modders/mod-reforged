@@ -1,15 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/drums_of_war_effect", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "This character is feeling more energetic, thanks to the vigorous rhythm of his allies' war drums."
 		// In vanilla it is hidden but we reveal it because we have custom description and tooltip for it.
 		this.m.IsHidden = false;
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		ret.push({
@@ -26,5 +26,5 @@
 		});
 
 		return ret;
-	}
+	}}.getTooltip;
 });

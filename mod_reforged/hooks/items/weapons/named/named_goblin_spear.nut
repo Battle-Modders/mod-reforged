@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_goblin_spear", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/greenskins/goblin_spear";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -19,5 +19,5 @@
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 10;
 		}));
-	}
+	}}.onEquip;
 });

@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/ai/tactical/behaviors/ai_switchto_ranged", function(q) {
 	// Prevent AI from swapping to ranged weapon when close to enemy melee units
 	// because dropping your Reach is a bad idea in this case
-	q.onEvaluate = @(__original) function( _entity )
+	q.onEvaluate = @(__original) { function onEvaluate( _entity )
 	{
 		this.m.WeaponToEquip = null;
 
@@ -32,5 +32,5 @@
 		}
 
 		return __original(_entity);
-	}
+	}}.onEvaluate;
 });

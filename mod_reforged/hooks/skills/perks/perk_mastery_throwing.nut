@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_throwing", function(q) {
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_targetEntity == null || !this.isSkillValid(_skill))
 			return;
@@ -13,9 +13,9 @@
 		{
 			_properties.DamageTotalMult	*= 1.2;
 		}
-	}
+	}}.onAnySkillUsed;
 
-	q.onTargetHit = @(__original) function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	q.onTargetHit = @(__original) { function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		__original(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
 
@@ -66,14 +66,14 @@
 		{
 			_targetEntity.getSkills().add(::new("scripts/skills/effects/overwhelmed_effect"));
 		}
-	}
+	}}.onTargetHit;
 
-	q.isSkillValid <- function( _skill )
+	q.isSkillValid <- { function isSkillValid( _skill )
 	{
 		if (!_skill.isRanged() || !_skill.isAttack())
 			return false;
 
 		local weapon = _skill.getItem();
 		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Throwing);
-	}
+	}}.isSkillValid;
 });

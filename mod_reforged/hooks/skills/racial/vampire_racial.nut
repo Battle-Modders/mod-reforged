@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/vampire_racial", function(q) {
 	q.m.RF_HasFed <- false; // used in Reforged in the vampire entity to set its blood head sprites
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Name = "Vampire";
@@ -11,9 +11,9 @@
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on the enemies
 		if (this.isType(::Const.SkillType.Perk))
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
-	}
+	}}.create;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -49,9 +49,9 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAdded = @() function()
+	q.onAdded = @() { function onAdded()
 	{
 		local actor = this.getContainer().getActor();
 		actor.m.MoraleState = ::Const.MoraleState.Ignore;
@@ -60,14 +60,14 @@
 		baseProperties.IsAffectedByInjuries = false;
 		baseProperties.IsAffectedByNight = false;
 		baseProperties.IsImmuneToPoison = true;
-	}
+	}}.onAdded;
 
-	q.onTargetHit = @(__original) function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	q.onTargetHit = @(__original) { function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (_damageInflictedHitpoints > 0 && _skill != null && !_skill.isRanged())
 		{
 			this.m.RF_HasFed = true;
 		}
 		__original(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
-	}
+	}}.onTargetHit;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/slave", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -52,5 +52,5 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
-	}
+	}}.onInit;
 });

@@ -1,14 +1,14 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/charge", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Hurl yourself forward, crashing into your enemies with overwhelming force!";
-	}
+	}}.create;
 
 	// Vanilla has a getTooltip function defined for this skill but it doesn't provide all the details
 	// so we overwrite it to produce a better tooltip overall
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultUtilityTooltip();
 		ret.extend([
@@ -43,5 +43,5 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 });

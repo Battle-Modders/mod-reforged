@@ -6,8 +6,8 @@
 // 		// NOTE: Remove the hook on onInit completely if unused
 // 	}
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		this.orc_warrior.assignRandomEquipment();
-	}
+	}}.assignRandomEquipment;
 });

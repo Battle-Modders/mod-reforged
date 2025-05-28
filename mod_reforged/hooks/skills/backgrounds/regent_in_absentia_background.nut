@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/regent_in_absentia_background", function(q) {
-	q.createPerkTreeBlueprint = @() function()
+	q.createPerkTreeBlueprint = @() { function createPerkTreeBlueprint()
 	{
 		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -12,18 +12,18 @@
 				"pgc.rf_fighting_style": []
 			}
 		});
-	}
+	}}.createPerkTreeBlueprint;
 
-	q.getPerkGroupCollectionMin = @() function( _collection )
+	q.getPerkGroupCollectionMin = @() { function getPerkGroupCollectionMin( _collection )
 	{
 		switch (_collection.getID())
 		{
 			case "pgc.rf_shared_1":
 				return _collection.getMin() + 1;
 		}
-	}
+	}}.getPerkGroupCollectionMin;
 
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		if (::Reforged.Skills.getPerkGroupMultiplier_MeleeOnly(_groupID, _perkTree) == 0)
 			return 0;
@@ -40,9 +40,9 @@
 			case "pg.rf_trained":
 				return 5;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		ret.push({
@@ -52,9 +52,9 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Has the [Family Pride|Perk+perk_rf_family_pride] perk permanently for free")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAdded = @(__original) function()
+	q.onAdded = @(__original) { function onAdded()
 	{
 		if (this.m.IsNew)
 		{
@@ -64,5 +64,5 @@
 			}));
 		}
 		__original();
-	}
+	}}.onAdded;
 });

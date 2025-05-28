@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/asthmatic_trait", function(q) {
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		switch (_groupID)
 		{
@@ -7,5 +7,5 @@
 			case "pg.special.rf_man_of_steel":
 				return 0;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 });

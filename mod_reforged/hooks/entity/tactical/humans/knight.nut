@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/knight", function(q) {
 	q.m.SurcoatChance <- 100;	// Chance for this character to spawn with a cosmetic tabard of its faction
 
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -22,9 +22,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
@@ -92,18 +92,18 @@
 
 			this.m.Items.equip(helmet);
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		}
-	}
+	}}.onSpawned;
 
-	q.makeMiniboss = @() function()
+	q.makeMiniboss = @() { function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -155,5 +155,5 @@
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		return true;
-	}
+	}}.makeMiniboss;
 });

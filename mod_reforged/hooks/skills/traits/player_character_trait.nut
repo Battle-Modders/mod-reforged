@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/player_character_trait", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 
@@ -11,12 +11,12 @@
 			"trait.disloyal"
 		]);
 		this.m.Excluded = ::MSU.Array.uniques(this.m.Excluded);
-	}
+	}}.create;
 
 	// Often this trait is added AFTER `player.setStartValuesEx` which adds traits to a bro.
 	// So we cause it, upon addition, to look at existing traits and remove the ones which
 	// are incompatible with it. Then add new traits equal to the number of removed traits.
-	q.onAdded = @(__original) function()
+	q.onAdded = @(__original) { function onAdded()
 	{
 		if (this.m.IsNew)
 		{
@@ -41,5 +41,5 @@
 		}
 
 		__original();
-	}
+	}}.onAdded;
 });

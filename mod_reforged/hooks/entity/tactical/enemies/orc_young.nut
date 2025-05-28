@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/orc_young", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -60,9 +60,9 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;
 		this.m.Skills.add(::new("scripts/skills/racial/rf_orc_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		local r;
 		local weapon;
@@ -166,10 +166,10 @@
 		{
 			this.m.Items.equip(::new("scripts/items/helmets/greenskins/orc_young_heavy_helmet"));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
-	}
+	}}.onSpawned;
 });

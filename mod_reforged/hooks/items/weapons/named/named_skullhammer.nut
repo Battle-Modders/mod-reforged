@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_skullhammer", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/barbarians/skull_hammer";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -21,5 +21,5 @@
 			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 5;
 		}));
-	}
+	}}.onEquip;
 });

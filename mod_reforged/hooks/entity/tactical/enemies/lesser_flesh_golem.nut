@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/lesser_flesh_golem", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -37,9 +37,9 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
-	}
+	}}.onInit;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
@@ -71,5 +71,5 @@
 					break;
 			}
 		}
-	}
+	}}.onSpawned;
 });

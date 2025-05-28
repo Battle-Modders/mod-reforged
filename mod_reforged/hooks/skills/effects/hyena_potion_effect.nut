@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/hyena_potion_effect", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		foreach (entry in ret)
@@ -11,11 +11,11 @@
 			}
 		}
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onUpdate = @(__original) function( _properties )
+	q.onUpdate = @(__original) { function onUpdate( _properties )
 	{
 		__original(_properties);
 		_properties.RF_BleedingEffectMult *= 0.5;
-	}
+	}}.onUpdate;
 });

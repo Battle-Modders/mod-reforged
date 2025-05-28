@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/fencing_sword", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 4;
@@ -8,9 +8,9 @@
 		this.m.DirectDamageAdd = 0.2;
 		this.m.ArmorDamageMult = 0.3;
 		this.m.ChanceToHitHead = -25;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -19,5 +19,5 @@
 		this.addSkill(::new("scripts/skills/actives/lunge_skill"));
 
 		this.addSkill(::new("scripts/skills/actives/riposte"));
-	}
+	}}.onEquip;
 });

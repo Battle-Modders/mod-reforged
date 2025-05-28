@@ -1,24 +1,24 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/schrat_racial", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Name = "Schrat";
 		this.m.Icon = "ui/orientation/schrat_01_orientation.png";
 		this.m.IsHidden = false;
-	}
+	}}.create;
 
-	q.isHidden = @(__original) function()	// In Vanilla this skill is only shown while the Schrat has a shield
+	q.isHidden = @(__original) { function isHidden()	// In Vanilla this skill is only shown while the Schrat has a shield
 	{
 		return this.skill.isHidden();
-	}
+	}}.isHidden;
 
-	q.getName = @() function()
+	q.getName = @() { function getName()
 	{
 		if (this.getContainer().getActor().isArmedWithShield()) return (this.skill.getName() + " (Shielded)");
 		return this.skill.getName();
-	}
+	}}.getName;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -99,9 +99,9 @@
 			})
 		}
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAdded = @() function()
+	q.onAdded = @() { function onAdded()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 
@@ -116,9 +116,9 @@
 
 		// This is purely a setting for AI decisions:
 		baseProperties.IsIgnoringArmorOnAttack = true;
-	}
+	}}.onAdded;
 
-	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
+	q.onBeforeDamageReceived = @() { function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)
 		{
@@ -151,7 +151,7 @@
 				}
 				break;
 		}
-	}
+	}}.onBeforeDamageReceived;
 
 	// We exported everything this function does into its own effect (rf_sapling_harvest).
 	// By overwriting this method we also nullify all other mods hooking into this before us but there is clean solution to this

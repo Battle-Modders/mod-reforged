@@ -5,19 +5,19 @@
 	q.m.MeleeDamageMult_Dagger <- 1.25;
 	q.m.IsFreeSwapSpent <- true;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Description = "With the second hand free, this character can adopt a more versatile fighting style or get a firm double grip on his weapon to inflict additional damage."
 		// Set the order to be as early as possible so that it runs before all perks and items
 		// (primarily because of the fact that it applies Dazed in onTargetHit and other skills may check for the presence of dazed effect)
 		this.m.Order = ::Const.SkillOrder.First;
-	}
+	}}.create;
 
 	// Make swapping to bagged non-hybrid dagger a free action.
 	// This has nothing to do with double grip bonus but is implemented in double_grip just for convenience
 	// because double_grip is present on all relevant characters.
-	q.getItemActionCost = @() function( _items )
+	q.getItemActionCost = @() { function getItemActionCost( _items )
 	{
 		if (this.m.IsFreeSwapSpent)
 			return;
@@ -29,22 +29,22 @@
 				return 0;
 			}
 		}
-	}
+	}}.getItemActionCost;
 
-	q.onPayForItemAction = @(__original) function( _skill, _items )
+	q.onPayForItemAction = @(__original) { function onPayForItemAction( _skill, _items )
 	{
 		__original(_skill, _items);
 		this.m.IsFreeSwapSpent = true;
-	}
+	}}.onPayForItemAction;
 
-	q.onTurnStart = @(__original) function()
+	q.onTurnStart = @(__original) { function onTurnStart()
 	{
 		__original();
 		this.m.IsFreeSwapSpent = false;
-	}
+	}}.onTurnStart;
 
 	// Overwrite vanilla function to allow double-gripping with southern swords with offhand item with the perk_rf_en_garde perk
-	q.canDoubleGrip = @() function()
+	q.canDoubleGrip = @() { function canDoubleGrip()
 	{
 		local actor = this.getContainer().getActor();
 		if (actor.isDisarmed())
@@ -59,9 +59,9 @@
 			return true;
 
 		return offhand.getStaminaModifier() > -10 && weapon.isItemType(::Const.Items.ItemType.RF_Southern) && weapon.isWeaponType(::Const.Items.WeaponType.Sword) && this.getContainer().hasSkill("perk.rf_en_garde");
-	}
+	}}.canDoubleGrip;
 
-	q.applyBonusOnUpdate <- function( _properties )
+	q.applyBonusOnUpdate <- { function applyBonusOnUpdate( _properties )
 	{
 		switch (this.m.CurrWeaponType)
 		{
@@ -113,9 +113,9 @@
 				_properties.DamageDirectAdd += 0.25;
 				break;
 		}
-	}
+	}}.applyBonusOnUpdate;
 
-	q.getBonusTooltip <- function()
+	q.getBonusTooltip <- { function getBonusTooltip()
 	{
 		local ret = [];
 		switch (this.m.CurrWeaponType)
@@ -290,9 +290,9 @@
 		}
 
 		return ret;
-	}
+	}}.getBonusTooltip;
 
-	q.getName = @() function()
+	q.getName = @() { function getName()
 	{
 		switch (this.m.CurrWeaponType)
 		{
@@ -308,16 +308,16 @@
 			default:
 				return format("%s (%s)", this.m.Name, ::Const.Items.getWeaponTypeName(this.m.CurrWeaponType));
 		}
-	}
+	}}.getName;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend(this.getBonusTooltip());
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onUpdate = @() function( _properties )
+	q.onUpdate = @() { function onUpdate( _properties )
 	{
 		this.m.CurrWeaponType = null;
 
@@ -349,9 +349,9 @@
 		else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver)) this.m.CurrWeaponType = ::Const.Items.WeaponType.Cleaver; // Check cleaver after Sword so fencing and southern are assigned properly
 
 		this.applyBonusOnUpdate(_properties);
-	}
+	}}.onUpdate;
 
-	q.onAfterUpdate = @(__original) function( _properties )
+	q.onAfterUpdate = @(__original) { function onAfterUpdate( _properties )
 	{
 		__original(_properties);
 
@@ -369,9 +369,9 @@
 				skill.m.FatigueCostMult *= 0.66;
 			}
 		}
-	}
+	}}.onAfterUpdate;
 
-	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		__original(_skill, _targetEntity, _properties);
 
@@ -379,9 +379,9 @@
 		{
 			_properties.MeleeDamageMult /= this.m.MeleeDamageMult_Dagger;
 		}
-	}
+	}}.onAnySkillUsed;
 
-	q.onBeingAttacked = @(__original) function( _attacker, _skill, _properties )
+	q.onBeingAttacked = @(__original) { function onBeingAttacked( _attacker, _skill, _properties )
 	{
 		__original(_attacker, _skill, _properties);
 
@@ -399,9 +399,9 @@
 				}
 			}
 		}
-	}
+	}}.onBeingAttacked;
 
-	q.onTargetHit = @(__original) function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	q.onTargetHit = @(__original) { function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		__original(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
 
@@ -414,9 +414,9 @@
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
 			}
 		}
-	}
+	}}.onTargetHit;
 
-	q.onGetHitFactorsAsTarget = @(__original) function( _skill, _targetTile, _tooltip )
+	q.onGetHitFactorsAsTarget = @(__original) { function onGetHitFactorsAsTarget( _skill, _targetTile, _tooltip )
 	{
 		__original(_skill, _targetTile, _tooltip);
 
@@ -436,5 +436,5 @@
 				}
 			}
 		}
-	}
+	}}.onGetHitFactorsAsTarget;
 });

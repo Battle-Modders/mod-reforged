@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/ghost_racial", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Name = "Ghost";
@@ -7,9 +7,9 @@
 		this.m.IsHidden = false;
 		if (this.isType(::Const.SkillType.Perk))
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
-	}
+	}}.create;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -82,9 +82,9 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAdded = @() function()
+	q.onAdded = @() { function onAdded()
 	{
 		local actor = this.getContainer().getActor();
 		actor.m.MoraleState = ::Const.MoraleState.Ignore;
@@ -102,5 +102,5 @@
 
 		// This is purely a setting for AI decisions:
 		baseProperties.IsIgnoringArmorOnAttack = true;
-	}
+	}}.onAdded;
 });

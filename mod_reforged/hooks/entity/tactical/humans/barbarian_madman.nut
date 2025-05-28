@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/barbarian_madman", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local tattoos = [
@@ -58,10 +58,10 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_feral_rage"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-	}
+	}}.onInit;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	}
+	}}.onSpawned;
 });

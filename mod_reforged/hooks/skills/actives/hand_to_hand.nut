@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/hand_to_hand", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -13,9 +13,9 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		local old_MeleeSkill = _properties.MeleeSkill;
 
@@ -25,5 +25,5 @@
 		{
 			_properties.MeleeSkill = old_MeleeSkill; // This reverts the vanilla -10 Modifier
 		}
-	}
+	}}.onAnySkillUsed;
 });

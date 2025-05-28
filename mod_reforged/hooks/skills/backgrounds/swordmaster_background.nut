@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/swordmaster_background", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Excluded.extend([
@@ -11,9 +11,9 @@
 
 		this.m.HiringCost = 2400; // vanilla 400
 		this.m.DailyCost = 45; // vanilla 35
-	}
+	}}.create;
 
-	q.createPerkTreeBlueprint = @() function()
+	q.createPerkTreeBlueprint = @() { function createPerkTreeBlueprint()
 	{
 		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -36,9 +36,9 @@
 				]
 			}
 		});
-	}
+	}}.createPerkTreeBlueprint;
 
-	q.getPerkGroupCollectionMin = @() function( _collection )
+	q.getPerkGroupCollectionMin = @() { function getPerkGroupCollectionMin( _collection )
 	{
 		switch (_collection.getID())
 		{
@@ -48,9 +48,9 @@
 			case "pgc.rf_fighting_style":
 				return _collection.getMin() + 1;
 		}
-	}
+	}}.getPerkGroupCollectionMin;
 
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		switch (_groupID)
 		{
@@ -69,9 +69,9 @@
 			case "pg.rf_tactician":
 				return 2;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		ret.push({
@@ -81,9 +81,9 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Has the [Sword Mastery|Perk+perk_mastery_sword] perk permanently for free")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAdded = @(__original) function()
+	q.onAdded = @(__original) { function onAdded()
 	{
 		if (this.m.IsNew)
 		{
@@ -92,14 +92,14 @@
 			}));
 		}
 		return __original();
-	}
+	}}.onAdded;
 
-	q.onBuildPerkTree = @() function()
+	q.onBuildPerkTree = @() { function onBuildPerkTree()
 	{
 		local perkTree = this.getContainer().getActor().getPerkTree();
 		if (perkTree.hasPerk("perk.rf_professional"))
 		{
 			perkTree.removePerk("perk.rf_professional");
 		}
-	}
+	}}.onBuildPerkTree;
 });

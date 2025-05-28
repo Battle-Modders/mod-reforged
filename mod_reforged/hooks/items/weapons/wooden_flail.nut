@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/wooden_flail", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.RegularDamage += 5;
 		this.m.RegularDamageMax += 5;
 		this.m.Reach = 2;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -24,5 +24,5 @@
 			o.m.IconDisabled = "skills/active_94_sw.png";
 			o.m.Overlay = "active_94";
 		}));
-	}
+	}}.onEquip;
 });

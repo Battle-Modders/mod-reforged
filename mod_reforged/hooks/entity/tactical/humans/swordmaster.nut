@@ -9,7 +9,7 @@
 	q.m.MyArmorVariant <- 0; // 0 = Light Armor, 1 = Medium Armor
 	q.m.MyVariant <- 0;
 
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -48,9 +48,9 @@
 				this.m.MyArmorVariant = ::Math.rand(0, 1); // 0 = Light Armor, 1 = Medium Armor
 				break;
 		}
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
@@ -152,9 +152,9 @@
 			}
 				this.m.Items.equip(::new(weapon));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @() function()
+	q.makeMiniboss = @() { function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -257,9 +257,9 @@
 			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 		return true;
-	}
+	}}.makeMiniboss;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		if (this.m.MyArmorVariant == 0) // light armor
 		{
@@ -335,9 +335,9 @@
 
 			}
 		}
-	}
+	}}.onSpawned;
 
-	q.onSkillsUpdated = @(__original) function()
+	q.onSkillsUpdated = @(__original) { function onSkillsUpdated()
 	{
 		__original();
 		if (this.m.MyVariant == this.m.SwordmasterVariants.BladeDancer)
@@ -352,5 +352,5 @@
 				}
 			}
 		}
-	}
+	}}.onSkillsUpdated;
 });

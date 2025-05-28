@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/schrat", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local clouds = ::Tactical.getWeather().createCloudSettings();
@@ -68,9 +68,9 @@
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_dent_armor", function(o) {
 			o.m.RequiredDamageType = null;
 		}));
-	}
+	}}.onInit;
 
-	q.getLootForTile = @(__original) function( _killer, _loot )
+	q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
 	{
 		local ret = __original(_killer, _loot);
 
@@ -105,5 +105,5 @@
 		}
 
 		return ret;
-	}
+	}}.getLootForTile;
 });

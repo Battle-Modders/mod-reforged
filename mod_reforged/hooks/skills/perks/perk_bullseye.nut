@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_bullseye", function(q) {
-	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		__original(_skill, _targetEntity, _properties);
 
@@ -11,9 +11,9 @@
 		{
 			_properties.DamageDirectAdd += this.getDirectDamageModifier(_skill);
 		}
-	}
+	}}.onAnySkillUsed;
 
-	q.onGetHitFactors = @(__original) function( _skill, _targetTile, _tooltip )
+	q.onGetHitFactors = @(__original) { function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
 		__original(_skill, _targetTile, _tooltip);
 
@@ -28,11 +28,11 @@
 				text = this.getName()
 			});
 		}
-	}
+	}}.onGetHitFactors;
 
-	q.getDirectDamageModifier <- function( _skill )
+	q.getDirectDamageModifier <- { function getDirectDamageModifier( _skill )
 	{
 		local weapon = _skill.getItem();
 		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Bow) ? 0.1 : 0.2;
-	}
+	}}.getDirectDamageModifier;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/shields/oriental/metal_round_shield", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Name = "Sipar"; // Remove "Shield" from the name.
@@ -9,5 +9,5 @@
 		this.m.RangedDefense = 10; // vanilla 18
 		this.m.StaminaModifier = -22; // vanilla -18
 		this.m.ReachIgnore = 3;
-	}
+	}}.create;
 });

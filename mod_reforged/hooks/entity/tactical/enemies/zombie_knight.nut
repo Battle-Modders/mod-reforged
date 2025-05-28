@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/zombie_knight", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.zombie.onInit();
 		local b = this.m.BaseProperties;
@@ -26,18 +26,18 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 		local weapon = this.getMainhandItem();
 		if (weapon == null) return;
 
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	}
+	}}.assignRandomEquipment;
 
-	q.onSkillsUpdated = @(__original) function()
+	q.onSkillsUpdated = @(__original) { function onSkillsUpdated()
 	{
 		__original();
 		local weapon = this.getMainhandItem();
@@ -47,5 +47,5 @@
 		{
 			this.m.Skills.removeByID("actives.rf_passing_step_skill");
 		}
-	}
+	}}.onSkillsUpdated;
 });

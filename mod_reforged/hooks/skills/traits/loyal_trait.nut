@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/loyal_trait", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		ret.push({
@@ -9,5 +9,5 @@
 			text = ::MSU.Text.colorPositive("50%") + " less chance to desert on low mood"
 		});
 		return ret;
-	}
+	}}.getTooltip;
 });

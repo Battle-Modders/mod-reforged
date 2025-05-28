@@ -1,12 +1,12 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/lone_wolf_effect", function(q) {
 	q.m.BonusMult <- 1.15; // Is applied to various attributes when in a valid position
 
-	q.isHidden = @() function()
+	q.isHidden = @() { function isHidden()
 	{
 		return !this.isInValidPosition();
-	}
+	}}.isHidden;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -42,9 +42,9 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onUpdate = @() function( _properties )
+	q.onUpdate = @() { function onUpdate( _properties )
 	{
 		if (this.isInValidPosition())
 		{
@@ -54,10 +54,10 @@
 			_properties.RangedDefenseMult *= this.m.BonusMult;
 			_properties.BraveryMult *= this.m.BonusMult;
 		}
-	}
+	}}.onUpdate;
 
 // New functions
-	q.isInValidPosition <- function()
+	q.isInValidPosition <- { function isInValidPosition()
 	{
 		local actor = this.getContainer().getActor();
 		if (!actor.isPlacedOnMap())
@@ -86,5 +86,5 @@
 		}
 
 		return numAlliesWithinTwoTiles <= 1;
-	}
+	}}.isInValidPosition;
 });

@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/greenskins/goblin_crossbow", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 0;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -17,5 +17,5 @@
 			local reload = ::Reforged.new("scripts/skills/actives/reload_bolt");
 			this.addSkill(reload);
 		}
-	}
+	}}.onEquip;
 });

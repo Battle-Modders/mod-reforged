@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/barbarian_beastmaster", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local tattoos = [
@@ -49,5 +49,5 @@
 		// Reforged
 		b.RangedDefense += 15;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-	}
+	}}.onInit;
 });

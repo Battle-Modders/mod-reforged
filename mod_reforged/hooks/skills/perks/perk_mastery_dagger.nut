@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_mastery_dagger", function(q) {
-	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		__original(_skill, _targetEntity, _properties);
 
@@ -11,5 +11,5 @@
 		{
 			_properties.OffensiveReachIgnore += 999; // Basically ignore all reach disadvantage when attacking
 		}
-	}
+	}}.onAnySkillUsed;
 });

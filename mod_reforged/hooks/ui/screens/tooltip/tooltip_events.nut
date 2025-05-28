@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/ui/screens/tooltip/tooltip_events", function(q) {
-	q.general_queryUIElementTooltipData = @(__original) function( _entityId, _elementId, _elementOwner )
+	q.general_queryUIElementTooltipData = @(__original) { function general_queryUIElementTooltipData( _entityId, _elementId, _elementOwner )
 	{
 		// Overwrites
 		switch (_elementId)
@@ -42,10 +42,10 @@
 		}
 
 		return ret;
-	}
+	}}.general_queryUIElementTooltipData;
 
 // New Functions
-	q.getBaseAttributesTooltip <- function( _entityId, _elementId, _elementOwner )
+	q.getBaseAttributesTooltip <- { function getBaseAttributesTooltip( _entityId, _elementId, _elementOwner )
 	{
 		local entity = _entityId == null ? null : ::Tactical.getEntityByID(_entityId);
 		if (entity == null || entity == ::MSU.getDummyPlayer())
@@ -228,5 +228,5 @@
 		}
 
 		return [];
-	}
+	}}.getBaseAttributesTooltip;
 });

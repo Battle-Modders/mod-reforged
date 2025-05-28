@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_leader", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.goblin.onInit();
 		local b = this.m.BaseProperties;
@@ -20,11 +20,11 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-	}
+	}}.onInit;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		::Reforged.Skills.addPerkGroup(this, "pg.rf_sword");
-	}
+	}}.onSpawned;
 });

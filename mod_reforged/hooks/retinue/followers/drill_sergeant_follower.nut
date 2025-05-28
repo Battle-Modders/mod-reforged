@@ -7,7 +7,7 @@
 	}
 
 	// Overwrite the vanilla function because it tries to access this.m.Requirements[0] but we already cleared that array so it throws an exception
-	q.onEvaluate = @() function()
+	q.onEvaluate = @() { function onEvaluate()
 	{
-	}
+	}}.onEvaluate;
 });

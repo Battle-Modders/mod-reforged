@@ -6,15 +6,15 @@
 	q.m.Weapon1 = "scripts/items/weapons/bludgeon";
 	q.m.Weapon2 = "scripts/items/weapons/reinforced_wooden_flail";
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// VanillaFix: Vanilla did not assign icons for these, but we need to display something for the tooltips, so we add the icon of one of those weapons
 		this.m.IconLarge = "weapons/melee/flail_03.png";
 		this.m.Icon = "weapons/melee/flail_03_70x70.png";
-	}
+	}}.create;
 
-	q.RF_getWeaponForSkill = @() function( _skill )
+	q.RF_getWeaponForSkill = @() { function RF_getWeaponForSkill( _skill )
 	{
 		switch (_skill.ClassName)
 		{
@@ -25,5 +25,5 @@
 			case "golem_lash_skill":
 				return this.m.Weapon2;
 		}
-	}
+	}}.RF_getWeaponForSkill;
 });

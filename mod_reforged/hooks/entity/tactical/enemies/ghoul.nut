@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/ghoul", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -40,9 +40,9 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall + 1;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_deep_cuts"));
-	}
+	}}.onInit;
 
-	q.grow = @(__original) function( _instant = false )
+	q.grow = @(__original) { function grow( _instant = false )
 	{
 		local sizeBefore = this.m.Size;
 
@@ -65,9 +65,9 @@
 					break;
 			}
 		}
-	}
+	}}.grow;
 
-	q.getLootForTile = @(__original) function( _killer, _loot )
+	q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
 	{
 		local ret = __original(_killer, _loot);
 
@@ -103,5 +103,5 @@
 		}
 
 		return ret;
-	}
+	}}.getLootForTile;
 });

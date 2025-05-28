@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/uproot_zoc_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.SoundOnHitHitpoints = [
@@ -10,10 +10,10 @@
 		];
 		// Vanilla is missing a description for this skill
 		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Raise large thorny roots from the ground to attack someone trying to move [away|Concept.ZoneOfControl] from you!");
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
 		ret.extend([
@@ -31,9 +31,9 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onTargetHit = @() function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	q.onTargetHit = @() { function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (_skill == this && _targetEntity.isAlive() && _targetEntity.getType() != ::Const.EntityType.Schrat && _targetEntity.getType() != ::Const.EntityType.SchratSmall)
 		{
@@ -50,9 +50,9 @@
 
 			_targetEntity.raiseRootsFromGround("bust_roots", "bust_roots_back");
 		}
-	}
+	}}.onTargetHit;
 
-	q.onQueryTooltip = @(__original) function( _skill, _tooltip )
+	q.onQueryTooltip = @(__original) { function onQueryTooltip( _skill, _tooltip )
 	{
 		// The ZOC skill is not shown in the actor's tactical tooltip in Reforged. So we add the "rooting" behavior to the tooltip of the active uproot skill.
 		if (_skill.getID() == "actives.uproot")
@@ -64,5 +64,5 @@
 				text = ::Reforged.Mod.Tooltips.parseString("Will [root|Skill+rooted_effect] the target upon a successful [attack of opportunity|Concept.ZoneOfControl]")
 			});
 		}
-	}
+	}}.onQueryTooltip;
 });

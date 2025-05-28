@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_crossbow", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/heavy_crossbow";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -15,5 +15,5 @@
 			});
 			this.addSkill(reload);
 		}
-	}
+	}}.onEquip;
 });

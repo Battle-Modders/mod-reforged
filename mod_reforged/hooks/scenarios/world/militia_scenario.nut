@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/scenarios/world/militia_scenario", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		local additionalDesc = "\n[color=#bcad8c]Militia:[/color] All recruits have access to the Militia perk group.";
@@ -11,9 +11,9 @@
 		{
 			this.m.Description += additionalDesc;
 		}
-	}
+	}}.create;
 
-	q.onBuildPerkTree = @(__original) function( _perkTree )
+	q.onBuildPerkTree = @(__original) { function onBuildPerkTree( _perkTree )
 	{
 		__original(_perkTree);
 
@@ -34,5 +34,5 @@
 				_perkTree.addPerk(perkID, i + 1);
 			}
 		}
-	}
+	}}.onBuildPerkTree;
 });

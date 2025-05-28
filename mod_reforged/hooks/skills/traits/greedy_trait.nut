@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/greedy_trait", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		ret.push({
@@ -9,9 +9,9 @@
 			text = ::MSU.Text.colorNegative("15%") + " more daily wage"
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		switch (_groupID)
 		{
@@ -21,5 +21,5 @@
 			case "pg.rf_vicious":
 				return 2;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 });

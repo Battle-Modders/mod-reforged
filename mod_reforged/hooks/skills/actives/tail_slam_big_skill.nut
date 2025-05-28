@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/tail_slam_big_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla has the name Tail Slam for this skill which is the same as the name for tail_slam_skill
@@ -7,10 +7,10 @@
 		this.m.Name = "Tail Thresh";
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Swing your tail in a reckless round swing, threshing all the targets around you, friend and foe alike!";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
 		ret.extend([
@@ -22,5 +22,5 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/barbarians/rusty_warblade", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 5;
@@ -7,9 +7,9 @@
 		this.m.RegularDamage = 90;
 		this.m.RegularDamageMax = 110;
 		this.m.ShieldDamage = 24;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -29,5 +29,5 @@
 			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 5;
 		}));
-	}
+	}}.onEquip;
 });

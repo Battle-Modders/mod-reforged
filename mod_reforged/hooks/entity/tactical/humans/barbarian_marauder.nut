@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/barbarian_marauder", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local tattoos = [
@@ -60,9 +60,9 @@
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 
@@ -76,5 +76,5 @@
 				break;
 			}
 		}
-	}
+	}}.assignRandomEquipment;
 });

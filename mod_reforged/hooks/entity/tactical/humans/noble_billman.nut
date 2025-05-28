@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/noble_billman", function(q) {
 	q.m.SurcoatChance <- 100;	// Chance for this character to spawn with a cosmetic tabard of its faction
 
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -14,9 +14,9 @@
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
@@ -107,14 +107,14 @@
 			helmet.setPlainVariant();
 			this.m.Items.equip(helmet);
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
 			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
 		}
-	}
+	}}.onSpawned;
 });

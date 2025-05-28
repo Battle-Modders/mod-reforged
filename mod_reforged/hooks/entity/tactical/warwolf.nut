@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/warwolf", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -51,5 +51,5 @@
 		b.DamageTotalMult *= 1.15;
 
 		this.getSkills().update()
-	}
+	}}.onInit;
 });

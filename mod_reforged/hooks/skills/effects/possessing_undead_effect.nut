@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/possessing_undead_effect", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "This character has mysteriously taken direct control of a wiederganger.";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultTooltip();
 
@@ -29,5 +29,5 @@
 		});
 
 		return ret;
-	}
+	}}.getTooltip;
 });

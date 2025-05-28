@@ -3,7 +3,7 @@
 	q.m.AdditionalHitChance <- -15;
 	q.m.FatigueDamage <- 40;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultTooltip();
 
@@ -41,10 +41,10 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
 	// Same as vanilla except we use the custom AdditionalAccuracy and AdditionalHitChance instead of hard-coded ones
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
@@ -69,9 +69,9 @@
 				this.m.IsUsingHitchance = true;
 			}
 		}
-	}
+	}}.onAnySkillUsed;
 
-	q.onApplyShieldDamage = @(__original) function( _tag )
+	q.onApplyShieldDamage = @(__original) { function onApplyShieldDamage( _tag )
 	{
 		if (this.m.FatigueDamage != 0)
 		{
@@ -83,5 +83,5 @@
 		}
 
 		return __original(_tag);
-	}
+	}}.onApplyShieldDamage;
 });

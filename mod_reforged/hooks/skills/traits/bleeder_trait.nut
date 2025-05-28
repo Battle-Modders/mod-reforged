@@ -1,26 +1,26 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/bleeder_trait", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Description = "This character is prone to bleeding and will do so more than most others."; // "more than" as opposed to vanilla "longer than"
-	}
+	}}.create;
 
-	q.onUpdate = @(__original) function( _properties )
+	q.onUpdate = @(__original) { function onUpdate( _properties )
 	{
 		__original(_properties);
 		_properties.RF_BleedingEffectMult *= 2.0;
-	}
+	}}.onUpdate;
 
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		switch (_groupID)
 		{
 			case "pg.rf_vigorous":
 				return 0;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		foreach (entry in ret)
@@ -32,5 +32,5 @@
 			}
 		}
 		return ret;
-	}
+	}}.getTooltip;
 });

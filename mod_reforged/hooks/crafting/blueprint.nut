@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/crafting/blueprint", function(q) {
 // New Functions
 	// Return true, if the player has at least one ingredient needed for this blueprint
-	q.isPartlyCraftable <- function()
+	q.isPartlyCraftable <- { function isPartlyCraftable()
 	{
 		foreach (item in ::World.Assets.getStash().getItems())
 		{
@@ -17,5 +17,5 @@
 		}
 
 		return false;
-	}
+	}}.isPartlyCraftable;
 });

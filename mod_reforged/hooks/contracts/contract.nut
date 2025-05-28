@@ -1,14 +1,14 @@
 ::Reforged.HooksMod.hook("scripts/contracts/contract", function(q)
 {
 	// This is a close copy of how vanilla calculates their distance duration in getDaysRequiredToTravel
-	q.getSecondsRequiredToTravel <- function( _numTiles, _speed, _onRoadOnly = false )
+	q.getSecondsRequiredToTravel <- { function getSecondsRequiredToTravel( _numTiles, _speed, _onRoadOnly = false )
 	{
 		_speed *= ::Const.World.MovementSettings.GlobalMult;
 		if (_onRoadOnly) _speed *= ::Const.World.MovementSettings.RoadMult;
 		return _numTiles * 170.0 / _speed;
-	}
+	}}.getSecondsRequiredToTravel;
 
-	q.getUICharacterImage = @(__original) function( _index = 0 )
+	q.getUICharacterImage = @(__original) { function getUICharacterImage( _index = 0 )
 	{
 		if ((!("Characters" in this.m.ActiveScreen) || !this.m.ActiveScreen.Characters.len()) &&
 			(!("Banner" in this.m.ActiveScreen) || _index == 0) &&
@@ -32,5 +32,5 @@
 		{
 			return __original(_index);
 		}
-	}
+	}}.getUICharacterImage;
 });

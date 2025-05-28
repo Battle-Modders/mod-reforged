@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/oathbringer", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -35,9 +35,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -126,9 +126,9 @@
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @(__original) function()
+	q.makeMiniboss = @(__original) { function makeMiniboss()
 	{
 		local ret = __original();
 		if (ret)
@@ -140,5 +140,5 @@
 		}
 
 		return ret;
-	}
+	}}.makeMiniboss;
 });

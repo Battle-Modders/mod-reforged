@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/contracts/contracts/return_item_contract", function(q) {
-	q.createStates = @(__original) function()
+	q.createStates = @(__original) { function createStates()
 	{
 		__original();
 		foreach (state in this.m.States)
@@ -13,9 +13,9 @@
 			}
 			break;
 		}
-	}
+	}}.createStates;
 
-	q.createScreens = @(__original) function()
+	q.createScreens = @(__original) { function createScreens()
 	{
 		__original();
 		foreach (screen in this.m.Screens)
@@ -29,9 +29,9 @@
 			}
 			break;
 		}
-	}
+	}}.createScreens;
 
-	q.onPrepareVariables = @(__original) function( _vars )
+	q.onPrepareVariables = @(__original) { function onPrepareVariables( _vars )
 	{
 		__original(_vars);
 		foreach (var in _vars)
@@ -40,5 +40,5 @@
 			var[1] = "[b]" + var[1] + "[/b]";	 // Bribe is bold now so its easier to spot and compare
 			break;
 		}
-	}
+	}}.onPrepareVariables;
 });

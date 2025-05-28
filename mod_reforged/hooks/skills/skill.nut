@@ -1,14 +1,14 @@
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
-	q.onSkillsUpdated <- function()
+	q.onSkillsUpdated <- { function onSkillsUpdated()
 	{
-	}
+	}}.onSkillsUpdated;
 
-	q.isDuelistValid <- function()
+	q.isDuelistValid <- { function isDuelistValid()
 	{
 		return this.isAttack() && !this.isRanged() && !this.isAOE() && this.getBaseValue("MaxRange") == 1;
-	}
+	}}.isDuelistValid;
 
-	q.getHitFactors = @(__original) function( _targetTile )
+	q.getHitFactors = @(__original) { function getHitFactors( _targetTile )
 	{
 		local ret = __original(_targetTile);
 		for (local index = (ret.len() - 1); index >= 0; index--)	// We traverse it in reverse because we want to remove entries during the loop
@@ -82,18 +82,18 @@
 		}
 
 		return ret;
-	}
+	}}.getHitFactors;
 
-	q.isTargeted = @() function()
+	q.isTargeted = @() { function isTargeted()
 	{
 		return this.m.IsTargeted ? true : ::Reforged.Mod.Keybinds.isKeybindPressed("PreviewNonTargetedSkill");
-	}
+	}}.isTargeted;
 });
 
 ::Reforged.HooksMod.hookTree("scripts/skills/skill", function(q) {
 	if (q.contains("create"))
 	{
-		q.create = @(__original) function()
+		q.create = @(__original) { function create()
 		{
 			__original();
 
@@ -104,10 +104,10 @@
 			{
 				this.m.IconDisabled = ::String.replace(this.m.Icon, ".png", "_sw.png");
 			}
-		}
+		}}.create;
 	}
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -122,10 +122,10 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onVerifyTarget = @(__original) function( _userTile, _targetTile )
+	q.onVerifyTarget = @(__original) { function onVerifyTarget( _userTile, _targetTile )
 	{
 		return this.m.IsTargeted ? __original(_userTile, _targetTile) : _userTile.isSameTileAs(_targetTile);
-	}
+	}}.onVerifyTarget;
 });

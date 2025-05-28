@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/warfork", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 6;
 		 // Vanilla 400. Increased due to attacking twice with perk in Reforged.
 		this.m.Value = 600;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -27,5 +27,5 @@
 			o.m.Overlay = "active_173";
 			o.m.BaseAttackName = prong.getName();
 		}));
-	}
+	}}.onEquip;
 });

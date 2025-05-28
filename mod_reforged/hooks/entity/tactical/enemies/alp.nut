@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/alp", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -38,5 +38,5 @@
 		//Reforged
 		this.m.BaseProperties.IsAffectedByReach = false;
 		this.getSkills().update()
-	}
+	}}.onInit;
 });

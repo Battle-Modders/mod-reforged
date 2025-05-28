@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_crypt_cleaver", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/ancient/crypt_cleaver";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -14,5 +14,5 @@
 		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
 			o.m.FatigueCost += 5;
 		}));
-	}
+	}}.onEquip;
 });

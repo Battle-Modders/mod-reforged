@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/two_handed_flanged_mace", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 5;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -25,5 +25,5 @@
 			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 5;
 		}));
-	}
+	}}.onEquip;
 });

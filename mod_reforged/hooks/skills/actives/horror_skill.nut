@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/horror_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Trigger your targets\' deepest fears, causing them to freeze with fright!";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
@@ -23,5 +23,5 @@
 			text = ::Reforged.Mod.Tooltips.parseString("The target receives an additional mental [morale check|Concept.Morale] with a " + ::MSU.Text.colorNegative(-5) + " penalty to [Resolve.|Concept.Bravery] If this [morale check|Concept.MoraleCheck] succeeds, the target gains the [Horrified|Skill+horrified_effect] effect")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 });

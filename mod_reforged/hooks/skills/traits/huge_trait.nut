@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/huge_trait", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		ret.push({
@@ -9,9 +9,9 @@
 			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach]")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		switch (_groupID)
 		{
@@ -23,11 +23,11 @@
 			case "pg.rf_vigorous":
 				return 2;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 
-	q.onUpdate = @(__original) function( _properties )
+	q.onUpdate = @(__original) { function onUpdate( _properties )
 	{
 		__original(_properties);
 		_properties.Reach += 1;
-	}
+	}}.onUpdate;
 });

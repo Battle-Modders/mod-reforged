@@ -1,15 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/dazed_effect", function(q) {
 	q.m.TwoTurnColor <- ::createColor("#ff6600");	// Orange
 
-	q.onUpdate = @(__original) function( _properties )
+	q.onUpdate = @(__original) { function onUpdate( _properties )
 	{
 		__original(_properties);
 		this.updateSprite();
-	}
+	}}.onUpdate;
 
 // New Functions
 	// Initialize the TurnsLeft with a new value. Will always set the Turns to atleast 1. This function already exists for stunned_effect
-	q.setTurns <- function( _amount )
+	q.setTurns <- { function setTurns( _amount )
 	{
 		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 		{
@@ -20,9 +20,9 @@
 			this.m.TurnsLeft = ::Math.max(1, _amount + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 			this.updateSprite();
 		}
-	}
+	}}.setTurns;
 
-	q.updateSprite <- function()
+	q.updateSprite <- { function updateSprite()
 	{
 		if (this.isGarbage()) return;	// This effect is about to be removed
 
@@ -48,5 +48,5 @@
 			}
 		}
 		actor.setDirty(true);
-	}
+	}}.updateSprite;
 });

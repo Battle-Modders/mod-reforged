@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/lindwurm", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -99,5 +99,5 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastGargantuan;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
-	}
+	}}.onInit;
 });

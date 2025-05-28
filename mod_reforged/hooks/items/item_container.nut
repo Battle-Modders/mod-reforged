@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/item_container", function(q) {
-	q.equip = @(__original) function( _item )
+	q.equip = @(__original) { function equip( _item )
 	{
 		// Disallow equipping invalid weapons in the Old Swordmaster origin
 		if ("Assets" in ::World && !::MSU.isNull(::World.Assets) && !::MSU.isNull(::World.Assets.getOrigin()) && ::World.Assets.getOrigin().getID() == "scenario.rf_old_swordmaster")
@@ -17,11 +17,11 @@
 		}
 
 		return __original(_item);
-	}
+	}}.equip;
 
 	// Overwrite vanilla function completely because we use our custom checks for loot drop
-	q.canDropItems = @() function( _killer )
+	q.canDropItems = @() { function canDropItems( _killer )
 	{
 		return this.getActor().RF_canDropLootForPlayer(_killer);
-	}
+	}}.canDropItems;
 });

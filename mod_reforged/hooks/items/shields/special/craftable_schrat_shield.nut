@@ -2,15 +2,15 @@
 	q.m.SpawnSaplingConditionThreshold <- 125;
 	q.m.SpawnSaplingConditionLoss <- 50;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Condition = 150;
 		this.m.ConditionMax = 150;
 		this.m.ReachIgnore = 3;
-	}
+	}}.create;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		ret.push({
@@ -20,18 +20,18 @@
 			text = ::Reforged.Mod.Tooltips.parseString("When hit while it is not your [turn|Concept.Turn] and having at least " + ::MSU.Text.colorPositive(this.m.SpawnSaplingConditionThreshold) + " durability, spawns a small " + ::Const.Strings.EntityName[::Const.EntityType.Schrat] + " on an adjacent tile, losing " + ::MSU.Text.colorNegative(this.m.SpawnSaplingConditionLoss) + " points of durability")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onShieldHit = @() function( _attacker, _skill )
+	q.onShieldHit = @() { function onShieldHit( _attacker, _skill )
 	{
 		if (!::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()) && this.getCondition() >= this.m.SpawnSaplingConditionThreshold && this.getCondition() > this.m.SpawnSaplingConditionLoss)
 		{
 			this.spawnSapling();
 		}
-	}
+	}}.onShieldHit;
 
 // New functions
-	q.spawnSapling <- function()
+	q.spawnSapling <- { function spawnSapling()
 	{
 		local actor = this.getContainer().getActor();
 		if (!actor.isPlacedOnMap())
@@ -48,5 +48,5 @@
 			sapling.riseFromGround();
 			this.setCondition(::Math.max(0, this.m.Condition - this.m.SpawnSaplingConditionLoss));	// We don't use getCondition because that returns a rounded value, causing us to lose decimal places
 		}
-	}
+	}}.spawnSapling;
 });

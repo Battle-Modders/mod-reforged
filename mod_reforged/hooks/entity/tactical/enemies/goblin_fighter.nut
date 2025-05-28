@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_fighter", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.goblin.onInit();
 		local b = this.m.BaseProperties;
@@ -41,9 +41,9 @@
 			o.m.RequiredWeaponType = null;
 			o.m.RequireOffhandFree = false;
 		}));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 
@@ -69,9 +69,9 @@
 				break;
 			}
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @(__original) function()
+	q.makeMiniboss = @(__original) { function makeMiniboss()
 	{
 		local ret = __original();
 		if (ret)
@@ -84,5 +84,5 @@
 		}
 
 		return ret;
-	}
+	}}.makeMiniboss;
 });

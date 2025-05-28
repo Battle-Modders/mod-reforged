@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/champion_racial", function(q) {
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -59,22 +59,22 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 
 	// New Helper Functions. They mirrir the vanilla condition for whether to give additional defense or hitpoints to a champion
-	q.getDefenseMultiplier <- function()
+	q.getDefenseMultiplier <- { function getDefenseMultiplier()
 	{
 		local defenseMult = 1.25;
 		local b = this.getContainer().getActor().getBaseProperties();
 		if (b.MeleeDefense >= 20 || b.RangedDefense >= 20 || b.MeleeDefense >= 15 && b.RangedDefense >= 15) defenseMult *= 1.25;
 		return defenseMult;
-	}
+	}}.getDefenseMultiplier;
 
-	q.getHitpointMult <- function()
+	q.getHitpointMult <- { function getHitpointMult()
 	{
 		local hitpointMult = 1.35;
 		local b = this.getContainer().getActor().getBaseProperties();
 		if (b.MeleeDefense >= 20 || b.RangedDefense >= 20 || b.MeleeDefense >= 15 && b.RangedDefense >= 15) return hitpointMult;
 		return (hitpointMult * 1.35);
-	}
+	}}.getHitpointMult;
 });

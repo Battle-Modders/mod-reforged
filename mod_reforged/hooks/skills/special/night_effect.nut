@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/special/night_effect", function(q) {
 	q.m.HitChancePerTile <- -10;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		foreach (entry in ret)
@@ -12,9 +12,9 @@
 			}
 		}
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onGetHitFactors = @(__original) function( _skill, _targetTile, _tooltip )
+	q.onGetHitFactors = @(__original) { function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
 		__original(_skill, _targetTile, _tooltip);
 
@@ -29,9 +29,9 @@
 				});
 			}
 		}
-	}
+	}}.onGetHitFactors;
 
-	q.onUpdate = @(__original) function( _properties )
+	q.onUpdate = @(__original) { function onUpdate( _properties )
 	{
 		local oldRangedSkillMult = _properties.RangedSkillMult;
 		__original(_properties);
@@ -41,5 +41,5 @@
 		{
 			_properties.HitChanceAdditionalWithEachTile += this.m.HitChancePerTile;
 		}
-	}
+	}}.onUpdate;
 });

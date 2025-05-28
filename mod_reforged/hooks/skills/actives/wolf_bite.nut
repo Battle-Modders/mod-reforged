@@ -1,24 +1,24 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/wolf_bite", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Lash at them with your muzzle, biting and tearing apart flesh.";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		return this.getDefaultTooltip();
-	}
+	}}.getTooltip;
 
 	// VanillaFix: Overwrite vanilla function to prevent passive damage modification
-	q.onUpdate = @() function( _properties )
+	q.onUpdate = @() { function onUpdate( _properties )
 	{
-	}
+	}}.onUpdate;
 
 	// VanillaFix: Overwrite vanilla function to apply the damage modification to this skill
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
@@ -39,5 +39,5 @@
 			_properties.DamageRegularMax += 40;
 			_properties.DamageArmorMult *= 0.4;
 		}
-	}
+	}}.onAnySkillUsed;
 });

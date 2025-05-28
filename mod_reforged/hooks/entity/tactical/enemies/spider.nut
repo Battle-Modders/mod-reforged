@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/spider", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);
@@ -83,9 +83,9 @@
 			o.m.RequiredWeaponType = null;
 			o.m.RequiredDamageType = null;
 		}));
-	}
+	}}.onInit;
 
-	q.getLootForTile = @(__original) function( _killer, _loot )
+	q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
 	{
 		__original(_killer, _loot);
 
@@ -107,5 +107,5 @@
 		}
 
 		return _loot;
-	}
+	}}.getLootForTile;
 });

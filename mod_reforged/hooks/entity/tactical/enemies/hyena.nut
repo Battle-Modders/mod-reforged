@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/hyena", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -46,9 +46,9 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium - 1;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_sundering_strikes"));
-	}
+	}}.onInit;
 
-	q.getLootForTile = @(__original) function( _killer, _loot )
+	q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
 	{
 		local ret = __original(_killer, _loot);
 
@@ -71,5 +71,5 @@
 		}
 
 		return ret;
-	}
+	}}.getLootForTile;
 });

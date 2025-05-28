@@ -11,17 +11,17 @@
 		Initiative = 	[100, 110],
 	}
 
-	q.createPerkTreeBlueprint = @() function()
+	q.createPerkTreeBlueprint = @() { function createPerkTreeBlueprint()
 	{
 		return ::new(::DynamicPerks.Class.PerkTree).init({});
-	}
+	}}.createPerkTreeBlueprint;
 
-	q.isHired <- function()
+	q.isHired <- { function isHired()
 	{
 		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isHired();
-	}
+	}}.isHired;
 
-	q.getProjectedAttributesTooltip <- function()
+	q.getProjectedAttributesTooltip <- { function getProjectedAttributesTooltip()
 	{
 		return [{
 			id = 3,
@@ -29,18 +29,18 @@
 			rawHTMLInText = true,
 			text = this.getProjectedAttributesHTML()
 		}];
-	}
+	}}.getProjectedAttributesTooltip;
 
-	q.getPerkTreeTooltip <- function()
+	q.getPerkTreeTooltip <- { function getPerkTreeTooltip()
 	{
 		return {
 			id = 3,
 			type = "description",
 			text = this.getContainer().getActor().getPerkTree().getTooltip()
 		};
-	}
+	}}.getPerkTreeTooltip;
 
-	q.getProjectedAttributesHTML <- function()
+	q.getProjectedAttributesHTML <- { function getProjectedAttributesHTML()
 	{
 		local projection = this.getContainer().getActor().getProjectedAttributes();
 		local function formatString( _img, _attribute )
@@ -63,10 +63,10 @@
 		ret += "</div>";
 
 		return ret;
-	}
+	}}.getProjectedAttributesHTML;
 
 	// If _hideRolledValues is true, then the actual base roll is hidden. This is important to not spoil the base roll information to the player during hiring
-	q.getBaseAttributesTooltip <- function( _hideRolledValues )
+	q.getBaseAttributesTooltip <- { function getBaseAttributesTooltip( _hideRolledValues )
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 		local baseAttr = this.m.BaseAttributes;
@@ -97,11 +97,11 @@
 			rawHTMLInText = true,
 			text = html,
 		}];
-	}
+	}}.getBaseAttributesTooltip;
 });
 
 ::Reforged.HooksMod.hookTree("scripts/skills/backgrounds/character_background", function(q) {
-	q.getGenericTooltip = @(__original) function()
+	q.getGenericTooltip = @(__original) { function getGenericTooltip()
 	{
 		local ret = __original();
 
@@ -111,9 +111,9 @@
 		}
 
 		return ret;
-	}
+	}}.getGenericTooltip;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -140,5 +140,5 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 })

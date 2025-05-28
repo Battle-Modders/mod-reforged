@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/barbarian_drummer", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local tattoos = [
@@ -49,9 +49,9 @@
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 
@@ -59,5 +59,5 @@
 		{
 			::Reforged.Skills.addMasteryOfEquippedWeapon(this)
 		}
-	}
+	}}.assignRandomEquipment;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/gladiator_background", function(q) {
-	q.createPerkTreeBlueprint = @() function()
+	q.createPerkTreeBlueprint = @() { function createPerkTreeBlueprint()
 	{
 		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -21,9 +21,9 @@
 				"pgc.rf_fighting_style": []
 			}
 		});
-	}
+	}}.createPerkTreeBlueprint;
 
-	q.getPerkGroupCollectionMin = @() function( _collection )
+	q.getPerkGroupCollectionMin = @() { function getPerkGroupCollectionMin( _collection )
 	{
 		switch (_collection.getID())
 		{
@@ -31,9 +31,9 @@
 			case "pgc.rf_fighting_style":
 				return _collection.getMin() + 1;
 		}
-	}
+	}}.getPerkGroupCollectionMin;
 
-	q.onAdded = @(__original) function()
+	q.onAdded = @(__original) { function onAdded()
 	{
 		// The PlayerRoster check is to prevent adding the traits to gladiators from the start of the gladiator origin
 		// because they get their own traits manually added during onSpawnAssets
@@ -58,9 +58,9 @@
 		}
 
 		__original();
-	}
+	}}.onAdded;
 
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		switch (_groupID)
 		{
@@ -79,5 +79,5 @@
 			case "pg.rf_unstoppable":
 				return 2;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 });

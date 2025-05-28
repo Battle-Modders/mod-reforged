@@ -4,13 +4,13 @@
 	q.m.IconLargeEmpty <- "weapons/ranged/rf_goblin_weapon_07_empty.png";
 	q.m.IconEmpty <- "weapons/ranged/rf_goblin_weapon_07_empty_70x70.png";
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 0;
-	}
+	}}.create;
 
-	q.setAmmo = @(__original) function( _a )
+	q.setAmmo = @(__original) { function setAmmo( _a )
 	{
 		__original(_a);
 		if (this.m.Ammo > 0)
@@ -27,5 +27,5 @@
 		}
 
 		this.updateAppearance();
-	}
+	}}.setAmmo;
 });

@@ -1,6 +1,6 @@
 // Ancient Honor Guard
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_heavy_polearm", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
@@ -25,9 +25,9 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 
@@ -52,5 +52,5 @@
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
 		}
-	}
+	}}.assignRandomEquipment;
 });

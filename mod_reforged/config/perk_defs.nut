@@ -1215,7 +1215,7 @@
 	}
 ]);
 
-::Const.Perks.findById("perk.nimble").verifyPrerequisites <- function( _player, _tooltip )
+::Const.Perks.findById("perk.nimble").verifyPrerequisites <- { function verifyPrerequisites( _player, _tooltip )
 {
 	local poison = _player.getSkills().getSkillByID("perk.rf_poise");
 	if (poison == null)
@@ -1233,9 +1233,9 @@
 	}
 
 	return true;
-}
+}}.verifyPrerequisites;
 
-::Const.Perks.findById("perk.battle_forged").verifyPrerequisites <- function( _player, _tooltip )
+::Const.Perks.findById("perk.battle_forged").verifyPrerequisites <- { function verifyPrerequisites( _player, _tooltip )
 {
 	local poison = _player.getSkills().getSkillByID("perk.rf_poise");
 	if (poison == null)
@@ -1253,4 +1253,4 @@
 	}
 
 	return true;
-}
+}}.verifyPrerequisites;

@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_two_handed_flail", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/two_handed_flail";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -16,5 +16,5 @@
 			o.m.IconDisabled = "skills/active_130_sw.png";
 			o.m.Overlay = "active_130";
 		}));
-	}
+	}}.onEquip;
 });

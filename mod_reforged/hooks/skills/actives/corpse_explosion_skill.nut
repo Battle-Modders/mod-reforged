@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/corpse_explosion_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Detonate a corpse or Flesh Cradle, destroying it in a gruesome explosion. The blast deals damage to any target standing on the corpse and all adjacent enemies and leaves a lingering miasma on all affected tiles.");
-	}
+	}}.create;
 
 	// Overwrite, because Vanilla uses a hard-coded implementation, instead of using getDefaultUtilityTooltip
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
@@ -19,5 +19,5 @@
 		});
 
 		return ret;
-	}
+	}}.getTooltip;
 });

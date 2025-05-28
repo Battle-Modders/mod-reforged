@@ -2,7 +2,7 @@
 	q.m.InjuryThresholdMult <- 0.7;
 	q.m.MovementAPCostModifier <- 2;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Name = "Flesh Golem";
@@ -10,10 +10,10 @@
 		this.m.IsHidden = false;
 		if (this.isType(::Const.SkillType.Perk))
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -31,5 +31,5 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 });

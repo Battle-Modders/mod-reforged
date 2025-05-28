@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/zombie", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -125,5 +125,5 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_wear_them_down"));
-	}
+	}}.onInit;
 });

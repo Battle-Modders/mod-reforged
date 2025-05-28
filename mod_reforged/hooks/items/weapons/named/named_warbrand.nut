@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_warbrand", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/warbrand";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -18,5 +18,5 @@
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 10;
 		}));
-	}
+	}}.onEquip;
 });

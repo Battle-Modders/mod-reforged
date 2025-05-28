@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/explode_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Explode into a shrapnel of bone damaging everyone next to you.";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
@@ -17,5 +17,5 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Deals a small amount of damage to everyone on adjacent tiles")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 });

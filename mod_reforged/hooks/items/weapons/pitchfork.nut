@@ -1,12 +1,12 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/pitchfork", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.StaminaModifier = -10; // vanilla -14
 		this.m.Reach = 6;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -23,5 +23,5 @@
 			o.m.IconDisabled = "skills/active_58_sw.png";
 			o.m.Overlay = "active_58";
 		}));
-	}
+	}}.onEquip;
 });

@@ -3,7 +3,7 @@
 
 	// In Vanilla this funtion is also called at the start of an actors turn if that actor is flagged with 'IsSkippingTurn' (aka End Round button presset)
 	// We manipulated some other function so it is now also called when that actors 'IsWaitingTurn' is true. So now we can redirect the wait behavior in here
-	q.initNextTurn = @(__original) function( _force = false )
+	q.initNextTurn = @(__original) { function initNextTurn( _force = false )
 	{
 		local activeEntity = this.getActiveEntity();
 		if (activeEntity != null && activeEntity.m.IsWaitingTurn)
@@ -14,16 +14,16 @@
 		}
 
 		__original(_force);
-	}
+	}}.initNextTurn;
 
-	q.initNextRound = @(__original) function()
+	q.initNextRound = @(__original) { function initNextRound()
 	{
 		this.m.JSHandle.call("RF_setWaitTurnAllButtonVisible", true);
 		this.m.IsWaitingRound = false;
 		__original();
-	}
+	}}.initNextRound;
 
-	q.convertEntityToUIData = @(__original) function( _entity, isLastEntity = false )
+	q.convertEntityToUIData = @(__original) { function convertEntityToUIData( _entity, isLastEntity = false )
 	{
 		local ret = __original(_entity, isLastEntity);
 
@@ -62,10 +62,10 @@
 		}
 
 		return ret;
-	}
+	}}.convertEntityToUIData;
 
 	// We replace the vanilla function for performance reason and because it is a simple function. We don't want to query an entitys skills twice for no reason.
-	q.convertEntityStatusEffectsToUIData = @() function( _entity )
+	q.convertEntityStatusEffectsToUIData = @() { function convertEntityStatusEffectsToUIData( _entity )
 	{
 		if (!_entity.isPlayerControlled()) return null;
 
@@ -79,10 +79,10 @@
 		}
 
 		return result;
-	}
+	}}.convertEntityStatusEffectsToUIData;
 
 // New Functions:
-	q.RF_onWaitTurnAllButtonPressed <- function()
+	q.RF_onWaitTurnAllButtonPressed <- { function RF_onWaitTurnAllButtonPressed()
 	{
 		if (this.m.IsWaitingRound || this.getActiveEntity() == null || !this.getActiveEntity().isPlayerControlled())
 		{
@@ -107,5 +107,5 @@
 				return;
 			}
 		}.bindenv(this), null);
-	}
+	}}.RF_onWaitTurnAllButtonPressed;
 });

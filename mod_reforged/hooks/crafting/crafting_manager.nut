@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/crafting/crafting_manager", function(q) {
-	q.getQualifiedBlueprints = @(__original) function()
+	q.getQualifiedBlueprints = @(__original) { function getQualifiedBlueprints()
 	{
 		local settingValue = ::Reforged.Mod.ModSettings.getSetting("CraftingBlueprintVisibility").getValue();
 		switch (settingValue)
@@ -61,10 +61,10 @@
 				throw "Unknown setting value: " + settingValue;
 			}
 		}
-	}
+	}}.getQualifiedBlueprints;
 
 	// Rewrite Vanilla function to re-use the logic of getQualifiedBlueprints, instead of re-implementing it
-	q.getQualifiedBlueprintsForUI = @() function()
+	q.getQualifiedBlueprintsForUI = @() { function getQualifiedBlueprintsForUI()
 	{
 		local ret = [];
 
@@ -75,5 +75,5 @@
 		ret.sort(this.onSortBlueprints);
 
 		return ret;
-	}
+	}}.getQualifiedBlueprintsForUI;
 });

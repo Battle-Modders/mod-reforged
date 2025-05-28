@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/officer", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -44,9 +44,9 @@
 			o.m.ActionPointCost = 1;
 			o.m.Cooldown = 3;
 		}));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 
@@ -69,5 +69,5 @@
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
 			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 		}
-	}
+	}}.assignRandomEquipment;
 });

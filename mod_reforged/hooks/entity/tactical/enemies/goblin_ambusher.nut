@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_ambusher", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.goblin.onInit();
 		local b = this.m.BaseProperties;
@@ -28,9 +28,9 @@
 
 		this.m.Skills.add(::new("scripts/skills/racial/goblin_ambusher_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
-	}
+	}}.onInit;
 
-	q.makeMiniboss = @(__original) function()
+	q.makeMiniboss = @(__original) { function makeMiniboss()
 	{
 		local ret = __original();
 		if (ret)
@@ -43,5 +43,5 @@
 		}
 
 		return ret;
-	}
+	}}.makeMiniboss;
 });

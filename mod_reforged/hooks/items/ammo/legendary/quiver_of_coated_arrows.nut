@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/ammo/legendary/quiver_of_coated_arrows", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		foreach (entry in ret)
@@ -13,12 +13,12 @@
 			}
 		}
 		return ret;
-	}
+	}}.getTooltip;
 
 	// Overwrite vanilla function to:
 	// - Extract skill validity into a separate function (vanilla only checks for ids of aimed shot or quick shot)
 	// - Add multiple bleed stacks based on this.m.BleedDamage / 5
-	q.onDamageDealt = @() function( _target, _skill, _hitInfo )
+	q.onDamageDealt = @() { function onDamageDealt( _target, _skill, _hitInfo )
 	{
 		if (!this.isSkillValid(_skill))
 			return;
@@ -38,14 +38,14 @@
 			}
 			::Sound.play(::MSU.Array.rand(this.m.BleedSounds), ::Const.Sound.Volume.Skill, this.getContainer().getActor().getPos())
 		}
-	}
+	}}.onDamageDealt;
 
-	q.isSkillValid <- function( _skill )
+	q.isSkillValid <- { function isSkillValid( _skill )
 	{
 		if (!_skill.isRanged() || !_skill.isAttack())
 			return false;
 
 		local weapon = _skill.getItem();
 		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Bow);
-	}
+	}}.isSkillValid;
 });

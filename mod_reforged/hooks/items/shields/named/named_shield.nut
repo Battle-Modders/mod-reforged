@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/items/shields/named/named_shield", function(q) {
-	q.getBaseItemFields = @(__original) function()
+	q.getBaseItemFields = @(__original) { function getBaseItemFields()
 	{
 		local ret = __original();
 		ret.push("ReachIgnore");
 		return ret;
-	}
+	}}.getBaseItemFields;
 
 	// Vanilla logic but remove rolling Condition
-	q.randomizeValues = @() function()
+	q.randomizeValues = @() { function randomizeValues()
 	{
 		local available = [];
 		available.push(function( _i )
@@ -38,5 +38,5 @@
 			available[r](this);
 			available.remove(r);
 		}
-	}
+	}}.randomizeValues;
 });

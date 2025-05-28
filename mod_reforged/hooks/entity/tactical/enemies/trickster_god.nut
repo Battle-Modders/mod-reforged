@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/trickster_god", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -45,12 +45,12 @@
 		this.m.Skills.add(::Reforged.new("scripts/skills/effects/return_favor_effect", function(o) {
 			o.onTurnStart = function() {}; // don't remove on turn start i.e. make it permanent
 		}));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 
 		// any skills that should be added based on equipment
-	}
+	}}.assignRandomEquipment;
 });

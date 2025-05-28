@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/whip_skill", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		foreach (entry in ret)
@@ -12,5 +12,5 @@
 			}
 		}
 		return ret;
-	}
+	}}.getTooltip;
 });
