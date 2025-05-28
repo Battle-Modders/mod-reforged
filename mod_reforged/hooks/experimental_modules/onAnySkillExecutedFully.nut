@@ -203,7 +203,7 @@ local teleport_5 = ::TacticalNavigator["__sqrat_ol_ teleport_5"];
 	local info = getSchedulerInfo();
 	if (info == null)
 	{
-		teleport_5(_user, _targetTile, _func, _data, _bool, _float);
+		teleport_5(_user, _targetTile, _func, _data, _bool);
 		return;
 	}
 
@@ -221,7 +221,7 @@ local teleport_5 = ::TacticalNavigator["__sqrat_ol_ teleport_5"];
 				_func(_arg1, _arg2);
 			}
 		}
-		teleport_5(_user, _targetTile, wrapper, _data, _bool, _float);
+		teleport_5(_user, _targetTile, wrapper, _data, _bool);
 		return;
 	}
 
