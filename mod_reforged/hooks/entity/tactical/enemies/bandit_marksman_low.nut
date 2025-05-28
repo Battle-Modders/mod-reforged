@@ -1,6 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_marksman_low", function(q) {
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		this.bandit_marksman.assignRandomEquipment();
-	}
+	}}.assignRandomEquipment;
 });

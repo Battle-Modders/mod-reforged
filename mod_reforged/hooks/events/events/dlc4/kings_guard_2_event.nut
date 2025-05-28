@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/events/events/dlc4/kings_guard_2_event", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		local start = this.m.Screens[0].start;
@@ -12,5 +12,5 @@
 			_event.m.Dude.getPerkTree().merge(kingsguard_perkTree);
 			_event.m.Dude.resetPerks();
 		}
-	}
+	}}.create;
 });

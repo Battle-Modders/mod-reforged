@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/shields/special/craftable_lindwurm_shield", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Condition = 200;
@@ -11,5 +11,5 @@
 		this.m.MeleeDefense = 20; // vanilla 17
 		this.m.RangedDefense = 20; // vanilla 25
 		this.m.ReachIgnore = 3;
-	}
+	}}.create;
 });

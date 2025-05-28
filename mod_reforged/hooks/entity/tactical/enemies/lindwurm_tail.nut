@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/lindwurm_tail", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		if (this.m.ParentID != 0)
 		{
@@ -67,5 +67,5 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
-	}
+	}}.onInit;
 });

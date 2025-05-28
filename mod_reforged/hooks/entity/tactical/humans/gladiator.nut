@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/gladiator", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -35,9 +35,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 
@@ -57,9 +57,9 @@
 
 			if (weapon.getRangeMax() == 2) this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @(__original) function()
+	q.makeMiniboss = @(__original) { function makeMiniboss()
 	{
 		local ret = __original();
 		if (ret)
@@ -68,5 +68,5 @@
 		}
 
 		return ret;
-	}
+	}}.makeMiniboss;
 });

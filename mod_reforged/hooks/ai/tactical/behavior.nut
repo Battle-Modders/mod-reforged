@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/ai/tactical/behavior", function(q) {
-	q.queryTargetValue = @(__original) function( _entity, _target, _skill = null )
+	q.queryTargetValue = @(__original) { function queryTargetValue( _entity, _target, _skill = null )
 	{
 		local score = __original(_entity, _target, _skill);
 		if (_skill != null)
@@ -10,5 +10,5 @@
 		}
 
 		return ::Math.maxf(0.01, score);
-	}
+	}}.queryTargetValue;
 });

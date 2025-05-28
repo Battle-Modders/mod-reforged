@@ -1,6 +1,6 @@
 // Ancient Honor Guard
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_heavy", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
@@ -28,9 +28,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -62,9 +62,9 @@
 		{
 			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_honorguard_helmet"));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @() function()
+	q.makeMiniboss = @() { function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -77,9 +77,9 @@
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 		return true;
-	}
+	}}.makeMiniboss;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
@@ -100,5 +100,5 @@
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 			}
 		}
-	}
+	}}.onSpawned;
 });

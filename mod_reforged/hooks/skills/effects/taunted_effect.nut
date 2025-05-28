@@ -1,18 +1,18 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/taunted_effect", function(q) {
 	q.m.DefenseModifier <- 0;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Description = "This character is taunted by another character and is much more likely to engage and attack them.";
-	}
+	}}.create;
 
-	q.isHidden = @() function()
+	q.isHidden = @() { function isHidden()
 	{
 		return ::MSU.isNull(this.getTauntSource());
-	}
+	}}.isHidden;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -61,9 +61,9 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onUpdate = @(__original) function( _properties )
+	q.onUpdate = @(__original) { function onUpdate( _properties )
 	{
 		__original(_properties);
 
@@ -72,22 +72,22 @@
 			_properties.MeleeDefense += this.getMeleeDefenseModifier();
 			_properties.RangedDefense += this.getRangedDefenseModifier();
 		}
-	}
+	}}.onUpdate;
 
 // New Functions
-	q.getTauntSource <- function()
+	q.getTauntSource <- { function getTauntSource()
 	{
 		local ret = this.getContainer().getActor().getAIAgent().getForcedOpponent();
 		return !::MSU.isNull(ret) && ret.isAlive() ? ret : null;
-	}
+	}}.getTauntSource;
 
-	q.getMeleeDefenseModifier <- function()
+	q.getMeleeDefenseModifier <- { function getMeleeDefenseModifier()
 	{
 		return this.m.DefenseModifier;
-	}
+	}}.getMeleeDefenseModifier;
 
-	q.getRangedDefenseModifier <- function()
+	q.getRangedDefenseModifier <- { function getRangedDefenseModifier()
 	{
 		return this.m.DefenseModifier;
-	}
+	}}.getRangedDefenseModifier;
 });

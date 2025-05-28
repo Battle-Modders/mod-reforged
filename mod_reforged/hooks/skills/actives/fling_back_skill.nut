@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/fling_back_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Fling a character backwards and move into their position!";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
@@ -35,10 +35,10 @@
 			text = ::Reforged.Mod.Tooltips.parseString("You move into the target tile ignoring [Zone of Control|Concept.ZoneOfControl]")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
 	// We delay the onFollow of this skill by another 100ms because otherwise the entity doesn't follow through with this function properly when at very high speeds using some faster combat speed mods
-	q.onFollow = @(__original) function( _tag )
+	q.onFollow = @(__original) { function onFollow( _tag )
 	{
 		if (::Time.getVirtualSpeed() > 2)
 		{
@@ -48,5 +48,5 @@
 		{
 			__original(_tag);
 		}
-	}
+	}}.onFollow;
 });

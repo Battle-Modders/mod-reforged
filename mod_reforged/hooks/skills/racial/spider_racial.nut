@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/spider_racial", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Name = "Spider";
@@ -9,9 +9,9 @@
 		this.addType(::Const.SkillType.StatusEffect);	// We now want this effect to show up on the enemies
 		if (this.isType(::Const.SkillType.Perk))
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
-	}
+	}}.create;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -47,14 +47,14 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAdded = @() function()
+	q.onAdded = @() { function onAdded()
 	{
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 
 		baseProperties.IsAffectedByNight = false;
 		baseProperties.IsImmuneToDisarm = true;
 		baseProperties.IsImmuneToPoison = true;
-	}
+	}}.onAdded;
 });

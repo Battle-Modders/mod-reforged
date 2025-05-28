@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_two_handed_spiked_mace", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/barbarians/two_handed_spiked_mace";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -21,5 +21,5 @@
 			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 5;
 		}));
-	}
+	}}.onEquip;
 });

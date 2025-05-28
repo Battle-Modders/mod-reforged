@@ -2,7 +2,7 @@
 	q.m.AdditionalAccuracy = 15;
 	q.m.AdditionalHitChance = -3;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getRangedTooltip(this.skill.getDefaultTooltip());
 
@@ -38,18 +38,18 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
 	// Overwrite vanilla function to remove changing of this.m.AdditionalAccuracy and this.m.DirectDamageMult
-	q.onAfterUpdate = @() function( _properties )
+	q.onAfterUpdate = @() { function onAfterUpdate( _properties )
 	{
 		if (_properties.IsSpecializedInCrossbows)
 		{
 			this.m.FatigueCostMult *= ::Const.Combat.WeaponSpecFatigueMult;
 		}
-	}
+	}}.onAfterUpdate;
 
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
@@ -61,5 +61,5 @@
 				_properties.DamageDirectMult += 0.05;
 			}
 		}
-	}
+	}}.onAnySkillUsed;
 });

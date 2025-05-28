@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/master_archer", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -21,9 +21,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -91,9 +91,9 @@
 			if (armorAttachment != null)
 				bodyItem.setUpgrade(::new(armorAttachment));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @() function()
+	q.makeMiniboss = @() { function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -131,14 +131,14 @@
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		return true;
-	}
+	}}.makeMiniboss;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this)
 		}
-	}
+	}}.onSpawned;
 });

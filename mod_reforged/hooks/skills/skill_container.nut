@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/skill_container", function(q) {
-	q.onDamageReceived = @(__original) function( _attacker, _damageHitpoints, _damageArmor )
+	q.onDamageReceived = @(__original) { function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
 		local damage = _damageArmor + ::Math.min(_damageHitpoints, this.getActor().getHitpoints());
 
@@ -18,17 +18,17 @@
 			t[_attacker.getFaction()].Total += damage;
 			t[_attacker.getFaction()][_attacker.getID()] += damage;
 		}
-	}
+	}}.onDamageReceived;
 
-	q.update = @(__original) function()
+	q.update = @(__original) { function update()
 	{
 		__original();
 		if (!this.m.IsUpdating && this.getActor().isAlive())
 			this.onSkillsUpdated();
-	}
+	}}.update;
 
-	q.onSkillsUpdated <- function()
+	q.onSkillsUpdated <- { function onSkillsUpdated()
 	{
 		this.callSkillsFunctionWhenAlive("onSkillsUpdated", null, false);
-	}
+	}}.onSkillsUpdated;
 });

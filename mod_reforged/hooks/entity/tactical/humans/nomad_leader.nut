@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/nomad_leader", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -50,9 +50,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -105,9 +105,9 @@
 			]).roll();
 			this.m.Items.equip(::new(helmet));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @(__original) function()
+	q.makeMiniboss = @(__original) { function makeMiniboss()
 	{
 		local ret = __original();
 		if (ret)
@@ -118,9 +118,9 @@
 		}
 
 		return ret;
-	}
+	}}.makeMiniboss;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
@@ -138,5 +138,5 @@
 				break;
 			}
 		}
-	}
+	}}.onSpawned;
 });

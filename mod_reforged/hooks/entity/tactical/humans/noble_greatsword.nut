@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/noble_greatsword", function(q) {
 	q.m.SurcoatChance <- 100;	// Chance for this character to spawn with a cosmetic tabard of its faction
 
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -19,9 +19,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sweeping_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		this.m.Surcoat = banner;
@@ -87,18 +87,18 @@
 			if (armorAttachment != null)
 				bodyItem.setUpgrade(::new(armorAttachment));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		}
-	}
+	}}.onSpawned;
 
-	q.makeMiniboss = @() function()
+	q.makeMiniboss = @() { function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -139,5 +139,5 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 
 		return true;
-	}
+	}}.makeMiniboss;
 });

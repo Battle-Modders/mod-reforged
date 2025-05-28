@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/hexe", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -46,9 +46,9 @@
 		b.RangedDefense += 10;
 		this.m.BaseProperties.IsAffectedByReach = false;
 		this.getSkills().update()
-	}
+	}}.onInit;
 
-	q.getLootForTile = @(__original) function( _killer, _loot )
+	q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
 	{
 		local ret = __original(_killer, _loot);
 
@@ -77,5 +77,5 @@
 		}
 
 		return ret;
-	}
+	}}.getLootForTile;
 });

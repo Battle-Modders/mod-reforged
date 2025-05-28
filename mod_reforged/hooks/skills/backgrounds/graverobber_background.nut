@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/graverobber_background", function(q) {
-	q.createPerkTreeBlueprint = @() function()
+	q.createPerkTreeBlueprint = @() { function createPerkTreeBlueprint()
 	{
 		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -12,18 +12,18 @@
 				"pgc.rf_fighting_style": []
 			}
 		});
-	}
+	}}.createPerkTreeBlueprint;
 
-	q.getPerkGroupCollectionMin = @() function( _collection )
+	q.getPerkGroupCollectionMin = @() { function getPerkGroupCollectionMin( _collection )
 	{
 		switch (_collection.getID())
 		{
 			case "pgc.rf_armor":
 				return _collection.getMin() - 1;
 		}
-	}
+	}}.getPerkGroupCollectionMin;
 
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		switch (_groupID)
 		{
@@ -33,5 +33,5 @@
 			case "pg.rf_unstoppable":
 				return 2;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook(::DynamicPerks.Class.PerkGroup, function(q) {
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = [
 			{
@@ -37,5 +37,5 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 });

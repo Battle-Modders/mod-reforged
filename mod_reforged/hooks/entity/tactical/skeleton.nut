@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/skeleton", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local hairColor = ::Const.HairColors.Zombie[::Math.rand(0, ::Const.HairColors.Zombie.len() - 1)];
@@ -93,5 +93,5 @@
 		this.m.Skills.add(::new("scripts/skills/effects/rf_decanus_command_effect"));
 		this.m.Skills.add(::new("scripts/skills/effects/rf_centurion_command_effect"));
 		this.m.Skills.add(::new("scripts/skills/effects/rf_legatus_command_effect"));
-	}
+	}}.onInit;
 });

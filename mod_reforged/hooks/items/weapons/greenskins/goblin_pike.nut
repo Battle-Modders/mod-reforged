@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/greenskins/goblin_pike", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 7;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -19,5 +19,5 @@
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 		}));
-	}
+	}}.onEquip;
 });

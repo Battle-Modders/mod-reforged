@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/warcry", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 
@@ -9,10 +9,10 @@
 
 		// Vanilla is missing a description for this skill
 		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Let out a bellowing roar to bolster the [morale|Concept.Morale] of your allies while giving your enemies [second thoughts|Concept.Morale]!");
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
@@ -22,5 +22,5 @@
 			text = ::Reforged.Mod.Tooltips.parseString("All allies and enemies receive positive and negative [morale checks|Concept.Morale] respectively, with those closer to you receiving stronger checks")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 });

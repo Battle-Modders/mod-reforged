@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hookTree("scripts/items/weapons/weapon", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		if (this.m.Reach < 0)
@@ -7,7 +7,7 @@
 			this.m.Reach += 999 + this.getDefaultReach();
 			this.m.Reach = ::Math.max(0, this.m.Reach);
 		}
-	}
+	}}.create;
 });
 
 ::Reforged.HooksMod.hook("scripts/items/weapons/weapon", function(q) {
@@ -15,7 +15,7 @@
 	// arithmetic operations can be performed by mods on individual weapons.
 	q.m.Reach <- -999;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -54,9 +54,9 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.getValue = @(__original) function()
+	q.getValue = @(__original) { function getValue()
 	{
 		if (this.m.ConditionMax == 0)	// VanillaFix: A this.m.ConditionMax of 0 causes a division by 0
 		{
@@ -66,24 +66,24 @@
 		{
 			return __original();
 		}
-	}
+	}}.getValue;
 
-	q.onEquip = @(__original) function()
+	q.onEquip = @(__original) { function onEquip()
 	{
 		__original();
 		if (isWeaponType(::Const.Items.WeaponType.Sling)) this.addSkill(::new("scripts/skills/actives/rf_sling_item_dummy_skill"));
-	}
+	}}.onEquip;
 
-	q.onUpdateProperties = @(__original) function( _properties )
+	q.onUpdateProperties = @(__original) { function onUpdateProperties( _properties )
 	{
 		__original(_properties);
 		if (this.isItemType(::Const.Items.ItemType.MeleeWeapon) && !this.getContainer().getActor().isDisarmed())
 		{
 			_properties.Reach += this.m.Reach;
 		}
-	}
+	}}.onUpdateProperties;
 
-	q.isDroppedAsLoot = @(__original) function()
+	q.isDroppedAsLoot = @(__original) { function isDroppedAsLoot()
 	{
 		if (!this.item.isDroppedAsLoot())
 		{
@@ -96,14 +96,14 @@
 		}
 
 		return __original();
-	}
+	}}.isDroppedAsLoot;
 
-	q.getReach <- function()
+	q.getReach <- { function getReach()
 	{
 		return this.m.Reach;
-	}
+	}}.getReach;
 
-	q.getDefaultReach <- function()
+	q.getDefaultReach <- { function getDefaultReach()
 	{
 		local ret = 0;
 
@@ -145,5 +145,5 @@
 		}
 
 		return ret;
-	}
+	}}.getDefaultReach;
 });

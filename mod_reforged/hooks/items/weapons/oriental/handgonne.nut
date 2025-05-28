@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/oriental/handgonne", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 0;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -19,5 +19,5 @@
 			});
 			this.addSkill(reload);
 		}
-	}
+	}}.onEquip;
 });

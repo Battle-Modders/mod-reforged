@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/greenskins/goblin_falchion", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 3;
@@ -10,9 +10,9 @@
 		this.m.DirectDamageAdd = 0.05;
 		this.m.Condition = 48.0;
 		this.m.ConditionMax = 48.0;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -28,5 +28,5 @@
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 		}));
-	}
+	}}.onEquip;
 });

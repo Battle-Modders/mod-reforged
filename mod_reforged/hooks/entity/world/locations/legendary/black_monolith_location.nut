@@ -3,7 +3,7 @@
 	q.m.NumTroopsMax <- 47;
 	q.m.NumTroopsToRecoverBeforeCombat <- 6;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		this.m.Name = "Black Monolith";
 		this.location.onSpawned();
@@ -41,9 +41,9 @@
 				::Const.World.Common.addTroop(this, { Type = troop }, false);
 			}
 		}
-	}
+	}}.onSpawned;
 
-	q.onBeforeCombatStarted = @() function()
+	q.onBeforeCombatStarted = @() { function onBeforeCombatStarted()
 	{
 		this.location.onBeforeCombatStarted();
 
@@ -68,10 +68,10 @@
 			}
 			::Const.World.Common.addTroop(this, { Type = type }, false);
 		}
-	}
+	}}.onBeforeCombatStarted;
 
 	// Reforged added function in this class
-	q.getTroopRecoveryPool <- function()
+	q.getTroopRecoveryPool <- { function getTroopRecoveryPool()
 	{
 		local pool = ::MSU.Class.WeightedContainer().addMany(1, [
 			::Const.World.Spawn.Troops.SkeletonMedium,
@@ -107,5 +107,5 @@
 		addToPoolIfFewerThan(::Const.World.Spawn.Troops.RF_VampireLord, 1);
 
 		return pool;
-	}
+	}}.getTroopRecoveryPool;
 });

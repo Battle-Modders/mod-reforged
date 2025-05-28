@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/reload_bolt", function(q) {
-	q.onItemSet = @(__original) function()
+	q.onItemSet = @(__original) { function onItemSet()
 	{
 		__original();
 
@@ -12,5 +12,5 @@
 			// shoot/reload skills directly from the actor.
 			this.setOrder(skills[0].m.Order + 1);
 		}
-	}
+	}}.onItemSet;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/racial/skeleton_racial", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Name = "Skeleton";
@@ -7,9 +7,9 @@
 		this.m.IsHidden = false;
 		if (this.isType(::Const.SkillType.Perk))
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
-	}
+	}}.create;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -64,9 +64,9 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAdded = @() function()
+	q.onAdded = @() { function onAdded()
 	{
 		local actor = this.getContainer().getActor();
 		actor.m.MoraleState = ::Const.MoraleState.Ignore;
@@ -76,9 +76,9 @@
 		baseProperties.IsAffectedByNight = false;
 		baseProperties.IsImmuneToBleeding = true;
 		baseProperties.IsImmuneToPoison = true;
-	}
+	}}.onAdded;
 
-	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
+	q.onBeforeDamageReceived = @() { function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)
 		{
@@ -112,5 +112,5 @@
 				}
 				break;
 		}
-	}
+	}}.onBeforeDamageReceived;
 });

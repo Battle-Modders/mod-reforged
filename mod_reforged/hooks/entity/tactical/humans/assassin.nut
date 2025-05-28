@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/assassin", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -30,11 +30,11 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));	TODO: Enable once AI behavior is implemented
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	}
+	}}.assignRandomEquipment;
 });

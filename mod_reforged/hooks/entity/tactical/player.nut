@@ -7,7 +7,7 @@
 		return this.actor.getTooltip(_targetedWithSkill);
 	}
 
-	q.onInit = @(__original) function()
+	q.onInit = @(__original) { function onInit()
 	{
 		__original();
 		this.getSkills().add(::new("scripts/skills/actives/rf_adjust_dented_armor_ally_skill"));
@@ -18,9 +18,9 @@
 		// +2 because we want to expand the array at least 1 level above this bro so that player.getXPForNextLevel works properly.
 		// We do this in onInit in so that when loading a game or spawning a player with high enough level, the array is expanded immediately.
 		::Reforged.expandLevelXP(this.m.Level + 2);
-	}
+	}}.onInit;
 
-	q.addXP = @(__original) function( _xp, _scale = true )
+	q.addXP = @(__original) { function addXP( _xp, _scale = true )
 	{
 		if (::Reforged.Config.XPOverride)
 			return;
@@ -35,10 +35,10 @@
 		}
 
 		return __original(_xp, _scale);
-	}
+	}}.addXP;
 
 	// Returns this bro's projected base attributes at level 11 including the effects of traits and permanent injuries
-	q.getProjectedAttributes <- function()
+	q.getProjectedAttributes <- { function getProjectedAttributes()
 	{
 		local properties = this.getBaseProperties().getClone();
 
@@ -112,20 +112,20 @@
 		this.m.CurrentProperties = original_CurrentProperties;
 
 		return ret;
-	}
+	}}.getProjectedAttributes;
 
-	q.isHired <- function()
+	q.isHired <- { function isHired()
 	{
 		return this.getPlaceInFormation() != 255;
-	}
+	}}.isHired;
 
-	q.MV_getMaxStartingTraits = @() function()
+	q.MV_getMaxStartingTraits = @() { function MV_getMaxStartingTraits()
 	{
 		return 2;
-	}
+	}}.MV_getMaxStartingTraits;
 
 	// Adjust attributes with 2 stars to also grant random stats instead of fixed stats each level-up
-	q.fillAttributeLevelUpValues = @(__original) function( _amount, _maxOnly = false, _minOnly = false )
+	q.fillAttributeLevelUpValues = @(__original) { function fillAttributeLevelUpValues( _amount, _maxOnly = false, _minOnly = false )
 	{
 		__original(_amount, _maxOnly, _minOnly);
 
@@ -148,12 +148,12 @@
 				}
 			}
 		}
-	}
+	}}.fillAttributeLevelUpValues;
 
-	q.setAttributeLevelUpValues = @(__original) function( _v )
+	q.setAttributeLevelUpValues = @(__original) { function setAttributeLevelUpValues( _v )
 	{
 		__original(_v);
 		local discoveredTalent = this.getSkills().getSkillByID("perk.rf_discovered_talent");
 		if (discoveredTalent != null) discoveredTalent.addStars();
-	}
+	}}.setAttributeLevelUpValues;
 });

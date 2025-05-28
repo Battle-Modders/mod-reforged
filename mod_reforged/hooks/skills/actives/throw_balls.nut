@@ -2,14 +2,14 @@
 	q.m.AdditionalAccuracy <- 20;
 	q.m.AdditionalHitChance <- -15;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.FatigueCost = 12;
 		this.m.IsShieldRelevant = false;		// Bolas now ignore the defense bonus of shields as a new unique ability
-	}
+	}}.create;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getRangedTooltip(this.skill.getDefaultTooltip());
 
@@ -52,14 +52,14 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 		}
-	}
+	}}.onAnySkillUsed;
 });

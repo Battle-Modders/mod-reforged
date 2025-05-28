@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/possessed_undead_effect", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character is possessed until the end of their [turn.|Concept.Turn]")
-	}
+	}}.create;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -53,5 +53,5 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 });

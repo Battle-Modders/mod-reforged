@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/load_mortar_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Load a large shell into an adjacent mortar.";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
@@ -26,5 +26,5 @@
 			});
 		}
 		return ret;
-	}
+	}}.getTooltip;
 });

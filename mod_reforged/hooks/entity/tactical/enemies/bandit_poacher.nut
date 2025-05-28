@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_poacher", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -32,9 +32,9 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -81,5 +81,5 @@
 			})
 			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
-	}
+	}}.assignRandomEquipment;
 });

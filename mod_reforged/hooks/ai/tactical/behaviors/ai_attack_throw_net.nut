@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/ai/tactical/behaviors/ai_attack_throw_net", function (q) {
 	q.m.PossibleSkills.push("actives.rf_schrat_small_root");
 
-	q.onEvaluate = @(__original) function( _entity )
+	q.onEvaluate = @(__original) { function onEvaluate( _entity )
 	{
 		// Wrap generator properly
 		local ret, gen = __original(_entity);
@@ -11,5 +11,5 @@
 			ret = ::Const.AI.Behavior.Score.Zero;
 
 		return ret;
-	}
+	}}.onEvaluate;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/unhold", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -67,9 +67,9 @@
 		}));
 		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_formidable_approach"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
-	}
+	}}.onInit;
 
-	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
+	q.onDeath = @(__original) { function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
 		// Set smiling head back to normal vanilla head so that _dead sprites are vanilla ones
 		local headSprite = this.getSprite("head");
@@ -79,9 +79,9 @@
 		}
 
 		__original(_killer, _skill, _tile, _fatalityType);
-	}
+	}}.onDeath;
 
-	q.getLootForTile = @(__original) function( _killer, _loot )
+	q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
 	{
 		__original(_killer, _loot);
 
@@ -103,5 +103,5 @@
 		}
 
 		return _loot;
-	}
+	}}.getLootForTile;
 });

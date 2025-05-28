@@ -1,12 +1,12 @@
 ::Reforged.HooksMod.hook("scripts/items/shields/shield", function(q) {
 	q.m.ReachIgnore <- 2; // By default it is 2 so we don't have to hook all shields to add this
 
-	q.getReachIgnore <- function()
+	q.getReachIgnore <- { function getReachIgnore()
 	{
 		return this.m.ReachIgnore;
-	}
+	}}.getReachIgnore;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -31,27 +31,27 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.getMeleeDefense = @(__original) function()
+	q.getMeleeDefense = @(__original) { function getMeleeDefense()
 	{
 		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 			return __original();
 
 		return ::Math.floor(__original() * this.RF_getDefenseMult());
-	}
+	}}.getMeleeDefense;
 
-	q.getRangedDefense = @(__original) function()
+	q.getRangedDefense = @(__original) { function getRangedDefense()
 	{
 		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 			return __original();
 
 		return ::Math.floor(__original() * this.RF_getDefenseMult());
-	}
+	}}.getRangedDefense;
 
 	// We hook it to use getMeleeDefense(), getRangedDefense(), getStaminaModifier() instead of
 	// vanilla using this.m.MeleeDefense, this.m.RangedDefense, this.m.StaminaModifier.
-	q.onUpdateProperties = @() function( _properties )
+	q.onUpdateProperties = @() { function onUpdateProperties( _properties )
 	{
 		if (this.m.Condition == 0)
 		{
@@ -64,23 +64,23 @@
 		_properties.RangedDefense += ::Math.floor(this.getRangedDefense() * mult);
 		_properties.Stamina += this.getStaminaModifier();
 		_properties.DefensiveReachIgnore += this.getReachIgnore();
-	}
+	}}.onUpdateProperties;
 
 // New Functions
-	q.getMeleeDefenseBonus <- function()
+	q.getMeleeDefenseBonus <- { function getMeleeDefenseBonus()
 	{
 		local mult = (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields) ? 1.25 : 1.0;
 		return ::Math.floor(this.getMeleeDefense() * mult);
-	}
+	}}.getMeleeDefenseBonus;
 
-	q.getRangedDefenseBonus <- function()
+	q.getRangedDefenseBonus <- { function getRangedDefenseBonus()
 	{
 		local mult = (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields) ? 1.25 : 1.0;
 		return ::Math.floor(this.getRangedDefense() * mult);
-	}
+	}}.getRangedDefenseBonus;
 
 	// Used to drop defenses of the actor as the actor builds fatigue
-	q.RF_getDefenseMult <- function()
+	q.RF_getDefenseMult <- { function RF_getDefenseMult()
 	{
 		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
 		{
@@ -94,5 +94,5 @@
 		}
 
 		return 1.0 - (actor.getCurrentProperties().IsSpecializedInShields ? 0.25 : 0.5) * actor.getFatiguePct();
-	}
+	}}.RF_getDefenseMult;
 });

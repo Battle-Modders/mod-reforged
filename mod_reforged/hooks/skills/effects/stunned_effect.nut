@@ -1,26 +1,26 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/stunned_effect", function(q) {
 	q.m.TwoTurnColor <- ::createColor("#ff6600");	// Orange
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Order += 100;	// So this skill acts after Dazed and overwrites the graphical changes made by those
-	}
+	}}.create;
 
-	q.onUpdate = @(__original) function( _properties )
+	q.onUpdate = @(__original) { function onUpdate( _properties )
 	{
 		__original(_properties);
 		this.updateSprite();
-	}
+	}}.onUpdate;
 
-	q.setTurns = @(__original) function( _turns )
+	q.setTurns = @(__original) { function setTurns( _turns )
 	{
 		__original(_turns);
 		this.updateSprite();
-	}
+	}}.setTurns;
 
 // New Functions
-	q.updateSprite <- function()
+	q.updateSprite <- { function updateSprite()
 	{
 		if (this.isGarbage()) return;	// This effect is about to be removed
 
@@ -46,5 +46,5 @@
 			}
 		}
 		actor.setDirty(true);
-	}
+	}}.updateSprite;
 });

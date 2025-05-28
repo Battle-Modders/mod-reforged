@@ -94,12 +94,12 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 			rebuke.m.BuildsFatigue = false;
 			local onTurnStart = "onTurnStart" in rebuke ? rebuke.onTurnStart : null;
 			local parentName = rebuke.SuperName;
-			rebuke.onTurnStart <- function()
+			rebuke.onTurnStart <- { function onTurnStart()
 			{
 				if (onTurnStart != null) onTurnStart();
 				else this[parentName].onTurnStart();
 				this.removeSelf();
-			}
+			}}.onTurnStart;
 			return rebuke;
 		}
 	}

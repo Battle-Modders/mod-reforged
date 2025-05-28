@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_goblin_pike", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/greenskins/goblin_pike";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -15,5 +15,5 @@
 			o.m.ActionPointCost -= 1;
 			o.m.FatigueCost -= 5;
 		}));
-	}
+	}}.onEquip;
 });

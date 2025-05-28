@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/contracts/contracts/escort_caravan_contract", function(q) {
-	q.onPrepareVariables = @(__original) function( _vars )
+	q.onPrepareVariables = @(__original) { function onPrepareVariables( _vars )
 	{
 		__original(_vars);
 		foreach (var in _vars)
@@ -9,5 +9,5 @@
 			var[1] = ::Reforged.Text.getDaysAndHalf(seconds);
 			break;
 		}
-	}
+	}}.onPrepareVariables;
 });

@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/smoke_effect", function(q) {
 	q.m.RangedDefenseBonus <- 30;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		foreach (entry in ret)
@@ -14,9 +14,9 @@
 			}
 		}
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onUpdate = @(__original) function( _properties )
+	q.onUpdate = @(__original) { function onUpdate( _properties )
 	{
 		local oldRangedDefenseMult = _properties.RangedDefenseMult;
 		__original(_properties);
@@ -24,5 +24,5 @@
 
 		if (this.isGarbage() == true) return;	 // Simple way of checking whether the line above skipped the buffs because the smoke effect is not active anymore
 		_properties.RangedDefense += this.m.RangedDefenseBonus; // Now we apply the new reworked actual bonus of the smoke effect
-	}
+	}}.onUpdate;
 });

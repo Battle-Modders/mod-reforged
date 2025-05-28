@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/wardog", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -37,5 +37,5 @@
 		//Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium - 1;
 		this.getSkills().update();
-	}
+	}}.onInit;
 });

@@ -9,7 +9,7 @@ local function RF_getResolveTooltipText( _text )
 
 ::Reforged.HooksMod.hook("scripts/items/armor_upgrades/direwolf_pelt_upgrade", function(q) {
 	// Add hyperlinks to tooltip entry about resolve malus and clarify that it is only during morale check
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		foreach (entry in ret)
@@ -21,10 +21,10 @@ local function RF_getResolveTooltipText( _text )
 			}
 		}
 		return ret;
-	}
+	}}.getTooltip;
 
 	// Add hyperlinks to tooltip entry about resolve malus and clarify that it is only during morale check
-	q.onArmorTooltip = @(__original) function( _result )
+	q.onArmorTooltip = @(__original) { function onArmorTooltip( _result )
 	{
 		local idx = _result.len() - 1;
 		__original(_result);
@@ -37,5 +37,5 @@ local function RF_getResolveTooltipText( _text )
 				break;
 			}
 		}
-	}
+	}}.onArmorTooltip;
 });

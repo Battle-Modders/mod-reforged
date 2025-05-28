@@ -3,13 +3,13 @@
 	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
 	q.m.RF_CanDropLoot <- true; // Is set to false during onDeath if Players+PlayerAnimals did not do enough damage to this entity
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.RF_DamageReceived = { Total = 0.0 };
-	}
+	}}.create;
 
-	q.onInit = @(__original) function()
+	q.onInit = @(__original) { function onInit()
 	{
 		__original();
 		this.getSkills().add(::new("scripts/skills/effects/rf_inspired_by_champion_effect"));
@@ -34,9 +34,9 @@
 				this.m.ExcludedInjuries.extend(::Const.Injury.ExcludedInjuries.get(::Const.Injury.ExcludedInjuries.RF_Undead));
 			}
 		}
-	}
+	}}.onInit;
 
-	q.getTooltip = @(__original) function( _targetedWithSkill = null )
+	q.getTooltip = @(__original) { function getTooltip( _targetedWithSkill = null )
 	{
 		local ret = __original(_targetedWithSkill);
 
@@ -123,9 +123,9 @@
 		ret.extend(::Reforged.TacticalTooltip.getGroundItems(this, 700));
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.checkMorale = @(__original) function( _change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
+	q.checkMorale = @(__original) { function checkMorale( _change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{
 		if (_change < 0)
 		{
@@ -147,15 +147,15 @@
 		this.m.Skills.update();
 
 		return ret;
-	}
+	}}.checkMorale;
 
-	q.onRoundStart = @(__original) function()
+	q.onRoundStart = @(__original) { function onRoundStart()
 	{
 		this.m.IsWaitingTurn = false;
 		__original();
-	}
+	}}.onRoundStart;
 
-	q.getSurroundedCount = @(__original) function()
+	q.getSurroundedCount = @(__original) { function getSurroundedCount()
 	{
 		// We need the honest un-clamped vanilla surround amount.
 		// So we set StartSurroundCountAt to 0 and then additionally counter the manual -1, which vanilla does before calling 'max' and also set
@@ -185,18 +185,18 @@
 		}
 
 		return ::Math.max(0, count - 1 - startSurroundCountAt);
-	}
+	}}.getSurroundedCount;
 
-	q.isTurnDone = @(__original) function()
+	q.isTurnDone = @(__original) { function isTurnDone()
 	{
 		if (::Tactical.getNavigator().isTravelling(this)) return false;		// Copy&Paste of check from vanilla
 		return __original() || this.m.IsWaitingTurn;
-	}
+	}}.isTurnDone;
 
 	// Overwrite vanilla function. The logic is the same as vanilla except the following changes:
 	// Scale the strength of the morale checks with the ratio of the victim's XP value to my XP value.
 	// Dying enemies only trigger positive morale check if the killer is null or belongs to my allied factions.
-	q.onOtherActorDeath = @() function( _killer, _victim, _skill )
+	q.onOtherActorDeath = @() { function onOtherActorDeath( _killer, _victim, _skill )
 	{
 		if (!this.m.IsAlive || this.m.IsDying || _victim.getXPValue() <= 1)
 			return;
@@ -220,12 +220,12 @@
 
 			this.checkMorale(1, difficulty);
 		}
-	}
+	}}.onOtherActorDeath;
 
 	// Overwrite vanilla function. The logic is the same as vanilla except the following changes:
 	// Scale the strength of the morale checks with the ratio of the fleeing ally's XP value to my XP value.
 	// Add Resolve based on the number of allies present on the map.
-	q.onOtherActorFleeing = @() function( _actor )
+	q.onOtherActorFleeing = @() { function onOtherActorFleeing( _actor )
 	{
 		if (!this.m.IsAlive || this.m.IsDying || !this.m.CurrentProperties.IsAffectedByFleeingAllies)
 			return;
@@ -246,30 +246,30 @@
 		difficulty -= ::Const.Morale.RF_AllyFleeingBraveryModifierPerAlly;
 
 		this.checkMorale(-1, difficulty);
-	}
+	}}.onOtherActorFleeing;
 
 // New Functions:
-	q.getSurroundedBonus <- function( _targetEntity )
+	q.getSurroundedBonus <- { function getSurroundedBonus( _targetEntity )
 	{
 		local surroundedCount = _targetEntity.getSurroundedCount();
 		local surroundBonus = surroundedCount * this.getCurrentProperties().SurroundedBonus * this.getCurrentProperties().SurroundedBonusMult;
 		surroundBonus -= surroundedCount * _targetEntity.getCurrentProperties().SurroundedDefense;
 		return surroundBonus;
-	}
+	}}.getSurroundedBonus;
 
-	q.setWaitTurn <- function( _bool )
+	q.setWaitTurn <- { function setWaitTurn( _bool )
 	{
 		this.m.IsWaitingTurn = _bool;
-	}
+	}}.setWaitTurn;
 
-	q.RF_getActionPointsState <- function()
+	q.RF_getActionPointsState <- { function RF_getActionPointsState()
 	{
 		return ::Math.min(::Const.RF_ActionPointsStateName.len() - 1, ::Math.max(0, ::Math.floor(this.getActionPoints() / (this.getActionPointsMax() * 1.0) * (::Const.RF_ActionPointsStateName.len() - 1))));
-	}
+	}}.RF_getActionPointsState;
 
 	// Functionality to restrict loot drops based on damage dealt by players to this actor.
 	// Is called from actor.getLootForTile and item_container.canDropItems
-	q.RF_canDropLootForPlayer <- function( _killer )
+	q.RF_canDropLootForPlayer <- { function RF_canDropLootForPlayer( _killer )
 	{
 		// Bros always drop loot, no matter who kills them
 		if (this.getFaction() == ::Const.Faction.Player || ::isKindOf(this, "player"))
@@ -287,19 +287,19 @@
 
 		// If player + player animals did at least 50% of total damage to this actor, they gain the loot
 		return playerRelevantDamage / this.m.RF_DamageReceived.Total >= 0.5;
-	}
+	}}.RF_canDropLootForPlayer;
 });
 
 ::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
-	q.onActorKilled = @(__original) function( _actor, _tile, _skill )
+	q.onActorKilled = @(__original) { function onActorKilled( _actor, _tile, _skill )
 	{
 		local wasOverriding = ::Reforged.Config.XPOverride;
 		::Reforged.Config.XPOverride = true;
 		__original(_actor, _tile, _skill);
 		::Reforged.Config.XPOverride = wasOverriding;
-	}
+	}}.onActorKilled;
 
-	q.onDeath = @(__original) function( _killer, _skill, _tile, _fatalityType )
+	q.onDeath = @(__original) { function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
 		local playerRelevantDamage = 0.0;
 
@@ -352,12 +352,12 @@
 		}
 
 		__original(_killer, _skill, _tile, _fatalityType);
-	}
+	}}.onDeath;
 });
 
 ::Reforged.QueueBucket.Late.push(function() {
 	::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
-		q.getLootForTile = @(__original) function( _killer, _loot )
+		q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
 		{
 			// Change _killer to null to guarantee loot drop as vanilla checks for killer being null or belonging to Player or PlayerAnimals faction.
 			// Warning: this may be problematic for a mod that hooks this function and expects _killer to be the actual killer.
@@ -388,6 +388,6 @@
 			killerTable.getFaction = getFaction; // Revert the getFaction switcheroo
 
 			return ret;
-		}
+		}}.getLootForTile;
 	});
 });

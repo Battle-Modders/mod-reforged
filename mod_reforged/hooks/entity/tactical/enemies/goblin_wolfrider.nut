@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_wolfrider", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.goblin.onInit();
 		local b = this.m.BaseProperties;
@@ -59,12 +59,12 @@
 
 		// In vanilla goblin_wolfriders have a bug that they get the bonus damage from wolf_bite for ALL attacks
 		// until they use that skill. We have "fixed" that in Reforged. The fix is in the hook on wolf_bite.
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	}
+	}}.assignRandomEquipment;
 });

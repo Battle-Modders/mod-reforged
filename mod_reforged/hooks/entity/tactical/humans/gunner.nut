@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/gunner", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -23,5 +23,5 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_crossbow"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_through_the_ranks"));
-	}
+	}}.onInit;
 });

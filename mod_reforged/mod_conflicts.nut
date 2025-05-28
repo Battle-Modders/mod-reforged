@@ -11,7 +11,7 @@
 ]);
 
 // Some mods don't register with hooks, so we have to check for their existence by their filename
-::Reforged.checkConflictWithFilename <- function()
+::Reforged.checkConflictWithFilename <- { function checkConflictWithFilename()
 {
 	local conflicts = {
 		// Detailed Status Effects by LiaAshborn. https://www.nexusmods.com/battlebrothers/mods/103
@@ -45,4 +45,4 @@
 			}
 		}
 	}
-}
+}}.checkConflictWithFilename;

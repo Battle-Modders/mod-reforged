@@ -2,12 +2,12 @@
 	q.m.StaminaModifierThresholdMult <- 0.15;
 	q.m.WeightThresholdMin <- 15;	// This perks weight threshold can never be lower than this
 
-	q.isHidden = @() function()
+	q.isHidden = @() { function isHidden()
 	{
 		return ::Math.floor(this.getHitpointsDamage() * 100) >= 100 && ::Math.floor(this.getArmorDamage() * 100) >= 100;
-	}
+	}}.isHidden;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		local hpBonus = ::Math.round(this.getHitpointsDamage() * 100);
@@ -67,23 +67,23 @@
 		});
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.getHitpointsDamage <- function()
+	q.getHitpointsDamage <- { function getHitpointsDamage()
 	{
 		local fat = this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
 		fat = ::Math.min(0, fat + this.getStaminaModifierThreshold());
 		return ::Math.minf(1.0, 1.0 - 0.5 + ::Math.pow(::Math.abs(fat), 1.23) * 0.01);
-	}
+	}}.getHitpointsDamage;
 
-	q.getArmorDamage <- function()
+	q.getArmorDamage <- { function getArmorDamage()
 	{
 		local fat = this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]);
 		fat = ::Math.min(0, fat + this.getStaminaModifierThreshold());
 		return ::Math.minf(1.0, 1.0 - 0.25 + ::Math.pow(::Math.abs(fat), 1.23) * 0.01);
-	}
+	}}.getArmorDamage;
 
-	q.onBeforeDamageReceived = @() function( _attacker, _skill, _hitInfo, _properties )
+	q.onBeforeDamageReceived = @() { function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
 		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack() || !_skill.isUsingHitchance())
 		{
@@ -92,17 +92,17 @@
 
 		_properties.DamageReceivedRegularMult *= this.getHitpointsDamage();
 		_properties.DamageReceivedArmorMult *= this.getArmorDamage();
-	}
+	}}.onBeforeDamageReceived;
 
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (!this.isHidden() && _targetEntity != null && _skill.isAttack() && !_skill.isRanged() && _targetEntity.getInitiative() < this.getContainer().getActor().getInitiative())
 		{
 			_properties.OffensiveReachIgnore += 1;
 		}
-	}
+	}}.onAnySkillUsed;
 
-	q.getStaminaModifierThreshold <- function()
+	q.getStaminaModifierThreshold <- { function getStaminaModifierThreshold()
 	{
 		local b = this.getContainer().getActor().getBaseProperties().getClone();
 		local wasUpdating = this.getContainer().m.IsUpdating;
@@ -113,5 +113,5 @@
 		}
 		this.getContainer().m.IsUpdating = wasUpdating;
 		return ::Math.max(this.m.WeightThresholdMin, this.m.StaminaModifierThresholdMult * b.Stamina * (b.StaminaMult >= 0 ? b.StaminaMult : 1.0 / b.StaminaMult));
-	}
+	}}.getStaminaModifierThreshold;
 });

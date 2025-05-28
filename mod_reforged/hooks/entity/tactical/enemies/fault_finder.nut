@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/fault_finder", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -20,5 +20,5 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
-	}
+	}}.onInit;
 });

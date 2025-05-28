@@ -1,6 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/entity/world/settlements/buildings/tavern_building", function(q) {
 
-	q.getRumor = @(__original) function( _isPaidFor = false )
+	q.getRumor = @(__original) { function getRumor( _isPaidFor = false )
 	{
 		local lastRumor = this.m.LastRumor;
 		local ret = __original(_isPaidFor);
@@ -29,9 +29,9 @@
 		this.m.LastRumor = rumor;
 
 		return rumor;
-	}
+	}}.getRumor;
 
-	q.buildText = @(__original) function( _text )
+	q.buildText = @(__original) { function buildText( _text )
 	{
 		// Switcheroo so that we only change the global 'buildTextFromTemplate' when used by the Tavern Building
 		local buildTextFromTemplate = ::buildTextFromTemplate;
@@ -46,10 +46,10 @@
 		::buildTextFromTemplate = buildTextFromTemplate;
 
 		return ret;
-	}
+	}}.buildText;
 
 // New Functions
-	q.getLegendaryLocationForRumor <- function()
+	q.getLegendaryLocationForRumor <- { function getLegendaryLocationForRumor()
 	{
 		local bestLocation = null;
 		local bestDist = 9000;
@@ -67,12 +67,12 @@
 			bestLocation = s;
 		}
 		return bestLocation;
-	}
+	}}.getLegendaryLocationForRumor;
 
 	// We add up 4 new variables for texts to be build with.
 	// Three are wrong distances, direction and terrain for the purpose of creating more interesting rumors.
 	// One is an indirect adjective for a legendary location if you don't wanna name it directly
-	q.adjustVars <- function( _vars )
+	q.adjustVars <- { function adjustVars( _vars )
 	{
 		foreach (var in _vars)
 		{
@@ -105,5 +105,5 @@
 			"legendaryLocationAdjective",
 			::MSU.Array.rand(::Const.Strings.LegendaryLocationAdjective)
 		])
-	}
+	}}.adjustVars;
 });

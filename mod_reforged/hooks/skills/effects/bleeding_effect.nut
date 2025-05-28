@@ -7,14 +7,14 @@
 	// Used to speed up the bleed icon spam from multiple bleeds in a single attack
 	q.m.SkillCount <- 0;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Description = "This character is bleeding profusely and will lose hitpoints each turn while acting slower and losing courage.";
 		this.m.IsStacking = false;
-	}
+	}}.create;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.push({
@@ -57,48 +57,48 @@
 			text = ::Reforged.Mod.Tooltips.parseString("If at least " + ::MSU.Text.colorNegative(this.getStacksForMoraleCheck()) + " stacks are received in a single [turn,|Concept.Turn] a negative [morale check|Concept.Morale] is immediately triggered")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.getName = @() function()
+	q.getName = @() { function getName()
 	{
 		return this.m.Stacks == 1 ? this.m.Name : this.m.Name + " (x" + this.m.Stacks + ")";
-	}
+	}}.getName;
 
-	q.getDescription = @() function()
+	q.getDescription = @() { function getDescription()
 	{
 		return this.m.Description;
-	}
+	}}.getDescription;
 
-	q.getMalusMult <- function()
+	q.getMalusMult <- { function getMalusMult()
 	{
 		local actor = this.getContainer().getActor();
 		local debuff = ::Math.minf(this.m.MaxMalusMult, 2 * this.m.Stacks.tofloat() / actor.getHitpoints());
 		debuff *= actor.getCurrentProperties().RF_BleedingEffectMult;
 		return ::Math.maxf(0, 1.0 - debuff);
-	}
+	}}.getMalusMult;
 
-	q.getDamage = @() function()
+	q.getDamage = @() { function getDamage()
 	{
 		return ::Math.floor(this.m.Stacks * this.getContainer().getActor().getCurrentProperties().RF_BleedingEffectMult);
-	}
+	}}.getDamage;
 
-	q.getStacksForMoraleCheck <- function()
+	q.getStacksForMoraleCheck <- { function getStacksForMoraleCheck()
 	{
 		return ::Math.max(1, this.m.StacksForMoraleCheck / this.getContainer().getActor().getCurrentProperties().RF_BleedingEffectMult);
-	}
+	}}.getStacksForMoraleCheck;
 
 	// The vanilla file has an empty onUpdate function
-	q.onUpdate = @() function( _properties )
+	q.onUpdate = @() { function onUpdate( _properties )
 	{
 		local mult = this.getMalusMult();
 		_properties.InitiativeMult *= mult;
 		_properties.BraveryMult *= mult;
-	}
+	}}.onUpdate;
 
 	// Based on the vanilla function but use this.getDamage() to calculate hitInfo.DamageRegular and use this.m.Overlay for spawnIcon
 	// and get rid of the part that decrements this.m.TurnsLeft and removes the effect
 	// also apply damage in instances smaller than ::Const.Morale.OnHitMinDamage to prevent morale check from this damage
-	q.applyDamage = @() function()
+	q.applyDamage = @() { function applyDamage()
 	{
 		if (this.m.LastRoundApplied != ::Time.getRound())
 		{
@@ -133,15 +133,15 @@
 				actor.onDamageReceived(actor, this, hitInfo);
 			}
 		}
-	}
+	}}.applyDamage;
 
-	q.onAdded = @(__original) function()
+	q.onAdded = @(__original) { function onAdded()
 	{
 		__original();
 		this.m.SkillCount = ::Const.SkillCounter;
-	}
+	}}.onAdded;
 
-	q.onRefresh = @() function()
+	q.onRefresh = @() { function onRefresh()
 	{
 		local actor = this.getContainer().getActor();
 		if (actor.getCurrentProperties().IsResistantToAnyStatuses && ::Math.rand(1, 100) <= 50)
@@ -173,10 +173,10 @@
 
 		if (++this.m.StacksThisTurn == this.getStacksForMoraleCheck())
 			actor.checkMorale(-1, ::Const.Morale.OnHitBaseDifficulty * (1.0 - actor.getHitpoints() / actor.getHitpointsMax()));
-	}
+	}}.onRefresh;
 
-	q.onTurnStart = @() function()
+	q.onTurnStart = @() { function onTurnStart()
 	{
 		this.m.StacksThisTurn = 0;
-	}
+	}}.onTurnStart;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hookTree("scripts/items/item", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		if (this.getSlotType() == ::Const.ItemSlot.None)
 			return __original();
@@ -30,5 +30,5 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 });

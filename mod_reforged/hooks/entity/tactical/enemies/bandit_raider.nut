@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_raider", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -22,9 +22,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -107,9 +107,9 @@
 			})
 			this.m.Items.equip(::new(helmet));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
@@ -122,5 +122,5 @@
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 		}
-	}
+	}}.onSpawned;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/split_shield", function(q) {
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
@@ -28,18 +28,18 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Name = "Smash Shield";
 		this.m.Description = "An attack specifically aimed at an opponent\'s shield. Can only be used against targets that carry a shield. Will always hit and do damage to the shield, while tiring the target.";
-	}
+	}}.create;
 
 	// We overwrite the original function to remove the part about increased damage to shields from axe mastery
 	// and to output Smash Shield instead of Split Shield to the combat log. The rest is the same as vanilla.
-	q.onUse = @() function( _user, _targetTile )
+	q.onUse = @() { function onUse( _user, _targetTile )
 	{
 		local targetEntity = _targetTile.getEntity()
 		local shield = targetEntity.getOffhandItem();
@@ -91,10 +91,10 @@
 		}
 
 		return true;
-	}
+	}}.onUse;
 
-	q.RF_getFatigueDamage <- function()
+	q.RF_getFatigueDamage <- { function RF_getFatigueDamage()
 	{
 		return ::MSU.isNull(this.getItem()) ? this.getContainer().getActor().getMainhandItem().getShieldDamage() : this.getItem().getShieldDamage();
-	}
+	}}.RF_getFatigueDamage;
 });

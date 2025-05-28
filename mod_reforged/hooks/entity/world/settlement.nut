@@ -1,17 +1,17 @@
 ::Reforged.HooksMod.hook("scripts/entity/world/settlement", function(q) {
-	q.setOwner = @(__original) function( _owner )
+	q.setOwner = @(__original) { function setOwner( _owner )
 	{
 		__original(_owner);
 		this.adjustBannerOffset();
-	}
+	}}.setOwner;
 
-	q.setActive = @(__original) function( _a, _burn = true )
+	q.setActive = @(__original) { function setActive( _a, _burn = true )
 	{
 		__original(_a, _burn);
 		this.adjustBannerOffset();
-	}
+	}}.setActive;
 
-	q.onUpdateShopList = @(__original) function( _id, _list )
+	q.onUpdateShopList = @(__original) { function onUpdateShopList( _id, _list )
 	{
 		switch (_id)
 		{
@@ -247,5 +247,5 @@
 		}
 
 		return __original(_id, _list);
-	}
+	}}.onUpdateShopList;
 });

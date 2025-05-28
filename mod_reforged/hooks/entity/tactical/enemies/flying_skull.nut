@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/flying_skull", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);
@@ -69,5 +69,5 @@
 		//Reforged
 		this.m.BaseProperties.IsAffectedByReach = false;
 		this.getSkills().update()
-	}
+	}}.onInit;
 });

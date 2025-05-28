@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/two_handed_wooden_hammer", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 5;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -21,5 +21,5 @@
 			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 2;
 		}));
-	}
+	}}.onEquip;
 });

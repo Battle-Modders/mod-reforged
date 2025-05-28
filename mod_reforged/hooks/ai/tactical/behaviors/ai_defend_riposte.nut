@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/ai/tactical/behaviors/ai_defend_riposte", function(q) {
 	q.m.PossibleSkills.push("actives.rf_bearded_blade");
 
-	q.onEvaluate = @(__original) function( _entity )
+	q.onEvaluate = @(__original) { function onEvaluate( _entity )
 	{
 		local score = __original(_entity);
 		if (this.m.Skill != null && this.m.Skill.getID() == "actives.riposte")
@@ -15,5 +15,5 @@
 		}
 
 		return score;
-	}
+	}}.onEvaluate;
 });

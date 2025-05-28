@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/schrat_small", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -41,5 +41,5 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastSmall;
 		this.m.Skills.add(::new("scripts/skills/actives/rf_schrat_small_root_skill"));
 		this.m.IsActingImmediately = true;
-	}
+	}}.onInit;
 });

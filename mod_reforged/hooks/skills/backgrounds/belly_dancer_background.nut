@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/belly_dancer_background", function(q) {
-	q.createPerkTreeBlueprint = @() function()
+	q.createPerkTreeBlueprint = @() { function createPerkTreeBlueprint()
 	{
 		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -16,18 +16,18 @@
 				]
 			}
 		});
-	}
+	}}.createPerkTreeBlueprint;
 
-	q.getPerkGroupCollectionMin = @() function( _collection )
+	q.getPerkGroupCollectionMin = @() { function getPerkGroupCollectionMin( _collection )
 	{
 		switch (_collection.getID())
 		{
 			case "pgc.rf_weapon":
 				return _collection.getMin() + 2;
 		}
-	}
+	}}.getPerkGroupCollectionMin;
 
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		switch (_groupID)
 		{
@@ -51,5 +51,5 @@
 			case "pg.rf_hammer":
 				return 0.5;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 });

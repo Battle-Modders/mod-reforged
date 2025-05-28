@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/kraken_tentacle", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -36,5 +36,5 @@
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastLarge;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-	}
+	}}.onInit;
 });

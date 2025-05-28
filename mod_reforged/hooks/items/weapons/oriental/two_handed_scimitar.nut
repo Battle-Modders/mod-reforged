@@ -1,12 +1,12 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/oriental/two_handed_scimitar", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 5;
 		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.RF_Southern;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -22,5 +22,5 @@
 		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
 			o.m.FatigueCost += 5;
 		}));
-	}
+	}}.onEquip;
 });

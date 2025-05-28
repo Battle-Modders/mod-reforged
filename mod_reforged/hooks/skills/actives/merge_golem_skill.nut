@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/merge_golem_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Grow larger by bringing together the living sands and stone around you!";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({
@@ -25,5 +25,5 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Consumes 2 adjacent " + ::Const.Strings.EntityNamePlural[entityType] + " and makes you [grow|Skill+golem_racial] larger")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 });

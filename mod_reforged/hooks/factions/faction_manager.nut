@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/factions/faction_manager", function (q) {
-	q.createNobleHouses = @(__original) function()
+	q.createNobleHouses = @(__original) { function createNobleHouses()
 	{
 		// Switcheroo to allow the castle helmet faction to also appear
 		local oldMathRand = ::Math.rand;
@@ -16,5 +16,5 @@
 		::Math.rand = oldMathRand;
 
 		return ret;
-	}
+	}}.createNobleHouses;
 });

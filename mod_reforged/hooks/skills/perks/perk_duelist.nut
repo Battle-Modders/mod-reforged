@@ -1,20 +1,20 @@
 ::Reforged.HooksMod.hook("scripts/skills/perks/perk_duelist", function(q) {
-	q.onUpdate = @() function( _properties )
+	q.onUpdate = @() { function onUpdate( _properties )
 	{
 		local shield = this.getContainer().getActor().getOffhandItem();
 		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield))
 		{
 			_properties.OffensiveReachIgnore += shield.getReachIgnore();
 		}
-	}
+	}}.onUpdate;
 
-	q.isEnabled <- function()
+	q.isEnabled <- { function isEnabled()
 	{
 		local aoo = this.getContainer().getAttackOfOpportunity();
 		return aoo != null && aoo.isDuelistValid();
-	}
+	}}.isEnabled;
 
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (!_skill.isDuelistValid())
 			return;
@@ -35,5 +35,5 @@
 		{
 			_properties.DamageDirectAdd += 0.15;
 		}
-	}
+	}}.onAnySkillUsed;
 });

@@ -3,7 +3,7 @@
 	q.m.DefenseModifierFraction <- 0.2;	// This percentage of the users resolve is removed from the targets defense
 	q.m.MaxRangeForDefenseDebuff <- 1;	// The target of your taunt must be at most this many tiles from you to receive the defense debuff
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -30,16 +30,16 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onVerifyTarget = @(__original) function( _originTile, _targetTile )
+	q.onVerifyTarget = @(__original) { function onVerifyTarget( _originTile, _targetTile )
 	{
 		local ret = __original(_originTile, _targetTile);
 		if (ret && _targetTile.getEntity().getSkills().hasSkill("effects.taunted"))	return false;
 		return ret;
-	}
+	}}.onVerifyTarget;
 
-	q.onUse = @(__original) function( _user, _targetTile )
+	q.onUse = @(__original) { function onUse( _user, _targetTile )
 	{
 		local ret = __original(_user, _targetTile);
 		if (!ret) return ret;
@@ -53,12 +53,12 @@
 		target.getSkills().update();	// Otherwise the defense debuff will not be immediately visible in the combat tooltip
 
 		return true;
-	}
+	}}.onUse;
 
 // New Functions
-	q.calculateDefenseModifier <- function()
+	q.calculateDefenseModifier <- { function calculateDefenseModifier()
 	{
 		local defenseModifier = -1.0 * this.m.DefenseModifierFraction * this.getContainer().getActor().getCurrentProperties().getBravery();
 		return ::Math.min(0, defenseModifier);	// This modifier may never be positive
-	}
+	}}.calculateDefenseModifier;
 });

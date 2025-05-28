@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/traits/brute_trait", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		foreach(entry in ret)
@@ -11,9 +11,9 @@
 			}
 		}
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		switch (_groupID)
 		{
@@ -32,5 +32,5 @@
 			case "pg.rf_sword":
 				return 0.9;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 });

@@ -165,7 +165,7 @@ local teleport = ::TacticalNavigator.teleport;
 	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback, info.Skill.m.RF_Schedule.Count + 1), "onAnySkillExecutedFully");
 
 	teleport(_user, _targetTile, getWrapper(info, _func, 2), _data, _bool, _float);
-}}.teleport
+}}.teleport;
 
 local switchEntities = ::TacticalNavigator.switchEntities;
 ::TacticalNavigator.switchEntities <- { function switchEntities( _user, _targetEntity, _func, _data, _float )
@@ -194,7 +194,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 }}.switchEntities;
 
 ::Reforged.HooksMod.hook("scripts/skills/skill_container", function(q) {
-	q.onAnySkillExecutedFully <- function( _skill, _targetTile, _targetEntity, _forFree )
+	q.onAnySkillExecutedFully <- { function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		// Don't update if using a skill that sets Tile to ID 0 e.g. Rotation because this leads
 		// to crashes if any skill tries to access the current tile in its onUpdate
@@ -206,17 +206,17 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 			_targetEntity,
 			_forFree
 		], this.getActor().isPlacedOnMap());
-	}
+	}}.onAnySkillExecutedFully;
 });
 
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
 	q.m.RF_Schedule <- null;
 
-	q.onAnySkillExecutedFully <- function( _skill, _targetTile, _targetEntity, _forFree )
+	q.onAnySkillExecutedFully <- { function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
-	}
+	}}.onAnySkillExecutedFully;
 
-	q.use = @(__original) function( _targetTile, _forFree = false )
+	q.use = @(__original) { function use( _targetTile, _forFree = false )
 	{
 		this.m.RF_Schedule = ::Reforged.SkillSchedule(this, _targetTile, _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null, _forFree);
 
@@ -233,7 +233,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		}
 
 		return ret;
-	}
+	}}.use;
 });
 
 // This is for debugging only - show a popup to the user to send us the log in cases where the skill schedule
@@ -266,7 +266,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		return !::Time.hasEventScheduled(::TimeUnit.Virtual) && !::Tactical.getNavigator().IsTravelling;
 	}}.RF_canExecuteSkill;
 
-	q.executeEntitySkill = @(__original) function( _activeEntity, _targetTile )
+	q.executeEntitySkill = @(__original) { function executeEntitySkill( _activeEntity, _targetTile )
 	{
 		// Prevent executing a skill while the previously executed skill has not fully finished executing
 		// including all its delayed effects
@@ -277,5 +277,5 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		}
 
 		__original(_activeEntity, _targetTile);
-	}
+	}}.executeEntitySkill;
 });

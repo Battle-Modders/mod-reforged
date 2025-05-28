@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/hedge_knight_background", function(q) {
-	q.createPerkTreeBlueprint = @() function()
+	q.createPerkTreeBlueprint = @() { function createPerkTreeBlueprint()
 	{
 		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -16,9 +16,9 @@
 				]
 			}
 		});
-	}
+	}}.createPerkTreeBlueprint;
 
-	q.getPerkGroupCollectionMin = @() function( _collection )
+	q.getPerkGroupCollectionMin = @() { function getPerkGroupCollectionMin( _collection )
 	{
 		switch (_collection.getID())
 		{
@@ -28,9 +28,9 @@
 			case "pgc.rf_fighting_style":
 				return _collection.getMin() + 1;
 		}
-	}
+	}}.getPerkGroupCollectionMin;
 
-	q.getPerkGroupMultiplier = @() function( _groupID, _perkTree )
+	q.getPerkGroupMultiplier = @() { function getPerkGroupMultiplier( _groupID, _perkTree )
 	{
 		if (::Reforged.Skills.getPerkGroupMultiplier_MeleeOnly(_groupID, _perkTree) == 0)
 			return 0;
@@ -56,9 +56,9 @@
 			case "pg.special.rf_man_of_steel":
 				return -1;
 		}
-	}
+	}}.getPerkGroupMultiplier;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		ret.push({
@@ -68,9 +68,9 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Has access to the [Lone Wolf|Perk+perk_lone_wolf] [perk|Concept.Perk] at tier 1 of the perk tree")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onBuildPerkTree = @() function()
+	q.onBuildPerkTree = @() { function onBuildPerkTree()
 	{
 		local perkTree = this.getContainer().getActor().getPerkTree();
 		if (perkTree.hasPerk("perk.lone_wolf"))
@@ -78,5 +78,5 @@
 			perkTree.removePerk("perk.lone_wolf");
 		}
 		perkTree.addPerk("perk.lone_wolf", 1);
-	}
+	}}.onBuildPerkTree;
 });

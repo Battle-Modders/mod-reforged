@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/shieldwall", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -11,9 +11,9 @@
 		});
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAfterUpdate = @() function( _properties )
+	q.onAfterUpdate = @() { function onAfterUpdate( _properties )
 	{
 		// Part of perk_rf_shield_sergeant functionality
 		local actor = this.getContainer().getActor();
@@ -31,22 +31,22 @@
 				}
 			}
 		}
-	}
+	}}.onAfterUpdate;
 
-	q.onTurnStart = @() function()
+	q.onTurnStart = @() { function onTurnStart()
 	{
 		// Part of perk_rf_shield_sergeant functionality
 		this.RF_checkForShieldSergeant();
-	}
+	}}.onTurnStart;
 
-	q.onTurnEnd = @() function()
+	q.onTurnEnd = @() { function onTurnEnd()
 	{
 		// Part of perk_rf_shield_sergeant functionality
 		this.RF_checkForShieldSergeant();
-	}
+	}}.onTurnEnd;
 
 	// Part of perk_rf_shield_sergeant functionality
-	q.RF_checkForShieldSergeant <- function()
+	q.RF_checkForShieldSergeant <- { function RF_checkForShieldSergeant()
 	{
 		local actor = this.getContainer().getActor();
 		if (actor.getCurrentProperties().IsStunned || actor.getMoraleState() == ::Const.MoraleState.Fleeing || this.getContainer().hasSkill("effects.shieldwall"))
@@ -69,5 +69,5 @@
 				return;
 			}
 		}
-	}
+	}}.RF_checkForShieldSergeant;
 });

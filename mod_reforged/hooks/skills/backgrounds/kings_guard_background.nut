@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/kings_guard_background", function(q) {
-	q.createPerkTreeBlueprint = @() function()
+	q.createPerkTreeBlueprint = @() { function createPerkTreeBlueprint()
 	{
 		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -21,9 +21,9 @@
 				]
 			}
 		});
-	}
+	}}.createPerkTreeBlueprint;
 
-	q.getPerkGroupCollectionMin = @() function( _collection )
+	q.getPerkGroupCollectionMin = @() { function getPerkGroupCollectionMin( _collection )
 	{
 		switch (_collection.getID())
 		{
@@ -34,5 +34,5 @@
 			case "pgc.rf_weapon":
 				return _collection.getMin() + 2;
 		}
-	}
+	}}.getPerkGroupCollectionMin;
 });

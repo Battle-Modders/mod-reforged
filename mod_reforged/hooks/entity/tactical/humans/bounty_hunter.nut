@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/bounty_hunter", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -33,9 +33,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
@@ -59,5 +59,5 @@
 				this.getBodyItem().setUpgrade(::new(armorAttachment));
 			}
 		}
-	}
+	}}.assignRandomEquipment;
 });

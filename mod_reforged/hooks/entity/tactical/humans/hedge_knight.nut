@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/hedge_knight", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -24,9 +24,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_savage_strength"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @() function()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
@@ -96,9 +96,9 @@
 			if (armorAttachment != null)
 				bodyItem.setUpgrade(::new(armorAttachment));
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @() function()
+	q.makeMiniboss = @() { function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
 		{
@@ -149,9 +149,9 @@
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
 		return true;
-	}
+	}}.makeMiniboss;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
@@ -168,5 +168,5 @@
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 			}
 		}
-	}
+	}}.onSpawned;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/states/tactical_state", function(q) {
-	q.initMap = @(__original) function()
+	q.initMap = @(__original) { function initMap()
 	{
 		// Feat: the same location will always produce the exact same layout
 		// This has no influence over troop spawning as those will be seeded by "combatSeed" later on
@@ -21,7 +21,7 @@
 		}
 
 		__original();
-	}
+	}}.initMap;
 
 	q.showRetreatScreen = @(__original) function ( _tag = null )
 	{

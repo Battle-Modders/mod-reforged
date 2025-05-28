@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/spearwall_effect", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -15,9 +15,9 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onUpdate = @(__original) function( _properties )
+	q.onUpdate = @(__original) { function onUpdate( _properties )
 	{
 		__original(_properties);
 		if (::Tactical.isActive() && !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
@@ -29,5 +29,5 @@
 				crowded.m.NumAlliesToIgnore = 99;
 			}
 		}
-	}
+	}}.onUpdate;
 });

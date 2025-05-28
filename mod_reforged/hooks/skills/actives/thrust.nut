@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/thrust", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.HitChanceBonus = 10;
-	}
+	}}.create;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
 		if (this.m.HitChanceBonus != 0)
@@ -18,13 +18,13 @@
 			});
 		}
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
 			_properties.MeleeSkill += this.m.HitChanceBonus;
 		}
-	}
+	}}.onAnySkillUsed;
 });

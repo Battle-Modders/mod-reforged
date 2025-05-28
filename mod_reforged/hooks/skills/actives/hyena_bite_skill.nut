@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/hyena_bite_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "An attack adept at piercing through armor to get to the flesh beneath!";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getDefaultTooltip();
 		ret.push({
@@ -17,5 +17,5 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Inflicts [Bleeding|Skill+bleeding_effect] when dealing at least " + ::MSU.Text.colorNegative(::Const.Combat.MinDamageToApplyBleeding) + " damage to [Hitpoints|Concept.Hitpoints]")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 });

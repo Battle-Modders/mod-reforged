@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/goblin_shaman", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.goblin.onInit();
 		local b = this.m.BaseProperties;
@@ -18,5 +18,5 @@
 		this.m.Skills.add(::new("scripts/skills/actives/root_skill"));
 		this.m.Skills.add(::new("scripts/skills/actives/insects_skill"));
 		this.m.Skills.add(::new("scripts/skills/actives/grant_night_vision_skill"));
-	}
+	}}.onInit;
 });

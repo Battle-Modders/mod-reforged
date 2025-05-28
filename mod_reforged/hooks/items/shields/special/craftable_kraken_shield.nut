@@ -1,15 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/items/shields/special/craftable_kraken_shield", function(q) {
 	q.m.ThreatModifier <- 10;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Condition = 220;
 		this.m.ConditionMax = 220;
 		this.m.ReachIgnore = 3;
-	}
+	}}.create;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		if (this.m.ThreatModifier != 0)
@@ -22,11 +22,11 @@
 			});
 		}
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onUpdateProperties = @(__original) function( _properties )
+	q.onUpdateProperties = @(__original) { function onUpdateProperties( _properties )
 	{
 		__original(_properties);
 		_properties.Threat += this.m.ThreatModifier;
-	}
+	}}.onUpdateProperties;
 });

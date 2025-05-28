@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/nomad_slinger", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -37,5 +37,5 @@
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-	}
+	}}.onInit;
 });

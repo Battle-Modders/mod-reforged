@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/uproot_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Raise large thorny roots from the ground to smash and impale multiple targets.";
-	}
+	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
 		ret.extend([
@@ -31,5 +31,5 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 });

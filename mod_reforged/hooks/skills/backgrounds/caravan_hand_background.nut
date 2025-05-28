@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/backgrounds/caravan_hand_background", function(q) {
-	q.createPerkTreeBlueprint = @() function()
+	q.createPerkTreeBlueprint = @() { function createPerkTreeBlueprint()
 	{
 		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
@@ -12,5 +12,5 @@
 				"pgc.rf_fighting_style": []
 			}
 		});
-	}
+	}}.createPerkTreeBlueprint;
 });

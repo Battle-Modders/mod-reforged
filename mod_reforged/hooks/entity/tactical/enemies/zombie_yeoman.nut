@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/zombie_yeoman", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.zombie.onInit();
 		local b = this.m.BaseProperties;
@@ -26,5 +26,5 @@
 		this.m.Skills.update();
 
 		// Reforged
-	}
+	}}.onInit;
 });

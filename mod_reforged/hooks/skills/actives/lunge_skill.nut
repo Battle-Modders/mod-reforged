@@ -1,17 +1,17 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/lunge_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.HitChanceBonus = -20;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_AttackLunge;
-	}
+	}}.create;
 
-	q.isDuelistValid <- function()
+	q.isDuelistValid <- { function isDuelistValid()
 	{
 		return this.getBaseValue("ActionPointCost") <= 4;
-	}
+	}}.isDuelistValid;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 		ret.insert(ret.len() - 1, {
@@ -21,9 +21,9 @@
 			text = "Has " + ::MSU.Text.colorizeValue(this.m.HitChanceBonus, {AddSign = true, AddPercent = true}) + " chance to hit"
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @(__original) { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		__original(_skill, _targetEntity, _properties);
 		if (_skill == this)
@@ -32,9 +32,9 @@
 
 			_properties.MeleeSkill += this.m.HitChanceBonus;
 		}
-	}
+	}}.onAnySkillUsed;
 
-	q.getDestinationTile <- function( _targetTile, _originTile = null )
+	q.getDestinationTile <- { function getDestinationTile( _targetTile, _originTile = null )
 	{
 		if (_originTile == null)
 			_originTile = this.getContainer().getActor().getTile();
@@ -83,14 +83,14 @@
 		// the first valid clockwise destination tile at a distance of 2.
 		if (destTiles.len() != 0)
 			return destTiles[0];
-	}
+	}}.getDestinationTile;
 
-	q.onVerifyTarget = @() function( _originTile, _targetTile )
+	q.onVerifyTarget = @() { function onVerifyTarget( _originTile, _targetTile )
 	{
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && this.getDestinationTile(_targetTile, _originTile) != null;
-	}
+	}}.onVerifyTarget;
 
-	q.onUse = @() function( _user, _targetTile )
+	q.onUse = @() { function onUse( _user, _targetTile )
 	{
 		local destTile = this.getDestinationTile(_targetTile);
 
@@ -107,5 +107,5 @@
 		_user.spawnTerrainDropdownEffect(_user.getTile());
 		::Tactical.getNavigator().teleport(_user, destTile, this.onTeleportDone.bindenv(this), tag, false, 3.0);
 		return true;
-	}
+	}}.onUse;
 });

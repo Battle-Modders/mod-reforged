@@ -2,7 +2,7 @@
 	q.m.RerollDamageMult <- 1.0;
 	q.m.IsAttacking <- false;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -23,17 +23,17 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla FatigueCost is 25
 		// We increase the cost because our 3h flail can potentially combine the entire damage into a single attack
 		this.m.FatigueCost = 30;
-	}
+	}}.create;
 
-	q.onUse = @() function( _user, _targetTile )
+	q.onUse = @() { function onUse( _user, _targetTile )
 	{
 		this.m.RerollDamageMult = 1.0;
 		this.m.IsUsingHitchance = true;
@@ -61,15 +61,15 @@
 		this.m.IsAttacking = false;
 		this.m.IsUsingHitchance = true;
 		return ret;
-	}
+	}}.onUse;
 
 	// Set IsUsingHitChance to true before target hit so that the Nimble perk works properly
-	q.onBeforeTargetHit = @() function( _skill, _targetEntity, _hitInfo )
+	q.onBeforeTargetHit = @() { function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
 		this.m.IsUsingHitchance = true;
-	}
+	}}.onBeforeTargetHit;
 
-	q.onAnySkillUsed = @() function( _skill, _targetEntity, _properties )
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
@@ -80,5 +80,5 @@
 				_properties.DamageTotalMult *= this.m.RerollDamageMult;
 			}
 		}
-	}
+	}}.onAnySkillUsed;
 });

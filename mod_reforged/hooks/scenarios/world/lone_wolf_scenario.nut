@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/scenarios/world/lone_wolf_scenario", function(q) {
-	q.onSpawnAssets = @(__original) function()
+	q.onSpawnAssets = @(__original) { function onSpawnAssets()
 	{
 		__original();
 
@@ -9,5 +9,5 @@
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Offhand));
 		items.equip(::new("scripts/items/weapons/rf_greatsword"));
-	}
+	}}.onSpawnAssets;
 });

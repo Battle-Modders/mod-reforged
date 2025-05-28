@@ -1,7 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_bardiche", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/bardiche";
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.named_weapon.onEquip();
 
@@ -18,5 +18,5 @@
 			o.m.FatigueCost += 5;
 			o.setApplyAxeMastery(true);
 		}));
-	}
+	}}.onEquip;
 });

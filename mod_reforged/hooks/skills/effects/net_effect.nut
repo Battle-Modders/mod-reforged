@@ -3,7 +3,7 @@
 	q.m.RangedDefenseMult <- 0.55;
 	q.m.InitiativeMult <- 0.55;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 
@@ -45,13 +45,13 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onUpdate = @() function( _properties )
+	q.onUpdate = @() { function onUpdate( _properties )
 	{
 		_properties.IsRooted = true;
 		_properties.MeleeDefenseMult *= this.m.MeleeDefenseMult;
 		_properties.RangedDefenseMult *= this.m.RangedDefenseMult;
 		_properties.InitiativeMult *= this.m.InitiativeMult;
-	}
+	}}.onUpdate;
 });

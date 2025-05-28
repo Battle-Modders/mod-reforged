@@ -3,7 +3,7 @@
 	q.m.BodySprites <- null; // len 3 array of sprites, 0 = healthy, 1 = damaged, 2 = severely damaged
 	q.m.VampireBloodHeadSprites <- null; // Reference to an array in character_heads.nut
 
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.BodySprites = [
@@ -17,9 +17,9 @@
 			"bust_skeleton_head_03"
 		];
 		this.m.VampireBloodHeadSprites = ::Const.RF_VampireBloodHead;
-	}
+	}}.create;
 
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -111,9 +111,9 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_head_hunter"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sanguinary"));
-	}
+	}}.onInit;
 
-	q.onUpdateInjuryLayer = @() function()
+	q.onUpdateInjuryLayer = @() { function onUpdateInjuryLayer()
 	{
 		local p = this.getHitpointsPct();
 		local bodyBrush = this.getSprite("body").getBrush().Name;
@@ -173,17 +173,17 @@
 		}
 
 		this.setDirty(true);
-	}
+	}}.onUpdateInjuryLayer;
 
-	q.onFactionChanged = @(__original) function()
+	q.onFactionChanged = @(__original) { function onFactionChanged()
 	{
 		__original();
 		local flip = !this.isAlliedWithPlayer();
 		this.getSprite("rf_vampire_blood_head").setHorizontalFlipping(flip);
 		this.getSprite("old_rf_vampire_blood_head").setHorizontalFlipping(flip);
-	}
+	}}.onFactionChanged;
 
-	q.getLootForTile = @(__original) function( _killer, _loot )
+	q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
 	{
 		local ret = __original(_killer, _loot);
 
@@ -196,14 +196,14 @@
 		}
 
 		return ret;
-	}
+	}}.getLootForTile;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		}
-	}
+	}}.onSpawned;
 });

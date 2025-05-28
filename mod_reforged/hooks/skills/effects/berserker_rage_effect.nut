@@ -1,16 +1,16 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/berserker_rage_effect", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Description = "This character is in a berserking rage."
-	}
+	}}.create;
 
-	q.getDescription = @(__original) function()	// Vanilla overwrote this returning "TODO" so we need to fix that
+	q.getDescription = @(__original) { function getDescription()	// Vanilla overwrote this returning "TODO" so we need to fix that
 	{
 		return this.skill.getDescription();
-	}
+	}}.getDescription;
 
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		ret.extend([
@@ -40,11 +40,11 @@
 			}
 		]);
 		return ret;
-	}
+	}}.getTooltip;
 
 	// New function replicating the current hard-coded vanilla calculation. Changing this will currently only affect the tooltip
-	q.calcDamageTakenMult <- function()
+	q.calcDamageTakenMult <- { function calcDamageTakenMult()
 	{
 		return ::Math.maxf(0.3, 1.0 - 0.02 * this.m.RageStacks);
-	}
+	}}.calcDamageTakenMult;
 });

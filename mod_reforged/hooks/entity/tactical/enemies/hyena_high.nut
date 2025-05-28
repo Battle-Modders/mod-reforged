@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/hyena_high", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.hyena.onInit();
 		local b = this.m.BaseProperties;
@@ -21,5 +21,5 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-	}
+	}}.onInit;
 });

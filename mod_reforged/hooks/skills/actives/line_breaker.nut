@@ -1,13 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/line_breaker", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Shove them out of your way and move forward, breaking their ranks.";
-	}
+	}}.create;
 
 	// Vanilla does not have a tooltip function for this skill.
-	q.getTooltip = @() function()
+	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
@@ -23,10 +23,10 @@
 			text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorNegative("10") + " extra [fatigue|Concept.Fatigue]")
 		});
 		return ret;
-	}
+	}}.getTooltip;
 
 	// Fixes vanilla issue where Line Breaker cannot push characters off ledges
-	q.findTileToKnockBackTo = @() function( _userTile, _targetTile )
+	q.findTileToKnockBackTo = @() { function findTileToKnockBackTo( _userTile, _targetTile )
 	{
 		local getValidTileInDir = function( _dir )
 		{
@@ -58,10 +58,10 @@
 		if (knockToTile != null) return knockToTile;
 
 		return null;
-	}
+	}}.findTileToKnockBackTo;
 
 	// We delay the onFollow of this skill by another 100ms because otherwise the entity doesn't follow through with this function properly when at very high speeds using some faster combat speed mods
-	q.onFollow = @(__original) function( _tag )
+	q.onFollow = @(__original) { function onFollow( _tag )
 	{
 		if (::Time.getVirtualSpeed() > 2)
 		{
@@ -71,5 +71,5 @@
 		{
 			__original(_tag);
 		}
-	}
+	}}.onFollow;
 });

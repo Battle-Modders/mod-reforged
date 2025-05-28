@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/hand_axe", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Reach = 3;
-	}
+	}}.create;
 
-	q.onEquip = @() function()
+	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
 
@@ -17,5 +17,5 @@
 			o.setApplyAxeMastery(true)
 			o.m.FatigueCost -= 1;
 		}));
-	}
+	}}.onEquip;
 });

@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/executioner", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -40,9 +40,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
@@ -68,9 +68,9 @@
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_small_target"));
 			}
 		}
-	}
+	}}.assignRandomEquipment;
 
-	q.makeMiniboss = @(__original) function()
+	q.makeMiniboss = @(__original) { function makeMiniboss()
 	{
 		local ret = __original();
 		if (ret)
@@ -80,5 +80,5 @@
 		}
 
 		return ret;
-	}
+	}}.makeMiniboss;
 });

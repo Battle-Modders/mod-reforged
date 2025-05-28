@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/humans/conscript", function(q) {
-	q.onInit = @() function()
+	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
@@ -28,18 +28,18 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-	}
+	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) function()
+	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	}
+	}}.assignRandomEquipment;
 
-	q.onSpawned = @() function()
+	q.onSpawned = @() { function onSpawned()
 	{
 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
-	}
+	}}.onSpawned;
 });

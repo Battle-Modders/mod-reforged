@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/accessory/iron_will_potion_item", function(q) {
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -13,5 +13,5 @@
 		}
 
 		return ret;
-	}
+	}}.getTooltip;
 });

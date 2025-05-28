@@ -1,11 +1,11 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/release_falcon_skill", function(q) {
-	q.create = @(__original) function()
+	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.Order = ::Const.SkillOrder.BeforeLast + 5;	// We want release-ables to be listed after break-free skills (which are BeforeLast)
-	}
+	}}.create;
 
-	q.getTooltip = @(__original) function()
+	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
 
@@ -23,9 +23,9 @@
 		effect.m.Container = null;
 
 		return ret;
-	}
+	}}.getTooltip;
 
-	q.onUse = @(__original) function( _user, _targetTile )
+	q.onUse = @(__original) { function onUse( _user, _targetTile )
 	{
 		local ret = __original(_user, _targetTile);
 
@@ -43,5 +43,5 @@
 		}
 
 		return ret;
-	}
+	}}.onUse;
 });
