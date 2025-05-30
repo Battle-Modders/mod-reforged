@@ -177,6 +177,18 @@ local teleport_6 = ::TacticalNavigator["__sqrat_ol_ teleport_6"];
 	// This is just put in there for debug printing
 	info.Callback <- _func == null ? "null" : (_func.getinfos().name == null ? "unknown" : _func.getinfos().name);
 
+	if (::Tactical.getNavigator().IsTravelling || !_targetTile.IsEmpty)
+	{
+		if (::Reforged.Mod.Debug.isEnabled("onAnySkillExecutedFully"))
+		{
+			local prefix = !::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null ? "OTHER -- " : "";
+			local reason = !_targetTile.IsEmpty ? "target tile not empty" : "navigator already traveling";
+			::Reforged.Mod.Debug.printWarning(format("%sNot scheduling due to %s -- Caller: %s.%s (%s : %i), Callback: %s", prefix, reason, "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
+		}
+		teleport_6(_user, _targetTile, _func, _data, _bool, _float);
+		return;
+	}
+
 	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null)
 	{
 		::Reforged.Mod.Debug.printLog(format("OTHER -- Caller: %s.%s (%s : %i), Callback: %s", "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
@@ -210,6 +222,18 @@ local teleport_5 = ::TacticalNavigator["__sqrat_ol_ teleport_5"];
 	// This is just put in there for debug printing
 	info.Callback <- _func == null ? "null" : (_func.getinfos().name == null ? "unknown" : _func.getinfos().name);
 
+	if (::Tactical.getNavigator().IsTravelling || !_targetTile.IsEmpty)
+	{
+		if (::Reforged.Mod.Debug.isEnabled("onAnySkillExecutedFully"))
+		{
+			local prefix = !::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null ? "OTHER -- " : "";
+			local reason = !_targetTile.IsEmpty ? "target tile not empty" : "navigator already traveling";
+			::Reforged.Mod.Debug.printWarning(format("%sNot scheduling due to %s -- Caller: %s.%s (%s : %i), Callback: %s", prefix, reason, "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
+		}
+		teleport_5(_user, _targetTile, _func, _data, _bool);
+		return;
+	}
+
 	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null)
 	{
 		::Reforged.Mod.Debug.printLog(format("OTHER -- Caller: %s.%s (%s : %i), Callback: %s", "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
@@ -242,6 +266,17 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 
 	// This is just put in there for debug printing
 	info.Callback <- _func == null ? "null" : (_func.getinfos().name == null ? "unknown" : _func.getinfos().name);
+
+	if (::Tactical.getNavigator().IsTravelling)
+	{
+		if (::Reforged.Mod.Debug.isEnabled("onAnySkillExecutedFully"))
+		{
+			local prefix = !::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null ? "OTHER -- " : "";
+			::Reforged.Mod.Debug.printWarning(format("%sNot scheduling due to navigator already traveling -- Caller: %s.%s (%s : %i), Callback: %s", prefix, reason, "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
+		}
+		switchEntities(_user, _targetEntity, _func, _data, _float);
+		return;
+	}
 
 	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null)
 	{
