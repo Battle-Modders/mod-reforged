@@ -197,7 +197,8 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 
 	function onDeath( _fatalityType )
 	{
-		this.setPartnerSkill(null);
+		if (_fatalityType != ::Const.FatalityType.Unconscious)
+			this.setPartnerSkill(null);
 	}
 
 	function onDismiss()
