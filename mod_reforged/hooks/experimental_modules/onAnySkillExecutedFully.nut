@@ -305,7 +305,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		// Note: We can't just check for .Count == 0 because in fog of war teleport/switchEntities
 		// happens immediately without delay, so Count will be 0 here even if those happened and the
 		// event would have already been properly handled leading to errors when calling it manually again.
-		if (!this.m.RF_Schedule.WasScheduled)
+		if (this.m.RF_Schedule != null && !this.m.RF_Schedule.WasScheduled)
 		{
 			this.m.RF_Schedule.onScheduleComplete({Skill = this});
 		}
