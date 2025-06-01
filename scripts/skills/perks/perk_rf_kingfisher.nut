@@ -1,7 +1,6 @@
 this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsForceEnabled = false,
-		Chance = 0,
 		NetEffect = null,
 		IsSpent = false
 	},
@@ -33,82 +32,17 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 		return false;
 	}
 
-	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
-	{
-		this.m.Chance = 0;
-		if (this.m.IsSpent || _targetEntity.getSkills().hasSkill("effects.net") || _targetEntity.getTile().getDistanceTo(this.getContainer().getActor().getTile()) > 1 || !this.isEnabled())
-			return;
-
-		this.m.Chance = _skill.getHitchance(_targetEntity);
-	}
-
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		local actor = this.getContainer().getActor();
-		if (!_targetEntity.isAlive() || !actor.isPlacedOnMap() || !_targetEntity.isPlacedOnMap() || ::Math.rand(1, 100) > this.m.Chance)
-			return;
-
-		local throwNetSkill = this.getContainer().getSkillByID("actives.throw_net");
-		if (!throwNetSkill.onVerifyTarget(actor.getTile(), _targetEntity.getTile()))
+		if (this.m.IsSpent || ::Math.rand(1, 100) > ::Const.Tactical.MV_CurrentAttackInfo.ChanceToHit || !this.isEnabled())
 			return;
 
 		// ScheduleEvent is used because container.m.IsUpdating is true right now, so directly using skills is not good here
 		// and leads to improper removal/addition of skills
-		::Time.scheduleEvent(::TimeUnit.Virtual, 1, function( _perk ) {
-			if (!_targetEntity.isPlacedOnMap() || !actor.isPlacedOnMap())
-				return;
-
-			local targetTile = _targetEntity.getTile();
-			local myTile = actor.getTile();
-			if (targetTile.getDistanceTo(myTile) != 1)
-				return;
-
-			if (!throwNetSkill.onVerifyTarget(myTile, targetTile))
-				return;
-
-			local netItemScript = ::IO.scriptFilenameByHash(actor.getOffhandItem().ClassNameHash);
-
-			throwNetSkill.useForFree(_targetEntity.getTile());
-
-			local netEffect = _targetEntity.getSkills().getSkillByID("effects.net");
-			if (netEffect == null) // Make sure target is actually netted. In vanilla net can be thrown on targets which are immune to it causing it to miss.
-				return;
-
-			// Hook the net_effect on the target to reset our perk when the net expires or the target dies
-			netEffect.m.KingfisherPerk <- ::MSU.asWeakTableRef(this);
-			netEffect.resetKingfisher <- { function resetKingfisher()
-			{
-				if (!::MSU.isNull(this.m.KingfisherPerk))
-					this.m.KingfisherPerk.setSpent(false);
-			}}.resetKingfisher;
-			local onRemoved = netEffect.onRemoved;
-			netEffect.onRemoved <- { function onRemoved()
-			{
-				onRemoved();
-				this.resetKingfisher();
-			}}.onRemoved;
-			local onDeath = netEffect.onDeath;
-			netEffect.onDeath <- { function onDeath( _fatalityType )
-			{
-				onDeath(_fatalityType);
-				this.resetKingfisher();
-			}}.onDeath;
-
-			this.m.NetEffect = ::MSU.asWeakTableRef(netEffect);
-
-			local replacementNet = ::new(netItemScript)
-
-			actor.getItems().equip(replacementNet); // the original net is unequipped during use of throw net skill, so we equip a "new" net of the same type
-			foreach (skill in replacementNet.m.SkillPtrs)
-			{
-				// We set all the skills of the newly equipped net to Hidden so they cannot be used
-				skill.m.IsHidden = true;
-			}
-
-			_targetEntity.getSkills().getSkillByID("actives.break_free").setChanceBonus(999);
-
-			this.setSpent(true);
-		}.bindenv(this), this);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 1, this.onApplyNet.bindenv(this), {
+			Target = _targetEntity,
+			User = this.getContainer().getActor()
+		});
 	}
 
 	function onUpdate( _properties )
@@ -154,5 +88,66 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 					actor.getItems().equip(net); // Unequip and re-equip the net to get all the skills back which were hidden during onTargetHit above
 			}
 		}
+	}
+
+	function onApplyNet( _tag )
+	{
+		if (this.m.IsSpent)
+			return;
+
+		if (!_tag.User.isPlacedOnMap() || !_tag.Target.isPlacedOnMap() || _tag.Target.getSkills().hasSkill("effects.net"))
+			return;
+
+		local targetTile = _tag.Target.getTile();
+		local myTile = _tag.User.getTile();
+		if (targetTile.getDistanceTo(myTile) != 1)
+			return;
+
+		local throwNetSkill = this.getContainer().getSkillByID("actives.throw_net");
+		if (throwNetSkill == null || !throwNetSkill.onVerifyTarget(myTile, targetTile))
+			return;
+
+		local netItemScript = ::IO.scriptFilenameByHash(_tag.User.getOffhandItem().ClassNameHash);
+
+		throwNetSkill.useForFree(_tag.Target.getTile());
+
+		local netEffect = _tag.Target.getSkills().getSkillByID("effects.net");
+		if (netEffect == null) // Make sure target is actually netted. In vanilla net can be thrown on targets which are immune to it causing it to miss.
+			return;
+
+		// Hook the net_effect on the target to reset our perk when the net expires or the target dies
+		netEffect.m.KingfisherPerk <- ::MSU.asWeakTableRef(this);
+		netEffect.resetKingfisher <- { function resetKingfisher()
+		{
+			if (!::MSU.isNull(this.m.KingfisherPerk))
+				this.m.KingfisherPerk.setSpent(false);
+		}}.resetKingfisher;
+		local onRemoved = netEffect.onRemoved;
+		netEffect.onRemoved <- { function onRemoved()
+		{
+			onRemoved();
+			this.resetKingfisher();
+		}}.onRemoved;
+		local onDeath = netEffect.onDeath;
+		netEffect.onDeath <- { function onDeath( _fatalityType )
+		{
+			onDeath(_fatalityType);
+			this.resetKingfisher();
+		}}.onDeath;
+
+		this.m.NetEffect = ::MSU.asWeakTableRef(netEffect);
+
+		local replacementNet = ::new(netItemScript)
+
+		_tag.User.getItems().equip(replacementNet); // the original net is unequipped during use of throw net skill, so we equip a "new" net of the same type
+		foreach (skill in replacementNet.m.SkillPtrs)
+		{
+			// We set all the skills of the newly equipped net to Hidden so they cannot be used
+			skill.m.IsHidden = true;
+		}
+
+		_tag.Target.getSkills().getSkillByID("actives.break_free").setChanceBonus(999);
+
+		this.setSpent(true);
 	}
 });
