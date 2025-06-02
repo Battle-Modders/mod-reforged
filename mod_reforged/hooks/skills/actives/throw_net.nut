@@ -28,12 +28,11 @@
 
 	q.onNetSpawn = @(__original) { function onNetSpawn( _data )
 	{
-		// Prevent crash from the TargetEntity having died/removed from map due to a delayed effect
-		// while onNetSpawn was scheduled.
+		// Prevent crash from TargetEntity having died due to a delayed effect while onNetSpawn was scheduled.
 		// Doesn't cause any issue in vanilla because throw_net is never used in such a context.
 		// Causes crash in Reforged due to perks which trigger delayed attacks and throw_net on hit
 		// e.g. Flail Spinner and Kingfisher at the time of writing this comment.
-		if (!_data.TargetEntity.isPlacedOnMap())
+		if (!_data.TargetEntity.isAlive())
 		{
 			return;
 		}
