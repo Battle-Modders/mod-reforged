@@ -350,7 +350,7 @@
 	q.onRemoved = @(__original) { function onRemoved()
 	{
 		__original();
-		if (this.isActive())
+		if (this.isActive() && ::Tactical.isActive())
 		{
 			this.getContainer().getActor().getAIAgent().m.RF_AgentState.invalidate(this.ClassName + ".onRemoved");
 		}
