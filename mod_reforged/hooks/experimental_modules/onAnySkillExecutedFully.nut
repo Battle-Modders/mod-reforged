@@ -274,6 +274,7 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 ::Reforged.HooksMod.hook("scripts/skills/skill_container", function(q) {
 	q.onAnySkillExecutedFully <- { function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
+		local actor = this.getActor();
 		// Don't update if using a skill that sets Tile to ID 0 e.g. Rotation because this leads
 		// to crashes if any skill tries to access the current tile in its onUpdate
 		// function as the tile at this point is not a valid tile.
@@ -283,7 +284,9 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 			_targetTile,
 			_targetEntity,
 			_forFree
-		], this.getActor().isPlacedOnMap());
+		], actor.isPlacedOnMap());
+
+		actor.setDirty(true);
 	}}.onAnySkillExecutedFully;
 });
 
