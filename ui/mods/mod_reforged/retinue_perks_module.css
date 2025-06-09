@@ -1,0 +1,14 @@
+.generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container> img
+{
+	border-radius: 50%;
+}
+
+.generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container > img.is-locked
+{
+	-webkit-filter: grayscale(100%);
+}
+.generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container:hover > img
+{
+	-webkit-filter: grayscale(0%);
+	box-shadow: 0 0 0 2px #6E4C17;
+}

@@ -52,8 +52,7 @@
 		}
 	}
 
-	// overwrite
-	q.getFollowersForUI <- function()
+	q.getFollowersForUI = @() function()
 	{
 		local ret = [];
 

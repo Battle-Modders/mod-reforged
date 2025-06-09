@@ -1,0 +1,83 @@
+/* Unlock Popup Dialog */
+.world-campfire-screen .ui-control.popup-dialog.unlock-perk-popup
+{
+	width: 60.0rem;
+	height: 30.0rem;
+
+	background-image: url("coui://gfx/ui/skin/popup_background_600x300.png");
+	background-size: 60.0rem 30.0rem;
+	background-repeat: no-repeat;
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container
+{
+	top: -2.0rem;
+	width: 100%;
+	height: 17.7rem;
+	padding-top: 0;
+	padding-left: 0.6rem;
+	padding-right: 0.6rem;
+	position: relative;
+	float: left;
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .left-column
+{
+	width: 6.0rem;
+	height: 4.0rem;
+	position: relative;
+	float: left;
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .left-column img
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 4.0rem;
+	height: 4.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .right-column
+{
+	position: relative;
+	float: none;
+
+	padding-right: 1.0rem;
+
+	overflow: hidden;
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .right-column .name
+{
+	width: 100%;
+	height: 3.6rem;
+	position: relative;
+	float: left;
+
+	line-height: 4.4rem;
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .right-column .description
+{
+	width: 100%;
+	position: relative;
+	float: left;
+}
+
+.world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row .costs-label.is-daily
+{
+	left: 25.0rem;
+}
+.world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row .l-costs-container.is-daily
+{
+    left: 32.0rem;
+}
+
+.world-campfire-screen .l-hire-dialog-container .list-entry.is-in-current-town
+{
+	outline: 2px solid green;
+}

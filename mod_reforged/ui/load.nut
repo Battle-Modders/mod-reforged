@@ -4,6 +4,8 @@
 ::Hooks.registerJS("ui/mods/mod_reforged/reforged_assets.js");
 ::Hooks.registerCSS("ui/mods/mod_reforged/generic.css");
 ::Hooks.registerCSS("ui/mods/mod_reforged/controls.css");
+::Hooks.registerJS("ui/mods/mod_reforged/retinue_perks_module.js");
+::Hooks.registerCSS("ui/mods/mod_reforged/retinue_perks_module.css");
 
 ::Hooks.registerJS("ui/mods/mod_reforged/reforged_js_connection.js");
 ::include("mod_reforged/ui/reforged_js_connection");

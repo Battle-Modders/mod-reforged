@@ -19,7 +19,7 @@ Reforged.RetinuePerksModule = function(_parentDiv, _parent)
 
 Reforged.RetinuePerksModule.prototype.createDIV = function (_parentDiv)
 {
-	this.mContainer = $('<div class="generic-perks-module"/>');
+	this.mContainer = $('<div class="generic-perks-module rf-retinue-perks-module"/>');
 	_parentDiv.append(this.mContainer);
 
     this.mTreeContainer = $('<div class="perks-tree"/>');
@@ -35,11 +35,33 @@ Reforged.RetinuePerksModule.prototype.destroyDIV = function ()
     this.mContainer = null;
 };
 
+Reforged.RetinuePerksModule.prototype.loadFromData = function (_data)
+{
+	if (_data === undefined || _data === null)
+		return;
+    this.mPerkTree = _data.PerkTree;
+    this.mUnlockedPerks = _data.Perks;
+    this.mEntityID = _data.ID;
+    this.setupPerkTree();
+};
 
-Reforged.RetinuePerksModule.prototype.createPerkTreeDIV = function (_perkTree, _parentDiv)
+Reforged.RetinuePerksModule.prototype.setupPerkTree = function ()
+{
+	// Enduriel wants to refactor this
+    this.mTreeContainer.empty();
+    this.createPerkTreeDIV(this.mPerkTree, this.mUnlockedPerks, this.mTreeContainer, this.mEntityID);
+};
+
+Reforged.RetinuePerksModule.prototype.createPerkTreeDIV = function (_perkTree, _perksUnlocked, _parentDiv, _entityID)
 {
 	// Enduriel wants to refactor this
 	var self = this;
+
+	var unlockedPerksMap = {};
+	$.each(_perksUnlocked, function(_idx, _id)
+	{
+		unlockedPerksMap[_id] <- true;
+	})
 
 	for (var row = 0; row < _perkTree.length; ++row)
 	{
@@ -51,7 +73,6 @@ Reforged.RetinuePerksModule.prototype.createPerkTreeDIV = function (_perkTree, _
 		for (var i = 0; i < _perkTree[row].length; ++i)
 		{
 			var perk = _perkTree[row][i];
-			perk.Unlocked = true;
 
 			perk.Container = $('<div class="dpf-l-perk-container"/>');
 			rowDIV.append(perk.Container);
@@ -62,105 +83,25 @@ Reforged.RetinuePerksModule.prototype.createPerkTreeDIV = function (_perkTree, _
 
 			perk.Image = $('<img class="dpf-perk-image-layer"/>');
 			perk.Image.attr('src', Path.GFX + perk.Icon);
-			perk.Container.append(perk.Image);
-		}
-	}
-};
-
-Reforged.RetinuePerksModule.prototype.setupPerkTreeTooltips = function(_entityID)
-{
-	// Enduriel probably wants to refactor this
-	for (var row = 0; row < this.mPerkTree.length; ++row)
-	{
-		for (var i = 0; i < this.mPerkTree[row].length; ++i)
-		{
-			var perk = this.mPerkTree[row][i];
-			perk.Image.unbindTooltip();
 			perk.Image.bindTooltip({ contentType: 'ui-perk', entityId: _entityID || null, perkId: perk.ID });
+			perk.Container.append(perk.Image);
+
+			if (unlockedPerksMap[perk.ID] === true)
+			{
+				perk.Unlocked = true;
+			}
+			else
+			{
+				perk.Unlocked = false;
+				perk.Image.addClass("is-locked");
+			}
+
+			perk.Container.click(this, function (_event)
+			{
+				self.showPerkUnlockDialog(_perk);
+			});
 		}
 	}
-};
-
-Reforged.RetinuePerksModule.prototype.setupPerkTree = function ()
-{
-	// Enduriel wants to refactor this
-    this.mTreeContainer.empty();
-    this.createPerkTreeDIV(this.mPerkTree, this.mTreeContainer);
-    this.setupPerksEventHandlers(this.mPerkTree);
-};
-
-Reforged.RetinuePerksModule.prototype.loadFromData = function (_perkTree, _entityID)
-{
-	if (_perkTree === undefined || _perkTree === null)
-		return;
-    this.mPerkTree = _perkTree;
-    this.setupPerkTree();
-    this.setupPerkTreeTooltips(_entityID);
-};
-
-Reforged.RetinuePerksModule.prototype.attachEventHandler = function(_perk)
-{
-	var self = this;
-
-	_perk.Container.on('mouseenter focus' + CharacterScreenIdentifier.KeyEvent.PerksModuleNamespace, null, this, function (_event)
-	{
-		var selectable = !_perk.Unlocked && self.isPerkUnlockable(_perk);
-
-		if (selectable === true)
-		{
-			var selectionLayer = $(this).find('.selection-image-layer:first');
-			selectionLayer.removeClass('display-none').addClass('display-block');
-		}
-	});
-
-	_perk.Container.on('mouseleave blur' + CharacterScreenIdentifier.KeyEvent.PerksModuleNamespace, null, this, function (_event)
-	{
-		var selectable = !_perk.Unlocked && self.isPerkUnlockable(_perk);
-
-		if (selectable === true)
-		{
-			var selectionLayer = $(this).find('.selection-image-layer:first');
-			selectionLayer.removeClass('display-block').addClass('display-none');
-		}
-	});
-
-	_perk.Container.click(this, function (_event)
-	{
-		self.showPerkUnlockDialog(_perk);
-	});
-}
-
-Reforged.RetinuePerksModule.prototype.removePerksEventHandler = function (_perkTree)
-{
-	for (var row = 0; row < _perkTree.length; ++row)
-	{
-		for (var i = 0; i < _perkTree[row].length; ++i)
-		{
-			var perk = _perkTree[row][i];
-
-			perk.Container.off(CharacterScreenIdentifier.KeyEvent.PerksModuleNamespace);
-			perk.Container.unbind('click');
-		}
-	}
-};
-
-Reforged.RetinuePerksModule.prototype.setupPerksEventHandlers = function(_perkTree)
-{
-	this.removePerksEventHandlers();
-
-	for (var row = 0; row < _perkTree.length; ++row)
-	{
-		for (var i = 0; i < _perkTree[row].length; ++i)
-		{
-			var perk = _perkTree[row][i];
-			this.attachEventHandler(perk);
-		}
-	}
-};
-
-Reforged.RetinuePerksModule.prototype.removePerksEventHandlers = function()
-{
-    this.removePerksEventHandler(this.mPerkTree);
 };
 
 Reforged.RetinuePerksModule.prototype.showPerkUnlockDialog = function(_perk)
@@ -168,7 +109,7 @@ Reforged.RetinuePerksModule.prototype.showPerkUnlockDialog = function(_perk)
     this.mParent.notifyBackendPopupDialogIsVisible(true);
 
     var self = this;
-    var popupDialog = $('.character-screen').createPopupDialog('Unlock Perk', null, null, 'unlock-perk-popup');
+    var popupDialog = $('.world-campfire-screen').createPopupDialog('Unlock Perk', null, null, 'unlock-perk-popup');
 
     popupDialog.addPopupDialogContent(this.createPerkUnlockDialogContent(_perk));
 

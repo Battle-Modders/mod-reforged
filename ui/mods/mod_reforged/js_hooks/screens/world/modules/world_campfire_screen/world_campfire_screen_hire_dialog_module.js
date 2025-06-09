@@ -1,3 +1,79 @@
+WorldCampfireScreenHireDialogModule.prototype.loadFromData = function (_data)
+{
+    if (_data === undefined || _data === null || !jQuery.isArray(_data))
+    {
+        return;
+    }
+
+	this.mRoster = this.sortEntries(_data);
+
+    this.mListScrollContainer.empty();
+
+    for(var i = 0; i < _data.length; ++i)
+    {
+        var entry = _data[i];
+        this.addListEntry(entry);
+    }
+
+    this.selectListEntry(this.mListContainer.findListEntryByIndex(0), true);
+};
+
+WorldCampfireScreenHireDialogModule.prototype.sortEntries = function(_followers)
+{
+	return _followers.sort(this.sortCompareEntries);
+}
+
+WorldCampfireScreenHireDialogModule.prototype.sortCompareEntries = function(_follower_a, _follower_b)
+{
+	// Sort by:
+	// - In current town
+	// - Hired
+	// - Not hired, not in current town
+	var sortAlphabetically = function(a, b)
+	{
+		var textA = a.Name.toUpperCase();
+		var textB = b.Name.toUpperCase();
+		return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+	}
+	if (_follower_a.IsInCurrentTown)
+	{
+		if (!_follower_b.isInCurrentTown)
+		{
+			return -1;
+		}
+		return sortAlphabetically(_follower_a, _follower_b);
+	}
+	else if (_follower_b.isInCurrentTown)
+	{
+		return 1;
+	}
+	if (_follower_a.IsHired)
+	{
+		if (!_follower_b.IsHired)
+		{
+			return -1;
+		}
+		return sortAlphabetically(_follower_a, _follower_b);
+	}
+	else if (_follower_b.IsHired)
+	{
+		return 1;
+	}
+
+	return sortAlphabetically(_follower_a, _follower_b);
+}
+
+Reforged.Hooks.WorldCampfireScreenHireDialogModule_addListEntry = WorldCampfireScreenHireDialogModule.prototype.addListEntry;
+WorldCampfireScreenHireDialogModule.prototype.addListEntry = function (_data)
+{
+	Reforged.Hooks.WorldCampfireScreenHireDialogModule_addListEntry.call(this, _data);
+	var entry = this.mListScrollContainer.find('.list-entry').last();
+	if (_data.IsInCurrentTown)
+	{
+		entry.addClass("is-in-current-town");
+	}
+}
+
 // This hook adds the ability to toggle between description and perks display for followers
 Reforged.Hooks.WorldCampfireScreenHireDialogModule_createDIV = WorldCampfireScreenHireDialogModule.prototype.createDIV;
 WorldCampfireScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
@@ -7,12 +83,12 @@ WorldCampfireScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	this.mDetailsPanel.CharacterBackgroundPerksContainer = $("<div class='hire-screen-perks-container'/>")
 		.append($("<div class='name title-font-normal font-bold font-color-brother-name'>Perks</div>"))
 		.hide()
-		.appendTo(this.mDetailsPanel.Container);
+		.appendTo(this.mDetailsPanel.Container.find(".is-ingredients-container"));
 
-	this.mDetailsPanel.mPerksModule = new Reforged.RetinuePerksModule(this.mDetailsPanel.CharacterBackgroundPerksContainer, this.mDataSource);
+	this.mDetailsPanel.mPerksModule = new Reforged.RetinuePerksModule(this.mDetailsPanel.CharacterBackgroundPerksContainer, this);
 
 	this.mDetailsPanel.mModules = [
-		this.mDetailsPanel.Container.find(".is-character-container"),
+		this.mDetailsPanel.Container.find(".is-components-container"),
 		this.mDetailsPanel.CharacterBackgroundPerksContainer
 	];
 	this.mDetailsPanel.SwitchModuleContainer = $("<div class='hire-screen-switch-module-container'/>")
@@ -20,10 +96,27 @@ WorldCampfireScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 		.appendTo(this.mDetailsPanel.Container);
 	this.mDetailsPanel.SwitchModuleButton = this.mDetailsPanel.SwitchModuleContainer.createImageButton(Path.GFX + Asset.BUTTON_PLAY, function ()
 	{
-		self.toggleModuleIfValid();
+		self.toggleModule();
 	}, '', 6);
 	this.mDetailsPanel.ActiveModule = this.mDetailsPanel.mModules[0];
 	this.mDetailsPanel.ActiveModuleIdx = 0;
+	this.toggleModule(1);
+
+	this.mDetailsPanel.CharacterBackgroundTextContainer.hide();
+
+
+	// details: costs
+	var costsRow = this.mDetailsPanel.Container.find(".is-initial-costs");
+	var costsLabel = $('<div class="costs-label is-daily title-font-normal font-bold font-bottom-shadow font-color-title">Daily</div>');
+	costsRow.append(costsLabel);
+	var costsContainer = $('<div class="l-costs-container is-daily"/>');
+	costsRow.append(costsContainer);
+	var costsImage = $('<img/>');
+	costsImage.attr('src', Path.GFX + Asset.ICON_ASSET_MONEY);
+	costsContainer.append(costsImage);
+	costsImage.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.Assets.DailyMoney });
+	this.mDetailsPanel.DailyMoneyCostsText = $('<div class="label text-font-normal font-bottom-shadow font-color-description"/>');
+	costsContainer.append(this.mDetailsPanel.DailyMoneyCostsText);
 }
 
 Reforged.Hooks.WorldCampfireScreenHireDialogModule_destroyDIV = WorldCampfireScreenHireDialogModule.prototype.destroyDIV
@@ -43,10 +136,13 @@ Reforged.Hooks.WorldCampfireScreenHireDialogModule_updateDetailsPanel = WorldCam
 WorldCampfireScreenHireDialogModule.prototype.updateDetailsPanel = function(_element)
 {
 	Reforged.Hooks.WorldCampfireScreenHireDialogModule_updateDetailsPanel.call(this, _element);
-	this.mDetailsPanel.mPerksModule.loadFromData(_element.data('entry').perkTree);
+	var data = _element.data('entry');
+	this.mDetailsPanel.mPerksModule.loadFromData(data);
 	this.mDetailsPanel.SwitchModuleContainer.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "HireScreen.DescriptionContainer+1"});
-	this.toggleModule(1);
+	// this.toggleModule(1);
 	this.mDetailsPanel.SwitchModuleContainer.show();
+
+	this.mDetailsPanel.DailyMoneyCostsText.html(Helper.numberWithCommas(data.Cost));
 }
 
 WorldCampfireScreenHireDialogModule.prototype.toggleModule = function(_idx)
@@ -71,14 +167,25 @@ WorldCampfireScreenHireDialogModule.prototype.unlockPerk = function(_brotherId, 
     if (brotherId === null)
     {
         var selectedBrother = this.mSelectedEntry;
-        if (selectedBrother === null || !(CharacterScreenIdentifier.Entity.Id in selectedBrother))
+        if (selectedBrother === null)
         {
             console.error('ERROR: Failed to unlock perk. No entity selected.');
             return;
         }
 
-        brotherId = selectedBrother[CharacterScreenIdentifier.Entity.Id];
+        var data = selectedBrother.data('entry');
+        if('ID' in data && data['ID'] !== null)
+        {
+            brotherId = data['ID'];
+            console.error(brotherId)
+        }
+        else
+        {
+    	    console.error('ERROR: Failed to unlock perk. Entity does not have ID.');
+    	    return;
+        }
     }
+    console.error("Unlocking perk " + _perkId + " for follower " + brotherId)
 
     var self = this;
     this.notifyBackendUnlockPerk(brotherId, _perkId, function (data)
@@ -113,4 +220,11 @@ WorldCampfireScreenHireDialogModule.prototype.unlockPerk = function(_brotherId, 
 WorldCampfireScreenHireDialogModule.prototype.notifyBackendUnlockPerk = function (_brotherId, _perkId, _callback)
 {
     SQ.call(this.mSQHandle, 'onUnlockPerk', [_brotherId, _perkId], _callback);
+};
+
+WorldCampfireScreenHireDialogModule.prototype.notifyBackendPopupDialogIsVisible = function (_visible)
+{
+	// TODO: check if this member is necessary - I think not
+    this.mIsPopupOpen = _visible;
+    SQ.call(this.mSQHandle, 'onPopupDialogIsVisible', [_visible]);
 };
