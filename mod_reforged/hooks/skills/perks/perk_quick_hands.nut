@@ -22,4 +22,9 @@
 
 		return __original(_items);
 	}}.getItemActionCost;
+
+	q.onPayForItemAction = @() { function onPayForItemAction( _skill, _items )
+	{
+		this.m.IsSpent = true;
+	}}.onPayForItemAction;
 });
