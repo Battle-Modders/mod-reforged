@@ -19,11 +19,17 @@ this.perk_rf_flaming_arrows <- ::inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		local equippedItem = this.getContainer().getActor().getMainhandItem();
-		if (equippedItem != null)
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Bow))
 		{
-			this.getContainer().getActor().getItems().unequip(equippedItem);
-			this.getContainer().getActor().getItems().equip(equippedItem);
+			foreach (s in weapon.m.SkillPtrs)
+			{
+				if (s.getID() == "actives.flaming_arrows")
+				{
+					weapon.removeSkill(s);
+					break;
+				}
+			}
 		}
 	}
 
