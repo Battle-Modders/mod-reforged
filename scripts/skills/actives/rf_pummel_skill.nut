@@ -109,7 +109,6 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 			local tag = {
 				User = _user,
 				TargetTile = _targetTile
-				TargetEntity = targetEntity
 			}
 			// Doing this.line_breaker.onUse here directly doesn't work properly:
 			// The targetEntity gets knocked back by Linebreaker, but the attacker does not move to the target tile.
@@ -122,7 +121,7 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 
 	function onPushThrough( _tag )
 	{
-		if (_tag.TargetEntity.isAlive())
+		if (_tag.TargetTile.IsOccupiedByActor && _tag.TargetTile.getEntity().isAlive())
 			this.line_breaker.onUse(_tag.User, _tag.TargetTile);
 		else
 			::Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, null, null, false);
