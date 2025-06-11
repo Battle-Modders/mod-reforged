@@ -34,7 +34,14 @@ this.perk_rf_bulwark <- ::inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Additional " + ::MSU.Text.colorPositive("+" + bonus) + " [Resolve|Concept.Bravery] at negative [morale checks|Concept.Morale] except mental attacks")
+			text = ::Reforged.Mod.Tooltips.parseString("Additional " + ::MSU.Text.colorPositive("+" + bonus) + " [Resolve|Concept.Bravery] at negative [morale checks|Concept.Morale]")
+		});
+
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Does nothing against mental attacks")
 		});
 
 		return ret;
