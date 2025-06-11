@@ -67,17 +67,19 @@
 
 	q.onHired <- function()
 	{
-		this.m.IsHired <- true;
+		this.m.IsHired = true;
+		this.m.CurrentTownID = null;
 	}
 
 	q.onDismiss <- function()
 	{
-		this.m.IsHired <- false;
+		this.m.IsHired = false;
 	}
 
 	q.getUIData <- function()
 	{
 		local currentTown = this.getCurrentTown();
+		::logInfo("Follower " + this.getName() + " " + this.isHired())
 		return {
 			ImagePath = this.getImage() + ".png",
 			ID = this.getID(),
@@ -86,7 +88,7 @@
 			Cost = this.getCost(),
 			Effects = this.getEffects(),
 			Requirements = this.getRequirements(),
-			IsUnlocked = this.isUnlocked(),
+			IsUnlocked = true,
 
 			PerkTree = this.getPerkTree(),
 			Perks = this.m.Skills.query(this.Const.SkillType.Perk, true).map(@(_idx, _perk) _perk.getID()),
@@ -117,12 +119,17 @@
 
 	q.isInTown <- function()
 	{
-		return this.m.CurrentTownID != null && !this.isHired();
+		return this.m.CurrentTownID != null;
 	}
 
 	q.isInCurrentTown <- function()
 	{
-		return this.isInTown() && ::World.State.getCurrentTown().getID() == this.m.CurrentTownID;
+		local currentTown = this.getCurrentTown();
+		// return currentTown != null && currentTown.getID() == this.m.CurrentTownID;
+		local ret = currentTown != null && ::World.State.getPlayer().getTile().getDistanceTo(currentTown.getTile()) < 10;
+		::logInfo("Follower in town? " + this.getName() + " " + (currentTown == null ? "FALSE" : currentTown.getName()));
+		return ret;
+		// return currentTown != null && ::World.State.getPlayer().getTile().getDistanceTo(currentTown.getTile()) < 10;
 	}
 
 	q.enterTown <- function(_town)
@@ -138,12 +145,12 @@
 
 	q.getCurrentTown <- function()
 	{
-		 return this.isInTown() ? ::MSU.asWeakTableRef(this.World.getEntityByID(this.m.CurrentTownID)) : null;
+		 return this.isInTown() ? this.World.getEntityByID(this.m.CurrentTownID) : null;
 	}
 
 	q.shouldLeaveTown <- function()
 	{
-		return ::World.getTime().Days > this.m.ArrivedInTownDay + ::Reforged.Retinue.DaysFollowerStaysInTown;
+		return this.isInTown() && (::World.getTime().Days > this.m.ArrivedInTownDay + ::Reforged.Retinue.DaysFollowerStaysInTown);
 	}
 
 	q.leaveTown <- function()

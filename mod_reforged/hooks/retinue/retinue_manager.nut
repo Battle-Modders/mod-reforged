@@ -40,15 +40,26 @@
 		}
 
 		local availableTowns = ::World.EntityManager.getSettlements().filter(@(idx, town) !(town.getID() in occupiedTownIDs));
-		while (currentFollowersInTowns <= ::Reforged.Retinue.MaxFollowersInTowns
+		while (currentFollowersInTowns.len() < ::Reforged.Retinue.MaxFollowersInTowns
 			&& availableToDistribute.len() > 0
 			&& availableTowns.len() > 0)
 		{
-			local chosenFollower = availableToDistribute.remove(availableToDistribute[::Math.rand(0, availableToDistribute.len() - 1)]);
-			local chosenTown = availableTowns.remove(availableTowns[::Math.rand(0, availableTowns.len() - 1)]);
+			local chosenFollower = availableToDistribute.remove(::Math.rand(0, availableToDistribute.len() - 1));
+			local chosenTown = availableTowns.remove(::Math.rand(0, availableTowns.len() - 1));
 			currentFollowersInTowns.push(chosenFollower);
 			occupiedTownIDs.push(chosenTown.getID());
 			chosenFollower.enterTown(chosenTown);
+		}
+
+		// TODO REMOVE DEBUG
+		foreach(town in ::World.EntityManager.getSettlements())
+		{
+			if (town.getName() == "Lichtmark")
+			{
+				this.getFollower("follower.cook").enterTown(town);
+				this.getFollower("follower.scout").enterTown(town);
+				::logConsole("Cook entered Lichtmark")
+			}
 		}
 	}
 

@@ -37,13 +37,13 @@ WorldCampfireScreenHireDialogModule.prototype.sortCompareEntries = function(_fol
 	}
 	if (_follower_a.IsInCurrentTown)
 	{
-		if (!_follower_b.isInCurrentTown)
+		if (!_follower_b.IsInCurrentTown)
 		{
 			return -1;
 		}
 		return sortAlphabetically(_follower_a, _follower_b);
 	}
-	else if (_follower_b.isInCurrentTown)
+	else if (_follower_b.IsInCurrentTown)
 	{
 		return 1;
 	}
@@ -70,7 +70,20 @@ WorldCampfireScreenHireDialogModule.prototype.addListEntry = function (_data)
 	var entry = this.mListScrollContainer.find('.list-entry').last();
 	if (_data.IsInCurrentTown)
 	{
-		entry.addClass("is-in-current-town");
+		entry.parent().addClass("is-in-current-town");
+		entry.removeClass('is-disabled');
+	}
+	else
+	{
+		// Hide money container if hired or not in town
+		entry.find(".row.is-bottom").hide();
+		if (!_data.IsHired) {
+			entry.addClass('is-disabled');
+		}
+		else
+		{
+			entry.removeClass('is-disabled');
+		}
 	}
 }
 
@@ -143,6 +156,10 @@ WorldCampfireScreenHireDialogModule.prototype.updateDetailsPanel = function(_ele
 	this.mDetailsPanel.SwitchModuleContainer.show();
 
 	this.mDetailsPanel.DailyMoneyCostsText.html(Helper.numberWithCommas(data.Cost));
+	// if (!data.IsInCurrentTown)
+	// {
+	// 	this.mDetailsPanel.HireButton.hide();
+	// }
 }
 
 WorldCampfireScreenHireDialogModule.prototype.toggleModule = function(_idx)

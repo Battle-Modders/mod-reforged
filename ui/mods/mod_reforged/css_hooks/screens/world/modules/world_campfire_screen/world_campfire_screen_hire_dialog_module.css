@@ -77,7 +77,7 @@
     left: 32.0rem;
 }
 
-.world-campfire-screen .l-hire-dialog-container .list-entry.is-in-current-town
+.world-campfire-screen .l-hire-dialog-container .is-in-current-town
 {
-	outline: 2px solid green;
+	box-shadow: 0 0 1px 2px green;
 }

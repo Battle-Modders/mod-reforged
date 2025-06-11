@@ -47,4 +47,20 @@
 
 		return ret;
 	}}.onMouseInput;
+
+		// Add support to show retinue from town
+	q.town_screen_main_dialog_module_onRetinueButtonClicked <- function()
+	{
+		this.m.WorldTownScreen.hideAllDialogs();
+		this.m.CampfireScreen.show();
+		this.m.MenuStack.push(function ()
+		{
+			this.m.CampfireScreen.hide();
+			this.m.WorldTownScreen.showLastActiveDialog();
+		}, function ()
+		{
+			return !this.m.CampfireScreen.isAnimating();
+		});
+	}
+
 });
