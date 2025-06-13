@@ -121,7 +121,7 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 
 	function onPushThrough( _tag )
 	{
-		if (_tag.TargetTile.IsOccupiedByActor && _tag.TargetTile.getEntity().isAlive())
+		if (this.line_breaker.onVerifyTarget(_tag.User.getTile(), _tag.TargetTile))
 			this.line_breaker.onUse(_tag.User, _tag.TargetTile);
 		else
 			::Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, null, null, false);
