@@ -3,6 +3,10 @@
 if (::Hooks.hasMod("mod_autopilot_new"))
 	return;
 
+// Temporarily disable autopilot new fixes from being included
+// while we test our own ai_agent_fixes
+return;
+
 // copy of ::std.Actor from Hackflow's stdlib mod.
 // Code is adjusted for dependencies. Original code is commented out.
 local Actor = {
