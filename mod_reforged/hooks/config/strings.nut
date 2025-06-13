@@ -793,7 +793,8 @@ local vanillaDescriptions = [
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"Swapping any item in battle becomes a free action with no [Action Point|Concept.ActionPoints] cost once every [turn.|Concept.Turn]",
-					"Does not work when swapping a shield, or when swapping from one Two-Handed melee weapon to another Two-Handed melee weapon."
+					"Does not work when swapping a shield, or when swapping from one Two-Handed melee weapon to another Two-Handed melee weapon.",
+					"Does not stack with other free swap skills."
 				]
 			}]
 		})
@@ -1449,7 +1450,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 			Description = [
 				"Gain " + ::MSU.Text.colorPositive("10%") + " of your Base [Ranged Skill|Concept.RangeSkill] as additional [Melee Skill|Concept.MeleeSkill] and [Melee Defense.|Concept.MeleeDefense]",
 				"Throwing attacks gain " + ::MSU.Text.colorPositive("20%") + " of your current [Melee Skill|Concept.MeleeSkill] as additional chance to hit."
-				"Can switch to or from a throwing weapon for free once per [turn.|Concept.Turn]"
+				"Can switch to or from a throwing weapon for free once per [turn.|Concept.Turn] Does not stack with other free swap skills."
 			]
 		}]
 	}),
