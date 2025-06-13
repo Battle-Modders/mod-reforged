@@ -1,6 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/cascade_skill", function(q) {
 	q.m.RerollDamageMult <- 1.0;
-	q.m.IsAttacking <- false;
+	q.m.AttackRolls <- [];
 
 	q.getTooltip = @(__original) { function getTooltip()
 	{
@@ -36,42 +36,83 @@
 	q.onUse = @() { function onUse( _user, _targetTile )
 	{
 		this.m.RerollDamageMult = 1.0;
-		this.m.IsUsingHitchance = true;
+		this.m.AttackRolls.clear();
 
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectChop);
 		local target = _targetTile.getEntity();
 
-		local hitChance = this.getHitchance(target);
-		for (local i = 0; i < 2; i++)
+		local attackInfo = ::MSU.Table.merge(clone ::Const.Tactical.MV_AttackInfo, {
+			ChanceToHit = this.getHitchance(target),
+			Target = target,
+			User = _user,
+			PropertiesForUse = this.getContainer().buildPropertiesForUse(this, target),
+			PropertiesForDefense = target.getSkills().buildPropertiesForDefense(_user, this)
+		});
+
+		for (local i = 0; i < 3; i++)
 		{
-			local roll = ::Math.rand(1, 100);
-			if (roll <= hitChance)
+			local ai = clone attackInfo;
+			ai.Roll = ::Math.rand(1, 100);
+			this.skill.MV_onAttackRolled(ai);
+
+			local isHit = ai.Roll <= ai.ChanceToHit;
+			if (isHit && ::Math.rand(1, 100) <= target.getCurrentProperties().RerollDefenseChance)
 			{
-				this.m.IsUsingHitchance = false;
-				break;
+				ai.Roll = ::Math.rand(1, 100);
+				isHit = ai.Roll <= ai.ChanceToHit;
 			}
 
-			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and misses " + ::Const.UI.getColorizedEntityName(target) + " (Chance: " + hitChance + ", Rolled: " + roll + ")");
+			if (!isHit)
+			{
+				this.m.RerollDamageMult -= 0.33;
+			}
 
-			this.m.RerollDamageMult -= 0.33;
+			this.m.AttackRolls.push(ai.Roll);
 		}
 
-		this.m.IsAttacking = true;
 		local ret = this.attackEntity(_user, target);
-		this.m.IsAttacking = false;
-		this.m.IsUsingHitchance = true;
+		this.m.AttackRolls.clear();
 		return ret;
 	}}.onUse;
 
-	// Set IsUsingHitChance to true before target hit so that the Nimble perk works properly
-	q.onBeforeTargetHit = @() { function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
+	q.MV_printAttackToLog = @() { function MV_printAttackToLog( _attackInfo )
 	{
-		this.m.IsUsingHitchance = true;
-	}}.onBeforeTargetHit;
+		::Tactical.EventLog.log_newline();
+		if (this.isUsingHitchance())
+		{
+			local hitOrMiss = _attackInfo.ChanceToHit != 0 && this.m.RerollDamageMult > 0.1 ? "hits" : "misses";
+			::Tactical.EventLog.logEx(format("%s uses %s and %s %s (Chance: %s, Rolled: %s)", ::Const.UI.getColorizedEntityName(_attackInfo.User), this.getName(), hitOrMiss, ::Const.UI.getColorizedEntityName(_attackInfo.Target), _attackInfo.ChanceToHit + "", this.m.AttackRolls.reduce(@(_a, _b) _a + ", " + _b)));
+		}
+		else
+		{
+			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_attackInfo.User) + " uses " + this.getName() + " and hits " + ::Const.UI.getColorizedEntityName(_attackInfo.Target));
+		}
+	}}.MV_printAttackToLog;
+
+	q.MV_onAttackRolled = @(__original) { function MV_onAttackRolled( _attackInfo )
+	{
+		__original(_attackInfo);
+		// ChanceToHit can be 0 when target is not IsAbleToDie
+		// In this case we don't want to do anything and let vanilla handle it.
+		if (_attackInfo.ChanceToHit == 0)
+			return;
+
+		// If hit, then set the roll to the average of the success rolls
+		// If miss, then set the roll to the average of the miss rolls
+		// RerollDamageMult > 0.1 signifies a hit because it drops from 1.0 by -0.33 for every miss
+		local rolls = this.m.RerollDamageMult > 0.1 ? this.m.AttackRolls.filter(@(_, _r) _r <= _attackInfo.ChanceToHit) : this.m.AttackRolls.filter(@(_, _r) _r > _attackInfo.ChanceToHit);
+
+		local sum = 0;
+		foreach (r in rolls)
+		{
+			sum += r;
+		}
+		_attackInfo.Roll = ::Math.floor(sum / rolls.len().tofloat());
+	}}.MV_onAttackRolled;
 
 	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill == this && this.m.IsAttacking)
+		if (_skill == this && this.m.AttackRolls.len() != 0)
 		{
 			_properties.DamageTotalMult *= this.m.RerollDamageMult;
 		}
