@@ -88,6 +88,13 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 		if (!_targetEntity.getCurrentProperties().IsAffectedByInjuries)
 			return false;
 
+		// In Reforged Undead can be affected by injuries due to the `rf_undead_injury_receiver_effect`
+		// therefore we need to exclude them manually. We check for FatigueEffectMult being 0 because
+		// in vanilla things like Ghouls are also flagged as `undead`. So the FatigueEffectMult is a good
+		// indicator of whether something is truly undead like skeleton, zombie or ghost etc.
+		if (_targetEntity.getFlags().has("undead") && _targetEntity.getBaseProperties().FatigueEffectMult == 0.0)
+			return false;
+
 		// Const.Injury.ExcludedInjuries is an MSU feature
 		local legInjuries = ::Const.Injury.ExcludedInjuries.get(::Const.Injury.ExcludedInjuries.Leg);
 		return legInjuries.filter(@(_, _id) _targetEntity.m.ExcludedInjuries.find(_id) == null).len() != 0;
