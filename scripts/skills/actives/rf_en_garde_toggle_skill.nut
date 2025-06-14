@@ -22,6 +22,12 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 0;
 	}
 
+	function softReset()
+	{
+		this.skill.softReset();
+		this.resetField("FatigueRequired");
+	}
+
 	function addResources()
 	{
 		this.skill.addResources();
@@ -75,11 +81,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 
 		if (this.getContainer().getActor().getFatigueMax() - this.getContainer().getActor().getFatigue() < this.m.FatigueRequired)
 		{
-			local meisterhau = this.getContainer().getSkillByID("actives.rf_swordmaster_stance_meisterhau");
-			if (meisterhau == null || !meisterhau.m.IsOn)
-			{
-				return null;
-			}
+			return null;
 		}
 
 		local riposte = this.getContainer().getSkillByID("actives.riposte");
@@ -139,11 +141,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 	{
 		// During preview set the fatigue cost so that the player knows if their previewed action
 		// will still allow en garde to trigger afterward
-		if (!this.getContainer().getActor().isPreviewing())
-			return;
-
-		local meisterhau = this.getContainer().getSkillByID("actives.rf_swordmaster_stance_meisterhau");
-		if (meisterhau == null || !meisterhau.m.IsOn)
+		if (this.getContainer().getActor().isPreviewing())
 			this.m.FatigueCost = this.m.FatigueRequired;
 	}
 

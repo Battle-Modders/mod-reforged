@@ -46,6 +46,15 @@ this.rf_swordmaster_stance_meisterhau_skill <- ::inherit("scripts/skills/actives
 		return ret;
 	}
 
+	function onUpdate( _properties )
+	{
+		local engarde = this.getContainer().getSkillByID("actives.rf_en_garde_toggle");
+		if (engarde != null)
+		{
+			engarde.m.FatigueRequired = 0;
+		}
+	}
+
 	function toggleOn()
 	{
 		if (this.m.IsOn)
