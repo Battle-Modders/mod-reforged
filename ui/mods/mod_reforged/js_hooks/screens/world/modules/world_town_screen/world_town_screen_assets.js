@@ -5,7 +5,7 @@ WorldTownScreenAssets.prototype.createDIV = function (_parentDiv)
 	Reforged.Hooks.WorldTownScreenAssets_createDIV.call(this, _parentDiv);
 	var self = this;
 	var assetContainer = $('<div class="l-tab-asset is-camp"></div>');
-	this.mRetinueAsset = this.createImageButton(assetContainer, Path.GFX + Asset.ICON_CAMP, function()
+	this.mRetinueAsset = this.createImageButton(assetContainer, Path.GFX + Asset.ICON_PERKS, function()
 	{
 		self.mParent.notifyBackendRetinueButtonPressed();
 	}, "", 6);
@@ -24,7 +24,7 @@ Reforged.Hooks.WorldTownScreenAssets_bindTooltips = WorldTownScreenAssets.protot
 WorldTownScreenAssets.prototype.bindTooltips = function ()
 {
 	Reforged.Hooks.WorldTownScreenAssets_bindTooltips.call(this);
-    this.mRetinueAsset.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.Assets.RetinueButton });
+   this.mRetinueAsset.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldScreen.Topbar.OptionsModule.PerksButton });
 };
 
 Reforged.Hooks.WorldTownScreenAssets_unbindTooltips = WorldTownScreenAssets.prototype.unbindTooltips;
