@@ -248,4 +248,11 @@
 
 		return __original(_id, _list);
 	}}.onUpdateShopList;
+
+	q.onEnter = @(__original) function()
+	{
+		local ret = __original();
+		::World.Retinue.onEnterTown(this);
+		return ret;
+	}
 });

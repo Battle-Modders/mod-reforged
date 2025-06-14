@@ -1,3 +1,5 @@
+// TODO implement "current location known" with name or not (influenced by visiting town, rumors)
+
 // This hook adds the ability to toggle between description and perks display for hires in the crowd building
 Reforged.Hooks.WorldTownScreenHireDialogModule_createDIV = WorldTownScreenHireDialogModule.prototype.createDIV;
 WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)

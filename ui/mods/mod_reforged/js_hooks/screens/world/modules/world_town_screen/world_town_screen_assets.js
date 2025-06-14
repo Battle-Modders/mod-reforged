@@ -38,10 +38,11 @@ Reforged.Hooks.WorldTownScreenAssets_loadFromData = WorldTownScreenAssets.protot
 WorldTownScreenAssets.prototype.loadFromData = function (_data)
 {
 	Reforged.Hooks.WorldTownScreenAssets_loadFromData.call(this, _data);
-    // if('Retinue' in currentAssetInformation)
-    // {
-    //    // TODO
-    // }
+    if('FollowersInTown' in _data)
+    {
+    	this.updateAssetValue(this.mRetinueAsset, _data["FollowersInTown"].length);
+       // TODO add numbers or something to retinue button
+    }
 };
 
 // Add support to show retinue from town

@@ -117,6 +117,21 @@ WorldCampfireScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 
 	this.mDetailsPanel.CharacterBackgroundTextContainer.hide();
 
+	// Dismiss button button:
+	var hireButtonLayout = $('<div class="l-hire-button"/>')
+		.appendTo(this.mDetailsPanel.Container.find('.is-button-container'));
+    this.mDetailsPanel.DismissButton = hireButtonLayout.createTextButton("Dismiss", function()
+	{
+        if(self.mSelectedEntry !== null)
+        {
+            var data = self.mSelectedEntry.data('entry');
+            if('ID' in data && data['ID'] !== null)
+            {
+                self.dismissRosterEntry(data['ID']);
+            }
+        }
+    }, '', 1);
+
 
 	// details: costs
 	var costsRow = this.mDetailsPanel.Container.find(".is-initial-costs");
@@ -130,6 +145,9 @@ WorldCampfireScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	costsImage.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.Assets.DailyMoney });
 	this.mDetailsPanel.DailyMoneyCostsText = $('<div class="label text-font-normal font-bottom-shadow font-color-description"/>');
 	costsContainer.append(this.mDetailsPanel.DailyMoneyCostsText);
+
+	// Change requirements for "current location"
+	this.mDetailsPanel.Container.find(".is-requirements-container .label").html("Location");
 }
 
 Reforged.Hooks.WorldCampfireScreenHireDialogModule_destroyDIV = WorldCampfireScreenHireDialogModule.prototype.destroyDIV
@@ -156,10 +174,33 @@ WorldCampfireScreenHireDialogModule.prototype.updateDetailsPanel = function(_ele
 	this.mDetailsPanel.SwitchModuleContainer.show();
 
 	this.mDetailsPanel.DailyMoneyCostsText.html(Helper.numberWithCommas(data.Cost));
-	// if (!data.IsInCurrentTown)
-	// {
-	// 	this.mDetailsPanel.HireButton.hide();
-	// }
+
+	this.mDetailsPanel.HireButton.enableButton(data.IsInCurrentTown);
+
+	this.mDetailsPanel.DismissButton.parent().toggle(data.IsHired);
+	this.mDetailsPanel.HireButton.parent().toggle(!data.IsHired);
+
+	var currentMoney = this.mAssets.getValues().Money;
+	var data = _element.data('entry');
+	var initialMoneyCost = data.Cost;
+	this.mDetailsPanel.HireButton.enableButton(currentMoney >= initialMoneyCost && !data.IsHired && data.IsInCurrentTown);
+
+	// update current location
+	this.mDetailsPanel.RequirementsContainer.empty();
+	var townLabel = $("<div class='text-font-medium font-color-label'></div>")
+		.appendTo(this.mDetailsPanel.RequirementsContainer);
+	if (data.IsHired)
+	{
+		townLabel.html("In your party.");
+	}
+	else if (data.IsKnownCurrentLocation)
+	{
+		townLabel.html("Last seen in " + data.CurrentTownName + ".<br>Will move in " + data.TimeRemainingInCurrentTown + " days.");
+	}
+	else
+	{
+		townLabel.html("Location not known. Visit towns and listen to tavern rumours to find followers.");
+	}
 }
 
 WorldCampfireScreenHireDialogModule.prototype.toggleModule = function(_idx)
@@ -245,3 +286,8 @@ WorldCampfireScreenHireDialogModule.prototype.notifyBackendPopupDialogIsVisible 
     this.mIsPopupOpen = _visible;
     SQ.call(this.mSQHandle, 'onPopupDialogIsVisible', [_visible]);
 };
+
+WorldCampfireScreenHireDialogModule.prototype.dismissRosterEntry = function(_brotherId)
+{
+	// TODO
+}

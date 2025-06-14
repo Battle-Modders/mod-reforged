@@ -1,4 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/retinue/retinue_manager", function(q) {
+	q.m.ValidFollowers <- [];
+	q.create = @(__original) function()
+	{
+		__original();
+		// TODO Disable unused followers
+		foreach (follower in this.m.Followers)
+		{
+			this.m.ValidFollowers.push(follower.getID());
+		}
+
+	}
 	q.getFollowerFromSlot <- function(_idx)
 	{
 		return this.m.Slots[_idx];
@@ -48,7 +59,7 @@
 			local chosenTown = availableTowns.remove(::Math.rand(0, availableTowns.len() - 1));
 			currentFollowersInTowns.push(chosenFollower);
 			occupiedTownIDs.push(chosenTown.getID());
-			chosenFollower.enterTown(chosenTown);
+			chosenFollower.setCurrentTown(chosenTown);
 		}
 
 		// TODO REMOVE DEBUG
@@ -56,8 +67,8 @@
 		{
 			if (town.getName() == "Lichtmark")
 			{
-				this.getFollower("follower.cook").enterTown(town);
-				this.getFollower("follower.scout").enterTown(town);
+				this.getFollower("follower.cook").setCurrentTown(town);
+				this.getFollower("follower.scout").setCurrentTown(town);
 				::logConsole("Cook entered Lichtmark")
 			}
 		}
@@ -73,6 +84,14 @@
 		}
 
 		return ret;
+	}
+
+	q.onEnterTown <- function(_town)
+	{
+		foreach(follower in this.m.Followers)
+		{
+			follower.onEnterTown(_town);
+		}
 	}
 })
 

@@ -3,8 +3,9 @@
 	q.m.Skills <- null;
 	q.m.IsHired <- false;
 	q.m.CurrentTownID <- null;
-	q.m.ArrivedInTownDay <- null;
+	q.m.CurrentTownArrivalDay <- null;
 	q.m.IsKnownCurrentLocation <- false;
+	q.m.HiredFromTownID <- null;
 
 	q.create = @(__original) function()
 	{
@@ -69,6 +70,10 @@
 	{
 		this.m.IsHired = true;
 		this.m.CurrentTownID = null;
+		if (::World.State.getCurrentTown() != null)
+		{
+			this.m.HiredFromTownID = ::World.State.getCurrentTown().getID();
+		}
 	}
 
 	q.onDismiss <- function()
@@ -79,7 +84,6 @@
 	q.getUIData <- function()
 	{
 		local currentTown = this.getCurrentTown();
-		::logInfo("Follower " + this.getName() + " " + this.isHired())
 		return {
 			ImagePath = this.getImage() + ".png",
 			ID = this.getID(),
@@ -98,6 +102,8 @@
 			IsKnownCurrentLocation = this.m.IsKnownCurrentLocation,
 			CurrentTownID = this.m.CurrentTownID,
 			CurrentTownName = currentTown == null ? null : currentTown.getName(),
+			CurrentTownArrivalDay = this.m.CurrentTownArrivalDay,
+			TimeRemainingInCurrentTown = this.getTimeRemainingInCurrentTown()
 		};
 	}
 
@@ -106,7 +112,7 @@
 		__original();
 		if (this.shouldLeaveTown())
 		{
-			this.leaveTown()
+			this.setCurrentTown(null);
 		}
 	}
 
@@ -125,17 +131,26 @@
 	q.isInCurrentTown <- function()
 	{
 		local currentTown = this.getCurrentTown();
+		local currentPlayerTown = ::World.State.getCurrentTown();
 		// return currentTown != null && currentTown.getID() == this.m.CurrentTownID;
-		local ret = currentTown != null && ::World.State.getPlayer().getTile().getDistanceTo(currentTown.getTile()) < 10;
+		local ret = currentTown != null && currentPlayerTown != null && currentTown.getID() == currentPlayerTown.getID();
 		::logInfo("Follower in town? " + this.getName() + " " + (currentTown == null ? "FALSE" : currentTown.getName()));
 		return ret;
 		// return currentTown != null && ::World.State.getPlayer().getTile().getDistanceTo(currentTown.getTile()) < 10;
 	}
 
-	q.enterTown <- function(_town)
+	q.setCurrentTown <- function(_town)
 	{
-		this.m.CurrentTownID = _town.getID();
-		this.m.ArrivedInTownDay = ::World.getTime().Days;
+		if (_town != null)
+		{
+			this.m.CurrentTownID = _town.getID();
+			this.m.CurrentTownArrivalDay = ::World.getTime().Days;
+		}
+		else
+		{
+			this.m.CurrentTownID = null;
+			this.setKnownCurrentLocation(false);
+		}
 	}
 
 	q.getCurrentTownID <- function()
@@ -148,14 +163,32 @@
 		 return this.isInTown() ? this.World.getEntityByID(this.m.CurrentTownID) : null;
 	}
 
-	q.shouldLeaveTown <- function()
+	q.getTimeRemainingInCurrentTown <- function()
 	{
-		return this.isInTown() && (::World.getTime().Days > this.m.ArrivedInTownDay + ::Reforged.Retinue.DaysFollowerStaysInTown);
+		// returns null when not in town
+		return this.isInTown() ? (this.m.CurrentTownArrivalDay + ::Reforged.Retinue.DaysFollowerStaysInTown - ::World.getTime().Days) : null;
 	}
 
-	q.leaveTown <- function()
+	q.shouldLeaveTown <- function()
 	{
-		this.m.CurrentTownID <- null;
-		this.m.IsKnownCurrentLocation <- false;
+		return this.isInTown() && this.getTimeRemainingInCurrentTown() <= 0;
+	}
+
+	q.setKnownCurrentLocation <- function(_bool)
+	{
+		this.m.IsKnownCurrentLocation = _bool;
+	}
+
+	q.getKnownCurrentLocation <- function(_bool)
+	{
+		return this.m.IsKnownCurrentLocation;
+	}
+
+	q.onEnterTown <- function(_town)
+	{
+		if (this.m.CurrentTownID == _town.getID())
+		{
+			this.setKnownCurrentLocation(true);
+		}
 	}
 })
