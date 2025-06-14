@@ -47,6 +47,16 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 			icon = "ui/icons/special.png",
 			text = "Currently " + (this.m.IsOn ? ::MSU.Text.colorPositive("enabled") : ::MSU.Text.colorNegative("disabled"))
 		});
+
+		if (!this.isEnabled())
+		{
+			ret.push({
+				id = 20,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Requires a two-handed sword or a sword with [Riposte|Skill+riposte]"))
+			});
+		}
 		
 		return ret;
 	}
@@ -62,12 +72,12 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		return true;
+		return this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded) || this.getContainer().getSkillByID("actives.riposte"))
 	}
 
-	function isHidden()
+	function isUsable()
 	{
-		return !this.getContainer().getActor().isPlacedOnMap() || !this.isEnabled();
+		return this.skill.isUsable() && this.isEnabled();
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
