@@ -76,6 +76,15 @@ this.rf_bestial_vigor_skill <- ::inherit("scripts/skills/skill", {
 		return true;
 	}
 
+	function onCostsPreview( _costsPreview )
+	{
+		__original(_costsPreview);
+		if (::MSU.isEqual(this.getContainer().getActor().getPreviewSkill(), this))
+		{
+			_costsPreview.fatiguePreview -= ::Math.ceil(this.getContainer().getActor().getFatigue() * this.m.FatigueRecoveredFraction);
+		}
+	}
+
 	function onUpdate( _properties )
 	{
 		if (this.m.IsBonusActive) _properties.ActionPoints += this.m.ActionPointsGained;

@@ -17,18 +17,20 @@
 	{
 		// Part of perk_rf_shield_sergeant functionality
 		local actor = this.getContainer().getActor();
-		if (actor.isPlacedOnMap())
-		{
-			foreach (ally in ::Tactical.Entities.getFactionActors(actor.getFaction(), actor.getTile(), 2))
-			{
-				if (ally.getID() == actor.getID()) continue;
+		if (!actor.isPlacedOnMap())
+			return;
 
-				if (ally.getSkills().hasSkill("perk.rf_shield_sergeant"))
-				{
-					this.m.ActionPointCost = ::Math.max(this.m.ActionPointCost * 0.5, 2);
-					this.m.FatigueCostMult *= 0.5;
-					return;
-				}
+		local tile = actor.isPreviewing() && actor.getPreviewMovement() != null ? actor.getPreviewMovement().End : actor.getTile();
+
+		foreach (ally in ::Tactical.Entities.getFactionActors(actor.getFaction(), tile, 2))
+		{
+			if (ally.getID() == actor.getID()) continue;
+
+			if (ally.getSkills().hasSkill("perk.rf_shield_sergeant"))
+			{
+				this.m.ActionPointCost = ::Math.max(this.m.ActionPointCost * 0.5, 2);
+				this.m.FatigueCostMult *= 0.5;
+				return;
 			}
 		}
 	}}.onAfterUpdate;

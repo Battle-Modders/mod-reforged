@@ -26,8 +26,15 @@ this.perk_rf_hip_shooter <- ::inherit("scripts/skills/skill", {
 		local quickShot = this.getContainer().getSkillByID("actives.quick_shot");
 		if (quickShot != null)
 		{
+			local count = this.m.Count;
+			local actor = this.getContainer().getActor();
+			if (actor.isPreviewing() && actor.getPreviewSkill() != null && actor.getPreviewSkill().getID() == "actives.quick_shot")
+			{
+				count++;
+			}
+
 			quickShot.m.ActionPointCost -= 1;
-			quickShot.m.FatigueCostMult *= 1.0 + (this.m.FatigueCostIncreasePerCount * 0.01 * this.m.Count);
+			quickShot.m.FatigueCostMult *= 1.0 + (this.m.FatigueCostIncreasePerCount * 0.01 * count);
 		}
 	}
 

@@ -3,7 +3,11 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 		NewStacks = 0, // Gained from start of a turn until start of next turn at which point are converted into OldStacks.
 		OldStacks = 0, // Reset to 0 at the end of a turn.
 		BonusPerStack = 5,
-		MaxStacks = 5
+		MaxStacks = 5,
+
+		// Is incremented during previewing skills to add additional stacks
+		// so affordability of skills is calculated properly
+		PreviewStacks = 0
 	},
 	function create()
 	{
@@ -91,7 +95,7 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 
 	function getStacks()
 	{
-		return ::Math.min(this.m.MaxStacks, this.m.NewStacks + this.m.OldStacks);
+		return ::Math.min(this.m.MaxStacks, this.m.NewStacks + this.m.OldStacks + this.m.PreviewStacks);
 	}
 
 	function getBonus()
@@ -101,6 +105,18 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
+		// Add a stack during preview so that affordability preview works properly
+		// The stack is removed during onAfterUpdate.
+		local actor = this.getContainer().getActor();
+		if (actor.getPreviewSkill() != null && actor.getPreviewSkill().isAttack())
+		{
+			this.m.PreviewStacks = 1;
+		}
+		else
+		{
+			this.m.PreviewStacks = 0;
+		}
+
 		if (this.getStacks() > 0)
 		{
 			local bonus = this.getBonus();
