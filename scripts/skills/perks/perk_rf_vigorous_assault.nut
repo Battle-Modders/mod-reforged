@@ -1,7 +1,11 @@
 this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 	m = {
 		BonusEveryXTiles = 2,
-		NumTilesMoved = 0
+		NumTilesMoved = 0,
+
+		// Is incremented during previewing skills to add additional stacks
+		// so affordability of skills is calculated properly
+		NumTilesMovedPreview = 0
 	},
 	function create()
 	{
@@ -16,7 +20,7 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.NumTilesMoved / this.m.BonusEveryXTiles == 0;
+		return this.getNumTilesMoved() / this.m.BonusEveryXTiles == 0;
 	}
 
 	function getTooltip()
@@ -76,16 +80,11 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 		if (!this.isEnabled())
 			return;
 
-		// Switcheroo NumTilesMoved so that the bonus calculation functions give desired result during previewing
-		local numTilesMoved_backup = this.m.NumTilesMoved;
-		if (actor.isPreviewing())
-		{
-			this.m.NumTilesMoved += actor.getPreviewMovement().Tiles;
-		}
+		this.m.NumTilesMovedPreview = actor.isPreviewing() ? actor.getPreviewMovement().Tiles : 0;
 
 		// Reduce the AP cost preemptively by assuming a movement of this.m.BonusEveryXTiles for AI to allow for
 		// AI behaviors which check for AP cost of attacks for setting tile scores when calculating where to go
-		if (!actor.isPlayerControlled() && this.m.NumTilesMoved < this.m.BonusEveryXTiles && ::Tactical.TurnSequenceBar.isActiveEntity(actor))
+		if (!actor.isPlayerControlled() && this.getNumTilesMoved() < this.m.BonusEveryXTiles && ::Tactical.TurnSequenceBar.isActiveEntity(actor))
 		{
 			local aoo = this.getContainer().getAttackOfOpportunity();
 			if (aoo != null)
@@ -137,18 +136,21 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 				skill.m.FatigueCostMult *= this.getFatigueCostMultMult();
 			}
 		}
+	}
 
-		this.m.NumTilesMoved = numTilesMoved_backup;
+	function getNumTilesMoved()
+	{
+		return this.m.NumTilesMoved + this.m.NumTilesMovedPreview;
 	}
 
 	function getActionPointCostModifier()
 	{
-		return -this.m.NumTilesMoved / this.m.BonusEveryXTiles;
+		return -this.getNumTilesMoved() / this.m.BonusEveryXTiles;
 	}
 
 	function getFatigueCostMultMult()
 	{
-		return ::Math.maxf(0.0, 1.0 - 0.1 * (this.m.NumTilesMoved / this.m.BonusEveryXTiles));
+		return ::Math.maxf(0.0, 1.0 - 0.1 * (this.getNumTilesMoved() / this.m.BonusEveryXTiles));
 	}
 
 	function onMovementStarted( _tile, _numTiles )
