@@ -173,7 +173,7 @@ WorldCampfireScreenHireDialogModule.prototype.updateDetailsPanel = function(_ele
 	// this.toggleModule(1);
 	this.mDetailsPanel.SwitchModuleContainer.show();
 
-	this.mDetailsPanel.DailyMoneyCostsText.html(Helper.numberWithCommas(data.Cost));
+	this.mDetailsPanel.DailyMoneyCostsText.html(Helper.numberWithCommas(data.DailyMoneyCost));
 
 	this.mDetailsPanel.HireButton.enableButton(data.IsInCurrentTown);
 

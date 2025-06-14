@@ -6,6 +6,9 @@
 	q.m.CurrentTownArrivalDay <- null;
 	q.m.IsKnownCurrentLocation <- false;
 	q.m.HiredFromTownID <- null;
+	q.m.DailyWage <- 10;
+	q.m.DailyWageMult <- 1.0;
+	q.m.DailyFood <- 2.0;
 
 	q.create = @(__original) function()
 	{
@@ -21,6 +24,16 @@
 			IconDisabled = "ui/perks/perk_rf_calculated_strikes_sw.png"
 		},]];
 		this.m.Skills = ::new("scripts/skills/rf_follower_skill_container");
+	}
+
+	q.getDailyCost <- function()
+	{
+		return this.Math.max(0, this.m.DailyWage * this.m.DailyWageMult * (("State" in this.World) && this.World.State != null ? this.World.Assets.m.DailyWageMult : 1.0));
+	}
+
+	q.getDailyFood <- function()
+	{
+		return this.Math.maxf(0.0, this.m.DailyFood);
 	}
 
 	q.getPerkTree <- function()
@@ -103,7 +116,10 @@
 			CurrentTownID = this.m.CurrentTownID,
 			CurrentTownName = currentTown == null ? null : currentTown.getName(),
 			CurrentTownArrivalDay = this.m.CurrentTownArrivalDay,
-			TimeRemainingInCurrentTown = this.getTimeRemainingInCurrentTown()
+			TimeRemainingInCurrentTown = this.getTimeRemainingInCurrentTown(),
+
+			DailyMoneyCost = this.getDailyCost(),
+			DailyFood = this.getDailyFood(),
 		};
 	}
 
