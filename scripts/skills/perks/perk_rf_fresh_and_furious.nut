@@ -1,9 +1,13 @@
 this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 	m = {
+		FatigueThreshold = 0.35,
+		FatigueThresholdPerTurnAdd = -0.05,
+
+		// Private
+		TurnsSinceRecover = 0,
 		IsUsingFreeSkill = false,
 		IsSpent = true,
 		RequiresRecover = false,
-		FatigueThreshold = 0.3
 		IconMiniBackup = ""
 	},
 	function create()
@@ -52,25 +56,23 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 			});
 		}
 
+		local actor = this.getContainer().getActor();
+		local threshold = this.getFatigueThreshold();
+		local thresholdStr = ::MSU.Text.colorizePct(threshold, {InvertColor = true});
+		local thresholdDropStr = ::MSU.Text.colorizeValue(this.m.FatigueThresholdPerTurnAdd, {AddSign = true, AddPercent = true});
 		// For non-dummy actor we also add the actual fatigue value calculated from the threshold
-		if (this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID())
+		if (!::MSU.isEqual(actor, ::MSU.getDummyPlayer()))
 		{
-			ret.push({
-				id = 12,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Becomes disabled when starting a turn with " + ::MSU.Text.colorizePct(this.m.FatigueThreshold, {InvertColor = true}) + " or more [Fatigue|Concept.Fatigue] built")
-			});
+			thresholdStr += " (" + ::MSU.Text.colorNegative(::Math.round(threshold * actor.getFatigueMax())) + ")";
+			thresholdDropStr = " (" + ::MSU.Text.colorNegative(::Math.round(this.m.FatigueThresholdPerTurnAdd * actor.getFatigueMax())) + ")";
 		}
-		else
-		{
-			ret.push({
-				id = 12,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("Becomes disabled when starting a turn with %s (%s) or more [Fatigue|Concept.Fatigue] built", ::MSU.Text.colorizePct(this.m.FatigueThreshold, {InvertColor = true}), ::MSU.Text.colorNegative(::Math.round(this.m.FatigueThreshold * this.getContainer().getActor().getFatigueMax()))))
-			});
-		}
+
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString(format("Becomes disabled when starting a turn with %s or more [Fatigue|Concept.Fatigue] built. This threshold drops by %s per [turn|Concept.Turn]", thresholdStr, thresholdDropStr))
+		});
 
 		return ret;
 	}
@@ -115,7 +117,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.IsSpent = false;
 
-		if (this.getContainer().getActor().getFatigue() < this.m.FatigueThreshold * this.getContainer().getActor().getFatigueMax())
+		if (this.getContainer().getActor().getFatigue() < this.getFatigueThreshold() * this.getContainer().getActor().getFatigueMax())
 		{
 			this.m.Icon = ::Const.Perks.findById(this.getID()).Icon;
 			this.m.IconMini = this.m.IconMiniBackup;
@@ -126,6 +128,8 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 			this.m.Icon = ::Const.Perks.findById(this.getID()).IconDisabled;
 			this.m.IconMini = "";
 		}
+
+		this.m.TurnsSinceRecover++;
 	}
 
 	function onCombatFinished()
@@ -133,5 +137,11 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		this.skill.onCombatFinished();
 		this.m.IsSpent = true;
 		this.m.RequiresRecover = false;
+		this.m.TurnsSinceRecover = 0;
+	}
+
+	function getFatigueThreshold()
+	{
+		return ::Math.maxf(0.0, this.m.FatigueThreshold - this.m.FatigueThresholdPerTurnAdd * this.m.TurnsSinceRecover);
 	}
 });
