@@ -10,20 +10,38 @@
 		}
 
 	}
+
 	q.getFollowerFromSlot <- function(_idx)
 	{
 		return this.m.Slots[_idx];
 	}
 
+	q.setFollower = @(__original) function( _slot, _follower )
+	{
+		if (this.m.Slots[_slot] != null)
+			this.m.Slots[_slot].onDismiss();
+		__original(_slot, _follower);
+		_follower.onHired();
+	}
+
 	q.onNewDay = @(__original) function()
 	{
 		__original();
+		this.checkSpawnFollower();
+	}
+
+	q.checkSpawnFollower <- function()
+	{
 		if (this.shouldSpawnFollower())
 		{
-			local result = this.getFollowerToSpawn()
-			if (result != null)
+			local followerToSpawn = this.getFollowerToSpawn();
+			if (followerToSpawn != null)
 			{
-				result.Follower.enterTown(result.Town.getID());
+				local townToSpawnIn = this.getTownToSpawnFollowerIn(followerToSpawn);
+				if (townToSpawnIn != null)
+				{
+					followerToSpawn.enterTown(townToSpawnIn)
+				}
 			}
 		}
 
@@ -39,14 +57,6 @@
 		}
 	}
 
-	q.setFollower = @(__original) function( _slot, _follower )
-	{
-		if (this.m.Slots[_slot] != null)
-			this.m.Slots[_slot].onDismiss();
-		__original(_slot, _follower);
-		_follower.onHired();
-	}
-
 	q.shouldSpawnFollower <- function()
 	{
 		local followerCount = this.m.Followers.reduce(@(_, _follower) _follower.m.CurrentTownTable.len());
@@ -58,7 +68,6 @@
 
 	q.getFollowerToSpawn <- function()
 	{
-		// check if followers should leave towns, then distributes new followers among towns if necessary
 		local weightedContainerSpawnProbability = ::MSU.Class.WeightedContainer();
 		weightedContainerSpawnProbability.addArray(this.m.Followers.map(@(_follower) [_follower.m.BaseSpawnChance, _follower.getID()]));
 
@@ -69,13 +78,11 @@
 		}
 		// TODO add other factors (origins...)
 		local chosenFollowerID = weightedContainerSpawnProbability.roll();
-		if (chosenFollowerID == null)
-		{
-			return null;
-		}
-		chosenFollower = this.getFollower(chosenFollowerID);
+		return chosenFollowerID == null ? null : this.getFollower(chosenFollowerID);
+	}
 
-
+	q.getTownToSpawnFollowerIn <- function(_follower)
+	{
 		local weightedContainerTownProbability = ::MSU.Class.WeightedContainer();
 		weightedContainerTownProbability.addMany(1, ::World.EntityManager.getSettlements().map(@(_town) _town.getID()));
 		foreach(follower in this.m.Followers)
@@ -86,19 +93,11 @@
 			}
 
 		}
-		chosenFollower.adaptSpawnInTownChance(weightedContainerTownProbability);
+		_follower.adaptSpawnInTownChance(weightedContainerTownProbability);
 		// TODO add other factors (origins...)
 
 		local chosenTownID = weightedContainerTownProbability.roll();
-		if (chosenTownID == null)
-		{
-			return null;
-		}
-
-		return {
-			Follower = chosenFollower,
-			Town = this.World.getEntityByID(chosenTownID)
-		}
+		return chosenTownID == null ? null : this.World.getEntityByID(chosenTownID);
 	}
 
 	q.getFollowersForUI = @() function()
