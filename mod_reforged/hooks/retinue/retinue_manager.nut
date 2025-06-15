@@ -18,7 +18,25 @@
 	q.onNewDay = @(__original) function()
 	{
 		__original();
-		this.updateFollowersInTowns();
+		if (this.shouldSpawnFollower())
+		{
+			local result = this.getFollowerToSpawn()
+			if (result != null)
+			{
+				result.Follower.enterTown(result.Town.getID());
+			}
+		}
+
+		// TODO REMOVE DEBUG
+		foreach(town in ::World.EntityManager.getSettlements())
+		{
+			if (town.getName() == "Lichtmark")
+			{
+				this.getFollower("follower.cook").enterTown(town.getID());
+				this.getFollower("follower.scout").enterTown(town.getID());
+				::logConsole("Cook entered Lichtmark")
+			}
+		}
 	}
 
 	q.setFollower = @(__original) function( _slot, _follower )
@@ -29,48 +47,57 @@
 		_follower.onHired();
 	}
 
-	q.updateFollowersInTowns <- function()
+	q.shouldSpawnFollower <- function()
+	{
+		local followerCount = this.m.Followers.reduce(@(_, _follower) _follower.m.CurrentTownTable.len());
+		local baseOdds = ::Reforged.Retinue.BaseOddsForFollowerToSpawnPerDay;
+		local decay = 0.9;
+		local odds = baseOdds * ::Math.pow(decay, followerCount);
+		return ::Math.rand(0, 100) < odds;
+	}
+
+	q.getFollowerToSpawn <- function()
 	{
 		// check if followers should leave towns, then distributes new followers among towns if necessary
+		local weightedContainerSpawnProbability = ::MSU.Class.WeightedContainer();
+		weightedContainerSpawnProbability.addArray(this.m.Followers.map(@(_follower) [_follower.m.BaseSpawnChance, _follower.getID()]));
 
-		local currentFollowersInTowns = [];
-		local availableToDistribute = [];
-		local occupiedTownIDs = [];
 		foreach(follower in this.m.Followers)
 		{
-			if (follower.isInTown())
+			follower.adaptFollowerSpawnChance(weightedContainerSpawnProbability);
+
+		}
+		// TODO add other factors (origins...)
+		local chosenFollowerID = weightedContainerSpawnProbability.roll();
+		if (chosenFollowerID == null)
+		{
+			return null;
+		}
+		chosenFollower = this.getFollower(chosenFollowerID);
+
+
+		local weightedContainerTownProbability = ::MSU.Class.WeightedContainer();
+		weightedContainerTownProbability.addMany(1, ::World.EntityManager.getSettlements().map(@(_town) _town.getID()));
+		foreach(follower in this.m.Followers)
+		{
+			foreach(townID in follower.getCurrentTownIDs())
 			{
-				currentFollowersInTowns.push(follower);
-				occupiedTownIDs.push(follower.getCurrentTownID());
+				weightedContainerTownProbability.set(townID, 0.1);
 			}
-			// Currently can't be distributed into a new town if just left
-			else
-			{
-				availableToDistribute.push(follower);
-			}
+
+		}
+		chosenFollower.adaptSpawnInTownChance(weightedContainerTownProbability);
+		// TODO add other factors (origins...)
+
+		local chosenTownID = weightedContainerTownProbability.roll();
+		if (chosenTownID == null)
+		{
+			return null;
 		}
 
-		local availableTowns = ::World.EntityManager.getSettlements().filter(@(idx, town) !(town.getID() in occupiedTownIDs));
-		while (currentFollowersInTowns.len() < ::Reforged.Retinue.MaxFollowersInTowns
-			&& availableToDistribute.len() > 0
-			&& availableTowns.len() > 0)
-		{
-			local chosenFollower = availableToDistribute.remove(::Math.rand(0, availableToDistribute.len() - 1));
-			local chosenTown = availableTowns.remove(::Math.rand(0, availableTowns.len() - 1));
-			currentFollowersInTowns.push(chosenFollower);
-			occupiedTownIDs.push(chosenTown.getID());
-			chosenFollower.setCurrentTown(chosenTown);
-		}
-
-		// TODO REMOVE DEBUG
-		foreach(town in ::World.EntityManager.getSettlements())
-		{
-			if (town.getName() == "Lichtmark")
-			{
-				this.getFollower("follower.cook").setCurrentTown(town);
-				this.getFollower("follower.scout").setCurrentTown(town);
-				::logConsole("Cook entered Lichtmark")
-			}
+		return {
+			Follower = chosenFollower,
+			Town = this.World.getEntityByID(chosenTownID)
 		}
 	}
 
@@ -86,11 +113,11 @@
 		return ret;
 	}
 
-	q.onEnterTown <- function(_town)
+	q.onPlayerEnterTown <- function(_town)
 	{
 		foreach(follower in this.m.Followers)
 		{
-			follower.onEnterTown(_town);
+			follower.onPlayerEnterTown(_town);
 		}
 	}
 })

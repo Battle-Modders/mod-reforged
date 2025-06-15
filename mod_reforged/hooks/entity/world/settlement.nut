@@ -252,7 +252,7 @@
 	q.onEnter = @(__original) function()
 	{
 		local ret = __original();
-		::World.Retinue.onEnterTown(this);
+		::World.Retinue.onPlayerEnterTown(this);
 		return ret;
 	}
 });

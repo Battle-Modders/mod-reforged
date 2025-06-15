@@ -13,9 +13,7 @@
 		local followersInTown = [];
 		foreach (follower in ::World.Retinue.m.Followers)
 		{
-			local followerTown = follower.getCurrentTown();
-			if (followerTown && followerTown.getID() == _currentTownID)
-			{
+			if (follower.isInTown(_currentTownID)) {
 				followersInTown.push(follower.getID());
 			}
 		}

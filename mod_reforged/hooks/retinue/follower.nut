@@ -10,6 +10,8 @@
 	q.m.DailyWageMult <- 1.0;
 	q.m.DailyFood <- 2.0;
 
+	q.m.BaseSpawnChance <- 1.0;
+
 	q.create = @(__original) function()
 	{
 		__original();

@@ -98,7 +98,7 @@ Reforged.RetinuePerksModule.prototype.createPerkTreeDIV = function (_perkTree, _
 
 			perk.Container.click(this, function (_event)
 			{
-				self.showPerkUnlockDialog(_perk);
+				self.showPerkUnlockDialog(perk);
 			});
 		}
 	}
