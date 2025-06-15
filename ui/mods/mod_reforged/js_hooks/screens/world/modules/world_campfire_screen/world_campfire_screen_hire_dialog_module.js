@@ -193,9 +193,14 @@ WorldCampfireScreenHireDialogModule.prototype.updateDetailsPanel = function(_ele
 	{
 		townLabel.html("In your party.");
 	}
-	else if (data.IsKnownCurrentLocation)
+	else if (data.IsInCurrentTown)
 	{
-		townLabel.html("Last seen in " + data.CurrentTownName + ".<br>Will move in " + data.TimeRemainingInCurrentTown + " days.");
+		townLabel.html("In this town - you can hire them!");
+	}
+	else if (data.LastKnownLocation != null)
+	{
+		// TODO
+		townLabel.html("Last seen in " + data.LastKnownLocation.Name + " , " + data.LastKnownLocation.LastSeenDate + " days ago.<br>Will move in " + data.LastKnownLocation.RemainingDays + " days.");
 	}
 	else
 	{

@@ -2,10 +2,10 @@
 	q.m.PerkTree <- null;
 	q.m.Skills <- null;
 	q.m.IsHired <- false;
-	q.m.CurrentTownID <- null;
-	q.m.CurrentTownArrivalDay <- null;
-	q.m.IsKnownCurrentLocation <- false;
+
+	q.m.CurrentTownTable <- null;
 	q.m.HiredFromTownID <- null;
+
 	q.m.DailyWage <- 10;
 	q.m.DailyWageMult <- 1.0;
 	q.m.DailyFood <- 2.0;
@@ -13,6 +13,7 @@
 	q.create = @(__original) function()
 	{
 		__original();
+		this.m.CurrentTownTable = {};
 		// TODO
 		this.m.PerkTree = [[
 		{
@@ -82,7 +83,7 @@
 	q.onHired <- function()
 	{
 		this.m.IsHired = true;
-		this.m.CurrentTownID = null;
+		this.m.CurrentTownTable.clear();
 		if (::World.State.getCurrentTown() != null)
 		{
 			this.m.HiredFromTownID = ::World.State.getCurrentTown().getID();
@@ -96,7 +97,6 @@
 
 	q.getUIData <- function()
 	{
-		local currentTown = this.getCurrentTown();
 		return {
 			ImagePath = this.getImage() + ".png",
 			ID = this.getID(),
@@ -112,24 +112,12 @@
 			IsAvailableForHire = this.isAvailableForHire(),
 			IsHired = this.isHired(),
 			IsInCurrentTown = this.isInCurrentTown(),
-			IsKnownCurrentLocation = this.m.IsKnownCurrentLocation,
-			CurrentTownID = this.m.CurrentTownID,
-			CurrentTownName = currentTown == null ? null : currentTown.getName(),
-			CurrentTownArrivalDay = this.m.CurrentTownArrivalDay,
-			TimeRemainingInCurrentTown = this.getTimeRemainingInCurrentTown(),
+			Towns = this.m.CurrentTownTable,
+			LastKnownLocation = this.getLastKnownLocation(),
 
 			DailyMoneyCost = this.getDailyCost(),
 			DailyFood = this.getDailyFood(),
 		};
-	}
-
-	q.onNewDay = @(__original) function()
-	{
-		__original();
-		if (this.shouldLeaveTown())
-		{
-			this.setCurrentTown(null);
-		}
 	}
 
 	q.isAvailableForHire <- function()
@@ -139,72 +127,119 @@
 		return true;
 	}
 
-	q.isInTown <- function()
+	q.adaptFollowerSpawnChance <- function(_weightedContainer)
 	{
-		return this.m.CurrentTownID != null;
+		if (this.isHired())
+		{
+			_weightedContainer.setWeight(this.getID(), 0);
+		}
+		else
+		{
+			_weightedContainer.setWeight(this.getID(), this.getFollowerSpawnChance(_weightedContainer.getWeight(this.getID())));
+		}
+	}
+
+	q.adaptSpawnInTownChance <- function(_weightedContainer)
+	{
+		_weightedContainer.setWeight(this.getID(), this.getFollowerSpawnChance(_weightedContainer.getWeight(this.getID())));
+	}
+
+	q.getFollowerSpawnChance <- function(_baseWeight)
+	{
+		return _baseWeight;
+	}
+
+	q.onNewDay = @(__original) function()
+	{
+		__original();
+		foreach (townID, townInfo in this.m.CurrentTownTable)
+		{
+			townInfo.RemainingDays -= 1;
+			if (townInfo.RemainingDays <= 0)
+			{
+				this.leaveTown(townID);
+			}
+		}
+	}
+
+	q.isInAnyTown <- function(_town)
+	{
+		return this.m.CurrentTownTable.len() > 0;
+	}
+
+	q.isInTown <- function(_townID)
+	{
+		return _townID in this.m.CurrentTownTable;
 	}
 
 	q.isInCurrentTown <- function()
 	{
-		local currentTown = this.getCurrentTown();
 		local currentPlayerTown = ::World.State.getCurrentTown();
-		// return currentTown != null && currentTown.getID() == this.m.CurrentTownID;
-		local ret = currentTown != null && currentPlayerTown != null && currentTown.getID() == currentPlayerTown.getID();
-		::logInfo("Follower in town? " + this.getName() + " " + (currentTown == null ? "FALSE" : currentTown.getName()));
+		return currentPlayerTown == null ? false : this.isInTown(currentPlayerTown.getID());
+	}
+
+	q.enterTown <- function(_townID)
+	{
+		local town = this.World.getEntityByID(_townID);
+		this.m.CurrentTownTable[_townID] <- {
+			ID = _townID,
+			Name = town.getName(),
+			ArrivalDay = ::World.getTime().Days,
+			RemainingDays = ::World.getTime().Days + ::Reforged.Retinue.DaysFollowerStaysInTown,
+			LastSeenDate = null,
+		}
+	}
+
+	q.leaveTown <- function(_townID)
+	{
+		delete this.m.CurrentTownTable[_townID];
+	}
+
+	q.getCurrentTownIDs <- function()
+	{
+		// TODO Check if table supports map
+		local ret = [];
+		foreach (townID, _ in this.m.CurrentTownTable)
+		{
+			ret.append(townID);
+		}
 		return ret;
-		// return currentTown != null && ::World.State.getPlayer().getTile().getDistanceTo(currentTown.getTile()) < 10;
 	}
 
-	q.setCurrentTown <- function(_town)
+	q.getCurrentTowns <- function()
 	{
-		if (_town != null)
+		local ret = [];
+		foreach (townID, _ in this.m.CurrentTownTable)
 		{
-			this.m.CurrentTownID = _town.getID();
-			this.m.CurrentTownArrivalDay = ::World.getTime().Days;
+			ret.append(this.World.getEntityByID(townID));
 		}
-		else
+		return ret;
+	}
+
+	q.getLastKnownLocation <- function()
+	{
+		if (this.m.CurrentTownTable.len() == 0)
+			return null;
+
+		local newest = 0;
+		local ret = null
+		foreach (_, townInfo in this.m.CurrentTownTable)
 		{
-			this.m.CurrentTownID = null;
-			this.setKnownCurrentLocation(false);
+			local lastDate = townInfo.LastSeenDate;
+			if (lastDate != null && lastDate > newest)
+			{
+				newest = lastDate;
+				ret = townInfo;
+			}
 		}
+		return ret;
 	}
 
-	q.getCurrentTownID <- function()
+	q.onPlayerEnterTown <- function(_town)
 	{
-		return this.m.CurrentTownID;
-	}
-
-	q.getCurrentTown <- function()
-	{
-		 return this.isInTown() ? this.World.getEntityByID(this.m.CurrentTownID) : null;
-	}
-
-	q.getTimeRemainingInCurrentTown <- function()
-	{
-		// returns null when not in town
-		return this.isInTown() ? (this.m.CurrentTownArrivalDay + ::Reforged.Retinue.DaysFollowerStaysInTown - ::World.getTime().Days) : null;
-	}
-
-	q.shouldLeaveTown <- function()
-	{
-		return this.isInTown() && this.getTimeRemainingInCurrentTown() <= 0;
-	}
-
-	q.setKnownCurrentLocation <- function(_bool)
-	{
-		this.m.IsKnownCurrentLocation = _bool;
-	}
-
-	q.getKnownCurrentLocation <- function(_bool)
-	{
-		return this.m.IsKnownCurrentLocation;
-	}
-
-	q.onEnterTown <- function(_town)
-	{
-		if (this.m.CurrentTownID == _town.getID())
+		if (this.isInTown(_town.getID()))
 		{
-			this.setKnownCurrentLocation(true);
+			this.m.CurrentTownTable[_town.getID()].LastSeenDate = ::World.getTime().Days;
 		}
 	}
 })
