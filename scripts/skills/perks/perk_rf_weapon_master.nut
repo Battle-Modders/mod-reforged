@@ -124,32 +124,34 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			[4, 4]
 		];
 
+		local perkTree = this.getContainer().getActor().getPerkTree();
+
 		if (equippedWeaponPerkGroups.len() == 1)	// The third perk is only granted if you are using a non-hybrid weapon
 		{
 			tierRanges.push([5, 7]);
 		}
-
-		local perkTree = this.getContainer().getActor().getPerkTree();
-
-		// For 2-way hybrid weapons, if you have a perk from any one of the two weapon types'
-		// perk groups you get the perk from the other weapon type's perk group.
-		if (equippedWeaponPerkGroups.len() == 2)
+		// For hybrid weapons, if you have a perk from any one of the two weapon types'
+		// perk groups you get the perk from the other weapon type's perk groups.
+		else
 		{
-			local pg1 = equippedWeaponPerkGroups[0];
-			local pg2 = equippedWeaponPerkGroups[1];
-			if (perkTree.hasPerkGroup(pg1.getID()) && perkTree.hasPerkGroup(pg2.getID()))
+			foreach (pg1 in equippedWeaponPerkGroups)
 			{
-				foreach (range in tierRanges)
+				if (!perkTree.hasPerkGroup(pg1.getID()))
+					continue;
+
+				foreach (pg2 in equippedWeaponPerkGroups)
 				{
-					local tierStart = range[0];
-					local tierEnd = range[1];
-					if (hasPerkFromGroup(pg1, tierStart, tierEnd) && !hasPerkFromGroup(pg2, tierStart, tierEnd))
+					if (pg1 == pg2 || !perkTree.hasPerkGroup(pg2.getID()))
+						continue;
+
+					foreach (range in tierRanges)
 					{
-						addPerkFromGroup(pg2, tierStart, tierEnd);
-					}
-					else if (hasPerkFromGroup(pg2, tierStart, tierEnd) && !hasPerkFromGroup(pg1, tierStart, tierEnd))
-					{
-						addPerkFromGroup(pg1, range[0], range[1]);
+						local tierStart = range[0];
+						local tierEnd = range[1];
+						if (hasPerkFromGroup(pg1, tierStart, tierEnd) && !hasPerkFromGroup(pg2, tierStart, tierEnd))
+						{
+							addPerkFromGroup(pg2, tierStart, tierEnd);
+						}
 					}
 				}
 			}
