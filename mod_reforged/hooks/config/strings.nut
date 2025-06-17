@@ -951,8 +951,7 @@ local vanillaDescriptions = [
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [$ $|Skill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head equal to " + ::MSU.Text.colorPositive("50%") + " of your [Melee Skill|Concept.MeleeSkill]."
-				"The [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost of your primary melee attack is added to the costs of this skill."
+				"Unlocks the [$ $|Skill+rf_between_the_eyes_skill] skill."
 			]
 		}]
 	}),
