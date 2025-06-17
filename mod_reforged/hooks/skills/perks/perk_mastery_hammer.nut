@@ -42,7 +42,9 @@
 		__original(_item);
 		if (_item.isItemType(::Const.Items.ItemType.TwoHanded) && _item.isItemType(::Const.Items.ItemType.Weapon) && _item.isWeaponType(::Const.Items.WeaponType.Hammer))
 		{
-			_item.addSkill(::new("scripts/skills/actives/rf_pummel_skill"));
+			_item.addSkill(::Reforged.new("scripts/skills/actives/rf_pummel_skill", function(o) {
+				o.m.DirectDamageMult = _item.m.DirectDamageMult;
+			}));
 		}
 	}}.onEquip;
 });
