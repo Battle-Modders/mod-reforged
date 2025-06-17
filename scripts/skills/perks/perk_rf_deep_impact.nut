@@ -1,8 +1,5 @@
 this.perk_rf_deep_impact <- ::inherit("scripts/skills/skill", {
-	m = {
-		RequiredWeaponType = ::Const.Items.WeaponType.Hammer,
-		RequiredDamageType = ::Const.Damage.DamageType.Blunt
-	},
+	m = {},
 	function create()
 	{
 		this.m.ID = "perk.rf_deep_impact";
@@ -15,37 +12,38 @@ this.perk_rf_deep_impact <- ::inherit("scripts/skills/skill", {
 
 	function onEquip( _item )
 	{
-		if (this.m.RequiredWeaponType == null || !_item.isItemType(::Const.Items.ItemType.Weapon) || !_item.isWeaponType(this.m.RequiredWeaponType))
-			return;
-
-		local self = this;
-		_item.addSkill(::Reforged.new("scripts/skills/actives/rf_deep_impact_skill", function(o) {
-			o.m.RequiredWeaponType = self.m.RequiredWeaponType;
-			o.m.RequiredDamageType = self.m.RequiredDamageType;
-		}));
+		if (_item.isItemType(::Const.Items.ItemType.Weapon) && _item.isWeaponType(::Const.Items.WeaponType.Hammer))
+		{
+			local aoo = this.getContainer().getAttackOfOpportunity();
+			if (aoo != null)
+			{
+				local s = ::new(::IO.scriptFilenameByHash(aoo.ClassNameHash));
+				::new("scripts/skills/actives/rf_deep_impact_skill").convertSkill(s);
+				_item.addSkill(s);
+			}
+		}
 	}
 
 	function onAdded()
 	{
-		if (this.m.RequiredWeaponType == null)
-		{
-			local self = this;
-			this.getContainer().add(::Reforged.new("scripts/skills/actives/rf_deep_impact_skill", function(o) {
-				o.m.RequiredWeaponType = self.m.RequiredWeaponType;
-				o.m.RequiredDamageType = self.m.RequiredDamageType;
-			}));
-		}
-		else
-		{
-			local weapon = this.getContainer().getActor().getMainhandItem();
-			if (weapon != null)
-				this.onEquip(weapon);
-		}
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon != null)
+			this.onEquip(weapon);
 	}
 
 	function onRemoved()
 	{
-		if (this.m.RequiredWeaponType == null)
-			this.getContainer().removeByID("actives.rf_deep_impact");
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon != null && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
+		{
+			foreach (s in weapon.m.SkillPtrs)
+			{
+				if (s.getID() == "actives.rf_deep_impact")
+				{
+					weapon.removeSkill(s);
+					break;
+				}
+			}
+		}
 	}
 });
