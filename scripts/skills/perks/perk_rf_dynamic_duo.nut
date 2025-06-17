@@ -36,15 +36,11 @@ this.perk_rf_dynamic_duo <- ::inherit("scripts/skills/perks/perk_rf_dynamic_duo_
 		local hasPartner = _in.readBool();
 		if (hasPartner)
 		{
-			local partnerPlace = _in.readU8();
-			foreach (bro in ::World.getPlayerRoster().getAll())
+			local partner = ::MSU.getEntityByUID(_in.readI32());
+			if (partner != null)
 			{
-				if (bro.getPlaceInFormation() == partnerPlace)
-				{
-					this.m.PartnerSkill = ::MSU.asWeakTableRef(bro.getSkills().getSkillByID("effects.rf_dynamic_duo_partner"));
-					this.m.PartnerSkill.setPartnerSkill(this);
-					break;
-				}
+				this.m.PartnerSkill = ::MSU.asWeakTableRef(partner.getSkills().getSkillByID("effects.rf_dynamic_duo_partner"));
+				this.m.PartnerSkill.setPartnerSkill(this);
 			}
 		}
 	}

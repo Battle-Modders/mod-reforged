@@ -266,7 +266,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 		if (!::MSU.isNull(this.m.PartnerSkill))
 		{
 			_out.writeBool(true);
-			_out.writeU8(this.m.PartnerSkill.getContainer().getActor().getPlaceInFormation());
+			_out.writeI32(this.m.PartnerSkill.getContainer().getActor().getUID());
 		}
 		else
 		{
