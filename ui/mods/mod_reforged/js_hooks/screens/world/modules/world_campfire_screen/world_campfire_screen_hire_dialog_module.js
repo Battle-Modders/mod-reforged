@@ -158,9 +158,9 @@ WorldCampfireScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	this.mDetailsPanel.CharacterBackgroundTextContainer.hide();
 
 	// Dismiss button button:
-	var hireButtonLayout = $('<div class="l-hire-button"/>')
+	var dismissButtonLayout = $('<div class="l-hire-button"/>')
 		.appendTo(this.mDetailsPanel.Container.find('.is-button-container'));
-    this.mDetailsPanel.DismissButton = hireButtonLayout.createTextButton("Dismiss", function()
+    this.mDetailsPanel.DismissButton = dismissButtonLayout.createTextButton("Dismiss", function()
 	{
         if(self.mSelectedEntry !== null)
         {

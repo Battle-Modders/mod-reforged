@@ -40,7 +40,7 @@
 				local townToSpawnIn = this.getTownToSpawnFollowerIn(followerToSpawn);
 				if (townToSpawnIn != null)
 				{
-					followerToSpawn.enterTown(townToSpawnIn)
+					followerToSpawn.enterTown(townToSpawnIn.getID());
 				}
 			}
 		}
