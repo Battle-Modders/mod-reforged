@@ -4,12 +4,12 @@
 		local ret = __original();
 		local currentTown = ::World.State.getCurrentTown();
 		ret["CurrentTownID"] <- currentTown == null ? null : currentTown.getID();
-		ret["FollowerTools"] <- {};
+		ret["FollowerTools"] <- 0;
 		foreach (item in ::World.Assets.getStash().getItems())
 		{
 			if (item != null && item.m.ID == "supplies.rf_follower_tool")
 			{
-				ret["FollowerTools"][item.getFollowerTypeID()] <- item.getAmount();
+				ret["FollowerTools"] = item.getAmount();
 			}
 		}
 		return ret;

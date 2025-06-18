@@ -35,13 +35,14 @@ Reforged.RetinuePerksModule.prototype.destroyDIV = function ()
     this.mContainer = null;
 };
 
-Reforged.RetinuePerksModule.prototype.loadFromData = function (_data)
+Reforged.RetinuePerksModule.prototype.loadFromData = function (_data, _followerTools)
 {
 	if (_data === undefined || _data === null)
 		return;
     this.mPerkTree = _data.PerkTree;
     this.mUnlockedPerks = _data.Perks;
     this.mEntityID = _data.ID;
+    this.mFollowerTools = _followerTools;
     this.setupPerkTree();
 };
 
@@ -142,6 +143,7 @@ Reforged.RetinuePerksModule.prototype.showPerkUnlockDialog = function(_perk)
         _dialog.destroyPopupDialog();
         self.mParent.notifyBackendPopupDialogIsVisible(false);
     }, this));
+    popupDialog.findPopupDialogOkButton().enableButton(_perk.ToolCost <= self.mFollowerTools);
 
     popupDialog.addPopupDialogCancelButton(function (_dialog)
     {
@@ -153,6 +155,7 @@ Reforged.RetinuePerksModule.prototype.showPerkUnlockDialog = function(_perk)
 
 Reforged.RetinuePerksModule.prototype.createPerkUnlockDialogContent = function (_perk)
 {
+	var self = this;
 	var result = $('<div class="unlock-perk-popup-dialog-content-container"/>');
 
     var leftColumn = $('<div class="left-column"/>');
@@ -179,6 +182,19 @@ Reforged.RetinuePerksModule.prototype.createPerkUnlockDialogContent = function (
 
     var perkDescriptionLabel = $('<div class="description description-font-small font-style-italic font-color-description">' + parsedDescriptionText.html + '</div>');
     rightColumn.append(perkDescriptionLabel);
+
+    var followerToolCostContainer = $('<div class="is-follower-tool-cost-container"/>');
+    rightColumn.append(followerToolCostContainer);
+    var toolImage = $('<img/>');
+    toolImage.attr('src', Path.GFX + Asset.rf_ICON_ASSET_FOLLOWER_TOOLS);
+    followerToolCostContainer.append(toolImage);
+    toolImage.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Retinue.FollowerTools"});
+    var toolCostLabel = $('<div class="name title-font-normal font-bold font-color-title">' + _perk.ToolCost + '</div>');
+    if(_perk.ToolCost > self.mFollowerTools)
+	{
+        toolCostLabel.removeClass('font-color-title').addClass('font-color-assets-negative-value');
+    }
+    followerToolCostContainer.append(toolCostLabel);
 
     return result;
 };

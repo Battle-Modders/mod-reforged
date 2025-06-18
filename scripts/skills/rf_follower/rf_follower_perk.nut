@@ -1,6 +1,5 @@
 this.rf_follower_perk <- this.inherit("scripts/skills/skill", {
 	m = {
-		// generic or special
 	},
 	function create()
 	{

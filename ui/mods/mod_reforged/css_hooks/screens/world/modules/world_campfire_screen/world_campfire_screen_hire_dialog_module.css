@@ -13,7 +13,7 @@
 {
 	top: -2.0rem;
 	width: 100%;
-	height: 17.7rem;
+	height: 17.0rem;
 	padding-top: 0;
 	padding-left: 0.6rem;
 	padding-right: 0.6rem;
@@ -91,4 +91,31 @@
 .world-campfire-screen .l-hire-dialog-container .is-in-current-town
 {
 	box-shadow: 0 0 1px 2px green;
+}
+
+.world-campfire-screen > .l-hire-dialog-container .l-tab-asset.is-generic-tools
+{
+    left: 16.0rem;
+}
+
+.world-campfire-screen .popup-dialog .right-column
+{
+	height:100%;
+}
+
+.world-campfire-screen .popup-dialog  .is-follower-tool-cost-container
+{
+	position:absolute;
+	top: 13rem;
+	width:100%;
+	display: flex;
+	flex-direction: row;
+}
+.world-campfire-screen .popup-dialog  .is-follower-tool-cost-container > img
+{
+	height:4rem;
+	width:4rem;
+}
+.world-campfire-screen .popup-dialog  .is-follower-tool-cost-container > div
+{
 }

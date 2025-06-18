@@ -25,18 +25,18 @@
 			Script = "scripts/skills/rf_follower/perk_test",
 			Name = "Test",
 			Tooltip = "TestTooltip",
-			Icon = "ui/perks/perk_rf_calculated_strikes.png",
-			IconDisabled = "ui/perks/perk_rf_calculated_strikes_sw.png",
-			ToolCost = {"generic" : 2}
+			Icon = "ui/perks/perk_16.png",
+			IconDisabled = "ui/perks/perk_16.png",
+			ToolCost = 2
 		}],
 		[{
 			ID = "perk.test_child",
 			Script = "scripts/skills/rf_follower/perk_test_child",
 			Name = "Test Child",
 			Tooltip = "TestTooltip Child",
-			Icon = "ui/perks/perk_rf_calculated_strikes.png",
-			IconDisabled = "ui/perks/perk_rf_calculated_strikes_sw.png",
-			ToolCost = {"generic" : 1},
+			Icon = "ui/perks/perk_16.png",
+			IconDisabled = "ui/perks/perk_16.png",
+			ToolCost = 1,
 			RequiredPerks = ["perk.test"]
 		}]];
 		this.m.Skills = ::new("scripts/skills/rf_follower_skill_container");

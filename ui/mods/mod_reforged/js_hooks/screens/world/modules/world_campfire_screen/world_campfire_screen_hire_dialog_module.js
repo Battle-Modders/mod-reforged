@@ -226,7 +226,7 @@ WorldCampfireScreenHireDialogModule.prototype.updateDetailsPanel = function(_ele
 	else
 	{
 		this.mDetailsPanel.CharacterImage.removeClass("is-grayscale");
-		this.mDetailsPanel.mPerksModule.loadFromData(data);
+		this.mDetailsPanel.mPerksModule.loadFromData(data, this.mAssets.getValues().FollowerTools);
 		this.mDetailsPanel.DailyMoneyCostsText.html(Helper.numberWithCommas(data.DailyMoneyCost));
 		this.mDetailsPanel.HireButton.enableButton(data.IsInCurrentTown);
 		this.mDetailsPanel.HireButton.parent().toggle(!data.IsHired);
