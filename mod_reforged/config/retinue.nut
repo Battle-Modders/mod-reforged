@@ -1,5 +1,6 @@
 ::Reforged.Retinue <- {
 	MaxFollowersInTowns = 5,
 	DaysFollowerStaysInTown = 30,
-	BaseOddsForFollowerToSpawnPerDay = 10 // percent
+	BasePctForFollowerToSpawnPerDay = 50,
+	DecayRateForFollowerToSpawnPerDay = 0.8
 }

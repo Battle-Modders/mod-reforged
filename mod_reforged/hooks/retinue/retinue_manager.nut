@@ -60,10 +60,16 @@
 	q.shouldSpawnFollower <- function()
 	{
 		local followerCount = this.m.Followers.reduce(@(_, _follower) _follower.m.CurrentTownTable.len());
-		local baseOdds = ::Reforged.Retinue.BaseOddsForFollowerToSpawnPerDay;
-		local decay = 0.9;
-		local odds = baseOdds * ::Math.pow(decay, followerCount);
-		return ::Math.rand(0, 100) < odds;
+		local baseOdds = ::Reforged.Retinue.BasePctForFollowerToSpawnPerDay;
+		local renown = ::World.Assets.getBusinessReputation();
+		local renownAdd = renown / 100;
+		local modifiedOdds = ::Math.min(100, baseOdds + renownAdd);
+		local decay = ::Reforged.Retinue.DecayRateForFollowerToSpawnPerDay
+		local chance = baseOdds * ::Math.pow(decay, followerCount);
+		// TODO remove debug print
+		::logInfo("shouldSpawnFollower chance: " + chance)
+
+		return ::Math.rand(0, 100) < chance;
 	}
 
 	q.getFollowerToSpawn <- function()
@@ -77,6 +83,10 @@
 
 		}
 		// TODO add other factors (origins...)
+		// TODO remove debug print
+		::MSU.Log.printData(weightedContainerSpawnProbability.Table);
+		::logInfo(weightedContainerSpawnProbability.Total);
+
 		local chosenFollowerID = weightedContainerSpawnProbability.roll();
 		return chosenFollowerID == null ? null : this.getFollower(chosenFollowerID);
 	}
@@ -89,12 +99,15 @@
 		{
 			foreach(townID in follower.getCurrentTownIDs())
 			{
-				weightedContainerTownProbability.set(townID, 0.1);
+				weightedContainerTownProbability.setWeight(townID, 0.1);
 			}
 
 		}
-		_follower.adaptSpawnInTownChance(weightedContainerTownProbability);
+		_follower.adaptTownWeightsForSpawning(weightedContainerTownProbability);
 		// TODO add other factors (origins...)
+		// TODO remove debug print
+		::MSU.Log.printData(weightedContainerTownProbability.Table);
+		::logInfo(weightedContainerTownProbability.Total);
 
 		local chosenTownID = weightedContainerTownProbability.roll();
 		return chosenTownID == null ? null : this.World.getEntityByID(chosenTownID);

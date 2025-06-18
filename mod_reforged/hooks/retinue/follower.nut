@@ -151,16 +151,17 @@
 		}
 		else
 		{
-			_weightedContainer.setWeight(this.getID(), this.getFollowerSpawnChance(_weightedContainer.getWeight(this.getID())));
+			local adaptedWeight = this.getSpawnChance(_weightedContainer.getWeight(this.getID()));
+			_weightedContainer.setWeight(this.getID(), adaptedWeight);
 		}
 	}
 
-	q.adaptSpawnInTownChance <- function(_weightedContainer)
+	q.adaptTownWeightsForSpawning <- function(_weightedContainer)
 	{
-		_weightedContainer.setWeight(this.getID(), this.getFollowerSpawnChance(_weightedContainer.getWeight(this.getID())));
+
 	}
 
-	q.getFollowerSpawnChance <- function(_baseWeight)
+	q.getSpawnChance <- function(_baseWeight)
 	{
 		return _baseWeight;
 	}
