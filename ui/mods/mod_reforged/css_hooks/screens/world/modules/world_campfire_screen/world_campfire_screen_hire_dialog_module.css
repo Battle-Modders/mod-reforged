@@ -77,6 +77,17 @@
     left: 32.0rem;
 }
 
+.world-campfire-screen .hire-screen-perks-container
+{
+	height: 65%;
+	padding-top: 2rem;
+	display:flex;
+	flex-direction:column;
+	justify-content: left;
+	align-items: left;
+}
+
+
 .world-campfire-screen .l-hire-dialog-container .is-in-current-town
 {
 	box-shadow: 0 0 1px 2px green;

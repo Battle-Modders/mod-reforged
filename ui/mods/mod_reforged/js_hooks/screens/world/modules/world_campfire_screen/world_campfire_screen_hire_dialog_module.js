@@ -128,12 +128,17 @@ WorldCampfireScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 {
 	Reforged.Hooks.WorldCampfireScreenHireDialogModule_createDIV.call(this, _parentDiv);
 	var self = this;
-	this.mDetailsPanel.CharacterBackgroundPerksContainer = $("<div class='hire-screen-perks-container'/>")
-		.append($("<div class='name title-font-normal font-bold font-color-brother-name'>Perks</div>"))
-		.hide()
-		.appendTo(this.mDetailsPanel.Container.find(".is-ingredients-container"));
+
+
+
+	this.mDetailsPanel.CharacterBackgroundPerksContainer = this.mDetailsPanel.Container.find(".is-ingredients-container");
+
+	var perksHeader = $('<div class="row is-header"/>')
+		.appendTo(this.mDetailsPanel.CharacterBackgroundPerksContainer)
+		.append($('<div class="label title-font-normal font-bold font-bottom-shadow font-color-title">Perks</div>'));
 
 	this.mDetailsPanel.mPerksModule = new Reforged.RetinuePerksModule(this.mDetailsPanel.CharacterBackgroundPerksContainer, this);
+
 
 	this.mDetailsPanel.mModules = [
 		this.mDetailsPanel.Container.find(".is-components-container"),

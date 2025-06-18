@@ -1,9 +1,21 @@
+.generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container
+{
+	max-width: 4rem;
+	min-width: 4rem;
+	flex: 1 1 4rem;
+}
+
+.generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container .dpf-perk-image-layer
+{
+	width: 100%;
+}
+
 .generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container> img
 {
 	border-radius: 50%;
 }
 
-.generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container > img.is-locked
+.generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container.is-locked > img
 {
 	-webkit-filter: grayscale(100%);
 }
@@ -12,3 +24,14 @@
 	-webkit-filter: grayscale(0%);
 	box-shadow: 0 0 0 2px #6E4C17;
 }
+.generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container.is-child-hovered
+{
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px green;
+}
+.generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container.is-child-hovered.is-locked
+{
+	box-shadow: 0 0 0 2px red;
+}
+
+
