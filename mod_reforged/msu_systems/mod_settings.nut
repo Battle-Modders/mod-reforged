@@ -30,6 +30,8 @@
 {	// Misc
 	local miscTooltipPage = ::Reforged.Mod.ModSettings.addPage("Misc");
 	miscTooltipPage.addEnumSetting("CraftingBlueprintVisibility", "One Ingredient Available", ["Always", "One Ingredient Available", "All Ingredients Available", "Vanilla"], "Blueprints Visible When", "Crafting Recipes in the Taxidermist will be displayed when this condition is met.\nNote that individual Blueprints (like Snake Oil) may still have custom rules preventing them from being shown.\n\n\'Vanilla\' means that the visibility behavior is unchanged from how it works in the base game.");
+	// Retinue
+	miscTooltipPage.addBooleanSetting("RevealFollowers", false, "Reveal Follower Details", "Reveal all follower details by default.");
 }
 
 {	// Debug

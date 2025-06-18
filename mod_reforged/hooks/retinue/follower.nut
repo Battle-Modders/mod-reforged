@@ -1,6 +1,8 @@
 ::Reforged.HooksMod.hook("scripts/retinue/follower", function(q) {
 	q.m.PerkTree <- null;
 	q.m.Skills <- null;
+
+	q.m.IsDiscovered <- false;
 	q.m.IsHired <- false;
 
 	q.m.CurrentTownTable <- null;
@@ -27,6 +29,17 @@
 			IconDisabled = "ui/perks/perk_rf_calculated_strikes_sw.png"
 		},]];
 		this.m.Skills = ::new("scripts/skills/rf_follower_skill_container");
+	}
+
+	q.discover <- function()
+	{
+		this.m.IsDiscovered = true;
+		local persistentDiscoveredFollowers = ::Reforged.Mod.PersistentData.hasFile("DiscoveredFollowers") ? ::Reforged.Mod.PersistentData.readFile("DiscoveredFollowers") : [];
+		if (!(this.getID() in persistentDiscoveredFollowers))
+		{
+			persistentDiscoveredFollowers.push(this.getID());
+			::Reforged.Mod.PersistentData.createFile("DiscoveredFollowers", persistentDiscoveredFollowers);
+		}
 	}
 
 	q.getDailyCost <- function()
@@ -114,6 +127,7 @@
 			IsAvailableForHire = this.isAvailableForHire(),
 			IsHired = this.isHired(),
 			IsInCurrentTown = this.isInCurrentTown(),
+			IsDiscovered = this.m.IsDiscovered || ::Reforged.Mod.ModSettings.getSetting("RevealFollowers").getValue(),
 			Towns = this.m.CurrentTownTable,
 			LastKnownLocation = this.getLastKnownLocation(),
 
@@ -242,6 +256,7 @@
 		if (this.isInTown(_town.getID()))
 		{
 			this.m.CurrentTownTable[_town.getID()].LastSeenDate = ::World.getTime().Days;
+			this.discover();
 		}
 	}
 })

@@ -60,6 +60,32 @@ WorldCampfireScreenHireDialogModule.prototype.sortCompareEntries = function(_fol
 		return 1;
 	}
 
+	if (_follower_a.LastKnownLocation != null)
+	{
+		if (_follower_b.LastKnownLocation == null)
+		{
+			return -1;
+		}
+		return sortAlphabetically(_follower_a, _follower_b);
+	}
+	else if (_follower_b.LastKnownLocation != null)
+	{
+		return 1;
+	}
+
+	if (_follower_a.IsDiscovered)
+	{
+		if (!_follower_b.IsDiscovered)
+		{
+			return -1;
+		}
+		return sortAlphabetically(_follower_a, _follower_b);
+	}
+	else if (_follower_b.IsDiscovered)
+	{
+		return 1;
+	}
+
 	return sortAlphabetically(_follower_a, _follower_b);
 }
 
@@ -68,6 +94,15 @@ WorldCampfireScreenHireDialogModule.prototype.addListEntry = function (_data)
 {
 	Reforged.Hooks.WorldCampfireScreenHireDialogModule_addListEntry.call(this, _data);
 	var entry = this.mListScrollContainer.find('.list-entry').last();
+	if (!_data.IsDiscovered)
+	{
+		entry.find("img").addClass("is-grayscale");
+		entry.find(".name").html("Unknown Follower");
+	}
+	if (_data.LastKnownLocation == null && !_data.IsHired)
+	{
+		entry.find(".name").removeClass("font-color-brother-name").addClass("font-color-disabled");
+	}
 	if (_data.IsInCurrentTown)
 	{
 		entry.parent().addClass("is-in-current-town");
@@ -168,22 +203,34 @@ WorldCampfireScreenHireDialogModule.prototype.updateDetailsPanel = function(_ele
 {
 	Reforged.Hooks.WorldCampfireScreenHireDialogModule_updateDetailsPanel.call(this, _element);
 	var data = _element.data('entry');
-	this.mDetailsPanel.mPerksModule.loadFromData(data);
 	this.mDetailsPanel.SwitchModuleContainer.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "HireScreen.DescriptionContainer+1"});
 	// this.toggleModule(1);
 	this.mDetailsPanel.SwitchModuleContainer.show();
 
-	this.mDetailsPanel.DailyMoneyCostsText.html(Helper.numberWithCommas(data.DailyMoneyCost));
-
-	this.mDetailsPanel.HireButton.enableButton(data.IsInCurrentTown);
-
-	this.mDetailsPanel.DismissButton.parent().toggle(data.IsHired);
-	this.mDetailsPanel.HireButton.parent().toggle(!data.IsHired);
-
-	var currentMoney = this.mAssets.getValues().Money;
-	var data = _element.data('entry');
-	var initialMoneyCost = data.Cost;
-	this.mDetailsPanel.HireButton.enableButton(currentMoney >= initialMoneyCost && !data.IsHired && data.IsInCurrentTown);
+	if (!data.IsDiscovered)
+	{
+		this.mDetailsPanel.CharacterImage.addClass("is-grayscale");
+		this.mDetailsPanel.CharacterName.html("Unknown Follower");
+		this.mDetailsPanel.InitialMoneyCostsText.html("-");
+		this.mDetailsPanel.DailyMoneyCostsText.html("-");
+		this.mDetailsPanel.EffectsContainer.empty();
+		this.mDetailsPanel.mPerksModule.mTreeContainer.empty();
+		this.mDetailsPanel.DismissButton.parent().toggle(false);
+		this.mDetailsPanel.HireButton.parent().toggle(false);
+	}
+	else
+	{
+		this.mDetailsPanel.CharacterImage.removeClass("is-grayscale");
+		this.mDetailsPanel.mPerksModule.loadFromData(data);
+		this.mDetailsPanel.DailyMoneyCostsText.html(Helper.numberWithCommas(data.DailyMoneyCost));
+		this.mDetailsPanel.HireButton.enableButton(data.IsInCurrentTown);
+		this.mDetailsPanel.HireButton.parent().toggle(!data.IsHired);
+		this.mDetailsPanel.DismissButton.parent().toggle(data.IsHired);
+		var currentMoney = this.mAssets.getValues().Money;
+		var data = _element.data('entry');
+		var initialMoneyCost = data.Cost;
+		this.mDetailsPanel.HireButton.enableButton(currentMoney >= initialMoneyCost && !data.IsHired && data.IsInCurrentTown);
+	}
 
 	// update current location
 	this.mDetailsPanel.RequirementsContainer.empty();
