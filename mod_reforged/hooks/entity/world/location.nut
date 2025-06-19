@@ -8,8 +8,14 @@
 	q.onAfterInit = @(__original) { function onAfterInit()
 	{
 		__original();
-		this.adjustBannerOffset();
+		this.adjustBannerOffset();	// onAfterInit is called before deserialization, so this will only affect newly created locations
 	}}.onAfterInit;
+
+	q.onDeserialize = @(__original) { function onDeserialize(_in)
+	{
+		__original(_in);
+		this.adjustBannerOffset();	// onAfterInit is called before deserialization, so we need this adjustment to catch all deserialized locations too
+	}}.onDeserialize;
 
 // New Functions
 	q.adjustBannerOffset <- { function adjustBannerOffset()	// This has to be called everytime that a brush for the banner sprite is set because that will reset the previous offset
