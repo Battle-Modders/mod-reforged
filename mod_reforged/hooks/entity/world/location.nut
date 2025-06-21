@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/entity/world/location", function(q) {
+	q.m.RF_BannerOffset <- ::createVec(0, ::Reforged.Config.UI.WorldBannerYOffset);
+
 	q.setBanner = @(__original) { function setBanner( _banner )
 	{
 		__original(_banner);
@@ -16,7 +18,7 @@
 	{
 		if (this.hasSprite("location_banner"))
 		{
-			this.getSprite("location_banner").setOffset(::createVec(0, ::Reforged.Config.UI.WorldBannerYOffset));
+			this.getSprite("location_banner").setOffset(this.m.RF_BannerOffset);
 		}
 	}}.adjustBannerOffset;
 });
