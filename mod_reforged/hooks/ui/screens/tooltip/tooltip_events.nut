@@ -1,4 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/ui/screens/tooltip/tooltip_events", function(q) {
+	// Add info about potential attacks of opportunity during movement preview
+	q.tactical_queryTileTooltipData = @(__original) { function tactical_queryTileTooltipData()
+	{
+		local ret = __original();
+		if (ret != null)
+		{
+			ret.extend(this.RF_getZOCAttackTooltip(::Tactical.TurnSequenceBar.getActiveEntity()));
+		}
+		return ret;
+	}}.tactical_queryTileTooltipData;
+
 	q.general_queryUIElementTooltipData = @(__original) { function general_queryUIElementTooltipData( _entityId, _elementId, _elementOwner )
 	{
 		// Overwrites
@@ -75,6 +86,78 @@
 	}}.general_queryUIElementTooltipData;
 
 // New Functions
+	// Adds entries to the tile tooltip about zone of control attacks at the starting and ending tiles of the previewed movement
+	q.RF_getZOCAttackTooltip <- { function RF_getZOCAttackTooltip( _entity )
+	{
+		if (_entity == null || _entity.getPreviewMovement() == null || _entity.getCurrentProperties().IsImmuneToZoneOfControl)
+			return [];
+
+		local ret = [];
+
+		// Add tooltip about zone of control attacks at the starting tile
+		if (_entity.getTile().Properties.Effect == null || _entity.getTile().Properties.Effect.Type != "smoke")
+		{
+			local attacks = [];
+			foreach (actor in ::Tactical.Entities.getAdjacentActors(_entity.getTile()))
+			{
+				if (actor.isAlliedWith(_entity) || !actor.onMovementInZoneOfControl(_entity, false))
+					continue;
+
+				attacks.push({
+					id = 100,
+					type = "text",
+					icon = "ui/orientation/" + actor.getOverlayImage() + ".png"
+					text = ::MSU.Text.colorNegative(actor.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
+				});
+			}
+			if (attacks.len() != 0)
+			{
+				local fatigueToDodgeAOO = attacks.len() * ::Const.Combat.FatigueLossOnBeingMissed * _entity.getCurrentProperties().FatigueEffectMult * _entity.getCurrentProperties().FatigueLossOnAnyAttackMult;
+				if (fatigueToDodgeAOO != 0)
+				{
+					ret.push({
+						id = 100,
+						type = "text",
+						icon = "ui/icons/fatigue.png",
+						text = ::Reforged.Mod.Tooltips.parseString("Evading all [attacks of opportunity|Concept.ZoneOfControl] will build " + ::MSU.Text.colorizeValue(fatigueToDodgeAOO, {AddSign = true, InvertColor = true}) + " [Fatigue|Concept.Fatigue]"),
+						children = attacks
+					});
+				}
+			}
+		}
+
+		// Add tooltip about zone of control attacks at the ending tile (e.g. spearwall attacks from opponents)
+		if (_entity.getPreviewMovement().End.Properties.Effect == null || _entity.getPreviewMovement().End.Properties.Effect.Type != "smoke")
+		{
+			local spearwallAttacks = [];
+			foreach (actor in ::Tactical.Entities.getAdjacentActors(_entity.getPreviewMovement().End))
+			{
+				if (actor.isAlliedWith(_entity) || !actor.onMovementInZoneOfControl(_entity, true))
+					continue;
+
+				spearwallAttacks.push({
+					id = 101,
+					type = "text",
+					icon = "ui/orientation/" + actor.getOverlayImage() + ".png"
+					text = ::MSU.Text.colorNegative(actor.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
+				});
+			}
+
+			if (spearwallAttacks.len() != 0)
+			{
+				ret.push({
+					id = 100,
+					type = "text",
+					icon = "ui/icons/warning.png",
+					text = ::MSU.Text.colorNegative("Will be attacked on arrival by: "),
+					children = spearwallAttacks
+				});
+			}
+		}
+
+		return ret;
+	}}.RF_getZOCAttackTooltip;
+
 	q.getBaseAttributesTooltip <- { function getBaseAttributesTooltip( _entityId, _elementId, _elementOwner )
 	{
 		local entity = _entityId == null ? null : ::Tactical.getEntityByID(_entityId);
