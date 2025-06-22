@@ -104,12 +104,13 @@ Reforged.RetinuePerksModule.prototype.createPerkTreeDIV = function (_perkTree, _
 			perk.Container = $('<div class="dpf-l-perk-container"/>');
 			rowDIV.append(perk.Container);
 			perk.Container.addClass(this.parsePerkID(perk.ID));
+
 			var perkSelectionImage = $('<img class="selection-image-layer display-none"/>');
 			perkSelectionImage.attr('src', Path.GFX + Asset.PERK_SELECTION_FRAME);
 			perk.Container.append(perkSelectionImage);
 			perk.Image = $('<img class="dpf-perk-image-layer"/>');
 			perk.Image.attr('src', Path.GFX + perk.Icon);
-			perk.Image.bindTooltip({ contentType: 'ui-perk', entityId: _entityID || null, perkId: perk.ID });
+			perk.Image.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Retinue.Perk+" + perk.ID, followerId: _entityID});
 			perk.Container.append(perk.Image);
 			if (unlockedPerksMap[perk.ID] === true)
 			{
@@ -122,7 +123,11 @@ Reforged.RetinuePerksModule.prototype.createPerkTreeDIV = function (_perkTree, _
 			}
 
 			var handlers = createPerkHandlers(perk);
-			perk.Container.click(this, handlers.click);
+			if (perk.IsUnlockable)
+			{
+				perk.Container.click(this, handlers.click);
+				perk.Container.addClass("is-unlockable")
+			}
 			perk.Container.hover(handlers.mouseenter, handlers.mouseleave);
 		}
 	}
@@ -183,18 +188,43 @@ Reforged.RetinuePerksModule.prototype.createPerkUnlockDialogContent = function (
     var perkDescriptionLabel = $('<div class="description description-font-small font-style-italic font-color-description">' + parsedDescriptionText.html + '</div>');
     rightColumn.append(perkDescriptionLabel);
 
-    var followerToolCostContainer = $('<div class="is-follower-tool-cost-container"/>');
-    rightColumn.append(followerToolCostContainer);
-    var toolImage = $('<img/>');
-    toolImage.attr('src', Path.GFX + Asset.rf_ICON_ASSET_FOLLOWER_TOOLS);
-    followerToolCostContainer.append(toolImage);
-    toolImage.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Retinue.FollowerTools"});
-    var toolCostLabel = $('<div class="name title-font-normal font-bold font-color-title">' + _perk.ToolCost + '</div>');
-    if(_perk.ToolCost > self.mFollowerTools)
-	{
-        toolCostLabel.removeClass('font-color-title').addClass('font-color-assets-negative-value');
-    }
-    followerToolCostContainer.append(toolCostLabel);
+    var requirementsContainer = $('<div class="is-perk-requirements-container"/>')
+    	.appendTo(rightColumn);
+    var requirementsHeader = $('<div class="label title-font-normal font-bold font-bottom-shadow font-color-title">Requirements</div>')
+    	.appendTo(requirementsContainer);
+    var requirementsTable = $('<table/>')
+    	.appendTo(requirementsContainer);
+    $.each(_perk.Requirements, function(_idx, _data){
+    	self.addRequirementRow(requirementsTable, _data)
+    })
 
     return result;
+};
+
+Reforged.RetinuePerksModule.prototype.addRequirementRow = function(_table, _requirement)
+{
+
+	var html = "<tr><td class='is-icon is-valid-icon'/><td class='is-description-text-abc'/></tr>";
+	var tr = $(html)
+		.appendTo(_table)
+		.data("IsValid", _requirement.isValid);
+
+	// Add locked icon
+	if (_requirement.isValid === true)
+		tr.find(".is-valid-icon").append($("<img src='" + Path.GFX + "ui/icons/unlocked_small.png'/>"));
+	else if (_requirement.isValid === false)
+		tr.find(".is-valid-icon").append($("<img src='" + Path.GFX + "ui/icons/locked_small.png'/>"));
+
+	if (_requirement.tooltip)
+	{
+		tr.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: _requirement.tooltip});
+	}
+
+	var fontColor = _requirement.isValid ? "font-color-label" : "font-color-disabled";
+	var descriptionText = $("<div class='text-font-medium'/>")
+		.html(_requirement.text)
+		.appendTo(tr.find(".is-description-text-abc"))
+		.addClass(fontColor)
+		.find("*")
+			.addClass(fontColor);
 };

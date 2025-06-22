@@ -19,7 +19,7 @@
 {
 	-webkit-filter: grayscale(100%);
 }
-.generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container:hover > img
+.generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container.is-unlockable:hover > img
 {
 	-webkit-filter: grayscale(0%);
 	box-shadow: 0 0 1px 2px #6E4C17;
@@ -32,4 +32,118 @@
 .generic-perks-module.rf-retinue-perks-module .dpf-l-perk-container.is-child-hovered.is-locked
 {
 	box-shadow: 0 0  1px 2px red;
+}
+
+/* Unlock Popup Dialog */
+.world-campfire-screen .ui-control.popup-dialog.unlock-perk-popup
+{
+	width: 60.0rem;
+	height: 60.0rem;
+	display: flex;
+	flex-direction: column;
+
+	background-image: url("coui://gfx/ui/skin/popup_background_600x300.png");
+	background-size: 60.0rem 60.0rem;
+	background-repeat: no-repeat;
+}
+
+.world-campfire-screen .ui-control.popup-dialog.unlock-perk-popup .header {
+  flex-shrink: 0; /* prevent shrinking */
+}
+
+.world-campfire-screen .ui-control.popup-dialog.unlock-perk-popup .content {
+  height:46rem;
+}
+
+.world-campfire-screen .ui-control.popup-dialog.unlock-perk-popup .footer {
+  flex-shrink: 0; /* prevent shrinking */
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container
+{
+	width: 100%;
+	padding-top: 0;
+	padding-left: 0.6rem;
+	padding-right: 0.6rem;
+}
+
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .left-column
+{
+	width: 6.0rem;
+	height: 4.0rem;
+	position: relative;
+	float: left;
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .left-column img
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 4.0rem;
+	height: 4.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .right-column
+{
+	display:flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+
+	padding-right: 1.0rem;
+
+	overflow: hidden;
+	height:100%;
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .right-column .name
+{
+	width: 100%;
+	height: 3.6rem;
+	position: relative;
+	float: left;
+
+	line-height: 4.4rem;
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .right-column .description
+{
+	width: 100%;
+	flex:1;
+}
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .is-perk-requirements-container
+{
+	width:100%;
+	flex-shrink: 0;
+	align-self: flex-end;
+}
+
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .is-perk-requirements-container td.is-icon
+{
+	width:4rem;
+	height:4rem;
+	display: flex;Retinue
+	justify-content: center;
+	align-items: center;
+}
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .is-perk-requirements-container td.is-icon > img
+{
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: cover;
+}
+
+
+.world-campfire-screen .ui-control.popup-dialog .unlock-perk-popup-dialog-content-container .is-perk-requirements-container .label
+{
+	width: 100%;
+	height: 3.0rem;
+	border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 -0.5rem 0;
 }

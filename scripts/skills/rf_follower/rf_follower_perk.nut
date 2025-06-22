@@ -13,5 +13,10 @@ this.rf_follower_perk <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
 	}
+
+	function setContainer( _c )
+	{
+		this.m.Container = this.WeakTableRef(_c);
+	}
 });
 

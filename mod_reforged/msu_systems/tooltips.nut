@@ -43,6 +43,9 @@
 	},
 	Retinue = {
 		FollowerTools = ::MSU.Class.BasicTooltip("Follower tools", "Tools to unlock follower perks TODO."),
+		Perk = ::MSU.Class.CustomTooltip(function(_data) {
+			return ::Reforged.Retinue.getPerkTooltip(_data);
+		}),
 	}
 });
 

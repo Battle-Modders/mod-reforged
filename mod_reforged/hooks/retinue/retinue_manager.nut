@@ -1,5 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/retinue/retinue_manager", function(q) {
 	q.m.ValidFollowers <- [];
+	q.m.FollowerToolItemCache <- null; // keep a weakref to the item to avoid iteration
 	q.create = @(__original) function()
 	{
 		__original();
@@ -9,6 +10,49 @@
 			this.m.ValidFollowers.push(follower.getID());
 		}
 
+	}
+
+	q.setFollowerItemCache <- function()
+	{
+		if (!::MSU.isNull(this.m.FollowerToolItemCache))
+		{
+			return;
+		}
+		local stash = ::World.Assets.getStash().getItems();
+		foreach (index, item in stash)
+		{
+			if (item != null && item.m.ID == "supplies.rf_follower_tool")
+			{
+				this.m.FollowerToolItemCache = ::MSU.asWeakTableRef(item);
+				return this.m.FollowerToolItemCache.getAmount();
+			}
+		}
+	}
+
+	q.getFollowerToolAmount <- function()
+	{
+		this.setFollowerItemCache();
+		if (!::MSU.isNull(this.m.FollowerToolItemCache))
+		{
+			return this.m.FollowerToolItemCache.getAmount();
+		}
+		return 0;
+	}
+
+	q.addFollowerToolAmount <- function(_amount)
+	{
+		this.setFollowerItemCache();
+		if (::MSU.isNull(this.m.FollowerToolItemCache))
+		{
+			local item = ::new("scripts/items/supplies/rf_follower_tool_item");
+			this.World.Assets.getStash().add(item);
+			this.m.FollowerToolItemCache = ::MSU.asWeakTableRef(item);
+			item.setAmount(_amount);
+		}
+		else
+		{
+			this.m.FollowerToolItemCache.setAmount(this.m.FollowerToolItemCache.getAmount() + _amount);
+		}
 	}
 
 	q.getFollowerFromSlot <- function(_idx)

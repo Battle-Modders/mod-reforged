@@ -291,8 +291,7 @@ WorldCampfireScreenHireDialogModule.prototype.unlockPerk = function(_brotherId, 
         var data = selectedBrother.data('entry');
         if('ID' in data && data['ID'] !== null)
         {
-            brotherId = data['ID'];
-            console.error(brotherId)
+            brotherId = data['ID']
         }
         else
         {
@@ -318,16 +317,13 @@ WorldCampfireScreenHireDialogModule.prototype.unlockPerk = function(_brotherId, 
         }
         else
         {
-            // find the brother and update him
-            if (CharacterScreenIdentifier.Entity.Id in data)
-            {
-                self.loadFromData(data);
-                self.selectListEntry(selectedBrother);
-            }
-            else
-            {
-                console.error('ERROR: Failed to unlock perk. Invalid data result.');
-            }
+            self.loadFromData(data);
+            $.each(self.mListScrollContainer.find(".list-entry"), function(_idx, _entry){
+            	if (_entry.data("entry").ID == brotherId) {
+            		self.selectListEntry(_entry);
+            		return false;
+            	}
+            })
         }
     });
 };

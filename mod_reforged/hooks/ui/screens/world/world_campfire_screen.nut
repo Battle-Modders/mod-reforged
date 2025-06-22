@@ -4,14 +4,7 @@
 		local ret = __original();
 		local currentTown = ::World.State.getCurrentTown();
 		ret["CurrentTownID"] <- currentTown == null ? null : currentTown.getID();
-		ret["FollowerTools"] <- 0;
-		foreach (item in ::World.Assets.getStash().getItems())
-		{
-			if (item != null && item.m.ID == "supplies.rf_follower_tool")
-			{
-				ret["FollowerTools"] = item.getAmount();
-			}
-		}
+		ret["FollowerTools"] <- ::World.Retinue.getFollowerToolAmount();
 		return ret;
 	}
 });

@@ -19,26 +19,9 @@
 		__original();
 		this.m.CurrentTownTable = {};
 		// TODO
-		this.m.PerkTree = [[
-		{
-			ID = "perk.test",
-			Script = "scripts/skills/rf_follower/perk_test",
-			Name = "Test",
-			Tooltip = "TestTooltip",
-			Icon = "ui/perks/perk_16.png",
-			IconDisabled = "ui/perks/perk_16.png",
-			ToolCost = 2
-		}],
-		[{
-			ID = "perk.test_child",
-			Script = "scripts/skills/rf_follower/perk_test_child",
-			Name = "Test Child",
-			Tooltip = "TestTooltip Child",
-			Icon = "ui/perks/perk_16.png",
-			IconDisabled = "ui/perks/perk_16.png",
-			ToolCost = 1,
-			RequiredPerks = ["perk.test"]
-		}]];
+		this.m.PerkTree = [
+		["perk.test"],
+		["perk.test_child"]];
 		this.m.Skills = ::new("scripts/skills/rf_follower_skill_container");
 	}
 
@@ -63,9 +46,30 @@
 		return this.Math.maxf(0.0, this.m.DailyFood);
 	}
 
-	q.getPerkTree <- function()
+	q.getPerkTreeForUI <- function()
 	{
-		return this.m.PerkTree;
+		local arePerksUnlockable = this.isHired();
+		local perkTree = [];
+		foreach (row in this.m.PerkTree)
+		{
+			local perkTreeRow = [];
+			perkTree.push(perkTreeRow)
+			foreach(perkID in row)
+			{
+				local perkDef = ::Reforged.Retinue.getPerk(perkID);
+				perkTreeRow.push(perkDef);
+				perkDef.Requirements <- ::Reforged.Retinue.getPerkRequirementsUIData(perkDef, this);
+				perkDef.IsUnlockable <- arePerksUnlockable;
+				foreach (req in perkDef.Requirements)
+				{
+					if (!req.isValid)
+					{
+						perkDef.IsUnlockable = false;
+					}
+				}
+			}
+		}
+		return perkTree;
 	}
 
 	q.isHired <- function()
@@ -123,7 +127,7 @@
 
 	q.getUIData <- function()
 	{
-		return {
+		local data = {
 			ImagePath = this.getImage() + ".png",
 			ID = this.getID(),
 			Name = this.getName(),
@@ -133,8 +137,8 @@
 			Requirements = this.getRequirements(),
 			IsUnlocked = true,
 
-			PerkTree = this.getPerkTree(),
-			Perks = this.m.Skills.query(this.Const.SkillType.Perk, true).map(@(_idx, _perk) _perk.getID()),
+			PerkTree = this.getPerkTreeForUI(),
+			Perks = this.m.Skills.getAllSkills().map(@(_perk) _perk.getID()),
 			IsAvailableForHire = this.isAvailableForHire(),
 			IsHired = this.isHired(),
 			IsInCurrentTown = this.isInCurrentTown(),
@@ -145,6 +149,7 @@
 			DailyMoneyCost = this.getDailyCost(),
 			DailyFood = this.getDailyFood(),
 		};
+		return data;
 	}
 
 	q.isAvailableForHire <- function()
