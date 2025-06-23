@@ -41,17 +41,24 @@
 
 	q.addFollowerToolAmount <- function(_amount)
 	{
+		// can be negative
 		this.setFollowerItemCache();
 		if (::MSU.isNull(this.m.FollowerToolItemCache))
 		{
 			local item = ::new("scripts/items/supplies/rf_follower_tool_item");
 			this.World.Assets.getStash().add(item);
 			this.m.FollowerToolItemCache = ::MSU.asWeakTableRef(item);
-			item.setAmount(_amount);
 		}
-		else
+		local newValue = ::Math.max(this.m.FollowerToolItemCache.getAmount() + _amount, 0);
+		this.m.FollowerToolItemCache.setAmount(newValue);
+	}
+
+	q.onUnlockPerk <- function(_perkID)
+	{
+		local perkDef = ::Reforged.Retinue.getPerk(_perkID);
+		if ("ToolCost" in perkDef)
 		{
-			this.m.FollowerToolItemCache.setAmount(this.m.FollowerToolItemCache.getAmount() + _amount);
+			this.addFollowerToolAmount(-perkDef.ToolCost);
 		}
 	}
 

@@ -317,10 +317,11 @@ WorldCampfireScreenHireDialogModule.prototype.unlockPerk = function(_brotherId, 
         }
         else
         {
-            self.loadFromData(data);
-            $.each(self.mListScrollContainer.find(".list-entry"), function(_idx, _entry){
-            	if (_entry.data("entry").ID == brotherId) {
-            		self.selectListEntry(_entry);
+            self.loadFromData(data.Roster);
+            self.updateAssets(data.Assets);
+            self.mListScrollContainer.find(".list-entry").each(function(_idx){
+            	if ($(this).data("entry").ID == brotherId) {
+            		self.selectListEntry($(this));
             		return false;
             	}
             })

@@ -9,6 +9,7 @@ WorldTownScreenAssets.prototype.createDIV = function (_parentDiv)
 	{
 		self.mParent.notifyBackendRetinueButtonPressed();
 	}, "", 6);
+	this.mRetinueAsset.removeClass("button-2").addClass("button-6");
 	_parentDiv.append(assetContainer);
 }
 

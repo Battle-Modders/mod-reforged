@@ -38,6 +38,7 @@
 				code = _errorCode
 			};
 		}
+		::World.Retinue.onUnlockPerk(_data[1]);
 
 		return this.queryHireInformation();
 	}

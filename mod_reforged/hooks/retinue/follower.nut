@@ -96,8 +96,8 @@
 			return true;
 		}
 
-		// local perk = this.Const.Perks.findById(_id);
-		local perk = {Script = "scripts/skills/rf_follower/perk_test"};
+
+		local perk = ::Reforged.Retinue.getPerk(_id);
 
 		if (perk == null)
 		{

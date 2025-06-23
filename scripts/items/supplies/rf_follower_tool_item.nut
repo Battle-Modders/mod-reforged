@@ -13,7 +13,7 @@ this.rf_follower_tool_item <- this.inherit("scripts/items/item", {
 		this.m.ID = "supplies.rf_follower_tool";
 		this.m.SlotType = this.Const.ItemSlot.None;
 		this.m.ItemType = this.Const.Items.ItemType.Supply;
-		this.m.Amount = 1;
+		this.m.Amount = 0;
 		this.m.IsDroppedAsLoot = true;
 		this.m.IsChangeableInBattle = false;
 		this.updateIconPath();

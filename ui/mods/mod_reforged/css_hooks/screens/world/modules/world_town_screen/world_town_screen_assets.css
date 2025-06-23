@@ -1,7 +1,8 @@
 .world-town-screen .l-tab-asset.is-camp
 {
-	width: 9.8rem;
+	width: 4.5rem;
 	left: 85.0rem;
+	top:-2px;
 }
 .world-town-screen .retinue-in-town-count
 {
