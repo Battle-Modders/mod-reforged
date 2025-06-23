@@ -218,13 +218,20 @@
 			ID = _townID,
 			Name = town.getName(),
 			ArrivalDay = ::World.getTime().Days,
-			RemainingDays = ::World.getTime().Days + ::Reforged.Retinue.DaysFollowerStaysInTown,
+			RemainingDays = ::Reforged.Retinue.DaysFollowerStaysInTown,
 			LastSeenDate = null,
 		}
+
+		local situation = ::new("scripts/entity/world/settlements/situations/rf_follower_present_situation");
+		situation.setFollower(this);
+		town.addSituation(situation, this.m.CurrentTownTable[_townID].RemainingDays);
 	}
 
 	q.leaveTown <- function(_townID)
 	{
+		local town = this.m.CurrentTownTable[_townID];
+		local situationID = format("situation.rf_follower_present.%s", this.getID());
+		town.removeSituationByID(situationID);
 		delete this.m.CurrentTownTable[_townID];
 	}
 
