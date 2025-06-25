@@ -202,6 +202,15 @@
 		return __original() || this.m.IsWaitingTurn;
 	}}.isTurnDone;
 
+	q.onDiscovered = @(__original) { function onDiscovered()
+	{
+		if (!this.isPlayerControlled() && !this.isAlliedWithPlayer())
+		{
+			// Feat: When any hostile character is discovered, then the actual combat music starts playing
+			::Tactical.State.RF_playActualTrackList();
+		}
+	}}.onDiscovered;
+
 	// Overwrite vanilla function. The logic is the same as vanilla except the following changes:
 	// Scale the strength of the morale checks with the ratio of the victim's XP value to my XP value.
 	// Dying enemies only trigger positive morale check if the killer is null or belongs to my allied factions.
