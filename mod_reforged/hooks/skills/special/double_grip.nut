@@ -58,7 +58,7 @@
 		if (offhand == null)
 			return true;
 
-		return offhand.getStaminaModifier() > -10 && weapon.isItemType(::Const.Items.ItemType.RF_Southern) && weapon.isWeaponType(::Const.Items.WeaponType.Sword) && this.getContainer().hasSkill("perk.rf_en_garde");
+		return offhand.getStaminaModifier() > -10 && weapon.isWeaponType(::Const.Items.WeaponType.Sword) && weapons.isItemType(::Const.Items.ItemType.OneHanded) && !this.getContainer().hasSkill("actives.riposte") && this.getContainer().hasSkill("perk.rf_en_garde");
 	}}.canDoubleGrip;
 
 	q.applyBonusOnUpdate <- { function applyBonusOnUpdate( _properties )
