@@ -155,6 +155,15 @@
 		__original();
 	}}.onRoundStart;
 
+	q.playIdleSound = @(__original) { function playIdleSound()
+	{
+		// Characters that the player has not yet discovered longer produce idle sounds. Once they are discovered they will produce idle sounds, even if not visible
+		if (this.isDiscovered())
+		{
+			__original();
+		}
+	}}.playIdleSound;
+
 	q.getSurroundedCount = @(__original) { function getSurroundedCount()
 	{
 		// We need the honest un-clamped vanilla surround amount.
