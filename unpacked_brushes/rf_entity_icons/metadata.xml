@@ -17,6 +17,12 @@
 
 	<sprite id="icon_rf_halberd_01" offsetX = "-2" offsetY="35" ic="FF3D3945" width="130" height="142" img="icons\icon_rf_halberd_01.png" left="-62" right="20" top="-62" bottom="86" />
 	<sprite id="icon_rf_halberd_01_bloodied" offsetX = "-2" offsetY="35" ic="FF3D3945" width="130" height="142" img="icons\icon_rf_halberd_01_bloodied.png" left="-62" right="20" top="-62" bottom="86" />
+	<sprite id="icon_rf_halberd_named_01" offsetY="35" ic="FF4E5660" width="144" height="142" img="icons\icon_rf_halberd_named_01.png" left="-66" right="6" top="-54" bottom="72" />
+	<sprite id="icon_rf_halberd_named_01_bloodied" offsetY="35" ic="FF4E5660" width="144" height="142" img="icons\icon_rf_halberd_named_01_bloodied.png" left="-66" right="6" top="-54" bottom="72" />
+	<sprite id="icon_rf_halberd_named_02" offsetY="35" ic="FF4E5660" width="144" height="142" img="icons\icon_rf_halberd_named_02.png" left="-66" right="6" top="-54" bottom="72" />
+	<sprite id="icon_rf_halberd_named_02_bloodied" offsetY="35" ic="FF4E5660" width="144" height="142" img="icons\icon_rf_halberd_named_02_bloodied.png" left="-66" right="6" top="-54" bottom="72" />
+	<sprite id="icon_rf_halberd_named_03" offsetY="35" ic="FF4E5660" width="144" height="142" img="icons\icon_rf_halberd_named_03.png" left="-66" right="6" top="-54" bottom="72" />
+	<sprite id="icon_rf_halberd_named_03_bloodied" offsetY="35" ic="FF4E5660" width="144" height="142" img="icons\icon_rf_halberd_named_03_bloodied.png" left="-66" right="6" top="-54" bottom="72" />
 
 	<sprite id="icon_rf_kriegsmesser_01" offsetY="35" ic="FF616061" width="104" height="142" img="icons\icon_rf_kriegsmesser_01.png" left="-52" right="10" />
 	<sprite id="icon_rf_kriegsmesser_01_bloodied" offsetY="35" ic="FF56565E" width="104" height="142" img="icons\icon_rf_kriegsmesser_01_bloodied.png" left="-52" right="10" />
