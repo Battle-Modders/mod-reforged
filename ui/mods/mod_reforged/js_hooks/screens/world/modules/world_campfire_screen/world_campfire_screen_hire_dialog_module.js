@@ -1,3 +1,89 @@
+// TODO refactor this out into .nut or somehting
+Reforged.RetinueStates = function()
+{
+	function addState(_property, _cssClass, _dividerText)
+	{
+		function p()
+		{
+			return _property;
+		}
+		function check(_data)
+		{
+			return _data[_property] === true;
+		}
+		function c()
+		{
+			return _cssClass;
+		}
+		function t()
+		{
+			return _dividerText;
+		}
+		return {
+			"checkState" : check,
+			"getProperty" : p,
+			"getCSS" : c,
+			"getText" : t
+		}
+	}
+	var states = {
+		"IsInCurrentTown" 	: addState("IsInCurrentTown", "is-in-current-town", "Followers in town"),
+		"IsHired" 			: addState("IsHired", "is-hired", "Hired Followers"),
+		"IsKnownLocation" 	: addState("IsKnownLocation", "is-known-location", "Followers with known location"),
+		"IsDiscovered" 		: addState("IsDiscovered", "is-discovered", "Discovered Followers"),
+		"IsUndiscovered" 	: addState("IsUndiscovered", "is-undiscovered", "Undiscovered Followers"),
+	}
+	var statesOrdered = [
+		"IsInCurrentTown",
+		"IsHired",
+		"IsKnownLocation",
+		"IsDiscovered",
+		"IsUndiscovered",
+	]
+	function getStates()
+	{
+		return states;
+	}
+	function getState(_state)
+	{
+		if (!(_state in states))
+		{
+			console.error("RF: Unknown state " + _state);
+			return false;
+		}
+		return states[_state];
+	}
+	return {
+		"getState" : getState,
+		"getStates" : getStates,
+		"statesOrdered" : statesOrdered
+	};
+}();
+
+
+WorldCampfireScreenHireDialogModule.prototype.getListDivider = function(_text)
+{
+	if (_text == undefined) {
+		_text = ""
+	};
+    var result = $('<div class="l-divider"/>');
+    var label = $('<div class="divider-label title-font-normal font-bold font-color-brother-name">' + _text +  "</div>");
+    result.append(label)
+    return result
+}
+
+WorldCampfireScreenHireDialogModule.prototype.addListDividers = function()
+{
+	var self = this;
+	$.each(Reforged.RetinueStates.getStates(), function(_key, _state){
+		var listEntries = self.mListScrollContainer.find(".list-entry." + _state.getCSS());
+		if (listEntries.length > 0)
+		{
+			listEntries.first().parent().before(self.getListDivider(_state.getText()));
+		}
+	})
+}
+
 WorldCampfireScreenHireDialogModule.prototype.loadFromData = function (_data)
 {
     if (_data === undefined || _data === null || !jQuery.isArray(_data))
@@ -14,6 +100,7 @@ WorldCampfireScreenHireDialogModule.prototype.loadFromData = function (_data)
         var entry = _data[i];
         this.addListEntry(entry);
     }
+    this.addListDividers();
 
     this.selectListEntry(this.mListContainer.findListEntryByIndex(0), true);
 };
@@ -25,87 +112,69 @@ WorldCampfireScreenHireDialogModule.prototype.sortEntries = function(_followers)
 
 WorldCampfireScreenHireDialogModule.prototype.sortCompareEntries = function(_follower_a, _follower_b)
 {
-	// Sort by:
-	// - In current town
-	// - Hired
-	// - Not hired, not in current town
+
 	var sortAlphabetically = function(a, b)
 	{
 		var textA = a.Name.toUpperCase();
 		var textB = b.Name.toUpperCase();
 		return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-	}
-	if (_follower_a.IsInCurrentTown)
+	};
+	// Check each state in priority order
+	for (var i = 0; i < Reforged.RetinueStates.statesOrdered.length; i++)
 	{
-		if (!_follower_b.IsInCurrentTown)
-		{
-			return -1;
-		}
-		return sortAlphabetically(_follower_a, _follower_b);
-	}
-	else if (_follower_b.IsInCurrentTown)
-	{
-		return 1;
-	}
-	if (_follower_a.IsHired)
-	{
-		if (!_follower_b.IsHired)
-		{
-			return -1;
-		}
-		return sortAlphabetically(_follower_a, _follower_b);
-	}
-	else if (_follower_b.IsHired)
-	{
-		return 1;
-	}
+		var stateName = Reforged.RetinueStates.statesOrdered[i];
+		var state = Reforged.RetinueStates.getState(stateName);
+		var aHasState = state.checkState(_follower_a);
+		var bHasState = state.checkState(_follower_b);
 
-	if (_follower_a.LastKnownLocation != null)
-	{
-		if (_follower_b.LastKnownLocation == null)
+		if (aHasState && !bHasState)
 		{
-			return -1;
+			return -1; // a comes first
 		}
-		return sortAlphabetically(_follower_a, _follower_b);
-	}
-	else if (_follower_b.LastKnownLocation != null)
-	{
-		return 1;
-	}
-
-	if (_follower_a.IsDiscovered)
-	{
-		if (!_follower_b.IsDiscovered)
+		else if (!aHasState && bHasState)
 		{
-			return -1;
+			return 1; // b comes first
 		}
-		return sortAlphabetically(_follower_a, _follower_b);
+		else if (aHasState && bHasState)
+		{
+			// Both have this state, sort alphabetically within this group
+			return sortAlphabetically(_follower_a, _follower_b);
+		}
+		// If neither has this state, continue to next state check
 	}
-	else if (_follower_b.IsDiscovered)
-	{
-		return 1;
-	}
-
 	return sortAlphabetically(_follower_a, _follower_b);
+}
+
+WorldCampfireScreenHireDialogModule.prototype.addStateCSS = function (_data, _entry)
+{
+	// Only add one css for now
+	var self = this;
+	$.each(Reforged.RetinueStates.statesOrdered, function(_key, _stateID){
+		var state = Reforged.RetinueStates.getState(_stateID);
+		if (state.checkState(_data))
+		{
+			_entry.addClass(state.getCSS());
+			return false;
+		}
+	})
 }
 
 Reforged.Hooks.WorldCampfireScreenHireDialogModule_addListEntry = WorldCampfireScreenHireDialogModule.prototype.addListEntry;
 WorldCampfireScreenHireDialogModule.prototype.addListEntry = function (_data)
 {
 	Reforged.Hooks.WorldCampfireScreenHireDialogModule_addListEntry.call(this, _data);
+	// TODO refactor to do this once
 	var entry = this.mListScrollContainer.find('.list-entry').last();
+	this.addStateCSS(_data, entry);
 	if (!_data.IsDiscovered)
 	{
+		entry.addClass("is-undiscovered");
 		entry.find("img").addClass("is-grayscale");
 		entry.find(".name").html("Unknown Follower");
 	}
-	if (_data.LastKnownLocation == null && !_data.IsHired)
-	{
-		entry.find(".name").removeClass("font-color-brother-name").addClass("font-color-disabled");
-	}
 	if (_data.IsInCurrentTown)
 	{
-		entry.parent().addClass("is-in-current-town");
+		entry.addClass("is-in-current-town");
 		entry.removeClass('is-disabled');
 	}
 	else

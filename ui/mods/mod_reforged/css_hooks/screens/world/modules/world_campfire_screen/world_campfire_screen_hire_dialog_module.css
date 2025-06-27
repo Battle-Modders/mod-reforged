@@ -8,12 +8,6 @@
 	align-items: left;
 }
 
-
-.world-campfire-screen .l-hire-dialog-container .is-in-current-town
-{
-	box-shadow: 0 0 1px 2px green;
-}
-
 .world-campfire-screen > .l-hire-dialog-container .l-tab-asset.is-generic-tools
 {
     left: 16.0rem;
@@ -48,4 +42,25 @@
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row .l-costs-container.is-daily
 {
     left: 32.0rem;
+}
+
+
+.world-campfire-screen > .l-hire-dialog-container .content .scroll-container .l-divider
+{
+    width: 46.5rem;
+    height: 5.3rem;
+    margin-bottom: -0.1rem;
+
+    background-image: url("coui://gfx/ui/skin/list_item_01.png");
+    background-size: 46.0rem 5.3rem;
+    background-repeat: no-repeat;
+
+    text-shadow: 1px 1px 1px #000;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.world-campfire-screen > .l-hire-dialog-container .content .scroll-container .l-divider .divider-label
+{
+	margin-left: 2rem;
 }
