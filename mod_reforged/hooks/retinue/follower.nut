@@ -143,8 +143,9 @@
 			IsHired = this.isHired(),
 			IsInCurrentTown = this.isInCurrentTown(),
 			IsDiscovered = this.m.IsDiscovered || ::Reforged.Mod.ModSettings.getSetting("RevealFollowers").getValue(),
-			Towns = this.m.CurrentTownTable,
+			Towns = ::MSU.Table.values(this.m.CurrentTownTable),
 			LastKnownLocation = this.getLastKnownLocation(),
+			IsKnownLocation = this.getLastKnownLocation() != null,
 
 			DailyMoneyCost = this.getDailyCost(),
 			DailyFood = this.getDailyFood(),

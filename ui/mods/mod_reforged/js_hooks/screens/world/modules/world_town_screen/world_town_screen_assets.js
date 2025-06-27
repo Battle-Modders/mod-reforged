@@ -38,12 +38,8 @@ WorldTownScreenAssets.prototype.unbindTooltips = function ()
 Reforged.Hooks.WorldTownScreenAssets_loadFromData = WorldTownScreenAssets.prototype.loadFromData;
 WorldTownScreenAssets.prototype.loadFromData = function (_data)
 {
+	// TODO remove if ends up unused
 	Reforged.Hooks.WorldTownScreenAssets_loadFromData.call(this, _data);
-    if('FollowersInTown' in _data)
-    {
-    	this.updateAssetValue(this.mRetinueAsset, _data["FollowersInTown"].length);
-       // TODO add numbers or something to retinue button
-    }
 };
 
 // Add support to show retinue from town
