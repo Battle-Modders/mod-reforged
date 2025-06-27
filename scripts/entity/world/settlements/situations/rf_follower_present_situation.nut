@@ -1,5 +1,6 @@
 this.rf_follower_present_situation <- this.inherit("scripts/entity/world/settlements/situations/situation", {
 	m = {
+		FollowerID = "",
 		BaseID = "situation.rf_follower_present.%s",
 		BaseIcon = "ui/settlement_status/%s.png"
 	},
@@ -20,6 +21,7 @@ this.rf_follower_present_situation <- this.inherit("scripts/entity/world/settlem
 	{
 		// TODO BETTER TEXT
 		// TODO RUMORS
+		this.m.FollowerID = _follower.getID();
 		this.m.ID = format(this.m.BaseID, _follower.getID());
 		this.m.Icon = format(this.m.BaseIcon, _follower.getID());
 		this.m.Name = format("%s present", _follower.getName());
@@ -34,6 +36,25 @@ this.rf_follower_present_situation <- this.inherit("scripts/entity/world/settlem
 	{
 	}
 
-	//TODO EITHER SERDE OR COPYPASTE
+	function onSerialize( _out )
+	{
+		this.situation.onSerialize(_out);
+		_out.writeString(this.m.FollowerID);
+	}
+
+	function onDeserialize( _in )
+	{
+		this.situation.onDeserialize(_in);
+		local followerID = _in.readString();
+		local follower = ::World.Retinue.getFollower(followerID);
+		if (follower == null)
+		{
+			::logError("Reforged: Tried to deserialize 'follower present town situation ' but invalid follower ID was deserialised: " + followerID);
+		}
+		else
+		{
+			this.setFollower(follower);
+		}
+	}
 });
 

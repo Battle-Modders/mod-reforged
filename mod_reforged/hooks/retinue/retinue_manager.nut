@@ -183,5 +183,29 @@
 			follower.onPlayerEnterTown(_town);
 		}
 	}
+
+	q.onSerialize = @(__original) function( _out )
+	{
+		__original(_out);
+		foreach (follower in this.m.Followers)
+		{
+			if (!follower.isHired())
+			{
+				follower.onSerialize(_out);
+			}
+		}
+	}
+
+	q.onDeserialize = @(__original) function( _in )
+	{
+		__original(_in);
+		foreach (follower in this.m.Followers)
+		{
+			if (!follower.isHired())
+			{
+				follower.onDeserialize(_in);
+			}
+		}
+	}
 })
 

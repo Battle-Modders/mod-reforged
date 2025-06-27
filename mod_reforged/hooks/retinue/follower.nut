@@ -6,7 +6,7 @@
 	q.m.IsHired <- false;
 
 	q.m.CurrentTownTable <- null;
-	q.m.HiredFromTownID <- null;
+	q.m.HiredFromTownID <- -1;
 
 	q.m.DailyWage <- 10;
 	q.m.DailyWageMult <- 1.0;
@@ -219,7 +219,7 @@
 			Name = town.getName(),
 			ArrivalDay = ::World.getTime().Days,
 			RemainingDays = ::Reforged.Retinue.DaysFollowerStaysInTown,
-			LastSeenDate = null,
+			LastSeenDate = -1,
 		}
 
 		local situation = ::new("scripts/entity/world/settlements/situations/rf_follower_present_situation");
@@ -266,7 +266,7 @@
 		foreach (_, townInfo in this.m.CurrentTownTable)
 		{
 			local lastDate = townInfo.LastSeenDate;
-			if (lastDate != null && lastDate > newest)
+			if (lastDate != -1 && lastDate > newest)
 			{
 				newest = lastDate;
 				ret = townInfo;
@@ -282,5 +282,29 @@
 			this.m.CurrentTownTable[_town.getID()].LastSeenDate = ::World.getTime().Days;
 			this.discover();
 		}
+	}
+
+	q.onSerialize = @(__original) function(_out)
+	{
+		__original(_out)
+		this.m.Skills.onSerialize(_out);
+		_out.writeBool(this.m.IsDiscovered);
+		_out.writeBool(this.m.IsHired);
+		_out.writeI8(this.m.HiredFromTownID);
+		_out.writeU8(this.m.DailyWage);
+		::MSU.Serialization.serialize(this.m.CurrentTownTable, _out);
+	}
+
+	q.onDeserialize = @(__original) function(_in)
+	{
+		__original(_in);
+		this.m.Skills.onDeserialize(_in);
+		this.m.IsDiscovered = _in.readBool();
+		this.m.IsHired = _in.readBool();
+		this.m.HiredFromTownID = _in.readI8();
+		this.m.DailyWage = _in.readU8();
+
+		this.m.CurrentTownTable.clear()
+		::MSU.Serialization.deserializeInto(this.m.CurrentTownTable, _in);
 	}
 })
