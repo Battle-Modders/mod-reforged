@@ -69,9 +69,14 @@
 
 	q.setFollower = @(__original) function( _slot, _follower )
 	{
-		if (this.m.Slots[_slot] != null)
-			this.m.Slots[_slot].onDismiss();
-		__original(_slot, _follower);
+		foreach (idx, slot in this.m.Slots)
+		{
+			if (slot == null)
+			{
+				__original(idx, _follower);
+				break;
+			}
+		}
 		_follower.onHired();
 	}
 
@@ -164,6 +169,46 @@
 		return chosenTownID == null ? null : this.World.getEntityByID(chosenTownID);
 	}
 
+	q.getNumberOfUnlockedSlots = @() function()
+	{
+		// No retinue requirement to unlock followers
+		return ::Reforged.Retinue.MaxFollowersHired;
+	}
+
+	q.getCurrentFollowersForUI = @() function()
+	{
+		local ret = [];
+		local maxUISlots = ::Reforged.Retinue.MaxFollowersInUI;
+		ret.resize(maxUISlots);
+		local unlockedFollowers = this.m.Slots.filter(@(_idx, _entry) _entry != null);
+		::MSU.Array.shuffle(unlockedFollowers);
+		while (unlockedFollowers.len() < maxUISlots)
+		{
+			unlockedFollowers.push(null);
+		}
+		for (local i = 0; i < maxUISlots; ++i)
+		{
+			local slot = unlockedFollowers[i];
+			if (slot != null)
+			{
+				ret[i] = {
+					Image = slot.getImage(),
+					ID = slot.getID(),
+					Slot = i
+				};
+			}
+			else {
+				ret[i] = {
+					Image = "ui/campfire/free_slot",
+					ID = "free",
+					Slot = i
+				};
+			}
+		}
+
+		return ret;
+	}
+
 	q.getFollowersForUI = @() function()
 	{
 		local ret = [];
@@ -174,6 +219,19 @@
 		}
 
 		return ret;
+	}
+
+	q.create = @(__original) function()
+	{
+		__original();
+
+		this.m.Slots.resize(::Reforged.Retinue.MaxFollowersHired);
+	}
+
+	q.clear = @() function()
+	{
+		this.m.Slots = [];
+		this.m.Slots.resize(::Reforged.Retinue.MaxFollowersHired);
 	}
 
 	q.onPlayerEnterTown <- function(_town)

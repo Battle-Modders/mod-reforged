@@ -4,6 +4,7 @@ WorldCampfireScreenAssets.prototype.createDIV = function (_parentDiv)
 {
 	Reforged.Hooks.WorldCampfireScreenAssets_createDIV.call(this, _parentDiv);
 	this.mFollowerToolAsset = this.createAssetDIV(_parentDiv, Path.GFX + Asset.rf_ICON_ASSET_FOLLOWER_TOOLS, 'is-generic-tools');
+	this.mFollowerCountAsset = this.createAssetDIV(_parentDiv, Path.GFX + Asset.rf_ICON_ASSET_FOLLOWER_TOOLS, 'is-follower-count');
 }
 
 Reforged.Hooks.WorldCampfireScreenAssets_destroyDIV = WorldCampfireScreenAssets.prototype.destroyDIV;
@@ -12,6 +13,8 @@ WorldCampfireScreenAssets.prototype.destroyDIV = function ()
 	Reforged.Hooks.WorldCampfireScreenAssets_destroyDIV.call(this);
     this.mFollowerToolAsset.remove();
     this.mFollowerToolAsset = null;
+    this.mFollowerCountAsset.remove();
+    this.mFollowerCountAsset = null;
 };
 
 Reforged.Hooks.WorldCampfireScreenAssets_bindTooltips = WorldCampfireScreenAssets.prototype.bindTooltips;
@@ -19,6 +22,7 @@ WorldCampfireScreenAssets.prototype.bindTooltips = function ()
 {
 	Reforged.Hooks.WorldCampfireScreenAssets_bindTooltips.call(this);
    this.mFollowerToolAsset.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Retinue.FollowerTools"});
+   this.mFollowerCountAsset.bindTooltip({ contentType: 'msu-generic', modId: Reforged.ID, elementId: "Retinue.FollowerCount"});
 };
 
 Reforged.Hooks.WorldCampfireScreenAssets_unbindTooltips = WorldCampfireScreenAssets.prototype.unbindTooltips;
@@ -26,6 +30,7 @@ WorldCampfireScreenAssets.prototype.unbindTooltips = function ()
 {
 	Reforged.Hooks.WorldCampfireScreenAssets_unbindTooltips.call(this);
     this.mFollowerToolAsset.unbindTooltip();
+    this.mFollowerCountAsset.unbindTooltip();
 };
 
 Reforged.Hooks.WorldCampfireScreenAssets_loadFromData = WorldCampfireScreenAssets.prototype.loadFromData;
@@ -45,5 +50,17 @@ WorldCampfireScreenAssets.prototype.loadFromData = function (_data)
 	 	}
 
 	 	this.updateAssetValue(this.mFollowerToolAsset, value, null, valueDifference);
+	}
+	if('CurrentFollowerAmount' in _data)
+	{
+		var value = currentAssetInformation["CurrentFollowerAmount"];
+	 	var valueDifference = null;
+	 	if (previousAssetInformation !== null && 'CurrentFollowerAmount' in previousAssetInformation && previousAssetInformation['CurrentFollowerAmount'] !== null)
+	 	{
+	 	    previousValue = previousAssetInformation['CurrentFollowerAmount'];
+	 	    valueDifference = value - previousValue;
+	 	}
+
+	 	this.updateAssetValue(this.mFollowerCountAsset, value, _data["MaxFollowerAmount"], valueDifference);
 	}
 };

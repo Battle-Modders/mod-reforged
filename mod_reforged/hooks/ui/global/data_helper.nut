@@ -28,4 +28,15 @@
 		_target.rf_reach <- properties.getReach();
 		_target.rf_reachMax <- 15; // arbitrary
 	}}.addStatsToUIData;
+
+
+	q.convertAssetsInformationToUIData = @(__original) function()
+	{
+		local ret = __original();
+		local currentTown = ::World.State.getCurrentTown();
+		ret["FollowerTools"] <- ::World.Retinue.getFollowerToolAmount();
+		ret["CurrentFollowerAmount"] <- ::World.Retinue.getNumberOfCurrentFollowers();
+		ret["MaxFollowerAmount"] <- ::Reforged.Retinue.MaxFollowersHired;
+		return ret;
+	};
 })

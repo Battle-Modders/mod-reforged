@@ -8,15 +8,22 @@
 	align-items: left;
 }
 
-.world-campfire-screen > .l-hire-dialog-container .l-tab-asset.is-generic-tools
+.world-campfire-screen .tab-container > .l-tab-container > .l-tab-asset.is-generic-tools
 {
     left: 16.0rem;
 }
 
-.world-campfire-screen .popup-dialog .right-column
+.world-campfire-screen .tab-container > .l-tab-container > .l-tab-asset.is-follower-count
 {
-	height:100%;
+    left: 4.0rem;
 }
+
+.world-campfire-screen .tab-container > .l-tab-container > .l-tab-asset.is-generic-tools > .label,
+.world-campfire-screen .tab-container > .l-tab-container > .l-tab-asset.is-follower-count > .label
+{
+    width: 5rem;
+}
+
 
 .world-campfire-screen .popup-dialog  .is-follower-tool-cost-container
 {
