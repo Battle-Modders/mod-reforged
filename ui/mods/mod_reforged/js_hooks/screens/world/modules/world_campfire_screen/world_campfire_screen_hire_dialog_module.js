@@ -303,7 +303,8 @@ WorldCampfireScreenHireDialogModule.prototype.updateDetailsPanel = function(_ele
 		var currentMoney = this.mAssets.getValues().Money;
 		var data = _element.data('entry');
 		var initialMoneyCost = data.Cost;
-		this.mDetailsPanel.HireButton.enableButton(currentMoney >= initialMoneyCost && !data.IsHired && data.IsInCurrentTown);
+		var hasMaxFollowers = this.mAssets.getValues().CurrentFollowerAmount == this.mAssets.getValues().MaxFollowerAmount;
+		this.mDetailsPanel.HireButton.enableButton(currentMoney >= initialMoneyCost && !data.IsHired && data.IsInCurrentTown && !hasMaxFollowers);
 	}
 
 	// update current location

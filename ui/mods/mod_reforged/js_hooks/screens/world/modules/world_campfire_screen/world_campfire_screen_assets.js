@@ -62,5 +62,14 @@ WorldCampfireScreenAssets.prototype.loadFromData = function (_data)
 	 	}
 
 	 	this.updateAssetValue(this.mFollowerCountAsset, value, _data["MaxFollowerAmount"], valueDifference);
+	 	var label = this.mFollowerCountAsset.find(".label:first");
+	 	if (value == _data["MaxFollowerAmount"])
+	 	{
+			label.removeClass('font-color-assets-positive-value').addClass('font-color-assets-negative-value');
+	 	}
+	 	else
+	 	{
+	 		label.removeClass('font-color-assets-negative-value').addClass('font-color-assets-positive-value');
+	 	}
 	}
 };
