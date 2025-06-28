@@ -3,7 +3,7 @@ this.named_rf_voulge <- ::inherit("scripts/items/weapons/named/named_weapon", {
 	function create()
 	{
 		this.named_weapon.create();
-		this.m.Variant = 1;
+		this.m.Variant = ::Math.rand(1, 2);
 		this.updateVariant();
 		this.m.ID = "weapon.named_rf_battle_axe";
 		this.m.NameList = ::Const.Strings.AxeNames;
