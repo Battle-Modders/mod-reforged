@@ -30,6 +30,11 @@ this.rf_arrow_to_the_knee_debuff_effect <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
+	function onAdded()
+	{
+		this.m.TurnsLeft = ::Math.max(1, this.m.StartingTurnsLeft + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+	}
+
 	function onRefresh()
 	{
 		this.m.TurnsLeft = ::Math.max(1, this.m.StartingTurnsLeft + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
