@@ -32,7 +32,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString(format("[Action Point|Concept.ActionPoints] costs of%s%s attacks are %s by %s to a minimum of %s", damageTypeString, weaponTypeString, ::MSU.Text.colorizeValue(this.m.ActionPointCostModifier, {InvertColor = true, AddSign = true}), this.m.ActionPointCostMin))
+			text = ::Reforged.Mod.Tooltips.parseString(format("[Action Point|Concept.ActionPoints] costs of%s%s attacks are %s by %s to a minimum of %i", damageTypeString, weaponTypeString, ::MSU.Text.colorizeValue(this.m.ActionPointCostModifier, {InvertColor = true, AddSign = true}), this.m.ActionPointCostMin))
 		});
 
 		ret.push({
