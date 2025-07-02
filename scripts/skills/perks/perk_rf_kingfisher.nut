@@ -95,7 +95,7 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 		if (this.m.IsSpent)
 			return;
 
-		if (!_tag.User.isPlacedOnMap() || !_tag.Target.isPlacedOnMap() || _tag.Target.getSkills().hasSkill("effects.net"))
+		if (!_tag.Target.isAlive() || !_tag.Target.isPlacedOnMap() || !_tag.User.isAlive() || !_tag.User.isPlacedOnMap() || _tag.Target.getSkills().hasSkill("effects.net"))
 			return;
 
 		local targetTile = _tag.Target.getTile();
