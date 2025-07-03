@@ -27,6 +27,8 @@
 		// Smart Recruiter by Leonionin. https://www.nexusmods.com/battlebrothers/mods/172
 		// Conflicts on hiring screen and breaks our perk tree display there
 		"mod_smart_recruiter": "Smart Recruiter is not compatible with Reforged. Use Clever Recruiter by Enduriel instead.",
+		// A variant file of Smart Recruiter on the same mod page as above.
+		"mod_sr_alternative": "Smart Recruiter is not compatible with Reforged. Use Clever Recruiter by Enduriel instead.",
 		// Uncapped Levels and Perk Points by KillersToys https://www.nexusmods.com/battlebrothers/mods/260
 		// Overwrites config/character.
 		"mod_uncapped_levels": "Uncapped Levels and Perk Points is incompatible with Reforged. In Reforged the maximum player level is uncapped.",
