@@ -63,7 +63,6 @@ this.ai_rf_command <- ::inherit("scripts/ai/tactical/behavior", {
 
 		yield null;
 		local allAllies = this.getAgent().getKnownAllies();
-		local allEnemies = this.getAgent().getKnownAllies();
 		local potentialTargets = [];
 		local nextEnemyTurn = 0;
 		foreach (i, entity in ::Tactical.TurnSequenceBar.getCurrentEntities())
