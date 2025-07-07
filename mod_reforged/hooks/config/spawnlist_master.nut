@@ -1,24 +1,24 @@
 //Ancient Dead
 ::Const.World.Spawn.Troops.SkeletonLight.Strength = 17;  // Ancient Auxiliary - vanilla 14
 ::Const.World.Spawn.Troops.SkeletonLight.Cost = 16; // Ancient Auxiliary - vanilla 13
-::Const.World.Spawn.Troops.SkeletonMedium.Strength = 28; // Ancient Legionary - vanilla 20
-::Const.World.Spawn.Troops.SkeletonMedium.Cost = 28; // Ancient Legionary - vanilla 20
-::Const.World.Spawn.Troops.SkeletonMediumPolearm.Strength = 28; // Ancient Legionary - vanilla 20
-::Const.World.Spawn.Troops.SkeletonMediumPolearm.Cost = 28; // Ancient Legionary - vanilla 25
-::Const.World.Spawn.Troops.SkeletonHeavy.Strength = 50; // Ancient Honor Guard - vanilla 30
-::Const.World.Spawn.Troops.SkeletonHeavy.Cost = 50; // Ancient Honor Guard - vanilla 35
+::Const.World.Spawn.Troops.SkeletonMedium.Strength = 28; // Ancient Legionary - vanilla 20 (now higher tier unit)
+::Const.World.Spawn.Troops.SkeletonMedium.Cost = 28; // Ancient Legionary - vanilla 20 (now higher tier unit)
+::Const.World.Spawn.Troops.SkeletonMediumPolearm.Strength = 28; // Ancient Legionary - vanilla 20 (now higher tier unit)
+::Const.World.Spawn.Troops.SkeletonMediumPolearm.Cost = 28; // Ancient Legionary - vanilla 25 (now higher tier unit)
+::Const.World.Spawn.Troops.SkeletonHeavy.Strength = 50; // Ancient Honor Guard - vanilla 30 (now higher tier unit)
+::Const.World.Spawn.Troops.SkeletonHeavy.Cost = 50; // Ancient Honor Guard - vanilla 35 (now higher tier unit)
 
 //Bandits
 ::Const.World.Spawn.Troops.Wardog.Strength = 6; // vanilla 9
 ::Const.World.Spawn.Troops.Wardog.Cost = 6; // vanilla 8
 ::Const.World.Spawn.Troops.ArmoredWardog.Strength = 8; // vanilla 9
 ::Const.World.Spawn.Troops.ArmoredWardog.Cost = 8; // vanilla 8
-::Const.World.Spawn.Troops.BanditMarksman.Strength = 30; // vanilla 15
-::Const.World.Spawn.Troops.BanditMarksman.Cost = 22; // vanilla 15
+::Const.World.Spawn.Troops.BanditMarksman.Strength = 30; // vanilla 15 (now higher tier unit)
+::Const.World.Spawn.Troops.BanditMarksman.Cost = 22; // vanilla 15 (now higher tier unit)
 ::Const.World.Spawn.Troops.BanditRaiderWolf.Strength = 30; // vanilla 25
 ::Const.World.Spawn.Troops.BanditRaiderWolf.Cost = 25; // vanilla 25
-::Const.World.Spawn.Troops.BanditRaider.Strength = 28; // vanilla 20
-::Const.World.Spawn.Troops.BanditRaider.Cost = 22; // vanilla 20
+::Const.World.Spawn.Troops.BanditRaider.Strength = 28; // vanilla 20 (now higher tier unit)
+::Const.World.Spawn.Troops.BanditRaider.Cost = 22; // vanilla 20 (now higher tier unit)
 ::Const.World.Spawn.Troops.BanditLeader.Strength = 40; // vanilla 30
 ::Const.World.Spawn.Troops.BanditLeader.Cost = 40; // vanilla 25
 
