@@ -197,7 +197,7 @@
 	RF_VampireLord = {
 		ID = ::Const.EntityType.RF_VampireLord,
 		Variant = 1,
-		Strength = 50,
+		Strength = 80,
 		Cost = 50,
 		Row = 2,
 		Script = "scripts/entity/tactical/enemies/rf_vampire_lord",
