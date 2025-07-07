@@ -92,6 +92,8 @@
 });
 
 // New Reforged Actors
+
+//Ancient Dead
 ::Const.Tactical.Actor.RF_SkeletonDecanus <- {
 	XP = 325,
 	ActionPoints = 9,
