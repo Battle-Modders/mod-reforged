@@ -34,6 +34,12 @@ this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 			{
 				id = 12,
 				type = "text",
+				icon = "ui/icons/bravery.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(10, {AddSign = true}) + " [Resolve|Concept.Bravery]")
+			},
+			{
+				id = 13,
+				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [Stunned|Skill+stunned_effect], Knocked Back or Grabbed")
 			}
@@ -46,6 +52,7 @@ this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 	{
 		_properties.MeleeDefense += 10;
 		_properties.RangedDefense += 10;
+		_properties.Bravery += 10;
 		_properties.IsImmuneToStun = true;
 		_properties.IsImmuneToKnockBackAndGrab = true;
 	}
