@@ -1,6 +1,8 @@
 this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		TurnsLeft = 1
+		TurnsLeft = 1,
+		DefenseAdd = 10,
+		BraveryAdd = 10
 	},
 	function create()
 	{
@@ -18,34 +20,49 @@ this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.skill.getTooltip();
 
-		ret.extend([
-			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/melee_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(10, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense]")
-			},
-			{
-				id = 11,
-				type = "text",
-				icon = "ui/icons/ranged_defense.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(10, {AddSign = true}) + " [Ranged Defense|Concept.RangeDefense]")
-			},
-			{
+		if (this.m.DefenseAdd != 0)
+		{
+			ret.extend([
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/melee_defense.png",
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.DefenseAdd, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense]")
+				},
+				{
+					id = 11,
+					type = "text",
+					icon = "ui/icons/ranged_defense.png",
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.DefenseAdd, {AddSign = true}) + " [Ranged Defense|Concept.RangeDefense]")
+				}
+			]);
+		}
+
+		if (this.m.BraveryAdd != 0)
+		{
+			ret.push({
 				id = 12,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [Stunned|Skill+stunned_effect], Knocked Back or Grabbed")
-			}
-		]);
+				icon = "ui/icons/bravery.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.BraveryAdd, {AddSign = true}) + " [Resolve|Concept.Bravery]")
+			});
+		}
+
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Immune to being [Stunned|Skill+stunned_effect], Knocked Back or Grabbed")
+		});
 		
 		return ret;
 	}
 
 	function onUpdate( _properties )
 	{
-		_properties.MeleeDefense += 10;
-		_properties.RangedDefense += 10;
+		_properties.MeleeDefense += this.m.DefenseAdd;
+		_properties.RangedDefense += this.m.DefenseAdd;
+		_properties.Bravery += this.m.BraveryAdd;
 		_properties.IsImmuneToStun = true;
 		_properties.IsImmuneToKnockBackAndGrab = true;
 	}

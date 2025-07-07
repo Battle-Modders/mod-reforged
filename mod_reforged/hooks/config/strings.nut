@@ -1439,7 +1439,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Hold Steady|Skill+rf_hold_steady_skill] skill which allows you and nearby allies to gain increased defenses and immunity to being [stunned,|Skill+stunned_effect] knocked back or grabbed."
+				"Unlocks the [Hold Steady|Skill+rf_hold_steady_skill] skill which allows you and nearby allies to gain increased [Melee Defense|Concept.MeleeDefense], [Ranged Defense|Concept.RangeDefense] and [Resolve|Concept.Resolve] and immunity to being [stunned,|Skill+stunned_effect] knocked back or grabbed."
 			]
 		}]
 	}),
