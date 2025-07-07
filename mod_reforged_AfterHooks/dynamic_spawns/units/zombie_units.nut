@@ -1,5 +1,5 @@
 local units = [
-// Zombies
+// Zombies Human
 	{
 		ID = "Unit.RF.Zombie",
 		Troop = "Zombie",
@@ -12,15 +12,21 @@ local units = [
 		StartingResourceMin = 75
 	},
 	{
-		ID = "Unit.RF.ZombieNomad",
-		Troop = "ZombieNomad",
-		Figure = "figure_zombie_03"
-	},
-	{
 		ID = "Unit.RF.ZombieKnight",	 // Fallen Hero
 		Troop = "ZombieKnight",
 		Figure = "figure_zombie_03",
-		StartingResourceMin = 200
+		StartingResourceMin = 175
+	},
+	{
+		ID = "Unit.RF.RF_ZombieHero",
+		Troop = "RF_ZombieHero",
+		Figure = "figure_zombie_03",
+		StartingResourceMin = 250
+	},
+	{
+		ID = "Unit.RF.ZombieNomad",
+		Troop = "ZombieNomad",
+		Figure = "figure_zombie_03"
 	},
 	{
 		ID = "Unit.RF.Necromancer",
@@ -28,99 +34,91 @@ local units = [
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"]	// In Vanilla 02 is only used for Scourge Spawns. But there they still use 01 randomly aswell
 	},
 
-// Necromancer with Bodyguards
+	// Zombie Orcs
 	{
-		ID = "Unit.RF.NecromancerY",
-		Troop = "Necromancer",
-		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 100, // In Vanilla they appear in a group of 100 cost
-		Cost = 30,
-		StaticDefs = {
-			Parties = [
-				{ BaseID = "SubPartyYeoman", IsUsingTopPartyResources = false }
-			]
-		}
+		ID = "Unit.RF.RF_ZombieOrcYoung",
+		Troop = "RF_ZombieOrcYoung",
+		// Figure = "figure_rf_skeleton_light_elite"
 	},
 	{
-		ID = "Unit.RF.NecromancerK",
-		Troop = "Necromancer",
-		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 320, // In Vanilla they appear in a group of 320 cost
-		Cost = 30,
-		StaticDefs = {
-			Parties = [
-				{ BaseID = "SubPartyKnight", IsUsingTopPartyResources = false }
-			]
-		}
+		ID = "Unit.RF.RF_ZombieOrcWarrior",
+		Troop = "RF_ZombieOrcWarrior",
+		// Figure = "figure_rf_skeleton_light_elite",
+		StartingResourceMin = 150
 	},
 	{
-		ID = "Unit.RF.NecromancerYK",
-		Troop = "Necromancer",
-		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 360, // In Vanilla they appear in a group of 415 cost
-		Cost = 30,
-		StaticDefs = {
-			Parties = [
-				{ BaseID = "SubPartyYeomanKnight", IsUsingTopPartyResources = false }
-			]
-		}
+		ID = "Unit.RF.RF_ZombieOrcBerserker",
+		Troop = "RF_ZombieOrcBerserker",
+		// Figure = "figure_rf_skeleton_light_elite",
+		StartingResourceMin = 175
 	},
 	{
-		ID = "Unit.RF.NecromancerKK",
-		Troop = "Necromancer",
-		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 420, // In Vanilla they appear in a group of 415 cost
-		Cost = 30,
-		StaticDefs = {
-			Parties = [
-				{ BaseID = "SubPartyKnightKnight", IsUsingTopPartyResources = false }
-			]
-		}
+		ID = "Unit.RF.RF_ZombieOrcWarlord",
+		Troop = "RF_ZombieOrcWarlord",
+		// Figure = "figure_rf_skeleton_light_elite",
+		StartingResourceMin = 275
 	},
 
-// Necromancer with Nomad Bodyguards
+// Necromancers with Bodyguards
 	{
-		ID = "Unit.RF.NecromancerN",
+		ID = "Unit.RF.NecromancerWithBodyguards",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 110,
+		StartingResourceMin = 100, // In Vanilla they appear in a group of 102 cost
 		Cost = 30,
 		StaticDefs = {
 			Parties = [
-				{ BaseID = "SubPartyNomad", HardMin = 1, HardMax = 1, IsUsingTopPartyResources = false }
+				{ BaseID = "NecromancerBodyguards", IsUsingTopPartyResources = false }
 			]
 		}
 	},
 	{
-		ID = "Unit.RF.NecromancerNN",
+		ID = "Unit.RF.NecromancerWithBodyguardsNomad",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 130,
+		StartingResourceMin = 100, // In Vanilla they appear in a group of 102 cost
 		Cost = 30,
 		StaticDefs = {
 			Parties = [
-				{ BaseID = "SubPartyNomad", HardMin = 2, HardMax = 2, IsUsingTopPartyResources = false }
+				{ BaseID = "NecromancerBodyguardsNomad", IsUsingTopPartyResources = false }
 			]
 		}
 	},
 	{
-		ID = "Unit.RF.NecromancerNNN",
+		ID = "Unit.RF.NecromancerWithBodyguardsOrc",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 170,
+		StartingResourceMin = 100, // In Vanilla they appear in a group of 102 cost
 		Cost = 30,
 		StaticDefs = {
 			Parties = [
-				{ BaseID = "SubPartyNomad", HardMin = 3, HardMax = 3, IsUsingTopPartyResources = false }
+				{ BaseID = "NecromancerBodyguardsOrc", IsUsingTopPartyResources = false }
 			]
 		}
-	}
+	},
 
 // Bodyguards for Necromancer
+	{
+		ID = "Unit.RF.ZombieBodyguard",
+		Troop = "ZombieBodyguard",
+		Figure = "figure_zombie_02"
+	},
 	{
 		ID = "Unit.RF.ZombieYeomanBodyguard",
 		Troop = "ZombieYeomanBodyguard",
 		Figure = "figure_zombie_02"
+	},
+	{
+		ID = "Unit.RF.ZombieKnightBodyguard",
+		Troop = "ZombieKnightBodyguard",
+		Figure = "figure_zombie_03",
+		StartingResourceMin = 175
+	},
+	{
+		ID = "Unit.RF.RF_ZombieHeroBodyguard",
+		Troop = "RF_ZombieHeroBodyguard",
+		Figure = "figure_zombie_03",
+		StartingResourceMin = 250
 	},
 	{
 		ID = "Unit.RF.ZombieNomadBodyguard",
@@ -128,16 +126,34 @@ local units = [
 		Figure = "figure_zombie_03"
 	},
 	{
-		ID = "Unit.RF.ZombieKnightBodyguard",
-		Troop = "ZombieKnightBodyguard",
+		ID = "Unit.RF.RF_ZombieOrcYoungBodyguard",
+		Troop = "RF_ZombieOrcYoungBodyguard",
 		Figure = "figure_zombie_03"
 	},
+	{
+		ID = "Unit.RF.RF_ZombieOrcWarriorBodyguard",
+		Troop = "RF_ZombieOrcWarriorBodyguard",
+		Figure = "figure_zombie_03",
+		StartingResourceMin = 150
+	},
 
-// Ghosts
+// Other
 	{
 		ID = "Unit.RF.Ghost",
 		Troop = "Ghost",
 		Figure = "figure_ghost_01"	 // Exclusive
+	},
+	{
+		ID = "Unit.RF.RF_Hollenhund",
+		Troop = "RF_Hollenhund",
+		// Figure = "figure_rf_skeleton_light_elite",
+		StartingResourceMin = 200
+	},
+	{
+		ID = "Unit.RF.RF_Banshee",
+		Troop = "RF_Banshee",
+		// Figure = "figure_rf_skeleton_light_elite",
+		StartingResourceMin = 300
 	}
 ]
 

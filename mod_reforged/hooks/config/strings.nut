@@ -37,6 +37,7 @@
 	"Barrowkin Hero",
 	"Barrow Seer",
 
+	"Fallen Hero"
 	"Hollenhund",
 	"Klagmutter",
 	"Wiederganger Orc Young",
@@ -84,6 +85,7 @@
 	"Barrowkin Heroes",
 	"Barrow Seers",
 
+	"Fallen Heroes"
 	"Hollenhunds",
 	"Klagmutters",
 	"Wiederganger Orc Young",

@@ -43,81 +43,12 @@
 ::Const.World.Spawn.Troops.Greatsword.TitleList <- ::Const.Strings.RF_ZweihanderTitles;
 ::Const.World.Spawn.Troops.Knight.Strength = 45; // vanilla 40
 
+// Prevent vanilla ZombieKnight from becoming a champion.
+// We have a higher tier unit RF_ZombieHero that can become champion instead.
+::Const.World.Spawn.Troops.ZombieKnight.Variant = 0;
+
 // Cost is handled in bandit_units.nut
 ::MSU.Table.merge(::Const.World.Spawn.Troops, {
-// Draugr
-	RF_DraugrThrall = {
-		ID = ::Const.EntityType.RF_DraugrThrall,
-		Variant = 0,
-		Strength = 9,
-		Cost = 9,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_draugr_thrall"
-	},
-	RF_DraugrWarrior = {
-		ID = ::Const.EntityType.RF_DraugrWarrior,
-		Variant = 1,
-		Strength = 9,
-		Cost = 9,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_draugr_warrior"
-	},
-	RF_DraugrHuskarl = {
-		ID = ::Const.EntityType.RF_DraugrHuskarl,
-		Variant = 2,
-		Strength = 9,
-		Cost = 9,
-		Row = 1,
-		Script = "scripts/entity/tactical/enemies/rf_draugr_huskarl"
-	},
-	RF_DraugrHero = {
-		ID = ::Const.EntityType.RF_DraugrHero,
-		Variant = 3,
-		Strength = 9,
-		Cost = 9,
-		Row = 2,
-		Script = "scripts/entity/tactical/enemies/rf_draugr_hero"
-	},
-	RF_DraugrShaman = {
-		ID = ::Const.EntityType.RF_DraugrShaman,
-		Variant = 4,
-		Strength = 9,
-		Cost = 9,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_draugr_shaman"
-	},
-	RF_ZombieOrcYoung = {
-		ID = ::Const.EntityType.RF_ZombieOrcYoung,
-		Variant = 0,
-		Strength = 9,
-		Cost = 9,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_young"
-	},
-	RF_ZombieOrcBerserker = {
-		ID = ::Const.EntityType.RF_ZombieOrcBerserker,
-		Variant = 0,
-		Strength = 9,
-		Cost = 9,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_berserker"
-	},
-	RF_ZombieOrcWarrior = {
-		ID = ::Const.EntityType.RF_ZombieOrcWarrior,
-		Variant = 0,
-		Strength = 9,
-		Cost = 9,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_warrior"
-	},
-	RF_ZombieOrcWarlord = {
-		ID = ::Const.EntityType.RF_ZombieOrcWarlord,
-		Variant = 0,
-		Strength = 9,
-		Cost = 9,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_warlord"
-	},
 	// Bandits
 	RF_BanditScoundrel = {
 		ID = ::Const.EntityType.RF_BanditScoundrel,
@@ -304,6 +235,84 @@
 		TitleList = ::Const.Strings.RF_AncientDeadCommanderTitles
 	},
 
+	// Draugr
+	RF_DraugrThrall = {
+		ID = ::Const.EntityType.RF_DraugrThrall,
+		Variant = 0,
+		Strength = 25,
+		Cost = 18,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_thrall"
+	},
+	RF_DraugrThrallBodyguard = {
+		ID = ::Const.EntityType.RF_DraugrThrall,
+		Variant = 0,
+		Strength = 25,
+		Cost = 18,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_thrall_bodyguard"
+	},
+	RF_DraugrWarrior = {
+		ID = ::Const.EntityType.RF_DraugrWarrior,
+		Variant = 0,
+		Strength = 35,
+		Cost = 35,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_warrior"
+	},
+	RF_DraugrWarriorBodyguard = {
+		ID = ::Const.EntityType.RF_DraugrWarrior,
+		Variant = 0,
+		Strength = 35,
+		Cost = 35,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_warrior_bodyguard"
+	},
+	RF_DraugrHuskarl = {
+		ID = ::Const.EntityType.RF_DraugrHuskarl,
+		Variant = 1,
+		Strength = 45,
+		Cost = 45,
+		Row = 1,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_huskarl"
+	},
+	RF_DraugrHuskarlBodyguard = {
+		ID = ::Const.EntityType.RF_DraugrHuskarl,
+		Variant = 1,
+		Strength = 45,
+		Cost = 45,
+		Row = 1,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_huskarl_bodyguard"
+	},
+	RF_DraugrHero = {
+		ID = ::Const.EntityType.RF_DraugrHero,
+		Variant = 1,
+		Strength = 60,
+		Cost = 60,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_hero",
+		NameList = ::Const.Strings.RF_DraugrNames,
+		TitleList = ::Const.Strings.RF_DraugrTitles
+	},
+	RF_DraugrHeroChampion = {
+		ID = ::Const.EntityType.RF_DraugrHero,
+		Variant = 999,
+		Strength = 60,
+		Cost = 60,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_hero",
+		NameList = ::Const.Strings.RF_DraugrNames,
+		TitleList = ::Const.Strings.RF_DraugrTitles
+	},
+	RF_DraugrShaman = {
+		ID = ::Const.EntityType.RF_DraugrShaman,
+		Variant = 0,
+		Strength = 60,
+		Cost = 60,
+		Row = 3,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_shaman"
+	},
+
 	// Zombies
 	RF_Banshee = {
 		ID = ::Const.EntityType.RF_Banshee,
@@ -410,38 +419,87 @@
 		Cost = 30,
 		Row = 2,
 		Script = "scripts/entity/tactical/humans/rf_heralds_bodyguard"
+	},
+
+	// Undead
+	RF_ZombieHero = {
+		ID = ::Const.EntityType.RF_ZombieHero,
+		Variant = 1,
+		Strength = 30,
+		Cost = 32,
+		Row = -1,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_hero"
+	},
+	RF_ZombieHeroBodyguard = {
+		ID = ::Const.EntityType.RF_ZombieHero,
+		Variant = 0,
+		Strength = 30,
+		Cost = 32,
+		Row = -1,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_hero_bodyguard"
+	},
+	RF_Hollenhund = {
+		ID = ::Const.EntityType.RF_Hollenhund,
+		Variant = 0,
+		Strength = 40,
+		Cost = 20,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_hollenhund"
+	},
+	RF_Banshee = {
+		ID = ::Const.EntityType.RF_Banshee,
+		Variant = 0,
+		Strength = 80,
+		Cost = 50,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_banshee"
+	},
+	RF_ZombieOrcYoung = {
+		ID = ::Const.EntityType.RF_ZombieOrcYoung,
+		Variant = 0,
+		Strength = 14,
+		Cost = 12, // 17
+		Row = -1,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_young"
+	},
+	RF_ZombieOrcBerserker = {
+		ID = ::Const.EntityType.RF_ZombieOrcBerserker,
+		Variant = 0,
+		Strength = 25,
+		Cost = 20, // 28
+		Row = -1,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_berserker"
+	},
+	RF_ZombieOrcWarrior = {
+		ID = ::Const.EntityType.RF_ZombieOrcWarrior,
+		Variant = 0,
+		Strength = 28,
+		Cost = 25, // 32
+		Row = -1,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_warrior"
+	},
+	RF_ZombieOrcWarlord = {
+		ID = ::Const.EntityType.RF_ZombieOrcWarlord,
+		Variant = 0,
+		Strength = 36,
+		Cost = 34, // 42
+		Row = -1,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_warlord"
+	},
+	RF_ZombieOrcYoungBodyguard = {
+		ID = ::Const.EntityType.RF_ZombieOrcYoung,
+		Variant = 0,
+		Strength = 14,
+		Cost = 12, // 17
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_young_bodyguard"
+	},
+	RF_ZombieOrcWarriorBodyguard = {
+		ID = ::Const.EntityType.RF_ZombieOrcWarrior,
+		Variant = 0,
+		Strength = 28,
+		Cost = 25, // 32
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_warrior_bodyguard"
 	}
 });
-
-//TODO: Temporary spawnlist
-::Const.World.Spawn.RF_DraugrDefenders <- [
-	{
-		Cost = 10,
-		MovementSpeedMult = 1.0,
-		VisibilityMult = 1.0,
-		VisionMult = 1.0,
-		Body = "figure_bandit_01",
-		Troops = [
-			{
-				Type = this.Const.World.Spawn.Troops.RF_DraugrThrall,
-				Num = 4
-			},
-			{
-				Type = this.Const.World.Spawn.Troops.RF_DraugrWarrior,
-				Num = 3
-			},
-			{
-				Type = this.Const.World.Spawn.Troops.RF_DraugrHuskarl,
-				Num = 2
-			},
-			{
-				Type = this.Const.World.Spawn.Troops.RF_DraugrHero,
-				Num = 1
-			},
-			{
-				Type = this.Const.World.Spawn.Troops.RF_DraugrShaman,
-				Num = 1
-			}
-		]
-	}
-];

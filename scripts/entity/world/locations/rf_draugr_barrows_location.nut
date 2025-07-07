@@ -14,7 +14,7 @@ this.rf_draugr_barrows_location <- ::inherit("scripts/entity/world/location", {
 
 		this.m.OnEnter = "event.location.rf_draugr_location_enter";
 
-		this.setDefenderSpawnList(::Const.World.Spawn.RF_DraugrDefenders);
+		this.setDefenderSpawnList(::Const.World.Spawn.RF_DraugrBarrows);
 		this.m.Resources = 250;
 	}
 
@@ -40,27 +40,6 @@ this.rf_draugr_barrows_location <- ::inherit("scripts/entity/world/location", {
 
 		this.dropMoney(::Math.rand(500, 1000), _lootTable);
 		this.dropTreasure(::Math.rand(2, 4), treasure, _lootTable);
-	}
-
-	function createDefenders()
-	{
-		this.location.createDefenders();
-
-		// Guarantee at least one huskarl
-		local hasHuskarl = false;
-		foreach (t in this.m.Troops)
-		{
-			if (t.ID == ::Const.EntityType.RF_DraugrHuskarl)
-			{
-				hasHuskarl = true;
-				break;
-			}
-		}
-
-		if (!hasHuskarl)
-		{
-			::Const.World.Common.addTroop(this, { Type = ::Const.World.Spawn.Troops.RF_DraugrHuskarl });
-		}
 	}
 
 	function onInit()

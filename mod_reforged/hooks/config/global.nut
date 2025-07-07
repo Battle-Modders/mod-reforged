@@ -44,6 +44,7 @@ local entityTypes = [
 	"RF_DraugrHero",
 	"RF_DraugrShaman",
 
+	"RF_ZombieHero",
 	"RF_Hollenhund",
 	"RF_Banshee",
 	"RF_ZombieOrcYoung",
@@ -72,7 +73,7 @@ local entityIcon = [
 	"rf_skeleton_decanus_orientation",
 	"rf_skeleton_centurion_orientation",
 	"rf_skeleton_legatus_orientation",
-	"rf_vampire_lord_orientation"
+	"rf_vampire_lord_orientation",
 
 	"rf_footman_heavy_orientation",
 	"rf_billman_heavy_orientation",
@@ -91,6 +92,7 @@ local entityIcon = [
 	"rf_draugr_hero_orientation",
 	"rf_draugr_shaman_orientation",
 
+	"zombie_03_orientation",
 	"rf_hollenhund_orientation",
 	"rf_banshee_orientation",
 	"rf_zombie_orc_young_orientation",
@@ -106,6 +108,10 @@ foreach (entityType in entityTypes)
 
 ::Const.Strings.EntityName[::Const.EntityType.Arbalester] = "Crossbowman";
 ::Const.Strings.EntityNamePlural[::Const.EntityType.Arbalester] = "Crossbowmen";
+// ZombieKnight in Reforged is renamed to Fallen Knight and we have
+// a higher tier unit RF_ZombieHero which is now named Fallen Hero.
+::Const.Strings.EntityName[::Const.EntityType.ZombieKnight] = "Fallen Knight";
+::Const.Strings.EntityNamePlural[::Const.EntityType.ZombieKnight] = "Fallen Knights";
 
 ::Const.EntityIcon.extend(entityIcon);
 ::Const.EntityIcon[::Const.EntityType.BanditThug] = "rf_bandit_thug_orientation";
@@ -166,6 +172,7 @@ local getDefaultFaction = ::Const.EntityType.getDefaultFaction;
 			case ::Const.EntityType.RF_HeraldsBodyguard:
 				return ::Const.FactionType.NobleHouse;
 
+			case ::Const.EntityType.RF_ZombieHero:
 			case ::Const.EntityType.RF_Hollenhund:
 			case ::Const.EntityType.RF_Banshee:
 			case ::Const.EntityType.RF_ZombieOrcYoung:

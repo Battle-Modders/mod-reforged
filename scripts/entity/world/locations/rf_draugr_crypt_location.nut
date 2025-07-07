@@ -14,7 +14,7 @@ this.rf_draugr_crypt_location <- ::inherit("scripts/entity/world/location", {
 
 		this.m.OnEnter = "event.location.rf_draugr_location_enter";
 
-		this.setDefenderSpawnList(::Const.World.Spawn.RF_DraugrDefenders);
+		this.setDefenderSpawnList(::Const.World.Spawn.RF_DraugrCrypt);
 		this.m.Resources = 400;
 	}
 
@@ -42,42 +42,6 @@ this.rf_draugr_crypt_location <- ::inherit("scripts/entity/world/location", {
 
 		this.dropMoney(::Math.rand(1500, 3000), _lootTable);
 		this.dropTreasure(::Math.rand(3, 5), treasure, _lootTable);
-	}
-
-	function createDefenders()
-	{
-		this.location.createDefenders();
-
-		// Guarantee one champion huskarl
-		// Guarantee one shaman
-		local hasHuskarl = false;
-		local hasShaman = false;
-		foreach (t in this.m.Troops)
-		{
-			switch (t.ID)
-			{
-				case ::Const.EntityType.RF_DraugrHuskarl:
-					 if (t.Strength > ::Const.World.Spawn.Troops.RF_DraugrHuskarl.Strength)
-					 {
-					 	hasHuskarl = true;
-					 }
-					 break;
-
-				case ::Const.EntityType.RF_DraugrShaman:
-					hasShaman = true;
-					break;
-			}
-		}
-
-		if (!hasHuskarl)
-		{
-			::Const.World.Common.addTroop(this, { Type = ::Const.World.Spawn.Troops.RF_DraugrHuskarl }, true, 999);
-		}
-
-		if (!hasShaman)
-		{
-			::Const.World.Common.addTroop(this, { Type = ::Const.World.Spawn.Troops.RF_DraugrShaman });
-		}
 	}
 
 	function onInit()

@@ -99,7 +99,13 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.Alp", RatioMin = 0.00, RatioMax = 1.00 }
+				{ BaseID = "UnitBlock.RF.Alp", RatioMin = 0.00, RatioMax = 1.00 },
+				// Vanilla spawns Direwolf at 110 resources and DirwolfHIGH at 395 resources. Both with roughly RatioMax = 0.35.
+				// Direwolf is excluded in 77% of parties above those resources and DirewolfHIGH is excluded in 50%.
+				{ BaseID = "UnitBlock.RF.Direwolf", RatioMin = 0.00, RatioMax = 0.35, ExclusionChance = 0.8 },
+				// We add Hollenhund into the mix as well with similar spawning behavior as that of Direwolves.
+				// Some parties will contain both Direwolves and Hollenhunds.
+				{ BaseID = "UnitBlock.RF.Hollenhund", RatioMin = 0.00, RatioMax = 0.35, ExclusionChance = 0.8 }
 			]
 		}
 	},

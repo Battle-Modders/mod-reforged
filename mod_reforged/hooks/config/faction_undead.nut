@@ -72,6 +72,25 @@
 	],
 	DamageTotalMult = 1.35
 });
+// We have a higher tier unit RF_ZombieHero which is the new Fallen Hero
+::MSU.Table.merge(::Const.Tactical.Actor.ZombieKnight, {
+	XP = 250, // vanilla 250
+	ActionPoints = 7, // vanilla 7
+	Hitpoints = 180, // vanilla 180
+	Bravery = 70, // vanilla 130
+	Stamina = 100, // vanilla 100
+	MeleeSkill = 60, // vanilla 60
+	RangedSkill = 0, // vanilla 0
+	MeleeDefense = 5, // vanilla 5
+	RangedDefense = 0, // vanilla 0
+	Initiative = 60, // vanilla 60
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
+});
 ::MSU.Table.merge(::Const.Tactical.Actor.GrandDiviner, {
 	XP = 500,
 	ActionPoints = 9,
@@ -92,6 +111,7 @@
 });
 
 // New Reforged Actors
+// Ancient Dead
 ::Const.Tactical.Actor.RF_SkeletonDecanus <- {
 	XP = 325,
 	ActionPoints = 9,
@@ -221,16 +241,16 @@
 // Draugr
 {
 	::Const.Tactical.Actor.RF_Draugr <- {
-		XP = 500,
+		XP = 200,
 		ActionPoints = 9,
-		Hitpoints = 50,
+		Hitpoints = 100,
 		Bravery = 100,
 		Stamina = 100,
-		MeleeSkill = 95,
+		MeleeSkill = 65,
 		RangedSkill = 0,
-		MeleeDefense = 30,
-		RangedDefense = 30,
-		Initiative = 140,
+		MeleeDefense = 10,
+		RangedDefense = 0,
+		Initiative = 55,
 		FatigueEffectMult = 0.0,
 		MoraleEffectMult = 0.0,
 		Armor = [
@@ -240,16 +260,16 @@
 	};
 
 	::Const.Tactical.Actor.RF_DraugrThrall <- {
-		XP = 500,
+		XP = 200,
 		ActionPoints = 9,
-		Hitpoints = 50,
+		Hitpoints = 100,
 		Bravery = 100,
 		Stamina = 100,
-		MeleeSkill = 95,
+		MeleeSkill = 65,
 		RangedSkill = 0,
-		MeleeDefense = 30,
-		RangedDefense = 30,
-		Initiative = 140,
+		MeleeDefense = 10,
+		RangedDefense = 0,
+		Initiative = 55,
 		FatigueEffectMult = 0.0,
 		MoraleEffectMult = 0.0,
 		Armor = [
@@ -259,16 +279,16 @@
 	};
 
 	::Const.Tactical.Actor.RF_DraugrWarrior <- {
-		XP = 500,
+		XP = 350,
 		ActionPoints = 9,
-		Hitpoints = 50,
+		Hitpoints = 135,
 		Bravery = 100,
 		Stamina = 100,
-		MeleeSkill = 95,
+		MeleeSkill = 75,
 		RangedSkill = 0,
-		MeleeDefense = 30,
-		RangedDefense = 30,
-		Initiative = 140,
+		MeleeDefense = 15,
+		RangedDefense = 0,
+		Initiative = 60,
 		FatigueEffectMult = 0.0,
 		MoraleEffectMult = 0.0,
 		Armor = [
@@ -278,16 +298,16 @@
 	};
 
 	::Const.Tactical.Actor.RF_DraugrHuskarl <- {
-		XP = 500,
+		XP = 450,
 		ActionPoints = 9,
-		Hitpoints = 50,
+		Hitpoints = 160,
 		Bravery = 100,
 		Stamina = 100,
-		MeleeSkill = 95,
+		MeleeSkill = 85,
 		RangedSkill = 0,
-		MeleeDefense = 30,
-		RangedDefense = 30,
-		Initiative = 140,
+		MeleeDefense = 25,
+		RangedDefense = 0,
+		Initiative = 65,
 		FatigueEffectMult = 0.0,
 		MoraleEffectMult = 0.0,
 		Armor = [
@@ -297,16 +317,16 @@
 	};
 
 	::Const.Tactical.Actor.RF_DraugrHero <- {
-		XP = 500,
+		XP = 650,
 		ActionPoints = 9,
-		Hitpoints = 50,
+		Hitpoints = 200,
 		Bravery = 100,
 		Stamina = 100,
 		MeleeSkill = 95,
 		RangedSkill = 0,
-		MeleeDefense = 30,
-		RangedDefense = 30,
-		Initiative = 140,
+		MeleeDefense = 35,
+		RangedDefense = 0,
+		Initiative = 70,
 		FatigueEffectMult = 0.0,
 		MoraleEffectMult = 0.0,
 		Armor = [
@@ -318,14 +338,14 @@
 	::Const.Tactical.Actor.RF_DraugrShaman <- {
 		XP = 500,
 		ActionPoints = 9,
-		Hitpoints = 50,
+		Hitpoints = 150,
 		Bravery = 100,
 		Stamina = 100,
-		MeleeSkill = 95,
+		MeleeSkill = 60,
 		RangedSkill = 0,
-		MeleeDefense = 30,
-		RangedDefense = 30,
-		Initiative = 140,
+		MeleeDefense = 10,
+		RangedDefense = 20,
+		Initiative = 75,
 		FatigueEffectMult = 0.0,
 		MoraleEffectMult = 0.0,
 		Armor = [
@@ -334,6 +354,25 @@
 		]
 	};
 }
+// Zombie
+::Const.Tactical.Actor.RF_ZombieHero <- {
+	XP = 350,
+	ActionPoints = 7,
+	Hitpoints = 230,
+	Bravery = 110,
+	Stamina = 100,
+	MeleeSkill = 70,
+	RangedSkill = 0,
+	MeleeDefense = 10,
+	RangedDefense = 0,
+	Initiative = 70,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
+};
 ::Const.Tactical.Actor.RF_Hollenhund <- {
 	XP = 400,
 	ActionPoints = 12,
