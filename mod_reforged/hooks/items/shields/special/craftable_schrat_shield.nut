@@ -24,7 +24,7 @@
 
 	q.onShieldHit = @() { function onShieldHit( _attacker, _skill )
 	{
-		if (!::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()) && this.getCondition() >= this.m.SpawnSaplingConditionThreshold && this.getCondition() > this.m.SpawnSaplingConditionLoss)
+		if (!_skill.isRanged() && !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()) && this.getCondition() >= this.m.SpawnSaplingConditionThreshold && this.getCondition() > this.m.SpawnSaplingConditionLoss)
 		{
 			this.spawnSapling();
 		}
