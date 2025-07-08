@@ -52,7 +52,11 @@ this.rf_deep_impact_skill <- ::inherit("scripts/skills/actives/smite_skill", {
 
 	function onAdded()
 	{
-		this.setBaseValue("ActionPointCost", this.getBaseValue("ActionPointCost") + this.m.TwoHandedAPCostAdd);
+		local weapon = this.getItem();
+		if (!::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.TwoHanded)
+		{
+			this.setBaseValue("ActionPointCost", this.getBaseValue("ActionPointCost") + this.m.TwoHandedAPCostAdd);
+		}
 	}
 
 	function onAfterUpdate( _properties )
