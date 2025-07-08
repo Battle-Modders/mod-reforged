@@ -12,6 +12,7 @@ this.rf_deep_impact_skill <- ::inherit("scripts/skills/actives/smite_skill", {
 		this.m.IconDisabled = "skills/rf_deep_impact_skill_sw.png";
 		this.m.Overlay = "rf_deep_impact_skill";
 		this.m.IsIgnoredAsAOO = true;
+		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 25;
 		this.m.MinRange = 1;
