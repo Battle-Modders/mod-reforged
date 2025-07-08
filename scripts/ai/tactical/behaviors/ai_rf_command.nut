@@ -90,7 +90,7 @@ this.ai_rf_command <- ::inherit("scripts/ai/tactical/behavior", {
 			local score = 0.0;
 			local tile = a.getTile();
 			local distToMe = myTile.getDistanceTo(tile);
-			local zoc = tile.getZoneOfControlCountOtherThan(a.getAlliedFactions()); // vanilla uses getZoneOfOccupationCountOtherThan but I think that's a mistake - Midas
+			local zoc = tile.getZoneOfOccupationCountOtherThan(a.getAlliedFactions());
 
 			score = score + zoc * ::Const.AI.Behavior.PossessUndeadZOCMult;
 			local mag = this.queryOpponentMagnitude(tile, 3); // Vanilla uses ::Const.AI.Behavior.PossessUndeadMagnitudeMaxRange here
