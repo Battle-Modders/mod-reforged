@@ -34,7 +34,7 @@ this.perk_rf_deep_impact <- ::inherit("scripts/skills/skill", {
 		{
 			foreach (s in weapon.m.SkillPtrs)
 			{
-				if (s.getID() == "actives.rf_flaming_arrows")
+				if (s.getID() == "actives.rf_deep_impact")
 				{
 					weapon.removeSkill(s);
 					break;
