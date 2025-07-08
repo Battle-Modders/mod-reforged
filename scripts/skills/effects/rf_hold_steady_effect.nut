@@ -27,13 +27,13 @@ this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(10, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense]")
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.DefenseAdd, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense]")
 				},
 				{
 					id = 11,
 					type = "text",
 					icon = "ui/icons/ranged_defense.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(10, {AddSign = true}) + " [Ranged Defense|Concept.RangeDefense]")
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.DefenseAdd, {AddSign = true}) + " [Ranged Defense|Concept.RangeDefense]")
 				}
 			]);
 		}
@@ -44,7 +44,7 @@ this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(10, {AddSign = true}) + " [Resolve|Concept.Bravery]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.BraveryAdd, {AddSign = true}) + " [Resolve|Concept.Bravery]")
 			});
 		}
 
