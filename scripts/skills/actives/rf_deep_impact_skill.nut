@@ -42,7 +42,7 @@ this.rf_deep_impact_skill <- ::inherit("scripts/skills/actives/smite_skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Costs " + ::MSU.Text.colorizeValue(this.m.TwoHandedAPCostAdd, {AddSign = true, InvertColor = true}) + " [Action Points|Concept.ActionPoints]with two-handed hammers")
+				text = ::Reforged.Mod.Tooltips.parseString("Costs " + ::MSU.Text.colorizeValue(this.m.TwoHandedAPCostAdd, {AddSign = true, InvertColor = true}) + " [Action Points|Concept.ActionPoints] with two-handed hammers")
 			});
 		}
 
