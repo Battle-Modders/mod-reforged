@@ -219,6 +219,20 @@ local vanillaDescriptions = [
 		})
 	},
 	{
+		ID = "perk.captain",
+		Key = "Captain",
+		Description = ::UPD.getDescription({
+			Fluff = "Use a sergeant on the battlefield as an extension of your leadership and to keep everyone in line.",
+			Effects = [{
+				Type = ::UPD.EffectType.Passive,
+				Description = [
+					"Allies from your faction within " + ::MSU.Text.colorPositive("5") + " tiles gain [Resolve|Concept.Bravery] equals to " + ::MSU.Text.colorPositive("15%") + " of your [Resolve.|Concept.Bravery]",
+					"This effect does not stack. Only the Sergeant with the highest [Resolve|Concept.Bravery] will apply the bonus."
+				]
+			}]
+		})
+	},
+	{
 		ID = "perk.rotation",
 		Key = "Rotation",
 		Description = ::UPD.getDescription({
