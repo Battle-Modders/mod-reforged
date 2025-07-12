@@ -49,13 +49,13 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, automatically use [Line Breaker|Skill+line_breaker] for free on the target")
 		});
 
-		if (actor.getCurrentProperties().IsRooted || actor.getCurrentProperties().IsStunned)
+		if (actor.getCurrentProperties().IsRooted)
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while Rooted or [Stunned|Skill+stunned_effect]"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while [Rooted|Concept.Rooted]"))
 			});
 		}
 

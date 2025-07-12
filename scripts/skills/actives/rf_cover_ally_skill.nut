@@ -46,13 +46,13 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 			}
 		]);
 
-		if (this.getContainer().getActor().getCurrentProperties().IsRooted || this.getContainer().getActor().getCurrentProperties().IsStunned)
+		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
 		{
 			ret.push({
 				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while Rooted or [Stunned|Skill+stunned_effect]"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while [Rooted|Concept.Rooted]"))
 			});
 		}
 
