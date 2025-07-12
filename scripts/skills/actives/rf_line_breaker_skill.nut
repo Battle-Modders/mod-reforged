@@ -24,7 +24,7 @@ this.rf_line_breaker_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
-		if (!this.getContainer().getActor().getCurrentProperties().IsRooted || this.getContainer().getActor().getCurrentProperties().IsStunned)
+		if (this.getContainer().getActor().getCurrentProperties().IsRooted || this.getContainer().getActor().getCurrentProperties().IsStunned)
 		{
 			ret.push({
 				id = 10,
