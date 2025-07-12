@@ -24,13 +24,13 @@ this.rf_line_breaker_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
-		if (this.getContainer().getActor().getCurrentProperties().IsRooted || this.getContainer().getActor().getCurrentProperties().IsStunned)
+		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while Rooted or [Stunned|Skill+stunned_effect]"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while [Rooted|Concept.Rooted]"))
 			});
 		}
 
