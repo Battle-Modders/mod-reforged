@@ -46,6 +46,7 @@
 			case "pg.rf_dagger":
 			case "pg.rf_polearm":
 			case "pg.rf_ranged":
+			case "pg.rf_sword":
 				return 0;
 
 			case "pg.rf_unstoppable":

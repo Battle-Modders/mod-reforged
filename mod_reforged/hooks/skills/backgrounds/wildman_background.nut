@@ -23,6 +23,9 @@
 
 		switch (_groupID)
 		{
+			case "pg.rf_sword":
+				return 0;
+
 			case "pg.rf_agile":
 				return 0.9;
 
