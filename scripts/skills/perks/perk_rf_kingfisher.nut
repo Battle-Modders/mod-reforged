@@ -34,7 +34,7 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (this.m.IsSpent || _skill.isRanged() || ::Math.rand(1, 100) > ::Const.Tactical.MV_CurrentAttackInfo.ChanceToHit || !this.isEnabled())
+		if (this.m.IsSpent || _skill.isRanged() || ::MSU.isNull(::Const.Tactical.MV_CurrentAttackInfo) || ::Math.rand(1, 100) > ::Const.Tactical.MV_CurrentAttackInfo.ChanceToHit || !this.isEnabled())
 			return;
 
 		// ScheduleEvent is used because container.m.IsUpdating is true right now, so directly using skills is not good here
