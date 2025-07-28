@@ -123,6 +123,15 @@
 		}}.onAfterInit;
 	});
 
+	::Reforged.HooksMod.hookTree("scripts/entity/tactical/player", function(q) {
+		// Player characters partake in multiple battles but only ever trigger onAfterInit once per session, so we need to reset RF_HasOnSpawnBeenCalled here too
+		q.onCombatFinished = @(__original) { function onCombatFinished()
+		{
+			__original();
+			this.m.RF_HasOnSpawnBeenCalled = false;
+		}}.onCombatFinished;
+	});
+
 	// Alternative approach instead of hooking actor.onResurrected
 	// this will allow the actor to be safely killed inside onSpawn but
 	// requires the code to be a bit uglier AND has an edge case where we can't handle
