@@ -17,6 +17,7 @@
 				this.m.MaxLevelDifference = 4;	// Flasks have 3
 				this.m.IsRanged = true;	// Causes you to be able to sling further when shooting downhill
 				this.m.IsHidden = true;
+				this.m.IsStacking = true;	// Multiple of the same skills are allowed be present in parallel. If this is false, then we run into a bug when trying to sling the same pot twice during the same fight
 				this.m.ProjectileTimeScale = 1.0	// Flasks have 1.5 which makes the projectile slower
 			}
 
