@@ -40,6 +40,9 @@
 				];
 			})
 		}
+	},
+	Training = {
+		PerkGroup = ::MSU.Class.BasicTooltip("Click to focus", "Click to focus on the objectives for this contract")
 	}
 });
 
