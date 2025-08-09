@@ -9,7 +9,7 @@
 	// Vanilla doesn't have a getTooltip function defined for this skill
 	q.getTooltip = @() { function getTooltip()
 	{
-		local ret = this.skill.getDefaultTooltip();
+		local ret = this.skill.getTooltip();
 
 		if (!::MSU.isNull(this.m.Possessed) && this.m.Possessed.isAlive())
 		{
