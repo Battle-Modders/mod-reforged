@@ -38,6 +38,18 @@
 
 		if (ret != null)
 		{
+			if (_elementId == "character-stats.Bravery")
+			{
+				foreach (entry in ret)
+				{
+					if (entry.id == 2 && entry.type == "description")
+					{
+						entry.text = ::String.replace(entry.text, "See also: Morale.", ::Reforged.Mod.Tooltips.parseString("See also: [Morale.|Concept.Morale]"));
+						break;
+					}
+				}
+			}
+
 			ret.extend(this.getBaseAttributesTooltip(_entityId, _elementId, _elementOwner));
 		}
 
