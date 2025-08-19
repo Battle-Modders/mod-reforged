@@ -1,5 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/special/night_effect", function(q) {
 	q.m.HitChancePerTile <- -10;
+	q.m.RangedDefenseMult <- 0.7;
 
 	q.getTooltip = @(__original) { function getTooltip()
 	{
@@ -34,12 +35,15 @@
 	q.onUpdate = @(__original) { function onUpdate( _properties )
 	{
 		local oldRangedSkillMult = _properties.RangedSkillMult;
+		local oldRangedDefense = _properties.RangedDefense;
 		__original(_properties);
 		_properties.RangedSkillMult = oldRangedSkillMult;	// Prevent Vanilla from changing the Ranged Skill
+		_properties.RangedDefense = oldRangedDefense;	// VanillaFix: Vanilla manipulates the flat RangedDefense directly, which will cause wrong effects on characters with negative base ranged defense
 
 		if (_properties.IsAffectedByNight)
 		{
 			_properties.HitChanceAdditionalWithEachTile += this.m.HitChancePerTile;
+			_properties.RangedDefenseMult *= this.m.RangedDefenseMult;
 		}
 	}}.onUpdate;
 });
