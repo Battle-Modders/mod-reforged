@@ -11,14 +11,18 @@
 	{
 		local ret = this.skill.getDefaultTooltip();
 
-		if (!::MSU.isNull(this.m.Slave) && this.m.Slave.isAlive())
+		if (!::MSU.isNull(this.m.Slave) && !::MSU.isNull(this.m.Slave.getContainer()))
 		{
-			ret.push({
-				id = 10,
-				type = "text",
-				icon = "ui/orientation/" + this.m.Slave.getOverlayImage() + ".png",
-				text = "Victim: " + this.m.Slave.getName()
-			});
+			local victim = this.m.Slave.getContainer().getActor();
+			if (this.m.Slave.isAlive())
+			{
+				ret.push({
+					id = 10,
+					type = "text",
+					icon = "ui/orientation/" + victim.getOverlayImage() + ".png",
+					text = "Victim: " + victim.getName(),
+				});
+			}
 		}
 
 		ret.push({
