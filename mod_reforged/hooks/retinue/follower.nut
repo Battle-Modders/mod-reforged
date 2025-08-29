@@ -231,6 +231,9 @@
 		local situation = ::new("scripts/entity/world/settlements/situations/rf_follower_present_situation");
 		situation.setFollower(this);
 		town.addSituation(situation, this.m.CurrentTownTable[_townID].RemainingDays);
+
+		//TODO REMOVE DEBUG
+		::Reforged.Mod.Debug.printLog(format("Follower %s entered %s", this.getName(), town.getName()), "retinue");
 	}
 
 	q.leaveTown <- function(_townID)

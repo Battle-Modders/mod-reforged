@@ -53,6 +53,43 @@
 			PerkTree = [["perk.test"], ["perk.test_nonexisting", "perk.test_child"]],
 		}
 	}
+	Debug = {
+		function addFollowerToTown(_followerID, _townName)
+		{
+			foreach(town in ::World.EntityManager.getSettlements())
+			{
+				if (town.getName() == _townName)
+				{
+					::World.Retinue.getFollower(_followerID).enterTown(town.getID());
+					::logConsole(format("%s entered %s", _followerID, _townName));
+				}
+			}
+		}
+		function getFollowerSpawnOdds()
+		{
+			// TODO add print for starting situation -> what followers are owned, what followers are in which towns
+			local settlementIDToName = {};
+			foreach (settlement in ::World.EntityManager.getSettlements())
+			{
+				settlementIDToName[settlement.getID()] <- settlement.getName();
+			}
+			local followerSpawnOdds = ::World.Retinue.getFollowerSpawnOdds();
+			::logInfo("Spawn odds for all followers:");
+			::MSU.Log.printData(followerSpawnOdds.Table);
+
+			foreach(follower in ::World.Retinue.m.Followers)
+			{
+				local followerID = follower.getID();
+				local townSpawnOdds = ::World.Retinue.getTownSpawnOdds(follower);
+				local outString = "Town spawn odds for follower: " + followerID + "\n";
+				foreach (key, value in townSpawnOdds.Table)
+				{
+					outString += settlementIDToName[key] + " : " + townSpawnOdds[key] + "\n";
+				}
+				::logInfo(outString);
+			}
+		}
+	}
 
 	function getPerk(_perkID)
 	{

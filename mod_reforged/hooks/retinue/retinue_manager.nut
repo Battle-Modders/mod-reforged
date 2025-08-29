@@ -11,7 +11,7 @@
 		}
 
 	}
-
+	//  TODO: Discuss: Should follower items be in asset_manager?
 	q.setFollowerItemCache <- function()
 	{
 		if (!::MSU.isNull(this.m.FollowerToolItemCache))
@@ -83,10 +83,10 @@
 	q.onNewDay = @(__original) function()
 	{
 		__original();
-		this.checkSpawnFollower();
+		this.spawnFollowerIfAllowed();
 	}
 
-	q.checkSpawnFollower <- function()
+	q.spawnFollowerIfAllowed <- function()
 	{
 		if (this.shouldSpawnFollower())
 		{
@@ -100,17 +100,6 @@
 				}
 			}
 		}
-
-		// TODO REMOVE DEBUG
-		foreach(town in ::World.EntityManager.getSettlements())
-		{
-			if (town.getName() == "Lichtmark")
-			{
-				this.getFollower("follower.cook").enterTown(town.getID());
-				this.getFollower("follower.scout").enterTown(town.getID());
-				::logConsole("Cook entered Lichtmark")
-			}
-		}
 	}
 
 	q.shouldSpawnFollower <- function()
@@ -122,13 +111,13 @@
 		local modifiedOdds = ::Math.min(100, baseOdds + renownAdd);
 		local decay = ::Reforged.Retinue.DecayRateForFollowerToSpawnPerDay
 		local chance = baseOdds * ::Math.pow(decay, followerCount);
-		// TODO remove debug print
-		::logInfo("shouldSpawnFollower chance: " + chance)
+
+		::Reforged.Mod.Debug.printLog("shouldSpawnFollower chance: " + chance, "retinue");
 
 		return ::Math.rand(0, 100) < chance;
 	}
 
-	q.getFollowerToSpawn <- function()
+	q.getFollowerSpawnOdds <- function()
 	{
 		local weightedContainerSpawnProbability = ::MSU.Class.WeightedContainer();
 		weightedContainerSpawnProbability.addArray(this.m.Followers.map(@(_follower) [_follower.m.BaseSpawnChance, _follower.getID()]));
@@ -138,16 +127,17 @@
 			follower.adaptFollowerSpawnChance(weightedContainerSpawnProbability);
 
 		}
-		// TODO add other factors (origins...)
-		// TODO remove debug print
-		::MSU.Log.printData(weightedContainerSpawnProbability.Table);
-		::logInfo(weightedContainerSpawnProbability.Total);
+		return weightedContainerSpawnProbability;
+	}
 
-		local chosenFollowerID = weightedContainerSpawnProbability.roll();
+	q.getFollowerToSpawn <- function()
+	{
+		local spawnOdds = this.getFollowerSpawnOdds();
+		local chosenFollowerID = spawnOdds.roll();
 		return chosenFollowerID == null ? null : this.getFollower(chosenFollowerID);
 	}
 
-	q.getTownToSpawnFollowerIn <- function(_follower)
+	q.getTownSpawnOdds <- function(_follower)
 	{
 		local weightedContainerTownProbability = ::MSU.Class.WeightedContainer();
 		weightedContainerTownProbability.addMany(1, ::World.EntityManager.getSettlements().map(@(_town) _town.getID()));
@@ -155,17 +145,19 @@
 		{
 			foreach(townID in follower.getCurrentTownIDs())
 			{
-				weightedContainerTownProbability.setWeight(townID, 0.1);
+				// Reduce chance of town being chosen if it already has follower
+				// If this exact follower is in that exact town, reduce chance to 0
+				weightedContainerTownProbability.setWeight(townID, _follower.getID() == follower.getID() ? 0.0 : 0.1);
 			}
-
 		}
 		_follower.adaptTownWeightsForSpawning(weightedContainerTownProbability);
-		// TODO add other factors (origins...)
-		// TODO remove debug print
-		::MSU.Log.printData(weightedContainerTownProbability.Table);
-		::logInfo(weightedContainerTownProbability.Total);
+		return weightedContainerTownProbability;
+	}
 
-		local chosenTownID = weightedContainerTownProbability.roll();
+	q.getTownToSpawnFollowerIn <- function(_follower)
+	{
+		local spawnOdds = this.getTownSpawnOdds();
+		local chosenTownID = spawnOdds.roll();
 		return chosenTownID == null ? null : this.World.getEntityByID(chosenTownID);
 	}
 
