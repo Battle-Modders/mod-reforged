@@ -44,6 +44,15 @@
 		"perk_test" : "perk.test",
 		"perk_test_child" : "perk.test_child",
 	}
+	FollowerDefs = {
+		"follower.scount" : {
+			PerkTree = [],
+
+		}
+		"follower.debug" : {
+			PerkTree = [["perk.test"], ["perk.test_nonexisting", "perk.test_child"]],
+		}
+	}
 
 	function getPerk(_perkID)
 	{
@@ -145,5 +154,22 @@
 		}
 
 		return null;
+	}
+}
+
+// Validate followerDefs
+foreach(followerID, followerDef in ::Reforged.Retinue.FollowerDefs)
+{
+	foreach(row in followerDef.PerkTree)
+	{
+		for(local x = row.len() - 1; x > -1; x--)
+		{
+			local perkID = row[x];
+			if (!(perkID in ::Reforged.Retinue.PerkDefs))
+			{
+				::logError(format("Reforged: Perk %s of follower %s does not exist! Removing it from the list of possible perks.", perkID, followerID));
+				row.remove(x);
+			}
+		}
 	}
 }

@@ -19,9 +19,14 @@
 		__original();
 		this.m.CurrentTownTable = {};
 		// TODO
-		this.m.PerkTree = [
-		["perk.test"],
-		["perk.test_child"]];
+		if (this.m.ID in ::Reforged.Retinue.FollowerDefs)
+		{
+			this.m.PerkTree = ::Reforged.Retinue.FollowerDefs[this.m.ID].PerkTree;
+		}
+		else
+		{
+			this.m.PerkTree = ::Reforged.Retinue.FollowerDefs["follower.debug"].PerkTree;
+		}
 		this.m.Skills = ::new("scripts/skills/rf_follower_skill_container");
 	}
 
