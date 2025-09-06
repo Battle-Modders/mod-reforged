@@ -28,8 +28,8 @@ this.rf_vampire_lord <- ::inherit("scripts/entity/tactical/enemies/vampire", {
 
 		this.getSprite("body_detail").Visible = false;
 
+		this.m.BaseProperties.setValues(::Const.Tactical.Actor.RF_VampireLord);
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
-		this.m.BaseProperties.ActionPoints = 9;
 		this.m.Skills.getSkillByID("actives.darkflight").setBaseValue("ActionPointCost", 3);
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_terrifying_visage"));
