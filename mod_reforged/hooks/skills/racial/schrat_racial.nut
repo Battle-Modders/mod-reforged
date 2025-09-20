@@ -32,7 +32,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = ::MSU.Text.colorNegative("66%") + " less ranged piercing damage received"
+				text = ::MSU.Text.colorNegative("75%") + " less ranged piercing damage received"
 			},
 			{
 				id = 12,
