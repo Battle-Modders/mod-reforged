@@ -36,7 +36,6 @@ local units = [
 	{
 		ID = "Unit.RF.CaravanDonkey",
 		Troop = "CaravanDonkey",
-		Cost = 10,	// 0 in Vanilla
 		Figure = "cart_02"
 	},
 
@@ -52,12 +51,10 @@ local units = [
 	{
 		ID = "Unit.RF.MilitiaVeteran",
 		Troop = "MilitiaVeteran",
-		Cost = 15	// Vanilla 12
 	},
 	{
 		ID = "Unit.RF.MilitiaCaptain",
 		Troop = "MilitiaCaptain",
-		Cost = 20,
 		StartingResourceMin = 144	// In Vanilla they appear in a group of 144 cost
 	},
 

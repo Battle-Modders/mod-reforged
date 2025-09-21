@@ -91,13 +91,11 @@ local units = [
 		ID = "Unit.RF.SandGolemMEDIUM",
 		Troop = "SandGolemMEDIUM",
 		Figure = "figure_golem_01",
-		Cost = 42	// 35 in Vanilla, 3 Small Golems should cost slightly less than 1 Medium Golem because they always spend their first turn action morphing
 	},
 	{	// In Vanilla these never spawn naturally as part of the line-up
 		ID = "Unit.RF.SandGolemHIGH",
 		Troop = "SandGolemHIGH",
 		Figure = "figure_golem_02",	// I don't know if a 'figure_golem_03' exists
-		Cost = 129	// 70 in Vanilla, -!!-
 	}
 
 	// Possible Hexen
@@ -110,7 +108,6 @@ local units = [
 		ID = "Unit.RF.HexeOneSpider",
 		Troop = "Hexe",
 		Figure = "figure_hexe_01",
-		Cost = 50,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SpiderBodyguards", HardMin = 1, HardMax = 1, IsUsingTopPartyResources = false }
@@ -121,7 +118,6 @@ local units = [
 		ID = "Unit.RF.HexeTwoSpider",
 		Troop = "Hexe",
 		Figure = "figure_hexe_01",
-		Cost = 50,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SpiderBodyguards", HardMin = 2, HardMax = 2, IsUsingTopPartyResources = false }
@@ -132,7 +128,6 @@ local units = [
 		ID = "Unit.RF.HexeOneDirewolf",
 		Troop = "Hexe",
 		Figure = "figure_hexe_01",
-		Cost = 50,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "DirewolfBodyguards", HardMin = 1, HardMax = 1, IsUsingTopPartyResources = false }
@@ -143,7 +138,6 @@ local units = [
 		ID = "Unit.RF.HexeTwoDirewolf",
 		Troop = "Hexe",
 		Figure = "figure_hexe_01",
-		Cost = 50,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "DirewolfBodyguards", HardMin = 2, HardMax = 2, IsUsingTopPartyResources = false }
