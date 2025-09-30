@@ -2167,8 +2167,9 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"When you equip a [Non-Hybrid Weapon|Concept.HybridWeapon] whose perk group you have access to, gain the first, second, and third perk in that weapon\'s perk group if you have the corresponding perk in another weapon\'s perk group, regardless of its tier.",
-				"When you equip a [Hybrid Weapon|Concept.HybridWeapon] whose perk group you have access to, gain the first and second perk in that perk group if you have the corresponding perk in another weapon perk group, regardless of its tier. If you have both weapon perk groups of your [Hybrid Weapon|Concept.HybridWeapon] only gain perks from the alphabetically first perk group."
+				"When you equip a weapon, gain the first, second and third perk in its perk group if you have the corresponding perk in another weapon's perk group, regardless of its tier. However, if the weapon is a [Hybrid Weapon|Concept.HybridWeapon], then only gain the first and second perks from its alphabetically first perk group.",
+				"For [Hybrid Weapons|Concept.HybridWeapon], if you have the first and second perk in any of its perk groups, gain the first and second perks from all of its other perk groups.",
+				"Can only gain [perks|Concept.Perk] that are present in your perk tree."
 			]
 		}]
 	}),
