@@ -92,8 +92,9 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		local equippedWeaponPerkGroups = [];
-		local otherPerkGroups = [];
+		local allWeaponPGs = [];
+		local equippedweaponPGs = [];
+
 		foreach (weaponTypeName, weaponType in ::Const.Items.WeaponType)
 		{
 			if (weaponTypeName == "Firearm")
@@ -103,78 +104,54 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			if (pg == null)
 				continue;
 
-			if (_item.isWeaponType(weaponType))
+			allWeaponPGs.push(pg);
+
+			if (_item.isWeaponType(weaponType) && equippedweaponPGs.find(pg) == null)
 			{
-				if (equippedWeaponPerkGroups.find(pg) == null)
-				{
-					equippedWeaponPerkGroups.push(pg);
-				}
-			}
-			else
-			{
-				otherPerkGroups.push(pg);
+				equippedweaponPGs.push(pg);
 			}
 		}
-
-		otherPerkGroups.sort(@(a, b) a.getID() <=> b.getID());
-		equippedWeaponPerkGroups.sort(@(a, b) a.getID() <=> b.getID());
 
 		local tierRanges = [
 			[1, 3],
 			[4, 4]
 		];
 
+		if (equippedweaponPGs.len() == 1)
+		{
+			tierRanges.push([5, 7]); // The third perk is only granted if you are using a non-hybrid weapon
+		}
+
 		local perkTree = this.getContainer().getActor().getPerkTree();
 
-		if (equippedWeaponPerkGroups.len() == 1)	// The third perk is only granted if you are using a non-hybrid weapon
+		// Remove all tierRanges which are invalid i.e. in which we haven't learned any weapon perk
+		for (local i = tierRanges.len() - 1; i >= 0; i--)
 		{
-			tierRanges.push([5, 7]);
-		}
-		// For hybrid weapons, if you have a perk from any one of the two weapon types'
-		// perk groups you get the perk from the other weapon type's perk groups.
-		else
-		{
-			foreach (pg1 in equippedWeaponPerkGroups)
+			local range = tierRanges[i];
+			local isValid = false;
+			foreach (pg in allWeaponPGs)
 			{
-				if (!perkTree.hasPerkGroup(pg1.getID()))
-					continue;
-
-				foreach (pg2 in equippedWeaponPerkGroups)
+				if (perkTree.hasPerkGroup(pg.getID()) && hasPerkFromGroup(pg, range[0], range[1]))
 				{
-					if (pg1 == pg2 || !perkTree.hasPerkGroup(pg2.getID()))
-						continue;
-
-					foreach (range in tierRanges)
-					{
-						local tierStart = range[0];
-						local tierEnd = range[1];
-						if (hasPerkFromGroup(pg1, tierStart, tierEnd) && !hasPerkFromGroup(pg2, tierStart, tierEnd))
-						{
-							addPerkFromGroup(pg2, tierStart, tierEnd);
-						}
-					}
+					isValid = true;
+					break;
 				}
+			}
+			if (!isValid)
+			{
+				tierRanges.remove(i);
 			}
 		}
 
-		// You get the perk group of the alphabetically first weapon type of this weapon if you
-		// have a perk from a weapon perk group that doesn't belong to this weapon's weapon types.
-		foreach (pg in equippedWeaponPerkGroups)
+		// Add perks from all equippedWeaponPGs in the valid tierRanges
+		foreach (range in tierRanges)
 		{
-			if (perkTree.hasPerkGroup(pg.getID()))
+			foreach (pg in equippedweaponPGs)
 			{
-				foreach (range in tierRanges)
+				if (!hasPerkFromGroup(pg, range[0], range[1]))
 				{
-					foreach (otherPG in otherPerkGroups)
-					{
-						if (hasPerkFromGroup(otherPG, range[0], range[1]))
-						{
-							addPerkFromGroup(pg, range[0], range[1]);
-							break;
-						}
-					}
+					addPerkFromGroup(pg, range[0], range[1]);
 				}
-				break;
 			}
 		}
 	}
