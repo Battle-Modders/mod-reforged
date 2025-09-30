@@ -46,6 +46,14 @@ this.perk_rf_double_strike <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (!this.isSkillValid(_skill))
+		{
+			this.m.IsInEffect = false;
+		}
+	}
+
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		this.m.IsInEffect = this.isSkillValid(_skill);
