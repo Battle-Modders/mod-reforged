@@ -49,13 +49,20 @@
 	q.onAnySkillExecuted = @(__original) { function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		__original(_skill, _targetTile, _targetEntity, _forFree);
-		this.m.HasMovedOrUsedSkill = true;
+
+		if (::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		{
+			this.m.HasMovedOrUsedSkill = true;
+		}
 	}}.onAnySkillExecuted;
 
 	q.onMovementStarted = @(__original) { function onMovementStarted( _tile, _numTiles )
 	{
 		__original(_tile, _numTiles);
-		this.m.HasMovedOrUsedSkill = true;
+		if (::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		{
+			this.m.HasMovedOrUsedSkill = true;
+		}
 	}}.onMovementStarted;
 
 	q.onTurnStart = @(__original) { function onTurnStart()
