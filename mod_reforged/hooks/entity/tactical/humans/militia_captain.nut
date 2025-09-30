@@ -25,11 +25,13 @@
 		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		// Reforged
-		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rally_the_troops", function(o) {
-			o.m.ActionPointCost = 1;
-			o.m.Cooldown = 3;
-		}));
-
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rally_the_troops"));
+		local rtt = this.m.Skills.getSkillByID("actives.rally_the_troops");
+		if (rtt != null)
+		{
+			rtt.setBaseValue("ActionPointCost", 1);
+			rtt.m.Cooldown = 3;
+		}
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_onslaught"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_hold_steady"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_shield_sergeant"));
