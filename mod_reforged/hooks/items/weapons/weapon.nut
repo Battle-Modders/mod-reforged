@@ -53,6 +53,16 @@
 			}
 		}
 
+		if (this.isWeaponType(::Const.Items.WeaponType.Dagger, true, true))
+		{
+			ret.push({
+				id = 30,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("The first swap every [turn|Concept.Turn] to/from this weapon costs no [Action Points|Concept.ActionPoints]")
+			});
+		}
+
 		return ret;
 	}}.getTooltip;
 
