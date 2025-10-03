@@ -64,6 +64,22 @@
 		return ret;
 	}}.convertEntityToUIData;
 
+	// Overwrite, because we completely change the behavior of the original function to fix a vanilla bug
+	// VanillaFix: We ignore completely ignore this.m.IsLocked here to fix the root cause of:
+	//	- getActiveEntity() returning null during a skillcontainers onTurnStart and onTurnEnd events
+	//	- other actors changing the field of view, when moving at the start of an actors turn (e.g. actor being pushed away from reanimating zombies)
+	q.getActiveEntity = @() { function getActiveEntity()
+	{
+		if (this.m.CurrentEntities.len() != 0)
+		{
+			return this.m.CurrentEntities[0];
+		}
+		else
+		{
+			return null;
+		}
+	}}.getActiveEntity;
+
 	// We replace the vanilla function for performance reason and because it is a simple function. We don't want to query an entitys skills twice for no reason.
 	q.convertEntityStatusEffectsToUIData = @() { function convertEntityStatusEffectsToUIData( _entity )
 	{
