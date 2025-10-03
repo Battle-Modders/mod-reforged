@@ -1714,7 +1714,7 @@ local vanillaDescriptions = [
 				"A [$ $|Skill+player_character_trait] has a " + ::MSU.Text.colorPositive("100%") + " chance to succeed."
 			]
 		}],
-		Footer = ::MSU.Text.colorNegative("This perk cannot be picked after you have spent a perk point elsewhere. This perk cannot be refunded.")
+		Footer = ::MSU.Text.colorNegative("This perk cannot be picked after you have spent a perk point elsewhere. This perk cannot be refunded. Triggers at level 7 for Indebted.")
 	}),
 	RF_Onslaught = ::UPD.getDescription({
 		Fluff = "Break their ranks, break their backs, break them all!",
