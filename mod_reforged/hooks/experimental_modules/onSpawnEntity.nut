@@ -5,7 +5,7 @@
 // - This call should happen AFTER the faction, skills and equipment of the entity has been assigned and equipped.
 
 local spawnEntity = ::Tactical.spawnEntity;
-::Tactical.spawnEntity = function( ... )
+::Tactical.spawnEntity = { function spawnEntity( ... )
 {
 	vargv.insert(0, this);
 	local e = spawnEntity.acall(vargv);
@@ -15,7 +15,7 @@ local spawnEntity = ::Tactical.spawnEntity;
 	// equipping of items or adding of skills happens before the callback.
 	::Time.scheduleEvent(::TimeUnit.Virtual, 1, e.RF_onSpawn.bindenv(e), null);
 	return e;
-}
+}}.spawnEntity;
 
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
 	q.onActorSpawned <- { function onActorSpawned( _entity )
