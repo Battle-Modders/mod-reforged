@@ -33,7 +33,7 @@ local units = [
 		ID = "Unit.RF.NecromancerY",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 100, // In Vanilla they appear in a group of 100 cost
+		StartingResourceMin = 100, // In Vanilla they appear in a group of 102 cost
 		Cost = 30,
 		StaticDefs = {
 			Parties = [
@@ -41,11 +41,12 @@ local units = [
 			]
 		}
 	},
+	// NecromancerYY - Appears in a group of 114 cost
 	{
 		ID = "Unit.RF.NecromancerK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 320, // In Vanilla they appear in a group of 320 cost
+		StartingResourceMin = 320, // In Vanilla they appear in a group of 294 cost
 		Cost = 30,
 		StaticDefs = {
 			Parties = [
@@ -57,7 +58,7 @@ local units = [
 		ID = "Unit.RF.NecromancerYK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 360, // In Vanilla they appear in a group of 415 cost
+		StartingResourceMin = 360, // In Vanilla they appear in a group of 404 cost
 		Cost = 30,
 		StaticDefs = {
 			Parties = [
@@ -69,7 +70,7 @@ local units = [
 		ID = "Unit.RF.NecromancerKK",
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
-		StartingResourceMin = 420, // In Vanilla they appear in a group of 415 cost
+		StartingResourceMin = 420, // In Vanilla they appear in a group of 320 cost
 		Cost = 30,
 		StaticDefs = {
 			Parties = [
