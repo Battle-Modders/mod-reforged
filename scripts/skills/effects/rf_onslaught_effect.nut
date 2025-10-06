@@ -1,6 +1,6 @@
 this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		TurnsLeft = 1,
+		RoundsLeft = 2,
 		IsSpent = false,
 		LineBreakerAdded = false
 	},
@@ -38,6 +38,12 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Gain one use of the [Linebreaker|Skill+rf_line_breaker_skill] skill that costs " + ::MSU.Text.colorPositive("1") + " fewer [Action Point|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive("10") + " less [Fatigue|Concept.Fatigue]")
+			},
+			{
+				id = 20,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Will expire in " + this.m.RoundsLeft + " [round(s)|Concept.Round]")
 			}
 		]);
 		
@@ -82,9 +88,9 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onTurnStart()
+	function onRoundEnd()
 	{
-		if (--this.m.TurnsLeft == 0)
+		if (--this.m.RoundsLeft == 0)
 		{
 			if (this.m.LineBreakerAdded) this.getContainer().removeByID("actives.rf_line_breaker");
 			this.removeSelf();

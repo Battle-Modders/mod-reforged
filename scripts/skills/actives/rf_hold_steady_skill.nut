@@ -29,7 +29,7 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("You and your allies within " + ::MSU.Text.colorPositive(4) + " tiles gain the [Holding Steady|Skill+rf_hold_steady_effect] effect for one [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("You and your allies within " + ::MSU.Text.colorPositive(4) + " tiles gain the [Holding Steady|Skill+rf_hold_steady_effect] effect for 2 [rounds|Concept.Round]")
 		});
 
 		ret.push({
@@ -90,24 +90,7 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			if (ally.getID() == _user.getID())
-			{
-				this.getContainer().add(::new("scripts/skills/effects/rf_hold_steady_effect"));
-			}
-			else
-			{
-				if (ally.getTile().getDistanceTo(myTile) <= 4)
-				{
-					local effect = ::new("scripts/skills/effects/rf_hold_steady_effect");
-					if (!ally.isTurnStarted() && !ally.isTurnDone())
-					{
-						// If the ally has not started their turn yet in this round, add one more turn
-						// so that the effect doesn't immediately expire upon the ally's turn starting
-						effect.m.TurnsLeft++;
-					}
-					ally.getSkills().add(effect);
-				}
-			}
+			ally.getSkills().add(::new("scripts/skills/effects/rf_hold_steady_effect"));
 		}
 
 		return true;

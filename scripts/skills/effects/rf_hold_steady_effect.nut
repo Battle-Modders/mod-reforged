@@ -1,6 +1,6 @@
 this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		TurnsLeft = 1,
+		RoundsLeft = 2,
 		DefenseAdd = 10,
 		BraveryAdd = 10
 	},
@@ -54,6 +54,13 @@ this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Immune to being [Stunned|Skill+stunned_effect], Knocked Back or Grabbed")
 		});
+
+		ret.push({
+			id = 20,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire in " + this.m.RoundsLeft + " [round(s)|Concept.Round]")
+		});
 		
 		return ret;
 	}
@@ -67,8 +74,8 @@ this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 		_properties.IsImmuneToKnockBackAndGrab = true;
 	}
 
-	function onTurnStart()
+	function onRoundEnd()
 	{
-		if (--this.m.TurnsLeft == 0) this.removeSelf();
+		if (--this.m.RoundsLeft == 0) this.removeSelf();
 	}
 });
