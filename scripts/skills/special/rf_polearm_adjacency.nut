@@ -82,6 +82,7 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 			if (!myTile.hasNextTile(i)) continue;
 			local nextTile = myTile.getNextTile(i);
 			if (!nextTile.IsOccupiedByActor) continue;
+			if (::Math.abs(myTile.Level - nextTile.Level) > 1) continue;	// Target is too low or too high to matter for us
 
 			local nextEntity = nextTile.getEntity();
 			if (nextEntity.isAlliedWith(user))
