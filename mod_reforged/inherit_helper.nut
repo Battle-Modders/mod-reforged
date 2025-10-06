@@ -53,21 +53,19 @@
 
 			function onUse( _user, _targetTile )
 			{
+				local effectDelay = 1;
 				if (this.m.IsShowingProjectile && this.m.ProjectileType != 0)
 				{
-					local flip = !this.m.IsProjectileRotated && _targetTile.Pos.X > _user.getPos().X;
-
 					if (_user.getTile().getDistanceTo(_targetTile) >= ::Const.Combat.SpawnProjectileMinDist)
 					{
-						::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
+						local flip = !this.m.IsProjectileRotated && _targetTile.Pos.X > _user.getPos().X;
+						effectDelay = ::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 					}
 				}
 
 				this.getItem().removeSelf(); // Vanilla unequips the offhand item. But we instead need to consume the respective Item from whereever it is
 
-				local delayPerDistance = 80.0;
-				local tileDistance = _user.getTile().getDistanceTo(_targetTile);	// Vanilla uses a fixed
-				::Time.scheduleEvent(::TimeUnit.Real, delayPerDistance * tileDistance, this.onApply.bindenv(this), {
+				::Time.scheduleEvent(::TimeUnit.Virtual, effectDelay, this.onApply.bindenv(this), {
 					Skill = this,
 					User = _user,
 					TargetTile = _targetTile
