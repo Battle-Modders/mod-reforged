@@ -6,6 +6,7 @@ this.rf_draugr_shaman <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", 
 
 		this.m.Type = ::Const.EntityType.RF_DraugrShaman;
 		this.m.XP = ::Const.Tactical.Actor.RF_DraugrShaman.XP;
+		this.m.ResurrectionValue = 10.5;
 		this.setName(::Const.Strings.EntityName[this.m.Type]);
 		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_draugr_shaman_agent");
 		this.m.AIAgent.setActor(this);
@@ -14,7 +15,16 @@ this.rf_draugr_shaman <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", 
 	function onInit()
 	{
 		this.rf_draugr.onInit();
+		local b = this.m.BaseProperties;
+		b.setValues(::Const.Tactical.Actor.RF_DraugrShaman);
+		this.m.ActionPoints = b.ActionPoints;
+		this.m.Hitpoints = b.Hitpoints;
+		this.m.CurrentProperties = clone b;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Skills.add(::new("scripts/skills/actives/rf_ancestral_summons_skill"));
+		this.m.Skills.add(::new("scripts/skills/effects/rf_barrow_chant_effect"));
+		this.m.Skills.add(::new("scripts/skills/effects/rf_unnerving_presence_effect"));
 	}
 
 	function assignRandomEquipment()
@@ -52,9 +62,5 @@ this.rf_draugr_shaman <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", 
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/rf_draugr/rf_draugr_shaman_staff"));
 		}
-	}
-
-	function onSpawned()
-	{
 	}
 });

@@ -3,7 +3,7 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 		InjuryType = 1,
 		Surcoat = null,
 		ResurrectionChance = 66,
-		ResurrectionValue = 2.0,
+		ResurrectionValue = 5.0,
 		ResurrectWithScript = "scripts/entity/tactical/enemies/zombie",
 		IsResurrectingOnFatality = false,
 		IsCreatingAgent = true,
@@ -204,6 +204,9 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(::new("scripts/skills/actives/hand_to_hand"));
 		this.m.Skills.add(::new("scripts/skills/racial/rf_draugr_racial"));
 		this.m.Skills.add(::new("scripts/skills/effects/rf_frostbound_effect"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 
 		this.m.ExcludedInjuries.extend(::Const.Injury.ExcludedInjuries.get(::Const.Injury.ExcludedInjuries.RF_Undead));
 	}

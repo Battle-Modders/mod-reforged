@@ -5,7 +5,7 @@ this.rf_draugr_runic_metal_armor <- ::inherit("scripts/items/armor/armor", {
 		this.armor.create();
 		this.m.ID = "armor.body.rf_draugr_runic_metal_armor";
 		this.m.Name = "Barrowkin Runic Metal Armor";
-		this.m.Description = "";
+		this.m.Description = "Thick, crude and rune-inscribed overlapping metal plates add some reasonable but weighty protection to this leather harness.";
 		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.IsDroppedAsLoot = false;
 		this.m.ShowOnCharacter = true;

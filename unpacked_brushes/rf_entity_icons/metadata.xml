@@ -65,10 +65,10 @@
 
 	<sprite id="icon_rf_draugr_sword_01" offsetY="35" ic="FF4E636D" width="130" height="142" img="icons\icon_rf_draugr_sword_01.png" left="-4" right="52" top="-64" bottom="20" />
 	<sprite id="icon_rf_draugr_sword_01_bloodied" offsetY="35" ic="FF4E636D" width="130" height="142" img="icons\icon_rf_draugr_sword_01_bloodied.png" left="-4" right="52" top="-64" bottom="20" />
-	<sprite id="icon_rf_draugr_sword_2h_01" offsetY="35" ic="FF656567" width="130" height="142" img="icons\icon_rf_draugr_sword_2h_01.png" left="-67" right="19" top="-61" bottom="63" />
-	<sprite id="icon_rf_draugr_sword_2h_01_bloodied" offsetY="35" ic="FF656567" width="130" height="142" img="icons\icon_rf_draugr_sword_2h_01_bloodied.png" left="-67" right="19" top="-61" bottom="63" />
-	<sprite id="icon_rf_draugr_long_spear_01" offsetY="35" ic="FF33404B" width="150" height="160" img="icons\icon_rf_draugr_long_spear_01.png" left="-55" right="13" />
-	<sprite id="icon_rf_draugr_long_spear_01_bloodied" offsetY="35" ic="FF33404B" width="150" height="160" img="icons\icon_rf_draugr_long_spear_01_bloodied.png" left="-55" right="13" />
+	<sprite id="icon_rf_draugr_greatsword_named_01" offsetY="35" ic="FF656567" width="130" height="142" img="icons\icon_rf_draugr_greatsword_named_01.png" left="-67" right="19" top="-61" bottom="63" />
+	<sprite id="icon_rf_draugr_greatsword_named_01_bloodied" offsetY="35" ic="FF656567" width="130" height="142" img="icons\icon_rf_draugr_greatsword_named_01_bloodied.png" left="-67" right="19" top="-61" bottom="63" />
+	<sprite id="icon_rf_draugr_voulge_01" offsetY="35" ic="FF33404B" width="150" height="160" img="icons\icon_rf_draugr_voulge_01.png" left="-55" right="13" />
+	<sprite id="icon_rf_draugr_voulge_01_bloodied" offsetY="35" ic="FF33404B" width="150" height="160" img="icons\icon_rf_draugr_voulge_01_bloodied.png" left="-55" right="13" />
 	<sprite id="icon_rf_draugr_greataxe_01" offsetY="35" ic="FF222F45" width="160" height="142" img="icons\icon_rf_draugr_greataxe_01.png" left="-70" right="14" top="-54" bottom="40" />
 	<sprite id="icon_rf_draugr_greataxe_01_bloodied" offsetY="35" ic="FF222F45" width="160" height="142" img="icons\icon_rf_draugr_greataxe_01_bloodied.png" left="-70" right="14" top="-54" bottom="40" />
 	<sprite id="icon_rf_draugr_shaman_staff_01" offsetY="35" ic="FF343439" width="144" height="142" img="icons\icon_rf_draugr_shaman_staff_01.png" left="-85" right="9" top="-65" bottom="83" />

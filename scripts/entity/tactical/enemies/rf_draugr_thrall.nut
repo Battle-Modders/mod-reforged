@@ -5,6 +5,21 @@ this.rf_draugr_thrall <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", 
 		this.m.Type = ::Const.EntityType.RF_DraugrThrall;
 		this.m.XP = ::Const.Tactical.Actor.RF_DraugrThrall.XP;
 		this.rf_draugr.create();
+		this.m.ResurrectionChance = 66,
+		this.m.ResurrectionValue = 5.0;
+		this.m.ResurrectWithScript = "scripts/entity/tactical/enemies/rf_draugr_thrall";
+	}
+
+	function onInit()
+	{
+		this.rf_draugr.onInit();
+		local b = this.m.BaseProperties;
+		b.setValues(::Const.Tactical.Actor.RF_DraugrThrall);
+		this.m.ActionPoints = b.ActionPoints;
+		this.m.Hitpoints = b.Hitpoints;
+		this.m.CurrentProperties = clone b;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 	}
 
 	function assignRandomEquipment()
@@ -42,5 +57,10 @@ this.rf_draugr_thrall <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", 
 
 	function onSpawned()
 	{
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+		}
 	}
 });

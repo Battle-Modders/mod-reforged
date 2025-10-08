@@ -1,6 +1,7 @@
 this.rf_draugr_racial <- ::inherit("scripts/skills/skill", {
 	m = {
-		DamageReductionPerMoraleState = 0.1
+		DamageReductionPerMoraleState = 0.1,
+		DamageMult_Burning = 1.5
 	},
 	function create()
 	{
@@ -15,10 +16,16 @@ this.rf_draugr_racial <- ::inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/campfire.png",
+			text = ::MSU.Text.colorizeMultWithText(this.m.DamageMult_Burning, {InvertColor = true}) + " burning damage received"
+		});
 		if (this.m.DamageReductionPerMoraleState != 0)
 		{
 			ret.push({
-				id = 10,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Receive " + ::MSU.Text.colorizePct(this.m.DamageReductionPerMoraleState) + " less melee damage per [morale|Concept.Morale] state the attacker is below Steady")
@@ -44,6 +51,11 @@ this.rf_draugr_racial <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
+		if (_hitInfo.DamageType == ::Const.Damage.DamageType.Burning)
+		{
+			_properties.DamageReceivedRegularMult *= this.m.DamageMult_Burning;
+		}
+
 		if (_attacker == null || _skill == null || !_skill.isAttack() || _skill.isRanged())
 			return;
 

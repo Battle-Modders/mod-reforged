@@ -5,7 +5,7 @@ this.rf_draugr_light_horned_helmet <- ::inherit("scripts/items/helmets/helmet", 
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_draugr_light_horned_helmet";
 		this.m.Name = "Barrowkin Light Horned Helmet";
-		this.m.Description = "";
+		this.m.Description = "A metal helmet with decorative horns blending reasonable ironwork with barbarous ornamentaion.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;

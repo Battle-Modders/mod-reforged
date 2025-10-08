@@ -5,7 +5,7 @@ this.rf_draugr_skull_headdress <- ::inherit("scripts/items/helmets/helmet", {
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_draugr_skull_headdress";
 		this.m.Name = "Barrowkin Skull Headdress";
-		this.m.Description = "";
+		this.m.Description = "A ram's skull built into a headdress, likely used by some spiritual leader.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;

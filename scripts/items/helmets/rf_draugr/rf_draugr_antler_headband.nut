@@ -5,7 +5,7 @@ this.rf_draugr_antler_headband <- ::inherit("scripts/items/helmets/helmet", {
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_draugr_antler_headband";
 		this.m.Name = "Barrowkin Antler Headband";
-		this.m.Description = "";
+		this.m.Description = "A rough leather headband decorated with antler points";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = false;

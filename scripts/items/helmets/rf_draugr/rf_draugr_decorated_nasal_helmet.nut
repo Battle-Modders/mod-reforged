@@ -5,7 +5,7 @@ this.rf_draugr_decorated_nasal_helmet <- ::inherit("scripts/items/helmets/helmet
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_draugr_decorated_nasal_helmet";
 		this.m.Name = "Barrowkin Decorated Nasal Helmet";
-		this.m.Description = "";
+		this.m.Description = "This venerable helmet is of exquisite craftsmanship and is topped with an ornamental boar figure.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;

@@ -5,7 +5,7 @@ this.rf_draugr_antler_helmet <- ::inherit("scripts/items/helmets/helmet", {
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_draugr_antler_helmet";
 		this.m.Name = "Barrowkin Antler Helmet";
-		this.m.Description = "";
+		this.m.Description = "This well-crafted ancient helmet sports a pair of large antlers that would cut a frightening figure on a dark and stormy night.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = true;

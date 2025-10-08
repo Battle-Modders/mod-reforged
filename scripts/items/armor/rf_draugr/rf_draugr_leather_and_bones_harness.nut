@@ -5,7 +5,7 @@ this.rf_draugr_leather_and_bones_harness <- ::inherit("scripts/items/armor/armor
 		this.armor.create();
 		this.m.ID = "armor.body.rf_draugr_leather_and_bones_harness";
 		this.m.Name = "Barrowkin Leather and Bones Harness";
-		this.m.Description = "";
+		this.m.Description = "Animal bones add some protection to this otherwise primitive leather armor.";
 		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.IsDroppedAsLoot = false;
 		this.m.ShowOnCharacter = true;

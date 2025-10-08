@@ -5,23 +5,24 @@ this.rf_draugr_cleaver <- ::inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.rf_draugr_cleaver";
 		this.m.Name = "Barrowkin Cleaver";
-		this.m.Description = "A long two-handed thrusting blade perfect for lunging strikes.";
+		this.m.Description = "Ornamentation on this otherwise crude blade suggests a culture with reverence for that sort of thing.";
 		this.m.SlotType = ::Const.ItemSlot.Mainhand;
 		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.OneHanded;
+		this.m.IsDoubleGrippable = true;
+		this.m.IsAgainstShields = true;
 		this.m.Variant = ::Math.rand(1, 3);
 		this.updateVariant();
-		this.m.Value = 2400;
+		this.m.Value = 650;
 		this.m.Condition = 60.0;
 		this.m.ConditionMax = 60.0;
 		this.m.StaminaModifier = -10;
-		this.m.RegularDamage = 55;
-		this.m.RegularDamageMax = 70;
-		this.m.ArmorDamageMult = 0.3;
+		this.m.RegularDamage = 30;
+		this.m.RegularDamageMax = 45;
+		this.m.ArmorDamageMult = 0.8;
 		this.m.DirectDamageMult = 0.25;
-		this.m.DirectDamageAdd = 0.35; // Brings the total to 60%
-		this.m.ChanceToHitHead = -25;
-		this.m.Reach = 5;
+		this.m.DirectDamageAdd = 0.05;
+		this.m.Reach = 3;
 	}
 
 	function updateVariant()

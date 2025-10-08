@@ -5,7 +5,7 @@ this.rf_draugr_claw_headband <- ::inherit("scripts/items/helmets/helmet", {
 		this.helmet.create();
 		this.m.ID = "armor.head.rf_draugr_claw_headband";
 		this.m.Name = "Barrowkin Claw Headband";
-		this.m.Description = "";
+		this.m.Description = "A rough leather headband decorated with bestial claws.";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.HideHair = false;
