@@ -11,7 +11,8 @@ this.rf_zombie_orc_warlord <- ::inherit("scripts/entity/tactical/enemies/rf_zomb
 		this.m.SoundPitch *= 0.8;
 
 		this.m.ResurrectWithScript = "scripts/entity/tactical/enemies/rf_zombie_orc_warlord";
-
+		this.m.ResurrectionValue = 13.5;
+		this.m.ResurrectionChance = 90,
 		this.m.IsResurrectingOnFatality = true;
 	}
 
@@ -52,6 +53,10 @@ this.rf_zombie_orc_warlord <- ::inherit("scripts/entity/tactical/enemies/rf_zomb
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battering_ram"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_stalwart"));
 	}
 
 	function assignRandomEquipment()
@@ -77,6 +82,20 @@ this.rf_zombie_orc_warlord <- ::inherit("scripts/entity/tactical/enemies/rf_zomb
 			if (::Math.rand(1, 100) <= 50)
 			{
 				item.setCondition(item.getConditionMax() * 0.5 - 1);
+			}
+		}
+	}
+
+	function onSpawned()
+	{
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
+			{
+				this.m.Skills.removeByID("actives.rf_bearded_blade");
+				this.m.Skills.removeByID("actives.rf_hook_shield");
 			}
 		}
 	}

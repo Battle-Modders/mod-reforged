@@ -254,8 +254,76 @@
 		0
 	]
 };
-::Const.Tactical.Actor.RF_ZombieOrc <- ::MSU.Table.merge(::MSU.deepClone(::Const.Tactical.Actor.ZombieYeoman), { Stamina = 200 });
-::Const.Tactical.Actor.RF_ZombieOrcYoung <- ::MSU.Table.merge(::MSU.deepClone(::Const.Tactical.Actor.OrcYoung), { FatigueEffectMult = 0.0, ActionPoints = 7, Hitpoints = 200 });
-::Const.Tactical.Actor.RF_ZombieOrcBerserker <- ::MSU.Table.merge(::MSU.deepClone(::Const.Tactical.Actor.OrcBerserker), { FatigueEffectMult = 0.0, ActionPoints = 7, Hitpoints = 400 });
-::Const.Tactical.Actor.RF_ZombieOrcWarrior <- ::MSU.Table.merge(::MSU.deepClone(::Const.Tactical.Actor.OrcWarrior), { FatigueEffectMult = 0.0, ActionPoints = 7, Hitpoints = 400 });
-::Const.Tactical.Actor.RF_ZombieOrcWarlord <- ::MSU.Table.merge(::MSU.deepClone(::Const.Tactical.Actor.OrcWarlord), { FatigueEffectMult = 0.0, ActionPoints = 7, Hitpoints = 500 });
+// Zombie Orc
+::Const.Tactical.Actor.RF_ZombieOrcYoung <- {
+	XP = 200,
+	ActionPoints = 6,
+	Hitpoints = 200,
+	Bravery = 100,
+	Stamina = 100,
+	MeleeSkill = 50,
+	RangedSkill = 0,
+	MeleeDefense = -10,
+	RangedDefense = -10,
+	Initiative = 60,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
+};
+::Const.Tactical.Actor.RF_ZombieOrcWarrior <- {
+	XP = 350,
+	ActionPoints = 7,
+	Hitpoints = 300,
+	Bravery = 90,
+	Stamina = 100,
+	MeleeSkill = 60,
+	RangedSkill = 0,
+	MeleeDefense = -15,
+	RangedDefense = -15,
+	Initiative = 60,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
+};
+::Const.Tactical.Actor.RF_ZombieOrcBerserker <- {
+	XP = 300,
+	ActionPoints = 7,
+	Hitpoints = 350,
+	Bravery = 90,
+	Stamina = 100,
+	MeleeSkill = 60,
+	RangedSkill = 0,
+	MeleeDefense = 0,
+	RangedDefense = -5,
+	Initiative = 60,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
+};
+::Const.Tactical.Actor.RF_ZombieOrcWarlord <- {
+	XP = 450,
+	ActionPoints = 7,
+	Hitpoints = 600,
+	Bravery = 130,
+	Stamina = 100,
+	MeleeSkill = 70,
+	RangedSkill = 0,
+	MeleeDefense = -15,
+	RangedDefense = -15,
+	Initiative = 60,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
+};

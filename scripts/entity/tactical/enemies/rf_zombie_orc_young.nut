@@ -4,10 +4,10 @@ this.rf_zombie_orc_young <- ::inherit("scripts/entity/tactical/enemies/rf_zombie
 		this.m.Type = ::Const.EntityType.RF_ZombieOrcYoung;
 		this.m.XP = ::Const.Tactical.Actor.RF_ZombieOrcYoung.XP;
 		this.rf_zombie_orc.create();
-
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(25, -25);
-
+		this.m.ResurrectionValue = 4.5;
+		this.m.ResurrectionChance = 66,
 		this.m.ResurrectWithScript = "scripts/entity/tactical/enemies/rf_zombie_orc_young";
 	}
 

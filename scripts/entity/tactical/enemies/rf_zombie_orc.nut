@@ -613,9 +613,14 @@ this.rf_zombie_orc <- ::inherit("scripts/entity/tactical/actor", {
 
 		this.getSprite("injury").setBrush(this.getZombifyBrushNameHead());
 		this.getSprite("body_injury").setBrush(this.getZombifyBrushNameBody());
-
+		this.m.Skills.add(::new("scripts/skills/racial/rf_orc_racial"));
+		this.m.Skills.add(::new("scripts/skills/racial/rf_zombie_racial"));
 		this.m.Skills.add(::new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(::new("scripts/skills/actives/rf_zombie_orc_bite_skill"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_wear_them_down"));
 	}
 });
 
