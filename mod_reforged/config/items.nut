@@ -31,6 +31,9 @@
 		local addSkill = _item.addSkill;
 		_item.addSkill = @( _skill ) ret.push(_skill);
 
+		local removeSkill = _item.removeSkill;
+		_item.removeSkill = @( _skill ) ::MSU.Array.removeByValue(ret, _skill);
+
 		// Switcheroo to prevent addition of the generic_item skill as we don't want that in the returned array
 		local addGenericItemSkill = _item.addGenericItemSkill;
 		_item.addGenericItemSkill = @() null;
@@ -53,6 +56,7 @@
 
 		// Revert all switcheroos
 		_item.addSkill = addSkill;
+		_item.removeSkill = removeSkill;
 		_item.addGenericItemSkill = addGenericItemSkill;
 		player.onAppearanceChanged = onAppearanceChanged;
 		_item.updateAppearance = updateAppearance;
