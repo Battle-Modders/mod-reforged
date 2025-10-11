@@ -7,7 +7,7 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_dynamic_duo_shuffle";
 		this.m.Name = "Shuffle";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Once per turn, switch places with your partner for free, provided neither you nor your partner is [stunned|Skill+stunned_effect] or rooted.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Once per turn, switch places with your partner, provided neither you nor your partner is [stunned|Skill+stunned_effect] or rooted.");
 		this.m.Icon = "skills/rf_dynamic_duo_shuffle_skill.png";
 		this.m.IconDisabled = "skills/rf_dynamic_duo_shuffle_skill_sw.png";
 		this.m.Overlay = "rf_dynamic_duo_shuffle_skill";
@@ -21,10 +21,26 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsTargeted = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsUsingHitchance = false;
-		this.m.ActionPointCost = 0;
-		this.m.FatigueCost = 0;
+		this.m.ActionPointCost = 1;
+		this.m.FatigueCost = 2;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
+	}
+
+	// Vanilla does not ensure a non-negative value return (should probably be fixed over at MSU)
+	function getActionPointCost()
+	{
+		return ::Math.max(0, this.skill.getActionPointCost());
+	}
+
+	function getCostString()
+	{
+		if (this.getContainer().getActor().isPlacedOnMap())
+			return this.skill.getCostString();
+
+		local ret = "Costs " + (this.m.ActionPointCost == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.ActionPointCost, {AddSign = true, InvertColor = true})) + " [Action Point(s)|Concept.ActionPoints] and builds ";
+		ret += (this.m.FatigueCost == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCost, {AddSign = true, InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
+		return ::Reforged.Mod.Tooltips.parseString(ret);
 	}
 
 	function getTooltip()
@@ -121,6 +137,17 @@ this.rf_dynamic_duo_shuffle_skill <- ::inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		return actor.isPlacedOnMap() && actor.getTile().getDistanceTo(partner.getTile()) == 1;
+	}
+
+	function onAfterUpdate( _properties )
+	{
+		local actor = this.getContainer().getActor();
+		if (!actor.isPlacedOnMap())
+			return;
+
+		local myTile = actor.getTile();
+		this.m.ActionPointCost += actor.getActionPointCosts()[myTile.Type];
+		this.m.FatigueCost += actor.getFatigueCosts()[myTile.Type];
 	}
 
 	function onTurnStart()
