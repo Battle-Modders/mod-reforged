@@ -20,26 +20,8 @@ this.rf_line_breaker_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.LineBreaker;
 	}
 
-	function getTooltip()
-	{
-		local ret = this.skill.getDefaultUtilityTooltip();
-
-		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
-		{
-			ret.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while [Rooted|Concept.Rooted]"))
-			});
-		}
-
-		return ret;
-	}
-
 	function isUsable()
 	{
-		local actor = this.getContainer().getActor();
-		return this.skill.isUsable() && (this.m.IsForceEnabled || actor.isArmedWithShield()) && !actor.getCurrentProperties().IsRooted && !actor.getCurrentProperties().IsStunned;
+		return this.line_breaker.isUsable() && (this.m.IsForceEnabled || this.getContainer().getActor().isArmedWithShield());
 	}
 });

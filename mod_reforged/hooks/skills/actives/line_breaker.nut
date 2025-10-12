@@ -22,8 +22,24 @@
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorNegative("10") + " extra [fatigue|Concept.Fatigue]")
 		});
+
+		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
+		{
+			ret.push({
+				id = 20,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while [rooted|Concept.Rooted]"))
+			});
+		}
+
 		return ret;
 	}}.getTooltip;
+
+	q.isUsable = @(__original) { function isUsable()
+	{
+		return __original() && !this.getContainer().getActor().getCurrentProperties().IsRooted;
+	}}.isUsable;
 
 	// Fixes vanilla issue where Line Breaker cannot push characters off ledges
 	q.findTileToKnockBackTo = @() { function findTileToKnockBackTo( _userTile, _targetTile )
