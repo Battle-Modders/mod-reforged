@@ -1956,7 +1956,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 	}),
 	RF_SwordmasterMetzger = ::UPD.getDescription({
 		Fluff = "A sword, too, can take someone\'s head off just fine!",
-		Requirement = "Sword"
+		Requirement = "Non-Fencing Sword"
 		Effects = [
 			{
 				Type = ::UPD.EffectType.Passive,
