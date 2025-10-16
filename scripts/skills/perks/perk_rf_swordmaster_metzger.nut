@@ -13,7 +13,7 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 
 	function isEnabled()
 	{
-		return this.perk_rf_swordmaster_abstract.isEnabled() && !this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.RF_Fencing);
+		return this.m.IsForceEnabled || (this.perk_rf_swordmaster_abstract.isEnabled() && !this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.RF_Fencing));
 	}
 
 	function onAdded()
