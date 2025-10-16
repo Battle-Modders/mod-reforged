@@ -3,7 +3,12 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 		MeleeSkillModifierPerEnemy = -10,
 		MeleeSkillModifierPerAlly = 0,
 		NumEnemiesToIgnore = 0,
-		NumAlliesToIgnore = 0
+		NumAlliesToIgnore = 0,
+
+		// Temporarily store the MeleeSkillModifier before execution of a skill
+		// so that skills which teleport you (e.g. Lunge) use the malus as calculated
+		// and shown in the hit factors when planning the skill execution.
+		__MeleeSkillModifier = 0
 	},
 	function create()
 	{
@@ -59,9 +64,19 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 		return _skill.getMaxRange() > 1 && _skill.isUsingHitchance() && _skill.isAttack() && !_skill.isRanged() && _skill.m.IsWeaponSkill;
 	}
 
+	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		this.__MeleeSkillModifier = this.getModifierForSkill(_skill);
+	}
+
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		_properties.MeleeSkill += this.getModifierForSkill(_skill);
+		_properties.MeleeSkill += this.__MeleeSkillModifier;
+	}
+
+	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		this.__MeleeSkillModifier = 0;
 	}
 
 	function getModifierForSkill( _skill )
