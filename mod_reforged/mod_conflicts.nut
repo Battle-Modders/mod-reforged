@@ -1,7 +1,5 @@
 ::Reforged.HooksMod.conflictWith([
 	"mod_legends",
-	// Weapon Mastery Standardization by LordMidas. https://www.nexusmods.com/battlebrothers/mods/366
-	"mod_WMS [Is already included and/or enhanced in Reforged]",
 	// Better Fencing by LordMidas. https://www.nexusmods.com/battlebrothers/mods/369
 	"mod_betterFencing [Is already included and/or enhanced in Reforged]",
 	// Tactical hit factors by MrBrut. https://www.nexusmods.com/battlebrothers/mods/283
