@@ -263,6 +263,23 @@
 	// We use an array because one callback may trigger another and we to support a stack of those.
 	q.m.RF_switchEntitiesCallbacks <- [];
 
+	// Force the currently active entity to throw away his picked behavior and reevalute if anyone resurrected
+	// This will solve situations where they otherwise ignore freshly resurrected zombie and disrespect their zone of control
+	q.onResurrected = @(__original) { function onResurrected( _tile )
+	{
+		__original(_tile);
+
+		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
+		if (activeEntity != null)
+		{
+			activeEntity.getAIAgent().m.RF_AgentState.invalidate(format("%s (%i).onResurrected", this.getName(), this.getID()));
+		}
+		else
+		{
+			::logError(format("onResurrected activeEntity null. %s (%i) ", this.getName(), this.getID()));
+		}
+	}}.onResurrected;
+
 	// Force the currently active entity to throw away his picked behavior and reevalute if anyone moved
 	q.onMovementFinish = @(__original) { function onMovementFinish( _tile )
 	{
