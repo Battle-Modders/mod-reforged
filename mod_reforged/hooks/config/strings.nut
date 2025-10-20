@@ -895,9 +895,9 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Receive a [morale check|Concept.Morale] at the start of every [turn|Concept.Turn] if you are [Confident|Concept.Morale] and if successful, gain a stack. For each stack, [Resolve,|Concept.Bravery] [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] are increased by " + ::MSU.Text.colorPositive("5%") + ".",
+				"Receive a [morale check|Concept.Morale] at the start of every [turn|Concept.Turn] if you are [Confident|Concept.Morale] and if successful, gain a stack, up to a maximum of 4. For each stack, [Resolve,|Concept.Bravery] [Melee Skill,|Concept.MeleeSkill] [Ranged Skill,|Concept.RangeSkill] [Melee Defense|Concept.MeleeDefense] and [Ranged Defense|Concept.RangeDefense] are increased by " + ::MSU.Text.colorPositive("5%") + ".",
 				"Lose " + ::MSU.Text.colorNegative(1) + " stack upon ending a [turn|Concept.Turn] without having attacked.",
-				"Cannot have more than 4 stacks."
+				"Lose all stacks immediately upon losing Confident [morale.|Concept.Morale]"
 			]
 		}]
 	}),
