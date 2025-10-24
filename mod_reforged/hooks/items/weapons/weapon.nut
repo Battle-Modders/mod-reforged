@@ -25,7 +25,7 @@
 				id = 20,
 				type = "text",
 				icon = "ui/icons/rf_reach.png",
-				text = "Has a reach of " + this.m.Reach
+				text = ::Reforged.Mod.Tooltips.parseString("Has a [reach|Concept.Reach] of ") + this.m.Reach
 			});
 		}
 
