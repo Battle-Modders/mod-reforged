@@ -143,7 +143,9 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		// Add perks from all equippedWeaponPGs in the valid tierRanges
+		// Restrict us only to the perk groups that exist in this character's perk tree and
+		// add perks from all such equippedWeaponPGs in the valid tierRanges
+		equippedweaponPGs = equippedweaponPGs.filter(@(_, _pg) perkTree.hasPerkGroup(_pg.getID()));
 		foreach (range in tierRanges)
 		{
 			foreach (pg in equippedweaponPGs)
