@@ -10,8 +10,9 @@ this.rf_sling_item_dummy_skill <- ::inherit("scripts/skills/skill", {
 		this.m.ID = "actives.rf_sling_item_dummy";
 		this.m.Name = "Sling Item";
 		this.m.Description = "Propel utility items from your bag, e.g. bombs, pots and flasks, using your sling."
+		this.m.Type = ::Const.SkillType.Active;	// This type is required so that the weapon tooltip displays ap and fatigue costs for this skill
 		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
-		this.m.IsHidden = true;	 // This skill should never show up anywhere except as a nested tooltip
+		this.m.IsHidden = false;
 
 		// These values will show up on the nested tooltip. These will stop being correct as soon as we introduce indiviual costs for the different pots
 		this.m.ActionPointCost = 5;
