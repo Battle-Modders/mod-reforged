@@ -35,10 +35,14 @@
 
 			foreach (weaponType in ::Const.Items.WeaponType)
 			{
-				if (weaponType in ::Reforged.WMS.WeaponTypeAlias) weaponType = ::Reforged.WMS.WeaponTypeAlias[weaponType];
-				if (this.isWeaponType(weaponType) && (weaponType in ::Reforged.WMS.WeaponTypeMastery))
+				if (this.isWeaponType(weaponType))
 				{
-					masteries += ::Const.Items.getWeaponTypeName(weaponType) + ", ";
+					if (weaponType in ::Reforged.WMS.WeaponTypeAlias) weaponType = ::Reforged.WMS.WeaponTypeAlias[weaponType];
+
+					if (weaponType in ::Reforged.WMS.WeaponTypeMastery)
+					{
+						masteries += ::Const.Items.getWeaponTypeName(weaponType) + ", ";
+					}
 				}
 			}
 
