@@ -9,11 +9,13 @@ local spawnEntity = ::Tactical.spawnEntity;
 {
 	vargv.insert(0, this);
 	local e = spawnEntity.acall(vargv);
-
-	// We schedule the RF_onSpawn function to be called in the next frame
-	// so that all linear logic following this entity's spawning e.g.
-	// equipping of items or adding of skills happens before the callback.
-	::Time.scheduleEvent(::TimeUnit.Virtual, 1, e.RF_onSpawn.bindenv(e), null);
+	if (::isKindOf(e, "actor"))
+	{
+		// We schedule the RF_onSpawn function to be called in the next frame
+		// so that all linear logic following this entity's spawning e.g.
+		// equipping of items or adding of skills happens before the callback.
+		::Time.scheduleEvent(::TimeUnit.Virtual, 1, e.RF_onSpawn.bindenv(e), null);
+	}
 	return e;
 }}.spawnEntity;
 
