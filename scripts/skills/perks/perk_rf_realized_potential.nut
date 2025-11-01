@@ -51,10 +51,10 @@ this.perk_rf_realized_potential <- ::inherit("scripts/skills/skill", {
 			{
 				for (local i = 0; i < numGroups; i++)
 				{
-					local newPerkGroup = ::DynamicPerks.PerkGroupCategories.findById(categoryID).getWeightedRandomPerkGroup(perkTree, @(_pgID) exclude.find(_pgID) == null);
-					if (newPerkGroup != null)
+					local newPerkGroupID = ::DynamicPerks.PerkGroupCategories.findById(categoryID).getWeightedRandomPerkGroup(perkTree, @(_pgID) exclude.find(_pgID) == null);
+					if (newPerkGroupID != "DynamicPerks_NoPerkGroup")
 					{
-						perkTree.addPerkGroup(newPerkGroup);
+						perkTree.addPerkGroup(newPerkGroupID);
 					}
 				}
 			}
