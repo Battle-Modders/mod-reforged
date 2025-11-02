@@ -92,8 +92,9 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		local allWeaponPGs = [];
-		local equippedweaponPGs = [];
+		local perkTree = this.getContainer().getActor().getPerkTree();
+		local allWeaponPGs = []; // Contains all weapon PGs that are present in this character's perk tree
+		local equippedweaponPGs = []; // Contains the PGs of this equipped weapon
 
 		foreach (weaponTypeName, weaponType in ::Const.Items.WeaponType)
 		{
@@ -104,7 +105,10 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			if (pg == null)
 				continue;
 
-			allWeaponPGs.push(pg);
+			if (perkTree.hasPerkGroup(pg.getID()))
+			{
+				allWeaponPGs.push(pg);
+			}
 
 			if (_item.isWeaponType(weaponType) && equippedweaponPGs.find(pg) == null)
 			{
@@ -122,8 +126,6 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			tierRanges.push([5, 7]); // The third perk is only granted if you are using a non-hybrid weapon
 		}
 
-		local perkTree = this.getContainer().getActor().getPerkTree();
-
 		// Remove all tierRanges which are invalid i.e. in which we haven't learned any weapon perk
 		for (local i = tierRanges.len() - 1; i >= 0; i--)
 		{
@@ -131,7 +133,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			local isValid = false;
 			foreach (pg in allWeaponPGs)
 			{
-				if (perkTree.hasPerkGroup(pg.getID()) && hasPerkFromGroup(pg, range[0], range[1]))
+				if (hasPerkFromGroup(pg, range[0], range[1]))
 				{
 					isValid = true;
 					break;
@@ -143,7 +145,9 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		// Add perks from all equippedWeaponPGs in the valid tierRanges
+		// Restrict us only to the perk groups that exist in this character's perk tree and
+		// add perks from all such equippedWeaponPGs in the valid tierRanges
+		equippedweaponPGs = equippedweaponPGs.filter(@(_, _pg) perkTree.hasPerkGroup(_pg.getID()));
 		foreach (range in tierRanges)
 		{
 			foreach (pg in equippedweaponPGs)
