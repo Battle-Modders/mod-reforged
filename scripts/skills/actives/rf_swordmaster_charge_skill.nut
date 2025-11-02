@@ -60,6 +60,13 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] all enemies adjacent to the target tile")
 		});
 
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of " + ::MSU.Text.colorPositive(this.getMaxRange()) + " tiles"
+		});
+
 		if (!this.isEnabled())
 		{
 			ret.push({
@@ -72,7 +79,7 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 
 		this.addEnabledTooltip(ret);
 
-		if (this.getContainer().getActor().isEngagedInMelee())
+		if (this.getContainer().getActor().isEngagedInMelee() || ::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
 		{
 			ret.push({
 				id = 21,
