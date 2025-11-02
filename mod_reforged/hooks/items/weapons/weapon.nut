@@ -85,7 +85,7 @@
 	q.onEquip = @(__original) { function onEquip()
 	{
 		__original();
-		if (this.isWeaponType(::Const.Items.WeaponType.Sling) && this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID())
+		if (this.isWeaponType(::Const.Items.WeaponType.Sling) && ::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
 		{
 			this.addSkill(::new("scripts/skills/actives/rf_sling_item_dummy_skill"));
 		}
