@@ -113,7 +113,7 @@
 			if (attacks.len() != 0)
 			{
 				local fatigueToDodgeAOO = attacks.len() * ::Const.Combat.FatigueLossOnBeingMissed * _entity.getCurrentProperties().FatigueEffectMult * _entity.getCurrentProperties().FatigueLossOnAnyAttackMult;
-				local text = fatigueToDodgeAOO == 0 ? "[Attacks of opportunity|Concept.ZoneOfControl]:" : "Evading all [attacks of opportunity|Concept.ZoneOfControl] will build " + ::MSU.Text.colorizeValue(fatigueToDodgeAOO, {AddSign = true, InvertColor = true}) + " [Fatigue|Concept.Fatigue]";
+				local text = fatigueToDodgeAOO == 0 ? "[Attacks of opportunity|Concept.ZoneOfControl]:" : "Evading all [attacks of opportunity|Concept.ZoneOfControl] will build " + ::MSU.Text.colorizeValue(fatigueToDodgeAOO, {InvertColor = true}) + " [Fatigue|Concept.Fatigue]";
 				ret.push({
 					id = 100,
 					type = "text",
