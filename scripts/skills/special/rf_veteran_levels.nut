@@ -12,6 +12,9 @@ this.rf_veteran_levels <- ::inherit("scripts/skills/skill", {
 
 	function onUpdateLevel()
 	{
+		if (::Reforged.Config.VeteranPerksLevelStep == 0)
+			return;
+
 		local diff = this.getContainer().getActor().getLevel() - ::Const.XP.MaxLevelWithPerkpoints;
 		if (diff > 0 && diff % ::Reforged.Config.VeteranPerksLevelStep == 0)
 		{
