@@ -144,7 +144,7 @@
 			if (spearwallAttacks.len() != 0)
 			{
 				ret.push({
-					id = 100,
+					id = 101,
 					type = "text",
 					icon = "ui/icons/warning.png",
 					text = ::MSU.Text.colorNegative("Will be attacked on arrival by: "),
