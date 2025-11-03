@@ -66,17 +66,17 @@ this.rf_polearm_adjacency <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		this.__MeleeSkillModifier = this.getModifierForSkill(_skill);
+		this.m.__MeleeSkillModifier = this.getModifierForSkill(_skill);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		_properties.MeleeSkill += this.__MeleeSkillModifier;
+		_properties.MeleeSkill += this.m.__MeleeSkillModifier;
 	}
 
 	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		this.__MeleeSkillModifier = 0;
+		this.m.__MeleeSkillModifier = 0;
 	}
 
 	function getModifierForSkill( _skill )
