@@ -113,16 +113,14 @@
 			if (attacks.len() != 0)
 			{
 				local fatigueToDodgeAOO = attacks.len() * ::Const.Combat.FatigueLossOnBeingMissed * _entity.getCurrentProperties().FatigueEffectMult * _entity.getCurrentProperties().FatigueLossOnAnyAttackMult;
-				if (fatigueToDodgeAOO != 0)
-				{
-					ret.push({
-						id = 100,
-						type = "text",
-						icon = "ui/icons/fatigue.png",
-						text = ::Reforged.Mod.Tooltips.parseString("Evading all [attacks of opportunity|Concept.ZoneOfControl] will build " + ::MSU.Text.colorizeValue(fatigueToDodgeAOO, {AddSign = true, InvertColor = true}) + " [Fatigue|Concept.Fatigue]"),
-						children = attacks
-					});
-				}
+				local text = fatigueToDodgeAOO == 0 ? "[Attacks of opportunity|Concept.ZoneOfControl]:" : "Evading all [attacks of opportunity|Concept.ZoneOfControl] will build " + ::MSU.Text.colorizeValue(fatigueToDodgeAOO, {AddSign = true, InvertColor = true}) + " [Fatigue|Concept.Fatigue]";
+				ret.push({
+					id = 100,
+					type = "text",
+					icon = "ui/icons/fatigue.png",
+					text = ::Reforged.Mod.Tooltips.parseString(text),
+					children = attacks
+				});
 			}
 		}
 
