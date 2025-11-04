@@ -5,7 +5,7 @@
 
 		// Named Weapon Loot drops in the Old Swordmaster origin have a chance to be converted to named swords.
 		// TODO: Perhaps we should implement functionality in starting_scenario to modify the loot.
-		if (::World.Assets.getOrigin().getID() == "scenario.rf_old_swordmaster" && !this.isLocationType(::Const.World.LocationType.Unique))
+		if (!::MSU.isNull(::World.Assets.getOrigin()) && ::World.Assets.getOrigin().getID() == "scenario.rf_old_swordmaster" && !this.isLocationType(::Const.World.LocationType.Unique))
 		{
 			local swords = ::MSU.Class.WeightedContainer().addMany(1, [
 				"scripts/items/weapons/named/named_sword",
