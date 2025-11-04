@@ -86,7 +86,7 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 
 		// Remove all active skills but keep non-attack ones in a local array.
 		// Then later add the new attack skills to this array, sort it, and re-add
-		// the skills to the weapon. This helps preserve skill order e.g.
+		// the skills to the weapon. This helps preserve skill order
 		// e.g. showing Riposte after attack skills.
 		local skills = [];
 		foreach (s in weapon.getSkills())
@@ -109,7 +109,6 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 		}));
 
 		skills.sort(@(_a, _b) _a.getOrder() <=> _b.getOrder());
-
 		foreach (s in skills)
 		{
 			weapon.addSkill(s);
