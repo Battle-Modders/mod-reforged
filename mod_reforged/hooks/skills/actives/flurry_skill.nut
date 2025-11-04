@@ -38,7 +38,7 @@
 	}}.onUse;
 
 	// New function. Used as callback from onUse.
-	// Performs an attack and schedules the next attack on the next valid clockwise tile.
+	// Performs an attack and schedules the next attack on the next target.
 	q.RF_doFlurry <- { function doFlurry( _tag )
 	{
 		if (!_tag.User.isAlive())
