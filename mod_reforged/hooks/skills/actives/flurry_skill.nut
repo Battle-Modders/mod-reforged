@@ -30,6 +30,7 @@
 			Callback = this.RF_doFlurry.bindenv(this)
 		};
 
+		this.getContainer().setBusy(true);
 		this.RF_doFlurry(tag);
 		return true;
 	}}.onUse;
