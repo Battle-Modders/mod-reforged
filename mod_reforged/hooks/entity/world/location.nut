@@ -11,6 +11,8 @@
 				"scripts/items/weapons/named/named_sword",
 				"scripts/items/weapons/named/named_greatsword",
 				"scripts/items/weapons/named/named_fencing_sword",
+				"scripts/items/weapons/named/named_warbrand",
+				"scripts/items/weapons/named/named_rf_longsword",
 				"scripts/items/weapons/named/named_rf_estoc",
 				"scripts/items/weapons/named/named_rf_kriegsmesser",
 				"scripts/items/weapons/named/named_rf_swordstaff"
