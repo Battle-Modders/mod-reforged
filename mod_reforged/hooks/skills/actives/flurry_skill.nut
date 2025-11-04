@@ -22,9 +22,11 @@
 		::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " unleashes a flurry of blows around it");
 		local ownTile = _user.getTile();
 
+		// Vanilla hardcodes 1 for level difference in the onUse function. We use the skill's member variable for easier submodding.
+		local maxLevelDifference = this.m.MaxLevelDifference;
 		local tag = {
 			User = _user,
-			TargetEntities = ::MSU.Tile.getNeighbors(ownTile).filter(@(_, _t) _t.IsOccupiedByActor && ::Math.abs(_t.Level - ownTile.Level) <= 1 && !_user.isAlliedWith(_t.getEntity())).map(@(_t) _t.getEntity()),
+			TargetEntities = ::MSU.Tile.getNeighbors(ownTile).filter(@(_, _t) _t.IsOccupiedByActor && ::Math.abs(_t.Level - ownTile.Level) <= maxLevelDifference && !_user.isAlliedWith(_t.getEntity())).map(@(_t) _t.getEntity()),
 			CurrentIndex = 0,
 			NumAttacks = this.m.NumAttacks,
 			Callback = this.RF_doFlurry.bindenv(this)
