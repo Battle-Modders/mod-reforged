@@ -1037,7 +1037,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"While not [engaged in melee,|Concept.ZoneOfControl] whenever you attack, hit or miss, trigger a Positive [Morale Check|Concept.Morale] for adjacent members of your company."
+				"While not [engaged in melee,|Concept.ZoneOfControl] whenever you attack, hit or miss, trigger a Positive [Morale Check|Concept.Morale] for adjacent members of your company who are not [fleeing.|Concept.Morale]"
 			]
 		}]
 	}),
