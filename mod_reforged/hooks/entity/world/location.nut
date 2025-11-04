@@ -1,10 +1,11 @@
-::Reforged.HooksMod.hookTree("scripts/entity/world/location", function(q) {
-	q.onDropLootForPlayer = @(__original) { function onDropLootForPlayer( _lootTable )
+::Reforged.HooksMod.hook("scripts/entity/world/location", function(q) {
+	q.onSpawned = @(__original) { function onSpawned()
 	{
+		__original();
+
 		// Named Weapon Loot drops in the Old Swordmaster origin have a chance to be converted to named swords.
-		// TODO: Perhaps we should implement an onDropLootForPlayer function in starting_scenario
-		// so that origins can modify the loot table.
-		if (::World.Assets.getOrigin().getID() == "scenario.rf_old_swordmaster")
+		// TODO: Perhaps we should implement functionality in starting_scenario to modify the loot.
+		if (::World.Assets.getOrigin().getID() == "scenario.rf_old_swordmaster" && !this.isLocationType(::Const.World.LocationType.Unique))
 		{
 			local swords = ::MSU.Class.WeightedContainer().addMany(1, [
 				"scripts/items/weapons/named/named_sword",
@@ -25,11 +26,8 @@
 				}
 			}
 		}
+	}}.onSpawned;
 
-		__original(_lootTable);
-	}}.onDropLootForPlayer;
-});
-::Reforged.HooksMod.hook("scripts/entity/world/location", function(q) {
 	q.setBanner = @(__original) { function setBanner( _banner )
 	{
 		__original(_banner);
