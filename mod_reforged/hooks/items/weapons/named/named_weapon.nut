@@ -15,7 +15,7 @@
 		{
 			if (::Math.rand(1, 100) <= 25)
 			{
-				this.setName(this.getContainer().getActor().getName() + "\'s " + this.m.NameList[::Math.rand(0, this.m.NameList.len() - 1)]);
+				this.setName(this.getContainer().getActor().getName() + "\'s " + ::MSU.Array.rand(this.m.NameList));
 			}
 			else
 			{
