@@ -26,7 +26,7 @@ this.rf_swordmaster_active_abstract <- ::inherit("scripts/skills/skill", {
 
 	function addEnabledTooltip( _tooltip )
 	{
-		if (!this.isEnabled())
+		if (!this.rf_swordmaster_active_abstract.isEnabled())
 		{
 			_tooltip.push({
 				id = 50,
