@@ -103,30 +103,48 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			o.m.IsSerialized = false;
 		}));
 
-		local skills = weapon.getSkills();
-		foreach (skill in skills)
+		// Remove all active skills but keep non-attack ones in a local array.
+		// Then later add the new attack skills to this array, sort it, and re-add
+		// the skills to the weapon. This helps preserve skill order
+		// e.g. showing Riposte after attack skills.
+		local skills = [];
+		foreach (s in weapon.getSkills())
 		{
-			if (skill.isAttack())
-				weapon.removeSkill(skill);
+			if (!s.isActive())
+				continue;
+
+			if (!s.isAttack())
+			{
+				skills.push(s);
+			}
+			weapon.removeSkill(s);
 		}
 
 		if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))
 		{
-			weapon.addSkill(::Reforged.new("scripts/skills/actives/cudgel_skill", function(o) {
+			skills.push(::Reforged.new("scripts/skills/actives/cudgel_skill", function(o) {
 				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 			}));
-			weapon.addSkill(::Reforged.new("scripts/skills/actives/strike_down_skill", function(o) {
+			skills.push(::Reforged.new("scripts/skills/actives/strike_down_skill", function(o) {
 				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
+				o.m.Order += 1; // So it appears after Cudgel
 			}));
 		}
 		else
 		{
-			weapon.addSkill(::Reforged.new("scripts/skills/actives/bash", function(o) {
+			skills.push(::Reforged.new("scripts/skills/actives/bash", function(o) {
 				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 			}));
-			weapon.addSkill(::Reforged.new("scripts/skills/actives/knock_out", function(o) {
+			skills.push(::Reforged.new("scripts/skills/actives/knock_out", function(o) {
 				o.m.DirectDamageMult = weapon.m.DirectDamageMult;
+				o.m.Order += 1; // So it appears after Bash
 			}));
+		}
+
+		skills.sort(@(_a, _b) _a.getOrder() <=> _b.getOrder());
+		foreach (s in skills)
+		{
+			weapon.addSkill(s);
 		}
 	}
 

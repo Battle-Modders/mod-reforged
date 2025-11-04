@@ -83,16 +83,36 @@ this.rf_swordmaster_stance_half_swording_skill <- ::inherit("scripts/skills/acti
 
 		this.rf_swordmaster_stance_abstract_skill.toggleOn();
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		foreach (skill in weapon.getSkills())
+
+		// Remove all active skills but keep non-attack ones in a local array.
+		// Then later add the new attack skills to this array, sort it, and re-add
+		// the skills to the weapon. This helps preserve skill order
+		// e.g. showing Riposte after attack skills.
+		local skills = [];
+		foreach (s in weapon.getSkills())
 		{
-			if (skill.isAttack())
-				weapon.removeSkill(skill);
+			if (!s.isActive())
+				continue;
+
+			if (!s.isAttack())
+			{
+				skills.push(s);
+			}
+			weapon.removeSkill(s);
 		}
 
-		weapon.addSkill(::Reforged.new("scripts/skills/actives/stab", function(o) {
+		skills.push(::Reforged.new("scripts/skills/actives/stab", function(o) {
 			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
 		}));
-		weapon.addSkill(::new("scripts/skills/actives/puncture"));
+		skills.push(::Reforged.new("scripts/skills/actives/puncture", function(o) {
+			o.m.Order += 1; // So it appears after Stab
+		}));
+
+		skills.sort(@(_a, _b) _a.getOrder() <=> _b.getOrder());
+		foreach (s in skills)
+		{
+			weapon.addSkill(s);
+		}
 	}
 
 	function onCombatFinished()
