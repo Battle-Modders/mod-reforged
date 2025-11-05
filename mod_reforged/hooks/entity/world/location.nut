@@ -21,7 +21,7 @@
 			local lootContainer = this.m.Loot;
 			foreach (item in clone lootContainer.getItems())
 			{
-				if (::IO.scriptFilenameByHash(item.ClassNameHash).find("/weapons/named") != null && ::Math.rand(1, 100) < 50)
+				if (::isKindOf(item, "named_weapon") && ::Math.rand(1, 100) < 50)
 				{
 					lootContainer.remove(item);
 					lootContainer.add(::new(swords.roll()));
