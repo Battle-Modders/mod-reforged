@@ -258,11 +258,6 @@
 });
 
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
-	// Vanilla has a bug where switchEntities callbacks don't trigger when outside player vision
-	// so we trigger them manually during onMovementFinish instead.
-	// We use an array because one callback may trigger another and we to support a stack of those.
-	q.m.RF_switchEntitiesCallbacks <- [];
-
 	// Force the currently active entity to throw away his picked behavior and reevalute if anyone moved
 	q.onMovementFinish = @(__original) { function onMovementFinish( _tile )
 	{
@@ -276,13 +271,6 @@
 		else
 		{
 			::logError(format("onMovementFinish activeEntity null. %s (%i) ", this.getName(), this.getID()));
-		}
-
-		// Call the switchEntities callbacks from last to first as expected.
-		while (this.m.RF_switchEntitiesCallbacks.len() != 0)
-		{
-			local entry = this.m.RF_switchEntitiesCallbacks.pop();
-			entry[0](this, entry[1]);
 		}
 	}}.onMovementFinish;
 

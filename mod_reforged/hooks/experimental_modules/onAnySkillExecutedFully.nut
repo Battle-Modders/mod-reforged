@@ -355,6 +355,11 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 // This is for debugging only - show a popup to the user to send us the log in cases where the skill schedule
 // was not completed.
 ::Reforged.QueueBucket.VeryLate.push(function() {
+	// Vanilla has a bug where switchEntities callbacks don't trigger when outside player vision
+	// so we trigger them manually during onMovementFinish instead.
+	// We use an array because one callback may trigger another and we to support a stack of those.
+	q.m.RF_switchEntitiesCallbacks <- [];
+
 	local funcs = [
 		"onTurnStart",
 		"onTurnEnd"
@@ -373,6 +378,19 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 				}
 			}
 		}
+	});
+
+	::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
+		q.onMovementFinish = @(__original) { function onMovementFinish( _tile )
+		{
+			__original(_tile);
+			// Call the switchEntities callbacks from last to first as expected.
+			while (this.m.RF_switchEntitiesCallbacks.len() != 0)
+			{
+				local entry = this.m.RF_switchEntitiesCallbacks.pop();
+				entry[0](this, entry[1]);
+			}
+		}}.onMovementFinish;
 	});
 });
 
