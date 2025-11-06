@@ -22,6 +22,8 @@ this.rf_great_cleave_skill <- ::inherit("scripts/skills/actives/cleave", {
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 15;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.AttackDefault;
+		this.m.ChanceDecapitate = 99;
+		this.m.ChanceDisembowel = 66;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
