@@ -129,9 +129,20 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 				return true;
 		}
 
+		local myActor = this.getContainer().getActor();
 		foreach (skill in weapon.getSkills())
 		{
-			if (skill.isAttack() && !skill.isRanged() && (this.m.RequiredDamageType == null || skill.getDamageType().contains(this.m.RequiredDamageType)))
+			if (!skill.isAttack() || skill.isRanged())
+				continue;
+
+			if (this.m.RequiredDamageType == null)
+			{
+				if (::MSU.isEqual(_actor, myActor))
+				{
+					return true;
+				}
+			}
+			else if (skill.getDamageType().contains(this.m.RequiredDamageType))
 			{
 				return true;
 			}
