@@ -6,6 +6,24 @@
 		return ret;
 	}}.getBaseItemFields;
 
+	q.onPutIntoBag = @(__original) { function onPutIntoBag()
+	{
+		__original();
+
+		// Same logic as in vanilla onEquip function to create name for named weapon
+		if (this.m.Name.len() == 0)
+		{
+			if (::Math.rand(1, 100) <= 25)
+			{
+				this.setName(this.getContainer().getActor().getName() + "\'s " + ::MSU.Array.rand(this.m.NameList));
+			}
+			else
+			{
+				this.setName(this.createRandomName());
+			}
+		}
+	}}.onPutIntoBag;
+
 	q.onSerialize = @(__original) { function onSerialize( _out )
 	{
 		__original(_out);
