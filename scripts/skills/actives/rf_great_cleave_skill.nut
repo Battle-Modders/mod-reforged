@@ -26,12 +26,37 @@ this.rf_great_cleave_skill <- ::inherit("scripts/skills/actives/cleave", {
 		this.m.ChanceDisembowel = 66;
 	}
 
+	function getTooltip()
+	{
+		local ret = this.cleave.getTooltip();
+		foreach (entry in ret)
+		{
+			if (entry.id == 8)
+			{
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Inflicts 2 stacks of [Bleeding|Skill+bleeding_effect]")
+				break;
+			}
+		}
+		return ret;
+	}
+
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
 			_properties.DamageRegularMin += 20;
 			_properties.DamageRegularMax += 20;
+		}
+	}
+
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	{
+		// Apply 1 more stack of bleeding. The first one is applied by vanilla cleave.onUse.
+		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.getCurrentProperties().IsImmuneToBleeding && _damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
+		{
+			local effect = ::new("scripts/skills/effects/bleeding_effect");
+			effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5);
+			_targetEntity.getSkills().add(effect);
 		}
 	}
 });
