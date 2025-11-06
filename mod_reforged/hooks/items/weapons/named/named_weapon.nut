@@ -8,8 +8,14 @@
 
 	q.onSerialize = @(__original) { function onSerialize( _out )
 	{
+		// Vanilla writes ChanceToHitHead as U8. In Reforged, we allow negative values too.
+		// Vanilla writeU8 accepts negative values without throwing, but MSU SerDe Emulators
+		// are strict and throw in such a case. So we switcheroo it to 0 and writeI8 later.
+		local chanceToHitHead = this.m.ChanceToHitHead;
+		this.m.ChanceToHitHead = 0;
 		__original(_out);
-		_out.writeI8(this.m.ChanceToHitHead);
+		this.m.ChanceToHitHead = chanceToHitHead;
+		_out.writeI8(chanceToHitHead);
 	}}.onSerialize;
 
 	q.onDeserialize = @(__original) { function onDeserialize( _in )
