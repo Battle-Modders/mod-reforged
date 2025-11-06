@@ -75,6 +75,12 @@ this.perk_rf_rebuke <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
+	// Modular Vanilla function
+	function getQueryTargetValueMult( _entity, _target, _skill )
+	{
+		return this.getChance() == 0 || !this.canProc(_entity, _skill) ? 1.0 : _entity.getAIAgent().getProperties().TargetPriorityCounterSkillsMult;
+	}
+
 	function canProc( _attacker, _skill )
 	{
 		if (_skill.isRanged() || _skill.isIgnoringRiposte() || !_attacker.isAlive())
