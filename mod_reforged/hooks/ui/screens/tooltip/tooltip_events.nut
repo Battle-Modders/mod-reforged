@@ -39,16 +39,33 @@
 
 		if (ret != null)
 		{
-			if (_elementId == "character-stats.Bravery")
+			switch (_elementId)
 			{
-				foreach (entry in ret)
-				{
-					if (entry.id == 2 && entry.type == "description")
+				case "character-stats.Bravery":
+					foreach (entry in ret)
 					{
-						entry.text = ::String.replace(entry.text, "See also: Morale.", ::Reforged.Mod.Tooltips.parseString("See also: [Morale.|Concept.Morale]"));
-						break;
+						if (entry.id == 2 && entry.type == "description")
+						{
+							entry.text = ::String.replace(entry.text, "See also: Morale.", ::Reforged.Mod.Tooltips.parseString("See also: [Morale.|Concept.Morale]"));
+							break;
+						}
 					}
-				}
+					break;
+
+				case "character-stats.MeleeDefense":
+				case "character-stats.RangeDefense":
+					if (::Const.Tactical.Settings.AttributeDefenseSoftCap != 0)
+					{
+						foreach (entry in ret)
+						{
+							if (entry.id == 2 && entry.type == "description")
+							{
+								entry.text += " Each point of [current|Concept.CurrentAttribute] defense above " + ::Const.Tactical.Settings.AttributeDefenseSoftCap + " counts as half a point.";
+								break;
+							}
+						}
+					}
+					break;
 			}
 
 			ret.extend(this.getBaseAttributesTooltip(_entityId, _elementId, _elementOwner));
