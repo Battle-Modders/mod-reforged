@@ -4,7 +4,12 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		FatigueRequired = 15,
 		ReturnFavorSounds = [
 			"sounds/combat/return_favor_01.wav"
-		]
+		],
+
+		// Is set to true if En Garde trigger would have given you rebuke.
+		// Is used in onAfterUpdate to adjust the rebuke effect's bonuses.
+		// This ensures that a newly added Rebuke or previously existing Rebuke are both covered.
+		__AdjustRebuke = false
 	},
 	function create()
 	{
@@ -89,18 +94,11 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		}
 		else if (this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded))
 		{
-			local rebuke = ::new("scripts/skills/effects/rf_rebuke_effect");
-			rebuke.m.BaseChance += 15;
-			rebuke.m.BuildsFatigue = false;
-			local onTurnStart = "onTurnStart" in rebuke ? rebuke.onTurnStart : null;
-			local parentName = rebuke.SuperName;
-			rebuke.onTurnStart <- { function onTurnStart()
-			{
-				if (onTurnStart != null) onTurnStart();
-				else this[parentName].onTurnStart();
-				this.removeSelf();
-			}}.onTurnStart;
-			return rebuke;
+			this.m.__AdjustRebuke = true;
+			return ::Reforged.new("scripts/skills/perks/perk_rf_rebuke", function(o){
+				o.m.IsSerialized = false;
+				o.m.IsRefundable = false;
+			});
 		}
 	}
 
@@ -126,11 +124,37 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 			}
 			else
 			{
+				// If the skill already exists then we need to spawn its overlay icon manually
+				if (this.getContainer().hasSkill(skill.getID()))
+				{
+					this.spawnIcon(skill.m.Overlay, actor.getTile());
+				}
 				this.getContainer().add(skill);
 				if (actor.getTile().IsVisibleForPlayer)
 				{
 					::Sound.play(this.m.ReturnFavorSounds[::Math.rand(0, this.m.ReturnFavorSounds.len() - 1)], ::Const.Sound.Volume.Skill * this.m.SoundVolume, actor.getPos());
 				}
+			}
+		}
+	}
+
+	function onTurnStart()
+	{
+		if (this.m.__AdjustRebuke)
+		{
+			this.getContainer().removeByStackByID("perk.rf_rebuke", false);
+		}
+	}
+
+	function onUpdate( _properties )
+	{
+		if (this.m.__AdjustRebuke)
+		{
+			local rebuke = this.getContainer().getSkillByID("perk.rf_rebuke");
+			if (rebuke != null)
+			{
+				rebuke.m.BaseChance += 15;
+				rebuke.m.BuildsFatigue = false;
 			}
 		}
 	}

@@ -71,6 +71,8 @@
 	<sprite id="perk_rf_opportunist" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_opportunist.png" />
 	<sprite id="perk_rf_pattern_recognition_mini" ic = "FF23165B" img="skills\mini\perk_rf_pattern_recognition_mini.png" />
 	<sprite id="perk_rf_phalanx_mini" ic = "FF23165B" img="skills\mini\perk_rf_phalanx_mini.png" />
+	<sprite id="perk_rf_rebuke" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_rebuke.png" />
+	<sprite id="perk_rf_rebuke_mini" ic = "FF23165B" img="skills\mini\perk_rf_rebuke_mini.png" />
 	<sprite id="perk_rf_sanguinary" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_sanguinary.png" />
 	<sprite id="perk_rf_second_wind" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_second_wind.png" />
 	<sprite id="perk_rf_soul_link" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_soul_link.png" />
@@ -129,8 +131,6 @@
 	<sprite id="rf_onslaught_effect_mini" ic = "FF23165B" img="skills\mini\rf_onslaught_effect_mini.png" />
 	<sprite id="rf_rattled_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_rattle.png" />
 	<sprite id="rf_rattled_effect_mini" ic = "FF23165B" img="skills\mini\rf_rattled_effect_mini.png" />
-	<sprite id="rf_rebuke_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_rebuke.png" />
-	<sprite id="rf_rebuke_effect_mini" ic = "FF23165B" img="skills\mini\rf_rebuke_effect_mini.png" />
 	<sprite id="rf_return_favor_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_return_favor_effect.png" />
 	<sprite id="rf_return_favor_effect_mini" ic = "FF23165B" img="skills\mini\rf_return_favor_effect_mini.png" />
 	<sprite id="rf_sanguine_curse_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_sanguine_curse_effect.png" />
