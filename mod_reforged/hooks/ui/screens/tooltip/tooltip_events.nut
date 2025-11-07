@@ -97,19 +97,12 @@
 		// Add tooltip about zone of control attacks at the starting tile
 		if (_entity.getTile().Properties.Effect == null || _entity.getTile().Properties.Effect.Type != "smoke")
 		{
-			local attacks = [];
-			foreach (actor in ::Tactical.Entities.getAdjacentActors(_entity.getTile()))
-			{
-				if (actor.isAlliedWith(_entity) || !actor.onMovementInZoneOfControl(_entity, false))
-					continue;
+			local attacks = ::Tactical.Entities.getAdjacentActors(_entity.getTile()).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, false))
+							.map(@(_a) {
+								id = 100,	type = "text",	icon = "ui/orientation/" + _a.getOverlayImage() + ".png",
+								text = ::MSU.Text.colorNegative(_a.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
+							});
 
-				attacks.push({
-					id = 100,
-					type = "text",
-					icon = "ui/orientation/" + actor.getOverlayImage() + ".png"
-					text = ::MSU.Text.colorNegative(actor.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
-				});
-			}
 			if (attacks.len() != 0)
 			{
 				ret.push({
@@ -136,19 +129,11 @@
 		// Add tooltip about zone of control attacks at the ending tile (e.g. spearwall attacks from opponents)
 		if (_entity.getPreviewMovement().End.Properties.Effect == null || _entity.getPreviewMovement().End.Properties.Effect.Type != "smoke")
 		{
-			local spearwallAttacks = [];
-			foreach (actor in ::Tactical.Entities.getAdjacentActors(_entity.getPreviewMovement().End))
-			{
-				if (actor.isAlliedWith(_entity) || !actor.onMovementInZoneOfControl(_entity, true))
-					continue;
-
-				spearwallAttacks.push({
-					id = 101,
-					type = "text",
-					icon = "ui/orientation/" + actor.getOverlayImage() + ".png"
-					text = ::MSU.Text.colorNegative(actor.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
-				});
-			}
+			local spearwallAttacks = ::Tactical.Entities.getAdjacentActors(_entity.getPreviewMovement().End).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, true))
+									.map(@(_a) {
+										id = 100,	type = "text",	icon = "ui/orientation/" + _a.getOverlayImage() + ".png",
+										text = ::MSU.Text.colorNegative(actor.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
+									});
 
 			if (spearwallAttacks.len() != 0)
 			{
