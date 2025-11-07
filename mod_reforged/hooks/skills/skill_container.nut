@@ -31,4 +31,21 @@
 	{
 		this.callSkillsFunctionWhenAlive("onSkillsUpdated", null, false);
 	}}.onSkillsUpdated;
+
+	// Hook MSU function to move Warning tooltip entries to the end of tooltips.
+	q.onQueryTooltip = @(__original) { function onQueryTooltip( _skill, _tooltip )
+	{
+		local ret = __original(_skill, _tooltip);
+		local warnings = [];
+		for (local i = _tooltip.len() - 1; i >= 0; i--)
+		{
+			local entry = _tooltip[i];
+			if ("icon" in entry && (entry.icon == "ui/icons/warning.png" || entry.icon == "ui/tooltips/warning.png"))
+			{
+				warnings.push(_tooltip.remove(i));
+			}
+		}
+		_tooltip.extend(warnings);
+		return ret;
+	}}.onQueryTooltip;
 });
