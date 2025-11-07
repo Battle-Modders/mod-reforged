@@ -54,10 +54,6 @@
 	q.onCostsPreview = @(__original) { function onCostsPreview( _costsPreview )
 	{
 		__original(_costsPreview);
-		local actor = this.getActor();
-		if (!actor.getCurrentProperties().IsImmuneToZoneOfControl && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()) && (actor.getTile().Properties.Effect == null || actor.getTile().Properties.Effect.Type != "smoke"))
-		{
-			_costsPreview.fatiguePreview += actor.getTile().getZoneOfControlCountOtherThan(actor.getAlliedFactions()) * ::Const.Combat.FatigueLossOnBeingMissed * actor.getCurrentProperties().FatigueEffectMult * actor.getCurrentProperties().FatigueLossOnAnyAttackMult;
-		}
+		_costsPreview.fatiguePreview += this.getActor().RF_getZOCEvasionFatigue();
 	}}.onCostsPreview;
 });

@@ -2,10 +2,7 @@
 local buildVisualisation = ::TacticalNavigator.buildVisualisation;
 ::TacticalNavigator.buildVisualisation <- { function buildVisualisation( _entity, _settings, _actionPoints, _fatigue )
 {
-	if (!_entity.getCurrentProperties().IsImmuneToZoneOfControl && _entity.getTile().hasZoneOfControlOtherThan(_entity.getAlliedFactions()) && (_entity.getTile().Properties.Effect == null || _entity.getTile().Properties.Effect.Type != "smoke"))
-	{
-		_fatigue = ::Math.max(0, _fatigue - _entity.getTile().getZoneOfControlCountOtherThan(_entity.getAlliedFactions()) * ::Const.Combat.FatigueLossOnBeingMissed * _entity.getCurrentProperties().FatigueEffectMult * _entity.getCurrentProperties().FatigueLossOnAnyAttackMult);
-	}
+	_fatigue = ::Math.max(0, _fatigue - _entity.RF_getZOCEvasionFatigue());
 	return buildVisualisation(_entity, _settings, _actionPoints, _fatigue);
 }}.buildVisualisation;
 
@@ -13,9 +10,6 @@ local buildVisualisation = ::TacticalNavigator.buildVisualisation;
 local getCostForPath = ::TacticalNavigator.getCostForPath;
 ::TacticalNavigator.getCostForPath <- { function getCostForPath( _entity, _settings, _actionPoints, _fatigue )
 {
-	if (!_entity.getCurrentProperties().IsImmuneToZoneOfControl && _entity.getTile().hasZoneOfControlOtherThan(_entity.getAlliedFactions()) && (_entity.getTile().Properties.Effect == null || _entity.getTile().Properties.Effect.Type != "smoke"))
-	{
-		_fatigue = ::Math.max(0, _fatigue - _entity.getTile().getZoneOfControlCountOtherThan(_entity.getAlliedFactions()) * ::Const.Combat.FatigueLossOnBeingMissed * _entity.getCurrentProperties().FatigueEffectMult * _entity.getCurrentProperties().FatigueLossOnAnyAttackMult);
-	}
+	_fatigue = ::Math.max(0, _fatigue - _entity.RF_getZOCEvasionFatigue());
 	return getCostForPath(_entity, _settings, _actionPoints, _fatigue);
 }}.getCostForPath;
