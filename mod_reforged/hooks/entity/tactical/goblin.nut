@@ -51,6 +51,7 @@
 
 		this.m.Skills.add(::new("scripts/skills/racial/rf_goblin_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 	}}.onInit;
 
 	q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )

@@ -28,6 +28,7 @@
 
 		this.m.Skills.add(::new("scripts/skills/racial/goblin_ambusher_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_bow"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
 	}}.onInit;
 
 	q.makeMiniboss = @(__original) { function makeMiniboss()
