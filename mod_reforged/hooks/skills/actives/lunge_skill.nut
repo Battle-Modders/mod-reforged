@@ -11,15 +11,50 @@
 		return this.getBaseValue("ActionPointCost") <= 4;
 	}}.isDuelistValid;
 
-	q.getTooltip = @(__original) { function getTooltip()
+	q.getTooltip = @() { function getTooltip()
 	{
-		local ret = __original();
-		ret.insert(ret.len() - 1, {
-			id = 6,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "Has " + ::MSU.Text.colorizeValue(this.m.HitChanceBonus, {AddSign = true, AddPercent = true}) + " chance to hit"
-		});
+		local ret = this.getDefaultTooltip();
+		ret.extend([
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Moves the user next to the target, ignoring [Zone of Control|Concept.ZoneOfControl]")
+			},
+			{
+				id = 7, // vanilla has id 6 for this, the same as previous entry
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Inflicts additional damage, the higher the user\'s current [Initiative|Concept.Initiative]")
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = "Has " + ::MSU.Text.colorizeValue(this.m.HitChanceBonus, {AddSign = true, AddPercent = true}) + " chance to hit"
+			}
+		]);
+
+		if (this.getMaxRange() > 2)
+		{
+			ret.push({
+				id = 20,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "Requires a clear path and cannot change height levels more than once along the path"
+			});
+		}
+
+		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
+		{
+			ret.push({
+				id = 9,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = ::MSU.Text.colorNegative("Cannot be used while [rooted|Concept.Rooted]")
+			});
+		}
+
 		return ret;
 	}}.getTooltip;
 
