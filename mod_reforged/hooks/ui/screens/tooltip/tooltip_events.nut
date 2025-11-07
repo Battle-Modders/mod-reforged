@@ -127,7 +127,7 @@
 						id = 100,
 						type = "text",
 						icon = "ui/icons/fatigue.png",
-						text = ::Reforged.Mod.Tooltips.parseString("Evading these attacks will build " + ::MSU.Text.colorizeValue(fatigueToDodgeAOO, {InvertColor = true}) + " [Fatigue|Concept.Fatigue]")
+						text = ::Reforged.Mod.Tooltips.parseString("Evading these attacks builds " + ::MSU.Text.colorizeValue(fatigueToDodgeAOO, {InvertColor = true}) + " [Fatigue|Concept.Fatigue]")
 					});
 				}
 			}
