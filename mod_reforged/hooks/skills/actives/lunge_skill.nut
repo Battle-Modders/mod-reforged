@@ -36,10 +36,10 @@
 
 	q.getDestinationTile <- { function getDestinationTile( _targetTile, _originTile = null )
 	{
-		if (_originTile == null)
-			_originTile = this.getContainer().getActor().getTile();
-
 		local myTile = this.getContainer().getActor().getTile();
+
+		if (_originTile == null)
+			_originTile = myTile;
 
 		local function isTileEmpty( _tile )
 		{
@@ -48,33 +48,25 @@
 			return _tile.IsEmpty || _tile.isSameTileAs(myTile);
 		}
 
+		// Destination has to be 1 tile closer than MaxRange because MaxRange targets an actor and we have to land next to him
+		local maxDist = this.m.MaxRange - 1;
 		local destTiles = [];
 
-		for (local i = 0; i < 6; i++)
+		foreach (destTile in ::MSU.Tile.getNeighbors(_targetTile).filter(@(_, _t) isTileEmpty(_t) && _t.getDistanceTo(_originTile) <= maxDist && ::Math.abs(_targetTile.Level - _t.Level) <= 1))
 		{
-			if (!_targetTile.hasNextTile(i)) continue;
-
-			local destTile = _targetTile.getNextTile(i);
-
-			if (!isTileEmpty(destTile) || destTile.getDistanceTo(_originTile) > this.m.MaxRange - 1 || ::Math.abs(_targetTile.Level - destTile.Level) > 1)
-				continue;
-
 			// If a destination tile is adjacent to us, always choose that first
 			if (this.m.MaxRange == 2 || destTile.getDistanceTo(_originTile) == 1)
 			{
-				if (::Math.abs(_originTile.Level - destTile.Level) <= 1) return destTile;
+				if (::Math.abs(_originTile.Level - destTile.Level) <= 1)
+					return destTile;
 			}
 			else
 			{
 				// Destination tiles at a distance of 2 can only be chosen if they have an adjacent empty tile that is adjacent to _originTile
 				// i.e. we have a clear path to the Destination tile AND along the path we never change height elevation more than once.
-				for (local j = 0; j < 6; j++)
+				if (::MSU.Tile.getNeighbors(destTile).filter(@(_, _t) isTileEmpty(_t) && _t.getDistanceTo(_originTile) == 1 && ::Math.abs(_originTile.Level - _t.Level) + ::Math.abs(_t.Level - destTile.Level) <= 1).len() != 0)
 				{
-					if (!destTile.hasNextTile(j)) continue;
-
-					local adjacentTile = destTile.getNextTile(j);
-					if (isTileEmpty(adjacentTile) && _originTile.getDistanceTo(adjacentTile) == 1 && ::Math.abs(_originTile.Level - adjacentTile.Level) + ::Math.abs(adjacentTile.Level - destTile.Level) <= 1)
-						destTiles.push(destTile);
+					destTiles.push(destTile);
 				}
 			}
 		}
