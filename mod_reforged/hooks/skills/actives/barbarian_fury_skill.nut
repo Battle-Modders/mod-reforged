@@ -12,4 +12,9 @@
 	{
 		return this.skill.getDefaultUtilityTooltip();
 	}}.getTooltip;
+
+	q.getCursorForTile = @() { function getCursorForTile( _tile )
+	{
+		return ::Const.UI.Cursor.Rotation;
+	}}.getCursorForTile;
 });
