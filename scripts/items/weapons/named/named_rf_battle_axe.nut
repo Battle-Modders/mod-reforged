@@ -20,24 +20,5 @@ this.named_rf_battle_axe <- ::inherit("scripts/items/weapons/named/named_weapon"
 		this.m.ArmamentIcon = "icon_rf_battle_axe_named_0" + this.m.Variant;
 	}
 
-	function onEquip()
-	{
-		this.weapon.onEquip();
-
-		local weapon = this;
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/chop", function(o) {
-			o.m.FatigueCost += 2;
-			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
-		}));
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/split_man", function(o) {
-			o.m.ActionPointCost -= 1;
-			o.m.DirectDamageMult = weapon.m.DirectDamageMult;
-		}));
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
-			o.setApplyAxeMastery(true);
-		}));
-	}
+	// No need to define onEquip because skills are copied from base weapon definition due to BaseItemScript
 });

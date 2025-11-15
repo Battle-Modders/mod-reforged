@@ -20,16 +20,5 @@ this.named_rf_estoc <- ::inherit("scripts/items/weapons/named/named_weapon", {
 		this.m.ArmamentIcon = "icon_rf_estoc_named_0" + this.m.Variant;
 	}
 
-	function onEquip()
-	{
-		this.named_weapon.onEquip()
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/rf_sword_thrust_skill", function(o) {
-			o.m.FatigueCost += 2;
-		}));
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/lunge_skill"));
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
-	}
+	// No need to define onEquip because skills are copied from base weapon definition due to BaseItemScript
 });

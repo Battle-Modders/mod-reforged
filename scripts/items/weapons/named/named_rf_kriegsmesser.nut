@@ -20,14 +20,5 @@ this.named_rf_kriegsmesser <- ::inherit("scripts/items/weapons/named/named_weapo
 		this.m.ArmamentIcon = "icon_rf_kriegsmesser_named_0" + this.m.Variant;
 	}
 
-	function onEquip()
-	{
-		this.named_weapon.onEquip()
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/cleave"));
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/decapitate"));
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
-	}
+	// No need to define onEquip because skills are copied from base weapon definition due to BaseItemScript
 });
