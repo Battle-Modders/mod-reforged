@@ -14,11 +14,12 @@
 					{
 						id = 2,
 						type = "description",
-						text = ::Reforged.Mod.Tooltips.parseString("Characters gain experience as they or their allies slay enemies in battles. If a character has accumulated sufficient experience, he\'ll [level up.|Concept.Level]\n\nExperience gained from dying enemies is proportional to the fraction of the total damage dealt to that enemy by your company. Of this experience, " + (::Const.XP.XPForKillerPct * 100) + "% is shared proportionally between the brothers who did damage. The other " + (100 - ::Const.XP.XPForKillerPct * 100) + "% is shared equally among all members of the company.")
+						text = ::Reforged.Mod.Tooltips.parseString("Characters gain experience in battle and if a character has accumulated sufficient experience, he\'ll [level up.|Concept.Level]\n\nExperience is gained upon an enemy\'s death, no matter what caused the death, as long as your company dealt some damage to that enemy, and is proportional to the fraction of the total damage dealt to that enemy by your company. Of this experience, " + (::Const.XP.XPForKillerPct * 100) + "% is shared proportionally between the brothers who did damage. The other " + (100 - ::Const.XP.XPForKillerPct * 100) + "% is shared equally among all members of the company.")
 					}
 				];
 
 			case "character-screen.left-panel-header-module.Level":
+				local veteranPerksText = ::Reforged.Config.VeteranPerksLevelStep == 0 ? "no longer gain perk points" : format("gain perk points every %s", ::Reforged.Config.VeteranPerksLevelStep == 1 ? "level" : ::Reforged.Config.VeteranPerksLevelStep + " levels");
 				return [
 					{
 						id = 1,
@@ -28,7 +29,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = ::Reforged.Mod.Tooltips.parseString("The character\'s level measures [experience|Concept.Experience] in battle. Characters rise in levels as they gain experience and are able to increase their [attributes|Concept.CharacterAttribute] and gain [perks|Concept.Perk] that make them better at the mercenary profession.\n\nBeyond the " + ::Const.XP.MaxLevelWithPerkpoints + "th character level, characters are veterans and gain perk points " + (::Reforged.Config.VeteranPerksLevelStep == 1 ? "" : "only") + " every " + ::Reforged.Config.VeteranPerksLevelStep + "th level. They can still improve their attributes but the attribute gain per level is small.")
+						text = ::Reforged.Mod.Tooltips.parseString("A character\'s level measures [experience|Concept.Experience] in battle. Characters rise in levels as they gain experience and are able to increase their [attributes|Concept.CharacterAttribute] and gain [perks|Concept.Perk] that make them better at the mercenary profession.\n\nBeyond the " + ::Const.XP.MaxLevelWithPerkpoints + "th level, characters are veterans and " + veteranPerksText + ". They can still improve their attributes but the attribute gain per level is small.")
 					}
 				];
 		}
