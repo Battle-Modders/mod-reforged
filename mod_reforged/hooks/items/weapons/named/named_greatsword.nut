@@ -6,4 +6,6 @@
 		this.m.Variant = ::Math.rand(1, 4);
 		this.updateVariant();
 	}}.create;
+
+	// No need to define onEquip because skills are copied from base weapon definition due to BaseItemScript
 });

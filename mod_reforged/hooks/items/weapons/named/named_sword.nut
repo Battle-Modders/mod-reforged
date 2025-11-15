@@ -1,12 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/items/weapons/named/named_sword", function(q) {
 	q.m.BaseItemScript = "scripts/items/weapons/noble_sword";
 
-	q.onEquip = @() { function onEquip()
-	{
-		this.named_weapon.onEquip();
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/slash"));
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
-	}}.onEquip;
+	// No need to define onEquip because skills are copied from base weapon definition due to BaseItemScript
 });

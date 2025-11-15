@@ -20,11 +20,5 @@ this.named_rf_poleflail <- ::inherit("scripts/items/weapons/named/named_weapon",
 		this.m.ArmamentIcon = "icon_rf_poleflail_named_0" + this.m.Variant;
 	}
 
-	function onEquip()
-	{
-		this.named_weapon.onEquip()
-
-		this.addSkill(::new("scripts/skills/actives/rf_flail_pole_skill"));
-		this.addSkill(::new("scripts/skills/actives/rf_lash_pole_skill"));
-	}
+	// No need to define onEquip because skills are copied from base weapon definition due to BaseItemScript
 });
