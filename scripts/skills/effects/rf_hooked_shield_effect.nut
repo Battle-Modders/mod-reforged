@@ -49,7 +49,7 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Removes [Riposte|Skill+riposte_effect] and disables [Rebuke|Skill+rf_rebuke_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("Removes [Riposte|Skill+riposte_effect] and disables [Rebuke|Perk+perk_rf_rebuke]")
 		});
 		ret.push({
 			id = 13,
@@ -89,6 +89,13 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 			local shield = this.getContainer().getActor().getOffhandItem();
 			_properties.MeleeDefense -= ::Math.floor(shield.getMeleeDefenseBonus() * 0.75);
 			_properties.RangedDefense -= ::Math.floor(shield.getRangedDefenseBonus() * 0.75);
+
+			local rebuke = this.getContainer().getSkillByID("perk.rf_rebuke");
+			if (rebuke != null)
+			{
+				// Disable rebuke.
+				rebuke.m.BaseChance -= 9999;
+			}
 		}
 	}
 
