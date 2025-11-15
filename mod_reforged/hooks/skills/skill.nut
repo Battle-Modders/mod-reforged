@@ -84,7 +84,7 @@
 		if (this.isAttack() && _targetTile.IsOccupiedByActor)
 		{
 			local target = _targetTile.getEntity();
-			if (target.getCurrentProperties().IsImmuneToHeadshots || !::MSU.isIn(target.m, "IsHeadless", true) || !target.m.IsHeadless)
+			if (!target.getCurrentProperties().IsImmuneToHeadshots && (!::MSU.isIn("IsHeadless", _target.m, true) || !target.m.IsHeadless))
 			{
 				local p = this.getContainer().buildPropertiesForUse(this, target);
 				local headshotChance = p.getHitchance(::Const.BodyPart.Head);
