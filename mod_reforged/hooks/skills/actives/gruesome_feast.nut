@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = ::Reforged.Mod.Tooltips.parseString("All [Hitpoints|Concept.Hitpoints] and [injuries|Concept.TemporaryInjury] are fully healed")
+			text = ::Reforged.Mod.Tooltips.parseString("All [Hitpoints|Concept.Hitpoints] and [injuries|Concept.InjuryTemporary] are fully healed")
 		});
 		ret.push({
 			id = 12,
