@@ -29,7 +29,11 @@
 
 		// Switcheroo addSkill to push the skill to our return array instead of adding it to the container
 		local addSkill = _item.addSkill;
-		_item.addSkill = @( _skill ) ret.push(_skill);
+		_item.addSkill = function( _skill )
+		{
+			_skill.setItem(_item);
+			ret.push(_skill);
+		}
 
 		local removeSkill = _item.removeSkill;
 		_item.removeSkill = @( _skill ) ::MSU.Array.removeByValue(ret, _skill);
