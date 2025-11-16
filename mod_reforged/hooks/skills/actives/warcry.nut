@@ -21,6 +21,14 @@
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("All allies and enemies receive positive and negative [morale checks|Concept.Morale] respectively, with those closer to you receiving stronger checks")
 		});
+
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/fatigue.png",
+			text = ::Reforged.Mod.Tooltips.parseString("All allies on the battlefield recover " + ::MSU.Text.colorPositive(20) + " [Fatigue|Concept.Fatigue]")
+		});
+
 		return ret;
 	}}.getTooltip;
 });
