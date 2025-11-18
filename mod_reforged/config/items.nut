@@ -23,45 +23,35 @@
 	// This function is used to get the skills of an item that one gets from equipping the item.
 	function getSkills( _item )
 	{
-		local ret = [];
+		local data = ::MSU.Class.SerializationData();
+		_item.onSerialize(data.getSerializationEmulator());
 
-		local player = ::MSU.getDummyPlayer();
+		local cloneItem = ::new(::IO.scriptFilenameByHash(_item.ClassNameHash));
+		cloneItem.onDeserialize(data.getDeserializationEmulator());
 
-		// Switcheroo addSkill to push the skill to our return array instead of adding it to the container
-		local addSkill = _item.addSkill;
-		_item.addSkill = @( _skill ) ret.push(_skill);
+		local container = ::MSU.getDummyPlayer().getItems();
+		local existingItem = container.getItemAtSlot(cloneItem.getSlotType());
+		if (existingItem != null)
+		{
+			container.unequip(existingItem);
+		}
 
-		local removeSkill = _item.removeSkill;
-		_item.removeSkill = @( _skill ) ::MSU.Array.removeByValue(ret, _skill);
+		container.equip(cloneItem);
+		local ret = cloneItem.getSkills();
+		container.unequip(cloneItem);
 
-		// Switcheroo to prevent addition of the generic_item skill as we don't want that in the returned array
-		local addGenericItemSkill = _item.addGenericItemSkill;
-		_item.addGenericItemSkill = @() null;
+		if (existingItem != null)
+		{
+			container.equip(existingItem);
+		}
 
-		// Switcheroo player.onAppearanceChanged and item.updateAppearance to do nothing for performance reasons
-		local onAppearanceChanged = player.onAppearanceChanged;
-		player.onAppearanceChanged = @(...) null;
-
-		local updateAppearance = _item.updateAppearance;
-		_item.updateAppearance = @(...) null;
-
-		// Switcheroo the container of the item to that of the dummy player
-		local originalItemContainer = _item.m.Container;
-		_item.m.Container = player.getItems();
-
-		// Store the last equipped by faction field to revert it later
-		local lastEquippedByFaction = _item.m.LastEquippedByFaction;
-
-		_item.onEquip();
-
-		// Revert all switcheroos
-		_item.addSkill = addSkill;
-		_item.removeSkill = removeSkill;
-		_item.addGenericItemSkill = addGenericItemSkill;
-		player.onAppearanceChanged = onAppearanceChanged;
-		_item.updateAppearance = updateAppearance;
-		_item.m.Container = originalItemContainer;
-		_item.m.LastEquippedByFaction = lastEquippedByFaction;
+		// Set the item of the skills to the original _item
+		// because cloneItem will become null at the end of this function
+		// and skill.m.Item is kept as a WeakTableRef.
+		foreach (s in ret)
+		{
+			s.setItem(_item);
+		}
 
 		return ret;
 	}
