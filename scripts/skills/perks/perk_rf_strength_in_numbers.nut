@@ -61,7 +61,7 @@ this.perk_rf_strength_in_numbers <- ::inherit("scripts/skills/skill", {
 				id = 14,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + this.getResolveBonus()) + " [Resolve|Concept.Resolve]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+" + this.getResolveBonus()) + " [Resolve|Concept.Bravery]")
 			});
 		}
 

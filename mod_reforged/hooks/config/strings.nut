@@ -241,7 +241,7 @@ local vanillaDescriptions = [
 				Type = ::UPD.EffectType.Passive,
 				Description = [
 					"The damage threshold for triggering [morale checks|Concept.Morale] with your attacks is reduced to 1.",
-					"These morale checks now have an additional penalty to [Resolve|Concept.Bravery] of " + ::MSU.Text.colorPositive("20%") + " of your [Resolve.|Concept.Resolve]"
+					"These morale checks now have an additional penalty to [Resolve|Concept.Bravery] of " + ::MSU.Text.colorPositive("20%") + " of your [Resolve.|Concept.Bravery]"
 				]
 			}]
 		})
@@ -1439,7 +1439,7 @@ foreach (vanillaDesc in vanillaDescriptions)
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Hold Steady|Skill+rf_hold_steady_skill] skill which allows you and nearby allies to gain increased [Melee Defense|Concept.MeleeDefense], [Ranged Defense|Concept.RangeDefense] and [Resolve|Concept.Resolve] and immunity to being [stunned,|Skill+stunned_effect] knocked back or grabbed."
+				"Unlocks the [Hold Steady|Skill+rf_hold_steady_skill] skill which allows you and nearby allies to gain increased [Melee Defense|Concept.MeleeDefense], [Ranged Defense|Concept.RangeDefense] and [Resolve|Concept.Bravery] and immunity to being [stunned,|Skill+stunned_effect] knocked back or grabbed."
 			]
 		}]
 	}),
