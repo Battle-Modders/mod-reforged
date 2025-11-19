@@ -129,11 +129,19 @@
 		// Add tooltip about zone of control attacks at the ending tile (e.g. spearwall attacks from opponents)
 		if (_entity.getPreviewMovement().End.Properties.Effect == null || _entity.getPreviewMovement().End.Properties.Effect.Type != "smoke")
 		{
+			// Switcheroo the entity's getTile function to return the end tile of movement
+			// so that hitchances of enemies are calculated with that, in any case any skill
+			// on the enemies wants to check distance to the target in its onAnySkillUsed function.
+			local original_getTile = _entity.getTile;
+			_entity.getTile = @() _entity.getPreviewMovement().End;
+
 			local spearwallAttacks = ::Tactical.Entities.getAdjacentActors(_entity.getPreviewMovement().End).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, true))
 									.map(@(_a) {
 										id = 100,	type = "text",	icon = "ui/orientation/" + _a.getOverlayImage() + ".png",
 										text = ::MSU.Text.colorNegative(_a.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
 									});
+
+			_entity.getTile = original_getTile;
 
 			if (spearwallAttacks.len() != 0)
 			{
