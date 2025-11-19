@@ -65,7 +65,7 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 	}
 
 	// This function is checked during line_breaker.onVerifyTarget. We want this skill
-	// to be usable on even on targets who have no valid tile to knock back to because
+	// to be usable even on targets who have no valid tile to knock back to because
 	// it does an attack and may kill the target, opening up the target tile.
 	function findTileToKnockBackTo( _userTile, _targetTile )
 	{
