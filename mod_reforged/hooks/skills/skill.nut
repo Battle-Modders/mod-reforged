@@ -81,6 +81,31 @@
 			}
 		}
 
+		if (this.isAttack() && _targetTile.IsOccupiedByActor)
+		{
+			local target = _targetTile.getEntity();
+			if (!target.getCurrentProperties().IsImmuneToHeadshots && (!::MSU.isIn("IsHeadless", _target.m, true) || !target.m.IsHeadless))
+			{
+				local p = this.getContainer().buildPropertiesForUse(this, target);
+				local headshotChance = p.getHitchance(::Const.BodyPart.Head);
+				if (headshotChance <= 0)
+				{
+					ret.push({
+						icon = "ui/icons/chance_to_hit_head.png",
+						text = format("No chance to hit head")
+					});
+				}
+				else
+				{
+					local headshotDamageMult = target.getCurrentProperties().IsImmuneToCriticals ? 1.0 : p.DamageAgainstMult[::Const.BodyPart.Head];
+					ret.push({
+						icon = "ui/icons/chance_to_hit_head.png",
+						text = format("%s chance to hit head for %s damage", ::MSU.Text.colorizeValue(headshotChance, {AddPercent = true}), ::MSU.Text.colorizeMultWithText(headshotDamageMult))
+					});
+				}
+			}
+		}
+
 		return ret;
 	}}.getHitFactors;
 
