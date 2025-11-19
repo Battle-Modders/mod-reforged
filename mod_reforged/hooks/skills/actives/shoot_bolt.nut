@@ -1,6 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/shoot_bolt", function(q) {
 	q.m.AdditionalAccuracy = 15;
 	q.m.AdditionalHitChance = -3;
+	q.m.MSU_NestedTooltipItemScript = "scripts/items/weapons/crossbow";
 
 	q.getTooltip = @() { function getTooltip()
 	{
