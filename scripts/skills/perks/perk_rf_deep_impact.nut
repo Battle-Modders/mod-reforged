@@ -14,9 +14,13 @@ this.perk_rf_deep_impact <- ::inherit("scripts/skills/skill", {
 	{
 		if (_item.isItemType(::Const.Items.ItemType.Weapon) && _item.isWeaponType(::Const.Items.WeaponType.Hammer))
 		{
-			_item.addSkill(::Reforged.new("scripts/skills/actives/rf_deep_impact_skill", function(o) {
-				o.m.DirectDamageMult = _item.m.DirectDamageMult;
-			}));
+			local aoo = this.getContainer().getAttackOfOpportunity();
+			if (aoo != null)
+			{
+				local s = ::new(::IO.scriptFilenameByHash(aoo.ClassNameHash));
+				::new("scripts/skills/actives/rf_deep_impact_skill").convertSkill(s);
+				_item.addSkill(s);
+			}
 		}
 	}
 
