@@ -3,8 +3,9 @@ this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 		RequiredWeaponType = ::Const.Items.WeaponType.Cleaver,
 		RequiredDamageType = ::Const.Damage.DamageType.Cutting,
 		Chance = 33,
-		BleedStacksRequired = 3
-		InjuryPool = null
+		BleedStacksRequired = 3,
+
+		__HitInfo = null
 	},
 	function create()
 	{
@@ -18,34 +19,37 @@ this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		this.m.InjuryPool = null;
-
 		if (!_targetEntity.getCurrentProperties().IsAffectedByInjuries || ::Math.rand(1, 100) > this.m.Chance)
 			return;
 
-		local bleeding = _targetEntity.getSkills().getSkillByID("effects.bleeding");
-		if (bleeding != null && bleeding.m.Stacks >= this.m.BleedStacksRequired)
-			this.m.InjuryPool = _hitInfo.Injuries;
+		local bleeding = _targetEntity.getSkills().getAllSkillByID("effects.bleeding");
+		local count = bleeding.len() == 1 ? bleeding.m.Stacks : bleeding.len();
+
+		if (count >= this.m.BleedStacksRequired)
+		{
+			this.m.__HitInfo = _hitInfo;
+		}
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
+		{
+			this.m.__HitInfo = null;
 			return;
+		}
 
 		if (_damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding && !_targetEntity.getCurrentProperties().IsImmuneToBleeding)
 			_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));
 
-		if (this.m.InjuryPool == null || (_targetEntity.getFlags().has("undead") && !_targetEntity.getFlags().has("ghoul") && !_targetEntity.getFlags().has("ghost") && !this.getContainer().hasSkill("perk.crippling_strikes")))
+		if (this.m.__HitInfo == null || (_targetEntity.getFlags().has("undead") && !_targetEntity.getFlags().has("ghoul") && !_targetEntity.getFlags().has("ghost") && !this.getContainer().hasSkill("perk.crippling_strikes")))
+		{
+			this.m.__HitInfo = null;
 			return;
+		}
 
-		this.applyInjury(_targetEntity);
-	}
-
-	function onCombatFinished()
-	{
-		this.skill.onCombatFinished();
-		this.m.InjuryPool = null;
+		_targetEntity.MV_applyInjury(_skill, this.m.__HitInfo);
+		this.m.__HitInfo = null;
 	}
 
 	function onQueryTooltip( _skill, _tooltip )
@@ -70,55 +74,6 @@ this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 			return true;
 
 		local weapon = _skill.getItem();
-		return !::MSU.isNull(weapon) && weapon.isItemType(::Const.Items.ItemType.Weapon) && weapon.isWeaponType(this.m.RequiredWeaponType);
-	}
-
-	// It is a copy of how vanilla applies injury in actor.nut onDamageReceived function
-	function applyInjury( _targetEntity )
-	{
-		local potentialInjuries = [];
-
-		foreach( inj in this.m.InjuryPool )
-		{
-			if (!_targetEntity.m.Skills.hasSkill(inj.ID) && _targetEntity.m.ExcludedInjuries.find(inj.ID) == null)
-			{
-				potentialInjuries.push(inj.Script);
-			}
-		}
-
-		local appliedInjury = false;
-
-		while (potentialInjuries.len() != 0)
-		{
-			local r = ::Math.rand(0, potentialInjuries.len() - 1);
-			local injury = ::new("scripts/skills/" + potentialInjuries[r]);
-
-			if (injury.isValid(_targetEntity))
-			{
-				_targetEntity.m.Skills.add(injury);
-
-				if (_targetEntity.isPlayerControlled() && this.isKindOf(_targetEntity, "player"))
-				{
-					_targetEntity.worsenMood(::Const.MoodChange.Injury, "Suffered an injury");
-				}
-
-				if (_targetEntity.isPlayerControlled() || !_targetEntity.isHiddenToPlayer())
-				{
-					::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_targetEntity) + " suffers " + injury.getNameOnly() + " due to " + ::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + "\'s " + ::Const.Perks.findById(this.getID()).Name + " perk!");
-				}
-
-				appliedInjury = true;
-				break;
-			}
-			else
-			{
-				potentialInjuries.remove(r);
-			}
-		}
-
-		if (appliedInjury)
-		{
-			_targetEntity.onUpdateInjuryLayer();
-		}
+		return ::MSU.isKindOf(weapon, "weapon") && weapon.isWeaponType(this.m.RequiredWeaponType);
 	}
 });

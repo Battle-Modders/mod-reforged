@@ -59,7 +59,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_skill.isAttack() && !_skill.isRanged() && _skill.isAOE() && _targetEntity != null)
+		if (_targetEntity != null && this.isSkillValid(_skill))
 		{
 			this.m.IsInEffect = true;
 		}
@@ -67,7 +67,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_targetEntity.isAlive() && _skill.isAttack() && !_skill.isRanged() && _skill.isAOE())
+		if (_targetEntity.isAlive() && this.isSkillValid(_skill))
 		{
 			this.addTarget(_targetEntity);
 		}
@@ -75,7 +75,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 
 	function onTargetMissed( _skill, _targetEntity )
 	{
-		if (_skill.isAttack() && !_skill.isRanged() && _skill.isAOE())
+		if (this.isSkillValid(_skill))
 		{
 			this.addTarget(_targetEntity);
 		}
@@ -122,5 +122,10 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 				return;
 		}
 		this.m.TargetsAffected.push(::MSU.asWeakTableRef(_entity));
+	}
+
+	function isSkillValid( _skill )
+	{
+		return _skill.isAttack() && !_skill.isRanged() && _skill.isAOE();
 	}
 });

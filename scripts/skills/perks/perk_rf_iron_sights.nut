@@ -1,6 +1,6 @@
 this.perk_rf_iron_sights <- ::inherit("scripts/skills/skill", {
 	m = {
-		Bonus = 25
+		ChanceToHitHeadAdd = 25
 	},
 	function create()
 	{
@@ -12,24 +12,15 @@ this.perk_rf_iron_sights <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}
 
-	function isEnabled()
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (this.getContainer().getActor().isDisarmed())
-			return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		return weapon != null && weapon.isItemType(::Const.Items.ItemType.RangedWeapon) && (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow) || weapon.isWeaponType(::Const.Items.WeaponType.Firearm));
-	}
-
-	function onUpdate( _properties )
-	{
-		if (this.isEnabled())
-			_properties.HitChance[::Const.BodyPart.Head] += this.m.Bonus;
+		if (this.isSkillValid(_skill))
+			_properties.HitChance[::Const.BodyPart.Head] += this.m.ChanceToHitHeadAdd;
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_targetEntity.isAlive() || _bodyPart != ::Const.BodyPart.Head || _targetEntity.getMoraleState() == ::Const.MoraleState.Ignore || !_skill.isRanged() || !_skill.isAttack() || !this.isEnabled())
+		if (!_targetEntity.isAlive() || _bodyPart != ::Const.BodyPart.Head || _targetEntity.getMoraleState() == ::Const.MoraleState.Ignore || !this.isSkillValid(_skill))
 			return;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
@@ -37,5 +28,14 @@ this.perk_rf_iron_sights <- ::inherit("scripts/skills/skill", {
 		{
 			_targetEntity.getSkills().add(::new("scripts/skills/effects/shellshocked_effect"));
 		}
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (!_skill.isRanged() || !_skill.isAttack())
+			return;
+
+		local weapon = _skill.getItem();
+		return ::MSU.isKindOf(weapon, "weapon") && (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow) || weapon.isWeaponType(::Const.Items.WeaponType.Firearm));
 	}
 });
