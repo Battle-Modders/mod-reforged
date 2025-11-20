@@ -32,4 +32,11 @@
 		]);
 		return ret;
 	}}.getTooltip;
+
+	// Overwrite vanilla function to use our member variables to apply the changes
+	q.onUpdate = @() { function onUpdate( _properties )
+	{
+		_properties.ThresholdToReceiveInjuryMult *= this.m.InjuryThresholdMult;
+		_properties.MovementAPCostAdditional += this.m.MovementAPCostModifier;
+	}}.onUpdate;
 });
