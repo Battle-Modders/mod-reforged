@@ -67,18 +67,24 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_targetEntity.isAlive() && this.isSkillValid(_skill))
-		{
-			this.addTarget(_targetEntity);
-		}
+		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
+			return;
+
+		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+			return;
+
+		this.addTarget(_targetEntity);
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
 	{
-		if (this.isSkillValid(_skill))
-		{
-			this.addTarget(_targetEntity);
-		}
+		if (!this.isSkillValid(_skill))
+			return;
+
+		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+			return;
+
+		this.addTarget(_targetEntity);
 	}
 
 	function onBeingAttacked( _attacker, _skill, _properties )

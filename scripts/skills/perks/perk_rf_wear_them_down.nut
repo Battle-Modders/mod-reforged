@@ -32,9 +32,12 @@ this.perk_rf_wear_them_down <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_skill.isAttack() && !_skill.isRanged() && _targetEntity.isAlive())
-		{
-			_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_worn_down_effect"));
-		}
+		if (!_skill.isAttack() || _skill.isRanged() || !_targetEntity.isAlive())
+			return;
+
+		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+			return;
+
+		_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_worn_down_effect"));
 	}
 });

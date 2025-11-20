@@ -22,6 +22,9 @@
 		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
 			return;
 
+		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+			return;
+
 		local actor = this.getContainer().getActor();
 
 		if (_skill.getDamageType().contains(::Const.Damage.DamageType.Blunt))

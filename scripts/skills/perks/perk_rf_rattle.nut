@@ -20,6 +20,9 @@ this.perk_rf_rattle <- ::inherit("scripts/skills/skill", {
 		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
 			return;
 
+		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+			return;
+
 		_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_rattled_effect"));
 	}
 

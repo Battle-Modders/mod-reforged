@@ -39,6 +39,12 @@ this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 			return;
 		}
 
+		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		{
+			this.m.__HitInfo = null;
+			return;
+		}
+
 		if (_damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding && !_targetEntity.getCurrentProperties().IsImmuneToBleeding)
 			_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));
 

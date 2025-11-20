@@ -64,6 +64,9 @@ this.rf_retribution_effect <- ::inherit("scripts/skills/skill", {
 		if (_attacker == null || _attacker.getID() == actor.getID() || _attacker.isAlliedWith(actor))
 			return;
 
+		if (!this.getContainer().RF_validateSkillCounter(_attacker, true))
+			return;
+
 		this.m.Stacks = ::Math.min(this.m.MaximumStackSize, this.m.Stacks + 1);
 	}
 

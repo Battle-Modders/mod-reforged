@@ -23,6 +23,9 @@ this.perk_rf_dent_armor <- ::inherit("scripts/skills/skill", {
 		if (targetArmorItem == null || targetArmorItem.getArmorMax() <= this.m.RequiredArmorMax || ::Math.rand(1, 100) > this.m.Chance)
 			return;
 
+		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+			return;
+
 		_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_dented_armor_effect"));
 	}
 

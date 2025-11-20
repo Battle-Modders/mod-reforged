@@ -17,6 +17,9 @@ this.perk_rf_terrifying_visage <- ::inherit("scripts/skills/skill", {
 			return;
 		}
 
+		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+			return;
+
 		this.spawnIcon("perk_rf_terrifying_visage", _targetEntity.getTile());
 		if (_targetEntity.checkMorale(-1, 0, ::Const.MoraleCheckType.MentalAttack))
 		{
