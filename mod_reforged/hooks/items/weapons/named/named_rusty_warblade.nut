@@ -5,7 +5,9 @@
 	{
 		this.named_weapon.onEquip();
 
-		this.addSkill(::Reforged.new("scripts/skills/actives/rf_great_cleave_skill", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/cleave", function(o) {
+			o.m.ActionPointCost += 2;
+			o.m.FatigueCost += 3;
 			o.m.Icon = "skills/active_182.png";
 			o.m.IconDisabled = "skills/active_182_sw.png";
 			o.m.Overlay = "active_182";

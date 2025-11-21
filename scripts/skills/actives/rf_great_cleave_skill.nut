@@ -42,7 +42,7 @@ this.rf_great_cleave_skill <- ::inherit("scripts/skills/actives/cleave", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill == this || _skill.getID() == "actives.decapitate")
+		if (_skill == this)
 		{
 			_properties.DamageRegularMin += 20;
 			_properties.DamageRegularMax += 20;
