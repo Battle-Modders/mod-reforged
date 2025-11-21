@@ -16,7 +16,7 @@
 
 			local identifier = skill.isType(::Const.SkillType.Perk) && !skill.isType(::Const.SkillType.StatusEffect) ? "Perk" : "Skill";
 			local suffix = skill.isType(::Const.SkillType.Active) ? format(" (%s, %s)", ::MSU.Text.colorPositive(skill.m.ActionPointCost), ::MSU.Text.colorNegative(skill.m.FatigueCost)) : "";
-			skillsString += format("- [%s|%s+%s,itemId:%s]%s\n", skill.getName(), identifier, skill.ClassName, itemID, suffix);
+			skillsString += format("- [%s|%s+%s,itemId:%s,entityId:default]%s\n", skill.getName(), identifier, ::IO.scriptFilenameByHash(skill.ClassNameHash), itemID, suffix);
 		}
 
 		if (skillsString != "")

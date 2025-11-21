@@ -90,6 +90,8 @@
 			return 0;
 		});
 
+		local extraData = "entityId:" + _actor.getID();
+
 		if (statusEffects.len() < collapseThreshold)
 		{
 			foreach( statusEffect in statusEffects )
@@ -98,7 +100,7 @@
 					id = currentID,
 					type = "text",
 					icon = statusEffect.getIcon(),
-					text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedSkillName(statusEffect, true))
+					text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedSkillName(statusEffect, extraData, true))
 				};
 				currentID++;
 
@@ -112,7 +114,7 @@
 			{
 				foreach( statusEffect in statusEffects )
 				{
-					entryText += ::Reforged.NestedTooltips.getNestedSkillName(statusEffect) + ", ";
+					entryText += ::Reforged.NestedTooltips.getNestedSkillName(statusEffect, extraData) + ", ";
 				}
 				if (entryText != "") entryText = entryText.slice(0, -2);
 			}
@@ -120,7 +122,7 @@
 			{
 				foreach( statusEffect in statusEffects )
 				{
-					entryText += ::Reforged.NestedTooltips.getNestedSkillImage(statusEffect);
+					entryText += ::Reforged.NestedTooltips.getNestedSkillImage(statusEffect, extraData);
 				}
 			}
 
@@ -146,6 +148,8 @@
 		if (perks.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(perkList, "Perks", currentID);
 		currentID++;
 
+		local extraData = "entityId:" + _actor.getID();
+
 		// Sometimes perks add information through their getName(). That is only relevant for the 'Effects' section and should be discarded under 'Perks'
 		perks.sort(@(a,b) a.m.Name <=> b.m.Name);
 		if (perks.len() < collapseThreshold)
@@ -161,7 +165,7 @@
 					id = currentID,
 					type = "text",
 					icon = perkDef != null ? perkDef.Icon : perk.getIcon(),
-					text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedPerkName(perk))
+					text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedPerkName(perk, extraData))
 				};
 				currentID++;
 
@@ -178,7 +182,7 @@
 					if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
 						if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
-					entryText += ::Reforged.NestedTooltips.getNestedPerkName(perk) + ", ";
+					entryText += ::Reforged.NestedTooltips.getNestedPerkName(perk, extraData) + ", ";
 				}
 				if (entryText != "") entryText = entryText.slice(0, -2);
 			}
@@ -189,7 +193,7 @@
 					if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
 						if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
-					entryText += ::Reforged.NestedTooltips.getNestedPerkImage(perk);
+					entryText += ::Reforged.NestedTooltips.getNestedPerkImage(perk, extraData);
 				}
 			}
 
@@ -217,13 +221,15 @@
 		if (mainhandItems.len() != 0 || offhandItems.len() != 0 || accessories.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(itemList, "Equipped Items", currentID);
 		currentID++;
 
+		local actorID = _actor.getID();
+
 		foreach(mainhandItem in mainhandItems)
 		{
 			itemList.push({
 				id = currentID,
 				type = "text",
 				icon = "ui/items/" + mainhandItem.getIcon(),
-				text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity]", mainhandItem.getName(), mainhandItem.ClassName, mainhandItem.getInstanceID()))
+				text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity,entityId:%i]", mainhandItem.getName(), mainhandItem.ClassName, mainhandItem.getInstanceID(), actorID))
 			});
 			currentID++;
 		}
@@ -233,7 +239,7 @@
 				id = currentID,
 				type = "text",
 				icon = "ui/items/" + offhandItem.getIcon(),
-				text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity]", offhandItem.getName(), offhandItem.ClassName, offhandItem.getInstanceID()))
+				text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity,entityId:%i]", offhandItem.getName(), offhandItem.ClassName, offhandItem.getInstanceID(), actorID))
 			});
 			currentID++;
 		}
@@ -243,7 +249,7 @@
 				id = currentID,
 				type = "text",
 				icon = "ui/items/" + accessory.getIcon(),
-				text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity]", accessory.getName(), accessory.ClassName, accessory.getInstanceID()))
+				text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity,entityId:%i]", accessory.getName(), accessory.ClassName, accessory.getInstanceID(), actorID))
 			});
 			currentID++;
 		}
@@ -261,13 +267,15 @@
 		if (bagItems.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(itemList, "Items in bag", currentID);
 		currentID++;
 
+		local actorID = _actor.getID();
+
 		foreach(bagItem in bagItems)
 		{
 			itemList.push({
 				id = currentID,
 				type = "text",
 				icon = "ui/items/" + bagItem.getIcon(),
-				text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity]", bagItem.getName(), bagItem.ClassName, bagItem.getInstanceID()))
+				text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:entity,entityId:%i]", bagItem.getName(), bagItem.ClassName, bagItem.getInstanceID(), actorID))
 			});
 			currentID++;
 		}
@@ -334,6 +342,8 @@
 			_startID++;
 		}
 
+		local extraData = "entityId:" + _actor.getID();
+
 		if (skills.len() < ::Reforged.Mod.ModSettings.getSetting("CollapseActivesWhenX").getValue())
 		{
 			foreach (skill in skills)
@@ -342,7 +352,7 @@
 					id = _startID++,
 					type = "text",
 					icon = skill.getIcon(),
-					text = ::Reforged.Mod.Tooltips.parseString(format("%s (%s, %s)", ::Reforged.NestedTooltips.getNestedSkillName(skill), ::MSU.Text.colorNegative(skill.getActionPointCost()), ::MSU.Text.colorPositive(skill.getFatigueCost())))
+					text = ::Reforged.Mod.Tooltips.parseString(format("%s (%s, %s)", ::Reforged.NestedTooltips.getNestedSkillName(skill, extraData), ::MSU.Text.colorNegative(skill.getActionPointCost()), ::MSU.Text.colorPositive(skill.getFatigueCost())))
 				});
 			}
 		}
@@ -353,7 +363,7 @@
 			{
 				foreach (skill in skills)
 				{
-					entryText += ::Reforged.NestedTooltips.getNestedSkillName(skill) + ", ";
+					entryText += ::Reforged.NestedTooltips.getNestedSkillName(skill, extraData) + ", ";
 				}
 				if (entryText != "") entryText = entryText.slice(0, -2);
 			}
@@ -361,7 +371,7 @@
 			{
 				foreach (skill in skills)
 				{
-					entryText += ::Reforged.NestedTooltips.getNestedSkillImage(skill, true);
+					entryText += ::Reforged.NestedTooltips.getNestedSkillImage(skill, extraData, true);
 				}
 			}
 
