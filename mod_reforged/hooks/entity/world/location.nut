@@ -1,35 +1,4 @@
 ::Reforged.HooksMod.hook("scripts/entity/world/location", function(q) {
-	q.onSpawned = @(__original) { function onSpawned()
-	{
-		__original();
-
-		// Named Weapon Loot drops in the Old Swordmaster origin have a chance to be converted to named swords.
-		// TODO: Perhaps we should implement functionality in starting_scenario to modify the loot.
-		if (!::MSU.isNull(::World.Assets.getOrigin()) && ::World.Assets.getOrigin().getID() == "scenario.rf_old_swordmaster" && !this.isLocationType(::Const.World.LocationType.Unique))
-		{
-			local swords = ::MSU.Class.WeightedContainer().addMany(1, [
-				"scripts/items/weapons/named/named_sword",
-				"scripts/items/weapons/named/named_greatsword",
-				"scripts/items/weapons/named/named_fencing_sword",
-				"scripts/items/weapons/named/named_warbrand",
-				"scripts/items/weapons/named/named_rf_longsword",
-				"scripts/items/weapons/named/named_rf_estoc",
-				"scripts/items/weapons/named/named_rf_kriegsmesser",
-				"scripts/items/weapons/named/named_rf_swordstaff"
-			]);
-
-			local lootContainer = this.m.Loot;
-			foreach (item in clone lootContainer.getItems())
-			{
-				if (::isKindOf(item, "named_weapon") && ::Math.rand(1, 100) < 50)
-				{
-					lootContainer.remove(item);
-					lootContainer.add(::new(swords.roll()));
-				}
-			}
-		}
-	}}.onSpawned;
-
 	q.setBanner = @(__original) { function setBanner( _banner )
 	{
 		__original(_banner);
