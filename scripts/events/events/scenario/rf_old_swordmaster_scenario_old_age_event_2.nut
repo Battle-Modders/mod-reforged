@@ -61,4 +61,9 @@ this.rf_old_swordmaster_scenario_old_age_event_2 <- this.inherit("scripts/events
 			}
 		}
 	}
+
+	function onClear()
+	{
+		this.m.Swordmaster = null;
+	}
 });

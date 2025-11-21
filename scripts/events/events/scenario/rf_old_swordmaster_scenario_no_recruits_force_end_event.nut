@@ -53,4 +53,9 @@ this.rf_old_swordmaster_scenario_no_recruits_force_end_event <- ::inherit("scrip
 			}
 		}
 	}
+
+	function onClear()
+	{
+		this.m.Swordmaster = null;
+	}
 });

@@ -403,6 +403,7 @@ this.rf_old_swordmaster_scenario_student_local_duel_event <- ::inherit("scripts/
 
 	function onClear()
 	{
+		this.m.Candidates.clear();
 		this.m.Champion = null;
 		this.m.Partner = null;
 		this.m.RandomBro = null;
