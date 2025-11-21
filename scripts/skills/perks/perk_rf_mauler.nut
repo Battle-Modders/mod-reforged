@@ -42,7 +42,7 @@ this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 		if (_damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding && !_targetEntity.getCurrentProperties().IsImmuneToBleeding)
 			_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));
 
-		if (this.m.__HitInfo == null || (_targetEntity.getFlags().has("undead") && !_targetEntity.getFlags().has("ghoul") && !_targetEntity.getFlags().has("ghost") && !this.getContainer().hasSkill("perk.crippling_strikes")))
+		if (this.m.__HitInfo == null || !_targetEntity.getCurrentProperties().IsAffectedByInjuries)
 		{
 			this.m.__HitInfo = null;
 			return;

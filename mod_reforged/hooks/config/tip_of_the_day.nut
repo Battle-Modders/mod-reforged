@@ -84,6 +84,7 @@ for (local index = (::Const.TipOfTheDay.len() - 1); index >= 0; index--)
 	"Reforged: Enemies will drop loot only if your faction has dealt at least 50% of the total damage received by that enemy, regardless of the killer.",
 	"Reforged: Experience from slain enemies is awarded depending on how much damage was dealt to them by your brothers.",
 	"Reforged: You can customize the tactical tooltips of your characters and enemies in the Mod Options.",
+	"Reforged: Undead can receive specific injuries, although it takes more damage than usual to inflict one.",
 	"If you see colorful squares, do NOT save the game or you might end up with a corrupted save file.",
 	"Reforged: Weapons worn by your characters will always drop and be recovered after the battle, even if they break."
 ]);

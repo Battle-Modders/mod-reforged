@@ -385,8 +385,7 @@ local vanillaDescriptions = [
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Lowers the [threshold|Concept.InjuryThreshold] to inflict [injuries|Concept.Injury] by " + ::MSU.Text.colorNegative("33%") + " for both melee and ranged attacks.",
-					"Allows attacks to inflict [injuries|Concept.Injury] on the Undead."
+					"Lowers the [threshold|Concept.InjuryThreshold] to inflict [injuries|Concept.Injury] by " + ::MSU.Text.colorNegative("33%") + " for both melee and ranged attacks."
 				]
 			}]
 		})
