@@ -34,13 +34,7 @@ this.perk_rf_bone_breaker <- ::inherit("scripts/skills/skill", {
 	// TODO: Properly handle delayed attacks
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (this.m.__HitInfo == null || _targetEntity == null || this.m.__TargetsThisTurn.find(_targetEntity.getID()) != null || !_targetEntity.isAlive() || !this.isSkillValid(_skill))
-		{
-			this.m.__HitInfo = null;
-			return;
-		}
-
-		if (_targetEntity.getFlags().has("undead") && !_targetEntity.getFlags().has("ghoul") && !_targetEntity.getFlags().has("ghost") && !this.getContainer().hasSkill("perk.crippling_strikes"))
+		if (this.m.__HitInfo == null || _targetEntity == null || this.m.__TargetsThisTurn.find(_targetEntity.getID()) != null || !_targetEntity.isAlive() || !_targetEntity.getCurrentProperties().IsAffectedByInjuries || !this.isSkillValid(_skill))
 		{
 			this.m.__HitInfo = null;
 			return;
