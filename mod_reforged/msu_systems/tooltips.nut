@@ -50,3 +50,16 @@ local tooltipImageKeywords = {
 }
 
 ::Reforged.Mod.Tooltips.setTooltipImageKeywords(tooltipImageKeywords);
+
+::Reforged.Mod.Tooltips.generateNestedTextFromObjCallback = function( _field, _key, _extraData )
+{
+	if (split(_key, ".")[0] == "Concept")
+	{
+		local tooltip = this.getTooltip(_key).Tooltip;
+		switch (_field)
+		{
+			case "Name":
+				return tooltip.getUIData(_extraData)[0].text;
+		}
+	}
+}
