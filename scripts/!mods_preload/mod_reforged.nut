@@ -16,7 +16,7 @@ local requiredMods = [
 	"vanilla >= 1.5.1-6",
 	"mod_modular_vanilla >= 0.5.1",
 	"mod_msu >= 1.7.2",
-	"mod_nested_tooltips >= 0.1.7",
+	"mod_nested_tooltips >= 0.2.0",
 	"mod_modern_hooks >= 0.4.10"
 	"dlc_lindwurm",
 	"dlc_unhold",

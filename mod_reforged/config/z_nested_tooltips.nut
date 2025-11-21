@@ -39,39 +39,39 @@ local getThresholdForInjury = function( _script )
 		"assets.MoralReputation"
 	],
 
-	function getNestedPerkName( _obj )
+	function getNestedPerkName( _obj, _extraData = null )
 	{
 		local perkDef = ::Const.Perks.findById(_obj.getID());
-		return format("[%s|Perk+%s]", perkDef != null ? perkDef.Name : _obj.m.Name, _obj.ClassName);
+		return format("[%s|Perk+%s%s]", perkDef != null ? perkDef.Name : _obj.m.Name, _obj.ClassName, _extraData == null ? "" : "," + _extraData);
 	}
 
-	function getNestedPerkImage( _obj )
+	function getNestedPerkImage( _obj, _extraData = null )
 	{
 		local perkDef = ::Const.Perks.findById(_obj.getID());
-		return format("[Img/gfx/%s|Perk+%s]", perkDef != null ? perkDef.Icon : _obj.getIcon(), _obj.ClassName);
+		return format("[Img/gfx/%s|Perk+%s%s]", perkDef != null ? perkDef.Icon : _obj.getIcon(), _obj.ClassName, _extraData == null ? "" : "," + _extraData);
 	}
 
-	function getNestedSkillName( _obj, _getName = false )
+	function getNestedSkillName( _obj, _extraData = null, _getName = false )
 	{
 		// We use `.m.Name` instead of `getName()` because some skills (e.g. status effects)
 		// modify the name during getName() e.g. to add info about the number of stacks
-		return format("[%s|Skill+%s]", _getName ? _obj.getName() : _obj.m.Name, _obj.ClassName);
+		return format("[%s|Skill+%s%s]", _getName ? _obj.getName() : _obj.m.Name, _obj.ClassName, _extraData == null ? "" : "," + _extraData);
 	}
 
-	function getNestedSkillImage( _obj, _checkUsability = false )
+	function getNestedSkillImage( _obj, _extraData = null, _checkUsability = false )
 	{
 		local icon = !_checkUsability || _obj.isUsable() && _obj.isAffordable() ? _obj.getIconColored() : _obj.getIconDisabled();
-		return format("[Img/gfx/%s|Skill+%s]", icon, _obj.ClassName);
+		return format("[Img/gfx/%s|Skill+%s%s]", icon, _obj.ClassName, _extraData == null ? "" : "," + _extraData);
 	}
 
-	function getNestedItemName( _obj )
+	function getNestedItemName( _obj, _extraData = null )
 	{
-		return format("[%s|Item+%s]", _obj.getName(), _obj.ClassName);
+		return format("[%s|Item+%s%s]", _obj.getName(), _obj.ClassName, _extraData == null ? "" : "," + _extraData);
 	}
 
-	function getNestedItemImage( _obj )
+	function getNestedItemImage( _obj, _extraData = null )
 	{
-		return format("[Img/gfx/%s|Item+%s]", _obj.getIcon(), _obj.ClassName);
+		return format("[Img/gfx/%s|Item+%s%s]", _obj.getIcon(), _obj.ClassName, _extraData == null ? "" : "," + _extraData);
 	}
 }
 
