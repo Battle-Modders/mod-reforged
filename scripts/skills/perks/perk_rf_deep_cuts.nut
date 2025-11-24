@@ -56,7 +56,7 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 	{
 		if (_targetEntity != null && this.m.__TargetID == _targetEntity.getID() && this.isSkillValid(_skill) && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 		{
-			_properties.ThresholdToInflictInjuryMult *= 1.0 - this.m.ThresholdToInflictInjuryMult * 0.01;
+			_properties.ThresholdToInflictInjuryMult *= this.m.ThresholdToInflictInjuryMult;
 		}
 	}
 
