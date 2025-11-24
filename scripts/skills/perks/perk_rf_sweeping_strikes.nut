@@ -70,7 +70,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		this.addTarget(_targetEntity);
@@ -81,7 +81,7 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 		if (!this.isSkillValid(_skill))
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		this.addTarget(_targetEntity);

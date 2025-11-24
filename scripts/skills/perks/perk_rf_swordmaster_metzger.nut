@@ -119,7 +119,7 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding || _damageInflictedHitpoints < ::Const.Combat.MinDamageToApplyBleeding)
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		local actor = this.getContainer().getActor();

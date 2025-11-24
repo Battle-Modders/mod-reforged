@@ -35,7 +35,7 @@ this.perk_rf_wear_them_down <- ::inherit("scripts/skills/skill", {
 		if (!_skill.isAttack() || _skill.isRanged() || !_targetEntity.isAlive())
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		_targetEntity.getSkills().add(::new("scripts/skills/effects/rf_worn_down_effect"));

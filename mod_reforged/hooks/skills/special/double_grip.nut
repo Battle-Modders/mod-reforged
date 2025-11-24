@@ -411,7 +411,7 @@
 				if (!_targetEntity.isAlive() || _targetEntity.getCurrentProperties().IsImmuneToDaze || _damageInflictedHitpoints < ::Const.Combat.MinDamageToApplyBleeding)
 					return;
 
-				if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+				if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 					return;
 
 				_targetEntity.getSkills().add(::new("scripts/skills/effects/dazed_effect"));

@@ -38,7 +38,7 @@ this.rf_sapling_harvest_effect <- ::inherit("scripts/skills/skill", {
 		}
 		if (candidates.len() == 0) return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_attacker, true))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_attacker, true))
 			return;
 
 		local spawnTile = candidates[::Math.rand(0, candidates.len() - 1)];

@@ -39,7 +39,7 @@ this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 		{
 			this.m.__HitInfo = null;
 			return;

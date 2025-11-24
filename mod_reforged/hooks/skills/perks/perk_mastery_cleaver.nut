@@ -20,7 +20,7 @@
 		if (!_targetEntity.isAlive() || _damageInflictedHitpoints < ::Const.Combat.MinDamageToApplyBleeding || _targetEntity.getCurrentProperties().IsImmuneToBleeding || !this.isSkillValid(_skill))
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));

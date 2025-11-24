@@ -65,7 +65,7 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 		if (_attacker == null || !_skill.isAttack())
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_attacker, true))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_attacker, true))
 			return;
 
 		this.addStacks(1);
@@ -76,7 +76,7 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 		if (_skill == null || !_skill.isAttack() || _attacker == null || _attacker.getID() == this.getContainer().getActor().getID())
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_attacker, true))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_attacker, true))
 			return;
 
 		this.addStacks(1);
@@ -87,7 +87,7 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 		if (!_skill.isAttack())
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		this.addStacks(1);

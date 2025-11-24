@@ -3,7 +3,15 @@
 	q.m.__RF_LastTargetID <- 0;
 	q.m.__RF_LastAttackerID <- 0;
 
-	q.RF_validateSkillCounter <- { function RF_validateSkillCounter( _entity, _isAttacker = false )
+	// Is used to prevent effects from triggering multiple times from multiple hits/misses in the same attack.
+	// The logic is derived from how vanilla does it in perk_overwhelm.
+	// Returns true if Const.SkillCounter has progressed since last time this function was called OR if the target is different.
+	// Returns false otherwise.
+	// Note for use: When using inside a function, this should be called as late as possible but IMMEDIATELY BEFORE
+	// applying the effects for which it is intended to prevent them from triggering multiple times.
+	// Pass `_false` for `_isAttacker` when the skill user is the actor of this container and the target is `_entity`.
+	// Pass `true` for `_isAttacker` if the actor of this container is the target and `_entity` is the attacker.
+	q.RF_isNewSkillUseOrEntity <- { function RF_isNewSkillUseOrEntity( _entity, _isAttacker = false )
 	{
 		local id = _entity == null ? 0 : _entity.getID();
 		if (::Const.SkillCounter == this.m.__RF_SkillCount && id == (_isAttacker ? this.m.__RF_LastAttackerID : this.m.__RF_LastTargetID))
@@ -22,7 +30,7 @@
 		}
 
 		return true;
-	}}.RF_validateSkillCounter;
+	}}.RF_isNewSkillUseOrEntity;
 
 	q.onDamageReceived = @(__original) { function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{

@@ -22,7 +22,7 @@
 		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		local actor = this.getContainer().getActor();

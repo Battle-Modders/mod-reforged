@@ -27,7 +27,7 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 		{
 			if (!_targetEntity.getCurrentProperties().IsImmuneToStun && !_targetEntity.getSkills().hasSkill("effects.stunned"))
 			{
-				if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+				if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 					return;
 
 				_targetEntity.getSkills().add(::new("scripts/skills/effects/stunned_effect"));
@@ -44,7 +44,7 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 			{
 				if (!_targetEntity.getCurrentProperties().IsImmuneToStun && !_targetEntity.getSkills().hasSkill("effects.stunned"))
 				{
-					if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+					if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 						return;
 
 					_targetEntity.getSkills().add(::new("scripts/skills/effects/stunned_effect"));
@@ -57,7 +57,7 @@ this.perk_rf_concussive_strikes <- ::inherit("scripts/skills/skill", {
 			}
 			else if (!_targetEntity.getCurrentProperties().IsImmuneToDaze)
 			{
-				if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+				if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 					return;
 
 				local effect = ::new("scripts/skills/effects/dazed_effect");

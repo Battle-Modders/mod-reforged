@@ -101,7 +101,7 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
-		if (!this.getContainer().RF_validateSkillCounter(_attacker, true))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_attacker, true))
 			return;
 
 		this.addRage(1);
@@ -112,7 +112,7 @@ this.perk_rf_feral_rage <- ::inherit("scripts/skills/skill", {
 		if (_skill.isRanged() || !_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.getTile().getDistanceTo(this.getContainer().getActor().getTile()) != 1)
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		this.addRage(2);

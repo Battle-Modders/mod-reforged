@@ -78,7 +78,7 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 		if (!_targetEntity.isAlive() || _damageInflictedHitpoints < ::Const.Combat.MinDamageToApplyBleeding)
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		local actor = this.getContainer().getActor();

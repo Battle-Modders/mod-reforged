@@ -49,7 +49,7 @@ this.perk_rf_retribution <- ::inherit("scripts/skills/skill", {
 		if (_attacker.getID() == actor.getID() || _attacker.isAlliedWith(actor))
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_attacker, true))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_attacker, true))
 			return;
 
 		this.m.Stacks += 1;

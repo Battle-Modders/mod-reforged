@@ -52,7 +52,7 @@ this.perk_rf_bone_breaker <- ::inherit("scripts/skills/skill", {
 			local weapon = this.getContainer().getActor().getMainhandItem();
 			if ((weapon != null && weapon.isItemType(::Const.Items.ItemType.TwoHanded)) || this.m.IsForceTwoHanded || ::Math.rand(1, 100) <= this.m.ChanceOneHanded)
 			{
-				if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+				if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 				{
 					this.m.__HitInfo = null;
 					return;

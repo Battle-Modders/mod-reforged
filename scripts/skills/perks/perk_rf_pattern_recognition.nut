@@ -117,7 +117,7 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 
 	function onMissed( _attacker, _skill )
 	{
-		if (!this.getContainer().RF_validateSkillCounter(_attacker, true))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_attacker, true))
 			return;
 
 		this.procIfApplicable(_attacker, _skill);
@@ -125,7 +125,7 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
-		if (!this.getContainer().RF_validateSkillCounter(_attacker, true))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_attacker, true))
 			return;
 
 		this.procIfApplicable(_attacker, _skill);
@@ -136,7 +136,7 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 		if (!_targetEntity.isAlive() || _targetEntity.isDying())
 			return;
 
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		this.procIfApplicable(_targetEntity, _skill);
@@ -144,7 +144,7 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 
 	function onTargetMissed( _skill, _targetEntity )
 	{
-		if (!this.getContainer().RF_validateSkillCounter(_targetEntity))
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		this.procIfApplicable(_targetEntity, _skill);
