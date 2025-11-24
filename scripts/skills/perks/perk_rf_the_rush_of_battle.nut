@@ -62,26 +62,35 @@ this.perk_rf_the_rush_of_battle <- ::inherit("scripts/skills/skill", {
 
 	function onMissed( _attacker, _skill )
 	{
-		if (_attacker != null && _skill.isAttack())
-		{
-			this.addStacks(1);
-		}
+		if (_attacker == null || !_skill.isAttack())
+			return;
+
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_attacker, true))
+			return;
+
+		this.addStacks(1);
 	}
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
-		if (_skill != null && _skill.isAttack() && _attacker != null && _attacker.getID() != this.getContainer().getActor().getID())
-		{
-			this.addStacks(1);
-		}
+		if (_skill == null || !_skill.isAttack() || _attacker == null || _attacker.getID() == this.getContainer().getActor().getID())
+			return;
+
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_attacker, true))
+			return;
+
+		this.addStacks(1);
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (_skill.isAttack())
-		{
-			this.addStacks(1);
-		}
+		if (!_skill.isAttack())
+			return;
+
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
+			return;
+
+		this.addStacks(1);
 	}
 
 	function addStacks( _num )

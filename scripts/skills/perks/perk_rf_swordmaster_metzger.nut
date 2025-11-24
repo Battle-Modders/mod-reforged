@@ -116,14 +116,17 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 		if (!_targetEntity.isAlive() || _targetEntity.isDying() || !this.isSkillValid(_skill) || !this.isEnabled())
 			return;
 
-		if (!_targetEntity.getCurrentProperties().IsImmuneToBleeding && _damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
-		{
-			local actor = this.getContainer().getActor();
-			local effect = ::new("scripts/skills/effects/bleeding_effect");
-			effect.setDamage(10);
+		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding || _damageInflictedHitpoints < ::Const.Combat.MinDamageToApplyBleeding)
+			return;
 
-			_targetEntity.getSkills().add(effect);
-		}
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
+			return;
+
+		local actor = this.getContainer().getActor();
+		local effect = ::new("scripts/skills/effects/bleeding_effect");
+		effect.setDamage(10);
+
+		_targetEntity.getSkills().add(effect);
 	}
 
 	function onQueryTooltip( _skill, _tooltip )

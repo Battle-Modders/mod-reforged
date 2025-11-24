@@ -51,17 +51,20 @@ this.perk_rf_dismemberment <- ::inherit("scripts/skills/skill", {
 		if (!_targetEntity.isAlive() || _targetEntity.getMoraleState() == ::Const.MoraleState.Ignore || _targetEntity.getMoraleState() == ::Const.MoraleState.Fleeing || !this.isSkillValid(_skill))
 			return;
 
-		if (this.m.NumInjuriesBefore < _targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len())
+		if (this.m.NumInjuriesBefore >= _targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len())
+			return;
+
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
+			return;
+
+		local count = 0;
+		local difficulty = ::Const.Morale.OnHitBaseDifficulty * (1.0 - _targetEntity.getHitpoints() / _targetEntity.getHitpointsMax());
+		for (local i = _damageInflictedHitpoints / _targetEntity.getHitpoints(); i >= 0; i -= this.m.HPDamageFractionPerMoraleCheck)
 		{
-			local count = 0;
-			local difficulty = ::Const.Morale.OnHitBaseDifficulty * (1.0 - _targetEntity.getHitpoints() / _targetEntity.getHitpointsMax());
-			for (local i = _damageInflictedHitpoints / _targetEntity.getHitpoints(); i >= 0; i -= this.m.HPDamageFractionPerMoraleCheck)
+			_targetEntity.checkMorale(-1, difficulty);
+			if (++count == this.m.MaxMoraleChecks)
 			{
-				_targetEntity.checkMorale(-1, difficulty);
-				if (++count == this.m.MaxMoraleChecks)
-				{
-					break;
-				}
+				break;
 			}
 		}
 	}

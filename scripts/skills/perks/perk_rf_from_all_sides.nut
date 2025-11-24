@@ -1,8 +1,6 @@
 this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 	m = {
-		RequiredWeaponType = ::Const.Items.WeaponType.Flail,
-		SkillCount = 0,
-		LastTargetID = 0
+		RequiredWeaponType = ::Const.Items.WeaponType.Flail
 	},
 	function create()
 	{
@@ -16,11 +14,11 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		if (!this.isSkillValid(_skill) || this.m.SkillCount == ::Const.SkillCounter && this.m.LastTargetID == _targetEntity.getID())
+		if (!this.isSkillValid(_skill))
 			return;
 
-		this.m.SkillCount = ::Const.SkillCounter;
-		this.m.LastTargetID = _targetEntity.getID();
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
+			return;
 
 		local effect = _targetEntity.getSkills().getSkillByID("effects.rf_from_all_sides");
 		if (effect == null)

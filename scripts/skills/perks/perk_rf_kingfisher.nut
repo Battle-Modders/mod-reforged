@@ -37,6 +37,9 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 		if (this.m.IsSpent || _skill.isRanged() || ::MSU.isNull(::Const.Tactical.MV_CurrentAttackInfo) || ::Math.rand(1, 100) > ::Const.Tactical.MV_CurrentAttackInfo.ChanceToHit || !this.isEnabled())
 			return;
 
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
+			return;
+
 		// ScheduleEvent is used because container.m.IsUpdating is true right now, so directly using skills is not good here
 		// and leads to improper removal/addition of skills
 		::Time.scheduleEvent(::TimeUnit.Virtual, 1, this.onApplyNet.bindenv(this), {

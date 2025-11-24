@@ -53,6 +53,8 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 						}
 
 						perk.m.IsSpinningFlail = true;
+						// Increment the vanilla SkillCounter because we want this attack to trigger effects/perks
+						::Const.SkillCounter++;
 						_skill.useForFree(_targetTile);
 						perk.m.IsSpinningFlail = false;
 					}
@@ -68,6 +70,8 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 					this.logDebug("[" + user.getName() + "] is Spinning The Flail on target [" + targetEntity.getName() + "] with skill [" + _skill.getName() + "]");
 					this.m.IsSpinningFlail = true;
 
+					// Increment the vanilla SkillCounter because we want this attack to trigger effects/perks
+					::Const.SkillCounter++;
 					_skill.useForFree(_targetTile);
 					this.m.IsSpinningFlail = false;
 				}

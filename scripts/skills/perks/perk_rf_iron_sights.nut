@@ -23,6 +23,9 @@ this.perk_rf_iron_sights <- ::inherit("scripts/skills/skill", {
 		if (!_targetEntity.isAlive() || _bodyPart != ::Const.BodyPart.Head || _targetEntity.getMoraleState() == ::Const.MoraleState.Ignore || !this.isSkillValid(_skill))
 			return;
 
+		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
+			return;
+
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
 		{

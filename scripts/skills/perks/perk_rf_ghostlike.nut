@@ -1,3 +1,4 @@
+// TODO: Properly handle multiple attacks per attack.
 this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 	m = {
 		WeaponReach = 4,

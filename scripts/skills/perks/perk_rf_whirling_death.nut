@@ -153,6 +153,8 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 					}
 
 					this.m.IsPerformingExtraAttack = true;
+					// Increment the vanilla SkillCounter because we want this attack to trigger effects/perks
+					::Const.SkillCounter++;
 					_skill.useForFree(targetTile);
 					this.m.IsPerformingExtraAttack = false;
 				}
@@ -167,6 +169,8 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 				::logDebug("[" + user.getName() + "] is attacking [" + target.getName() + "] with skill [" + _skill.getName() + "] due to " + this.m.Name);
 
 				this.m.IsPerformingExtraAttack = true;
+				// Increment the vanilla SkillCounter because we want this attack to trigger effects/perks
+				::Const.SkillCounter++;
 				_skill.useForFree(targetTile);
 				this.m.IsPerformingExtraAttack = false;
 			}

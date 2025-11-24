@@ -405,14 +405,22 @@
 	{
 		__original(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
 
-		if (_targetEntity.isAlive() && this.m.CurrWeaponType == ::Const.Items.WeaponType.Mace && !_targetEntity.getCurrentProperties().IsImmuneToDaze && _damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
+		switch (this.m.CurrWeaponType)
 		{
-			_targetEntity.getSkills().add(::new("scripts/skills/effects/dazed_effect"));
-			local actor = this.getContainer().getActor();
-			if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-			{
-				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
-			}
+			case ::Const.Items.WeaponType.Mace:
+				if (!_targetEntity.isAlive() || _targetEntity.getCurrentProperties().IsImmuneToDaze || _damageInflictedHitpoints < ::Const.Combat.MinDamageToApplyBleeding)
+					return;
+
+				if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
+					return;
+
+				_targetEntity.getSkills().add(::new("scripts/skills/effects/dazed_effect"));
+				local actor = this.getContainer().getActor();
+				if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
+				{
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
+				}
+				break;
 		}
 	}}.onTargetHit;
 
