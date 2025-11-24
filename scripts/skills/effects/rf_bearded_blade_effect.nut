@@ -1,8 +1,5 @@
 this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
-	m = {
-		IsUpdating = false,
-		HitChance = 0
-	},
+	m = {},
 	function create()
 	{
 		this.m.ID = "effects.rf_bearded_blade";
@@ -46,51 +43,24 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 			this.removeSelf();
 	}
 
-	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onTurnStart()
 	{
-		this.m.HitChance = 0;
-		if (_targetEntity != null && _skill.isAttack() && !_skill.isRanged() && _skill.m.IsWeaponSkill)
-		{
-			this.m.HitChance = _skill.getHitchance(_targetEntity);
-		}
-	}
-
-	function onBeingAttacked( _attacker, _skill, _properties )
-	{
-		if (!this.m.IsUpdating && !_skill.isRanged())
-		{
-			this.m.HitChance = 0;
-
-			this.m.IsUpdating = true;
-			this.m.HitChance = _skill.getHitchance(this.getContainer().getActor());
-			this.m.IsUpdating = false;
-		}
+		this.removeSelf();
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
 	{
-		this.removeSelf();
-
-		if (!_targetEntity.isAlive() || ::Math.rand(1, 100) > this.m.HitChance || _targetEntity.getMainhandItem() == null)
-			return;
-
-		local effect = ::new("scripts/skills/effects/disarmed_effect");
-		_targetEntity.getSkills().add(effect);
-
-		if (!this.getContainer().getActor().isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-		{
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " has disarmed " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for " + effect.m.TurnsLeft + " turn(s)");
-		}
+		this.__onTargetAttacked(_targetEntity);
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		this.onTargetMissed(_skill, _targetEntity);
+		this.__onTargetAttacked(_targetEntity);
 	}
 
 	function onMissed( _attacker, _skill )
 	{
-		if (_skill.isRanged() || !_attacker.isAlive() || _attacker.isAlliedWith(this.getContainer().getActor()) || ::Math.rand(1, 100) <= this.m.HitChance)
+		if (_skill.isRanged() || !_attacker.isAlive() || _attacker.isAlliedWith(this.getContainer().getActor()) || ::Math.rand(1, 100) <= ::Const.Tactical.MV_CurrentAttackInfo.ChanceToHit)
 			return;
 
 		local weapon = _attacker.getMainhandItem();
@@ -98,19 +68,31 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 			return;
 
 		this.removeSelf();
-
-		local effect = ::new("scripts/skills/effects/disarmed_effect");
-		_attacker.getSkills().add(effect);
-		if (!effect.isGarbage()) effect.setTurns(2); // if effect wasn't removed during addition
-
-		if (!this.getContainer().getActor().isHiddenToPlayer() && _attacker.getTile().IsVisibleForPlayer)
-		{
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " has disarmed " + ::Const.UI.getColorizedEntityName(_attacker) + " for " + effect.m.TurnsLeft + " turn(s)");
-		}
+		this.__disarmEntity(_attacker);
 	}
 
-	function onTurnStart()
+	function __onTargetAttacked( _targetEntity )
 	{
 		this.removeSelf();
+
+		if (!_targetEntity.isAlive() || ::Math.rand(1, 100) > ::Const.Tactical.MV_CurrentAttackInfo.ChanceToHit || _targetEntity.getMainhandItem() == null)
+			return;
+
+		this.__disarmEntity(_targetEntity);
+	}
+
+	function __disarmEntity( _entity )
+	{
+		local effect = ::new("scripts/skills/effects/disarmed_effect");
+		_entity.getSkills().add(effect);
+		if (!effect.isGarbage() && ::Tactical.TurnSequenceBar.isActiveEntity(_entity))
+		{
+			effect.setTurns(2);
+		}
+
+		if (!this.getContainer().getActor().isHiddenToPlayer() && _entity.getTile().IsVisibleForPlayer)
+		{
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " has disarmed " + ::Const.UI.getColorizedEntityName(_entity) + " for " + effect.m.TurnsLeft + " turn(s)");
+		}
 	}
 });

@@ -1,8 +1,9 @@
 this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 	m = {
-		TargetID = null,
-		NumInjuriesBefore = 0,
-		InjuryThresholdReduction = 33
+		ThresholdToInflictInjuryMult = 0.66,
+
+		__NumInjuriesBefore = 0,
+		__TargetID = 0
 	},
 	function create()
 	{
@@ -16,28 +17,28 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		return this.m.TargetID == null;
+		return this.m.__TargetID == 0;
 	}
 
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 
-		local e = ::Tactical.getEntityByID(this.m.TargetID);
+		local e = ::Tactical.getEntityByID(this.m.__TargetID);
 		if (e != null && e.isAlive())
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next " + ::MSU.Text.colorNegative("cutting") + " attack(s) this turn against " + ::MSU.Text.colorNegative(e.getName()) + " have a " + ::MSU.Text.colorPositive(this.m.InjuryThresholdReduction + "%") + " lower [threshold|Concept.InjuryThreshold] to inflict [injuries|Concept.InjuryTemporary]")
+				text = ::Reforged.Mod.Tooltips.parseString("The next " + ::MSU.Text.colorDamage("cutting") + " attack(s) this turn against " + ::MSU.Text.colorNegative(e.getName()) + " have a " + ::MSU.Text.colorizeMultWithText(this.m.ThresholdToInflictInjuryMult, {Text = ["higher", "lower"]}) + " [threshold|Concept.InjuryThreshold] to inflict [injuries|Concept.InjuryTemporary]")
 			});
 
 			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("These attacks also inflict [Bleeding|Skill+bleeding_effect] when dealing at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.MinDamageToApplyBleeding) + " damage to [Hitpoints|Concept.Hitpoints]")
+				text = ::Reforged.Mod.Tooltips.parseString("These attacks also inflict [Bleeding|Skill+bleeding_effect] when dealing at least " + ::MSU.Text.colorDamage(::Const.Combat.MinDamageToApplyBleeding) + " damage to [Hitpoints|Concept.Hitpoints]")
 			});
 
 			ret.push({
@@ -53,78 +54,80 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_targetEntity != null && this.m.TargetID == _targetEntity.getID() && _skill.isAttack() && _skill.getDamageType().contains(::Const.Damage.DamageType.Cutting) && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		if (_targetEntity != null && this.m.__TargetID == _targetEntity.getID() && this.isSkillValid(_skill) && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 		{
-			_properties.ThresholdToInflictInjuryMult *= 1.0 - this.m.InjuryThresholdReduction * 0.01;
+			_properties.ThresholdToInflictInjuryMult *= this.m.ThresholdToInflictInjuryMult;
 		}
 	}
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		if (this.m.TargetID != null) this.m.NumInjuriesBefore = _targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len();
+		if (this.m.__TargetID == _targetEntity.getID())
+			this.m.__NumInjuriesBefore = _targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len();
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (!_targetEntity.isAlive())
+		// Switching targets, set the target to the new target, and wait for next attack.
+		if (this.m.__TargetID != _targetEntity.getID())
+		{
+			this.m.__TargetID = _targetEntity.getID();
+			return;
+		}
+
+		if (!_targetEntity.isAlive() || _damageInflictedHitpoints < ::Const.Combat.MinDamageToApplyBleeding)
 			return;
 
-		// Attacking the same target as previous attack
-		if (this.m.TargetID == _targetEntity.getID())
-		{
-		if (_damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding)
-			{
-				local actor = this.getContainer().getActor();
-				_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));
+		local actor = this.getContainer().getActor();
+		_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));
 
-				if (_targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len() > this.m.NumInjuriesBefore)
-				{
-					_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));
-				}
-			}
-		}
-		else // Set our target
+		if (_targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len() > this.m.__NumInjuriesBefore)
 		{
-			this.m.TargetID = _targetEntity.getID();
-			}
+			_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));
+		}
 	}
 
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		// Set TargetID to null if switching targets, using an invalid skill, or not being the active entity
-		if (_targetEntity == null || this.m.TargetID != _targetEntity.getID() || !_skill.isAttack() || _targetEntity.getCurrentProperties().IsImmuneToBleeding ||
-			!_skill.getDamageType().contains(::Const.Damage.DamageType.Cutting) || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		// Set __TargetID to 0 if switching targets, using an invalid skill, or not being the active entity
+		if (_targetEntity == null || this.m.__TargetID != _targetEntity.getID() || _targetEntity.getCurrentProperties().IsImmuneToBleeding || !this.isSkillValid(_skill)
+			|| !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 		{
-			this.m.TargetID = null;
+			this.m.__TargetID = 0;
 			return;
 		}
 
-		this.m.TargetID = _targetEntity.getID();
+		this.m.__TargetID = _targetEntity.getID();
 	}
 
 	function onTurnEnd()
 	{
-		this.m.TargetID = null;
+		this.m.__TargetID = 0;
 	}
 
 	function onWaitTurn()
 	{
-		this.m.TargetID = null;
+		this.m.__TargetID = 0;
 	}
 
 	function onPayForItemAction( _skill, _items )
 	{
-		this.m.TargetID = null;
+		this.m.__TargetID = 0;
 	}
 
 	function onMovementFinished()
 	{
-		this.m.TargetID = null;
+		this.m.__TargetID = 0;
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.TargetID = null;
+		this.m.__TargetID = 0;
+	}
+
+	function isSkillValid( _skill )
+	{
+		return _skill.isAttack() && _skill.getDamageType().contains(::Const.Damage.DamageType.Cutting);
 	}
 });

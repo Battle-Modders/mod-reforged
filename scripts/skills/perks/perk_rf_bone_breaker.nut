@@ -3,19 +3,18 @@ this.perk_rf_bone_breaker <- ::inherit("scripts/skills/skill", {
 		RequiredWeaponType = ::Const.Items.WeaponType.Mace,
 		RequiredDamageType = ::Const.Damage.DamageType.Blunt,
 		IsForceTwoHanded = false,
-		IsTargetValid = false,
-		InjuryPool = null,
 		ChanceOneHanded = 50,
-		DamageInflictedHitpoints = 0,
 		MinDamageToInflictInjury = 5,
-		TargetsThisTurn = [],
 		ValidEffects = [
 			"effects.sleeping",
 			"effects.stunned",
 			"effects.net",
 			"effects.web",
 			"effects.rooted"
-		]
+		],
+
+		__TargetsThisTurn = [],
+		__HitInfo = null
 	},
 	function create()
 	{
@@ -27,114 +26,50 @@ this.perk_rf_bone_breaker <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Offensive;
 	}
 
-	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		this.m.InjuryPool = null;
-	}
-
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		this.m.InjuryPool = _hitInfo.Injuries;
+		this.m.__HitInfo = _hitInfo;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		this.m.DamageInflictedHitpoints = _damageInflictedHitpoints;
-	}
-
+	// TODO: Properly handle delayed attacks
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (this.m.DamageInflictedHitpoints < this.m.MinDamageToInflictInjury || this.m.InjuryPool == null || _targetEntity == null || this.m.TargetsThisTurn.find(_targetEntity.getID()) != null || !_targetEntity.isAlive() || !this.isSkillValid(_skill))
+		if (this.m.__HitInfo == null || _targetEntity == null || this.m.__TargetsThisTurn.find(_targetEntity.getID()) != null || !_targetEntity.isAlive() || !this.isSkillValid(_skill))
 		{
-			this.m.InjuryPool = null;
+			this.m.__HitInfo = null;
 			return;
 		}
 
 		if (_targetEntity.getFlags().has("undead") && !_targetEntity.getFlags().has("ghoul") && !_targetEntity.getFlags().has("ghost") && !this.getContainer().hasSkill("perk.crippling_strikes"))
 		{
-			this.m.InjuryPool = null;
+			this.m.__HitInfo = null;
 			return;
 		}
 
-		if (_targetEntity.getSkills().getSkillsByFunction((@(skill) this.m.ValidEffects.find(skill.getID()) != null).bindenv(this)).len() > 0)
+		local validEffects = this.m.ValidEffects;
+		if (_targetEntity.getSkills().getSkillsByFunction((@(skill) validEffects.find(skill.getID()) != null)).len() != 0)
 		{
 			local weapon = this.getContainer().getActor().getMainhandItem();
 			if ((weapon != null && weapon.isItemType(::Const.Items.ItemType.TwoHanded)) || this.m.IsForceTwoHanded || ::Math.rand(1, 100) <= this.m.ChanceOneHanded)
 			{
-				this.m.TargetsThisTurn.push(_targetEntity.getID());
-				this.applyInjury(_targetEntity);
-				this.m.InjuryPool = null;
+				this.m.__TargetsThisTurn.push(_targetEntity.getID());
+				_targetEntity.MV_applyInjury(_skill, this.m.__HitInfo);
 			}
 		}
+
+		this.m.__HitInfo = null;
 	}
 
 	function onTurnStart()
 	{
-		this.m.TargetsThisTurn.clear();
-	}
-
-	function onCombatStarted()
-	{
-		this.m.InjuryPool = null;
+		this.m.__TargetsThisTurn.clear();
 	}
 
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.m.TargetsThisTurn.clear();
-		this.m.InjuryPool = null;
-	}
-
-	function applyInjury( _targetEntity )
-	{
-		if (_targetEntity.m.CurrentProperties.IsAffectedByInjuries && _targetEntity.m.CurrentProperties.ThresholdToReceiveInjuryMult != 0)
-		{
-			local injuries = this.m.InjuryPool;
-			local potentialInjuries = [];
-
-			foreach( inj in injuries )
-			{
-				if (!_targetEntity.m.Skills.hasSkill(inj.ID) && _targetEntity.m.ExcludedInjuries.find(inj.ID) == null)
-				{
-					potentialInjuries.push(inj.Script);
-				}
-			}
-
-			local appliedInjury = false;
-
-			while (potentialInjuries.len() != 0)
-			{
-				local r = ::Math.rand(0, potentialInjuries.len() - 1);
-				local injury = ::new("scripts/skills/" + potentialInjuries[r]);
-
-				if (injury.isValid(_targetEntity))
-				{
-					_targetEntity.m.Skills.add(injury);
-
-					if (_targetEntity.isPlayerControlled() && this.isKindOf(_targetEntity, "player"))
-					{
-						_targetEntity.worsenMood(::Const.MoodChange.Injury, "Suffered an injury");
-					}
-
-					if (_targetEntity.isPlayerControlled() || !_targetEntity.isHiddenToPlayer())
-					{
-						::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_targetEntity) + " suffers " + injury.getNameOnly() + " due to " + ::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + "\'s Bone Breaker perk!");
-					}
-
-					appliedInjury = true;
-					break;
-				}
-				else
-				{
-					potentialInjuries.remove(r);
-				}
-			}
-
-			if (appliedInjury)
-			{
-				_targetEntity.onUpdateInjuryLayer();
-			}
-		}
+		this.m.__TargetsThisTurn.clear();
+		this.m.__HitInfo = null;
 	}
 
 	function isSkillValid( _skill )
