@@ -3,9 +3,7 @@
 	{
 		return ::new(::DynamicPerks.Class.PerkTree).init({
 			DynamicMap = {
-				"pgc.rf_exclusive_1": [
-					"pg.rf_pauper"
-				],
+				"pgc.rf_exclusive_1": [],
 				"pgc.rf_shared_1": [],
 				"pgc.rf_weapon": [],
 				"pgc.rf_armor": [],
@@ -39,4 +37,43 @@
 				return 0.25;
 		}
 	}}.getPerkGroupMultiplier;
+
+		q.onChangeAttributes = @() { function onChangeAttributes()
+		{
+			local c = {
+	            Hitpoints = [
+	                -10,
+	                -10
+	            ],
+	            Bravery = [
+	                -10,
+	                -5
+	            ],
+	            Stamina = [
+	                0,
+	                10
+	            ],
+	            MeleeSkill = [
+	                -10,
+	                10
+	            ],
+	            RangedSkill = [
+	                -15,
+	                15
+	            ],
+	            MeleeDefense = [
+	                -10,
+	                10
+	            ],
+	            RangedDefense = [
+	                -10,
+	                10
+	            ],
+	            Initiative = [
+	                -20,
+	                10
+	            ]
+	        };
+	        return c;
+		}}.onChangeAttributes;
 });
