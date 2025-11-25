@@ -23,7 +23,7 @@ this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 			return;
 
 		local bleeding = _targetEntity.getSkills().getAllSkillsByID("effects.bleeding");
-		local count = bleeding.len() == 1 ? bleeding.m.Stacks : bleeding.len();
+		local count = bleeding.len() == 1 ? bleeding[0].m.Stacks : bleeding.len();
 
 		if (count >= this.m.BleedStacksRequired)
 		{
