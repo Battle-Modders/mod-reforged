@@ -197,6 +197,34 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 		}
 	}
 
+	// Named Weapon Loot drops from locations in this origin have a chance to be converted to named swords.
+	function MV_onWorldEntitySpawned( _entity )
+	{
+		if (::isKindOf(_entity, "location") && !_entity.isLocationType(::Const.World.LocationType.Unique))
+		{
+			local swords = ::MSU.Class.WeightedContainer().addMany(1, [
+				"scripts/items/weapons/named/named_sword",
+				"scripts/items/weapons/named/named_greatsword",
+				"scripts/items/weapons/named/named_fencing_sword",
+				"scripts/items/weapons/named/named_warbrand",
+				"scripts/items/weapons/named/named_rf_longsword",
+				"scripts/items/weapons/named/named_rf_estoc",
+				"scripts/items/weapons/named/named_rf_kriegsmesser",
+				"scripts/items/weapons/named/named_rf_swordstaff"
+			]);
+
+			local lootContainer = _entity.m.Loot;
+			foreach (item in clone lootContainer.getItems())
+			{
+				if (::isKindOf(item, "named_weapon") && ::Math.rand(1, 100) < 50)
+				{
+					lootContainer.remove(item);
+					lootContainer.add(::new(swords.roll()));
+				}
+			}
+		}
+	}
+
 	function onBuildPerkTree( _perkTree )
 	{
 		if (_perkTree.hasPerkGroup("pg.rf_sword"))
