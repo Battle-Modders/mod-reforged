@@ -1,8 +1,6 @@
 this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		RoundsLeft = 2,
-		IsSpent = false,
-		LineBreakerAdded = false
+		RoundsLeft = 2
 	},
 	function create()
 	{
@@ -37,7 +35,7 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Gain one use of the [Linebreaker|Skill+rf_line_breaker_skill] skill that costs " + ::MSU.Text.colorPositive("1") + " fewer [Action Point|Concept.ActionPoints] and builds " + ::MSU.Text.colorPositive("10") + " less [Fatigue|Concept.Fatigue]")
+				text = ::Reforged.Mod.Tooltips.parseString("Gain one use of the [$ $|Skill+rf_line_breaker_onslaught_skill] skill")
 			},
 			{
 				id = 20,
@@ -52,13 +50,12 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.getContainer().hasSkill("actives.rf_line_breaker"))
-		{
-			this.m.LineBreakerAdded = true;
-			this.getContainer().add(::Reforged.new("scripts/skills/actives/rf_line_breaker_skill", function(o) {
-				o.m.IsForceEnabled = true;
-			}));
-		}
+		this.getContainer().add(::new("scripts/skills/actives/rf_line_breaker_onslaught_skill"));
+	}
+
+	function onRemoved()
+	{
+		this.getContainer().removeByID("actives.rf_line_breaker_onslaught");
 	}
 
 	function onUpdate( _properties )
@@ -67,39 +64,11 @@ this.rf_onslaught_effect <- ::inherit("scripts/skills/skill", {
 		_properties.Initiative += 20;
 	}
 
-	function onAfterUpdate( _properties )
-	{
-		if (!this.m.IsSpent)
-		{
-			local skill = this.getContainer().getSkillByID("actives.rf_line_breaker");
-			if (skill != null)
-			{
-				skill.m.ActionPointCost -= 1;
-				skill.m.FatigueCost -= 10;
-			}
-		}
-	}
-
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		if (_skill.getID() == "actives.rf_line_breaker")
-		{
-			this.m.IsSpent = true;
-		}
-	}
-
 	function onRoundEnd()
 	{
 		if (--this.m.RoundsLeft == 0)
 		{
-			if (this.m.LineBreakerAdded) this.getContainer().removeByID("actives.rf_line_breaker");
 			this.removeSelf();
 		}
-	}
-
-	function onCombatFinished()
-	{
-		this.skill.onCombatFinished();
-		if (this.m.LineBreakerAdded) this.getContainer().removeByID("actives.rf_line_breaker");
 	}
 });
