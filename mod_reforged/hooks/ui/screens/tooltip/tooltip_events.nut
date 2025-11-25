@@ -135,11 +135,20 @@
 			local original_getTile = _entity.getTile;
 			_entity.getTile = @() _entity.getPreviewMovement().End;
 
-			local spearwallAttacks = ::Tactical.Entities.getAdjacentActors(_entity.getPreviewMovement().End).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, true))
+			local spearwallAttacks;
+			// try/catch block so that the switcheroo on getTile above is safely
+			// reverted even if some error happened in between.
+			try
+			{
+				spearwallAttacks = ::Tactical.Entities.getAdjacentActors(_entity.getPreviewMovement().End).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, true))
 									.map(@(_a) {
 										id = 100,	type = "text",	icon = "ui/orientation/" + _a.getOverlayImage() + ".png",
 										text = ::MSU.Text.colorNegative(_a.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
 									});
+			}
+			catch (error)
+			{
+			}
 
 			_entity.getTile = original_getTile;
 
