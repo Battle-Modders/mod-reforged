@@ -317,6 +317,16 @@
 		// If player + player animals did at least 50% of total damage to this actor, they gain the loot
 		return playerRelevantDamage / this.m.RF_DamageReceived.Total >= 0.5;
 	}}.RF_canDropLootForPlayer;
+
+	// Calculate the amount of fatigue that this actor would build up if they leave the tile they are on and dodge all zone of control attacks
+	q.RF_getZOCEvasionFatigue <- { function RF_getZOCEvasionFatigue()
+	{
+		// TODO: How can we modularize the ZOC removal from "smoke"?
+		if (this.getCurrentProperties().IsImmuneToZoneOfControl || !this.getTile().hasZoneOfControlOtherThan(this.getAlliedFactions()) || (this.getTile().Properties.Effect != null && this.getTile().Properties.Effect.Type == "smoke"))
+			return 0;
+
+		return this.getTile().getZoneOfControlCountOtherThan(this.getAlliedFactions()) * ::Const.Combat.FatigueLossOnBeingMissed * this.getCurrentProperties().FatigueEffectMult * this.getCurrentProperties().FatigueLossOnAnyAttackMult;
+	}}.RF_getZOCEvasionFatigue;
 });
 
 ::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {

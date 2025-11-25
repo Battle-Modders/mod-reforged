@@ -81,4 +81,12 @@
 		_tooltip.extend(warnings);
 		return ret;
 	}}.onQueryTooltip;
+
+	// Modular Vanilla function
+	// We add the cost of evading attacks of opportunity to the movement costs preview
+	q.onCostsPreview = @(__original) { function onCostsPreview( _costsPreview )
+	{
+		__original(_costsPreview);
+		_costsPreview.fatiguePreview += this.getActor().RF_getZOCEvasionFatigue();
+	}}.onCostsPreview;
 });

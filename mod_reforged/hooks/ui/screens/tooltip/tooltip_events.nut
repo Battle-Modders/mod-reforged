@@ -1,4 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/ui/screens/tooltip/tooltip_events", function(q) {
+	// Add info about potential attacks of opportunity during movement preview
+	q.tactical_queryTileTooltipData = @(__original) { function tactical_queryTileTooltipData()
+	{
+		local ret = __original();
+		if (ret != null)
+		{
+			ret.extend(this.RF_getZOCAttackTooltip(::Tactical.TurnSequenceBar.getActiveEntity()));
+		}
+		return ret;
+	}}.tactical_queryTileTooltipData;
+
 	q.general_queryUIElementTooltipData = @(__original) { function general_queryUIElementTooltipData( _entityId, _elementId, _elementOwner )
 	{
 		// Overwrites
@@ -75,6 +86,87 @@
 	}}.general_queryUIElementTooltipData;
 
 // New Functions
+	// Adds entries to the tile tooltip about zone of control attacks at the starting and ending tiles of the previewed movement
+	q.RF_getZOCAttackTooltip <- { function RF_getZOCAttackTooltip( _entity )
+	{
+		if (_entity == null || _entity.getPreviewMovement() == null || _entity.getCurrentProperties().IsImmuneToZoneOfControl)
+			return [];
+
+		local ret = [];
+
+		// Add tooltip about zone of control attacks at the starting tile
+		if (_entity.getTile().Properties.Effect == null || _entity.getTile().Properties.Effect.Type != "smoke")
+		{
+			local attacks = ::Tactical.Entities.getAdjacentActors(_entity.getTile()).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, false))
+							.map(@(_a) {
+								id = 100,	type = "text",	icon = "ui/orientation/" + _a.getOverlayImage() + ".png",
+								text = ::MSU.Text.colorNegative(_a.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
+							});
+
+			if (attacks.len() != 0)
+			{
+				ret.push({
+					id = 100,
+					type = "text",
+					icon = "ui/icons/warning.png",
+					text = ::Reforged.Mod.Tooltips.parseString("Will be [attacked on movement|Concept.ZoneOfControl] by:"),
+					children = attacks
+				});
+
+				local fatigueToDodgeAOO = _entity.RF_getZOCEvasionFatigue();
+				if (fatigueToDodgeAOO != 0)
+				{
+					ret.push({
+						id = 100,
+						type = "text",
+						icon = "ui/icons/fatigue.png",
+						text = ::Reforged.Mod.Tooltips.parseString("Evading these attacks builds " + ::MSU.Text.colorizeValue(fatigueToDodgeAOO, {InvertColor = true}) + " [Fatigue|Concept.Fatigue]")
+					});
+				}
+			}
+		}
+
+		// Add tooltip about zone of control attacks at the ending tile (e.g. spearwall attacks from opponents)
+		if (_entity.getPreviewMovement().End.Properties.Effect == null || _entity.getPreviewMovement().End.Properties.Effect.Type != "smoke")
+		{
+			// Switcheroo the entity's getTile function to return the end tile of movement
+			// so that hitchances of enemies are calculated with that, in any case any skill
+			// on the enemies wants to check distance to the target in its onAnySkillUsed function.
+			local original_getTile = _entity.getTile;
+			_entity.getTile = @() _entity.getPreviewMovement().End;
+
+			local spearwallAttacks;
+			// try/catch block so that the switcheroo on getTile above is safely
+			// reverted even if some error happened in between.
+			try
+			{
+				spearwallAttacks = ::Tactical.Entities.getAdjacentActors(_entity.getPreviewMovement().End).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, true))
+									.map(@(_a) {
+										id = 100,	type = "text",	icon = "ui/orientation/" + _a.getOverlayImage() + ".png",
+										text = ::MSU.Text.colorNegative(_a.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
+									});
+			}
+			catch (error)
+			{
+			}
+
+			_entity.getTile = original_getTile;
+
+			if (spearwallAttacks.len() != 0)
+			{
+				ret.push({
+					id = 101,
+					type = "text",
+					icon = "ui/icons/warning.png",
+					text = ::MSU.Text.colorNegative("Will be attacked on arrival by: "),
+					children = spearwallAttacks
+				});
+			}
+		}
+
+		return ret;
+	}}.RF_getZOCAttackTooltip;
+
 	q.getBaseAttributesTooltip <- { function getBaseAttributesTooltip( _entityId, _elementId, _elementOwner )
 	{
 		local entity = _entityId == null ? null : ::Tactical.getEntityByID(_entityId);
