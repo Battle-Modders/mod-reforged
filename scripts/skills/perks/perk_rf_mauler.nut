@@ -22,7 +22,7 @@ this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 		if (!_targetEntity.getCurrentProperties().IsAffectedByInjuries || ::Math.rand(1, 100) > this.m.Chance)
 			return;
 
-		local bleeding = _targetEntity.getSkills().getAllSkillByID("effects.bleeding");
+		local bleeding = _targetEntity.getSkills().getAllSkillsByID("effects.bleeding");
 		local count = bleeding.len() == 1 ? bleeding.m.Stacks : bleeding.len();
 
 		if (count >= this.m.BleedStacksRequired)
