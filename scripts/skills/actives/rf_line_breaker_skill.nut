@@ -23,6 +23,6 @@ this.rf_line_breaker_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 	function isUsable()
 	{
 		local actor = this.getContainer().getActor();
-		return this.skill.isUsable() && (!this.m.RequiresShield || actor.isArmedWithShield()) && !actor.getCurrentProperties().IsRooted && !actor.getCurrentProperties().IsStunned;
+		return this.line_breaker.isUsable() && (!this.m.RequiresShield || actor.isArmedWithShield()) && !actor.getCurrentProperties().IsRooted && !actor.getCurrentProperties().IsStunned;
 	}
 });
