@@ -83,7 +83,7 @@ this.perk_rf_rebuke <- ::inherit("scripts/skills/skill", {
 
 	function canProc( _attacker, _skill )
 	{
-		if (_skill.isRanged() || _skill.isIgnoringRiposte() || !_attacker.isAlive())
+		if (_skill == null || _skill.isRanged() || _skill.isIgnoringRiposte() || !_attacker.isAlive())
 			return false;
 
 		local actor = this.getContainer().getActor();
