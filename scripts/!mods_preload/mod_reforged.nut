@@ -1,5 +1,5 @@
 ::Reforged <- {
-	Version = "0.7.16",
+	Version = "0.7.17",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
 	GitHubURL = "https://github.com/Battle-Modders/mod-reforged",
@@ -14,7 +14,7 @@
 
 local requiredMods = [
 	"vanilla >= 1.5.1-6",
-	"mod_modular_vanilla >= 0.5.1",
+	"mod_modular_vanilla >= 0.6.0",
 	"mod_msu >= 1.7.2",
 	"mod_nested_tooltips >= 0.2.0",
 	"mod_modern_hooks >= 0.4.10"
