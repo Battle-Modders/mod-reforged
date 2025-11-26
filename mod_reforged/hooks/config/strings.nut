@@ -1146,7 +1146,7 @@ local vanillaDescriptions = [
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [Deep Impact|Skill+rf_deep_impact_skill] skill which allows you to debilitate a target, reducing its damage output."
+				"Unlocks the [Deep Impact|Skill+rf_deep_impact_skill] skill which allows you to debilitate a target."
 			]
 		}]
 	}),
