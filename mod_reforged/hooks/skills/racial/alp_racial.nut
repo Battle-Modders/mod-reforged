@@ -39,7 +39,7 @@
 				id = 20,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [Nighttime|Skill+night_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [$ $|Skill+night_effect]")
 			},
 			{
 				id = 21,
@@ -51,7 +51,7 @@
 				id = 22,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Immune to [Bleeding|Skill+bleeding_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to [$ $|Skill+bleeding_effect]")
 			},
 			{
 				id = 23,
@@ -69,7 +69,7 @@
 				id = 25,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [disarmed|Skill+disarmed_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [$ $|Skill+disarmed_effect]")
 			}
 		]);
 		return ret;

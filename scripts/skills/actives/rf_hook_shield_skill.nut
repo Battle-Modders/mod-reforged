@@ -56,7 +56,7 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Removes [Shieldwall|Skill+shieldwall_effect] from the target. Otherwise applies the [Hooked Shield|Skill+rf_hooked_shield_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("Removes [$ $|Skill+shieldwall_effect] from the target. Otherwise applies the [$ $|Skill+rf_hooked_shield_effect] effect")
 		});
 
 		ret.push({
@@ -70,14 +70,14 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Ignores the bonus to [Melee Defense|Concept.MeleeDefense] granted by shields and [Shieldwall|Skill+shieldwall_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("Ignores the bonus to [Melee Defense|Concept.MeleeDefense] granted by shields and [$ $|Skill+shieldwall_effect]")
 		});
 
 		ret.push({
 			id = 13,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Cannot be used against a target using [Shieldwall|Skill+shieldwall_effect] adjacent to an ally using [Shieldwall|Skill+shieldwall_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("Cannot be used against a target using [$ $|Skill+shieldwall_effect] adjacent to an ally using [$ $|Skill+shieldwall_effect]")
 		});
 
 		if (this.getMaxRange() > 1)

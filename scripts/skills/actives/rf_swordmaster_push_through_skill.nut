@@ -32,7 +32,7 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] the target")
+			text = ::Reforged.Mod.Tooltips.parseString("Will [$ $|Skill+staggered_effect] the target")
 		});
 
 		ret.push({
@@ -46,7 +46,7 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, automatically use [Line Breaker|Skill+line_breaker] for free on the target")
+			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, automatically use [$ $|Skill+line_breaker] for free on the target")
 		});
 
 		if (actor.getCurrentProperties().IsRooted)

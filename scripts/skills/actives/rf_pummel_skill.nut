@@ -40,7 +40,7 @@ this.rf_pummel_skill <- ::inherit("scripts/skills/actives/line_breaker", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("[Staggers|Skill+staggered_effect] the target on a hit")
+			text = ::Reforged.Mod.Tooltips.parseString("[$ $|Skill+staggered_effect] the target on a hit")
 		});
 
 		local line_breaker = ::new("scripts/skills/actives/line_breaker");

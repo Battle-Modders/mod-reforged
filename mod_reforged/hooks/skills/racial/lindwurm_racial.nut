@@ -19,13 +19,13 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Upon receiving a hit from an adjacent enemy that deals at least " + ::MSU.Text.colorPositive("11") + " damage to [Hitpoints,|Concept.Hitpoints] apply [Lindwurm Acid|Skill+lindwurm_acid_effect] to them")
+				text = ::Reforged.Mod.Tooltips.parseString("Upon receiving a hit from an adjacent enemy that deals at least " + ::MSU.Text.colorPositive("11") + " damage to [Hitpoints,|Concept.Hitpoints] apply [$ $|Skill+lindwurm_acid_effect] to them")
 			},
 			{
 				id = 20,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [Nighttime|Skill+night_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [$ $|Skill+night_effect]")
 			},
 			{
 				id = 24,
@@ -37,7 +37,7 @@
 				id = 26,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [disarmed|Skill+disarmed_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [$ $|Skill+disarmed_effect]")
 			},
 			{
 				id = 27,
@@ -49,7 +49,7 @@
 				id = 28,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [stunned|Skill+stunned_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [$ $|Skill+stunned_effect]")
 			}
 		]);
 		return ret;

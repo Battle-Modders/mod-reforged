@@ -15,7 +15,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The target becomes [webbed|Skill+webbed_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("The target becomes [$ $|Skill+webbed_effect]")
 			},
 			{
 				id = 11,

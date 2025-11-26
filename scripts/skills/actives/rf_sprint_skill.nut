@@ -29,7 +29,7 @@ this.rf_sprint_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Sprinting|Skill+rf_sprint_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [$ $|Skill+rf_sprint_effect] effect")
 		});
 
 		if (this.getContainer().getActor().getCurrentProperties().IsRooted)

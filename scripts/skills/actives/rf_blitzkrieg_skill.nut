@@ -33,14 +33,14 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("You and allies of your faction within " + ::MSU.Text.colorPositive("4") + " tiles who have at least " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue] remaining gain the [Adrenaline|Skill+adrenaline_effect] effect and build " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue]")
+			text = ::Reforged.Mod.Tooltips.parseString("You and allies of your faction within " + ::MSU.Text.colorPositive("4") + " tiles who have at least " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue] remaining gain the [$ $|Skill+adrenaline_effect] effect and build " + ::MSU.Text.colorNegative("10") + " [Fatigue|Concept.Fatigue]")
 		});
 
 		ret.push({
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Does not affect allies who are [fleeing,|Concept.Morale] [stunned,|Skill+stunned_effect] or [sleeping|Skill+sleeping_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("Does not affect allies who are [fleeing,|Concept.Morale] [$ $,|Skill+stunned_effect] or [$ $|Skill+sleeping_effect]")
 		});
 
 		ret.push({

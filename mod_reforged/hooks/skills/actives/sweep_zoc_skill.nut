@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] the target on a hit")
+			text = ::Reforged.Mod.Tooltips.parseString("Will [$ $|Skill+staggered_effect] the target on a hit")
 		});
 		return ret;
 	}}.getTooltip;

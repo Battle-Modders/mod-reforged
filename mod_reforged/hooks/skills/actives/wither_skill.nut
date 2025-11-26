@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target becomes [withered|Skill+withered_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("The target becomes [$ $|Skill+withered_effect]")
 		});
 		return ret;
 	}}.getTooltip;

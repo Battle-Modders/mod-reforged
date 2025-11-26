@@ -36,7 +36,7 @@ this.rf_adjust_dented_armor_ally_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Removes the [Dented Armor|Skill+rf_dented_armor_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("Removes the [$ $|Skill+rf_dented_armor_effect] effect")
 		});
 
 		if (this.getContainer().getActor().isEngagedInMelee())

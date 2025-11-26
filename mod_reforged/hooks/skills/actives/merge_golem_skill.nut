@@ -22,7 +22,7 @@
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Consumes 2 adjacent " + ::Const.Strings.EntityNamePlural[entityType] + " and makes you [grow|Skill+golem_racial] larger")
+			text = ::Reforged.Mod.Tooltips.parseString("Consumes 2 adjacent " + ::Const.Strings.EntityNamePlural[entityType] + " and makes you [$ $|Skill+golem_racial] larger")
 		});
 		return ret;
 	}}.getTooltip;

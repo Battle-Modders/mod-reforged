@@ -45,7 +45,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+10%") + " chance to hit with [Woodcutter\'s Axe|Item+woodcutters_axe] and [Hatchet|Item+hatchet]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+10%") + " chance to hit with [$ $|Item+woodcutters_axe] and [$ $|Item+hatchet]")
 		});
 		return ret;
 	}}.getTooltip;

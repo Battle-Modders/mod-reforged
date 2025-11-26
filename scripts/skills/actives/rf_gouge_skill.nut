@@ -69,7 +69,7 @@ this.rf_gouge_skill <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorPositive(this.m.BleedStacks) + " stacks of [Bleeding|Skill+bleeding_effect] when dealing at least " + ::MSU.Text.colorNegative(::Const.Combat.MinDamageToApplyBleeding) + " damage")
+				text = ::Reforged.Mod.Tooltips.parseString("Inflicts " + ::MSU.Text.colorPositive(this.m.BleedStacks) + " stacks of [$ $|Skill+bleeding_effect] when dealing at least " + ::MSU.Text.colorNegative(::Const.Combat.MinDamageToApplyBleeding) + " damage")
 			});
 		}
 

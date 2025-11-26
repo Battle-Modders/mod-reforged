@@ -15,7 +15,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Apply [Net Effect|Skill+net_effect] to the target")
+			text = ::Reforged.Mod.Tooltips.parseString("Apply [$ $|Skill+net_effect] to the target")
 		});
 
 		return ret;

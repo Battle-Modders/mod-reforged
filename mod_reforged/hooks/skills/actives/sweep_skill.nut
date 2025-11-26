@@ -20,13 +20,13 @@
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will knock back targets who are not immune to being knocked back or being rooted. Upon being knocked back, the targets lose the [Shieldwall|Skill+shieldwall_effect], [Spearwall|Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
+			text = ::Reforged.Mod.Tooltips.parseString("Will knock back targets who are not immune to being knocked back or being rooted. Upon being knocked back, the targets lose the [$ $|Skill+shieldwall_effect], [$ $|Skill+spearwall_effect] and [$ $|Skill+riposte_effect] effects")
 		});
 		ret.push({
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Targets immune to being knocked back or rooted are [staggered|Skill+staggered_effect] instead")
+			text = ::Reforged.Mod.Tooltips.parseString("Targets immune to being knocked back or rooted are [$ $|Skill+staggered_effect] instead")
 		});
 		return ret;
 	}}.getTooltip;

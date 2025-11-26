@@ -16,13 +16,13 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Will move you into the target tile and randomly [stun|Skill+stunned_effect], or [stagger|Skill+staggered_effect] and knock back enemies around that tile")
+				text = ::Reforged.Mod.Tooltips.parseString("Will move you into the target tile and randomly [$ $|Skill+stunned_effect], or [$ $|Skill+staggered_effect] and knock back enemies around that tile")
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Knocked back targets will lose the [Shieldwall|Skill+shieldwall_effect], [Spearwall|Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
+				text = ::Reforged.Mod.Tooltips.parseString("Knocked back targets will lose the [$ $|Skill+shieldwall_effect], [$ $|Skill+spearwall_effect] and [$ $|Skill+riposte_effect] effects")
 			},
 			{
 				id = 12,

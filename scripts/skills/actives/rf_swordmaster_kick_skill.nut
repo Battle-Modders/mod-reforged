@@ -40,7 +40,7 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] the target")
+			text = ::Reforged.Mod.Tooltips.parseString("Will [$ $|Skill+staggered_effect] the target")
 		});
 
 		ret.push({
@@ -54,7 +54,7 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, the target is pushed back a tile and loses the [Shieldwall|Skill+shieldwall_effect], [Spearwall|Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
+			text = ::Reforged.Mod.Tooltips.parseString("If the attack is successful, the target is pushed back a tile and loses the [$ $|Skill+shieldwall_effect], [$ $|Skill+spearwall_effect] and [$ $|Skill+riposte_effect] effects")
 		});
 
 		this.addEnabledTooltip(ret);

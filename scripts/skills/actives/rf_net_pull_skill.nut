@@ -48,13 +48,13 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorPositive("100%") + " chance to [net|Skill+net_effect] and [stagger|Skill+staggered_effect] on a hit")
+			text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorPositive("100%") + " chance to [$ $|Skill+net_effect] and [$ $|Skill+staggered_effect] on a hit")
 		});
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target will lose the [Shieldwall|Skill+shieldwall_effect], [Spearwall|Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
+			text = ::Reforged.Mod.Tooltips.parseString("The target will lose the [$ $|Skill+shieldwall_effect], [$ $|Skill+spearwall_effect] and [$ $|Skill+riposte_effect] effects")
 		});
 		ret.push({
 			id = 15,

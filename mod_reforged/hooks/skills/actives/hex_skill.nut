@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target gains the [Hex|Skill+hex_slave_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("The target gains the [$ $|Skill+hex_slave_effect]")
 		});
 		ret.push({
 			id = 11,

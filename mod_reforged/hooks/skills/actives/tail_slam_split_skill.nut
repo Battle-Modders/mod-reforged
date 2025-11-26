@@ -18,7 +18,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Will randomly either [daze|Skill+dazed_effect] or [stun|Skill+stunned_effect] the target")
+				text = ::Reforged.Mod.Tooltips.parseString("Will randomly either [$ $|Skill+dazed_effect] or [$ $|Skill+stunned_effect] the target")
 			}
 		]);
 		return ret;

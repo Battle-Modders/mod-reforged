@@ -21,7 +21,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The target becomes [staggered|Skill+staggered_effect] and [rooted|Skill+rooted_effect] on a hit")
+				text = ::Reforged.Mod.Tooltips.parseString("The target becomes [$ $|Skill+staggered_effect] and [$ $|Skill+rooted_effect] on a hit")
 			},
 			{
 				id = 11,
@@ -61,7 +61,7 @@
 				id = 100,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Will [root|Skill+rooted_effect] the target upon a successful [attack of opportunity|Concept.ZoneOfControl]")
+				text = ::Reforged.Mod.Tooltips.parseString("Will [$ $|Skill+rooted_effect] the target upon a successful [attack of opportunity|Concept.ZoneOfControl]")
 			});
 		}
 	}}.onQueryTooltip;

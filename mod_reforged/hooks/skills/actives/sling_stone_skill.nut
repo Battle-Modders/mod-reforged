@@ -10,7 +10,7 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorNegative("100%") + " chance to [daze|Skill+dazed_effect] the target on a hit to the head")
+			text = ::Reforged.Mod.Tooltips.parseString("Has a " + ::MSU.Text.colorNegative("100%") + " chance to [$ $|Skill+dazed_effect] the target on a hit to the head")
 		});
 
 		if (this.getContainer().getActor().isEngagedInMelee())

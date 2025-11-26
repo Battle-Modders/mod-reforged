@@ -72,7 +72,7 @@ this.rf_zombie_racial <- ::inherit("scripts/skills/skill", {
 				id = 22,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Immune to [Bleeding|Skill+bleeding_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to [$ $|Skill+bleeding_effect]")
 			},
 			{
 				id = 23,

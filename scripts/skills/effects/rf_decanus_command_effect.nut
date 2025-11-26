@@ -18,7 +18,7 @@ this.rf_decanus_command_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Can use [Shieldwall|Skill+shieldwall] for no [Action Points|Concept.ActionPoints]")
+			text = ::Reforged.Mod.Tooltips.parseString("Can use [$ $|Skill+shieldwall] for no [Action Points|Concept.ActionPoints]")
 		});
 
 		return ret;

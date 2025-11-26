@@ -3,7 +3,7 @@
 	{
 		__original();
 		// Vanilla is missing a description for this skill
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Harnessing dark forces, you pull a target toward a corpse or allied flesh golem that is at most 3 tiles away, [staggering|Skill+staggered_effect] it on arrival.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Harnessing dark forces, you pull a target toward a corpse or allied flesh golem that is at most 3 tiles away, [$ $|Skill+staggered_effect] it on arrival.");
 	}}.create;
 
 	// Overwrite, because Vanilla doesn't have a getTooltip function defined for this skill

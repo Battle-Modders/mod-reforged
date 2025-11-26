@@ -49,7 +49,7 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Removes [Riposte|Skill+riposte_effect] and disables [Rebuke|Perk+perk_rf_rebuke]")
+			text = ::Reforged.Mod.Tooltips.parseString("Removes [$ $|Skill+riposte_effect] and disables [$ $|Perk+perk_rf_rebuke]")
 		});
 		ret.push({
 			id = 13,

@@ -27,7 +27,7 @@
 		{
 			if (entry.id == 10)
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("The effects of [Bleeding|Skill+bleeding_effect] are " + ::MSU.Text.colorNegative("doubled"));
+				entry.text = ::Reforged.Mod.Tooltips.parseString("The effects of [$ $|Skill+bleeding_effect] are " + ::MSU.Text.colorNegative("doubled"));
 				break;
 			}
 		}

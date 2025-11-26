@@ -51,7 +51,7 @@ this.rf_shield_bash_skill <- ::inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will [daze|Skill+dazed_effect] the target on a hit")
+			text = ::Reforged.Mod.Tooltips.parseString("Will [$ $|Skill+dazed_effect] the target on a hit")
 		});
 
 		return ret;

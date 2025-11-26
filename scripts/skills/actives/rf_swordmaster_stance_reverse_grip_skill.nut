@@ -28,12 +28,12 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png"
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Removes") + " all skills from the currently equipped sword and " + ::MSU.Text.colorPositive("adds") + " the [Bash|Skill+bash] and [Knock Out|Skill+knock_out] or the [Cudgel|Skill+cudgel_skill] and [Strike Down|Skill+strike_down_skill] skills for one-handed and two-handed swords respectively")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Removes") + " all skills from the currently equipped sword and " + ::MSU.Text.colorPositive("adds") + " the [$ $|Skill+bash] and [$ $|Skill+knock_out] or the [$ $|Skill+cudgel_skill] and [$ $|Skill+strike_down_skill] skills for one-handed and two-handed swords respectively")
 			});
 		}
 		else
 		{
-			local skillsString = this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded) ? "[Cudgel|Skill+cudgel_skill] and [Strike Down|Skill+strike_down_skill]" : "[Bash|Skill+bash] and [Knock Out|Skill+knock_out]";
+			local skillsString = this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded) ? "[$ $|Skill+cudgel_skill] and [$ $|Skill+strike_down_skill]" : "[$ $|Skill+bash] and [$ $|Skill+knock_out]";
 			ret.push({
 				id = 10,
 				type = "text",
@@ -46,7 +46,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 			id = 11,
 			type = "text",
 			icon = "ui/icons/rf_reach.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Concussive Strikes|Perk+perk_rf_concussive_strikes] perk")
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [$ $|Perk+perk_rf_concussive_strikes] perk")
 		});
 
 		ret.push({

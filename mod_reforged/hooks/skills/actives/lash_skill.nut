@@ -8,7 +8,7 @@
 			// Improve the vanilla entry about ignoring Shields to also mention Shieldwall
 			if (entry.id == 8)
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString(format("Ignores the bonus to [Melee Defense|Concept.MeleeDefense] granted by shields but not by [Shieldwall|Skill+shieldwall_effect]"));
+				entry.text = ::Reforged.Mod.Tooltips.parseString(format("Ignores the bonus to [Melee Defense|Concept.MeleeDefense] granted by shields but not by [$ $|Skill+shieldwall_effect]"));
 				break;
 			}
 		}

@@ -25,7 +25,7 @@
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = ::Reforged.Mod.Tooltips.parseString("[Melee|Concept.MeleeDefense] and [Ranged|Concept.RangeDefense] defenses are reduced by " + ::MSU.Text.colorizePct(resolveFraction) + " of the [Taunter\'s|Skill+taunt] [Resolve|Concept.Bravery]")
+					text = ::Reforged.Mod.Tooltips.parseString("[Melee|Concept.MeleeDefense] and [Ranged|Concept.RangeDefense] defenses are reduced by " + ::MSU.Text.colorizePct(resolveFraction) + " of the [$ $|Skill+taunt] [Resolve|Concept.Bravery]")
 				});
 			}
 		}

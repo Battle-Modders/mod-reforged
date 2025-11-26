@@ -52,7 +52,7 @@ this.rf_hold_steady_effect <- ::inherit("scripts/skills/skill", {
 			id = 13,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Immune to being [Stunned|Skill+stunned_effect], Knocked Back or Grabbed")
+			text = ::Reforged.Mod.Tooltips.parseString("Immune to being [$ $|Skill+stunned_effect], Knocked Back or Grabbed")
 		});
 
 		ret.push({

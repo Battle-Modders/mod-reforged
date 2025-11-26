@@ -230,7 +230,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = ::Reforged.Mod.Tooltips.parseString("Hits that deal at least " + ::MSU.Text.colorDamage(::Const.Combat.MinDamageToApplyBleeding) + " to [Hitpoints|Concept.Hitpoints] apply the [Dazed|Skill+dazed_effect] effect")
+					text = ::Reforged.Mod.Tooltips.parseString("Hits that deal at least " + ::MSU.Text.colorDamage(::Const.Combat.MinDamageToApplyBleeding) + " to [Hitpoints|Concept.Hitpoints] apply the [$ $|Skill+dazed_effect] effect")
 				});
 				break;
 

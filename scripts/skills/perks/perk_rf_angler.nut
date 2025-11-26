@@ -56,7 +56,7 @@ this.perk_rf_angler <- ::inherit("scripts/skills/skill", {
 				id = 100,
 				type = "text",
 				icon = this.getIconColored(),
-				text = ::Reforged.Mod.Tooltips.parseString("When used at a distance of " + this.m.MaxDistanceForAPCostMult + " or fewer tiles the target must spend " + ::MSU.Text.colorizeMultWithText(this.m.BreakFreeAPCostMult) + " [Action Points|Concept.ActionPoints] to [break free|Skill+break_free_skill]")
+				text = ::Reforged.Mod.Tooltips.parseString("When used at a distance of " + this.m.MaxDistanceForAPCostMult + " or fewer tiles the target must spend " + ::MSU.Text.colorizeMultWithText(this.m.BreakFreeAPCostMult) + " [Action Points|Concept.ActionPoints] to [$ $|Skill+break_free_skill]")
 			});
 		}
 	}

@@ -36,7 +36,7 @@
 				id = 100,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Inflicts additional [Bleeding|Skill+bleeding_effect] due to " + ::Reforged.NestedTooltips.getNestedPerkName(this) + " when dealing at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.MinDamageToApplyBleeding) + " damage to [Hitpoints|Concept.Hitpoints]")
+				text = ::Reforged.Mod.Tooltips.parseString("Inflicts additional [$ $|Skill+bleeding_effect] due to " + ::Reforged.NestedTooltips.getNestedPerkName(this) + " when dealing at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.MinDamageToApplyBleeding) + " damage to [Hitpoints|Concept.Hitpoints]")
 			});
 		}
 	}}.onQueryTooltip;

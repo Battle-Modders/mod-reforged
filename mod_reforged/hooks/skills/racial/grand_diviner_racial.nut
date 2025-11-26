@@ -15,7 +15,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = ::Reforged.Mod.Tooltips.parseString("[Castigate|Skill+censer_castigate_skill] and [Censer Strike|Skill+censer_strike] cost " + ::MSU.Text.colorizeValue(this.m.APAdjust, {AddSign = true, InvertColor = true}) + " [Action Points|Concept.ActionPoints]")
+				text = ::Reforged.Mod.Tooltips.parseString("[$ $|Skill+censer_castigate_skill] and [$ $|Skill+censer_strike] cost " + ::MSU.Text.colorizeValue(this.m.APAdjust, {AddSign = true, InvertColor = true}) + " [Action Points|Concept.ActionPoints]")
 			}
 		]);
 		return ret;

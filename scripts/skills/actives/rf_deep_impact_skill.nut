@@ -45,7 +45,7 @@ this.rf_deep_impact_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Perform your primary attack on the target and if successful, apply the [Deep Impact|Skill+rf_deep_impact_effect] effect")
+				text = ::Reforged.Mod.Tooltips.parseString("Perform your primary attack on the target and if successful, apply the [$ $|Skill+rf_deep_impact_effect] effect")
 			});
 			return ret;
 		}
@@ -66,7 +66,7 @@ this.rf_deep_impact_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString(format("Perform a %s on the target and if successful, apply the [Deep Impact|Skill+rf_deep_impact_effect] effect", ::Reforged.NestedTooltips.getNestedSkillName(aoo)))
+				text = ::Reforged.Mod.Tooltips.parseString(format("Perform a %s on the target and if successful, apply the [$ $|Skill+rf_deep_impact_effect] effect", ::Reforged.NestedTooltips.getNestedSkillName(aoo)))
 			});
 		}
 

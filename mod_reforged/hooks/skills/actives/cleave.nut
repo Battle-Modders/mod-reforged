@@ -6,7 +6,7 @@
 		{
 			if (entry.id == 8 && entry.text.find("bleeding damage per turn") != null)
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Inflicts stacking [Bleeding|Skill+bleeding_effect] for additional damage");
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Inflicts stacking [$ $|Skill+bleeding_effect] for additional damage");
 				break;
 			}
 		}
