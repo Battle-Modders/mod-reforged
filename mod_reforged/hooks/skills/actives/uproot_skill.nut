@@ -21,7 +21,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Targets become [staggered|Skill+staggered_effect] on a hit")
+				text = ::Reforged.Mod.Tooltips.parseString("Targets become [$ $|Skill+staggered_effect] on a hit")
 			},
 			{
 				id = 12,

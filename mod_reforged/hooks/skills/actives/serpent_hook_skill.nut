@@ -20,13 +20,13 @@
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target becomes [Staggered|Skill+staggered_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("The target becomes [$ $|Skill+staggered_effect]")
 		});
 		ret.push({
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target loses the [Shieldwall|Skill+shieldwall_effect], [Spearwall|Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
+			text = ::Reforged.Mod.Tooltips.parseString("The target loses the [$ $|Skill+shieldwall_effect], [$ $|Skill+spearwall_effect] and [$ $|Skill+riposte_effect] effects")
 		});
 		ret.push({
 			id = 13,

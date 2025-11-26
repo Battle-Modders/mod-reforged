@@ -51,7 +51,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+10%") + " chance to hit with [Pickaxe|Item+pickaxe]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+10%") + " chance to hit with [$ $|Item+pickaxe]")
 		});
 		return ret;
 	}}.getTooltip;

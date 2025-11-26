@@ -78,7 +78,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Has the [Sword Mastery|Perk+perk_mastery_sword] perk permanently for free")
+			text = ::Reforged.Mod.Tooltips.parseString("Has the [$ $|Perk+perk_mastery_sword] perk permanently for free")
 		});
 		return ret;
 	}}.getTooltip;

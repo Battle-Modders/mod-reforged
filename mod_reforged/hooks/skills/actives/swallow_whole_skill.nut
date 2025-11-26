@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target goes inside your belly, gaining the [Swallowed Whole|Skill+swallowed_whole_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("The target goes inside your belly, gaining the [$ $|Skill+swallowed_whole_effect] effect")
 		});
 		ret.push({
 			id = 11,
@@ -26,7 +26,7 @@
 		// 	id = 12,
 		// 	type = "text",
 		// 	icon = "ui/icons/special.png",
-		// 	text = ::Reforged.Mod.Tooltips.parseString("The target loses the [Shieldwall|Skill+shieldwall_effect], [Spearwall|Skill+spearwall_effect] and [Riposte|Skill+riposte_effect] effects")
+		// 	text = ::Reforged.Mod.Tooltips.parseString("The target loses the [$ $|Skill+shieldwall_effect], [$ $|Skill+spearwall_effect] and [$ $|Skill+riposte_effect] effects")
 		// });
 		return ret;
 	}}.getTooltip;

@@ -29,13 +29,13 @@
 				id = 20,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [Nighttime|Skill+night_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [$ $|Skill+night_effect]")
 			},
 			{
 				id = 23,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [disarmed|Skill+disarmed_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [$ $|Skill+disarmed_effect]")
 			}
 		]);
 		return ret;

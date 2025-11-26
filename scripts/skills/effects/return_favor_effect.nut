@@ -25,7 +25,7 @@ this.return_favor_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Any adjacent attacker who misses a melee attack against this character has a " + ::MSU.Text.colorPositive(this.m.StunChance + "%") + " chance to be [Stunned|Skill+stunned_effect], " + ::MSU.Text.colorPositive(this.m.DazeChance + "%") + " chance to be [Dazed|Skill+dazed_effect] and " + ::MSU.Text.colorPositive(this.m.StaggerChance + "%") + " chance to be [Staggered|Skill+staggered_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("Any adjacent attacker who misses a melee attack against this character has a " + ::MSU.Text.colorPositive(this.m.StunChance + "%") + " chance to be [$ $|Skill+stunned_effect], " + ::MSU.Text.colorPositive(this.m.DazeChance + "%") + " chance to be [$ $|Skill+dazed_effect] and " + ::MSU.Text.colorPositive(this.m.StaggerChance + "%") + " chance to be [$ $|Skill+staggered_effect]")
 		});
 
 		local weapon = this.getContainer().getActor().getMainhandItem();

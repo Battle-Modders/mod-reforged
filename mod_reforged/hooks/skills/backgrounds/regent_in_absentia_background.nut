@@ -49,7 +49,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Has the [Family Pride|Perk+perk_rf_family_pride] perk permanently for free")
+			text = ::Reforged.Mod.Tooltips.parseString("Has the [$ $|Perk+perk_rf_family_pride] perk permanently for free")
 		});
 		return ret;
 	}}.getTooltip;

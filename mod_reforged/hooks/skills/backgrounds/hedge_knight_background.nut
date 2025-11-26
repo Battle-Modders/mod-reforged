@@ -65,7 +65,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Has access to the [Lone Wolf|Perk+perk_lone_wolf] [perk|Concept.Perk] at tier 1 of the perk tree")
+			text = ::Reforged.Mod.Tooltips.parseString("Has access to the [$ $|Perk+perk_lone_wolf] [perk|Concept.Perk] at tier 1 of the perk tree")
 		});
 		return ret;
 	}}.getTooltip;

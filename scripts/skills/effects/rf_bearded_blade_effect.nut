@@ -19,19 +19,19 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The next attack has a chance equal to the hit chance to [disarm|Skill+disarmed_effect] the opponent")
+			text = ::Reforged.Mod.Tooltips.parseString("The next attack has a chance equal to the hit chance to [$ $|Skill+disarmed_effect] the opponent")
 		});
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Until your next [turn|Concept.Turn], every attack missed against you has a chance to [disarm|Skill+disarmed_effect] the attacker equal to the miss chance")
+			text = ::Reforged.Mod.Tooltips.parseString("Until your next [turn|Concept.Turn], every attack missed against you has a chance to [$ $|Skill+disarmed_effect] the attacker equal to the miss chance")
 		});
 		ret.push({
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon attacking or successfully [disarming|Skill+disarmed_effect] an opponent, or swapping your weapon")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon attacking or successfully [$ $|Skill+disarmed_effect] an opponent, or swapping your weapon")
 		});
 
 		return ret;

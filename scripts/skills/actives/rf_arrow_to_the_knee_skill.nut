@@ -23,7 +23,7 @@ this.rf_arrow_to_the_knee_skill <- ::inherit("scripts/skills/actives/quick_shot"
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will apply [Arrow to the Knee|Skill+rf_arrow_to_the_knee_debuff_effect] effect to the target on a hit")
+			text = ::Reforged.Mod.Tooltips.parseString("Will apply [$ $|Skill+rf_arrow_to_the_knee_debuff_effect] effect to the target on a hit")
 		});
 
 		local ammo = this.getAmmo();

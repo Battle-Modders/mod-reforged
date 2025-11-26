@@ -47,7 +47,7 @@ this.rf_schrat_small_root_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will apply the [Rooted|Skill+rooted_effect] effect on the target")
+			text = ::Reforged.Mod.Tooltips.parseString("Will apply the [$ $|Skill+rooted_effect] effect on the target")
 		});
 		ret.push({
 			id = 11,

@@ -6,7 +6,7 @@
 		{
 			if (entry.id == 11)
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("The effects of [Bleeding|Skill+bleeding_effect] are " + ::MSU.Text.colorPositive("halved"));
+				entry.text = ::Reforged.Mod.Tooltips.parseString("The effects of [$ $|Skill+bleeding_effect] are " + ::MSU.Text.colorPositive("halved"));
 				break;
 			}
 		}

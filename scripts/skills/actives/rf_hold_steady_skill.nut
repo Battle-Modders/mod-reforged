@@ -29,14 +29,14 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("You and your allies within " + ::MSU.Text.colorPositive(4) + " tiles gain the [Holding Steady|Skill+rf_hold_steady_effect] effect for 2 [rounds|Concept.Round]")
+			text = ::Reforged.Mod.Tooltips.parseString("You and your allies within " + ::MSU.Text.colorPositive(4) + " tiles gain the [$ $|Skill+rf_hold_steady_effect] effect for 2 [rounds|Concept.Round]")
 		});
 
 		ret.push({
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will not affect allies who are [fleeing,|Concept.Morale] [stunned,|Skill+stunned_effect] or [sleeping|Skill+sleeping_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("Will not affect allies who are [fleeing,|Concept.Morale] [$ $,|Skill+stunned_effect] or [$ $|Skill+sleeping_effect]")
 		});
 
 		ret.push({

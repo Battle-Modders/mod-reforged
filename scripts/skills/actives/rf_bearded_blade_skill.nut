@@ -30,7 +30,7 @@ this.rf_bearded_blade_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Bearded Blade|Skill+rf_bearded_blade_effect] effect that allows you to [Disarm|Skill+disarmed_effect] your opponents")
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [$ $|Skill+rf_bearded_blade_effect] effect that allows you to [$ $|Skill+disarmed_effect] your opponents")
 		});
 		return ret;
 	}

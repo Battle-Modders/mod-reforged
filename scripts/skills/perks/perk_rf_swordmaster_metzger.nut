@@ -137,7 +137,7 @@ this.perk_rf_swordmaster_metzger <- ::inherit("scripts/skills/perks/perk_rf_swor
 				id = 100,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Applies [Bleeding|Skill+bleeding_effect] due to " + ::Reforged.NestedTooltips.getNestedPerkName(this))
+				text = ::Reforged.Mod.Tooltips.parseString("Applies [$ $|Skill+bleeding_effect] due to " + ::Reforged.NestedTooltips.getNestedPerkName(this))
 			});
 		}
 	}

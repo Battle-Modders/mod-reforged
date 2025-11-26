@@ -20,7 +20,7 @@
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Can only be used on [sleeping|Skill+sleeping_effect] targets")
+			text = ::Reforged.Mod.Tooltips.parseString("Can only be used on [$ $|Skill+sleeping_effect] targets")
 		});
 		return ret;
 	}}.getTooltip;

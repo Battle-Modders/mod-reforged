@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target receives a mental [morale check|Concept.Morale] with a greater penalty to [Resolve|Concept.Bravery] the closer they are to you. If successful, the target falls [asleep|Skill+sleeping_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("The target receives a mental [morale check|Concept.Morale] with a greater penalty to [Resolve|Concept.Bravery] the closer they are to you. If successful, the target falls [$ $|Skill+sleeping_effect]")
 		});
 		ret.push({
 			id = 11,

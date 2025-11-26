@@ -36,7 +36,7 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The target gains the [Move Under Cover|Skill+rf_move_under_cover_skill] skill which allows moving " + ::MSU.Text.colorPositive(1) + " tile ignoring [Zone of Control|Concept.ZoneOfControl]")
+				text = ::Reforged.Mod.Tooltips.parseString("The target gains the [$ $|Skill+rf_move_under_cover_skill] skill which allows moving " + ::MSU.Text.colorPositive(1) + " tile ignoring [Zone of Control|Concept.ZoneOfControl]")
 			},
 			{
 				id = 11,
@@ -62,7 +62,7 @@ this.rf_cover_ally_skill <- ::inherit("scripts/skills/skill", {
 				id = 21,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used when already [providing cover|Skill+rf_covering_ally_effect] to an ally"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used when already [$ $|Skill+rf_covering_ally_effect] to an ally"))
 			});
 		}
 

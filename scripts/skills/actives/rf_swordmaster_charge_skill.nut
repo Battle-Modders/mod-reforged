@@ -43,7 +43,7 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Immediately gain the [Indomitable|Skill+indomitable_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("Immediately gain the [$ $|Skill+indomitable_effect] effect")
 		});
 
 		ret.push({
@@ -57,7 +57,7 @@ this.rf_swordmaster_charge_skill <- ::inherit("scripts/skills/actives/rf_swordma
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] all enemies adjacent to the target tile")
+			text = ::Reforged.Mod.Tooltips.parseString("Will [$ $|Skill+staggered_effect] all enemies adjacent to the target tile")
 		});
 
 		ret.push({

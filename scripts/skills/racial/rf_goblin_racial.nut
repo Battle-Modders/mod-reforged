@@ -17,7 +17,7 @@ this.rf_goblin_racial <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The range of [throw net|Skill+throw_net] is increased by 1 up to a maximum of 3 tiles")
+			text = ::Reforged.Mod.Tooltips.parseString("The range of [$ $|Skill+throw_net] is increased by 1 up to a maximum of 3 tiles")
 		});
 		return ret;
 	}

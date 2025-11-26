@@ -15,7 +15,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_en_garde_toggle";
 		this.m.Name = "Toggle En Garde";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Toggle your [En Garde|Perk+perk_rf_en_garde] perk to be enabled or disabled.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Toggle your [$ $|Perk+perk_rf_en_garde] perk to be enabled or disabled.");
 		this.m.Icon = "skills/rf_en_garde_toggle_on.png";
 		this.m.IconDisabled = "skills/rf_en_garde_toggle_sw.png";
 		this.m.Type = ::Const.SkillType.Active;

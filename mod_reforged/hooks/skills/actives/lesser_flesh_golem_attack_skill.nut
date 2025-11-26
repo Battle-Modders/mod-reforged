@@ -3,7 +3,7 @@
 	{
 		__original();
 		// Vanilla is missing a description for this skill
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("A blunt melee attack that [dazes|Skill+dazed_effect] the target on hit if they are not immune to being [stunned.|Skill+stunned_effect]");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("A blunt melee attack that [$ $|Skill+dazed_effect] the target on hit if they are not immune to being [$ $.|Skill+stunned_effect]");
 	}}.create;
 
 	// Overwrite, because Vanilla doesn't have a getTooltip function defined for this skill

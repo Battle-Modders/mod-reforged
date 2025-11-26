@@ -48,7 +48,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+10%") + " chance to hit with [Butcher\'s Cleaver|Item+butchers_cleaver]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+10%") + " chance to hit with [$ $|Item+butchers_cleaver]")
 		});
 		return ret;
 	}}.getTooltip;

@@ -28,7 +28,7 @@ this.rf_take_aim_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Taking Aim|Skill+rf_take_aim_effect] effect"),
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [$ $|Skill+rf_take_aim_effect] effect"),
 			children = takeAimEffect.getTooltip().slice(2) // slice 2 to remove name and description
 		});
 

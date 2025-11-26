@@ -27,7 +27,7 @@ this.rf_trip_artist_effect <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The first melee attack every [turn|Concept.Turn] against an adjacent target will apply the [staggered|Skill+staggered_effect] effect on a hit")
+				text = ::Reforged.Mod.Tooltips.parseString("The first melee attack every [turn|Concept.Turn] against an adjacent target will apply the [$ $|Skill+staggered_effect] effect on a hit")
 			});
 			ret.push({
 				id = 11,
@@ -61,7 +61,7 @@ this.rf_trip_artist_effect <- ::inherit("scripts/skills/skill", {
 						id = 10,
 						type = "text",
 						icon = "ui/icons/special.png",
-						text = ::Reforged.Mod.Tooltips.parseString("The next melee attack against an adjacent target will apply the [Staggered|Skill+staggered_effect] effect on a hit")
+						text = ::Reforged.Mod.Tooltips.parseString("The next melee attack against an adjacent target will apply the [$ $|Skill+staggered_effect] effect on a hit")
 					});
 				}
 

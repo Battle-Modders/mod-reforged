@@ -26,7 +26,7 @@
 			{
 				_tooltip.push({
 					icon = "ui/tooltips/negative.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(malus, {AddPercent = true}) + " [Nighttime|Skill+night_effect]")
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(malus, {AddPercent = true}) + " [$ $|Skill+night_effect]")
 				});
 			}
 		}

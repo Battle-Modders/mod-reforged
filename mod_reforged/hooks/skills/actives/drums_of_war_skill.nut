@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Every other ally on the battlefield gains the [Drums of War|Skill+drums_of_war_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("Every other ally on the battlefield gains the [$ $|Skill+drums_of_war_effect] effect")
 		});
 		return ret;
 	}}.getTooltip;

@@ -43,7 +43,7 @@ this.perk_rf_trip_artist <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The next melee attack against an adjacent target will [stagger|Skill+staggered_effect] them")
+			text = ::Reforged.Mod.Tooltips.parseString("The next melee attack against an adjacent target will [$ $|Skill+staggered_effect] them")
 		});
 		return ret;
 	}

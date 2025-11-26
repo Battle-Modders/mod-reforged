@@ -16,7 +16,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString(format("Allies who are not [stunned|Skill+stunned_effect], rooted, or [fleeing|Concept.Morale] gain the %s effect", ::Reforged.NestedTooltips.getNestedSkillName(effect))),
+			text = ::Reforged.Mod.Tooltips.parseString(format("Allies who are not [$ $|Skill+stunned_effect], rooted, or [fleeing|Concept.Morale] gain the %s effect", ::Reforged.NestedTooltips.getNestedSkillName(effect))),
 			children = effect.getTooltip().slice(2) // slice 2 to remove name and description
 		});
 

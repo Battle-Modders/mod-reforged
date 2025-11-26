@@ -20,7 +20,7 @@
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain the [Feasted|Skill+gruesome_feast_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [$ $|Skill+gruesome_feast_effect] effect")
 		});
 		return ret;
 	}}.getTooltip;

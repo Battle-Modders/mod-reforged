@@ -5,7 +5,7 @@ this.rf_heavy_cleave_skill <- ::inherit("scripts/skills/actives/cleave", {
 		this.cleave.create();
 		this.m.ID = "actives.rf_heavy_cleave";
 		this.m.Name = "Heavy Cleave";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("A large overhead cleaving attack that can inflict [bleeding|Skill+bleeding_effect] wounds if there is no armor absorbing the blow and if the target is able to bleed at all.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("A large overhead cleaving attack that can inflict [$ $|Skill+bleeding_effect] wounds if there is no armor absorbing the blow and if the target is able to bleed at all.");
 		this.m.Icon = "skills/active_182.png"; // Taken from vanilla Rusty Warblade Cleave
 		this.m.IconDisabled = "skills/active_182_sw.png";
 		this.m.Overlay = "active_182";
@@ -33,7 +33,7 @@ this.rf_heavy_cleave_skill <- ::inherit("scripts/skills/actives/cleave", {
 		{
 			if (entry.id == 8)
 			{
-				entry.text = ::Reforged.Mod.Tooltips.parseString("Inflicts 2 stacks of [Bleeding|Skill+bleeding_effect]")
+				entry.text = ::Reforged.Mod.Tooltips.parseString("Inflicts 2 stacks of [$ $|Skill+bleeding_effect]")
 				break;
 			}
 		}

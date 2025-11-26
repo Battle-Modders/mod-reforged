@@ -38,7 +38,7 @@ this.perk_rf_deep_cuts <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("These attacks also inflict [Bleeding|Skill+bleeding_effect] when dealing at least " + ::MSU.Text.colorDamage(::Const.Combat.MinDamageToApplyBleeding) + " damage to [Hitpoints|Concept.Hitpoints]")
+				text = ::Reforged.Mod.Tooltips.parseString("These attacks also inflict [$ $|Skill+bleeding_effect] when dealing at least " + ::MSU.Text.colorDamage(::Const.Combat.MinDamageToApplyBleeding) + " damage to [Hitpoints|Concept.Hitpoints]")
 			});
 
 			ret.push({

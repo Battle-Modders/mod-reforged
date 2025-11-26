@@ -25,13 +25,13 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = ::Reforged.Mod.Tooltips.parseString("When attacking a [webbed|Skill+web_effect] target, the damage that ignores armor is increased by " + ::MSU.Text.colorPositive("100%"))
+				text = ::Reforged.Mod.Tooltips.parseString("When attacking a [$ $|Skill+web_effect] target, the damage that ignores armor is increased by " + ::MSU.Text.colorPositive("100%"))
 			},
 			{
 				id = 20,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [Nighttime|Skill+night_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [$ $|Skill+night_effect]")
 			},
 			{
 				id = 21,
@@ -43,7 +43,7 @@
 				id = 23,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [disarmed|Skill+disarmed_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [$ $|Skill+disarmed_effect]")
 			}
 		]);
 		return ret;

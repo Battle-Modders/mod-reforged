@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain a [Schrat Shield|Item+schrat_shield]")
+			text = ::Reforged.Mod.Tooltips.parseString("Gain a [$ $|Item+schrat_shield]")
 		});
 		return ret;
 	}}.getTooltip;

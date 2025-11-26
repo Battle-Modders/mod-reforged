@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target gains the [Swarm of Insects|Skill+insect_swarm_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("The target gains the [$ $|Skill+insect_swarm_effect] effect")
 		});
 		ret.push({
 			id = 11,

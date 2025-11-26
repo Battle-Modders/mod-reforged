@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target gains the [Entangled|Skill+kraken_ensnare_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("The target gains the [$ $|Skill+kraken_ensnare_effect] effect")
 		});
 		return ret;
 	}}.getTooltip;

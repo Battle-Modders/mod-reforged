@@ -17,7 +17,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target and all adjacent enemies receive the [Rooted|Skill+rooted_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("The target and all adjacent enemies receive the [$ $|Skill+rooted_effect] effect")
 		});
 		ret.push({
 			id = 11,

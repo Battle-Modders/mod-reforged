@@ -26,7 +26,7 @@
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("The target loses effects such as [Shieldwall|Skill+shieldwall_effect], [Spearwall|Skill+spearwall_effect] and [Riposte|Skill+riposte_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("The target loses effects such as [$ $|Skill+shieldwall_effect], [$ $|Skill+spearwall_effect] and [$ $|Skill+riposte_effect]")
 		});
 		ret.push({
 			id = 13,

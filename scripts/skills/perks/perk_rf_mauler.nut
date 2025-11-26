@@ -66,7 +66,7 @@ this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 				id = 100,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Inflicts additional [Bleeding|Skill+bleeding_effect] due to " + ::Reforged.NestedTooltips.getNestedPerkName(this))
+				text = ::Reforged.Mod.Tooltips.parseString("Inflicts additional [$ $|Skill+bleeding_effect] due to " + ::Reforged.NestedTooltips.getNestedPerkName(this))
 			});
 		}
 	}
