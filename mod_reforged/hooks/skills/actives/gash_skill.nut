@@ -1,6 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/gash_skill", function(q) {
 	q.m.BleedStacks <- 3;
 
+	// MSU Function
+	// Add IsIgnooredAsAOO to softReset so that our adjustment to it
+	// in perk_rf_en_garde works correctly.
+	q.softReset = @(__original) { function softReset()
+	{
+		__original();
+		this.resetField("IsIgnoredAsAOO");
+	}}.softReset;
+
 	q.create = @(__original) { function create()
 	{
 		__original();

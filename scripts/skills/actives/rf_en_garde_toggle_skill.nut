@@ -92,7 +92,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		{
 			return riposte;
 		}
-		else if (this.getContainer().getActor().getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded))
+		else
 		{
 			this.m.__AdjustRebuke = true;
 			return ::Reforged.new("scripts/skills/perks/perk_rf_rebuke", function(o){

@@ -43,7 +43,7 @@
 		this.m.IsFreeSwapSpent = false;
 	}}.onTurnStart;
 
-	// Overwrite vanilla function to allow double-gripping with southern swords with offhand item with the perk_rf_en_garde perk
+	// Overwrite vanilla function to allow double-gripping with southern swords with the perk_rf_en_garde perk
 	q.canDoubleGrip = @() { function canDoubleGrip()
 	{
 		local actor = this.getContainer().getActor();
@@ -58,7 +58,13 @@
 		if (offhand == null)
 			return true;
 
-		return offhand.getStaminaModifier() > -10 && weapon.isItemType(::Const.Items.ItemType.RF_Southern) && weapon.isWeaponType(::Const.Items.WeaponType.Sword) && this.getContainer().hasSkill("perk.rf_en_garde");
+		local engarde = this.getContainer().getSkillByID("perk.rf_en_garde");
+		if (engarde != null)
+		{
+			return engarde.isWeaponValid(weapon) && engarde.isOffhandItemValid(offhand);
+		}
+
+		return false;
 	}}.canDoubleGrip;
 
 	q.applyBonusOnUpdate <- { function applyBonusOnUpdate( _properties )

@@ -1230,9 +1230,9 @@ local vanillaDescriptions = [
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The double grip bonus for southern swords is not disabled when using an offhand item with less than " + ::MSU.Text.colorNegative("10") + " weight."
-				"Use [Riposte|Skill+riposte] freely at the end of your [turn|Concept.Turn] if your weapon has [Riposte.|Skill+riposte] If your weapon does not have [Riposte|Skill+riposte] and is two-handed, gain [Rebuke|Perk+perk_rf_rebuke] instead for one [turn,|Concept.Turn] with an additional chance of " + ::MSU.Text.colorPositive("+15%") + " for returning a missed attack. The attacks triggered from this [Rebuke|Perk+perk_rf_rebuke] do not build [Fatigue.|Concept.Fatigue]",
-				"This perk only triggers if you have at least " + ::MSU.Text.colorNegative(15) + " [Fatigue|Concept.Fatigue] remaining, but does not cost any [Action Points|Concept.ActionPoints] and does not build any [Fatigue.|Concept.Fatigue]"
+				"With less than " + ::MSU.Text.colorNegative("10") + " weight in your offhand, southern swords retain their double grip bonus and use [$ $|Skill+gash_skill] as their primary attack instead of [$ $.|Skill+slash]"
+				"Use [Riposte|Skill+riposte] for free at the end of your [turn|Concept.Turn] if you have access to [Riposte.|Skill+riposte] Otherwise, gain [Rebuke|Perk+perk_rf_rebuke] instead for one [turn,|Concept.Turn] with an additional chance of " + ::MSU.Text.colorPositive("+15%") + " for returning a missed attack. The attacks triggered from this [Rebuke|Perk+perk_rf_rebuke] do not build [Fatigue.|Concept.Fatigue]",
+				"You only gain the free [Riposte|Skill+riposte_effect] or [Rebuke|Skill+rebuke] if you have at least " + ::MSU.Text.colorNegative(15) + " [Fatigue|Concept.Fatigue] remaining, but this does not cost any [Action Points|Concept.ActionPoints] nor builds any [Fatigue.|Concept.Fatigue]"
 			]
 		}]
 	}),
