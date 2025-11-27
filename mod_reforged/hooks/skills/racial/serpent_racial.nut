@@ -4,6 +4,7 @@
 		__original();
 		this.m.Name = "Serpent";
 		this.m.Icon = "ui/orientation/serpent_orientation.png";
+		this.m.Description = "This character is a serpent";
 		this.m.IsHidden = false;
 		if (this.isType(::Const.SkillType.Perk))
 			this.removeType(::Const.SkillType.Perk);	// This effect having the type 'Perk' serves no purpose and only causes issues in modding
