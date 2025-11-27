@@ -160,19 +160,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		if (this.m.RootedReachMult != 1.0 && _skill.isType(::Const.SkillType.StatusEffect))
 		{
 			local properties = ::Const.CharacterProperties.getClone();
-
-			// Make a clone of _skill in case the onUpdate function of _skill does some changes to its or other skills' member variables etc.
-			local skill = ::new(::IO.scriptFilenameByHash(_skill.ClassNameHash));
-			skill.m.Container = ::MSU.getDummyPlayer().getSkills();
-			local wasUpdating = skill.m.Container.m.IsUpdating;
-			skill.m.Container.m.IsUpdating = true;
-			try	// Some skills (e.g. shieldwall_effect) expect certain external conditions to be present (e.g. a certain item equipped)
-			{
-				skill.onUpdate(properties);
-			}
-			catch ( _error ) {}
-			skill.m.Container.m.IsUpdating = wasUpdating;
-			skill.m.Container = null;
+			_skill.onUpdate(properties);
 
 			if (properties.IsRooted)
 			{
@@ -183,6 +171,13 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RootedReachMult) + " [Reach|Concept.Reach]")
 				});
 			}
+
+			// Force a skill container update in case the `onUpdate` function above
+			// changed some member/state variables in any skill or thing beyond properties.
+			local wasUpdating = _skill.getContainer().m.IsUpdating;
+			_skill.getContainer().m.IsUpdating = false;
+			_skill.getContainer().update();
+			_skill.getContainer().m.IsUpdating = wasUpdating;
 		}
 	}
 });
