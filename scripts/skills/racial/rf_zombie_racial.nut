@@ -66,7 +66,7 @@ this.rf_zombie_racial <- ::inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Cannot receive [temporary injuries|Concept.InjuryTemporary]")
-				// In Reforged undead have the rf_undead_injury_receiver_effect which makes them affected by injuries and allows them to receive injuries
+				// In Reforged undead have the rf_undead_injury_receiver skill which makes them affected by injuries and allows them to receive injuries
 			},
 			{
 				id = 22,

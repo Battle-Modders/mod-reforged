@@ -1,15 +1,16 @@
-this.rf_undead_injury_receiver_effect <- ::inherit("scripts/skills/skill", {
+this.rf_undead_injury_receiver <- ::inherit("scripts/skills/skill", {
 	m = {
 		ThresholdToReceiveInjuryMult = 1.33
 	},
 	function create()
 	{
-		this.m.ID = "effects.rf_undead_injury_receiver";
+		this.m.ID = "special.rf_undead_injury_receiver";
 		this.m.Name = "";
 		this.m.Description = "";
-		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Special;
 		this.m.Order = ::Const.SkillOrder.Trait;
 		this.m.IsHidden = true;
+		this.m.IsSerialized = false;
 	}
 
 	function onUpdate( _properties )

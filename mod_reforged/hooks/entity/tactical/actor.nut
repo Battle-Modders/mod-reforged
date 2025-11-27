@@ -24,7 +24,7 @@
 		local flags = this.getFlags();
 		if (flags.has("undead") && !flags.has("ghost") && !flags.has("ghoul") && !flags.has("vampire"))
 		{
-			this.getSkills().add(::new("scripts/skills/effects/rf_undead_injury_receiver_effect"));
+			this.getSkills().add(::new("scripts/skills/special/rf_undead_injury_receiver"));
 			if (flags.has("skeleton"))
 			{
 				this.m.ExcludedInjuries.extend(::Const.Injury.ExcludedInjuries.get(::Const.Injury.ExcludedInjuries.RF_Skeleton));
