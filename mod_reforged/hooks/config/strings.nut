@@ -1232,7 +1232,7 @@ local vanillaDescriptions = [
 			Description = [
 				"With less than " + ::MSU.Text.colorNegative("10") + " weight in your offhand, southern swords retain their double grip bonus and use [$ $|Skill+gash_skill] as their primary attack instead of [$ $.|Skill+slash]"
 				"Use [$ $|Skill+riposte] for free at the end of your [turn|Concept.Turn] if you have access to [$ $.|Skill+riposte] Otherwise, gain [$ $|Perk+perk_rf_rebuke] instead for one [turn,|Concept.Turn] with an additional chance of " + ::MSU.Text.colorPositive("+15%") + " for returning a missed attack. The attacks triggered from this [$ $|Perk+perk_rf_rebuke] do not build [Fatigue.|Concept.Fatigue]",
-				"You only gain the free [$ $|Skill+riposte_effect] or [$ $|Skill+rebuke] if you have at least " + ::MSU.Text.colorNegative(15) + " [Fatigue|Concept.Fatigue] remaining, but this does not cost any [Action Points|Concept.ActionPoints] nor builds any [Fatigue.|Concept.Fatigue]"
+				"You only gain the free [$ $|Skill+riposte_effect] or [$ $|Perk+perk_rf_rebuke] if you have at least " + ::MSU.Text.colorNegative(15) + " [Fatigue|Concept.Fatigue] remaining, but this does not cost any [Action Points|Concept.ActionPoints] nor builds any [Fatigue.|Concept.Fatigue]"
 			]
 		}]
 	}),
