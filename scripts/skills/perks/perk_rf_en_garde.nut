@@ -31,7 +31,7 @@ this.perk_rf_en_garde <- ::inherit("scripts/skills/skill", {
 			return;
 
 		local weapon = actor.getMainhandItem();
-		if (!this.isWeaponValid(weapon))
+		if (weapon == null || !this.isWeaponValid(weapon))
 			return;
 
 		local slash, gash;
