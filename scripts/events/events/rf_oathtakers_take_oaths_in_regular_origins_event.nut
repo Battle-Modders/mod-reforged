@@ -63,9 +63,13 @@ this.rf_oathtakers_take_oaths_in_regular_origins_event <- ::inherit("scripts/eve
 					local currentOathScript;
 					foreach (s in bro.getSkills().m.Skills)
 					{
-						if (s.ClassName.find("oath_of") != null)
+						if (!s.isType(::Const.SkillType.Trait))
+							continue;
+
+						local script = ::IO.scriptFilenameByHash(s.ClassNameHash);
+						if (_event.m.__PotentialOaths.contains(script))
 						{
-							currentOathScript = ::IO.scriptFilenameByHash(s.ClassNameHash);
+							currentOathScript = script;
 							currentOath = s;
 							break;
 						}
