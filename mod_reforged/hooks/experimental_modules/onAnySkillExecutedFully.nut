@@ -5,40 +5,48 @@
 // queued for a skill and how many have been completed. Once all are completed this class triggers
 // the onAnySkillExecutedFully event for the container this skill belonged to and then deletes the key from ScheduledSkills.
 // Note: It holds a strong reference to the skill, so the skill can never become null while this is keeping track of it.
+// Each schedule instance is granted an ID. This helps in the debug logging to see the progression of schedules.
+local scheduleID = 0;
 ::Reforged.SkillSchedule <- class {
 	Container = null;
 	TargetTile = null;
 	TargetEntity = null;
 	ForFree = false;
+	RegisteredCallbacks = null;
 
 	Count = 0;
 	WasScheduled = false;
 
+	ID = null;
+
 	constructor( _skill, _targetTile, _targetEntity, _forFree )
 	{
+		this.ID = scheduleID++;
 		this.Container = ::MSU.asWeakTableRef(_skill.getContainer());
 		this.TargetTile = _targetTile;
 		this.TargetEntity = _targetEntity;
 		this.ForFree = _forFree;
+		this.RegisteredCallbacks = [];
 	}
 
 	function onScheduleComplete( _info )
 	{
 		if (this.WasScheduled)
-			::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i", _info.Skill.ClassName, _info.Func, _info.Src, _info.Line, _info.Callback, this.Count), "onAnySkillExecutedFully");
+			::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i, ScheduleID: %i", _info.Skill.ClassName, _info.Func, _info.Src, _info.Line, _info.Callback, this.Count, this.ID), "onAnySkillExecutedFully");
 		else
 			::Reforged.Mod.Debug.printLog(format("Caller: %s, Count: %i -- Nothing was scheduled (normal skill)", _info.Skill.ClassName, this.Count), "onAnySkillExecutedFully");
 		// Check for <= 0 because when we call this manually, this.Count will be 0 and will drop to -1
 		if (--this.Count <= 0)
 		{
 			if (this.WasScheduled)
-				::Reforged.Mod.Debug.printLog(format("Schedule Complete -- Caller: %s.%s (%s : %i), Callback: %s, Count: %i", _info.Skill.ClassName, _info.Func, _info.Src, _info.Line, _info.Callback, this.Count), "onAnySkillExecutedFully");
+				::Reforged.Mod.Debug.printLog(format("Schedule Complete -- Caller: %s.%s (%s : %i), Callback: %s, Count: %i, ScheduleID: %i", _info.Skill.ClassName, _info.Func, _info.Src, _info.Line, _info.Callback, this.Count, this.ID), "onAnySkillExecutedFully");
 			else
-				::Reforged.Mod.Debug.printLog(format("Schedule Complete -- ClassName: %s, Count: %i -- Nothing was scheduled (normal skill)", _info.Skill.ClassName, this.Count), "onAnySkillExecutedFully");
+				::Reforged.Mod.Debug.printLog(format("Schedule Complete -- ClassName: %s, Count: %i, ScheduleID: %i -- Nothing was scheduled (normal skill)", _info.Skill.ClassName, this.Count, this.ID), "onAnySkillExecutedFully");
 
 			if (!::MSU.isNull(this.Container))
 				this.Container.onAnySkillExecutedFully(_info.Skill, this.TargetTile, this.TargetEntity, this.ForFree);
-			_info.Skill.m.RF_Schedule = null;
+
+			::MSU.Array.removeByValue(_info.Skill.m.RF_Schedules, this);
 		}
 	}
 
@@ -86,6 +94,11 @@ local function getSchedulerInfo()
 	return null;
 }
 
+// This is a stack. We push the last wrapped callback from a scheduled function here while it is being called
+// and pop it afterward. This helps ensure that scheduling done from callbacks of scheduled events are added
+// to their appropriate instance of the SkillSchedule.
+::Reforged.LastCallback <- [];
+
 // Returns a wrapped callback function for schedule functions e.g. ::Time.scheduleEvent. The callback
 // is wrapped to trigger the onScheduleComplete() function for the schedule.
 // Also increments the schedule Count of the relevant skill.
@@ -93,17 +106,36 @@ local function getSchedulerInfo()
 // count by 2 on every call as its callback is triggered twice: once for each entity being switched.
 local function getWrapper( _info, _func, _numArgs, _type = "scheduleEvent", _countBump = 1 )
 {
-	local schedule = _info.Skill.m.RF_Schedule;
+	local schedule;
+	foreach (s in _info.Skill.m.RF_Schedules)
+	{
+		if (s.RegisteredCallbacks.find(::Reforged.LastCallback.top()) != null)
+		{
+			schedule = s;
+			break;
+		}
+	}
+	if (schedule == null)
+	{
+		schedule = _info.Skill.m.RF_Schedules.top();
+	}
 	schedule.addCount(_countBump);
+	_info.Schedule <- schedule;
 
+	if (_func != null)
+		schedule.RegisteredCallbacks.push(_func);
+
+	local ret;
 	if (_numArgs == 1)
 	{
 		return function( _arg1 )
 		{
-			::Reforged.Mod.Debug.printLog(format("Triggering %s Callback - Caller: %s.%s (%s : %i), Callback: %s", _type, "ClassName" in _info.Skill ? _info.Skill.ClassName : split(_info.Src, "/").top(), _info.Func, _info.Src, _info.Line, _info.Callback), "onAnySkillExecutedFully");
+			::Reforged.Mod.Debug.printLog(format("Triggering %s Callback - Caller: %s.%s (%s : %i), Callback: %s, ScheduleID: %i", _type, "ClassName" in _info.Skill ? _info.Skill.ClassName : split(_info.Src, "/").top(), _info.Func, _info.Src, _info.Line, _info.Callback, _info.Schedule.ID), "onAnySkillExecutedFully");
 			if (_func != null)
 			{
+				::Reforged.LastCallback.push(_func);
 				_func(_arg1);
+				::Reforged.LastCallback.pop();
 			}
 			schedule.onScheduleComplete(_info);
 		}
@@ -112,10 +144,12 @@ local function getWrapper( _info, _func, _numArgs, _type = "scheduleEvent", _cou
 	{
 		return function( _arg1, _arg2 )
 		{
-			::Reforged.Mod.Debug.printLog(format("Triggering %s Callback - Caller: %s.%s (%s : %i), Callback: %s", _type, "ClassName" in _info.Skill ? _info.Skill.ClassName : split(_info.Src, "/").top(), _info.Func, _info.Src, _info.Line, _info.Callback), "onAnySkillExecutedFully");
+			::Reforged.Mod.Debug.printLog(format("Triggering %s Callback - Caller: %s.%s (%s : %i), Callback: %s, ScheduleID: %i", _type, "ClassName" in _info.Skill ? _info.Skill.ClassName : split(_info.Src, "/").top(), _info.Func, _info.Src, _info.Line, _info.Callback, _info.Schedule.ID), "onAnySkillExecutedFully");
 			if (_func != null)
 			{
+				::Reforged.LastCallback.push(_func);
 				_func(_arg1, _arg2);
+				::Reforged.LastCallback.pop();
 			}
 			schedule.onScheduleComplete(_info);
 		}
@@ -144,7 +178,7 @@ local scheduleEvent = ::Time.scheduleEvent;
 	// This is just put in there for debug printing
 	info.Callback <- _func == null ? "null" : (_func.getinfos().name == null ? "unknown" : _func.getinfos().name);
 
-	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null)
+	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedules.len() == 0)
 	{
 		::Reforged.Mod.Debug.printLog(format("OTHER -- Caller: %s.%s (%s : %i), Callback: %s", "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
 		local function wrapper( _arg )
@@ -159,9 +193,8 @@ local scheduleEvent = ::Time.scheduleEvent;
 		return;
 	}
 
-	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback, info.Skill.m.RF_Schedule.Count + 1), "onAnySkillExecutedFully");
-
 	scheduleEvent(_timeUnit, _time, getWrapper(info, _func, 1), _data);
+	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i, ScheduleID: %i", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback, info.Schedule.Count, info.Schedule.ID), "onAnySkillExecutedFully");
 }}.scheduleEvent;
 
 local teleport_6 = ::TacticalNavigator["__sqrat_ol_ teleport_6"];
@@ -181,7 +214,7 @@ local teleport_6 = ::TacticalNavigator["__sqrat_ol_ teleport_6"];
 	{
 		if (::Reforged.Mod.Debug.isEnabled("onAnySkillExecutedFully"))
 		{
-			local prefix = !::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null ? "OTHER -- " : "";
+			local prefix = !::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedules.len() == 0 ? "OTHER -- " : "";
 			local reason = !_targetTile.IsEmpty ? "target tile not empty" : "navigator already traveling";
 			::Reforged.Mod.Debug.printWarning(format("%sNot scheduling due to %s -- Caller: %s.%s (%s : %i), Callback: %s", prefix, reason, "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
 		}
@@ -189,7 +222,7 @@ local teleport_6 = ::TacticalNavigator["__sqrat_ol_ teleport_6"];
 		return;
 	}
 
-	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null)
+	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedules.len() == 0)
 	{
 		::Reforged.Mod.Debug.printLog(format("OTHER -- Caller: %s.%s (%s : %i), Callback: %s", "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
 		local function wrapper( _arg1, _arg2 )
@@ -204,9 +237,8 @@ local teleport_6 = ::TacticalNavigator["__sqrat_ol_ teleport_6"];
 		return;
 	}
 
-	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback, info.Skill.m.RF_Schedule.Count + 1), "onAnySkillExecutedFully");
-
 	teleport_6(_user, _targetTile, getWrapper(info, _func, 2, "teleport"), _data, _bool, _float);
+	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i, ScheduleID: %i", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback, info.Schedule.Count, info.Schedule.ID), "onAnySkillExecutedFully");
 }}.teleport;
 
 local teleport_5 = ::TacticalNavigator["__sqrat_ol_ teleport_5"];
@@ -226,7 +258,7 @@ local teleport_5 = ::TacticalNavigator["__sqrat_ol_ teleport_5"];
 	{
 		if (::Reforged.Mod.Debug.isEnabled("onAnySkillExecutedFully"))
 		{
-			local prefix = !::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null ? "OTHER -- " : "";
+			local prefix = !::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedules.len() == 0 ? "OTHER -- " : "";
 			local reason = !_targetTile.IsEmpty ? "target tile not empty" : "navigator already traveling";
 			::Reforged.Mod.Debug.printWarning(format("%sNot scheduling due to %s -- Caller: %s.%s (%s : %i), Callback: %s", prefix, reason, "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
 		}
@@ -234,7 +266,7 @@ local teleport_5 = ::TacticalNavigator["__sqrat_ol_ teleport_5"];
 		return;
 	}
 
-	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null)
+	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedules.len() == 0)
 	{
 		::Reforged.Mod.Debug.printLog(format("OTHER -- Caller: %s.%s (%s : %i), Callback: %s", "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
 		local function wrapper( _arg1, _arg2 )
@@ -249,9 +281,8 @@ local teleport_5 = ::TacticalNavigator["__sqrat_ol_ teleport_5"];
 		return;
 	}
 
-	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback, info.Skill.m.RF_Schedule.Count + 1), "onAnySkillExecutedFully");
-
 	teleport_5(_user, _targetTile, getWrapper(info, _func, 2, "teleport"), _data, _bool);
+	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i, ScheduleID: %i", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback, info.Schedule.Count, info.Schedule.ID), "onAnySkillExecutedFully");
 }}.teleport;
 
 local switchEntities = ::TacticalNavigator.switchEntities;
@@ -271,14 +302,14 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 	{
 		if (::Reforged.Mod.Debug.isEnabled("onAnySkillExecutedFully"))
 		{
-			local prefix = !::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null ? "OTHER -- " : "";
+			local prefix = !::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedules.len() == 0 ? "OTHER -- " : "";
 			::Reforged.Mod.Debug.printWarning(format("%sNot scheduling due to navigator already traveling -- Caller: %s.%s (%s : %i), Callback: %s", prefix, reason, "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
 		}
 		switchEntities(_user, _targetEntity, _func, _data, _float);
 		return;
 	}
 
-	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedule == null)
+	if (!::isKindOf(info.Skill, "skill") || info.Skill.m.RF_Schedules.len() == 0)
 	{
 		::Reforged.Mod.Debug.printLog(format("OTHER -- Caller: %s.%s (%s : %i), Callback: %s", "ClassName" in info.Skill ? info.Skill.ClassName : split(info.Src, "/").top(), info.Func, info.Src, info.Line, info.Callback), "onAnySkillExecutedFully");
 		local function wrapper( _arg1, _arg2 )
@@ -293,10 +324,10 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 		return;
 	}
 
-	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback, info.Skill.m.RF_Schedule.Count + 1), "onAnySkillExecutedFully");
-
 	// Increase count by 2 because the callback is called for both entities
 	local cbEntry = [getWrapper(info, _func, 2, "switchEntities", 2), _data];
+
+	::Reforged.Mod.Debug.printLog(format("Caller: %s.%s (%s : %i), Callback: %s, Count: %i, ScheduleID: %i", info.Skill.ClassName, info.Func, info.Src, info.Line, info.Callback, info.Schedule.Count, info.Schedule.ID), "onAnySkillExecutedFully");
 
 	// Vanilla has a bug where switchEntities callbacks don't trigger when outside player vision
 	// so we trigger them manually during actor.onMovementFinish instead and set the native callback to null
@@ -326,26 +357,38 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 });
 
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
-	q.m.RF_Schedule <- null;
+	q.m.RF_Schedules <- [];
 
 	q.onAnySkillExecutedFully <- { function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
 	}}.onAnySkillExecutedFully;
 
+	q.RF_isExecuting <- { function RF_isExecuting()
+	{
+		return this.m.RF_Schedules.len() != 0;
+	}}.RF_isExecuting;
+
 	q.use = @(__original) { function use( _targetTile, _forFree = false )
 	{
-		this.m.RF_Schedule = ::Reforged.SkillSchedule(this, _targetTile, _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null, _forFree);
+		local schedule = ::Reforged.SkillSchedule(this, _targetTile, _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null, _forFree);
+		this.m.RF_Schedules.push(schedule);
+
+		// Push anything here so that any scheduleEvent calls that happen during the `use` of this skill
+		// are properly attributed to the new schedule instantiated above.
+		::Reforged.LastCallback.push(this.use);
 
 		// The original MSU events of onBeforeAnySkillExecuted and onAnySkilLExecuted will trigger here`
 		local ret = __original(_targetTile, _forFree);
+
+		::Reforged.LastCallback.pop();
 
 		// If no delayed event was scheduled we trigger the onAnySkillExecutedFully manually
 		// Note: We can't just check for .Count == 0 because in fog of war teleport/switchEntities
 		// happens immediately without delay, so Count will be 0 here even if those happened and the
 		// event would have already been properly handled leading to errors when calling it manually again.
-		if (this.m.RF_Schedule != null && !this.m.RF_Schedule.WasScheduled)
+		if (schedule != null && !schedule.WasScheduled)
 		{
-			this.m.RF_Schedule.onScheduleComplete({Skill = this});
+			schedule.onScheduleComplete({Skill = this});
 		}
 
 		return ret;
@@ -366,9 +409,9 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 			q[func] = @(__original) function()
 			{
 				__original();
-				if (this.m.RF_Schedule != null)
+				if (this.m.RF_Schedules.len() != 0)
 				{
-					::logError("Schedule not null for " + this.ClassName);
+					::logError("Schedules not finished for " + this.ClassName);
 					::Reforged.Mod.Debug.addPopupMessage("There is important debugging information in the game\'s log. Please send your log.html to the developers for debugging. You can share the file on the Reforged Discord server. Your log.html is found in C:\\Users\\YourName\\Documents\\Battle Brothers\\log.html", ::MSU.Popup.State.Full);
 				}
 			}
