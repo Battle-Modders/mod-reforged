@@ -71,7 +71,7 @@
 						{
 							if (entry.id == 2 && entry.type == "description")
 							{
-								entry.text += " Each point of [current|Concept.CurrentAttribute] defense above " + ::Const.Tactical.Settings.AttributeDefenseSoftCap + " counts as half a point.";
+								entry.text += ::Reforged.Mod.Tooltips.parseString(" Each point of [current|Concept.CurrentAttribute] defense above " + ::Const.Tactical.Settings.AttributeDefenseSoftCap + " counts as half a point.");
 								break;
 							}
 						}
