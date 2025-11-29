@@ -37,8 +37,8 @@ this.perk_rf_sweeping_strikes <- ::inherit("scripts/skills/skill", {
 				enemyList.push({
 					id = 11,
 					type = "text",
-					icon = "ui/orientation/" + entity.getOverlayImage() + ".png",
-					text = entity.getName()
+					icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(entity)),
+					text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityName(entity)),
 				});
 			}
 		}

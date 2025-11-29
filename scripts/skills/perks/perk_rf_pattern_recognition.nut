@@ -41,8 +41,8 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 			opponents.push({
 				id = 11,
 				type = "text",
-				icon = "ui/orientation/" + opponent.getOverlayImage() + ".png",
-				text = ::MSU.Text.colorPositive("+" + this.getBonus(opponentID)) + " against " + opponent.getName()
+				icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(opponent)),
+				text = ::MSU.Text.colorPositive("+" + this.getBonus(opponentID)) + " against " + ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityName(opponent)),
 			});
 		}
 

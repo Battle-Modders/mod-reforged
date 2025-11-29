@@ -73,6 +73,16 @@ local getThresholdForInjury = function( _script )
 	{
 		return format("[Img/gfx/%s|Item+%s%s]", _obj.getIcon(), _obj.ClassName, _extraData == null ? "" : "," + _extraData);
 	}
+
+	function getNestedEntityImage( _obj, _extraData = null )
+	{
+		return format("[Img/gfx/ui/orientation/%s.png|Entity+%i]", _obj.getOverlayImage(), _obj.getID(), _extraData == null ? "" : "," + _extraData);
+	}
+
+	function getNestedEntityName( _obj, _extraData = null )
+	{
+		return format("[%s|Entity+%i]", _obj.getName(), _obj.getID(), _extraData == null ? "" : "," + _extraData);
+	}
 }
 
 ::Reforged.QueueBucket.FirstWorldInit.push(function() {
