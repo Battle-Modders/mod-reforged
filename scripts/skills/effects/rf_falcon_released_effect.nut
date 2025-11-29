@@ -1,6 +1,10 @@
 this.rf_falcon_released_effect <- ::inherit("scripts/skills/skill", {
 	m = {
-		InitiativeModifier = 20
+		InitiativeModifier = 20,
+
+		// Set to true at the start of a round, so the Initiative bonus
+		// can be removed onTurnStart in that round.
+		__IsNewRound = false
 	},
 	function create()
 	{
@@ -21,7 +25,7 @@ this.rf_falcon_released_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/initiative.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.InitiativeModifier, {AddSign = true}) + " [Initiative|Concept.Initiative] until the start of the next [round|Concept.Round]")
+			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.InitiativeModifier, {AddSign = true}) + " [Initiative|Concept.Initiative] until the start of the your [turn|Concept.Turn] in the next [round|Concept.Round]")
 		});
 
 		return ret;
@@ -32,8 +36,14 @@ this.rf_falcon_released_effect <- ::inherit("scripts/skills/skill", {
 		_properties.Initiative += this.m.InitiativeModifier;
 	}
 
+	function onTurnStart()
+	{
+		if (this.m.__IsNewRound)
+			this.removeSelf();
+	}
+
 	function onNewRound()
 	{
-		this.removeSelf();
+		this.m.__IsNewRound = true;
 	}
 });
