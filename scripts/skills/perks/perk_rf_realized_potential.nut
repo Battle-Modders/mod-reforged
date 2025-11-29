@@ -27,9 +27,6 @@ this.perk_rf_realized_potential <- ::inherit("scripts/skills/skill", {
 		{
 			local actor = this.getContainer().getActor();
 
-			actor.resetPerks();
-			actor.m.PerkPoints++;
-
 			// Adjust Wage and Attributes
 			local b = actor.getBaseProperties();
 			b.DailyWageMult *= this.m.DailyWageMult;
@@ -41,6 +38,14 @@ this.perk_rf_realized_potential <- ::inherit("scripts/skills/skill", {
 			b.Stamina += this.m.AttributeModifier;
 			b.Initiative += this.m.AttributeModifier;
 			b.Bravery += this.m.AttributeModifier;
+
+			// We improve compatibility with mods, which may have random perks appear on non-players
+			// The following logic only makes sense for player characters
+			if (!::isKindOf(actor, "player"))
+				return;
+
+			actor.resetPerks();
+			actor.m.PerkPoints++;
 
 			::Reforged.Math.seedRandom(actor.getUID(), this.getID());
 
