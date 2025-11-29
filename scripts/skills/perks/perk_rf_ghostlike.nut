@@ -48,8 +48,8 @@ this.perk_rf_ghostlike <- ::inherit("scripts/skills/skill", {
 				enemies.push({
 					id = 12,
 					type = "text",
-					icon = "ui/orientation/" + enemy.getOverlayImage() + ".png",
-					text = enemy.getName()
+					icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(enemy)),
+					text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityName(enemy)),
 				});
 			}
 

@@ -16,8 +16,8 @@
 			ret.push({
 				id = 10,
 				type = "text",
-				icon = "ui/orientation/" + this.m.Possessed.getOverlayImage() + ".png",
-				text = "Possessing " + this.m.Possessed.getName()
+				icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(this.m.Possessed)),
+				text = "Possessing " + ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityName(this.m.Possessed)),
 			});
 		}
 

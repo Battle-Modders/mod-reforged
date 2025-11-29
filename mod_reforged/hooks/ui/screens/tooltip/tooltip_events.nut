@@ -99,7 +99,7 @@
 		{
 			local attacks = ::Tactical.Entities.getAdjacentActors(_entity.getTile()).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, false))
 							.map(@(_a) {
-								id = 100,	type = "text",	icon = "ui/orientation/" + _a.getOverlayImage() + ".png",
+								id = 100,	type = "text",	icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(_a)),
 								text = ::MSU.Text.colorNegative(_a.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
 							});
 
@@ -142,7 +142,7 @@
 			{
 				spearwallAttacks = ::Tactical.Entities.getAdjacentActors(_entity.getPreviewMovement().End).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, true))
 									.map(@(_a) {
-										id = 100,	type = "text",	icon = "ui/orientation/" + _a.getOverlayImage() + ".png",
+										id = 100,	type = "text",	icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(_a)),
 										text = ::MSU.Text.colorNegative(_a.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
 									});
 			}

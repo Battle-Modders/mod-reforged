@@ -60,7 +60,11 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 					type = "text",
 					icon = "ui/icons/melee_skill.png",
 					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeSkillModifier, {AddSign = true}) + " [Melee Skill|Concept.MeleeSkill] this [turn|Concept.Turn] against:"),
-					children = attackBonusEnemies.map(@(_a) { id = 10, type = "text", icon = "ui/orientation/" + _a.getOverlayImage() + ".png", text = _a.getName() })
+					children = attackBonusEnemies.map(@(_a) {
+						id = 10,	type = "text",
+						icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(_a)),
+						text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityName(_a))
+					})
 				});
 			}
 		}
@@ -75,7 +79,11 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
 					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.MeleeDefenseModifier, {AddSign = true}) + " [Melee Defense|Concept.MeleeDefense] this [turn|Concept.Turn] against:"),
-					children = defenseBonusEnemies.map(@(_a) { id = 10, type = "text", icon = "ui/orientation/" + _a.getOverlayImage() + ".png", text = _a.getName() })
+					children = defenseBonusEnemies.map(@(_a) {
+						id = 10,	type = "text",
+						icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(_a)),
+						text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityName(_a))
+					})
 				});
 			}
 		}

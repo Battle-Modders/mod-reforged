@@ -19,8 +19,8 @@
 				ret.push({
 					id = 10,
 					type = "text",
-					icon = "ui/orientation/" + victim.getOverlayImage() + ".png",
-					text = "Victim: " + victim.getName(),
+					icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(victim)),
+					text = "Victim: " + ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityName(victim)),
 				});
 			}
 		}
