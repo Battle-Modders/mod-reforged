@@ -2,7 +2,8 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 	m = {
 		Chance = 50,
 		DamageMult = 0.5,
-		IsSpinningFlail = false,
+
+		__SpinningWithSkill = null
 	},
 	function create()
 	{
@@ -14,84 +15,85 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}
 
-	function isEnabled()
-	{
-		if (this.getContainer().getActor().isDisarmed()) return false;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Flail))
-		{
-			return false;
-		}
-
-		return true;
-	}
-
-	function spinFlail (_skill, _targetTile)
-	{
-		local targetEntity = _targetTile.getEntity();
-		if (targetEntity == null || this.m.IsSpinningFlail || ::Math.rand(1,100) > this.m.Chance)
-		{
-			return;
-		}
-
-		local user = this.getContainer().getActor();
-
-		if (::Tactical.TurnSequenceBar.isActiveEntity(user))
-		{
-			if (!user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)
-			{
-				this.getContainer().setBusy(true);
-				::Time.scheduleEvent(::TimeUnit.Virtual, 300, function ( perk )
-				{
-					if (user.isAlive() && targetEntity.isAlive())
-					{
-						this.logDebug("[" + user.getName() + "] is Spinning The Flail on target [" + targetEntity.getName() + "] with skill [" + _skill.getName() + "]");
-						if (!user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-						{
-							::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " is Spinning the Flail");
-						}
-
-						perk.m.IsSpinningFlail = true;
-						// Increment the vanilla SkillCounter because we want this attack to trigger effects/perks
-						::Const.SkillCounter++;
-						_skill.useForFree(_targetTile);
-						perk.m.IsSpinningFlail = false;
-					}
-
-					this.getContainer().setBusy(false);
-
-				}.bindenv(this), this);
-			}
-			else
-			{
-				if (user.isAlive() && targetEntity.isAlive())
-				{
-					this.logDebug("[" + user.getName() + "] is Spinning The Flail on target [" + targetEntity.getName() + "] with skill [" + _skill.getName() + "]");
-					this.m.IsSpinningFlail = true;
-
-					// Increment the vanilla SkillCounter because we want this attack to trigger effects/perks
-					::Const.SkillCounter++;
-					_skill.useForFree(_targetTile);
-					this.m.IsSpinningFlail = false;
-				}
-			}
-		}
-	}
-
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (this.m.IsSpinningFlail)
+		if (::MSU.isEqual(_skill, this.m.__SpinningWithSkill))
 		{
 			_properties.DamageTotalMult *= this.m.DamageMult;
 		}
 	}
 
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (this.isEnabled() && _skill.isAttack() && _skill.m.IsWeaponSkill)
+		// We nullify it in onAnySkillExecutedFully so that skills that do
+		// multiple attacks in a single use get the damage reduction applied to all those attacks.
+		if (::MSU.isEqual(_skill, this.m.__SpinningWithSkill))
 		{
-			this.spinFlail(_skill, _targetTile);
+			this.m.__SpinningWithSkill = null;
+			return;
 		}
+
+		// Don't try to spin unless an ACTUAL new skill was executed (i.e. the use is not _forFree)
+		// Otherwise it leads to an infinite chain.
+		if (_forFree || !this.isSkillValid(_skill))
+			return;
+
+		local user = this.getContainer().getActor();
+		if (::MSU.isNull(user) || !user.isAlive() || !::Tactical.TurnSequenceBar.isActiveEntity(user))
+			return;
+
+		if (_targetEntity == null || !_targetEntity.isAlive() || ::Math.rand(1, 100) > this.m.Chance)
+			return;
+
+		this.getContainer().setBusy(true);
+		local tag = {
+			Skill = _skill,
+			User = user,
+			TargetEntity = _targetEntity,
+			TargetTile = _targetTile,
+			Callback = this.trySpinFlail.bindenv(this)
+		};
+		// Schedule with delay of 1 when in fog of war to speed up combat
+		::Time.scheduleEvent(::TimeUnit.Virtual, !user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer ? 300 : 1, tag.Callback, tag);
+	}
+
+	function trySpinFlail( _tag )
+	{
+		if (!_tag.User.isAlive() || !_tag.TargetEntity.isAlive())
+			return;
+
+		// If the skill is already executing, we wait for it to complete that first.
+		if (_tag.Skill.RF_isExecuting())
+		{
+			::Time.scheduleEvent(::TimeUnit.Virtual, 1, _tag.Callback, _tag);
+			return;
+		}
+
+		this.doSpinAttack(_tag.Skill, _tag.User, _tag.TargetEntity, _tag.TargetTile);
+		this.getContainer().setBusy(false);
+	}
+
+	function doSpinAttack( _skill, _user, _targetEntity, _targetTile )
+	{
+		::logDebug(format("[%s] is using skill [%s] on target [%s (%i)] due to %s", _user.getName(), _skill.getName(), _targetEntity.getName(), _targetEntity.getID(), this.m.Name));
+		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
+		{
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " is Spinning the Flail");
+		}
+
+		this.m.__SpinningWithSkill = _skill;
+		// Consider it as a new skill use because we want this attack to trigger effects/perks
+		// and other effects that depend on SkillCounter e.g. condition loss for the three-headed flail
+		::Const.SkillCounter++;
+		_skill.useForFree(_targetTile);
+	}
+
+	function isSkillValid( _skill )
+	{
+		if (!_skill.isAttack())
+			return false;
+
+		local weapon = _skill.getItem();
+		return !::MSU.isNull(weapon) && ::MSU.isKindOf(weapon, "weapon") && weapon.isWeaponType(::Const.Items.WeaponType.Flail);
 	}
 });
