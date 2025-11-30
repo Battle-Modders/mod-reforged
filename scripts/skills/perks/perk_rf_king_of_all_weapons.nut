@@ -16,14 +16,31 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (!this.isSkillValid(_skill))
+		if (_targetEntity == null || !this.isSkillValid(_skill))
 			return;
 
-		if (_targetEntity != null && ::Math.rand(1, 100) <= this.getChance())
+		local headArmor = _targetEntity.getArmor(::Const.BodyPart.Head);
+		local bodyArmor = _targetEntity.getArmor(::Const.BodyPart.Body);
+		local isHeadLower = headArmor < bodyArmor;
+		local isBodyLower = bodyArmor < headArmor;
+
+		local chance = this.getChance();
+		local actor = this.getContainer().getActor();
+		if (actor.isPreviewing())
 		{
-			local headArmor = _targetEntity.getArmor(::Const.BodyPart.Head);
-			local bodyArmor = _targetEntity.getArmor(::Const.BodyPart.Body);
-			if (headArmor < bodyArmor)
+			chance *= 0.01;
+			if (isHeadLower)
+			{
+				_properties.HitChance[::Const.BodyPart.Head] = 100 * (chance + (1.0 - chance) * _properties.HitChance[::Const.BodyPart.Head] * 0.01);
+			}
+			else if (isBodyLower)
+			{
+				_properties.HitChance[::Const.BodyPart.Head] = (1.0 - chance) * _properties.HitChance[::Const.BodyPart.Head];
+			}
+		}
+		else if (::Math.rand(1, 100) < chance)
+		{
+			if (isHeadLower)
 			{
 				// Just setting the mult for body to 0 is not enough, we also have to set the chance for head to 100
 				// because in skill.onScheduledTargetHit and characterProperties.getHitchance functions the way it is
@@ -31,7 +48,7 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 				_properties.HitChance[::Const.BodyPart.Head] = 100.0;
 				_properties.HitChanceMult[::Const.BodyPart.Body] = 0.0;
 			}
-			else if (bodyArmor < headArmor)
+			else if (isBodyLower)
 			{
 				_properties.HitChance[::Const.BodyPart.Body] = 100.0;
 				_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
