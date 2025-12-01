@@ -370,6 +370,11 @@ local switchEntities = ::TacticalNavigator.switchEntities;
 
 	q.use = @(__original) { function use( _targetTile, _forFree = false )
 	{
+		if (this.m.RF_Schedules.len() != 0)
+		{
+			::logWarning("Executing skill " + this.getID() + " while it already has an executing schedule.");
+			::MSU.Log.printStackTrace();
+		}
 		local schedule = ::Reforged.SkillSchedule(this, _targetTile, _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null, _forFree);
 		this.m.RF_Schedules.push(schedule);
 
