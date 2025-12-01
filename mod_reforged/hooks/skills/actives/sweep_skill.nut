@@ -30,4 +30,6 @@
 		});
 		return ret;
 	}}.getTooltip;
+
+	::Reforged.HooksHelper.moveDamageToOnAnySkillUsed(q);
 });

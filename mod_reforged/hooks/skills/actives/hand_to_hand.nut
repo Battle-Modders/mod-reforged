@@ -26,4 +26,6 @@
 			_properties.MeleeSkill = old_MeleeSkill; // This reverts the vanilla -10 Modifier
 		}
 	}}.onAnySkillUsed;
+
+	::Reforged.HooksHelper.moveDamageToOnAnySkillUsed(q);
 });
