@@ -11,4 +11,6 @@
 	{
 		return this.getDefaultTooltip();
 	}}.getTooltip;
+
+	::Reforged.HooksHelper.moveDamageToOnAnySkillUsed(q);
 });
