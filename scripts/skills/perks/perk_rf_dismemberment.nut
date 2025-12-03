@@ -54,7 +54,7 @@ this.perk_rf_dismemberment <- ::inherit("scripts/skills/skill", {
 		if (this.m.NumInjuriesBefore >= _targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len())
 			return;
 
-		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
+		if (!this.RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		local count = 0;
