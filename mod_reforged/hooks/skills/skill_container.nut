@@ -87,6 +87,11 @@
 	q.onCostsPreview = @(__original) { function onCostsPreview( _costsPreview )
 	{
 		__original(_costsPreview);
-		_costsPreview.fatiguePreview += this.getActor().RF_getZOCEvasionFatigue();
+
+		local actor = this.getActor();
+		if (actor.getPreviewMovement() != null)
+		{
+			_costsPreview.fatiguePreview += actor.RF_getZOCEvasionFatigue();
+		}
 	}}.onCostsPreview;
 });
