@@ -17,7 +17,7 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 		if (!this.isSkillValid(_skill))
 			return;
 
-		if (!this.getContainer().RF_isNewSkillUseOrEntity(_targetEntity))
+		if (!this.RF_isNewSkillUseOrEntity(_targetEntity))
 			return;
 
 		local effect = _targetEntity.getSkills().getSkillByID("effects.rf_from_all_sides");
