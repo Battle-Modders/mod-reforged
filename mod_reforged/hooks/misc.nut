@@ -31,7 +31,7 @@
 	}
 
 	// Expands the vanilla ::Const.LevelXP array to allow leveling characters beyond the vanilla max of 33
-	// is called from player.addXP and player.onInit so the array is dynamically expanded when needed
+	// is called from player.addXP and player.onDeserialize so the array is dynamically expanded when needed
 	function expandLevelXP( _len )
 	{
 		while (::Const.LevelXP.len() < _len)
