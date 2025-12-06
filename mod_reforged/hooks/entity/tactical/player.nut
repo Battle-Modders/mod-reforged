@@ -14,10 +14,6 @@
 		this.getSkills().add(::new("scripts/skills/effects/rf_encumbrance_effect"));
 		this.getSkills().add(::new("scripts/skills/special/rf_veteran_levels"));
 		this.getSkills().add(::new("scripts/skills/special/rf_naked"));
-
-		// +2 because we want to expand the array at least 1 level above this bro so that player.getXPForNextLevel works properly.
-		// We do this in onInit in so that when loading a game or spawning a player with high enough level, the array is expanded immediately.
-		::Reforged.expandLevelXP(this.m.Level + 2);
 	}}.onInit;
 
 	q.addXP = @(__original) { function addXP( _xp, _scale = true )
@@ -156,4 +152,12 @@
 		local discoveredTalent = this.getSkills().getSkillByID("perk.rf_discovered_talent");
 		if (discoveredTalent != null) discoveredTalent.addStars();
 	}}.setAttributeLevelUpValues;
+
+	q.onDeserialize = @(__original) { function onDeserialize( _in )
+	{
+		__original(_in);
+		// +2 because we want to expand the array at least 1 level above this bro so that player.getXPForNextLevel works properly.
+		// We do this in onDeserialize in so that when loading a game or spawning a player with high enough level, the array is expanded immediately.
+		::Reforged.expandLevelXP(this.m.Level + 2);
+	}}.onDeserialize;
 });
