@@ -34,7 +34,6 @@ local units = [
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		StartingResourceMin = 100, // In Vanilla they appear in a group of 100 cost
-		Cost = 30,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SubPartyYeoman", IsUsingTopPartyResources = false }
@@ -46,7 +45,6 @@ local units = [
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		StartingResourceMin = 320, // In Vanilla they appear in a group of 320 cost
-		Cost = 30,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SubPartyKnight", IsUsingTopPartyResources = false }
@@ -58,7 +56,6 @@ local units = [
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		StartingResourceMin = 360, // In Vanilla they appear in a group of 415 cost
-		Cost = 30,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SubPartyYeomanKnight", IsUsingTopPartyResources = false }
@@ -70,7 +67,6 @@ local units = [
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		StartingResourceMin = 420, // In Vanilla they appear in a group of 415 cost
-		Cost = 30,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SubPartyKnightKnight", IsUsingTopPartyResources = false }
@@ -84,7 +80,6 @@ local units = [
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		StartingResourceMin = 110,
-		Cost = 30,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SubPartyNomad", HardMin = 1, HardMax = 1, IsUsingTopPartyResources = false }
@@ -96,7 +91,6 @@ local units = [
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		StartingResourceMin = 130,
-		Cost = 30,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SubPartyNomad", HardMin = 2, HardMax = 2, IsUsingTopPartyResources = false }
@@ -108,7 +102,6 @@ local units = [
 		Troop = "Necromancer",
 		Figure = ["figure_necromancer_01", "figure_necromancer_02"],
 		StartingResourceMin = 170,
-		Cost = 30,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SubPartyNomad", HardMin = 3, HardMax = 3, IsUsingTopPartyResources = false }
