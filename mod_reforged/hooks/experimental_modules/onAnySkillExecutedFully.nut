@@ -125,7 +125,6 @@ local function getWrapper( _info, _func, _numArgs, _type = "scheduleEvent", _cou
 	if (_func != null)
 		schedule.RegisteredCallbacks.push(_func);
 
-	local ret;
 	if (_numArgs == 1)
 	{
 		return function( _arg1 )
