@@ -3,6 +3,8 @@
 	{
 		__original();
 		this.m.Reach = 5;
+		this.m.RegularDamage = 60;
+		this.m.RegularDamageMax = 95;
 	}}.create;
 
 	q.onEquip = @() { function onEquip()
