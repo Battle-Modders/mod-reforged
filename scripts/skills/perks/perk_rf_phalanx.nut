@@ -1,7 +1,9 @@
 this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredDamageType = ::Const.Damage.DamageType.Piercing,
-		ShieldIgnoresDamageTypeRequirement = true
+		ShieldIgnoresDamageTypeRequirement = true,
+
+		__IsIgnoringSelfDamageTypeRequirement = false
 	},
 	function create()
 	{
@@ -31,12 +33,13 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 		local reachModifier = this.getReachModifier();
 		if (reachModifier != 0)
 		{
-			local damageTypeString = this.m.RequiredDamageType == null ? "" : " with a " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType).tolower() + " attack";
+			local requiredDamageType = this.m.__IsIgnoringSelfDamageTypeRequirement ? null : this.m.RequiredDamageType;
+			local damageTypeString = requiredDamageType == null ? "attacking" : "attacking with a " + ::Const.Damage.getDamageTypeName(requiredDamageType).tolower() + " attack";
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/rf_reach.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(reachModifier, {AddSign = true}) + " [Reach|Concept.Reach] when defending or when attacking" + damageTypeString)
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(reachModifier, {AddSign = true}) + " [Reach|Concept.Reach] when defending or " + damageTypeString)
 			});
 		}
 
@@ -56,10 +59,14 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill.isAttack() && !_skill.isRanged() && this.isEnabled() && (this.m.RequiredDamageType == null || _skill.getDamageType().contains(this.m.RequiredDamageType)))
-		{
-			_properties.Reach += this.getReachModifier();
-		}
+		if (!_skill.isAttack() || _skill.isRanged() || !this.isEnabled())
+			return;
+
+		local requiredDamageType = this.m.__IsIgnoringSelfDamageTypeRequirement ? null : this.m.RequiredDamageType;
+		if (requiredDamageType != null && !_skill.getDamageType().contains(this.m.RequiredDamageType))
+			return;
+
+		_properties.Reach += this.getReachModifier();
 	}
 
 	function onBeingAttacked( _attacker, _skill, _properties )
@@ -72,10 +79,7 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if (this.getContainer().getActor().isArmedWithShield() && this.m.ShieldIgnoresDamageTypeRequirement)
-		{
-			this.m.RequiredDamageType = null;
-		}
+		this.m.__IsIgnoringSelfDamageTypeRequirement = this.getContainer().getActor().isArmedWithShield() && this.m.ShieldIgnoresDamageTypeRequirement;
 
 		if (this.isEnabled())
 		{
@@ -122,27 +126,26 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 
 		if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
 		{
-			if (!_actor.isArmedWithShield() || _actor.getOffhandItem().getID().find("buckler") != null)
+			local shield = _actor.getOffhandItem();
+			if (shield == null || !shield.isItemType(::Const.Items.ItemType.Shield) || !this.isShieldValid(shield))
 				return false;
 
 			if (this.m.ShieldIgnoresDamageTypeRequirement)
 				return true;
 		}
 
-		local myActor = this.getContainer().getActor();
+		local requiredDamageType = this.m.RequiredDamageType;
+		if (::MSU.isEqual(_actor, this.getContainer().getActor()) && this.m.__IsIgnoringSelfDamageTypeRequirement)
+		{
+			requiredDamageType = null;
+		}
+
 		foreach (skill in weapon.getSkills())
 		{
 			if (!skill.isAttack() || skill.isRanged())
 				continue;
 
-			if (this.m.RequiredDamageType == null)
-			{
-				if (::MSU.isEqual(_actor, myActor))
-				{
-					return true;
-				}
-			}
-			else if (skill.getDamageType().contains(this.m.RequiredDamageType))
+			if (requiredDamageType == null || skill.getDamageType().contains(requiredDamageType))
 			{
 				return true;
 			}
@@ -154,5 +157,10 @@ this.perk_rf_phalanx <- ::inherit("scripts/skills/skill", {
 	function isEnabled()
 	{
 		return this.isActorValid(this.getContainer().getActor());
+	}
+
+	function isShieldValid( _shield )
+	{
+		return _shield.getID().find("buckler") == null;
 	}
 });
