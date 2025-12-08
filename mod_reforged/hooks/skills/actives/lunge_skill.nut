@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/lunge_skill", function(q) {
-	q.m.MeleeSkillAdd <- 20;
+	q.m.MeleeSkillAdd <- -20;
 
 	q.create = @(__original) { function create()
 	{
