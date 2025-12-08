@@ -41,11 +41,7 @@ this.rf_voulge_cleave_skill <- ::inherit("scripts/skills/actives/cleave", {
 		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
 		{
 			_properties.MeleeSkill += -15;
-			this.m.HitChanceBonus = -15;
 		}
-		else
-		{
-			this.resetField("HitChanceBonus");
-		}
+		// this.m.HitChanceBonus is set by Modular Vanilla based on changes to _properties.MeleeSkill
 	}
 });

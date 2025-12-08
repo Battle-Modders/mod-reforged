@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/slash", function(q) {
+	q.m.MeleeSkillAdd <- 5;
+
 	// MSU Function
 	// Add IsIgnooredAsAOO to softReset so that our adjustment to it
 	// in perk_rf_en_garde works correctly.
@@ -8,22 +10,16 @@
 		this.resetField("IsIgnoredAsAOO");
 	}}.softReset;
 
-	q.create = @(__original) { function create()
-	{
-		__original();
-		this.m.HitChanceBonus = 5;
-	}}.create;
-
 	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
-		if (this.m.HitChanceBonus != 0)
+		if (this.m.MeleeSkillAdd != 0)
 		{
 			ret.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has " + ::MSU.Text.colorizeValue(this.m.HitChanceBonus, {AddSign = true, AddPercent = true}) + " chance to hit"
+				text = "Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + " chance to hit"
 			});
 		}
 		return ret;
@@ -33,7 +29,8 @@
 	{
 		if (_skill == this)
 		{
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.m.MeleeSkillAdd;
+			// this.m.HitChanceBonus is set by Modular Vanilla based on changes to _properties.MeleeSkill
 		}
 	}}.onAnySkillUsed;
 });

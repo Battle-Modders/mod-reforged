@@ -1,5 +1,7 @@
 this.rf_sword_thrust_skill <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		MeleeSkillAdd = -20
+	},
 	function create()
 	{
 		this.m.ID = "actives.rf_sword_thrust";
@@ -28,7 +30,7 @@ this.rf_sword_thrust_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsWeaponSkill = true;
 		this.m.InjuriesOnBody = ::Const.Injury.PiercingBody;
 		this.m.InjuriesOnHead = ::Const.Injury.PiercingHead;
-		this.m.HitChanceBonus = -20;
+		// this.m.HitChanceBonus = -20; Set to 0 by Modular Vanilla
 		this.m.DirectDamageMult = 0.25;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 10;
@@ -40,13 +42,13 @@ this.rf_sword_thrust_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.getDefaultTooltip();
 
-		if (this.m.HitChanceBonus != 0)
+		if (this.m.MeleeSkillAdd != 0)
 		{
 			ret.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has " + ::MSU.Text.colorizeValue(this.m.HitChanceBonus, {AddSign = true, AddPercent = true}) + " chance to hit"
+				text = "Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + " chance to hit"
 			});
 		}
 
@@ -71,9 +73,11 @@ this.rf_sword_thrust_skill <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill == this)
 		{
-			if (!this.getContainer().getActor().isPlayerControlled()) this.m.HitChanceBonus = 0;
-
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			if (!this.getContainer().getActor().isPlayerControlled())
+			{
+				_properties.MeleeSkill += this.m.MeleeSkillAdd;
+			}
+			// this.m.HitChanceBonus is set by Modular Vanilla based on changes to _properties.MeleeSkill
 		}
 	}
 });
