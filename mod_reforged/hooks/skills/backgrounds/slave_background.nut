@@ -16,7 +16,6 @@
 	{
 		switch (_collection.getID())
 		{
-			case "pgc.rf_weapon":
 			case "pgc.rf_armor":
 				return _collection.getMin() - 1;
 		}
