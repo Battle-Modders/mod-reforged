@@ -1,5 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/gash_skill", function(q) {
 	q.m.BleedStacks <- 3;
+	q.m.MeleeSkillAdd <- 5;
 
 	// MSU Function
 	// Add IsIgnooredAsAOO to softReset so that our adjustment to it
@@ -13,19 +14,22 @@
 	q.create = @(__original) { function create()
 	{
 		__original();
-		this.m.HitChanceBonus = 5;
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Gash;
 	}}.create;
 
 	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
-		ret.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "Has " + ::MSU.Text.colorizeValue(this.m.HitChanceBonus, {AddSign = true, AddPercent = true}) + " chance to hit"
-		});
+
+		if (this.m.MeleeSkillAdd != 0)
+		{
+			ret.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = "Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + " chance to hit"
+			});
+		}
 
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
 		{
@@ -63,7 +67,8 @@
 	{
 		if (_skill == this)
 		{
-			_properties.MeleeSkill += this.m.HitChanceBonus;
+			_properties.MeleeSkill += this.m.MeleeSkillAdd;
+			// this.m.HitChanceBonus is set by Modular Vanilla based on changes to _properties.MeleeSkill
 		}
 	}}.onAnySkillUsed;
 

@@ -33,12 +33,8 @@ this.rf_lash_pole_skill <- ::inherit("scripts/skills/actives/lash_skill", {
 			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInFlails && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
 			{
 				_properties.MeleeSkill += -15;
-				this.m.HitChanceBonus = -15;
 			}
-			else
-			{
-				this.m.HitChanceBonus = 0;
-			}
+			// this.m.HitChanceBonus is set by Modular Vanilla based on changes to _properties.MeleeSkill
 		}
 	}
 });
