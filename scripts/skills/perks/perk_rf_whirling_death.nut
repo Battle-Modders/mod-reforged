@@ -2,9 +2,10 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 	m = {
 		RequiredWeaponType = ::Const.Items.WeaponType.Flail,
 		Stacks = 0,
-		IsPerformingExtraAttack = false, // Is flipped during the extra attack to reduce its damage using onAnySkillUsed
 		DamageTotalMult = 0.5, // Multiplier for the damage dealt during the extra attack
-		ChanceToHitHeadPerReachDiff = 10 // Is used for two-handed flails
+		ChanceToHitHeadPerReachDiff = 10, // Is used for two-handed flails
+
+		__WhirlingWithSkill = null
 	},
 	function create()
 	{
@@ -46,15 +47,9 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (this.m.IsPerformingExtraAttack)
+		if (::MSU.isEqual(_skill, this.m.__WhirlingWithSkill))
 		{
-			// We don't apply our damage reduction for the extra attack during the Flail Spinner attack. This solves the issue of double-dipping
-			// damage reduction for when both this perk and Flail Spinner trigger during an attack for entities not visible to the player
-			local flailSpinner = this.getContainer().getSkillByID("perk.rf_flail_spinner")
-			if (flailSpinner == null || !flailSpinner.m.IsSpinningFlail)
-			{
-				_properties.DamageTotalMult *= this.m.DamageTotalMult;
-			}
+			_properties.DamageTotalMult *= this.m.DamageTotalMult;
 		}
 
 		if (_targetEntity != null && this.isSkillValid(_skill))
@@ -71,20 +66,45 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (this.isSkillValid(_skill) && !this.m.IsPerformingExtraAttack)
-		{
-			this.m.Stacks++;
+		local user = this.getContainer().getActor();
+		if (!user.isAlive() || _targetEntity == null || !_targetEntity.isAlive())
+			return;
 
-			if (::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
-			{
-				local weapon = _skill.getItem();
-				if (weapon == null || weapon.isItemType(::Const.Items.ItemType.OneHanded))
-				{
-					local flailSpinner = this.getContainer().getSkillByID("perk.rf_flail_spinner");
-					if (flailSpinner == null || !flailSpinner.m.IsSpinningFlail)
-						this.doExtraAttack(_skill, _targetTile);
-				}
-			}
+		if (!this.isSkillValid(_skill) || this.m.__WhirlingWithSkill != null)
+			return;
+
+		this.m.Stacks++;
+
+		if (!::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+			return;
+
+		local weapon = _skill.getItem();
+		if (!::MSU.isNull(weapon) && !weapon.isItemType(::Const.Items.ItemType.OneHanded))
+			return;
+
+		local target = this.chooseTarget(_skill, _targetTile);
+		if (target == null)
+			return;
+
+		this.getContainer().setBusy(true);
+		local tag = {
+			Skill = _skill,
+			User = user,
+			TargetEntity = target,
+			TargetTile = target.getTile(),
+			Callback = this.tryWhirl.bindenv(this)
+		};
+		// Schedule with delay of 1 when in fog of war, to speed up combat
+		::Time.scheduleEvent(::TimeUnit.Virtual, !user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer ? 100 : 1, tag.Callback, tag);
+	}
+
+	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		// We nullify it in onAnySkillExecutedFully so that skills that do
+		// multiple attacks in a single use get the damage reduction applied to all those attacks.
+		if (::MSU.isEqual(_skill, this.m.__WhirlingWithSkill))
+		{
+			this.m.__WhirlingWithSkill = null;
 		}
 	}
 
@@ -111,70 +131,57 @@ this.perk_rf_whirling_death <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function doExtraAttack( _skill, _primaryTargetTile )
+	function chooseTarget( _skill, _originalTargetTile )
 	{
 		local user = this.getContainer().getActor();
+		local myReach = user.getCurrentProperties().getReach();
 		local myTile = user.getTile();
 
 		local targets = [];
-		for (local i = 0; i < 6; i++)
+		foreach (tile in ::MSU.Tile.getNeighbors(myTile))
 		{
-			if (!myTile.hasNextTile(i))
+			if (!tile.IsOccupiedByActor || tile.isSameTileAs(_originalTargetTile))
 				continue;
 
-			local nextTile = myTile.getNextTile(i);
-			if (!nextTile.IsOccupiedByActor || nextTile.isSameTileAs(_primaryTargetTile))
-				continue;
-
-			local entity = nextTile.getEntity();
-			if (!entity.isAlliedWith(user) && entity.getCurrentProperties().getReach() < user.getCurrentProperties().getReach() && _skill.onVerifyTarget(myTile, nextTile))
+			local entity = tile.getEntity();
+			if (!entity.isAlliedWith(user) && entity.getCurrentProperties().getReach() < myReach && _skill.onVerifyTarget(myTile, tile))
 			{
-				targets.push(entity)
+				targets.push(entity);
 			}
 		}
 
-		if (targets.len() == 0)
+		return ::MSU.Array.rand(targets);
+	}
+
+	function tryWhirl( _tag )
+	{
+		if (!_tag.User.isAlive() || !_tag.TargetEntity.isAlive())
 			return;
 
-		local target = ::MSU.Array.rand(targets);
-		local targetTile = target.getTile();
-
-		if (!user.isHiddenToPlayer() || targetTile.IsVisibleForPlayer)
+		// If the skill is already executing, we wait for it to complete that first.
+		if (_tag.Skill.RF_isExecuting())
 		{
-			this.getContainer().setBusy(true);
-			::Time.scheduleEvent(::TimeUnit.Virtual, 100, function ( _perk )
-			{
-				if (user.isAlive() && target.isAlive())
-				{
-					::logDebug("[" + user.getName() + "] is attacking [" + target.getName() + "] with skill [" + _skill.getName() + "] due to " + _perk.m.Name);
-					if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
-					{
-						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " has " + _perk.m.Name);
-					}
-
-					this.m.IsPerformingExtraAttack = true;
-					// Increment the vanilla SkillCounter because we want this attack to trigger effects/perks
-					::Const.SkillCounter++;
-					_skill.useForFree(targetTile);
-					this.m.IsPerformingExtraAttack = false;
-				}
-				this.getContainer().setBusy(false);
-
-			}.bindenv(this), this);
+			::Time.scheduleEvent(::TimeUnit.Virtual, 1, _tag.Callback, _tag);
+			return;
 		}
-		else
+
+		this.doWhirlAttack(_tag.Skill, _tag.User, _tag.TargetEntity, _tag.TargetTile);
+		this.getContainer().setBusy(false);
+	}
+
+	function doWhirlAttack( _skill, _user, _targetEntity, _targetTile )
+	{
+		::logDebug(format("[%s] is using skill [%s] on target [%s (%i)] due to %s", _user.getName(), _skill.getName(), _targetEntity.getName(), _targetEntity.getID(), this.m.Name));
+		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{
-			if (user.isAlive() && target.isAlive())
-			{
-				::logDebug("[" + user.getName() + "] is attacking [" + target.getName() + "] with skill [" + _skill.getName() + "] due to " + this.m.Name);
-
-				this.m.IsPerformingExtraAttack = true;
-				// Increment the vanilla SkillCounter because we want this attack to trigger effects/perks
-				::Const.SkillCounter++;
-				_skill.useForFree(targetTile);
-				this.m.IsPerformingExtraAttack = false;
-			}
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has " + this.m.Name);
 		}
+
+		this.m.__WhirlingWithSkill = _skill;
+		// Consider it as a new skill use because we want this attack to trigger effects/perks
+		// and other effects that depend on SkillCounter e.g. condition loss for the three-headed flail
+		::Const.SkillCounter++;
+		_skill.useForFree(_targetTile);
 	}
 
 	function isSkillValid( _skill )
