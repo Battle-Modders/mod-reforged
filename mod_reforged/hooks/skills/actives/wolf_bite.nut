@@ -12,32 +12,6 @@
 		return this.getDefaultTooltip();
 	}}.getTooltip;
 
-	// VanillaFix: Overwrite vanilla function to prevent passive damage modification
-	q.onUpdate = @() { function onUpdate( _properties )
-	{
-	}}.onUpdate;
-
-	// VanillaFix: Overwrite vanilla function to apply the damage modification to this skill
-	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			// Remove the effect on damage from equipped weapon (relevant for goblin wolfriders)
-			// We basically revert the changes that the weapon applies inside weapon.onUpdateProperties.
-			local weapon = this.getContainer().getActor().getMainhandItem();
-			if (weapon != null)
-			{
-				_properties.DamageRegularMin -= weapon.m.RegularDamage;
-				_properties.DamageRegularMax -= weapon.m.RegularDamageMax;
-				_properties.DamageArmorMult /= weapon.m.ArmorDamageMult;
-				_properties.DamageDirectAdd -= weapon.m.DirectDamageAdd;
-				_properties.HitChance[::Const.BodyPart.Head] -= weapon.m.ChanceToHitHead;
-			}
-
-			// Then add the damage of this skill. This is copied from what vanilla does in onUpdate of this skill
-			_properties.DamageRegularMin += 20;
-			_properties.DamageRegularMax += 40;
-			_properties.DamageArmorMult *= 0.4;
-		}
-	}}.onAnySkillUsed;
+	// VanillaFix: Prevent passive damage modification from this skill for goblin wolfriders
+	::Reforged.HooksHelper.moveDamageToOnAnySkillUsed(q);
 });
