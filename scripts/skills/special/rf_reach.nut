@@ -154,30 +154,33 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onQueryTooltip( _skill, _tooltip )
-	{
-		// Check if a status effect is inflicting Rooted status and if yes then add tooltip about reach malus
-		if (this.m.RootedReachMult != 1.0 && _skill.isType(::Const.SkillType.StatusEffect))
-		{
-			local properties = ::Const.CharacterProperties.getClone();
-			_skill.onUpdate(properties);
+	// TODO: Temporarily disabled due to a bug that causes tooltips to disappear because of the additional `update` call.
+	// An alternative approach could be that we have a hidden effect on the character which only appears while character is Rooted
+	// and in its tooltip it says "50% less Reach". That hidden effect could very well be this rf_reach skill itself.
+	// function onQueryTooltip( _skill, _tooltip )
+	// {
+	// 	// Check if a status effect is inflicting Rooted status and if yes then add tooltip about reach malus
+	// 	if (this.m.RootedReachMult != 1.0 && _skill.isType(::Const.SkillType.StatusEffect))
+	// 	{
+	// 		local properties = ::Const.CharacterProperties.getClone();
+	// 		_skill.onUpdate(properties);
 
-			if (properties.IsRooted)
-			{
-				_tooltip.push({
-					id = 100,
-					type = "text",
-					icon = "ui/icons/rf_reach.png",
-					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RootedReachMult) + " [Reach|Concept.Reach]")
-				});
-			}
+	// 		if (properties.IsRooted)
+	// 		{
+	// 			_tooltip.push({
+	// 				id = 100,
+	// 				type = "text",
+	// 				icon = "ui/icons/rf_reach.png",
+	// 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(this.m.RootedReachMult) + " [Reach|Concept.Reach]")
+	// 			});
+	// 		}
 
-			// Force a skill container update in case the `onUpdate` function above
-			// changed some member/state variables in any skill or thing beyond properties.
-			local wasUpdating = _skill.getContainer().m.IsUpdating;
-			_skill.getContainer().m.IsUpdating = false;
-			_skill.getContainer().update();
-			_skill.getContainer().m.IsUpdating = wasUpdating;
-		}
-	}
+	// 		// Force a skill container update in case the `onUpdate` function above
+	// 		// changed some member/state variables in any skill or thing beyond properties.
+	// 		local wasUpdating = _skill.getContainer().m.IsUpdating;
+	// 		_skill.getContainer().m.IsUpdating = false;
+	// 		_skill.getContainer().update();
+	// 		_skill.getContainer().m.IsUpdating = wasUpdating;
+	// 	}
+	// }
 });
