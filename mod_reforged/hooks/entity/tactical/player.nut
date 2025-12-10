@@ -21,9 +21,6 @@
 		if (::Reforged.Config.XPOverride)
 			return;
 
-		// +2 because we want to expand the array at least 1 level above this bro so that player.getXPForNextLevel works properly
-		::Reforged.expandLevelXP(this.m.Level + 2);
-
 		// Temporary buff to vanilla drill sergeant until our Retinue Rework
 		if (("State" in ::World) && ::World.State != null && _scale && ::World.Retinue.hasFollower("follower.drill_sergeant"))
 		{
@@ -160,4 +157,26 @@
 		// We do this in onDeserialize in so that when loading a game or spawning a player with high enough level, the array is expanded immediately.
 		::Reforged.expandLevelXP(this.m.Level + 2);
 	}}.onDeserialize;
+});
+
+::Reforged.QueueBucket.Late.push(function() {
+	::Reforged.HooksMod.hook("scripts/entity/tactical/player", function(q) {
+		q.getXPForNextLevel = @(__original) { function getXPForNextLevel()
+		{
+			// +2 because we want to expand the array at least 1 level above this bro so that player.getXPForNextLevel works properly
+			::Reforged.expandLevelXP(this.m.Level + 2);
+			return __original();
+		}}.getXPForNextLevel;
+
+		q.updateLevel = @(__original) { function updateLevel()
+		{
+			while (this.m.XP >= ::Const.LevelXP.top())
+			{
+				// We want to expand the array at least 1 level above this bro's anticipated level
+				// so that player.getXPForNextLevel works properly afterward.
+				::Reforged.expandLevelXP(::Const.LevelXP.len() + 1);
+			}
+			__original();
+		}}.updateLevel;
+	});
 });
