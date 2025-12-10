@@ -11,19 +11,44 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_rf_king_of_all_weapons.png";
 		this.m.IconMini = "perk_rf_king_of_all_weapons_mini";
 		this.m.Type = ::Const.SkillType.Perk;
-		this.m.Order = ::Const.SkillOrder.Perk;
+		// We want the Order to be rather late so that our adjustments to headshot chance are
+		// properly calculated when previewing and properly applied when not previewing.
+		this.m.Order = ::Const.SkillOrder.Last;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (!this.isSkillValid(_skill))
+		if (_targetEntity == null || !this.isSkillValid(_skill))
 			return;
 
-		if (_targetEntity != null && ::Math.rand(1, 100) <= this.getChance())
+		local headArmor = _targetEntity.getArmor(::Const.BodyPart.Head);
+		local bodyArmor = _targetEntity.getArmor(::Const.BodyPart.Body);
+		local isHeadLower = headArmor < bodyArmor;
+		local isBodyLower = bodyArmor < headArmor;
+
+		local chance = this.getChance();
+		local actor = this.getContainer().getActor();
+		if (actor.isPreviewing())
 		{
-			local headArmor = _targetEntity.getArmor(::Const.BodyPart.Head);
-			local bodyArmor = _targetEntity.getArmor(::Const.BodyPart.Body);
-			if (headArmor < bodyArmor)
+			// Probability of this perk succeeding = chance
+			// Probability of this perk failing = 1.0 - chance * 0.01
+			// Note: We set the HitChanceMult to 1.0 because we use `_properties.getHitchance` to calculate
+			// the real headshot chance which already takes into account the mult. So once we adjust the chance
+			// we need to set the mult to 1.0 so that our calculated chance isn't further multiplied.
+			if (isHeadLower)
+			{
+				_properties.HitChance[::Const.BodyPart.Head] = chance + (1.0 - chance * 0.01) * _properties.getHitchance(::Const.BodyPart.Head);
+				_properties.HitChanceMult[::Const.BodyPart.Head] = 1.0;
+			}
+			else if (isBodyLower)
+			{
+				_properties.HitChance[::Const.BodyPart.Head] = (1.0 - chance * 0.01) * _properties.getHitchance(::Const.BodyPart.Head);
+				_properties.HitChanceMult[::Const.BodyPart.Head] = 1.0;
+			}
+		}
+		else if (::Math.rand(1, 100) < chance)
+		{
+			if (isHeadLower)
 			{
 				// Just setting the mult for body to 0 is not enough, we also have to set the chance for head to 100
 				// because in skill.onScheduledTargetHit and characterProperties.getHitchance functions the way it is
@@ -31,7 +56,7 @@ this.perk_rf_king_of_all_weapons <- ::inherit("scripts/skills/skill", {
 				_properties.HitChance[::Const.BodyPart.Head] = 100.0;
 				_properties.HitChanceMult[::Const.BodyPart.Body] = 0.0;
 			}
-			else if (bodyArmor < headArmor)
+			else if (isBodyLower)
 			{
 				_properties.HitChance[::Const.BodyPart.Body] = 100.0;
 				_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
