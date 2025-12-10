@@ -20,6 +20,7 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
 	}}.onInit;
 
 	q.onSpawned = @() { function onSpawned()
