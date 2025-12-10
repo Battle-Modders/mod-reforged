@@ -395,6 +395,28 @@
 });
 
 ::Reforged.QueueBucket.Late.push(function() {
+	::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
+		q.getFatigueMax = @(__original) { function getFatigueMax()
+		{
+			// Return base stamina for Undead who are unaffected by Fatigue.
+			// This solves the issue where Undead could end up with too low or negative Fatigue
+			// when wearing very heavy gear, making them unable to move.
+			if (this.getFlags().has("undead") && this.getCurrentProperties().FatigueEffectMult == 0)
+			{
+				// Switcheroo CurrentProperties to BaseProperties because the original getFatigueMax
+				// uses CurrentProperties to calculate FatigueMax. This way we don't have to duplicate
+				// the vanilla equation here and remain compatible with mods which may change it.
+				local original_CurrentProperties = this.m.CurrentProperties;
+				this.m.CurrentProperties = this.getBaseProperties();
+				local ret = __original();
+				this.m.CurrentProperties = original_CurrentProperties;
+				return ret;
+			}
+
+			return __original();
+		}}.getFatigueMax;
+	});
+
 	::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
 		q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
 		{
