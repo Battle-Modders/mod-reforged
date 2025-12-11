@@ -1,6 +1,7 @@
 this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsSpent = false
+		IsSpent = false,
+		AllyDistanceMax = 4
 	},
 	function create()
 	{
@@ -29,7 +30,7 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("You and your allies within " + ::MSU.Text.colorPositive(4) + " tiles gain the [$ $|Skill+rf_hold_steady_effect] effect for 2 [rounds|Concept.Round]")
+			text = ::Reforged.Mod.Tooltips.parseString("You and your allies within " + ::MSU.Text.colorPositive(this.m.AllyDistanceMax) + " tiles gain the [$ $|Skill+rf_hold_steady_effect] effect for 2 [rounds|Concept.Round]")
 		});
 
 		ret.push({
@@ -85,7 +86,7 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 			local skill = ally.getSkills().getSkillByID("actives.rf_hold_steady");
 			if (skill != null) skill.m.IsSpent = true;
 
-			if (ally.getMoraleState() == ::Const.MoraleState.Fleeing || ally.getCurrentProperties().IsStunned)
+			if (ally.getMoraleState() == ::Const.MoraleState.Fleeing ||	ally.getCurrentProperties().IsStunned || ally.getTile().getDistanceTo(myTile) > this.m.AllyDistanceMax)
 			{
 				continue;
 			}
