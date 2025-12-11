@@ -60,7 +60,7 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 
 	function onMissed( _attacker, _skill )
 	{
-		if (_skill.isRanged() || !_attacker.isAlive() || _attacker.isAlliedWith(this.getContainer().getActor()) || ::Math.rand(1, 100) <= ::Const.Tactical.MV_CurrentAttackInfo.ChanceToHit)
+		if (_skill.isRanged() || !_attacker.isAlive() || _attacker.isAlliedWith(this.getContainer().getActor()) || ::MSU.isNull(::Const.Tactical.MV_CurrentAttackInfo) || ::Math.rand(1, 100) <= ::Const.Tactical.MV_CurrentAttackInfo.ChanceToHit)
 			return;
 
 		local weapon = _attacker.getMainhandItem();
@@ -75,7 +75,7 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 	{
 		this.removeSelf();
 
-		if (!_targetEntity.isAlive() || ::Math.rand(1, 100) > ::Const.Tactical.MV_CurrentAttackInfo.ChanceToHit || _targetEntity.getMainhandItem() == null)
+		if (!_targetEntity.isAlive() || ::MSU.isNull(::Const.Tactical.MV_CurrentAttackInfo) || ::Math.rand(1, 100) > ::Const.Tactical.MV_CurrentAttackInfo.ChanceToHit || _targetEntity.getMainhandItem() == null)
 			return;
 
 		this.__disarmEntity(_targetEntity);
