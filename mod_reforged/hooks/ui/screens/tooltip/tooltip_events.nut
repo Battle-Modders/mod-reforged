@@ -25,7 +25,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = ::Reforged.Mod.Tooltips.parseString("Characters gain experience in battle and if a character has accumulated sufficient experience, he\'ll [level up.|Concept.Level]\n\nExperience is gained upon an enemy\'s death, no matter what caused the death, as long as your company dealt some damage to that enemy, and is proportional to the fraction of the total damage dealt to that enemy by your company. Of this experience, " + (::Const.XP.XPForKillerPct * 100) + "% is shared proportionally between the brothers who did damage. The other " + (100 - ::Const.XP.XPForKillerPct * 100) + "% is shared equally among all members of the company.")
+						text = ::Reforged.Mod.Tooltips.parseString("Characters gain experience in battle and if a character has accumulated sufficient experience, he\'ll [level up|Concept.Level].\n\nExperience is gained upon an enemy\'s death, no matter what caused the death, as long as your company dealt some damage to that enemy, and is proportional to the fraction of the total damage dealt to that enemy by your company. Of this experience, " + (::Const.XP.XPForKillerPct * 100) + "% is shared proportionally between the brothers who did damage. The other " + (100 - ::Const.XP.XPForKillerPct * 100) + "% is shared equally among all members of the company.")
 					}
 				];
 
@@ -57,7 +57,7 @@
 					{
 						if (entry.id == 2 && entry.type == "description")
 						{
-							entry.text = ::String.replace(entry.text, "See also: Morale.", ::Reforged.Mod.Tooltips.parseString("See also: [Morale.|Concept.Morale]"));
+							entry.text = ::String.replace(entry.text, "See also: Morale.", ::Reforged.Mod.Tooltips.parseString("See also: [Morale|Concept.Morale]."));
 							break;
 						}
 					}
@@ -261,11 +261,11 @@
 				extra = [
 					{
 						id = 5,	type = "text",	icon = "ui/icons/rf_reach_attack.png",
-						text = ::Reforged.Mod.Tooltips.parseString("[Ignore when attacking:|Concept.ReachIgnoreOffensive] ") + ::MSU.Text.colorizeValue(entity.getCurrentProperties().OffensiveReachIgnore)
+						text = ::Reforged.Mod.Tooltips.parseString("[Ignore when attacking|Concept.ReachIgnoreOffensive]: ") + ::MSU.Text.colorizeValue(entity.getCurrentProperties().OffensiveReachIgnore)
 					},
 					{
 						id = 6,	type = "text",	icon = "ui/icons/rf_reach_defense.png",
-						text = ::Reforged.Mod.Tooltips.parseString("[Ignore when defending:|Concept.ReachIgnoreDefensive] ") + ::MSU.Text.colorizeValue(entity.getCurrentProperties().DefensiveReachIgnore)
+						text = ::Reforged.Mod.Tooltips.parseString("[Ignore when defending|Concept.ReachIgnoreDefensive]: ") + ::MSU.Text.colorizeValue(entity.getCurrentProperties().DefensiveReachIgnore)
 					}
 				];
 				break;

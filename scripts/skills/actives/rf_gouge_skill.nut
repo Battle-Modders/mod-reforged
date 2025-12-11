@@ -11,7 +11,7 @@ this.rf_gouge_skill <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.rf_gouge";
 		this.m.Name = "Gouge";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("A well-placed gouging attack that is likely to inflict debilitating [injuries.|Concept.InjuryTemporary]");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("A well-placed gouging attack that is likely to inflict debilitating [injuries|Concept.InjuryTemporary].");
 		this.m.KilledString = "Cut down";
 		this.m.Icon = "skills/rf_gouge_skill.png";
 		this.m.IconDisabled = "skills/rf_gouge_skill_sw.png";

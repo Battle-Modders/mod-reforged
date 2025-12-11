@@ -37,7 +37,7 @@ this.rf_onslaught_skill <- ::inherit("scripts/skills/skill", {
 			id = 20,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Does not affect allies who are [fleeing,|Concept.Morale] [$ $,|Skill+stunned_effect] or [$ $|Skill+sleeping_effect]")
+			text = ::Reforged.Mod.Tooltips.parseString("Does not affect allies who are [fleeing|Concept.Morale], [$ $|Skill+stunned_effect], or [$ $|Skill+sleeping_effect]")
 		});
 
 		ret.push({

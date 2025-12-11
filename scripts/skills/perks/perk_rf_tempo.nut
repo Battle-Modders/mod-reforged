@@ -105,7 +105,7 @@ this.perk_rf_tempo <- ::inherit("scripts/skills/skill", {
 					id = 13,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = ::Reforged.Mod.Tooltips.parseString("In the next [turn:|Concept.Turn]"),
+					text = ::Reforged.Mod.Tooltips.parseString("In the next [turn|Concept.Turn]:"),
 					children = nextTurnBonus
 				});
 			}
