@@ -41,7 +41,7 @@ this.perk_rf_realized_potential <- ::inherit("scripts/skills/skill", {
 
 			// We improve compatibility with mods, which may have random perks appear on non-players
 			// The following logic only makes sense for player characters
-			if (!::isKindOf(actor, "player"))
+			if (!::MSU.isKindOf(actor, "player"))
 				return;
 
 			actor.resetPerks();
