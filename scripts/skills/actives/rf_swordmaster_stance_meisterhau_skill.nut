@@ -38,7 +38,7 @@ this.rf_swordmaster_stance_meisterhau_skill <- ::inherit("scripts/skills/actives
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Gain the [$ $,|Skill+rf_swordmaster_kick_skill] [$ $|Skill+rf_swordmaster_tackle_skill] and [$ $|Skill+rf_swordmaster_push_through_skill] skills")
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the [$ $|Skill+rf_swordmaster_kick_skill], [$ $|Skill+rf_swordmaster_tackle_skill] and [$ $|Skill+rf_swordmaster_push_through_skill] skills")
 		});
 
 		this.addEnabledTooltip(ret);

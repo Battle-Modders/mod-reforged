@@ -63,7 +63,7 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Once per [turn,|Concept.Turn] the second successful use against the same target refunds all of its [Action Point|Concept.ActionPoints] cost")
+			text = ::Reforged.Mod.Tooltips.parseString("Once per [turn|Concept.Turn], the second successful use against the same target refunds all of its [Action Point|Concept.ActionPoints] cost")
 		});
 
 		ret.push({

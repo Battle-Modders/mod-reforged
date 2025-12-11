@@ -54,7 +54,7 @@
 			id = 13,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("If at least " + ::MSU.Text.colorNegative(this.getStacksForMoraleCheck()) + " stacks are received in a single [turn,|Concept.Turn] a negative [morale check|Concept.Morale] is immediately triggered")
+			text = ::Reforged.Mod.Tooltips.parseString("If at least " + ::MSU.Text.colorNegative(this.getStacksForMoraleCheck()) + " stacks are received in a single [turn|Concept.Turn], a negative [morale check|Concept.Morale] is immediately triggered")
 		});
 		return ret;
 	}}.getTooltip;

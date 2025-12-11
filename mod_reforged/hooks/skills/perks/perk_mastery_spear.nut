@@ -9,7 +9,7 @@
 		__original();
 		this.m.Icon = ::Const.Perks.findById(this.getID()).Icon; // Vanilla uses the wrong icon i.e. `perk_10.png` which is the Anticipation icon.
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character has mastered the art of fighting with the spear allowing him to perform an extra attack once per [turn.|Concept.Turn]");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("This character has mastered the art of fighting with the spear allowing him to perform an extra attack once per [turn|Concept.Turn].");
 	}}.create;
 
 	q.isHidden = @() { function isHidden()
