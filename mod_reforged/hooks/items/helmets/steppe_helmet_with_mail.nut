@@ -4,5 +4,6 @@
 		__original();
 		this.m.Value = 1500; // vanilla 1250
 		this.m.StaminaModifier = -11; // vanilla -12
+		this.m.Vision = -1; // vanilla -2
 	}}.create;
 });
