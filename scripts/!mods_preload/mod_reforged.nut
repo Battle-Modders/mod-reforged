@@ -43,6 +43,87 @@ foreach (requirement in requiredMods)
 
 // TODO: Establish a cleaner way to organize "Early" bucket hooks on a per-file basis
 ::Reforged.HooksMod.queue(queueLoadOrder, function() {
+	::Reforged.HooksMod.hook("scripts/entity/world/combat_manager", function(q) {
+		// Overwrite vanilla function to add the following changes:
+		//	- Deal spillover damage from an attack to other opponents. This makes the battles more representative of unit Strength.
+		q.tickCombat = @() { function tickCombat( _combat )
+		{
+			local attackOccured = false;
+
+			for (local i = 0; i < _combat.Combatants.len(); i++)
+			{
+				local combatant = _combat.Combatants[i];
+
+				if (::MSU.isNull(combatant.Party))
+					continue;
+
+				// In vanilla this is an array of indices (_f) but we use an array of the elements instead.
+				local potentialOpponentFactions = _combat.Factions.filter(@(_f, _parties) _parties.len() != 0 && combatant.Party.getFaction() != _f && !::World.FactionManager.isAllied(combatant.Party.getFaction(), _f));
+				if (potentialOpponentFactions.len() == 0)
+					continue;
+
+				// This is the total damage this combatant did in this tick. Same calculation as vanilla to roll damage per attack.
+				local damage = ::Math.max(1, ::Math.rand(1, combatant.Strength) * ::Const.World.CombatSettings.CombatStrengthMult);
+
+				// Deal all of the damage to opponents. If any opponent dies, we choose a new opponent and deal the spillover damage to it.
+				while (damage > 0)
+				{
+					local opponentParties = [];
+					foreach (parties in potentialOpponentFactions)
+					{
+						if (parties.len() != 0)
+						{
+							opponentParties.extend(parties.filter(@(_, _p) !::MSU.isNull(_p) && _p.getTroops().len() != 0));
+						}
+					}
+
+					// Stop if no opponent party with troops was found in any opponent factions.
+					if (opponentParties.len() == 0)
+						break;
+
+					local opponentParty = ::MSU.Array.rand(opponentParties);
+
+					local opponentIndex = ::Math.rand(0, opponentParty.getTroops().len() - 1);
+					local opponent = opponentParty.getTroops()[opponentIndex];
+					attackOccured = true;
+
+					// Deal up to the Strength of the opponent in damage, and subtract it from our total damage in this attack.
+					local damageDealt = ::Math.min(damage, opponent.Strength);
+					damage -= damageDealt;
+					opponent.Strength -= damageDealt;
+
+					// This block is the same as in vanilla.
+					if (opponent.Strength <= 0)
+					{
+						++_combat.Stats.Dead;
+						opponentParty.getTroops().remove(opponentIndex);
+						opponentIndex = _combat.Combatants.find(opponent);
+						_combat.Combatants.remove(opponentIndex);
+
+						if (opponentIndex < i)
+						{
+							i--;
+						}
+
+						if (opponentParty.getTroops().len() == 0)
+						{
+							_combat.Stats.Loot.extend(opponentParty.getInventory());
+							local partyIndex = _combat.Factions[opponentParty.getFaction()].find(opponentParty);
+							opponentParty.setCombatID(0);
+							_combat.Factions[opponentParty.getFaction()].remove(partyIndex);
+							opponentParty.onCombatLost();
+						}
+					}
+				}
+			}
+
+			if (!attackOccured)
+			{
+				_combat.IsResolved = true;
+			}
+		}}.tickCombat;
+	});
+
 	::Reforged.HooksMod.hook("scripts/items/shields/shield", function(q) {
 		// Hook the vanilla function so that ShieldExpert does not reduce damage to shields.
 		// We do this in Early bucket so that subsequent hooks on this function are not affected
