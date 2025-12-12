@@ -36,7 +36,7 @@
 	]
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.SkeletonHeavy, { // Our Honor Guard is a higher tier unit than vanilla. The more proper comparison to vanilla Honor Guard is the SkeletonHeavyLesser (Ancient Praetorian).
-	XP = 500, // vanilla 350
+	XP = 525, // vanilla 350
 	ActionPoints = 9,
 	Hitpoints = 90, // vanilla 65
 	Bravery = 100, // vanilla 110
@@ -54,7 +54,7 @@
 	]
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.SkeletonBoss, { // The Conqueror
-	XP = 1000, // vanilla 600
+	XP = 1250, // vanilla 600
 	ActionPoints = 9,
 	Hitpoints = 350,
 	Bravery = 120,
@@ -201,7 +201,7 @@
 	]
 };
 ::Const.Tactical.Actor.RF_VampireLord <- {
-	XP = 500,
+	XP = 700,
 	ActionPoints = 9,
 	Hitpoints = 300,
 	Bravery = 100,
