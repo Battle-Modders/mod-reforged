@@ -14,7 +14,7 @@ local spawnEntity = ::Tactical.spawnEntity;
 		// We schedule the RF_onSpawn function to be called in the next frame
 		// so that all linear logic following this entity's spawning e.g.
 		// equipping of items or adding of skills happens before the callback.
-		::Time.scheduleEvent(::TimeUnit.Virtual, 1, e.RF_onSpawn.bindenv(e), null);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 1, ::Tactical.Entities.RF_onSpawn, e);
 	}
 	return e;
 }}.spawnEntity;
@@ -28,7 +28,7 @@ local addEntityToMap = ::Tactical.addEntityToMap;
 		// We schedule the RF_onSpawn function to be called in the next frame
 		// so that all linear logic following this entity's spawning e.g.
 		// equipping of items or adding of skills happens before the callback.
-		::Time.scheduleEvent(::TimeUnit.Virtual, 1, _entity.RF_onSpawn.bindenv(_entity), null);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 1, ::Tactical.Entities.RF_onSpawn, _entity);
 	}
 }}.addEntityToMap;
 
@@ -47,44 +47,44 @@ local addEntityToMap = ::Tactical.addEntityToMap;
 	}}.onActorSpawned;
 });
 
-::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
-	q.m.__RF_HasOnSpawnBeenCalled <- false;
-
-	// This function should be used to do something with this entity after it has fully spawned
-	// e.g. add perks based on its equipment, or something else.
-	q.onSpawned <- { function onSpawned()
+::Reforged.HooksMod.hook("scripts/entity/tactical/tactical_entity_manager", function(q) {
+	// Internal function to handle calling of of actor.onSpawned.
+	// Similar to how `onResurrect` in this class in vanilla calls` actor.onResurrected`.
+	q.RF_onSpawn <- { function RF_onSpawn( _actor )
 	{
-	}}.onSpawned;
-
-	// Internal function to handle calling of onSpawn. We expose the public onSpawned function separately
-	// so that the conditions inside this function can be handled safely by the backend as onSpawned is meant
-	// to be overwritten by child classes.
-	// The single parameter is necessary as this function is used in Time.scheduleEvent
-	q.RF_onSpawn <- { function RF_onSpawn( _ )
-	{
-		if (this.m.__RF_HasOnSpawnBeenCalled)
+		if (!_actor.getFlags().has("RF_HasOnSpawnBeenCalled"))
 			return;
 
-		this.m.__RF_HasOnSpawnBeenCalled = true;
+		_actor.getFlags().set("RF_HasOnSpawnBeenCalled", true);
 
-		this.onSpawned();
+		_actor.onSpawned();
 
 		foreach (faction in ::Tactical.Entities.getAllInstances())
 		{
 			foreach (actor in faction)
 			{
-				actor.getSkills().onActorSpawned(this);
+				actor.getSkills().onActorSpawned(_actor);
 			}
 		}
 	}}.RF_onSpawn;
+});
+
+::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
+	// This function should be used to do something with this entity after it has fully spawned
+	// e.g. add perks based on its equipment, or something else.
+	q.onSpawned <- { function onSpawned()
+	{
+	}}.onSpawned;
 });
 
 ::Reforged.QueueBucket.VeryLate.push(function() {
 	::Reforged.HooksMod.hook("scripts/entity/tactical/player", function(q) {
 		q.onCombatFinished = @(__original) { function onCombatFinished()
 		{
+			// Remove the flag before calling __original so any exception during __original
+			// doesn't prevent the flag from being removed.
+			this.getFlags().remove("RF_HasOnSpawnBeenCalled");
 			__original();
-			this.m.__RF_HasOnSpawnBeenCalled = false;
 		}}.onCombatFinished;
 	});
 });
