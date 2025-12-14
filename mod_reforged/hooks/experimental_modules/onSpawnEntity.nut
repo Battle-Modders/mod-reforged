@@ -19,6 +19,19 @@ local spawnEntity = ::Tactical.spawnEntity;
 	return e;
 }}.spawnEntity;
 
+local addEntityToMap = ::Tactical.addEntityToMap;
+::Tactical.addEntityToMap = { function addEntityToMap( _entity, _x, _y )
+{
+	addEntityToMap(_entity, _x, _y);
+	if (::isKindOf(_entity, "actor"))
+	{
+		// We schedule the RF_onSpawn function to be called in the next frame
+		// so that all linear logic following this entity's spawning e.g.
+		// equipping of items or adding of skills happens before the callback.
+		::Time.scheduleEvent(::TimeUnit.Virtual, 1, _entity.RF_onSpawn.bindenv(_entity), null);
+	}
+}}.addEntityToMap;
+
 ::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
 	q.onActorSpawned <- { function onActorSpawned( _entity )
 	{
@@ -35,6 +48,8 @@ local spawnEntity = ::Tactical.spawnEntity;
 });
 
 ::Reforged.HooksMod.hook("scripts/entity/tactical/actor", function(q) {
+	q.m.__RF_HasOnSpawnBeenCalled <- false;
+
 	// This function should be used to do something with this entity after it has fully spawned
 	// e.g. add perks based on its equipment, or something else.
 	q.onSpawned <- { function onSpawned()
@@ -47,6 +62,11 @@ local spawnEntity = ::Tactical.spawnEntity;
 	// The single parameter is necessary as this function is used in Time.scheduleEvent
 	q.RF_onSpawn <- { function RF_onSpawn( _ )
 	{
+		if (this.m.__RF_HasOnSpawnBeenCalled)
+			return;
+
+		this.m.__RF_HasOnSpawnBeenCalled = true;
+
 		this.onSpawned();
 
 		foreach (faction in ::Tactical.Entities.getAllInstances())
@@ -57,4 +77,14 @@ local spawnEntity = ::Tactical.spawnEntity;
 			}
 		}
 	}}.RF_onSpawn;
+});
+
+::Reforged.QueueBucket.VeryLate.push(function() {
+	::Reforged.HooksMod.hook("scripts/entity/tactical/player", function(q) {
+		q.onCombatFinished = @(__original) { function onCombatFinished()
+		{
+			__original();
+			this.m.__RF_HasOnSpawnBeenCalled = false;
+		}}.onCombatFinished;
+	});
 });
