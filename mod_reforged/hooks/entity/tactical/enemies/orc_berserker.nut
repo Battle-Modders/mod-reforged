@@ -79,8 +79,24 @@
 	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+
+		// 1 in 5 chance to replace existing non-named weapon with the Reforged 2h orc mace
+		if (::Math.rand(1, 100) <= 20)
+		{
+			local weapon = this.getMainhandItem();
+			if (weapon != null && !weapon.isItemType(::Const.Items.ItemType.Named))
+			{
+				this.m.Items.unequip(weapon);
+				this.m.Items.equip(::new("scripts/items/weapons/rf_orc_mace_2h"));
+			}
+		}
 	}}.assignRandomEquipment;
+
+	q.onSpawned = @(__original) { function onSpawned()
+	{
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+	}}.onSpawned;
 
 	q.onSkillsUpdated = @(__original) { function onSkillsUpdated()
 	{
