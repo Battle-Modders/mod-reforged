@@ -38,6 +38,12 @@ local entityTypes = [
 	"RF_Squire",
 	"RF_HeraldsBodyguard",
 
+	"RF_DraugrThrall",
+	"RF_DraugrWarrior",
+	"RF_DraugrHuskarl",
+	"RF_DraugrHero",
+	"RF_DraugrShaman",
+
 	"RF_Hollenhund",
 	"RF_Banshee",
 	"RF_ZombieOrcYoung",
@@ -78,6 +84,12 @@ local entityIcon = [
 	"rf_knight_anointed_orientation",
 	"rf_squire_orientation",
 	"rf_heralds_bodyguard_orientation",
+
+	"rf_draugr_thrall_orientation",
+	"rf_draugr_warrior_orientation",
+	"rf_draugr_huskarl_orientation",
+	"rf_draugr_hero_orientation",
+	"rf_draugr_shaman_orientation",
 
 	"rf_hollenhund_orientation",
 	"rf_banshee_orientation",
@@ -134,6 +146,13 @@ local getDefaultFaction = ::Const.EntityType.getDefaultFaction;
 			case ::Const.EntityType.RF_SkeletonLegatus:
 			case ::Const.EntityType.RF_VampireLord:
 				return ::Const.FactionType.Undead;
+
+			case ::Const.EntityType.RF_DraugrThrall:
+			case ::Const.EntityType.RF_DraugrWarrior:
+			case ::Const.EntityType.RF_DraugrHuskarl:
+			case ::Const.EntityType.RF_DraugrHero:
+			case ::Const.EntityType.RF_DraugrShaman:
+				return ::Const.FactionType.RF_Draugr;
 
 			case ::Const.EntityType.RF_FootmanHeavy:
 			case ::Const.EntityType.RF_BillmanHeavy:

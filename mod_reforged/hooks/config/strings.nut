@@ -31,6 +31,12 @@
 	"Squire",
 	"Herald\'s Bodyguard",
 
+	"Barrowkin Thrall",
+	"Barrowkin Drengr",
+	"Barrowkin Huskarl",
+	"Barrowkin Hero",
+	"Barrow Seer",
+
 	"Hollenhund",
 	"Klagmutter",
 	"Wiederganger Orc Young",
@@ -71,6 +77,12 @@
 	"Anointed Knights",
 	"Squires",
 	"Herald\'s Bodyguards",
+
+	"Barrowkin Thralls",
+	"Barrowkin Drengr",
+	"Barrowkin Huskarls",
+	"Barrowkin Heroes",
+	"Barrow Seers",
 
 	"Hollenhunds",
 	"Klagmutters",

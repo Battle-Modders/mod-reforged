@@ -26,4 +26,14 @@
 	<sprite id="figure_rf_vampire_lord" offsetY="20" ic="FF324D64" width="68" height="106" img="world_entity\party\figure_rf_vampire_lord.png" left="-22" right="20" top="-41" bottom="19" />
 
 	<sprite id="world_bandit_fort_01" ic="FF303B3D" width="240" height="180" img="world_entity\location\rf_bandit_fort_01.png" />
+	<sprite id="world_rf_draugr_barrows_01" ic="FF3C4647" width="174" height="160" img="world_entity\location\rf_draugr_barrows_01.png" left="-85" right="88" />
+	<sprite id="world_rf_draugr_barrows_01_snow" ic="FF3C4647" width="174" height="160" img="world_entity\location\rf_draugr_barrows_01_snow.png" left="-85" right="88" />
+	<sprite id="world_rf_draugr_crypt_01" ic="FF2D3F4B" width="192" height="155" img="world_entity\location\rf_draugr_crypt_01.png" left="-114" right="112" top="-90" bottom="94" />
+	<sprite id="world_rf_draugr_crypt_01_snow" ic="FF2D3F4B" width="192" height="155" img="world_entity\location\rf_draugr_crypt_01_snow.png" left="-114" right="112" top="-90" bottom="94" />
+	<sprite id="world_rf_draugr_fane_01" offsetY="-50" offsetX="10" ic="FF39464B" width="229" height="266" img="world_entity\location\rf_draugr_fane_01.png" left="-135" right="141" />
+
+	<sprite id="banner_rf_draugr_01" offsetY="22" ic="FF1B252E" img="world_banner\banner_rf_draugr_01.png" />
+	<sprite id="banner_rf_draugr_02" offsetY="22" ic="FF1B252E" img="world_banner\banner_rf_draugr_02.png" />
+	<sprite id="banner_rf_draugr_03" offsetY="22" ic="FF1B252E" img="world_banner\banner_rf_draugr_03.png" />
+
 </brush>

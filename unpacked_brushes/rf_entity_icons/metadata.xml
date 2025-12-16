@@ -58,8 +58,50 @@
 
 	<sprite id="icon_rf_voulge_01" offsetY="35" ic="FF434752" width="130" height="142" img="icons\icon_rf_voulge_01.png" left="-58" right="16" top="-63" bottom="55" />
 	<sprite id="icon_rf_voulge_01_bloodied" offsetY="35" ic="FF434752" width="130" height="142" img="icons\icon_rf_voulge_01_bloodied.png" left="-58" right="16" top="-63" bottom="55" />
-	<sprite id="icon_rf_voulge_named_01" offsetY="35" ic="FF434752" width="130" height="142" img="icons\icon_rf_voulge_named_01.png" left="-58" right="16" top="-63" bottom="55" />
+	<sprite id="icon_rf_voulge_named_01" offsetY="35" ic="FF434752" width="130" height="142" img="icons\icon_rf_voulge_named_01.png" left="-58" right="16" top="-63" bottom="55" />	
 	<sprite id="icon_rf_voulge_named_01_bloodied" offsetY="35" ic="FF434752" width="130" height="142" img="icons\icon_rf_voulge_named_01_bloodied.png" left="-58" right="16" top="-63" bottom="55" />
 	<sprite id="icon_rf_voulge_named_02" offsetY="35" ic="FF434752" width="130" height="142" img="icons\icon_rf_voulge_named_02.png" left="-58" right="16" top="-63" bottom="55" />
 	<sprite id="icon_rf_voulge_named_02_bloodied" offsetY="35" ic="FF434752" width="130" height="142" img="icons\icon_rf_voulge_named_02_bloodied.png" left="-58" right="16" top="-63" bottom="55" />
+
+	<sprite id="icon_rf_draugr_sword_01" offsetY="35" ic="FF4E636D" width="130" height="142" img="icons\icon_rf_draugr_sword_01.png" left="-4" right="52" top="-64" bottom="20" />
+	<sprite id="icon_rf_draugr_sword_01_bloodied" offsetY="35" ic="FF4E636D" width="130" height="142" img="icons\icon_rf_draugr_sword_01_bloodied.png" left="-4" right="52" top="-64" bottom="20" />
+	<sprite id="icon_rf_draugr_sword_2h_01" offsetY="35" ic="FF656567" width="130" height="142" img="icons\icon_rf_draugr_sword_2h_01.png" left="-67" right="19" top="-61" bottom="63" />
+	<sprite id="icon_rf_draugr_sword_2h_01_bloodied" offsetY="35" ic="FF656567" width="130" height="142" img="icons\icon_rf_draugr_sword_2h_01_bloodied.png" left="-67" right="19" top="-61" bottom="63" />
+	<sprite id="icon_rf_draugr_long_spear_01" offsetY="35" ic="FF33404B" width="150" height="160" img="icons\icon_rf_draugr_long_spear_01.png" left="-55" right="13" />
+	<sprite id="icon_rf_draugr_long_spear_01_bloodied" offsetY="35" ic="FF33404B" width="150" height="160" img="icons\icon_rf_draugr_long_spear_01_bloodied.png" left="-55" right="13" />
+	<sprite id="icon_rf_draugr_greataxe_01" offsetY="35" ic="FF222F45" width="160" height="142" img="icons\icon_rf_draugr_greataxe_01.png" left="-70" right="14" top="-54" bottom="40" />
+	<sprite id="icon_rf_draugr_greataxe_01_bloodied" offsetY="35" ic="FF222F45" width="160" height="142" img="icons\icon_rf_draugr_greataxe_01_bloodied.png" left="-70" right="14" top="-54" bottom="40" />
+	<sprite id="icon_rf_draugr_shaman_staff_01" offsetY="35" ic="FF343439" width="144" height="142" img="icons\icon_rf_draugr_shaman_staff_01.png" left="-85" right="9" top="-65" bottom="83" />
+	<sprite id="icon_rf_draugr_shaman_staff_01_bloodied" offsetY="35" ic="FF343439" width="144" height="142" img="icons\icon_rf_draugr_shaman_staff_01_bloodied.png" left="-85" right="9" top="-65" bottom="83" />
+	<sprite id="icon_rf_draugr_cleaver_01" offsetY="35" ic="FF30405A" width="180" height="142" img="icons\icon_rf_draugr_cleaver_01.png" left="-1" right="47" top="-56" bottom="18" />
+	<sprite id="icon_rf_draugr_cleaver_01_bloodied" offsetY="35" ic="FF30405A" width="180" height="142" img="icons\icon_rf_draugr_cleaver_01_bloodied.png" left="-1" right="47" top="-56" bottom="18" />
+	<sprite id="icon_rf_draugr_cleaver_02" offsetY="35" ic="FF30405A" width="180" height="142" img="icons\icon_rf_draugr_cleaver_02.png" left="-1" right="47" top="-56" bottom="18" />
+	<sprite id="icon_rf_draugr_cleaver_02_bloodied" offsetY="35" ic="FF30405A" width="180" height="142" img="icons\icon_rf_draugr_cleaver_02_bloodied.png" left="-1" right="47" top="-56" bottom="18" />
+	<sprite id="icon_rf_draugr_cleaver_03" offsetY="35" ic="FF30405A" width="180" height="142" img="icons\icon_rf_draugr_cleaver_03.png" left="-1" right="47" top="-56" bottom="18" />
+	<sprite id="icon_rf_draugr_cleaver_03_bloodied" offsetY="35" ic="FF30405A" width="180" height="142" img="icons\icon_rf_draugr_cleaver_03_bloodied.png" left="-1" right="47" top="-56" bottom="18" />
+	<sprite id="icon_rf_draugr_axe_01" offsetY="35" ic="FF253349" width="130" height="142" img="icons\icon_rf_draugr_axe_01.png" left="9" right="65" top="-58" bottom="22" />
+	<sprite id="icon_rf_draugr_axe_01_bloodied" offsetY="35" ic="FF253349" width="130" height="142" img="icons\icon_rf_draugr_axe_01_bloodied.png" left="9" right="65" top="-58" bottom="22" />
+	<sprite id="icon_rf_draugr_axe_02" offsetY="35" ic="FF253349" width="130" height="142" img="icons\icon_rf_draugr_axe_02.png" left="9" right="65" top="-58" bottom="22" />
+	<sprite id="icon_rf_draugr_axe_02_bloodied" offsetY="35" ic="FF253349" width="130" height="142" img="icons\icon_rf_draugr_axe_02_bloodied.png" left="9" right="65" top="-58" bottom="22" />
+	<sprite id="icon_rf_draugr_battle_axe_01" offsetY="35" ic="FF374554" width="130" height="142" img="icons\icon_rf_draugr_battle_axe_01.png" left="-65" right="13" top="-56" bottom="52" />
+	<sprite id="icon_rf_draugr_battle_axe_01_bloodied" offsetY="35" ic="FF374554" width="130" height="142" img="icons\icon_rf_draugr_battle_axe_01_bloodied.png" left="-65" right="13" top="-56" bottom="52" />
+	<sprite id="icon_rf_draugr_battle_axe_02" offsetY="35" ic="FF374554" width="130" height="142" img="icons\icon_rf_draugr_battle_axe_02.png" left="-65" right="13" top="-56" bottom="52" />
+	<sprite id="icon_rf_draugr_battle_axe_02_bloodied" offsetY="35" ic="FF374554" width="130" height="142" img="icons\icon_rf_draugr_battle_axe_02_bloodied.png" left="-65" right="13" top="-56" bottom="52" />
+	<sprite id="icon_rf_draugr_battle_axe_03" offsetY="35" ic="FF374554" width="130" height="142" img="icons\icon_rf_draugr_battle_axe_03.png" left="-65" right="13" top="-56" bottom="52" />
+	<sprite id="icon_rf_draugr_battle_axe_03_bloodied" offsetY="35" ic="FF374554" width="130" height="142" img="icons\icon_rf_draugr_battle_axe_03_bloodied.png" left="-65" right="13" top="-56" bottom="52" />
+	<sprite id="icon_rf_draugr_bardiche_named_01" offsetY="35" ic="FF4D545F" width="180" height="152" img="icons\icon_rf_draugr_bardiche_named_01.png" left="-84" right="12" top="-60" bottom="60" />
+	<sprite id="icon_rf_draugr_bardiche_named_01_bloodied" offsetY="35" ic="FF4D545F" width="180" height="152" img="icons\icon_rf_draugr_bardiche_named_01_bloodied.png" left="-84" right="12" top="-60" bottom="60" />
+
+	<sprite id="shield_rf_draugr_round_01" offsetY="35" ic="FF28344A" width="104" height="142" img="icons\shield_rf_draugr_round_01.png" left="11" right="55" top="-56" bottom="6" />
+	<sprite id="shield_rf_draugr_round_01_damaged" offsetY="35" ic="FF28344A" width="104" height="142" img="icons\shield_rf_draugr_round_01_damaged.png" left="11" right="55" top="-56" bottom="6" />
+	<sprite id="shield_rf_draugr_round_02" offsetY="35" ic="FF28344A" width="104" height="142" img="icons\shield_rf_draugr_round_02.png" left="11" right="55" top="-56" bottom="6" />
+	<sprite id="shield_rf_draugr_round_02_damaged" offsetY="35" ic="FF28344A" width="104" height="142" img="icons\shield_rf_draugr_round_02_damaged.png" left="11" right="55" top="-56" bottom="6" />
+	<sprite id="shield_rf_draugr_round_03" offsetY="35" ic="FF28344A" width="104" height="142" img="icons\shield_rf_draugr_round_03.png" left="11" right="55" top="-56" bottom="6" />
+	<sprite id="shield_rf_draugr_round_03_damaged" offsetY="35" ic="FF28344A" width="104" height="142" img="icons\shield_rf_draugr_round_03_damaged.png" left="11" right="55" top="-56" bottom="6" />
+	<sprite id="shield_rf_draugr_round_04" offsetY="35" ic="FF28344A" width="104" height="142" img="icons\shield_rf_draugr_round_04.png" left="11" right="55" top="-56" bottom="6" />
+	<sprite id="shield_rf_draugr_round_04_damaged" offsetY="35" ic="FF28344A" width="104" height="142" img="icons\shield_rf_draugr_round_04_damaged.png" left="11" right="55" top="-56" bottom="6" />
+	<sprite id="shield_rf_draugr_round_01_destroyed" offsetX="-25" offsetY="-6" f="6404" ic="FF273143" img="icons\shield_rf_draugr_round_01_destroyed.png" />
+	<sprite id="shield_rf_draugr_round_02_destroyed" offsetX="-25" offsetY="-6" f="6404" ic="FF273143" img="icons\shield_rf_draugr_round_02_destroyed.png" />
+	<sprite id="shield_rf_draugr_round_03_destroyed" offsetX="-25" offsetY="-6" f="6404" ic="FF273143" img="icons\shield_rf_draugr_round_03_destroyed.png" />
+	<sprite id="shield_rf_draugr_round_04_destroyed" offsetX="-25" offsetY="-6" f="6404" ic="FF273143" img="icons\shield_rf_draugr_round_04_destroyed.png" />
 </brush>

@@ -1,0 +1,24 @@
+<brush name="gfx/rf_objects.png" version="17">
+	<sprite id="rf_barrows_01" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_01.png" left="-67" right="76" top="-35" bottom="93" />
+	<sprite id="rf_barrows_02" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_02.png" left="-67" right="76" top="-35" bottom="93" />
+	<sprite id="rf_barrows_03" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_03.png" left="-67" right="76" top="-35" bottom="93" />
+	<sprite id="rf_barrows_04" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_04.png" left="-67" right="76" top="-35" bottom="93" />
+	<sprite id="rf_barrows_01_snow" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_01_snow.png" left="-67" right="76" top="-35" bottom="93" />
+	<sprite id="rf_barrows_02_snow" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_02_snow.png" left="-67" right="76" top="-35" bottom="93" />
+	<sprite id="rf_barrows_03_snow" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_03_snow.png" left="-67" right="76" top="-35" bottom="93" />
+	<sprite id="rf_barrows_04_snow" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_04_snow.png" left="-67" right="76" top="-35" bottom="93" />
+
+	<sprite id="rf_barrows_large_01" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_large_01.png" left="-83" right="81" top="-55" bottom="153" />
+	<sprite id="rf_barrows_large_02" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_large_02.png" left="-83" right="81" top="-55" bottom="153" />
+	<sprite id="rf_barrows_large_03" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_large_03.png" left="-83" right="81" top="-55" bottom="153" />
+	<sprite id="rf_barrows_large_04" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_large_04.png" left="-83" right="81" top="-55" bottom="153" />
+	<sprite id="rf_barrows_large_01_snow" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_large_01_snow.png" left="-83" right="81" top="-55" bottom="153" />
+	<sprite id="rf_barrows_large_02_snow" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_large_02_snow.png" left="-83" right="81" top="-55" bottom="153" />
+	<sprite id="rf_barrows_large_03_snow" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_large_03_snow.png" left="-83" right="81" top="-55" bottom="153" />
+	<sprite id="rf_barrows_large_04_snow" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_large_04_snow.png" left="-83" right="81" top="-55" bottom="153" />
+
+	<sprite id="rf_barrows_horns_01" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_horns_01.png" left="-83" right="81" top="-55" bottom="153" />
+	<sprite id="rf_barrows_horns_01_snow" f="643F" b7="12" ic="FF334045" width="135" height="69" img="combat_objects\rf_barrows_horns_01_snow.png" left="-83" right="81" top="-55" bottom="153" />
+
+
+</brush>

@@ -218,6 +218,122 @@
 		0
 	]
 };
+// Draugr
+{
+	::Const.Tactical.Actor.RF_Draugr <- {
+		XP = 500,
+		ActionPoints = 9,
+		Hitpoints = 50,
+		Bravery = 100,
+		Stamina = 100,
+		MeleeSkill = 95,
+		RangedSkill = 0,
+		MeleeDefense = 30,
+		RangedDefense = 30,
+		Initiative = 140,
+		FatigueEffectMult = 0.0,
+		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	};
+
+	::Const.Tactical.Actor.RF_DraugrThrall <- {
+		XP = 500,
+		ActionPoints = 9,
+		Hitpoints = 50,
+		Bravery = 100,
+		Stamina = 100,
+		MeleeSkill = 95,
+		RangedSkill = 0,
+		MeleeDefense = 30,
+		RangedDefense = 30,
+		Initiative = 140,
+		FatigueEffectMult = 0.0,
+		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	};
+
+	::Const.Tactical.Actor.RF_DraugrWarrior <- {
+		XP = 500,
+		ActionPoints = 9,
+		Hitpoints = 50,
+		Bravery = 100,
+		Stamina = 100,
+		MeleeSkill = 95,
+		RangedSkill = 0,
+		MeleeDefense = 30,
+		RangedDefense = 30,
+		Initiative = 140,
+		FatigueEffectMult = 0.0,
+		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	};
+
+	::Const.Tactical.Actor.RF_DraugrHuskarl <- {
+		XP = 500,
+		ActionPoints = 9,
+		Hitpoints = 50,
+		Bravery = 100,
+		Stamina = 100,
+		MeleeSkill = 95,
+		RangedSkill = 0,
+		MeleeDefense = 30,
+		RangedDefense = 30,
+		Initiative = 140,
+		FatigueEffectMult = 0.0,
+		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	};
+
+	::Const.Tactical.Actor.RF_DraugrHero <- {
+		XP = 500,
+		ActionPoints = 9,
+		Hitpoints = 50,
+		Bravery = 100,
+		Stamina = 100,
+		MeleeSkill = 95,
+		RangedSkill = 0,
+		MeleeDefense = 30,
+		RangedDefense = 30,
+		Initiative = 140,
+		FatigueEffectMult = 0.0,
+		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	};
+
+	::Const.Tactical.Actor.RF_DraugrShaman <- {
+		XP = 500,
+		ActionPoints = 9,
+		Hitpoints = 50,
+		Bravery = 100,
+		Stamina = 100,
+		MeleeSkill = 95,
+		RangedSkill = 0,
+		MeleeDefense = 30,
+		RangedDefense = 30,
+		Initiative = 140,
+		FatigueEffectMult = 0.0,
+		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	};
+}
 ::Const.Tactical.Actor.RF_Hollenhund <- {
 	XP = 400,
 	ActionPoints = 12,

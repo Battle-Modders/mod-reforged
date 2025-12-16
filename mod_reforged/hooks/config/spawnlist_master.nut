@@ -45,6 +45,47 @@
 
 // Cost is handled in bandit_units.nut
 ::MSU.Table.merge(::Const.World.Spawn.Troops, {
+// Draugr
+	RF_DraugrThrall = {
+		ID = ::Const.EntityType.RF_DraugrThrall,
+		Variant = 0,
+		Strength = 9,
+		Cost = 9,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_thrall"
+	},
+	RF_DraugrWarrior = {
+		ID = ::Const.EntityType.RF_DraugrWarrior,
+		Variant = 1,
+		Strength = 9,
+		Cost = 9,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_warrior"
+	},
+	RF_DraugrHuskarl = {
+		ID = ::Const.EntityType.RF_DraugrHuskarl,
+		Variant = 2,
+		Strength = 9,
+		Cost = 9,
+		Row = 1,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_huskarl"
+	},
+	RF_DraugrHero = {
+		ID = ::Const.EntityType.RF_DraugrHero,
+		Variant = 3,
+		Strength = 9,
+		Cost = 9,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_hero"
+	},
+	RF_DraugrShaman = {
+		ID = ::Const.EntityType.RF_DraugrShaman,
+		Variant = 4,
+		Strength = 9,
+		Cost = 9,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_draugr_shaman"
+	},
 	RF_ZombieOrcYoung = {
 		ID = ::Const.EntityType.RF_ZombieOrcYoung,
 		Variant = 0,
@@ -371,3 +412,36 @@
 		Script = "scripts/entity/tactical/humans/rf_heralds_bodyguard"
 	}
 });
+
+//TODO: Temporary spawnlist
+::Const.World.Spawn.RF_DraugrDefenders <- [
+	{
+		Cost = 10,
+		MovementSpeedMult = 1.0,
+		VisibilityMult = 1.0,
+		VisionMult = 1.0,
+		Body = "figure_bandit_01",
+		Troops = [
+			{
+				Type = this.Const.World.Spawn.Troops.RF_DraugrThrall,
+				Num = 4
+			},
+			{
+				Type = this.Const.World.Spawn.Troops.RF_DraugrWarrior,
+				Num = 3
+			},
+			{
+				Type = this.Const.World.Spawn.Troops.RF_DraugrHuskarl,
+				Num = 2
+			},
+			{
+				Type = this.Const.World.Spawn.Troops.RF_DraugrHero,
+				Num = 1
+			},
+			{
+				Type = this.Const.World.Spawn.Troops.RF_DraugrShaman,
+				Num = 1
+			}
+		]
+	}
+];

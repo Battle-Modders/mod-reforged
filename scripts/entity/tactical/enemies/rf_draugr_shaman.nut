@@ -1,0 +1,60 @@
+this.rf_draugr_shaman <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", {
+	m = {},
+	function create()
+	{
+		this.rf_draugr.create();
+
+		this.m.Type = ::Const.EntityType.RF_DraugrShaman;
+		this.m.XP = ::Const.Tactical.Actor.RF_DraugrShaman.XP;
+		this.setName(::Const.Strings.EntityName[this.m.Type]);
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_draugr_shaman_agent");
+		this.m.AIAgent.setActor(this);
+	}
+
+	function onInit()
+	{
+		this.rf_draugr.onInit();
+		this.m.Skills.add(::new("scripts/skills/actives/rf_ancestral_summons_skill"));
+	}
+
+	function assignRandomEquipment()
+	{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			local helmet = ::MSU.Class.WeightedContainer().addMany(1, [
+				"rf_draugr_skull_headdress",
+				"rf_draugr_ritual_headpiece",
+				"rf_draugr_white_bear_headpiece"
+			]).roll();
+
+			this.m.Items.equip(::new("scripts/items/helmets/rf_draugr/" + helmet));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local headpiece = this.getHeadItem();
+			if (headpiece != null && headpiece.ClassName == "rf_draugr_white_bear_headpiece")
+			{
+				this.m.Items.equip(::new("scripts/items/armor/rf_draugr/rf_draugr_white_bear_fur_mantle"));
+			}
+			else
+			{
+				local armor = ::MSU.Class.WeightedContainer().addMany(1, [
+					"rf_draugr_skull_wraps",
+					"rf_draugr_wolf_fur_mantle"
+				]).roll();
+
+				this.m.Items.equip(::new("scripts/items/armor/rf_draugr/" + armor));
+			}
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			this.m.Items.equip(this.new("scripts/items/weapons/rf_draugr/rf_draugr_shaman_staff"));
+		}
+	}
+
+	function onSpawned()
+	{
+	}
+});
