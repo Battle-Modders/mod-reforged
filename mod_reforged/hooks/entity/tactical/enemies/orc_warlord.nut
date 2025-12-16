@@ -89,8 +89,8 @@
 
 		if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
 		{
-			this.m.Skills.removeByID("actives.rf_bearded_blade_skill");
-			this.m.Skills.removeByID("actives.rf_hook_shield_skill");
+			this.m.Skills.removeByID("actives.rf_bearded_blade");
+			this.m.Skills.removeByID("actives.rf_hook_shield");
 		}
 	}}.onSkillsUpdated;
 });
