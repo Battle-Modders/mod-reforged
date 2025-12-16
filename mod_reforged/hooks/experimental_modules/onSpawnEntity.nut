@@ -52,7 +52,7 @@ local addEntityToMap = ::Tactical.addEntityToMap;
 	// Similar to how `onResurrect` in this class in vanilla calls` actor.onResurrected`.
 	q.RF_onSpawn <- { function RF_onSpawn( _actor )
 	{
-		if (!_actor.getFlags().has("RF_HasOnSpawnBeenCalled"))
+		if (_actor.getFlags().has("RF_HasOnSpawnBeenCalled"))
 			return;
 
 		_actor.getFlags().set("RF_HasOnSpawnBeenCalled", true);
