@@ -45,6 +45,38 @@
 
 // Cost is handled in bandit_units.nut
 ::MSU.Table.merge(::Const.World.Spawn.Troops, {
+	RF_ZombieOrcYoung = {
+		ID = ::Const.EntityType.RF_ZombieOrcYoung,
+		Variant = 0,
+		Strength = 9,
+		Cost = 9,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_young"
+	},
+	RF_ZombieOrcBerserker = {
+		ID = ::Const.EntityType.RF_ZombieOrcBerserker,
+		Variant = 0,
+		Strength = 9,
+		Cost = 9,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_berserker"
+	},
+	RF_ZombieOrcWarrior = {
+		ID = ::Const.EntityType.RF_ZombieOrcWarrior,
+		Variant = 0,
+		Strength = 9,
+		Cost = 9,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_warrior"
+	},
+	RF_ZombieOrcWarlord = {
+		ID = ::Const.EntityType.RF_ZombieOrcWarlord,
+		Variant = 0,
+		Strength = 9,
+		Cost = 9,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_warlord"
+	},
 	// Bandits
 	RF_BanditScoundrel = {
 		ID = ::Const.EntityType.RF_BanditScoundrel,

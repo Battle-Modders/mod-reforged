@@ -254,3 +254,8 @@
 		0
 	]
 };
+::Const.Tactical.Actor.RF_ZombieOrc <- ::MSU.Table.merge(::MSU.deepClone(::Const.Tactical.Actor.ZombieYeoman), { Stamina = 200 });
+::Const.Tactical.Actor.RF_ZombieOrcYoung <- ::MSU.Table.merge(::MSU.deepClone(::Const.Tactical.Actor.OrcYoung), { FatigueEffectMult = 0.0, ActionPoints = 7, Hitpoints = 200 });
+::Const.Tactical.Actor.RF_ZombieOrcBerserker <- ::MSU.Table.merge(::MSU.deepClone(::Const.Tactical.Actor.OrcBerserker), { FatigueEffectMult = 0.0, ActionPoints = 7, Hitpoints = 400 });
+::Const.Tactical.Actor.RF_ZombieOrcWarrior <- ::MSU.Table.merge(::MSU.deepClone(::Const.Tactical.Actor.OrcWarrior), { FatigueEffectMult = 0.0, ActionPoints = 7, Hitpoints = 400 });
+::Const.Tactical.Actor.RF_ZombieOrcWarlord <- ::MSU.Table.merge(::MSU.deepClone(::Const.Tactical.Actor.OrcWarlord), { FatigueEffectMult = 0.0, ActionPoints = 7, Hitpoints = 500 });

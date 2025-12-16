@@ -32,7 +32,11 @@
 	"Herald\'s Bodyguard",
 
 	"Hollenhund",
-	"Klagmutter"
+	"Klagmutter",
+	"Wiederganger Orc Young",
+	"Wiederganger Orc Berserker",
+	"Wiederganger Orc Warrior",
+	"Wiederganger Orc Warlord"
 ]);
 
 ::Const.Strings.EntityNamePlural.extend([
@@ -69,7 +73,11 @@
 	"Herald\'s Bodyguards",
 
 	"Hollenhunds",
-	"Klagmutters"
+	"Klagmutters",
+	"Wiederganger Orc Young",
+	"Wiederganger Orc Berserkers",
+	"Wiederganger Orc Warriors",
+	"Wiederganger Orc Warlords"
 ]);
 
 ::MSU.Table.merge(::Const.Strings.PerkName, {

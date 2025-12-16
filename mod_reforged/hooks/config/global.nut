@@ -39,7 +39,11 @@ local entityTypes = [
 	"RF_HeraldsBodyguard",
 
 	"RF_Hollenhund",
-	"RF_Banshee"
+	"RF_Banshee",
+	"RF_ZombieOrcYoung",
+	"RF_ZombieOrcBerserker",
+	"RF_ZombieOrcWarrior",
+	"RF_ZombieOrcWarlord"
 ]
 
 local entityIcon = [
@@ -76,7 +80,11 @@ local entityIcon = [
 	"rf_heralds_bodyguard_orientation",
 
 	"rf_hollenhund_orientation",
-	"rf_banshee_orientation"
+	"rf_banshee_orientation",
+	"rf_zombie_orc_young_orientation",
+	"rf_zombie_orc_berserker_orientation",
+	"rf_zombie_orc_warrior_orientation",
+	"rf_zombie_orc_warlord_orientation"
 ]
 
 foreach (entityType in entityTypes)
@@ -141,6 +149,10 @@ local getDefaultFaction = ::Const.EntityType.getDefaultFaction;
 
 			case ::Const.EntityType.RF_Hollenhund:
 			case ::Const.EntityType.RF_Banshee:
+			case ::Const.EntityType.RF_ZombieOrcYoung:
+			case ::Const.EntityType.RF_ZombieOrcBerserker:
+			case ::Const.EntityType.RF_ZombieOrcWarrior:
+			case ::Const.EntityType.RF_ZombieOrcWarlord:
 				return ::Const.FactionType.Zombies;
 		}
 	}

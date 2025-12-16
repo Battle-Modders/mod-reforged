@@ -6,4 +6,5 @@
 	q.m.PossibleSkills.push("actives.rf_heavy_cleave");
 	q.m.PossibleSkills.push("actives.rf_voulge_cleave");
 	q.m.PossibleSkills.push("actives.rf_ethereal_bite");
+	q.m.PossibleSkills.push("actives.rf_zombie_orc_bite");
 });

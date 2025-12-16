@@ -38,4 +38,8 @@
 
 	<sprite id="rf_hollenhund_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_hollenhund_orientation.png" />
 	<sprite id="rf_banshee_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_banshee_orientation.png" />
+	<sprite id="rf_zombie_orc_young_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_standard_bearer_orientation.png" />
+	<sprite id="rf_zombie_orc_berserker_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_zombie_orc_berserker_orientation.png" />
+	<sprite id="rf_zombie_orc_warrior_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_zombie_orc_warrior_orientation.png" />
+	<sprite id="rf_zombie_orc_warlord_orientation" ic="FF22200A" img="..\..\gfx\ui\orientation\rf_zombie_orc_warlord_orientation.png" />
 </brush>

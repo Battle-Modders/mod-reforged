@@ -353,4 +353,94 @@
 
 <sprite id="bust_rf_banshee_01" offsetY="35" b7="0" ic="FFBF9151" width="104" height="142" img="entity\undead\bust_rf_banshee_01.png" left="-50" right="82" top="-69" bottom="83" />
 
+<!-- Zombie Orcs -->
+
+<!-- Orc Young -->
+<sprite id="rf_zombify_orc_young_01" offsetY="35" ic="FF365859" width="174" height="214" img="entity\orcs\rf_zombify_orc_young_01.png" left="-44" right="30" top="-19" bottom="53" />
+<sprite id="rf_zombify_orc_young_02" offsetY="35" ic="FF365859" width="174" height="214" img="entity\orcs\rf_zombify_orc_young_02.png" left="-44" right="30" top="-19" bottom="53" />
+<sprite id="rf_zombify_orc_young_03" offsetY="35" ic="FF365859" width="174" height="214" img="entity\orcs\rf_zombify_orc_young_03.png" left="-44" right="30" top="-19" bottom="53" />
+<sprite id="rf_zombify_orc_young_04" offsetY="35" ic="FF365859" width="174" height="214" img="entity\orcs\rf_zombify_orc_young_04.png" left="-44" right="30" top="-19" bottom="53" />
+<sprite id="rf_zombify_orc_young_01_injured" offsetY="35" ic="FF365859" width="174" height="214" img="entity\orcs\rf_zombify_orc_young_01_injured.png" left="-44" right="30" top="-19" bottom="53" />
+<sprite id="rf_zombify_orc_young_02_injured" offsetY="35" ic="FF365859" width="174" height="214" img="entity\orcs\rf_zombify_orc_young_02_injured.png" left="-44" right="30" top="-19" bottom="53" />
+<sprite id="rf_zombify_orc_young_03_injured" offsetY="35" ic="FF365859" width="174" height="214" img="entity\orcs\rf_zombify_orc_young_03_injured.png" left="-44" right="30" top="-19" bottom="53" />
+<sprite id="rf_zombify_orc_young_04_injured" offsetY="35" ic="FF365859" width="174" height="214" img="entity\orcs\rf_zombify_orc_young_04_injured.png" left="-44" right="30" top="-19" bottom="53" />
+<sprite id="rf_zombify_orc_young_01_dead" offsetY="12" f1="30" f2="-10" ic="FF283D46" width="238" height="186" img="entity\orcs\rf_zombify_orc_young_01_dead.png" left="7" right="67" top="-60" bottom="24" />
+<sprite id="rf_zombify_orc_young_02_dead" offsetY="12" f1="30" f2="-10" ic="FF283D46" width="238" height="186" img="entity\orcs\rf_zombify_orc_young_02_dead.png" left="7" right="67" top="-60" bottom="24" />
+<sprite id="rf_zombify_orc_young_03_dead" offsetY="12" f1="30" f2="-10" ic="FF283D46" width="238" height="186" img="entity\orcs\rf_zombify_orc_young_03_dead.png" left="7" right="67" top="-60" bottom="24" />
+<sprite id="rf_zombify_orc_young_04_dead" offsetY="12" f1="30" f2="-10" ic="FF283D46" width="238" height="186" img="entity\orcs\rf_zombify_orc_young_04_dead.png" left="7" right="67" top="-60" bottom="24" />
+
+<sprite id="rf_zombify_orc_young_body_01" offsetY="35" ic="FF27403E" width="174" height="214" img="entity\orcs\rf_zombify_orc_young_body_01.png" left="-49" right="57" top="-60" bottom="28" />
+<sprite id="rf_zombify_orc_young_body_01_injured" offsetY="35" ic="FF27403E" width="174" height="214" img="entity\orcs\rf_zombify_orc_young_body_01_injured.png" left="-49" right="57" top="-60" bottom="28" />
+<sprite id="rf_zombify_orc_young_body_01_dead" offsetY="12" f="6402" ic="FF1F3238" width="238" height="186" img="entity\orcs\rf_zombify_orc_young_body_01_dead.png" left="-75" right="69" top="-59" bottom="65" />
+
+<!-- Orc Berserker 1 -->
+<sprite id="rf_zombify_orc_02_head_01_01" offsetY="35" ic="FF304652" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_01_01.png" left="-46" right="42" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_01_02" offsetY="35" ic="FF304652" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_01_02.png" left="-46" right="42" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_01_03" offsetY="35" ic="FF304652" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_01_03.png" left="-46" right="42" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_01_04" offsetY="35" ic="FF304652" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_01_04.png" left="-46" right="42" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_01_01_injured" offsetY="35" ic="FF304652" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_01_01_injured.png" left="-46" right="42" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_01_02_injured" offsetY="35" ic="FF304652" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_01_02_injured.png" left="-46" right="42" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_01_03_injured" offsetY="35" ic="FF304652" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_01_03_injured.png" left="-46" right="42" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_01_04_injured" offsetY="35" ic="FF304652" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_01_04_injured.png" left="-46" right="42" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_01_01_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF253544" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_01_01_dead.png" left="3" right="73" top="-73" bottom="25" />
+<sprite id="rf_zombify_orc_02_head_01_02_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF253544" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_01_02_dead.png" left="3" right="73" top="-73" bottom="25" />
+<sprite id="rf_zombify_orc_02_head_01_03_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF253544" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_01_03_dead.png" left="3" right="73" top="-73" bottom="25" />
+<sprite id="rf_zombify_orc_02_head_01_04_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF253544" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_01_04_dead.png" left="3" right="73" top="-73" bottom="25" />
+
+<!-- Orc Berserker 2 -->
+<sprite id="rf_zombify_orc_02_head_02_01" offsetY="35" ic="FF304753" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_02_01.png" left="-49" right="47" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_02_02" offsetY="35" ic="FF304753" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_02_02.png" left="-49" right="47" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_02_03" offsetY="35" ic="FF304753" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_02_03.png" left="-49" right="47" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_02_04" offsetY="35" ic="FF304753" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_02_04.png" left="-49" right="47" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_02_01_injured" offsetY="35" ic="FF304753" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_02_01_injured.png" left="-49" right="47" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_02_02_injured" offsetY="35" ic="FF304753" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_02_02_injured.png" left="-49" right="47" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_02_03_injured" offsetY="35" ic="FF304753" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_02_03_injured.png" left="-49" right="47" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_02_04_injured" offsetY="35" ic="FF304753" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_02_04_injured.png" left="-49" right="47" top="-27" bottom="59" />
+<sprite id="rf_zombify_orc_02_head_02_01_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF253644" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_02_01_dead.png" left="5" right="75" top="-65" bottom="37" />
+<sprite id="rf_zombify_orc_02_head_02_02_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF253644" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_02_02_dead.png" left="5" right="75" top="-65" bottom="37" />
+<sprite id="rf_zombify_orc_02_head_02_03_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF253644" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_02_03_dead.png" left="5" right="75" top="-65" bottom="37" />
+<sprite id="rf_zombify_orc_02_head_02_04_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF253644" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_02_04_dead.png" left="5" right="75" top="-65" bottom="37" />
+
+<!-- Orc Berserker 3 -->
+<sprite id="rf_zombify_orc_02_head_03_01" offsetY="35" ic="FF2F4653" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_03_01.png" top="-26" bottom="60" />
+<sprite id="rf_zombify_orc_02_head_03_02" offsetY="35" ic="FF2F4653" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_03_02.png" top="-26" bottom="60" />
+<sprite id="rf_zombify_orc_02_head_03_03" offsetY="35" ic="FF2F4653" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_03_03.png" top="-26" bottom="60" />
+<sprite id="rf_zombify_orc_02_head_03_04" offsetY="35" ic="FF2F4653" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_03_04.png" top="-26" bottom="60" />
+<sprite id="rf_zombify_orc_02_head_03_01_injured" offsetY="35" ic="FF2F4653" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_03_01_injured.png" top="-26" bottom="60" />
+<sprite id="rf_zombify_orc_02_head_03_02_injured" offsetY="35" ic="FF2F4653" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_03_02_injured.png" top="-26" bottom="60" />
+<sprite id="rf_zombify_orc_02_head_03_03_injured" offsetY="35" ic="FF2F4653" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_03_03_injured.png" top="-26" bottom="60" />
+<sprite id="rf_zombify_orc_02_head_03_04_injured" offsetY="35" ic="FF2F4653" width="174" height="214" img="entity\orcs\rf_zombify_orc_02_head_03_04_injured.png" top="-26" bottom="60" />
+<sprite id="rf_zombify_orc_02_head_03_01_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF263645" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_03_01_dead.png" left="7" right="75" top="-73" bottom="21" />
+<sprite id="rf_zombify_orc_02_head_03_02_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF263645" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_03_02_dead.png" left="7" right="75" top="-73" bottom="21" />
+<sprite id="rf_zombify_orc_02_head_03_03_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF263645" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_03_03_dead.png" left="7" right="75" top="-73" bottom="21" />
+<sprite id="rf_zombify_orc_02_head_03_04_dead" offsetX="-5" offsetY="18" f="64FF" f1="40" f2="-10" ic="FF263645" width="238" height="186" img="entity\orcs\rf_zombify_orc_02_head_03_04_dead.png" left="7" right="75" top="-73" bottom="21" />
+
+<!-- Orc Warrior -->
+<sprite id="rf_zombify_orc_warrior_01" offsetY="35" ic="FF293940" width="174" height="214" img="entity\orcs\rf_zombify_orc_warrior_01.png" left="-49" right="39" top="-19" bottom="61" />
+<sprite id="rf_zombify_orc_warrior_02" offsetY="35" ic="FF293940" width="174" height="214" img="entity\orcs\rf_zombify_orc_warrior_02.png" left="-49" right="39" top="-19" bottom="61" />
+<sprite id="rf_zombify_orc_warrior_03" offsetY="35" ic="FF293940" width="174" height="214" img="entity\orcs\rf_zombify_orc_warrior_03.png" left="-49" right="39" top="-19" bottom="61" />
+<sprite id="rf_zombify_orc_warrior_04" offsetY="35" ic="FF293940" width="174" height="214" img="entity\orcs\rf_zombify_orc_warrior_04.png" left="-49" right="39" top="-19" bottom="61" />
+<sprite id="rf_zombify_orc_warrior_01_injured" offsetY="35" ic="FF293940" width="174" height="214" img="entity\orcs\rf_zombify_orc_warrior_01_injured.png" left="-49" right="39" top="-19" bottom="61" />
+<sprite id="rf_zombify_orc_warrior_02_injured" offsetY="35" ic="FF293940" width="174" height="214" img="entity\orcs\rf_zombify_orc_warrior_02_injured.png" left="-49" right="39" top="-19" bottom="61" />
+<sprite id="rf_zombify_orc_warrior_03_injured" offsetY="35" ic="FF293940" width="174" height="214" img="entity\orcs\rf_zombify_orc_warrior_03_injured.png" left="-49" right="39" top="-19" bottom="61" />
+<sprite id="rf_zombify_orc_warrior_04_injured" offsetY="35" ic="FF293940" width="174" height="214" img="entity\orcs\rf_zombify_orc_warrior_04_injured.png" left="-49" right="39" top="-19" bottom="61" />
+<sprite id="rf_zombify_orc_warrior_01_dead" offsetX="-5" offsetY="20" f1="40" f2="-15" ic="FF23303E" width="238" height="186" img="entity\orcs\rf_zombify_orc_warrior_01_dead.png" left="6" right="74" top="-73" bottom="19" />
+<sprite id="rf_zombify_orc_warrior_02_dead" offsetX="-5" offsetY="20" f1="40" f2="-15" ic="FF23303E" width="238" height="186" img="entity\orcs\rf_zombify_orc_warrior_02_dead.png" left="6" right="74" top="-73" bottom="19" />
+<sprite id="rf_zombify_orc_warrior_03_dead" offsetX="-5" offsetY="20" f1="40" f2="-15" ic="FF23303E" width="238" height="186" img="entity\orcs\rf_zombify_orc_warrior_03_dead.png" left="6" right="74" top="-73" bottom="19" />
+<sprite id="rf_zombify_orc_warrior_04_dead" offsetX="-5" offsetY="20" f1="40" f2="-15" ic="FF23303E" width="238" height="186" img="entity\orcs\rf_zombify_orc_warrior_04_dead.png" left="6" right="74" top="-73" bottom="19" />
+
+<!-- Orc Warlord -->
+<sprite id="rf_zombify_orc_warlord_01" offsetY="35" ic="FF2E3E45" width="174" height="214" img="entity\orcs\rf_zombify_orc_warlord_01.png" left="-52" right="40" top="-32" bottom="72" />
+<sprite id="rf_zombify_orc_warlord_02" offsetY="35" ic="FF2E3E45" width="174" height="214" img="entity\orcs\rf_zombify_orc_warlord_02.png" left="-52" right="40" top="-32" bottom="72" />
+<sprite id="rf_zombify_orc_warlord_03" offsetY="35" ic="FF2E3E45" width="174" height="214" img="entity\orcs\rf_zombify_orc_warlord_03.png" left="-52" right="40" top="-32" bottom="72" />
+<sprite id="rf_zombify_orc_warlord_04" offsetY="35" ic="FF2E3E45" width="174" height="214" img="entity\orcs\rf_zombify_orc_warlord_04.png" left="-52" right="40" top="-32" bottom="72" />
+<sprite id="rf_zombify_orc_warlord_01_injured" offsetY="35" ic="FF2E3E45" width="174" height="214" img="entity\orcs\rf_zombify_orc_warlord_01_injured.png" left="-52" right="40" top="-32" bottom="72" />
+<sprite id="rf_zombify_orc_warlord_02_injured" offsetY="35" ic="FF2E3E45" width="174" height="214" img="entity\orcs\rf_zombify_orc_warlord_02_injured.png" left="-52" right="40" top="-32" bottom="72" />
+<sprite id="rf_zombify_orc_warlord_03_injured" offsetY="35" ic="FF2E3E45" width="174" height="214" img="entity\orcs\rf_zombify_orc_warlord_03_injured.png" left="-52" right="40" top="-32" bottom="72" />
+<sprite id="rf_zombify_orc_warlord_04_injured" offsetY="35" ic="FF2E3E45" width="174" height="214" img="entity\orcs\rf_zombify_orc_warlord_04_injured.png" left="-52" right="40" top="-32" bottom="72" />
+<sprite id="rf_zombify_orc_warlord_01_dead" offsetX="-12" offsetY="30" f1="40" f2="-20" ic="FF25303C" width="238" height="186" img="entity\orcs\rf_zombify_orc_warlord_01_dead.png" left="-1" right="85" top="-83" bottom="19" />
+<sprite id="rf_zombify_orc_warlord_02_dead" offsetX="-12" offsetY="30" f1="40" f2="-20" ic="FF25303C" width="238" height="186" img="entity\orcs\rf_zombify_orc_warlord_02_dead.png" left="-1" right="85" top="-83" bottom="19" />
+<sprite id="rf_zombify_orc_warlord_03_dead" offsetX="-12" offsetY="30" f1="40" f2="-20" ic="FF25303C" width="238" height="186" img="entity\orcs\rf_zombify_orc_warlord_03_dead.png" left="-1" right="85" top="-83" bottom="19" />
+<sprite id="rf_zombify_orc_warlord_04_dead" offsetX="-12" offsetY="30" f1="40" f2="-20" ic="FF25303C" width="238" height="186" img="entity\orcs\rf_zombify_orc_warlord_04_dead.png" left="-1" right="85" top="-83" bottom="19" />
+
 </brush>
