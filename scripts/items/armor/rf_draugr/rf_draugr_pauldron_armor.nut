@@ -15,8 +15,8 @@ this.rf_draugr_pauldron_armor <- ::inherit("scripts/items/armor/armor", {
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 500;
-		this.m.Condition = 100;
-		this.m.ConditionMax = 100;
-		this.m.StaminaModifier = -12;
+		this.m.Condition = 20;
+		this.m.ConditionMax = 20;
+		this.m.StaminaModifier = -2;
 	}
 });

@@ -14,9 +14,9 @@ this.rf_draugr_leather_and_bones_harness <- ::inherit("scripts/items/armor/armor
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
-		this.m.Value = 3600;
-		this.m.Condition = 210;
-		this.m.ConditionMax = 210;
-		this.m.StaminaModifier = -24;
+		this.m.Value = 130;
+		this.m.Condition = 60;
+		this.m.ConditionMax = 60;
+		this.m.StaminaModifier = -6;
 	}
 });
