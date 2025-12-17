@@ -158,6 +158,10 @@ this.rf_hollenhund <- ::inherit("scripts/entity/tactical/actor", {
 					decal.Saturation = body.Saturation;
 					decal.Scale = 0.95;
 				}
+
+				local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+				_tile.Properties.set("Corpse", corpse);
+				::Tactical.Entities.addCorpse(_tile);
 			}
 
 			local effect = {
@@ -226,6 +230,24 @@ this.rf_hollenhund <- ::inherit("scripts/entity/tactical/actor", {
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone ::Const.Corpse;
+		corpse.Faction = this.getFaction();
+		corpse.CorpseName = ::Const.Strings.getArticleCapitalized(this.getName()) + this.getName();
+		corpse.IsResurrectable = false;
+		corpse.IsConsumable = true;
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
+
+		if (_tile != null)
+		{
+			corpse.Tile = _tile;
+		}
+
+		return corpse;
 	}
 
 	// Somehow vanilla resets the sprite Alpha after the character moves
