@@ -303,6 +303,24 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone ::Const.Corpse;
+		corpse.Faction = this.getFaction();
+		corpse.CorpseName = ::Const.Strings.getArticleCapitalized(this.getName()) + this.getName();
+		corpse.IsResurrectable = false;
+		corpse.IsConsumable = true;
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
+
+		if (_tile != null)
+		{
+			corpse.Tile = _tile;
+		}
+
+		return corpse;
+	}
+
 	function spawnTileDetail( _tile, _skill, _fatalityType, _flip = false )
 	{
 		if (_tile == null)
