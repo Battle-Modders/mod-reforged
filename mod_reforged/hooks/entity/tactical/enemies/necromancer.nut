@@ -48,4 +48,17 @@
 
 		return ret;
 	}}.getLootForTile;
+
+	q.makeMiniboss = @(__original) { function makeMiniboss()
+	{
+		local ret = __original();
+		if (ret)
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_nine_lives"));
+			this.m.Skills.add(::Reforged.new("scripts/skills/actives/wither_skill", function(o) {
+				o.m.FatigueCost = 10; // vanilla 0
+			}));
+		}
+		return ret;
+	}}.makeMiniboss;
 });

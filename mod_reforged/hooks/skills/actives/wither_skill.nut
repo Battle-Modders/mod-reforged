@@ -4,6 +4,7 @@
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Curse the target, causing its body to wither away.";
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Wither;
 	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill

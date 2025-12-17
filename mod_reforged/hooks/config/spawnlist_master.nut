@@ -47,6 +47,9 @@
 // We have a higher tier unit RF_ZombieHero that can become champion instead.
 ::Const.World.Spawn.Troops.ZombieKnight.Variant = 0;
 
+// Increase the chance for Necromancers to be champions.
+::Const.World.Spawn.Troops.Necromancer.Variant = 20;
+
 // Cost is handled in bandit_units.nut
 ::MSU.Table.merge(::Const.World.Spawn.Troops, {
 	// Bandits
