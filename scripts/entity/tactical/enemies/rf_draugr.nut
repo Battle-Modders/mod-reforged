@@ -43,7 +43,7 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 
 		if (this.m.IsCreatingAgent)
 		{
-			this.m.AIAgent = this.new("scripts/ai/tactical/agents/zombie_agent");
+			this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_draugr_agent");
 			this.m.AIAgent.setActor(this);
 		}
 	}
