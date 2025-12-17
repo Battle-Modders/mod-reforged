@@ -34,7 +34,7 @@ this.rf_draugr_restless_effect <- ::inherit("scripts/skills/skill", {
 			ret.push({
 				id = 11,
 				type = "text",
-				icon = "ui/icons/ranged_skill.png",
+				icon = "ui/icons/initiative.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(mult) + " [Initiative|Concept.Initiative]")
 			});
 		}

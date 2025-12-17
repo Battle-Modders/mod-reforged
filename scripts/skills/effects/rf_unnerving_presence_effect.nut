@@ -18,7 +18,7 @@ this.rf_unnerving_presence_effect <- ::inherit("scripts/skills/skill", {
 		ret.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/health.png",
+			icon = "ui/icons/bravery.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Characters ending their [turn|Concept.Turn] adjacent to you receive a mental [morale check|Concept.Morale]")
 		});
 
