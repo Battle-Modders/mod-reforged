@@ -119,6 +119,8 @@ this.rf_hollenhund <- ::inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.setSpriteOffset("status_rooted", ::createVec(-5, -5));
+
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
 		this.m.Skills.add(::new("scripts/skills/racial/ghost_racial"));
 		this.m.Skills.add(::new("scripts/skills/racial/skeleton_racial"));
