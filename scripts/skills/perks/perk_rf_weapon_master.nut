@@ -152,10 +152,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		{
 			foreach (pg in equippedweaponPGs)
 			{
-				if (!hasPerkFromGroup(pg, range[0], range[1]))
-				{
-					addPerkFromGroup(pg, range[0], range[1]);
-				}
+				addPerkFromGroup(pg, range[0], range[1]);
 			}
 		}
 	}
