@@ -135,6 +135,7 @@
 	<sprite id="rf_mentors_presence_effect_mini" ic = "FF23165B" img="skills\mini\rf_mentors_presence_effect_mini.png" />
 	<sprite id="rf_nine_lives_effect_mini" ic = "FF23165B" img="skills\mini\rf_nine_lives_effect_mini.png" />
 	<sprite id="rf_numbness_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_numbness_effect.png" />
+	<sprite id="rf_numbness_effect_mini" ic = "FF23165B" img="skills\mini\rf_numbness_effect_mini.png" />
 	<sprite id="rf_onslaught_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_onslaught.png" />
 	<sprite id="rf_onslaught_effect_mini" ic = "FF23165B" img="skills\mini\rf_onslaught_effect_mini.png" />
 	<sprite id="rf_rattled_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_rattle.png" />
