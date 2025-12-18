@@ -19,7 +19,7 @@ this.rf_build_draugr_camp_action <- ::inherit("scripts/factions/faction_action",
 			numSettlements += this.m.NumSettlementsCrisisAdd;
 		}
 
-		if (_faction.getSettlements().len() > numSettlements)
+		if (_faction.getSettlements().len() >= numSettlements)
 			return;
 
 		this.m.Score = 2;
