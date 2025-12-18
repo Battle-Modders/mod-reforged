@@ -91,7 +91,7 @@ this.rf_draugr_warrior <- ::inherit("scripts/entity/tactical/enemies/rf_draugr",
 		}
 		else if (mainhandItem != null)
 		{
-			if (::Reforged.Items.isDuelistValid(mainhandItem))
+			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded) && ::Reforged.Items.isDuelistValid(mainhandItem))
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 			}
