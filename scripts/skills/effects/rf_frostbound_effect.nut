@@ -2,6 +2,7 @@ this.rf_frostbound_effect <- ::inherit("scripts/skills/skill", {
 	m = {
 		HitpointsTransferPct = 0.05,
 		FatigueAtTurnStart = 2,
+		HealingMult = 2.0, // multiplier to the hitpoints transferred to you
 		EffectMult = 1.0
 	},
 	function create()
@@ -35,7 +36,7 @@ this.rf_frostbound_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Characters ending their [turn|Concept.Turn] adjacent to you lose " + ::MSU.Text.colorizePct(this.m.HitpointsTransferPct, {InvertColor = true}) + " of their [Hitpoints|Concept.Hitpoints] and you heal for the same amount")
+			text = ::Reforged.Mod.Tooltips.parseString("Characters ending their [turn|Concept.Turn] adjacent to you lose " + ::MSU.Text.colorizePct(this.m.HitpointsTransferPct, {InvertColor = true}) + " of their [Hitpoints|Concept.Hitpoints] and you heal for double the amount")
 		});
 		ret.push({
 			id = 11,
@@ -74,6 +75,6 @@ this.rf_frostbound_effect <- ::inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		_enemy.onDamageReceived(actor, this, hitInfo);
-		actor.setHitpoints(::Math.min(actor.getHitpointsMax(), actor.getHitpoints() + hitInfo.DamageRegular));
+		actor.setHitpoints(::Math.min(actor.getHitpointsMax(), actor.getHitpoints() + this.m.HealingMult * hitInfo.DamageRegular));
 	}
 });
