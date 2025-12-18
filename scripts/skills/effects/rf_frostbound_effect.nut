@@ -8,7 +8,7 @@ this.rf_frostbound_effect <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.rf_frostbound";
 		this.m.Name = "Frostbound";
-		this.m.Description = "This character used to move around freely like you, but then he took arrow to the knee.";
+		this.m.Description = "A deathly cold emanates from this character, sapping the living warmth from those who draw breath nearby.";
 		this.m.KilledString = "Frozen to death";
 		this.m.Icon = "skills/rf_frostbound_effect.png";
 		this.m.Overlay = "rf_frostbound_effect";
@@ -41,7 +41,7 @@ this.rf_frostbound_effect <- ::inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Characters starting their [turn|Concept.Turn] adjacent to you build " + ::MSU.Text.colorizeValue(this.m.FatigueAtTurnStart, {AddSign = true, InvertColor = true}) + " [Fatigue|Concept.Fatigue]")
+			text = ::Reforged.Mod.Tooltips.parseString("Characters starting their [turn|Concept.Turn] adjacent to you build " + ::MSU.Text.colorizeValue(this.m.FatigueAtTurnStart, {InvertColor = true}) + " [Fatigue|Concept.Fatigue]")
 		});
 
 		return ret;
