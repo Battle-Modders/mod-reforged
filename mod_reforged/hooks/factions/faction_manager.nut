@@ -3,7 +3,7 @@
 	{
 		local f = ::new("scripts/factions/rf_draugr_faction");
 		f.setID(this.m.Factions.len());
-		f.setName("Draugr");
+		f.setName("Barrowkin");
 		f.setDiscovered(true);
 		f.addTrait(::Const.FactionTrait.RF_Draugr);
 		this.m.Factions.push(f);
