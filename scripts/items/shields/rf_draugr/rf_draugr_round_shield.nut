@@ -8,7 +8,7 @@ this.rf_draugr_round_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.Description = "An old round wooden shield, larger than most round shields.";
 		this.m.AddGenericSkill = true;
 		this.m.ShowOnCharacter = true;
-		this.m.Variant = ::Math.rand(1, 5);
+		this.m.Variant = ::Math.rand(1, 4);
 		this.updateVariant();
 		this.m.Value = 60;
 		this.m.MeleeDefense = 18;
