@@ -28,6 +28,10 @@ this.rf_zombie_orc_young <- ::inherit("scripts/entity/tactical/enemies/rf_zombie
 
 		local head = this.getSprite("head");
 		head.setBrush("bust_orc_01_head_0" + ::Math.rand(1, 3));
+
+		local app = this.getItems().getAppearance();
+		app.Body = body.getBrush().Name;
+		app.Corpse = "bust_orc_01_armor_01_dead";
 	}
 
 	function onInit()

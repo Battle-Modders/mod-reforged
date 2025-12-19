@@ -43,6 +43,10 @@ this.rf_zombie_orc_warlord <- ::inherit("scripts/entity/tactical/enemies/rf_zomb
 		this.setSpriteOffset("arrow", this.createVec(-5, 30));
 
 		this.setSpriteOffset("status_rage", this.createVec(-5, 10));
+
+		local app = this.getItems().getAppearance();
+		app.Body = body.getBrush().Name;
+		app.Corpse = "bust_orc_04_armor_01_dead";
 	}
 
 	function onInit()

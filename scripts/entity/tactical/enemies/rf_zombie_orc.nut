@@ -191,7 +191,7 @@ this.rf_zombie_orc <- ::inherit("scripts/entity/tactical/actor", {
 
 				if (!appearance.HideCorpseHead && tattoo_head.HasBrush)
 				{
-					layers.push(sprite_head.getBrush().Name + "_dead");
+					layers.push(tattoo_head.getBrush().Name + "_dead");
 				}
 
 				if (!appearance.HideCorpseHead)
@@ -540,6 +540,7 @@ this.rf_zombie_orc <- ::inherit("scripts/entity/tactical/actor", {
 		this.m.CurrentProperties = clone b;
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
+		// Appearance for item_container is set from within each child class
 		// local app = this.getItems().getAppearance();
 		// app.Body = "bust_naked_body_0" + ::Math.rand(0, 2);
 		// app.Corpse = app.Body + "_dead";

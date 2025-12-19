@@ -39,6 +39,10 @@ this.rf_zombie_orc_berserker <- ::inherit("scripts/entity/tactical/enemies/rf_zo
 		{
 			this.getSprite("tattoo_head").setBrush("bust_orc_02_head_paint_0" + ::Math.rand(1, 3));
 		}
+
+		local app = this.getItems().getAppearance();
+		app.Body = body.getBrush().Name;
+		app.Corpse = app.Body + "_dead";
 	}
 
 	function onInit()
