@@ -48,7 +48,7 @@
 ::Const.World.Spawn.Troops.ZombieKnight.Variant = 0;
 
 // Increase the chance for Necromancers to be champions.
-::Const.World.Spawn.Troops.Necromancer.Variant = 20;
+::Const.World.Spawn.Troops.Necromancer.Variant = 10;
 
 // Cost is handled in bandit_units.nut
 ::MSU.Table.merge(::Const.World.Spawn.Troops, {
