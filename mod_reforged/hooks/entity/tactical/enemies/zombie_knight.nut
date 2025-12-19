@@ -39,6 +39,7 @@
 	q.onDeath = @() { function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
 		// removing RestlessDead achievement (kill a Fallen Hero) and moving it to Reforged's new Fallen Hero
+		this.zombie.onDeath(_killer, _skill, _tile, _fatalityType);
 	}}.onDeath;
 
 	q.assignRandomEquipment = @() { function assignRandomEquipment()
