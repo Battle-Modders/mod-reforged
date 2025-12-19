@@ -17,6 +17,7 @@ this.rf_draugr_shaman <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", 
 		this.rf_draugr.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.RF_DraugrShaman);
+		b.TargetAttractionMult = 3.0;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;

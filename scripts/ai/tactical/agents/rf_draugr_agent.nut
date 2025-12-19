@@ -5,7 +5,7 @@ this.rf_draugr_agent <- ::inherit("scripts/ai/tactical/agent", {
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = ::Const.AI.Agent.ID.Zombie;
+		this.m.ID = ::Const.AI.Agent.ID.RF_Draugr;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.25;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.25;
 		this.m.Properties.TargetPriorityDamageMult = 0.25;
@@ -36,8 +36,6 @@ this.rf_draugr_agent <- ::inherit("scripts/ai/tactical/agent", {
 		this.addBehavior(::new("scripts/ai/tactical/behaviors/ai_attack_swing"));
 		this.addBehavior(::new("scripts/ai/tactical/behaviors/ai_attack_split"));
 		this.addBehavior(::new("scripts/ai/tactical/behaviors/ai_attack_thresh"));
-		this.addBehavior(::new("scripts/ai/tactical/behaviors/ai_attack_bow"));
-		this.addBehavior(::new("scripts/ai/tactical/behaviors/ai_reload"));
 		this.addBehavior(::new("scripts/ai/tactical/behaviors/ai_pickup_weapon"));
 	}
 

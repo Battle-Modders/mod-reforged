@@ -9,3 +9,8 @@
 ::MSU.AI.addBehavior("RF_SanguineCurse", "RF.SanguineCurse", ::Const.AI.Behavior.Order.Hex, ::Const.AI.Behavior.Score.Hex);
 ::MSU.AI.addBehavior("RF_Bodyguard", "RF.Bodyguard", ::Const.AI.Behavior.Order.Protect, ::Const.AI.Behavior.Score.Protect);
 ::MSU.AI.addBehavior("RF_Command", "RF.Command", ::Const.AI.Behavior.Order.PossessUndead, ::Const.AI.Behavior.Score.PossessUndead);
+
+::MSU.Table.merge(::Const.AI.Agent.ID, {
+	RF_Draugr = "agent.rf_draugr",
+	RF_DraugrBodyguard = "agent.rf_draugr.bodyguard"
+});

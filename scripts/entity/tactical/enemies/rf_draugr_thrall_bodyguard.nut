@@ -4,7 +4,7 @@ this.rf_draugr_thrall_bodyguard <- ::inherit("scripts/entity/tactical/enemies/rf
 	{
 		this.rf_draugr_thrall.create();
 		this.m.ResurrectWithScript = "scripts/entity/tactical/enemies/rf_draugr_thrall_bodyguard";
-		this.m.AIAgent = ::new("scripts/ai/tactical/agents/zombie_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_draugr_bodyguard_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
