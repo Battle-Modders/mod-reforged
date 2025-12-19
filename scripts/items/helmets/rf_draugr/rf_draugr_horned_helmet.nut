@@ -7,7 +7,7 @@ this.rf_draugr_horned_helmet <- ::inherit("scripts/items/helmets/helmet", {
 		this.m.Name = "Barrowkin Horned Helmet";
 		this.m.Description = "";
 		this.m.ShowOnCharacter = true;
-		this.m.IsDroppedAsLoot = true;
+		this.m.IsDroppedAsLoot = false;
 		this.m.HideHair = true;
 		this.m.HideBeard = false;
 		this.m.Variant = ::Math.rand(1, 2);

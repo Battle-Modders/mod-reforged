@@ -7,7 +7,7 @@ this.rf_draugr_wolf_headpiece <- ::inherit("scripts/items/helmets/helmet", {
 		this.m.Name = "Barrowkin Wolf Headpiece";
 		this.m.Description = "";
 		this.m.ShowOnCharacter = true;
-		this.m.IsDroppedAsLoot = true;
+		this.m.IsDroppedAsLoot = false;
 		this.m.HideHair = true;
 		this.m.HideBeard = false;
 		this.m.Variant = 1;
