@@ -15,7 +15,7 @@ this.rf_barrows <- ::inherit("scripts/entity/tactical/entity", {
 	function getTooltip()
 	{
 		local ret = this.entity.getTooltip();
-		ret.push({ id = 10,	type = "text",	icon = "ui/icons/special.png",	text = this.isSpent() ? "Contains a corpse" : "Empty" });
+		ret.push({ id = 10,	type = "text",	icon = "ui/icons/special.png",	text = this.isSpent() ? "Empty" : "Contains a corpse" });
 		return ret;
 	}
 
