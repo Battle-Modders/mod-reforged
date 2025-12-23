@@ -8,7 +8,7 @@ local units = [
 		ID = "Unit.RF.DirewolfHIGH",
 		Troop = "DirewolfHIGH",
 		Figure = "figure_werewolf_01",
-		StartingResourceMin = 95		// In Vanilla this is 95
+		StartingResourceMin = 125		// In Vanilla this is 125 in Direwolves party
 	},
 	{
 		ID = "Unit.RF.GhoulLOW",

@@ -2,6 +2,7 @@ local parties = [
 	{
 		ID = "Direwolves",
 		HardMin = 3,
+		UpgradeFactor = 2.8,
 		DefaultFigure = "figure_werewolf_01",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
@@ -190,6 +191,7 @@ local parties = [
 	{
 		ID = "Hyenas",
 		HardMin = 3,
+		UpgradeFactor = 2.8,
 		DefaultFigure = "figure_hyena_01",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
