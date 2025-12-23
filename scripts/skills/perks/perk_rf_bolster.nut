@@ -23,7 +23,7 @@ this.perk_rf_bolster <- ::inherit("scripts/skills/skill", {
 		foreach (ally in ::Tactical.Entities.getFactionActors(actor.getFaction(), actor.getTile(), 1, true))
 		{
 			local moraleState = ally.getMoraleState();
-			if (moraleState < ::Const.MoraleState.Confident)
+			if (moraleState != ::Const.MoraleState.Fleeing && moraleState < ::Const.MoraleState.Confident)
 			{
 				ally.checkMorale(1, ::Const.Morale.RallyBaseDifficulty, ::Const.MoraleCheckType.Default, this.m.Overlay);
 			}
