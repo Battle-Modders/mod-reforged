@@ -5,7 +5,7 @@
 			Units = [
 				{ BaseID = "Unit.RF.RF_DraugrThrall", function onBeforeSpawnStart() { this.RatioMin = ::MSU.Math.randf(0.05, 0.15) } },
 				{ BaseID = "Unit.RF.RF_DraugrWarrior", function onBeforeSpawnStart() { this.RatioMin = ::MSU.Math.randf(0.05, 0.2) } },
-				{ BaseID = "Unit.RF.RF_DraugrHuskarl", StartingResourceMin = 350 }
+				{ BaseID = "Unit.RF.RF_DraugrHuskarl", StartingResourceMin = 350, function onBeforeSpawnStart() { this.RatioMax = ::MSU.Math.randf(0.4, 0.6)} }
 			]
 		}
 	},

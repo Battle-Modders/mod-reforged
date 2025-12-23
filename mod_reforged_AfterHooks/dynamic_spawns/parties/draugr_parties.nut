@@ -36,7 +36,8 @@ local parties = [
 		UpgradeFactor = 7.0,
 		StaticDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.RF_DraugrHero" }
+				{ BaseID = "Unit.RF.RF_DraugrHero" },
+				{ BaseID = "Unit.RF.RF_DraugrHuskarl" }
 			]
 		},
 		DynamicDefs = {
@@ -46,7 +47,9 @@ local parties = [
 			]
 		},
 
-		function onBeforeSpawnStart() { this.UpgradeFactor = 7.0 - 0.000001 * ::Math.pow(this.getTopParty().getStartingResources(), 2.25); }
+		// We drop the UpgradeFactor at higher resources to maintain a large proportion of Warriors compared to Huskarls.
+		// The average number of Warriors is kept roughly double that of Huskarls throughout most of the resource range.
+		function onBeforeSpawnStart() { this.UpgradeFactor = ::Math.maxf(3.0, 7.0 - 0.000001 * ::Math.pow(this.getTopParty().getStartingResources(), 2.25)); }
 	},
 	{
 		ID = "RF_DraugrFane",
@@ -54,7 +57,9 @@ local parties = [
 		UpgradeFactor = 7.0,
 		StaticDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.RF_DraugrHeroChampion" }
+				{ BaseID = "Unit.RF.RF_DraugrHeroChampion" },
+				{ BaseID = "Unit.RF.RF_DraugrHuskarl" },
+				{ BaseID = "Unit.RF.RF_DraugrHuskarl" }
 			]
 		},
 		DynamicDefs = {
@@ -84,9 +89,7 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.DraugrStandard", RatioMin = 0.00, RatioMax = 1.0 },
 				{ BaseID = "UnitBlock.RF.DraugrShaman", HardMin = 1, HardMax = 1 }
 			]
-		},
-
-		function onBeforeSpawnStart() { this.UpgradeFactor = 8.0 - 0.000001 * ::Math.pow(this.getTopParty().getStartingResources(), 2.25); }
+		}
 	}
 
 	// SubParties
