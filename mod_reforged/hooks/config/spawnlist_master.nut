@@ -273,7 +273,7 @@
 	},
 	RF_DraugrHuskarl = {
 		ID = ::Const.EntityType.RF_DraugrHuskarl,
-		Variant = 1,
+		Variant = 0,
 		Strength = 45,
 		Cost = 45,
 		Row = 1,
