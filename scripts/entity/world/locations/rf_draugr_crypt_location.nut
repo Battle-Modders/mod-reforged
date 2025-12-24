@@ -23,7 +23,7 @@ this.rf_draugr_crypt_location <- ::inherit("scripts/entity/world/location", {
 		this.m.Name = ::World.EntityManager.getUniqueLocationName(::Const.World.LocationNames.RF_DraugrCrypt);
 		this.m.Description = ::World.EntityManager.RF_getUniqueLocationDescription(::Const.World.RF_LocationDescriptions.RF_DraugrCrypt);
 		this.location.onSpawned();
-		this.__addNamedItem();
+		this.__guaranteeNamedItem();
 	}
 
 	function onDropLootForPlayer( _lootTable )
@@ -61,8 +61,18 @@ this.rf_draugr_crypt_location <- ::inherit("scripts/entity/world/location", {
 		this.addSprite("body").setBrush("world_rf_draugr_crypt_01" + (isOnSnow ? "_snow" : ""));
 	}
 
-	function __addNamedItem()
+	// If this location's Loot doesn't already have at least one named item,
+	// then adds a random one to it.
+	function __guaranteeNamedItem()
 	{
+		foreach (item in this.m.Loot)
+		{
+			if (item.isItemType(::Const.Items.ItemType.Named))
+			{
+				return;
+			}
+		}
+
 		// We don't care about the type of named item.
 		local namedItems = clone ::Const.Items.NamedWeapons;
 		namedItems.extend(::Const.Items.NamedShields);
