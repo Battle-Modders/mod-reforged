@@ -67,7 +67,7 @@ this.rf_draugr_crypt_location <- ::inherit("scripts/entity/world/location", {
 	{
 		foreach (item in this.m.Loot)
 		{
-			if (item.isItemType(::Const.Items.ItemType.Named))
+			if (::isKindOf(item, "item") && item.isItemType(::Const.Items.ItemType.Named))
 			{
 				return;
 			}
