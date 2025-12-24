@@ -2,12 +2,12 @@ this.rf_barrows_large <- ::inherit("scripts/entity/tactical/entity", {
 	m = {},
 	function getName()
 	{
-		return "Barrow";
+		return "Runestone";
 	}
 
 	function getDescription()
 	{
-		return "Presumably the last resting place of someone who died long ago.";
+		return "A large stone with runes carved into it.";
 	}
 
 	function onInit()
