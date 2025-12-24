@@ -41,6 +41,8 @@ this.rf_barrow_chant_effect <- ::inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		foreach (a in ::Tactical.Entities.getAllInstancesAsArray())
 		{
+			a.getSkills().removeByID("effects.rf_barrow_chant_debuff");
+
 			if (a.isAlliedWith(actor) && ::MSU.isKindOf(a, "rf_draugr") && ::Math.rand(1, 100) <= this.m.RestlessnessChance)
 			{
 				a.getSkills().add(::new("scripts/skills/effects/rf_draugr_restless_effect"));
