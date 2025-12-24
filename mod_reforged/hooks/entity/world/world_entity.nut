@@ -26,7 +26,7 @@
 			local strength = 0;
 			foreach (t in this.m.Troops)
 			{
-				cost += t.Cost;
+				cost += ::Const.World.Spawn.RF_ScriptToTroopMap[t.Script].Cost;
 				strength += t.Strength;
 			}
 			ret.push({
