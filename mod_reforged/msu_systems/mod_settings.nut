@@ -38,6 +38,11 @@
 	// debugPage.addBooleanSetting("Debug_AIAgentFixes", false, "AIAgentFixes", "Enable for debug logging of AIAgentFixes module").addBeforeChangeCallback(@( _newValue ) ::Reforged.Mod.Debug.setFlag("AIAgentFixes", _newValue));
 }
 
+{	// Dev
+	local devPage = ::Reforged.Mod.ModSettings.addPage("Dev");
+	devPage.addBooleanSetting("Dev_SpawnsInfo", true, "Spawns Info", "Enable display of various information about spawns on the world map such as party cost/strength, spawn day etc.");
+}
+
 ::Reforged.Mod.Keybinds.addSQKeybind("Tactical_WaitRound", "h", ::MSU.Key.State.Tactical, function()
 {
 	if (this.m.MenuStack.hasBacksteps() || this.isInputLocked() || this.isInCharacterScreen())
