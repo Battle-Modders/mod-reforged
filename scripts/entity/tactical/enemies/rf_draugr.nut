@@ -249,29 +249,22 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 		this.getSprite("rf_draugr_head").setHorizontalFlipping(flip);
 	}
 
+	// This is a one-way journey. Injury sprites are enabled if hitpoints drop below a certain threshold.
+	// This is different from vanilla actor/human whereby injury sprites are enabled/disabled based on
+	// threshold. This is because we don't want to disable these injury sprites even when the draugr heals,
+	// as that won't make sense in the context of the battle and their physique.
 	function onUpdateInjuryLayer()
 	{
-		local draugr_head = this.getSprite("rf_draugr_head");
-		local p = this.getHitpointsPct();
-
-		if (p > 0.5)
+		if (this.getHitpointsPct() < 0.5)
 		{
-			if (draugr_head.getBrush().Name != "rf_draugr_head_layer_0" + this.m.InjuryType)
-			{
-				draugr_head.setBrush("rf_draugr_head_layer_0" + this.m.InjuryType);
-			}
-			this.getSprite("body_injury").Visible = false;
-		}
-		else
-		{
+			local draugr_head = this.getSprite("rf_draugr_head");
 			if (draugr_head.getBrush().Name != "rf_draugr_head_layer_0" + this.m.InjuryType + "_injured")
 			{
 				draugr_head.setBrush("rf_draugr_head_layer_0" + this.m.InjuryType + "_injured");
+				this.getSprite("body_injury").Visible = true;
+				this.setDirty(true);
 			}
-			this.getSprite("body_injury").Visible = true;
 		}
-
-		this.setDirty(true);
 	}
 
 	function assignRandomEquipment()
