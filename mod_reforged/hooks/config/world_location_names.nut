@@ -116,7 +116,7 @@
 	"Fane of the Burnt Sigil",
 	"Dreadwake of the Firstborn",
 	"Hall of the Deep Kings",
-	"Cryptcourt of the Barrowlord",
+	"Fane of the Barrowlord",
 	"The Longrest Fane",
 	"The Throne Hall"
 ];
