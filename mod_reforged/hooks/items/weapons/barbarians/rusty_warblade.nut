@@ -24,7 +24,6 @@
 		}));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
-			o.m.ActionPointCost += 2;
 			o.m.FatigueCost += 5;
 		}));
 	}}.onEquip;
