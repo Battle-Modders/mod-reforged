@@ -491,22 +491,22 @@
 <sprite id="rf_draugr_head_layer_08_injured" offsetY="35" ic="FF597AA9" width="104" height="142" img="entity\undead\rf_draugr_head_layer_08_injured.png" left="-21" right="29" top="-20" bottom="48" />
 <sprite id="rf_draugr_head_layer_09" offsetY="35" ic="FF597AA9" width="104" height="142" img="entity\undead\rf_draugr_head_layer_09.png" left="-21" right="29" top="-20" bottom="48" />
 <sprite id="rf_draugr_head_layer_09_injured" offsetY="35" ic="FF597AA9" width="104" height="142" img="entity\undead\rf_draugr_head_layer_09_injured.png" left="-21" right="29" top="-20" bottom="48" />
-<sprite id="rf_draugr_head_layer_01_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F6B9B" width="131" height="125" img="entity\undead\rf_draugr_head_layer_01_dead.png" left="-44" right="16" top="-58" bottom="0" />
-<sprite id="rf_draugr_head_layer_02_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F6B9B" width="131" height="125" img="entity\undead\rf_draugr_head_layer_02_dead.png" left="-44" right="16" top="-58" bottom="0" />
-<sprite id="rf_draugr_head_layer_03_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F6B9B" width="131" height="125" img="entity\undead\rf_draugr_head_layer_03_dead.png" left="-44" right="16" top="-58" bottom="0" />
-<sprite id="rf_draugr_head_layer_04_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F6B9B" width="131" height="125" img="entity\undead\rf_draugr_head_layer_04_dead.png" left="-44" right="16" top="-58" bottom="0" />
-<sprite id="rf_draugr_head_layer_05_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F6B9B" width="131" height="125" img="entity\undead\rf_draugr_head_layer_05_dead.png" left="-44" right="16" top="-58" bottom="0" />
-<sprite id="rf_draugr_head_layer_06_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F6B9B" width="131" height="125" img="entity\undead\rf_draugr_head_layer_06_dead.png" left="-44" right="16" top="-58" bottom="0" />
-<sprite id="rf_draugr_head_layer_07_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F6B9B" width="131" height="125" img="entity\undead\rf_draugr_head_layer_07_dead.png" left="-44" right="16" top="-58" bottom="0" />
-<sprite id="rf_draugr_head_layer_08_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F6B9B" width="131" height="125" img="entity\undead\rf_draugr_head_layer_08_dead.png" left="-44" right="16" top="-58" bottom="0" />
-<sprite id="rf_draugr_head_layer_09_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F6B9B" width="131" height="125" img="entity\undead\rf_draugr_head_layer_09_dead.png" left="-44" right="16" top="-58" bottom="0" />
+<sprite id="rf_draugr_head_layer_01_dead" offsetX="6" offsetY="10" f="64F3" f1="-15" f2="-15" ic="FF3D3E4E" width="131" height="125" img="entity\undead\rf_draugr_head_layer_01_dead.png" left="-44" right="16" top="-58" bottom="0" />
+<sprite id="rf_draugr_head_layer_02_dead" offsetX="6" offsetY="10" f="64F3" f1="-15" f2="-15" ic="FF3D3E4E" width="131" height="125" img="entity\undead\rf_draugr_head_layer_02_dead.png" left="-44" right="16" top="-58" bottom="0" />
+<sprite id="rf_draugr_head_layer_03_dead" offsetX="6" offsetY="10" f="64F3" f1="-15" f2="-15" ic="FF3D3E4E" width="131" height="125" img="entity\undead\rf_draugr_head_layer_03_dead.png" left="-44" right="16" top="-58" bottom="0" />
+<sprite id="rf_draugr_head_layer_04_dead" offsetX="6" offsetY="10" f="64F3" f1="-15" f2="-15" ic="FF3D3E4E" width="131" height="125" img="entity\undead\rf_draugr_head_layer_04_dead.png" left="-44" right="16" top="-58" bottom="0" />
+<sprite id="rf_draugr_head_layer_05_dead" offsetX="6" offsetY="10" f="64F3" f1="-15" f2="-15" ic="FF3D3E4E" width="131" height="125" img="entity\undead\rf_draugr_head_layer_05_dead.png" left="-44" right="16" top="-58" bottom="0" />
+<sprite id="rf_draugr_head_layer_06_dead" offsetX="6" offsetY="10" f="64F3" f1="-15" f2="-15" ic="FF3D3E4E" width="131" height="125" img="entity\undead\rf_draugr_head_layer_06_dead.png" left="-44" right="16" top="-58" bottom="0" />
+<sprite id="rf_draugr_head_layer_07_dead" offsetX="6" offsetY="10" f="64F3" f1="-15" f2="-15" ic="FF3D3E4E" width="131" height="125" img="entity\undead\rf_draugr_head_layer_07_dead.png" left="-44" right="16" top="-58" bottom="0" />
+<sprite id="rf_draugr_head_layer_08_dead" offsetX="6" offsetY="10" f="64F3" f1="-15" f2="-15" ic="FF3D3E4E" width="131" height="125" img="entity\undead\rf_draugr_head_layer_08_dead.png" left="-44" right="16" top="-58" bottom="0" />
+<sprite id="rf_draugr_head_layer_09_dead" offsetX="6" offsetY="10" f="64F3" f1="-15" f2="-15" ic="FF3D3E4E" width="131" height="125" img="entity\undead\rf_draugr_head_layer_09_dead.png" left="-44" right="16" top="-58" bottom="0" />
 
 <sprite id="bust_rf_draugr_helmet_01_01" offsetY="35" ic="FF253447" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_01_01.png" left="-34" right="51" top="-32" bottom="116" />
 <sprite id="bust_rf_draugr_helmet_01_01_damaged" offsetY="35" ic="FF253447" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_01_01_damaged.png" left="-34" right="51" top="-32" bottom="116" />
-<sprite id="bust_rf_draugr_helmet_01_01_dead" offsetY="35" ic="FF223145" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_01_01_dead.png" left="-110" right="31" top="-101" bottom="1" />
+<sprite id="bust_rf_draugr_helmet_01_01_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF2A2F4A" width="191" height="185" img="entity\helmets\bust_rf_draugr_helmet_01_01_dead.png" left="-110" right="31" top="-101" bottom="1" />
 <sprite id="bust_rf_draugr_helmet_01_02" offsetY="35" ic="FF253447" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_01_02.png" left="-34" right="51" top="-32" bottom="116" />
 <sprite id="bust_rf_draugr_helmet_01_02_damaged" offsetY="35" ic="FF253447" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_01_02_damaged.png" left="-34" right="51" top="-32" bottom="116" />
-<sprite id="bust_rf_draugr_helmet_01_02_dead" offsetY="35" ic="FF223145" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_01_02_dead.png" left="-110" right="31" top="-101" bottom="1" />
+<sprite id="bust_rf_draugr_helmet_01_02_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF2A2F4A" width="191" height="185" img="entity\helmets\bust_rf_draugr_helmet_01_02_dead.png" left="-110" right="31" top="-101" bottom="1" />
 
 <sprite id="bust_rf_draugr_helmet_02_01" offsetY="35" ic="FF253447" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_02_01.png" left="-18" right="30" top="9" bottom="33" />
 <sprite id="bust_rf_draugr_helmet_02_01_damaged" offsetY="35" ic="FF253447" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_02_01_damaged.png" left="-18" right="30" top="9" bottom="33" />
@@ -539,10 +539,10 @@
 
 <sprite id="bust_rf_draugr_helmet_10_01" offsetY="35" ic="FF4D719B" width="104" height="142" img="entity\helmets\bust_rf_draugr_helmet_10_01.png" left="-27" right="36" top="-15" bottom="69" />
 <sprite id="bust_rf_draugr_helmet_10_01_damaged" offsetY="35" ic="FF4D719B" width="104" height="142" img="entity\helmets\bust_rf_draugr_helmet_10_01_damaged.png" left="-27" right="36" top="-15" bottom="69" />
-<sprite id="bust_rf_draugr_helmet_10_01_dead" offsetX="6" offsetY="10" f="64FE" ic="FF1D2B3A" width="191" height="185" img="entity\helmets\bust_rf_draugr_helmet_10_01_dead.png" left="-47" right="11" top="-70" bottom="0" />
+<sprite id="bust_rf_draugr_helmet_10_01_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF2A2F4A" width="191" height="185" img="entity\helmets\bust_rf_draugr_helmet_10_01_dead.png" left="-47" right="11" top="-70" bottom="0" />
 <sprite id="bust_rf_draugr_helmet_10_02" offsetY="35" ic="FF4D719B" width="104" height="142" img="entity\helmets\bust_rf_draugr_helmet_10_02.png" left="-27" right="42" top="-15" bottom="54" />
 <sprite id="bust_rf_draugr_helmet_10_02_damaged" offsetY="35" ic="FF4D719B" width="104" height="142" img="entity\helmets\bust_rf_draugr_helmet_10_02_damaged.png" left="-27" right="42" top="-15" bottom="54" />
-<sprite id="bust_rf_draugr_helmet_10_02_dead" offsetX="6" offsetY="10" f="64FE" ic="FF1D2B3A" width="191" height="185" img="entity\helmets\bust_rf_draugr_helmet_10_02_dead.png" left="-47" right="15" top="-61" bottom="7" />
+<sprite id="bust_rf_draugr_helmet_10_02_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF2A2F4A" width="191" height="185" img="entity\helmets\bust_rf_draugr_helmet_10_02_dead.png" left="-47" right="15" top="-61" bottom="7" />
 
 <sprite id="bust_rf_draugr_helmet_11_01" offsetY="35" ic="FF2D3C53" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_11_01.png" left="-27" right="43" top="-20" bottom="50" />
 <sprite id="bust_rf_draugr_helmet_11_01_damaged" offsetY="35" ic="FF2A384E" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_11_01_damaged.png" left="-27" right="43" top="-20" bottom="50" />
@@ -561,7 +561,7 @@
 
 <sprite id="bust_rf_draugr_helmet_14_01" offsetY="35" ic="FF4D719B" width="104" height="142" img="entity\helmets\bust_rf_draugr_helmet_14_01.png" left="-28" right="35" top="-15" bottom="69" />
 <sprite id="bust_rf_draugr_helmet_14_01_damaged" offsetY="35" ic="FF4D719B" width="104" height="142" img="entity\helmets\bust_rf_draugr_helmet_14_01_damaged.png" left="-28" right="35" top="-15" bottom="69" />
-<sprite id="bust_rf_draugr_helmet_14_01_dead" offsetX="6" offsetY="10" f="64FE" ic="FF1D2B3A" width="191" height="185" img="entity\helmets\bust_rf_draugr_helmet_14_01_dead.png" left="-47" right="11" top="-70" bottom="0" />
+<sprite id="bust_rf_draugr_helmet_14_01_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF2A2F4A" width="191" height="185" img="entity\helmets\bust_rf_draugr_helmet_14_01_dead.png" left="-47" right="11" top="-70" bottom="0" />
 
 <sprite id="bust_rf_draugr_helmet_15_01" offsetY="35" ic="FF253447" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_15_01.png" left="-29" right="41" top="20" bottom="58" />
 <sprite id="bust_rf_draugr_helmet_15_01_damaged" offsetY="35" ic="FF253447" width="140" height="248" img="entity\helmets\bust_rf_draugr_helmet_15_01_damaged.png" left="-29" right="41" top="20" bottom="58" />
