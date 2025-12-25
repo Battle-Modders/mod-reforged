@@ -696,4 +696,38 @@
 
 <sprite id="bust_base_rf_draugr_01" offsetY="35" ic="FF25343E" width="104" height="142" img="entity\bust_base_rf_draugr_01.png" left="-49" right="51" top="-71" bottom="-3" />
 
+<!-- VanillaFix for draugr hair and beard dead sprites spawning at wrong z-level -->
+<!-- Bug report: https://steamcommunity.com/app/365360/discussions/1/684115425021152205/ -->
+<!-- These are all the vanilla `_zombie` beard and hair but we replace `zombie` with `rf_draugr` in the sprite name. -->
+<sprite id="beard_black_rf_draugr_01_dead" offsetX="6" offsetY="10" f="64F4" f1="-15" f2="-15" ic="FF283339" width="131" height="125" img="entity\heads\zombie\beard_zombie_dark_01_dead.png" top="-48" bottom="-18" />
+<sprite id="beard_black_rf_draugr_01_top_dead" offsetX="6" offsetY="10" f="64EE" f1="-15" f2="-15" ic="FF223036" width="131" height="125" img="entity\heads\zombie\beard_zombie_dark_01_top_dead.png" left="-31" right="27" top="-28" bottom="16" />
+<sprite id="beard_black_rf_draugr_02_dead" offsetX="6" offsetY="10" f="64F4" f1="-15" f2="-15" ic="FF222F34" width="131" height="125" img="entity\heads\zombie\beard_zombie_dark_02_dead.png" top="-47" bottom="-15" />
+<sprite id="beard_black_rf_draugr_02_top_dead" offsetX="6" offsetY="10" f="64EE" f1="-15" f2="-15" ic="FF24313B" width="131" height="125" img="entity\heads\zombie\beard_zombie_dark_02_top_dead.png" left="-35" right="31" top="-29" bottom="19" />
+<sprite id="beard_black_rf_draugr_03_dead" offsetX="6" offsetY="10" f="64F4" f1="-15" f2="-15" ic="FF2A373D" width="131" height="125" img="entity\heads\zombie\beard_zombie_dark_03_dead.png" top="-47" bottom="-19" />
+<sprite id="beard_black_rf_draugr_03_top_dead" offsetX="6" offsetY="10" f="64EE" f1="-15" f2="-15" ic="FF2D3B41" width="131" height="125" img="entity\heads\zombie\beard_zombie_dark_03_top_dead.png" left="-30" right="24" top="-29" bottom="11" />
+<sprite id="beard_black_rf_draugr_04_dead" offsetX="6" offsetY="10" f="64F4" f1="-15" f2="-15" ic="FF192429" width="131" height="125" img="entity\heads\zombie\beard_zombie_dark_04_dead.png" left="-10" right="16" top="-38" bottom="-14" />
+<sprite id="beard_black_rf_draugr_04_top_dead" offsetX="6" offsetY="10" f="64EE" f1="-15" f2="-15" ic="FF1F2C32" width="131" height="114" img="entity\heads\zombie\beard_zombie_dark_04_top_dead.png" left="-19" right="17" top="-13" bottom="17" />
+<sprite id="beard_grey_rf_draugr_01_dead" offsetX="6" offsetY="10" f="64F4" f1="-15" f2="-15" ic="FF636669" width="131" height="125" img="entity\heads\zombie\beard_zombie_grey_01_dead.png" left="-17" right="15" top="-48" bottom="-20" />
+<sprite id="beard_grey_rf_draugr_01_top_dead" offsetX="6" offsetY="10" f="64EE" f1="-15" f2="-15" ic="FF54585F" width="131" height="125" img="entity\heads\zombie\beard_zombie_grey_01_top_dead.png" left="-35" right="25" top="-50" bottom="16" />
+<sprite id="beard_grey_rf_draugr_02_dead" offsetX="6" offsetY="10" f="64F4" f1="-15" f2="-15" ic="FF616161" width="131" height="125" img="entity\heads\zombie\beard_zombie_grey_02_dead.png" left="-16" right="18" top="-46" bottom="-18" />
+<sprite id="beard_grey_rf_draugr_02_top_dead" offsetX="6" offsetY="10" f="64EE" f1="-15" f2="-15" ic="FF54575C" width="131" height="125" img="entity\heads\zombie\beard_zombie_grey_02_top_dead.png" left="-34" right="32" top="-49" bottom="17" />
+<sprite id="beard_grey_rf_draugr_03_dead" offsetX="6" offsetY="10" f="64F4" f1="-15" f2="-15" ic="FF51565A" width="131" height="125" img="entity\heads\zombie\beard_zombie_grey_03_dead.png" left="-16" right="14" top="-46" bottom="-18" />
+<sprite id="beard_grey_rf_draugr_03_top_dead" offsetX="6" offsetY="10" f="64EE" f1="-15" f2="-15" ic="FF575A5E" width="131" height="125" img="entity\heads\zombie\beard_zombie_grey_03_top_dead.png" left="-34" right="24" top="-48" bottom="12" />
+<sprite id="beard_grey_rf_draugr_04_dead" offsetX="6" offsetY="10" f="64F4" f1="-15" f2="-15" ic="FF6B6E72" width="131" height="125" img="entity\heads\zombie\beard_zombie_grey_04_dead.png" left="-11" right="15" top="-38" bottom="-14" />
+<sprite id="beard_grey_rf_draugr_04_top_dead" offsetX="6" offsetY="10" f="64EE" f1="-15" f2="-15" ic="FF75777A" width="131" height="125" img="entity\heads\zombie\beard_zombie_grey_04_top_dead.png" left="-19" right="21" top="-23" bottom="7" />
+<sprite id="hair_black_rf_draugr_01_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF273439" width="131" height="125" img="entity\heads\zombie\hair_zombie_dark_01_dead.png" left="-37" right="21" top="-57" bottom="1" />
+<sprite id="hair_black_rf_draugr_02_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF233035" width="131" height="125" img="entity\heads\zombie\hair_zombie_dark_02_dead.png" left="-46" right="12" top="-63" bottom="-5" />
+<sprite id="hair_black_rf_draugr_03_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF182227" width="131" height="125" img="entity\heads\zombie\hair_zombie_dark_03_dead.png" left="-50" right="16" top="-63" bottom="1" />
+<sprite id="hair_black_rf_draugr_04_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF3B555D" width="131" height="125" img="entity\heads\zombie\hair_zombie_dark_04_dead.png" left="-48" right="2" top="-61" bottom="-21" />
+<sprite id="hair_black_rf_draugr_05_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF1F2B2F" width="131" height="125" img="entity\heads\zombie\hair_zombie_dark_05_dead.png" left="-50" right="14" top="-62" bottom="-4" />
+<sprite id="hair_black_rf_draugr_06_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF172428" width="131" height="125" img="entity\heads\zombie\hair_zombie_dark_06_dead.png" left="-44" right="10" top="-62" bottom="-26" />
+<sprite id="hair_black_rf_draugr_07_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF232C30" width="131" height="125" img="entity\heads\zombie\hair_zombie_dark_07_dead.png" left="-49" right="29" top="-58" bottom="10" />
+<sprite id="hair_grey_rf_draugr_01_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF858689" width="131" height="125" img="entity\heads\zombie\hair_zombie_grey_01_dead.png" left="-39" right="21" top="-58" bottom="2" />
+<sprite id="hair_grey_rf_draugr_02_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF81878A" width="131" height="125" img="entity\heads\zombie\hair_zombie_grey_05_dead.png" left="-50" right="14" top="-63" bottom="-5" />
+<sprite id="hair_grey_rf_draugr_03_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF6B6E70" width="131" height="125" img="entity\heads\zombie\hair_zombie_grey_03_dead.png" left="-47" right="19" top="-63" bottom="3" />
+<sprite id="hair_grey_rf_draugr_04_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF3B555D" width="131" height="125" img="entity\heads\zombie\hair_zombie_grey_04_dead.png" left="-48" right="2" top="-61" bottom="-21" />
+<sprite id="hair_grey_rf_draugr_05_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF81878A" width="131" height="125" img="entity\heads\zombie\hair_zombie_grey_05_dead.png" left="-50" right="14" top="-63" bottom="-5" />
+<sprite id="hair_grey_rf_draugr_06_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF909398" width="131" height="125" img="entity\heads\zombie\hair_zombie_grey_06_dead.png" left="-44" right="10" top="-62" bottom="-26" />
+<sprite id="hair_grey_rf_draugr_07_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF595B5E" width="131" height="125" img="entity\heads\zombie\hair_zombie_grey_07_dead.png" left="-49" right="29" top="-59" bottom="9" />
+
 </brush>
