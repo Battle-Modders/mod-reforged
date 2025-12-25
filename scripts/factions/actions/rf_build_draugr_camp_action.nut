@@ -1,7 +1,7 @@
 this.rf_build_draugr_camp_action <- ::inherit("scripts/factions/faction_action", {
 	m = {
 		MinY = 0.8, // Spawn camps at a minimum of this Y coordinate on world map
-		NumSettlements = 9, // Number of settlements to spawn
+		NumSettlements = 5, // Number of settlements to spawn
 		NumSettlementsCrisisAdd = 3 // Number of additional settlements to spawn during crisis
 	},
 	function create()
