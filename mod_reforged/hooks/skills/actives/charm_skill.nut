@@ -14,7 +14,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will trigger up to " + ::MSU.Text.colorNegative("2") + " [morale checks|Concept.Morale] on the target and if any are successful, the target gains the [$ $|Skill+charmed_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("Will trigger " + ::MSU.Text.colorNegative("2") + " [morale checks|Concept.Morale] on the target and if both are successful, the target gains the [$ $|Skill+charmed_effect] effect")
 		});
 		ret.push({
 			id = 11,
