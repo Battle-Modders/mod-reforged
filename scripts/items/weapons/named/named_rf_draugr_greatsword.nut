@@ -41,6 +41,8 @@ this.named_rf_draugr_greatsword <- ::inherit("scripts/items/weapons/named/named_
 
 	function onEquip()
 	{
+		this.__setNameBasedOnChampion();
+
 		this.named_weapon.onEquip();
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/overhead_strike", function(o) {
@@ -61,5 +63,19 @@ this.named_rf_draugr_greatsword <- ::inherit("scripts/items/weapons/named/named_
 			o.m.ActionPointCost += 1;
 			o.m.FatigueCost += 5;
 		}));
+	}
+
+	function onPutIntoBag()
+	{
+		this.__setNameBasedOnChampion();
+		this.named_weapon.onPutIntoBag();
+	}
+
+	function __setNameBasedOnChampion()
+	{
+		if (this.m.Name.len() == 0 && this.getContainer().getActor().getSkills().has("racial.champion"))
+		{
+			this.setName(this.getContainer().getActor().getName() + "\'s " + ::MSU.Array.rand(this.m.Name));
+		}
 	}
 });

@@ -38,6 +38,8 @@ this.named_rf_draugr_bardiche <- ::inherit("scripts/items/weapons/named/named_we
 
 	function onEquip()
 	{
+		this.__setNameBasedOnChampion();
+
 		this.named_weapon.onEquip();
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/split_man", function(o) {
@@ -53,5 +55,19 @@ this.named_rf_draugr_bardiche <- ::inherit("scripts/items/weapons/named/named_we
 			o.m.FatigueCost += 5;
 			o.setApplyAxeMastery(true);
 		}));
+	}
+
+	function onPutIntoBag()
+	{
+		this.__setNameBasedOnChampion();
+		this.named_weapon.onPutIntoBag();
+	}
+
+	function __setNameBasedOnChampion()
+	{
+		if (this.m.Name.len() == 0 && this.getContainer().getActor().getSkills().has("racial.champion"))
+		{
+			this.setName(this.getContainer().getActor().getName() + "\'s " + ::MSU.Array.rand(this.m.Name));
+		}
 	}
 });
