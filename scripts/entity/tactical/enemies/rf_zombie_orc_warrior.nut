@@ -30,10 +30,6 @@ this.rf_zombie_orc_warrior <- ::inherit("scripts/entity/tactical/enemies/rf_zomb
 		local head = this.getSprite("head");
 		head.setBrush("bust_orc_03_head_0" + ::Math.rand(1, 3));
 
-		local app = this.getItems().getAppearance();
-		app.Body = body.getBrush().Name;
-		app.Corpse = app.Body + "_dead";
-
 		this.setSpriteOffset("status_rooted", this.createVec(0, 5));
 		this.setSpriteOffset("status_rage", this.createVec(-10, 0));
 	}

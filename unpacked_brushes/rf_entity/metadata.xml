@@ -730,4 +730,21 @@
 <sprite id="hair_grey_rf_draugr_06_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF909398" width="131" height="125" img="entity\heads\zombie\hair_zombie_grey_06_dead.png" left="-44" right="10" top="-62" bottom="-26" />
 <sprite id="hair_grey_rf_draugr_07_dead" offsetX="6" offsetY="10" f="64F2" f1="-15" f2="-15" ic="FF595B5E" width="131" height="125" img="entity\heads\zombie\hair_zombie_grey_07_dead.png" left="-49" right="29" top="-59" bottom="9" />
 
+<!-- VanillaFix: missing _body variants of _dead_arrows and _dead_javelin sprites -->
+<!-- This doesn't cause any issues in vanilla as they hard-code the orc young and warlord to use the armor _dead sprites -->
+<!-- But causes issues in Reforged when we try to implement a general solution for all orcs -->
+<!-- For these sprites, the .png file is kept at the same name that it has in extracted_brushes in vanilla. But we edit the sprite id to be correct -->
+<!-- So just compare the .png file name to the sprite id to see what changed. -->
+	<sprite id="bust_orc_01_body_dead_arrows" offsetY="12" f="6401" ic="FF454B50" width="238" height="186" img="entity\orcs\bust_orc_01_armor_01_dead_arrows.png" left="-36" right="16" top="6" bottom="56" />
+	<sprite id="bust_orc_01_body_dead_javelin" offsetY="12" f="6401" ic="FF131A2A" width="238" height="186" img="entity\orcs\bust_orc_01_armor_01_dead_javelin.png" left="-9" right="37" top="10" bottom="86" />
+	<sprite id="bust_orc_03_body_01_dead_arrows" offsetX="-5" offsetY="20" f="6401" ic="FF454B50" width="238" height="186" img="entity\orcs\bust_orc_03_armor_01_dead_arrows.png" left="-30" right="34" top="-14" bottom="50" />
+	<sprite id="bust_orc_03_body_01_dead_javelin" offsetX="-5" offsetY="20" f="6401" ic="FF161E2F" width="238" height="186" img="entity\orcs\bust_orc_03_armor_01_dead_javelin.png" left="-40" right="26" top="1" bottom="85" />
+	<sprite id="bust_orc_03_body_01_dead_guts" offsetX="-5" offsetY="20" f="6401" ic="FF111245" width="238" height="186" img="entity\orcs\bust_orc_03_armor_01_dead_guts.png" left="-42" right="24" top="3" bottom="59" />
+	<sprite id="bust_orc_04_body_dead_arrows" offsetX="-12" offsetY="30" f="6401" ic="FF42494E" width="238" height="186" img="entity\orcs\bust_orc_04_armor_01_dead_arrows.png" left="-75" right="43" top="-1" bottom="61" />
+	<sprite id="bust_orc_04_body_dead_javelin" offsetX="-12" offsetY="30" f="6401" ic="FF151C29" width="238" height="186" img="entity\orcs\bust_orc_04_armor_01_dead_javelin.png" top="-24" bottom="82" />
+	<!-- Vanilla is completely missing the _guts versions for orc warlord -->
+	<!-- We use a vanilla guts sprite from another orc and adjust its coordinates to position it better on the orc warlord dead sprite -->
+	<sprite id="bust_orc_04_body_dead_guts" offsetY="12" f="6401" ic="FF242452" width="238" height="186" img="entity\orcs\bust_orc_01_armor_03_dead_guts.png" left="-36" right="30" top="-1" bottom="61" />
+	<sprite id="bust_orc_04_armor_01_dead_guts" offsetY="12" f="6401" ic="FF242452" width="238" height="186" img="entity\orcs\bust_orc_01_armor_03_dead_guts.png" left="-36" right="30" top="-1" bottom="61" />
+
 </brush>
