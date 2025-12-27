@@ -76,7 +76,7 @@ this.rf_grave_chill_effect <- ::inherit("scripts/skills/skill", {
 						id = 12,
 						type = "text",
 						icon = "ui/icons/melee_skill.png",
-						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(rSkill - rSkill / mult) + " [Ranged Skill|Concept.RangeSkill]")
+						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(rskill - rskill / mult) + " [Ranged Skill|Concept.RangeSkill]")
 					},
 					{
 						id = 13,
