@@ -240,25 +240,6 @@
 };
 // Draugr
 {
-	::Const.Tactical.Actor.RF_Draugr <- {
-		XP = 200,
-		ActionPoints = 9,
-		Hitpoints = 100,
-		Bravery = 100,
-		Stamina = 100,
-		MeleeSkill = 65,
-		RangedSkill = 0,
-		MeleeDefense = 10,
-		RangedDefense = 0,
-		Initiative = 55,
-		FatigueEffectMult = 0.0,
-		MoraleEffectMult = 0.0,
-		Armor = [
-			0,
-			0
-		]
-	};
-
 	::Const.Tactical.Actor.RF_DraugrThrall <- {
 		XP = 200,
 		ActionPoints = 9,
