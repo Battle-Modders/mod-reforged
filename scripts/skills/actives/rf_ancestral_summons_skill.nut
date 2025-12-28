@@ -141,14 +141,31 @@ this.rf_ancestral_summons_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.PossibleSpawns = ::MSU.Class.WeightedContainer();
 
+		local count = 0;
+		local maxXP = 0;
+		local maxXPScript;
+
 		foreach (ally in ::Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction()))
 		{
-			if (!::isKindOf(ally, "rf_draugr") || ally.ClassName == "rf_draugr_hero" || ally.ClassName == "rf_draugr_shaman")
+			if (!::isKindOf(ally, "rf_draugr") || ally.ClassName == "rf_draugr_shaman")
 			{
 				continue;
 			}
 
 			this.m.PossibleSpawns.add("scripts/entity/tactical/enemies/" + ally.ClassName);
+			local xp = ally.getXPValue();
+			if (xp > maxXP)
+			{
+				count++;
+				maxXP = xp;
+				maxXPScript = ::IO.scriptFilenameByHash(ally.ClassNameHash);
+			}
+		}
+
+		// Remove the highest tier as a possible spawn
+		if (count > 1)
+		{
+			this.m.PossibleSpawns.remove(maxXPScript);
 		}
 
 		// Failsafe to have some possible spawns if no allies were found.
