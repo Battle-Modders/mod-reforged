@@ -243,7 +243,7 @@
 	::Const.Tactical.Actor.RF_DraugrThrall <- {
 		XP = 200,
 		ActionPoints = 9,
-		Hitpoints = 100,
+		Hitpoints = 150,
 		Bravery = 100,
 		Stamina = 100,
 		MeleeSkill = 65,
@@ -262,7 +262,7 @@
 	::Const.Tactical.Actor.RF_DraugrWarrior <- {
 		XP = 350,
 		ActionPoints = 9,
-		Hitpoints = 135,
+		Hitpoints = 200,
 		Bravery = 100,
 		Stamina = 100,
 		MeleeSkill = 75,
@@ -281,7 +281,7 @@
 	::Const.Tactical.Actor.RF_DraugrHuskarl <- {
 		XP = 450,
 		ActionPoints = 9,
-		Hitpoints = 160,
+		Hitpoints = 250,
 		Bravery = 100,
 		Stamina = 100,
 		MeleeSkill = 85,
@@ -300,7 +300,7 @@
 	::Const.Tactical.Actor.RF_DraugrHero <- {
 		XP = 650,
 		ActionPoints = 9,
-		Hitpoints = 200,
+		Hitpoints = 275,
 		Bravery = 100,
 		Stamina = 100,
 		MeleeSkill = 95,
