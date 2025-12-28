@@ -64,4 +64,24 @@ this.rf_draugr_shaman <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", 
 			this.m.Items.equip(this.new("scripts/items/weapons/rf_draugr/rf_draugr_shaman_staff"));
 		}
 	}
+
+	function onCombatStart()
+	{
+		// Remove objects to the west of the starting position as we don't want
+		// the shaman to be hidden behind obstacles from the player's perspective.
+		local myTile = this.getTile();
+		foreach (dir in [4, 5])
+		{
+			if (!myTile.hasNextTile(dir))
+				continue;
+
+			local tile = myTile.getNextTile(dir);
+			if (!tile.IsEmpty && !tile.IsOccupiedByActor)
+			{
+				tile.removeObject();
+			}
+		}
+
+		this.rf_draugr.onCombatStart();
+	}
 });
