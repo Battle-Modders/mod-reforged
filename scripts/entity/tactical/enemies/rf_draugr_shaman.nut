@@ -26,6 +26,7 @@ this.rf_draugr_shaman <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", 
 		this.m.Skills.add(::new("scripts/skills/actives/rf_ancestral_summons_skill"));
 		this.m.Skills.add(::new("scripts/skills/effects/rf_barrow_chant_effect"));
 		this.m.Skills.add(::new("scripts/skills/effects/rf_unnerving_presence_effect"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigilant"));
 	}
 
 	function assignRandomEquipment()
