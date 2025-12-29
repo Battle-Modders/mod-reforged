@@ -103,10 +103,10 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.Alp", RatioMin = 0.00, RatioMax = 1.00 },
 				// Vanilla spawns Direwolf at 110 resources and DirwolfHIGH at 395 resources. Both with roughly RatioMax = 0.35.
 				// Direwolf is excluded in 77% of parties above those resources and DirewolfHIGH is excluded in 50%.
-				{ BaseID = "UnitBlock.RF.Direwolf", RatioMin = 0.00, RatioMax = 0.35, ExclusionChance = 0.8 },
+				{ BaseID = "UnitBlock.RF.Direwolf", RatioMin = 0.00, RatioMax = 0.35, ExclusionChance = 0.8, DeterminesFigure = false },
 				// We add Hollenhund into the mix as well with similar spawning behavior as that of Direwolves.
 				// Some parties will contain both Direwolves and Hollenhunds.
-				{ BaseID = "UnitBlock.RF.Hollenhund", RatioMin = 0.00, RatioMax = 0.35, ExclusionChance = 0.8 }
+				{ BaseID = "UnitBlock.RF.Hollenhund", RatioMin = 0.00, RatioMax = 0.35, ExclusionChance = 0.8, DeterminesFigure = false }
 			]
 		}
 	},
@@ -137,15 +137,15 @@ local parties = [
 		},
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.HexeWithBodyguard", RatioMin = 0.00, RatioMax = 0.13 },
-				{ BaseID = "UnitBlock.RF.Spider", RatioMin = 0.00, RatioMax = 1.00 },
-				{ BaseID = "UnitBlock.RF.Ghoul", RatioMin = 0.00, RatioMax = 1.00 },
-				{ BaseID = "UnitBlock.RF.Schrat", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 300 },
-				{ BaseID = "UnitBlock.RF.Unhold", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 },
-				{ BaseID = "UnitBlock.RF.UnholdBog", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 250 },
-				{ BaseID = "UnitBlock.RF.Direwolf", RatioMin = 0.00, RatioMax = 1.00 },
-				{ BaseID = "UnitBlock.RF.HexeBandit", RatioMin = 0.00, RatioMax = 1.00 },
-				{ BaseID = "UnitBlock.RF.HexeBanditRanged", RatioMin = 0.00, RatioMax = 0.13 }
+				{ BaseID = "UnitBlock.RF.HexeWithBodyguard", RatioMin = 0.00, RatioMax = 0.13, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.Spider", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.Ghoul", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.Schrat", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 300, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.Unhold", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.UnholdBog", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 250, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.Direwolf", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.HexeBandit", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.HexeBanditRanged", RatioMin = 0.00, RatioMax = 0.13, DeterminesFigure = false }
 			]
 		}
 	},
@@ -163,13 +163,13 @@ local parties = [
 		},
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.HexeNoSpider", RatioMin = 0.00, RatioMax = 0.13 },
-				{ BaseID = "UnitBlock.RF.Ghoul", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 80 },
-				{ BaseID = "UnitBlock.RF.Schrat", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 300 },
-				{ BaseID = "UnitBlock.RF.Unhold", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200 },
-				{ BaseID = "UnitBlock.RF.UnholdBog", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 250 },
-				{ BaseID = "UnitBlock.RF.Direwolf", RatioMin = 0.00, RatioMax = 1.00 },
-				{ BaseID = "UnitBlock.RF.HexeBandit", RatioMin = 0.00, RatioMax = 1.00 }
+				{ BaseID = "UnitBlock.RF.HexeNoSpider", RatioMin = 0.00, RatioMax = 0.13, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.Ghoul", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 80, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.Schrat", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 300, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.Unhold", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 200, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.UnholdBog", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 250, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.Direwolf", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = false },
+				{ BaseID = "UnitBlock.RF.HexeBandit", RatioMin = 0.00, RatioMax = 1.00, DeterminesFigure = false }
 			]
 		}
 	},
