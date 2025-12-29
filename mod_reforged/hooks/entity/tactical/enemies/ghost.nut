@@ -1,4 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/ghost", function(q) {
+	q.create = @(__original) function()
+	{
+		__original();
+		this.getFlags().add("ghost");
+	}
+
 	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();

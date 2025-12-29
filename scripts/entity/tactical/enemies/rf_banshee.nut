@@ -42,6 +42,7 @@ this.rf_banshee <- ::inherit("scripts/entity/tactical/actor", {
 		];
 		this.m.SoundPitch = ::Math.rand(90, 110) * 0.01;
 		this.getFlags().add("undead");
+		this.getFlags().add("ghost");
 		this.m.AIAgent = ::new("scripts/ai/tactical/agents/ghost_agent");
 		this.m.AIAgent.setActor(this);
 	}
