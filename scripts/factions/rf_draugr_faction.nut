@@ -6,7 +6,7 @@ this.rf_draugr_faction <- ::inherit("scripts/factions/faction", {
 		this.m.Type = ::Const.FactionType.RF_Draugr;
 		this.m.Base = "world_base_03";
 		this.m.TacticalBase = "bust_base_rf_draugr_01";
-		this.m.CombatMusic = ::Const.Music.UndeadTracks;
+		this.m.CombatMusic = ::Const.Music.RF_DraugrTracks;
 		this.m.Footprints = ::Const.UndeadFootprints;
 		this.m.PlayerRelation = 0.0;
 		this.m.IsHidden = true;
