@@ -73,9 +73,9 @@ this.named_rf_draugr_greatsword <- ::inherit("scripts/items/weapons/named/named_
 
 	function __setNameBasedOnChampion()
 	{
-		if (this.m.Name.len() == 0 && this.getContainer().getActor().getSkills().has("racial.champion"))
+		if (this.m.Name.len() == 0 && this.getContainer().getActor().getSkills().hasSkill("racial.champion"))
 		{
-			this.setName(this.getContainer().getActor().getName() + "\'s " + ::MSU.Array.rand(this.m.Name));
+			this.setName(this.getContainer().getActor().getName() + "\'s " + ::MSU.Array.rand(this.m.NameList));
 		}
 	}
 });
