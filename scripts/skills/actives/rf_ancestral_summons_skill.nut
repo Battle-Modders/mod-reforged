@@ -171,7 +171,7 @@ this.rf_ancestral_summons_skill <- this.inherit("scripts/skills/skill", {
 		// Failsafe to have some possible spawns if no allies were found.
 		if (this.m.PossibleSpawns.len() == 0)
 		{
-			this.m.PossibleSpawns.addMany([
+			this.m.PossibleSpawns.addMany(1, [
 				"scripts/entity/tactical/enemies/rf_draugr_thrall",
 				"scripts/entity/tactical/enemies/rf_draugr_warrior",
 				"scripts/entity/tactical/enemies/rf_draugr_huskarl",
