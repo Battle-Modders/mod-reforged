@@ -27,7 +27,8 @@ local requiredMods = [
 	"mod_dynamic_spawns >= 0.5.0",
 	"mod_item_tables >= 0.1.3",
 	"mod_upd",
-	"mod_stack_based_skills >= 0.5.1"
+	"mod_stack_based_skills >= 0.5.1",
+	"mod_reforged_assets >= 0.1.0-alpha.1"
 ];
 
 ::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
