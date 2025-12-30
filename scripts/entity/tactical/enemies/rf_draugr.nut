@@ -484,7 +484,7 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 				// VanillaFix: zombie hair and beard spawning behind head. We add new brushes using vanilla sprites with correct `f` values.
 				// Bug report: https://steamcommunity.com/app/365360/discussions/1/684115425021152205/
 				local spriteName = ::String.replace(sprite_beard.getBrush().Name, "zombie", "rf_draugr") + "_dead";
-				layers.push(spriteName + "_dead");
+				layers.push(spriteName);
 			}
 
 			if (!appearance.HideCorpseHead)
