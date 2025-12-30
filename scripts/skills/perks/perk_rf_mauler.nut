@@ -54,7 +54,9 @@ this.perk_rf_mauler <- ::inherit("scripts/skills/skill", {
 			return;
 		}
 
-		_targetEntity.MV_applyInjury(_skill, this.m.__HitInfo);
+		local hitInfo = clone this.m.__HitInfo;
+		hitInfo.InjuryThresholdMult = 0.0001;
+		_targetEntity.MV_applyInjury(_skill, hitInfo);
 		this.m.__HitInfo = null;
 	}
 

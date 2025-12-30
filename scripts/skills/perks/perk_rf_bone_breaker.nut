@@ -53,7 +53,9 @@ this.perk_rf_bone_breaker <- ::inherit("scripts/skills/skill", {
 				}
 
 				this.m.__TargetsThisTurn.push(_targetEntity.getID());
-				_targetEntity.MV_applyInjury(_skill, this.m.__HitInfo);
+				local hitInfo = clone this.m.__HitInfo;
+				hitInfo.InjuryThresholdMult = 0.0001;
+				_targetEntity.MV_applyInjury(_skill, hitInfo);
 			}
 		}
 
