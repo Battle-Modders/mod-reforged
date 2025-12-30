@@ -38,7 +38,7 @@ this.rf_ancestral_summons_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local ret = this.skill.getTooltip();
+		local ret = this.skill.getDefaultUtilityTooltip();
 		ret.push({id = 10,	type = "text",	icon = "ui/icons/special.png",	text = "Can target any barrows on the map"});
 		ret.push({id = 11,	type = "text",	icon = "ui/icons/warning.png",	text = "Cannot be used on the same barrow twice"});
 		return ret;
