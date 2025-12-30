@@ -30,7 +30,7 @@ local function addFaction( _key, _color, _base, _actions, _alliance, _battleTrac
 addFaction(
 	"RF_Draugr",
 	::createColor("#bd00c4"),
-	"bust_base_undead",
+	"bust_base_rf_draugr_01",
 	[
 		"scripts/factions/actions/rf_build_draugr_camp_action",
 		// "scripts/factions/actions/rf_send_draugr_roamers_action"
