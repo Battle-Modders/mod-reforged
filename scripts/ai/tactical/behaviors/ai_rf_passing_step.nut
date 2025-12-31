@@ -124,12 +124,6 @@ this.ai_rf_passing_step <- ::inherit("scripts/ai/tactical/behavior", {
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		local engarde = _entity.getSkills().getSkillByID("actives.rf_en_garde_toggle");
-		if (engarde != null && engarde.pickSkill() != null)
-		{
-			paths[0].ScoreMult *= 1.5; // Prefer staying in my tile if I have En Garde available
-		}
-
 		local bodyguardSkill = _entity.getSkills().getSkillByID("special.rf_bodyguard");
 		local isBodyguard = bodyguardSkill != null && !::MSU.isNull(bodyguardSkill.getVIP()) && bodyguardSkill.getVIP().isAlive() && bodyguardSkill.getVIP().isPlacedOnMap();
 
