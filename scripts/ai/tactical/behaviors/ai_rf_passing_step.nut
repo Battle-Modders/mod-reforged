@@ -80,12 +80,6 @@ this.ai_rf_passing_step <- ::inherit("scripts/ai/tactical/behavior", {
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		// Don't use a disengagement skill if not in ZoC. In that case the entity can just use a regular movement action
-		if (this.m.Skill.isDisengagement() && _entity.getTile().getZoneOfControlCountOtherThan(_entity.getAlliedFactions()) == 0)
-		{
-			return ::Const.AI.Behavior.Score.Zero;
-		}
-
 		local targets = this.queryTargetsInMeleeRange(this.m.Skill.getMinRange(), this.m.Skill.getMaxRange() + 1, this.m.Skill.getMaxLevelDifference());
 		if (targets.len() == 0)
 		{
@@ -419,7 +413,7 @@ this.ai_rf_passing_step <- ::inherit("scripts/ai/tactical/behavior", {
 					if (navigator.findPath(_originTile, nextTile, settings, 0))
 					{
 						local costs = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
-						if (!costs.IsMissingActionPoints && this.m.Skill.getActionPointCost() >= costs.ActionPointsRequired)
+						if (!costs.IsMissingActionPoints && this.m.Skill.getActionPointCost() > costs.ActionPointsRequired)
 							continue;
 					}
 				}
