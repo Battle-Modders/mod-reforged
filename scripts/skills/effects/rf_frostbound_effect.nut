@@ -36,7 +36,7 @@ this.rf_frostbound_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Characters ending their [turn|Concept.Turn] adjacent to you lose " + ::MSU.Text.colorizePct(this.m.HitpointsTransferPct, {InvertColor = true}) + " of their [Hitpoints|Concept.Hitpoints] and you heal for double the amount")
+			text = ::Reforged.Mod.Tooltips.parseString("Characters ending their [turn|Concept.Turn] adjacent to you lose " + ::MSU.Text.colorizePct(this.m.HitpointsTransferPct, {InvertColor = true}) + " of their maximum [Hitpoints|Concept.Hitpoints] and you heal for double the amount")
 		});
 		ret.push({
 			id = 11,
@@ -66,7 +66,7 @@ this.rf_frostbound_effect <- ::inherit("scripts/skills/skill", {
 		this.spawnIcon(this.m.Overlay, _enemy.getTile());
 
 		local hitInfo = ::MSU.Table.merge(clone ::Const.Tactical.HitInfo, {
-			DamageRegular = ::Math.round(_enemy.getHitpoints() * this.m.HitpointsTransferPct * this.m.EffectMult),
+			DamageRegular = ::Math.round(_enemy.getHitpointsMax() * this.m.HitpointsTransferPct * this.m.EffectMult),
 			DamageDirect = 1.0,
 			BodyPart = ::Const.BodyPart.Body,
 			BodyDamageMult = 1.0,
