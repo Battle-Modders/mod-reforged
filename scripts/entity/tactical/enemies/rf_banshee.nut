@@ -173,9 +173,23 @@ this.rf_banshee <- ::inherit("scripts/entity/tactical/actor", {
 				]
 			};
 			::Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, ::createVec(0, 40));
+
+			local deathLoot = this.getItems().getDroppableLoot(_killer);
+			local tileLoot = this.getLootForTile(_killer, deathLoot);
+			this.dropLoot(_tile, tileLoot, this.m.IsCorpseFlipped);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function getLootForTile( _killer, _loot )
+	{
+		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
+		{
+			_loot.push(::new("scripts/items/loot/rf_geist_tear_item"));
+		}
+
+		return this.actor.getLootForTile(_killer, _loot);
 	}
 
 	function onRender()

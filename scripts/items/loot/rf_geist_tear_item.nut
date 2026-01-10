@@ -5,7 +5,7 @@ this.rf_geist_tear_item <- ::inherit("scripts/items/item", {
 		this.item.create();
 		this.m.ID = "misc.rf_geist_tear";
 		this.m.Name = "Geist Tear";
-		this.m.Description = "When a geist leaves this plane, sometimes a gem is left behind. Wise men believe it is the ethereal essence of the spirit made manifest.";
+		this.m.Description = "When a spirit leaves this plane, sometimes a gem is left behind. Wise men believe it is the ethereal essence of the spirit made manifest.";
 		this.m.Icon = "loot/rf_geist_tear.png";
 		this.m.SlotType = ::Const.ItemSlot.None;
 		this.m.ItemType = ::Const.Items.ItemType.Misc | ::Const.Items.ItemType.Loot;
