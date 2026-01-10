@@ -1,5 +1,7 @@
 this.rf_unnerving_presence_effect <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		Difficulty = -10
+	},
 	function create()
 	{
 		this.m.ID = "effects.rf_unnerving_presence";
@@ -15,11 +17,12 @@ this.rf_unnerving_presence_effect <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.skill.getTooltip();
 
+		local difficultyText = this.m.Difficulty == 0 ? "" : format(" with %s [Resolve|Concept.Bravery]", ::MSU.Text.colorizeValue(this.m.Difficulty, {AddSign = true}));
 		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Characters ending their [turn|Concept.Turn] adjacent to you receive a mental [morale check|Concept.Morale]")
+			text = ::Reforged.Mod.Tooltips.parseString(format("Characters ending their [turn|Concept.Turn] adjacent to you receive a mental [morale check|Concept.Morale]%s", difficultyText))
 		});
 
 		return ret;
@@ -38,6 +41,6 @@ this.rf_unnerving_presence_effect <- ::inherit("scripts/skills/skill", {
 		if (_enemy.getMoraleState() == ::Const.MoraleState.Ignore)
 			return;
 
-		_enemy.checkMorale(-1, 0, ::Const.MoraleCheckType.MentalAttack, this.m.Overlay);
+		_enemy.checkMorale(-1, this.m.Difficulty, ::Const.MoraleCheckType.MentalAttack, this.m.Overlay);
 	}
 });
