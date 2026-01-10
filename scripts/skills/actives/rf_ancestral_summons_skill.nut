@@ -141,7 +141,6 @@ this.rf_ancestral_summons_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.PossibleSpawns = ::MSU.Class.WeightedContainer();
 
-		local count = 0;
 		local maxXP = 0;
 		local maxXPScript;
 
@@ -156,20 +155,18 @@ this.rf_ancestral_summons_skill <- this.inherit("scripts/skills/skill", {
 			local xp = ally.getXPValue();
 			if (xp > maxXP)
 			{
-				count++;
 				maxXP = xp;
 				maxXPScript = ::IO.scriptFilenameByHash(ally.ClassNameHash);
 			}
 		}
 
 		// Remove the highest tier as a possible spawn
-		if (count > 1)
+		if (this.m.PossibleSpawns.len() > 1)
 		{
 			this.m.PossibleSpawns.remove(maxXPScript);
 		}
-
 		// Failsafe to have some possible spawns if no allies were found.
-		if (this.m.PossibleSpawns.len() == 0)
+		else if (this.m.PossibleSpawns.len() == 0)
 		{
 			this.m.PossibleSpawns.addMany(1, [
 				"scripts/entity/tactical/enemies/rf_draugr_thrall",
