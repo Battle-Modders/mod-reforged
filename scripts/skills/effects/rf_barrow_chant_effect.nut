@@ -41,7 +41,7 @@ this.rf_barrow_chant_effect <- ::inherit("scripts/skills/skill", {
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Upon your death all allied Barrowkin have a " + ::MSU.Text.colorizeValue(this.m.RestlessnessChance, {AddPercent = true}) + " chance to become [$ $|Skill+rf_draugr_restless_effect]" )
+			text = ::Reforged.Mod.Tooltips.parseString("Upon your death each allied Barrowkin has an individual " + ::MSU.Text.colorizeValue(this.m.RestlessnessChance, {AddPercent = true}) + " chance to become [$ $|Skill+rf_draugr_restless_effect]")
 		});
 
 		return ret;
