@@ -47,7 +47,7 @@
 ::MSU.Table.merge(::Const.World.Spawn.Troops, {
 	// Bandits
 	RF_BanditScoundrel = {
-		ID = ::Const.EntityType.RF_BanditScoundrel,
+		ID = ::Const.EntityType.BanditThug,
 		Variant = 0,
 		Strength = 9,
 		Cost = 9,
@@ -79,7 +79,7 @@
 		Script = "scripts/entity/tactical/enemies/rf_bandit_vandal"
 	},
 	RF_BanditPillager = {
-		ID = ::Const.EntityType.RF_BanditPillager,
+		ID = ::Const.EntityType.RF_BanditVandal,
 		Variant = 0,
 		Strength = 20,
 		Cost = 18,
@@ -87,7 +87,7 @@
 		Script = "scripts/entity/tactical/enemies/rf_bandit_pillager"
 	},
 	RF_BanditOutlaw = {
-		ID = ::Const.EntityType.RF_BanditOutlaw,
+		ID = ::Const.EntityType.BanditRaider,
 		Variant = 0,
 		Strength = 28,
 		Cost = 22,
@@ -111,7 +111,7 @@
 		Script = "scripts/entity/tactical/enemies/rf_bandit_highwayman"
 	},
 	RF_BanditMarauder = {
-		ID = ::Const.EntityType.RF_BanditMarauder,
+		ID = ::Const.EntityType.RF_BanditHighwayman,
 		Variant = 0,
 		Strength = 36,
 		Cost = 26,
