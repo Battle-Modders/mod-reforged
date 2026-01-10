@@ -1,5 +1,7 @@
 this.rf_barrow_chant_debuff_effect <- ::inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		DamageMultPerMoraleStateAdd = -0.15
+	},
 	function create()
 	{
 		this.m.ID = "effects.rf_barrow_chant_debuff";
@@ -28,6 +30,33 @@ this.rf_barrow_chant_debuff_effect <- ::inherit("scripts/skills/skill", {
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Cannot be [Confident|Concept.Morale]")
 		});
+
+		if (this.m.DamageMultPerMoraleStateAdd != 0.0)
+		{
+			if (::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
+			{
+				ret.push({
+					id = 11,
+					type = "text",
+					icon = "ui/icons/regular_damage.png",
+					text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizeMultWithText(1.0 + this.m.DamageMultPerMoraleStateAdd) + " damage per [morale|Concept.Morale] state below Confident")
+				});
+			}
+			else
+			{
+				local damageMult = this.getDamageMult();
+				if (damageMult != 1.0)
+				{
+					ret.push({
+						id = 11,
+						type = "text",
+						icon = "ui/icons/regular_damage.png",
+						text = ::Reforged.Mod.Tooltips.parseString("Deal " + ::MSU.Text.colorizeMultWithText(damageMult) + " damage")
+					});
+				}
+			}
+		}
+
 		return ret;
 	}
 
@@ -62,5 +91,15 @@ this.rf_barrow_chant_debuff_effect <- ::inherit("scripts/skills/skill", {
 		{
 			_properties.MV_ForbiddenMoraleStates.push(::Const.MoraleState.Confident);
 		}
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		_properties.DamageTotalMult *= this.getDamageMult();
+	}
+
+	function getDamageMult()
+	{
+		return ::Math.maxf(0.0, 1.0 + this.m.DamageMultPerMoraleStateAdd * (::Const.MoraleState.Confident - this.getContainer().getActor().getMoraleState()));
 	}
 });

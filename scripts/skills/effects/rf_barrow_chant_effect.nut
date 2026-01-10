@@ -26,8 +26,19 @@ this.rf_barrow_chant_effect <- ::inherit("scripts/skills/skill", {
 			text = ::Reforged.Mod.Tooltips.parseString("Enemies on the battlefield cannot be [Confident|Concept.Morale]")
 		});
 
+		local debuff = ::new("scripts/skills/effects/rf_barrow_chant_debuff_effect");
+		if (debuff.m.DamageMultPerMoraleStateAdd != 0)
+		{
+			ret.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Affected enemies deal " + ::MSU.Text.colorizeMultWithText(1.0 + debuff.m.DamageMultPerMoraleStateAdd) + " damage for each morale state below [Confident|Concept.Morale]")
+			});
+		}
+
 		ret.push({
-			id = 11,
+			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Upon your death all allied Barrowkin have a " + ::MSU.Text.colorizeValue(this.m.RestlessnessChance, {AddPercent = true}) + " chance to become [$ $|Skill+rf_draugr_restless_effect]" )
