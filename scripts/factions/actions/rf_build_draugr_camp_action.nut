@@ -62,7 +62,7 @@ this.rf_build_draugr_camp_action <- ::inherit("scripts/factions/faction_action",
 		else
 		{
 			locationToSpawn = ::MSU.Class.WeightedContainer([
-				[3, "scripts/entity/world/locations/rf_draugr_barrows_location"],
+				[::World.getTime().Days < 50 ? 6 : 3, "scripts/entity/world/locations/rf_draugr_barrows_location"],
 				[2, "scripts/entity/world/locations/rf_draugr_crypt_location"],
 				[1, "scripts/entity/world/locations/rf_draugr_fane_location"]
 			]).roll();
