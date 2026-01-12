@@ -3,5 +3,6 @@
 	{
 		__original();
 		this.m.Value = 2000; // vanilla 850
+		this.m.Vision = 0; // vanilla -1
 	}}.create;
 });
