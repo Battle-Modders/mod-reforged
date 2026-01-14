@@ -25,15 +25,6 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_soul_link"));
 	}}.onInit;
 
-	// Vanilla does not utilize its getLoot-framework for necromancers, so we need to add that here
-	q.onDeath = @(__original) { function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
-		local tileLoot = this.getLootForTile(_killer, []);
-		this.dropLoot(_tile, tileLoot, this.m.IsCorpseFlipped);
-
-		__original(_killer, _skill, _tile, _fatalityType);
-	}}.onDeath;
-
 	q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
 	{
 		local ret = __original(_killer, _loot);
