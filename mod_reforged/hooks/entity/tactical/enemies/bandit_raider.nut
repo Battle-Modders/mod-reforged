@@ -1,9 +1,18 @@
+// This is the Brigand Vandal. We use the vanilla bandit_raider entity file because the Vandal is the closest in strength to the vanilla Raider.
+
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_raider", function(q) {
+	q.create = @() { function create()
+	{
+		this.m.Type = this.Const.EntityType.RF_BanditVandal;
+		this.m.BloodType = this.Const.BloodType.Red;
+		this.m.XP = this.Const.Tactical.Actor.RF_BanditVandal.XP;
+	}}.create;
+
 	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(::Const.Tactical.Actor.BanditRaider);
+		b.setValues(::Const.Tactical.Actor.RF_BanditVandal);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -29,7 +38,6 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/arming_sword"],
 				[1, "scripts/items/weapons/boar_spear"],
 				[1, "scripts/items/weapons/falchion"],
 				[1, "scripts/items/weapons/flail"],
@@ -37,9 +45,9 @@
 				[1, "scripts/items/weapons/military_pick"],
 				[1, "scripts/items/weapons/morning_star"],
 				[1, "scripts/items/weapons/scramasax"],
+				[1, "scripts/items/weapons/shortsword"],
 
-				[1, "scripts/items/weapons/longaxe"],
-				[1, "scripts/items/weapons/polehammer"],
+				[1, "scripts/items/weapons/rf_two_handed_falchion"],
 				[1, "scripts/items/weapons/warbrand"]
 			]).roll();
 			this.m.Items.equip(::new(weapon));
@@ -57,9 +65,10 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local shield = ::MSU.Class.WeightedContainer([
-				[1.0, "scripts/items/shields/wooden_shield"],
-				[1.0, "scripts/items/shields/kite_shield"]
+				[3, "scripts/items/shields/wooden_shield"],
+				[1, "scripts/items/shields/kite_shield"]
 			]).roll();
+
 			this.m.Items.equip(::new(shield));
 		}
 
@@ -69,7 +78,7 @@
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 105 || conditionMax > 140) return 0.0;
+					if (conditionMax < 65 || conditionMax > 95) return 0.0;
 					return _weight;
 				}
 			})
@@ -84,7 +93,7 @@
 						Apply = function ( _script, _weight )
 						{
 							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
-							if (conditionModifier < 20 || conditionModifier > 30) return 0.0;
+							if (conditionModifier > 20) return 0.0;
 							return _weight;
 						}
 					})
@@ -95,17 +104,17 @@
 			}
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) >= 20)
 		{
 			local helmet = ::Reforged.ItemTable.BanditHelmetBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 105 || conditionMax > 140) return 0.0;
+					if (conditionMax < 40 || conditionMax > 90) return 0.0;
 					return _weight;
 				}
 			})
-			this.m.Items.equip(::new(helmet));
+			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 	}}.assignRandomEquipment;
 
@@ -114,13 +123,7 @@
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-		}
-
-		local offhandItem = this.getOffhandItem();
-		if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
 		}
 	}}.onSpawned;
 });

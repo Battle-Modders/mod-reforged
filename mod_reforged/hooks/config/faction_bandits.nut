@@ -37,25 +37,6 @@
 	],
 	FatigueRecoveryRate = 15
 });
-::MSU.Table.merge(::Const.Tactical.Actor.BanditRaider, {
-	XP = 275, // vanilla 250
-	ActionPoints = 9,
-	Hitpoints = 80, // vanilla 75
-	Bravery = 60, // vanilla 55
-	Stamina = 125,
-	MeleeSkill = 72, // vanilla 65
-	RangedSkill = 60, // vanilla 55
-	MeleeDefense = 10,
-	RangedDefense = 0, // vanilla 10
-	Initiative = 110, // vanilla 115
-	FatigueEffectMult = 1.0,
-	MoraleEffectMult = 1.0,
-	Armor = [
-		0,
-		0
-	],
-	FatigueRecoveryRate = 15 // vanilla 20
-});
 ::MSU.Table.merge(::Const.Tactical.Actor.BanditMarksman, { // reforged marksman is a higher tier entity
 	XP = 275, // vanilla 225
 	ActionPoints = 9,
@@ -190,6 +171,25 @@
 		0
 	],
 	FatigueRecoveryRate = 15
+};
+::Const.Tactical.Actor.RF_BanditRaider <- {
+	XP = 275,
+	ActionPoints = 9,
+	Hitpoints = 80,
+	Bravery = 60,
+	Stamina = 125,
+	MeleeSkill = 72,
+	RangedSkill = 60,
+	MeleeDefense = 10,
+	RangedDefense = 0,
+	Initiative = 110,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15 // vanilla 20
 };
 ::Const.Tactical.Actor.RF_BanditOutlaw <- {
 	XP = 275,

@@ -1,10 +1,10 @@
-this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
+this.rf_bandit_raider <- ::inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = ::Const.EntityType.RF_BanditVandal;
+		this.m.Type = ::Const.EntityType.BanditRaider;
 		this.m.BloodType = ::Const.BloodType.Red;
-		this.m.XP = ::Const.Tactical.Actor.RF_BanditVandal.XP;
+		this.m.XP = ::Const.Tactical.Actor.BanditRaider.XP;
 		this.human.create();
 		this.m.Faces = ::Const.Faces.AllMale;
 		this.m.Hairs = ::Const.Hair.UntidyMale;
@@ -18,7 +18,7 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(::Const.Tactical.Actor.RF_BanditVandal);
+		b.setValues(::Const.Tactical.Actor.BanditRaider);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -49,6 +49,7 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/arming_sword"],
 				[1, "scripts/items/weapons/boar_spear"],
 				[1, "scripts/items/weapons/falchion"],
 				[1, "scripts/items/weapons/flail"],
@@ -56,9 +57,9 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 				[1, "scripts/items/weapons/military_pick"],
 				[1, "scripts/items/weapons/morning_star"],
 				[1, "scripts/items/weapons/scramasax"],
-				[1, "scripts/items/weapons/shortsword"],
 
-				[1, "scripts/items/weapons/rf_two_handed_falchion"],
+				[1, "scripts/items/weapons/longaxe"],
+				[1, "scripts/items/weapons/polehammer"],
 				[1, "scripts/items/weapons/warbrand"]
 			]).roll();
 			this.m.Items.equip(::new(weapon));
@@ -76,10 +77,9 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local shield = ::MSU.Class.WeightedContainer([
-				[3, "scripts/items/shields/wooden_shield"],
-				[1, "scripts/items/shields/kite_shield"]
+				[1.0, "scripts/items/shields/wooden_shield"],
+				[1.0, "scripts/items/shields/kite_shield"]
 			]).roll();
-
 			this.m.Items.equip(::new(shield));
 		}
 
@@ -89,7 +89,7 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 65 || conditionMax > 95) return 0.0;
+					if (conditionMax < 105 || conditionMax > 140) return 0.0;
 					return _weight;
 				}
 			})
@@ -104,7 +104,7 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 						Apply = function ( _script, _weight )
 						{
 							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
-							if (conditionModifier > 20) return 0.0;
+							if (conditionModifier < 20 || conditionModifier > 30) return 0.0;
 							return _weight;
 						}
 					})
@@ -115,17 +115,17 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 			}
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) >= 20)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = ::Reforged.ItemTable.BanditHelmetBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 40 || conditionMax > 90) return 0.0;
+					if (conditionMax < 105 || conditionMax > 140) return 0.0;
 					return _weight;
 				}
 			})
-			if (helmet != null) this.m.Items.equip(::new(helmet));
+			this.m.Items.equip(::new(helmet));
 		}
 	}
 
@@ -134,7 +134,13 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+		}
+
+		local offhandItem = this.getOffhandItem();
+		if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
+		{
+			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 		}
 	}
 });
