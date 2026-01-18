@@ -271,7 +271,7 @@
 		{
 			// The more you exceed an injury's threshold, the less weight it has to be applied.
 			// This means that at higher damage you are more likely to apply injuries with higher thresholds.
-			potentialInjuries.add(inj, ::Math.pow(1.0 - (damageInflictedThreshold - inj[0]), 5));
+			potentialInjuries.add(inj, ::Math.pow(inj[0] / damageInflictedThreshold, 4 * damageInflictedThreshold));
 		}
 
 		return potentialInjuries.roll()[1];
