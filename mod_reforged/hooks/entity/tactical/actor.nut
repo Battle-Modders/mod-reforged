@@ -261,7 +261,7 @@
 		// where we only collect valid injuries for this actor.
 		local injuries = _hitInfo.Injuries
 						.filter(@(_, _inj) _inj.Threshold * mult <= damageInflictedThreshold && actor.m.ExcludedInjuries.find(_inj.ID) == null && !actor.getSkills().hasSkill(_inj.ID))
-						.map(@(_inj) [_inj.Threshold, ::new("scripts/skills/" + _inj.Script)])
+						.map(@(_inj) [_inj.Threshold * mult, ::new("scripts/skills/" + _inj.Script)])
 						.filter(@(_, _inj) _inj[1].isValid(actor));
 
 		if (injuries.len() == 0)
