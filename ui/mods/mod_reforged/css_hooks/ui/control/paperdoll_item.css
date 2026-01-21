@@ -1,0 +1,5 @@
+.ui-control.paperdoll-item > .image-layer
+{
+	/* VanillaFix: Paperdoll items being blurry/washed out, because they are ever so slightly downscaled by this value in vanilla */
+	bottom: 0.0rem;		/* Vanilla: 0.1 */
+}
