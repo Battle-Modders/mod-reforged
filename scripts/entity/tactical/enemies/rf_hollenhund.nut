@@ -130,9 +130,11 @@ this.rf_hollenhund <- ::inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local isGeneratingCorpse = ::Math.rand(1, 100) <= 50;
+
 		if (_tile != null)
 		{
-			if (::Math.rand(1, 100) <= 50)
+			if (isGeneratingCorpse)
 			{
 				local flip = ::Math.rand(1, 100) <= 50;
 
@@ -160,10 +162,6 @@ this.rf_hollenhund <- ::inherit("scripts/entity/tactical/actor", {
 					decal.Saturation = body.Saturation;
 					decal.Scale = 0.95;
 				}
-
-				local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
-				_tile.Properties.set("Corpse", corpse);
-				::Tactical.Entities.addCorpse(_tile);
 			}
 
 			local effect = {
@@ -229,6 +227,20 @@ this.rf_hollenhund <- ::inherit("scripts/entity/tactical/actor", {
 				]
 			};
 			::Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, ::createVec(0, 40));
+		}
+
+		if (isGeneratingCorpse)
+		{
+			local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+			if (_tile == null)
+			{
+				::Tactical.Entities.addUnplacedCorpse(corpse);
+			}
+			else
+			{
+				_tile.Properties.set("Corpse", corpse);
+				::Tactical.Entities.addCorpse(_tile);
+			}
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
