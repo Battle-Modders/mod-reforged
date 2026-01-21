@@ -164,6 +164,10 @@ this.rf_hollenhund <- ::inherit("scripts/entity/tactical/actor", {
 				}
 			}
 
+			local deathLoot = this.getItems().getDroppableLoot(_killer);
+			local tileLoot = this.getLootForTile(_killer, deathLoot);
+			this.dropLoot(_tile, tileLoot, !flip);
+
 			local effect = {
 				Delay = 0,
 				Quantity = 12,
@@ -244,6 +248,16 @@ this.rf_hollenhund <- ::inherit("scripts/entity/tactical/actor", {
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function getLootForTile( _killer, _loot )
+	{
+		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
+		{
+			_loot.push(::new("scripts/items/loot/rf_hollenhund_bones_item"));
+		}
+
+		return this.actor.getLootForTile(_killer, _loot);
 	}
 
 	function generateCorpse( _tile, _fatalityType, _killer )
