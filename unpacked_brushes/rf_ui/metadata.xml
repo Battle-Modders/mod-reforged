@@ -51,6 +51,7 @@
 	<sprite id="rf_swordmaster_push_through_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_push_through_skill.png" />
 	<sprite id="rf_sword_stab_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sword_stab_skill.png" />
 	<sprite id="rf_take_aim_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_take_aim_skill.png" />
+	<sprite id="rf_vampire_bite_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_vampire_bite_skill.png" />
 	<sprite id="rf_voulge_cleave_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_voulge_cleave_skill.png" />
 
 	<!-- Perks and their Minis -->

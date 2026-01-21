@@ -109,6 +109,7 @@
 
 		// Reforged
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Human;
+		this.m.Skills.add(::new("scripts/skills/actives/rf_vampire_bite_skill"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_head_hunter"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_sanguinary"));
 	}}.onInit;
