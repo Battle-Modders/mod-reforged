@@ -5,4 +5,5 @@
 	q.m.PossibleSkills.push("actives.rf_great_cleave");
 	q.m.PossibleSkills.push("actives.rf_heavy_cleave");
 	q.m.PossibleSkills.push("actives.rf_voulge_cleave");
+	q.m.PossibleSkills.push("actives.rf_vampire_bite");
 });
