@@ -32,6 +32,7 @@ this.rf_vampire_bite_skill <- ::inherit("scripts/skills/actives/skill", {
 		this.m.FatigueCost = 10;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.AttackDefault;
 	}
 
 	function isUsable()
