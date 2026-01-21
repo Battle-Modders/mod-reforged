@@ -25,8 +25,8 @@ this.rf_vampire_bite_skill <- ::inherit("scripts/skills/actives/skill", {
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
 		this.m.IsAttack = true;
-		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
-		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingAndPiercingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingAndPiercingHead;
 		this.m.DirectDamageMult = 0.1;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 10;
