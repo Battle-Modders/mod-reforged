@@ -251,7 +251,6 @@
 	// Overwrite MV function to have our weighted injury selection algorithm instead of the vanilla completely random one.
 	q.MV_selectInjury = @() { function MV_selectInjury( _skill, _hitInfo )
 	{
-		local potentialInjuries = ::MSU.Class.WeightedContainer();
 		local headshotBonus = _hitInfo.BodyPart == ::Const.BodyPart.Head ? ::Const.Combat.MV_HeadshotInjuryThresholdMult : 1.0;
 		local mult = _hitInfo.InjuryThresholdMult * ::Const.Combat.InjuryThresholdMult * this.getCurrentProperties().ThresholdToReceiveInjuryMult * headshotBonus;
 		local damageInflictedThreshold = _hitInfo.DamageInflictedHitpoints.tofloat() / this.getHitpointsMax();
@@ -267,6 +266,7 @@
 		if (injuries.len() == 0)
 			return null;
 
+		local potentialInjuries = ::MSU.Class.WeightedContainer();
 		foreach (inj in injuries)
 		{
 			// The more you exceed an injury's threshold, the less weight it has to be applied.
