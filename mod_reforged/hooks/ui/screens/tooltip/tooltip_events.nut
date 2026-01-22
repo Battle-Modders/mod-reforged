@@ -89,7 +89,7 @@
 	// Adds entries to the tile tooltip about zone of control attacks at the starting and ending tiles of the previewed movement
 	q.RF_getZOCAttackTooltip <- { function RF_getZOCAttackTooltip( _entity )
 	{
-		if (_entity == null || _entity.getPreviewMovement() == null || _entity.getCurrentProperties().IsImmuneToZoneOfControl)
+		if (_entity == null || !_entity.isPlacedOnMap() || ::Tactical.State.getCurrentActionState() != ::Const.Tactical.ActionState.ComputePath || _entity.getCurrentProperties().IsImmuneToZoneOfControl)
 			return [];
 
 		local ret = [];
@@ -127,7 +127,8 @@
 		}
 
 		// Add tooltip about zone of control attacks at the ending tile (e.g. spearwall attacks from opponents)
-		if (_entity.getPreviewMovement().End.Properties.Effect == null || _entity.getPreviewMovement().End.Properties.Effect.Type != "smoke")
+		// _entity.getPreviewMovement is null when movement cannot be afforded at all
+		if (_entity.getPreviewMovement() != null && (_entity.getPreviewMovement().End.Properties.Effect == null || _entity.getPreviewMovement().End.Properties.Effect.Type != "smoke"))
 		{
 			// Switcheroo the entity's getTile function to return the end tile of movement
 			// so that hitchances of enemies are calculated with that, in any case any skill
