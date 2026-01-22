@@ -261,7 +261,7 @@
 		// where we only collect valid injuries for this actor.
 		local injuries = _hitInfo.Injuries
 						.filter(@(_, _inj) _inj.Threshold * mult <= damageInflictedThreshold && actor.m.ExcludedInjuries.find(_inj.ID) == null && !actor.getSkills().hasSkill(_inj.ID))
-						.map(@(_inj) [_inj.Threshold, ::new("scripts/skills/" + _inj.Script)])
+						.map(@(_inj) [_inj.Threshold * mult, ::new("scripts/skills/" + _inj.Script)])
 						.filter(@(_, _inj) _inj[1].isValid(actor));
 
 		if (injuries.len() == 0)
@@ -271,7 +271,7 @@
 		{
 			// The more you exceed an injury's threshold, the less weight it has to be applied.
 			// This means that at higher damage you are more likely to apply injuries with higher thresholds.
-			potentialInjuries.add(inj, ::Math.pow(1.0 - (damageInflictedThreshold - inj[0]), 5));
+			potentialInjuries.add(inj, ::Math.pow(inj[0] / damageInflictedThreshold, 4 * damageInflictedThreshold));
 		}
 
 		return potentialInjuries.roll()[1];
