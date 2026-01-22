@@ -111,6 +111,8 @@
 	<sprite id="rf_dented_armor_effect_mini" ic = "FF23165B" img="skills\mini\rf_dented_armor_effect_mini.png" />
 	<sprite id="rf_dismantled_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_dismantled_effect.png" />
 	<sprite id="rf_dismantled_effect_mini" ic = "FF23165B" img="skills\mini\rf_dismantled_effect_mini.png" />
+	<sprite id="rf_dodge_potion_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_dodge_potion_effect.png" />
+	<sprite id="rf_dodge_potion_effect_mini" ic = "FF23165B" img="skills\mini\rf_dodge_potion_effect_mini.png" />
 	<sprite id="rf_dynamic_duo_partner_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_dynamic_duo.png" />
 	<sprite id="rf_en_garde_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_en_garde.png" />
 	<sprite id="rf_en_garde_effect_mini" ic = "FF23165B" img="skills\mini\rf_en_garde_effect_mini.png" />
