@@ -74,9 +74,9 @@
 
 		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
 		{
-			if (::Math.rand(1, 100) <= 20)
+			if (::Math.rand(1, 100) <= 30)
 			{
-				ret.push(::new("scripts/items/loot/rf_geist_tear_item"));
+				ret.push(::new("scripts/items/loot/signet_ring_item"));
 			}
 		}
 
