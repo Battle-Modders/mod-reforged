@@ -27,7 +27,7 @@ this.rf_vampire_bite_skill <- ::inherit("scripts/skills/actives/skill", {
 		this.m.IsAttack = true;
 		this.m.InjuriesOnBody = ::Const.Injury.CuttingAndPiercingBody;
 		this.m.InjuriesOnHead = ::Const.Injury.CuttingAndPiercingHead;
-		this.m.DirectDamageMult = 0.1;
+		this.m.DirectDamageMult = 0.5;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 10;
 		this.m.MinRange = 1;
@@ -78,7 +78,7 @@ this.rf_vampire_bite_skill <- ::inherit("scripts/skills/actives/skill", {
 			}
 
 			// Then add the damage of this skill.
-			_properties.DamageRegularMin += 15;
+			_properties.DamageRegularMin += 20;
 			_properties.DamageRegularMax += 35;
 			_properties.DamageArmorMult *= 0.5;
 			_properties.HitChance[::Const.BodyPart.Head] += this.m.ChanceToHitHeadAdd;
