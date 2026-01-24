@@ -10,7 +10,7 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 		this.m.Hairs = ::Const.Hair.UntidyMale;
 		this.m.HairColors = ::Const.HairColors.All;
 		this.m.Beards = ::Const.Beards.Raider;
-		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_bandit_tough_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_melee_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -34,10 +34,8 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 		this.getSprite("shield_icon").setBrightness(0.85);
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )
@@ -51,38 +49,62 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/rf_battle_axe"],
-				[0.5, "scripts/items/weapons/rf_greatsword"],
-				[1, "scripts/items/weapons/two_handed_mace"],
-				[1, "scripts/items/weapons/two_handed_wooden_hammer"],
-				[1, "scripts/items/weapons/two_handed_wooden_flail"]
+				[1, "scripts/items/weapons/arming_sword"],
+				[1, "scripts/items/weapons/boar_spear"],
+				[1, "scripts/items/weapons/flail"],
+				[1, "scripts/items/weapons/hand_axe"],
+				[1, "scripts/items/weapons/military_pick"],
+				[1, "scripts/items/weapons/morning_star"],
+				[1, "scripts/items/weapons/scramasax"],
+
+				[1, "scripts/items/weapons/longaxe"],
+				[1, "scripts/items/weapons/polehammer"],
+				[1, "scripts/items/weapons/rf_two_handed_falchion"]
+			]).roll();
+			this.m.Items.equip(::new(weapon));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
+		{
+			local throwing = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/throwing_spear"]
+			]).rollChance(33);
+
+			if (throwing != null) this.m.Items.addToBag(::new(throwing));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			local shield = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/shields/kite_shield"],
+				[1, "scripts/items/shields/heater_shield"]
 			]).roll();
 
-			this.m.Items.equip(::new(weapon));
+			this.m.Items.equip(::new(shield));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorTough.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 65 || conditionMax > 110) return 0.0;
+					if (conditionMax < 150 || conditionMax > 190) return 0.0;
 					return _weight;
 				}
-			})
+			});
 
 			if (armor != null)
 			{
 				this.m.Items.equip(::new(armor));
 
-				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
+				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier2)
 				{
 					local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
 						Apply = function ( _script, _weight )
 						{
 							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
-							if (conditionModifier > 20) return 0.0;
+							if (conditionModifier < 30 || conditionModifier >= 40) return 0.0;
 							return _weight;
 						}
 					})
@@ -95,15 +117,15 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetTough.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 70 || conditionMax > 100) return 0.0;
+					if (conditionMax < 130 || conditionMax > 180) return 0.0;
 					return _weight;
 				}
-			})
-			if (helmet != null) this.m.Items.equip(::new(helmet));
+			});
+			this.m.Items.equip(::new(helmet));
 		}
 	}
 
@@ -113,9 +135,24 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 		if (mainhandItem != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
 			{
-				this.m.Skills.removeByID("actives.rf_passing_step");
+				this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
+			}
+			else if (mainhandItem.isItemType(::Const.Items.ItemType.TwoHanded) && ::Reforged.Items.isDuelistValid(mainhandItem))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
+			}
+
+			local offhandItem = this.getOffhandItem();
+			if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 			}
 		}
 	}

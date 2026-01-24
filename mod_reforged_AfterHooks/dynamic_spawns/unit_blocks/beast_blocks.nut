@@ -17,8 +17,8 @@ local unitBlocks = [
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.GhoulLOW" },
-				{ BaseID = "Unit.RF.Ghoul", RatioMax = 0.7 },
-				{ BaseID = "Unit.RF.GhoulHIGH", RatioMax = 0.2 }
+				{ BaseID = "Unit.RF.Ghoul" },
+				{ BaseID = "Unit.RF.GhoulHIGH" }
 			]
 		}
 	},
@@ -85,6 +85,12 @@ local unitBlocks = [
 	},
 
 // Mixed Beasts
+	{
+		ID = "UnitBlock.RF.Hexe",
+		DynamicDefs = {
+			Units = [{ BaseID = "Unit.RF.Hexe" }]
+		}
+	},
 	{
 		ID = "UnitBlock.RF.HexeNoBodyguard",
 		DynamicDefs = {

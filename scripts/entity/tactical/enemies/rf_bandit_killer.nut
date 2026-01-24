@@ -1,4 +1,4 @@
-this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
+this.rf_bandit_highwayman <- ::inherit("scripts/entity/tactical/human", {
 	m = {
 		HasNet = false, // 33% chance
 		IsRegularThrower = false, // 50% chance
@@ -6,9 +6,9 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 	},
 	function create()
 	{
-		this.m.Type = ::Const.EntityType.RF_BanditKiller;
+		this.m.Type = ::Const.EntityType.RF_BanditHighwayman;
 		this.m.BloodType = ::Const.BloodType.Red;
-		this.m.XP = ::Const.Tactical.Actor.RF_BanditKiller.XP;
+		this.m.XP = ::Const.Tactical.Actor.RF_BanditHighwayman.XP;
 		this.human.create();
 		this.m.Faces = ::Const.Faces.AllMale;
 		this.m.Hairs = ::Const.Hair.UntidyMale;
@@ -22,7 +22,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(::Const.Tactical.Actor.RF_BanditKiller);
+		b.setValues(::Const.Tactical.Actor.RF_BanditHighwayman);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -116,7 +116,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 					if (conditionMax <= 100 || conditionMax > 140) return 0.0;
 					return _weight;
 				}
-			})
+			});
 
 			if (armor != null)
 			{
@@ -131,7 +131,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 							if (conditionModifier > 20) return 0.0;
 							return _weight;
 						}
-					})
+					});
 
 					if (armorAttachment != null)
 						this.getBodyItem().setUpgrade(::new(armorAttachment));
@@ -148,7 +148,7 @@ this.rf_bandit_killer <- ::inherit("scripts/entity/tactical/human", {
 					if (conditionMax <= 90 || conditionMax > 130) return 0.0;
 					return _weight;
 				}
-			})
+			});
 			this.m.Items.equip(::new(helmet));
 		}
 	}

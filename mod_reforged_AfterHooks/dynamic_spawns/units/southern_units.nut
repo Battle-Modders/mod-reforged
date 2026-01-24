@@ -25,7 +25,7 @@ local units = [
 	{
 		ID = "Unit.RF.Mortar",
 		Troop = "Mortar",
-		StartingResourceMin = 340, // In Vanilla they appear in a group of 340 cost
+		StartingResourceMin = 280, // In Vanilla they appear in a group of 285 resources
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "MortarEngineers", IsUsingTopPartyResources = false }
@@ -35,7 +35,7 @@ local units = [
 	{
 		ID = "Unit.RF.Assassin",
 		Troop = "Assassin"
-		StartingResourceMin = 250
+		StartingResourceMin = 200 // In Vanilla they appear in a group of 175 cost
 	},
 	{
 		ID = "Unit.RF.Slave",

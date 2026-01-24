@@ -1,42 +1,21 @@
 local parties = [
-	{
-		ID = "RF_DraugrRoamers",
-		HardMin = 8,
-		// DefaultFigure = "figure_bandit_01",
-		DynamicDefs = {
-			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.DraugrStandard", RatioMin = 0.00, RatioMax = 1.0 }
-			]
-		}
-	},
+	// CURRENTLY UNUSED
+	// {
+	// 	ID = "RF_DraugrRoamers",
+	// 	HardMin = 8,
+	// 	// DefaultFigure = "figure_bandit_01",
+	// 	DynamicDefs = {
+	// 		UnitBlocks = [
+	// 			{ BaseID = "UnitBlock.RF.DraugrStandard", RatioMin = 0.00, RatioMax = 1.0 }
+	// 		]
+	// 	}
+	// },
 	{
 		ID = "RF_DraugrBarrows",
-		UpgradeFactor = 3.5,
-        HardMin = 9,
-        // DefaultFigure = "figure_bandit_01",
-        StaticDefs = {
-            Units = [
-                { BaseID = "Unit.RF.RF_DraugrHuskarl" }
-            ]
-        },
-        DynamicDefs = {
-            UnitBlocks = [
-                { BaseID = "UnitBlock.RF.DraugrStandard", RatioMin = 0.00, RatioMax = 1.0 },
-                { BaseID = "UnitBlock.RF.DraugrShaman", HardMin = 1, HardMax = 1 }
-            ],
-            Units = [
-                    { BaseID = "Unit.RF.RF_DraugrThrall", function onBeforeSpawnStart() { this.HardMin = ::Math.rand(1, 5); } },
-                    { BaseID = "Unit.RF.RF_DraugrWarrior", function onBeforeSpawnStart() { this.HardMin = ::Math.rand(1, 3); } }
-             ]
-        }
-    },
-	{
-		ID = "RF_DraugrCrypt",
+		HardMin = 9,
 		// DefaultFigure = "figure_bandit_01",
-		UpgradeFactor = 7.0,
 		StaticDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.RF_DraugrHero" },
 				{ BaseID = "Unit.RF.RF_DraugrHuskarl" }
 			]
 		},
@@ -44,22 +23,57 @@ local parties = [
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.DraugrStandard", RatioMin = 0.00, RatioMax = 1.0 },
 				{ BaseID = "UnitBlock.RF.DraugrShaman", HardMin = 1, HardMax = 1 }
-			]
-		},
+			],
+			Units = [
+					{ BaseID = "Unit.RF.RF_DraugrThrall", function onBeforeSpawnStart() { this.HardMin = ::Math.rand(1, 5); this.HardMax = HardMin;} },
+					{ BaseID = "Unit.RF.RF_DraugrWarrior", function onBeforeSpawnStart() { this.HardMin = ::Math.rand(1, 3); this.HardMax = HardMin;} }
+			 ]
+		}
 
-		// We drop the UpgradeFactor at higher resources to maintain a large proportion of Warriors compared to Huskarls.
-		// The average number of Warriors is kept roughly double that of Huskarls throughout most of the resource range.
-		function onBeforeSpawnStart() { this.UpgradeFactor = ::Math.maxf(3.0, 7.0 - 0.000001 * ::Math.pow(this.getTopParty().getStartingResources(), 2.25)); }
+		function onBeforeSpawnStart()
+		{
+			this.getSpawnable("Unit.RF.RF_DraugrHuskarl").StartingResourceMin = 5000; // we want Barrows to have 1 Huskarl only
+		}
+
+		function getUpgradeChance()
+		{
+			if (this.getTopParty().getStartingResources() >= 600)
+			{
+				return 60;
+			}
+			else
+			{
+				return 15;
+			}
+		}
+	},
+	{
+		// Thrall/Warrior/Huskarl ratio goes from 0.84/1/0.55 at 400 to 0.37/1/0.63 at 1200.
+		ID = "RF_DraugrCrypt",
+        // DefaultFigure = "figure_bandit_01",
+        StaticDefs = {
+            Units = [
+                { BaseID = "Unit.RF.RF_DraugrHero" }
+            ]
+        },
+        DynamicDefs = {
+            UnitBlocks = [
+                { BaseID = "UnitBlock.RF.DraugrStandard", RatioMin = 0.00, RatioMax = 1.0 },
+                { BaseID = "UnitBlock.RF.DraugrShaman", HardMin = 1, HardMax = 1 }
+            ]
+        }
+
+		function getUpgradeChance()
+		{
+			return this.getTotal() * ::Math.maxf(3.0, 7.0 - 0.000001 * ::Math.pow(this.getTopParty().getStartingResources(), 2.25));
+		}
 	},
 	{
 		ID = "RF_DraugrFane",
 		// DefaultFigure = "figure_bandit_01",
-		UpgradeFactor = 7.0,
 		StaticDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.RF_DraugrHeroChampion" },
-				{ BaseID = "Unit.RF.RF_DraugrHuskarl" },
-				{ BaseID = "Unit.RF.RF_DraugrHuskarl" }
+				{ BaseID = "Unit.RF.RF_DraugrHeroChampion" }
 			]
 		},
 		DynamicDefs = {
@@ -82,13 +96,18 @@ local parties = [
 
 						this.HardMin = c.roll();
 						this.HardMax = this.HardMin;
-					}
-				},
+					},
+				}
 			],
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.DraugrStandard", RatioMin = 0.00, RatioMax = 1.0 },
 				{ BaseID = "UnitBlock.RF.DraugrShaman", HardMin = 1, HardMax = 1 }
 			]
+		}
+
+		function getUpgradeChance()
+		{
+			return this.getTotal() * ::Math.maxf(0.0, 5.0 + 0.000015 * ::Math.pow(this.getTopParty().getStartingResources(), 1.60));
 		}
 	}
 

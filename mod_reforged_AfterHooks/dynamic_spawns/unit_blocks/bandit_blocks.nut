@@ -4,10 +4,10 @@ local unitBlocks = [
 		TierWidth = 2,
 		DynamicDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.RF_BanditScoundrel" },
-				{ BaseID = "Unit.RF.RF_BanditVandal" },
+				{ BaseID = "Unit.RF.BanditThug" },
+				{ BaseID = "Unit.RF.RF_BanditPillager" },
 				{ BaseID = "Unit.RF.BanditRaider" },
-				{ BaseID = "Unit.RF.RF_BanditHighwayman" }
+				{ BaseID = "Unit.RF.RF_BanditMarauder" }
 			]
 		}
 	},
@@ -16,10 +16,10 @@ local unitBlocks = [
 		TierWidth = 2,
 		DynamicDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.RF_BanditRobber" }, // added for balanced spawns and upgrading compared to Balanced, Tough and Ranged
-				{ BaseID = "Unit.RF.RF_BanditRobber" },
-				{ BaseID = "Unit.RF.RF_BanditBandit" },
-				{ BaseID = "Unit.RF.RF_BanditKiller" }
+				{ BaseID = "Unit.RF.RF_BanditVandal" }, // added for balanced spawns and upgrading compared to Balanced, Tough and Ranged
+				{ BaseID = "Unit.RF.RF_BanditVandal" },
+				{ BaseID = "Unit.RF.RF_BanditOutlaw" },
+				{ BaseID = "Unit.RF.RF_BanditHighwayman" }
 			]
 		}
 	},
@@ -28,10 +28,10 @@ local unitBlocks = [
 		TierWidth = 2,
 		DynamicDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.BanditThug" },
-				{ BaseID = "Unit.RF.RF_BanditPillager" },
-				{ BaseID = "Unit.RF.RF_BanditOutlaw" },
-				{ BaseID = "Unit.RF.RF_BanditMarauder" }
+				{ BaseID = "Unit.RF.RF_BanditThugTough" },
+				{ BaseID = "Unit.RF.RF_BanditPillagerTough" },
+				{ BaseID = "Unit.RF.RF_BanditRaiderTough" },
+				{ BaseID = "Unit.RF.RF_BanditMarauderTough" }
 			]
 		}
 	},
@@ -41,7 +41,6 @@ local unitBlocks = [
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.BanditMarksmanLOW" },
-				{ BaseID = "Unit.RF.RF_BanditHunter" },
 				{ BaseID = "Unit.RF.BanditMarksman" },
 				{ BaseID = "Unit.RF.RF_BanditSharpshooter" }
 			]
@@ -60,9 +59,9 @@ local unitBlocks = [
 		ID = "UnitBlock.RF.BanditElite",
 		DynamicDefs = {
 			Units = ::MSU.Class.WeightedContainer([
-				[1, { BaseID = "Unit.RF.MasterArcher" }],
-				[1, { BaseID = "Unit.RF.HedgeKnight" }],
-				[1, { BaseID = "Unit.RF.Swordmaster" }]
+				[1, { BaseID = "Unit.RF.MasterArcher", StartingResourceMin = 320 }],
+				[1, { BaseID = "Unit.RF.HedgeKnight", StartingResourceMin = 320 }],
+				[1, { BaseID = "Unit.RF.Swordmaster", StartingResourceMin = 320 }]
 			])
 		}
 	},

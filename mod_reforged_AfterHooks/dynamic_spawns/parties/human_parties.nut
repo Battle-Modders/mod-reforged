@@ -77,15 +77,21 @@ local parties = [
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.MercenaryFrontline", RatioMin = 0.60, RatioMax = 1.00 },
 				{ BaseID = "UnitBlock.RF.MercenaryRanged", RatioMin = 0.12, RatioMax = 0.30 },
-				{ BaseID = "UnitBlock.RF.MercenaryElite", RatioMin = 0.10, RatioMax = 0.25, PartySizeMin = 10 },	// Start spawning at 11+. Only exception is HedgeKnight which appears a in a group of 6 aswell
+				{ BaseID = "UnitBlock.RF.MercenaryElite", HardMin = 1, HardMax = 1, StartingResourceMax = 300 // Vanilla: Small chance of Hedge Knight or Swordmaster early
+				   function getExclusionChance() {return this.getParty().getStartingResources() < 200 ? 0.8 : 0.6; },
+				 },
+				{ BaseID = "UnitBlock.RF.MercenaryElite", RatioMin = 0.00, RatioMax = 0.20, StartingResourceMin = 300
+					function getSpawnWeight() {return ::Math.pow(this.getParty().getStartingResources() * 0.004, 2.0); },
+				 },
 				{ BaseID = "UnitBlock.RF.Wardog", RatioMin = 0.00, RatioMax = 0.12 }
 			]
 		}
 	},
 	{
+		// Vanilla: Size: 6-30, Cost 60-326.
 		ID = "Militia",
 		HardMin = 6,
-		DefaultFigure = "figure_militia_01",	// In vanilla this is either ["figure_militia_01", "figure_militia_02"]
+		DefaultFigure = "figure_militia_01",    // In vanilla this is either ["figure_militia_01", "figure_militia_02"]
 		MovementSpeedMult = 0.9,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
@@ -93,8 +99,24 @@ local parties = [
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.MilitiaFrontline", RatioMin = 0.60, RatioMax = 1.00 },
 				{ BaseID = "UnitBlock.RF.MilitiaRanged", RatioMin = 0.12, RatioMax = 0.35 },
-				{ BaseID = "UnitBlock.RF.MilitiaCaptain", RatioMin = 0.09, RatioMax = 0.09, PartySizeMin = 12 }	// Vanilla: starts spawning in groups of 13+; Vanilla never spawns more than one
+				{ BaseID = "UnitBlock.RF.MilitiaCaptain", HardMin = 1, HardMax = 1, StartingResourceMin = 130 }    // Vanilla: starts spawning in groups of 13+ and 144+ resources. StartingResourceMin of 130 most closely introduces Captains at the same rate as vanila; Vanilla never spawns more than one;
 			]
+		},
+
+		function getUpgradeChance()
+		{
+			if (this.getTopParty().getStartingResources() >= 200)
+			{
+				return 28;
+			}
+			else if (this.getTopParty().getStartingResources() >= 130)
+			{
+				return 15;
+			}
+			else
+			{
+				return 0;
+			}
 		}
 	},
 	{
@@ -114,9 +136,11 @@ local parties = [
 				},
 				DynamicDefs = {
 					UnitBlocks = [
-						{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.17, RatioMax = 0.20, PartySizeMin = 6, HardMax = 2 },	// Vanilla: Second Donkey starts spawning at 7+.  Max 3 Donkies in vanilla parties.
+						{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.01, RatioMax = 0.10, PartySizeMin = 6, HardMax = 2 },    // Vanilla: Second Donkey starts spawning at 7+.  Max 3 Donkies in vanilla parties.
 						{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.35, RatioMax = 0.80, DeterminesFigure = false },
-						{ BaseID = "UnitBlock.RF.CaravanGuard", RatioMin = 0.15, RatioMax = 0.55, DeterminesFigure = false }
+						{ BaseID = "UnitBlock.RF.CaravanGuard", RatioMin = 0.15, RatioMax = 0.60, DeterminesFigure = false
+							function getSpawnWeight() { return base.getSpawnWeight() * 3.0; }
+						}
 					]
 				}
 			}],
@@ -158,7 +182,7 @@ local parties = [
 		},
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.15, RatioMax = 0.35, PartySizeMin = 5, HardMax = 1 },	// Vanilla: Third donkey spawns at 6+. Max 3 Donkies in vanilla parties.
+				{ BaseID = "UnitBlock.RF.CaravanDonkey", RatioMin = 0.15, RatioMax = 0.35, PartySizeMin = 5, HardMax = 1 },	// Vanilla: Third donkey spawns at 6+. Max 3 donkeys in vanilla parties.
 				{ BaseID = "UnitBlock.RF.CaravanHand", RatioMin = 0.50, RatioMax = 1.00, DeterminesFigure = false }
 			]
 		}

@@ -32,9 +32,7 @@
 
 		b.Vision = 8;
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
 	}}.onInit;
 
@@ -64,7 +62,7 @@
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 50 || conditionMax > 70) return 0.0;
+					if (conditionMax < 35 || conditionMax > 55) return 0.0;
 					return _weight;
 				}
 			})
@@ -73,13 +71,13 @@
 			{
 				this.m.Items.equip(::new(armor));
 
-				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier3)
+				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier2)
 				{
 					local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
 						Apply = function ( _script, _weight )
 						{
 							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
-							if (conditionModifier > 20) return 0.0;
+							if (conditionModifier > 10) return 0.0;
 							return _weight;
 						}
 					})
@@ -90,15 +88,18 @@
 			}
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 80)
 		{
 			local helmet = ::Reforged.ItemTable.BanditHelmetRanged.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 40 || conditionMax > 70) return 0.0;
+					if (conditionMax < 30 || conditionMax > 40) return 0.0;
 					return _weight;
-				}
+				},
+				Add = [
+					[0.2, "scripts/items/helmets/hunters_hat"]
+				]
 			})
 			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
