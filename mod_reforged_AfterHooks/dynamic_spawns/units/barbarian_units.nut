@@ -8,18 +8,18 @@ local units = [
 		ID = "Unit.RF.BarbarianMarauder",
 		Troop = "BarbarianMarauder",
 		Figure = "figure_wildman_02",
-		StartingResourceMin = 125
+		StartingResourceMin = 75 // Vanilla is 73 in "Barbarians" party
 	},
 	{
 		ID = "Unit.RF.BarbarianChampion",
 		Troop = "BarbarianChampion",
 		Figure = "figure_wildman_03",
-		StartingResourceMin = 200
+		StartingResourceMin = 160 // Vanilla is 160 in "Barbarians" party
 	},
 	{
 		ID = "Unit.RF.BarbarianDrummer",
 		Troop = "BarbarianDrummer",
-		StartingResourceMin = 200 // In Vanilla they start appearing in a group of 210 cost alongside 15 thralls
+		StartingResourceMin = 200 // Vanilla is 195 in "Barbarians" party
 	},
 	{
 		ID = "Unit.RF.BarbarianChosen",

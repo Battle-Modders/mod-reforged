@@ -26,7 +26,7 @@ local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.BarbarianHunterFrontline",
 		DynamicDefs = {
-			Units = [{ BaseID = "Unit.RF.BarbarianThrall" }, { BaseID = "Unit.RF.BarbarianMarauder" }]
+			Units = [{ BaseID = "Unit.RF.BarbarianThrall" }]
 		}
 	},
 

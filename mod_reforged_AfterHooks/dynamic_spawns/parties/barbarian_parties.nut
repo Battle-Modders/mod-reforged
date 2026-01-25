@@ -1,43 +1,28 @@
 local parties = [
 	{
+		// Vanilla: Size 4-28, Cost 48-900
 		ID = "Barbarians",
-		HardMin = 6,
+		HardMin = 4,
 		DefaultFigure = "figure_wildman_01",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.BarbarianFrontline", RatioMin = 0.60, RatioMax = 1.00 },	// Vanilla: doesn't care about size
-				{ BaseID = "UnitBlock.RF.BarbarianSupport", RatioMin = 0.00, RatioMax = 0.07, PartySizeMin = 10 },			// Vanilla: Start spawning in armies of 15+; At 24+ a second drummer spawns
-				{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.00, RatioMax = 0.15, PartySizeMin = 5 },		// Vanilla: Start spawning in armies of 6+
-				{ BaseID = "UnitBlock.RF.BarbarianBeastmaster", RatioMin = 0.00, RatioMax = 0.10, PartySizeMin = 5 }	// Vanilla: Start spawning in armies of 7+ (singular case) but more like 9+
+				{ BaseID = "UnitBlock.RF.BarbarianFrontline", RatioMin = 0.60, RatioMax = 1.00 },
+				{ BaseID = "UnitBlock.RF.BarbarianSupport", HardMax = 2, RatioMin = 0.00, RatioMax = 0.15, PartySizeMin = 10 },
+				{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.00, RatioMax = 0.4, PartySizeMin = 5, ExclusionChance = 0.7 },
+				{ BaseID = "UnitBlock.RF.BarbarianBeastmaster", HardMax = 3, RatioMin = 0.00, RatioMax = 0.2, PartySizeMin = 5, ExclusionChance = 0.77 }
 			]
-		}
+		},
 
-		function generateIdealSize()
+		function getUpgradeChance()
 		{
-			local startingResources = this.getTopParty().getStartingResources();
-
-			if (startingResources >= 550)
-			{
-				return 12;
-			}
-			else if (startingResources >= 450)
-			{
-				return 10;
-			}
-			else if (startingResources >= 216)
-			{
-				return 8;
-			}
-			else
-			{
-				return 8;
-			}
+			return 30 + 2.5 * this.getTotal();
 		}
 	},
 	{
+		// Vanilla: Size 5-19, Cost 56-214
 		ID = "BarbarianHunters",
 		HardMin = 5,
 		DefaultFigure = "figure_wildman_01",
@@ -47,34 +32,23 @@ local parties = [
 		DynamicDefs = {
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BarbarianHunterFrontline", RatioMin = 0.60, RatioMax = 1.0 },
-				{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.20, RatioMax = 0.45 }
+				{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.25, RatioMax = 0.40 }
 			]
-		}
+		},
 
-		function generateIdealSize()
+		function getUpgradeChance()
 		{
-			local startingResources = this.getTopParty().getStartingResources();
-			if (startingResources >= 216)
-			{
-				return 12;
-			}
-			else if (startingResources >= 164)
-			{
-				return 10;
-			}
-			else
-			{
-				return 8;
-			}
+			return 30 + 2.5 * this.getTotal();
 		}
 	},
 	{
+		// Is never spawned on its own, but rather is used by vanilla to add units (in vanilla only a Barbarian King)
+		// to the party spawned by the Barbarian King Contract.
 		ID = "BarbarianKing",
 		DefaultFigure = "figure_wildman_04",
 		StaticDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.BarbarianChosen" },
-				{ BaseID = "Unit.RF.BarbarianMarauder" }  // always spawn with one reaver to make early game contracts more balanced
+				{ BaseID = "Unit.RF.BarbarianChosen" }
 			]
 		}
 	},
@@ -125,4 +99,27 @@ local parties = [
 foreach(partyDef in parties)
 {
 	::DynamicSpawns.Public.registerParty(partyDef);
+}
+
+
+local partyDef = {
+};
+
+local res = 200;
+local fixedChance = 50 + res * 0.0;
+local avg = 1;
+
+::DynamicSpawns.Public.registerParty(partyDef);
+::DynamicSpawns.Tests.FixedChance = fixedChance;
+if (avg == 1)
+{
+	::DynamicSpawns.Tests.printVanillaPartyInfo(partyDef.ID);
+	::DynamicSpawns.Tests.printVanillaSpawnAverage(partyDef.ID, res);
+	::DynamicSpawns.Tests.printSpawnAverage(partyDef.ID, res);
+}
+else
+{
+	res *= ::MSU.Math.randf(0.7, 1.0);
+	::DynamicSpawns.Tests.printVanillaSpawn(partyDef.ID, res, true);
+	::DynamicSpawns.Tests.printSpawn(partyDef.ID, res, true);
 }
