@@ -27,20 +27,26 @@ local parties = [
 		}
 	},
 	{
+		// Vanilla: Size 6-38, Cost 36-516
 		ID = "Zombies", // Spawn in Investigate Cemetary Contract, Last Stand Contract
 		HardMin = 6,
 		DefaultFigure = "figure_zombie_01",
 		MovementSpeedMult = 0.8,
 		VisibilityMult = 1.0,
 		VisionMult = 0.8,
-		UpgradeChance = 0.70,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.00, RatioMax = 1.00 }
+				{ BaseID = "UnitBlock.RF.ZombieFrontline" }
 			]
+		},
+
+		function getUpgradeChance()
+		{
+			return 20 + 2.25 * this.getTotal();
 		}
 	},
 	{
+		// Vanilla: Size 4-23, Cost 80-460
 		ID = "Ghosts",
 		HardMin = 4,
 		DefaultFigure = "figure_ghost_01",
@@ -55,35 +61,57 @@ local parties = [
 		}
 	},
 	{
+		// Vanilla: Size 7-32, Cost 54-435
 		ID = "ZombiesAndGhouls",
-		HardMin = 8,
+		HardMin = 7,
 		DefaultFigure = "figure_zombie_01",
 		MovementSpeedMult = 0.8,
 		VisibilityMult = 1.0,
 		VisionMult = 0.8,
-		UpgradeChance = 0.60,
 		DynamicDefs = {
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.00, RatioMax = 1.00 },
-				{ BaseID = "UnitBlock.RF.GhoulLowOnly", RatioMin = 0.10, RatioMax = 0.30 }
+				{ BaseID = "UnitBlock.RF.GhoulLowOnly", RatioMin = 0.15, RatioMax = 0.30 }
 			]
+		},
+
+		function onBeforeSpawnStart()
+		{
+			this.getSpawnable("Unit.RF.ZombieKnight").StartingResourceMin = 175; // Vanilla 176
+			this.getSpawnable("Unit.RF.RF_ZombieHero").StartingResourceMin = 225;
+		}
+
+		function getUpgradeChance()
+		{
+			return 5 + 3.25 * this.getTotal();
 		}
 	},
 	{
+		// Vanilla: Size 7-32, Cost 76-512
 		ID = "ZombiesAndGhosts", // Spawn in Last Stand Contract
-		HardMin = 8,
+		HardMin = 7,
 		DefaultFigure = "figure_zombie_01",
 		MovementSpeedMult = 0.8,
 		VisibilityMult = 1.0,
 		VisionMult = 0.8,
-		UpgradeChance = 0.60,
 		DynamicDefs = {
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.00, RatioMax = 1.00 },
-				{ BaseID = "UnitBlock.RF.Ghost", RatioMin = 0.12, RatioMax = 0.3 },
+				{ BaseID = "UnitBlock.RF.Ghost", RatioMin = 0.14, RatioMax = 0.3 },
 				{ BaseID = "UnitBlock.RF.Hollenhund", RatioMin = 0.00, RatioMax = 0.15, ExclusionChance = 0.33 },
 				{ BaseID = "UnitBlock.RF.Banshee", RatioMin = 0.00, ExclusionChance = 0.75 }
 			]
+		},
+
+		function onBeforeSpawnStart()
+		{
+			this.getSpawnable("Unit.RF.ZombieKnight").StartingResourceMin = 250; // Vanilla 266
+			this.getSpawnable("Unit.RF.RF_ZombieHero").StartingResourceMin = 300;
+		}
+
+		function getUpgradeChance()
+		{
+			return 40 + 1.25 * this.getTotal();
 		}
 	},
 	{
@@ -123,7 +151,8 @@ local parties = [
 							{ BaseID = "ZombieOrcs", RatioMax = 0.2, ExclusionChance = 0.8, DeterminesFigure = false }
 						]
 					}
-				}],
+				}
+			],
 			[1, {
 					ID ="NecromancerZombieOrc"
 					HardMin = 6,
@@ -155,8 +184,9 @@ local parties = [
 							{ BaseID = "ZombieOrcs", DeterminesFigure = false }
 						]
 					}
-				}]
-			])
+				}
+			]
+		])
 	},
 	{
 		ID = "NecromancerSouthern", // Can spawn in Raid Caravan Contract (5%), as secondary objective in Investigate Cemetary Contract and in Undead Crypt, Necromancer's Lair and Undead Ruins locations.

@@ -9,19 +9,19 @@ local units = [
 		ID = "Unit.RF.ZombieYeoman",
 		Troop = "ZombieYeoman",
 		Figure = "figure_zombie_02",
-		StartingResourceMin = 75
+		StartingResourceMin = 50 // Vanilla is 48 in "Zombies" party
 	},
 	{
 		ID = "Unit.RF.ZombieKnight",	 // Fallen Hero
 		Troop = "ZombieKnight",
 		Figure = "figure_zombie_03",
-		StartingResourceMin = 175
+		StartingResourceMin = 115 // Vanilla is 114 in "Zombies" party
 	},
 	{
 		ID = "Unit.RF.RF_ZombieHero",
 		Troop = "RF_ZombieHero",
 		Figure = "figure_zombie_03",
-		StartingResourceMin = 250
+		StartingResourceMin = 200
 	},
 	{
 		ID = "Unit.RF.ZombieNomad",

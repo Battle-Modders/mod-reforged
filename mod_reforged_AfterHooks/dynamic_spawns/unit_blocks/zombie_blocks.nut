@@ -3,25 +3,13 @@ local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.ZombieFrontline",
 		DynamicDefs = {
-			Units = [{ BaseID = "Unit.RF.Zombie", RatioMin = 0.05 }, { BaseID = "Unit.RF.ZombieYeoman" }, { BaseID = "Unit.RF.ZombieKnight", RatioMax = 0.3 },
-			{ BaseID = "Unit.RF.RF_ZombieHero",
-				function onBeforeSpawnStart()
-				{
-					this.RatioMax = ::MSU.Math.randf(0.2, 0.35);
-				}
-			}]
+			Units = [{ BaseID = "Unit.RF.Zombie", RatioMin = 0.05 }, { BaseID = "Unit.RF.ZombieYeoman" }, { BaseID = "Unit.RF.ZombieKnight", RatioMax = 0.3 }, { BaseID = "Unit.RF.RF_ZombieHero", RatioMax = 0.25 }]
 		}
 	},
 	{
 		ID = "UnitBlock.RF.ZombieFrontlineSouthern",
 		DynamicDefs = {
-			Units = [{ BaseID = "Unit.RF.ZombieNomad", RatioMin = 0.20 }, { BaseID = "Unit.RF.ZombieKnight", RatioMax = 0.3 },
-			{ BaseID = "Unit.RF.RF_ZombieHero",
-				function onBeforeSpawnStart()
-				{
-					this.RatioMax = ::MSU.Math.randf(0.2, 0.35);
-				}
-			}]
+			Units = [{ BaseID = "Unit.RF.ZombieNomad", RatioMin = 0.20 }, { BaseID = "Unit.RF.ZombieKnight", RatioMax = 0.3 }, { BaseID = "Unit.RF.RF_ZombieHero", RatioMax = 0.25 }]
 		}
 	},
 	{
