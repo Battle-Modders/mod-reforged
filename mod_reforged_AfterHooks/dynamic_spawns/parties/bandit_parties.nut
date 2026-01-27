@@ -1,5 +1,6 @@
 local parties = [
 	{
+		// Vanilla: Size 5-16, Cost 56-220
 		ID = "BanditRoamers", // Spawn from patrol contract and send bandit raomers action.
 		HardMin = 5,
 		DefaultFigure = "figure_bandit_01",
