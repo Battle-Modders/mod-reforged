@@ -34,12 +34,6 @@
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+10") + " [Ranged Defense|Concept.RangeDefense]")
 			},
 			{
-				id = 14,
-				type = "text",
-				icon = "ui/icons/bravery.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorPositive("+15") + " [Resolve|Concept.Bravery]")
-			},
-			{
 				id = 15,
 				type = "text",
 				icon = "ui/icons/initiative.png",
