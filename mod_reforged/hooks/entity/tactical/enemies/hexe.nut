@@ -53,11 +53,33 @@
 		local ret = __original(_killer, _loot);
 
 		// We implement our own drop rate for jade brooches, so we delete any that was spawned by vanilla
+		local itemsToChange = [
+			"misc.witch_hair",
+			"misc.mysterious_herbs",
+			"misc.poisoned_apple",
+			"misc.jade_broche"
+		]
 		for (local i = ret.len() - 1; i > 0; i--)
 		{
-			if (ret[i].getID() == "misc.jade_broche")
+			if (itemsToChange.find(ret[i].getID()) != null)
 			{
 				ret.remove(i);
+			}
+		}
+
+		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
+		{
+			local n = 3 + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0);
+
+			for (local i = 0; i < n; i++)
+			{
+				local loot = ::MSU.Class.WeightedContainer([ // new loot drops
+					[1.0, "scripts/items/misc/witch_hair_item"],
+					[1.0, "scripts/items/misc/mysterious_herbs_item"],
+					[1.0, "scripts/items/misc/poisoned_apple_item"]
+				]).rollChance(70);
+
+				if (loot != null) ret.push(::new(loot));
 			}
 		}
 
