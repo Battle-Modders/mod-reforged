@@ -93,7 +93,15 @@ this.rf_bandit_scoundrel <- ::inherit("scripts/entity/tactical/human", {
 				[1, "scripts/items/shields/wooden_shield"]
 			]).rollChance(33);
 
-			if (shield != null) this.m.Items.equip(::new(shield));
+			if (shield != null)
+			{
+				shield = ::new(shield);
+				this.m.Items.equip(shield);
+				if (::Math.rand(1, 100) <= 75)
+				{
+					shield.setCondition(::Math.floor(shield.getCondition() * ::MSU.Math.randf(0.2, 0.4)));
+				}
+			}
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
