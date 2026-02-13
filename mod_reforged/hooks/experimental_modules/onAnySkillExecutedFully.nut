@@ -76,6 +76,15 @@ local function getSchedulerInfo()
 		}
 
 		local caller = infos.locals["this"];
+
+		// If some other mod hooks ::Time.scheduleEvent or ::TacticalNavigator.teleport or switchEntities
+		// after our hook, then we want to go further up the chain to find the scheduler.
+		if (caller == ::Time || caller instanceof ::TacticalNavigator)
+		{
+			infos = ::getstackinfos(++level);
+			continue;
+		}
+
 		// if (::isKindOf(caller, "skill") && caller.m.RF_Schedule != null)
 		// {
 			// Technically we only need to return `caller` but we return the function name as well for debug logging
