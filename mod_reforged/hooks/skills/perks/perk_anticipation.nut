@@ -85,6 +85,9 @@
 
 		this.m.UsesRemaining = ::Math.max(0, this.m.UsesRemaining - 1);
 
+		if (!this.getContainer().getActor().getTile().IsVisibleForPlayer)
+			return;
+
 		if (_attacker == null)	// This can for example happen when this character receives a mortar attack.
 		{
 			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " anticipated an attack, reducing damage received by " + ::MSU.Text.colorPositive(this.m.TempDamageReduction + "%"));
