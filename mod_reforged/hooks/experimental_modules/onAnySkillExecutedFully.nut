@@ -58,8 +58,6 @@ local scheduleID = 0;
 };
 
 // Looks through the stackinfos and returns the skill which called a scheduling function e.g. ::Time.scheduleEvent.
-// This only includes skills which are present in ::Reforged.ScheduleSkills and that means only skills that are being used.
-// Returns null if the function was called by anything else.
 local function getSchedulerInfo()
 {
 	// 0 = "getstackinfos"; 1 = "getSchedulerInfo"; 2 = scheduler function e.g. ::Time.scheduleEvent which wants to know the skill that called it
