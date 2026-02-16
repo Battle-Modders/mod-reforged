@@ -60,9 +60,9 @@ local unitBlocks = [
 		ID = "UnitBlock.RF.BanditElite",
 		DynamicDefs = {
 			Units = ::MSU.Class.WeightedContainer([
-				[1, { BaseID = "Unit.RF.MasterArcher" }],
-				[1, { BaseID = "Unit.RF.HedgeKnight" }],
-				[1, { BaseID = "Unit.RF.Swordmaster" }]
+				[1, { BaseID = "Unit.RF.MasterArcher", StartingResourceMin = 320 }],
+				[1, { BaseID = "Unit.RF.HedgeKnight", StartingResourceMin = 320 }],
+				[1, { BaseID = "Unit.RF.Swordmaster", StartingResourceMin = 320 }]
 			])
 		}
 	},

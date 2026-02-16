@@ -84,18 +84,15 @@ local units = [
 	},
 	{
 		ID = "Unit.RF.MasterArcher",
-		Troop = "MasterArcher",
-		StartingResourceMin = 320
+		Troop = "MasterArcher"
 	},
 	{
 		ID = "Unit.RF.HedgeKnight",
-		Troop = "HedgeKnight",
-		StartingResourceMin = 320
+		Troop = "HedgeKnight"
 	},
 	{
 		ID = "Unit.RF.Swordmaster",
-		Troop = "Swordmaster",
-		StartingResourceMin = 320
+		Troop = "Swordmaster"
 	}
 ]
 
