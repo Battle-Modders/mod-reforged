@@ -22,6 +22,9 @@
 ::Const.World.Spawn.Troops.BanditLeader.Strength = 40; // vanilla 30
 ::Const.World.Spawn.Troops.BanditLeader.Cost = 40; // vanilla 25
 
+//Beast
+::Const.World.Spawn.Troops.Kraken.Strength = 1000;
+
 //Civilian
 ::Const.World.Spawn.Troops.HedgeKnight.Strength = 45; // vanilla 40
 ::Const.World.Spawn.Troops.HedgeKnight.Cost = 45; // vanilla 40
@@ -197,7 +200,7 @@
 	RF_VampireLord = {
 		ID = ::Const.EntityType.RF_VampireLord,
 		Variant = 1,
-		Strength = 50,
+		Strength = 80,
 		Cost = 50,
 		Row = 2,
 		Script = "scripts/entity/tactical/enemies/rf_vampire_lord",
