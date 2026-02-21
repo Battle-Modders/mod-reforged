@@ -1,4 +1,4 @@
-this.rf_vampire_bite_skill <- ::inherit("scripts/skills/actives/skill", {
+this.rf_vampire_bite_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		ChanceToHitHeadAdd = 35,
 		MeleeSkillAdd = 15
