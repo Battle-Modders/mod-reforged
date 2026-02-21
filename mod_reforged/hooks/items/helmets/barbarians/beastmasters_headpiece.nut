@@ -1,4 +1,4 @@
-::Reforged.HooksMod.hook("scripts/items/helmets/beastmasters_headpiece", function(q) {
+::Reforged.HooksMod.hook("scripts/items/helmets/barbarians/beastmasters_headpiece", function(q) {
 	q.create = @(__original) { function create()
 	{
 		__original();

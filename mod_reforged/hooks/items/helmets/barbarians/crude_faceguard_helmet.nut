@@ -1,4 +1,4 @@
-::Reforged.HooksMod.hook("scripts/items/helmets/closed_scrap_metal_helmet", function(q) {
+::Reforged.HooksMod.hook("scripts/items/helmets/barbarians/crude_faceguard_helmet", function(q) {
 	q.create = @(__original) { function create()
 	{
 		__original();

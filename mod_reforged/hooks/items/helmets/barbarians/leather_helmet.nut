@@ -1,4 +1,4 @@
-::Reforged.HooksMod.hook("scripts/items/helmets/leather_helmet", function(q) {
+::Reforged.HooksMod.hook("scripts/items/helmets/barbarians/leather_helmet", function(q) {
 	q.create = @(__original) { function create()
 	{
 		__original();
