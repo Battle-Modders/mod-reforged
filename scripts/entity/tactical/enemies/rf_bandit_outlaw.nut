@@ -2,7 +2,7 @@ this.rf_bandit_outlaw <- ::inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = ::Const.EntityType.RF_BanditOutlaw;
+		this.m.Type = ::Const.EntityType.BanditRaider;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.RF_BanditOutlaw.XP;
 		this.human.create();
