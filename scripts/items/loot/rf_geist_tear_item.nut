@@ -13,59 +13,14 @@ this.rf_geist_tear_item <- ::inherit("scripts/items/item", {
 		this.m.Value = 300;
 	}
 
-	function getTooltip()
+	function getSellPriceMult()
 	{
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
-			{
-				id = 66,
-				type = "text",
-				text = this.getValueString()
-			}
-		];
+		return this.World.State.getCurrentTown().getBeastPartsPriceMult();
 	}
 
-	function getBuyPrice()
+	function getBuyPriceMult()
 	{
-		if (this.m.IsSold)
-		{
-			return this.getSellPrice();
-		}
-
-		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null)
-		{
-			return ::Math.max(this.getSellPrice(), ::Math.ceil(this.getValue() * 1.5 * ::World.State.getCurrentTown().getBuyPriceMult() * ::World.State.getCurrentTown().getBeastPartsPriceMult()));
-		}
-		else
-		{
-			return ::Math.ceil(this.getValue());
-		}
-	}
-
-	function getSellPrice()
-	{
-		if (this.m.IsBought)
-		{
-			return this.getBuyPrice();
-		}
-
-		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null)
-		{
-			return ::Math.floor(this.getValue() * ::Const.World.Assets.BaseLootSellPrice * ::World.State.getCurrentTown().getSellPriceMult() * ::World.State.getCurrentTown().getBeastPartsPriceMult() * ::Const.Difficulty.SellPriceMult[::World.Assets.getEconomicDifficulty()]);
-		}
-		else
-		{
-			return ::Math.floor(this.getValue());
-		}
+		return this.World.State.getCurrentTown().getBeastPartsPriceMult();
 	}
 
 	function playInventorySound( _eventType )
