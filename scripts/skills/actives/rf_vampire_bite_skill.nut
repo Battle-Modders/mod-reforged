@@ -83,7 +83,7 @@ this.rf_vampire_bite_skill <- ::inherit("scripts/skills/skill", {
 			_properties.DamageArmorMult *= 0.5;
 			_properties.HitChance[::Const.BodyPart.Head] += this.m.ChanceToHitHeadAdd;
 			_properties.MeleeSkill += this.m.MeleeSkillAdd;
-			this.m.HitChanceBonus += MeleeSkillAdd;
+			this.m.HitChanceBonus += this.m.MeleeSkillAdd;
 		}
 	}
 });
