@@ -14,6 +14,9 @@
 ::Reforged.checkConflictWithFilename <- { function checkConflictWithFilename()
 {
 	local conflicts = {
+		// Better Combat Log by AllanniaBB. https://www.nexusmods.com/battlebrothers/mods/105.
+		// Overwrites actor.onMovementFinish which breaks our onAnySkillExecutedFully scheduling system for switchEntities.
+		"mod_better_combat_log": "Better Combat Log is incompatible with Reforged as it overwrites functions in the actor class that break Reforged behavior. For a compatible mod that shows morale checks in the combat log use MoraleCheck Log by UnauthorizedShell from https://www.nexusmods.com/battlebrothers/mods/663",
 		// Detailed Status Effects by LiaAshborn. https://www.nexusmods.com/battlebrothers/mods/103
 		// Incompatible because it overwrites getTooltip of actor and player and causes Reforged tactical tooltip to not work.
 		"mod_detailed_status_effects": "Detailed Status Effects is incompatible with Reforged. Reforged has its own tactical tooltip which shows the detailed information via nested tooltips.",
