@@ -21,6 +21,7 @@ this.rf_arbalester_heavy <- ::inherit("scripts/entity/tactical/human" {
 		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.RF_ArbalesterHeavy);
+		b.TargetAttractionMult = 1.1;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
