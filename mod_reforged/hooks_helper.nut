@@ -87,4 +87,78 @@
 			_properties.DamageArmorMult += this.m.RF_Weapon.m.ArmorDamageMult - weapon.m.ArmorDamageMult;
 		}}.onAnySkillUsed;
 	}
+
+	// For certain skills vanilla adjusts the damage related fields in _properties during onUpdate
+	// instead of during onAnySkillUsed. This is problematic when a skill wants to display or communicate
+	// its damage output. This is relevant for example in nested tooltips. We move such damage
+	// modifications to onAnySkillUsed which is also a vanilla style of doing it which vanilla uses
+	// in certain skills and is a superior method.
+	function moveDamageToOnAnySkillUsed( q )
+	{
+		q.m.__RF_DamageRegularMinAdd <- 0;
+		q.m.__RF_DamageRegularMaxAdd <- 0;
+		q.m.__RF_DamageArmorMult <- 1.0;
+		q.m.__RF_IsArmorMultAdditive <- false;
+
+		q.onUpdate = @(__original) { function onUpdate( _properties )
+		{
+			local old_DamageRegularMin = _properties.DamageRegularMin;
+			local old_DamageRegularMax = _properties.DamageRegularMax;
+			local old_DamageArmorMult = _properties.DamageArmorMult;
+
+			// Set DamageArmorMult to a large value so that we can detect whether __original changes it
+			// additively or not. Note: Multiplicative changes by __original or "setting" to a value are treated identically.
+			_properties.DamageArmorMult = 10000.0;
+
+			__original(_properties);
+
+			this.m.__RF_IsArmorMultAdditive = _properties.DamageArmorMult > 9999 && _properties.DamageArmorMult <= 10001;
+			if (this.m.__RF_IsArmorMultAdditive)
+			{
+				this.m.__RF_DamageArmorMult = (_properties.DamageArmorMult - 10000.0) - old_DamageArmorMult;
+			}
+			else
+			{
+				this.m.__RF_DamageArmorMult = (_properties.DamageArmorMult / 10000.0) / old_DamageArmorMult;
+			}
+
+			this.m.__RF_DamageRegularMinAdd = _properties.DamageRegularMin - old_DamageRegularMin;
+			this.m.__RF_DamageRegularMaxAdd = _properties.DamageRegularMax - old_DamageRegularMax;
+
+			_properties.DamageRegularMin = old_DamageRegularMin;
+			_properties.DamageRegularMax = old_DamageRegularMax;
+			_properties.DamageArmorMult = old_DamageArmorMult;
+		}}.onUpdate;
+
+		q.onAnySkillUsed = @(__original) { function onAnySkillUsed( _skill, _targetEntity, _properties )
+		{
+			__original(_skill, _targetEntity, _properties);
+			if (_skill == this)
+			{
+				// Remove the effect on damage from equipped weapon (relevant for e.g. goblin wolfriders or
+				// hand to hand skills used by entities that can also carry weapons)
+				// We basically revert the changes that the weapon applies inside weapon.onUpdateProperties.
+				local weapon = this.getContainer().getActor().getMainhandItem();
+				if (weapon != null && !this.getContainer().getActor().isDisarmed())
+				{
+					_properties.DamageRegularMin -= weapon.m.RegularDamage;
+					_properties.DamageRegularMax -= weapon.m.RegularDamageMax;
+					_properties.DamageArmorMult /= weapon.m.ArmorDamageMult;
+					_properties.DamageDirectAdd -= weapon.m.DirectDamageAdd;
+					_properties.HitChance[::Const.BodyPart.Head] -= weapon.m.ChanceToHitHead;
+				}
+
+				_properties.DamageRegularMin += this.m.__RF_DamageRegularMinAdd;
+				_properties.DamageRegularMax += this.m.__RF_DamageRegularMaxAdd;
+				if (this.m.__RF_IsArmorMultAdditive)
+				{
+					_properties.DamageArmorMult += this.m.__RF_DamageArmorMult;
+				}
+				else
+				{
+					_properties.DamageArmorMult *= this.m.__RF_DamageArmorMult;
+				}
+			}
+		}}.onAnySkillUsed;
+	}
 }

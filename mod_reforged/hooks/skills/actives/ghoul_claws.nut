@@ -4,4 +4,6 @@
 	{
 		return this.skill.getDefaultTooltip();
 	}}.getTooltip;
+
+	::Reforged.HooksHelper.moveDamageToOnAnySkillUsed(q);
 });
