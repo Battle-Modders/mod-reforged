@@ -109,7 +109,6 @@ local units = [
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 300,
-		Cost = 40,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SubPartyPrae", IsUsingTopPartyResources = false }
@@ -121,7 +120,6 @@ local units = [
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 325,
-		Cost = 40,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SubPartyPrae2", IsUsingTopPartyResources = false }
@@ -133,7 +131,6 @@ local units = [
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 350,
-		Cost = 40,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SubPartyPraeHonor", IsUsingTopPartyResources = false }
@@ -145,7 +142,6 @@ local units = [
 		Troop = "SkeletonPriest",
 		Figure = "figure_skeleton_04",
 		StartingResourceMin = 375,
-		Cost = 40,
 		StaticDefs = {
 			Parties = [
 				{ BaseID = "SubPartyHonor2", IsUsingTopPartyResources = false }
