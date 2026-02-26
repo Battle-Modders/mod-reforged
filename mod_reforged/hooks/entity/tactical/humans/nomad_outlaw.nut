@@ -68,6 +68,12 @@
 	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
+
+		local offhandItem = this.getOffhandItem();
+		if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
+		{
+			// missing
+		}
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}}.assignRandomEquipment;
 });
