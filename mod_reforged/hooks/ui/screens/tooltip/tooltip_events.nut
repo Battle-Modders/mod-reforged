@@ -85,6 +85,18 @@
 		return ret;
 	}}.general_queryUIElementTooltipData;
 
+	q.tactical_helper_findGroundItem = @(__original) function( _entity, _itemId )
+	{
+		if (_entity.isPlacedOnMap())
+		{
+			return __original(_entity, _itemId);
+		}
+		else	// This can happen under Reforged, when the player views a combat tooltip while the targeted character is moving (e.g. using Rotate)
+		{
+			return null;	// Fix a crash, when accessing ground items under moving entities
+		}
+	}
+
 // New Functions
 	// Adds entries to the tile tooltip about zone of control attacks at the starting and ending tiles of the previewed movement
 	q.RF_getZOCAttackTooltip <- { function RF_getZOCAttackTooltip( _entity )
