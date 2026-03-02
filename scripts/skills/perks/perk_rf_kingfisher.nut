@@ -66,7 +66,8 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 
 	function onDeath( _fatalityType )
 	{
-		this.m.NetEffect.m.KingfisherPerk = null;
+		if (!::MSU.isNull(this.m.NetEffect))
+			this.m.NetEffect.m.KingfisherPerk = null;
 		this.setSpent(false, false);
 	}
 
