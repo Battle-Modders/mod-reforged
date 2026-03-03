@@ -1,6 +1,6 @@
 // Adjust Vanilla Actors
 ::MSU.Table.merge(::Const.Tactical.Actor.Footman, {
-	XP = 300, // vanilla 250
+	XP = 250,
 	ActionPoints = 9,
 	Hitpoints = 75, // vanilla 70
 	Bravery = 60,
@@ -19,7 +19,7 @@
 	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Billman, {
-	XP = 300, // vanilla 250
+	XP = 250,
 	ActionPoints = 9,
 	Hitpoints = 70,
 	Bravery = 60,
@@ -38,7 +38,7 @@
 	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Arbalester, { // Crossbowman
-	XP = 300, // vanilla 250
+	XP = 250,
 	ActionPoints = 9,
 	Hitpoints = 60,
 	Bravery = 60,
@@ -57,7 +57,7 @@
 	FatigueRecoveryRate = 15
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Greatsword, { // Zweihander
-	XP = 475, // vanilla 350
+	XP = 400, // vanilla 350: Stronger enemy than vanilla
 	ActionPoints = 9,
 	Hitpoints = 90,
 	Bravery = 70,
@@ -76,7 +76,7 @@
 	FatigueRecoveryRate = 15 // vanilla 20
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Sergeant, {
-	XP = 400, // vanilla 350
+	XP = 350,
 	ActionPoints = 9,
 	Hitpoints = 120, // vanilla 100
 	Bravery = 80,
@@ -95,7 +95,7 @@
 	FatigueRecoveryRate = 15 // vanilla 20
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.StandardBearer, {
-	XP = 300, // vanilla 250
+	XP = 250,
 	ActionPoints = 9,
 	Hitpoints = 80,
 	Bravery = 90,
@@ -114,7 +114,7 @@
 	FatigueRecoveryRate = 15 // vanilla 20
 });
 ::MSU.Table.merge(::Const.Tactical.Actor.Knight, {
-	XP = 600, // vanilla 450
+	XP = 450,
 	ActionPoints = 9,
 	Hitpoints = 135,
 	Bravery = 100, // vanilla 90
@@ -154,7 +154,7 @@
 
 // New Reforged Actors
 ::Const.Tactical.Actor.RF_FootmanHeavy <- {
-	XP = 400,
+	XP = 300,
 	ActionPoints = 9,
 	Hitpoints = 85,
 	Bravery = 70,
@@ -173,7 +173,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_BillmanHeavy <- { // Halberdier
-	XP = 400,
+	XP = 300,
 	ActionPoints = 9,
 	Hitpoints = 80,
 	Bravery = 70,
@@ -192,7 +192,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_ArbalesterHeavy <- { // Arbalester
-	XP = 350,
+	XP = 300,
 	ActionPoints = 9,
 	Hitpoints = 70,
 	Bravery = 60,
@@ -211,7 +211,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_ManAtArms <- {
-	XP = 475,
+	XP = 400,
 	ActionPoints = 9,
 	Hitpoints = 90,
 	Bravery = 70,
@@ -230,7 +230,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_Fencer <- {
-	XP = 475,
+	XP = 400,
 	ActionPoints = 9,
 	Hitpoints = 60,
 	Bravery = 70,
@@ -249,7 +249,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_Herald <- {
-	XP = 400,
+	XP = 350,
 	ActionPoints = 9,
 	Hitpoints = 80,
 	Bravery = 90,
@@ -268,7 +268,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_Marshal <- {
-	XP = 550,
+	XP = 475,
 	ActionPoints = 9,
 	Hitpoints = 150,
 	Bravery = 100,
@@ -287,7 +287,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_KnightAnointed <- {
-	XP = 800,
+	XP = 600,
 	ActionPoints = 9,
 	Hitpoints = 150,
 	Bravery = 120,
@@ -306,7 +306,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_HeraldsBodyguard <- { // Royal Guard
-	XP = 550,
+	XP = 475,
 	ActionPoints = 9,
 	Hitpoints = 120,
 	Bravery = 90,
@@ -325,7 +325,7 @@
 	FatigueRecoveryRate = 15
 };
 ::Const.Tactical.Actor.RF_Squire <- {
-	XP = 350,
+	XP = 275,
 	ActionPoints = 9,
 	Hitpoints = 80,
 	Bravery = 60,
