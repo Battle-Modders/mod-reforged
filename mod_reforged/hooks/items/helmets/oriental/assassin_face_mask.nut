@@ -2,6 +2,6 @@
 	q.create = @(__original) { function create()
 	{
 		__original();
-		this.m.Vision = -3; // vanilla -1
+		this.m.Vision = -2; // vanilla -1
 	}}.create;
 });
