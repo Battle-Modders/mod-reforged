@@ -1,5 +1,6 @@
 local parties = [
 	{
+		// Vanilla: Size 4-26, Cost 52-625
 		ID = "UndeadArmy",
 		Variants = ::MSU.Class.WeightedContainer([
 			[3, {
@@ -10,39 +11,23 @@ local parties = [
 				VisibilityMult = 1.0,
 				VisionMult = 1.0
 
-				function generateIdealSize()
-				{
-					local startingResources = this.getTopParty().getStartingResources();
-					if (startingResources >= 500)
-					{
-						return 12;
-					}
-					else if (startingResources >= 400)
-					{
-						return 10;
-					}
-					else if (startingResources >= 350)
-					{
-						return 9;
-					}
-					else
-					{
-						return 10;
-					}
-				}
-
 				DynamicDefs = {
 					UnitBlocks = [
 						{ BaseID = "UnitBlock.RF.SkeletonFrontline", RatioMin = 0.40, RatioMax = 1.0 },
 						{ BaseID = "UnitBlock.RF.SkeletonBackline", RatioMin = 0.00, RatioMax = 0.40 },
-						{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.00, RatioMax = 0.30, function getSpawnWeight(){ return base.getSpawnWeight() * 0.3 } },
-						{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.00, RatioMax = 0.30, ExclusionChance = 0.75, StartingResourceMin = 220, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 }, function getUpgradeWeight(){ return base.getUpgradeWeight() * 0.2 } },
+						{ BaseID = "UnitBlock.RF.SkeletonElite",
+							function onBeforeSpawnStart()
+							{
+								this.RatioMax = this.getTopParty().getStartingResources() * 0.0005; // 600 resources = 0.3
+							}
+						},
+						{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.00, RatioMax = 0.30, PartySizeMin = 10, ExclusionChance = 0.75, StartingResourceMin = 200 },
 						{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMin = 0.00, RatioMax = 0.20, HardMax = 3, StartingResourceMin = 180, PartySizeMin = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
-						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMin = 0.00, RatioMax = 0.15, HardMax = 2, StartingResourceMin = 250, PartySizeMin = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } },
-						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMin = 0.00, RatioMax = 0.10, HardMax = 1, StartingResourceMin = 300, PartySizeMin = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } },
-						{ BaseID = "UnitBlock.RF.SkeletonSupport", RatioMin = 0.00, RatioMax = 0.10, PartySizeMin = 6, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } }
+						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMin = 0.00, RatioMax = 0.15, HardMax = 2, StartingResourceMin = 250, PartySizeMin = 9, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } },
+						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMin = 0.00, RatioMax = 0.10, HardMax = 1, StartingResourceMin = 300, PartySizeMin = 12, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } },
+						{ BaseID = "UnitBlock.RF.SkeletonSupport", RatioMin = 0.00, RatioMax = 0.10, HardMax = 2, PartySizeMin = 12, ExclusionChance = 0.45 }
 					]
-				}
+				},
 			}],
 			[1, {
 				ID = "UndeadArmy_1",
@@ -53,17 +38,12 @@ local parties = [
 				VisionMult = 1.0,
 				StartingResourceMin = 300,
 
-				function generateIdealSize()
-				{
-					return 8;
-				}
-
 				DynamicDefs = {
 					UnitBlocks = [
 						{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 1.00 },
-						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, StartingResourceMin = 250, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
-						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, StartingResourceMin = 300, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } },
-						{ BaseID = "UnitBlock.RF.SkeletonSupport", RatioMin = 0.00, RatioMax = 0.20, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } }
+						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
+						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } },
+						{ BaseID = "UnitBlock.RF.SkeletonSupport", RatioMax = 0.20, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } }
 					]
 				}
 			}],
@@ -76,14 +56,9 @@ local parties = [
 				VisionMult = 1.0,
 				StartingResourceMin = 250,
 
-				function generateIdealSize()
-				{
-					return 8;
-				}
-
 				DynamicDefs = {
 					UnitBlocks = [
-						{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.80 },
+						{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 1.0 },
 						{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.40, StartingResourceMin = 220 },
 						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, HardMax = 2, StartingResourceMin = 250, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
 						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, HardMax = 1, StartingResourceMin = 300, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } },
@@ -100,15 +75,10 @@ local parties = [
 				VisionMult = 1.0,
 				StartingResourceMin = 250,
 
-				function generateIdealSize()
-				{
-					return 8;
-				}
-
 				DynamicDefs = {
 					UnitBlocks = [
 						{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 1.00 },
-						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, HardMax = 2, StartingResourceMin = 180, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
+						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, HardMax = 2, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
 						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, HardMax = 1, StartingResourceMin = 300, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } }
 					]
 				}
