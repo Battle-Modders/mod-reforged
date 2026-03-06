@@ -35,12 +35,12 @@
 ::Const.World.Spawn.Troops.BanditLeader.Cost = 40; // vanilla 25
 
 //Civilian
-::Const.World.Spawn.Troops.HedgeKnight.Strength = 45; // vanilla 40
-::Const.World.Spawn.Troops.HedgeKnight.Cost = 45; // vanilla 40
-::Const.World.Spawn.Troops.MasterArcher.Strength = 45; // vanilla 40
-::Const.World.Spawn.Troops.MasterArcher.Cost = 45; // vanilla 40
-::Const.World.Spawn.Troops.Swordmaster.Strength = 45; // vanilla 40
-::Const.World.Spawn.Troops.Swordmaster.Cost = 45; // vanilla 40
+// ::Const.World.Spawn.Troops.HedgeKnight.Strength = 45; // vanilla 40
+// ::Const.World.Spawn.Troops.HedgeKnight.Cost = 45; // vanilla 40
+// ::Const.World.Spawn.Troops.MasterArcher.Strength = 45; // vanilla 40
+// ::Const.World.Spawn.Troops.MasterArcher.Cost = 45; // vanilla 40
+// ::Const.World.Spawn.Troops.Swordmaster.Strength = 45; // vanilla 40
+// ::Const.World.Spawn.Troops.Swordmaster.Cost = 45; // vanilla 40
 
 //Nobles
 ::Const.World.Spawn.Troops.Footman.Strength = 25; // vanilla 20
@@ -48,8 +48,9 @@
 ::Const.World.Spawn.Troops.Arbalester.Strength = 25; // Crossbowman - vanilla 20
 ::Const.World.Spawn.Troops.StandardBearer.Row = 3; // vanilla 2
 ::Const.World.Spawn.Troops.Sergeant.Strength = 40; // vanilla 30
-::Const.World.Spawn.Troops.Sergeant.Cost = 30; // vanilla 25
+// ::Const.World.Spawn.Troops.Sergeant.Cost = 30; // vanilla 25
 ::Const.World.Spawn.Troops.Greatsword.Strength = 35; // vanilla 30
+::Const.World.Spawn.Troops.Greatsword.Cost = 30; // vanilla 25: this is a stronger unit than vanilla
 ::Const.World.Spawn.Troops.Greatsword.Variant = 1; // vanilla 0
 ::Const.World.Spawn.Troops.Greatsword.NameList <- ::Const.Strings.CharacterNames;
 ::Const.World.Spawn.Troops.Greatsword.TitleList <- ::Const.Strings.RF_ZweihanderTitles;
@@ -353,7 +354,7 @@
 		ID = ::Const.EntityType.RF_FootmanHeavy,
 		Variant = 0,
 		Strength = 40,
-		Cost = 30,
+		Cost = 28,
 		Row = 0,
 		Script = "scripts/entity/tactical/humans/rf_footman_heavy"
 	},
@@ -361,7 +362,7 @@
 		ID = ::Const.EntityType.RF_BillmanHeavy,
 		Variant = 0,
 		Strength = 40,
-		Cost = 30,
+		Cost = 28,
 		Row = 1,
 		Script = "scripts/entity/tactical/humans/rf_billman_heavy"
 	},
@@ -369,7 +370,7 @@
 		ID = ::Const.EntityType.RF_ArbalesterHeavy,
 		Variant = 0,
 		Strength = 40,
-		Cost = 30,
+		Cost = 28,
 		Row = 1,
 		Script = "scripts/entity/tactical/humans/rf_arbalester_heavy"
 	},
@@ -377,7 +378,7 @@
 		ID = ::Const.EntityType.RF_ManAtArms,
 		Variant = 1,
 		Strength = 35,
-		Cost = 25,
+		Cost = 30,
 		Row = 1,
 		Script = "scripts/entity/tactical/humans/rf_man_at_arms",
 		NameList = ::Const.Strings.CharacterNames,
@@ -387,7 +388,7 @@
 		ID = ::Const.EntityType.RF_Fencer,
 		Variant = 1,
 		Strength = 35,
-		Cost = 25,
+		Cost = 30,
 		Row = 1,
 		Script = "scripts/entity/tactical/humans/rf_fencer",
 		NameList = ::Const.Strings.CharacterNames
