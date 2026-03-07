@@ -100,26 +100,3 @@ foreach(partyDef in parties)
 {
 	::DynamicSpawns.Public.registerParty(partyDef);
 }
-
-
-local partyDef = {
-};
-
-local res = 200;
-local fixedChance = 50 + res * 0.0;
-local avg = 1;
-
-::DynamicSpawns.Public.registerParty(partyDef);
-::DynamicSpawns.Tests.FixedChance = fixedChance;
-if (avg == 1)
-{
-	::DynamicSpawns.Tests.printVanillaPartyInfo(partyDef.ID);
-	::DynamicSpawns.Tests.printVanillaSpawnAverage(partyDef.ID, res);
-	::DynamicSpawns.Tests.printSpawnAverage(partyDef.ID, res);
-}
-else
-{
-	res *= ::MSU.Math.randf(0.7, 1.0);
-	::DynamicSpawns.Tests.printVanillaSpawn(partyDef.ID, res, true);
-	::DynamicSpawns.Tests.printSpawn(partyDef.ID, res, true);
-}
