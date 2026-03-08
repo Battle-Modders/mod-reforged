@@ -12,123 +12,103 @@ local parties = [
 	// },
 	{
 		ID = "RF_DraugrBarrows",
-        HardMin = 9,
-        // DefaultFigure = "figure_bandit_01",
-        StaticDefs = {
-            Units = [
-                { BaseID = "Unit.RF.RF_DraugrHuskarl" }
-            ]
-        },
-        DynamicDefs = {
-            UnitBlocks = [
-                { BaseID = "UnitBlock.RF.DraugrStandard", RatioMin = 0.00, RatioMax = 1.0 },
-                { BaseID = "UnitBlock.RF.DraugrShaman", HardMin = 1, HardMax = 1 }
-            ],
-            Units = [
-                    { BaseID = "Unit.RF.RF_DraugrThrall", function onBeforeSpawnStart() { this.HardMin = ::Math.rand(1, 5); this.HardMax = HardMin;} },
-                    { BaseID = "Unit.RF.RF_DraugrWarrior", function onBeforeSpawnStart() { this.HardMin = ::Math.rand(1, 3); this.HardMax = HardMin;} }
-             ]
-        }
+		HardMin = 9,
+		// DefaultFigure = "figure_bandit_01",
+		StaticDefs = {
+			Units = [
+				{ BaseID = "Unit.RF.RF_DraugrHuskarl" }
+			]
+		},
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.DraugrStandard", RatioMin = 0.00, RatioMax = 1.0 },
+				{ BaseID = "UnitBlock.RF.DraugrShaman", HardMin = 1, HardMax = 1 }
+			],
+			Units = [
+					{ BaseID = "Unit.RF.RF_DraugrThrall", function onBeforeSpawnStart() { this.HardMin = ::Math.rand(1, 5); this.HardMax = HardMin;} },
+					{ BaseID = "Unit.RF.RF_DraugrWarrior", function onBeforeSpawnStart() { this.HardMin = ::Math.rand(1, 3); this.HardMax = HardMin;} }
+			 ]
+		}
 
-        function onBeforeSpawnStart()
-        {
-            this.getSpawnable("Unit.RF.RF_DraugrHuskarl").StartingResourceMin = 5000; // we want Barrows to have 1 Huskarl only
-        }
+		function onBeforeSpawnStart()
+		{
+			this.getSpawnable("Unit.RF.RF_DraugrHuskarl").StartingResourceMin = 5000; // we want Barrows to have 1 Huskarl only
+		}
 
-        function getUpgradeChance()
-        {
-        	if (this.getTopParty().getStartingResources() >= 600)
-            {
-                return 60;
-            }
-            else
-            {
-                return 15;
-            }
-        }
-    },
+		function getUpgradeChance()
+		{
+			if (this.getTopParty().getStartingResources() >= 600)
+			{
+				return 60;
+			}
+			else
+			{
+				return 15;
+			}
+		}
+	},
 	{
+		// Thrall/Warrior/Huskarl ratio goes from 0.84/1/0.55 at 400 to 0.37/1/0.63 at 1200.
 		ID = "RF_DraugrCrypt",
         // DefaultFigure = "figure_bandit_01",
-        UpgradeFactor = 7.0,
         StaticDefs = {
             Units = [
                 { BaseID = "Unit.RF.RF_DraugrHero" }
             ]
         },
         DynamicDefs = {
-            Units = [
-                { BaseID = "Unit.RF.RF_DraugrThrall"
-                    function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() > 800 ? 0.50 : 1.0); }
-                },
-                { BaseID = "Unit.RF.RF_DraugrWarrior"
-                    function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() > 800 ? 1.0 : 1.2); }
-                },
-                { BaseID = "Unit.RF.RF_DraugrHuskarl"
-                    function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() > 800 ? 0.60 : 0.58); }
-                }
-            ],
             UnitBlocks = [
+                { BaseID = "UnitBlock.RF.DraugrStandard", RatioMin = 0.00, RatioMax = 1.0 },
                 { BaseID = "UnitBlock.RF.DraugrShaman", HardMin = 1, HardMax = 1 }
             ]
         }
 
 		function getUpgradeChance()
 		{
-			return 50; // not actually used as the party does not allow for upgrades
+			return this.getTotal() * ::Math.maxf(3.0, 7.0 - 0.000001 * ::Math.pow(this.getTopParty().getStartingResources(), 2.25));
 		}
-		// Thrall/Warrior/Huskarl ratio at 800 goes from 1/1/0.5 to 0.75/1/0.75
 	},
 	{
 		ID = "RF_DraugrFane",
-        // DefaultFigure = "figure_bandit_01",
-        StaticDefs = {
-            Units = [
-                { BaseID = "Unit.RF.RF_DraugrHeroChampion" }
-            ]
-        },
-        DynamicDefs = {
-            Units = [
-                { BaseID = "Unit.RF.RF_DraugrHero",
-                    function onBeforeSpawnStart()
-                    {
-                        local c = ::MSU.Class.WeightedContainer([
-                            [60, 1], // Weight, Output
-                            [30, 2],
-                            [10, 3]
-                        ]);
+		// DefaultFigure = "figure_bandit_01",
+		StaticDefs = {
+			Units = [
+				{ BaseID = "Unit.RF.RF_DraugrHeroChampion" }
+			]
+		},
+		DynamicDefs = {
+			Units = [
+				{ BaseID = "Unit.RF.RF_DraugrHero",
+					function onBeforeSpawnStart()
+					{
+						local c = ::MSU.Class.WeightedContainer([
+							[60, 1], // Weight, Output
+							[30, 2],
+							[10, 3]
+						]);
 
-                        if (this.getTopParty().getStartingResources() >= 900)
-                        {
-                            c.add(1, 15); // Output, Weight
-                            c.add(2, 50);
-                            c.add(3, 35);
-                        }
+						if (this.getTopParty().getStartingResources() >= 900)
+						{
+							c.add(1, 15); // Output, Weight
+							c.add(2, 50);
+							c.add(3, 35);
+						}
 
-                        this.HardMin = c.roll();
-                        this.HardMax = this.HardMin;
-                    },
-                },
-                { BaseID = "Unit.RF.RF_DraugrThrall"
-                    function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() > 1000 ? 0.4 : 0.35); }
-                },
-                { BaseID = "Unit.RF.RF_DraugrWarrior"
-                    function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() > 1000 ? 1 : 1); }
-                },
-                { BaseID = "Unit.RF.RF_DraugrHuskarl"
-                    function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() > 1000 ? 1.2 : 0.45); }
-                }
-            ],
-            UnitBlocks = [
-                { BaseID = "UnitBlock.RF.DraugrShaman", HardMin = 1, HardMax = 1 }
-            ]
-        }
+						this.HardMin = c.roll();
+						this.HardMax = this.HardMin;
+					},
+				}
+			],
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.DraugrStandard", RatioMin = 0.00, RatioMax = 1.0 },
+				{ BaseID = "UnitBlock.RF.DraugrShaman", HardMin = 1, HardMax = 1 }
+			]
+		}
 
-        function getUpgradeChance()
-        {
-        	return 50; // not actually used as the party does not allow for upgrades
-        }
-        // The average number of Warriors is kept roughly double that of Huskarls until 1000 resources.
+		function getUpgradeChance()
+		{
+			return this.getTotal() * ::Math.maxf(0.0, 5.0 + 0.000015 * ::Math.pow(this.getTopParty().getStartingResources(), 1.60));
+		}
 	}
 
 	// SubParties
