@@ -3,18 +3,18 @@ local units = [
 	{
 		ID = "Unit.RF.SkeletonLight",
 		Troop = "SkeletonLight",
-		Figure = "figure_rf_skeleton_light"
+		Figure = "figure_skeleton_01"
 	},
 	{
 		ID = "Unit.RF.SkeletonMedium",
 		Troop = "SkeletonMedium",
-		Figure = "figure_rf_skeleton_medium",
+		Figure = "figure_skeleton_02",
 		StartingResourceMin = 180
 	},
 	{
 		ID = "Unit.RF.SkeletonMediumPolearm",
 		Troop = "SkeletonMediumPolearm",
-		Figure = "figure_rf_skeleton_medium",
+		Figure = "figure_skeleton_02",
 		StartingResourceMin = 180
 	},
 	{
@@ -39,18 +39,6 @@ local units = [
 	},
 
 	//New in Reforged
-	{
-		ID = "Unit.RF.RF_SkeletonLightElite",
-		Troop = "RF_SkeletonLightElite",
-		Figure = "figure_rf_skeleton_light_elite",
-		StartingResourceMin = 120
-	},
-	{
-		ID = "Unit.RF.RF_SkeletonLightElitePolearm",
-		Troop = "RF_SkeletonLightElitePolearm",
-		Figure = "figure_rf_skeleton_light_elite",
-		StartingResourceMin = 120
-	},
 	{
 		ID = "Unit.RF.RF_SkeletonMediumElite",
 		Troop = "RF_SkeletonMediumElite",

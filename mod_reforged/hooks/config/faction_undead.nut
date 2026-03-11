@@ -1,84 +1,25 @@
 // Adjust Vanilla Actors
-::Reforged.Entities.editEntity("SkeletonLight", // Ancient Auxiliary
-	{
-		Strength = 17, // vanilla 14
-		Cost = 16 // vanilla 13
-	},
-	{
-		XP = 200, // vanilla 150
-		ActionPoints = 9,
-		Hitpoints = 50, // vanilla 45
-		Bravery = 55, // vanilla 70
-		Stamina = 100,
-		MeleeSkill = 60, // vanilla 55
-		RangedSkill = 0,
-		MeleeDefense = 0,
-		RangedDefense = 0,
-		Initiative = 65,
-		FatigueEffectMult = 0.0,
-		MoraleEffectMult = 0.0,
-		Armor = [
-			0,
-			0
-		]
-	},
-	function()
-	{
-		::Const.EntityIcon[::Const.EntityType.SkeletonLight] = "rf_skeleton_light_orientation";
-	}
-);
-::Reforged.Entities.editEntity("SkeletonMedium", // Ancient Legionary
-	{
-		Strength = 28, // vanilla 20
-		Cost = 28 // vanilla 20
-	},
-	{
-		XP = 300, // vanilla 250
-		ActionPoints = 9,
-		Hitpoints = 65, // vanilla 55
-		Bravery = 75, // vanilla 90
-		Stamina = 100,
-		MeleeSkill = 70, // vanilla 65
-		RangedSkill = 0,
-		MeleeDefense = 5, // vanilla 0
-		RangedDefense = 5, // vanilla 0
-		Initiative = 70, // vanilla 65
-		FatigueEffectMult = 0.0,
-		MoraleEffectMult = 0.0,
-		Armor = [
-			0,
-			0
-		]
-	},
-	function()
-	{
-		::Const.EntityIcon[::Const.EntityType.SkeletonMedium] = "rf_skeleton_medium_orientation";
-	}
-);
-::Reforged.Entities.editEntity("SkeletonMediumPolearm",
-	{
-		Strength = 28, // vanilla 20
-		Cost = 28 // vanilla 25
-	}
-);
+
 // Vanilla Honor Guard has been renamed to Praetorian as we have a higher tier unit
 // in Reforged called RF_SkeletonHeavyElite which is now called Honor Guard.
 ::Reforged.Entities.editEntity("SkeletonHeavy",
 	{
-		Strength = 40, // vanilla 30
-		Cost = 40 // vanilla 35
+		Strength = 35, // vanilla 30
+		// Prevent vanilla SkeletonHeavy from becoming a champion.
+		// We have a higher tier unit RF_SkeletonHeavyElite that can become champion instead.
+		Variant = 0, // vanilla 1
 	},
 	{
-		XP = 450, // vanilla 350
+		XP = 350,
 		ActionPoints = 9,
 		Hitpoints = 75, // vanilla 65
-		Bravery = 90, // vanilla 110
+		Bravery = 110,
 		Stamina = 100,
 		MeleeSkill = 75,
 		RangedSkill = 0,
 		MeleeDefense = 10, // vanilla 5
 		RangedDefense = 0, // vanilla 5
-		Initiative = 75, // vanilla 70
+		Initiative = 75,
 		FatigueEffectMult = 0.0,
 		MoraleEffectMult = 0.0,
 		Armor = [
@@ -91,28 +32,6 @@
 		::Const.Strings.EntityName[::Const.EntityType.SkeletonHeavy] = "Praetorian";
 		::Const.Strings.EntityNamePlural[::Const.EntityType.SkeletonHeavy] = "Praetorians";
 		::Const.EntityIcon[::Const.EntityType.SkeletonHeavy] = "rf_skeleton_heavy_orientation";
-	}
-);
-::Reforged.Entities.editEntity("SkeletonBoss", // The Conqueror
-	null,
-	{
-		XP = 1000, // vanilla 600
-		ActionPoints = 9,
-		Hitpoints = 350,
-		Bravery = 120,
-		Stamina = 100,
-		MeleeSkill = 90,
-		RangedSkill = 0,
-		MeleeDefense = 20,
-		RangedDefense = 10,
-		Initiative = 70,
-		FatigueEffectMult = 0.0,
-		MoraleEffectMult = 0.0,
-		Armor = [
-			0,
-			0
-		],
-		DamageTotalMult = 1.35
 	}
 );
 // We have a higher tier unit RF_ZombieHero which is the new Fallen Hero
@@ -186,8 +105,8 @@
 	::Const.FactionType.Undead,
 	{
 		Variant = 0,
-		Strength = 32,
-		Cost = 32,
+		Strength = 30,
+		Cost = 30,
 		Row = 2,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_decanus"
 	},
@@ -218,8 +137,8 @@
 	::Const.FactionType.Undead,
 	{
 		Variant = 0,
-		Strength = 44,
-		Cost = 44,
+		Strength = 40,
+		Cost = 40,
 		Row = 2,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_centurion"
 	},
@@ -277,67 +196,29 @@
 	}
 );
 ::Reforged.Entities.addEntity(
-	"RF_SkeletonLightElite", // Ancient Miles
-	"Ancient Miles",
-	"Ancient Milites",
-	"rf_skeleton_light_elite_orientation",
-	::Const.FactionType.Undead,
-	{
-		Variant = 0,
-		Strength = 22,
-		Cost = 22,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_skeleton_light_elite"
-	},
-	{
-		XP = 250,
-		ActionPoints = 9,
-		Hitpoints = 55,
-		Bravery = 65,
-		Stamina = 100,
-		MeleeSkill = 65,
-		RangedSkill = 0,
-		MeleeDefense = 0,
-		RangedDefense = 0,
-		Initiative = 65,
-		FatigueEffectMult = 0.0,
-		MoraleEffectMult = 0.0,
-		Armor = [
-			0,
-			0
-		]
-	}
-);
-::Reforged.Entities.addTroop(
-	"RF_SkeletonLightElitePolearm",
-	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_SkeletonLightElite, {
-		Row = 1
-	})
-);
-::Reforged.Entities.addEntity(
-	"RF_SkeletonMediumElite", // Ancient Palatinus
-	"Ancient Palatinus",
-	"Ancient Palatini",
+	"RF_SkeletonMediumElite",
+	"Ancient Triarius",
+	"Ancient Triarii",
 	"rf_skeleton_medium_elite_orientation",
 	::Const.FactionType.Undead,
 	{
 		Variant = 0,
-		Strength = 36,
-		Cost = 36,
+		Strength = 35,
+		Cost = 35,
 		Row = 0,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_medium_elite"
 	},
 	{
 		XP = 350,
 		ActionPoints = 9,
-		Hitpoints = 70,
-		Bravery = 85,
+		Hitpoints = 65,
+		Bravery = 110,
 		Stamina = 100,
 		MeleeSkill = 75,
 		RangedSkill = 0,
-		MeleeDefense = 10,
-		RangedDefense = 10,
-		Initiative = 80,
+		MeleeDefense = 5,
+		RangedDefense = 5,
+		Initiative = 75,
 		FatigueEffectMult = 0.0,
 		MoraleEffectMult = 0.0,
 		Armor = [
@@ -353,20 +234,20 @@
 	})
 );
 ::Reforged.Entities.addEntity(
-	"RF_SkeletonHeavyElite", // Ancient Praetorian
+	"RF_SkeletonHeavyElite",
 	"Ancient Honor Guard",
 	"Ancient Honor Guards",
 	"skeleton_heavy_orientation",
 	::Const.FactionType.Undead,
 	{
 		Variant = 0,
-		Strength = 50,
-		Cost = 50,
+		Strength = 45,
+		Cost = 45,
 		Row = 1,
 		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_elite"
 	},
 	{
-		XP = 500,
+		XP = 450,
 		ActionPoints = 9,
 		Hitpoints = 90,
 		Bravery = 100,
