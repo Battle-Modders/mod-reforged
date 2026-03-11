@@ -27,8 +27,8 @@ local unitBlocks = [
 		ID = "UnitBlock.RF.SkeletonElite",
 		DynamicDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.RF_SkeletonHeavyLesser" },
 				{ BaseID = "Unit.RF.SkeletonHeavy" }
+				{ BaseID = "Unit.RF.RF_SkeletonHeavyElite" },
 			]
 		}
 	},

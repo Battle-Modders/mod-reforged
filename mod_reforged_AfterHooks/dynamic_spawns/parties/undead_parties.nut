@@ -214,7 +214,7 @@ local parties = [
 		HardMin = 1,
 		StaticDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.RF_SkeletonHeavyLesserBodyguard" }
+				{ BaseID = "Unit.RF.SkeletonHeavyBodyguard" }
 			]
 		}
 	},
@@ -223,8 +223,8 @@ local parties = [
 		HardMin = 2,
 		StaticDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.RF_SkeletonHeavyLesserBodyguard" },
-				{ BaseID = "Unit.RF.RF_SkeletonHeavyLesserBodyguard" }
+				{ BaseID = "Unit.RF.SkeletonHeavyBodyguard" },
+				{ BaseID = "Unit.RF.SkeletonHeavyBodyguard" }
 			]
 		}
 	},
@@ -233,8 +233,8 @@ local parties = [
 		HardMin = 1,
 		StaticDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.RF_SkeletonHeavyLesserBodyguard" },
-				{ BaseID = "Unit.RF.SkeletonHeavyBodyguard" }
+				{ BaseID = "Unit.RF.SkeletonHeavyBodyguard" },
+				{ BaseID = "Unit.RF.RF_SkeletonHeavyEliteBodyguard" }
 			]
 		}
 	},
@@ -243,8 +243,8 @@ local parties = [
 		HardMin = 2,
 		StaticDefs = {
 			Units = [
-				{ BaseID = "Unit.RF.SkeletonHeavyBodyguard" },
-				{ BaseID = "Unit.RF.SkeletonHeavyBodyguard" }
+				{ BaseID = "Unit.RF.RF_SkeletonHeavyEliteBodyguard" },
+				{ BaseID = "Unit.RF.RF_SkeletonHeavyEliteBodyguard" }
 			]
 		}
 	},
@@ -252,7 +252,7 @@ local parties = [
 	// 	ID = "SubPartySkeletonHeavy",
 	// 	DynamicDefs = {
 	// 		UnitBlocks = [
-	// 			{ ID = "UnitBlock.RF_SkeletonHeavyBodyguard", RatioMin = 0.01, RatioMax = 1.00 }
+	// 			{ ID = "UnitBlock.RF_SkeletonHeavyEliteBodyguard", RatioMin = 0.01, RatioMax = 1.00 }
 	// 		]
 	// 	}
 	// }

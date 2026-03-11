@@ -61,20 +61,22 @@
 		Cost = 28 // vanilla 25
 	}
 );
-::Reforged.Entities.editEntity("SkeletonHeavy", // Our Honor Guard is a higher tier unit than vanilla. The more proper comparison to vanilla Honor Guard is the SkeletonHeavyLesser (Ancient Praetorian).
+// Vanilla Honor Guard has been renamed to Praetorian as we have a higher tier unit
+// in Reforged called RF_SkeletonHeavyElite which is now called Honor Guard.
+::Reforged.Entities.editEntity("SkeletonHeavy",
 	{
-		Strength = 50, // vanilla 30
-		Cost = 50 // vanilla 35
+		Strength = 40, // vanilla 30
+		Cost = 40 // vanilla 35
 	},
 	{
-		XP = 500, // vanilla 350
+		XP = 450, // vanilla 350
 		ActionPoints = 9,
-		Hitpoints = 90, // vanilla 65
-		Bravery = 100, // vanilla 110
+		Hitpoints = 75, // vanilla 65
+		Bravery = 90, // vanilla 110
 		Stamina = 100,
-		MeleeSkill = 80, // vanilla 75
+		MeleeSkill = 75,
 		RangedSkill = 0,
-		MeleeDefense = 15, // vanilla 5
+		MeleeDefense = 10, // vanilla 5
 		RangedDefense = 0, // vanilla 5
 		Initiative = 75, // vanilla 70
 		FatigueEffectMult = 0.0,
@@ -83,6 +85,12 @@
 			0,
 			0
 		]
+	},
+	function()
+	{
+		::Const.Strings.EntityName[::Const.EntityType.SkeletonHeavy] = "Praetorian";
+		::Const.Strings.EntityNamePlural[::Const.EntityType.SkeletonHeavy] = "Praetorians";
+		::Const.EntityIcon[::Const.EntityType.SkeletonHeavy] = "rf_skeleton_heavy_orientation";
 	}
 );
 ::Reforged.Entities.editEntity("SkeletonBoss", // The Conqueror
@@ -345,27 +353,27 @@
 	})
 );
 ::Reforged.Entities.addEntity(
-	"RF_SkeletonHeavyLesser", // Ancient Praetorian
-	"Ancient Praetorian",
-	"Ancient Praetorians",
-	"rf_skeleton_heavy_lesser_orientation",
+	"RF_SkeletonHeavyElite", // Ancient Praetorian
+	"Ancient Honor Guard",
+	"Ancient Honor Guards",
+	"skeleton_heavy_orientation",
 	::Const.FactionType.Undead,
 	{
 		Variant = 0,
-		Strength = 40,
-		Cost = 40,
+		Strength = 50,
+		Cost = 50,
 		Row = 1,
-		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_lesser"
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_elite"
 	},
 	{
-		XP = 450,
+		XP = 500,
 		ActionPoints = 9,
-		Hitpoints = 75,
-		Bravery = 90,
+		Hitpoints = 90,
+		Bravery = 100,
 		Stamina = 100,
-		MeleeSkill = 75,
+		MeleeSkill = 80,
 		RangedSkill = 0,
-		MeleeDefense = 10,
+		MeleeDefense = 15,
 		RangedDefense = 0,
 		Initiative = 75,
 		FatigueEffectMult = 0.0,
@@ -377,10 +385,11 @@
 	}
 );
 ::Reforged.Entities.addTroop(
-	"RF_SkeletonHeavyLesserBodyguard",
-	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_SkeletonHeavyLesser, {
+	"RF_SkeletonHeavyEliteBodyguard",
+	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_SkeletonHeavyElite, {
+		Variant = 0,
 		Row = 2,
-		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_lesser_bodyguard"
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_elite_bodyguard"
 	})
 );
 ::Reforged.Entities.addEntity(

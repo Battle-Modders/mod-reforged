@@ -64,14 +64,14 @@ local units = [
 		StartingResourceMin = 240
 	},
 	{
-		ID = "Unit.RF.RF_SkeletonHeavyLesser",
-		Troop = "RF_SkeletonHeavyLesser",
-		Figure = "figure_rf_skeleton_heavy_lesser",
+		ID = "Unit.RF.RF_SkeletonHeavyElite",
+		Troop = "RF_SkeletonHeavyElite",
+		Figure = "figure_rf_skeleton_heavy_elite",
 		StartingResourceMin = 220
 	},
 	{
-		ID = "Unit.RF.RF_SkeletonHeavyLesserBodyguard",
-		Troop = "RF_SkeletonHeavyLesserBodyguard",
+		ID = "Unit.RF.RF_SkeletonHeavyEliteBodyguard",
+		Troop = "RF_SkeletonHeavyEliteBodyguard",
 		Figure = "figure_rf_skeleton_heavy_lesser",
 		StartingResourceMin = 220
 	},
