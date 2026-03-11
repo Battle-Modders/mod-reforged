@@ -11,7 +11,7 @@
 		MeleeSkill = 75, // vanilla 70
 		RangedSkill = 50,
 		MeleeDefense = 10,
-		RangedDefense = 0, // vanilla 5
+		RangedDefense = 5, // vanilla 5
 		Initiative = 110,
 		FatigueEffectMult = 1.0,
 		MoraleEffectMult = 1.0,
@@ -229,7 +229,7 @@
 		MeleeSkill = 80,
 		RangedSkill = 50,
 		MeleeDefense = 15,
-		RangedDefense = 0,
+		RangedDefense = 10,
 		Initiative = 120,
 		FatigueEffectMult = 1.0,
 		MoraleEffectMult = 1.0,
