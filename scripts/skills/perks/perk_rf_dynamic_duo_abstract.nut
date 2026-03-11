@@ -148,7 +148,7 @@ this.perk_rf_dynamic_duo_abstract <- ::inherit("scripts/skills/skill", {
 		}
 		else if (_skill.isAOE() && ::MSU.isEqual(_targetEntity, this.getPartner()))
 		{
-			_properties.MeleeSkillMult = 0;
+			_properties.MeleeSkillMult = 0.0001;
 			_properties.DamageTotalMult *= 0.5;
 		}
 	}
