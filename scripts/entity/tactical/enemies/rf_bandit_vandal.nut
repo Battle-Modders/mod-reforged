@@ -1,5 +1,8 @@
 this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
-	m = {},
+	m = {
+		HasNet = false,
+		IsThrower = false
+	},
 	function create()
 	{
 		this.m.Type = ::Const.EntityType.RF_BanditVandal;
@@ -10,7 +13,7 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 		this.m.Hairs = ::Const.Hair.UntidyMale;
 		this.m.HairColors = ::Const.HairColors.All;
 		this.m.Beards = ::Const.Beards.Raider;
-		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_melee_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_bandit_fast_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -34,8 +37,12 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 		this.getSprite("shield_icon").setBrightness(0.85);
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+
+		this.m.HasNet = ::Math.rand(1, 5) == 5; // 20% chance
+		this.m.IsThrower = ::Math.rand(1, 2) == 2; // 50% chance
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )
@@ -46,52 +53,53 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
+		if (this.m.HasNet && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			this.m.Items.equip(::new("scripts/items/tools/throwing_net"));
+		}
+
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/boar_spear"],
-				[1, "scripts/items/weapons/falchion"],
-				[1, "scripts/items/weapons/flail"],
-				[1, "scripts/items/weapons/hand_axe"],
-				[1, "scripts/items/weapons/military_pick"],
-				[1, "scripts/items/weapons/morning_star"],
-				[1, "scripts/items/weapons/scramasax"],
-				[1, "scripts/items/weapons/shortsword"],
+			local weapons = ::MSU.Class.WeightedContainer().addMany(1, [
+				"scripts/items/weapons/boar_spear",
+				"scripts/items/weapons/dagger",
+				"scripts/items/weapons/falchion",
+				"scripts/items/weapons/scramasax",
+			]);
 
-				[1, "scripts/items/weapons/rf_two_handed_falchion"]
-			]).roll();
-			this.m.Items.equip(::new(weapon));
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) // both hands free
+			{
+				weapons.addMany(1, [
+					"scripts/items/weapons/hooked_blade",
+					"scripts/items/weapons/pike",
+					"scripts/items/weapons/rf_reinforced_wooden_poleflail",
+					"scripts/items/weapons/warfork"
+				]);
+			}
+
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
+		if (this.m.IsThrower && this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
 		{
-			local throwing = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/throwing_spear"]
-			]).rollChance(33);
-
-			if (throwing != null) this.m.Items.addToBag(::new(throwing));
-		}
-
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
-			local shield = ::MSU.Class.WeightedContainer([
-				[3, "scripts/items/shields/wooden_shield"],
-				[1, "scripts/items/shields/kite_shield"]
+			local throwingWeapon = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/javelin"],
+				[1, "scripts/items/weapons/throwing_axe"]
 			]).roll();
 
-			this.m.Items.equip(::new(shield));
+			this.m.Items.addToBag(::new(throwingWeapon));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorBalanced.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorFast.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 65 || conditionMax > 95) return 0.0;
+					if (conditionMax > 70) return 0.0;
 					return _weight;
 				}
-			})
+			});
 
 			if (armor != null)
 			{
@@ -103,10 +111,10 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 						Apply = function ( _script, _weight )
 						{
 							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
-							if (conditionModifier > 20) return 0.0;
+							if (conditionModifier > 10) return 0.0;
 							return _weight;
 						}
-					})
+					});
 
 					if (armorAttachment != null)
 						this.getBodyItem().setUpgrade(::new(armorAttachment));
@@ -114,16 +122,16 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 			}
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) >= 20)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetBalanced.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetFast.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 40 || conditionMax > 90) return 0.0;
+					if (conditionMax > 50) return 0.0;
 					return _weight;
 				}
-			})
+			});
 			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 	}
@@ -133,7 +141,21 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Dagger))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+				this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
+				// this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));	TODO: Enable once AI behavior is implemented
+				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
+			}
+			else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Polearm))
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+			}
+			else
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+			}
 		}
 	}
 });

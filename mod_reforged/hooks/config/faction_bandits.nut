@@ -30,33 +30,7 @@
 		Strength = 8 // vanilla 9
 	}
 );
-::Reforged.Entities.editEntity("BanditThug", // reforged thug is a different design than vanilla thug
-	null,
-	{
-		XP = 150,
-		ActionPoints = 9,
-		Hitpoints = 90, // vanilla 55
-		Bravery = 50, // vanilla 40
-		Stamina = 100, // vanilla 95
-		MeleeSkill = 55,
-		RangedSkill = 45,
-		MeleeDefense = -5, // vanilla 0
-		RangedDefense = 0,
-		Initiative = 60, // vanilla 95
-		FatigueEffectMult = 1.0,
-		MoraleEffectMult = 1.0,
-		Armor = [
-			0,
-			0
-		],
-		FatigueRecoveryRate = 15
-	},
-	function()
-	{
-		::Const.EntityIcon[::Const.EntityType.BanditThug] = "rf_bandit_thug_orientation";
-	}
-);
-::Reforged.Entities.editEntity("BanditRaider",
+::Reforged.Entities.editEntity("BanditRaider", // Reforged Raider is higher tier than vanilla
 	{
 		Cost = 22, // vanilla 20
 		Strength = 28 // vanilla 20
@@ -79,10 +53,6 @@
 			0
 		],
 		FatigueRecoveryRate = 15 // vanilla 20
-	},
-	function()
-	{
-		::Const.EntityIcon[::Const.EntityType.BanditRaider] = "rf_bandit_raider_orientation";
 	}
 );
 ::Reforged.Entities.editEntity("BanditRaiderWolf",
@@ -147,8 +117,33 @@
 );
 
 // Reforged Actors
+::Reforged.Entities.addTroopAndActor(
+	"RF_BanditThugTough",
+	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.BanditThug, {
+		Script = "scripts/entity/tactical/enemies/rf_bandit_thug_tough"
+	}),
+	{
+		XP = 150,
+		ActionPoints = 9,
+		Hitpoints = 90,
+		Bravery = 50,
+		Stamina = 100,
+		MeleeSkill = 55,
+		RangedSkill = 45,
+		MeleeDefense = -5,
+		RangedDefense = 0,
+		Initiative = 60,
+		FatigueEffectMult = 1.0,
+		MoraleEffectMult = 1.0,
+		Armor = [
+			0,
+			0
+		],
+		FatigueRecoveryRate = 15
+	}
+);
 ::Reforged.Entities.addEntity(
-	"RF_BanditScoundrel",
+	"RF_BanditThugTough",
 	"Brigand Scoundrel",
 	"Brigand Scoundrels",
 	"rf_bandit_scoundrel_orientation",
@@ -181,17 +176,17 @@
 	}
 )
 ::Reforged.Entities.addEntity(
-	"RF_BanditVandal",
-	"Brigand Vandal",
-	"Brigand Vandals",
-	"rf_bandit_vandal_orientation",
+	"RF_BanditPillager",
+	"Brigand Pillager",
+	"Brigand Pillagers",
+	"rf_bandit_pillager_orientation",
 	::Const.FactionType.Bandits,
 	{
 		Variant = 0,
 		Strength = 20,
 		Cost = 18,
 		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_bandit_vandal"
+		Script = "scripts/entity/tactical/enemies/rf_bandit_pillager"
 	},
 	{
 		XP = 200,
@@ -213,19 +208,11 @@
 		FatigueRecoveryRate = 15
 	}
 );
-::Reforged.Entities.addEntity(
-	"RF_BanditPillager",
-	"Brigand Pillager",
-	"Brigand Pillagers",
-	"rf_bandit_pillager_orientation",
-	::Const.FactionType.Bandits,
-	{
-		Variant = 0,
-		Strength = 20,
-		Cost = 18,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_bandit_pillager"
-	},
+::Reforged.Entities.addTroopAndActor(
+	"RF_BanditPillagerTough",
+	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_BanditPillager, {
+		Script = "scripts/entity/tactical/enemies/rf_bandit_pillager_tough"
+	}),
 	{
 		XP = 200,
 		ActionPoints = 9,
@@ -247,17 +234,17 @@
 	}
 );
 ::Reforged.Entities.addEntity(
-	"RF_BanditRobber",
-	"Brigand Robber",
-	"Brigand Robbers",
-	"rf_bandit_robber_orientation",
+	"RF_BanditVandal",
+	"Brigand Vandal",
+	"Brigand Vandals",
+	"rf_bandit_vandal_orientation",
 	::Const.FactionType.Bandits,
 	{
 		Variant = 0,
 		Strength = 20,
 		Cost = 18,
 		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_bandit_robber"
+		Script = "scripts/entity/tactical/enemies/rf_bandit_vandal"
 	},
 	{
 		XP = 200,
@@ -279,30 +266,22 @@
 		FatigueRecoveryRate = 15
 	}
 );
-::Reforged.Entities.addEntity(
-	"RF_BanditHunter",
-	"Brigand Hunter",
-	"Brigand Hunters",
-	"rf_bandit_hunter_orientation",
-	::Const.FactionType.Bandits,
+::Reforged.Entities.addTroopAndActor(
+	"RF_BanditRaiderTough",
+	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.BanditRaider, {
+		Script = "scripts/entity/tactical/enemies/rf_bandit_raider_tough"
+	}),
 	{
-		Variant = 0,
-		Strength = 18,
-		Cost = 18,
-		Row = 1,
-		Script = "scripts/entity/tactical/enemies/rf_bandit_hunter"
-	},
-	{
-		XP = 200,
+		XP = 275,
 		ActionPoints = 9,
-		Hitpoints = 60,
-		Bravery = 45,
-		Stamina = 105,
-		MeleeSkill = 50,
-		RangedSkill = 60,
-		MeleeDefense = 0,
-		RangedDefense = 10,
-		Initiative = 105,
+		Hitpoints = 130,
+		Bravery = 70,
+		Stamina = 120,
+		MeleeSkill = 72,
+		RangedSkill = 45,
+		MeleeDefense = 5,
+		RangedDefense = 0,
+		Initiative = 75,
 		FatigueEffectMult = 1.0,
 		MoraleEffectMult = 1.0,
 		Armor = [
@@ -328,39 +307,6 @@
 	{
 		XP = 275,
 		ActionPoints = 9,
-		Hitpoints = 130,
-		Bravery = 70,
-		Stamina = 120,
-		MeleeSkill = 72,
-		RangedSkill = 45,
-		MeleeDefense = 5,
-		RangedDefense = 0,
-		Initiative = 75,
-		FatigueEffectMult = 1.0,
-		MoraleEffectMult = 1.0,
-		Armor = [
-			0,
-			0
-		],
-		FatigueRecoveryRate = 15
-	}
-);
-::Reforged.Entities.addEntity(
-	"RF_BanditBandit",
-	"Brigand Bandit",
-	"Brigand Bandits",
-	"rf_bandit_bandit_orientation",
-	::Const.FactionType.Bandits,
-	{
-		Variant = 0,
-		Strength = 28,
-		Cost = 22,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_bandit_bandit"
-	},
-	{
-		XP = 275,
-		ActionPoints = 9,
 		Hitpoints = 70,
 		Bravery = 55,
 		Stamina = 110,
@@ -379,17 +325,17 @@
 	}
 );
 ::Reforged.Entities.addEntity(
-	"RF_BanditHighwayman",
-	"Brigand Highwayman",
-	"Brigand Highwaymen",
-	"rf_bandit_highwayman_orientation",
+	"RF_BanditMarauder",
+	"Brigand Marauder",
+	"Brigand Marauder",
+	"rf_bandit_marauder_orientation",
 	::Const.FactionType.Bandits,
 	{
 		Variant = 0,
 		Strength = 36,
 		Cost = 26,
 		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_bandit_highwayman"
+		Script = "scripts/entity/tactical/enemies/rf_bandit_marauder"
 	},
 	{
 		XP = 350,
@@ -411,19 +357,11 @@
 		FatigueRecoveryRate = 15
 	}
 );
-::Reforged.Entities.addEntity(
-	"RF_BanditMarauder",
-	"Brigand Marauder",
-	"Brigand Marauders",
-	"rf_bandit_marauder_orientation",
-	::Const.FactionType.Bandits,
-	{
-		Variant = 0,
-		Strength = 36,
-		Cost = 26,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_bandit_marauder"
-	},
+::Reforged.Entities.addTroopAndActor(
+	"RF_BanditMarauderTough",
+	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_BanditMarauder, {
+		Script = "scripts/entity/tactical/enemies/rf_bandit_marauder_tough"
+	}),
 	{
 		XP = 350,
 		ActionPoints = 9,
@@ -445,17 +383,17 @@
 	}
 );
 ::Reforged.Entities.addEntity(
-	"RF_BanditKiller",
-	"Brigand Killer",
-	"Brigand Killers",
-	"rf_bandit_killer_orientation",
+	"RF_BanditHighwayman",
+	"Brigand Highwayman",
+	"Brigand Highwaymen",
+	"rf_bandit_highwayman_orientation",
 	::Const.FactionType.Bandits,
 	{
 		Variant = 0,
 		Strength = 36,
 		Cost = 26,
 		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_bandit_killer"
+		Script = "scripts/entity/tactical/enemies/rf_bandit_highwayman"
 	},
 	{
 		XP = 350,
