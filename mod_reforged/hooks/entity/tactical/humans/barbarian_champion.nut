@@ -44,26 +44,35 @@
 		this.m.Skills.add(::new("scripts/skills/actives/barbarian_fury_skill"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_adrenalin"));
-		// this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_berserk"));
-		// this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
 		// Reforged
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_savage_strength"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @(__original) { function onSpawned()
 	{
 		__original();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
-	}}.assignRandomEquipment;
+		local weapon = this.getMainhandItem();
+		if (weapon != null)
+		{
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+			if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
+			}
+		}
+	}}.onSpawned;
 });

@@ -148,7 +148,12 @@ this.rf_zombie_hero <- ::inherit("scripts/entity/tactical/enemies/zombie", {
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+			::Reforged.Skills.addAllPerkGroupsOfEquippedWeapon(this);
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword, true, true)) // pure sword
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_fast_adaption"));
+			}
 
 			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
 			{
@@ -182,20 +187,21 @@ this.rf_zombie_hero <- ::inherit("scripts/entity/tactical/enemies/zombie", {
 	{
 		this.zombie.onSkillsUpdated();
 
-		local weapon = this.getMainhandItem();
-		if (weapon == null)
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem == null)
 			return;
 
-		if (weapon.isWeaponType(::Const.Items.WeaponType.Axe))
+		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Axe))
 		{
 			this.m.Skills.removeByID("actives.rf_bearded_blade");
 			this.m.Skills.removeByID("actives.rf_hook_shield");
 		}
-		else if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
+		else if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
 		{
 			this.m.Skills.removeByID("perk.rf_bloodlust");
 		}
-		if (weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+
+		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
 		{
 			this.m.Skills.removeByID("perk.rf_tempo");
 			this.m.Skills.removeByID("actives.rf_passing_step");

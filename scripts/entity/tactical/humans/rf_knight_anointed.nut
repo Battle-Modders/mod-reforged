@@ -34,6 +34,7 @@ this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
 
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
@@ -43,7 +44,6 @@ this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
 		}));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
@@ -172,9 +172,9 @@ this.rf_knight_anointed <- ::inherit("scripts/entity/tactical/human" {
 			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_decisive"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
 		return true;
 	}
 });

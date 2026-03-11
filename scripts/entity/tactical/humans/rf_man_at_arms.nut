@@ -114,22 +114,12 @@ this.rf_man_at_arms <- ::inherit("scripts/entity/tactical/human" {
 
 	function onSpawned()
 	{
-		local weapon = this.getMainhandItem();
-		if (weapon != null)
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
 		{
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword) && weapon.isWeaponType(::Const.Items.WeaponType.Spear))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_tempo"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_sword"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_spear"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_king_of_all_weapons"));
-			}
-			else
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-			}
+			::Reforged.Skills.addAllPerkGroupsOfEquippedWeapon(this);
 
-			if (::Reforged.Items.isDuelistValid(weapon))
+			if (::Reforged.Items.isDuelistValid(mainhandItem))
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 			}

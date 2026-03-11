@@ -115,6 +115,15 @@
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes")); // Not an issue for Kriegsmesser because Cleaver NPCs get Crippling Strikes instead of Sanguinary in Cleaver Group.
+			}
+		}
 	}}.onSpawned;
 
 	q.onSkillsUpdated = @(__original) { function onSkillsUpdated()

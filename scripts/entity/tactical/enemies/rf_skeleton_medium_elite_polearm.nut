@@ -58,8 +58,10 @@ this.rf_skeleton_medium_elite_polearm <- ::inherit("scripts/entity/tactical/enem
 			if (weapon.isAoE())
 				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 			else
-				// this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up")); // Disabled due to crashing the game on a follow up kill
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+			}
 		}
 	}
 });

@@ -11,7 +11,7 @@
 		MeleeSkill = 75, // vanilla 70
 		RangedSkill = 50,
 		MeleeDefense = 10,
-		RangedDefense = 0, // vanilla 5
+		RangedDefense = 5, // vanilla 5
 		Initiative = 110,
 		FatigueEffectMult = 1.0,
 		MoraleEffectMult = 1.0,
@@ -44,7 +44,7 @@
 		MeleeSkill = 80,
 		RangedSkill = 50,
 		MeleeDefense = 15,
-		RangedDefense = 0,
+		RangedDefense = 10,
 		Initiative = 120,
 		FatigueEffectMult = 1.0,
 		MoraleEffectMult = 1.0,
@@ -371,7 +371,7 @@
 	{
 		XP = 350, // vanilla 350
 		ActionPoints = 9,
-		Hitpoints = 120, // vanilla 100
+		Hitpoints = 130, // vanilla 100
 		Bravery = 80,
 		Stamina = 130,
 		MeleeSkill = 80,
@@ -408,7 +408,7 @@
 	{
 		XP = 475,
 		ActionPoints = 9,
-		Hitpoints = 150,
+		Hitpoints = 160,
 		Bravery = 100,
 		Stamina = 140,
 		MeleeSkill = 90,

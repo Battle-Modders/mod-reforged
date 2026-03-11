@@ -44,6 +44,7 @@ this.rf_bandit_highwayman <- ::inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 
 		this.m.HasNet = ::Math.rand(1, 3) == 3; // 33% chance
 		this.m.IsRegularThrower = ::Math.rand(1, 2) == 2;  // 50% chance

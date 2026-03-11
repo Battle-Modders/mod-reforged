@@ -199,7 +199,7 @@
 		Stamina = 125,
 		MeleeSkill = 80,
 		RangedSkill = 45,
-		MeleeDefense = 10,
+		MeleeDefense = 15,
 		RangedDefense = 0,
 		Initiative = 80,
 		FatigueEffectMult = 1.0,

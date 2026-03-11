@@ -35,8 +35,8 @@
 		this.getSprite("socket").setBrush("bust_base_wildmen_01");
 		this.m.Skills.add(::new("scripts/skills/actives/barbarian_fury_skill"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
-		// this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_recover"));	// Now granted to all humans by default
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));

@@ -61,11 +61,27 @@
 		local mainhandItem = this.getMainhandItem();
 		if (mainhandItem != null)
 		{
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Dagger))
 			{
-				this.m.Skills.removeByID("actives.rf_passing_step");
+				::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 4);
+			}
+			else
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 			}
 		}
 	}}.onSpawned;
+
+	q.onSkillsUpdated = @(__original) { function onSkillsUpdated()
+	{
+		__original();
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem == null)
+			return;
+
+		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+		{
+			this.m.Skills.removeByID("actives.rf_passing_step");
+		}
+	}}.onSkillsUpdated;
 });

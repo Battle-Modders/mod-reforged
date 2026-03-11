@@ -44,7 +44,7 @@
 		this.m.Skills.add(::new("scripts/skills/actives/barbarian_fury_skill"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_adrenalin"));
-		// this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_anticipation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_berserk"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
@@ -61,6 +61,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_feral_rage"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_savage_strength"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 	}}.onInit;

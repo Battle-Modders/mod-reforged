@@ -10,7 +10,7 @@
 		MeleeSkill = 55,
 		RangedSkill = 50,
 		MeleeDefense = 0,
-		RangedDefense = 10, // vanilla 0
+		RangedDefense = 0,
 		Initiative = 115,
 		FatigueEffectMult = 1.0,
 		MoraleEffectMult = 1.0,
@@ -32,7 +32,7 @@
 		MeleeSkill = 65,
 		RangedSkill = 60,
 		MeleeDefense = 10,
-		RangedDefense = 10,
+		RangedDefense = 0, // Vanilla 10
 		Initiative = 115,
 		FatigueEffectMult = 1.0,
 		MoraleEffectMult = 1.0,
@@ -68,16 +68,16 @@
 ::Reforged.Entities.editEntity("BarbarianChosen", // Barbarian King
 	null,
 	{
-		XP = 500,
+		XP = 625, // vanilla 500
 		ActionPoints = 9,
-		Hitpoints = 150,
+		Hitpoints = 200, // vanilla 150
 		Bravery = 110,
-		Stamina = 150,
-		MeleeSkill = 80,
+		Stamina = 200, // vanilla 150
+		MeleeSkill = 90, // vanilla 80
 		RangedSkill = 65,
-		MeleeDefense = 15,
+		MeleeDefense = 25, // vanilla 15
 		RangedDefense = 0, // vanilla 10
-		Initiative = 115,
+		Initiative = 130, // vanilla 115
 		FatigueEffectMult = 1.0,
 		MoraleEffectMult = 1.0,
 		Armor = [
