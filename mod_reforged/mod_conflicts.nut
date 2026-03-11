@@ -14,6 +14,9 @@
 ::Reforged.checkConflictWithFilename <- { function checkConflictWithFilename()
 {
 	local conflicts = {
+		//"15 or 27 roster limit for all scenarios" by knowns. https://www.nexusmods.com/battlebrothers/mods/270
+		// Overwrites starting scenario files and hasn't been updated in many years.
+		"l_native scenarios to ": "15 or 27 roster limit for all scenarios is incompatible with Reforged. It overwrites various vanilla files and has not been updated in many years. Use Origin Customizer by NgGH707 instead from https://www.nexusmods.com/battlebrothers/mods/445",
 		// Better Combat Log by AllanniaBB. https://www.nexusmods.com/battlebrothers/mods/105.
 		// Overwrites actor.onMovementFinish which breaks our onAnySkillExecutedFully scheduling system for switchEntities.
 		"mod_better_combat_log": "Better Combat Log is incompatible with Reforged as it overwrites functions in the actor class that break Reforged behavior. For a compatible mod that shows morale checks in the combat log use MoraleCheck Log by UnauthorizedShell from https://www.nexusmods.com/battlebrothers/mods/663",
