@@ -9,19 +9,19 @@ local units = [
 		ID = "Unit.RF.SkeletonMedium",
 		Troop = "SkeletonMedium",
 		Figure = "figure_skeleton_02",
-		StartingResourceMin = 180
+		StartingResourceMin = 140 // Vanilla is 138 in "UndeadArmy" party
 	},
 	{
 		ID = "Unit.RF.SkeletonMediumPolearm",
 		Troop = "SkeletonMediumPolearm",
 		Figure = "figure_skeleton_02",
-		StartingResourceMin = 180
+		StartingResourceMin = 155 // Vanilla is 155 in "UndeadArmy" party
 	},
 	{
 		ID = "Unit.RF.SkeletonHeavy",
 		Troop = "SkeletonHeavy",
 		Figure = "figure_skeleton_03",
-		StartingResourceMin = 300
+		StartingResourceMin = 205 // Vanilla is 205 in "UndeadArmy" party
 	},
 	{
 		ID = "Unit.RF.SkeletonHeavyBodyguard",
@@ -35,7 +35,8 @@ local units = [
 	{
 		ID = "Unit.RF.SkeletonPriest",
 		Troop = "SkeletonPriest",
-		StartingResourceMin = 225
+		Figure = "figure_skeleton_04",
+		StartingResourceMin = 325 // Vanilla is 325 in "UndeadArmy" party
 	},
 
 	//New in Reforged
@@ -43,31 +44,31 @@ local units = [
 		ID = "Unit.RF.RF_SkeletonMediumElite",
 		Troop = "RF_SkeletonMediumElite",
 		Figure = "figure_rf_skeleton_medium_elite",
-		StartingResourceMin = 240
+		StartingResourceMin = 200
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonMediumElitePolearm",
 		Troop = "RF_SkeletonMediumElitePolearm",
 		Figure = "figure_rf_skeleton_medium_elite",
-		StartingResourceMin = 240
+		StartingResourceMin = 220
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonHeavyElite",
 		Troop = "RF_SkeletonHeavyElite",
 		Figure = "figure_rf_skeleton_heavy_elite",
-		StartingResourceMin = 220
+		StartingResourceMin = 250
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonHeavyEliteBodyguard",
 		Troop = "RF_SkeletonHeavyEliteBodyguard",
 		Figure = "figure_rf_skeleton_heavy_lesser",
-		StartingResourceMin = 220
+		StartingResourceMin = 250
 	},
 	{
 		ID = "Unit.RF.RF_VampireLord",
 		Troop = "RF_VampireLord",
 		Figure = "figure_rf_vampire_lord",
-		StartingResourceMin = 300
+		StartingResourceMin = 290
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonDecanus",
@@ -78,18 +79,13 @@ local units = [
 	{
 		ID = "Unit.RF.RF_SkeletonCenturion",
 		Troop = "RF_SkeletonCenturion",
-		Figure = "figure_rf_skeleton_centurion"
+		Figure = "figure_rf_skeleton_centurion",
+		StartingResourceMin = 225
 	},
 	{
 		ID = "Unit.RF.RF_SkeletonLegatus",
 		Troop = "RF_SkeletonLegatus",
 		Figure = "figure_rf_skeleton_legatus",
-		StartingResourceMin = 300
-	},
-	{
-		ID = "Unit.RF.SkeletonPriest",
-		Troop = "SkeletonPriest",
-		Figure = "figure_skeleton_04",
 		StartingResourceMin = 300
 	},
 	{
