@@ -1,30 +1,59 @@
 local parties = [
 	{
+		// Vanilla: Size 3-26, Cost 60-650
+		// 17/17/9    105 resources = first wolf/high.   535 = last wolf/high. 8 High is first High only.
 		ID = "Direwolves",
 		HardMin = 3,
-		UpgradeFactor = 2.8,
 		DefaultFigure = "figure_werewolf_01",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
 		DynamicDefs = {
-			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.Direwolf", RatioMin = 0.00, RatioMax = 1.00 }
+			Units = [ // Used units instead of blocks because sometimes one or the other unit is missing.
+				{ BaseID = "Unit.RF.Direwolf", //RatioMin = 0.00, RatioMax = 1.00
+				},
+				{ BaseID = "Unit.RF.DirewolfHIGH", RatioMin = 0.00, RatioMax = 1.00, StartingResourceMin = 120
+					function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() > 400 ? 0.8 : 0.12); }
+				}
 			]
+		}
+
+		function onBeforeSpawnStart()
+		{
+			if (this.getTopParty().getStartingResources() > 535) // no more standard Direwolves over 535 resources
+				{
+					this.getSpawnable("Unit.RF.Direwolf").HardMax = 0;
+				}
+			else // under 535 resources. 20% High only, 40% mixed, 40% Direwolf only
+				{
+				local r = ::Math.rand(1, 100);
+				if (r < 40)
+				{
+					if (this.getTopParty().getStartingResources() > 175) // want a chance for there to be 0 standard Direwolves over 175 resources
+					{
+						this.getSpawnable("Unit.RF.Direwolf").HardMax = 0;
+					}
+				}
+				else if (r > 80)
+				{
+					this.getSpawnable("Unit.RF.DirewolfHIGH").HardMax = 0;
+				}
+			}
 		}
 	},
 	{
-		ID = "Ghouls",
-		HardMin = 5,
-		DefaultFigure = "figure_ghoul_01",
-		MovementSpeedMult = 1.0,
-		VisibilityMult = 1.0,
-		VisionMult = 1.0,
-		DynamicDefs = {
-			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.Ghoul", RatioMin = 0.00, RatioMax = 1.00 }
-			]
-		}
+		// Vanilla: Size 1-25, Cost 45-484; Vanilla has a spawn with 1 ghoul high only. Also appears in 5/0/1
+        ID = "Ghouls",
+        HardMin = 5,
+        DefaultFigure = "figure_ghoul_01",
+        MovementSpeedMult = 1.0,
+        VisibilityMult = 1.0,
+        VisionMult = 1.0,
+        DynamicDefs = {
+        	UnitBlocks = [
+        		{ BaseID = "UnitBlock.RF.Ghoul", RatioMin = 0.00, RatioMax = 1.00 }
+        	]
+        }
 	},
 	{
 		ID = "Lindwurm",
