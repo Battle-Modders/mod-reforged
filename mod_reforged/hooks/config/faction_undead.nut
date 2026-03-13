@@ -292,7 +292,7 @@
 		TitleList = ::Const.Strings.RF_VampireLordTitles
 	},
 	{
-		XP = 500,
+		XP = 700,
 		ActionPoints = 9,
 		Hitpoints = 300,
 		Bravery = 100,
