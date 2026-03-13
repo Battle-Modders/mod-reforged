@@ -2194,7 +2194,7 @@ local vanillaDescriptions = [
 				"Every attack with flails increases your current [Reach|Concept.Reach] by " + ::MSU.Text.colorPositive("+1") + " until your next [turn|Concept.Turn].",
 				"With two-handed flails, when attacking a target who has lower current [Reach|Concept.Reach] than you, gain " + ::MSU.Text.colorPositive("+10%") + " chance to hit the head per difference in current [Reach|Concept.Reach] between you and the target.",
 				"During your [turn|Concept.Turn], when attacking with one-handed flails, perform a free extra attack with " + ::MSU.Text.colorNegative("50%") + " less damage against a different adjacent enemy who has lower current [Reach|Concept.Reach] than you. This extra attack does not increase your [Reach|Concept.Reach].",
-				"Does not take into account abilities which ignore or modify [Reach|Concept.Reach] during an attack."
+				"Uses [Reach|Concept.Reach] at the beginning of the attack for trigger checks."
 			]
 		}]
 	})
