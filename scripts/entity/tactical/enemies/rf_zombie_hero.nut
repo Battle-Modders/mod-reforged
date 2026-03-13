@@ -161,6 +161,9 @@ this.rf_zombie_hero <- ::inherit("scripts/entity/tactical/enemies/zombie", {
 
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
 			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_fast_adaption"));
+
 				if (::Reforged.Items.isDuelistValid(mainhandItem))
 				{
 					this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
