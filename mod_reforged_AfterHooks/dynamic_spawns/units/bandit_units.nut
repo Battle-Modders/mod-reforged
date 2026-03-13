@@ -43,12 +43,6 @@ local units = [
 		Figure = "figure_bandit_02" // Vanilla bandit thug figure
 	},
 	{
-		ID = "Unit.RF.RF_BanditVandal",
-		Troop = "RF_BanditVandal",
-		Figure = "figure_rf_bandit_vandal",
-		StartingResourceMin = 100
-	},
-	{
 		ID = "Unit.RF.RF_BanditPillager",
 		Troop = "RF_BanditPillager",
 		Figure = "figure_rf_bandit_pillager",
@@ -59,6 +53,12 @@ local units = [
 		Troop = "RF_BanditPillagerTough",
 		Figure = "figure_rf_bandit_pillager",
 		StartingResourceMin = 140
+	},
+	{
+		ID = "Unit.RF.RF_BanditVandal",
+		Troop = "RF_BanditVandal",
+		Figure = "figure_rf_bandit_vandal",
+		StartingResourceMin = 100
 	},
 	{
 		ID = "Unit.RF.RF_BanditRaiderTough",
@@ -73,6 +73,12 @@ local units = [
 		StartingResourceMin = 150
 	},
 	{
+		ID = "Unit.RF.RF_BanditSharpshooter",
+		Troop = "RF_BanditSharpshooter",
+		Figure = "figure_rf_bandit_sharpshooter",
+		StartingResourceMin = 225
+	},
+	{
 		ID = "Unit.RF.RF_BanditMarauder",
 		Troop = "RF_BanditMarauder",
 		Figure = "figure_rf_bandit_marauder",
@@ -83,12 +89,6 @@ local units = [
 		Troop = "RF_BanditMarauderTough",
 		Figure = "figure_rf_bandit_marauder",
 		StartingResourceMin = 250
-	},
-	{
-		ID = "Unit.RF.RF_BanditSharpshooter",
-		Troop = "RF_BanditSharpshooter",
-		Figure = "figure_rf_bandit_sharpshooter",
-		StartingResourceMin = 225
 	},
 	{
 		ID = "Unit.RF.RF_BanditHighwayman",
