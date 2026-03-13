@@ -26,7 +26,7 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_poise"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 	}}.onInit;
 
