@@ -22,8 +22,6 @@
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
-		// Reforged
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 	}}.onInit;
 
 	q.assignRandomEquipment = @() { function assignRandomEquipment()
@@ -31,8 +29,8 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-				[2, "scripts/items/weapons/ancient/bladed_pike"],
-				[1, "scripts/items/weapons/ancient/warscythe"]
+				[2, "scripts/items/weapons/ancient/broken_bladed_pike"],
+				[1, "scripts/items/weapons/ancient/bladed_pike"]
 			]).roll();
 
 			this.m.Items.equip(::new(weapon));

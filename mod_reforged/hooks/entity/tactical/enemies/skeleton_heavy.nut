@@ -49,8 +49,8 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/armor/ancient/ancient_plated_scale_hauberk"],
-				[1, "scripts/items/armor/ancient/ancient_plate_harness"]
+				[1, "scripts/items/armor/ancient/ancient_plated_mail_hauberk"],
+				[1, "scripts/items/armor/ancient/ancient_scale_coat"]
 			]).roll();
 			this.m.Items.equip(::new(armor));
 		}

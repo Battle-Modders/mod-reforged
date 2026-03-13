@@ -33,7 +33,7 @@
 			this.m.Items.equip(::new(weapon));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && (::Math.rand(1, 100) <= 66))
 		{
 			this.m.Items.equip(::new("scripts/items/shields/ancient/auxiliary_shield"));
 		}
@@ -43,7 +43,7 @@
 			this.m.Items.equip(::new("scripts/items/armor/ancient/ancient_ripped_cloth"));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && (::Math.rand(1, 100) <= 66))
 		{
 			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_household_helmet"));
 		}

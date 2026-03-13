@@ -1,10 +1,114 @@
 // Adjust Vanilla Actors
 
-// Vanilla Honor Guard has been renamed to Praetorian as we have a higher tier unit
-// in Reforged called RF_SkeletonHeavyElite which is now called Honor Guard.
+//ANCIENT DEAD
+::Reforged.Entities.editEntity(
+	"SkeletonLight",
+	{
+		Strength = 14, // vanilla 14
+		Cost = 13 // vanilla 13
+	},
+	{
+		XP = 150, // vanilla 150
+		ActionPoints = 9,
+		Hitpoints = 45, // vanilla 45
+		Bravery = 55, // vanilla 70
+		Stamina = 100,
+		MeleeSkill = 55, // vanilla 55
+		RangedSkill = 0,
+		MeleeDefense = 0,
+		RangedDefense = 0,
+		Initiative = 65,
+		FatigueEffectMult = 0.0,
+		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	},
+	function()
+	{
+		::Const.EntityIcon[::Const.EntityType.SkeletonLight] = "rf_skeleton_light_orientation";
+	}
+);
+::Reforged.Entities.editEntity("SkeletonMedium", // Ancient Legionary
+	{
+		Strength = 20, // vanilla 20
+		Cost = 20 // vanilla 20
+	},
+	{
+		XP = 250, // vanilla 250
+		ActionPoints = 9,
+		Hitpoints = 55, // vanilla 55
+		Bravery = 65, // vanilla 90
+		Stamina = 100,
+		MeleeSkill = 65, // vanilla 65
+		RangedSkill = 0,
+		MeleeDefense = 0, // vanilla 0
+		RangedDefense = 0, // vanilla 0
+		Initiative = 65, // vanilla 65
+		FatigueEffectMult = 0.0,
+		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	},
+	function()
+	{
+		::Const.EntityIcon[::Const.EntityType.SkeletonMedium] = "rf_skeleton_medium_orientation";
+	}
+);
+::Reforged.Entities.editEntity("SkeletonMediumPolearm",
+	{
+		Strength = 20, // vanilla 20
+		Cost = 25 // vanilla 25
+	}
+);
+::Reforged.Entities.addEntity(
+	"RF_SkeletonMediumElite",
+	"Ancient Triarius",
+	"Ancient Triarii",
+	"rf_skeleton_medium_elite_orientation",
+	::Const.FactionType.Undead,
+	{
+		Variant = 0,
+		Strength = 35,
+		Cost = 30,
+		Row = 0,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_medium_elite"
+	},
+	{
+		XP = 325,
+		ActionPoints = 9,
+		Hitpoints = 70,
+		Bravery = 85,
+		Stamina = 100,
+		MeleeSkill = 75,
+		RangedSkill = 0,
+		MeleeDefense = 10,
+		RangedDefense = 0,
+		Initiative = 80,
+		FatigueEffectMult = 0.0,
+		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	}
+);
+::Reforged.Entities.addTroop(
+	"RF_SkeletonMediumElitePolearm",
+	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_SkeletonMediumElite, {
+		Cost = 35, // follows vanilla trend of skeleton backline costing 5 more than frontline
+		Row = 1
+	})
+);
 ::Reforged.Entities.editEntity("SkeletonHeavy",
+	// Vanilla Honor Guard has been renamed to Praetorian as we have a higher tier unit
+	// in Reforged called RF_SkeletonHeavyElite which is now called Honor Guard.
 	{
 		Strength = 35, // vanilla 30
+		Cost = 35, // vanilla 30
 		// Prevent vanilla SkeletonHeavy from becoming a champion.
 		// We have a higher tier unit RF_SkeletonHeavyElite that can become champion instead.
 		Variant = 0, // vanilla 1
@@ -13,7 +117,7 @@
 		XP = 350,
 		ActionPoints = 9,
 		Hitpoints = 75, // vanilla 65
-		Bravery = 110,
+		Bravery = 90,
 		Stamina = 100,
 		MeleeSkill = 75,
 		RangedSkill = 0,
@@ -34,69 +138,46 @@
 		::Const.EntityIcon[::Const.EntityType.SkeletonHeavy] = "rf_skeleton_heavy_orientation";
 	}
 );
-// We have a higher tier unit RF_ZombieHero which is the new Fallen Hero
-::Reforged.Entities.editEntity("ZombieKnight",
+::Reforged.Entities.addEntity(
+	"RF_SkeletonHeavyElite",
+	"Ancient Honor Guard",
+	"Ancient Honor Guards",
+	"skeleton_heavy_orientation",
+	::Const.FactionType.Undead,
 	{
-		// Prevent vanilla ZombieKnight from becoming a champion.
-		// We have a higher tier unit RF_ZombieHero that can become champion instead.
-		Variant = 0
+		Variant = 0,
+		Strength = 45,
+		Cost = 45,
+		Row = 1,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_elite"
 	},
 	{
-		XP = 250, // vanilla 250
-		ActionPoints = 7, // vanilla 7
-		Hitpoints = 180, // vanilla 180
-		Bravery = 70, // vanilla 130
-		Stamina = 100, // vanilla 100
-		MeleeSkill = 60, // vanilla 60
-		RangedSkill = 0, // vanilla 0
-		MeleeDefense = 5, // vanilla 5
-		RangedDefense = 0, // vanilla 0
-		Initiative = 60, // vanilla 60
+		XP = 450,
+		ActionPoints = 9,
+		Hitpoints = 90,
+		Bravery = 100,
+		Stamina = 100,
+		MeleeSkill = 80,
+		RangedSkill = 0,
+		MeleeDefense = 15,
+		RangedDefense = 0,
+		Initiative = 75,
 		FatigueEffectMult = 0.0,
 		MoraleEffectMult = 0.0,
 		Armor = [
 			0,
 			0
 		]
-	},
-	function()
-	{
-		// ZombieKnight in Reforged is renamed to Fallen Knight and we have
-		// a higher tier unit RF_ZombieHero which is now named Fallen Hero.
-		::Const.Strings.EntityName[::Const.EntityType.ZombieKnight] = "Fallen Knight";
-		::Const.Strings.EntityNamePlural[::Const.EntityType.ZombieKnight] = "Fallen Knights";
 	}
 );
-::Reforged.Entities.editEntity("Necromancer",
-	{
-		// Increase the chance for Necromancers to be champions.
-		Variant = 10
-	}
+::Reforged.Entities.addTroop(
+	"RF_SkeletonHeavyEliteBodyguard",
+	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_SkeletonHeavyElite, {
+		Variant = 0,
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_elite_bodyguard"
+	})
 );
-::Reforged.Entities.editEntity("GrandDiviner",
-	null,
-	{
-		XP = 500,
-		ActionPoints = 9,
-		Hitpoints = 115,
-		Bravery = 130,
-		Stamina = 110,
-		MeleeSkill = 80,
-		RangedSkill = 0,
-		MeleeDefense = 15,
-		RangedDefense = 35, // vanilla 20
-		Initiative = 105,
-		FatigueEffectMult = 1.0,
-		MoraleEffectMult = 1.0,
-		Armor = [
-			0,
-			0
-		]
-	}
-);
-
-// New Reforged Actors
-// Ancient Dead
 ::Reforged.Entities.addEntity(
 	"RF_SkeletonDecanus",
 	"Ancient Decanus",
@@ -194,84 +275,6 @@
 			0
 		]
 	}
-);
-::Reforged.Entities.addEntity(
-	"RF_SkeletonMediumElite",
-	"Ancient Triarius",
-	"Ancient Triarii",
-	"rf_skeleton_medium_elite_orientation",
-	::Const.FactionType.Undead,
-	{
-		Variant = 0,
-		Strength = 35,
-		Cost = 35,
-		Row = 0,
-		Script = "scripts/entity/tactical/enemies/rf_skeleton_medium_elite"
-	},
-	{
-		XP = 350,
-		ActionPoints = 9,
-		Hitpoints = 65,
-		Bravery = 110,
-		Stamina = 100,
-		MeleeSkill = 75,
-		RangedSkill = 0,
-		MeleeDefense = 5,
-		RangedDefense = 5,
-		Initiative = 75,
-		FatigueEffectMult = 0.0,
-		MoraleEffectMult = 0.0,
-		Armor = [
-			0,
-			0
-		]
-	}
-);
-::Reforged.Entities.addTroop(
-	"RF_SkeletonMediumElitePolearm",
-	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_SkeletonMediumElite, {
-		Row = 1
-	})
-);
-::Reforged.Entities.addEntity(
-	"RF_SkeletonHeavyElite",
-	"Ancient Honor Guard",
-	"Ancient Honor Guards",
-	"skeleton_heavy_orientation",
-	::Const.FactionType.Undead,
-	{
-		Variant = 0,
-		Strength = 45,
-		Cost = 45,
-		Row = 1,
-		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_elite"
-	},
-	{
-		XP = 450,
-		ActionPoints = 9,
-		Hitpoints = 90,
-		Bravery = 100,
-		Stamina = 100,
-		MeleeSkill = 80,
-		RangedSkill = 0,
-		MeleeDefense = 15,
-		RangedDefense = 0,
-		Initiative = 75,
-		FatigueEffectMult = 0.0,
-		MoraleEffectMult = 0.0,
-		Armor = [
-			0,
-			0
-		]
-	}
-);
-::Reforged.Entities.addTroop(
-	"RF_SkeletonHeavyEliteBodyguard",
-	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_SkeletonHeavyElite, {
-		Variant = 0,
-		Row = 2,
-		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_elite_bodyguard"
-	})
 );
 ::Reforged.Entities.addEntity(
 	"RF_VampireLord",
@@ -497,7 +500,48 @@
 		]
 	}
 );
-// Zombie
+
+// ZOMBIES
+
+::Reforged.Entities.editEntity("Necromancer",
+	{
+		// Increase the chance for Necromancers to be champions.
+		Variant = 10
+	}
+);
+// We have a higher tier unit RF_ZombieHero which is the new Fallen Hero
+::Reforged.Entities.editEntity("ZombieKnight",
+	{
+		// Prevent vanilla ZombieKnight from becoming a champion.
+		// We have a higher tier unit RF_ZombieHero that can become champion instead.
+		Variant = 0
+	},
+	{
+		XP = 250, // vanilla 250
+		ActionPoints = 7, // vanilla 7
+		Hitpoints = 180, // vanilla 180
+		Bravery = 70, // vanilla 130
+		Stamina = 100, // vanilla 100
+		MeleeSkill = 60, // vanilla 60
+		RangedSkill = 0, // vanilla 0
+		MeleeDefense = 5, // vanilla 5
+		RangedDefense = 0, // vanilla 0
+		Initiative = 60, // vanilla 60
+		FatigueEffectMult = 0.0,
+		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	},
+	function()
+	{
+		// ZombieKnight in Reforged is renamed to Fallen Knight and we have
+		// a higher tier unit RF_ZombieHero which is now named Fallen Hero.
+		::Const.Strings.EntityName[::Const.EntityType.ZombieKnight] = "Fallen Knight";
+		::Const.Strings.EntityNamePlural[::Const.EntityType.ZombieKnight] = "Fallen Knights";
+	}
+);
 ::Reforged.Entities.addEntity(
 	"RF_ZombieHero",
 	"Fallen Hero",
@@ -603,6 +647,7 @@
 		]
 	}
 );
+
 // Zombie Orc
 ::Reforged.Entities.addEntity(
 	"RF_ZombieOrcYoung",
@@ -740,6 +785,29 @@
 		Initiative = 60,
 		FatigueEffectMult = 0.0,
 		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	}
+);
+
+// OTHER
+::Reforged.Entities.editEntity("GrandDiviner",
+	null,
+	{
+		XP = 500,
+		ActionPoints = 9,
+		Hitpoints = 115,
+		Bravery = 130,
+		Stamina = 110,
+		MeleeSkill = 80,
+		RangedSkill = 0,
+		MeleeDefense = 15,
+		RangedDefense = 35, // vanilla 20
+		Initiative = 105,
+		FatigueEffectMult = 1.0,
+		MoraleEffectMult = 1.0,
 		Armor = [
 			0,
 			0
