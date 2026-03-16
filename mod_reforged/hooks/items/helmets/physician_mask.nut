@@ -5,6 +5,6 @@
 		this.m.Value = 200; // vanilla 170
 		this.m.Condition = 75; // vanilla 70
 		this.m.ConditionMax = 75; // vanilla 70
-		this.m.Vision = -3; // vanilla -1
+		this.m.Vision = -2; // vanilla -1
 	}}.create;
 });
