@@ -24,4 +24,14 @@
 		});
 		return ret;
 	}}.getTooltip;
+
+	q.onAnySkillUsed = @(__original) function( _skill, _targetEntity, _properties )
+	{
+		__original(_skill, _targetEntity, _properties)
+		if (_skill == this)
+		{
+			// VanillaFix: Vanilla does not set the Armor Damage of this skill to 0 (unlike they do on Puncture), which causes a confusing skill tooltip
+			_properties.DamageArmorMult *= 0.0;
+		}
+	}
 });
