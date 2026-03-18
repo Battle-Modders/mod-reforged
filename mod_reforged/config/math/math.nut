@@ -123,4 +123,53 @@
 
 		::Math.seedRandomString(seed);
 	}
+
+	// Returns the value of y at _x where the linear relationship
+	// is defined by two given points (_x1, _y1) and (_x2, _y2)
+	function lerp( _x, _x1, _y1, _x2, _y2 )
+	{
+		local m = (_y2 - _y1) / (_x2 - _x1).tofloat();
+		local c = _y1 - m * _x1;
+		return m * _x + c;
+	}
+
+	// Returns the value of y at _x along a path specified with
+	// multiple points in the _points array where each point is
+	// a len 2 array [x, y]. The path is linearly interpolated
+	// between consecutive points.
+	function multilerp( _x, _points )
+	{
+		local p1, p2;
+
+		// Use the two points between which _x lies.
+		for (local i = 0; i < _points.len() - 1; i++)
+		{
+			p1 = _points[i];
+			p2 = _points[i + 1];
+			if (_x >= p1[0] && _x <= p2[0])
+			{
+				return lerp(_x, p1[0], p1[1], p2[0], p2[1]);
+			}
+		}
+
+		// If _x was greater than the last point's x then use the last two points.
+		p1 = _points[_points.len() - 2];
+		p2 = _points.top();
+		return lerp(_x, p1[0], p1[1], p2[0], p2[1]);
+	}
+
+	// The return has the same type as that of _value
+	function clamp( _value, _min, _max )
+	{
+		// Swap _min and _max if the user gave the values in wrong order.
+		if (_min > _max)
+		{
+			local max = _max;
+			_max = _min;
+			_min = max;
+		}
+
+		local ret = _value < _min ? _min : (_value > _max ? _max : _value);
+		return typeof _value == "integer" ? ret.tointeger() : ret.tofloat();
+	}
 }
