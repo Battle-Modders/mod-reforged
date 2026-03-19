@@ -8,7 +8,7 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "perk.rf_steady_brace";
 		this.m.Name = ::Const.Strings.PerkName.RF_SteadyBrace;
-		this.m.Description = ::Const.Strings.PerkDescription.RF_SteadyBrace;
+		this.m.Description = "Hold your ground and take your time to line up a more accurate shot.";
 		this.m.Icon = "ui/perks/perk_rf_steady_brace.png";
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Perk;
