@@ -4,6 +4,11 @@
 	Name = "Reforged Mod",
 	GitHubURL = "https://github.com/Battle-Modders/mod-reforged",
 	ItemTable = {},
+	Spawns = {
+		Units = {},
+		UnitBlocks = {},
+		Parties = {}
+	},
 	QueueBucket = {
 		Late = [],
 		VeryLate = [], // For experimental modules only
