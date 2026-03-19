@@ -1,5 +1,5 @@
 local t = {
-	Version = "0.1.0-alpha.1",
+	Version = "0.1.0-alpha.2",
 	ID = "mod_reforged_assets",
 	Name = "Reforged Mod Assets",
 };
