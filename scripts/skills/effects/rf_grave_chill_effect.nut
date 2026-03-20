@@ -65,7 +65,7 @@ this.rf_grave_chill_effect <- ::inherit("scripts/skills/skill", {
 			id = 15,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("This effect reduces in intensity with each passing [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("This effect reduces in intensity with each passing [turn|Concept.Turn]. [Turns|Concept.Turn] remaining: " + this.m.TurnsLeft)
 		});
 
 		return ret;
