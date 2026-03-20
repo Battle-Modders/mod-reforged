@@ -1,6 +1,5 @@
 this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 	m = {
-		OldPerks = [], // Contains perks stored temporarily during battle while swapping a weapon
 		PerksAdded = []
 	},
 	function create()
@@ -27,13 +26,6 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			this.getContainer().getActor().getItems().unequip(equippedItem);
 			this.getContainer().getActor().getItems().equip(equippedItem);
 		}
-	}
-
-	// onUnequip and onEquip run before paying for item action cost
-	// so we remove old perks after that entire thing is complete
-	function onPayForItemAction( _skill, _items )
-	{
-		this.removeOldPerks();
 	}
 
 	function onEquip( _item )
@@ -82,6 +74,9 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 				if (row.len() != 0)
 				{
 					local perkID = row[0];
+					// Don't add a perk which we already added (relevant when not removing perks during battle)
+					if (this.m.PerksAdded.find(id) != null)
+						continue;
 					this.m.PerksAdded.push(perkID);
 					this.getContainer().add(::Reforged.new(::Const.Perks.findById(perkID).Script, function(o) {
 						o.m.IsSerialized = false;
@@ -162,11 +157,8 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		if (!_item.isItemType(::Const.Items.ItemType.Weapon))
 			return;
 
-		if (::Tactical.isActive())
-		{
-			this.m.OldPerks = clone this.m.PerksAdded;
-		}
-		else
+		// Don't remove perks during battle. This prevents perks from losing state e.g. cooldown, or other effects.
+		if (!::Tactical.isActive())
 		{
 			this.removePerks();
 		}
@@ -175,7 +167,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
-		this.removeOldPerks();
+		this.removePerks();
 	}
 
 	function removePerks()
@@ -186,17 +178,5 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		}
 
 		this.m.PerksAdded.clear();
-
-		this.removeOldPerks();
-	}
-
-	function removeOldPerks()
-	{
-		foreach (perkID in this.m.OldPerks)
-		{
-			this.getContainer().removeByStackByID(perkID, false);
-		}
-
-		this.m.OldPerks.clear();
 	}
 });
