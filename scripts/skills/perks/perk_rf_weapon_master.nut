@@ -8,8 +8,41 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 		this.m.Name = ::Const.Strings.PerkName.RF_WeaponMaster;
 		this.m.Description = "This character is skilled in the use of various weapons."
 		this.m.Icon = "ui/perks/perk_rf_weapon_master.png";
-		this.m.Type = ::Const.SkillType.Perk;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Order = ::Const.SkillOrder.Any;
+	}
+
+	function __getTrueAddedPerks()
+	{
+		// exclude perks that were already present (i.e. not granted by Weapon Master)
+		return this.m.PerksAdded.filter(@(_, _perk) !_perk.isSerialized());
+	}
+
+	function isHidden()
+	{
+		return this.__getTrueAddedPerks().len() == 0;
+	}
+
+	function getTooltip()
+	{
+		local ret = this.skill.getTooltip();
+
+		local perks = this.__getTrueAddedPerks();
+		if  (perks.len() != 0)
+		{
+			local container = this.getContainer();
+			local extraData = "entityId:" + container.getActor().getID();
+			local perkIcons = perks
+								.map(@(_perk) ::Reforged.NestedTooltips.getNestedPerkImage(_perk, extraData))
+								.reduce(@(_a, _b) _a + _b);
+
+			ret.push({
+				id = 10,	type = "text",	icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("[Perks|Concept.Perk] gained:\n" + perkIcons)
+			});
+		}
+
+		return ret;
 	}
 
 	function onAdded()
@@ -75,13 +108,20 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 				{
 					local perkID = row[0];
 					// Don't add a perk which we already added (relevant when not removing perks during battle)
-					if (this.m.PerksAdded.find(id) != null)
-						continue;
-					this.m.PerksAdded.push(perkID);
-					this.getContainer().add(::Reforged.new(::Const.Perks.findById(perkID).Script, function(o) {
+					foreach (p in this.m.PerksAdded)
+					{
+						if (p.getID() == perkID)
+							continue;
+					}
+					local perk = ::Reforged.new(::Const.Perks.findById(perkID).Script, function(o) {
 						o.m.IsSerialized = false;
 						o.m.IsRefundable = false;
-					}));
+					});
+					this.getContainer().add(perk);
+					// Need to do it like this because of Stack Based Skills which will throw away the perk above
+					// if a perk with the same ID already exists on the bro.
+					local existingPerk = this.getContainer().getSkillByID(perkID);
+					this.m.PerksAdded.push(::MSU.asWeakTableRef(existingPerk == null ? perk : existingPerk));
 					break;
 				}
 			}
@@ -172,9 +212,9 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 
 	function removePerks()
 	{
-		foreach (perkID in this.m.PerksAdded)
+		foreach (perk in this.m.PerksAdded)
 		{
-			this.getContainer().removeByStackByID(perkID, false);
+			this.getContainer().removeByStackByID(perk.getID(), false);
 		}
 
 		this.m.PerksAdded.clear();
