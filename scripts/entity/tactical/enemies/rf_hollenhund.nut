@@ -125,7 +125,7 @@ this.rf_hollenhund <- ::inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(::new("scripts/skills/racial/ghost_racial"));
 		this.m.Skills.add(::new("scripts/skills/racial/skeleton_racial"));
 		this.m.Skills.add(::new("scripts/skills/actives/rf_ethereal_bite_skill"));
-		this.m.Skills.add(::new("scripts/skills/effects/rf_ethereal_flame_effect"));
+		this.m.Skills.add(::new("scripts/skills/effects/rf_ethereal_shroud_effect"));
 	}
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )

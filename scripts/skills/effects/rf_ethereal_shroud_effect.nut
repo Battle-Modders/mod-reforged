@@ -1,13 +1,13 @@
-this.rf_ethereal_flame_effect <- ::inherit("scripts/skills/skill", {
+this.rf_ethereal_shroud_effect <- ::inherit("scripts/skills/skill", {
 	m = {
 		__IsBeingHitInMelee = false
 	},
 	function create()
 	{
-		this.m.ID = "effects.rf_ethereal_flame";
-		this.m.Name = "Ethereal Flame";
-		this.m.Description = "A shroud of ethereal flames surrounds this character.";
-		this.m.Icon = "skills/rf_ethereal_flame_effect.png";
+		this.m.ID = "effects.rf_ethereal_shroud";
+		this.m.Name = "Ethereal Shroud";
+		this.m.Description = "A shroud of ethereal mist surrounds this character.";
+		this.m.Icon = "skills/rf_ethereal_shroud_effect.png";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsRemovedAfterBattle = true;
 	}
