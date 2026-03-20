@@ -128,7 +128,8 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			}
 		}
 
-		local perkTree = this.getContainer().getActor().getPerkTree();
+		local actor = this.getContainer().getActor();
+		local perkTree = ::MSU.isKindOf(actor, "player") ? actor.getPerkTree() : null;
 		local allWeaponPGs = []; // Contains all weapon PGs that are present in this character's perk tree
 		local equippedweaponPGs = []; // Contains the PGs of this equipped weapon
 
@@ -141,7 +142,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 			if (pg == null)
 				continue;
 
-			if (perkTree.hasPerkGroup(pg.getID()))
+			if (perkTree == null || perkTree.hasPerkGroup(pg.getID()))
 			{
 				allWeaponPGs.push(pg);
 			}
@@ -183,7 +184,7 @@ this.perk_rf_weapon_master <- ::inherit("scripts/skills/skill", {
 
 		// Restrict us only to the perk groups that exist in this character's perk tree and
 		// add perks from all such equippedWeaponPGs in the valid tierRanges
-		if (this.m.RestrictToGroupsInPerkTree)
+		if (this.m.RestrictToGroupsInPerkTree && perkTree != null)
 		{
 			equippedweaponPGs = equippedweaponPGs.filter(@(_, _pg) perkTree.hasPerkGroup(_pg.getID()));
 		}
