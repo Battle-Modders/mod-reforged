@@ -11,8 +11,8 @@ local parties = [
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.NobleFrontline", RatioMin = 0.30, RatioMax = 1.00 },
 				{ BaseID = "UnitBlock.RF.NobleBackline", RatioMax = 0.40
-					   //  function getSpawnWeight() { return base.getSpawnWeight() * 1.4; }
-					   function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() > 350 ? 1.8 : 1.4); }
+					//  function getSpawnWeight() { return base.getSpawnWeight() * 1.4; }
+					function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() > 350 ? 1.8 : 1.4); }
 				},
 				{ BaseID = "UnitBlock.RF.NobleRanged", RatioMax = 0.30
 					function getSpawnWeight() {
@@ -51,7 +51,7 @@ local parties = [
 						{
 							return base.getSpawnWeight() * 3.0;
 						}
-					   else if (this.getTopParty().getStartingResources() > 400)
+						else if (this.getTopParty().getStartingResources() > 400)
 						{
 							return base.getSpawnWeight() * 2.0;
 						}

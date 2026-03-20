@@ -1,7 +1,7 @@
 // All event text written by ThePlahunter
 this.rf_old_swordmaster_scenario_no_recruits_force_end_event <- ::inherit("scripts/events/event", {
 	m = {
-		Swordmaster = null	
+		Swordmaster = null
 	},
 	function create()
 	{
@@ -9,12 +9,12 @@ this.rf_old_swordmaster_scenario_no_recruits_force_end_event <- ::inherit("scrip
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
 			ID = "A",
-        	Text = "[img]gfx/ui/events/event_17.png[/img]Age seems to follow you like a constant spectre, watching and waiting with every step. You set out upon this journey %OOC%because%OOC_OFF% of such feelings, not wanting to waste the knowledge handed down to you by your own instructors. At night, though, you have found yourself without any novices to shape into warriors of the future. Scions of your new \'school\' to carry on and gain renown for their masterful bladesmanship. What is this all for, if not to teach others..?\n\nRealizing your failures, you set aside your blade once more, turning about and heading back to your meager estate. Perhaps this was all a waste of time, a lesson in loneliness and foolhardy wanderlust. If only you had some students to guide, to carry on your legacy… alas, that has now passed you by. You will die a weak old man, and will take your knowledge to your grave.",
+			Text = "[img]gfx/ui/events/event_17.png[/img]Age seems to follow you like a constant spectre, watching and waiting with every step. You set out upon this journey %OOC%because%OOC_OFF% of such feelings, not wanting to waste the knowledge handed down to you by your own instructors. At night, though, you have found yourself without any novices to shape into warriors of the future. Scions of your new \'school\' to carry on and gain renown for their masterful bladesmanship. What is this all for, if not to teach others..?\n\nRealizing your failures, you set aside your blade once more, turning about and heading back to your meager estate. Perhaps this was all a waste of time, a lesson in loneliness and foolhardy wanderlust. If only you had some students to guide, to carry on your legacy… alas, that has now passed you by. You will die a weak old man, and will take your knowledge to your grave.",
 			Image = "",
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [				
+			Options = [
 				{
 					Text = "Why did I even start... (End Campaign)",
 					function getResult( _event )

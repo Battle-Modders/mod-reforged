@@ -15,18 +15,18 @@ local parties = [
 
 				}, // Vanilla: doesn't care about size
 				{ BaseID = "UnitBlock.RF.SouthernBackline", RatioMin = 0.00, RatioMax = 0.40 // Vanilla: doesn't care about size
-					  function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() >= 250 ? 0.70 : 0.30); }
+					function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() >= 250 ? 0.70 : 0.30); }
 				},
 				{ BaseID = "UnitBlock.RF.SouthernRanged", RatioMin = 0.00, RatioMax = 0.30 // Vanilla: doesn't care about size
-					  function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() >= 225 ? 0.70 : 0.2); }
+					function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() >= 225 ? 0.70 : 0.2); }
 				},
 				{ BaseID = "UnitBlock.RF.Assassin", RatioMin = 0.00, RatioMax = 0.35, PartySizeMin = 7
-					 function getSpawnWeight() { return base.getSpawnWeight() * 0.15; }
-				},        // Vanilla: Start spawning at 8+
+					function getSpawnWeight() { return base.getSpawnWeight() * 0.15; }
+				}, 	// Vanilla: Start spawning at 8+
 				{ BaseID = "UnitBlock.RF.Officer", RatioMin = 0.00, RatioMax = 0.15, PartySizeMin = 5
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.7; }
 					function onBeforeSpawnStart() { this.HardMax = ::Math.floor(this.getTopParty().getStartingResources() / 175); }
-				},        // Vanilla: Start spawning at 15+. 2 officers in paty with 330 resources. 3 officers 525.
+				},	// Vanilla: Start spawning at 15+. 2 officers in paty with 330 resources. 3 officers 525.
 				{ BaseID = "UnitBlock.RF.Siege", RatioMin = 0.00, RatioMax = 0.13  // Vanilla: Start spawning at 19+. 2 Mortars at 430+ resources and 24 party size.
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.50; }
 					function onBeforeSpawnStart() { this.HardMax = ::Math.floor(this.getTopParty().getStartingResources() / 220); }

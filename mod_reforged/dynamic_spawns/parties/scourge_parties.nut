@@ -97,9 +97,9 @@ local parties = [
 	// 			}
 
 	// 			function generateIdealSize()
-	// 	        {
-	// 	           return 12 + ::Math.max(0, (this.getTopParty().getStartingResources() - 250) / 65);
-	// 	        }
+	//			{
+	//				return 12 + ::Math.max(0, (this.getTopParty().getStartingResources() - 250) / 65);
+	//			}
 	// 		}],
 	// 		[1, {
 	// 			ID = "UndeadScourgeNorthOrcs",

@@ -10,11 +10,11 @@ this.rf_draugr_thrall_bodyguard <- ::inherit("scripts/entity/tactical/enemies/rf
 
 	function assignRandomEquipment()
 	{
-	  this.rf_draugr_thrall.assignRandomEquipment();
+		this.rf_draugr_thrall.assignRandomEquipment();
 
-	  if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-	  {
-	  	this.m.Items.equip(::new("scripts/items/shields/rf_draugr/rf_draugr_round_shield"));
-	  }
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			this.m.Items.equip(::new("scripts/items/shields/rf_draugr/rf_draugr_round_shield"));
+		}
 	}
 });

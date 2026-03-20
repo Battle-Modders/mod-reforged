@@ -78,11 +78,11 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.MercenaryFrontline", RatioMin = 0.60, RatioMax = 1.00 },
 				{ BaseID = "UnitBlock.RF.MercenaryRanged", RatioMin = 0.12, RatioMax = 0.30 },
 				{ BaseID = "UnitBlock.RF.MercenaryElite", HardMin = 1, HardMax = 1, StartingResourceMax = 300 // Vanilla: Small chance of Hedge Knight or Swordmaster early
-				   function getExclusionChance() {return this.getParty().getStartingResources() < 200 ? 0.8 : 0.6; },
-				 },
+					function getExclusionChance() {return this.getParty().getStartingResources() < 200 ? 0.8 : 0.6; },
+				},
 				{ BaseID = "UnitBlock.RF.MercenaryElite", RatioMin = 0.00, RatioMax = 0.20, StartingResourceMin = 300
 					function getSpawnWeight() {return ::Math.pow(this.getParty().getStartingResources() * 0.004, 2.0); },
-				 },
+				},
 				{ BaseID = "UnitBlock.RF.Wardog", RatioMin = 0.00, RatioMax = 0.12 }
 			]
 		}
