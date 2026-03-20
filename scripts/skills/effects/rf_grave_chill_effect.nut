@@ -22,70 +22,32 @@ this.rf_grave_chill_effect <- ::inherit("scripts/skills/skill", {
 		local mult = this.getMalusMult();
 		if (mult != 1.0)
 		{
-			local actor = this.getContainer().getActor();
-			if (::MSU.isEqual(actor, ::MSU.getDummyPlayer()))
-			{
-				ret.extend([
-					{
-						id = 10,
-						type = "text",
-						icon = "ui/icons/melee_skill.png",
-						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(mult) + " [Melee Skill|Concept.MeleeSkill]")
-					},
-					{
-						id = 11,
-						type = "text",
-						icon = "ui/icons/melee_skill.png",
-						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(mult) + " [Melee Defense|Concept.MeleeDefense]")
-					},
-					{
-						id = 12,
-						type = "text",
-						icon = "ui/icons/melee_skill.png",
-						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(mult) + " [Ranged Skill|Concept.RangeSkill]")
-					},
-					{
-						id = 13,
-						type = "text",
-						icon = "ui/icons/melee_skill.png",
-						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(mult) + " [Ranged Defense|Concept.RangeDefense]")
-					}
-				]);
-			}
-			else
-			{
-				local p = actor.getCurrentProperties();
-				local mskill = p.getMeleeSkill();
-				local mdef = p.getMeleeDefense();
-				local rskill = p.getRangedSkill();
-				local rdef = p.getRangedDefense();
-				ret.extend([
-					{
-						id = 10,
-						type = "text",
-						icon = "ui/icons/melee_skill.png",
-						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(mskill - mskill / mult, {AddSign = true}) + " [Melee Skill|Concept.MeleeSkill]")
-					},
-					{
-						id = 11,
-						type = "text",
-						icon = "ui/icons/melee_skill.png",
-						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(mdef - mdef / mult) + " [Melee Defense|Concept.MeleeDefense]")
-					},
-					{
-						id = 12,
-						type = "text",
-						icon = "ui/icons/melee_skill.png",
-						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(rskill - rskill / mult) + " [Ranged Skill|Concept.RangeSkill]")
-					},
-					{
-						id = 13,
-						type = "text",
-						icon = "ui/icons/melee_skill.png",
-						text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(rdef - rdef / mult) + " [Ranged Defense|Concept.RangeDefense]")
-					}
-				]);
-			}
+			ret.extend([
+				{
+					id = 10,
+					type = "text",
+					icon = "ui/icons/melee_skill.png",
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(mult) + " [Melee Skill|Concept.MeleeSkill]")
+				},
+				{
+					id = 11,
+					type = "text",
+					icon = "ui/icons/melee_defense.png",
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(mult) + " [Melee Defense|Concept.MeleeDefense]")
+				},
+				{
+					id = 12,
+					type = "text",
+					icon = "ui/icons/ranged_skill.png",
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(mult) + " [Ranged Skill|Concept.RangeSkill]")
+				},
+				{
+					id = 13,
+					type = "text",
+					icon = "ui/icons/ranged_defense.png",
+					text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeMultWithText(mult) + " [Ranged Defense|Concept.RangeDefense]")
+				}
+			]);
 		}
 
 		local moveAP = this.getMovementAPCostAdditional();
@@ -102,7 +64,7 @@ this.rf_grave_chill_effect <- ::inherit("scripts/skills/skill", {
 		ret.push({
 			id = 15,
 			type = "text",
-			icon = "ui/icons/damage_regular.png",
+			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("This effect reduces in intensity with each passing [turn|Concept.Turn]")
 		});
 
