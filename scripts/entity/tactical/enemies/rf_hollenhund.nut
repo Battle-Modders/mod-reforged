@@ -134,10 +134,9 @@ this.rf_hollenhund <- ::inherit("scripts/entity/tactical/actor", {
 
 		if (_tile != null)
 		{
+			local flip = ::Math.rand(1, 100) <= 50;
 			if (isGeneratingCorpse)
 			{
-				local flip = ::Math.rand(1, 100) <= 50;
-
 				local body = this.getSprite("body");
 				local decal = _tile.spawnDetail("bust_rf_hollenhund_01_body_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = body.Color;
