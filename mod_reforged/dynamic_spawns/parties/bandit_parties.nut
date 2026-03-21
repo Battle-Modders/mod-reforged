@@ -24,19 +24,33 @@ local parties = [
 			],
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.35, RatioMax = 1.0 },
-				{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.30, ExclusionChance = 0.40 }
+				{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.25, ExclusionChance = 0.45 }
 			]
 		},
 
 		function onBeforeSpawnStart()
 		{
-			this.UpgradeChance = ::Math.max(10, this.getTopParty().getStartingResources() * 0.3);
+			local res = this.getTopParty().getStartingResources();
+			local frontline = this.getSpawnable("Frontline");
+			local ranged = this.getSpawnable("UnitBlock.RF.BanditRanged");
+			local dogs = this.getSpawnable("UnitBlock.RF.BanditDog");
+
+			ranged.UpgradeWeightMult = 10.0;
+			dogs.UpgradeWeightMult = 0.1;
+
+			frontline.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.0, 200, 0.2), 0.0, 0.2);
+			ranged.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 50, 0.35, 200, 0.5), 0.35, 0.5);
+		}
+
+		function getUpgradeChance()
+		{
+			return 35 + 1.5 * this.getTotal();
 		}
 	},
 	{
 		// Vanilla: Size 6-18, Cost 61-170
 		ID = "BanditScouts", // Only spawn from restore location contract
-		HardMin = 7,
+		HardMin = 6,
 		DefaultFigure = "figure_bandit_02",
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
@@ -58,14 +72,24 @@ local parties = [
 				}
 			],
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40, ExclusionChance = 0.20 },
-				{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.30, ExclusionChance = 0.6 }
+				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40, ExclusionChance = 0.2 },
+				{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.30 }
 			]
 		},
 
 		function onBeforeSpawnStart()
 		{
-			this.UpgradeChance = 10 + ::Math.max(10, this.getTopParty().getStartingResources() * 0.3);
+			local res = this.getTopParty().getStartingResources();
+			local dogs = this.getSpawnable("UnitBlock.RF.BanditDog");
+			local frontline = this.getSpawnable("Frontline");
+
+			dogs.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.33, 170, 0.7), 0.33, 0.7);
+			frontline.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.7, 170, 0.5), 0.45, 0.7);
+		}
+
+		function getUpgradeChance()
+		{
+			return 45 + 2.0 * this.getTotal();
 		}
 	},
 	{
@@ -81,7 +105,7 @@ local parties = [
 			Parties = [
 				{
 					ID = "Frontline",
-					RatioMin = 0.45,
+					RatioMin = 0.5,
 					RatioMax = 1.0,
 					DynamicDefs = {
 						UnitBlocks = [
@@ -93,20 +117,27 @@ local parties = [
 				}
 			],
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.50, ExclusionChance = 0.20 },
+				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.35 },
 				{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.13, PartySizeMin = 14, StartingResourceMin = 320, ExclusionChance = 0.5 },
-				{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.00, RatioMax = 0.14, HardMax = 3, PartySizeMin = 7, StartingResourceMin = 140,
-					function onBeforeSpawnStart()
-					{
-						this.ExclusionChance = 100.0 / this.getTopParty().getStartingResources();
-					}
-				}
+				{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.00, RatioMax = 0.14, HardMax = 3, PartySizeMin = 7, StartingResourceMin = 140 }
 			]
 		},
 
 		function onBeforeSpawnStart()
 		{
-			this.UpgradeChance = 50 + this.getTopParty().getStartingResources() * 0.02;
+			local res = this.getTopParty().getStartingResources();
+			local frontline = this.getSpawnable("Frontline");
+			local ranged = this.getSpawnable("UnitBlock.RF.BanditRanged");
+			local boss = this.getSpawnable("UnitBlock.RF.BanditBoss");
+
+			ranged.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.6, 200, 0), 0.0, 0.2);
+			boss.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.5, 600, 0), 0.0, 0.5);
+		}
+
+		function getUpgradeChance()
+		{
+			local res = this.getTopParty().getStartingResources();
+			return 45 + ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 4.5, 600, 1.5), 1.5, 4.5) * this.getTotal();
 		}
 	},
 	{
@@ -135,19 +166,34 @@ local parties = [
 			],
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.55, ExclusionChance = 0.2 },
-				{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.15, PartySizeMin = 14, StartingResourceMin = 320, ExclusionChance = 0.65 },
-				{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.00, RatioMax = 0.14, HardMax = 3, PartySizeMin = 7, StartingResourceMin = 140,
-					function onBeforeSpawnStart()
-					{
-						this.ExclusionChance = 100.0 / this.getTopParty().getStartingResources();
-					}
-				}
+				{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.15, PartySizeMin = 14, StartingResourceMin = 320 },
+				{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.00, RatioMax = 0.14, HardMax = 3, PartySizeMin = 7, StartingResourceMin = 140 }
 			]
 		},
 
 		function onBeforeSpawnStart()
 		{
-			this.UpgradeChance = 50 + this.getTopParty().getStartingResources() * 0.01;
+			local res = this.getTopParty().getStartingResources();
+			local ranged = this.getSpawnable("UnitBlock.RF.BanditRanged");
+			local frontline = this.getSpawnable("Frontline");
+			local boss = this.getSpawnable("UnitBlock.RF.BanditBoss");
+			local elite = this.getSpawnable("UnitBlock.RF.BanditElite");
+
+			ranged.RatioMax = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.55, 600, 0.3), 0.3, 0.55);
+			ranged.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.45, 200, 0.0), 0.0, 0.45);
+
+			frontline.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.45, 600, 0.6), 0.45, 0.6);
+
+			boss.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.6, 500, 0.0), 0.0, 0.6);
+
+			elite.RatioMax = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 400, 0.05, 600, 0.15), 0.05, 0.15);
+			elite.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 400, 0.7, 600, 0.0), 0.0, 0.7);
+		}
+
+		function getUpgradeChance()
+		{
+			local res = this.getTopParty().getStartingResources();
+			return 45 + ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 4.5, 600, 1.5), 1.5, 4.5) * this.getTotal();
 		}
 	},
 	{
@@ -163,27 +209,40 @@ local parties = [
 			Parties = [
 				{
 					ID = "Frontline",
-					RatioMin = 0.5,
+					RatioMin = 0.6,
 					RatioMax = 1.0,
 					DynamicDefs = {
 						UnitBlocks = [
-							{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.0, RatioMax = 1.0 },
-							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 0.20 },
-							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 0.20 }
+							{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMax = 1.0 },
+							{ BaseID = "UnitBlock.RF.BanditFast", RatioMax = 0.33, ExclusionChance = 0.20 },
+							{ BaseID = "UnitBlock.RF.BanditTough", RatioMax = 0.33, ExclusionChance = 0.20 }
 						]
 					}
 				}
 			],
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40, ExclusionChance = 0.1 },
-				{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.2, PartySizeMin = 14, StartingResourceMin = 320, ExclusionChance = 0.5 },
-				{ BaseID = "UnitBlock.RF.BanditBoss", HardMin = 1, HardMax = 3, RatioMin = 0.00, RatioMax = 0.15 }  // One boss is always guaranteed
+				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMax = 0.40 },
+				{ BaseID = "UnitBlock.RF.BanditElite", RatioMax = 0.2, PartySizeMin = 14, StartingResourceMin = 320 },
+				{ BaseID = "UnitBlock.RF.BanditBoss", HardMin = 1, HardMax = 3, RatioMax = 0.15 }  // One boss is always guaranteed
 			]
 		},
 
 		function onBeforeSpawnStart()
 		{
-			this.UpgradeChance = 50 + this.getTopParty().getStartingResources() * 0.015;
+			local res = this.getTopParty().getStartingResources();
+			local ranged = this.getSpawnable("UnitBlock.RF.BanditRanged");
+			local elite = this.getSpawnable("UnitBlock.RF.BanditElite");
+
+			ranged.RatioMax = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.40, 600, 0.3), 0.3, 0.40);
+			ranged.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.15, 300, 0.0), 0.0, 0.15);
+
+			elite.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.67, 500, 0.25), 0.25, 0.67);
+		}
+
+		function getUpgradeChance()
+		{
+			local res = this.getTopParty().getStartingResources();
+			return 35 + ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 3.5, 600, 1.25), 1.25, 3.5) * this.getTotal();
 		}
 	},
 	{
