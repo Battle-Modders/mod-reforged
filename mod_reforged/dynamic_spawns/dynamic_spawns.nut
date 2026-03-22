@@ -11,6 +11,8 @@
 
 	foreach (def in ::Reforged.Spawns.Units)
 	{
+		if (!("Cost" in def))
+			def.Cost <- ::Const.World.Spawn.Troops[def.Troop].Cost;
 		::DynamicSpawns.Public.registerUnit(def);
 	}
 

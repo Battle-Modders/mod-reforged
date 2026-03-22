@@ -99,7 +99,5 @@ While there are ["figure_militia_01", "figure_militia_02"] it seems like they ar
 
 foreach (unitDef in units)
 {
-	if (!("Cost" in unitDef))
-		unitDef.Cost <- ::Const.World.Spawn.Troops[unitDef.Troop].Cost;
 	::Reforged.Spawns.Units[unitDef.ID] <- unitDef;
 }
