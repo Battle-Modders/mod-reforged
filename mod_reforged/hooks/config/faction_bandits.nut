@@ -320,7 +320,7 @@
 		Strength = 19 // vanilla 15
 	},
 	{
-		XP = 275, // vanilla 225
+		XP = 225,
 		ActionPoints = 9,
 		Hitpoints = 65, // vanilla 60
 		Bravery = 55, // vanilla 50
