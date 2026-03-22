@@ -140,23 +140,17 @@
 	// The points in _points must be in increasing order of x.
 	function multilerp( _x, _points )
 	{
-		local p1 = _points[0];
-		local p2;
+		local i = 0;
+		local count = _points.len() - 2;
 
-		// Use the two points between which _x lies.
-		// If _x is greater than the last point's x then the last 2 points will be used.
-		// If _x is smaller than the first point's x then the first 2 points will be used.
-		for (local i = 1; i < _points.len(); i++)
+		while (i < count && _x > _points[i + 1][0])
 		{
-			p2 = _points[i];
-			if (_x <= p2[0])
-			{
-				break;
-			}
-			p1 = p2;
+			i++;
 		}
 
-		return lerp(_x, p1[0], p1[1], p2[0], p2[1]);
+		local p1 = _points[i];
+		local p2 = _points[i + 1];
+		return this.lerp(_x, p1[0], p1[1], p2[0], p2[1]);
 	}
 
 	// The return has the same type as that of _value
