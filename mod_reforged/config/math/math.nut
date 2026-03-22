@@ -137,24 +137,25 @@
 	// multiple points in the _points array where each point is
 	// a len 2 array [x, y]. The path is linearly interpolated
 	// between consecutive points.
+	// The points in _points must be in increasing order of x.
 	function multilerp( _x, _points )
 	{
-		local p1, p2;
+		local p1 = _points[0];
+		local p2;
 
 		// Use the two points between which _x lies.
-		for (local i = 0; i < _points.len() - 1; i++)
+		// If _x is greater than the last point's x then the last 2 points will be used.
+		// If _x is smaller than the first point's x then the first 2 points will be used.
+		for (local i = 1; i < _points.len(); i++)
 		{
-			p1 = _points[i];
-			p2 = _points[i + 1];
-			if (_x >= p1[0] && _x <= p2[0])
+			p2 = _points[i];
+			if (_x <= p2[0])
 			{
-				return lerp(_x, p1[0], p1[1], p2[0], p2[1]);
+				break;
 			}
+			p1 = p2;
 		}
 
-		// If _x was greater than the last point's x then use the last two points.
-		p1 = _points[_points.len() - 2];
-		p2 = _points.top();
 		return lerp(_x, p1[0], p1[1], p2[0], p2[1]);
 	}
 
