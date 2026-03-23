@@ -1,5 +1,5 @@
 ::Reforged <- {
-	Version = "0.8.0-alpha.12",
+	Version = "0.8.0-alpha.13",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
 	GitHubURL = "https://github.com/Battle-Modders/mod-reforged",
@@ -29,11 +29,11 @@ local requiredMods = [
 	"dlc_desert",
 	"dlc_paladins",
 	"mod_dynamic_perks >= 0.5.0"
-	"mod_dynamic_spawns >= 0.5.0",
+	"mod_dynamic_spawns >= 0.6.0-alpha.2",
 	"mod_item_tables >= 0.1.3",
 	"mod_upd",
 	"mod_stack_based_skills >= 0.5.1",
-	"mod_reforged_assets >= 0.1.0-alpha.2"
+	"mod_reforged_assets >= 0.1.0-alpha.3"
 ];
 
 ::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
