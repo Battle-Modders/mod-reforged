@@ -98,9 +98,12 @@
 		if (_entity.getTile().Properties.Effect == null || _entity.getTile().Properties.Effect.Type != "smoke")
 		{
 			local attacks = ::Tactical.Entities.getAdjacentActors(_entity.getTile()).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, false))
-							.map(@(_a) {
-								id = 100,	type = "text",	icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(_a)),
-								text = ::MSU.Text.colorNegative(_a.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
+							.map(function(_a) {
+								local aoo = _a.getSkills().getAttackOfOpportunity();
+								return {
+									id = 100,	type = "text",	icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(_a)),
+									text = ::MSU.Text.colorNegative(aoo.getHitchance(_entity) + "%") + " chance to hit with " + ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedSkillName(aoo, "entityId:" + _a.getID()))
+								}
 							});
 
 			if (attacks.len() != 0)
@@ -142,9 +145,12 @@
 			try
 			{
 				spearwallAttacks = ::Tactical.Entities.getAdjacentActors(_entity.getPreviewMovement().End).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, true))
-									.map(@(_a) {
-										id = 100,	type = "text",	icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(_a)),
-										text = ::MSU.Text.colorNegative(_a.getSkills().getAttackOfOpportunity().getHitchance(_entity) + "%") + " chance to hit"
+									.map(function(_a) {
+										local aoo = _a.getSkills().getAttackOfOpportunity();
+										return {
+											id = 100,	type = "text",	icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(_a)),
+											text = ::MSU.Text.colorNegative(aoo.getHitchance(_entity) + "%") + " chance to hit with " + ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedSkillName(aoo, "entityId:" + _a.getID()))
+										}
 									});
 			}
 			catch (error)
