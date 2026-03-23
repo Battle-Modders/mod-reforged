@@ -41,6 +41,30 @@
 				icon = "ui/icons/action_points.png",
 				text = format("Spawned on Day: %i", this.getFlags().has("RF_SpawnTime") ? this.getFlags().get("RF_SpawnDay") : 0)
 			});
+
+			local spawnListID;
+			if (this.getFlags().has("RF_Spawnlist"))
+			{
+				spawnListID = this.getFlags().get("RF_Spawnlist");
+			}
+			else if (this.isLocation() && this.m.DefenderSpawnList != null)
+			{
+				foreach (id, s in ::Const.World.Spawn)
+				{
+					if (s == this.m.DefenderSpawnList)
+					{
+						spawnListID = id;
+						break;
+					}
+				}
+			}
+			if (spawnListID != null)
+			{
+				ret.push({
+					id = 102,	type = "hint",	icon = "ui/icons/special.png",
+					text = "Spawnlist: " + spawnListID
+				});
+			}
 		}
 		return ret;
 	}}.getTooltip;
