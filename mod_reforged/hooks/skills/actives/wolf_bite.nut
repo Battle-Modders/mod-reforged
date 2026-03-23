@@ -17,6 +17,26 @@
 	{
 	}}.onUpdate;
 
+	// VanillaFix: In vanilla the first AOO wolfriders make (even when using Spearwall) is
+	// with wolf_bite. After the first it switches to their weapon's attack. We fix this
+	// by ignoring the wolf_bite as AOO as long as a weapon AOO is usable.
+	q.isIgnoredAsAOO = @(__original) { function isIgnoredAsAOO()
+	{
+		// Ignore self as AOO when equipped with weapon with AOO.
+		if (!::MSU.isNull(this.getContainer()))
+		{
+			foreach (s in this.getContainer().m.Skills)
+			{
+				if (s != this && !s.isIgnoredAsAOO() && !::MSU.isNull(s.getItem()) && !s.isHidden() && !s.isGarbage())
+				{
+					return true;
+				}
+			}
+		}
+
+		return __original();
+	}}.isIgnoredAsAOO;
+
 	// VanillaFix: Overwrite vanilla function to apply the damage modification to this skill
 	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{

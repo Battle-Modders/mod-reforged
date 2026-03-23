@@ -83,6 +83,9 @@ this.rf_hold_steady_skill <- ::inherit("scripts/skills/skill", {
 
 		foreach (ally in ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()))
 		{
+			if (ally.isNonCombatant())
+				continue;
+
 			local skill = ally.getSkills().getSkillByID("actives.rf_hold_steady");
 			if (skill != null) skill.m.IsSpent = true;
 

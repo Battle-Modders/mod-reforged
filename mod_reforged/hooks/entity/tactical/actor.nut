@@ -321,6 +321,13 @@
 	// Calculate the amount of fatigue that this actor would build up if they leave the tile they are on and dodge all zone of control attacks
 	q.RF_getZOCEvasionFatigue <- { function RF_getZOCEvasionFatigue()
 	{
+		// Don't change fatigue cost for fleeing characters, otherwise they don't attempt to flee at all
+		// if fleeing ZoC attacks would leave them with not enough fatigue to move. Note: they will still
+		// not be able to flee if dodging the ZoC attacks puts them at too high of a fatigue, but we
+		// want this behavior of "attempting to flee" to keep the behavior similar to vanilla for such characters.
+		if (this.getMoraleState() == ::Const.MoraleState.Fleeing)
+			return 0;
+
 		// TODO: How can we modularize the ZOC removal from "smoke"?
 		if (this.getCurrentProperties().IsImmuneToZoneOfControl || !this.getTile().hasZoneOfControlOtherThan(this.getAlliedFactions()) || (this.getTile().Properties.Effect != null && this.getTile().Properties.Effect.Type == "smoke"))
 			return 0;

@@ -86,7 +86,7 @@ this.rf_blitzkrieg_skill <- ::inherit("scripts/skills/skill", {
 
 		foreach (ally in ::Tactical.Entities.getInstancesOfFaction(_user.getFaction()))
 		{
-			if (ally.getMoraleState() == ::Const.MoraleState.Fleeing || ally.getCurrentProperties().IsStunned)
+			if (ally.getMoraleState() == ::Const.MoraleState.Fleeing || ally.getCurrentProperties().IsStunned || ally.isNonCombatant())
 			{
 				continue;
 			}
