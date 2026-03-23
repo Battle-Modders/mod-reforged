@@ -16,7 +16,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Will move you into the target tile and randomly [$ $|Skill+stunned_effect], or [$ $|Skill+staggered_effect] and knock back enemies around that tile")
+				text = ::Reforged.Mod.Tooltips.parseString("Will move you into the target tile and randomly [stun|Skill+stunned_effect], or [stagger|Skill+staggered_effect] and knock back enemies around that tile")
 			},
 			{
 				id = 11,

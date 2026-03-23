@@ -32,7 +32,7 @@ this.rf_swordmaster_push_through_skill <- ::inherit("scripts/skills/actives/line
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will [$ $|Skill+staggered_effect] the target")
+			text = ::Reforged.Mod.Tooltips.parseString("Will [stagger|Skill+staggered_effect] the target")
 		});
 
 		ret.push({
