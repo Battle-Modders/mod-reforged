@@ -85,7 +85,9 @@
 		Strength = 45,
 		Cost = 45,
 		Row = 1,
-		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_elite"
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_heavy_elite",
+		NameList = ::Const.Strings.AncientDeadNames,
+		TitleList = null
 	},
 	{
 		XP = 450,
