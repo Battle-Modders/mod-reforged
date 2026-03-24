@@ -249,6 +249,48 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.ZombieLight" }
 			]
 		}
+	},
+	{
+		ID = "ZombiesOrZombiesAndGhosts",
+		DynamicDefs = {
+			Parties = [
+				{ BaseID = "Zombies" },
+				{ BaseID = "ZombiesAndGhosts" }
+			]
+		},
+
+		function onBeforeSpawnStart()
+		{
+			if (::Math.rand(1, 100) > 100 * ::Const.World.Spawn.Zombies.len().tofloat() / ::Const.World.Spawn.ZombiesOrZombiesAndGhosts.len())
+			{
+				this.getSpawnable("Zombies").HardMax = 0;
+			}
+			else
+			{
+				this.getSpawnable("ZombiesAndGhosts").HardMax = 0;
+			}
+		}
+	},
+	{
+		ID = "ZombiesOrZombiesAndGhouls",
+		DynamicDefs = {
+			Parties = [
+				{ BaseID = "Zombies" },
+				{ BaseID = "ZombiesAndGhouls" }
+			]
+		},
+
+		function onBeforeSpawnStart()
+		{
+			if (::Math.rand(1, 100) > 100 * ::Const.World.Spawn.Zombies.len().tofloat() / ::Const.World.Spawn.ZombiesOrZombiesAndGhosts.len())
+			{
+				this.getSpawnable("Zombies").HardMax = 0;
+			}
+			else
+			{
+				this.getSpawnable("ZombiesAndGhouls").HardMax = 0;
+			}
+		}
 	}
 
 	// SubParties

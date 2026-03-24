@@ -1,6 +1,6 @@
 local parties = [
 	{
-		ID = "Cultist",
+		ID = "Cultists",
 		HardMin = 4,
 		DefaultFigure = "figure_civilian_03",
 		MovementSpeedMult = 1.0,
