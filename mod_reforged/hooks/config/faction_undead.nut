@@ -78,7 +78,7 @@
 	"RF_SkeletonHeavyElite",
 	"Ancient Honor Guard",
 	"Ancient Honor Guards",
-	"skeleton_heavy_orientation",
+	"skeleton_03_orientation", // vanilla honor guard orientation icon
 	::Const.FactionType.Undead,
 	{
 		Variant = 1,
