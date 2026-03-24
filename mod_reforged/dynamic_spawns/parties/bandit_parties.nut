@@ -38,8 +38,8 @@ local parties = [
 			ranged.UpgradeWeightMult = 10.0;
 			dogs.UpgradeWeightMult = 0.1;
 
-			frontline.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.0, 200, 0.2), 0.0, 0.2);
-			ranged.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 50, 0.35, 200, 0.5), 0.35, 0.5);
+			frontline.RatioMin = ::Reforged.Math.lerpClamp(res, 100, 0.0, 200, 0.2);
+			ranged.RatioMin = ::Reforged.Math.lerpClamp(res, 50, 0.35, 200, 0.5);
 		}
 
 		function getUpgradeChance()
@@ -83,7 +83,7 @@ local parties = [
 			local dogs = this.getSpawnable("UnitBlock.RF.BanditDog");
 			local frontline = this.getSpawnable("Frontline");
 
-			dogs.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.33, 170, 0.7), 0.33, 0.7);
+			dogs.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 0.33, 170, 0.7);
 			frontline.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.7, 170, 0.5), 0.45, 0.7);
 		}
 
@@ -130,14 +130,14 @@ local parties = [
 			local ranged = this.getSpawnable("UnitBlock.RF.BanditRanged");
 			local boss = this.getSpawnable("UnitBlock.RF.BanditBoss");
 
-			ranged.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.6, 200, 0), 0.0, 0.2);
-			boss.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.5, 600, 0), 0.0, 0.5);
+			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 0.6, 200, 0);
+			boss.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 0.5, 600, 0);
 		}
 
 		function getUpgradeChance()
 		{
 			local res = this.getTopParty().getStartingResources();
-			return 45 + ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 4.5, 600, 1.5), 1.5, 4.5) * this.getTotal();
+			return 45 + ::Reforged.Math.lerpClamp(res, 100, 4.5, 600, 1.5) * this.getTotal();
 		}
 	},
 	{
@@ -179,21 +179,21 @@ local parties = [
 			local boss = this.getSpawnable("UnitBlock.RF.BanditBoss");
 			local elite = this.getSpawnable("UnitBlock.RF.BanditElite");
 
-			ranged.RatioMax = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.55, 600, 0.3), 0.3, 0.55);
-			ranged.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.45, 200, 0.0), 0.0, 0.45);
+			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.55, 600, 0.3);
+			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 0.45, 200, 0.0);
 
-			frontline.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.45, 600, 0.6), 0.45, 0.6);
+			frontline.RatioMin = ::Reforged.Math.lerpClamp(res, 200, 0.45, 600, 0.6);
 
-			boss.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.6, 500, 0.0), 0.0, 0.6);
+			boss.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 0.6, 500, 0.0);
 
-			elite.RatioMax = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 400, 0.05, 600, 0.15), 0.05, 0.15);
-			elite.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 400, 0.7, 600, 0.0), 0.0, 0.7);
+			elite.RatioMax = ::Reforged.Math.lerpClamp(res, 400, 0.05, 600, 0.15);
+			elite.ExclusionChance = ::Reforged.Math.lerpClamp(res, 400, 0.7, 600, 0.0);
 		}
 
 		function getUpgradeChance()
 		{
 			local res = this.getTopParty().getStartingResources();
-			return 45 + ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 4.5, 600, 1.5), 1.5, 4.5) * this.getTotal();
+			return 45 + ::Reforged.Math.lerpClamp(res, 100, 4.5, 600, 1.5) * this.getTotal();
 		}
 	},
 	{
@@ -233,16 +233,16 @@ local parties = [
 			local ranged = this.getSpawnable("UnitBlock.RF.BanditRanged");
 			local elite = this.getSpawnable("UnitBlock.RF.BanditElite");
 
-			ranged.RatioMax = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.40, 600, 0.3), 0.3, 0.40);
-			ranged.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.15, 300, 0.0), 0.0, 0.15);
+			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.40, 600, 0.3);
+			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 0.15, 300, 0.0);
 
-			elite.ExclusionChance = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.67, 500, 0.25), 0.25, 0.67);
+			elite.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 0.67, 500, 0.25);
 		}
 
 		function getUpgradeChance()
 		{
 			local res = this.getTopParty().getStartingResources();
-			return 35 + ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 3.5, 600, 1.25), 1.25, 3.5) * this.getTotal();
+			return 35 + ::Reforged.Math.lerpClamp(res, 100, 3.5, 600, 1.25) * this.getTotal();
 		}
 	},
 	{

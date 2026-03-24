@@ -133,6 +133,11 @@
 		return m * _x + c;
 	}
 
+	function lerpClamp( _x, _x1, _y1, _x2, _y2 )
+	{
+		return this.clamp(this.lerp(_x, _x1, _y1, _x2, _y2), _y1, _y2);
+	}
+
 	// Returns the value of y at _x along a path specified with
 	// multiple points in the _points array where each point is
 	// a len 2 array [x, y]. The path is linearly interpolated

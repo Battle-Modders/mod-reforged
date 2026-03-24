@@ -89,11 +89,11 @@ local parties = [
 				boss.HardMin = 1;
 			}
 
-			young.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.5, 820, 0.2), 0.2, 0.5);
-			berserker.RatioMax = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.6, 720, 0.33), 0.33, 0.6);
+			young.RatioMin = ::Reforged.Math.lerpClamp(res, 100, 0.5, 820, 0.2);
+			berserker.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.6, 720, 0.33);
 
 			// Chance to exclude Berserker.
-			if (::Math.rand(1, 100) < ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 75, 300, 0), 0, 75))
+			if (::Math.rand(1, 100) < ::Reforged.Math.lerpClamp(res, 100, 75, 300, 0))
 			{
 				berserker.HardMax = 0;
 			}
@@ -107,7 +107,7 @@ local parties = [
 			else
 			{
 				// Chance to exclude Warrior.
-				if (::Math.rand(1, 100) <= ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 55, 400, 0), 0, 55))
+				if (::Math.rand(1, 100) <= ::Reforged.Math.lerpClamp(res, 100, 55, 400, 0))
 				{
 					warrior.HardMax = 0;
 				}
@@ -122,7 +122,7 @@ local parties = [
 			if (warrior.isValid())
 			{
 				// Fewer Young at higher resources
-				young.RatioMax = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 1.0, 820, 0.3), 0.3, 1.0);
+				young.RatioMax = ::Reforged.Math.lerpClamp(res, 100, 1.0, 820, 0.3);
 			}
 		}
 	},
@@ -162,7 +162,7 @@ local parties = [
 			local boss = this.getSpawnable("UnitBlock.RF.OrcBoss");
 
 			// Vanilla guarantees a Warlord above 400 resources
-			if (::Math.rand(1, 100) <= ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 300, 75, 400, 0), 0, 75)) // Drops from 75 at 300 to 0 at 400)
+			if (::Math.rand(1, 100) <= ::Reforged.Math.lerpClamp(res, 300, 75, 400, 0)) // Drops from 75 at 300 to 0 at 400)
 			{
 				boss.HardMax = 0;
 			}
@@ -172,7 +172,7 @@ local parties = [
 			}
 
 			// Berserkers and Warriors are always present above 300 resources.
-			if (::Math.rand(1, 100) <= ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 56, 300, 0), 0, 60))
+			if (::Math.rand(1, 100) <= ::Reforged.Math.lerpClamp(res, 200, 56, 300, 0))
 			{
 				berserker.HardMax = 0;
 			}
@@ -183,14 +183,14 @@ local parties = [
 				warrior.HardMin = 2; // Have at least 2 warriors when Warlord is present
 			}
 			// Warlord is absent
-			else if (::Math.rand(1, 100) <= ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.6,300, 0), 0, 0.6))
+			else if (::Math.rand(1, 100) <= ::Reforged.Math.lerpClamp(res, 200, 0.6,300, 0))
 			{
 				warrior.HardMax = 0;
 			}
 
 			if (berserker.isValid() || warrior.isValid())
 			{
-				young.RatioMax = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 1.0, 720, 0.25), 0.25, 1.0); // Drops from 1.0 at 200 to 0.25 at 650
+				young.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 1.0, 720, 0.25); // Drops from 1.0 at 200 to 0.25 at 650
 				young.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 200, 0.5, 720, 0.25), 0.25, 1.0); // Drops from 0.5 at 200 to 0.25 at 720
 			}
 
@@ -198,7 +198,7 @@ local parties = [
 			{
 				// Higher resources lead to a greater ratio of Warriors compared to Berserkers.
 				// Ratio of Berserker/Warrior drops from 0.6 at 200 to 0.33 at 720
-				berserker.RatioMax = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 720, 0.33, 200, 0.6), 0.33, 0.6);
+				berserker.RatioMax = ::Reforged.Math.lerpClamp(res, 720, 0.33, 200, 0.6);
 			}
 		}
 	},
@@ -237,8 +237,8 @@ local parties = [
 			local warrior = this.getSpawnable("UnitBlock.RF.OrcWarrior");
 
 			// Fewer Young at higher resources
-			young.RatioMax = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 150, 0.7, 800, 0.5), 0.25, 0.5); // Drops from 0.7 at 150 to 0.5 at 800
-			young.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 150, 0.5, 800, 0.25), 0.25, 0.5); // Drops from 0.5 at 150 to 0.25 at 800
+			young.RatioMax = ::Reforged.Math.lerpClamp(res, 150, 0.7, 800, 0.5); // Drops from 0.7 at 150 to 0.5 at 800
+			young.RatioMin = ::Reforged.Math.lerpClamp(res, 150, 0.5, 800, 0.25); // Drops from 0.5 at 150 to 0.25 at 800
 
 			if (res < 315)
 			{
