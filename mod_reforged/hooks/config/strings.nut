@@ -231,12 +231,11 @@ local vanillaDescriptions = [
 		ID = "perk.anticipation",
 		Key = "Anticipation",
 		Description = ::UPD.getDescription({
-			Fluff = "I saw these coming!",
+			Fluff = "I saw that coming!",
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Take reduced damage from the first " + ::MSU.Text.colorPositive(2) + " attacks you receive each battle.",
-					"This reduction is a percentage equal to your current [Ranged Defense|Concept.RangeDefense] plus an additional " + ::MSU.Text.colorPositive("10%") + " for each tile between the attacker and you."
+					"When being attacked with ranged weapons, gain " + ::MSU.Text.colorPositive("1 + 10%") + " of your [base|Concept.BaseAttribute] [Ranged Defense|Concept.RangeDefense] as additional [Ranged Defense|Concept.RangeDefense] per tile that the attacker is away, and always at least " + ::MSU.Text.colorPositive("+10") + " + [Ranged Defense|Concept.RangeDefense]."
 				]
 			}]
 		})
