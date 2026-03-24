@@ -39,7 +39,7 @@
 				id = 101,
 				type = "hint",
 				icon = "ui/icons/action_points.png",
-				text = format("Spawned on Day: %i", this.getFlags().has("RF_SpawnTime") ? this.getFlags().get("RF_SpawnDay") : 0)
+				text = format("Spawned on Day: %i", this.getFlags().has("RF_SpawnDay") ? this.getFlags().get("RF_SpawnDay") : 0)
 			});
 
 			local spawnListID;
