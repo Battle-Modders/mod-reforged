@@ -1,11 +1,4 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_thug", function(q) {
-	q.create = @(__original) { function create()
-	{
-		__original();
-		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_bandit_tough_agent");
-		this.m.AIAgent.setActor(this);
-	}}.create;
-
 	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
