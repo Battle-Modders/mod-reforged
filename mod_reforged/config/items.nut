@@ -1,4 +1,29 @@
 ::Reforged.Items <- {
+	AnatomistPotions = {
+		// Key: EntityType
+		// Value: Table { AcquiredFlagName, DiscoveredFlagName, ShouldDropFlagName, ItemScript, EffectScript, ResearchNotesScript }
+		Infos = {},
+
+		function getInfo( _obj )
+		{
+			if (typeof _obj == "integer") // EntityType
+			{
+				return this.Infos[_obj];
+			}
+			else if (::MSU.isKindOf(_obj, "rf_anatomist_potion_effect"))
+			{
+				local path = ::IO.scriptFilenameByHash(_obj);
+				foreach (info in this.Infos)
+				{
+					if (info.EffectScript == path)
+						return info;
+				}
+			}
+
+			throw ::MSU.Exception.KeyNotFound(_obj);
+		}
+	}
+
 	function isDuelistValid( _weapon )
 	{
 		if (!_weapon.isItemType(::Const.Items.ItemType.MeleeWeapon))
@@ -56,3 +81,49 @@
 		return ret;
 	}
 };
+
+// Automatic hooks on all the research notes items to add tooltips to them
+// based on the info in ::Reforged.Items.AnatomistPotions.Infos.
+local notesToEntityTypesMap = {};
+foreach (entityType, info in ::Reforged.Items.AnatomistPotions.Infos)
+{
+	if (!(info.ResearchNotesScript in notesToEntityTypesMap))
+	{
+		notesToEntityTypesMap[info.ResearchNotesScript] <- [];
+	}
+
+	notesToEntityTypesMap[info.ResearchNotesScript].push(entityType);
+}
+
+foreach (notesScript, _ in notesToEntityTypesMap)
+{
+	::Reforged.HooksMod.hook(notesScript, function(q) {
+		q.getTooltip = @(__original) { function getTooltip()
+		{
+			local ret = __original();
+			foreach (entityType in notesToEntityTypesMap[::IO.scriptFilenameByHash(this.ClassNameHash)])
+			{
+				local info = ::Reforged.Items.AnatomistPotions.getInfo(entityType);
+				if (::World.Statistics.getFlags().get(info.DiscoveredFlagName))
+				{
+					ret.push({
+						id = 15,
+						type = "text",
+						icon = "ui/icons/special.png",
+						text = "" + ::Const.Strings.EntityName[entityType] + ": " + ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedItemName(::new(info.PotionScript)))
+					});
+				}
+				else
+				{
+					ret.push({
+						id = 15,
+						type = "text",
+						icon = "ui/icons/special.png",
+						text = "" + ::Const.Strings.EntityName[entityType] + ": ???"
+					});
+				}
+			}
+			return ret;
+		}}.getTooltip;
+	});
+}
