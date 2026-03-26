@@ -47,7 +47,15 @@ this.rf_ethereal_bite_skill <- ::inherit("scripts/skills/skill", {
 	{
 		_properties.DamageRegularMin += 15;
 		_properties.DamageRegularMax += 25;
-		_properties.IsIgnoringArmorOnAttack = true;
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_skill == this)
+		{
+			_properties.DamageArmorMult *= 0.0;
+			_properties.IsIgnoringArmorOnAttack = true;
+		}
 	}
 
 	function onUse( _user, _targetTile )
