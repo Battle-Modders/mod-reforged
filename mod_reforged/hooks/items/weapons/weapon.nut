@@ -163,4 +163,43 @@
 
 		return ret;
 	}}.getDefaultReach;
+
+	// MSUFix: Add handling for WeaponType being 0 (i.e. None).
+	q.isWeaponType = @(__original) { function isWeaponType( _t, _any = true, _only = false )
+	{
+		if (this.m.WeaponType == 0)
+		{
+			return _t == 0;
+		}
+
+		return __original(_t, _any, _only);
+	}}.isWeaponType;
+
+	// MSUFix: Prevent MSU from adding WeaponTypeName when WeaponType is None.
+	q.buildCategoriesFromWeaponType = @() function()
+	{
+		this.m.Categories = "";
+
+		if (this.m.WeaponType != ::Const.Items.WeaponType.None)
+		{
+			foreach (w in ::Const.Items.WeaponType)
+			{
+				if (this.isWeaponType(w))
+				{
+					this.m.Categories += ::Const.Items.getWeaponTypeName(w) + "/";
+				}
+			}
+		}
+
+		if (this.m.Categories != "") this.m.Categories = this.m.Categories.slice(0, -1) + ", ";
+
+		if (this.isItemType(::Const.Items.ItemType.OneHanded))
+		{
+			this.m.Categories += "One-Handed";
+		}
+		else if (this.isItemType(::Const.Items.ItemType.TwoHanded))
+		{
+			this.m.Categories += "Two-Handed";
+		}
+	}
 });
