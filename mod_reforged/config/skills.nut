@@ -89,6 +89,65 @@
 		if (weapon != null) this.addPerkGroupOfWeapon(_entity, weapon, _maxTier);
 	}
 
+	function addAllPerkGroupsOfEquippedWeapon( _entity, _maxTier = 7 )
+	{
+		local trees = [];
+
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Axe))
+		{
+			trees.push("pg.rf_axe");
+		}
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Bow))
+		{
+			trees.push("pg.rf_bow");
+		}
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
+		{
+			trees.push("pg.rf_cleaver_enemy");
+		}
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Crossbow) || _weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
+		{
+			trees.push("pg.rf_crossbow");
+		}
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Dagger))
+		{
+			trees.push("pg.rf_dagger");
+		}
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Flail))
+		{
+			trees.push("pg.rf_flail");
+		}
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Hammer))
+		{
+			trees.push("pg.rf_hammer");
+		}
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Mace))
+		{
+			trees.push("pg.rf_mace");
+		}
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
+		{
+			trees.push("pg.rf_polearm");
+		}
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Spear))
+		{
+			trees.push("pg.rf_spear");
+		}
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Sword))
+		{
+			trees.push("pg.rf_sword");
+		}
+		if (_weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
+		{
+			trees.push("pg.rf_throwing");
+		}
+
+		foreach (t in trees)
+		{
+			this.addPerkGroup(_entity, t, _maxTier);
+		}
+	}
+
 	function addMasteryOfWeapon( _entity, _weapon )
 	{
 		if (_weapon.isWeaponType(::Const.Items.WeaponType.Axe))
