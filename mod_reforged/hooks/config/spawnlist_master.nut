@@ -22,11 +22,17 @@
 ::Const.World.Spawn.Troops.BanditLeader.Strength = 40; // vanilla 30
 ::Const.World.Spawn.Troops.BanditLeader.Cost = 40; // vanilla 25
 
+// Beasts
+::Const.World.Spawn.Troops.SandGolemMEDIUM.Cost = 42; // vanilla 35
+::Const.World.Spawn.Troops.SandGolemHIGH.Cost = 129; // vanilla 70
+
 //Civilian
+::Const.World.Spawn.Troops.CaravanDonkey.Cost = 10; // Vanilla 0
 ::Const.World.Spawn.Troops.HedgeKnight.Strength = 45; // vanilla 40
 ::Const.World.Spawn.Troops.HedgeKnight.Cost = 45; // vanilla 40
 ::Const.World.Spawn.Troops.MasterArcher.Strength = 45; // vanilla 40
 ::Const.World.Spawn.Troops.MasterArcher.Cost = 45; // vanilla 40
+::Const.World.Spawn.Troops.MilitiaVeteran.Cost = 15; // Vanilla 12
 ::Const.World.Spawn.Troops.Swordmaster.Strength = 45; // vanilla 40
 ::Const.World.Spawn.Troops.Swordmaster.Cost = 45; // vanilla 40
 
@@ -42,6 +48,10 @@
 ::Const.World.Spawn.Troops.Greatsword.NameList <- ::Const.Strings.CharacterNames;
 ::Const.World.Spawn.Troops.Greatsword.TitleList <- ::Const.Strings.RF_ZweihanderTitles;
 ::Const.World.Spawn.Troops.Knight.Strength = 45; // vanilla 40
+::Const.World.Spawn.Troops.MilitaryDonkey.Cost = 10; // Vanilla 0
+
+// Southern
+::Const.World.Spawn.Troops.SouthernDonkey.Cost = 10; // Vanilla 0
 
 // Cost is handled in bandit_units.nut
 ::MSU.Table.merge(::Const.World.Spawn.Troops, {
