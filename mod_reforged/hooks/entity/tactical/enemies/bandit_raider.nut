@@ -60,7 +60,16 @@
 				[1.0, "scripts/items/shields/wooden_shield"],
 				[1.0, "scripts/items/shields/kite_shield"]
 			]).roll();
-			this.m.Items.equip(::new(shield));
+
+			if (shield != null)
+			{
+				shield = ::new(shield);
+				this.m.Items.equip(shield);
+				if (::Math.rand(1, 100) <= 25)
+				{
+					shield.setCondition(::Math.floor(shield.getCondition() * ::MSU.Math.randf(0.6, 0.8)));
+				}
+			}
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
