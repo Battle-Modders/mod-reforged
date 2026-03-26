@@ -152,6 +152,8 @@
 	<sprite id="rf_sprint_effect_mini" ic = "FF23165B" img="skills\mini\rf_sprint_effect_mini.png" />
 	<sprite id="rf_take_aim_effect_mini" ic = "FF23165B" img="skills\mini\rf_take_aim_effect_mini.png" />
 	<sprite id="rf_unnerving_presence_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_unnerving_presence_effect.png" />
+	<sprite id="rf_warmth_potion_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_warmth_potion_effect.png" />
+	<sprite id="rf_warmth_potion_effect_mini" ic = "FF23165B" img="skills\mini\rf_warmth_potion_effect_mini.png" />
 	<sprite id="rf_whimpering_veil_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_whimpering_veil_effect.png" />
 	<sprite id="rf_worn_down_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_wear_them_down.png" />
 	<sprite id="rf_worn_down_effect_mini" ic = "FF23165B" img="skills\mini\rf_worn_down_effect_mini.png" />

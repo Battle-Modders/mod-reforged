@@ -9,6 +9,15 @@ this.rf_frostbound_manager <- ::inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = true;
 	}
 
+	function onAdded()
+	{
+		// TODO: Better to do this via a skill_container.onAnySkillAdded event
+		if (this.getContainer().hasSkill("effects.rf_warmth_potion"))
+		{
+			this.removeSelf();
+		}
+	}
+
 	function onTurnStart()
 	{
 		local actor = this.getContainer().getActor();

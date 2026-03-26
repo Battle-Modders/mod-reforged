@@ -36,6 +36,15 @@ this.rf_numbness_effect <- ::inherit("scripts/skills/skill", {
 	function onAdded()
 	{
 		local actor = this.getContainer().getActor();
+		// TODO: Better to do this via a skill_container.onAnySkillAdded event
+		local warmth = actor.getSkills().getSkillByID("effects.rf_warmth_potion");
+		if (warmth != null)
+		{
+			this.removeSelf();
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " resists being numbed thanks to " + warmth.getName());
+			return;
+		}
+
 		if (actor.getCurrentProperties().IsResistantToAnyStatuses && ::Math.rand(1, 100) <= 50)
 		{
 			if (!actor.isHiddenToPlayer())
