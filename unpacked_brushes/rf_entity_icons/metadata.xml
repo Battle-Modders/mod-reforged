@@ -1,4 +1,6 @@
 <brush name="gfx/rf_entity_icons.png" version="17">
+	<sprite id="icon_rf_grave_chill_bomb_01" offsetY="35" ic="FF34495F" width="130" height="142" img="icons\icon_rf_grave_chill_bomb_01.png" left="10" right="44" top="-53" bottom="-15" />
+
 	<sprite id="icon_named_greatsword_04" offsetY="35" ic="FF575759" width="130" height="142" img="icons\icon_named_greatsword_04.png" left="-64" right="32" top="-61" bottom="49" />
 	<sprite id="icon_named_greatsword_04_bloodied" offsetY="35" ic="FF4E4E54" width="130" height="142" img="icons\icon_named_greatsword_04_bloodied.png" left="-64" right="32" top="-61" bottom="49" />
 
