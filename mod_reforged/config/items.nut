@@ -2,7 +2,16 @@
 	AnatomistPotions = {
 		// Key: EntityType
 		// Value: Table { AcquiredFlagName, DiscoveredFlagName, ShouldDropFlagName, ItemScript, EffectScript, ResearchNotesScript }
-		Infos = {},
+		Infos = {
+			[::Const.EntityType.RF_Banshee] = {
+				AcquiredFlagName = "RF_isBansheePotionAcquired",
+				DiscoveredFlagName = "RF_isBansheePotionDiscovered",
+				ShouldDropFlagName = "RF_shouldDropBansheePotion",
+				ItemScript = "scripts/items/misc/anatomist/rf_banshee_potion_item",
+				EffectScript = "scripts/skills/effects/rf_banshee_potion_effect",
+				ResearchNotesScript = "scripts/items/misc/anatomist/research_notes_undead_item"
+			}
+		},
 
 		function getInfo( _obj )
 		{
