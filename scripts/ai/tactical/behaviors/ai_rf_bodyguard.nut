@@ -1,5 +1,6 @@
 this.ai_rf_bodyguard <- ::inherit("scripts/ai/tactical/behavior", {
 	m = {
+		Skill = null,
 		TargetTile = null,
 		IsWaitingAfterMove = false,
 		IsWaitingBeforeMove = false,
@@ -22,6 +23,7 @@ this.ai_rf_bodyguard <- ::inherit("scripts/ai/tactical/behavior", {
 	function onEvaluate( _entity )
 	{
 		// Function is a generator.
+		this.m.Skill = null;
 		this.m.TargetTile = null;
 		this.m.IsWaitingAfterMove = false;
 		this.m.IsHoldingPosition = false;
@@ -59,25 +61,26 @@ this.ai_rf_bodyguard <- ::inherit("scripts/ai/tactical/behavior", {
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		local skill = _entity.getSkills().getSkillByID("special.rf_bodyguard");
-		if (skill == null)
+		this.m.Skill = _entity.getSkills().getSkillByID("special.rf_bodyguard");
+		if (this.m.Skill == null)
 		{
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		local vip = skill.getVIP();
+		local vip = this.m.Skill.getVIP();
 		if (::MSU.isNull(vip) || !vip.isAlive() || !vip.isPlacedOnMap())
 		{
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		local vipStillToMoveAndAdjacent = false;
+		local radius = this.m.Skill.getRadius();
+		local vipStillToMoveInRange = false;
 		if (!vip.isTurnDone() && vip.getActionPoints() >= 4 && !vip.getCurrentProperties().IsStunned && !vip.getCurrentProperties().IsRooted)
 		{
-			vipStillToMoveAndAdjacent = vip.getTile().getDistanceTo(myTile) == 1;
+			vipStillToMoveInRange = vip.getTile().getDistanceTo(myTile) <= radius;
 		}
 
-		if (vipStillToMoveAndAdjacent && ::Tactical.TurnSequenceBar.canEntityWait(_entity))
+		if (vipStillToMoveInRange && ::Tactical.TurnSequenceBar.canEntityWait(_entity))
 		{
 			this.m.IsWaitingBeforeMove = true;
 		}
@@ -146,12 +149,14 @@ this.ai_rf_bodyguard <- ::inherit("scripts/ai/tactical/behavior", {
 				}
 
 				this.m.TargetTile = null;
+				this.m.Skill = null;
 				return true;
 			}
 		}
 
 		if (this.m.IsHoldingPosition)
 		{
+			this.m.Skill = null;
 			return true;
 		}
 
@@ -191,6 +196,7 @@ this.ai_rf_bodyguard <- ::inherit("scripts/ai/tactical/behavior", {
 		if (!navigator.travel(_entity, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue()))
 		{
 			this.m.TargetTile = null;
+			this.m.Skill = null;
 			return true;
 		}
 
@@ -208,12 +214,16 @@ this.ai_rf_bodyguard <- ::inherit("scripts/ai/tactical/behavior", {
 		local vipTile = _vip.getTile();
 		local dirs = array(6, 0);
 		local relevant = 0;
+		local minDistToEnemy = 999;
 
 		foreach (o in allOpponents)
 		{
 			local opponent = o.Actor;
 			local dist = o.Actor.getTile().getDistanceTo(vipTile);
 			local score = 1.0;
+
+			if (dist < minDistToEnemy)
+				minDistToEnemy = dist;
 
 			if (dist <= 11 && this.isRangedUnit(o.Actor))
 			{
@@ -256,40 +266,83 @@ this.ai_rf_bodyguard <- ::inherit("scripts/ai/tactical/behavior", {
 
 		relevant = ::Math.maxf(1.0, relevant);
 
-		for (local i = 0; i < 6; i++)
-		{
-			dirs[i] /= relevant;
+		// We no longer divide by 'relevant' or 'opponents.len()' to ensure the
+		// directional priority remains strong enough to overcome distance penalties.
 
-			if (vipTile.hasNextTile(i))
+		local closestOpponentTile = null;
+		local minDist = 999;
+		foreach (o in allOpponents)
+		{
+			local d = o.Actor.getTile().getDistanceTo(vipTile);
+			if (d < minDist)
 			{
-				local tile = vipTile.getNextTile(i);
+				minDist = d;
+				closestOpponentTile = o.Actor.getTile();
+			}
+		}
+
+		local radius = this.m.Skill == null ? 1 : this.m.Skill.getRadius();
+		local mapSize = ::Tactical.getMapSize();
+		local centerX = vipTile.SquareCoords.X;
+		local centerY = vipTile.SquareCoords.Y;
+
+		for (local x = centerX - radius; x <= centerX + radius; x++)
+		{
+			for (local y = centerY - radius; y <= centerY + radius; y++)
+			{
+				if (!::Tactical.isValidTileSquare(x, y))
+					continue;
+
+				local tile = ::Tactical.getTileSquare(x, y);
+				local distToVip = tile.getDistanceTo(vipTile);
 
 				if (!tile.IsEmpty && tile.ID != myTile.ID)
 					continue;
 
-				local score = 1;
+				if (distToVip > radius || distToVip > minDistToEnemy)
+					continue;
+
+				local score = 1.0;
 				local immediateBonus = 0;
-				score = score + dirs[i] / ::Math.max(1, allOpponents.len()) * ::Const.AI.Behavior.ProtectAllyDirectionMult;
+				local dir = vipTile.getDirectionTo(tile);
+
+				// Directional threat score
+				score = score + dirs[dir] * ::Const.AI.Behavior.ProtectAllyDirectionMult;
 				score = score - myTile.getDistanceTo(tile);
 
-				for (local j = 0; j < 6; j++)
+				// Interception Logic:
+				// Reward tiles that are closer to the threat than the VIP is (standing in front).
+				// Penalize tiles that are further from the threat than the VIP is (standing behind).
+				if (closestOpponentTile != null)
 				{
-					if (tile.hasNextTile(j))
+					local tileDistToEnemy = tile.getDistanceTo(closestOpponentTile);
+					local vipDistToEnemy = vipTile.getDistanceTo(closestOpponentTile);
+					score = score + (vipDistToEnemy - tileDistToEnemy) * 2.0;
+				}
+
+				for (local j = 0; j < 6; j++ )
+				{
+					if (!tile.hasNextTile(j))
+						continue;
+
+					local adjacentTile = tile.getNextTile(j);
+					if (!adjacentTile.IsOccupiedByActor || ::Math.abs(tile.Level - adjacentTile.Level) > 1)
+						continue;
+
+					local other = adjacentTile.getEntity();
+					if (!_entity.isAlliedWith(other))
 					{
-						local adjacentTile = tile.getNextTile(j);
+						immediateBonus = immediateBonus + ::Const.AI.Behavior.ProtectAllyEngagedBonus;
 
-						if (!adjacentTile.IsOccupiedByActor || ::Math.abs(tile.Level - adjacentTile.Level) > 1)
-							continue;
-
-						local other = adjacentTile.getEntity();
-						if (!_entity.isAlliedWith(other))
+						// Aggression: Extra bonus for engaging an enemy that isn't already tied down by others.
+						if (adjacentTile.getZoneOfControlCountOtherThan(other.getAlliedFactions()) == 0)
 						{
 							immediateBonus = immediateBonus + ::Const.AI.Behavior.ProtectAllyEngagedBonus;
 						}
-						else if (other.getCurrentProperties().TargetAttractionMult > 1.0 && other.getCurrentProperties().TargetAttractionMult > _entity.getCurrentProperties().TargetAttractionMult)
-						{
-							score = score * _vip.getCurrentProperties().TargetAttractionMult;
-						}
+					}
+					else if (other.getCurrentProperties().TargetAttractionMult > 1.0 && other.getCurrentProperties().TargetAttractionMult > _entity.getCurrentProperties().TargetAttractionMult)
+					{
+						score = score * _vip.getCurrentProperties().TargetAttractionMult;
 					}
 				}
 
@@ -299,29 +352,13 @@ this.ai_rf_bodyguard <- ::inherit("scripts/ai/tactical/behavior", {
 				}
 
 				score = score + immediateBonus;
-				local already_in = false;
 
-				foreach (t in potential_tiles)
-				{
-					if (t.Tile.ID == tile.ID)
-					{
-						t.AllyDefendBonus += (5.0 + _vip.getCurrentProperties().TargetAttractionMult) * ::Const.AI.Behavior.ProtectAllyAttractionBonus;
-						t.TileBonus += dirs[i] + immediateBonus;
-						t.Score += score;
-						already_in = true;
-						break;
-					}
-				}
-
-				if (!already_in)
-				{
-					potential_tiles.push({
-						Tile = tile,
-						Score = score,
-						TileBonus = dirs[i] + immediateBonus,
-						AllyDefendBonus = (5.0 + _vip.getCurrentProperties().TargetAttractionMult) * ::Const.AI.Behavior.ProtectAllyAttractionBonus
-					});
-				}
+				potential_tiles.push({
+					Tile = tile,
+					Score = score,
+					TileBonus = dirs[dir] + immediateBonus,
+					AllyDefendBonus = (5.0 + _vip.getCurrentProperties().TargetAttractionMult) * ::Const.AI.Behavior.ProtectAllyAttractionBonus
+				});
 			}
 		}
 

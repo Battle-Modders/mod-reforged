@@ -58,7 +58,9 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_finesse"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigilant"));
-		this.m.Skills.add(::new("scripts/skills/special/rf_bodyguard"));
+		this.m.Skills.add(::Reforged.new("scripts/skills/special/rf_bodyguard", function(o) {
+			o.m.Radius = 3;
+		}));
 	}
 
 	function onCombatStart()
