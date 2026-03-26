@@ -9,7 +9,11 @@ this.rf_dodge_potion_blueprint <- ::inherit("scripts/crafting/blueprint", {
 		local ingredients = [
 			{
 				Script = "scripts/items/loot/rf_geist_tear_item",
-				Num = 2
+				Num = 1
+			},
+			{
+				Script = "scripts/items/loot/rf_hollenhund_bones_item",
+				Num = 1
 			}
 		];
 		this.init(ingredients);
