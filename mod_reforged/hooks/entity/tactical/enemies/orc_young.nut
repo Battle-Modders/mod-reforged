@@ -49,23 +49,6 @@
 		this.m.Skills.add(::new("scripts/skills/actives/hand_to_hand_orc"));
 		this.m.Skills.add(::new("scripts/skills/actives/charge"));
 
-		body.Saturation = 0.5;
-		body.varySaturation(0.2);
-		body.Color = this.createColor("#c1ddaa");
-		body.varyColor(0.05, 0.05, 0.05);
-
-		// head.setBrush("bust_orc_01_head_01");
-		head.Saturation = body.Saturation;
-		head.Color = body.Color;
-
-		local rf_zombify_head = this.addSprite("rf_zombify_head");
-		rf_zombify_head.setBrush("bust_rf_zombify_orc_young_0" + ::Math.rand(1, 3));
-		rf_zombify_head.setBrightness(0.75);
-
-		local rf_zombify_body = this.addSprite("rf_zombify_body");
-		rf_zombify_body.setBrush("bust_rf_zombify_orc_young_body_0" + ::Math.rand(1, 2));
-		rf_zombify_body.setBrightness(0.75);
-
 		if (::Const.DLC.Unhold)
 		{
 			this.m.Skills.add(::new("scripts/skills/actives/wake_ally_skill"));
