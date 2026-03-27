@@ -64,6 +64,12 @@ local unitBlocks = [
 			Units = [{ BaseID = "Unit.RF.Necromancer" }]
 		}
 	},
+	{
+		ID = "UnitBlock.RF.NecromancerUpgrade",
+		DynamicDefs = {
+			Units = [ "Unit.RF.Necromancer", "Unit.RF.NecromancerWithBodyguards", "Unit.RF.NecromancerWithBodyguardsOrc" ]
+		}
+	}
 
 	// Necromancer with Bodyguards
 	{

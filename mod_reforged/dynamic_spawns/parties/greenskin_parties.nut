@@ -2,114 +2,81 @@ local parties = [
 	{
 		// Vanilla: Size 8-48, Cost 136-1115
 		ID = "GreenskinHorde",
-		Variants = ::MSU.Class.WeightedContainer([
-			[3, {
-				ID = "GreenskinHorde_0", // OrcYoung base
-				HardMin = 9,
-				DefaultFigure = "figure_orc_02",
-				MovementSpeedMult = 1.0,
-				VisibilityMult = 1.0,
-				VisionMult = 1.0,
-				DynamicDefs = {
-					UnitBlocks = [
-						{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.30, RatioMax = 0.80 },
+		HardMin = 8,
+		DefaultFigure = "figure_orc_02",
+		MovementSpeedMult = 1.0,
+		VisibilityMult = 1.0,
+		VisionMult = 1.0,
+		DynamicDefs = {
+			Parties = [
+				{
+					ID = "Orcs",
+					DynamicDefs = {
+						UnitBlocks = [
+							{ BaseID = "UnitBlock.RF.OrcYoung" },
+							{ BaseID = "UnitBlock.RF.OrcBerserker", StartingResourceMin = 200, SpawnWeightMult = 0.3 },
+							{ BaseID = "UnitBlock.RF.OrcWarrior", StartingResourceMin = 230 },
+							{ BaseID = "UnitBlock.RF.OrcBoss", HardMax = 1, StartingResourceMin = 480, PartySizeMin = 14 } // vanilla StartingResourceMin = 480
+						]
+					}
+				},
+				{
+					ID = "Goblins",
+					DynamicDefs = {
+						UnitBlocks = [
+							{ BaseID = "UnitBlock.RF.GoblinFrontline" },
+							{ BaseID = "UnitBlock.RF.GoblinRanged" },
+							{ BaseID = "UnitBlock.RF.GoblinFlank", StartingResourceMin = 160 },
+							{ BaseID = "UnitBlock.RF.GoblinBoss", HardMax = 1, StartingResourceMin = 390, PartySizeMin = 21 } // vanilla StartingResourceMin = 389
+							{ BaseID = "UnitBlock.RF.GoblinSupport", HardMax = 3, StartingResourceMin = 495, PartySizeMin = 17, SpawnWeightMult = 0.2 } // vanilla StartingResourceMin = 495
+						]
+					}
+				}
+			]
+		},
 
-						{ BaseID = "UnitBlock.RF.GoblinFrontline", RatioMin = 0.00, RatioMax = 0.70, ExclusionChance = 0.5 },
-						{ BaseID = "UnitBlock.RF.GoblinRanged", RatioMin = 0.00, RatioMax = 0.70, ExclusionChance = 0.5 },
-						{ BaseID = "UnitBlock.RF.GoblinFlank", RatioMin = 0.00, RatioMax = 0.70, ExclusionChance = 0.5
-							 function getSpawnWeight() { return base.getSpawnWeight() * 0.50; }
-						},
-						{ BaseID = "UnitBlock.RF.GoblinBoss", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 350, ExclusionChance = 0.5
-							function getSpawnWeight() { return base.getSpawnWeight() * 0.25; }
-						},
-						{ BaseID = "UnitBlock.RF.OrcWarrior", RatioMin = 0.00, RatioMax = 0.70, ExclusionChance = 0.5
-							 function getSpawnWeight() { return base.getSpawnWeight() * 0.25; }
-						},
-						{ BaseID = "UnitBlock.RF.OrcBerserker", RatioMin = 0.00, RatioMax = 0.50, ExclusionChance = 0.5
-							function getSpawnWeight() { return base.getSpawnWeight() * 0.25; }
-						},
-						{ BaseID = "UnitBlock.RF.OrcBoss", RatioMin = 0.00, RatioMax = 0.07, StartingResourceMin = 350, ExclusionChance = 0.5 // Bosses begin appearing in earnest of 500 resources
-							function getSpawnWeight() { return base.getSpawnWeight() * 0.25; }
-						}
-					]
-				}
-			}],
-			[3, {
-				ID = "GreenskinHorde_1", // Goblin Skirmisher base
-				HardMin = 9,
-				DefaultFigure = "figure_orc_02",
-				MovementSpeedMult = 1.0,
-				VisibilityMult = 1.0,
-				VisionMult = 1.0,
-				DynamicDefs = {
-					UnitBlocks = [
-						{ BaseID = "UnitBlock.RF.GoblinFrontline", RatioMin = 0.00, RatioMax = 0.70 },
-						{ BaseID = "UnitBlock.RF.GoblinRanged", RatioMin = 0.00, RatioMax = 0.70, ExclusionChance = 0.5 },
-						{ BaseID = "UnitBlock.RF.GoblinFlank", RatioMin = 0.00, RatioMax = 0.70, ExclusionChance = 0.5
-							 function getSpawnWeight() { return base.getSpawnWeight() * 0.50; }
-						},
-						{ BaseID = "UnitBlock.RF.GoblinBoss", RatioMin = 0.00, RatioMax = 0.13, StartingResourceMin = 350, ExclusionChance = 0.5
-							function getSpawnWeight() { return base.getSpawnWeight() * 0.25; }
-						},
-						{ BaseID = "UnitBlock.RF.OrcWarrior", RatioMin = 0.00, RatioMax = 0.70, ExclusionChance = 0.5
-							 function getSpawnWeight() { return base.getSpawnWeight() * 0.25; }
-						},
-						{ BaseID = "UnitBlock.RF.OrcBerserker", RatioMin = 0.00, RatioMax = 0.50, ExclusionChance = 0.5 },
-						{ BaseID = "UnitBlock.RF.OrcBoss", RatioMin = 0.00, RatioMax = 0.07, StartingResourceMin = 350, ExclusionChance = 0.5
-							function getSpawnWeight() { return base.getSpawnWeight() * 0.25; }
-						}
-					]
-				}
-			}],
-			[1, {
-				ID = "GreenskinHorde_2", // Ambusher and Warrior
-				HardMin = 5,
-				DefaultFigure = "figure_orc_02",
-				MovementSpeedMult = 1.0,
-				VisibilityMult = 1.0,
-				VisionMult = 1.0,
-				DynamicDefs = {
-					UnitBlocks = [
-						{ BaseID = "UnitBlock.RF.GoblinRanged", RatioMin = 0.00, RatioMax = 0.70 },
-						{ BaseID = "UnitBlock.RF.OrcWarrior", RatioMin = 0.00, RatioMax = 0.70
-							 function getSpawnWeight() { return base.getSpawnWeight() * 0.25; }
-						},
-					]
-				}
-			}],
-			[1, {
-				ID = "GreenskinHorde_3", // Ambusher and Berserker
-				HardMin = 5,
-				DefaultFigure = "figure_orc_02",
-				MovementSpeedMult = 1.0,
-				VisibilityMult = 1.0,
-				VisionMult = 1.0,
-				DynamicDefs = {
-					UnitBlocks = [
-						{ BaseID = "UnitBlock.RF.GoblinRanged", RatioMin = 0.00, RatioMax = 0.70 },
-						{ BaseID = "UnitBlock.RF.OrcBerserker", RatioMin = 0.00, RatioMax = 0.50 }
-					]
-				}
-			}],
-			[1, {
-				ID = "GreenskinHorde_4", // Warrior and Wolfriders
-				HardMin = 9,
-				DefaultFigure = "figure_orc_02",
-				MovementSpeedMult = 1.0,
-				VisibilityMult = 1.0,
-				VisionMult = 1.0,
-				DynamicDefs = {
-					UnitBlocks = [
-						{ BaseID = "UnitBlock.RF.GoblinFlank", RatioMin = 0.00, RatioMax = 0.50
-							function getSpawnWeight() { return base.getSpawnWeight() * 0.50; }
-						},
-						{ BaseID = "UnitBlock.RF.OrcWarrior", RatioMin = 0.00, RatioMax = 0.70
+		function onBeforeSpawnStart()
+		{
+			local res = this.getTopParty().getStartingResources();
+			local orcs = this.getSpawnable("Orcs");
+			local goblins = this.getSpawnable("Goblins");
+			local orcBoss = this.getSpawnable("UnitBlock.RF.OrcBoss");
+			local goblinBoss = this.getSpawnable("UnitBlock.RF.GoblinBoss");
 
-						},
-					]
-				}
-			}]
-		])
+			// Choose either orcs or goblins as preferred baseline to have higher ratio of
+			local chosen;
+			if (::Math.rand(1, 2) == 1)
+			{
+				chosen = orcs;
+				goblinBoss.ExclusionChance = 0.5; // Likely to exclude GoblinBoss when Orc-heavy party
+			}
+			else
+			{
+				chosen = goblins;
+				orcBoss.ExclusionChance = 0.5; // Likely to exclude OrcBoss when Goblin-heavy party
+			}
+
+			chosen.RatioMin = 0.6;
+
+			// More likely to spawn bosses at higher resources
+			orcBoss.SpawnWeightMult = ::Reforged.Math.lerpClamp(res, 150, 0.1, 1100, 0.3);
+			goblinBoss.SpawnWeightMult = ::Reforged.Math.lerpClamp(res, 150, 0.1, 1100, 0.3);
+
+			// 30% chance to have Goblin Wolfrider "twist" i.e. high occurrence of them
+			if (::Math.rand(1, 100) > 70)
+			{
+				this.getSpawnable("UnitBlock.RF.GoblinFlank").SpawnWeightMult = 5.0;
+			}
+
+			// 30% chance to have Orc Warrior "twist" i.e. high occurrence of them
+			if (::Math.rand(1, 100) > 70)
+			{
+				this.getSpawnable("UnitBlock.RF.OrcWarrior").SpawnWeightMult = 5.0;
+			}
+
+			// Fewer Young at higher resources
+			this.getSpawnable("UnitBlock.RF.OrcYoung").SpawnWeightMult = ::Reforged.Math.lerpClamp(res, 150, 1.0, 1100, 0.4);
+		}
 	}
 ];
 

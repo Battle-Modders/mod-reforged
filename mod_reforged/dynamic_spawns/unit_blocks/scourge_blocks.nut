@@ -24,7 +24,7 @@ local unitBlocks = [
 		DynamicDefs = {
 			Units = [
 				{ BaseID = "Unit.RF.GhoulLOW" },
-				{ BaseID = "Unit.RF.Ghoul", RatioMax = 0.33 },
+				{ BaseID = "Unit.RF.Ghoul" },
 			]
 		}
 	},

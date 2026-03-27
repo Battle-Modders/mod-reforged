@@ -20,10 +20,13 @@ local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.GoblinBoss",
 		DynamicDefs = {
-			Units = ::MSU.Class.WeightedContainer([
-				[1, { BaseID = "Unit.RF.GoblinOverseer" }],
-				[1, { BaseID = "Unit.RF.GoblinShaman" }]
-			])
+			Units = { BaseID = "Unit.RF.GoblinOverseer" }
+		}
+	},
+	{
+		ID = "UnitBlock.RF.GoblinSupport",
+		DynamicDefs = {
+			Units = [{ BaseID = "Unit.RF.GoblinShaman" }]
 		}
 	}
 ];
