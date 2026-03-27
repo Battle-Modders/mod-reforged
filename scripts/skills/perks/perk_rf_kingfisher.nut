@@ -2,7 +2,8 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 	m = {
 		IsForceEnabled = false,
 		NetEffect = null,
-		IsSpent = false
+		IsSpent = false,
+		__BreakFreeSkill = null
 	},
 	function create()
 	{
@@ -57,10 +58,18 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 	function onMovementFinished()
 	{
 		// Lose the net if you end up at any tile more than 1 distance away from the target you have trapped
-		if (this.m.IsSpent && !::MSU.isNull(this.m.NetEffect) && this.m.NetEffect.getContainer().getActor().getTile().getDistanceTo(this.getContainer().getActor().getTile()) > 1)
+		if (this.m.IsSpent)
 		{
-			this.m.NetEffect.m.KingfisherPerk = null;
-			this.setSpent(false, false);
+			if (!::MSU.isNull(this.m.NetEffect) && this.m.NetEffect.getContainer().getActor().getTile().getDistanceTo(this.getContainer().getActor().getTile()) > 1)
+			{
+				this.m.NetEffect.m.KingfisherPerk = null;
+				this.setSpent(false, false);
+			}
+			else
+			{
+				// Have to set transparency again because vanilla resets alpha upon movement.
+				this.getContainer().getActor().getSprite("shield_icon").Alpha = 150;
+			}
 		}
 	}
 
@@ -83,10 +92,25 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.IsSpent = _isSpent;
 
-		if (!_isSpent)
-			this.m.NetEffect = null;
-
 		local actor = this.getContainer().getActor();
+
+		if (_isSpent)
+		{
+			// Make the net appear transparent to show that its being used to trap the target.
+			actor.getSprite("shield_icon").Alpha = 150;
+		}
+		else
+		{
+			this.m.NetEffect = null;
+			actor.getSprite("shield_icon").Alpha = 255;
+			// If we are not re-equipping the net it means we are no longer "trapping" the target
+			// so now the target should fully break out of the net and therefore spawn a decal.
+			if (!_reEquip && !::MSU.isNull(this.m.__BreakFreeSkill))
+			{
+				this.m.__BreakFreeSkill.setDecal(this.m.__BreakFreeSkill.m.RF_OriginalDecal);
+			}
+		}
+
 		local net = actor.getOffhandItem();
 		if (net != null)
 		{
@@ -156,7 +180,14 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 			skill.m.IsHidden = true;
 		}
 
-		_tag.Target.getSkills().getSkillByID("actives.break_free").setChanceBonus(999);
+		local breakFree = _tag.Target.getSkills().getSkillByID("actives.break_free");
+		if (breakFree != null)
+		{
+			breakFree.m.RF_OriginalDecal <- breakFree.m.Decal;
+			breakFree.setDecal("");
+			breakFree.setChanceBonus(999);
+			this.m.__BreakFreeSkill = ::MSU.asWeakTableRef(breakFree);
+		}
 
 		this.setSpent(true);
 	}
