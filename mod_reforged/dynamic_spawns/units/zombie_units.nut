@@ -56,7 +56,7 @@ local units = [
 		ID = "Unit.RF.RF_ZombieOrcWarlord",
 		Troop = "RF_ZombieOrcWarlord",
 		// Figure = "figure_rf_skeleton_light_elite",
-		StartingResourceMin = 275
+		StartingResourceMin = 250
 	},
 
 // Necromancers with Bodyguards
@@ -153,7 +153,7 @@ local units = [
 		ID = "Unit.RF.RF_Banshee",
 		Troop = "RF_Banshee",
 		// Figure = "figure_rf_skeleton_light_elite",
-		StartingResourceMin = 300
+		StartingResourceMin = 250
 	}
 ];
 
