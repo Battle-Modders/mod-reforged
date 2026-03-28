@@ -29,34 +29,6 @@
 			});
 		}
 
-		if (this.m.WeaponType != ::Const.Items.WeaponType.None)
-		{
-			local masteries = "";
-
-			foreach (weaponType in ::Const.Items.WeaponType)
-			{
-				if (this.isWeaponType(weaponType))
-				{
-					if (weaponType in ::Reforged.WMS.WeaponTypeAlias) weaponType = ::Reforged.WMS.WeaponTypeAlias[weaponType];
-
-					if (weaponType in ::Reforged.WMS.WeaponTypeMastery)
-					{
-						masteries += ::Const.Items.getWeaponTypeName(weaponType) + ", ";
-					}
-				}
-			}
-
-			if (masteries != "")
-			{
-				ret.push({
-					id = 20,
-					type = "text",
-					icon = "ui/icons/special.png",
-					text = ::Reforged.Mod.Tooltips.parseString("[Applicable masteries|Concept.ApplicableMastery]: " + masteries.slice(0, -2))
-				});
-			}
-		}
-
 		if (this.isWeaponType(::Const.Items.WeaponType.Dagger, true, true))
 		{
 			ret.push({

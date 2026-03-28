@@ -548,7 +548,7 @@ local vanillaDescriptions = [
 				Description = [
 					"Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue|Concept.Fatigue].",
 					"Gain the [$ $|Perk+perk_rf_bear_down] perk."
-					"[$ $|Skill+knock_out], [$ $|Skill+knock_over_skill] and [$ $|Skill+strike_down_skill] have a " + ::MSU.Text.colorPositive("100%") + " chance to [$ $|Skill+stunned_effect] the target if not immune.",
+					"[$ $|Skill+knock_out], [$ $|Skill+knock_over_skill] and [$ $|Skill+strike_down_skill] have a " + ::MSU.Text.colorPositive("100%") + " chance to inflict [$ $|Skill+stunned_effect] the target if not immune.",
 					"The Polemace no longer has a penalty for attacking targets directly adjacent."
 				]
 			}]
@@ -810,7 +810,7 @@ local vanillaDescriptions = [
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Unlocks the [$ $|Skill+rf_net_pull_skill] skill that allows you to pull a target and [$ $|Skill+net_effect] it."
+					"Unlocks the [$ $|Skill+rf_net_pull_skill] skill that allows you to pull a target and [net|Skill+net_effect] it."
 				]
 			}
 		]
@@ -882,8 +882,7 @@ local vanillaDescriptions = [
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [$ $|Skill+rf_between_the_eyes_skill] skill which can be used to perform your primary attack with an additional chance to hit the head equal to " + ::MSU.Text.colorPositive("50%") + " of your [Melee Skill|Concept.MeleeSkill]."
-				"The [Action Point|Concept.ActionPoints] and [Fatigue|Concept.Fatigue] cost of your primary melee attack is added to the costs of this skill."
+				"Unlocks the [$ $|Skill+rf_between_the_eyes_skill] skill."
 			]
 		}]
 	}),
@@ -1033,8 +1032,8 @@ local vanillaDescriptions = [
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Hits to the head with one-handed maces [$ $|Skill+stunned_effect] for 1 [turn|Concept.Turn] if the target is already [$ $|Skill+dazed_effect] or if the attack inflicts [$ $|Skill+dazed_effect]. Otherwise inflict [$ $|Skill+dazed_effect] for 1 [turn|Concept.Turn] instead.",
-				"Hits to the head with two-handed maces [$ $|Skill+stunned_effect] the target for 1 [turn|Concept.Turn]."
+				"Hits to the head with one-handed maces [stun|Skill+stunned_effect] for 1 [turn|Concept.Turn] if the target is already [$ $|Skill+dazed_effect] or if the attack inflicts [$ $|Skill+dazed_effect]. Otherwise inflict [$ $|Skill+dazed_effect] for 1 [turn|Concept.Turn] instead.",
+				"Hits to the head with two-handed maces [stun|Skill+stunned_effect] the target for 1 [turn|Concept.Turn]."
 			]
 		}]
 	}),
@@ -1077,7 +1076,7 @@ local vanillaDescriptions = [
 		Effects = [{
 			Type = ::UPD.EffectType.Active,
 			Description = [
-				"Unlocks the [$ $|Skill+rf_deep_impact_skill] skill which allows you to debilitate a target, reducing its damage output."
+				"Unlocks the [$ $|Skill+rf_deep_impact_skill] skill which allows you to debilitate a target."
 			]
 		}]
 	}),
@@ -1426,8 +1425,8 @@ local vanillaDescriptions = [
 			Description = [
 				"While holding a [$ $|Item+throwing_net], every successful melee attack against an adjacent target has a chance to [$ $|Skill+net_effect] the target without expending your currently held [$ $|Item+throwing_net]. The chance is equal to the hit chance of the attack.",
 				"You cannot use or swap this [$ $|Item+throwing_net] until the target breaks free or dies. If you move more than 1 tile away from the target, the target remains [$ $|Skill+net_effect] but you lose the [$ $|Item+throwing_net].",
-				"The [$ $|Skill+net_effect] can be broken out of with 100% effectiveness.",
-				"Gain " + ::MSU.Text.colorPositive("+2") + " [Reach|Concept.Reach] while holding a [$ $|Item+throwing_net] and not currently [$ $|Skill+net_effect] a target."
+				"The [net|Skill+net_effect] can be broken out of with 100% effectiveness.",
+				"Gain " + ::MSU.Text.colorPositive("+2") + " [Reach|Concept.Reach] while holding a [$ $|Item+throwing_net] and not currently [trapping|Skill+net_effect] a target."
 			]
 		}]
 	}),
@@ -1473,7 +1472,7 @@ local vanillaDescriptions = [
 			{
 				Type = ::UPD.EffectType.Active,
 				Description = [
-					"Unlocks the [$ $|Skill+rf_shield_bash_skill] skill which allows you to [$ $|Skill+dazed_effect] a target."
+					"Unlocks the [$ $|Skill+rf_shield_bash_skill] skill which allows you to [daze|Skill+dazed_effect] a target."
 				]
 			},
 			{
