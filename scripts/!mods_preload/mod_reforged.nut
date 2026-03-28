@@ -1,5 +1,5 @@
 ::Reforged <- {
-	Version = "0.8.0-alpha.13",
+	Version = "0.8.0-beta.1",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
 	GitHubURL = "https://github.com/Battle-Modders/mod-reforged",
@@ -33,7 +33,7 @@ local requiredMods = [
 	"mod_item_tables >= 0.1.3",
 	"mod_upd",
 	"mod_stack_based_skills >= 0.5.1",
-	"mod_reforged_assets >= 0.1.0-alpha.3"
+	"mod_reforged_assets >= 0.1.0-beta.1"
 ];
 
 ::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
