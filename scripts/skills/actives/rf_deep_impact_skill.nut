@@ -21,7 +21,8 @@ this.rf_deep_impact_skill <- ::inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local ret = this.skill.getDefaultTooltip();
+		// Show defaultUtilityTooltip when item is null so we don't show 0% armor effectiveness in tooltip
+		local ret = ::MSU.isNull(this.getItem()) ? this.skill.getDefaultUtilityTooltip() : this.skill.getDefaultTooltip();
 		ret.extend(this.getDeepImpactTooltip());
 
 		if (this.m.TwoHandedAPCostAdd != 0 && ::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
