@@ -42,15 +42,29 @@ local addUnitsToCombat = ::Const.World.Common.addUnitsToCombat;
 local assignTroops = ::Const.World.Common.assignTroops;
 ::Const.World.Common.assignTroops = { function assignTroops( _party, _partyList, _resources, _minibossify = 0, _weightMode = 1 )
 {
+	this.RF_addSpawnlistInfo(_party, _partyList);
+	return assignTroops(_party, _partyList, _resources, _minibossify, _weightMode);
+}}.assignTroops;
+
+// Adds the name of the Spawnlist used for this world entity's spawn into the entity's flags.
+// Used to display this info when the dev spawn info option is enabled.
+::Const.World.Common.RF_addSpawnlistInfo <- { function RF_addSpawnlistInfo( _entity, _partyList )
+{
 	// Add the id of the spawnlist to the party as a flag.
 	// Used for displaying spawn info with the dev spawn info option.
 	foreach (id, s in ::Const.World.Spawn)
 	{
 		if (s == _partyList)
 		{
-			_party.getFlags().set("RF_Spawnlist", id);
-			break;
+			if (_entity.getFlags().has("RF_Spawnlist"))
+			{
+				_entity.getFlags().set("RF_Spawnlist", _entity.getFlags().get("RF_Spawnlist") + ",\n" + id);
+			}
+			else
+			{
+				_entity.getFlags().set("RF_Spawnlist", id);
+			}
+			return;
 		}
 	}
-	return assignTroops(_party, _partyList, _resources, _minibossify, _weightMode);
-}}.assignTroops;
+}}.RF_addSpawnlistInfo;

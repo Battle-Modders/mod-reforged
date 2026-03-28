@@ -10,6 +10,12 @@
 		__original();
 		this.getFlags().increment("RF_NumCombats");
 	}}.onCombatStarted;
+
+	q.clearTroops = @(__original) { function clearTroops()
+	{
+		__original();
+		this.getFlags().remove("RF_Spawnlist");
+	}}.clearTroops;
 });
 
 ::Reforged.HooksMod.hookTree("scripts/entity/world/world_entity", function(q) {
