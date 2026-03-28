@@ -416,7 +416,7 @@
 		Variant = 0,
 		Strength = 60,
 		Cost = 60,
-		Row = 3,
+		Row = 2,
 		Script = "scripts/entity/tactical/enemies/rf_draugr_shaman"
 	},
 	{
