@@ -30,6 +30,7 @@
 {	// Misc
 	local miscTooltipPage = ::Reforged.Mod.ModSettings.addPage("Misc");
 	miscTooltipPage.addEnumSetting("CraftingBlueprintVisibility", "One Ingredient Available", ["Always", "One Ingredient Available", "All Ingredients Available", "Vanilla"], "Blueprints Visible When", "Crafting Recipes in the Taxidermist will be displayed when this condition is met.\nNote that individual Blueprints (like Snake Oil) may still have custom rules preventing them from being shown.\n\n\'Vanilla\' means that the visibility behavior is unchanged from how it works in the base game.");
+	miscTooltipPage.addBooleanSetting("ConfirmSkillUse", false, "Confirm Skill Use", "If enabled, skills that are normally used immediately (e.g. Shieldwall, Rally) will instead require you to target your character. This allows you to preview Action Point and Fatigue costs and the predicted affordability of other skills. Hold the \'Confirm Skill Use\' key (default Ctrl) to bypass this and use the skill immediately.\n\nIf disabled, these skills are used immediately as in vanilla, but the keybind can be used to preview them and require confirmation.");
 }
 
 {	// Debug
@@ -51,4 +52,4 @@
 	}
 }, "Wait Turn with all Characters");
 
-::Reforged.Mod.Keybinds.addSQKeybind("PreviewNonTargetedSkill", "ctrl", ::MSU.Key.State.Tactical, @() true, "Preview Non-Targeted Skill", null, "Clicking a non-targeted skill e.g. Shieldwall, Rally the Troops etc. while pressing this key will cause it to not be used immediately and instead behave as a targeted skill that can be used on your character. This allows you to preview the costs of the skill and easily check the predicted affordability of skills after its use.");
+::Reforged.Mod.Keybinds.addSQKeybind("ConfirmSkillUseKeybind", "ctrl", ::MSU.Key.State.Tactical, @() true, "Confirm Skill Use", null, "Used to toggle the confirmation requirement for skills that are normally used immediately (e.g. Shieldwall, Rally). It allows you to either preview the Action Point and Fatigue costs or bypass confirmation, depending on your \'Confirm Skill Use\' setting.");
