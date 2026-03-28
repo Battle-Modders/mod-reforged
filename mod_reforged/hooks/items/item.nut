@@ -27,14 +27,17 @@
 			if (blueprints.len() != 0)
 			{
 				blueprints.sort(@(_a, _b) _a.getName() <=> _b.getName());
-				ret.push({
-					id = 10,	type = "text",	icon = "ui/icons/special.png",
-					text = "Used in the crafting of: "
-					children = blueprints.map(@(_b) {
-						id = 10,	type = "text",	icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedItemImage(_b.m.PreviewCraftable)),
-						text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s]", _b.getName(), _b.m.PreviewCraftable.ClassName))
-					})
-				});
+				foreach (entry in ret)
+				{
+					if (entry.id == 50 && entry.type == "hint")
+					{
+						entry.children <- blueprints.map(@(_b) {
+							id = 10,	type = "text",	icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedItemImage(_b.m.PreviewCraftable)),
+							text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s]", _b.getName(), _b.m.PreviewCraftable.ClassName))
+						});
+						break;
+					}
+				}
 			}
 		}
 
