@@ -144,7 +144,17 @@
 
 	q.isTargeted = @() { function isTargeted()
 	{
-		return this.m.IsTargeted ? true : ::Reforged.Mod.Keybinds.isKeybindPressed("PreviewNonTargetedSkill");
+		if (this.m.IsTargeted)
+			return true;
+
+		// If ConfirmSkillUse is enabled then we treat all skills as Targeted unless user is pressing the keybind
+		if (::Reforged.Mod.ModSettings.getSetting("ConfirmSkillUse").getValue())
+		{
+			return !::Reforged.Mod.Keybinds.isKeybindPressed("ConfirmSkillUseKeybind");
+		}
+
+		// If ConfirmSkillUse is disabled then treat we all skills as Targeted when the user is pressing the keybind
+		return ::Reforged.Mod.Keybinds.isKeybindPressed("ConfirmSkillUseKeybind");
 	}}.isTargeted;
 });
 
@@ -175,7 +185,9 @@
 				id = 100,
 				type = "hint",
 				icon = "ui/icons/rf_mouse_left_button_ctrl.png",
-				text = format("Hold %s when selecting to preview usage", ::Reforged.Mod.ModSettings.getSetting("PreviewNonTargetedSkill").getValue())
+				text = format("Hold %s when selecting to %s",
+								::Reforged.Mod.ModSettings.getSetting("ConfirmSkillUseKeybind").getValue(),
+								::Reforged.Mod.ModSettings.getSetting("ConfirmSkillUse").getValue() ? "use immediately" : "preview usage")
 			});
 		}
 
