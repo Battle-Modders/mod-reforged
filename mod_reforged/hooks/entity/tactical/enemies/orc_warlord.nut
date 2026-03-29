@@ -59,7 +59,7 @@
 		this.m.Skills.add(::new("scripts/skills/effects/captain_effect"));
 
 		// Reforged
-		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc;
+		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.Orc + 1;
 		this.m.Skills.add(::new("scripts/skills/racial/rf_orc_racial"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 	}}.onInit;
