@@ -623,5 +623,21 @@ this.rf_zombie_orc <- ::inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_wear_them_down"));
 	}
+
+	function assignRandomEquipmentFromScript( _script )
+	{
+		// Switcheroo the add function to prevent any skills e.g. perks
+		// from being added. We only allow item skills to be added.
+		local add = this.m.Skills.add;
+		this.m.Skills.add = function( _skill, _order = 0 )
+		{
+			if (!::MSU.isNull(_skill.getItem()))
+				add(_skill, _order);
+		}
+
+		::new(_script).assignRandomEquipment.call(this);
+
+		this.m.Skills.add = add;
+	}
 });
 

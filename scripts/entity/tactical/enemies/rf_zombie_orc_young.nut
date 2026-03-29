@@ -42,34 +42,32 @@ this.rf_zombie_orc_young <- ::inherit("scripts/entity/tactical/enemies/rf_zombie
 
 	function assignRandomEquipment()
 	{
-		local add = this.m.Skills.add;
-		this.m.Skills.add = @(...) null;
+		this.assignRandomEquipmentFromScript("scripts/entity/tactical/enemies/orc_young");
 
-		local items = [];
-		local equip = this.m.Items.equip;
-		this.m.Items.equip = function( _item )
+		local garbage = [];
+		foreach (item in this.m.Items.getAllItems())
 		{
-			items.push(_item);
-		}
-
-		::new("scripts/entity/tactical/enemies/orc_young").assignRandomEquipment.call(this);
-
-		this.m.Skills.add = add;
-
-		this.m.Items.equip = equip;
-		foreach (item in items)
-		{
-			this.m.Items.equip(item);
-			if (::Math.rand(1, 100) <= 66)
+			switch (item.getCurrentSlotType())
 			{
-				item.setCondition(item.getConditionMax() * 0.5 - 1);
+				// Unequip shield
+				case ::Const.ItemSlot.Offhand:
+					garbage.push(item);
+					break;
+
+				// Chance to have damaged armor and helmet
+				case ::Const.ItemSlot.Body:
+				case ::Const.ItemSlot.Head:
+					if (::Math.rand(1, 100) <= 66)
+					{
+						item.setCondition(item.getConditionMax() * 0.5 - 1);
+					}
+					break;
 			}
 		}
 
-		local offhand = this.getOffhandItem();
-		if (offhand != null)
+		foreach (item in garbage)
 		{
-			this.getItems().unequip(offhand);
+			this.m.Items.unequip(item);
 		}
 	}
 });

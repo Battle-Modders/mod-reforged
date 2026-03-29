@@ -50,27 +50,20 @@ this.rf_zombie_orc_warrior <- ::inherit("scripts/entity/tactical/enemies/rf_zomb
 
 	function assignRandomEquipment()
 	{
-		local add = this.m.Skills.add;
-		this.m.Skills.add = @(...) null;
+		this.assignRandomEquipmentFromScript("scripts/entity/tactical/enemies/orc_warrior");
 
-		local items = [];
-		local equip = this.m.Items.equip;
-		this.m.Items.equip = function( _item )
+		foreach (item in this.m.Items.getAllItems())
 		{
-			items.push(_item);
-		}
-
-		::new("scripts/entity/tactical/enemies/orc_warrior").assignRandomEquipment.call(this);
-
-		this.m.Skills.add = add;
-
-		this.m.Items.equip = equip;
-		foreach (item in items)
-		{
-			this.m.Items.equip(item);
-			if (::Math.rand(1, 100) <= 50)
+			switch (item.getCurrentSlotType())
 			{
-				item.setCondition(item.getConditionMax() * 0.5 - 1);
+				// Chance to have damaged armor and helmet
+				case ::Const.ItemSlot.Body:
+				case ::Const.ItemSlot.Head:
+					if (::Math.rand(1, 100) <= 50)
+					{
+						item.setCondition(item.getConditionMax() * 0.5 - 1);
+					}
+					break;
 			}
 		}
 	}
