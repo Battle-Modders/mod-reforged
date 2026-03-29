@@ -5,7 +5,7 @@ this.rf_warmth_potion_item <- ::inherit("scripts/items/item", {
 		this.item.create();
 		this.m.ID = "accessory.rf_warmth_potion";
 		this.m.Name = "Fireblood Tonic";
-		this.m.Description = "A fiery concoction that scrubs the throat when swallowed but grants vigor unlike anything you\'ve ever ingested. Lasts for the next battle."; // TODO
+		this.m.Description = "A fiery concoction that scrubs the throat when swallowed but grants vigor unlike anything you\'ve ever ingested. Lasts for the next battle.";
 		this.m.SlotType = ::Const.ItemSlot.None;
 		this.m.ItemType = ::Const.Items.ItemType.Usable;
 		this.m.IsDroppedAsLoot = true;
