@@ -64,11 +64,45 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.assignRandomEquipment = @() { function assignRandomEquipment()
+	{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		{
+			local weapon;
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapon = ::MSU.Class.WeightedContainer([
+					[3, "scripts/items/weapons/greenskins/orc_axe_2h"],
+					[1, "scripts/items/weapons/rf_orc_mace_2h"]
+				]).roll();
+			}
+			else
+			{
+				weapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/greenskins/orc_axe"],
+					[1, "scripts/items/weapons/greenskins/orc_cleaver"]
+				]).roll();
+			}
+
+			this.m.Items.equip(::new(weapon));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			this.m.Items.equip(::new("scripts/items/armor/greenskins/orc_warlord_armor"));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			this.m.Items.equip(::new("scripts/items/helmets/greenskins/orc_warlord_helmet"));
+		}
+	}}.assignRandomEquipment;
+
+	q.onSpawned = @(__original) { function onSpawned()
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 
 	q.makeMiniboss = @(__original) { function makeMiniboss()
 	{
