@@ -49,7 +49,8 @@ this.rf_zombie_orc_young <- ::inherit("scripts/entity/tactical/enemies/rf_zombie
 		{
 			switch (item.getCurrentSlotType())
 			{
-				// Unequip shield
+				// Unequip shield and bag items
+				case ::Const.ItemSlot.Bag:
 				case ::Const.ItemSlot.Offhand:
 					garbage.push(item);
 					break;
