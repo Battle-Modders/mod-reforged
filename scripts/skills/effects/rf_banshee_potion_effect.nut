@@ -7,7 +7,8 @@ this.rf_banshee_potion_effect <- ::inherit("scripts/skills/effects/rf_anatomist_
 		this.rf_anatomist_potion_effect.create();
 		this.m.ID = "effects.rf_banshee_potion";
 		this.m.Name = "Serene Mind";
-		this.m.Description = "This character\'s mind has been mutated, making them far more resistant against negative emotions while strengthening positive ones.";
+		// Text generated and edited by LordMidas using Gemini
+		this.m.Description = "This character\'s humors are exceptionally stable allowing the mind to reflexively resist fear or grief while being highly attuned to positive emotions. Occasionally, they are observed tilting their head in a vacant trance captivated by a faint ringing in their skull.";
 		this.m.Icon = "skills/rf_banshee_potion_effect.png";
 		this.m.Overlay = "rf_banshee_potion_effect";
 	}
