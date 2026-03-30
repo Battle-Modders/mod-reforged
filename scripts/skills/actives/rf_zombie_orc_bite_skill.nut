@@ -39,7 +39,7 @@ this.rf_zombie_orc_bite_skill <- ::inherit("scripts/skills/actives/zombie_bite",
 
 			_properties.DamageRegularMin += 25;
 			_properties.DamageRegularMax += 50;
-			_properties.DamageArmorMult += 0.7;
+			_properties.DamageArmorMult *= 0.7;
 			_properties.HitChance[::Const.BodyPart.Head] += 15;
 		}
 	}
