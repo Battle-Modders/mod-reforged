@@ -63,7 +63,7 @@ this.rf_bandit_thug_tough <- ::inherit("scripts/entity/tactical/human", {
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/goedendag"],
-				[1, "scripts/items/weapons/two_handed_wooden_flail"],
+				[0.5, "scripts/items/weapons/two_handed_wooden_flail"], // Lower chance as we have buffed this weapon in Reforged
 				[2, "scripts/items/weapons/woodcutters_axe"]
 			]).roll();
 
