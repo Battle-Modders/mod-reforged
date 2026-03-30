@@ -43,7 +43,7 @@ this.rf_whimpering_veil_effect <- ::inherit("scripts/skills/skill", {
 		// onBeforeDamageReceived is called from bulidPropertiesForBeingHit which can be called
 		// even outside an attack. Therefore, the MV_CurrentAttackInfo check here ensures that
 		// we only do the subsequent logic during an actual attack.
-		if (::Const.Tactical.MV_CurrentAttackInfo == null || _attacker == null || _skill == null || !this.isSkillValid(_skill))
+		if (::Tactical.State.MV_getCurrentAttackInfo() == null || _attacker == null || _skill == null || !this.isSkillValid(_skill))
 			return;
 
 		if (this.m.LastFrameApplied == ::Time.getFrame())

@@ -35,7 +35,7 @@ this.perk_rf_kingfisher <- ::inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (this.m.IsSpent || _skill.isRanged() || ::MSU.isNull(::Const.Tactical.MV_CurrentAttackInfo) || ::Math.rand(1, 100) > ::Const.Tactical.MV_CurrentAttackInfo.ChanceToHit || !this.isEnabled())
+		if (this.m.IsSpent || _skill.isRanged() || ::MSU.isNull(::Tactical.State.MV_getCurrentAttackInfo()) || ::Math.rand(1, 100) > ::Tactical.State.MV_getCurrentAttackInfo().ChanceToHit || !this.isEnabled())
 			return;
 
 		if (!this.RF_isNewSkillUseOrEntity(_targetEntity) || !::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))

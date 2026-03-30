@@ -19,7 +19,7 @@
 
 local requiredMods = [
 	"vanilla >= 1.5.1-6",
-	"mod_modular_vanilla >= 0.7.0",
+	"mod_modular_vanilla >= 0.8.0-beta.1",
 	"mod_msu >= 1.7.2",
 	"mod_nested_tooltips >= 0.3.0",
 	"mod_modern_hooks >= 0.4.10"
