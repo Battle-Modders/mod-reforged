@@ -1423,7 +1423,7 @@ local vanillaDescriptions = [
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"While holding a [net|Item+throwing_net], every successful melee attack against an adjacent target has a chance, equal to the hit chance, to [trap|Skill+net_effect] the target without expending the [net|Item+throwing_net].",
+				"During your [turn|Concept.Turn], while holding a [net|Item+throwing_net], every successful melee attack against an adjacent target has a chance, equal to the hit chance, to [trap|Skill+net_effect] the target without expending the [net|Item+throwing_net].",
 				"You cannot use or swap this [net|Item+throwing_net] until the target breaks free or dies. Attempts to break free are always successful.",
 				"If you move away from the target, the target remains [trapped|Skill+net_effect] but you lose the [net|Item+throwing_net].",
 				"Gain " + ::MSU.Text.colorPositive("+2") + " [Reach|Concept.Reach] while holding a [net|Item+throwing_net] and not currently [trapping|Skill+net_effect] a target."
