@@ -244,6 +244,21 @@
 					}
 				]);
 				break;
+
+			case "building.alchemist":
+				_list.extend([
+					{
+						R = 40,
+						P = 1.0,
+						S = "accessory/rf_dodge_potion_item"
+					},
+					{
+						R = 40,
+						P = 1.0,
+						S = "accessory/rf_warmth_potion_item"
+					}
+				]);
+				break;
 		}
 
 		return __original(_id, _list);
