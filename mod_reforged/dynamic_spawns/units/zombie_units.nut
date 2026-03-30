@@ -68,7 +68,7 @@ local units = [
 		Cost = 30,
 		StaticDefs = {
 			Parties = [
-				{ BaseID = "NecromancerBodyguards", IsUsingTopPartyResources = false }
+				{ BaseID = "NecromancerBodyguards" }
 			]
 		}
 	},
@@ -80,7 +80,7 @@ local units = [
 		Cost = 30,
 		StaticDefs = {
 			Parties = [
-				{ BaseID = "NecromancerBodyguardsNomad", IsUsingTopPartyResources = false }
+				{ BaseID = "NecromancerBodyguardsNomad" }
 			]
 		}
 	},
@@ -92,7 +92,7 @@ local units = [
 		Cost = 30,
 		StaticDefs = {
 			Parties = [
-				{ BaseID = "NecromancerBodyguardsOrc", IsUsingTopPartyResources = false }
+				{ BaseID = "NecromancerBodyguardsOrc" }
 			]
 		}
 	},

@@ -55,7 +55,6 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		IdealSizeLocationMult = 1.2,
 		DynamicDefs = {
 			Parties = [
 				{
@@ -100,7 +99,6 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		IdealSizeLocationMult = 1.2,
 		DynamicDefs = {
 			Parties = [
 				{
@@ -148,7 +146,6 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		IdealSizeLocationMult = 1.2,
 		DynamicDefs = {
 			Parties = [
 				{
@@ -204,7 +201,6 @@ local parties = [
 		MovementSpeedMult = 1.0,
 		VisibilityMult = 1.0,
 		VisionMult = 1.0,
-		IdealSizeLocationMult = 1.2,
 		DynamicDefs = {
 			Parties = [
 				{

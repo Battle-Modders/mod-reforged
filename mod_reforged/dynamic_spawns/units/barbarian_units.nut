@@ -43,44 +43,40 @@ local units = [
 	{
 		ID = "Unit.RF.BarbarianBeastmasterU",
 		Troop = "BarbarianBeastmaster",	// Usually it's 1 Beastmaster for 1-2 Unholds. In one case vanilla spawns 3 Unholds for one Beastmaster. And in one case Vanilla spawns 3 Beastmaster for 4 Unholds. I would disregard these.
-		Cost = 15, // Diversified Beastmaster costs because all of them having the same cost was leading these spawns to have an undefined upgrade path. Result being an armored unhold always spawning on low (250) resources and a normal unhold on high (555+) resources.
 		StartingResourceMin = 200, // In Vanilla they appear in a group of 195 cost
 		StaticDefs = {
 			Parties = [
-				{ BaseID = "OneUnhold", IsUsingTopPartyResources = false }
+				{ BaseID = "OneUnhold" }
 			]
 		}
 	},
 	{
 		ID = "Unit.RF.BarbarianBeastmasterUU",
 		Troop = "BarbarianBeastmaster",	// Usually it's 1 Beastmaster for 1-2 Unholds. In one case vanilla spawns 3 Unholds for one Beastmaster. And in one case Vanilla spawns 3 Beastmaster for 4 Unholds. I would disregard these.
-		Cost = 17, // Diversified Beastmaster costs because all of them having the same cost was leading these spawns to have an undefined upgrade path. Result being an armored unhold always spawning on low (250) resources and a normal unhold on high (555+) resources.
 		StartingResourceMin = 400, // In Vanilla they appear in a group of 400 cost
 		StaticDefs = {
 			Parties = [
-				{ BaseID = "TwoUnhold", IsUsingTopPartyResources = false }
+				{ BaseID = "TwoUnhold" }
 			]
 		}
 	},
 	{
 		ID = "Unit.RF.BarbarianBeastmasterF",
 		Troop = "BarbarianBeastmaster",	// Usually it's 1 Beastmaster for 1-2 Unholds. In one case vanilla spawns 3 Unholds for one Beastmaster. And in one case Vanilla spawns 3 Beastmaster for 4 Unholds. I would disregard these.
-		Cost = 16, // Diversified Beastmaster costs because all of them having the same cost was leading these spawns to have an undefined upgrade path. Result being an armored unhold always spawning on low (250) resources and a normal unhold on high (555+) resources.
 		StartingResourceMin = 200, // In Vanilla they appear in a group of 195 cost
 		StaticDefs = {
 			Parties = [
-				{ BaseID = "OneFrostUnhold", IsUsingTopPartyResources = false }
+				{ BaseID = "OneFrostUnhold" }
 			]
 		}
 	},
 	{
 		ID = "Unit.RF.BarbarianBeastmasterFF",
 		Troop = "BarbarianBeastmaster",	// Usually it's 1 Beastmaster for 1-2 Unholds. In one case vanilla spawns 3 Unholds for one Beastmaster. And in one case Vanilla spawns 3 Beastmaster for 4 Unholds. I would disregard these.
-		Cost = 18, // Diversified Beastmaster costs because all of them having the same cost was leading these spawns to have an undefined upgrade path. Result being an armored unhold always spawning on low (250) resources and a normal unhold on high (555+) resources.
 		StartingResourceMin = 430, // In Vanilla they appear in a group of 430 cost
 		StaticDefs = {
 			Parties = [
-				{ BaseID = "TwoFrostUnhold", IsUsingTopPartyResources = false }
+				{ BaseID = "TwoFrostUnhold" }
 			]
 		}
 	}
