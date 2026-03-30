@@ -56,7 +56,7 @@ local parties = [
 		DynamicDefs = {
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.Ghost" },
-				{ BaseID = "UnitBlock.RF.Banshee", ExclusionChance = 0.66 }
+				{ BaseID = "UnitBlock.RF.Banshee", ExclusionChance = 0.5 }
 			]
 		}
 	},
@@ -99,7 +99,7 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.00, RatioMax = 1.00 },
 				{ BaseID = "UnitBlock.RF.Ghost", RatioMin = 0.14, RatioMax = 0.3 },
 				{ BaseID = "UnitBlock.RF.Hollenhund", RatioMin = 0.00, RatioMax = 0.15, ExclusionChance = 0.33 },
-				{ BaseID = "UnitBlock.RF.Banshee", RatioMin = 0.00, ExclusionChance = 0.75 }
+				{ BaseID = "UnitBlock.RF.Banshee", RatioMin = 0.00, ExclusionChance = 0.5 }
 			]
 		},
 
@@ -145,7 +145,7 @@ local parties = [
 							{ BaseID = "UnitBlock.RF.ZombieFrontline", RatioMin = 0.30, RatioMax = 1.00, DeterminesFigure = false },
 							{ BaseID = "UnitBlock.RF.Ghost", RatioMin = 0.00, RatioMax = 0.20, ExclusionChance = 0.33, DeterminesFigure = false },
 							{ BaseID = "UnitBlock.RF.Hollenhund", RatioMin = 0.00, RatioMax = 0.20, ExclusionChance = 0.50, DeterminesFigure = false },
-							{ BaseID = "UnitBlock.RF.Banshee", RatioMin = 0.00, ExclusionChance = 0.75, DeterminesFigure = false }
+							{ BaseID = "UnitBlock.RF.Banshee", RatioMin = 0.00, ExclusionChance = 0.5, DeterminesFigure = false }
 						],
 						Parties = [
 							{ BaseID = "ZombieOrcs", RatioMax = 0.2, ExclusionChance = 0.8, DeterminesFigure = false }
