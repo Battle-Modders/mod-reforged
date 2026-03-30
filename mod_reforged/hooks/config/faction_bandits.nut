@@ -81,7 +81,7 @@
 ::Reforged.Entities.addEntity(
 	"RF_BanditMarauder",
 	"Brigand Marauder",
-	"Brigand Marauder",
+	"Brigand Marauders",
 	"rf_bandit_marauder_orientation",
 	::Const.FactionType.Bandits,
 	{
