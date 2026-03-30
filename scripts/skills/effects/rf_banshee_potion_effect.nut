@@ -18,17 +18,40 @@ this.rf_banshee_potion_effect <- ::inherit("scripts/skills/effects/rf_anatomist_
 		local ret = this.skill.getTooltip();
 		ret.extend([
 			{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/bravery.png",
+				id = 10,	type = "text",	icon = "ui/icons/bravery.png",
 				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorizeValue(this.m.RerollMoraleChance, {AddSign = true, AddPercent = true}) + " chance to reroll failed [morale checks|Concept.Morale]")
+			},
+			{
+				id = 11,	type = "text",	icon = "ui/icons/bravery.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Counters all effects that prevent reaching Confident [morale|Concept.Morale]")
+			},
+			{
+				id = 12,	type = "text",	icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Removes [$ $|Skill+dastard_trait] and [$ $|Skill+insecure_trait]")
 			}
 		]);
 		return ret;
 	}
 
+	function onAdded()
+	{
+		this.getContainer().removeByID("trait.dastard");
+		this.getContainer().removeByID("trait.insecure");
+	}
+
 	function onUpdate( _properties )
 	{
 		_properties.RerollMoraleChance += 50;
+	}
+
+	function onAfterUpdate( _properties )
+	{
+		for (local i = _properties.MV_ForbiddenMoraleStates.len() - 1; i >= 0; i--)
+		{
+			if (_properties.MV_ForbiddenMoraleStates[i] == ::Const.MoraleState.Confident)
+			{
+				_properties.MV_ForbiddenMoraleStates.remove(i);
+			}
+		}
 	}
 });
