@@ -11,7 +11,7 @@
 	q.onRemoved = @(__original) { function onRemoved()
 	{
 		__original();
-		this.getContainer().removeByID("perk.rf_bloodlust");
+		this.getContainer().removeByStackByID("perk.rf_bloodlust");
 	}}.onRemoved;
 
 	q.onTargetHit = @(__original) { function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )

@@ -11,6 +11,6 @@
 	q.onRemoved = @(__original) { function onRemoved()
 	{
 		__original();
-		this.getContainer().removeByID("perk.rf_from_all_sides");
+		this.getContainer().removeByStackID("perk.rf_from_all_sides");
 	}}.onRemoved;
 });

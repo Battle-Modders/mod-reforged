@@ -11,7 +11,7 @@
 	q.onRemoved = @(__original) { function onRemoved()
 	{
 		__original();
-		this.getContainer().removeByID("perk.rf_bolster");
+		this.getContainer().removeByStackID("perk.rf_bolster");
 	}}.onRemoved;
 
 	q.onAfterUpdate = @(__original) { function onAfterUpdate( _properties )

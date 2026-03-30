@@ -77,10 +77,9 @@
 		__original(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor);
 		if (_skill == this && _targetEntity.isAlive() && _damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding && !_targetEntity.getCurrentProperties().IsImmuneToBleeding)
 		{
-			local bleed = ::new("scripts/skills/effects/bleeding_effect");
 			for (local i = 0; i < this.m.BleedStacks; i++)
 			{
-				_targetEntity.getSkills().add(bleed);
+				_targetEntity.getSkills().add(::new("scripts/skills/effects/bleeding_effect"));
 			}
 		}
 	}}.onTargetHit;
