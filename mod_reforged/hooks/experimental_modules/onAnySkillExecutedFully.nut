@@ -411,6 +411,8 @@ local function getWrapper( _info, _func, _numArgs, _type = "scheduleEvent", _cou
 	}}.use;
 });
 
+local hasShownPopup = false;
+
 // This is for debugging only - show a popup to the user to send us the log in cases where the skill schedule
 // was not completed.
 ::Reforged.QueueBucket.VeryLate.push(function() {
@@ -428,7 +430,11 @@ local function getWrapper( _info, _func, _numArgs, _type = "scheduleEvent", _cou
 				if (this.m.RF_Schedules.len() != 0)
 				{
 					::logError("Schedules not finished for " + this.ClassName);
-					::Reforged.Mod.Debug.addPopupMessage("There is important debugging information in the game\'s log. Please send your log.html to the developers for debugging. You can share the file on the Reforged Discord server. Your log.html is found in C:\\Users\\YourName\\Documents\\Battle Brothers\\log.html", ::MSU.Popup.State.Full);
+					if (!hasShownPopup)
+					{
+						hasShownPopup = true;
+						::Reforged.Mod.Debug.addPopupMessage("There is important debugging information in the game\'s log. Please send your log.html to the developers for debugging. You can share the file on the Reforged Discord server. Your log.html is found in C:\\Users\\YourName\\Documents\\Battle Brothers\\log.html", ::MSU.Popup.State.Full);
+					}
 				}
 			}
 		}
