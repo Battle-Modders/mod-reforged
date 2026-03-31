@@ -55,25 +55,10 @@ this.perk_rf_vigorous_assault <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isEnabled()
-	{
-		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap())
-		{
-			return false;
-		}
-
-		local weapon = actor.getMainhandItem();
-		return weapon != null && weapon.isItemType(::Const.Items.ItemType.Weapon) && (weapon.isItemType(::Const.Items.ItemType.MeleeWeapon) || weapon.isWeaponType(::Const.Items.WeaponType.Throwing));
-	}
-
 	function onAfterUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.isPreviewing() && actor.getPreviewSkill() != null) // The effect of this skill expires upon using any skill, so we reflect that in the preview
-			return;
-
-		if (!this.isEnabled())
+		if (!actor.isPlacedOnMap() || actor.isPreviewing() && actor.getPreviewSkill() != null) // The effect of this skill expires upon using any skill, so we reflect that in the preview
 			return;
 
 		// Switcheroo NumTilesMoved so that the bonus calculation functions give desired result during previewing
