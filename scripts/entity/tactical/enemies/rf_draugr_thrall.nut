@@ -53,6 +53,11 @@ this.rf_draugr_thrall <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", 
 
 			this.m.Items.equip(::new("scripts/items/weapons/rf_draugr/" + weapon));
 		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 30)
+		{
+			this.m.Items.equip(::new("scripts/items/shields/rf_draugr/rf_draugr_round_shield"));
+		}
 	}
 
 	function onSpawned()
