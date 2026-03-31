@@ -143,6 +143,7 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 		if (this.m.__AdjustRebuke)
 		{
 			this.getContainer().removeByStackByID("perk.rf_rebuke", false);
+			this.m.__AdjustRebuke = false;
 		}
 	}
 
@@ -180,6 +181,11 @@ this.rf_en_garde_toggle_skill <- ::inherit("scripts/skills/skill", {
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
+		if (this.m.__AdjustRebuke)
+		{
+			this.getContainer().removeByStackByID("perk.rf_rebuke", false);
+			this.m.__AdjustRebuke = false;
+		}
 		this.setOnOff(true);
 	}
 
