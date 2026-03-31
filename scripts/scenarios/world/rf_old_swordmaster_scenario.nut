@@ -225,6 +225,34 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 		}
 	}
 
+	function MV_onUpdateShopList( _settlement, _buildingID, _list )
+	{
+		switch (_buildingID)
+		{
+			// Chance to replace any named weapon spawned in weaponsmiths with a named sword.
+			case "building.weaponsmith":
+			case "building.weaponsmith_oriental":
+				local swords = ::MSU.Class.WeightedContainer().addMany(1, [
+					"weapons/named/named_sword",
+					"weapons/named/named_greatsword",
+					"weapons/named/named_fencing_sword",
+					"weapons/named/named_warbrand",
+					"weapons/named/named_rf_longsword",
+					"weapons/named/named_rf_estoc",
+					"weapons/named/named_rf_kriegsmesser",
+					"weapons/named/named_rf_swordstaff"
+				]);
+				foreach (entry in _list)
+				{
+					if (entry.S.find("named") == null || ::Math.rand(1, 100) > 50)
+						continue;
+
+					entry.S = swords.roll();
+				}
+				break;
+		}
+	}
+
 	function onBuildPerkTree( _perkTree )
 	{
 		if (_perkTree.hasPerkGroup("pg.rf_sword"))
