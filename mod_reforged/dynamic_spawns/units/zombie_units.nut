@@ -147,12 +147,14 @@ local units = [
 		ID = "Unit.RF.RF_Hollenhund",
 		Troop = "RF_Hollenhund",
 		// Figure = "figure_rf_skeleton_light_elite",
+		DeterminesFigure = false,
 		StartingResourceMin = 200
 	},
 	{
 		ID = "Unit.RF.RF_Banshee",
 		Troop = "RF_Banshee",
 		// Figure = "figure_rf_skeleton_light_elite",
+		DeterminesFigure = false,
 		StartingResourceMin = 230
 	}
 ];
