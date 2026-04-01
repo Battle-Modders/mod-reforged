@@ -262,7 +262,7 @@
 					{
 						R = 10,
 						P = 1.0,
-						S = "tool/rf_grave_chill_bomb_item"
+						S = "tools/rf_grave_chill_bomb_item"
 					},
 					{
 						R = 10,
