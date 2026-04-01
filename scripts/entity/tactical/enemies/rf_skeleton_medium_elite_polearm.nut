@@ -35,8 +35,8 @@ this.rf_skeleton_medium_elite_polearm <- ::inherit("scripts/entity/tactical/enem
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/armor/ancient/ancient_scale_coat"],
-				[1, "scripts/items/armor/ancient/ancient_plated_mail_hauberk"]
+				[1, "scripts/items/armor/ancient/ancient_scale_harness"],
+				[1, "scripts/items/armor/ancient/ancient_breastplate"]
 			]).roll();
 			this.m.Items.equip(::new(armor));
 		}
@@ -58,8 +58,10 @@ this.rf_skeleton_medium_elite_polearm <- ::inherit("scripts/entity/tactical/enem
 			if (weapon.isAoE())
 				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
 			else
-				// this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up")); // Disabled due to crashing the game on a follow up kill
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
+			}
 		}
 	}
 });

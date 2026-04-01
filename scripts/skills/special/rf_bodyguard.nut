@@ -2,7 +2,8 @@
 // to make an entity behave as the dedicated bodyguard of a VIP entity
 this.rf_bodyguard <- ::inherit("scripts/skills/skill", {
 	m = {
-		VIP = null
+		VIP = null,
+		Radius = 1 // The distance from the VIP I should stay within.
 	},
 	function create()
 	{
@@ -21,6 +22,11 @@ this.rf_bodyguard <- ::inherit("scripts/skills/skill", {
 	function getVIP()
 	{
 		return this.m.VIP;
+	}
+
+	function getRadius()
+	{
+		return this.m.Radius;
 	}
 
 	function onUpdate( _properties )

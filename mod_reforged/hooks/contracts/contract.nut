@@ -33,4 +33,10 @@
 			return __original(_index);
 		}
 	}}.getUICharacterImage;
+
+	q.addUnitsToEntity = @(__original) { function addUnitsToEntity( _entity, _partyList, _resources )
+	{
+		::Const.World.Common.RF_addSpawnlistInfo(_entity, _partyList);
+		__original(_entity, _partyList, _resources);
+	}}.addUnitsToEntity;
 });

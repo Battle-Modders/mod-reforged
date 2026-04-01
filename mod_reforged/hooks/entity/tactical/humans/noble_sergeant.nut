@@ -78,17 +78,10 @@
 
 	q.onSpawned = @() { function onSpawned()
 	{
-		local weapon = this.getMainhandItem();
-		if (weapon != null)
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
 		{
-			if (weapon.isWeaponType(::Const.Items.WeaponType.Sword, true, true))
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-			}
-			else
-			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-			}
+			::Reforged.Skills.addAllPerkGroupsOfEquippedWeapon(this);
 		}
 	}}.onSpawned;
 });

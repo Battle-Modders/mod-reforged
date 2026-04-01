@@ -1,71 +1,3 @@
-::Const.Strings.EntityName.extend([
-	"Brigand Scoundrel",
-	"Brigand Robber",
-	"Brigand Hunter",
-	"Brigand Vandal",
-	"Brigand Pillager",
-	"Brigand Outlaw",
-	"Brigand Bandit",
-	"Brigand Highwayman",
-	"Brigand Marauder",
-	"Brigand Killer",
-	"Brigand Sharpshooter",
-	"Robber Baron",
-
-	"Ancient Miles",
-	"Ancient Palatinus",
-	"Ancient Praetorian",
-	"Ancient Decanus",
-	"Ancient Centurion",
-	"Ancient Legatus",
-	"Necrosavant Lord",
-
-	"Heavy Footman",
-	"Halberdier",
-	"Arbalester",
-	"Herald",
-	"Marshal",
-	"Man at Arms",
-	"Fencer",
-	"Anointed Knight",
-	"Squire",
-	"Herald\'s Bodyguard"
-]);
-
-::Const.Strings.EntityNamePlural.extend([
-	"Brigand Scoundrels",
-	"Brigand Robbers",
-	"Brigand Hunters",
-	"Brigand Vandals",
-	"Brigand Pillagers",
-	"Brigand Outlaws",
-	"Brigand Bandits",
-	"Brigand Highwaymen",
-	"Brigand Marauders",
-	"Brigand Killers",
-	"Brigand Sharpshooters",
-	"Robber Barons",
-
-	"Ancient Milites",
-	"Ancient Palatini",
-	"Ancient Praetorians",
-	"Ancient Decani",
-	"Ancient Centurions",
-	"Ancient Legati",
-	"Necrosavant Lords",
-
-	"Heavy Footmen",
-	"Halberdiers",
-	"Arbalesters",
-	"Heralds",
-	"Marshals",
-	"Men at Arms",
-	"Fencers",
-	"Anointed Knights",
-	"Squires",
-	"Herald\'s Bodyguards"
-]);
-
 ::MSU.Table.merge(::Const.Strings.PerkName, {
 	RF_Angler = "Angler",
 	RF_BattleFervor = "Battle Fervor",
@@ -299,12 +231,11 @@ local vanillaDescriptions = [
 		ID = "perk.anticipation",
 		Key = "Anticipation",
 		Description = ::UPD.getDescription({
-			Fluff = "I saw these coming!",
+			Fluff = "I saw that coming!",
 			Effects = [{
 				Type = ::UPD.EffectType.Passive,
 				Description = [
-					"Take reduced damage from the first " + ::MSU.Text.colorPositive(2) + " attacks you receive each battle.",
-					"This reduction is a percentage equal to your current [Ranged Defense|Concept.RangeDefense] plus an additional " + ::MSU.Text.colorPositive("10%") + " for each tile between the attacker and you."
+					"When being attacked with ranged weapons, gain " + ::MSU.Text.colorPositive("1 + 10%") + " of your [base|Concept.BaseAttribute] [Ranged Defense|Concept.RangeDefense] as additional [Ranged Defense|Concept.RangeDefense] per tile that the attacker is away, and always at least " + ::MSU.Text.colorPositive("+10") + " + [Ranged Defense|Concept.RangeDefense]."
 				]
 			}]
 		})
@@ -1492,10 +1423,10 @@ local vanillaDescriptions = [
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"While holding a [$ $|Item+throwing_net], every successful melee attack against an adjacent target has a chance to [$ $|Skill+net_effect] the target without expending your currently held [$ $|Item+throwing_net]. The chance is equal to the hit chance of the attack.",
-				"You cannot use or swap this [$ $|Item+throwing_net] until the target breaks free or dies. If you move more than 1 tile away from the target, the target remains [$ $|Skill+net_effect] but you lose the [$ $|Item+throwing_net].",
-				"The [net|Skill+net_effect] can be broken out of with 100% effectiveness.",
-				"Gain " + ::MSU.Text.colorPositive("+2") + " [Reach|Concept.Reach] while holding a [$ $|Item+throwing_net] and not currently [trapping|Skill+net_effect] a target."
+				"During your [turn|Concept.Turn], while holding a [net|Item+throwing_net], every successful melee attack against an adjacent target has a chance, equal to the hit chance, to [trap|Skill+net_effect] the target without expending the [net|Item+throwing_net].",
+				"You cannot use or swap this [net|Item+throwing_net] until the target breaks free or dies. Attempts to break free are always successful.",
+				"If you move away from the target, the target remains [trapped|Skill+net_effect] but you lose the [net|Item+throwing_net].",
+				"Gain " + ::MSU.Text.colorPositive("+2") + " [Reach|Concept.Reach] while holding a [net|Item+throwing_net] and not currently [trapping|Skill+net_effect] a target."
 			]
 		}]
 	}),

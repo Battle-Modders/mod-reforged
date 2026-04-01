@@ -2,7 +2,7 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = ::Const.EntityType.RF_BanditVandal;
+		this.m.Type = ::Const.EntityType.RF_BanditPillager;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.RF_BanditPillager.XP;
 		this.human.create();
@@ -10,7 +10,7 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 		this.m.Hairs = ::Const.Hair.UntidyMale;
 		this.m.HairColors = ::Const.HairColors.All;
 		this.m.Beards = ::Const.Beards.Raider;
-		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_bandit_tough_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_melee_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -34,7 +34,8 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 		this.getSprite("shield_icon").setBrightness(0.85);
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )
@@ -48,23 +49,47 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/goedendag"],
-				[1, "scripts/items/weapons/two_handed_mace"],
-				[1, "scripts/items/weapons/two_handed_wooden_flail"],
-				[1, "scripts/items/weapons/two_handed_wooden_hammer"],
-				[1, "scripts/items/weapons/woodcutters_axe"]
+				[1, "scripts/items/weapons/boar_spear"],
+				[1, "scripts/items/weapons/falchion"],
+				[1, "scripts/items/weapons/flail"],
+				[1, "scripts/items/weapons/hand_axe"],
+				[1, "scripts/items/weapons/military_pick"],
+				[1, "scripts/items/weapons/morning_star"],
+				[1, "scripts/items/weapons/scramasax"],
+				[1, "scripts/items/weapons/shortsword"],
+
+				[1, "scripts/items/weapons/rf_two_handed_falchion"],
+				[1, "scripts/items/weapons/warbrand"]
+			]).roll();
+			this.m.Items.equip(::new(weapon));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
+		{
+			local throwing = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/throwing_spear"]
+			]).rollChance(33);
+
+			if (throwing != null) this.m.Items.addToBag(::new(throwing));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			local shield = ::MSU.Class.WeightedContainer([
+				[3, "scripts/items/shields/wooden_shield"],
+				[1, "scripts/items/shields/kite_shield"]
 			]).roll();
 
-			this.m.Items.equip(::new(weapon));
+			this.m.Items.equip(::new(shield));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorTough.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 35 || conditionMax > 55) return 0.0;
+					if (conditionMax < 65 || conditionMax > 95) return 0.0;
 					return _weight;
 				}
 			});
@@ -79,10 +104,10 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 						Apply = function ( _script, _weight )
 						{
 							local conditionModifier = ::ItemTables.ItemInfoByScript[_script].ConditionModifier;
-							if (conditionModifier > 10) return 0.0;
+							if (conditionModifier > 20) return 0.0;
 							return _weight;
 						}
-					})
+					});
 
 					if (armorAttachment != null)
 						this.getBodyItem().setUpgrade(::new(armorAttachment));
@@ -90,16 +115,16 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 			}
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 20)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) >= 20)
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetTough.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 25 || conditionMax > 45) return 0.0;
+					if (conditionMax < 40 || conditionMax > 90) return 0.0;
 					return _weight;
 				}
-			})
+			});
 			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 	}

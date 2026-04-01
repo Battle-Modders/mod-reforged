@@ -26,9 +26,9 @@
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_battle_flow"));
-		// this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_killing_frenzy"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_berserk"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_steel_brow"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_underdog"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
@@ -39,6 +39,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}}.onInit;
 
@@ -76,7 +77,7 @@
 		if (ret)
 		{
 			this.m.Skills.removeByID("perk.reach_advantage");
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_skirmisher"));
+			this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 		}
 
 		return ret;

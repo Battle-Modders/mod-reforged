@@ -1,3 +1,46 @@
+::Const.Strings.RF_BansheeNames <- [
+	"Sybilla",
+	"Elsbeth",
+	"Roheline",
+	"Velda",
+	"Gertrun",
+	"Brida",
+	"Marga",
+	"Elswin",
+	"Hilda",
+	"Freya",
+	"Mechthild",
+	"Brunhild",
+	"Kunigunde",
+	"Ursula",
+	"Margarethe",
+	"Gudrun",
+	"Isolde"
+];
+local more = [];
+foreach (n in ::Const.Strings.RF_BansheeNames)
+{
+	more.push("Lady " + n);
+	more.push("Mother " + n);
+	more.push("Old " + n);
+	more.push("Dame " + n )
+};
+::Const.Strings.RF_BansheeNames.extend(more);
+
+::Const.Strings.RF_BansheeTitles <- [
+	"the Unmourned",
+	"of the Ruined Womb",
+	"the Severed",
+	"the Hollow",
+	"the Unburied",
+	"the Widow",
+	"the Mourner",
+	"the Dirgewife",
+	"the Screaming Matron",
+	"the Loveless",
+	"the Vowless",
+	"the Veiled"
+];
 ::Const.Strings.RF_VampireLordNames <- [
 	"Cynfael",
 	"Duradel",
@@ -128,6 +171,60 @@
 	"the Tempest",
 	"Coldsteel",
 	"Ironborn"
+];
+::Const.Strings.RF_DraugrNames <- [
+	"Skarn",
+	"Hrod",
+	"Varr",
+	"Keld",
+	"Rask",
+	"Uld",
+	"Threg",
+	"Morn",
+	"Grith",
+	"Jarnh",
+	"Valk",
+	"Husk",
+	"Dreng",
+	"Orm",
+	"Ruun",
+	"Kael",
+	"Fjor",
+	"Stenn",
+	"Yr",
+	"Kroth",
+	"Hrimr",
+	"Bal",
+	"Skeldr",
+	"Vor",
+	"Dagrun",
+	"Karn",
+	"Ulth",
+	"Reth",
+	"Brann",
+	"Gol"
+];
+::Const.Strings.RF_DraugrTitles <- [
+	"the Barrowbound",
+	"the Unburned",
+	"the Hill Watcher",
+	"the Stone Sworn",
+	"the Last of His Kin",
+	"the Cold Eyed",
+	"the Cairn King",
+	"the Silent Champion",
+	"the Frostbound",
+	"the Frost Held",
+	"the Tomb Lord",
+	"the Ever Waking",
+	"the Barrow Lord",
+	"the Bone Crowned",
+	"the Sleepless",
+	"the Grave Kept",
+	"the Kinbound",
+	"the Remembered",
+	"the Unresting",
+	"the Stone Blooded"
 ];
 ::Const.Strings.CharacterNames.extend([
 	"Agnar",

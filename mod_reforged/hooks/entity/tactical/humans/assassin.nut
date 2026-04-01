@@ -30,11 +30,16 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_double_strike"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_rf_cheap_trick"));	TODO: Enable once AI behavior is implemented
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_ghostlike"));
+		this.m.Skills.add(::Reforged.new("scripts/skills/perks/perk_rf_passing_step", function(o) {
+			o.m.RequiredDamageType = null;
+			o.m.RequiredWeaponType = null;
+			o.m.RequireOffhandFree = false;
+		}));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @(__original) { function onSpawned()
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 });

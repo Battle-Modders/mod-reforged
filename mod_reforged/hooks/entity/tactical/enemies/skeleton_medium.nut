@@ -26,28 +26,25 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-				[3, "scripts/items/weapons/ancient/ancient_sword"],
-				[1, "scripts/items/weapons/ancient/broken_ancient_sword"]
+				[0.5, "scripts/items/weapons/ancient/broken_ancient_sword"],
+				[0.5, "scripts/items/weapons/ancient/ancient_sword"],
+				[1, "scripts/items/weapons/ancient/ancient_spear"],
+				[1, "scripts/items/weapons/ancient/falx"]
 			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local shield = ::MSU.Class.WeightedContainer([
-				[2, "scripts/items/shields/ancient/coffin_shield"],
-				[1, "scripts/items/shields/ancient/tower_shield"]
-			]).roll();
-
-			this.m.Items.equip(::new(shield));
+			this.m.Items.equip(::new("scripts/items/shields/ancient/coffin_shield"));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = ::MSU.Class.WeightedContainer([
-				[1.0, "scripts/items/armor/ancient/ancient_scale_harness"],
-				[1.0, "scripts/items/armor/ancient/ancient_breastplate"]
+				[1.0, "scripts/items/armor/ancient/ancient_mail"],
+				[1.0, "scripts/items/armor/ancient/ancient_double_layer_mail"]
 			]).roll();
 
 			this.m.Items.equip(::new(armor));
@@ -66,13 +63,25 @@
 		{
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Dagger))
 			{
-				::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger");
+				::Reforged.Skills.addPerkGroup(this, "pg.rf_dagger", 4);
 			}
 			else
 			{
-				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-				this.m.Skills.removeByID("actives.rf_passing_step");
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 			}
 		}
 	}}.onSpawned;
+
+	q.onSkillsUpdated = @(__original) { function onSkillsUpdated()
+	{
+		__original();
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem == null)
+			return;
+
+		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
+		{
+			this.m.Skills.removeByID("actives.rf_passing_step");
+		}
+	}}.onSkillsUpdated;
 });

@@ -2,6 +2,7 @@
 	<!-- Active Skills -->
 	<sprite id="rf_adjust_dented_armor_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_adjust_dented_armor_skill.png" />
 	<sprite id="rf_adjust_dented_armor_ally_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_adjust_dented_armor_ally_skill.png" />
+	<sprite id="rf_ancestral_summons_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_ancestral_summons_skill.png" />
 	<sprite id="rf_arrow_to_the_knee_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_arrow_to_the_knee_skill.png" />
 	<sprite id="rf_bearded_blade_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_bearded_blade_skill.png" />
 	<sprite id="rf_between_the_eyes_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_between_the_eyes_skill.png" />
@@ -15,6 +16,7 @@
 	<sprite id="rf_cover_ally_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_cover_ally_skill.png" />
 	<sprite id="rf_deep_impact_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_deep_impact_skill.png" />
 	<sprite id="rf_dynamic_duo_shuffle_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_dynamic_duo_shuffle_skill.png" />
+	<sprite id="rf_ethereal_bite_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_ethereal_bite_skill.png" />
 	<sprite id="rf_flaming_arrows_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_flaming_arrows_skill.png" />
 	<sprite id="rf_follow_up_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_follow_up_skill.png" />
 	<sprite id="rf_gain_ground_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_gain_ground_skill.png" />
@@ -51,8 +53,10 @@
 	<sprite id="rf_swordmaster_push_through_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_swordmaster_push_through_skill.png" />
 	<sprite id="rf_sword_stab_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_sword_stab_skill.png" />
 	<sprite id="rf_take_aim_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_take_aim_skill.png" />
+	<sprite id="rf_throw_grave_chill_bomb_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_throw_grave_chill_bomb_skill.png" />
 	<sprite id="rf_vampire_bite_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_vampire_bite_skill.png" />
 	<sprite id="rf_voulge_cleave_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_voulge_cleave_skill.png" />
+	<sprite id="rf_wail_skill" ic = "FF23165B" img="..\..\gfx\skills\rf_wail_skill.png" />
 
 	<!-- Perks and their Minis -->
 	<sprite id="perk_rf_battle_fervor" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_battle_fervor.png" />
@@ -95,6 +99,7 @@
 	<!-- Effects and their Minis -->
 	<sprite id="rf_arrow_to_the_knee_debuff_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_arrow_to_the_knee_debuff_effect.png" />
 	<sprite id="rf_arrow_to_the_knee_debuff_effect_mini" ic = "FF23165B" img="skills\mini\rf_arrow_to_the_knee_debuff_effect_mini.png" />
+	<sprite id="rf_banshee_potion_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_banshee_potion_effect.png" />
 	<sprite id="rf_bearded_blade_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_bearded_blade_effect.png" />
 	<sprite id="rf_bearded_blade_effect_mini" ic = "FF23165B" img="skills\mini\rf_bearded_blade_effect_mini.png" />
 	<sprite id="rf_bestial_vigor_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_bestial_vigor.png" />
@@ -112,13 +117,19 @@
 	<sprite id="rf_dented_armor_effect_mini" ic = "FF23165B" img="skills\mini\rf_dented_armor_effect_mini.png" />
 	<sprite id="rf_dismantled_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_dismantled_effect.png" />
 	<sprite id="rf_dismantled_effect_mini" ic = "FF23165B" img="skills\mini\rf_dismantled_effect_mini.png" />
+	<sprite id="rf_dodge_potion_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_dodge_potion_effect.png" />
+	<sprite id="rf_dodge_potion_effect_mini" ic = "FF23165B" img="skills\mini\rf_dodge_potion_effect_mini.png" />
 	<sprite id="rf_dynamic_duo_partner_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_dynamic_duo.png" />
+	<sprite id="rf_draugr_restless_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_draugr_restless_effect.png" />
 	<sprite id="rf_en_garde_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_en_garde.png" />
 	<sprite id="rf_en_garde_effect_mini" ic = "FF23165B" img="skills\mini\rf_en_garde_effect_mini.png" />
 	<sprite id="rf_falcon_released_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_falcon_released_effect.png" />
 	<sprite id="rf_follow_up_effect_mini" ic = "FF23165B" img="skills\mini\rf_follow_up_effect_mini.png" />
 	<sprite id="rf_from_all_sides_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_from_all_sides.png" />
 	<sprite id="rf_from_all_sides_effect_mini" ic = "FF23165B" img="skills\mini\rf_from_all_sides_effect_mini.png" />
+	<sprite id="rf_frostbound_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_frostbound_effect.png" />
+	<sprite id="rf_grave_chill_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_grave_chill_effect.png" />
+	<sprite id="rf_grieving_malaise_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_grieving_malaise_effect.png" />
 	<sprite id="rf_hold_steady_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_hold_steady.png" />
 	<sprite id="rf_hold_steady_effect_mini" ic = "FF23165B" img="skills\mini\rf_hold_steady_effect_mini.png" />
 	<sprite id="rf_hooked_shield_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_hooked_shield_effect.png" />
@@ -128,6 +139,8 @@
 	<sprite id="rf_mentors_presence_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_mentors_presence_effect.png" />
 	<sprite id="rf_mentors_presence_effect_mini" ic = "FF23165B" img="skills\mini\rf_mentors_presence_effect_mini.png" />
 	<sprite id="rf_nine_lives_effect_mini" ic = "FF23165B" img="skills\mini\rf_nine_lives_effect_mini.png" />
+	<sprite id="rf_numbness_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_numbness_effect.png" />
+	<sprite id="rf_numbness_effect_mini" ic = "FF23165B" img="skills\mini\rf_numbness_effect_mini.png" />
 	<sprite id="rf_onslaught_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_onslaught.png" />
 	<sprite id="rf_onslaught_effect_mini" ic = "FF23165B" img="skills\mini\rf_onslaught_effect_mini.png" />
 	<sprite id="rf_rattled_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_rattle.png" />
@@ -139,6 +152,10 @@
 	<sprite id="rf_sprint_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_sprint_effect.png" />
 	<sprite id="rf_sprint_effect_mini" ic = "FF23165B" img="skills\mini\rf_sprint_effect_mini.png" />
 	<sprite id="rf_take_aim_effect_mini" ic = "FF23165B" img="skills\mini\rf_take_aim_effect_mini.png" />
+	<sprite id="rf_unnerving_presence_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_unnerving_presence_effect.png" />
+	<sprite id="rf_warmth_potion_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_warmth_potion_effect.png" />
+	<sprite id="rf_warmth_potion_effect_mini" ic = "FF23165B" img="skills\mini\rf_warmth_potion_effect_mini.png" />
+	<sprite id="rf_whimpering_veil_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_whimpering_veil_effect.png" />
 	<sprite id="rf_worn_down_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_wear_them_down.png" />
 	<sprite id="rf_worn_down_effect_mini" ic = "FF23165B" img="skills\mini\rf_worn_down_effect_mini.png" />
 

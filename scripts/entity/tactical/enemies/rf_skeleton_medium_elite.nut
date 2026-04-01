@@ -44,8 +44,8 @@ this.rf_skeleton_medium_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/armor/ancient/ancient_scale_coat"],
-				[1, "scripts/items/armor/ancient/ancient_plated_mail_hauberk"]
+				[1, "scripts/items/armor/ancient/ancient_scale_harness"],
+				[1, "scripts/items/armor/ancient/ancient_breastplate"]
 			]).roll();
 			this.m.Items.equip(::new(armor));
 		}

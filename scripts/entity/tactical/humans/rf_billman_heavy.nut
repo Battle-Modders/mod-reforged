@@ -139,9 +139,9 @@ this.rf_billman_heavy <- ::inherit("scripts/entity/tactical/human" {
 		{
 			if (weapon.isWeaponType(::Const.Items.WeaponType.Polearm))
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_long_reach"));
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up"));
 			}
 			else // polehammer or voulge
 			{

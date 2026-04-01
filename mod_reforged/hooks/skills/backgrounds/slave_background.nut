@@ -40,39 +40,39 @@
 	q.onChangeAttributes = @() { function onChangeAttributes()
 	{
 		local c = {
-            Hitpoints = [
-                -10,
-                -10
-            ],
-            Bravery = [
-                -5,
-                0
-            ],
-            Stamina = [
-                -5,
-                5
-            ],
-            MeleeSkill = [
-                -10,
-                10
-            ],
-            RangedSkill = [
-                -15,
-                15
-            ],
-            MeleeDefense = [
-                -10,
-                10
-            ],
-            RangedDefense = [
-                -10,
-                10
-            ],
-            Initiative = [
-                -20,
-                10
-            ]
-        };
-        return c;
+			Hitpoints = [
+				-10,
+				-10
+			],
+			Bravery = [
+				-5,
+				0
+			],
+			Stamina = [
+				-5,
+				5
+			],
+			MeleeSkill = [
+				-10,
+				10
+			],
+			RangedSkill = [
+				-15,
+				15
+			],
+			MeleeDefense = [
+				-10,
+				10
+			],
+			RangedDefense = [
+				-10,
+				10
+			],
+			Initiative = [
+				-20,
+				10
+			]
+		};
+		return c;
 	}}.onChangeAttributes;
 });

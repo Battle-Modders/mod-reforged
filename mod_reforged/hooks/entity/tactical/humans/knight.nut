@@ -13,12 +13,13 @@
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
 
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exude_confidence"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_mentor"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
+		// this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
@@ -153,7 +154,7 @@
 			if (helmet != null) this.m.Items.equip(::new(helmet));
 		}
 
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_battle_fervor"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
 		return true;
 	}}.makeMiniboss;
 });

@@ -16,14 +16,24 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @() { function onSpawned()
 	{
-		__original();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
+		{
+			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Mace) && mainhandItem.isWeaponType(::Const.Items.WeaponType.Spear)) // Goedendag
+			{
+				::Reforged.Skills.addPerkGroup(this, "pg.rf_spear", 3);
+			}
+			else
+			{
+				::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
+			}
+		}
 
 		if (this.isArmedWithShield())
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
 		}
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 });

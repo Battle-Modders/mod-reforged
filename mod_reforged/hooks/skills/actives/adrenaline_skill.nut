@@ -2,7 +2,6 @@
 	q.create = @(__original) { function create()
 	{
 		__original();
-		this.m.FatigueCost = 10;	// In vanilla this is 20
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Adrenaline;
 	}}.create;
 

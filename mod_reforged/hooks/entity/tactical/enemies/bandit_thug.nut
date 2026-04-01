@@ -1,11 +1,4 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/bandit_thug", function(q) {
-	q.create = @(__original) { function create()
-	{
-		__original();
-		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_bandit_tough_agent");
-		this.m.AIAgent.setActor(this);
-	}}.create;
-
 	q.onInit = @() { function onInit()
 	{
 		this.human.onInit();
@@ -48,7 +41,6 @@
 
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}}.onInit;
 
 	q.assignRandomEquipment = @() { function assignRandomEquipment()
@@ -56,30 +48,53 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/goedendag"],
-				[1, "scripts/items/weapons/two_handed_wooden_flail"],
-				[2, "scripts/items/weapons/woodcutters_axe"]
+				[1, "scripts/items/weapons/bludgeon"],
+				[1, "scripts/items/weapons/butchers_cleaver"],
+				[1, "scripts/items/weapons/dagger"],
+				[1, "scripts/items/weapons/hatchet"],
+				[1, "scripts/items/weapons/militia_spear"],
+				[1, "scripts/items/weapons/pickaxe"],
+				[1, "scripts/items/weapons/reinforced_wooden_flail"],
+				[1, "scripts/items/weapons/shortsword"],
+				[1, "scripts/items/weapons/wooden_flail"],
+				[1, "scripts/items/weapons/wooden_stick"],
+
+				[1, "scripts/items/weapons/pitchfork"],
+				[1, "scripts/items/weapons/woodcutters_axe"]
 			]).roll();
 
 			this.m.Items.equip(::new(weapon));
 		}
 
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			local shield = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/shields/buckler_shield"],
+				[1, "scripts/items/shields/wooden_shield"]
+			]).rollChance(33);
+
+			if (shield != null) this.m.Items.equip(::new(shield));
+		}
+
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = ::Reforged.ItemTable.BanditArmorTough.roll({
+			local armor = ::Reforged.ItemTable.BanditArmorBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax > 50) return 0.0;
+					if (conditionMax > 65) return 0.0;
 					return _weight;
-				}
+				},
+				Add = [
+					[1, "scripts/items/armor/monk_robe"]
+				]
 			})
 			this.m.Items.equip(::new(armor));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 70)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) > 50)
 		{
-			local helmet = ::Reforged.ItemTable.BanditHelmetTough.roll({
+			local helmet = ::Reforged.ItemTable.BanditHelmetBalanced.roll({
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;

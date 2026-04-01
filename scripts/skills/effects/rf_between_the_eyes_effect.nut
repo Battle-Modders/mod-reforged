@@ -33,6 +33,13 @@ this.rf_between_the_eyes_effect <- ::inherit("scripts/skills/skill", {
 			text = ::Reforged.Mod.Tooltips.parseString("The next melee attack has a " + chanceStr + " to hit the head and deals " + ::MSU.Text.colorizeMultWithText(this.m.HeadshotDamageMult) + " damage on a such a hit")
 		});
 
+		ret.push({
+			id = 20,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon [waiting|Concept.Wait] or ending your [turn|Concept.Turn]")
+		});
+
 		return ret;
 	}
 
@@ -51,6 +58,16 @@ this.rf_between_the_eyes_effect <- ::inherit("scripts/skills/skill", {
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	{
+		this.removeSelf();
+	}
+
+	function onTurnEnd()
+	{
+		this.removeSelf();
+	}
+
+	function onWaitTurn()
 	{
 		this.removeSelf();
 	}

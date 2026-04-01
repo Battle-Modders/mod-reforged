@@ -27,8 +27,8 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		ret.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Gain the " + ::Reforged.NestedTooltips.getNestedSkillName(effect) + " effect"))
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Gain the " + ::Reforged.NestedTooltips.getNestedSkillName(effect) + " effect")
 			children = effect.getTooltip().slice(2) // slice 2 to remove name and description
 		});
 

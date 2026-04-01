@@ -18,30 +18,30 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @() { function onSpawned()
 	{
-		__original();
-			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-
-		if (this.isArmedWithShield())
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem != null)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-		}
+			::Reforged.Skills.addAllPerkGroupsOfEquippedWeapon(this, 4);
 
-		local weapon = this.getMainhandItem();
-		if (weapon != null)
-		{
-			if (weapon.isItemType(::Const.Items.ItemType.TwoHanded))
+			if (mainhandItem.isItemType(::Const.Items.ItemType.TwoHanded))
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 			}
-
-			local offhand = this.getOffhandItem();
-			if (offhand == null)
+			else
 			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+				local offhand = this.getOffhandItem();
+				if (offhand == null)
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+				}
+				else if (offhand.isItemType(::Const.Items.ItemType.Shield))
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+				}
 			}
 		}
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 });

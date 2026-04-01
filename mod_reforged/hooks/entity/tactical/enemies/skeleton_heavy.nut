@@ -1,4 +1,4 @@
-// Ancient Honor Guard
+// Ancient Praetorian
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_heavy", function(q) {
 	q.onInit = @() { function onInit()
 	{
@@ -27,7 +27,6 @@
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_calculated_strikes"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
 	}}.onInit;
 
 	q.assignRandomEquipment = @() { function assignRandomEquipment()
@@ -39,11 +38,10 @@
 				[1, "scripts/items/weapons/ancient/crypt_cleaver"],
 				[1, "scripts/items/weapons/ancient/rhomphaia"]
 			]).roll();
-
 			this.m.Items.equip(::new(weapon));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		if (this.getMainhandItem().isItemType(::Const.Items.ItemType.OneHanded) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			this.m.Items.equip(::new("scripts/items/shields/ancient/tower_shield"));
 		}
@@ -51,10 +49,9 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = ::MSU.Class.WeightedContainer([
-				[1.0, "scripts/items/armor/ancient/ancient_plate_harness"],
-				[1.0, "scripts/items/armor/ancient/ancient_plated_scale_hauberk"]
+				[1, "scripts/items/armor/ancient/ancient_plated_mail_hauberk"],
+				[1, "scripts/items/armor/ancient/ancient_scale_coat"]
 			]).roll();
-
 			this.m.Items.equip(::new(armor));
 		}
 
@@ -63,21 +60,6 @@
 			this.m.Items.equip(::new("scripts/items/helmets/ancient/ancient_honorguard_helmet"));
 		}
 	}}.assignRandomEquipment;
-
-	q.makeMiniboss = @() { function makeMiniboss()
-	{
-		if (!this.actor.makeMiniboss())
-		{
-			return false;
-		}
-
-		this.getSprite("miniboss").setBrush("bust_miniboss");
-		local weapons = ::Const.Items.NamedUndeadWeapons;
-		this.m.Items.equip(::new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
-
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
-		return true;
-	}}.makeMiniboss;
 
 	q.onSpawned = @() { function onSpawned()
 	{

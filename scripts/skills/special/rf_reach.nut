@@ -58,7 +58,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 	{
 		this.m.CurrBonus = 0;
 
-		if (_skill.isRanged() || !_properties.IsAffectedByReach || _targetEntity == null || !_targetEntity.getCurrentProperties().IsAffectedByReach || !::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetEntity))
+		if (!_skill.isAttack() || _skill.isRanged() || !_properties.IsAffectedByReach || _targetEntity == null || !_targetEntity.getCurrentProperties().IsAffectedByReach || !::Reforged.Reach.hasLineOfSight(this.getContainer().getActor(), _targetEntity))
 			return;
 
 		local targetProperties = _targetEntity.getSkills().buildPropertiesForDefense(this.getContainer().getActor(), _skill);

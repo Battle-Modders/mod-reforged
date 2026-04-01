@@ -23,8 +23,8 @@ this.rf_oathtakers_take_oaths_in_regular_origins_event <- ::inherit("scripts/eve
 		this.m.Title = "The Turning of the Oaths";
 		this.m.Screens.push({
 			ID = "A",
-        	Text = "",
-        	Image = "",
+			Text = "",
+			Image = "",
 			Banner = "",
 			List = [],
 			Characters = [],

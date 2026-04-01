@@ -24,10 +24,10 @@
 			[1, ::Const.World.Spawn.Troops.RF_VampireLord],
 
 			// Top (16)
-			[2, ::Const.World.Spawn.Troops.SkeletonHeavyBodyguard],
-			[3, ::Const.World.Spawn.Troops.RF_SkeletonHeavyLesserBodyguard],
-			[2, ::Const.World.Spawn.Troops.SkeletonHeavy],
-			[5, ::Const.World.Spawn.Troops.RF_SkeletonHeavyLesser],
+			[2, ::Const.World.Spawn.Troops.RF_SkeletonHeavyEliteBodyguard],
+			[3, ::Const.World.Spawn.Troops.SkeletonHeavyBodyguard],
+			[2, ::Const.World.Spawn.Troops.RF_SkeletonHeavyElite],
+			[5, ::Const.World.Spawn.Troops.SkeletonHeavy],
 			[1, ::Const.World.Spawn.Troops.SkeletonBoss],
 			[3, ::Const.World.Spawn.Troops.SkeletonPriest]
 		];
