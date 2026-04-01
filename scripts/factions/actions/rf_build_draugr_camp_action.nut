@@ -68,21 +68,30 @@ this.rf_build_draugr_camp_action <- ::inherit("scripts/factions/faction_action",
 			]).roll();
 		}
 
-		local tile;
-		switch (locationToSpawn)
+		local tile = this.getTileForSpawn(locationToSpawn);
+
+		if (tile != null)
+		{
+			return ::World.spawnLocation(locationToSpawn, tile.Coords);
+		}
+	}
+
+	function getTileForSpawn( _locationScript )
+	{
+		switch (_locationScript)
 		{
 			case "scripts/entity/world/locations/rf_draugr_barrows_location":
 				if (::World.FactionManager.isUndeadScourge())
-					tile = this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, [::Const.World.TerrainType.Mountains], 6, 14, 1000, 7, 7, null, this.m.MinY);
+					return this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, [::Const.World.TerrainType.Mountains], 6, 14, 1000, 7, 7, null, this.m.MinY);
 				else
-					tile = this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, [::Const.World.TerrainType.Mountains], 7, 20, 1000, 7, 7, null, this.m.MinY);
+					return this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, [::Const.World.TerrainType.Mountains], 7, 20, 1000, 7, 7, null, this.m.MinY);
 				break;
 
 			case "scripts/entity/world/locations/rf_draugr_crypt_location":
 				if (::World.FactionManager.isUndeadScourge())
-					tile = this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, [], 8, 18, 1000, 7, 7, null, this.m.MinY);
+					return this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, [], 8, 18, 1000, 7, 7, null, this.m.MinY);
 				else
-					tile = this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, [], 10, 20, 1000, 7, 7, null, this.m.MinY);
+					return this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, [], 10, 20, 1000, 7, 7, null, this.m.MinY);
 				break;
 
 			case "scripts/entity/world/locations/rf_draugr_fane_location":
@@ -93,16 +102,13 @@ this.rf_build_draugr_camp_action <- ::inherit("scripts/factions/faction_action",
 				excludedTerrain = ::MSU.Table.values(excludedTerrain);
 
 				if (::World.FactionManager.isUndeadScourge())
-					tile = this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, excludedTerrain, 8, 18, 1000, 7, 7, null, this.m.MinY);
+					return this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, excludedTerrain, 8, 18, 1000, 7, 7, null, this.m.MinY);
 				else
-					tile = this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, excludedTerrain, 10, 30, 1000, 7, 7, null, this.m.MinY);
+					return this.getTileToSpawnLocation(::Const.Factions.BuildCampTries, excludedTerrain, 10, 30, 1000, 7, 7, null, this.m.MinY);
 				break;
 		}
 
-		if (tile != null)
-		{
-			return ::World.spawnLocation(locationToSpawn, tile.Coords);
-		}
+		return null;
 	}
 });
 
