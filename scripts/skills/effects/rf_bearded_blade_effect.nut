@@ -87,7 +87,10 @@ this.rf_bearded_blade_effect <- ::inherit("scripts/skills/skill", {
 		_entity.getSkills().add(effect);
 		if (!effect.isGarbage() && ::Tactical.TurnSequenceBar.isActiveEntity(_entity))
 		{
-			effect.setTurns(2);
+			// When disarming an attacker on their turn, we need to disarm for 2 turns so that the disarm
+			// doesn't immediately end when the attacker ends their turn.
+			// We need to call addTurns instead of setTurns because setTurns is affected by Resilient perk.
+			effect.addTurns(1);
 		}
 
 		if (!this.getContainer().getActor().isHiddenToPlayer() && _entity.getTile().IsVisibleForPlayer)
