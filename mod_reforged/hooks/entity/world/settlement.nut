@@ -256,6 +256,18 @@
 						R = 40,
 						P = 1.0,
 						S = "accessory/rf_warmth_potion_item"
+					},
+					// For bombs we use same R and P as vanilla bombs
+					// in alchemist. We add 2 bombs as vanilla.
+					{
+						R = 10,
+						P = 1.0,
+						S = "tool/rf_grave_chill_bomb_item"
+					},
+					{
+						R = 10,
+						P = 1.0,
+						S = "tools/rf_grave_chill_bomb_item"
 					}
 				]);
 				break;
