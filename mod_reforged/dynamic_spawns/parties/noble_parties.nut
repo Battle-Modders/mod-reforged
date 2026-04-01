@@ -68,7 +68,7 @@ local parties = [
 				{ BaseID = "UnitBlock.RF.NobleLeader", RatioMax = 0.08
 					 function getSpawnWeight() { return base.getSpawnWeight() * (this.getParty().getStartingResources() > 450 ? 2 : 0.30); }
 				}, // vanilla knights spawn at 18+
-				{ BaseID = "UnitBlock.RF.NobleFlank", RatioMax = 0.25, HardMax = 3, ExclusionChance = 0.4
+				{ BaseID = "UnitBlock.RF.NobleFlank", RatioMax = 0.25, HardMax = 3, ExclusionChance = 40,
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.75; }
 				}
 			]

@@ -21,11 +21,11 @@ local parties = [
 								this.RatioMax = this.getTopParty().getStartingResources() * 0.0005; // 600 resources = 0.3
 							}
 						},
-						{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.00, RatioMax = 0.20, PartySizeMin = 10, ExclusionChance = 0.85, StartingResourceMin = 200 },
-						{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMin = 0.00, RatioMax = 0.20, HardMax = 3, PartySizeMin = 6, ExclusionChance = 0.2 },
-						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMin = 0.00, RatioMax = 0.15, HardMax = 2, PartySizeMin = 9, ExclusionChance = 0.4 },
-						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMin = 0.00, RatioMax = 0.10, HardMax = 1, PartySizeMin = 12, ExclusionChance = 0.6 },
-						{ BaseID = "UnitBlock.RF.SkeletonSupport", RatioMin = 0.00, RatioMax = 0.10, HardMax = 2, PartySizeMin = 12, ExclusionChance = 0.45 }
+						{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.00, RatioMax = 0.20, PartySizeMin = 10, ExclusionChance = 85, StartingResourceMin = 200 },
+						{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMin = 0.00, RatioMax = 0.20, HardMax = 3, PartySizeMin = 6, ExclusionChance = 20 },
+						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMin = 0.00, RatioMax = 0.15, HardMax = 2, PartySizeMin = 9, ExclusionChance = 40 },
+						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMin = 0.00, RatioMax = 0.10, HardMax = 1, PartySizeMin = 12, ExclusionChance = 60 },
+						{ BaseID = "UnitBlock.RF.SkeletonSupport", RatioMin = 0.00, RatioMax = 0.10, HardMax = 2, PartySizeMin = 12, ExclusionChance = 45 }
 					]
 				},
 
@@ -46,10 +46,10 @@ local parties = [
 				DynamicDefs = {
 					UnitBlocks = [
 						{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 1.00 },
-						{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.40, StartingResourceMin = 200, ExclusionChance = 0.66 },
+						{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.01, RatioMax = 0.40, StartingResourceMin = 200, ExclusionChance = 66 },
 						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, function getSpawnWeight(){ return base.getSpawnWeight() * 0.2 } },
 						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } },
-						{ BaseID = "UnitBlock.RF.SkeletonSupport", RatioMax = 0.20, ExclusionChance = 0.33, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } }
+						{ BaseID = "UnitBlock.RF.SkeletonSupport", RatioMax = 0.20, ExclusionChance = 33, function getSpawnWeight(){ return base.getSpawnWeight() * 0.1 } }
 					]
 				}
 			}]
@@ -86,7 +86,7 @@ local parties = [
 				DynamicDefs = {
 					UnitBlocks = [
 						{ BaseID = "UnitBlock.RF.SkeletonFrontline", RatioMin = 0.7, RatioMax = 1.00 },
-						{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.70, ExclusionChance = 0.7 },
+						{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.70, ExclusionChance = 70 },
 						{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.1, RatioMax = 0.35, HardMin = 1, function getSpawnWeight() { return base.getSpawnWeight() * 20; } },
 						{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.20, HardMax = 3, PartySizeMin = 6 },
 						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, HardMax = 2, PartySizeMin = 9 },
@@ -112,8 +112,8 @@ local parties = [
 					UnitBlocks = [
 						{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 1.00 },
 						{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.2, RatioMax = 0.4, HardMin = 1, function getSpawnWeight() { return base.getSpawnWeight() * 20; } },
-						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, HardMax = 2, StartingResourceMin = 250, PartySizeMin = 4, ExclusionChance = 0.2 },
-						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, HardMax = 1, StartingResourceMin = 300, PartySizeMin = 5, ExclusionChance = 0.4 }
+						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, HardMax = 2, StartingResourceMin = 250, PartySizeMin = 4, ExclusionChance = 20 },
+						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, HardMax = 1, StartingResourceMin = 300, PartySizeMin = 5, ExclusionChance = 40 }
 					]
 				},
 

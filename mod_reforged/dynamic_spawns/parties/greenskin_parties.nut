@@ -48,12 +48,12 @@ local parties = [
 			if (::Math.rand(1, 2) == 1)
 			{
 				chosen = orcs;
-				goblinBoss.ExclusionChance = 0.5; // Likely to exclude GoblinBoss when Orc-heavy party
+				goblinBoss.ExclusionChance = 50; // Likely to exclude GoblinBoss when Orc-heavy party
 			}
 			else
 			{
 				chosen = goblins;
-				orcBoss.ExclusionChance = 0.5; // Likely to exclude OrcBoss when Goblin-heavy party
+				orcBoss.ExclusionChance = 50; // Likely to exclude OrcBoss when Goblin-heavy party
 			}
 
 			chosen.RatioMin = 0.6;

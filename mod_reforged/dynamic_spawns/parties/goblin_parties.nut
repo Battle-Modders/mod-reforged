@@ -168,8 +168,8 @@ local parties = [
 			else
 			{
 				boss.HardMax = 0;
-				flank.ExclusionChance = 0.25;
-				support.ExclusionChance = 0.5;
+				flank.ExclusionChance = 25;
+				support.ExclusionChance = 50;
 
 				ranged.RatioMin = 0.2;
 				ranged.RatioMax = 0.5;
@@ -216,13 +216,13 @@ local parties = [
 				// Shaman more likely to spawn in party with boss
 				support.SpawnWeightMult = 1.7;
 
-				flank.ExclusionChance = 0.33;
+				flank.ExclusionChance = 33;
 				frontline.RatioMin = 0.5;
 			}
 			else
 			{
 				boss.HardMax = 0;
-				support.ExclusionChance = 0.6;
+				support.ExclusionChance = 60;
 				if (flank.isValid())
 				{
 					// Some chance to be only Wolfriders as melee instead of Wolfriders and Skirmishers

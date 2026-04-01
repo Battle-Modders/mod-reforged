@@ -31,7 +31,7 @@ local parties = [
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.50; }
 					function onBeforeSpawnStart() { this.HardMax = ::Math.floor(this.getTopParty().getStartingResources() / 220); }
 				},
-				{ BaseID = "UnitBlock.RF.Slave", RatioMin = 0.30, RatioMax = 0.70, StartingResourceMin = 300, ExclusionChance = 0.9  // Vanilla: Start spawning in a party of 304 resources. Once they start spawning, they are only in 3 of about 60 parties.
+				{ BaseID = "UnitBlock.RF.Slave", RatioMin = 0.30, RatioMax = 0.70, StartingResourceMin = 300, ExclusionChance = 90,  // Vanilla: Start spawning in a party of 304 resources. Once they start spawning, they are only in 3 of about 60 parties.
 				function getSpawnWeight() { return base.getSpawnWeight() * 5.0; }
 				}
 			]
@@ -52,7 +52,7 @@ local parties = [
 		DynamicDefs = {
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.SouthernFrontline", RatioMin = 0.15, RatioMax = 1.00, DeterminesFigure = false },
-				{ BaseID = "UnitBlock.RF.Slave", RatioMin = 0.10, RatioMax = 0.40, ExclusionChance = 0.75, DeterminesFigure = false
+				{ BaseID = "UnitBlock.RF.Slave", RatioMin = 0.10, RatioMax = 0.40, ExclusionChance = 75, DeterminesFigure = false
 					function getSpawnWeight() { return base.getSpawnWeight() * 3.0; }
 				}, // Vanilla: Slaves are in about 1/4 parties
 				{ BaseID = "UnitBlock.RF.SouthernBackline", RatioMin = 0.10, RatioMax = 0.40, DeterminesFigure = false },

@@ -41,7 +41,7 @@ local parties = [
 		DynamicDefs = {
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.OrcYoung", RatioMin = 0.80, RatioMax = 1.00 },
-				{ BaseID = "UnitBlock.RF.OrcWarrior", ExclusionChance = 0.66, StartingResourceMin = 95 // Vanilla only has OrcWarriorLOW that starts at 94 resources
+				{ BaseID = "UnitBlock.RF.OrcWarrior", ExclusionChance = 66, StartingResourceMin = 95 // Vanilla only has OrcWarriorLOW that starts at 94 resources
 					function getSpawnWeight() { return base.getSpawnWeight() * 0.1; }
 				}
 			]
@@ -340,7 +340,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.OrcYoung", ExclusionChance = 0.4, SpawnWeightMult = 0.18 },
+				{ BaseID = "UnitBlock.RF.OrcYoung", ExclusionChance = 40, SpawnWeightMult = 0.18 },
 				{ BaseID = "UnitBlock.RF.OrcBerserker", HardMin = 2, RatioMin = 0.6, RatioMax = 1.0 }
 			]
 		}

@@ -16,15 +16,15 @@ local parties = [
 					DynamicDefs = {
 						UnitBlocks = [
 							{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.0, RatioMax = 1.0 },
-							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 0.20 },
-							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 0.20 }
+							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 },
+							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 }
 						]
 					}
 				}
 			],
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.35, RatioMax = 1.0 },
-				{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.25, ExclusionChance = 0.45 }
+				{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.25, ExclusionChance = 45 }
 			]
 		},
 
@@ -64,14 +64,14 @@ local parties = [
 					DynamicDefs = {
 						UnitBlocks = [
 							{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.0, RatioMax = 1.0 },
-							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 0.20 },
-							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 0.20 }
+							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 },
+							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 }
 						]
 					}
 				}
 			],
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40, ExclusionChance = 0.2 },
+				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40, ExclusionChance = 20 },
 				{ BaseID = "UnitBlock.RF.BanditDog", RatioMin = 0.00, RatioMax = 0.30 }
 			]
 		},
@@ -82,7 +82,7 @@ local parties = [
 			local dogs = this.getSpawnable("UnitBlock.RF.BanditDog");
 			local frontline = this.getSpawnable("Frontline");
 
-			dogs.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 0.33, 170, 0.7);
+			dogs.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 33, 170, 70);
 			frontline.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.7, 170, 0.5), 0.45, 0.7);
 		}
 
@@ -108,15 +108,15 @@ local parties = [
 					DynamicDefs = {
 						UnitBlocks = [
 							{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.0, RatioMax = 1.0 },
-							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 0.20 },
-							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 0.20 }
+							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 },
+							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 }
 						]
 					}
 				}
 			],
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.35 },
-				{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.13, PartySizeMin = 14, StartingResourceMin = 320, ExclusionChance = 0.5 },
+				{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.13, PartySizeMin = 14, StartingResourceMin = 320, ExclusionChance = 50 },
 				{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.00, RatioMax = 0.14, HardMax = 3, PartySizeMin = 7, StartingResourceMin = 140 }
 			]
 		},
@@ -128,8 +128,8 @@ local parties = [
 			local ranged = this.getSpawnable("UnitBlock.RF.BanditRanged");
 			local boss = this.getSpawnable("UnitBlock.RF.BanditBoss");
 
-			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 0.6, 200, 0);
-			boss.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 0.5, 600, 0);
+			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 60, 200, 0);
+			boss.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 50, 600, 0);
 		}
 
 		function getUpgradeChance()
@@ -155,14 +155,14 @@ local parties = [
 					DynamicDefs = {
 						UnitBlocks = [
 							{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.0, RatioMax = 1.0 },
-							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 0.20 },
-							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 0.20 }
+							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 },
+							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 }
 						]
 					}
 				}
 			],
 			UnitBlocks = [
-				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.55, ExclusionChance = 0.2 },
+				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.55, ExclusionChance = 20 },
 				{ BaseID = "UnitBlock.RF.BanditElite", RatioMin = 0.00, RatioMax = 0.15, PartySizeMin = 14, StartingResourceMin = 320 },
 				{ BaseID = "UnitBlock.RF.BanditBoss", RatioMin = 0.00, RatioMax = 0.14, HardMax = 3, PartySizeMin = 7, StartingResourceMin = 140 }
 			]
@@ -177,14 +177,14 @@ local parties = [
 			local elite = this.getSpawnable("UnitBlock.RF.BanditElite");
 
 			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.55, 600, 0.3);
-			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 0.45, 200, 0.0);
+			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 45, 200, 0);
 
 			frontline.RatioMin = ::Reforged.Math.lerpClamp(res, 200, 0.45, 600, 0.6);
 
-			boss.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 0.6, 500, 0.0);
+			boss.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 60, 500, 0);
 
 			elite.RatioMax = ::Reforged.Math.lerpClamp(res, 400, 0.05, 600, 0.15);
-			elite.ExclusionChance = ::Reforged.Math.lerpClamp(res, 400, 0.7, 600, 0.0);
+			elite.ExclusionChance = ::Reforged.Math.lerpClamp(res, 400, 70, 600, 0);
 		}
 
 		function getUpgradeChance()
@@ -210,8 +210,8 @@ local parties = [
 					DynamicDefs = {
 						UnitBlocks = [
 							{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMax = 1.0 },
-							{ BaseID = "UnitBlock.RF.BanditFast", RatioMax = 0.33, ExclusionChance = 0.20 },
-							{ BaseID = "UnitBlock.RF.BanditTough", RatioMax = 0.33, ExclusionChance = 0.20 }
+							{ BaseID = "UnitBlock.RF.BanditFast", RatioMax = 0.33, ExclusionChance = 20 },
+							{ BaseID = "UnitBlock.RF.BanditTough", RatioMax = 0.33, ExclusionChance = 20 }
 						]
 					}
 				}
@@ -230,9 +230,9 @@ local parties = [
 			local elite = this.getSpawnable("UnitBlock.RF.BanditElite");
 
 			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.40, 600, 0.3);
-			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 0.15, 300, 0.0);
+			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 15, 300, 0);
 
-			elite.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 0.67, 500, 0.25);
+			elite.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 67, 500, 25);
 		}
 
 		function getUpgradeChance()

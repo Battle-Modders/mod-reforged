@@ -31,7 +31,7 @@ local parties = [
 				}
 				else
 				{
-					high.ExclusionChance = 0.35;
+					high.ExclusionChance = 35;
 				}
 			}
 		}
@@ -67,7 +67,7 @@ local parties = [
 			med.RatioMax = 0.4;
 			high.StartingResourceMin = 112;
 			high.RatioMax = 0.4;
-			high.ExclusionChance = 0.3;
+			high.ExclusionChance = 30;
 		}
 
 		function getUpgradeChance()
@@ -159,7 +159,7 @@ local parties = [
 					// Direwolf is excluded in 77% of parties above those resources and DirewolfHIGH is excluded in 50%. 75% of parties
 					// above the first direwolf party are without any wolves.
 					// We add Hollenhund as an alternative. We will spawn either Direwolves or Hollenhunds, but not both together.
-					ID = "Animals", RatioMax = 0.35, ExclusionChance = 0.75, DeterminesFigure = false,
+					ID = "Animals", RatioMax = 0.35, ExclusionChance = 75, DeterminesFigure = false,
 					DynamicDefs = {
 						UnitBlocks = [
 							{ BaseID = "UnitBlock.RF.Direwolf" },
@@ -176,7 +176,7 @@ local parties = [
 			// More chance to have Animals at higher resources.
 			if (this.getTopParty().getStartingResources() >= 395)
 			{
-				this.getSpawnable("Animals").ExclusionChance = 0.5;
+				this.getSpawnable("Animals").ExclusionChance = 50;
 			}
 
 			local hollenhunds = this.getSpawnable("UnitBlock.RF.Hollenhund");

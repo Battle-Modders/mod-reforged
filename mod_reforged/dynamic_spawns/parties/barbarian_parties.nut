@@ -11,8 +11,8 @@ local parties = [
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BarbarianFrontline", RatioMin = 0.60, RatioMax = 1.00 },
 				{ BaseID = "UnitBlock.RF.BarbarianSupport", HardMax = 2, RatioMin = 0.00, RatioMax = 0.15, PartySizeMin = 10 },
-				{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.00, RatioMax = 0.4, PartySizeMin = 5, ExclusionChance = 0.7 },
-				{ BaseID = "UnitBlock.RF.BarbarianBeastmaster", HardMax = 3, RatioMin = 0.00, RatioMax = 0.2, PartySizeMin = 5, ExclusionChance = 0.77 }
+				{ BaseID = "UnitBlock.RF.BarbarianDog", RatioMin = 0.00, RatioMax = 0.4, PartySizeMin = 5, ExclusionChance = 70 },
+				{ BaseID = "UnitBlock.RF.BarbarianBeastmaster", HardMax = 3, RatioMin = 0.00, RatioMax = 0.2, PartySizeMin = 5, ExclusionChance = 77 }
 			]
 		},
 
