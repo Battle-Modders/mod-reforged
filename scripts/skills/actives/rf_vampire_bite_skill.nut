@@ -41,6 +41,16 @@ this.rf_vampire_bite_skill <- ::inherit("scripts/skills/skill", {
 		return (actor.getMainhandItem() == null || actor.isDisarmed()) && this.skill.isUsable();
 	}
 
+	// Hide this skill when equipping a weapon. Because in the nested tooltip
+	// of this skill on an actor the damage numbers are wrong when the actor is
+	// equipping a weapon with double grip. This is consistent with how vanilla
+	// hides Hand to Hand skill when it's not usable.
+	function isHidden()
+	{
+		local actor = this.getContainer().getActor();
+		return actor.getMainhandItem() != null && !actor.isDisarmed();
+	}
+
 	function getTooltip()
 	{
 		local ret = this.skill.getDefaultTooltip();
