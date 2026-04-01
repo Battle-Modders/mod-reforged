@@ -34,14 +34,12 @@
 }
 
 {	// Debug
-	// local debugPage = ::Reforged.Mod.ModSettings.addPage("Debug");
-	// debugPage.addBooleanSetting("Debug_onAnySkillExecutedFully", false, "onAnySkillExecutedFully", "Enable for debug logging of onAnySkillExecutedFully module").addBeforeChangeCallback(@( _newValue ) ::Reforged.Mod.Debug.setFlag("onAnySkillExecutedFully", _newValue));
-	// debugPage.addBooleanSetting("Debug_AIAgentFixes", false, "AIAgentFixes", "Enable for debug logging of AIAgentFixes module").addBeforeChangeCallback(@( _newValue ) ::Reforged.Mod.Debug.setFlag("AIAgentFixes", _newValue));
-}
+	local debugPage = ::Reforged.Mod.ModSettings.addPage("Debug & Dev");
+	debugPage.addBooleanSetting("Debug_onAnySkillExecutedFully", true, "onAnySkillExecutedFully", "Enable for debug logging of onAnySkillExecutedFully module").addBeforeChangeCallback(@( _newValue ) ::Reforged.Mod.Debug.setFlag("onAnySkillExecutedFully", _newValue));
+	debugPage.addBooleanSetting("Debug_AIAgentFixes", false, "AIAgentFixes", "Enable for debug logging of AIAgentFixes module").addBeforeChangeCallback(@( _newValue ) ::Reforged.Mod.Debug.setFlag("AIAgentFixes", _newValue));
 
-{	// Dev
-	local devPage = ::Reforged.Mod.ModSettings.addPage("Dev");
-	devPage.addBooleanSetting("Dev_SpawnsInfo", true, "Spawns Info", "Enable display of various information about spawns on the world map such as party cost/strength, spawn day etc.");
+	debugPage.addTitle("Title_DevOptions", "Dev Options");
+	debugPage.addBooleanSetting("Dev_SpawnsInfo", false, "Spawns Info", "Enable display of various information about spawns on the world map such as party cost/strength, spawn day etc.");
 }
 
 ::Reforged.Mod.Keybinds.addSQKeybind("Tactical_WaitRound", "h", ::MSU.Key.State.Tactical, function()
