@@ -59,7 +59,7 @@ this.perk_rf_flail_spinner <- ::inherit("scripts/skills/skill", {
 
 	function trySpinFlail( _tag )
 	{
-		if (!_tag.User.isAlive() || !_tag.TargetEntity.isAlive())
+		if (!_tag.User.isAlive() || !_tag.TargetEntity.isAlive() || ::MSU.isNull(_tag.Skill.getContainer()))
 			return;
 
 		// If the skill is already executing, we wait for it to complete that first.
