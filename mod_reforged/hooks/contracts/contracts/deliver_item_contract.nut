@@ -6,7 +6,7 @@
 		{
 			if (var[0] != "days") continue;
 			local seconds = this.getSecondsRequiredToTravel(this.m.Flags.get("Distance"), ::Const.World.MovementSettings.Speed, true);
-			var[1] = ::Reforged.Text.getDaysAndHalf(seconds);
+			var[1] = "[color=#f6eedb]" + ::Reforged.Text.getDaysAndHalf(seconds) + "[/color]"; // Same color as vanilla OOC var but we can't use a var within a var
 			break;
 		}
 	}}.onPrepareVariables;
