@@ -1,3 +1,5 @@
+# Quick Links
+
 - [Installation Guide](https://github.com/Battle-Modders/mod-reforged/wiki/Installation-Guide)
 
 - [Dev Diaries and Project Vision](https://github.com/Battle-Modders/mod-reforged/wiki)
@@ -8,7 +10,16 @@
 
 - [Discord Server](https://discord.gg/uV3KzFFuMr)
 
-## Building from the Source Code
+# Installation
+1. Download the .zip files attached to the latest releases of:
+- `mod_reforged_core`: https://github.com/Battle-Modders/mod-reforged/releases
+- `mod_reforged_assets`: https://github.com/Battle-Modders/mod_reforged_assets/releases
+
+2. Place the files in your `Battle Brothers\data` folder in your game installation directory. Do NOT unzip the files.
+
+3. Install all the dependencies. View the [Installation Guide](https://github.com/Battle-Modders/mod-reforged/wiki/Installation-Guide) for the list.
+
+# Building from the Source Code
 If you wish to build the mod yourself from the source code, you can follow the following steps.
 - Install [BBBuilder](https://github.com/TaroEld/BBbuilder). Complete its setup as described in its instructions.
 - Clone the Reforged repository into a local directory on your drive.
