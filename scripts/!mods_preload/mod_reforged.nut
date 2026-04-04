@@ -99,7 +99,10 @@ foreach (requirement in requiredMods)
 					opponent.Strength -= damageDealt;
 
 					// This block is the same as in vanilla.
-					if (opponent.Strength <= 0)
+					// Except we change to `< 1` instead of `<= 0` to be robust against opponents
+					// with float Strength which drops below 1 (e.g. 0.75) and would cause the
+					// damageDealt above to be 0, resulting in an infinite loop.
+					if (opponent.Strength < 1)
 					{
 						++_combat.Stats.Dead;
 						opponentParty.getTroops().remove(opponentIndex);
