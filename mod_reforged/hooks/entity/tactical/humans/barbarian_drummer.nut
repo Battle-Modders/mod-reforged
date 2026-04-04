@@ -51,7 +51,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @(__original) { function onSpawned()
 	{
 		__original();
 
@@ -59,5 +59,5 @@
 		{
 			::Reforged.Skills.addMasteryOfEquippedWeapon(this)
 		}
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 });

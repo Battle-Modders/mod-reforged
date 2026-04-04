@@ -43,7 +43,7 @@
 		}));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @(__original) { function onSpawned()
 	{
 		__original();
 
@@ -69,7 +69,7 @@
 				break;
 			}
 		}
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 
 	q.makeMiniboss = @(__original) { function makeMiniboss()
 	{

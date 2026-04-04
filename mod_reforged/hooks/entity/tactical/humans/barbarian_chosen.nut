@@ -66,9 +66,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @(__original) { function onSpawned()
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 });

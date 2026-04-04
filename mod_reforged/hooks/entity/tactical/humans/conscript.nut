@@ -28,18 +28,14 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_nimble"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-	}}.onInit;
-
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
-	{
-		__original();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	}}.assignRandomEquipment;
-
-	q.onSpawned = @() { function onSpawned()
-	{
 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_phalanx"));
+	}}.onInit;
+
+	q.onSpawned = @(__original) { function onSpawned()
+	{
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}}.onSpawned;
 });
