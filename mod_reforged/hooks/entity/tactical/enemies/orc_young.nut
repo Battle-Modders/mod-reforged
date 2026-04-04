@@ -64,107 +64,66 @@
 
 	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
-		local r;
-		local weapon;
-
-		if (::Math.rand(1, 100) <= 25)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag) && ::Math.rand(1, 100) <= 25)
 		{
 			this.m.Items.addToBag(::new("scripts/items/weapons/greenskins/orc_javelin"));
 		}
 
-		if (::Math.rand(1, 100) <= 75)
-		{
-			if (::Math.rand(1, 100) <= 50)
-			{
-				local r = ::Math.rand(1, 2);
-
-				if (r == 1)
-				{
-					weapon = ::new("scripts/items/weapons/greenskins/orc_axe");
-				}
-				else if (r == 2)
-				{
-					weapon = ::new("scripts/items/weapons/greenskins/orc_cleaver");
-				}
-			}
-			else
-			{
-				local r = ::Math.rand(1, 2);
-
-				if (r == 1)
-				{
-					weapon = ::new("scripts/items/weapons/greenskins/orc_wooden_club");
-				}
-				else if (r == 2)
-				{
-					weapon = ::new("scripts/items/weapons/greenskins/orc_metal_club");
-				}
-			}
-		}
-		else
-		{
-			r = ::Math.rand(1, 2);
-
-			// if (r == 1)
-			// {
-			// 	weapon = ::new("scripts/items/weapons/greenskins/goblin_falchion");
-			// }
-			if (r == 1)
-			{
-				weapon = ::new("scripts/items/weapons/hatchet");
-			}
-			else
-			{
-				weapon = ::new("scripts/items/weapons/morning_star");
-			}
-		}
+		local weapon = ::MSU.Class.WeightedContainer([
+			[1, "scripts/items/weapons/greenskins/orc_axe"],
+			[1, "scripts/items/weapons/greenskins/orc_cleaver"],
+			[1, "scripts/items/weapons/greenskins/orc_wooden_club"],
+			[1, "scripts/items/weapons/greenskins/orc_metal_club"],
+			// The sum of the weight of the following weapons should be 1/4 of the total weight.
+			// Because in vanilla Orc Young have a 75% chance to spawn with one of the above weapons.
+			// [0.33, "scripts/items/weapons/greenskins/goblin_falchion"], // Disabled in Reforged on Orc Young
+			[0.67, "scripts/items/weapons/hatchet"],
+			[0.67, "scripts/items/weapons/morning_star"]
+		]).roll();
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			this.m.Items.equip(weapon);
+			this.m.Items.equip(::new(weapon));
 		}
 		else
 		{
-			this.m.Items.addToBag(weapon);
+			this.m.Items.addToBag(::new(weapon));
 		}
 
-		if (::Math.rand(1, 100) <= 50)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 50)
 		{
 			this.m.Items.equip(::new("scripts/items/shields/greenskins/orc_light_shield"));
 		}
 
-		r = ::Math.rand(1, 5);
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
+		{
+			local armor = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/armor/greenskins/orc_young_very_light_armor"],
+				[1, "scripts/items/armor/greenskins/orc_young_light_armor"],
+				[1, "scripts/items/armor/greenskins/orc_young_medium_armor"],
+				[1, "scripts/items/armor/greenskins/orc_young_heavy_armor"],
+				[1, "NoArmor"]
+			]).roll();
 
-		if (r == 1)
-		{
-			this.m.Items.equip(::new("scripts/items/armor/greenskins/orc_young_very_light_armor"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(::new("scripts/items/armor/greenskins/orc_young_light_armor"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(::new("scripts/items/armor/greenskins/orc_young_medium_armor"));
-		}
-		else if (r == 4)
-		{
-			this.m.Items.equip(::new("scripts/items/armor/greenskins/orc_young_heavy_armor"));
+			if (armor != "NoArmor")
+			{
+				this.m.Items.equip(::new(armor));
+			}
 		}
 
-		r = ::Math.rand(1, 4);
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
+		{
+			local helmet = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/helmets/greenskins/orc_young_light_helmet"],
+				[1, "scripts/items/helmets/greenskins/orc_young_medium_helmet"],
+				[1, "scripts/items/helmets/greenskins/orc_young_heavy_helmet"],
+				[1, "NoHelmet"]
+			]).roll();
 
-		if (r == 1)
-		{
-			this.m.Items.equip(::new("scripts/items/helmets/greenskins/orc_young_light_helmet"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(::new("scripts/items/helmets/greenskins/orc_young_medium_helmet"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(::new("scripts/items/helmets/greenskins/orc_young_heavy_helmet"));
+			if (helmet != "NoHelmet")
+			{
+				this.m.Items.equip(::new(helmet));
+			}
 		}
 	}}.assignRandomEquipment;
 

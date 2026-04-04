@@ -17,10 +17,10 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_strength_in_numbers"));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @(__original) { function onSpawned()
 	{
 		__original();
 
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 });

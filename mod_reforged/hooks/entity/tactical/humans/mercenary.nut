@@ -34,67 +34,48 @@
 
 	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
-		local r;
-
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapons = [
-				"weapons/billhook",
-				"weapons/pike",
-				"weapons/warbrand",
-				"weapons/longsword",
-				"weapons/hand_axe",
-				"weapons/fighting_spear",
-				"weapons/morning_star",
-				"weapons/falchion",
-				"weapons/arming_sword",
-				"weapons/flail",
-				"weapons/military_pick"
-			];
-
-			if (::Const.DLC.Unhold)
-			{
-				weapons.extend([
-					"weapons/polehammer",
-					"weapons/three_headed_flail"
-				]);
-			}
-
-			if (::Const.DLC.Wildmen)
-			{
-				weapons.extend([
-					"weapons/bardiche",
-					"weapons/scimitar"
-				]);
-			}
-
-			// Reforged
-			weapons.extend([
-				"weapons/rf_kriegsmesser",
-				"weapons/rf_greatsword"
+			local weapons = ::MSU.Class.WeightedContainer([
+				[1, "weapons/hand_axe"],
+				[1, "weapons/fighting_spear"],
+				[1, "weapons/morning_star"],
+				[1, "weapons/falchion"],
+				[1, "weapons/arming_sword"],
+				[1, "weapons/flail"],
+				[1, "weapons/military_pick"],
+				[1, "weapons/three_headed_flail"],
+				[1, "weapons/scimitar"]
 			]);
 
-			this.m.Items.equip(::new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapons.addArray([
+					[1, "weapons/billhook"],
+					[1, "weapons/pike"],
+					[1, "weapons/warbrand"],
+					[1, "weapons/longsword"],
+					[1, "weapons/polehammer"],
+					[1, "weapons/bardiche"],
+					[1, "weapons/rf_kriegsmesser"],
+					[1, "weapons/rf_greatsword"]
+				]);
+			}
+
+			this.m.Items.equip(::new("scripts/items/" + weapons.roll()));
 		}
 
-		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			if (::Math.rand(1, 100) <= 75)
 			{
-				r = ::Math.rand(0, 2);
+				local shields = ::MSU.Class.WeightedContainer([
+					[1, "shields/wooden_shield"],
+					[1, "shields/heater_shield"],
+					[1, "shields/kite_shield"]
+				]);
 
-				if (r == 0)
-				{
-					this.m.Items.equip(::new("scripts/items/shields/wooden_shield"));
-				}
-				else if (r == 1)
-				{
-					this.m.Items.equip(::new("scripts/items/shields/heater_shield"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.equip(::new("scripts/items/shields/kite_shield"));
-				}
+				this.m.Items.equip(::new("scripts/items/" + shields.roll()));
 			}
 			else
 			{
@@ -102,121 +83,32 @@
 			}
 		}
 
-		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 60)
+		if (this.getIdealRange() == 1 && this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag) && ::Math.rand(1, 100) <= 60)
 		{
-			if (::Const.DLC.Unhold)
-			{
-				r = ::Math.rand(1, 3);
-
-				if (r == 1)
-				{
-					this.m.Items.addToBag(::new("scripts/items/weapons/throwing_axe"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.addToBag(::new("scripts/items/weapons/javelin"));
-				}
-				else if (r == 3)
-				{
-					this.m.Items.addToBag(::new("scripts/items/weapons/throwing_spear"));
-				}
-			}
-			else
-			{
-				r = ::Math.rand(1, 2);
-
-				if (r == 1)
-				{
-					this.m.Items.addToBag(::new("scripts/items/weapons/throwing_axe"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.addToBag(::new("scripts/items/weapons/javelin"));
-				}
-			}
+			local bag = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/throwing_axe"],
+				[1, "scripts/items/weapons/javelin"],
+				[1, "scripts/items/weapons/throwing_spear"]
+			]);
+			this.m.Items.equip(::new(bag.roll()));
 		}
 
-		if (::Const.DLC.Unhold)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			r = ::Math.rand(1, 11);
-
-			if (r == 1)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/sellsword_armor"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/padded_leather"));
-			}
-			else if (r == 3)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/patched_mail_shirt"));
-			}
-			else if (r == 4)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/basic_mail_shirt"));
-			}
-			else if (r == 5)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/mail_shirt"));
-			}
-			else if (r == 6)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/reinforced_mail_hauberk"));
-			}
-			else if (r == 7)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/mail_hauberk"));
-			}
-			else if (r == 8)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/lamellar_harness"));
-			}
-			else if (r == 9)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/footman_armor"));
-			}
-			else if (r == 10)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/light_scale_armor"));
-			}
-			else if (r == 11)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/leather_scale_armor"));
-			}
-		}
-		else
-		{
-			r = ::Math.rand(2, 8);
-
-			if (r == 2)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/padded_leather"));
-			}
-			else if (r == 3)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/patched_mail_shirt"));
-			}
-			else if (r == 4)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/basic_mail_shirt"));
-			}
-			else if (r == 5)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/mail_shirt"));
-			}
-			else if (r == 6)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/reinforced_mail_hauberk"));
-			}
-			else if (r == 7)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/mail_hauberk"));
-			}
-			else if (r == 8)
-			{
-				this.m.Items.equip(::new("scripts/items/armor/lamellar_harness"));
-			}
+			local armor = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/armor/sellsword_armor"],
+				[1, "scripts/items/armor/padded_leather"],
+				[1, "scripts/items/armor/patched_mail_shirt"],
+				[1, "scripts/items/armor/basic_mail_shirt"],
+				[1, "scripts/items/armor/mail_shirt"],
+				[1, "scripts/items/armor/reinforced_mail_hauberk"],
+				[1, "scripts/items/armor/mail_hauberk"],
+				[1, "scripts/items/armor/lamellar_harness"],
+				[1, "scripts/items/armor/footman_armor"],
+				[1, "scripts/items/armor/light_scale_armor"],
+				[1, "scripts/items/armor/leather_scale_armor"],
+			]);
+			this.m.Items.equip(::new(armor.roll()));
 		}
 
 		if (this.getBodyItem() != null && ::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
@@ -245,34 +137,31 @@
 			}
 		}
 
-		if (::Math.rand(1, 100) <= 95)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) <= 95)
 		{
-			local helmets = [
-				"scripts/items/helmets/nasal_helmet",
-				"scripts/items/helmets/nasal_helmet_with_mail",
-				"scripts/items/helmets/mail_coif",
-				"scripts/items/helmets/reinforced_mail_coif",
-				"scripts/items/helmets/headscarf",
-				"scripts/items/helmets/kettle_hat",
-				"scripts/items/helmets/kettle_hat_with_mail",
-				"scripts/items/helmets/flat_top_helmet",
-				"scripts/items/helmets/flat_top_with_mail",
-				"scripts/items/helmets/closed_flat_top_helmet",
-				"scripts/items/helmets/closed_mail_coif",
-				"scripts/items/helmets/bascinet_with_mail"
-			];
+			local helmets = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/helmets/nasal_helmet"],
+				[1, "scripts/items/helmets/nasal_helmet_with_mail"],
+				[1, "scripts/items/helmets/mail_coif"],
+				[1, "scripts/items/helmets/reinforced_mail_coif"],
+				[1, "scripts/items/helmets/headscarf"],
+				[1, "scripts/items/helmets/kettle_hat"],
+				[1, "scripts/items/helmets/kettle_hat_with_mail"],
+				[1, "scripts/items/helmets/flat_top_helmet"],
+				[1, "scripts/items/helmets/flat_top_with_mail"],
+				[1, "scripts/items/helmets/closed_flat_top_helmet"],
+				[1, "scripts/items/helmets/closed_mail_coif"],
+				[1, "scripts/items/helmets/bascinet_with_mail"],
+				[1, "scripts/items/helmets/nordic_helmet"],
+				[1, "scripts/items/helmets/steppe_helmet_with_mail"]
+			]);
 
-			if (::Const.DLC.Wildmen)
-			{
-				helmets.extend([
-					"scripts/items/helmets/nordic_helmet",
-					"scripts/items/helmets/steppe_helmet_with_mail"
-				]);
-			}
-
-			this.m.Items.equip(::new(helmets[::Math.rand(1, helmets.len() - 1)]));
+			this.m.Items.equip(::new(helmets.roll()));
 		}
+	}}.assignRandomEquipment;
 
+	q.onSpawned = @() { function onSpawned()
+	{
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		if (this.isArmedWithShield())
 		{
@@ -300,5 +189,5 @@
 				break;
 			}
 		}
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 });

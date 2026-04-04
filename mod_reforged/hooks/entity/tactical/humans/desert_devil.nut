@@ -46,13 +46,19 @@
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer([
+			local weapons = ::MSU.Class.WeightedContainer([
 				[2, "scripts/items/weapons/shamshir"],
+			]);
 
-				[1, "scripts/items/weapons/oriental/swordlance"],
-				[1, "scripts/items/weapons/rf_voulge"]
-			]).roll();
-			this.m.Items.equip(::new(weapon));
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapons.addArray([
+					[1, "scripts/items/weapons/oriental/swordlance"],
+					[1, "scripts/items/weapons/rf_voulge"]
+				]);
+			}
+
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))

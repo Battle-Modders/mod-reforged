@@ -38,7 +38,6 @@
 	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 
 		if (this.getBodyItem() != null && ::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier3)
 		{
@@ -60,4 +59,10 @@
 			}
 		}
 	}}.assignRandomEquipment;
+
+	q.onSpawned = @(__original) { function onSpawned()
+	{
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
+	}}.onSpawned;
 });

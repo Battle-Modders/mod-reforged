@@ -61,10 +61,10 @@
 		// until they use that skill. We have "fixed" that in Reforged. The fix is in the hook on wolf_bite.
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @(__original) { function onSpawned()
 	{
 		__original();
 
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 });
