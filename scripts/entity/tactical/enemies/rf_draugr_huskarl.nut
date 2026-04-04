@@ -50,13 +50,18 @@ this.rf_draugr_huskarl <- ::inherit("scripts/entity/tactical/enemies/rf_draugr",
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer().addMany(1, [
-				"rf_draugr_sword",
-				"rf_draugr_battle_axe",
-				"rf_draugr_greataxe"
-			]).roll();
+			local weapons = ::MSU.Class.WeightedContainer().addMany(1, [
+				"rf_draugr_sword"
+			]);
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapons.addMany(1, [
+					"rf_draugr_battle_axe",
+					"rf_draugr_greataxe"
+				]);
+			}
 
-			this.m.Items.equip(::new("scripts/items/weapons/rf_draugr/" + weapon));
+			this.m.Items.equip(::new("scripts/items/weapons/rf_draugr/" + weapons.roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))

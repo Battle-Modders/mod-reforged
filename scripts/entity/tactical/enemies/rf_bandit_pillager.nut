@@ -48,7 +48,7 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer([
+			local weapons = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/boar_spear"],
 				[1, "scripts/items/weapons/falchion"],
 				[1, "scripts/items/weapons/flail"],
@@ -56,12 +56,18 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 				[1, "scripts/items/weapons/military_pick"],
 				[1, "scripts/items/weapons/morning_star"],
 				[1, "scripts/items/weapons/scramasax"],
-				[1, "scripts/items/weapons/shortsword"],
+				[1, "scripts/items/weapons/shortsword"]
+			]);
 
-				[1, "scripts/items/weapons/rf_two_handed_falchion"],
-				[1, "scripts/items/weapons/warbrand"]
-			]).roll();
-			this.m.Items.equip(::new(weapon));
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapons.addArray([
+					[1, "scripts/items/weapons/rf_two_handed_falchion"],
+					[1, "scripts/items/weapons/warbrand"]
+				]);
+			}
+
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
