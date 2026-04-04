@@ -4,7 +4,7 @@
 		local ret = __original();
 
 		// Add which craftables can be crafted using this item. We only show the craftable, not the entire recipe.
-		if (this.isItemType(::Const.Items.ItemType.Crafting) && "State" in ::World && !::MSU.isNull(::World.State))
+		if ("State" in ::World && !::MSU.isNull(::World.State))
 		{
 			local names = [];
 			local blueprints = [];
@@ -24,19 +24,36 @@
 					}
 				}
 			}
+
 			if (blueprints.len() != 0)
 			{
 				blueprints.sort(@(_a, _b) _a.getName() <=> _b.getName());
-				foreach (entry in ret)
+
+				local childrenEntry = blueprints.map(@(_b) {
+					id = 10,	type = "text",	icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedItemImage(_b.m.PreviewCraftable)),
+					text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s]", _b.getName(), _b.m.PreviewCraftable.ClassName))
+				});
+
+				// Vanilla adds an id 50 entry for Crafting items. We append our list to it.
+				// For non-Crafting items we add that entry.
+				if (this.isItemType(::Const.Items.ItemType.Crafting))
 				{
-					if (entry.id == 50 && entry.type == "hint")
+					foreach (entry in ret)
 					{
-						entry.children <- blueprints.map(@(_b) {
-							id = 10,	type = "text",	icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedItemImage(_b.m.PreviewCraftable)),
-							text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s]", _b.getName(), _b.m.PreviewCraftable.ClassName))
-						});
-						break;
+						if (entry.id == 50 && entry.type == "hint")
+						{
+							entry.children <- childrenEntry;
+							break;
+						}
 					}
+				}
+				else
+				{
+					ret.push({
+						id = 50,	type = "hint",	icon = "ui/icons/plus.png",
+						text = "Can be used to craft items",
+						children = childrenEntry
+					});
 				}
 			}
 		}
