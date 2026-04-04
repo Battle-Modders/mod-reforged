@@ -87,7 +87,7 @@
 			if (weapon != null && !weapon.isItemType(::Const.Items.ItemType.Named))
 			{
 				this.m.Items.unequip(weapon);
-				this.m.Items.equip(::new("scripts/items/weapons/greenskins/rf_orc_mace_2h"));
+				this.m.Items.equip(::new("scripts/items/weapons/rf_orc_mace_2h"));
 			}
 		}
 	}}.assignRandomEquipment;
