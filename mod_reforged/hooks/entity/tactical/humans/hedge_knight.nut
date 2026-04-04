@@ -31,7 +31,7 @@
 
 	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/bardiche"],

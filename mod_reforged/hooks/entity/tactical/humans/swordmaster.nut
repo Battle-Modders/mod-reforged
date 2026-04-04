@@ -109,48 +109,58 @@
 					[1, "scripts/items/helmets/nasal_helmet_with_mail"]
 				]).roll();
 			}
-		this.m.Items.equip(::new(helmet));
+			this.m.Items.equip(::new(helmet));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon;
+			local weapons;
 			switch(this.m.MyVariant)
 			{
 				case this.m.SwordmasterVariants.BladeDancer:
-					weapon = ::MSU.Class.WeightedContainer([
-						[1, "scripts/items/weapons/longsword"],
-						[1, "scripts/items/weapons/rf_greatsword"],
-						[1, "scripts/items/weapons/noble_sword"],
-						[1, "scripts/items/weapons/warbrand"]
-					]).roll();
+					weapons = ::MSU.Class.WeightedContainer([
+						[1, "scripts/items/weapons/noble_sword"]
+					]);
+					if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+					{
+						weapons.addArray([
+							[1, "scripts/items/weapons/longsword"],
+							[1, "scripts/items/weapons/rf_greatsword"],
+							[1, "scripts/items/weapons/warbrand"]
+						]);
+					}
 					break;
 
 				case this.m.SwordmasterVariants.Versatile:
-					weapon = "scripts/items/weapons/greatsword";
+					weapons = ::MSU.Class.WeightedContainer([
+						[1, "scripts/items/weapons/greatsword"]
+					]);
 					break;
 
 				case this.m.SwordmasterVariants.Metzger:
-						weapon = "scripts/items/weapons/shamshir";
-						this.m.Items.equip(::new("scripts/items/shields/oriental/southern_light_shield"));
+					weapons = ::MSU.Class.WeightedContainer([
+						[1, "scripts/items/weapons/shamshir"]
+					]);
+					this.m.Items.equip(::new("scripts/items/shields/oriental/southern_light_shield"));
 					break;
 
 				case this.m.SwordmasterVariants.Precise:
-					weapon = ::MSU.Class.WeightedContainer([
+					weapons = ::MSU.Class.WeightedContainer([
 						[1, "scripts/items/weapons/fencing_sword"],
 						[1, "scripts/items/weapons/rf_estoc"]
-					]).roll();
+					]);
 					break;
 
 				case this.m.SwordmasterVariants.Reaper:
-					weapon = ::MSU.Class.WeightedContainer([
+					weapons = ::MSU.Class.WeightedContainer([
 						[1, "scripts/items/weapons/rf_greatsword"],
 						[1, "scripts/items/weapons/warbrand"],
 						[1, "scripts/items/weapons/greatsword"]
-					]).roll();
+					]);
 					break;
 			}
-				this.m.Items.equip(::new(weapon));
+
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 	}}.assignRandomEquipment;
 

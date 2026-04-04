@@ -47,7 +47,7 @@
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer([
+			local weapons = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/bludgeon"],
 				[1, "scripts/items/weapons/butchers_cleaver"],
 				[1, "scripts/items/weapons/dagger"],
@@ -57,13 +57,18 @@
 				[1, "scripts/items/weapons/reinforced_wooden_flail"],
 				[1, "scripts/items/weapons/shortsword"],
 				[1, "scripts/items/weapons/wooden_flail"],
-				[1, "scripts/items/weapons/wooden_stick"],
+				[1, "scripts/items/weapons/wooden_stick"]
+			]);
 
-				[1, "scripts/items/weapons/pitchfork"],
-				[1, "scripts/items/weapons/woodcutters_axe"]
-			]).roll();
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapons.addArray([
+					[1, "scripts/items/weapons/pitchfork"],
+					[1, "scripts/items/weapons/woodcutters_axe"]
+				]);
+			}
 
-			this.m.Items.equip(::new(weapon));
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))

@@ -30,13 +30,19 @@
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/ancient/khopesh"],
-				[1, "scripts/items/weapons/ancient/crypt_cleaver"],
-				[1, "scripts/items/weapons/ancient/rhomphaia"]
-			]).roll();
+			local weapons = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/ancient/khopesh"]
+			]);
 
-			this.m.Items.equip(::new(weapon));
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapons.addArray([
+					[1, "scripts/items/weapons/ancient/crypt_cleaver"],
+					[1, "scripts/items/weapons/ancient/rhomphaia"]
+				]);
+			}
+
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))

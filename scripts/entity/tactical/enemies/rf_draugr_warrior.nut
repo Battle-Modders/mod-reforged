@@ -54,14 +54,20 @@ this.rf_draugr_warrior <- ::inherit("scripts/entity/tactical/enemies/rf_draugr",
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapon = ::MSU.Class.WeightedContainer().addMany(1, [
+			local weapons = ::MSU.Class.WeightedContainer().addMany(1, [
 				"rf_draugr_axe",
-				"rf_draugr_cleaver",
-				"rf_draugr_voulge",
-				"rf_draugr_battle_axe"
-			]).roll();
+				"rf_draugr_cleaver"
+			]);
 
-			this.m.Items.equip(::new("scripts/items/weapons/rf_draugr/" + weapon));
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapons.addMany(1, [
+					"rf_draugr_voulge",
+					"rf_draugr_battle_axe"
+				]);
+			}
+
+			this.m.Items.equip(::new("scripts/items/weapons/rf_draugr/" + weapons.roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 70)

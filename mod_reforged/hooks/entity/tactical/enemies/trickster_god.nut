@@ -46,11 +46,4 @@
 			o.onTurnStart = function() {}; // don't remove on turn start i.e. make it permanent
 		}));
 	}}.onInit;
-
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
-	{
-		__original();
-
-		// any skills that should be added based on equipment
-	}}.assignRandomEquipment;
 });
