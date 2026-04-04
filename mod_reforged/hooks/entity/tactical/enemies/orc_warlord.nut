@@ -73,7 +73,7 @@
 			{
 				weapon = ::MSU.Class.WeightedContainer([
 					[3, "scripts/items/weapons/greenskins/orc_axe_2h"],
-					[1, "scripts/items/weapons/rf_orc_mace_2h"]
+					[1, "scripts/items/weapons/greenskins/rf_orc_mace_2h"]
 				]).roll();
 			}
 			else
