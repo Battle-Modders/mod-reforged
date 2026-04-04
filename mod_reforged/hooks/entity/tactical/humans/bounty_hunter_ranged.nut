@@ -28,7 +28,6 @@
 	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
 	{
 		__original();
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 
 		if (this.getBodyItem() != null)
 		{
@@ -48,4 +47,10 @@
 			}
 		}
 	}}.assignRandomEquipment;
+
+	q.onSpawned = @(__original) { function onSpawned()
+	{
+		__original();
+		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+	}}.onSpawned;
 });

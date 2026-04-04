@@ -46,7 +46,7 @@
 	{
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			if (::Math.rand(1, 100) > 85)
+			if (::Math.rand(1, 100) > 85 && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 			{
 				this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
 					[1, "scripts/items/weapons/longaxe"],
@@ -56,19 +56,26 @@
 			}
 			else
 			{
-				this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+				local weapons = ::MSU.Class.WeightedContainer([
 					[1, "scripts/items/weapons/arming_sword"],
 					[1, "scripts/items/weapons/flail"],
 					[1, "scripts/items/weapons/hand_axe"],
 					[1, "scripts/items/weapons/military_pick"],
-					[1, "scripts/items/weapons/morning_star"],
+					[1, "scripts/items/weapons/morning_star"]
+				]);
 
-					[1, "scripts/items/weapons/rf_battle_axe"],
-					[1, "scripts/items/weapons/rf_greatsword"],
-					[1, "scripts/items/weapons/rf_two_handed_falchion"],
-					[1, "scripts/items/weapons/two_handed_mace"],
-					[1, "scripts/items/weapons/warbrand"]
-				]).roll()));
+				if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+				{
+					weapons.addArray([
+						[1, "scripts/items/weapons/rf_battle_axe"],
+						[1, "scripts/items/weapons/rf_greatsword"],
+						[1, "scripts/items/weapons/rf_two_handed_falchion"],
+						[1, "scripts/items/weapons/two_handed_mace"],
+						[1, "scripts/items/weapons/warbrand"]
+					]);
+				}
+
+				this.m.Items.equip(::new(weapons.roll()));
 			}
 		}
 

@@ -27,7 +27,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @(__original) { function onSpawned()
 	{
 		__original();
 
@@ -52,5 +52,5 @@
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
 		}
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 });

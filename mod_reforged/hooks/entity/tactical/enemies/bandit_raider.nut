@@ -37,13 +37,18 @@
 				[1, "scripts/items/weapons/military_pick"],
 				[1, "scripts/items/weapons/morning_star"],
 				[1, "scripts/items/weapons/scramasax"],
+			]);
 
-				[1, "scripts/items/weapons/longaxe"],
-				[1, "scripts/items/weapons/polehammer"],
-				[1, "scripts/items/weapons/rf_two_handed_falchion"],
-				[1, "scripts/items/weapons/warbrand"]
-			]).roll();
-			this.m.Items.equip(::new(weapon));
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapons.addArray([
+					[1, "scripts/items/weapons/longaxe"],
+					[1, "scripts/items/weapons/polehammer"],
+					[1, "scripts/items/weapons/rf_two_handed_falchion"],
+					[1, "scripts/items/weapons/warbrand"]
+				]);
+			}
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))

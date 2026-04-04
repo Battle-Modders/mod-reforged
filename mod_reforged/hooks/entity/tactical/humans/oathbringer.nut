@@ -39,94 +39,83 @@
 
 	q.assignRandomEquipment = @() { function assignRandomEquipment()
 	{
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapons = [
+			local weapons = ::MSU.Class.WeightedContainer().addMany(1, [
 				"weapons/fighting_axe",
 				"weapons/noble_sword",
 				"weapons/winged_mace",
 				"weapons/warhammer"
-			];
+			]);
 
 			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 			{
-				weapons.extend([
+				weapons.addMany(1, [
 					"weapons/greatsword",
 					"weapons/greataxe",
-					"weapons/two_handed_hammer"
-				]);
-			}
-
-			if (::Const.DLC.Unhold && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-			{
-				weapons.extend([
+					"weapons/two_handed_hammer",
 					"weapons/two_handed_flanged_mace",
-					"weapons/two_handed_flail"
-				]);
-			}
-
-			if (::Const.DLC.Wildmen && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-			{
-				weapons.extend([
+					"weapons/two_handed_flail",
 					"weapons/bardiche"
 				]);
 			}
 
-			this.m.Items.equip(::new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(::new("scripts/items/" + weapons.roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 60)
 		{
-			local shields = [
+			local shield = ::MSU.Class.WeightedContainer().addMany(1, [
 				"shields/heater_shield"
-			];
-			this.m.Items.equip(::new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
+			]).roll();
+			this.m.Items.equip(::new("scripts/items/" + shield));
 		}
-		// else
-		// {
-		// 	this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-		// }
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			local armor = [
+			local armor = ::MSU.Class.WeightedContainer().addMany(1, [
 				"armor/adorned_heavy_mail_hauberk"
-			];
-			this.m.Items.equip(::new("scripts/items/" + armor[::Math.rand(0, armor.len() - 1)]));
+			]).roll();
+			this.m.Items.equip(::new("scripts/items/" + armor));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
-			local helmet = [
+			local helmet = ::MSU.Class.WeightedContainer().addMany(1, [
 				"helmets/adorned_closed_flat_top_with_mail",
 				"helmets/adorned_closed_flat_top_with_mail",
 				"helmets/adorned_full_helm",
 				"helmets/adorned_full_helm",
 				"helmets/full_helm"
-			];
-			this.m.Items.equip(::new("scripts/items/" + helmet[::Math.rand(0, helmet.len() - 1)]));
+			]);
+			this.m.Items.equip(::new("scripts/items/" + helmet));
 		}
+	}}.assignRandomEquipment;
 
-		// Reforged
+	q.onSpawned = @(__original) { function onSpawned()
+	{
+		__original();
+
 		if (this.isArmedWithShield())
 		{
 			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 		}
 
 		local weapon = this.getMainhandItem();
-		if (weapon == null) return;
-
-		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-
-		if (::Reforged.Items.isDuelistValid(weapon))
+		if (weapon != null)
 		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
+
+			if (::Reforged.Items.isDuelistValid(weapon))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+			else
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
+			}
 		}
-		else
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_man_of_steel"));
-		}
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 
 	q.makeMiniboss = @(__original) { function makeMiniboss()
 	{

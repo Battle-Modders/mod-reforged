@@ -37,7 +37,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_the_rush_of_battle"));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @(__original) { function onSpawned()
 	{
 		__original();
 
@@ -57,7 +57,7 @@
 
 			if (weapon.getRangeMax() == 2) this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 		}
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 
 	q.makeMiniboss = @(__original) { function makeMiniboss()
 	{

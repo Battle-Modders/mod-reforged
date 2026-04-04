@@ -42,9 +42,9 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 	}}.onInit;
 
-	q.assignRandomEquipment = @(__original) { function assignRandomEquipment()
+	q.onSpawned = @(__original) { function onSpawned()
 	{
 		__original();
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 3);
-	}}.assignRandomEquipment;
+	}}.onSpawned;
 });

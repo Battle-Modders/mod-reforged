@@ -50,15 +50,23 @@
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
+			local weapons = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/fighting_axe"],
 				[1, "scripts/items/weapons/military_cleaver"],
 				[1, "scripts/items/weapons/warhammer"],
 				[1, "scripts/items/weapons/winged_mace"],
-				[1, "scripts/items/weapons/arming_sword"],
-				[1, "scripts/items/weapons/rf_battle_axe"],
-				[1, "scripts/items/weapons/rf_kriegsmesser"]
-			]).roll()));
+				[1, "scripts/items/weapons/arming_sword"]
+			]);
+
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+			{
+				weapons.addArray([
+					[1, "scripts/items/weapons/rf_battle_axe"],
+					[1, "scripts/items/weapons/rf_kriegsmesser"]
+				]);
+			}
+
+			this.m.Items.equip(::new(weapons.roll()));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
