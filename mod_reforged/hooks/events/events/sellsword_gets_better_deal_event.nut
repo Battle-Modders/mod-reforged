@@ -2,7 +2,6 @@
 	q.onUpdateScore = @(__original) { function onUpdateScore()
 	{
 		__original();
-		// Prevent avatar from being chosen in this event.
 		/* Prevent avatar from being chosen in this event.
 		We need null check instead of `m.Score != 0`. The member variable is set
 		during onUpdateScore() of this event and is only set in a situation where
