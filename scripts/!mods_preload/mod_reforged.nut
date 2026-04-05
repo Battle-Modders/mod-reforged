@@ -74,7 +74,7 @@ foreach (requirement in requiredMods)
 				// We use MSU.Math.randf to roll the damage instead of vanilla Math.rand as we allow
 				// utilizing fractional Strength for rolling the damage.
 				// All of this is ok as vanilla serializes troop strength as F32.
-				local damage = ::Math.maxf(1.0, ::MSU.Math.randf(1.0, combatant.Strength) * ::Const.World.CombatSettings.CombatStrengthMult);
+				local damage = ::Math.maxf(1.0, ::MSU.Math.randf(1.0, combatant.Strength.tofloat()) * ::Const.World.CombatSettings.CombatStrengthMult);
 
 				// Deal all of the damage to opponents. If any opponent dies, we choose a new opponent and deal the spillover damage to it.
 				while (damage > 0)
