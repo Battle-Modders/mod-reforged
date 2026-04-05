@@ -72,7 +72,7 @@ foreach (requirement in requiredMods)
 				// vanilla to roll damage per attack except these changes:
 				// We use `maxf` instead of vanilla `max` to allow dealing fractional damage as well.
 				// We use MSU.Math.randf to roll the damage instead of vanilla Math.rand as we allow
-				// utilize fractional Strength for rolling the damage.
+				// utilizing fractional Strength for rolling the damage.
 				// All of this is ok as vanilla serializes troop strength as F32.
 				local damage = ::Math.maxf(1.0, ::MSU.Math.randf(1.0, combatant.Strength) * ::Const.World.CombatSettings.CombatStrengthMult);
 
