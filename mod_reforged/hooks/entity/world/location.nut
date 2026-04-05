@@ -17,6 +17,12 @@
 		this.adjustBannerOffset();	// onAfterInit is called before deserialization, so we need this adjustment to catch all deserialized locations too
 	}}.onDeserialize;
 
+	// Always show defenders when dev spawns info is turned on.
+	q.isShowingDefenders = @(__original) { function isShowingDefenders()
+	{
+		return ::Reforged.Mod.ModSettings.getSetting("Dev_SpawnsInfo").getValue() ? true : __original();
+	}}.isShowingDefenders;
+
 // New Functions
 	q.adjustBannerOffset <- { function adjustBannerOffset()	// This has to be called everytime that a brush for the banner sprite is set because that will reset the previous offset
 	{
