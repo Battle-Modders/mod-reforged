@@ -68,8 +68,13 @@ foreach (requirement in requiredMods)
 				if (potentialOpponentFactions.len() == 0)
 					continue;
 
-				// This is the total damage this combatant did in this tick. Same calculation as vanilla to roll damage per attack.
-				local damage = ::Math.max(1, ::Math.rand(1, combatant.Strength) * ::Const.World.CombatSettings.CombatStrengthMult);
+				// This is the total damage this combatant did in this tick. Same calculation as
+				// vanilla to roll damage per attack except these changes:
+				// We use `maxf` instead of vanilla `max` to allow dealing fractional damage as well.
+				// We use MSU.Math.randf to roll the damage instead of vanilla Math.rand as we allow
+				// utilizing fractional Strength for rolling the damage.
+				// All of this is ok as vanilla serializes troop strength as F32.
+				local damage = ::Math.maxf(1.0, ::MSU.Math.randf(1.0, combatant.Strength) * ::Const.World.CombatSettings.CombatStrengthMult);
 
 				// Deal all of the damage to opponents. If any opponent dies, we choose a new opponent and deal the spillover damage to it.
 				while (damage > 0)
@@ -94,11 +99,15 @@ foreach (requirement in requiredMods)
 					attackOccured = true;
 
 					// Deal up to the Strength of the opponent in damage, and subtract it from our total damage in this attack.
-					local damageDealt = ::Math.min(damage, opponent.Strength);
+					// We use minf instead of vanilla min to allow dealing fractional damage as well.
+					local damageDealt = ::Math.minf(damage, opponent.Strength);
 					damage -= damageDealt;
 					opponent.Strength -= damageDealt;
 
 					// This block is the same as in vanilla.
+					// Except we change to `< 1` instead of `<= 0` to be robust against opponents
+					// with float Strength which drops below 1 (e.g. 0.75) and would cause the
+					// damageDealt above to be 0, resulting in an infinite loop.
 					if (opponent.Strength <= 0)
 					{
 						++_combat.Stats.Dead;
