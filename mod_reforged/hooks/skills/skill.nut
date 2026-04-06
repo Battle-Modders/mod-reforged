@@ -142,10 +142,19 @@
 		return ret;
 	}}.getHitFactors;
 
-	q.isTargeted = @() { function isTargeted()
+	q.isTargeted = @(__original) { function isTargeted()
 	{
 		if (this.m.IsTargeted)
 			return true;
+
+		// Need to return original for NPCs otherwise NPCs get stuck in ai behaviors
+		// execution trying to use a non-targeted skill if ConfirmSkillUse setting is enabled
+		// and the skill has a MinRange greater than 0 because then the NPC can't target his own tile.
+		// An example is the vanilla `drums_of_war_skill`.
+		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()) || !this.getContainer().getActor().isPlayerControlled())
+		{
+			return __original();
+		}
 
 		// If ConfirmSkillUse is enabled then we treat all skills as Targeted unless user is pressing the keybind
 		if (::Reforged.Mod.ModSettings.getSetting("ConfirmSkillUse").getValue())
