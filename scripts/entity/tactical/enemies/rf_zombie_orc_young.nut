@@ -1,4 +1,5 @@
 this.rf_zombie_orc_young <- ::inherit("scripts/entity/tactical/enemies/rf_zombie_orc", {
+	m = {},
 	function create()
 	{
 		this.m.Type = ::Const.EntityType.RF_ZombieOrcYoung;
