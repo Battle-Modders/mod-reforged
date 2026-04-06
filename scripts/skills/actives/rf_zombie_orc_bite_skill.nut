@@ -24,17 +24,14 @@ this.rf_zombie_orc_bite_skill <- ::inherit("scripts/skills/actives/zombie_bite",
 		{
 			// Remove the effect on damage from equipped weapon
 			// We basically revert the changes that the weapon applies inside weapon.onUpdateProperties.
-			if (!this.getContainer().getActor().isDisarmed())
+			local weapon = this.getContainer().getActor().getMainhandItem();
+			if (weapon != null)
 			{
-				local weapon = this.getContainer().getActor().getMainhandItem();
-				if (weapon != null)
-				{
-					_properties.DamageRegularMin -= weapon.m.RegularDamage;
-					_properties.DamageRegularMax -= weapon.m.RegularDamageMax;
-					_properties.DamageArmorMult /= weapon.m.ArmorDamageMult;
-					_properties.DamageDirectAdd -= weapon.m.DirectDamageAdd;
-					_properties.HitChance[::Const.BodyPart.Head] -= weapon.m.ChanceToHitHead;
-				}
+				_properties.DamageRegularMin -= weapon.m.RegularDamage;
+				_properties.DamageRegularMax -= weapon.m.RegularDamageMax;
+				_properties.DamageArmorMult /= weapon.m.ArmorDamageMult;
+				_properties.DamageDirectAdd -= weapon.m.DirectDamageAdd;
+				_properties.HitChance[::Const.BodyPart.Head] -= weapon.m.ChanceToHitHead;
 			}
 
 			_properties.DamageRegularMin += 25;
