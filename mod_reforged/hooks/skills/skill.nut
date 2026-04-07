@@ -147,15 +147,6 @@
 		if (this.m.IsTargeted)
 			return true;
 
-		// Need to return original for NPCs otherwise NPCs get stuck in ai behaviors
-		// execution trying to use a non-targeted skill if ConfirmSkillUse setting is enabled
-		// and the skill has a MinRange greater than 0 because then the NPC can't target his own tile.
-		// An example is the vanilla `drums_of_war_skill`.
-		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()) || !this.getContainer().getActor().isPlayerControlled())
-		{
-			return __original();
-		}
-
 		// If ConfirmSkillUse is enabled then we treat all skills as Targeted unless user is pressing the keybind
 		if (::Reforged.Mod.ModSettings.getSetting("ConfirmSkillUse").getValue())
 		{
@@ -180,6 +171,19 @@
 			if (this.m.Icon == this.m.IconDisabled || this.m.IconDisabled == "")
 			{
 				this.m.IconDisabled = ::String.replace(this.m.Icon, ".png", "_sw.png");
+			}
+
+			// VanillaFix: Some vanilla non-targeted skills such as `drums_of_war_skill`
+			// have MinRange = 1. This causes issue with our ConfirmSkillUse setting
+			// whereby NPCs get stuck in ai behaviors execution trying to use the skill
+			// but being unable to target their own tile.
+			// Players will suffer from the same problem with such skills.
+			// This seems like a vanilla oversight in such skills because almost all
+			// non-targeted skills in vanilla have both MinRange and MaxRange set to 0.
+			if (!this.m.IsTargeted)
+			{
+				this.m.MinRange = 0;
+				this.m.MaxRange = 0;
 			}
 		}}.create;
 	}
