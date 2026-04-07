@@ -142,7 +142,7 @@
 		return ret;
 	}}.getHitFactors;
 
-	q.isTargeted = @(__original) { function isTargeted()
+	q.isTargeted = @() { function isTargeted()
 	{
 		if (this.m.IsTargeted)
 			return true;
