@@ -322,13 +322,13 @@
 	{
 		XP = 225,
 		ActionPoints = 9,
-		Hitpoints = 65, // vanilla 60
-		Bravery = 55, // vanilla 50
+		Hitpoints = 60,
+		Bravery = 50,
 		Stamina = 105, // vanilla 115
-		MeleeSkill = 50, // vanilla 50
+		MeleeSkill = 50,
 		RangedSkill = 65, // vanilla 60
 		MeleeDefense = 0,
-		RangedDefense = 10, // vanilla 10
+		RangedDefense = 10,
 		Initiative = 110,
 		FatigueEffectMult = 1.0,
 		MoraleEffectMult = 1.0,
