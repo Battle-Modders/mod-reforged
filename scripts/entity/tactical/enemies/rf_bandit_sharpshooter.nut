@@ -49,8 +49,6 @@ this.rf_bandit_sharpshooter <- ::inherit("scripts/entity/tactical/human", {
 
 		this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_dagger"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 	}
 
@@ -78,7 +76,13 @@ this.rf_bandit_sharpshooter <- ::inherit("scripts/entity/tactical/human", {
 			}
 		}
 
-		this.m.Items.addToBag(::new("scripts/items/weapons/rondel_dagger"));
+		local bagItem = ::MSU.Class.WeightedContainer([
+			[1, "scripts/items/weapons/bludgeon"],
+			[1, "scripts/items/weapons/dagger"],
+			[1, "scripts/items/weapons/shortsword"]
+		]).roll();
+
+		this.m.Items.addToBag(::new(bagItem));
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
@@ -86,7 +90,7 @@ this.rf_bandit_sharpshooter <- ::inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 70 || conditionMax > 80) return 0.0;
+					if (conditionMax < 50 || conditionMax > 70) return 0.0;
 					return _weight;
 				}
 			})
@@ -95,7 +99,7 @@ this.rf_bandit_sharpshooter <- ::inherit("scripts/entity/tactical/human", {
 			{
 				this.m.Items.equip(::new(armor));
 
-				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier4)
+				if (::Math.rand(1, 100) <= ::Reforged.Config.ArmorAttachmentChance.Tier3)
 				{
 					local armorAttachment = ::Reforged.ItemTable.ArmorAttachmentNorthern.roll({
 						Apply = function ( _script, _weight )
@@ -118,7 +122,7 @@ this.rf_bandit_sharpshooter <- ::inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 45 || conditionMax > 80) return 0.0;
+					if (conditionMax < 40 || conditionMax > 70) return 0.0;
 					return _weight;
 				}
 			})

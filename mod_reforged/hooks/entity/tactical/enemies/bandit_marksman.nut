@@ -54,7 +54,13 @@
 			}
 		}
 
-		this.m.Items.addToBag(::new("scripts/items/weapons/dagger"));
+
+			local bagItem = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/weapons/bludgeon"],
+				[1, "scripts/items/weapons/dagger"]
+			]).roll();
+
+			this.m.Items.addToBag(::new(bagItem));
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{

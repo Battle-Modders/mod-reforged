@@ -82,8 +82,8 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local shield = ::MSU.Class.WeightedContainer([
-				[3, "scripts/items/shields/wooden_shield"],
-				[1, "scripts/items/shields/kite_shield"]
+				[2, "scripts/items/shields/wooden_shield"],
+				[1, "scripts/items/shields/buckler_shield"]
 			]).roll();
 
 			this.m.Items.equip(::new(shield));
