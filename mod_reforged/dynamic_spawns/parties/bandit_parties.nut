@@ -4,8 +4,8 @@ local parties = [
 		DynamicDefs = {
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BanditBalanced" },
-				{ BaseID = "UnitBlock.RF.BanditFast", RatioMax = 0.33, ExclusionChance = 20 },
-				{ BaseID = "UnitBlock.RF.BanditTough", RatioMax = 0.33, ExclusionChance = 20 }
+				{ BaseID = "UnitBlock.RF.BanditFast", RatioMax = 0.5, ExclusionChance = 15 },
+				{ BaseID = "UnitBlock.RF.BanditTough", RatioMax = 0.5, ExclusionChance = 15 }
 			]
 		}
 	},
