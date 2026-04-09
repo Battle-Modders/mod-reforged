@@ -1,5 +1,15 @@
 local parties = [
 	{
+		ID = "RF_BanditFrontline",
+		DynamicDefs = {
+			UnitBlocks = [
+				{ BaseID = "UnitBlock.RF.BanditBalanced" },
+				{ BaseID = "UnitBlock.RF.BanditFast", RatioMax = 0.33, ExclusionChance = 20 },
+				{ BaseID = "UnitBlock.RF.BanditTough", RatioMax = 0.33, ExclusionChance = 20 }
+			]
+		}
+	},
+	{
 		// Vanilla: Size 5-16, Cost 56-220
 		ID = "BanditRoamers", // Spawn from patrol contract and send bandit raomers action.
 		HardMin = 5,
@@ -9,18 +19,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			Parties = [
-				{
-					ID = "Frontline",
-					RatioMin = 0.3,
-					RatioMax = 0.6,
-					DynamicDefs = {
-						UnitBlocks = [
-							{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.0, RatioMax = 1.0 },
-							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 },
-							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 }
-						]
-					}
-				}
+				{ BaseID = "RF_BanditFrontline", RatioMin = 0.3, RatioMax = 0.6 }
 			],
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.35, RatioMax = 1.0 },
@@ -57,18 +56,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			Parties = [
-				{
-					ID = "Frontline",
-					RatioMin = 0.4,
-					RatioMax = 1.0,
-					DynamicDefs = {
-						UnitBlocks = [
-							{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.0, RatioMax = 1.0 },
-							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 },
-							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 }
-						]
-					}
-				}
+				{ BaseID = "RF_BanditFrontline", RatioMin = 0.4, RatioMax = 1.0 }
 			],
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.40, ExclusionChance = 20 },
@@ -101,18 +89,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			Parties = [
-				{
-					ID = "Frontline",
-					RatioMin = 0.5,
-					RatioMax = 1.0,
-					DynamicDefs = {
-						UnitBlocks = [
-							{ BaseID = "UnitBlock.RF.BanditBalanced", RatioMin = 0.0, RatioMax = 1.0 },
-							{ BaseID = "UnitBlock.RF.BanditFast", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 },
-							{ BaseID = "UnitBlock.RF.BanditTough", RatioMin = 0.00, RatioMax = 0.33, ExclusionChance = 20 }
-						]
-					}
-				}
+				{ BaseID = "RF_BanditFrontline", RatioMin = 0.5, RatioMax = 1.0 }
 			],
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMin = 0.00, RatioMax = 0.35 },
@@ -154,18 +131,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			Parties = [
-				{
-					ID = "Frontline",
-					RatioMin = 0.45,
-					RatioMax = 1.0,
-					DynamicDefs = {
-						UnitBlocks = [
-							{ BaseID = "UnitBlock.RF.BanditBalanced" },
-							{ BaseID = "UnitBlock.RF.BanditFast", RatioMax = 0.33, ExclusionChance = 20 },
-							{ BaseID = "UnitBlock.RF.BanditTough", RatioMax = 0.33, ExclusionChance = 20 }
-						]
-					}
-				}
+				{ BaseID = "RF_BanditFrontline", RatioMin = 0.45, RatioMax = 1.0 }
 			],
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BanditRanged" },
@@ -213,18 +179,7 @@ local parties = [
 		VisionMult = 1.0,
 		DynamicDefs = {
 			Parties = [
-				{
-					ID = "Frontline",
-					RatioMin = 0.6,
-					RatioMax = 1.0,
-					DynamicDefs = {
-						UnitBlocks = [
-							{ BaseID = "UnitBlock.RF.BanditBalanced" },
-							{ BaseID = "UnitBlock.RF.BanditFast", RatioMax = 0.33, ExclusionChance = 20 },
-							{ BaseID = "UnitBlock.RF.BanditTough", RatioMax = 0.33, ExclusionChance = 20 }
-						]
-					}
-				}
+				{ BaseID = "RF_BanditFrontline", RatioMin = 0.6, RatioMax = 1.0 }
 			],
 			UnitBlocks = [
 				{ BaseID = "UnitBlock.RF.BanditRanged", RatioMax = 0.40 },
