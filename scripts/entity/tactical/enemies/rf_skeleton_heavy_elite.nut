@@ -105,4 +105,18 @@ this.rf_skeleton_heavy_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 			}
 		}
 	}
+
+	function onSkillsUpdated()
+	{
+		this.skeleton.onSkillsUpdated();
+
+		local mainhandItem = this.getMainhandItem();
+		if (mainhandItem == null)
+			return;
+
+		if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Cleaver))
+		{
+			this.m.Skills.removeByID("perk.rf_bloodlust");
+		}
+	}
 });
