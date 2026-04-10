@@ -206,7 +206,6 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(::new("scripts/skills/effects/rf_frostbound_effect"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_fearsome"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
 
 		this.m.ExcludedInjuries.extend(::Const.Injury.ExcludedInjuries.get(::Const.Injury.ExcludedInjuries.RF_Undead));
 	}
