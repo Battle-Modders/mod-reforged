@@ -90,4 +90,16 @@
 			}
 		}
 	}}.onSpawned;
+
+	q.onSkillsUpdated = @(__original) { function onSkillsUpdated()
+	{
+		__original();
+		local weapon = this.getMainhandItem();
+		if (weapon == null) return;
+
+		if (weapon.isWeaponType(::Const.Items.WeaponType.Cleaver))
+		{
+			this.m.Skills.removeByID("perk.rf_bloodlust");
+		}
+	}}.onSkillsUpdated;
 });
