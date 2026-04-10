@@ -1,0 +1,38 @@
+/* We target the character portraits specifically added via the Reforged hook */
+
+.rf-contract-character
+{
+	/* We position the container using margins adjusted for its smaller 7.1x7.8 size. */
+	/* This anchors the face center to the exact coordinates we want with respect to the contract image. */
+	position: absolute;
+	margin-top: 8.6rem;
+	margin-left: -1.45rem;
+	pointer-events: auto;
+}
+
+/* Disable pointer events on internal name and asset layers. These layers contain invisible status icon */
+/* containers that overflow the portrait bounds, causing an excessively wide hitbox to the right. */
+.rf-contract-character .name-layer,
+.rf-contract-character .asset-layer
+{
+	pointer-events: none;
+}
+
+/* Suppress the golden highlight frame when the character is disabled, even if the class is present */
+.rf-contract-character.is-disabled .highlight-layer
+{
+	display: none !important;
+}
+
+.rf-contract-character .image-layer
+{
+	/* Ensure the container allows the shadow/glow to bleed outside its box if necessary */
+	overflow: visible;
+
+	/* We use a radial gradient to create a soft dark "aura" behind the character. */
+	/* This provides depth and blending without the expensive performance cost of a drop-shadow. */
+	background-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4) 0%, transparent 70%);
+
+	/* A soft linear fade at the bottom to prevent a sharp cutoff of the character's torso. */
+	-webkit-mask-image: -webkit-linear-gradient(top, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+}

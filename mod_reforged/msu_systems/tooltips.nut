@@ -21,7 +21,41 @@
 		})
 	},
 	Contract = {
-		FocusOnObjective = ::MSU.Class.BasicTooltip("Click to focus", "Click to focus on the objectives for this contract")
+		FocusOnObjective = ::MSU.Class.BasicTooltip("Click to focus", "Click to focus on the objectives for this contract"),
+		Tooltip = ::MSU.Class.CustomTooltip(function(_data) {
+			local id = _data.ExtraData.tointeger();
+			local contract;
+			local active = ::World.Contracts.getActiveContract();
+			if (active != null && active.getID() == id)
+			{
+				contract = active;
+			}
+			else
+			{
+				foreach (c in ::World.Contracts.m.Open)
+				{
+					if (c.getID() == id)
+					{
+						contract = c;
+						break;
+					}
+				}
+			}
+
+			if (contract != null)
+			{
+				local ret = contract.RF_getTooltip();
+				ret.insert(0, {contentType = "settlement-status-effect"});
+				if (active != null)
+				{
+					ret.push({
+						id = 100, type = "hint", icon = "ui/icons/locked_small.png",
+						text = "You can only have one contract active at a time"
+					})
+				}
+				return ret;
+			}
+		})
 	},
 	Tactical = {
 		Button = {

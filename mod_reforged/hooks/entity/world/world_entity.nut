@@ -16,17 +16,57 @@
 		__original();
 		this.getFlags().remove("RF_Spawnlist");
 	}}.clearTroops;
+
+	// Contracts that target this entity and are known to the player.
+	q.RF_getKnownContractsTooltip <- { function RF_getKnownContractsTooltip()
+	{
+		local knownContractsEntries = [];
+		foreach (c in ::World.Contracts.RF_getKnownContracts())
+		{
+			if (::MSU.isEqual(c.getHome(), this))
+				continue;
+
+			foreach (d in c.RF_getDestinations())
+			{
+				if (::MSU.isEqual(this, d))
+				{
+					knownContractsEntries.push({
+						id = 200, type = "hint", icon = c.RF_getTooltipIcon(),
+						text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedObjectName(c, "func:RF_getTooltip,contentType:settlement-status-effect"))
+					});
+					break;
+				}
+			}
+		}
+
+		if (knownContractsEntries.len() != 0)
+		{
+			return [{
+				id = 200, type = "hint", icon = "ui/icons/contract_scroll.png",
+				text = ::World.Retinue.hasFollower("follower.agent") ? "Relevant contracts" : "Known relevant contracts",
+				children = knownContractsEntries
+			}];
+		}
+
+		return [];
+	}}.RF_getKnownContractsTooltip;
 });
 
 ::Reforged.HooksMod.hookTree("scripts/entity/world/world_entity", function(q) {
-	// Add Cost/Strength to the tooltip if the associated mod setting is enabled.
 	q.getTooltip = @(__original) { function getTooltip()
 	{
 		if (!::Reforged.Mod.ModSettings.getSetting("Dev_SpawnsInfo").getValue())
 			return __original();
 
 		local ret = __original();
-		if (!this.isHiddenToPlayer() && this.m.Troops.len() != 0 && this.getFaction() != 0)
+		if (this.getFaction() == 0)
+			return ret;
+
+		// Add any known contracts related to this world entity to its tooltip.
+		ret.extend(this.RF_getKnownContractsTooltip())
+
+		// Add Cost/Strength to the tooltip if the associated mod setting is enabled.
+		if (!this.isHiddenToPlayer() && this.m.Troops.len() != 0)
 		{
 			local cost = 0;
 			local strength = 0;

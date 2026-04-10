@@ -83,6 +83,11 @@ local getThresholdForInjury = function( _script )
 	{
 		return format("[%s|Entity+%i]", _obj.getName(), _obj.getID(), _extraData == null ? "" : "," + _extraData);
 	}
+
+	function getNestedObjectName( _obj, _extraData = null )
+	{
+		return format("[%s|Obj+%s%s]", _obj.getName(), ::Reforged.Mod.Tooltips.parseObject(_obj), _extraData == null ? "" : "," + _extraData);
+	}
 }
 
 ::Reforged.QueueBucket.FirstWorldInit.push(function() {
