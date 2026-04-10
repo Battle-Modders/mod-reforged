@@ -36,6 +36,8 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
+
+		this.m.IsThrower = ::Math.rand(1, 3) == 1; // 33% chance
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )
@@ -70,18 +72,27 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 			this.m.Items.equip(::new(weapons.roll()));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
+		if (::Math.rand(1, 100) <= 33 && this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
 		{
-			local throwing = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/throwing_spear"]
-			]).rollChance(33);
+			if (::Math.rand(1, 100) <= 75)
+			{
+				this.m.Items.addToBag(::new("scripts/items/weapons/throwing_spear"))
+			}
+			else
+			{
+				local throwingWeapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/javelin"],
+					[1, "scripts/items/weapons/throwing_axe"]
+				]).roll();
 
-			if (throwing != null) this.m.Items.addToBag(::new(throwing));
+				this.m.Items.addToBag(::new(throwingWeapon));
+			}
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local shield = ::MSU.Class.WeightedContainer([
+				[1, "scripts/items/shields/wooden_shield"],
 				[1, "scripts/items/shields/kite_shield"],
 				[1, "scripts/items/shields/heater_shield"]
 			]).roll();
@@ -141,24 +152,28 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 		if (mainhandItem != null)
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
-			if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
-			}
-			else if (mainhandItem.isItemType(::Const.Items.ItemType.TwoHanded) && ::Reforged.Items.isDuelistValid(mainhandItem))
+			if (mainhandItem.isItemType(::Const.Items.ItemType.TwoHanded) && ::Reforged.Items.isDuelistValid(mainhandItem))
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+			}
+			else if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
+			{
+				local offhandItem = this.getOffhandItem();
+
+				if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_devastating_strikes"));
+					this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
+				}
+				else if (offhandItem == null)
+				{
+					this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
+				}
 			}
 			else
 			{
 				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_polearm"));
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-			}
-
-			local offhandItem = this.getOffhandItem();
-			if (offhandItem != null && offhandItem.isItemType(::Const.Items.ItemType.Shield))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
 			}
 		}
 	}

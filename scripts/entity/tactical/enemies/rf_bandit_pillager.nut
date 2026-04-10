@@ -70,16 +70,24 @@ this.rf_bandit_pillager <- ::inherit("scripts/entity/tactical/human", {
 			this.m.Items.equip(::new(weapons.roll()));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
+		if (::Math.rand(1, 100) <= 33 && this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
 		{
-			local throwing = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/throwing_spear"]
-			]).rollChance(33);
+			if (::Math.rand(1, 100) <= 75)
+			{
+				this.m.Items.addToBag(::new("scripts/items/weapons/throwing_spear"))
+			}
+			else
+			{
+				local throwingWeapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/javelin"],
+					[1, "scripts/items/weapons/throwing_axe"]
+				]).roll();
 
-			if (throwing != null) this.m.Items.addToBag(::new(throwing));
+				this.m.Items.addToBag(::new(throwingWeapon));
+			}
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 50)
 		{
 			local shield = ::MSU.Class.WeightedContainer([
 				[2, "scripts/items/shields/wooden_shield"],

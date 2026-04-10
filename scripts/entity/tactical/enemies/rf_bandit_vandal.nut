@@ -1,8 +1,5 @@
 this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
-	m = {
-		HasNet = false,
-		IsThrower = false
-	},
+	m = {},
 	function create()
 	{
 		this.m.Type = ::Const.EntityType.RF_BanditVandal;
@@ -40,9 +37,6 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
-
-		this.m.HasNet = ::Math.rand(1, 5) == 5; // 20% chance
-		this.m.IsThrower = ::Math.rand(1, 2) == 2; // 50% chance
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )
@@ -53,34 +47,37 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		if (this.m.HasNet && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
-			this.m.Items.equip(::new("scripts/items/tools/throwing_net"));
-		}
-
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local weapons = ::MSU.Class.WeightedContainer().addMany(1, [
-				"scripts/items/weapons/boar_spear",
-				"scripts/items/weapons/dagger",
-				"scripts/items/weapons/falchion",
-				"scripts/items/weapons/scramasax",
-			]);
+		    local weapons = ::MSU.Class.WeightedContainer().addMany(1, [
+		        "scripts/items/weapons/boar_spear",
+		        "scripts/items/weapons/dagger",
+		        "scripts/items/weapons/falchion",
+		        "scripts/items/weapons/scramasax",
+		    ]);
 
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) // both hands free
-			{
-				weapons.addMany(1, [
-					"scripts/items/weapons/hooked_blade",
-					"scripts/items/weapons/pike",
-					"scripts/items/weapons/rf_reinforced_wooden_poleflail",
-					"scripts/items/weapons/warfork"
-				]);
-			}
+		    if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) // both hands free
+		    {
+		        local twoHandedWeapons = ::MSU.Class.WeightedContainer().addMany(1, [
+		            "scripts/items/weapons/hooked_blade",
+		            "scripts/items/weapons/pike",
+		            "scripts/items/weapons/rf_reinforced_wooden_poleflail",
+		            "scripts/items/weapons/warfork"
+		        ]);
 
-			this.m.Items.equip(::new(weapons.roll()));
+		        // We set the total weight of 2-handed weapons to be double
+		        // that of the total weight of 1-handed weapons. Because we want
+		        // twice the chance of a 2h weapon compared to 1h.
+		        local weightPerTwoHanded = (weapons.len() * 2.0) / twoHandedWeapons.len();
+		        twoHandedWeapons.apply(@(_item, _weight) weightPerTwoHanded);
+
+		        weapons.merge(twoHandedWeapons);
+		    }
+
+		    this.m.Items.equip(::new(weapons.roll()));
 		}
 
-		if (this.m.IsThrower && this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
+		if (::Math.rand(1, 100) <= 75 && this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag)) // 75% chance
 		{
 			local throwingWeapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/javelin"],
@@ -88,6 +85,11 @@ this.rf_bandit_vandal <- ::inherit("scripts/entity/tactical/human", {
 			]).roll();
 
 			this.m.Items.addToBag(::new(throwingWeapon));
+		}
+
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			this.m.Items.equip(::new("scripts/items/tools/throwing_net"));
 		}
 
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
