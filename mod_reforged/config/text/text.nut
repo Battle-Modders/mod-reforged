@@ -99,4 +99,36 @@
 
 		return this.getNumberAsText(daysAndHalf.tointeger()) + " and a half days";
 	}
+
+	function getDaysRemainingText( _numDays )
+	{
+		if (_numDays > 8)
+			return "a long while";
+		if (_numDays >= 6)
+			return "another week or so";
+		if (_numDays >= 4)
+			return "several more days";
+		if (_numDays >= 2)
+			return "a couple more days";
+		if (_numDays >= 1)
+			return "another day or so";
+
+		return "less than a day";
+	}
+
+	function getDaysAgoAsText( _numDays )
+	{
+		if (_numDays > 8)
+			return "a long time ago";
+		if (_numDays >= 6)
+			return "a week or so ago";
+		if (_numDays >= 4)
+			return "several days ago";
+		if (_numDays >= 2)
+			return "a couple days ago";
+		if (_numDays == 1)
+			return "yesterday";
+
+		return "today";
+	}
 }

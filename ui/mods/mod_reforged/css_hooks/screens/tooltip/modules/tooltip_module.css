@@ -9,3 +9,29 @@
 	background-image: url("coui://gfx/ui/skin/rf_tooltip_315_900_bottom.png");
 	background-size: 31.5rem 90rem;
 }
+
+/*
+   We must allow the tooltip container to show content outside its boundaries
+   so that the difficulty ornament can sit on top of the border.
+*/
+.tooltip-module .rf-contract-difficulty-tooltip
+{
+	position: absolute;
+	z-index: 10;
+	width: auto;
+	height: auto;
+	top: 0.5rem;/*5.2rem;*/
+	/* left: 0; */
+	right: 1.5rem;
+	/* margin-left: auto; */
+	/* margin-right: auto; */
+	pointer-events: none;
+	transform: scale(0.5);
+	/* transform: rotate(90); */
+}
+
+/* .tooltip-module .rf-contract-difficulty-tooltip img
+{
+	-webkit-mask-image: -webkit-linear-gradient(top, rgba(0,0,0,1) 60%, rgba(0,0,0,0.75) 100%);
+	-webkit-filter: drop-shadow(0 0 0.4rem rgba(0, 0, 0, 0.6));
+} */
