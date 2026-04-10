@@ -51,20 +51,28 @@
 			this.m.Items.equip(::new(weapons.roll()));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag))
+		if (::Math.rand(1, 100) <= 33 && this.m.Items.hasEmptySlot(::Const.ItemSlot.Bag)) // 33% chance to be a thrower
 		{
-			local throwing = ::MSU.Class.WeightedContainer([
-				[1, "scripts/items/weapons/throwing_spear"]
-			]).rollChance(33);
+			if (::Math.rand(1, 100) <= 75)
+			{
+				this.m.Items.addToBag(::new("scripts/items/weapons/throwing_spear"))
+			}
+			else
+			{
+				local throwingWeapon = ::MSU.Class.WeightedContainer([
+					[1, "scripts/items/weapons/javelin"],
+					[1, "scripts/items/weapons/throwing_axe"]
+				]).roll();
 
-			if (throwing != null) this.m.Items.addToBag(::new(throwing));
+				this.m.Items.addToBag(::new(throwingWeapon));
+			}
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 75)
 		{
 			local shield = ::MSU.Class.WeightedContainer([
-				[1.0, "scripts/items/shields/wooden_shield"],
-				[1.0, "scripts/items/shields/kite_shield"]
+				[1, "scripts/items/shields/wooden_shield"],
+				[1, "scripts/items/shields/kite_shield"]
 			]).roll();
 			this.m.Items.equip(::new(shield));
 		}
