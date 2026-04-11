@@ -20,6 +20,9 @@
 
 		foreach (c in this.getContracts())
 		{
+			if (::MSU.isEqual(c, ::World.Contracts.getActiveContract()))
+				continue;
+
 			this.m.RF_LastVisitContracts.push(c);
 			if (c.m.SituationID == null)
 				continue;
