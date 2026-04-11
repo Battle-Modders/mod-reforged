@@ -9,6 +9,7 @@
 			if (c.getID() == _contractID)
 			{
 				::World.Contracts.removeContract(c);
+				::Sound.play("sounds/cloth_01.wav", ::MSU.Math.randf(0.9, 1.1), ::World.State.getPlayer().getPos(), ::MSU.Math.randf(0.9, 1.1));
 				break;
 			}
 		}
