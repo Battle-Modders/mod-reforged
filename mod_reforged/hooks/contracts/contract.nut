@@ -169,23 +169,39 @@
 
 		if (this.m.SituationID != null)
 		{
-			local found = false;
+			local hasAgent = ::World.Retinue.hasFollower("follower.agent");
+			local situations = [];
 			foreach (settlement in ::World.EntityManager.getSettlements())
 			{
-				foreach (s in settlement.getSituations())
+				if (hasAgent)
 				{
-					if (s.getInstanceID() == this.m.SituationID)
+					situations.extend(settlement.getSituations());
+				}
+				// Without Agent we only know the last visit situations of all settlements
+				// and current situations of currently being visited settlement.
+				else
+				{
+					if (::MSU.isEqual(::World.State.getCurrentTown(), settlement))
 					{
-						ret.push({
-							id = 100, type = "hint", icon = s.getIcon(),
-							text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedObjectName(s, "contentType:settlement-status-effect"))
-						});
-						found = true;
-						break;
+						situations.extend(settlement.getSituations());
+					}
+					else
+					{
+						situations.extend(settlement.m.RF_LastVisitSituations);
 					}
 				}
-				if (found)
+			}
+
+			foreach (s in situations)
+			{
+				if (s.getInstanceID() == this.m.SituationID)
+				{
+					ret.push({
+						id = 100, type = "hint", icon = s.getIcon(),
+						text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedObjectName(s, "contentType:settlement-status-effect"))
+					});
 					break;
+				}
 			}
 		}
 
