@@ -14,7 +14,10 @@
 	q.RF_getOfferedByText <- { function RF_getOfferedByText()
 	{
 		local faction = ::World.FactionManager.getFaction(this.getFaction());
-		local characterString = ::MSU.isNull(this.getCharacter()) ? "someone" : ::Reforged.NestedTooltips.getNestedEntityName(this.getCharacter());
+		// TODO: Currently we use parseTooltip to just show the name of the character
+		// just like vanilla shows only name on faction relations screen for character tooltips.
+		// Perhaps we can implement a better/more beautiful tooltip for such characters at some point.
+		local characterString = ::MSU.isNull(this.getCharacter()) ? "someone" : format("[%s|Tooltip+%s]", this.getCharacter().getName(), ::Reforged.Mod.Tooltips.parseTooltip([{id = 1, type = "title", text = this.getCharacter().getName()}]));
 		local factionString = "";
 		local homeString = "";
 		if (::MSU.isNull(this.getHome()))
