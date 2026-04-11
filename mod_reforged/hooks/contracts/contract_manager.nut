@@ -9,20 +9,30 @@
 	// if the player has Agent. Otherwise all the last known contracts from visited settlements.
 	q.RF_getKnownContracts <- { function RF_getKnownContracts( _includeActive = false )
 	{
-		local ret = this.getOpenContracts();
-		if (!::World.Retinue.hasFollower("follower.agent"))
+		local ret;
+		if (::World.Retinue.hasFollower("follower.agent"))
 		{
-			// We set contract to started whenever we visit its settlement. So isStarted() means
-			// that the player knows about this contract.
-			ret = ret.filter(@(_, _c) _c.isStarted());
+			ret = this.getOpenContracts();
+		}
+		else
+		{
+			// We first put in the list the last known contracts.
+			// Afterwards we extend it with current open contracts.
+			// Because after deserialization, we need to ensure that the last known
+			// contracts take priority in being displayed in the tooltip.
+			ret = [];
 			foreach (list in this.m.RF_LastVisitContracts)
 			{
 				ret.extend(list);
 			}
-		}
 
-		// Need to do uniques here because of some contracts being in both Open and last visited.
-		ret = ::MSU.Array.uniques(ret);
+			// We set contract to started whenever we visit its settlement. So isStarted() means
+			// that the player knows about this contract.
+			// We have to do "uniques" by comparing IDs because after deserialization
+			// contracts with identical IDs will be present in OpenContracts and LastVisitContracts.
+			local ids = ret.map(@(_c) _c.getID());
+			ret.extend(this.getOpenContracts().filter(@(_, _c) _c.isStarted() && ids.find(_c.getID()) == null));
+		}
 
 		if (_includeActive && !::MSU.isNull(this.getActiveContract()))
 		{
