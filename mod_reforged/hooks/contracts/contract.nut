@@ -189,14 +189,6 @@
 			}
 		}
 
-		if (!::MSU.isNull(this.getHome()) && ::MSU.isEqual(::World.State.getCurrentTown(), this.getHome()))
-		{
-			ret.push({
-				id = 300, type = "hint", icon = "ui/icons/mouse_right_button.png",
-				text = "Dismiss contract"
-			});
-		}
-
 		return ret;
 	}}.RF_getTooltip;
 

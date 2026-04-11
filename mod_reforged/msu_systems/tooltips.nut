@@ -61,6 +61,10 @@
 						text = "You can only have one contract active at a time"
 					})
 				}
+				ret.push({
+					id = 300, type = "hint", icon = "ui/icons/mouse_right_button.png",
+					text = "Dismiss contract"
+				});
 				return ret;
 			}
 		})
