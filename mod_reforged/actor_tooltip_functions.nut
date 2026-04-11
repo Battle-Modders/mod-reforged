@@ -145,6 +145,11 @@
 		local perkList = [];
 
 		local perks = _actor.getSkills().query(::Const.SkillType.Perk, true, true);
+		// Add traits in perks list for non-player characters
+		if (!::MSU.isKindOf(_actor, "player"))
+		{
+			perks.extend(_actor.getSkills().query(::Const.SkillType.Trait, true, true));
+		}
 		if (perks.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(perkList, "Perks", currentID);
 		currentID++;
 
@@ -164,8 +169,8 @@
 				local perkEntry = {
 					id = currentID,
 					type = "text",
-					icon = perkDef != null ? perkDef.Icon : perk.getIcon(),
-					text = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedPerkName(perk, extraData))
+					icon = ::Reforged.Mod.Tooltips.parseString(perkDef != null ? ::Reforged.NestedTooltips.getNestedPerkImage(perk, extraData) : ::Reforged.NestedTooltips.getNestedSkillImage(perk, extraData)),
+					text = ::Reforged.Mod.Tooltips.parseString(perkDef != null ? ::Reforged.NestedTooltips.getNestedPerkName(perk, extraData) : ::Reforged.NestedTooltips.getNestedSkillName(perk, extraData))
 				};
 				currentID++;
 
@@ -182,7 +187,9 @@
 					if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
 						if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
-					entryText += ::Reforged.NestedTooltips.getNestedPerkName(perk, extraData) + ", ";
+					local perkDef = ::Const.Perks.findById(perk.getID());
+
+					entryText += (perkDef != null ? ::Reforged.NestedTooltips.getNestedPerkName(perk, extraData) : ::Reforged.NestedTooltips.getNestedSkillName(perk, extraData)) + ", ";
 				}
 				if (entryText != "") entryText = entryText.slice(0, -2);
 			}
@@ -193,7 +200,8 @@
 					if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
 						if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
-					entryText += ::Reforged.NestedTooltips.getNestedPerkImage(perk, extraData);
+					local perkDef = ::Const.Perks.findById(perk.getID());
+					entryText += perkDef != null ? ::Reforged.NestedTooltips.getNestedPerkImage(perk, extraData) : ::Reforged.NestedTooltips.getNestedSkillImage(perk, extraData);
 				}
 			}
 
