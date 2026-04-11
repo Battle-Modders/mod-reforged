@@ -1,4 +1,12 @@
 ::Reforged.Mod.Tooltips.setTooltips({
+	Faction = ::MSU.Class.CustomTooltip(function( _data ) {
+		local ret = [
+			{ contentType = "settlement-status-effect" }
+		];
+
+		ret.extend(::World.FactionManager.getFaction(_data.ExtraData.tointeger()).RF_getTooltip());
+		return ret;
+	}),
 	HireScreen = {
 		DescriptionContainer = ::MSU.Class.CustomTooltip(function(_data){
 			local states = [
