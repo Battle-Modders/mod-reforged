@@ -1,5 +1,5 @@
 ::Reforged <- {
-	Version = "0.8.4",
+	Version = "0.8.5",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
 	GitHubURL = "https://github.com/Battle-Modders/mod-reforged",
@@ -21,7 +21,7 @@ local requiredMods = [
 	"vanilla >= 1.5.1-6",
 	"mod_modular_vanilla >= 0.8.0",
 	"mod_msu >= 1.7.2",
-	"mod_nested_tooltips >= 0.3.0",
+	"mod_nested_tooltips >= 0.4.0",
 	"mod_modern_hooks >= 0.4.10"
 	"dlc_lindwurm",
 	"dlc_unhold",
@@ -33,7 +33,7 @@ local requiredMods = [
 	"mod_item_tables >= 0.1.3",
 	"mod_upd",
 	"mod_stack_based_skills >= 0.5.1",
-	"mod_reforged_assets >= 0.1.0"
+	"mod_reforged_assets >= 0.1.1"
 ];
 
 ::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
