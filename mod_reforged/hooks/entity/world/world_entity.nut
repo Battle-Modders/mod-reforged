@@ -50,21 +50,9 @@
 
 		return [];
 	}}.RF_getKnownContractsTooltip;
-});
 
-::Reforged.HooksMod.hookTree("scripts/entity/world/world_entity", function(q) {
-	q.getTooltip = @(__original) { function getTooltip()
+	q.RF_addDevSpawnInfo <- { function RF_addDevSpawnInfo( _tooltip )
 	{
-		local ret = __original();
-		if (this.getFaction() == 0)
-			return ret;
-
-		// Add any known contracts related to this world entity to its tooltip.
-		ret.extend(this.RF_getKnownContractsTooltip())
-
-		if (!::Reforged.Mod.ModSettings.getSetting("Dev_SpawnsInfo").getValue())
-			return ret;
-
 		// Add Cost/Strength to the tooltip if the associated mod setting is enabled.
 		if (!this.isHiddenToPlayer() && this.m.Troops.len() != 0)
 		{
@@ -75,13 +63,13 @@
 				cost += ::Const.World.Spawn.RF_ScriptToTroopMap[t.Script].Cost;
 				strength += t.Strength;
 			}
-			ret.push({
+			_tooltip.push({
 				id = 100,
 				type = "hint",
 				icon = "ui/icons/icon_contract_swords.png",
 				text = format("Cost / Strength / Combats: %i / %i / %i", cost.tointeger(), strength.tointeger(), this.getFlags().has("RF_NumCombats") ? this.getFlags().get("RF_NumCombats") : 0)
 			});
-			ret.push({
+			_tooltip.push({
 				id = 101,
 				type = "hint",
 				icon = "ui/icons/action_points.png",
@@ -106,12 +94,30 @@
 			}
 			if (spawnListID != null)
 			{
-				ret.push({
+				_tooltip.push({
 					id = 102,	type = "hint",	icon = "ui/icons/special.png",
 					text = "Spawnlist: " + spawnListID
 				});
 			}
 		}
+	}}.RF_addDevSpawnInfo;
+});
+
+::Reforged.HooksMod.hookTree("scripts/entity/world/world_entity", function(q) {
+	q.getTooltip = @(__original) { function getTooltip()
+	{
+		local ret = __original();
+		if (this.getFaction() == 0)
+			return ret;
+
+		// Add any known contracts related to this world entity to its tooltip.
+		ret.extend(this.RF_getKnownContractsTooltip())
+
+		if (!::Reforged.Mod.ModSettings.getSetting("Dev_SpawnsInfo").getValue())
+		{
+			this.RF_addDevSpawnInfo(ret);
+		}
+
 		return ret;
 	}}.getTooltip;
 });
