@@ -474,8 +474,8 @@
 
 	q.addSituation = @(__original) { function addSituation( _s, _validForDays = 0 )
 	{
-		__original(_s, _validForDays);
 		_s.m.RF_Settlement = ::MSU.asWeakTableRef(this);
+		return __original(_s, _validForDays);
 	}}.addSituation;
 
 	q.onSerialize = @(__original) { function onSerialize( _out )
