@@ -55,15 +55,15 @@
 ::Reforged.HooksMod.hookTree("scripts/entity/world/world_entity", function(q) {
 	q.getTooltip = @(__original) { function getTooltip()
 	{
-		if (!::Reforged.Mod.ModSettings.getSetting("Dev_SpawnsInfo").getValue())
-			return __original();
-
 		local ret = __original();
 		if (this.getFaction() == 0)
 			return ret;
 
 		// Add any known contracts related to this world entity to its tooltip.
 		ret.extend(this.RF_getKnownContractsTooltip())
+
+		if (!::Reforged.Mod.ModSettings.getSetting("Dev_SpawnsInfo").getValue())
+			return ret;
 
 		// Add Cost/Strength to the tooltip if the associated mod setting is enabled.
 		if (!this.isHiddenToPlayer() && this.m.Troops.len() != 0)
