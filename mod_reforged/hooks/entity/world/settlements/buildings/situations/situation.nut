@@ -12,7 +12,8 @@
 			return __original();
 
 		local myID = this.getID();
-		local situations = ::MSU.isEqual(::World.State.getCurrentTown(), this.m.RF_Settlement) ? this.m.RF_Settlement.getSituations() : this.m.RF_Settlement.m.RF_LastVisitSituations;
+		local hasAgent = ::World.Retinue.hasFollower("follower.agent");
+		local situations = hasAgent || ::MSU.isEqual(::World.State.getCurrentTown(), this.m.RF_Settlement) ? this.m.RF_Settlement.getSituations() : this.m.RF_Settlement.m.RF_LastVisitSituations;
 		local num = situations.filter(@(_, _s) _s.getID() == myID).len();
 
 		return num == 1 ? __original() : format("%s (x%i)", __original(), num);
