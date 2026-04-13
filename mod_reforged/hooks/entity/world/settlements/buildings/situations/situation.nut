@@ -28,7 +28,8 @@
 
 		local ret = __original();
 
-		local isPlayerAtSettlement = ::MSU.isEqual(::World.State.getCurrentTown(), this.m.RF_Settlement);
+		local hasAgent = ::World.Retinue.hasFollower("follower.agent");
+		local isPlayerAtSettlement = hasAgent || ::MSU.isEqual(::World.State.getCurrentTown(), this.m.RF_Settlement);
 		local situations = isPlayerAtSettlement ? this.m.RF_Settlement.getSituations() : this.m.RF_Settlement.m.RF_LastVisitSituations;
 
 		local myID = this.getID();
@@ -41,7 +42,7 @@
 			// We have to look at ALL contracts instead of only the ones at this situation's settlement, because
 			// some situations have contracts offered at other locations e.g. Marauding Greenskins.
 			contracts = ::World.Contracts.getOpenContracts().filter(@(_, _c) stackedSituationIDs.find(_c.getSituationID()) != null);
-			if (!::World.Retinue.hasFollower("follower.agent"))
+			if (!hasAgent)
 			{
 				contracts.filter(@(_, _c) _c.isStarted());
 			}
