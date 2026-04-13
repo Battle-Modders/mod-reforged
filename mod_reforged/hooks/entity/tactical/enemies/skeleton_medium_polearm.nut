@@ -1,5 +1,11 @@
 // Ancient Legionary
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_medium_polearm", function(q) {
+	q.create = @(__original) { function create()
+	{
+		__original();
+		this.m.ResurrectionValue = 3.5; // vanilla 4
+	}}.create;
+
 	q.onInit = @() { function onInit()
 	{
 		this.skeleton.onInit();

@@ -1,5 +1,11 @@
 // The Conqueror
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_boss", function(q) {
+	q.create = @(__original) { function create()
+	{
+		__original();
+		this.m.ResurrectionValue = 20.0; // vanilla 15
+	}}.create;
+
 	q.onInit = @() { function onInit()
 	{
 		this.skeleton.onInit();
