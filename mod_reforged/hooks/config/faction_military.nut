@@ -3,7 +3,7 @@
 		Strength = 25 // vanilla 20
 	},
 	{
-		XP = 250, // vanilla 250
+		XP = 250,
 		ActionPoints = 9,
 		Hitpoints = 75, // vanilla 70
 		Bravery = 60,
@@ -11,7 +11,7 @@
 		MeleeSkill = 75, // vanilla 70
 		RangedSkill = 50,
 		MeleeDefense = 10,
-		RangedDefense = 5, // vanilla 5
+		RangedDefense = 5,
 		Initiative = 110,
 		FatigueEffectMult = 1.0,
 		MoraleEffectMult = 1.0,
