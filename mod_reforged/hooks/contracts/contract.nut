@@ -95,7 +95,7 @@
 	// Most of the times it is Origin. But some contracts have custom members like m.Destination, m.Location.
 	q.RF_getDestinations <- { function RF_getDestinations()
 	{
-		return ::MSU.isIn("Destination", this.m, true) ? [this.m.Destination] : [this.getOrigin()];
+		return ::MSU.isIn("Destination", this.m, true) && !::MSU.isNull(this.m.Destination) ? [this.m.Destination] : [this.getOrigin()];
 	}}.RF_getDestinations;
 
 	// Returns the days required to travel for the purposes of showing in the contract tooltip.
