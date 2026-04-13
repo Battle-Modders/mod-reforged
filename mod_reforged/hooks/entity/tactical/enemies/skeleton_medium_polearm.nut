@@ -28,6 +28,7 @@
 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
+		this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
 	}}.onInit;
 
 	q.assignRandomEquipment = @() { function assignRandomEquipment()
@@ -45,8 +46,8 @@
 		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = ::MSU.Class.WeightedContainer([
-				[1.0, "scripts/items/armor/ancient/ancient_scale_harness"],
-				[1.0, "scripts/items/armor/ancient/ancient_breastplate"]
+				[1.0, "scripts/items/armor/ancient/ancient_mail"],
+				[1.0, "scripts/items/armor/ancient/ancient_double_layer_mail"]
 			]).roll();
 
 			this.m.Items.equip(::new(armor));
@@ -65,16 +66,6 @@
 		{
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 			this.m.Skills.removeByID("perk.rf_bolster");
-
-			if (mainhandItem.isAoE())
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
-			}
-			else
-			{
-				// this.m.Skills.add(::new("scripts/skills/perks/perk_rf_follow_up")); // Disabled due to crashing the game on a follow up kill
-				this.m.Skills.add(::new("scripts/skills/perks/perk_crippling_strikes"));
-			}
 		}
 	}}.onSpawned;
 });
