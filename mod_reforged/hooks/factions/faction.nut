@@ -14,21 +14,32 @@
 			return settlements[0].getTooltip();
 		}
 
-		return [
+		local ret = [
 			{
 				id = 1,	type = "title",	text = this.getName()
 			},
 			{
 				id = 2, type = "description", text = (this.getMotto() == "" ? "" : this.getMotto() + "\n\n") + this.getDescription()
 			}
-			{
-				id = 3, type = "hint",
-				text = "Settlements:",
-				children = settlements.map(@(_s) {
-							id = 3,	type = "text",	icon = _s.getImagePath(),
-							text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Obj+%s]", _s.getName(), ::Reforged.Mod.Tooltips.parseObject(_s)))
-						})
-			}
 		];
+
+		// List only discovered settlements.
+		settlements = settlements
+						.filter(@(_, _s) _s.isDiscovered())
+						.map(@(_s) {
+						id = 3,	type = "text",	icon = _s.getImagePath(),
+						text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Obj+%s]", _s.getName(), ::Reforged.Mod.Tooltips.parseObject(_s)))
+					});
+
+		if (settlements.len() != 0)
+		{
+			ret.push({
+				id = 3, type = "hint",
+				text = "Known settlements:",
+				children = settlements
+			});
+		}
+
+		return ret;
 	}}.RF_getTooltip;
 });
