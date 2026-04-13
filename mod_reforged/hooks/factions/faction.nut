@@ -24,19 +24,16 @@
 		];
 
 		// List only discovered settlements.
-		settlements = settlements
-						.filter(@(_, _s) _s.isDiscovered())
-						.map(@(_s) {
-						id = 3,	type = "text",	icon = _s.getImagePath(),
-						text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Obj+%s]", _s.getName(), ::Reforged.Mod.Tooltips.parseObject(_s)))
-					});
-
+		settlements = settlements.filter(@(_, _s) _s.isDiscovered());
 		if (settlements.len() != 0)
 		{
 			ret.push({
 				id = 3, type = "hint",
 				text = "Known settlements:",
-				children = settlements
+				children = settlements.map(@(_s) {
+							id = 3,	type = "text",	icon = _s.getImagePath(),
+							text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Obj+%s]", _s.getName(), ::Reforged.Mod.Tooltips.parseObject(_s)))
+						})
 			});
 		}
 
