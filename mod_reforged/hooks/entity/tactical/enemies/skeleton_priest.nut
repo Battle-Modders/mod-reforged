@@ -1,5 +1,11 @@
 // Ancient Priest
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/skeleton_priest", function(q) {
+	q.create = @(__original) { function create()
+	{
+		__original();
+		this.m.ResurrectionValue = 10.5; // vanilla 10
+	}}.create;
+
 	q.onInit = @() { function onInit()
 	{
 		this.skeleton.onInit();

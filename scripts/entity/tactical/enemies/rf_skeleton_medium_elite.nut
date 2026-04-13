@@ -5,7 +5,7 @@ this.rf_skeleton_medium_elite <- ::inherit("scripts/entity/tactical/skeleton", {
 	{
 		this.m.Type = ::Const.EntityType.RF_SkeletonMediumElite;
 		this.m.XP = ::Const.Tactical.Actor.RF_SkeletonMediumElite.XP;
-		this.m.ResurrectionValue = 5.0;
+		this.m.ResurrectionValue = 7.0;
 		this.m.ResurrectWithScript = "scripts/entity/tactical/enemies/rf_skeleton_medium_elite";
 		this.skeleton.create();
 		this.m.AIAgent = ::new("scripts/ai/tactical/agents/skeleton_melee_agent");
