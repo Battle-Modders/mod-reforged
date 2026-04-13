@@ -27,8 +27,22 @@
 		settlements = settlements.filter(@(_, _s) _s.isDiscovered());
 		if (settlements.len() != 0)
 		{
+			// Sort military settlements before civilian ones.
+			// Sort larger settlements before smaller ones.
+			settlements.sort(function( _a, _b ) {
+				if (_a.isMilitary() && !_b.isMilitary())
+					return -1;
+				if (!_a.isMilitary() && _b.isMilitary())
+					return 1;
+				if (_a.getSize() > _b.getSize())
+					return -1;
+				if (_a.getSize() < _b.getSize())
+					return 1;
+				return 0;
+			});
+
 			ret.push({
-				id = 3, type = "hint",
+				id = 3, type = "hint",	 icon = "ui/icons/special.png",
 				text = "Known settlements:",
 				children = settlements.map(@(_s) {
 							id = 3,	type = "text",	icon = _s.getImagePath(),
