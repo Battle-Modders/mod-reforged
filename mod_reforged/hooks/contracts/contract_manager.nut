@@ -58,31 +58,9 @@
 
 		// We "start" the contract if the player has Agent follower immediately upon contract
 		// being added. This enables the nested tooltip of this contract to show the origin/home/payment properly.
-		if (_contract.m.ID != IDBefore && !_contract.isStarted() && ::World.Retinue.hasFollower("follower.agent"))
+		if (_contract.m.ID != IDBefore && ::World.Retinue.hasFollower("follower.agent"))
 		{
-			// If the faction of this contract has only a single settlement, and the contract doesn't have
-			// a home set, then we can safely set that settlement as its home.
-			if (::MSU.isNull(_contract.getHome()))
-			{
-				local settlements = ::World.FactionManager.getFaction(_contract.getFaction()).getSettlements();
-				if (settlements.len() == 1)
-				{
-					_contract.setHome(settlements[0]);
-				}
-			}
-
-			// If the contract HAS a home set, then we start it.
-			if (!::MSU.isNull(_contract.getHome()))
-			{
-				// Have to switcheroo the last entered town because contract.start()
-				// often needs getCurrentTown() to set some stuff.
-				local original_LastEnteredTown = ::World.State.m.LastEnteredTown;
-				::World.State.m.LastEnteredTown = ::MSU.asWeakTableRef(_contract.getHome());
-
-				_contract.start();
-
-				::World.State.m.LastEnteredTown = original_LastEnteredTown;
-			}
+			_contract.RF_fakeStart();
 		}
 	}}.addContract;
 

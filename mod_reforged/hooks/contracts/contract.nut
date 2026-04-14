@@ -1,5 +1,37 @@
 ::Reforged.HooksMod.hook("scripts/contracts/contract", function(q)
 {
+	// Is used to "start" a contract so that its home, origin, destination, payment etc.
+	// is fully set and generated.
+	q.RF_fakeStart <- { function RF_fakeStart()
+	{
+		if (this.isStarted())
+			return;
+
+		// If the faction of this contract has only a single settlement, and the contract doesn't have
+		// a home set, then we can safely set that settlement as its home.
+		if (::MSU.isNull(this.getHome()))
+		{
+			local settlements = ::World.FactionManager.getFaction(this.getFaction()).getSettlements();
+			if (settlements.len() == 1)
+			{
+				this.setHome(settlements[0]);
+			}
+		}
+
+		// If the contract HAS a home set, then we start it.
+		if (!::MSU.isNull(this.getHome()))
+		{
+			// Have to switcheroo the last entered town because contract.start()
+			// often needs getCurrentTown() to set some stuff.
+			local original_LastEnteredTown = ::World.State.m.LastEnteredTown;
+			::World.State.m.LastEnteredTown = ::MSU.asWeakTableRef(this.getHome());
+
+			this.start();
+
+			::World.State.m.LastEnteredTown = original_LastEnteredTown;
+		}
+	}}.RF_fakeStart;
+
 	q.RF_getDescription <- { function RF_getDescription()
 	{
 		local ret = this.RF_getOriginText();
