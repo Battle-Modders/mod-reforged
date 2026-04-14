@@ -113,7 +113,7 @@
 		// Add any known contracts related to this world entity to its tooltip.
 		ret.extend(this.RF_getKnownContractsTooltip())
 
-		if (!::Reforged.Mod.ModSettings.getSetting("Dev_SpawnsInfo").getValue())
+		if (::Reforged.Mod.ModSettings.getSetting("Dev_SpawnsInfo").getValue())
 		{
 			this.RF_addDevSpawnInfo(ret);
 		}
