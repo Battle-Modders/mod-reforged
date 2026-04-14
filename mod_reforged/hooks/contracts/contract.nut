@@ -2,7 +2,7 @@
 {
 	// Is used to "start" a contract so that its home, origin, destination, payment etc.
 	// is fully set and generated.
-	q.RF_fakeStart <- { function RF_fakeStart()
+	q.RF_fakeStart <- { function RF_fakeStart( _forceSetHome = false )
 	{
 		if (this.isStarted())
 			return;
@@ -15,6 +15,34 @@
 			if (settlements.len() == 1)
 			{
 				this.setHome(settlements[0]);
+			}
+			else if (_forceSetHome)
+			{
+				local originTile = ::MSU.isNull(this.getOrigin()) ? null : this.getOrigin().getTile();
+				local potential = ::MSU.Class.WeightedContainer();
+				foreach (s in settlements)
+				{
+					local found = false;
+					foreach (contract in s.getUIContractInformation().Contracts)
+					{
+						if (contract.ID == c.getID())
+						{
+							found = true;
+							break;
+						}
+					}
+					if (found)
+					{
+						// Settlements closer to the origin have a higher weight.
+						potential.add(s, originTile == null ? 1.0 : 1.0 / s.getTile().getDistanceTo(originTile));
+						break;
+					}
+				}
+
+				if (potential.len() != 0)
+				{
+					c.setHome(potential.roll());
+				}
 			}
 		}
 

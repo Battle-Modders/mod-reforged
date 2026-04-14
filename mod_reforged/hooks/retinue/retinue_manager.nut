@@ -7,7 +7,7 @@
 		{
 			foreach (c in ::World.Contracts.getOpenContracts())
 			{
-				c.RF_fakeStart();
+				c.RF_fakeStart(true);
 			}
 		}
 	}}.setFollower;

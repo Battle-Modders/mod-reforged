@@ -60,7 +60,7 @@
 		// being added. This enables the nested tooltip of this contract to show the origin/home/payment properly.
 		if (_contract.m.ID != IDBefore && ::World.Retinue.hasFollower("follower.agent"))
 		{
-			_contract.RF_fakeStart();
+			_contract.RF_fakeStart(true);
 		}
 	}}.addContract;
 
