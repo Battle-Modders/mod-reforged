@@ -10,4 +10,9 @@
 			break;
 		}
 	}}.onPrepareVariables;
+
+	q.RF_getOriginText = @(__original) { function RF_getOriginText()
+	{
+		return "To " + __original();
+	}}.RF_getOriginText;
 });

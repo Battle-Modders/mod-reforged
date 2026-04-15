@@ -11,6 +11,11 @@
 		}
 	}}.onPrepareVariables;
 
+	q.RF_getOriginText = @(__original) { function RF_getOriginText()
+	{
+		return "To " + __original();
+	}}.RF_getOriginText;
+
 	q.RF_getDaysRequiredToTravel = @() { function RF_getDaysRequiredToTravel( _start, _end )
 	{
 		return this.getDaysRequiredToTravel(_start.getDistanceTo(_end), ::Const.World.MovementSettings.Speed * 0.6, true);
