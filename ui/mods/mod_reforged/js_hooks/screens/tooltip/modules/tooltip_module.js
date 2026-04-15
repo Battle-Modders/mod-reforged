@@ -43,7 +43,8 @@ TooltipModule.prototype.addContentTextDiv = function(_parentDIV, _data, _isChild
 	// Add ability to add dividers in text entries.
 	if (_data !== null && 'text' in _data && _data.text === 'rf_divider')
 	{
-		var container = $('<div class="row ui-control-tooltip-module-bottom-devider"/>');
+		var cssClass = 'cssClass' in _data ? _data.cssClass : 'row ui-control-tooltip-module-bottom-devider';
+		var container = $('<div class="' + cssClass + '"/>');
 		_parentDIV.append(container);
 		return container;
 	}
@@ -60,7 +61,8 @@ TooltipModule.prototype.addHintDiv = function(_parentDIV, _data, _isChildRow, _i
 	// Add ability to add dividers in hint entries.
 	if (_data !== null && 'text' in _data && _data.text === 'rf_divider')
 	{
-		var container = $('<div class="row ui-control-tooltip-module-bottom-devider"/>');
+		var cssClass = 'cssClass' in _data ? _data.cssClass : 'row ui-control-tooltip-module-bottom-devider';
+		var container = $('<div class="' + cssClass + '"/>');
 		_parentDIV.append(container);
 		return container;
 	}
