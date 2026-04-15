@@ -1,4 +1,25 @@
 ::Reforged.Mod.Tooltips.setTooltips({
+	EventActor = ::MSU.Class.CustomTooltip(function( _data ) {
+		local entity = ::Tactical.getEntityByID(_data.ExtraData.tointeger());
+		if (entity == null)
+			return null;
+
+		if (::MSU.isKindOf(entity, "player"))
+		{
+			local ret = entity.getRosterTooltip();
+			ret.push({id = 124, type = "text", text = "rf_divider"});
+			ret.extend([::Reforged.TacticalTooltip.getTooltipAttributesSmall(entity, 100)]);
+			ret.push({id = 124, type = "text", text = "rf_divider"});
+			ret.extend(::Reforged.TacticalTooltip.getTooltipTraits(entity, 200));
+			ret.extend(::Reforged.TacticalTooltip.getTooltipEffects(entity, 300));
+			ret.extend(::Reforged.TacticalTooltip.getTooltipPerks(entity, 400));
+			ret.extend(::Reforged.TacticalTooltip.getTooltipEquippedItems(entity, 500));
+			ret.extend(::Reforged.TacticalTooltip.getTooltipBagItems(entity, 600));
+			return ret;
+		}
+
+		return ::TooltipEvents.general_queryUIElementTooltipData(entity.getID(), "CharacterNameAndTitles", null);
+	}),
 	Faction = ::MSU.Class.CustomTooltip(function( _data ) {
 		local ret = [
 			{ contentType = "settlement-status-effect" }

@@ -137,6 +137,27 @@
 		return effectList;
 	}
 
+	// This is only used for players and isn't part of
+	// the standard actor tooltip generation.
+	function getTooltipTraits( _actor, _startID )
+	{
+		local extraData = "entityId:" + _actor.getID();
+		local entryText = "";
+		foreach (trait in _actor.getSkills().getAllSkillsOfType(::Const.SkillType.Trait))
+		{
+			if (::MSU.isKindOf(trait, "character_background") || ::MSU.isKindOf(trait, "character_trait"))
+				entryText += ::Reforged.NestedTooltips.getNestedSkillImage(trait, extraData);
+		}
+		local ret = [];
+		this.pushSectionName(ret, "Traits", _startID);
+		ret.push({
+			id = ++_startID,
+			type = "text",
+			text = ::Reforged.Mod.Tooltips.parseString(entryText)
+		});
+		return ret;
+	}
+
 	// Returns a list of all perks in tooltip-form
 	function getTooltipPerks( _actor, _startID )
 	{
