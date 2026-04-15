@@ -2,7 +2,11 @@
 {
 	// Is used to "start" a contract so that its home, origin, destination, payment etc.
 	// is fully set and generated.
-	q.RF_fakeStart <- { function RF_fakeStart( _forceSetHome = false )
+	// @param _homeWeightFunc is an optional function with signature:
+	// _homeWeightFunc( _potentialHome, _origin ) and returns a number.
+	// It is only used if _forceSetHome is true. Each potential home is passed to _homeWeightFunc
+	// which must return its weight. Then one home is rolled from potential homes.
+	q.RF_fakeStart <- { function RF_fakeStart( _forceSetHome = false, _homeWeightFunc = null )
 	{
 		if (this.isStarted())
 			return;
@@ -18,7 +22,12 @@
 			}
 			else if (_forceSetHome)
 			{
-				local originTile = ::MSU.isNull(this.getOrigin()) ? null : this.getOrigin().getTile();
+				local origin = _homeWeightFunc == null || ::MSU.isNull(this.getOrigin()) ? null : this.getOrigin();
+				if (origin != null && _homeWeightFunc == null)
+				{
+					// Higher weight for settlements closer to the origin.
+					_homeWeightFunc = @(_s, _origin) 1.0 / _s.getTile().getDistanceTo(_origin.getTile());
+				}
 				local potential = ::MSU.Class.WeightedContainer();
 				foreach (s in settlements)
 				{
@@ -34,7 +43,7 @@
 					if (found)
 					{
 						// Settlements closer to the origin have a higher weight.
-						potential.add(s, originTile == null ? 1.0 : 1.0 / s.getTile().getDistanceTo(originTile));
+						potential.add(s, originTile == null ? 1.0 : _homeWeightFunc(s, origin));
 						break;
 					}
 				}
