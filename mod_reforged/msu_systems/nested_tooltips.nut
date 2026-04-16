@@ -76,12 +76,12 @@ local getThresholdForInjury = function( _script )
 
 	function getNestedEntityImage( _obj, _extraData = null )
 	{
-		return format("[Img/gfx/ui/orientation/%s.png|Entity+%i]", _obj.getOverlayImage(), _obj.getID(), _extraData == null ? "" : "," + _extraData);
+		return format("[Img/gfx/ui/orientation/%s.png|Entity+%i%s]", _obj.getOverlayImage(), _obj.getID(), _extraData == null ? "" : "," + _extraData);
 	}
 
 	function getNestedEntityName( _obj, _extraData = null )
 	{
-		return format("[%s|Entity+%i]", _obj.getName(), _obj.getID(), _extraData == null ? "" : "," + _extraData);
+		return format("[%s|Entity+%i%s]", _obj.getName(), _obj.getID(), _extraData == null ? "" : "," + _extraData);
 	}
 
 	function getNestedObjectName( _obj, _extraData = null )
