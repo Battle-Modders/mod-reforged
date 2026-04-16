@@ -48,7 +48,7 @@ local getThresholdForInjury = function( _script )
 	function getNestedPerkImage( _obj, _extraData = null )
 	{
 		local perkDef = ::Const.Perks.findById(_obj.getID());
-		return format("[Img/gfx/%s|Perk+%s%s]", perkDef != null ? perkDef.Icon : _obj.getIcon(), _obj.ClassName, _extraData == null ? "" : "," + _extraData);
+		return format("[Img/gfx/%s|Perk+%s%s,cssClass:rf-nested-skill-image]", perkDef != null ? perkDef.Icon : _obj.getIcon(), _obj.ClassName, _extraData == null ? "" : "," + _extraData);
 	}
 
 	function getNestedSkillName( _obj, _extraData = null, _getName = false )
@@ -61,7 +61,7 @@ local getThresholdForInjury = function( _script )
 	function getNestedSkillImage( _obj, _extraData = null, _checkUsability = false )
 	{
 		local icon = !_checkUsability || _obj.isUsable() && _obj.isAffordable() ? _obj.getIconColored() : _obj.getIconDisabled();
-		return format("[Img/gfx/%s|Skill+%s%s]", icon, _obj.ClassName, _extraData == null ? "" : "," + _extraData);
+		return format("[Img/gfx/%s|Skill+%s%s,cssClass:rf-nested-skill-image]", icon, _obj.ClassName, _extraData == null ? "" : "," + _extraData);
 	}
 
 	function getNestedItemName( _obj, _extraData = null )
@@ -76,7 +76,7 @@ local getThresholdForInjury = function( _script )
 
 	function getNestedEntityImage( _obj, _extraData = null )
 	{
-		return format("[Img/gfx/ui/orientation/%s.png|Entity+%i%s]", _obj.getOverlayImage(), _obj.getID(), _extraData == null ? "" : "," + _extraData);
+		return format("[Img/gfx/ui/orientation/%s.png|Entity+%i%s,cssClass:rf-nested-skill-image]", _obj.getOverlayImage(), _obj.getID(), _extraData == null ? "" : "," + _extraData);
 	}
 
 	function getNestedEntityName( _obj, _extraData = null )

@@ -216,3 +216,8 @@
     background-size: 12.7rem 2.2rem;
     background-repeat: no-repeat;
 }
+
+.rf-nested-skill-image
+{
+	height: 2.5rem !important;
+}
