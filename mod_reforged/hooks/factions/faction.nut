@@ -9,7 +9,7 @@
 	{
 		local settlements = this.getSettlements();
 
-		if (settlements.len() == 1)
+		if (this.getType() == ::Const.FactionType.Settlement && settlements.len() == 1)
 		{
 			return settlements[0].getTooltip();
 		}
