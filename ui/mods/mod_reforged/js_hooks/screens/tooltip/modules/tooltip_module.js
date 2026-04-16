@@ -40,9 +40,31 @@ TooltipModule.prototype.addHeaderDescriptionDiv = function(_parentDIV, _data)
 Reforged.Hooks.TooltipModule_addContentTextDiv = TooltipModule.prototype.addContentTextDiv;
 TooltipModule.prototype.addContentTextDiv = function(_parentDIV, _data, _isChildRow, _isParentFullWidth)
 {
+	// Add ability to add dividers in text entries.
+	if (_data !== null && 'text' in _data && _data.text === 'rf_divider')
+	{
+		var cssClass = 'cssClass' in _data ? _data.cssClass : 'row ui-control-tooltip-module-bottom-devider';
+		var container = $('<div class="' + cssClass + '"/>');
+		_parentDIV.append(container);
+		return container;
+	}
 	var ret = Reforged.Hooks.TooltipModule_addContentTextDiv.call(this, _parentDIV, _data, _isChildRow, _isParentFullWidth);
 	if (ret === null || _data.rawHTMLInText !== true )
 		return ret;
 	this.rf_unescapeTagsOnElement(ret.find(".text:first"));
 	return ret;
+};
+
+Reforged.Hooks.TooltipModule_addHintDiv = TooltipModule.prototype.addHintDiv;
+TooltipModule.prototype.addHintDiv = function(_parentDIV, _data, _isChildRow, _isParentFullWidth)
+{
+	// Add ability to add dividers in hint entries.
+	if (_data !== null && 'text' in _data && _data.text === 'rf_divider')
+	{
+		var cssClass = 'cssClass' in _data ? _data.cssClass : 'row ui-control-tooltip-module-bottom-devider';
+		var container = $('<div class="' + cssClass + '"/>');
+		_parentDIV.append(container);
+		return container;
+	}
+	return Reforged.Hooks.TooltipModule_addHintDiv.call(this, _parentDIV, _data, _isChildRow, _isParentFullWidth);
 };
