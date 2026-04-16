@@ -20,6 +20,9 @@
 			},
 			{
 				id = 2, type = "description", text = (this.getMotto() == "" ? "" : this.getMotto() + "\n\n") + this.getDescription()
+			},
+			{
+				id = 10, type = "hint", icon = this.getUIBanner(), text = "Relations: " + this.getPlayerRelationAsText()
 			}
 		];
 
