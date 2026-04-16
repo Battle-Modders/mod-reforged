@@ -88,6 +88,205 @@ local getThresholdForInjury = function( _script )
 	{
 		return format("[%s|Obj+%s%s]", _obj.getName(), ::Reforged.Mod.Tooltips.parseObject(_obj), _extraData == null ? "" : "," + _extraData);
 	}
+
+	function __addItemLinkInEntry( _entry, _item, _textKey = "text" )
+	{
+		if (_textKey in _entry && _entry[_textKey].find(_item.getName()) != null)
+		{
+			_entry[_textKey] = ::Reforged.Mod.Tooltips.parseString(::String.replace(_entry[_textKey], _item.getName(), ::Reforged.NestedTooltips.getNestedObjectName(_item, "contentType:ui-item")));
+			if ("icon" in _entry && _entry.icon == "ui/items/" + v.getIcon())
+			{
+				_entry.icon = ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/ui/items/%s|Obj+%s,contentType:ui-item]", _item.getIcon(),::Reforged.Mod.Tooltips.parseObject(_item)));
+			}
+		}
+	}
+
+	// Called from setScreen of event or contract.
+	// We retroactively walk through the screen text and its Options/List text
+	// and convert the text to hyperlinks.
+	function addHyperlinksToScreen( _screen, _event )
+	{
+		local text = _screen.Text;
+		foreach (k, v in _event.m)
+		{
+			if (!::MSU.isKindOf(v, "item") || text.find(v.getName()) == null)
+				continue;
+
+			_screen.Text = ::Reforged.Mod.Tooltips.parseString(::String.replace(text, v.getName(), format("[%s|Obj+%s]", v.getName(), "contentType:ui-item")));
+			foreach (option in _screen.Options)
+			{
+				this.__addItemLinkInEntry(option, v, "Text");
+			}
+			foreach (entry in _screen.List)
+			{
+				this.__addItemLinkInEntry(entry, v);
+			}
+		}
+
+		// Instead of looking through all the bros in player roster and temporary roster
+		// we only look through characters stored in the `m` table of the event/contract
+		// as they are usually the ones referred to in List.
+		local players = [];
+		foreach (v in _event.m)
+		{
+			if (::MSU.isKindOf(v, "player"))
+			{
+				players.push(v);
+			}
+		}
+
+		// Iterate on each entry in List and convert any mention of player name or item name from stash
+		// to a link to that player or item.
+		// Warning: If two bros have identical names and are present in the same event (its m table)
+		// we may end up linking the wrong one.
+		// Warning: If two items have the same name and icon we may end up linking the wrong one.
+		if (_screen.List.len() != 0)
+		{
+			local items = ::World.Assets.getStash().getItems().filter(@(_, _item) _item != null);
+			local icons = items.map(@(_item) "ui/items/" + _item.getIcon());
+
+			foreach (entry in _screen.List)
+			{
+				if ("text" in entry)
+				{
+					local bro = null;
+					foreach (p in players)
+					{
+						local name = p.getName();
+						local idx = entry.text.find(name);
+						if (idx == null)
+						{
+							name = p.getNameOnly();
+							idx = entry.text.find(name);
+						}
+						if (idx != null)
+						{
+							entry.text = ::Reforged.Mod.Tooltips.parseString(::String.replace(entry.text, name, format("[%s|EventActor+%i]", name, p.getID())));
+							bro = p;
+							break;
+						}
+					}
+					// Could be a skill icon
+					if (bro != null && "icon" in entry)
+					{
+						local isDone = false;
+						local icon = entry.icon;
+						foreach (s in bro.getSkills().m.Skills)
+						{
+							if (s.getIcon() == icon)
+							{
+								entry.icon = ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|Skill+%s,entityId:%i]", icon, s.ClassName, bro.getID()));
+								entry.text = ::Reforged.Mod.Tooltips.parseString(::String.replace(entry.text, s.getName(), ::Reforged.NestedTooltips.getNestedSkillName(s, "entityId:" + bro.getID())));
+								isDone = true;
+								break;
+							}
+						}
+
+						if (isDone)
+						{
+							continue;
+						}
+					}
+				}
+
+				if ("icon" in entry)
+				{
+					local idx = icons.find(entry.icon);
+					if (idx != null && "text" in entry && entry.text.find(items[idx].getName()) != null)
+					{
+						local item = items[idx];
+						entry.icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedItemImage(item));
+						entry.text = ::Reforged.Mod.Tooltips.parseString(::String.replace(entry.text, item.getName(), ::Reforged.NestedTooltips.getNestedItemName(item)));
+						continue;
+					}
+				}
+			}
+		}
+	}
+
+	// Is called after prepareVariables in event or contract.
+	// We retroactively look through all vars and convert applicable ones to hyperlinks.
+	function addHyperlinksToPrepareVariables( _vars, _event )
+	{
+		local factions = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
+		factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.Settlement));
+		factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState));
+
+		local factionNames = factions.map(@(_f) _f.getName());
+		local factionNamesOnly = factions.map(@(_f) _f.m.Name);
+
+		local bros = ::World.getPlayerRoster().getAll();
+		bros.extend(::World.getTemporaryRoster().getAll());
+
+		local broNames = bros.map(@(_b) _b.getName());
+		local broNamesOnly = bros.map(@(_b) _b.getNameOnly());
+
+		local isContract = ::MSU.isKindOf(_event, "contract");
+
+		foreach (pair in _vars)
+		{
+			switch (pair[0])
+			{
+				case "SPEECH_ON": case "SPEECH_START": case "SPEECH_OFF":
+				case "OOC": case "OOC_OFF":
+				case "companyname":
+				case "randomnoble":
+				case "randomname":
+					continue;
+			}
+
+			if (isContract)
+			{
+				switch (pair[0])
+				{
+					case "employer":
+						if (_event.m.EmployerID != 0)
+						{
+							pair[1] = ::Reforged.Mod.Tooltips.parseString(format("[%s|EventActor+%i]", pair[1], _event.m.EmployerID));
+							continue;
+						}
+						break;
+
+					case "faction":
+						pair[1] = ::Reforged.Mod.Tooltips.parseString(format("[%s|Faction+%i]", pair[1], ::World.FactionManager.getFaction(_event.getFaction()).getID()));
+						continue;
+
+					case "origin":
+						pair[1] = ::Reforged.Mod.Tooltips.parseString(format("[%s|WorldEntity+%i]", pair[1], _event.getOrigin().getID()));
+						continue;
+
+					case "townname":
+						pair[1] = ::Reforged.Mod.Tooltips.parseString(format("[%s|WorldEntity+%i]", pair[1], _event.getHome().getID()));
+						continue;
+				}
+			}
+
+			local text = pair[1];
+
+			// Warning: If two bros have identical names, we may end up linking the wrong one.
+			local idx = broNamesOnly.find(text);
+			if (idx == null)
+			{
+				idx = broNames.find(text);
+			}
+			if (idx != null)
+			{
+				pair[1] = ::Reforged.Mod.Tooltips.parseString(format("[%s|EventActor+%i]", text, bros[idx].getID()));
+				continue;
+			}
+
+			idx = factionNames.find(text);
+			if (idx == null)
+			{
+				idx = factionNamesOnly.find(text);
+			}
+			if (idx != null)
+			{
+				pair[1] = ::Reforged.Mod.Tooltips.parseString(format("[%s|Faction+%i]", text, factions[idx].getID()));
+				continue;
+			}
+		}
+	}
 }
 
 ::Reforged.QueueBucket.FirstWorldInit.push(function() {

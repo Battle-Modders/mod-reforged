@@ -37,4 +37,29 @@
 			}
 		}
 	}}.RF_getUICharacterTooltipID;
+
+	q.buildText = @(__original) { function buildText( _buildText )
+	{
+		return ::Reforged.Mod.Tooltips.parseString(__original(_buildText));
+	}}.buildText;
+
+	q.setScreen = @(__original) { function setScreen( _screen )
+	{
+		local original_ActiveScreen = this.m.ActiveScreen;
+
+		__original(_screen);
+
+		if (this.m.ActiveScreen != null && this.m.ActiveScreen != original_ActiveScreen)
+		{
+			::Reforged.NestedTooltips.addHyperlinksToScreen(this.m.ActiveScreen, this);
+		}
+	}}.setScreen;
+});
+
+::Reforged.HooksMod.hookTree("scripts/events/event", function(q) {
+	q.onPrepareVariables = @(__original) { function onPrepareVariables( _vars )
+	{
+		__original(_vars);
+		::Reforged.NestedTooltips.addHyperlinksToPrepareVariables(_vars, this);
+	}}.onPrepareVariables;
 });
