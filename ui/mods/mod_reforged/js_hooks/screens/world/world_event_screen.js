@@ -14,7 +14,6 @@ WorldEventScreen.prototype.updateHeader = function (_data)
 
 	if (_data.characterRightTooltipID !== null)
 	{
-		console.error(_data.characterLeftTooltipID.indexOf("WorldEntity+"));
 		this.mCharacterOverlayRight.bindTooltip({ contentType: 'msu-generic', modId: _data.characterRightTooltipID.indexOf("WorldEntity+") != -1 ? Reforged.MSUID : Reforged.ID, elementId: _data.characterRightTooltipID });
 	}
 }
