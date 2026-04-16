@@ -37,4 +37,20 @@
 			}
 		}
 	}}.RF_getUICharacterTooltipID;
+
+	q.setScreen = @(__original) { function setScreen( _screen )
+	{
+		::Reforged.NestedTooltips.setApplyNestingForEvents(true);
+		__original(_screen);
+		::Reforged.NestedTooltips.setApplyNestingForEvents(false);
+	}}.setScreen;
+});
+
+::Reforged.HooksMod.hookTree("scripts/events/event", function(q) {
+	q.onPrepareVariables = @(__original) { function onPrepareVariables( _vars )
+	{
+		::Reforged.NestedTooltips.setApplyNestingForEvents(true);
+		__original(_vars);
+		::Reforged.NestedTooltips.setApplyNestingForEvents(false);
+	}}.onPrepareVariables;
 });

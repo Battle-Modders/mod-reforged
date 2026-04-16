@@ -344,4 +344,20 @@
 		::Const.World.Common.RF_addSpawnlistInfo(_entity, _partyList);
 		__original(_entity, _partyList, _resources);
 	}}.addUnitsToEntity;
+
+	q.setScreen = @(__original) { function setScreen( _screen, _restartIfAlreadyActive = true )
+	{
+		::Reforged.NestedTooltips.setApplyNestingForEvents(true);
+		__original(_screen, _restartIfAlreadyActive);
+		::Reforged.NestedTooltips.setApplyNestingForEvents(false);
+	}}.setScreen;
+});
+
+::Reforged.HooksMod.hookTree("scripts/contracts/contract", function(q) {
+	q.onPrepareVariables = @(__original) { function onPrepareVariables( _vars )
+	{
+		::Reforged.NestedTooltips.setApplyNestingForEvents(true);
+		__original(_vars);
+		::Reforged.NestedTooltips.setApplyNestingForEvents(false);
+	}}.onPrepareVariables;
 });
