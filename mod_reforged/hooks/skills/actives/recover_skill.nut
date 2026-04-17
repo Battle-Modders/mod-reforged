@@ -59,7 +59,7 @@
 	q.onMovementStarted = @(__original) { function onMovementStarted( _tile, _numTiles )
 	{
 		__original(_tile, _numTiles);
-		if (::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
+		if (::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()) && this.getContainer().getActor().m.CurrentMovementType == ::Const.Tactical.MovementType.Default)
 		{
 			this.m.HasMovedOrUsedSkill = true;
 		}
