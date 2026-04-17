@@ -19,7 +19,7 @@ local units = [
 	{
 		ID = "Unit.RF.BarbarianDrummer",
 		Troop = "BarbarianDrummer",
-		StartingResourceMin = 200 // Vanilla is 195 in "Barbarians" party
+		StartingResourceMin = 170 // Vanilla is 168 in "Barbarians" party
 	},
 	{
 		ID = "Unit.RF.BarbarianChosen",
