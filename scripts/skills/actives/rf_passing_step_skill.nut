@@ -128,7 +128,7 @@ this.rf_passing_step_skill <- ::inherit("scripts/skills/skill", {
 
 				if (nextTile.IsOccupiedByActor && ::Math.abs(nextTile.Level - _tile.Level) <= 1)
 				{
-					if (!nextTile.getEntity().isAlliedWith(this.getContainer().getActor()))
+					if (!nextTile.getEntity().isAlliedWith(this.getContainer().getActor()) && !nextTile.getEntity().isNonCombatant())
 					{
 						return true;
 					}
