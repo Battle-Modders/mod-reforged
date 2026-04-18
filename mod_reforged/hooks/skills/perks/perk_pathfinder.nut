@@ -18,8 +18,16 @@
 	{
 		__original();
 		local actor = this.getContainer().getActor();
-		actor.m.ActionPointCosts = this.m.RF_ActionPointCostsBackup;
-		actor.m.FatigueCosts = this.m.RF_FatigueCostsBackup;
-		actor.m.LevelActionPointCost = this.m.RF_LevelActionPointCostBackup;
+
+		if (this.m.RF_ActionPointCostsBackup != null)
+		{
+			actor.m.ActionPointCosts = this.m.RF_ActionPointCostsBackup;
+			actor.m.FatigueCosts = this.m.RF_FatigueCostsBackup;
+			actor.m.LevelActionPointCost = this.m.RF_LevelActionPointCostBackup;
+		}
+		else
+		{
+			::logError("Reforged: Pathfinder perk removed but could not reset costs as original costs were not saved");
+		}
 	}}.onRemoved;
 });
