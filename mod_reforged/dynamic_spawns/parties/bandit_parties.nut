@@ -113,6 +113,18 @@ local parties = [
 			ranged.RatioMin = ::Reforged.Math.lerpClamp(res, 200, 0.0, 300, 0.2);
 
 			boss.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 95, 500, 0);
+
+			// Exclude baron from non-location spawns.
+			local worldEntity = this.getTopParty().getWorldEntity();
+			if (worldEntity != null && !worldEntity.isLocation())
+			{
+				local baron = this.getSpawnable("Unit.RF.RF_BanditBaron");
+				if (baron != null)
+				{
+					baron.HardMin = 0;
+					baron.HardMax = 0;
+				}
+			}
 		}
 
 		function getUpgradeChance()
@@ -160,6 +172,18 @@ local parties = [
 			boss.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 66, 400, 0);
 
 			elite.RatioMax = ::Reforged.Math.lerpClamp(res, 400, 0.05, 600, 0.15);
+
+			// Exclude baron from non-location spawns.
+			local worldEntity = this.getTopParty().getWorldEntity();
+			if (worldEntity != null && !worldEntity.isLocation())
+			{
+				local baron = this.getSpawnable("Unit.RF.RF_BanditBaron");
+				if (baron != null)
+				{
+					baron.HardMin = 0;
+					baron.HardMax = 0;
+				}
+			}
 		}
 
 		function getUpgradeChance()
@@ -205,6 +229,18 @@ local parties = [
 				[20, 0.1],
 				[20, 0.15]
 			]);
+
+			// Exclude baron from non-location spawns.
+			local worldEntity = this.getTopParty().getWorldEntity();
+			if (worldEntity != null && !worldEntity.isLocation())
+			{
+				local baron = this.getSpawnable("Unit.RF.RF_BanditBaron");
+				if (baron != null)
+				{
+					baron.HardMin = 0;
+					baron.HardMax = 0;
+				}
+			}
 		}
 
 		function getUpgradeChance()
