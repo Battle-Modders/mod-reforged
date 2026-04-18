@@ -253,6 +253,66 @@
 		return _numTiles * 170.0 / _speed;
 	}}.getSecondsRequiredToTravel;
 
+	// Returns a TooltipID used to bind the tooltip of the character/banner/destination being displayed
+	// on the screen. Similar to the usage of the vanilla `getUICharacterImage` function.
+	q.RF_getUICharacterTooltipID <- { function RF_getUICharacterTooltipID( _index = 0 )
+	{
+		local image = this.getUICharacterImage(_index);
+		if (image == null)
+			return null;
+
+		local imagePath = image.Image;
+
+		// In Reforged we pass the destination's image sometimes, so we handle that here.
+		if ("Destination" in this.m && !::MSU.isNull(this.m.Destination) && this.m.Destination.getImagePath() == imagePath)
+		{
+			return "WorldEntity+" + this.m.Destination.getID();
+		}
+
+		if ("Characters" in this.m.ActiveScreen && this.m.ActiveScreen.Characters.len() > _index)
+		{
+			// Vanilla stores references to actors in the `m` table of the contract. So we have to iterate
+			// over that and use the imagePath to detect if this is the actor we are looking for.
+			foreach (k, v in this.m)
+			{
+				// We cannot compare getImagePath to the imagePath stored here because
+				// actor.getImagePath adds m.ContendID to it which can be different every time.
+				// We instead check if the actor's ID is present in the imagePath between two commas.
+				if (::MSU.isKindOf(v, "actor") && imagePath.find("," + v.getID() + ",") != null)
+				{
+					return "EventActor+" + v.getID();
+				}
+			}
+		}
+
+		if ("Banner" in this.m.ActiveScreen && imagePath == this.m.ActiveScreen.Banner)
+		{
+			foreach (f in ::World.FactionManager.getFactions())
+			{
+				if (f != null && (imagePath == f.getUIBanner() || imagePath == f.getUIBannerSmall()))
+				{
+					return "Faction+" + f.getID();
+				}
+			}
+		}
+
+		if (("ShowEmployer" in this.m.ActiveScreen) && this.m.ActiveScreen.ShowEmployer)
+		{
+			if (_index == 0)
+			{
+				return "EventActor+" + this.m.EmployerID;
+			}
+			else if (::World.FactionManager.getFaction(this.m.Faction).getType() == ::Const.FactionType.NobleHouse)
+			{
+				return "Faction+" + this.getFaction().getID();
+			}
+			else
+			{
+				return null;
+			}
+		}
+	}}.RF_getUICharacterTooltipID;
+
 	q.getUICharacterImage = @(__original) { function getUICharacterImage( _index = 0 )
 	{
 		if ((!("Characters" in this.m.ActiveScreen) || !this.m.ActiveScreen.Characters.len()) &&
