@@ -7,7 +7,88 @@ local getThresholdForInjury = function( _script )
 	}
 }
 
+// Apply nesting in events
+{
+	::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
+		q.getName = @(__original) { function getName()
+		{
+			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|EventActor+%i]", __original(), this.getID())) : __original();
+		}}.getName;
+
+		q.getNameOnly = @(__original) { function getNameOnly()
+		{
+			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|EventActor+%i]", __original(), this.getID())) : __original();
+		}}.getNameOnly;
+	});
+
+	::Reforged.HooksMod.hookTree("scripts/items/item", function(q) {
+		q.getName = @(__original) { function getName()
+		{
+			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|Obj+%s,contentType:ui-item]", __original(), ::Reforged.Mod.Tooltips.parseObject(this))) : __original();
+		}}.getName;
+
+		q.getIcon = @(__original) { function getIcon()
+		{
+			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/ui/items/%s|Obj+%s,contentType:ui-item]", __original(), ::Reforged.Mod.Tooltips.parseObject(this))) : __original();
+		}}.getIcon;
+	});
+
+	::Reforged.HooksMod.hookTree("scripts/skills/skill", function(q) {
+		q.getName = @(__original) { function getName()
+		{
+			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|Skill+%s%s]", __original(), this.ClassName, ::MSU.isNull(this.getContainer()) ? "" : ",entityId:" + this.getContainer().getActor().getID())) : __original();
+		}}.getName;
+
+		if (q.contains("getNameOnly"))
+		{
+			q.getNameOnly = @(__original) { function getNameOnly()
+			{
+				return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|Skill+%s%s]", __original(), this.ClassName, ::MSU.isNull(this.getContainer()) ? "" : ",entityId:" + this.getContainer().getActor().getID())) : __original();
+			}}.getNameOnly;
+		}
+
+		q.getIcon = @(__original) { function getIcon()
+		{
+			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|Skill+%s%s]", __original(), this.ClassName, ::MSU.isNull(this.getContainer()) ? "" : ",entityId:" + this.getContainer().getActor().getID())) : __original();
+		}}.getIcon;
+
+		q.getIconColored = @(__original) { function getIconColored()
+		{
+			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|Skill+%s%s]", __original(), this.ClassName, ::MSU.isNull(this.getContainer()) ? "" : ",entityId:" + this.getContainer().getActor().getID())) : __original();
+		}}.getIconColored;
+
+		q.getIconDisabled = @(__original) { function getIconDisabled()
+		{
+			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/%s|Skill+%s%s]", __original(), this.ClassName, ::MSU.isNull(this.getContainer()) ? "" : ",entityId:" + this.getContainer().getActor().getID())) : __original();
+		}}.getIconDisabled;
+	});
+
+	::Reforged.HooksMod.hookTree("scripts/factions/faction", function(q) {
+		q.getName = @(__original) { function getName()
+		{
+			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|Faction+%i]", __original(), this.getID())) : __original();
+		}}.getName;
+
+		if (q.contains("getNameOnly"))
+		{
+			q.getNameOnly = @(__original) { function getNameOnly()
+			{
+				return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|Faction+%i]", __original(), this.getID())) : __original();
+			}}.getNameOnly;
+		}
+	});
+
+	::Reforged.HooksMod.hookTree("scripts/entity/world/world_entity", function(q) {
+		q.getName = @(__original) { function getName()
+		{
+			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|WorldEntity+%i]", __original(), this.getID())) : __original();
+		}}.getName;
+	});
+}
+
 ::Reforged.NestedTooltips <- {
+	__IsApplyingNestingForEvents = 0,
+
 	Tooltips = {
 		Concept = {}
 	},
@@ -38,6 +119,22 @@ local getThresholdForInjury = function( _script )
 		"assets.BusinessReputation",
 		"assets.MoralReputation"
 	],
+
+	function setApplyNestingForEvents( _apply )
+	{
+		// Have to do it as a "stack" because functions which set this on/off
+		// can be called from within themselves and we don't want to set it to
+		// false in the middle of such a call stack.
+		if (_apply)
+			this.__IsApplyingNestingForEvents += 1;
+		else if (this.__IsApplyingNestingForEvents > 0)
+			this.__IsApplyingNestingForEvents -= 1;
+	}
+
+	function isApplyingNestingForEvents()
+	{
+		return this.__IsApplyingNestingForEvents != 0;
+	}
 
 	function getNestedPerkName( _obj, _extraData = null )
 	{
