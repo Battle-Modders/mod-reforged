@@ -12,15 +12,15 @@ if (!::Hooks.hasMod("mod_swifter"))
 		}}.moveSpriteOffset;
 
 		// Speed up based on VirtualSpeed. Hopefully solves crashes with Kraken tentacles.
-		q.riseFromGround = @(__original) { function riseFromGround( _speedMult = 1.0 )
+		q.riseFromGround = @(__original) { function riseFromGround( _duration = 1.0 )
 		{
-			__original(_speedMult * ::Time.getVirtualSpeed());
+			__original(_duration / ::Time.getVirtualSpeed());
 		}}.riseFromGround;
 
 		// Speed up based on VirtualSpeed. Hopefully solves crashes with Kraken tentacles.
-		q.sinkIntoGround = @(__original) { function sinkIntoGround( _speedMult = 1.0 )
+		q.sinkIntoGround = @(__original) { function sinkIntoGround( _duration = 1.0 )
 		{
-			__original(_speedMult * ::Time.getVirtualSpeed());
+			__original(_duration / ::Time.getVirtualSpeed());
 		}}.sinkIntoGround;
 	});
 });
