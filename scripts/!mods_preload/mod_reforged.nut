@@ -2,7 +2,6 @@
 	Version = "0.8.8",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
-	GitHubURL = "https://github.com/Battle-Modders/mod-reforged",
 	ItemTable = {},
 	Spawns = {
 		Units = {},
@@ -156,7 +155,7 @@ foreach (requirement in requiredMods)
 ::Reforged.HooksMod.queue(queueLoadOrder, function() {
 	::Reforged.Mod <- ::MSU.Class.Mod(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
 
-	::Reforged.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, ::Reforged.GitHubURL);
+	::Reforged.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, "https://github.com/Battle-Modders/mod-reforged");
 	::Reforged.Mod.Registry.setUpdateSource(::MSU.System.Registry.ModSourceDomain.GitHub);
 	::Reforged.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.NexusMods, "https://www.nexusmods.com/battlebrothers/mods/765");
 
