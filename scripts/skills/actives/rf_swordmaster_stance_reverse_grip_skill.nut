@@ -45,7 +45,7 @@ this.rf_swordmaster_stance_reverse_grip_skill <- ::inherit("scripts/skills/activ
 		ret.push({
 			id = 11,
 			type = "text",
-			icon = "ui/icons/rf_reach.png",
+			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Gain the [$ $|Perk+perk_rf_concussive_strikes] perk")
 		});
 
