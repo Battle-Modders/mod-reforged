@@ -129,6 +129,7 @@
 	<sprite id="rf_from_all_sides_effect_mini" ic = "FF23165B" img="skills\mini\rf_from_all_sides_effect_mini.png" />
 	<sprite id="rf_frostbound_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_frostbound_effect.png" />
 	<sprite id="rf_grave_chill_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_grave_chill_effect.png" />
+	<sprite id="rf_grave_chill_effect_mini" ic = "FF23165B" img="skills\mini\rf_grave_chill_effect_mini.png" />
 	<sprite id="rf_grieving_malaise_effect" ic = "FF23165B" img="..\..\gfx\skills\rf_grieving_malaise_effect.png" />
 	<sprite id="rf_hold_steady_effect" ic = "FF23165B" img="..\..\gfx\ui\perks\perk_rf_hold_steady.png" />
 	<sprite id="rf_hold_steady_effect_mini" ic = "FF23165B" img="skills\mini\rf_hold_steady_effect_mini.png" />
