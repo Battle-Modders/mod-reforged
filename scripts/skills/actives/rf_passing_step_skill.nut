@@ -118,21 +118,22 @@ this.rf_passing_step_skill <- ::inherit("scripts/skills/skill", {
 
 	function tileHasAdjacentEnemy( _tile )
 	{
-		if (_tile == null) return false;
+		if (_tile == null)
+			return false;
 
 		for (local i = 0; i < 6; i++)
 		{
-			if (_tile.hasNextTile(i))
-			{
-				local nextTile = _tile.getNextTile(i);
+			if (!_tile.hasNextTile(i))
+				continue;
 
-				if (nextTile.IsOccupiedByActor && ::Math.abs(nextTile.Level - _tile.Level) <= 1)
-				{
-					if (!nextTile.getEntity().isAlliedWith(this.getContainer().getActor()) && !nextTile.getEntity().isNonCombatant())
-					{
-						return true;
-					}
-				}
+			local nextTile = _tile.getNextTile(i);
+			if (!nextTile.IsOccupiedByActor || ::Math.abs(nextTile.Level - _tile.Level) <= 1)
+				continue;
+
+			local entity = nextTile.getEntity();
+			if (!entity.isAlliedWith(this.getContainer().getActor()) && !entity.isNonCombatant())
+			{
+				return true;
 			}
 		}
 
@@ -141,18 +142,18 @@ this.rf_passing_step_skill <- ::inherit("scripts/skills/skill", {
 
 	function anAdjacentEmptyTileHasAdjacentEnemy( _tile )
 	{
-		if (_tile == null) return false;
+		if (_tile == null)
+			return false;
 
 		for (local i = 0; i < 6; i++)
 		{
-			if (_tile.hasNextTile(i))
-			{
-				local nextTile = _tile.getNextTile(i);
+			if (!_tile.hasNextTile(i))
+				continue;
 
-				if (nextTile.IsEmpty && this.tileHasAdjacentEnemy(nextTile) && ::Math.abs(nextTile.Level - _tile.Level) <= 1)
-				{
-					return true;
-				}
+			local nextTile = _tile.getNextTile(i);
+			if (nextTile.IsEmpty && this.tileHasAdjacentEnemy(nextTile) && ::Math.abs(nextTile.Level - _tile.Level) <= 1)
+			{
+				return true;
 			}
 		}
 
