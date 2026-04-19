@@ -50,7 +50,17 @@ this.rf_frostbound_effect <- ::inherit("scripts/skills/skill", {
 
 	function onActorSpawned( _actor )
 	{
-		if (!::MSU.isKindOf(_actor, "rf_draugr") && !_actor.getSkills().hasSkill("special.rf_frostbound_manager"))
+		if (::MSU.isEqual(_actor, this.getContainer().getActor()))
+		{
+			foreach (a in ::Tactical.Entities.getAllInstancesAsArray())
+			{
+				if (!::MSU.isKindOf(_actor, "rf_draugr") && !_actor.getSkills().hasSkill("special.rf_frostbound_manager"))
+				{
+					a.getSkills().add(::new("scripts/skills/special/rf_frostbound_manager"));
+				}
+			}
+		}
+		else if (!::MSU.isKindOf(_actor, "rf_draugr") && !_actor.getSkills().hasSkill("special.rf_frostbound_manager"))
 		{
 			_actor.getSkills().add(::new("scripts/skills/special/rf_frostbound_manager"));
 		}
