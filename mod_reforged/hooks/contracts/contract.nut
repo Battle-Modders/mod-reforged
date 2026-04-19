@@ -306,7 +306,7 @@
 			}
 			else if (::World.FactionManager.getFaction(this.m.Faction).getType() == ::Const.FactionType.NobleHouse)
 			{
-				return "Faction+" + this.getFaction().getID();
+				return "Faction+" + ::World.FactionManager.getFaction(this.getFaction()).getID();
 			}
 			else
 			{
