@@ -40,8 +40,17 @@
 		// Modifies hire screen causing the perk trees from Reforged to not appear there
 		"tnf_tryout": "tnf_tryout is incompatible with Reforged. Use Clever Recruiter by Enduriel instead."
 	};
+
+	local reforgedFiles = [];
+
 	foreach (filePath in ::IO.enumerateFiles("data/"))
 	{
+		if (filePath.find("data/mod_reforged") != null)
+		{
+			reforgedFiles.push(filePath.slice(5));
+			continue;
+		}
+
 		foreach (filename, reason in conflicts)
 		{
 			// Add "data/" because we don't want to check inside subfolders
@@ -50,5 +59,33 @@
 				::Hooks.errorAndQuit(reason);
 			}
 		}
+	}
+
+	local validReforgedFilenames = [
+		"mod_reforged", // for devs
+		"mod_reforged_core", // for devs
+		"mod_reforged_assets", // for devs
+		"mod_reforged_core-" + ::Reforged.Version, // GitHub release naming scheme
+		"mod_reforged_assets-" + ::Reforged.Assets.Version, // GitHub release naming scheme
+		"mod_reforged_core-765-" + ::String.replace(::Reforged.Version, ".", "-") // NexusMods naming scheme
+		"mod_reforged_assets-765-" + ::String.replace(::Reforged.Assets.Version, ".", "-") // NexusMods naming scheme
+	];
+
+	local validFileCount = 0;
+	foreach (filename in reforgedFiles)
+	{
+		if (validReforgedFilenames.find(filename) == null && filename.find("patch") == null)
+		{
+			::Hooks.errorAndQuit("You have a copy of an invalid Reforged zip file in your data folder. File: " + filename + ".zip");
+		}
+		else if (filename.find("patch") == null)
+		{
+			validFileCount++;
+		}
+	}
+
+	if (validFileCount > 2)
+	{
+		::Hooks.errorAndQuit("You have duplicate copies of valid Reforged zip files in your data folder. Delete the duplicates.");
 	}
 }}.checkConflictWithFilename;
