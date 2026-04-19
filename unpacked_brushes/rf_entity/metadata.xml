@@ -588,7 +588,7 @@
 <!-- 103 -->
 <sprite id="bust_rf_draugr_armor_03_01" offsetY="35" ic="FF192635" width="140" height="248" img="entity\bodies\bust_rf_draugr_armor_03_01.png" left="-54" right="52" top="-124" bottom="30" />
 <sprite id="bust_rf_draugr_armor_03_01_damaged" offsetY="35" ic="FF192635" width="140" height="248" img="entity\bodies\bust_rf_draugr_armor_03_01_damaged.png" left="-54" right="52" top="-124" bottom="30" />
-<sprite id="bust_rf_draugr_armor_03_01_dead" offsetY="35" ic="FF192635" width="140" height="248" img="entity\bodies\bust_rf_draugr_armor_03_01_dead.png" left="-64" right="50" top="-62" bottom="52" />
+<sprite id="bust_rf_draugr_armor_03_01_dead" offsetX="6" offsetY="10" f="64FE" ic="FF1F2833" width="191" height="185" img="entity\bodies\bust_rf_draugr_armor_03_01_dead.png" left="-64" right="50" top="-62" bottom="52" />
 <sprite id="bust_rf_draugr_armor_03_01_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF484D50" width="191" height="185" img="entity\bodies\bust_rf_draugr_armor_03_01_dead_arrows.png" left="-43" right="21" top="-2" bottom="44" />
 <sprite id="bust_rf_draugr_armor_03_01_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF13192C" width="191" height="185" img="entity\bodies\bust_rf_draugr_armor_03_01_dead_javelin.png" left="-14" right="16" top="-13" bottom="61" />
 
