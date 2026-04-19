@@ -2,8 +2,9 @@
 	q.RF_getOriginText = @() { function RF_getOriginText()
 	{
 		return ::Reforged.Mod.Tooltips.parseString(
-			format("%s %s",
-				::Reforged.NestedTooltips.getNestedWorldEntityName(this.m.Location),
+			format("Ruined [%s|WorldEntity+%i] %s",
+				this.m.Location.getRealName(),
+				this.m.Location.getID(),
 				::MSU.isEqual(::World.State.getCurrentTown(), this.getHome()) ? "nearby" : "near " + ::Reforged.NestedTooltips.getNestedWorldEntityName(this.getHome())
 			)
 		);
