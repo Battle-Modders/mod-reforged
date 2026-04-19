@@ -95,7 +95,7 @@
 					// only days (not half) to keep the tooltip concise.
 					ret += format("%s about %s %s of ",
 									::Reforged.NestedTooltips.getNestedWorldEntityName(d),
-									::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(origin, d) * ::World.getTime().SecondsPerDay),
+									::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(origin.getTile(), d.getTile()) * ::World.getTime().SecondsPerDay),
 									::Const.Strings.Direction8[origin.getTile().getDirection8To(d.getTile())]);
 				}
 
@@ -112,7 +112,7 @@
 					{
 						// We use getDaysAndHalf function to generate text but we actually show
 						// only days (not half) to keep the tooltip concise.
-						ret += format(" about %s %s of ", ::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(origin, this.getHome()) * ::World.getTime().SecondsPerDay), ::Const.Strings.Direction8[this.getHome().getTile().getDirection8To(origin.getTile())]);
+						ret += format(" about %s %s of ", ::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(origin.getTile(), this.getHome().getTile()) * ::World.getTime().SecondsPerDay), ::Const.Strings.Direction8[this.getHome().getTile().getDirection8To(origin.getTile())]);
 						ret += ::MSU.isEqual(::World.State.getCurrentTown(), this.getHome()) ? "here" : ::Reforged.NestedTooltips.getNestedWorldEntityName(this.getHome());
 					}
 				}
@@ -134,9 +134,10 @@
 
 	// Returns the days required to travel for the purposes of showing in the contract tooltip.
 	// Should be ovewritten by child contracts if they have a different speed or road restriction e.g. escort_caravan_contract.
-	q.RF_getDaysRequiredToTravel <- { function RF_getDaysRequiredToTravel( _start, _dest )
+	// _start and _end both must be world tiles.
+	q.RF_getDaysRequiredToTravel <- { function RF_getDaysRequiredToTravel( _start, _end )
 	{
-		return this.getDaysRequiredToTravel(_start.getTile().getDistanceTo(_dest.getTile()), ::Const.World.MovementSettings.Speed, false);
+		return this.getDaysRequiredToTravel(_start.getDistanceTo(_end), ::Const.World.MovementSettings.Speed, false);
 	}}.RF_getDaysRequiredToTravel;
 
 	q.RF_getTooltip <- { function RF_getTooltip()

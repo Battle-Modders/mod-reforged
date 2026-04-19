@@ -11,8 +11,8 @@
 		}
 	}}.onPrepareVariables;
 
-	q.RF_getDaysRequiredToTravel = @() { function RF_getDaysRequiredToTravel( _start, _dest )
+	q.RF_getDaysRequiredToTravel = @() { function RF_getDaysRequiredToTravel( _start, _end )
 	{
-		return this.getDaysRequiredToTravel(_start.getTile().getDistanceTo(_dest.getTile()), ::Const.World.MovementSettings.Speed * 0.6, true);
+		return this.getDaysRequiredToTravel(_start.getDistanceTo(_end), ::Const.World.MovementSettings.Speed * 0.6, true);
 	}}.RF_getDaysRequiredToTravel;
 });
