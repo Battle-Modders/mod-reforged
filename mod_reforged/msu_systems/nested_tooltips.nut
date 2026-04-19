@@ -97,6 +97,13 @@ local getThresholdForInjury = function( _script )
 			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|WorldEntity+%i]", __original(), this.getID())) : __original();
 		}}.getName;
 	});
+
+	::Reforged.HooksMod.hookTree("scripts/entity/world/attached_location", function(q) {
+		q.getRealName = @(__original) { function getRealName()
+		{
+			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|WorldEntity+%i]", __original(), this.getID())) : __original();
+		}}.getRealName;
+	});
 }
 
 ::Reforged.NestedTooltips <- {
