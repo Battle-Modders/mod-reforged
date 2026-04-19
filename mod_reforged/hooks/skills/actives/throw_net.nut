@@ -23,7 +23,7 @@
 
 	q.onVerifyTarget = @(__original) { function onVerifyTarget( _originTile, _targetTile )
 	{
-		return __original(_originTile, _targetTile) && !_targetTile.getEntity().getCurrentProperties().IsImmuneToRoot && _targetTile.getEntity().getBaseProperties().Reach < ::Reforged.Reach.Default.BeastHuge;
+		return __original(_originTile, _targetTile) && !_targetTile.getEntity().getCurrentProperties().IsImmuneToRoot && _targetTile.getEntity().getBaseProperties().Reach < ::Reforged.Reach.Default.NetImmune;
 	}}.onVerifyTarget;
 
 	q.onNetSpawn = @(__original) { function onNetSpawn( _data )
