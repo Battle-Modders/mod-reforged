@@ -9,6 +9,19 @@ local getThresholdForInjury = function( _script )
 
 // Apply nesting in events
 {
+	// World entities get assigned their labels during `updateStrength` when they spawn
+	// during events or contracts. The label assigns their name by using getName(). We need
+	// to return a name during this time that isn't nested with tooltip tags.
+	::Reforged.HooksMod.hookTree("scripts/entity/world/world_entity", function(q) {
+		q.updateStrength = @(__original) { function updateStrength()
+		{
+			local original_IsApplyingNestingForEvents = ::Reforged.NestedTooltips.__IsApplyingNestingForEvents;
+			::Reforged.NestedTooltips.__IsApplyingNestingForEvents = 0;
+			__original();
+			::Reforged.NestedTooltips.__IsApplyingNestingForEvents = original_IsApplyingNestingForEvents;
+		}}.updateStrength;
+	});
+
 	::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
 		q.getName = @(__original) { function getName()
 		{
