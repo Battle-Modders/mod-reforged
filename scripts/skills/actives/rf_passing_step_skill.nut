@@ -127,7 +127,7 @@ this.rf_passing_step_skill <- ::inherit("scripts/skills/skill", {
 				continue;
 
 			local nextTile = _tile.getNextTile(i);
-			if (!nextTile.IsOccupiedByActor || ::Math.abs(nextTile.Level - _tile.Level) <= 1)
+			if (!nextTile.IsOccupiedByActor || ::Math.abs(nextTile.Level - _tile.Level) > 1)
 				continue;
 
 			local entity = nextTile.getEntity();
