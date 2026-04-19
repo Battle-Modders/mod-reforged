@@ -7,6 +7,63 @@
 	// need to be fully deserialized before any contract is deserialized.
 	q.m.RF_LastVisitContracts <- {};
 
+	q.update = @(__original) { function update( _force = false )
+	{
+		__original(_force);
+		// Same guards as vanilla original
+		if (!_force && ::World.State.getMenuStack().hasBacksteps())
+		{
+			return;
+		}
+
+		if (!_force && ("State" in ::Tactical) && ::Tactical.State != null)
+		{
+			return;
+		}
+
+		// Remove invalid contracts from last visit contracts
+		// otherwise their tooltips will have broken information e.g. about
+		// destinations or targets which no longer exist or are no longer valid.
+		foreach (contracts in this.m.RF_LastVisitContracts)
+		{
+			for (local i = contracts.len() - 1; i >= 0; i--)
+			{
+				if (contracts[i].isValid())
+					continue;
+
+				local c = contracts.remove(i);
+				::logInfo(format("Reforged: last visit contract removed: %s (%i)", c.getName(), c.getID()));
+
+				if (c.m.SituationID == 0)
+					continue;
+
+				local situationFound = false;
+				foreach (settlement in ::World.EntityManager.getSettlements())
+				{
+					foreach (s in settlement.m.RF_LastVisitSituations)
+					{
+						if (s.getInstanceID() != c.m.SituationID)
+							continue;
+
+						situationFound = true;
+
+						foreach (i, con in s.m.RF_LastVisitContracts)
+						{
+							if (con.getID() == c.getID())
+							{
+								s.m.RF_LastVisitContracts.remove(i);
+								break;
+							}
+						}
+						break;
+					}
+					if (situationFound)
+						break;
+				}
+			}
+		}
+	}}.update;
+
 	// Returns an array of contracts that are known to the player. This is all the contracts
 	// if the player has Agent. Otherwise all the last known contracts from visited settlements.
 	q.RF_getKnownContracts <- { function RF_getKnownContracts( _includeActive = false )
