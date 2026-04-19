@@ -91,10 +91,11 @@
 				}
 				else if (!::MSU.isNull(d))
 				{
-					local distance = this.RF_getDaysRequiredToTravel(origin, d);
+					// We use getDaysAndHalf function to generate text but we actually show
+					// only days (not half) to keep the tooltip concise.
 					ret += format("%s about %s %s of ",
 									::Reforged.NestedTooltips.getNestedObjectName(d),
-									::Reforged.Text.getDaysAndHalf(distance),
+									::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(origin, d) * ::World.getTime().SecondsPerDay),
 									::Const.Strings.Direction8[origin.getTile().getDirection8To(d.getTile())]);
 				}
 
@@ -109,8 +110,9 @@
 
 					if (!::MSU.isNull(this.getHome()) && !::MSU.isEqual(origin, this.getHome()))
 					{
-						local distance = this.RF_getDaysRequiredToTravel(origin, this.getHome());
-						ret += format(" about %s %s of ", ::Reforged.Text.getDaysAndHalf(distance), ::Const.Strings.Direction8[this.getHome().getTile().getDirection8To(origin.getTile())]);
+						// We use getDaysAndHalf function to generate text but we actually show
+						// only days (not half) to keep the tooltip concise.
+						ret += format(" about %s %s of ", ::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(origin, this.getHome()) * ::World.getTime().SecondsPerDay), ::Const.Strings.Direction8[this.getHome().getTile().getDirection8To(origin.getTile())]);
 						ret += ::MSU.isEqual(::World.State.getCurrentTown(), this.getHome()) ? "here" : ::Reforged.NestedTooltips.getNestedObjectName(this.getHome(), "contentType:settlement-status-effect");
 					}
 				}
