@@ -379,6 +379,14 @@
 		__original(_screen, _restartIfAlreadyActive);
 		::Reforged.NestedTooltips.setApplyNestingForEvents(false);
 	}}.setScreen;
+
+	q.buildText = @(__original) { function buildText( _text )
+	{
+		::Reforged.NestedTooltips.setApplyNestingForEvents(true);
+		local ret = __original(_text);
+		::Reforged.NestedTooltips.setApplyNestingForEvents(false);
+		return ret;
+	}}.buildText;
 });
 
 ::Reforged.HooksMod.hookTree("scripts/contracts/contract", function(q) {

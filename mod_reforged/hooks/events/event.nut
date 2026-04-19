@@ -44,6 +44,14 @@
 		__original(_screen);
 		::Reforged.NestedTooltips.setApplyNestingForEvents(false);
 	}}.setScreen;
+
+	q.buildText = @(__original) { function buildText( _text )
+	{
+		::Reforged.NestedTooltips.setApplyNestingForEvents(true);
+		local ret = __original(_text);
+		::Reforged.NestedTooltips.setApplyNestingForEvents(false);
+		return ret;
+	}}.buildText;
 });
 
 ::Reforged.HooksMod.hookTree("scripts/events/event", function(q) {
