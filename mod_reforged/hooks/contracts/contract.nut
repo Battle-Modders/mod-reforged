@@ -69,6 +69,13 @@
 		return ::Reforged.Mod.Tooltips.parseString(format("Offered by %s%s%s", characterString, factionString, homeString));
 	}}.RF_getOfferedByText;
 
+	// If _obj is integer, we assume it is a region, in this case we return its Center.
+	// Otherwise we assume its a world entity and return its tile.
+	q.RF_getTile <- { function RF_getTile( _obj )
+	{
+		return typeof _obj == "integer" ? ::World.State.getRegion(_obj).Center : _obj.getTile();
+	}}.RF_getTile;
+
 	// Returns text that shows the origin, direction and destination of this contract and the distance.
 	q.RF_getOriginText <- { function RF_getOriginText()
 	{
@@ -78,6 +85,8 @@
 		local origin = ::MSU.isNull(this.getOrigin()) ? this.getHome() : this.getOrigin();
 		if (!::MSU.isNull(origin))
 		{
+			local originRegion = typeof origin == "integer" ? ::World.State.getRegion(origin) : null;
+
 			local destinations = this.RF_getDestinations();
 			foreach (i, d in destinations)
 			{
@@ -91,12 +100,19 @@
 				}
 				else if (!::MSU.isNull(d))
 				{
+					local destRegion = typeof d == "integer" ? ::World.State.getRegion(d) : null;
+					if (destRegion != null)
+					{
+						ret += i == 0 ? "Around the " : "around the ";
+						ret += ::Const.Strings.TerrainShort[destRegion.Type] + " region of " + destRegion.Name;
+					}
+
 					// We use getDaysAndHalf function to generate text but we actually show
 					// only days (not half) to keep the tooltip concise.
 					ret += format("%s about %s %s of ",
-									::Reforged.NestedTooltips.getNestedWorldEntityName(d),
-									::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(origin.getTile(), d.getTile()) * ::World.getTime().SecondsPerDay),
-									::Const.Strings.Direction8[origin.getTile().getDirection8To(d.getTile())]);
+									destRegion != null ? "" : ::Reforged.NestedTooltips.getNestedWorldEntityName(d),
+									::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(this.RF_getTile(origin), this.RF_getTile(d)) * ::World.getTime().SecondsPerDay),
+									::Const.Strings.Direction8[this.RF_getTile(origin).getDirection8To(this.RF_getTile(d))]);
 				}
 
 				if (i != 0)
@@ -106,13 +122,22 @@
 				else
 				{
 					// If origin is the same as the town we are in, then say "here" instead of town name
-					ret += ::MSU.isEqual(::World.State.getCurrentTown(), origin) ? "here" : ::Reforged.NestedTooltips.getNestedWorldEntityName(origin);
+					if (originRegion != null)
+					{
+						ret += i == 0 ? "Around the " : "around the ";
+						ret += ::Const.Strings.TerrainShort[originRegion.Type] + " region of " + originRegion.Name;
+					}
+					else
+					{
+						// If origin is the same as the town we are in, then say "here" instead of town name
+						ret += ::MSU.isEqual(::World.State.getCurrentTown(), origin) ? "here" : ::Reforged.NestedTooltips.getNestedWorldEntityName(origin);
+					}
 
 					if (!::MSU.isNull(this.getHome()) && !::MSU.isEqual(origin, this.getHome()))
 					{
 						// We use getDaysAndHalf function to generate text but we actually show
 						// only days (not half) to keep the tooltip concise.
-						ret += format(" about %s %s of ", ::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(origin.getTile(), this.getHome().getTile()) * ::World.getTime().SecondsPerDay), ::Const.Strings.Direction8[this.getHome().getTile().getDirection8To(origin.getTile())]);
+						ret += format(" about %s %s of ", ::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(this.RF_getTile(origin), this.getHome().getTile()) * ::World.getTime().SecondsPerDay), ::Const.Strings.Direction8[this.getHome().getTile().getDirection8To(this.RF_getTile(origin))]);
 						ret += ::MSU.isEqual(::World.State.getCurrentTown(), this.getHome()) ? "here" : ::Reforged.NestedTooltips.getNestedWorldEntityName(this.getHome());
 					}
 				}
