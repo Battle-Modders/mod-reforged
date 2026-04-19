@@ -20,7 +20,7 @@ local unitBlocks = [
 	{
 		ID = "UnitBlock.RF.GoblinBoss",
 		DynamicDefs = {
-			Units = { BaseID = "Unit.RF.GoblinOverseer" }
+			Units = [{ BaseID = "Unit.RF.GoblinOverseer" }]
 		}
 	},
 	{
