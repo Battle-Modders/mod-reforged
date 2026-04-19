@@ -12,6 +12,8 @@
 		BeastEnormous = 11,
 		BeastGargantuan = 13,
 
+		NetImmune = 9,
+
 		Dagger = 1,
 		Short_1H = 2,
 		Medium_1H = 3,

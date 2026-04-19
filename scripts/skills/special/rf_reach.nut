@@ -156,7 +156,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 
 	function onQueryTooltip( _skill, _tooltip )
 	{
-		if (_skill.isType(::Const.SkillType.Racial) && this.getContainer().getActor().getBaseProperties().getReach() >= ::Reforged.Reach.Default.BeastHuge)
+		if (_skill.isType(::Const.SkillType.Racial) && this.getContainer().getActor().getBaseProperties().getReach() >= ::Reforged.Reach.Default.NetImmune)
 		{
 			_tooltip.push({
 				id = 100,	type = "text",	icon = "ui/icons/special.png",
