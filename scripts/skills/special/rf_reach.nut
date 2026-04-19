@@ -154,6 +154,17 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onQueryTooltip( _skill, _tooltip )
+	{
+		if (_skill.isType(::Const.SkillType.Racial) && this.getContainer().getActor().getBaseProperties().getReach() >= ::Reforged.Reach.Default.BeastHuge)
+		{
+			_tooltip.push({
+				id = 100,	type = "text",	icon = "ui/icons/special.png",
+				text = "Too big to be [netted|Skill+net_effect]"
+			});
+		}
+	}
+
 	// TODO: Temporarily disabled due to a bug that causes tooltips to disappear because of the additional `update` call.
 	// An alternative approach could be that we have a hidden effect on the character which only appears while character is Rooted
 	// and in its tooltip it says "50% less Reach". That hidden effect could very well be this rf_reach skill itself.
