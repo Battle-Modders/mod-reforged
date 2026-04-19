@@ -4,6 +4,8 @@
 		__original();
 		this.m.ActionPointCost = 5; // vanilla is 4
 		this.m.MaxRange = 2; // vanilla is 3
+		this.m.IsRanged = true; // this allows it to gain extra range when at elevation.
+		this.m.MaxRangeBonus = 1; // we only allow maximum +1 bonus range from elevation.
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.ThrowNet;
 	}}.create;
 
