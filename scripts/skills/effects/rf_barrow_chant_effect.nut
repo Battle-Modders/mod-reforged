@@ -63,6 +63,16 @@ this.rf_barrow_chant_effect <- ::inherit("scripts/skills/skill", {
 
 	function onActorSpawned( _actor )
 	{
-		_actor.getSkills().add(::new("scripts/skills/effects/rf_barrow_chant_debuff_effect"));
+		if (::MSU.isEqual(_actor, this.getContainer().getActor()))
+		{
+			foreach (a in ::Tactical.Entities.getAllInstancesAsArray())
+			{
+				a.getSkills().add(::new("scripts/skills/effects/rf_barrow_chant_debuff_effect"));
+			}
+		}
+		else
+		{
+			_actor.getSkills().add(::new("scripts/skills/effects/rf_barrow_chant_debuff_effect"));
+		}
 	}
 });
