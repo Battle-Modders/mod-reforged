@@ -1,5 +1,5 @@
 ::Reforged <- {
-	Version = "0.8.10",
+	Version = "0.8.11",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
 	ItemTable = {},
@@ -20,7 +20,7 @@ local requiredMods = [
 	"vanilla >= 1.5.1-6",
 	"mod_modular_vanilla >= 0.8.2",
 	"mod_msu >= 1.8.0",
-	"mod_nested_tooltips >= 0.5.0",
+	"mod_nested_tooltips >= 0.5.1",
 	"mod_modern_hooks >= 0.4.10"
 	"dlc_lindwurm",
 	"dlc_unhold",
