@@ -58,12 +58,12 @@
 		}
 		else if (!::MSU.isEqual(::World.State.getCurrentTown(), this.getHome()))
 		{
-			homeString = " in " + ::Reforged.NestedTooltips.getNestedObjectName(this.getHome(), "contentType:settlement-status-effect");
+			homeString = " in " + ::Reforged.NestedTooltips.getNestedWorldEntityName(this.getHome());
 		}
 
 		if (::MSU.isNull(this.getHome()) || faction.getName() != this.getHome().getName())
 		{
-			factionString = " of " + ::Reforged.NestedTooltips.getNestedObjectName(faction, "func:RF_getTooltip,contentType:settlement-status-effect");
+			factionString = " of " + ::Reforged.NestedTooltips.getNestedFactionName(faction);
 		}
 
 		return ::Reforged.Mod.Tooltips.parseString(format("Offered by %s%s%s", characterString, factionString, homeString));
@@ -94,7 +94,7 @@
 					// We use getDaysAndHalf function to generate text but we actually show
 					// only days (not half) to keep the tooltip concise.
 					ret += format("%s about %s %s of ",
-									::Reforged.NestedTooltips.getNestedObjectName(d),
+									::Reforged.NestedTooltips.getNestedWorldEntityName(d),
 									::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(origin, d) * ::World.getTime().SecondsPerDay),
 									::Const.Strings.Direction8[origin.getTile().getDirection8To(d.getTile())]);
 				}
@@ -106,14 +106,14 @@
 				else
 				{
 					// If origin is the same as the town we are in, then say "here" instead of town name
-					ret += ::MSU.isEqual(::World.State.getCurrentTown(), origin) ? "here" : ::Reforged.NestedTooltips.getNestedObjectName(origin, "contentType:settlement-status-effect");
+					ret += ::MSU.isEqual(::World.State.getCurrentTown(), origin) ? "here" : ::Reforged.NestedTooltips.getNestedWorldEntityName(origin);
 
 					if (!::MSU.isNull(this.getHome()) && !::MSU.isEqual(origin, this.getHome()))
 					{
 						// We use getDaysAndHalf function to generate text but we actually show
 						// only days (not half) to keep the tooltip concise.
 						ret += format(" about %s %s of ", ::Reforged.Text.getDaysAndHalf(this.RF_getDaysRequiredToTravel(origin, this.getHome()) * ::World.getTime().SecondsPerDay), ::Const.Strings.Direction8[this.getHome().getTile().getDirection8To(origin.getTile())]);
-						ret += ::MSU.isEqual(::World.State.getCurrentTown(), this.getHome()) ? "here" : ::Reforged.NestedTooltips.getNestedObjectName(this.getHome(), "contentType:settlement-status-effect");
+						ret += ::MSU.isEqual(::World.State.getCurrentTown(), this.getHome()) ? "here" : ::Reforged.NestedTooltips.getNestedWorldEntityName(this.getHome());
 					}
 				}
 
