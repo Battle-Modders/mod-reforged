@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/contracts/contract_manager", function(q) {
+	// TODO: In next save incompatible build, use settlement ID instead of name
+	// because world entity ids are unique and kept across save/load.
 	// Map of SettlementName to an array of contracts.
 	// Is used to serialize last known contracts of settlements.
 	// We need to serialize contracts from contract_manager as settlements
