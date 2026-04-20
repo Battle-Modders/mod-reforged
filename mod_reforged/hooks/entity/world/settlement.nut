@@ -24,7 +24,7 @@
 				continue;
 
 			this.m.RF_LastVisitContracts.push(c);
-			if (c.m.SituationID == null)
+			if (c.m.SituationID == 0)
 				continue;
 
 			foreach (s in this.m.RF_LastVisitSituations)

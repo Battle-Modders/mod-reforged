@@ -227,7 +227,7 @@
 			}
 		}
 
-		if (this.m.SituationID != null)
+		if (this.m.SituationID != 0)
 		{
 			local hasAgent = ::World.Retinue.hasFollower("follower.agent");
 			local situations = [];
