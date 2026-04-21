@@ -36,8 +36,6 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_bully"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
-
-		this.m.IsThrower = ::Math.rand(1, 3) == 1; // 33% chance
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )
