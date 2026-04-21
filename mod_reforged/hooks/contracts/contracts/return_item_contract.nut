@@ -41,4 +41,9 @@
 			break;
 		}
 	}}.onPrepareVariables;
+
+	q.RF_getOriginText = @() { function RF_getOriginText()
+	{
+		return ::Reforged.Mod.Tooltips.parseString(format("Follow the thieves\' tracks around %s", ::MSU.isEqual(::World.State.getCurrentTown(), this.getHome()) ? "here" : ::Reforged.NestedTooltips.getNestedWorldEntityName(this.getHome())));
+	}}.RF_getOriginText;
 });
