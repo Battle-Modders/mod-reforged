@@ -4,6 +4,7 @@
 		__original();
 		// Vanilla is missing a description for this skill
 		this.m.Description = "Summon a swarm of insects to surround an enemy, reducing their ability to focus on combat!";
+		this.m.IconDisabled = "skills/active_69_sw.png";	// Vanilla: skills/active_32_sw.png
 	}}.create;
 
 	// Vanilla doesn't have a getTooltip function defined for this skill
