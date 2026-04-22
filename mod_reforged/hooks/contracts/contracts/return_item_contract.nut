@@ -1,4 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/contracts/contracts/return_item_contract", function(q) {
+	q.create = @(__original) { function create()
+	{
+		__original();
+		this.m.Name = "Return Stolen Item";
+	}}.create;
+
 	q.createStates = @(__original) { function createStates()
 	{
 		__original();
