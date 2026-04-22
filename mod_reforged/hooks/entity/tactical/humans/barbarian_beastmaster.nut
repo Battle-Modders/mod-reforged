@@ -47,7 +47,7 @@
 		// }
 
 		// Reforged
-		b.RangedDefense += 15;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_dodge"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 	}}.onInit;
 });

@@ -73,5 +73,14 @@
 				this.m.Skills.add(::new("scripts/skills/perks/perk_coup_de_grace"));
 			}
 		}
+
+		foreach (item in this.m.Items.getAllItemsAtSlot(::Const.ItemSlot.Bag))
+		{
+			if (item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Throwing))
+			{
+				this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
+				break;
+			}
+		}
 	}}.onSpawned;
 });
