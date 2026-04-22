@@ -7,4 +7,14 @@ this.rf_draugr_warrior_bodyguard <- ::inherit("scripts/entity/tactical/enemies/r
 		this.m.AIAgent = ::new("scripts/ai/tactical/agents/rf_draugr_bodyguard_agent");
 		this.m.AIAgent.setActor(this);
 	}
+
+	function assignRandomEquipment()
+	{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
+		{
+			this.m.Items.equip(::new("scripts/items/shields/rf_draugr/rf_draugr_round_shield"));
+		}
+
+		this.rf_draugr_warrior.assignRandomEquipment();
+	}
 });
