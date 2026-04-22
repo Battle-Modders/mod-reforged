@@ -94,7 +94,7 @@ this.rf_marshal <- ::inherit("scripts/entity/tactical/human" {
 		local weapon = this.getMainhandItem();
 		if (weapon != null)
 		{
-			::Reforged.Skills.addMasteryOfEquippedWeapon(this);
+			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 		}
 	}
 });
