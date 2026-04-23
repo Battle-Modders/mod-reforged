@@ -226,8 +226,20 @@ this.rf_zombie_hero <- ::inherit("scripts/entity/tactical/enemies/zombie", {
 
 		if (::Math.rand(1, 100) <= 50 && this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
+
+			local weapon = ::Reforged.ItemTable.NamedNorthernWeaponMelee.roll({
+				Exclude = [
+					"scripts/items/weapons/named/named_spetum",
+					"scripts/items/weapons/named/named_two_handed_flail",
+					"scripts/items/weapons/named/named_two_handed_hammer",
+					"scripts/items/weapons/named/named_two_handed_mace"
+				]
+			});
+			if (weapon != null) this.m.Items.equip(::new(weapon));
+
 			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/named/named_axe"],
+				[1, "scripts/items/weapons/named/named_bardiche"],
 				[1, "scripts/items/weapons/named/named_cleaver"],
 				[1, "scripts/items/weapons/named/named_flail"],
 				[1, "scripts/items/weapons/named/named_rf_longsword"],
@@ -235,6 +247,7 @@ this.rf_zombie_hero <- ::inherit("scripts/entity/tactical/enemies/zombie", {
 				[1, "scripts/items/weapons/named/named_greatsword"],
 				[1, "scripts/items/weapons/named/named_rf_kriegsmesser"],
 				[1, "scripts/items/weapons/named/named_mace"],
+				[1, "scripts/items/weapons/named/named_rf_poleaxe"],
 				[1, "scripts/items/weapons/named/named_sword"],
 				[1, "scripts/items/weapons/named/named_two_handed_flail"],
 				[1, "scripts/items/weapons/named/named_two_handed_hammer"],

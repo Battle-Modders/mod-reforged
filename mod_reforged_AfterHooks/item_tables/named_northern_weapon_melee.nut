@@ -7,6 +7,7 @@
 	[1, "scripts/items/weapons/named/named_sword"],
 	[1, "scripts/items/weapons/named/named_warhammer"],
 
+	[1, "scripts/items/weapons/named/named_rf_battleaxe"],
 	[1, "scripts/items/weapons/named/named_greataxe"],
 	[1, "scripts/items/weapons/named/named_greatsword"],
 	[1, "scripts/items/weapons/named/named_rf_longsword"],
@@ -16,6 +17,5 @@
 	[1, "scripts/items/weapons/named/named_two_handed_flail"],
 	[1, "scripts/items/weapons/named/named_two_handed_hammer"],
 	[1, "scripts/items/weapons/named/named_two_handed_mace"],
-	[1, "scripts/items/weapons/named/named_rf_voulge"],
 	[1, "scripts/items/weapons/named/named_warbrand"]
 ]);

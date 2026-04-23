@@ -4,7 +4,7 @@
 	{
 		__original();
 		this.m.ResurrectionValue = 6.0; // vanilla 5.0
-		this.m.ResurrectionChance = 60; // vanilla 90
+		this.m.ResurrectionChance = 80; // vanilla 90
 	}}.create;
 
 	q.onInit = @() { function onInit()
@@ -58,10 +58,12 @@
 			{
 				local weapons = ::MSU.Class.WeightedContainer([
 					[1, "scripts/items/weapons/arming_sword"],
+					[1, "scripts/items/weapons/falchion"],
 					[1, "scripts/items/weapons/flail"],
 					[1, "scripts/items/weapons/hand_axe"],
 					[1, "scripts/items/weapons/military_pick"],
-					[1, "scripts/items/weapons/morning_star"]
+					[1, "scripts/items/weapons/morning_star"],
+					[1, "scripts/items/weapons/scramasax"]
 				]);
 
 				if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))

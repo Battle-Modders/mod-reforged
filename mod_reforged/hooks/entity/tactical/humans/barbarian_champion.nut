@@ -57,7 +57,6 @@
 		// Reforged
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_survival_instinct"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vigorous_assault"));
-		this.m.Skills.add(::new("scripts/skills/perks/perk_mastery_throwing"));
 	}}.onInit;
 
 	q.onSpawned = @(__original) { function onSpawned()
