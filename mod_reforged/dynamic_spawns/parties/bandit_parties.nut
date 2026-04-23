@@ -228,7 +228,7 @@ local parties = [
 				[60, 0.05],
 				[20, 0.1],
 				[20, 0.15]
-			]);
+			]).roll();
 
 			// Exclude baron from non-location spawns.
 			local worldEntity = this.getTopParty().getWorldEntity();
