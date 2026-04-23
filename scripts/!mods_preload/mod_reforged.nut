@@ -1,5 +1,5 @@
 ::Reforged <- {
-	Version = "0.8.11",
+	Version = "0.8.12",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
 	ItemTable = {},
