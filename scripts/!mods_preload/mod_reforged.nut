@@ -1,5 +1,5 @@
 ::Reforged <- {
-	Version = "0.8.12",
+	Version = "0.8.13",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
 	ItemTable = {},
@@ -32,7 +32,7 @@ local requiredMods = [
 	"mod_item_tables >= 0.1.3",
 	"mod_upd",
 	"mod_stack_based_skills >= 0.5.1",
-	"mod_reforged_assets >= 0.1.1"
+	"mod_reforged_assets >= 0.1.2"
 ];
 
 ::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);

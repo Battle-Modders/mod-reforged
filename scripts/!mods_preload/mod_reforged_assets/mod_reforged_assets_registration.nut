@@ -1,5 +1,5 @@
 ::Reforged.Assets <- {
-	Version = "0.1.1",
+	Version = "0.1.2",
 	ID = "mod_reforged_assets",
 	Name = "Reforged Mod Assets",
 };
