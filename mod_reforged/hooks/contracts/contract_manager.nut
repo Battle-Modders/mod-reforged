@@ -39,7 +39,6 @@
 					continue;
 
 				local c = contracts.remove(i);
-				::logInfo(format("Reforged: last visit contract removed: %s (%i)", c.getName(), c.getID()));
 
 				if (c.m.SituationID == 0)
 					continue;
