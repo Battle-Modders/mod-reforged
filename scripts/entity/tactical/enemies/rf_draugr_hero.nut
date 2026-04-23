@@ -22,6 +22,8 @@ this.rf_draugr_hero <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", {
 
 		this.m.Skills.add(::new("scripts/skills/effects/rf_unnerving_presence_effect"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_battle_forged"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_vanquisher"));
 	}
 
@@ -79,32 +81,9 @@ this.rf_draugr_hero <- ::inherit("scripts/entity/tactical/enemies/rf_draugr", {
 			::Reforged.Skills.addPerkGroupOfEquippedWeapon(this);
 			if (mainhandItem.isWeaponType(::Const.Items.WeaponType.Sword))
 			{
-				if (mainhandItem.isItemType(::Const.Items.ItemType.OneHanded))
-				{
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_exploit_opening"));
-					this.m.Skills.add(::new("scripts/skills/perks/perk_rf_pattern_recognition"));
-					this.m.Skills.removeByID("perk.rf_en_garde");
-				}
 				this.m.Skills.removeByID("perk.rf_tempo");
 				this.m.Skills.removeByID("actives.rf_passing_step");
 			}
-
-			if (::Reforged.Items.isDuelistValid(mainhandItem))
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_duelist"));
-			}
-			else
-			{
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_death_dealer"));
-				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
-			}
-		}
-
-		if (this.isArmedWithShield())
-		{
-			this.m.Skills.add(::new("scripts/skills/perks/perk_rf_rebuke"));
-			this.m.Skills.add(::new("scripts/skills/perks/perk_shield_expert"));
-			this.m.Skills.removeByID("actives.rf_cover_ally");
 		}
 	}
 });
