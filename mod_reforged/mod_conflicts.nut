@@ -74,6 +74,15 @@
 	local validFileCount = 0;
 	foreach (filename in reforgedFiles)
 	{
+		if (filename.find("mod_reforged_core-765-") != null)
+		{
+			filename = filename.slice(0, filename.find("mod_reforged_core-765-") + 22 + ::Reforged.Version.len());
+		}
+		else if (filename.find("mod_reforged_assets-765-") != null)
+		{
+			filename = filename.slice(0, filename.find("mod_reforged_assets-765-") + 24 + ::Reforged.Assets.Version.len());
+		}
+
 		if (validReforgedFilenames.find(filename) == null && filename.find("patch") == null)
 		{
 			::Hooks.errorAndQuit("You have a copy of an invalid Reforged zip file in your data folder. File: " + filename + ".zip");
