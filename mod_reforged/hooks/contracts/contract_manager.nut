@@ -9,7 +9,14 @@
 
 	q.update = @(__original) { function update( _force = false )
 	{
+		// Vanilla sets m.LastUpdateTime during __original, so we need to check it before calling it.
+		local shouldUpdate = this.m.LastUpdateTime + 1.0 < ::Time.getVirtualTimeF();
+
 		__original(_force);
+
+		if (!shouldUpdate)
+			return;
+
 		// Same guards as vanilla original
 		if (!_force && ::World.State.getMenuStack().hasBacksteps())
 		{
