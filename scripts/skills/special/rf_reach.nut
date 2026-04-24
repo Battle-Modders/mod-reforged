@@ -160,7 +160,7 @@ this.rf_reach <- ::inherit("scripts/skills/skill", {
 		{
 			_tooltip.push({
 				id = 100,	type = "text",	icon = "ui/icons/special.png",
-				text = "Too big to be [netted|Skill+net_effect]"
+				text = ::Reforged.Mod.Tooltips.parseString("Too big to be [netted|Skill+net_effect]")
 			});
 		}
 	}
