@@ -491,7 +491,9 @@
 		Strength = 30,
 		Cost = 32,
 		Row = -1,
-		Script = "scripts/entity/tactical/enemies/rf_zombie_hero"
+		Script = "scripts/entity/tactical/enemies/rf_zombie_hero",
+		NameList = ::Const.Strings.KnightNames,
+		TitleList = ::Const.Strings.FallenHeroTitles
 	},
 	{
 		XP = 350,
