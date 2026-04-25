@@ -26,8 +26,6 @@ if (t.ID == "")
 	return;
 
 local hooksMod = ::Hooks.register(t.ID, t.Version, t.Name);
-hooksMod.require([
-	"mod_msu",
-	"mod_modern_hooks",
-	"mod_reforged <= " + ::Reforged.Version // This ensures that subsequent builds of Reforged require the user to remove this patch.
-]);
+
+// This ensures that subsequent builds of Reforged require the user to remove this patch.
+hooksMod.require("mod_reforged <= " + ::Reforged.Version);
