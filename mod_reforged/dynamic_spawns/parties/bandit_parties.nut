@@ -108,7 +108,7 @@ local parties = [
 			this.getSpawnable("Unit.RF.BanditThug").StartingResourceMax = 250;
 			this.getSpawnable("Unit.RF.RF_BanditThugTough").StartingResourceMax = 250;
 
-			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 60, 200, 0);
+			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 60, 150, 0); // vanilla has ranged guaranteed from 148.
 			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.5, 600, 0.25);
 			ranged.RatioMin = ::Reforged.Math.lerpClamp(res, 200, 0.0, 300, 0.2);
 
@@ -165,7 +165,7 @@ local parties = [
 
 			ranged.RatioMin = ::Reforged.Math.lerpClamp(res, 200, 0.0, 300, 0.2);
 			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.55, 600, 0.3);
-			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 45, 200, 0);
+			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 45, 150, 0); // Vanilla has ranged guaranteed from 148 except 1 party at 165.
 
 			frontline.RatioMin = ::Reforged.Math.lerpClamp(res, 200, 0.45, 400, 0.6);
 
@@ -220,7 +220,7 @@ local parties = [
 			local boss = this.getSpawnable("UnitBlock.RF.BanditBoss");
 
 			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.40, 600, 0.3);
-			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 15, 300, 0);
+			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 15, 250, 0); // vanilla has ranged guaranteed from 228.
 
 			elite.ExclusionChance = ::Reforged.Math.lerpClamp(res, 300, 60, 500, 25);
 
