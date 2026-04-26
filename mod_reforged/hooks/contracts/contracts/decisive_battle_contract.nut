@@ -10,4 +10,31 @@
 			)
 		);
 	}}.RF_getOriginText;
+
+	q.onSerialize = @(__original) { function onSerialize( _out )
+	{
+		// Vanilla calculates and sets m.WarcampTile during the `start()` function but
+		// not serialize m.WarcampTile, so it becomes null after loading a save.
+		// This doesn't cause any problems in vanilla because vanilla recalculates the
+		// WarcampTile during the `end()` function of the `Offer` state. During that it sets
+		// the `Warcamp` world entity which it does serialize.
+		// But it causes issues in Reforged where we want to show the tooltip of the contract
+		// and where we need the WarcampTile in the offer text before accepting the contract.
+		if (!::MSU.isNull(this.m.WarcampTile))
+		{
+			this.m.Flags.set("RF_WarcampTileSquareCoords", format("%i,%i", this.m.WarcampTile.SquareCoords.X, this.m.WarcampTile.SquareCoords.Y));
+		}
+		__original(_out);
+	}}.onSerialize;
+
+	q.onDeserialize = @(__original) { function onDeserialize( _in )
+	{
+		__original(_in);
+		if (this.m.Flags.has("RF_WarcampTileSquareCoords"))
+		{
+			local coords = ::split(this.m.Flags.get("RF_WarcampTileSquareCoords"), ",");
+			this.m.WarcampTile = ::World.getTileSquare(coords[0].tointeger(), coords[1].tointeger());
+			this.m.Flags.remove("RF_WarcampTileSquareCoords");
+		}
+	}}.onDeserialize;
 });
