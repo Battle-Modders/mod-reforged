@@ -3,7 +3,11 @@
 	q.getRumor = @(__original) { function getRumor( _isPaidFor = false )
 	{
 		local lastRumor = this.m.LastRumor;
+
+		::Reforged.__IsDuringGetRumor = true;
 		local ret = __original(_isPaidFor);
+		::Reforged.__IsDuringGetRumor = false;
+
 		if (this.m.RumorsGiven > 3) return ret;
 		if (ret == null) return ret;
 		if (ret == lastRumor) return ret;
