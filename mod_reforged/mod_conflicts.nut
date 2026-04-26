@@ -71,30 +71,45 @@
 		"mod_reforged_assets-765-" + ::String.replace(::Reforged.Assets.Version, ".", "-") // NexusMods naming scheme
 	];
 
+	local maxCountAllowed = 2;
+
 	local validFileCount = 0;
 	foreach (filename in reforgedFiles)
 	{
-		if (filename.find("mod_reforged_core-765-") != null)
+		// This means you have a single full build of the mod.
+		if (filename == "mod_reforged")
+			maxCountAllowed = 1;
+
+		// skip patch files as we cannot predict their valid names.
+		if (filename.find("patch") != null)
+			continue;
+
+		local nameToMatch = filename;
+
+		// NexusMods appends some stuff to the end of the filename. We slice
+		// that out so we can compare it with our valid filenames.
+		if (filename.len() > 22 && filename.slice(0, 22) == "mod_reforged_core-765-")
 		{
-			filename = filename.slice(0, filename.find("mod_reforged_core-765-") + 22 + ::Reforged.Version.len());
+			nameToMatch = filename.slice(0, 22 + ::Reforged.Version.len());
 		}
-		else if (filename.find("mod_reforged_assets-765-") != null)
+		else if (filename.len() > 24 && filename.slice(0, 24) == "mod_reforged_assets-765-")
 		{
-			filename = filename.slice(0, filename.find("mod_reforged_assets-765-") + 24 + ::Reforged.Assets.Version.len());
+			nameToMatch = filename.slice(0, 24 + ::Reforged.Assets.Version.len());
 		}
 
-		if (validReforgedFilenames.find(filename) == null && filename.find("patch") == null)
+		if (validReforgedFilenames.find(nameToMatch) == null)
 		{
-			::Hooks.errorAndQuit("You have a copy of an invalid Reforged zip file in your data folder. File: " + filename + ".zip");
+			::Hooks.errorAndQuit("You have a copy of an invalid Reforged file in your data folder. File: " + filename);
 		}
-		else if (filename.find("patch") == null)
+		else
 		{
 			validFileCount++;
 		}
 	}
 
-	if (validFileCount > 2)
+	// At most we want `core` and `assets` files. So the valid file count must not be greater than 2.
+	if (validFileCount > maxCountAllowed)
 	{
-		::Hooks.errorAndQuit("You have duplicate copies of valid Reforged zip files in your data folder. Delete the duplicates.");
+		::Hooks.errorAndQuit("You have duplicate copies of valid Reforged files in your data folder. Delete the duplicates.");
 	}
 }}.checkConflictWithFilename;
