@@ -5,7 +5,12 @@
 	// Tactical hit factors by MrBrut. https://www.nexusmods.com/battlebrothers/mods/283
 	"mod_tactical_hit_factors [A similar feature is included in Reforged]",
 	// Tactical tooltip by MrBrut. https://www.nexusmods.com/battlebrothers/mods/266
-	"mod_tactical_tooltip [A similar feature is included in Reforged]"
+	"mod_tactical_tooltip [A similar feature is included in Reforged]",
+	// New Champions by LeVilainJoueur https://www.nexusmods.com/battlebrothers/mods/69
+	// It overwrites `tactical_entity_manager.setupEntity` and calls the base `actor` class's `makeMiniboss`
+	// instead of calling the `makeMiniboss` defined in the entity's own file.
+	// This breaks any custom implementation of `makeMiniboss` in entities.
+	"tnf_newChampions [Breaks the implementation of champion enemies in Reforged]"
 ]);
 
 // Some mods don't register with hooks, so we have to check for their existence by their filename
