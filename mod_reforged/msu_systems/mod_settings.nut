@@ -25,6 +25,8 @@
 	tacticalTooltipPage.addBooleanSetting("TacticalTooltip_CollapseAsText", false, "Collapse as Text", "If enabled, then skills collapse using their names as text, otherwise they collapse using their icons.");
 	tacticalTooltipPage.addBooleanSetting("ShowStatusPerkAndEffect", true, "Show Status Perk And Effect", "Some Perks are also Status Effects. Usually their Effect is hidden until some condition is fulfilled. When this setting is enabled, these perks show up in the Perks category even when they show up under Effects (e.g. when their effect is active). When disabled, when they appear under Effects, they will be hidden from the Perks category. This can help save space on the tooltip.");
 	tacticalTooltipPage.addBooleanSetting("HeaderForEmptyCategories", false, "Show Header for empty categories");
+
+	tacticalTooltipPage.addRangeSetting("TacticalTooltip_ThreatHitchanceThreshold", 5, 0, 100, 1, "Threat Hitchance Threshold", "During movement preview, opponents with predicted hitchance equal to this or less are collapsed into a single tooltip entry.");
 }
 
 {	// Misc
