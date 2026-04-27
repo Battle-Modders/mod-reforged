@@ -54,6 +54,11 @@ this.perk_rf_steady_brace <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
+		// Don't apply the bonuses during previewed movement so we don't include the
+		// bonuses in the hit-chance preview during movement preview.
+		if (this.getContainer().getActor().getPreviewMovement() != null)
+			return;
+
 		if (!this.m.IsInEffect || !this.isSkillValid(_skill))
 			return;
 
