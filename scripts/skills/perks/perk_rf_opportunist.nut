@@ -103,17 +103,34 @@ this.perk_rf_opportunist <- ::inherit("scripts/skills/skill", {
 		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.Weapon) || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
 			return;
 
+		local isPrimed = this.m.IsPrimed;
+		local attacksRemaining = this.m.AttacksRemaining;
+		if (actor.isPreviewing())
+		{
+			if (actor.getPreviewMovement() != null)
+			{
+				isPrimed = isPrimed || this.canProcOntile(actor.getPreviewMovement().End);
+			}
+			else if (actor.getPreviewSkill() != null)
+			{
+				if (attacksRemaining != 0 && this.isSkillValid(actor.getPreviewSkill()))
+				{
+					attacksRemaining--;
+				}
+			}
+		}
+
 		foreach (skill in weapon.getSkills())
 		{
 			if (!this.isSkillValid(skill))
 				continue;
 
-			if (this.m.IsPrimed)
+			if (isPrimed)
 			{
 				skill.m.ActionPointCost = 0;
 				skill.m.FatigueCostMult *= this.m.FatigueCostMult;
 			}
-			else if (this.m.AttacksRemaining != 0 && this.m.TurnsRemaining != 0 && skill.m.ActionPointCost > 1)
+			else if (attacksRemaining != 0 && this.m.TurnsRemaining != 0 && skill.m.ActionPointCost > 1)
 			{
 				skill.m.ActionPointCost /= 2;
 			}
