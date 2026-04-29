@@ -43,8 +43,15 @@
 	q.onEnter = @(__original) { function onEnter()
 	{
 		local ret = __original();
+
 		// If ret is true that means we successfully entered the settlement.
-		if (ret)
+		// We need the check for ::World.State.getCurrentTown() because entering
+		// a hostile settlement still triggers `onEnter` and returns true.
+		// This causes issues in starting contracts as the World.State.m.LastEnteredTown
+		// does not get set to that town and the town screen does not show up.
+		// This results in contracts which set their Home to the current town during
+		// their `start` function to have a null Home.
+		if (ret && ::MSU.isEqual(::World.State.getCurrentTown(), this))
 		{
 			this.RF_clearLastVisitInfo();
 
