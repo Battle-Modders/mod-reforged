@@ -23,6 +23,45 @@
 		__original();
 	}}.initNextRound;
 
+	// Overwrite to remove the vanilla condition of not being the last entity in the turn order.
+	// We allow waiting even when you are the last entity in the turn order.
+	// This is important as some skills may have triggers based on Waiting e.g. recovering AP.
+	q.canEntityWait = @() { function canEntityWait( _entity )
+	{
+		return !_entity.isWaitActionSpent();
+	}}.canEntityWait;
+
+	// Overwrite to change behavior when waiting entity is the last entity in the turn order.
+	// Vanilla ends the turn and triggers the next round in this case. We, instead only trigger
+	// the wait of the entity and then update the entity's visuals.
+	q.entityWaitTurn = @() { function entityWaitTurn( _entity )
+	{
+		if (::Time.hasEventScheduled(::TimeUnit.Virtual) || ::Tactical.State.isPaused())
+		{
+			return;
+		}
+
+		local entity = this.findEntityByID(this.m.CurrentEntities, _entity.getID());
+
+		if (entity != null)
+		{
+			if (!entity.entity.isWaitActionSpent())
+			{
+				if (_entity.getID() == this.m.CurrentEntities.top().getID())
+				{
+					_entity.wait();
+					this.updateEntity(_entity.getID());
+					return true;
+				}
+
+				this.initNextTurnBecauseOfWait();
+				return true;
+			}
+		}
+
+		return false;
+	}}.entityWaitTurn;
+
 	q.convertEntityToUIData = @(__original) { function convertEntityToUIData( _entity, isLastEntity = false )
 	{
 		local ret = __original(_entity, isLastEntity);
