@@ -7,12 +7,12 @@ local hasZoneOfControlOtherThan = ::TacticalTile.hasZoneOfControlOtherThan;
 
 // Hook to return as if the previewing entity has ZoC on this tile. Relevant for hit-chance prediction during movement preview.
 local getZoneOfControlCount = ::TacticalTile.getZoneOfControlCount;
-::TacticalTile.getZoneOfControlCount <- { function getZoneOfControlCount( _factions )
+::TacticalTile.getZoneOfControlCount <- { function getZoneOfControlCount( _faction )
 {
-	if (!this.Properties.has("RF_PreviewZOCFaction") || _factions.find(this.Properties.get("RF_PreviewZOCFaction")) == null)
-		return getZoneOfControlCount(_factions);
+	if (!this.Properties.has("RF_PreviewZOCFaction") || this.Properties.get("RF_PreviewZOCFaction") != _faction)
+		return getZoneOfControlCount(_faction);
 
-	return getZoneOfControlCount(_factions) + 1;
+	return getZoneOfControlCount(_faction) + 1;
 }}.getZoneOfControlCount;
 
 // Hook to return as if the previewing entity has ZoC on this tile. Relevant for hit-chance prediction during movement preview.
