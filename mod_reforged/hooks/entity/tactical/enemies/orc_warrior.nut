@@ -79,4 +79,13 @@
 
 		return ret;
 	}}.makeMiniboss;
+
+	// Allow to be resurrected.
+	q.generateCorpse = @(__original) { function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local ret = __original(_tile, _fatalityType, _killer);
+		ret.IsResurrectable = _fatalityType != ::Const.FatalityType.Decapitated && _fatalityType != ::Const.FatalityType.Smashed;
+		ret.Type = "scripts/entity/tactical/enemies/rf_zombie_orc_warrior";
+		return ret;
+	}}.generateCorpse;
 });
