@@ -61,7 +61,7 @@ this.rf_frostbound_manager <- ::inherit("scripts/skills/skill", {
 
 		if (frostbound != null && actor.isAlive())
 		{
-			::Sound.play(::MSU.Array.rand(frostbound.m.SoundOnUse), ::Const.Sound.Volume.Actor * actor.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] * (::Math.rand(75, 100) * 0.01), actor.getPos(), actor.m.SoundPitch);
+			::Sound.play(::MSU.Array.rand(frostbound.m.SoundOnUse), ::Const.Sound.Volume.Actor * actor.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] * (::Math.rand(55, 75) * 0.01), actor.getPos(), actor.m.SoundPitch);
 		}
 	}
 });
