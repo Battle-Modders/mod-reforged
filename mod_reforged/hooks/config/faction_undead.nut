@@ -254,7 +254,7 @@
 	"Barrowkin Thrall",
 	"Barrowkin Thralls",
 	"rf_draugr_thrall_orientation",
-	::Const.FactionType.RF_Draugr,
+	::Const.FactionType.Undead,
 	{
 		Variant = 0,
 		Strength = 25,
@@ -293,7 +293,7 @@
 	"Barrowkin Drengr",
 	"Barrowkin Drengr",
 	"rf_draugr_warrior_orientation",
-	::Const.FactionType.RF_Draugr,
+	::Const.FactionType.Undead,
 	{
 		Variant = 0,
 		Strength = 35,
@@ -332,7 +332,7 @@
 	"Barrowkin Huskarl",
 	"Barrowkin Huskarls",
 	"rf_draugr_huskarl_orientation",
-	::Const.FactionType.RF_Draugr,
+	::Const.FactionType.Undead,
 	{
 		Variant = 0,
 		Strength = 45,
@@ -371,7 +371,7 @@
 	"Barrowkin Hero",
 	"Barrowkin Heroes",
 	"rf_draugr_hero_orientation",
-	::Const.FactionType.RF_Draugr,
+	::Const.FactionType.Undead,
 	{
 		Variant = 1,
 		Strength = 60,
@@ -411,7 +411,7 @@
 	"Barrow Seer",
 	"Barrow Seers",
 	"rf_draugr_shaman_orientation",
-	::Const.FactionType.RF_Draugr,
+	::Const.FactionType.Undead,
 	{
 		Variant = 0,
 		Strength = 60,
