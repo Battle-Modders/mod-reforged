@@ -270,12 +270,13 @@
 									.filter(@(_, _a) !_a.isAlliedWith(entity) && _a.onMovementInZoneOfControl(entity, true))
 									.map(function(_a) {
 										local aoo = _a.getSkills().getAttackOfOpportunity();
+										_a.getSkills().update();
+										_tag.ActorsToUpdate.push(_a);
 										return {
 											id = 100,	type = "text",	icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(_a)),
 											text = ::MSU.Text.colorNegative(aoo.getHitchance(entity) + "%") + " chance to hit with " + ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedSkillName(aoo, "entityId:" + _a.getID()))
 										}
 									});
-
 
 			if (spearwallAttacks.len() != 0)
 			{
@@ -322,8 +323,11 @@
 					// with the previewing entity being considered at the destTile. During cleanup
 					// we will have to do another update on these enemies to set them back to the
 					// correct properties.
-					enemy.getSkills().update();
-					_tag.ActorsToUpdate.push(enemy);
+					if (_tag.ActorsToUpdate.find(enemy) == null)
+					{
+						enemy.getSkills().update();
+						_tag.ActorsToUpdate.push(enemy);
+					}
 
 					local hitChance = enemyAttack.getHitchance(entity);
 					if (text == "" && hitChance <= collapseThreshold)
