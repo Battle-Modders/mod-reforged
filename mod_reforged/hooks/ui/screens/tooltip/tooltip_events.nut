@@ -292,84 +292,110 @@
 
 		// Below we add tooltip about chances to hit valid targets and to be hit from opponents assuming we are at the destination tile.
 
-		local myAttacks = entity.getSkills().getAllSkillsOfType(::Const.SkillType.Active).filter(@(_, _a) _a.isAttack());
-		local myVision = entity.getCurrentProperties().getVision();
-		local extraData = "entityId: " + entity.getID();
-
-		local attacks = [];
-		local collapseThreshold = ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_ThreatHitchanceThreshold").getValue();
-		local attacksBelowThreshold = "";
-
-		foreach (enemy in ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _a) !_a.isAlliedWith(entity) && !_a.isHiddenToPlayer()))
+		local showPlayer = true;
+		local showEnemy = true;
+		switch (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_MovementPreviewHitchances").getValue())
 		{
-			local text = "";
-			local score = 0;
-			foreach (a in myAttacks)
-			{
-				if (a.isUsable() && a.isInRange(enemy.getTile()) && (!a.isVisibleTileNeeded() || destTile.hasLineOfSightTo(enemy.getTile(), myVision)))
-				{
-					local hitChance = a.getHitchance(entity);
-					score = 999 + hitChance;
-					text = format("%s with %s", ::MSU.Text.colorPositive(a.getHitchance(enemy) + "%"), ::Reforged.NestedTooltips.getNestedSkillName(a, extraData));
-					break;
-				}
-			}
+			case "None":
+				showplayer = false;
+				showEnemy = false;
+				break;
 
-			foreach (enemyAttack in enemy.getSkills().getAllSkillsOfType(::Const.SkillType.Active).filter(@(_, _a) _a.isAttack()))
-			{
-				if (enemyAttack.isUsable() && enemyAttack.isInRange(destTile) && (!enemyAttack.isVisibleTileNeeded() || enemy.getTile().hasLineOfSightTo(destTile, enemy.getCurrentProperties().getVision())))
-				{
-					// We update the skills of the enemy so that it sets the correct properties
-					// with the previewing entity being considered at the destTile. During cleanup
-					// we will have to do another update on these enemies to set them back to the
-					// correct properties.
-					if (_tag.ActorsToUpdate.find(enemy) == null)
-					{
-						enemy.getSkills().update();
-						_tag.ActorsToUpdate.push(enemy);
-					}
-
-					local hitChance = enemyAttack.getHitchance(entity);
-					if (text == "" && hitChance <= collapseThreshold)
-					{
-						attacksBelowThreshold += ::Reforged.NestedTooltips.getNestedEntityImage(enemy);
-					}
-					else
-					{
-						score += hitChance;
-						text += text == "" ? "" : ", ";
-						text += format("%s with %s", ::MSU.Text.colorNegative(hitChance + "%"), ::Reforged.NestedTooltips.getNestedSkillName(enemyAttack, "entityId: " + enemy.getID()));
-					}
-					break;
-				}
-			}
-
-			if (text == "")
-				continue;
-
-			attacks.push([score, {
-				id = 100, type = "text", icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(enemy)),
-				text = ::Reforged.Mod.Tooltips.parseString(text)
-			}]);
+			case "Player Only":
+				showEnemy = false;
+				break;
+			case "AI Only":
+				showPlayer = false;
+				break;
 		}
 
-		if (attacks.len() != 0)
+		if (showPlayer || showEnemy)
 		{
-			ret.push({
-				id = 100, type = "text", icon = "ui/icons/icon_contract_swords.png",
-				text = format("Chances %s and %s:", ::MSU.Text.colorPositive("to hit"), ::MSU.Text.colorNegative("to be hit"))
-			})
-			attacks.sort(@(_a, _b) -1 * (_a[0] <=> _b[0]));
-			ret.extend(attacks.map(@(_a) _a[1]));
-		}
+			local myAttacks = entity.getSkills().getAllSkillsOfType(::Const.SkillType.Active).filter(@(_, _a) _a.isAttack());
+			local myVision = entity.getCurrentProperties().getVision();
+			local extraData = "entityId: " + entity.getID();
 
-		if (attacksBelowThreshold != "")
-		{
-			ret.push({
-				id = 100, type = "text", icon = "ui/icons/icon_contract_swords.png",
-				text = "Opponents with hitchance below " + ::MSU.Text.colorNegative(collapseThreshold + "%")
-				children = [{ id = 100, type = "text", text = ::Reforged.Mod.Tooltips.parseString(attacksBelowThreshold) }]
-			});
+			local attacks = [];
+			local collapseThreshold = ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_CollapseHitchanceThreshold").getValue();
+			local attacksBelowThreshold = "";
+
+			foreach (enemy in ::Tactical.Entities.getAllInstancesAsArray().filter(@(_, _a) !_a.isAlliedWith(entity) && !_a.isHiddenToPlayer()))
+			{
+				local text = "";
+				local score = 0;
+				if (showPlayer)
+				{
+					foreach (a in myAttacks)
+					{
+						if (a.isUsable() && a.isInRange(enemy.getTile()) && (!a.isVisibleTileNeeded() || destTile.hasLineOfSightTo(enemy.getTile(), myVision)))
+						{
+							local hitChance = a.getHitchance(entity);
+							score = 999 + hitChance;
+							text = format("%s with %s", ::MSU.Text.colorPositive(a.getHitchance(enemy) + "%"), ::Reforged.NestedTooltips.getNestedSkillName(a, extraData));
+							break;
+						}
+					}
+				}
+
+				if (showEnemy)
+				{
+					foreach (enemyAttack in enemy.getSkills().getAllSkillsOfType(::Const.SkillType.Active).filter(@(_, _a) _a.isAttack()))
+					{
+						if (enemyAttack.isUsable() && enemyAttack.isInRange(destTile) && (!enemyAttack.isVisibleTileNeeded() || enemy.getTile().hasLineOfSightTo(destTile, enemy.getCurrentProperties().getVision())))
+						{
+							// We update the skills of the enemy so that it sets the correct properties
+							// with the previewing entity being considered at the destTile. During cleanup
+							// we will have to do another update on these enemies to set them back to the
+							// correct properties.
+							if (_tag.ActorsToUpdate.find(enemy) == null)
+							{
+								enemy.getSkills().update();
+								_tag.ActorsToUpdate.push(enemy);
+							}
+
+							local hitChance = enemyAttack.getHitchance(entity);
+							if (score == 0 && hitChance <= collapseThreshold)
+							{
+								attacksBelowThreshold += ::Reforged.NestedTooltips.getNestedEntityImage(enemy);
+							}
+							else
+							{
+								score += hitChance;
+								text += text == "" ? "" : ", ";
+								text += format("%s with %s", ::MSU.Text.colorNegative(hitChance + "%"), ::Reforged.NestedTooltips.getNestedSkillName(enemyAttack, "entityId: " + enemy.getID()));
+							}
+							break;
+						}
+					}
+				}
+
+				if (text == "")
+					continue;
+
+				attacks.push([score, {
+					id = 100, type = "text", icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedEntityImage(enemy)),
+					text = ::Reforged.Mod.Tooltips.parseString(text)
+				}]);
+			}
+
+			if (attacks.len() != 0)
+			{
+				ret.push({
+					id = 100, type = "text", icon = "ui/icons/icon_contract_swords.png",
+					text = format("Chances %s and %s:", ::MSU.Text.colorPositive("to hit"), ::MSU.Text.colorNegative("to be hit"))
+				})
+				attacks.sort(@(_a, _b) -1 * (_a[0] <=> _b[0]));
+				ret.extend(attacks.map(@(_a) _a[1]));
+			}
+
+			if (attacksBelowThreshold != "")
+			{
+				ret.push({
+					id = 100, type = "text", icon = "ui/icons/icon_contract_swords.png",
+					text = "Opponents with hitchance below " + ::MSU.Text.colorNegative(collapseThreshold + "%")
+					children = [{ id = 100, type = "text", text = ::Reforged.Mod.Tooltips.parseString(attacksBelowThreshold) }]
+				});
+			}
 		}
 
 		_cleanupFunc(_tag);
