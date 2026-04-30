@@ -29,7 +29,9 @@ this.rf_formidable_approach_manager <- ::inherit("scripts/skills/skill", {
 		if (actor.isPreviewing() && actor.getPreviewMovement() != null)
 		{
 			local destTile = ::Tactical.State.getLastTileHovered();
-			if (destTile.IsEmpty)
+			// destTile can be null when swapping items using extra keyinds mod while previewing a movement.
+			// Maybe this needs to be fixed over at that mod.
+			if (destTile != null && destTile.IsEmpty)
 			{
 				// Iterate over the enemies next to the previewed destination tile
 				foreach (enemy in ::Tactical.Entities.getAdjacentActors(destTile).filter(@(_, _a) !_a.isAlliedWith(actor)))
