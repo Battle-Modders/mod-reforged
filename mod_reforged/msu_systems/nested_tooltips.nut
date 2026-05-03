@@ -82,6 +82,20 @@ local getThresholdForInjury = function( _script )
 			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|Faction+%i]", __original(), this.getID())) : __original();
 		}}.getName;
 
+		// Some entities are spawned during event/contract `setScreen` while isApplyingNestingForEvents is true.
+		// This causes the `_name` passed here to sometimes contain nested tooltip tags. So we have to clean up
+		// the name otherwise the world map label for the entity ends up with the tooltip tags.
+		// Note: An alternative would be to allow nested tooltips in name (so they appear in the tooltip of the entity)
+		// but hook `updateStrength` to retroactively remove the tooltips from the name label.
+		q.spawnEntity = @(__original) { function spawnEntity( _tile, _name, _uniqueName, _template, _resources, _minibossify = 0 )
+		{
+			if (::Reforged.NestedTooltips.isApplyingNestingForEvents())
+			{
+				_name = ::Reforged.Mod.Tooltips.removeAllFromString(_name);
+			}
+			return __original(_tile, _name, _uniqueName, _template, _resources, _minibossify);
+		}}.spawnEntity;
+
 		if (q.contains("getNameOnly"))
 		{
 			q.getNameOnly = @(__original) { function getNameOnly()
