@@ -15,7 +15,7 @@
 	q.isDroppedAsLoot = @(__original) { function isDroppable()
 	{
 		local original_CurrentSlotType = this.m.CurrentSlotType;
-		this.m.CurrentSlotType = ::Const.ItemSlot.Mainhand;
+		this.m.CurrentSlotType = this.m.SlotType;
 		local ret = __original();
 		this.m.CurrentSlotType = original_CurrentSlotType;
 		return ret;
