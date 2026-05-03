@@ -36,9 +36,7 @@ addFaction(
 		// "scripts/factions/actions/rf_send_draugr_roamers_action"
 	],
 	[
-		::Const.Faction.Zombies,
-		::Const.Faction.Beasts,
-		::Const.Faction.Undead
+		// No alliances
 	],
 	[
 		"music/rf_draugr_1.ogg",
