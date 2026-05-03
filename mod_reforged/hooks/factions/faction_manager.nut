@@ -31,17 +31,7 @@
 	q.createAlliances = @(__original) { function createAlliances()
 	{
 		this.RF_createDraugr();
-
 		__original();
-
-		local zombies = this.getFactionOfType(::Const.FactionType.Zombies);
-		local undead = this.getFactionOfType(::Const.FactionType.Undead);
-		local draugr = this.getFactionOfType(::Const.FactionType.RF_Draugr);
-
-		zombies.addAlly(draugr.getID());
-		undead.addAlly(draugr.getID());
-		draugr.addAlly(zombies.getID());
-		draugr.addAlly(undead.getID());
 	}}.createAlliances;
 
 	q.runSimulation = @(__original) { function runSimulation()
