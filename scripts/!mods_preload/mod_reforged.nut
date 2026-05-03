@@ -1,5 +1,5 @@
 ::Reforged <- {
-	Version = "0.8.15",
+	Version = "0.8.16",
 	ID = "mod_reforged",
 	Name = "Reforged Mod",
 	ItemTable = {},
@@ -17,10 +17,10 @@
 };
 
 local requiredMods = [
-	"vanilla >= 1.5.1-6",
-	"mod_modular_vanilla >= 0.8.2",
+	"vanilla >= 1.5.1-8",
+	"mod_modular_vanilla >= 0.8.3",
 	"mod_msu >= 1.8.0",
-	"mod_nested_tooltips >= 0.5.1",
+	"mod_nested_tooltips >= 0.5.3",
 	"mod_modern_hooks >= 0.4.10"
 	"dlc_lindwurm",
 	"dlc_unhold",
@@ -32,7 +32,7 @@ local requiredMods = [
 	"mod_item_tables >= 0.1.3",
 	"mod_upd",
 	"mod_stack_based_skills >= 0.5.1",
-	"mod_reforged_assets >= 0.1.2"
+	"mod_reforged_assets >= 0.1.3"
 ];
 
 ::Reforged.HooksMod <- ::Hooks.register(::Reforged.ID, ::Reforged.Version, ::Reforged.Name);
