@@ -17,6 +17,55 @@
 		this.getFlags().remove("RF_Spawnlist");
 	}}.clearTroops;
 
+	// Show actual numbers instead of text when dev spawns info is enabled.
+	q.getTroopComposition = @(__original) { function getTroopComposition()
+	{
+		if (!::Reforged.Mod.ModSettings.getSetting("Dev_SpawnsInfo").getValue())
+		{
+			return __original();
+		}
+
+		// The following is similar to how vanilla sets it up, except we show the actual numbers.
+		local ret = [];
+		local champions = [];
+		local entityTypes = array(::Const.EntityType.len(), 0);
+
+		foreach (t in this.m.Troops)
+		{
+			if (t.Script.len() == "")
+				continue;
+
+			if (t.Variant != 0)
+			{
+				champions.push(t);
+			}
+			else
+			{
+				++entityTypes[t.ID];
+			}
+		}
+
+		foreach (c in champions)
+		{
+			ret.push({id = 20,	type = "text",	icon = "ui/orientation/" + ::Const.EntityIcon[c.ID] + ".png", text = c.Name});
+		}
+
+		foreach (i, num in entityTypes)
+		{
+			if (num != 0)
+			{
+				ret.push({
+					id = 20,
+					type = "text",
+					icon = "ui/orientation/" + ::Const.EntityIcon[i] + ".png",
+					text = num + " " + (num == 1 ? ::Const.Strings.EntityName[i] : ::Const.Strings.EntityNamePlural[i])
+				});
+			}
+		}
+
+		return ret;
+	}}.getTroopComposition;
+
 	// Contracts that target this entity and are known to the player.
 	q.RF_getKnownContractsTooltip <- { function RF_getKnownContractsTooltip()
 	{
