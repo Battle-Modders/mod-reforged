@@ -1,7 +1,7 @@
 ::Reforged.Entities.editEntity("BanditThug",
 	null, // Vanilla Cost 9
 	{
-		XP = 120, // vanilla 150
+		XP = 150,
 		ActionPoints = 9,
 		Hitpoints = 55,
 		Bravery = 40,
@@ -34,7 +34,7 @@
 		Script = "scripts/entity/tactical/enemies/rf_bandit_pillager"
 	},
 	{
-		XP = 200,
+		XP = 225,
 		ActionPoints = 9,
 		Hitpoints = 75,
 		Bravery = 50,
@@ -59,7 +59,7 @@
 		Strength = 23 // vanilla 20
 	},
 	{
-		XP = 250,
+		XP = 300,
 		ActionPoints = 9,
 		Hitpoints = 80, // vanilla 75
 		Bravery = 60, // vanilla 55
@@ -92,7 +92,7 @@
 		Script = "scripts/entity/tactical/enemies/rf_bandit_marauder"
 	},
 	{
-		XP = 300,
+		XP = 375,
 		ActionPoints = 9,
 		Hitpoints = 85,
 		Bravery = 70,
@@ -142,7 +142,7 @@
 		Script = "scripts/entity/tactical/enemies/rf_bandit_pillager_tough"
 	}),
 	{
-		XP = 200,
+		XP = 225,
 		ActionPoints = 9,
 		Hitpoints = 110,
 		Bravery = 60,
@@ -167,7 +167,7 @@
 		Script = "scripts/entity/tactical/enemies/rf_bandit_raider_tough"
 	}),
 	{
-		XP = 250,
+		XP = 300,
 		ActionPoints = 9,
 		Hitpoints = 130,
 		Bravery = 70,
@@ -192,7 +192,7 @@
 		Script = "scripts/entity/tactical/enemies/rf_bandit_marauder_tough"
 	}),
 	{
-		XP = 300,
+		XP = 375,
 		ActionPoints = 9,
 		Hitpoints = 150,
 		Bravery = 80,
@@ -219,7 +219,7 @@
 	::Const.FactionType.Bandits,
 	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_BanditPillager, { Script = "scripts/entity/tactical/enemies/rf_bandit_vandal" }),
 	{
-		XP = 200,
+		XP = 225,
 		ActionPoints = 9,
 		Hitpoints = 60,
 		Bravery = 45,
@@ -246,7 +246,7 @@
 	::Const.FactionType.Bandits,
 	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.BanditRaider, { Script = "scripts/entity/tactical/enemies/rf_bandit_outlaw" }),
 	{
-		XP = 250,
+		XP = 300,
 		ActionPoints = 9,
 		Hitpoints = 70,
 		Bravery = 55,
@@ -273,7 +273,7 @@
 	::Const.FactionType.Bandits,
 	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_BanditMarauder, { Script = "scripts/entity/tactical/enemies/rf_bandit_highwayman" }),
 	{
-		XP = 300,
+		XP = 375,
 		ActionPoints = 9,
 		Hitpoints = 70,
 		Bravery = 60,
