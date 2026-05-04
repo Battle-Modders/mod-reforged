@@ -40,7 +40,7 @@
 }
 
 {	// Debug
-	local debugPage = ::Reforged.Mod.ModSettings.addPage("Debug & Dev");
+	local debugPage = ::Reforged.Mod.ModSettings.addPage("Debug", "Debug & Dev");
 	debugPage.addBooleanSetting("Debug_onAnySkillExecutedFully", true, "onAnySkillExecutedFully", "Enable for debug logging of onAnySkillExecutedFully module").addBeforeChangeCallback(@( _newValue ) ::Reforged.Mod.Debug.setFlag("onAnySkillExecutedFully", _newValue));
 	debugPage.addBooleanSetting("Debug_AIAgentFixes", false, "AIAgentFixes", "Enable for debug logging of AIAgentFixes module").addBeforeChangeCallback(@( _newValue ) ::Reforged.Mod.Debug.setFlag("AIAgentFixes", _newValue));
 
@@ -62,3 +62,5 @@
 }, "Wait Turn with all Characters");
 
 ::Reforged.Mod.Keybinds.addSQKeybind("ConfirmSkillUseKeybind", "ctrl", ::MSU.Key.State.Tactical, @() true, "Confirm Skill Use", null, "Used to toggle the confirmation requirement for skills that are normally used immediately (e.g. Shieldwall, Rally). It allows you to either preview the Action Point and Fatigue costs or bypass confirmation, depending on your \'Confirm Skill Use\' setting.");
+
+::Reforged.Mod.Keybinds.addSQKeybind("ToggleReforgedDevMode", "ctrl+tab", ::MSU.Key.State.All, function() { ::Reforged.__toggleDevMode(); return true; }, "Toggle Reforged Dev Mode", null, "Used to toggle Dev mode for Reforged. This enables/disables the various Dev mode settings all at once.");
