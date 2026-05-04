@@ -59,7 +59,7 @@
 		Strength = 23 // vanilla 20
 	},
 	{
-		XP = 250, // vanilla 250
+		XP = 250,
 		ActionPoints = 9,
 		Hitpoints = 80, // vanilla 75
 		Bravery = 60, // vanilla 55
@@ -439,7 +439,7 @@
 ::Reforged.Entities.editEntity("Wardog",
 	null, // Vanilla Cost/Strength: 8/9
 	{
-		XP = 75, // vanilla 75
+		XP = 75,
 		ActionPoints = 12,
 		Hitpoints = 50,
 		Bravery = 50, // vanilla 40
@@ -461,16 +461,16 @@
 ::Reforged.Entities.editEntity("Warhound",
 	null, // Vanilla Cost/Strength: 10/10
 	{
-		XP = 100, // vanilla 100
-		ActionPoints = 11, // vanilla 11,
-		Hitpoints = 70, // vanilla 70,
+		XP = 100,
+		ActionPoints = 11,
+		Hitpoints = 70,
 		Bravery = 60, // vanilla 50,
-		Stamina = 140, // vanilla 140,
+		Stamina = 140,
 		MeleeSkill = 60, // vanilla 55,
-		RangedSkill = 0, // vanilla 0,
-		MeleeDefense = 20, // vanilla 20,
-		RangedDefense = 20, // vanilla 20,
-		Initiative = 110, // vanilla 110,
+		RangedSkill = 0,
+		MeleeDefense = 20,
+		RangedDefense = 20,
+		Initiative = 110,
 		FatigueEffectMult = 1.0,
 		MoraleEffectMult = 1.0,
 		Armor = [
@@ -482,7 +482,7 @@
 );
 ::Reforged.Entities.editEntity("BanditRaiderWolf",
 	{
-		Cost = 25, // vanilla 25
+		Cost = 25,
 		Strength = 30 // vanilla 25
 	}
 );

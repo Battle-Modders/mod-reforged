@@ -134,7 +134,7 @@
 ::Reforged.Entities.editEntity("Swordmaster",
 	null,
 	{
-		XP = 450, // vanilla 450
+		XP = 450,
 		ActionPoints = 9,
 		Hitpoints = 80, // vanilla 70
 		Bravery = 90,
@@ -156,7 +156,7 @@
 ::Reforged.Entities.editEntity("HedgeKnight",
 	null,
 	{
-		XP = 450, // vanilla 450
+		XP = 450,
 		ActionPoints = 9,
 		Hitpoints = 150,
 		Bravery = 90,
@@ -178,7 +178,7 @@
 ::Reforged.Entities.editEntity("MasterArcher",
 	null,
 	{
-		XP = 450, // vanilla 450
+		XP = 450,
 		ActionPoints = 9,
 		Hitpoints = 80,
 		Bravery = 70,

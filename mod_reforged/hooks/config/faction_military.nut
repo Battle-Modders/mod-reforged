@@ -60,7 +60,7 @@
 		Strength = 25 // vanilla 20
 	},
 	{
-		XP = 250, // vanilla 250
+		XP = 250,
 		ActionPoints = 9,
 		Hitpoints = 70,
 		Bravery = 60,
@@ -117,7 +117,7 @@
 		Strength = 25 // vanilla 20
 	},
 	{
-		XP = 250, // vanilla 250
+		XP = 250,
 		ActionPoints = 9,
 		Hitpoints = 60,
 		Bravery = 60,
@@ -277,7 +277,7 @@
 		Strength = 45 // vanilla 40
 	},
 	{
-		XP = 450, // vanilla 450
+		XP = 450,
 		ActionPoints = 9,
 		Hitpoints = 135,
 		Bravery = 100, // vanilla 90
@@ -369,7 +369,7 @@
 		Strength = 40 // vanilla 30
 	},
 	{
-		XP = 350, // vanilla 350
+		XP = 350,
 		ActionPoints = 9,
 		Hitpoints = 130, // vanilla 100
 		Bravery = 80,
@@ -430,7 +430,7 @@
 		Row = 3 // vanilla 2
 	},
 	{
-		XP = 250, // vanilla 250
+		XP = 250,
 		ActionPoints = 9,
 		Hitpoints = 80,
 		Bravery = 90,

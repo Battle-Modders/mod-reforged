@@ -455,16 +455,16 @@
 		Variant = 0
 	},
 	{
-		XP = 250, // vanilla 250
-		ActionPoints = 7, // vanilla 7
-		Hitpoints = 180, // vanilla 180
+		XP = 250,
+		ActionPoints = 7,
+		Hitpoints = 180,
 		Bravery = 70, // vanilla 130
-		Stamina = 100, // vanilla 100
-		MeleeSkill = 60, // vanilla 60
-		RangedSkill = 0, // vanilla 0
-		MeleeDefense = 5, // vanilla 5
-		RangedDefense = 0, // vanilla 0
-		Initiative = 60, // vanilla 60
+		Stamina = 100,
+		MeleeSkill = 60,
+		RangedSkill = 0,
+		MeleeDefense = 5,
+		RangedDefense = 0,
+		Initiative = 60,
 		FatigueEffectMult = 0.0,
 		MoraleEffectMult = 0.0,
 		Armor = [
