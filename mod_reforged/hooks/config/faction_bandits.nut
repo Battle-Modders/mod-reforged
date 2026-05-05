@@ -378,7 +378,7 @@
 );
 ::Reforged.Entities.editEntity("BanditLeader",
 	{
-		Cost = 30, // vanilla 25
+		Cost = 31, // vanilla 25
 		Strength = 40 // vanilla 30
 	},
 	{
