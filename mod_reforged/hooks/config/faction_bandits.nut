@@ -92,7 +92,7 @@
 		Script = "scripts/entity/tactical/enemies/rf_bandit_marauder"
 	},
 	{
-		XP = 375,
+		XP = 350,
 		ActionPoints = 9,
 		Hitpoints = 85,
 		Bravery = 70,
@@ -192,7 +192,7 @@
 		Script = "scripts/entity/tactical/enemies/rf_bandit_marauder_tough"
 	}),
 	{
-		XP = 375,
+		XP = 350,
 		ActionPoints = 9,
 		Hitpoints = 150,
 		Bravery = 80,
@@ -273,7 +273,7 @@
 	::Const.FactionType.Bandits,
 	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_BanditMarauder, { Script = "scripts/entity/tactical/enemies/rf_bandit_highwayman" }),
 	{
-		XP = 375,
+		XP = 350,
 		ActionPoints = 9,
 		Hitpoints = 70,
 		Bravery = 60,
