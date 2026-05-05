@@ -22,8 +22,8 @@ local parties = [
 							}
 						},
 						{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.00, RatioMax = 0.20, PartySizeMin = 10, ExclusionChance = 85, StartingResourceMin = 200 },
-						{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMin = 0.00, RatioMax = 0.20, HardMax = 3, PartySizeMin = 6, ExclusionChance = 20 },
-						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMin = 0.00, RatioMax = 0.15, HardMax = 2, PartySizeMin = 9, ExclusionChance = 40 },
+						{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMin = 0.00, RatioMax = 0.17, HardMax = 3, PartySizeMin = 6, ExclusionChance = 20 },
+						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMin = 0.00, RatioMax = 0.11, HardMax = 2, PartySizeMin = 9, ExclusionChance = 40 },
 						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMin = 0.00, RatioMax = 0.10, HardMax = 1, PartySizeMin = 12, ExclusionChance = 60 },
 						{ BaseID = "UnitBlock.RF.SkeletonSupport", RatioMin = 0.00, RatioMax = 0.10, HardMax = 2, PartySizeMin = 12, ExclusionChance = 45 }
 					]
@@ -88,8 +88,8 @@ local parties = [
 						{ BaseID = "UnitBlock.RF.SkeletonFrontline", RatioMin = 0.7, RatioMax = 1.00 },
 						{ BaseID = "UnitBlock.RF.SkeletonElite", RatioMin = 0.01, RatioMax = 0.70, ExclusionChance = 70 },
 						{ BaseID = "UnitBlock.RF.Vampire", RatioMin = 0.1, RatioMax = 0.35, HardMin = 1, function getSpawnWeight() { return base.getSpawnWeight() * 20; } },
-						{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.20, HardMax = 3, PartySizeMin = 6 },
-						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.10, HardMax = 2, PartySizeMin = 9 },
+						{ BaseID = "UnitBlock.RF.SkeletonDecanus", RatioMax = 0.17, HardMax = 3, PartySizeMin = 6 },
+						{ BaseID = "UnitBlock.RF.SkeletonCenturion", RatioMax = 0.11, HardMax = 2, PartySizeMin = 9 },
 						{ BaseID = "UnitBlock.RF.SkeletonLegatus", RatioMax = 0.10, HardMax = 1, PartySizeMin = 12 }
 					]
 				},
