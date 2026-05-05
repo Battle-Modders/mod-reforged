@@ -295,7 +295,7 @@
 ::Reforged.Entities.editEntity("BanditPoacher",
 	null, // Vanilla Cost/Strength: 12/12
 	{
-		XP = 150, // vanilla 175
+		XP = 175,
 		ActionPoints = 9,
 		Hitpoints = 55,
 		Bravery = 40,
