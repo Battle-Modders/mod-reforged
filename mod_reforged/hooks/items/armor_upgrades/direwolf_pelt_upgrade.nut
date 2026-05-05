@@ -3,7 +3,7 @@ local function RF_getResolveTooltipText( _text )
 {
 	_text = ::String.replace(_text, "Resolve", "[Resolve|Concept.Bravery]");
 	_text = ::String.replace(_text, "engaged", "[engaged|Concept.ZoneOfControl]");
-	_text += "during [morale checks|Concept.Morale]";
+	_text += " during [morale checks|Concept.Morale]";
 	return ::Reforged.Mod.Tooltips.parseString(_text);
 }
 
