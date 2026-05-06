@@ -56,6 +56,33 @@
 		__original();
 	}}.onBattleEnded;
 
+	q.setPause = @(__original) { function setPause( _pause )
+	{
+		__original(_pause);
+
+		// Vanilla calls setPause during onInit, before the TacticalScreen is initialized
+		if (this.m.TacticalScreen != null)
+		{
+			// Feat: Display overlay with "Paused" and the keybind for unpausing, while the game is paused
+			if (_pause)
+			{
+				local data = {
+					Header = "Paused",
+					Subheader = null,
+				};
+				if (::Reforged.Mod.Keybinds.getKeybind("Tactical_PauseAI").getKeyCombinationsCapitalized() != "")
+				{
+					data.Subheader = "(Press " + ::Reforged.Mod.Keybinds.getKeybind("Tactical_PauseAI").getKeyCombinationsCapitalized() + " to unpause)";
+				}
+				this.m.TacticalScreen.m.JSHandle.asyncCall("RF_showMessage", data);
+			}
+			else
+			{
+				this.m.TacticalScreen.m.JSHandle.asyncCall("RF_hideMessage", null);
+			}
+		}
+	}}.setPause;
+	
 	q.showRetreatScreen = @(__original) function ( _tag = null )
 	{
 		this.m.TacticalScreen.getTopbarOptionsModule().changeFleeButtonToWin();
