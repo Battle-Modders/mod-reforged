@@ -68,11 +68,11 @@
 	function getTooltipEffects( _actor, _startID )
 	{
 		local currentID = _startID;
-		local collapseThreshold = ::Reforged.Mod.ModSettings.getSetting("CollapseEffectsWhenX").getValue();
+		local collapseThreshold = ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_CollapseEffectsWhenX").getValue();
 		local effectList = [];
 
 		local statusEffects = _actor.getSkills().query(::Const.SkillType.StatusEffect | ::Const.SkillType.PermanentInjury, false, true);
-		if (statusEffects.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(effectList, "Effects", currentID);
+		if (statusEffects.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(effectList, "Effects", currentID);
 		currentID++;
 
 		statusEffects.sort(@(_a,_b) _a.getName() <=> _b.getName());
@@ -162,7 +162,7 @@
 	function getTooltipPerks( _actor, _startID )
 	{
 		local currentID = _startID;
-		local collapseThreshold = ::Reforged.Mod.ModSettings.getSetting("CollapsePerksWhenX").getValue();
+		local collapseThreshold = ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_CollapsePerksWhenX").getValue();
 		local perkList = [];
 
 		local perks = _actor.getSkills().query(::Const.SkillType.Perk, true, true);
@@ -171,7 +171,7 @@
 		{
 			perks.extend(_actor.getSkills().query(::Const.SkillType.Trait, true, true));
 		}
-		if (perks.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(perkList, "Perks", currentID);
+		if (perks.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(perkList, "Perks", currentID);
 		currentID++;
 
 		local extraData = "entityId:" + _actor.getID();
@@ -182,7 +182,7 @@
 		{
 			foreach( i, perk in perks )
 			{
-				if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
+				if (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_ShowStatusPerkAndEffect").getValue() == false)
 					if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
 				local perkDef = ::Const.Perks.findById(perk.getID());
@@ -205,7 +205,7 @@
 			{
 				foreach( perk in perks )
 				{
-					if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
+					if (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_ShowStatusPerkAndEffect").getValue() == false)
 						if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
 					local perkDef = ::Const.Perks.findById(perk.getID());
@@ -218,7 +218,7 @@
 			{
 				foreach( perk in perks )
 				{
-					if (::Reforged.Mod.ModSettings.getSetting("ShowStatusPerkAndEffect").getValue() == false)
+					if (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_ShowStatusPerkAndEffect").getValue() == false)
 						if (!perk.isHidden() && perk.isType(::Const.SkillType.StatusEffect)) continue;
 
 					local perkDef = ::Const.Perks.findById(perk.getID());
@@ -247,7 +247,7 @@
 		local offhandItems = _actor.getItems().getAllItemsAtSlot(::Const.ItemSlot.Offhand);
 		local accessories = _actor.getItems().getAllItemsAtSlot(::Const.ItemSlot.Accessory);
 
-		if (mainhandItems.len() != 0 || offhandItems.len() != 0 || accessories.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(itemList, "Equipped Items", currentID);
+		if (mainhandItems.len() != 0 || offhandItems.len() != 0 || accessories.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(itemList, "Equipped Items", currentID);
 		currentID++;
 
 		local actorID = _actor.getID();
@@ -293,7 +293,7 @@
 		local itemList = [];
 
 		local bagItems = _actor.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
-		if (bagItems.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(itemList, "Items in bag", currentID);
+		if (bagItems.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_HeaderForEmptyCategories").getValue() == true) ::Reforged.TacticalTooltip.pushSectionName(itemList, "Items in bag", currentID);
 		currentID++;
 
 		local actorID = _actor.getID();
@@ -365,7 +365,7 @@
 			}
 		}
 
-		if (skills.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("HeaderForEmptyCategories").getValue() == true)
+		if (skills.len() != 0 || ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_HeaderForEmptyCategories").getValue() == true)
 		{
 			::Reforged.TacticalTooltip.pushSectionName(ret, "Actives", _startID);
 			_startID++;
@@ -373,7 +373,7 @@
 
 		local extraData = "entityId:" + _actor.getID();
 
-		if (skills.len() < ::Reforged.Mod.ModSettings.getSetting("CollapseActivesWhenX").getValue())
+		if (skills.len() < ::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_CollapseActivesWhenX").getValue())
 		{
 			foreach (skill in skills)
 			{
