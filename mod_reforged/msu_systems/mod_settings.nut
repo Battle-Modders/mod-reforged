@@ -65,6 +65,25 @@
 		}
 	}, "Wait Turn with all Characters");
 
+	::Reforged.Mod.Keybinds.addSQKeybind("Tactical_PauseAI", "ctrl+space", ::MSU.Key.State.Tactical, function()
+	{
+		if (!::Tactical.isActive() || this.m.MenuStack.hasBacksteps() || this.isInCharacterScreen())
+		{
+			return false;
+		}
+		else
+		{
+			local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
+			// We only allow pausing, while it is not the players turn, in order to prevent buffering inputs which can cause buggy behavior
+			if (::Tactical.State.isPaused() || activeEntity == null || !activeEntity.isPlayerControlled())
+			{
+				::Tactical.State.setPause(!::Tactical.State.isPaused());
+			}
+
+			return true;
+		}
+	}, "Pause Tactical Combat");
+
 	::Reforged.Mod.Keybinds.addSQKeybind("ConfirmSkillUseKeybind", "ctrl", ::MSU.Key.State.Tactical, @() true, "Confirm Skill Use", null, "Used to toggle the confirmation requirement for skills that are normally used immediately (e.g. Shieldwall, Rally). It allows you to either preview the Action Point and Fatigue costs or bypass confirmation, depending on your \'Confirm Skill Use\' setting.");
 
 	::Reforged.Mod.Keybinds.addSQKeybind("ToggleReforgedDevMode", "ctrl+tab", ::MSU.Key.State.All, function() { ::Reforged.__toggleDevMode(); return true; }, "Toggle Reforged Dev Mode", null, "Used to toggle Dev mode for Reforged. This enables/disables the various Dev mode settings all at once.");
