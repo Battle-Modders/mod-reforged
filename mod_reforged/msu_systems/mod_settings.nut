@@ -5,6 +5,11 @@
 
 	generalPage.addEnumSetting("CraftingBlueprintVisibility", "One Ingredient Available", ["Always", "One Ingredient Available", "All Ingredients Available", "Vanilla"], "Blueprints Visible When", "Crafting Recipes in the Taxidermist will be displayed when this condition is met.\nNote that individual Blueprints (like Snake Oil) may still have custom rules preventing them from being shown.\n\n\'Vanilla\' means that the visibility behavior is unchanged from how it works in the base game.");
 	generalPage.addBooleanSetting("ConfirmSkillUse", false, "Confirm Skill Use", "If enabled, skills that are normally used immediately (e.g. Shieldwall, Rally) will instead require you to target your character. This allows you to preview Action Point and Fatigue costs and the predicted affordability of other skills. Hold the \'Confirm Skill Use\' key (default Ctrl) to bypass this and use the skill immediately.\n\nIf disabled, these skills are used immediately as in vanilla, but the keybind can be used to preview them and require confirmation.");
+
+	generalPage.addDivider("MiscDivider1");
+	generalPage.addTitle("General_Title_Contracts", "Contracts");
+	generalPage.addEnumSetting("SkipContractsToScreen", "Overview", ["Disabled", "Negotiation", "Overview"], "Skip Contracts To", "Allows you to save some time by skipping to a certain screen when opening a contract in settlements.\n\nDisabled: Same behavior as vanilla, you have to click through all of the contract\'s screens.\n\nNegotiation: Skip the introduction screens and go straight to the negotiation.\n\nOverview: Skip to the final screen in the contract where you can accept or reject it. With this option, you will no longer be able to manually negotiate contracts.");
+	generalPage.addRangeSetting("AutoNegotiateAttempts", 1, 0, 10, 1, "Auto-Negotiate Attempts", "When clicking on contracts in settlements, auto-negotiate them this many times for more payment. This process will stop as soon as the employer gives his final offer or negotiations turn sour.");
 }
 { // Tooltips page
 	local tooltipsPage = ::Reforged.Mod.ModSettings.addPage("Tooltips", "Tooltips");
