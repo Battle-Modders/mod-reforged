@@ -1,0 +1,118 @@
+name: 'Generate Changelog'
+description: 'Extracts categorized technical notes from git commits'
+inputs:
+  base_tag:
+    description: 'Tag or SHA to compare against'
+    required: false
+  include_diffs:
+    description: 'Whether to include code diffs in the notes'
+    default: 'false'
+  working_directory:
+    description: 'Directory to run git commands in'
+    default: '.'
+outputs:
+  feats_fixes:
+    description: 'Markdown string for Features and Fixes'
+    value: ${{ steps.git_logic.outputs.feats_fixes }}
+  others:
+    description: 'Markdown string for other changes'
+    value: ${{ steps.git_logic.outputs.others }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run Git Logic
+      id: git_logic
+      shell: pwsh
+      working-directory: ${{ inputs.working_directory }}
+      env:
+        GH_TOKEN: ${{ env.GH_TOKEN }}
+      run: |
+        $base = "${{ inputs.base_tag }}"
+        $msgs = if ($base) { git log "$base..HEAD" --pretty=format:"%H|%B%x1F" --reverse } else { git log HEAD --pretty=format:"%H|%B%x1F" --reverse }
+        if ($msgs -is [array]) { $msgs = $msgs -join "`n" }
+        if ([string]::IsNullOrWhiteSpace($msgs)) { return }
+
+        # Pre-fetch PR mapping to avoid rate limits (maps commit SHA -> PR number)
+        $prMap = @{}
+        $prListData = gh pr list --state merged --limit 100 --json number,mergeCommitSha,commits 2>$null | ConvertFrom-Json
+        if ($prListData) {
+            foreach ($pr in $prListData) {
+                if ($pr.mergeCommitSha) { $prMap[$pr.mergeCommitSha] = $pr.number }
+                if ($pr.commits) {
+                    foreach ($c in $pr.commits) { $prMap[$c.oid] = $pr.number }
+                }
+            }
+        }
+
+        $feats = @(); $fixes = @(); $others = @()
+        ($msgs -split [char]31) | ForEach-Object {
+            $commit = $_.Trim()
+            if ([string]::IsNullOrWhiteSpace($commit)) { return }
+            if ($commit -match "(?s)^(?<sha>[a-f0-9]{40})\|(?<type>feat|fix)(?:\((?<scope>[^\)]+)\))?(!?): (?<subject>.+)") {
+                $sha = $Matches['sha']
+                $raw_subject = $Matches['subject'].Trim()
+                $lines = $raw_subject -split '\r?\n'
+                $header = $lines[0].Trim()
+                $body = (($lines | Select-Object -Skip 1) -join "`n").Trim()
+
+                $pr = if ($header -match '\(#(?<num>\d+)\)\s*$') { $Matches['num'] }
+                elseif ($prMap.ContainsKey($sha)) { $prMap[$sha] }
+                else { $val = (gh api "repos/$env:GITHUB_REPOSITORY/commits/$sha/pulls" --jq '.[0].number' 2>$null); if ($val) { [string]$val } else { $null } }
+
+                $ref = if ($pr) { "(#$pr)" } else { "[$($sha.Substring(0,7))]" }
+                $headerNoPr = $header -replace '\s*\(#\d+\)\s*$', ''
+                $formatted = "$headerNoPr $ref"
+                if (![string]::IsNullOrWhiteSpace($body)) { $formatted += "`n$body" }
+
+                if ("${{ inputs.include_diffs }}" -eq "true") {
+                    $diff = git show $sha -p --stat --format="" -- . ":(exclude).github" ":(exclude)brushes" ":(exclude)gfx" ":(exclude)music" ":(exclude)sounds" ":(exclude)unpacked_brushes" 2>$null | Out-String
+                    if ($diff.Length -gt 2500) { $diff = $diff.Substring(0, 2500) + "`n... [Diff Truncated]" }
+                    if (![string]::IsNullOrWhiteSpace($diff)) {
+                        $formatted += "`n<commit_diff>`n$($diff.Trim())`n</commit_diff>"
+                    }
+                }
+                if ($Matches['type'] -eq "feat") { $feats += $formatted } else { $fixes += $formatted }
+            } else {
+                if ($commit -match "(?s)^[a-f0-9]+\|(?:chore|docs)(?:\([^\)]+\))?(!?):") { return }
+                if ($commit -match "(?s)^(?<sha>[a-f0-9]{40})\|(?<msg>.*)") {
+                    $sha = $Matches['sha']
+                    $raw_msg = $Matches['msg'].Trim()
+
+                    # Skip standard merge commits to avoid cluttering the section
+                    if ($raw_msg -match "^Merge (?:pull request|branch|remote-tracking branch)") { return }
+
+                    if (![string]::IsNullOrWhiteSpace($raw_msg)) {
+                        $lines = $raw_msg -split '\r?\n'
+                        $header = $lines[0].Trim()
+                        $body = (($lines | Select-Object -Skip 1) -join "`n").Trim()
+                        $pr = if ($header -match '\(#(?<num>\d+)\)\s*$') { $Matches['num'] }
+                        elseif ($prMap.ContainsKey($sha)) { $prMap[$sha] }
+                        else { $val = (gh api "repos/$env:GITHUB_REPOSITORY/commits/$sha/pulls" --jq '.[0].number' 2>$null); if ($val) { [string]$val } else { $null } }
+
+                        $ref = if ($pr) { "(#$pr)" } else { "[$($sha.Substring(0,7))]" }
+                        $headerNoPr = $header -replace '\s*\(#\d+\)\s*$', ''
+                        $formatted = "$headerNoPr $ref"
+                        if (![string]::IsNullOrWhiteSpace($body)) { $formatted += "`n$body" }
+                        $others += $formatted
+                    }
+                }
+            }
+        }
+
+        $ffOut = ""
+        if ($feats.Count -gt 0) { $ffOut += "### FEATURES`n" + (($feats | ForEach-Object { "- $_" }) -join "`n") + "`n" }
+        if ($fixes.Count -gt 0) { $ffOut += "### FIXES`n" + (($fixes | ForEach-Object { "- $_" }) -join "`n") + "`n" }
+
+        $oOut = ""
+        if ($others.Count -gt 0) { $oOut += "### OTHER`n" + (($others | ForEach-Object { "- $_" }) -join "`n") + "`n" }
+
+        $d1 = [guid]::NewGuid().ToString()
+        "feats_fixes<<$d1" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        $ffOut | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        "$d1" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+        $d2 = [guid]::NewGuid().ToString()
+        "others<<$d2" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        $oOut | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        "$d2" | Out-File -FilePath $env:GITHUB_OUTPUT -Append

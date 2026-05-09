@@ -1,0 +1,328 @@
+name: Build New Release Draft
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_run:
+        description: 'Build even if release exists (creates a test-VERSION release)'
+        type: boolean
+        default: false
+        required: false
+      ai_rephrase:
+        description: 'Use AI to rephrase the changelog'
+        type: boolean
+        default: true
+        required: false
+      include_diffs:
+        description: 'Include code diffs in AI context for better summaries'
+        type: boolean
+        default: false
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    env:
+      MOD_ROOT: ${{ github.workspace }}
+      MOD_PATH: ${{ github.workspace }}\mod_reforged
+      GAME_PATH: ${{ github.workspace }}\_game_fake
+
+    steps:
+      # 1. Identify Target Tag
+      - name: Find Latest Stable Tag
+        id: find-tag
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $isTest = "${{ github.event.inputs.test_run }}" -eq "true"
+
+          if ($isTest) {
+              # For test runs, use the latest commit on development
+              $baseTag = gh api repos/${{ github.repository }}/commits/development --jq '.sha'
+              if (-not $baseTag) { throw "Could not find latest commit on development branch." }
+              Write-Host "Test run: Targeting development branch HEAD ($($baseTag.Substring(0,7)))"
+              $releaseTag = "test-$($baseTag.Substring(0,7))"
+              "skip=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          } else {
+              # Detect latest tag via API to avoid checking out the branch first
+              $baseTag = gh api repos/${{ github.repository }}/tags --jq '[.[] | select(.name != "dev-latest")][0].name'
+              if (-not $baseTag) { throw "No stable tags found." }
+              Write-Host "Targeting latest stable tag: $baseTag"
+
+              # Check if a release already exists for this tag (using list avoids exit code 1 if not found)
+              $releases = gh release list --repo ${{ github.repository }} --limit 100 --json tagName --jq '.[].tagName'
+              if ($releases -contains $baseTag) {
+                  Write-Host "Release for $baseTag already exists. Exiting to prevent overwrite."
+                  "skip=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+              } else {
+                  "skip=false" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+              }
+              $releaseTag = $baseTag
+          }
+
+          "base_tag=$baseTag" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "release_tag=$releaseTag" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      # 2. Checkout specifically on that tag
+      - name: Checkout workflow repo (latest)
+        if: steps.find-tag.outputs.skip != 'true'
+        uses: actions/checkout@v4
+        with:
+          path: repo
+          ref: development
+          fetch-depth: 0
+
+      - name: Checkout repository
+        if: steps.find-tag.outputs.skip != 'true'
+        uses: actions/checkout@v4
+        with:
+          path: mod_reforged
+          ref: ${{ steps.find-tag.outputs.base_tag }}
+          fetch-depth: 0
+
+      - name: Debug repo actions
+        shell: pwsh
+        run: |
+          Write-Host "Workspace:"
+          Get-ChildItem "${{ github.workspace }}"
+
+          Write-Host "`nRepo actions:"
+          Get-ChildItem "${{ github.workspace }}\repo\.github\actions" -Recurse
+
+      # 4. Detect Changes & Extract Versions
+      - name: Detect Changes and Versions
+        id: info
+        if: steps.find-tag.outputs.skip != 'true'
+        shell: pwsh
+        working-directory: ${{ github.workspace }}\mod_reforged
+        run: |
+          git fetch --tags --force
+          $baseTag = "${{ steps.find-tag.outputs.base_tag }}"
+          $releaseTag = "${{ steps.find-tag.outputs.release_tag }}"
+          $isTest = "${{ github.event.inputs.test_run }}" -eq "true"
+
+          # If it's a test run, we compare against the latest tag reached by HEAD.
+          # If it's a real release, we compare against the tag BEFORE the latest tag (since HEAD is the latest tag).
+          $previousTag = if ($isTest) {
+            git describe --tags --abbrev=0 --exclude="dev-latest" "HEAD" 2>$null
+          } else {
+            git describe --tags --abbrev=0 --exclude="dev-latest" "HEAD^" 2>$null
+          }
+
+          $coreChanged = $true
+          $assetsChanged = $true
+
+          if ($previousTag) {
+            Write-Host "Comparing $baseTag against previous stable: $previousTag"
+            $diff = git diff --name-only "$previousTag..$baseTag"
+            $coreChanged = $null -ne ($diff | Where-Object { $_ -notmatch '^(brushes/|gfx/|music/|sounds/|unpacked_brushes/)' })
+            $assetsChanged = $null -ne ($diff | Where-Object { $_ -notmatch '^(.github/|mod_reforged/|mod_reforged_AfterHooks/|preload/|scripts/|ui/)' })
+          }
+
+          # Extract Versions from files
+          $coreFile = "scripts/!mods_preload/mod_reforged.nut"
+          $assetsFile = "scripts/!mods_preload/mod_reforged_assets/mod_reforged_assets_registration.nut"
+
+          $coreContent = Get-Content $coreFile -Raw
+          if ($coreContent -match 'Version\s*=\s*"([^"]+)"') { $coreVer = $Matches[1] }
+
+          $assetsContent = Get-Content $assetsFile -Raw
+          if ($assetsContent -match 'Version\s*=\s*"([^"]+)"') { $assetsVer = $Matches[1] }
+
+          $compareBase = $previousTag
+          $useDevNotes = "false"
+          git rev-parse --verify refs/tags/dev-latest 2>$null | Out-Null
+          $devLatestExists = $LASTEXITCODE -eq 0
+          if ($devLatestExists -and $previousTag) {
+              # Check if dev-latest is newer than previous stable and an ancestor of current HEAD
+              $devNewerThanPrev = $(git merge-base --is-ancestor $previousTag refs/tags/dev-latest 2>$null; $LASTEXITCODE -eq 0)
+              $headNewerThanDev = $(git merge-base --is-ancestor refs/tags/dev-latest HEAD 2>$null; $LASTEXITCODE -eq 0)
+
+              if ($devNewerThanPrev -and $headNewerThanDev) {
+                  $compareBase = "refs/tags/dev-latest"
+                  $useDevNotes = "true"
+              }
+          }
+
+          $global:LASTEXITCODE = 0
+
+          "core_changed=$($coreChanged.ToString().ToLower())" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "assets_changed=$($assetsChanged.ToString().ToLower())" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "core_ver=$coreVer" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "assets_ver=$assetsVer" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "core_zip=mod_reforged_core-$coreVer" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "assets_zip=mod_reforged_assets-$assetsVer" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "latest_tag=$releaseTag" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "compare_base=$compareBase" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "use_dev_notes=$useDevNotes" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "previous_tag=$previousTag" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      # 3. Setup BBBuilder
+      - name: Setup BBBuilder
+        id: bbbuilder
+        if: steps.find-tag.outputs.skip != 'true'
+        uses: ./repo/.github/actions/setup-bbbuilder
+        with:
+          game_path: ${{ env.GAME_PATH }}
+          mod_root: ${{ env.MOD_ROOT }}
+
+      # 9. Build
+      - name: Build Core
+        if: steps.find-tag.outputs.skip != 'true' && steps.info.outputs.core_changed == 'true'
+        shell: cmd
+        working-directory: ${{ steps.bbbuilder.outputs.path }}
+        env:
+          DOTNET_ROLL_FORWARD: Major
+        run: BBbuilder.exe build "%MOD_PATH%" -rebuild -ex "brushes,gfx,music,sounds,scripts/!mods_preload/mod_reforged_assets,scripts/!mods_preload/mod_reforged_patch" -zipname "${{ steps.info.outputs.core_zip }}"
+
+      - name: Build Assets
+        if: steps.find-tag.outputs.skip != 'true' && steps.info.outputs.assets_changed == 'true'
+        shell: cmd
+        working-directory: ${{ steps.bbbuilder.outputs.path }}
+        env:
+          DOTNET_ROLL_FORWARD: Major
+        run: BBbuilder.exe build "%MOD_PATH%" -rebuild -ex "mod_reforged,mod_reforged_AfterHooks,preload,scripts,ui" -in "scripts/!mods_preload/mod_reforged_assets" -zipname "${{ steps.info.outputs.assets_zip }}"
+
+      # 5. Generate Technical Changelog
+      - name: Generate Tech Notes
+        id: tech_notes
+        if: steps.find-tag.outputs.skip != 'true'
+        uses: ./repo/.github/actions/generate-changelog
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          base_tag: ${{ steps.info.outputs.compare_base }}
+          include_diffs: ${{ inputs.include_diffs && inputs.ai_rephrase }}
+          working_directory: mod_reforged
+
+      # 6. AI Rephrase Notes
+      - name: AI Rephrase
+        id: ai
+        if: steps.find-tag.outputs.skip != 'true' && inputs.ai_rephrase
+        uses: ./repo/.github/actions/ai-rephrase
+        with:
+          notes: "${{ steps.tech_notes.outputs.feats_fixes }}\n${{ steps.tech_notes.outputs.others }}"
+          api_key: ${{ secrets.GEMINI_API_KEY }}
+          system_instructions: ${{ vars.AI_SYSTEM_INSTRUCTIONS_RELEASE_NOTES }}
+          models: ${{ vars.GEMINI_TEXT_MODELS }}
+
+      # 7. Assemble Release Body
+      - name: Assemble Release Body
+        id: assemble
+        if: steps.find-tag.outputs.skip != 'true'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AI_REPHRASE_ACTIVE: ${{ inputs.ai_rephrase }}
+          AI_FRIENDLY: ${{ steps.ai.outputs.friendly_with_sha }}
+          TECH_FEATS: ${{ steps.tech_notes.outputs.feats_fixes }}
+          TECH_OTHERS: ${{ steps.tech_notes.outputs.others }}
+        run: |
+          function Get-MarkdownSection($text, $header) {
+              if ($text -match "(?ms)$header\s*\r?\n(?<content>.*?)(?=\r?\n###|\z)") { return $Matches['content'].Trim() }
+              return ""
+          }
+
+          $newFriendly = if ($env:AI_REPHRASE_ACTIVE -eq "true") { $env:AI_FRIENDLY } else { "$($env:TECH_FEATS)`n$($env:TECH_OTHERS)" }
+
+          $mergedFeatures = Get-MarkdownSection $newFriendly "### FEATURES"
+          $mergedFixes = Get-MarkdownSection $newFriendly "### FIXES"
+          $mergedOthers = Get-MarkdownSection $newFriendly "### OTHER"
+
+          if ("${{ steps.info.outputs.use_dev_notes }}" -eq "true") {
+              $existingBody = (gh release view dev-latest --json body --jq '.body' --repo ${{ github.repository }} 2>$null) -join "`n"
+              if ($existingBody -match "(?ms)## (?:Total Changes|All Project Changes).*?\r?\n(?<totalContent>.*)") {
+                  $totalContent = $Matches['totalContent']
+                  $oldFeatures = Get-MarkdownSection $totalContent "### FEATURES"
+                  $oldFixes = Get-MarkdownSection $totalContent "### FIXES"
+                  $oldOthers = Get-MarkdownSection $totalContent "### OTHER"
+                  if ($oldFeatures) { $mergedFeatures = ($oldFeatures + "`n" + $mergedFeatures).Trim() }
+                  if ($oldFixes) { $mergedFixes = ($oldFixes + "`n" + $mergedFixes).Trim() }
+                  if ($oldOthers) { $mergedOthers = ($oldOthers + "`n" + $mergedOthers).Trim() }
+              }
+          }
+
+          $res = ""
+          if ($mergedFeatures) { $res += "### FEATURES`n$mergedFeatures`n`n" }
+          if ($mergedFixes) { $res += "### FIXES`n$mergedFixes`n`n" }
+
+          if (![string]::IsNullOrWhiteSpace($mergedOthers)) {
+              if (![string]::IsNullOrWhiteSpace($res)) { $res += "---`n" }
+              $res += "### OTHER`n$mergedOthers"
+          }
+          $delimiter = [guid]::NewGuid().ToString()
+          "body<<$delimiter" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          $res | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "$delimiter" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      # 10. Release Core (Current Repo)
+      - name: Release Core
+        if: steps.find-tag.outputs.skip != 'true' && steps.info.outputs.core_changed == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.info.outputs.latest_tag }}
+          name: ${{ steps.info.outputs.latest_tag }}
+          files: mod_reforged/${{ steps.info.outputs.core_zip }}.zip
+          body: ${{ steps.assemble.outputs.body }}
+          draft: true
+          prerelease: false
+
+      # 11. Release Assets (External Repo in same Org)
+      # This creates a tag on the latest commit of the assets repo and uploads the build
+      - name: Generate Token
+        id: app-token
+        if: steps.find-tag.outputs.skip != 'true' && steps.info.outputs.assets_changed == 'true'
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.REFORGED_RELEASE_APP_ID }}
+          private-key: ${{ secrets.REFORGED_RELEASE_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: mod_reforged_assets
+
+      - name: Release Assets to External Repo
+        if: steps.find-tag.outputs.skip != 'true' && steps.info.outputs.assets_changed == 'true'
+        uses: actions/github-script@v7
+        env:
+          EXTERNAL_TOKEN: ${{ steps.app-token.outputs.token }}
+          ASSETS_ZIP: "mod_reforged/${{ steps.info.outputs.assets_zip }}.zip"
+          TAG: ${{ steps.info.outputs.latest_tag }}
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          script: |
+            const fs = require('fs');
+            const { EXTERNAL_TOKEN, ASSETS_ZIP, TAG } = process.env;
+            const owner = context.repo.owner;
+            const repo = 'mod_reforged_assets';
+
+            // 1. Get the SHA of the latest commit on the default branch
+            const { data: repoInfo } = await github.rest.repos.get({ owner, repo });
+            const { data: refData } = await github.rest.git.getRef({ owner, repo, ref: `heads/${repoInfo.default_branch}` });
+            const sha = refData.object.sha;
+
+            // 2. Create the tag (ref)
+            await github.rest.git.createRef({ owner, repo, ref: `refs/tags/${TAG}`, sha });
+
+            // 3. Create the Release
+            const release = await github.rest.repos.createRelease({
+              owner,
+              repo,
+              tag_name: TAG,
+              name: TAG,
+              body: "",
+              draft: true,
+              prerelease: false
+            });
+
+            // 4. Upload the Asset
+            const assetData = fs.readFileSync(ASSETS_ZIP);
+            await github.rest.repos.uploadReleaseAsset({
+              owner,
+              repo,
+              release_id: release.data.id,
+              name: ASSETS_ZIP.split('/').pop(),
+              data: assetData
+            });

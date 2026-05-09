@@ -1,0 +1,79 @@
+name: 'AI Rephrase'
+description: 'Rephrases technical notes using Gemini or a local fallback'
+inputs:
+  notes:
+    description: 'The technical notes to rephrase'
+    required: true
+  api_key:
+    description: 'Gemini API Key'
+    required: false
+  system_instructions:
+    description: 'Instructions for the AI'
+    required: true
+  models:
+    description: 'Comma-separated list of Gemini models'
+    required: true
+outputs:
+  friendly_with_sha:
+    description: 'Rephrased notes with commit SHAs preserved'
+    value: ${{ steps.ai.outputs.friendly_with_sha }}
+  friendly_no_sha:
+    description: 'Rephrased notes with commit SHAs removed'
+    value: ${{ steps.ai.outputs.friendly_no_sha }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: AI Logic
+      id: ai
+      env:
+        INPUT_NOTES: ${{ inputs.notes }}
+        INPUT_API_KEY: ${{ inputs.api_key }}
+        INPUT_SYSTEM_INSTRUCTIONS: ${{ inputs.system_instructions }}
+        INPUT_MODELS: ${{ inputs.models }}
+      shell: pwsh
+      run: |
+        $notes = $env:INPUT_NOTES
+        $apiKey = $env:INPUT_API_KEY
+
+        function Write-Outputs($text) {
+            $d1 = [guid]::NewGuid().ToString()
+            "friendly_with_sha<<$d1" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+            $text | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+            "$d1" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+            $d2 = [guid]::NewGuid().ToString()
+            "friendly_no_sha<<$d2" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+            ($text -replace '\s*\[[a-f0-9]+\]', '') | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+            "$d2" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        }
+
+        $fallback = $notes -replace '(?m)^- (?<msg>[^\r\n]+)(?s:.*?)(?<sha> \[[a-f0-9]+\])?\s*(?=\r?\n- |\r?\n### |$)', '- ${msg}${sha}'
+
+        if ([string]::IsNullOrWhiteSpace($notes) -or -not $apiKey) {
+            Write-Outputs $fallback
+            return
+        }
+
+        $prompt = "$($env:INPUT_SYSTEM_INSTRUCTIONS)`n`nTechnical Notes:`n$notes"
+        $payload = @{ contents = @( @{ parts = @( @{ text = $prompt } ) } ) } | ConvertTo-Json -Depth 10
+        $models = $env:INPUT_MODELS.Split(",").Trim()
+
+        foreach ($model in $models) {
+            try {
+                Write-Host "Trying model $model..."
+                $uri = "https://generativelanguage.googleapis.com/v1beta/models/$($model):generateContent?key=$apiKey"
+                $response = Invoke-RestMethod -Uri $uri -Method Post -Body $payload -ContentType "application/json" -ErrorAction Stop
+                $result = $response.candidates[0].content.parts[0].text.Trim()
+                if ($result) {
+                    Write-Host "Model $model succeeded."
+                    Write-Outputs $result
+                    return
+                }
+            } catch { # Catch specific errors from Invoke-RestMethod
+                Write-Warning "Model $model failed with error: $($_.Exception.Message). Trying next..."
+                continue
+            }
+        }
+
+        Write-Outputs $fallback

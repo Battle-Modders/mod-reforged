@@ -1,0 +1,511 @@
+name: Build Rolling Development Release
+
+on:
+  schedule:
+    - cron: "0 7 * * *"
+
+  workflow_dispatch:
+    inputs:
+      ai_rephrase:
+        description: 'Use AI to rephrase the changelog'
+        type: boolean
+        default: true
+        required: false
+      include_diffs:
+        description: 'Include code diffs in AI context for better summaries'
+        type: boolean
+        default: true
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dev-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-dev:
+    runs-on: windows-latest
+
+    # Using an environment allows you to restrict secret access to specific branches (e.g., development)
+    # and requires approval for secrets to be used if you configure it in Repo Settings.
+    # environment:
+    #   name: Rolling Release
+    #   url: https://github.com/${{ github.repository }}/releases/tag/dev-latest
+
+    env:
+      MOD_ROOT: ${{ github.workspace }}
+      MOD_PATH: ${{ github.workspace }}\mod_reforged
+      GAME_PATH: ${{ github.workspace }}\_game_fake
+
+    steps:
+      # ------------------------------------------------------------
+      # 1. Checkout directly into mod folder
+      # ------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: development
+          path: mod_reforged
+          fetch-depth: 0
+
+      # ------------------------------------------------------------
+      # 3. Detect Changes & Determine Base
+      # ------------------------------------------------------------
+      - name: Detect Changes
+        id: check
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ${{ github.workspace }}\mod_reforged
+        run: |
+          # Ensure tags are available for comparison
+          git fetch --tags --force
+
+          # Determine comparison base: dev-latest tag if it exists AND is newer than the latest stable tag
+          $latestStableTag = git describe --tags --abbrev=0 --exclude="dev-latest" 2>$null
+          $devLatestExists = (git rev-parse --verify refs/tags/dev-latest 2>$null) -ne $null
+          $hasDevLatest = $false
+
+          # If we are exactly at a stable release and dev-latest exists, it is redundant.
+          if ($latestStableTag -and $devLatestExists -and (git rev-list "$latestStableTag..HEAD" --count) -eq 0) {
+              Write-Host "HEAD is at stable release $latestStableTag. Deleting redundant dev-latest release."
+              gh release delete dev-latest --yes --cleanup-tag 2>$null
+              "skip=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+              return
+          }
+
+          if ($devLatestExists) {
+              if ($latestStableTag) {
+                  # Check if dev-latest is an ancestor of the latest stable tag.
+                  # If exit code is 0, dev-latest is older than or equal to stable.
+                  git merge-base --is-ancestor refs/tags/dev-latest $latestStableTag 2>$null
+                  if ($LASTEXITCODE -ne 0) { $hasDevLatest = $true }
+              } else {
+                  $hasDevLatest = $true
+              }
+          }
+
+          $compareBase = if ($hasDevLatest) { "refs/tags/dev-latest" } else { $latestStableTag }
+
+          $coreChanged = $true
+          $assetsChanged = $true
+
+          if ($compareBase) {
+            Write-Host "Comparing changes against: $compareBase"
+            $diff = git diff --name-only "$compareBase..HEAD"
+            $coreChanged = $null -ne ($diff | Where-Object { $_ -notmatch '^(.github/|brushes/|gfx/|music/|sounds/|unpacked_brushes/)' })
+            $assetsChanged = $null -ne ($diff | Where-Object { $_ -notmatch '^(.github/|mod_reforged/|mod_reforged_AfterHooks/|preload/|scripts/|ui/)' })
+          }
+
+          if (-not $coreChanged -and -not $assetsChanged) {
+            Write-Host "No relevant changes detected. Skipping build."
+            "skip=true" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+            return
+          }
+
+          "compare_base=$compareBase" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "has_dev_latest=$($hasDevLatest.ToString().ToLower())" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "core_changed=$($coreChanged.ToString().ToLower())" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "assets_changed=$($assetsChanged.ToString().ToLower())" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "latest_stable_tag=$latestStableTag" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "short_sha=$("${env:GITHUB_SHA}".Substring(0,7))" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      # ------------------------------------------------------------
+      # 4. Compute Version Numbers
+      # ------------------------------------------------------------
+      - name: Compute Versions
+        id: versions
+        if: steps.check.outputs.skip != 'true'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ${{ github.workspace }}\mod_reforged
+        run: |
+          $coreFile = "scripts/!mods_preload/mod_reforged.nut"
+          $assetsFile = "scripts/!mods_preload/mod_reforged_assets/mod_reforged_assets_registration.nut"
+
+          $coreDevNum = 1
+          $assetsDevNum = 1
+          $coreExistingFull = ""
+          $assetsExistingFull = ""
+          $sha = "${{ steps.check.outputs.short_sha }}"
+          $coreChanged = "${{ steps.check.outputs.core_changed }}" -eq "true"
+          $assetsChanged = "${{ steps.check.outputs.assets_changed }}" -eq "true"
+
+          if ("${{ steps.check.outputs.has_dev_latest }}" -eq "true") {
+              $existingNames = gh release view dev-latest --json assets --jq '.assets[].name' 2>$null
+              if ($existingNames) {
+                  foreach ($name in $existingNames) {
+                      if ($name -match "mod_reforged_core-(.+)\.zip") {
+                          $coreExistingFull = $Matches[1]
+                          if ($coreExistingFull -match "-dev\.(\d+)") { $coreDevNum = [int]$Matches[1] }
+                          if ($coreChanged) { $coreDevNum++ }
+                      }
+                      if ($name -match "mod_reforged_assets-(.+)\.zip") {
+                          $assetsExistingFull = $Matches[1]
+                          if ($assetsExistingFull -match "-dev\.(\d+)") { $assetsDevNum = [int]$Matches[1] }
+                          if ($assetsChanged) { $assetsDevNum++ }
+                      }
+                  }
+              }
+          }
+
+          function Get-TargetVersion($filePath, $isChanged, $devNum, $existingFull) {
+            $content = Get-Content $filePath -Raw
+            $match = [regex]::Match($content, 'Version\s*=\s*"([^"]+)"')
+            if (-not $match.Success) { throw "Version not found in $filePath" }
+            $repoVersion = $match.Groups[1].Value
+            if (-not $isChanged) {
+              $ver = if ($existingFull) { $existingFull } else { $repoVersion }
+              $req = if ($ver -match "(.+)\.[a-f0-9]{7}$") { $Matches[1] } else { $ver }
+              return @{ Full = $ver; Req = $req }
+            }
+            $v = $repoVersion.Split('.')
+            if ($v.Length -ne 3) { throw "Invalid semantic version in $filePath" }
+            $major, $minor, $patch = [int]$v[0], [int]$v[1], [int]$v[2]
+            $base = "$major.$minor.$($patch + 1)-dev.$devNum"
+            return @{ Full = "$base.$sha"; Req = $base }
+          }
+
+          $coreDev = Get-TargetVersion $coreFile $coreChanged $coreDevNum $coreExistingFull
+          $assetsDev = Get-TargetVersion $assetsFile $assetsChanged $assetsDevNum $assetsExistingFull
+
+          "core_version=$($coreDev.Full)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "core_req=$($coreDev.Req)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "assets_version=$($assetsDev.Full)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "assets_req=$($assetsDev.Req)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "core_zip=mod_reforged_core-$($coreDev.Full)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "assets_zip=mod_reforged_assets-$($assetsDev.Full)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      # ------------------------------------------------------------
+      # 8. Update Version Files
+      # ------------------------------------------------------------
+      - name: Update Files
+        if: steps.check.outputs.skip != 'true'
+        shell: pwsh
+        working-directory: ${{ github.workspace }}\mod_reforged
+        run: |
+          $coreFile = "scripts/!mods_preload/mod_reforged.nut"
+          $assetsFile = "scripts/!mods_preload/mod_reforged_assets/mod_reforged_assets_registration.nut"
+          if ("${{ steps.check.outputs.core_changed }}" -eq "true") {
+            $c = Get-Content $coreFile -Raw
+            $c = [regex]::Replace($c, 'Version\s*=\s*"([^"]+)"', "Version = `"${{ steps.versions.outputs.core_version }}`"")
+            $c = [regex]::Replace($c, '("mod_reforged_assets\s*(?:>=|>|==)?\s*)[^"]+"', "`${1}${{ steps.versions.outputs.assets_req }}`"")
+            Set-Content $coreFile $c -Encoding UTF8
+          }
+          if ("${{ steps.check.outputs.assets_changed }}" -eq "true") {
+            $c = Get-Content $assetsFile -Raw
+            $c = [regex]::Replace($c, 'Version\s*=\s*"([^"]+)"', "Version = `"${{ steps.versions.outputs.assets_version }}`"")
+            $c = [regex]::Replace($c, '"mod_reforged"', "`"mod_reforged >= ${{ steps.versions.outputs.core_req }}`"")
+            Set-Content $assetsFile $c -Encoding UTF8
+          }
+
+      # ------------------------------------------------------------
+      # 9. Setup BBBuilder
+      - name: Setup BBBuilder
+        if: steps.check.outputs.skip != 'true'
+        id: bbbuilder
+        uses: ./mod_reforged/.github/actions/setup-bbbuilder
+        with:
+          game_path: ${{ env.GAME_PATH }}
+          mod_root: ${{ env.MOD_ROOT }}
+
+      # ------------------------------------------------------------
+      # 11. Build mod
+      # ------------------------------------------------------------
+      - name: Build Core
+        if: steps.check.outputs.core_changed == 'true'
+        shell: cmd
+        working-directory: ${{ steps.bbbuilder.outputs.path }}
+        env:
+          DOTNET_ROLL_FORWARD: Major
+        run: |
+          BBbuilder.exe build "%MOD_PATH%" -rebuild -ex "brushes,gfx,music,sounds,scripts/!mods_preload/mod_reforged_assets,scripts/!mods_preload/mod_reforged_patch" -zipname "${{ steps.versions.outputs.core_zip }}"
+
+      - name: Build Assets
+        if: steps.check.outputs.assets_changed == 'true'
+        shell: cmd
+        working-directory: ${{ steps.bbbuilder.outputs.path }}
+        env:
+          DOTNET_ROLL_FORWARD: Major
+        run: |
+          BBbuilder.exe build "%MOD_PATH%" -rebuild -ex "mod_reforged,mod_reforged_AfterHooks,preload,scripts,ui" -in "scripts/!mods_preload/mod_reforged_assets" -zipname "${{ steps.versions.outputs.assets_zip }}"
+
+      # ------------------------------------------------------------
+      # 5. Generate Technical Changelog
+      # ------------------------------------------------------------
+      - name: Generate Tech Notes
+        id: tech_notes
+        if: steps.check.outputs.skip != 'true'
+        uses: ./mod_reforged/.github/actions/generate-changelog
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          base_tag: ${{ steps.check.outputs.compare_base }}
+          include_diffs: ${{ github.event_name != 'workflow_dispatch' || (github.event.inputs.include_diffs && github.event.inputs.ai_rephrase) }}
+          working_directory: mod_reforged
+
+      # ------------------------------------------------------------
+      # 6. AI Rephrase Notes
+      # ------------------------------------------------------------
+      - name: AI Rephrase
+        id: ai
+        if: steps.check.outputs.skip != 'true' && inputs.ai_rephrase
+        uses: ./mod_reforged/.github/actions/ai-rephrase
+        with:
+          notes: "${{ steps.tech_notes.outputs.feats_fixes }}\n${{ steps.tech_notes.outputs.others }}"
+          api_key: ${{ secrets.GEMINI_API_KEY }}
+          system_instructions: ${{ vars.AI_SYSTEM_INSTRUCTIONS_RELEASE_NOTES }}
+          models: ${{ vars.GEMINI_TEXT_MODELS }}
+
+      # ------------------------------------------------------------
+      # 7. Assemble Release Body
+      # ------------------------------------------------------------
+      - name: Assemble Release Body
+        id: body
+        if: steps.check.outputs.skip != 'true'
+        shell: pwsh
+        working-directory: ${{ github.workspace }}\mod_reforged
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AI_REPHRASE_ACTIVE: ${{ inputs.ai_rephrase }}
+          AI_FRIENDLY_WITH_SHA: ${{ steps.ai.outputs.friendly_with_sha }}
+          TECH_FEATS: ${{ steps.tech_notes.outputs.feats_fixes }}
+          TECH_OTHERS: ${{ steps.tech_notes.outputs.others }}
+        run: |
+          function Get-MarkdownSection($text, $header) {
+              if ($text -match "(?msi)$header\s*\r?\n(?<content>.*?)(?=\r?\n###|\z)") { return $Matches['content'].Trim() }
+              return ""
+          }
+          $hasDevLatest = "${{ steps.check.outputs.has_dev_latest }}" -eq "true"
+          $existingBody = ""
+          if ($hasDevLatest) {
+              $existingBody = (gh release view dev-latest --json body --jq '.body' --repo ${{ github.repository }} 2>$null) -join "`n"
+          }
+          $oldFeatures = ""; $oldFixes = ""; $oldOthers = ""
+          if ($existingBody -match "(?ms)## (?:Total Changes|All Project Changes).*?\r?\n(?<totalContent>.*)") {
+              $totalContent = $Matches['totalContent']
+              $oldFeatures = Get-MarkdownSection $totalContent "### FEATURES"
+              $oldFixes = Get-MarkdownSection $totalContent "### FIXES"
+              $oldOthers = Get-MarkdownSection $totalContent "### OTHER"
+          }
+
+          $aiNotice = if ($env:AI_REPHRASE_ACTIVE -eq "true") { "*Some or all of these notes were generated with the help of AI.*`n`n" } else { "" }
+          $newFriendly = if ($env:AI_REPHRASE_ACTIVE -eq "true") { $env:AI_FRIENDLY_WITH_SHA } else { "$($env:TECH_FEATS)`n$($env:TECH_OTHERS)" }
+
+          $newFeatures = Get-MarkdownSection $newFriendly "### FEATURES"
+          $newFixes = Get-MarkdownSection $newFriendly "### FIXES"
+          $newOthers = Get-MarkdownSection $newFriendly "### OTHER"
+
+          $mergedFeatures = ($oldFeatures + "`n" + $newFeatures).Trim()
+          $mergedFixes = ($oldFixes + "`n" + $newFixes).Trim()
+          $mergedOthers = ($oldOthers + "`n" + $newOthers).Trim()
+
+          $latestStableTag = "${{ steps.check.outputs.latest_stable_tag }}"
+          $totalTitle = if ($latestStableTag) { "Total Changes (Since $latestStableTag)" } else { "All Project Changes" }
+          $releaseNotes = "$aiNotice## New Changes (Since last build)`n$newFriendly`n---`n## $totalTitle"
+          if ($mergedFeatures) { $releaseNotes += "`n### FEATURES`n$mergedFeatures" }
+          if ($mergedFixes) { $releaseNotes += "`n### FIXES`n$mergedFixes" }
+          if ($mergedOthers) { $releaseNotes += "`n### OTHER`n$mergedOthers" }
+          $delimiter = [guid]::NewGuid().ToString()
+          "release_notes<<$delimiter" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          $releaseNotes.Trim() | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "$delimiter" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      # ------------------------------------------------------------
+      # 12. Remove old assets from rolling release
+      # ------------------------------------------------------------
+      - name: Clean old release assets
+        if: steps.check.outputs.skip != 'true'
+        id: clean
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tag = "dev-latest";
+            const updateCore = "${{ steps.check.outputs.core_changed }}" === "true";
+            const updateAssets = "${{ steps.check.outputs.assets_changed }}" === "true";
+
+            let existingCore = "";
+            let existingAssets = "";
+            let coreVer = "${{ steps.versions.outputs.core_version }}";
+            let assetsVer = "${{ steps.versions.outputs.assets_version }}";
+
+            try {
+              const release = await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag
+              });
+
+              for (const asset of release.data.assets) {
+                if (asset.name.startsWith("mod_reforged_core")) {
+                  if (updateCore) {
+                    await github.rest.repos.deleteReleaseAsset({ owner: context.repo.owner, repo: context.repo.repo, asset_id: asset.id });
+                  } else {
+                    existingCore = asset.name;
+                    const m = asset.name.match(/mod_reforged_core-(.*)\.zip/);
+                    if (m) coreVer = m[1];
+                  }
+                } else if (asset.name.startsWith("mod_reforged_assets")) {
+                  if (updateAssets) {
+                    await github.rest.repos.deleteReleaseAsset({ owner: context.repo.owner, repo: context.repo.repo, asset_id: asset.id });
+                  } else {
+                    existingAssets = asset.name;
+                    const m = asset.name.match(/mod_reforged_assets-(.*)\.zip/);
+                    if (m) assetsVer = m[1];
+                  }
+                }
+              }
+            } catch (e) {
+              core.info("No existing dev-latest release found to clean up. Proceeding to fetch fallbacks.");
+            }
+
+            core.setOutput("existing_core", existingCore);
+            core.setOutput("existing_assets", existingAssets);
+            core.setOutput("core_ver", coreVer);
+            core.setOutput("assets_ver", assetsVer);
+
+            // Fetch Stable Fallbacks
+            try {
+              const stableCore = await github.rest.repos.getLatestRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+              const asset = stableCore.data.assets.find(a => a.name.toLowerCase().includes("core") && a.name.endsWith(".zip"));
+              if (asset) core.setOutput("stable_core_url", asset.browser_download_url);
+            } catch (e) { core.info("Stable Core fallback not found in ${context.repo.repo}."); }
+
+            try {
+              const stableAssets = await github.rest.repos.getLatestRelease({
+                owner: context.repo.owner,
+                repo: 'mod_reforged_assets'
+              });
+              const asset = stableAssets.data.assets.find(a => a.name.toLowerCase().includes("assets") && a.name.endsWith(".zip"));
+              if (asset) core.setOutput("stable_assets_url", asset.browser_download_url);
+            } catch (e) { core.info("Stable Assets fallback not found in mod_reforged_assets."); }
+
+      - name: Update dev-latest tag
+        if: success() && steps.check.outputs.skip != 'true'
+        shell: pwsh
+        working-directory: ${{ github.workspace }}\mod_reforged
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          # Use the GITHUB_SHA directly for the tag
+          Write-Host "Moving dev-latest to ${env:GITHUB_SHA}"
+          git tag -f dev-latest ${env:GITHUB_SHA}
+          git push origin dev-latest --force
+
+      # 13. Publish rolling dev release
+      # ------------------------------------------------------------
+      - name: Publish dev release
+        if: steps.check.outputs.skip != 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: dev-latest
+          name: Rolling Development Build
+          prerelease: true
+          make_latest: false
+          body: |
+            Automatically generated
+
+            Core Version: ${{ steps.clean.outputs.core_ver }}
+            Assets Version: ${{ steps.clean.outputs.assets_ver }}
+            Commit: ${{ steps.check.outputs.short_sha }}
+
+            ${{ steps.body.outputs.release_notes }}
+
+          files: |
+            mod_reforged/mod_reforged_*.zip
+
+      # ------------------------------------------------------------
+      # 14. Notify Discord via Webhook
+      # ------------------------------------------------------------
+      - name: Notify Discord
+        if: steps.check.outputs.skip != 'true'
+        shell: pwsh
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL_DEV_BUILDS }}
+          CORE_VER: ${{ steps.clean.outputs.core_ver }}
+          ASSETS_VER: ${{ steps.clean.outputs.assets_ver }}
+          REPO: ${{ github.repository }}
+          CORE_CHANGED: ${{ steps.check.outputs.core_changed }}
+          ASSETS_CHANGED: ${{ steps.check.outputs.assets_changed }}
+          NEW_NOTES: ${{ steps.ai.outputs.friendly_no_sha }}
+          CORE_ZIP: ${{ steps.versions.outputs.core_zip }}
+          ASSETS_ZIP: ${{ steps.versions.outputs.assets_zip }}
+          EXISTING_CORE: ${{ steps.clean.outputs.existing_core }}
+          EXISTING_ASSETS: ${{ steps.clean.outputs.existing_assets }}
+          STABLE_CORE_URL: ${{ steps.clean.outputs.stable_core_url }}
+          STABLE_ASSETS_URL: ${{ steps.clean.outputs.stable_assets_url }}
+          AI_REPHRASE_ACTIVE: ${{ inputs.ai_rephrase }}
+        run: |
+          $coreChanged = $env:CORE_CHANGED -eq 'true'
+          $assetsChanged = $env:ASSETS_CHANGED -eq 'true'
+
+          # Determine URLs with stable fallbacks
+          $coreUrl = if ($coreChanged) {
+            "https://github.com/$env:REPO/releases/download/dev-latest/$($env:CORE_ZIP).zip"
+          } elseif ($env:EXISTING_CORE) {
+            "https://github.com/$env:REPO/releases/download/dev-latest/$env:EXISTING_CORE"
+          } else {
+            $env:STABLE_CORE_URL
+          }
+
+          $assetsUrl = if ($assetsChanged) {
+            "https://github.com/$env:REPO/releases/download/dev-latest/$($env:ASSETS_ZIP).zip"
+          } elseif ($env:EXISTING_ASSETS) {
+            "https://github.com/$env:REPO/releases/download/dev-latest/$env:EXISTING_ASSETS"
+          } else {
+            $env:STABLE_ASSETS_URL
+          }
+
+          # Labels
+          $coreLabel = if ($coreChanged) { "Core (New)" } else { "Core (Same as last build)" }
+          $assetsLabel = if ($assetsChanged) { "Assets (New)" } else { "Assets (Same as last build)" }
+
+          $downloadLinks = @()
+
+          if ($coreUrl) {
+            $downloadLinks += "- 🔗 **[$coreLabel]($coreUrl)**"
+          }
+
+          if ($assetsUrl) {
+            $downloadLinks += "- 🔗 **[$assetsLabel]($assetsUrl)**"
+          }
+
+          $downloadsStr = $downloadLinks -join "`n"
+          $description = "A new rolling development build has been created.`nDevelopment builds may be unstable.`n"
+          if ($downloadLinks.Count -gt 0) { $description += "### 📥 Downloads`n$downloadsStr`nThese links are only valid until the respective file gets a new version." }
+
+          if ($env:NEW_NOTES) {
+              $notes = $env:NEW_NOTES
+              $aiNotice = if ($env:AI_REPHRASE_ACTIVE -eq "true") { "*Some or all of these notes were generated with the help of AI.*`n" } else { "" }
+              $notes = $aiNotice + $notes
+              if ($notes.Length -gt 3500) {
+                  $notes = $notes.Substring(0, 3500) + "... [Read More](https://github.com/$env:REPO/releases/tag/dev-latest)"
+              }
+              $description += "`n---`n$notes`n---"
+          }
+
+          $embed = @{
+              title = "🚀 New Reforged Development Build"
+              url = "https://github.com/$env:REPO/releases/tag/dev-latest"
+              description = $description
+              color = 16776960 # Pure yellow color
+              fields = @(
+                @{ name = "Core Version";   value = "``$env:CORE_VER``";   inline = $true },
+                @{ name = "Assets Version"; value = "``$env:ASSETS_VER``"; inline = $true }
+              )
+              footer = @{ text = "Reforged Automated Dev-Build System" }
+          }
+
+          $body = @{
+            embeds = @($embed)
+          }
+
+          $payload = $body | ConvertTo-Json -Depth 10
+          Invoke-RestMethod -Uri $env:DISCORD_WEBHOOK -Method Post -Body $payload -ContentType "application/json"

@@ -1,0 +1,78 @@
+name: 'Setup BBBuilder'
+description: 'Caches, downloads, and configures BBBuilder for mod building'
+inputs:
+  game_path:
+    description: 'Path to the game directory'
+    required: true
+  mod_root:
+    description: 'Path to the mod root directory'
+    required: true
+outputs:
+  path:
+    description: 'The directory path where BBBuilder is installed'
+    value: ${{ steps.bbbuilder-path.outputs.path }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get latest BBBuilder version
+      id: bb-version
+      shell: pwsh
+      continue-on-error: true
+      run: |
+        try {
+          $tag = (Invoke-RestMethod -Uri "https://api.github.com/repos/TaroEld/BBbuilder/releases/latest" -ErrorAction Stop).tag_name
+          Write-Host "Latest BBBuilder version: $tag"
+          "version=$tag" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        } catch {
+          Write-Warning "Failed to fetch latest BBBuilder version. Fallback to cache-only."
+        }
+
+    - name: Cache BBBuilder
+      id: cache-bbbuilder
+      uses: actions/cache@v4
+      with:
+        path: BBBuilder
+        key: bbbuilder-${{ steps.bb-version.outputs.version || 'stable' }}
+        restore-keys: |
+          bbbuilder-
+
+    - name: Download BBBuilder
+      shell: pwsh
+      run: |
+        $bbPath = Join-Path $env:GITHUB_WORKSPACE "BBBuilder"
+        if (Test-Path $bbPath) {
+          Write-Host "BBBuilder found in cache."
+          return
+        }
+        Write-Host "Downloading latest BBBuilder..."
+        Invoke-WebRequest -Uri "https://github.com/TaroEld/BBbuilder/releases/latest/download/BBBuilder.zip" -OutFile "BBBuilder.zip"
+        Expand-Archive "BBBuilder.zip" -DestinationPath $bbPath
+        Remove-Item "BBBuilder.zip"
+
+    - name: Set BBBuilder path output
+      id: bbbuilder-path
+      shell: pwsh
+      run: |
+        $bbPath = Join-Path $env:GITHUB_WORKSPACE "BBBuilder"
+        "path=$bbPath" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+    - name: Configure BBBuilder
+      shell: pwsh
+      run: |
+        $bbPath = "${{ steps.bbbuilder-path.outputs.path }}"
+        # Ensure directories exist
+        New-Item -ItemType Directory -Force "${{ inputs.game_path }}" | Out-Null
+        New-Item -ItemType Directory -Force "${{ inputs.mod_root }}" | Out-Null
+
+        $config = @{
+          GamePath = "${{ inputs.game_path }}"
+          ModPath  = "${{ inputs.mod_root }}"
+          MoveZip  = $false
+          UseSteam = $false
+          Verbose  = $true
+          SetPath  = $false
+          LogTime  = $true
+          FoldersArray = @()
+        } | ConvertTo-Json -Compress
+        $config | Out-File "$bbPath\tools\config.json" -Encoding UTF8

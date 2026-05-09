@@ -1,0 +1,273 @@
+name: Upload Latest Release to NexusMods
+
+on:
+  release:
+    types: [published, released]
+  workflow_dispatch:
+    inputs:
+      is_dry_run:
+        type: boolean
+        description: 'Dry Run'
+        required: false
+
+jobs:
+  upload-to-nexusmods:
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'release' && !github.event.release.prerelease)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.REFORGED_RELEASE_APP_ID }}
+          private-key: ${{ secrets.REFORGED_RELEASE_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: mod_reforged_assets
+
+      - name: Fetch and Compare Versions
+        id: info
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXTERNAL_TOKEN: ${{ steps.app-token.outputs.token }}
+          NEXUS_API_KEY: ${{ secrets.NEXUSMODS_API_KEY_BATTLEMODDERS }}
+          CORE_FILE_GID: ${{ secrets.NEXUSMODS_FILE_GROUPID_CORE }}
+          ASSETS_FILE_GID: ${{ secrets.NEXUSMODS_FILE_GROUPID_ASSETS }}
+        run: |
+          # 1. Fetch Latest GitHub Core Release Info (This repo)
+          GH_CORE_VER=$(gh release view --repo ${{ github.repository }} --json tagName --jq '.tagName')
+          GH_CORE_BODY=$(gh release view --repo ${{ github.repository }} --json body --jq '.body')
+          GH_CORE_REL_URL=$(gh release view --repo ${{ github.repository }} --json url --jq '.url')
+          GH_CORE_ASSET=$(gh release view --repo ${{ github.repository }} --json assets --jq '.assets[] | select(.name | test("mod_reforged_core.*\\.zip$"))' | head -n 1)
+          GH_CORE_ZIP_URL=$(echo "$GH_CORE_ASSET" | jq -r .url)
+          GH_CORE_ZIP_NAME=$(echo "$GH_CORE_ASSET" | jq -r .name)
+
+          # 2. Fetch Latest GitHub Assets Release Info (External Repo)
+          ASSETS_INFO=$(GH_TOKEN=$EXTERNAL_TOKEN gh release view --repo ${{ github.repository_owner }}/mod_reforged_assets --json tagName,assets)
+          GH_ASSETS_VER=$(echo "$ASSETS_INFO" | jq -r .tagName)
+          GH_ASSETS_ASSET=$(echo "$ASSETS_INFO" | jq -c '.assets[] | select(.name | test("mod_reforged_assets.*\\.zip$"))' | head -n 1)
+          GH_ASSETS_ZIP_URL=$(echo "$GH_ASSETS_ASSET" | jq -r .url)
+          GH_ASSETS_ZIP_NAME=$(echo "$GH_ASSETS_ASSET" | jq -r .name)
+
+          # 3. Fetch Nexus Mod Files Info
+          NEXUS_JSON=$(curl -s -H "apikey: $NEXUS_API_KEY" https://api.nexusmods.com/v3/file-update-groups/$CORE_FILE_GID/versions)
+
+          # Parse Nexus Core (Taking the first entry as the latest)
+          NEXUS_CORE_FILE=$(echo "$NEXUS_JSON" | jq -c '.data.versions[0].file')
+          NEXUS_CORE_VER=$(echo "$NEXUS_CORE_FILE" | jq -r .version)
+
+          NEXUS_JSON=$(curl -s -H "apikey: $NEXUS_API_KEY" https://api.nexusmods.com/v3/file-update-groups/$ASSETS_FILE_GID/versions)
+
+          # Parse Nexus Assets (Taking the first entry as the latest)
+          NEXUS_ASSETS_FILE=$(echo "$NEXUS_JSON" | jq -c '.data.versions[0].file')
+          NEXUS_ASSETS_VER=$(echo "$NEXUS_ASSETS_FILE" | jq -r .version)
+          NEXUS_ASSETS_ID=$(echo "$NEXUS_ASSETS_FILE" | jq -r .id)
+
+          # Semantic comparison: returns 0 (true) if $2 is newer than $1
+          is_newer() {
+            # Strip 'v' and extract only the major.minor.patch part (x.x.x)
+            local v1=$(echo "${1#v}" | grep -oE '^[0-9]+\.[0-9]+\.[0-9]+' || echo "")
+            local v2=$(echo "${2#v}" | grep -oE '^[0-9]+\.[0-9]+\.[0-9]+' || echo "")
+
+            if [ -z "$v1" ]; then return 0; fi # No version found on Nexus
+            if [ "$v1" = "$v2" ]; then return 1; fi # Versions are identical
+
+            # Use sort -V to handle numeric comparisons (e.g., 1.10.0 > 1.2.0)
+            [ "$(printf '%s\n%s' "$v1" "$v2" | sort -V | tail -n 1)" = "$v2" ]
+          }
+
+          if is_newer "$NEXUS_CORE_VER" "$GH_CORE_VER"; then
+            echo "update_core=true" >> $GITHUB_OUTPUT
+          fi
+
+          if is_newer "$NEXUS_ASSETS_VER" "$GH_ASSETS_VER"; then
+            echo "update_assets=true" >> $GITHUB_OUTPUT
+          fi
+
+          # --- TEST LOGGING: Summary of detected state ---
+          echo "### Dry Run Detection Summary ###"
+          echo "Core: GH Version: $GH_CORE_VER | Nexus Version: $NEXUS_CORE_VER"
+          echo "Core: Download URL: $GH_CORE_ZIP_URL"
+          echo "Core: Update Required: $([[ "$NEXUS_CORE_VER" != "$GH_CORE_VER" ]] && echo 'YES' || echo 'NO')"
+          echo "--------------------------------"
+          echo "Assets: GH Version: $GH_ASSETS_VER | Nexus Version: $NEXUS_ASSETS_VER"
+          echo "Assets: Download URL: $GH_ASSETS_ZIP_URL"
+          echo "Assets: Update Required: $([[ "$NEXUS_ASSETS_VER" != "$GH_ASSETS_VER" ]] && echo 'YES' || echo 'NO')"
+          echo "################################"
+          # -----------------------
+
+          # Outputs for subsequent steps
+          echo "gh_core_ver=$GH_CORE_VER" >> $GITHUB_OUTPUT
+          echo "gh_core_url=$GH_CORE_ZIP_URL" >> $GITHUB_OUTPUT
+          echo "gh_core_name=$GH_CORE_ZIP_NAME" >> $GITHUB_OUTPUT
+          echo "gh_assets_ver=$GH_ASSETS_VER" >> $GITHUB_OUTPUT
+          echo "gh_assets_url=$GH_ASSETS_ZIP_URL" >> $GITHUB_OUTPUT
+          echo "gh_assets_name=$GH_ASSETS_ZIP_NAME" >> $GITHUB_OUTPUT
+          echo "gh_core_release_url=$GH_CORE_REL_URL" >> $GITHUB_OUTPUT
+
+          delimiter=$(openssl rand -hex 8)
+          echo "gh_core_body<<$delimiter" >> $GITHUB_OUTPUT
+          echo "$GH_CORE_BODY" >> $GITHUB_OUTPUT
+          echo "$delimiter" >> $GITHUB_OUTPUT
+
+      - name: Download Core
+        shell: bash
+        run: curl -L -o core_latest.zip "${{ steps.info.outputs.gh_core_url }}"
+
+      - name: Upload Core (Dry Run)
+        if: ${{ inputs.is_dry_run && steps.info.outputs.update_core == 'true' }}
+        run: |
+          echo "DRY RUN: Uploading Core to Nexus"
+          echo "  file_group_id: ***"
+          echo "  filename: core_latest.zip"
+          echo "  display_name: mod_reforged_core"
+          echo "  description: |"
+          echo "    Requires mod_reforged_assets."
+          echo "    Release Notes: ${{ steps.info.outputs.gh_core_url }}"
+          echo "  version: ${{ steps.info.outputs.gh_core_ver }}"
+          echo "  archive_existing_file: true"
+          echo "  primary_mod_manager_download: true"
+          echo "  allow_mod_manager_download: true"
+          echo "  show_requirements_pop_up: true"
+
+      - name: Upload Core
+        if: ${{ !inputs.is_dry_run && steps.info.outputs.update_core == 'true' }}
+        uses: Nexus-Mods/upload-action@main
+        with:
+          api_key: ${{ secrets.NEXUSMODS_API_KEY_BATTLEMODDERS }}
+          file_group_id: ${{ secrets.NEXUSMODS_FILE_GROUPID_CORE }}
+          filename: core_latest.zip
+          display_name: "mod_reforged_core"
+          description: |
+            Requires mod_reforged_assets.
+
+            Release Notes: ${{ steps.info.outputs.gh_core_url }}
+          version: ${{ steps.info.outputs.gh_core_ver }}
+          archive_existing_file: true
+          primary_mod_manager_download: true
+          allow_mod_manager_download: true
+          show_requirements_pop_up: true
+
+      - name: Update Nexus Mod Version (Dry Run)
+        if: ${{ inputs.is_dry_run && steps.info.outputs.update_core == 'true' }}
+        run: |
+          echo "DRY RUN: Patching Mod Metadata Version"
+          echo "  New Global Version: ${{ steps.info.outputs.gh_core_ver }}"
+
+      - name: Download Assets
+        shell: bash
+        run: curl -L -o assets_latest.zip "${{ steps.info.outputs.gh_assets_url }}"
+
+      - name: Upload Assets (Dry Run)
+        if: ${{ inputs.is_dry_run && steps.info.outputs.update_assets == 'true' }}
+        run: |
+          echo "DRY RUN: Uploading Assets to Nexus"
+          echo "  file_group_id: ***"
+          echo "  filename: assets_latest.zip"
+          echo "  version: ${{ steps.info.outputs.gh_assets_ver }}"
+          echo "  display_name: mod_reforged_assets"
+          echo "  description: Requires mod_reforged_core."
+          echo "  file_category: miscellaneous"
+          echo "  archive_existing_file: true"
+          echo "  show_requirements_pop_up: false"
+
+      - name: Upload Assets
+        if: ${{ !inputs.is_dry_run && steps.info.outputs.update_assets == 'true' }}
+        uses: Nexus-Mods/upload-action@main
+        with:
+          api_key: ${{ secrets.NEXUSMODS_API_KEY_BATTLEMODDERS }}
+          file_group_id: ${{ secrets.NEXUSMODS_FILE_GROUPID_ASSETS }}
+          filename: assets_latest.zip
+          display_name: "mod_reforged_assets"
+          description: |
+            Requires mod_reforged_core.
+          version: ${{ steps.info.outputs.gh_assets_ver }}
+          file_category: miscellaneous
+          archive_existing_file: true
+          show_requirements_pop_up: false
+
+      - name: Export Packages for Inspection
+        if: ${{ inputs.is_dry_run }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: nexus-dry-run-packages
+          path: |
+            core_latest.zip
+            assets_latest.zip
+          retention-days: 1
+
+      # ------------------------------------------------------------
+      # Notify Discord via Webhook
+      # ------------------------------------------------------------
+      - name: Notify Discord
+        if: ${{ !inputs.is_dry_run && (steps.info.outputs.update_core == 'true' || steps.info.outputs.update_assets == 'true') }}
+        shell: pwsh
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL_RELEASE_BUILDS }}
+          CORE_VER: ${{ steps.info.outputs.gh_core_ver }}
+          ASSETS_VER: ${{ steps.info.outputs.gh_assets_ver }}
+          CORE_URL: ${{ steps.info.outputs.gh_core_url }}
+          ASSETS_URL: ${{ steps.info.outputs.gh_assets_url }}
+          CORE_CHANGED: ${{ steps.info.outputs.update_core }}
+          ASSETS_CHANGED: ${{ steps.info.outputs.update_assets }}
+          RELEASE_NOTES: ${{ steps.info.outputs.gh_core_body }}
+          RELEASE_URL: ${{ steps.info.outputs.gh_core_release_url }}
+        run: |
+          $coreChanged = $env:CORE_CHANGED -eq 'true'
+          $assetsChanged = $env:ASSETS_CHANGED -eq 'true'
+
+          # Labels
+          $coreLabel = if ($coreChanged) { "Core (New)" } else { "Core (Unchanged)" }
+          $assetsLabel = if ($assetsChanged) { "Assets (New)" } else { "Assets (Unchanged)" }
+
+          $downloadLinks = @()
+          if ($env:CORE_URL) {
+            $downloadLinks += "- 🔗 **[$coreLabel]($($env:CORE_URL))**"
+          }
+          if ($env:ASSETS_URL) {
+            $downloadLinks += "- 🔗 **[$assetsLabel]($($env:ASSETS_URL))**"
+          }
+          $downloadLinks += "- 🔗 **[NexusMods](https://www.nexusmods.com/battlebrothers/mods/765?tab=files)**"
+
+          $downloadsStr = $downloadLinks -join "`n"
+          $description = "A new Reforged version has been released!`n"
+          if ($downloadLinks.Count -gt 0) {
+              $description += "### Downloads (GitHub)`n$downloadsStr`n"
+          }
+
+          if ($env:RELEASE_NOTES) {
+              $notes = $env:RELEASE_NOTES
+
+              # Remove PR numbers like (#54) and commit SHAs like [34f3423]
+              $notes = $notes -replace '\s*\(\#\d+\)', ''
+              $notes = $notes -replace '\s*\[[a-f0-9]+\]', ''
+
+              if ($notes.Length -gt 3500) {
+                  $notes = $notes.Substring(0, 3500) + "... [Read More]($($env:RELEASE_URL))"
+              }
+              $description += "`n---`n$notes`n---"
+          }
+
+          $embed = @{
+              title = "Release $($env:CORE_VER)"
+              url = $env:RELEASE_URL
+              description = $description
+              color = 16776960 # Pure yellow color
+              fields = @(
+                @{ name = "Core Version";   value = "``$env:CORE_VER``";   inline = $true },
+                @{ name = "Assets Version"; value = "``$env:ASSETS_VER``"; inline = $true }
+              )
+              footer = @{ text = "Reforged Release Notification System" }
+          }
+
+          $body = @{
+            embeds = @($embed)
+          }
+
+          $payload = $body | ConvertTo-Json -Depth 10
+          Invoke-RestMethod -Uri $env:DISCORD_WEBHOOK -Method Post -Body $payload -ContentType "application/json"
