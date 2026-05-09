@@ -9,7 +9,7 @@
 	generalPage.addDivider("MiscDivider1");
 	generalPage.addTitle("General_Title_Contracts", "Contracts");
 	generalPage.addEnumSetting("SkipContractsToScreen", "Overview", ["Disabled", "Negotiation", "Overview"], "Skip Contracts To", "Allows you to save some time by skipping to a certain screen when opening a contract in settlements.\n\nDisabled: Same behavior as vanilla, you have to click through all of the contract\'s screens.\n\nNegotiation: Skip the introduction screens and go straight to the negotiation.\n\nOverview: Skip to the final screen in the contract where you can accept or reject it. With this option, you will no longer be able to manually negotiate contracts.");
-	generalPage.addRangeSetting("AutoNegotiateAttempts", 1, 0, 10, 1, "Auto-Negotiate Attempts", "When clicking on contracts in settlements, auto-negotiate them this many times for more payment. This process will stop as soon as the employer gives his final offer or negotiations turn sour.");
+	generalPage.addRangeSetting("AutoNegotiateAttempts", 1, 0, 10, 1, "Auto-Negotiate Attempts", "When clicking on contracts in settlements, auto-negotiate them this many times for more payment. This process will stop as soon as the employer rejects a negotiation attempt (i.e. did not increase his offer), or the negotiations fail.");
 }
 { // Tooltips page
 	local tooltipsPage = ::Reforged.Mod.ModSettings.addPage("Tooltips", "Tooltips");

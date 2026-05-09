@@ -19,6 +19,8 @@
 			if (this.m.ActiveScreen.ID == "Negotiation.Fail")
 				return;
 
+			// This does not *really* mean Final Offer. All it really means is that
+			// the last negotiation attempt was "rejected" by the employer.
 			if (this.m.Payment.IsFinal)
 				break;
 		}
