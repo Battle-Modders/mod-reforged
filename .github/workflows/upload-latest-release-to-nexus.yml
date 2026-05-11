@@ -247,8 +247,11 @@ jobs:
               $notes = $notes -replace '\s*\(\#\d+\)', ''
               $notes = $notes -replace '\s*\[[a-f0-9]+\]', ''
 
-              if ($notes.Length -gt 3500) {
-                  $notes = $notes.Substring(0, 3500) + "... [Read More]($($env:RELEASE_URL))"
+              $max = 3500
+              if ($notes.Length -gt $max) {
+                $cut = $notes.LastIndexOf("`n", $max)
+                if ($cut -lt 0) { $cut = $max }
+                $notes = $notes.Substring(0, $cut) + "`n... [Read More]($($env:RELEASE_URL))"
               }
               $description += "`n---`n$notes`n---"
           }

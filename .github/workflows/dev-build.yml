@@ -492,8 +492,11 @@ jobs:
               $notes = $env:NEW_NOTES
               $aiNotice = if ($env:IS_AI_REPHRASE_ACTIVE -eq "true") { "*Some or all of these notes were generated with the help of AI.*`n" } else { "" }
               $notes = $aiNotice + $notes
-              if ($notes.Length -gt 3500) {
-                  $notes = $notes.Substring(0, 3500) + "... [Read More](https://github.com/$env:REPO/releases/tag/dev-latest)"
+              $max = 3500
+              if ($notes.Length -gt $max) {
+                $cut = $notes.LastIndexOf("`n", $max)
+                if ($cut -lt 0) { $cut = $max }
+                $notes = $notes.Substring(0, $cut) + "`n... [Read More](https://github.com/$env:REPO/releases/tag/dev-latest)"
               }
               $description += "`n---`n$notes`n---"
           }
