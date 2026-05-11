@@ -168,7 +168,7 @@ jobs:
             if ($v.Length -ne 3) { throw "Invalid semantic version in $filePath" }
             $major, $minor, $patch = [int]$v[0], [int]$v[1], [int]$v[2]
             $base = "$major.$minor.$($patch + 1)-dev.$devNum"
-            return @{ Full = "$base.$sha"; Req = $base }
+            return @{ Full = "$base+$sha"; Req = $base }
           }
 
           $coreDev = Get-TargetVersion $coreFile $coreChanged $coreDevNum $coreExistingFull
