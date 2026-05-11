@@ -37,8 +37,8 @@ local parties = [
 			ranged.UpgradeWeightMult = 10.0;
 			dogs.UpgradeWeightMult = 0.1;
 
-			frontline.RatioMin = ::Reforged.Math.lerpClamp(res, 100, 0.0, 200, 0.2);
-			ranged.RatioMin = ::Reforged.Math.lerpClamp(res, 50, 0.35, 200, 0.5);
+			frontline.RatioMin = ::Reforged.Math.lerpXClamp(res, 100, 0.0, 200, 0.2);
+			ranged.RatioMin = ::Reforged.Math.lerpXClamp(res, 50, 0.35, 200, 0.5);
 		}
 
 		function getUpgradeChance()
@@ -70,8 +70,8 @@ local parties = [
 			local dogs = this.getSpawnable("UnitBlock.RF.BanditDog");
 			local frontline = this.getSpawnable("RF_BanditFrontline");
 
-			dogs.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 33, 170, 70);
-			frontline.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerp(res, 100, 0.7, 170, 0.5), 0.45, 0.7);
+			dogs.ExclusionChance = ::Reforged.Math.lerpXClamp(res, 100, 33, 170, 70);
+			frontline.RatioMin = ::Reforged.Math.clamp(::Reforged.Math.lerpX(res, 100, 0.7, 170, 0.5), 0.45, 0.7);
 		}
 
 		function getUpgradeChance()
@@ -108,11 +108,11 @@ local parties = [
 			this.getSpawnable("Unit.RF.BanditThug").StartingResourceMax = 250;
 			this.getSpawnable("Unit.RF.RF_BanditThugTough").StartingResourceMax = 250;
 
-			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 60, 150, 0); // vanilla has ranged guaranteed from 148.
-			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.5, 600, 0.25);
-			ranged.RatioMin = ::Reforged.Math.lerpClamp(res, 200, 0.0, 300, 0.2);
+			ranged.ExclusionChance = ::Reforged.Math.lerpXClamp(res, 100, 60, 150, 0); // vanilla has ranged guaranteed from 148.
+			ranged.RatioMax = ::Reforged.Math.lerpXClamp(res, 200, 0.5, 600, 0.25);
+			ranged.RatioMin = ::Reforged.Math.lerpXClamp(res, 200, 0.0, 300, 0.2);
 
-			boss.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 95, 500, 0);
+			boss.ExclusionChance = ::Reforged.Math.lerpXClamp(res, 200, 95, 500, 0);
 
 			// Exclude baron from non-location spawns.
 			local worldEntity = this.getTopParty().getWorldEntity();
@@ -130,7 +130,7 @@ local parties = [
 		function getUpgradeChance()
 		{
 			local res = this.getTopParty().getStartingResources();
-			return 20 + ::Reforged.Math.lerpClamp(res, 100, 4.5, 600, 1.5) * this.getTotal();
+			return 20 + ::Reforged.Math.lerpXClamp(res, 100, 4.5, 600, 1.5) * this.getTotal();
 		}
 	},
 	{
@@ -163,15 +163,15 @@ local parties = [
 			this.getSpawnable("Unit.RF.BanditThug").StartingResourceMax = 320;
 			this.getSpawnable("Unit.RF.RF_BanditThugTough").StartingResourceMax = 320;
 
-			ranged.RatioMin = ::Reforged.Math.lerpClamp(res, 200, 0.0, 300, 0.2);
-			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.55, 600, 0.3);
-			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 100, 45, 150, 0); // Vanilla has ranged guaranteed from 148 except 1 party at 165.
+			ranged.RatioMin = ::Reforged.Math.lerpXClamp(res, 200, 0.0, 300, 0.2);
+			ranged.RatioMax = ::Reforged.Math.lerpXClamp(res, 200, 0.55, 600, 0.3);
+			ranged.ExclusionChance = ::Reforged.Math.lerpXClamp(res, 100, 45, 150, 0); // Vanilla has ranged guaranteed from 148 except 1 party at 165.
 
-			frontline.RatioMin = ::Reforged.Math.lerpClamp(res, 200, 0.45, 400, 0.6);
+			frontline.RatioMin = ::Reforged.Math.lerpXClamp(res, 200, 0.45, 400, 0.6);
 
-			boss.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 66, 400, 0);
+			boss.ExclusionChance = ::Reforged.Math.lerpXClamp(res, 200, 66, 400, 0);
 
-			elite.RatioMax = ::Reforged.Math.lerpClamp(res, 400, 0.05, 600, 0.15);
+			elite.RatioMax = ::Reforged.Math.lerpXClamp(res, 400, 0.05, 600, 0.15);
 
 			// Exclude baron from non-location spawns.
 			local worldEntity = this.getTopParty().getWorldEntity();
@@ -189,7 +189,7 @@ local parties = [
 		function getUpgradeChance()
 		{
 			local res = this.getTopParty().getStartingResources();
-			return 20 + ::Reforged.Math.lerpClamp(res, 100, 4.5, 600, 1.5) * this.getTotal();
+			return 20 + ::Reforged.Math.lerpXClamp(res, 100, 4.5, 600, 1.5) * this.getTotal();
 		}
 	},
 	{
@@ -219,10 +219,10 @@ local parties = [
 			local elite = this.getSpawnable("UnitBlock.RF.BanditElite");
 			local boss = this.getSpawnable("UnitBlock.RF.BanditBoss");
 
-			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.40, 600, 0.3);
-			ranged.ExclusionChance = ::Reforged.Math.lerpClamp(res, 200, 15, 250, 0); // vanilla has ranged guaranteed from 228.
+			ranged.RatioMax = ::Reforged.Math.lerpXClamp(res, 200, 0.40, 600, 0.3);
+			ranged.ExclusionChance = ::Reforged.Math.lerpXClamp(res, 200, 15, 250, 0); // vanilla has ranged guaranteed from 228.
 
-			elite.ExclusionChance = ::Reforged.Math.lerpClamp(res, 300, 60, 500, 25);
+			elite.ExclusionChance = ::Reforged.Math.lerpXClamp(res, 300, 60, 500, 25);
 
 			boss.RatioMax = ::MSU.Class.WeightedContainer([
 				[60, 0.05],
@@ -246,7 +246,7 @@ local parties = [
 		function getUpgradeChance()
 		{
 			local res = this.getTopParty().getStartingResources();
-			return 30 + ::Reforged.Math.lerpClamp(res, 100, 3.5, 600, 1.25) * this.getTotal();
+			return 30 + ::Reforged.Math.lerpXClamp(res, 100, 3.5, 600, 1.25) * this.getTotal();
 		}
 	},
 	{

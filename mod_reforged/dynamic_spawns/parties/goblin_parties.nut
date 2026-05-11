@@ -133,7 +133,7 @@ local parties = [
 			// Chance for a Wolfrider-only party
 			if (flank.isValid())
 			{
-				local chanceFlankOnly = ::Reforged.Math.clamp(::Reforged.Math.multilerp(res, [
+				local chanceFlankOnly = ::Reforged.Math.clamp(::Reforged.Math.lerpXSeq(res, [
 					[200, 25],
 					[300, 33],
 					[370, 0]
@@ -149,7 +149,7 @@ local parties = [
 				}
 			}
 
-			local isBossPresent = boss.isValid() && ::Math.rand(1, 100) > ::Reforged.Math.lerpClamp(res, 275, 60, 500, 0);
+			local isBossPresent = boss.isValid() && ::Math.rand(1, 100) > ::Reforged.Math.lerpXClamp(res, 275, 60, 500, 0);
 			if (isBossPresent)
 			{
 				boss.HardMin = 1;
@@ -159,11 +159,11 @@ local parties = [
 				// Shaman more likely to spawn in party with boss
 				support.SpawnWeightMult = 3.5;
 
-				flank.ExclusionChance = ::Reforged.Math.lerpClamp(res, 400, 0.45, 500, 0);
-				frontline.RatioMin = ::Reforged.Math.lerpClamp(res, 275, 0.5, 700, 0.4);
+				flank.ExclusionChance = ::Reforged.Math.lerpXClamp(res, 400, 0.45, 500, 0);
+				frontline.RatioMin = ::Reforged.Math.lerpXClamp(res, 275, 0.5, 700, 0.4);
 				// Fewer Ranged at higher resources
-				ranged.RatioMin = ::Reforged.Math.lerpClamp(res, 275, 0.4, 700, 0.18);
-				ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 275, 0.4, 700, 0.25);
+				ranged.RatioMin = ::Reforged.Math.lerpXClamp(res, 275, 0.4, 700, 0.18);
+				ranged.RatioMax = ::Reforged.Math.lerpXClamp(res, 275, 0.4, 700, 0.25);
 			}
 			else
 			{
@@ -173,7 +173,7 @@ local parties = [
 
 				ranged.RatioMin = 0.2;
 				ranged.RatioMax = 0.5;
-				flank.RatioMax = ::Reforged.Math.lerpClamp(res, 185, 0.8, 450, 0.33);
+				flank.RatioMax = ::Reforged.Math.lerpXClamp(res, 185, 0.8, 450, 0.33);
 			}
 		}
 	},
@@ -203,10 +203,10 @@ local parties = [
 
 			// Some ranged units are always present above their StartingResourceMin.
 			// Vanilla just has 1 party at 90 resources where they are absent.
-			ranged.RatioMin = ::Reforged.Math.lerpClamp(res, 100, 0.25, 600, 0.2);
-			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 100, 0.45, 600, 0.3);
+			ranged.RatioMin = ::Reforged.Math.lerpXClamp(res, 100, 0.25, 600, 0.2);
+			ranged.RatioMax = ::Reforged.Math.lerpXClamp(res, 100, 0.45, 600, 0.3);
 
-			local isBossPresent = boss.isValid() && ::Math.rand(1, 100) > ::Reforged.Math.lerpClamp(res, 220, 65, 370, 0);
+			local isBossPresent = boss.isValid() && ::Math.rand(1, 100) > ::Reforged.Math.lerpXClamp(res, 220, 65, 370, 0);
 			if (isBossPresent)
 			{
 				boss.HardMin = 1;
@@ -235,7 +235,7 @@ local parties = [
 					{
 						flank.RatioMax = 0.3;
 						// Large chance to exclude Wolfriders when Skirmishers are present
-						flank.ExclusionChance = ::Reforged.Math.lerpClamp(res, 230, 1.0, 325, 0.7);
+						flank.ExclusionChance = ::Reforged.Math.lerpXClamp(res, 230, 1.0, 325, 0.7);
 					}
 				}
 			}
@@ -266,9 +266,9 @@ local parties = [
 			local boss = this.getSpawnable("UnitBlock.RF.GoblinBoss");
 			local support = this.getSpawnable("UnitBlock.RF.GoblinSupport");
 
-			frontline.RatioMin = ::Reforged.Math.lerpClamp(res, 400, 0.33, 500, 0.45);
+			frontline.RatioMin = ::Reforged.Math.lerpXClamp(res, 400, 0.33, 500, 0.45);
 			ranged.RatioMin = 0.2;
-			ranged.RatioMax = ::Reforged.Math.lerpClamp(res, 300, 0.6, 600, 0.3);
+			ranged.RatioMax = ::Reforged.Math.lerpXClamp(res, 300, 0.6, 600, 0.3);
 			flank.RatioMax = 0.3;
 
 			// Vanilla can have Overseer only, Shaman only, or both.
@@ -282,13 +282,13 @@ local parties = [
 			{
 				local r = ::Math.rand(1, 100);
 				// Chance to be Shaman and Overseer both
-				if (res > 300 && r <= ::Reforged.Math.lerpClamp(res, 300, 50, 500, 100))
+				if (res > 300 && r <= ::Reforged.Math.lerpXClamp(res, 300, 50, 500, 100))
 				{
 					boss.HardMin = 1;
 					support.HardMin = 1;
 				}
 				// Otherwise high chance to be Overseer only
-				else if (r <= ::Reforged.Math.lerpClamp(res, 300, 70, 400, 100))
+				else if (r <= ::Reforged.Math.lerpXClamp(res, 300, 70, 400, 100))
 				{
 					boss.HardMin = 1;
 					support.HardMax = 0;

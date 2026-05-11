@@ -59,8 +59,8 @@ local parties = [
 			chosen.RatioMin = 0.6;
 
 			// More likely to spawn bosses at higher resources
-			orcBoss.SpawnWeightMult = ::Reforged.Math.lerpClamp(res, 150, 0.1, 1100, 0.3);
-			goblinBoss.SpawnWeightMult = ::Reforged.Math.lerpClamp(res, 150, 0.1, 1100, 0.3);
+			orcBoss.SpawnWeightMult = ::Reforged.Math.lerpXClamp(res, 150, 0.1, 1100, 0.3);
+			goblinBoss.SpawnWeightMult = ::Reforged.Math.lerpXClamp(res, 150, 0.1, 1100, 0.3);
 
 			// 30% chance to have Goblin Wolfrider "twist" i.e. high occurrence of them
 			if (::Math.rand(1, 100) > 70)
@@ -75,7 +75,7 @@ local parties = [
 			}
 
 			// Fewer Young at higher resources
-			this.getSpawnable("UnitBlock.RF.OrcYoung").SpawnWeightMult = ::Reforged.Math.lerpClamp(res, 150, 1.0, 1100, 0.4);
+			this.getSpawnable("UnitBlock.RF.OrcYoung").SpawnWeightMult = ::Reforged.Math.lerpXClamp(res, 150, 1.0, 1100, 0.4);
 		}
 	}
 ];

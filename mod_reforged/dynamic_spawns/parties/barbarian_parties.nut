@@ -24,10 +24,10 @@ local parties = [
 			local dog = this.getSpawnable("UnitBlock.RF.BarbarianDog");
 			local beastmaster = this.getSpawnable("UnitBlock.RF.BarbarianBeastmaster");
 
-			beastmaster.ExclusionChance = ::Reforged.Math.lerpClamp(res, 500, 70, 600, 30);
-			beastmaster.SpawnWeightMult = ::Reforged.Math.lerpClamp(res, 500, 0.1, 900, 1.0);
+			beastmaster.ExclusionChance = ::Reforged.Math.lerpXClamp(res, 500, 70, 600, 30);
+			beastmaster.SpawnWeightMult = ::Reforged.Math.lerpXClamp(res, 500, 0.1, 900, 1.0);
 
-			support.ExclusionChance = ::Reforged.Math.multilerp(res, [
+			support.ExclusionChance = ::Reforged.Math.lerpXSeq(res, [
 				[200, 75],
 				[300, 60],
 				[400, 50],
@@ -35,12 +35,12 @@ local parties = [
 			]);
 			support.ExclusionChance = ::Reforged.Math.clamp(support.ExclusionChance, 0, 75);
 
-			dog.RatioMax = ::Reforged.Math.lerpClamp(res, 200, 0.4, 600, 0.2);
+			dog.RatioMax = ::Reforged.Math.lerpXClamp(res, 200, 0.4, 600, 0.2);
 			dog.StartingResourceMax = 600;
 
 			// Chance to exclude Thrall at higher resources to help Marauders upgrade to Champions.
 			local thrall = this.getSpawnable("Unit.RF.BarbarianThrall");
-			thrall.ExclusionChance = ::Reforged.Math.multilerp(res, [
+			thrall.ExclusionChance = ::Reforged.Math.lerpXSeq(res, [
 				[200, 25],
 				[300, 50],
 				[400, 75],
@@ -51,7 +51,7 @@ local parties = [
 
 		function getUpgradeChance()
 		{
-			return 25 + this.getTotal() * ::Reforged.Math.multilerp(this.getTopParty().getStartingResources(), [
+			return 25 + this.getTotal() * ::Reforged.Math.lerpXSeq(this.getTopParty().getStartingResources(), [
 				[200, 1.0],
 				[300, 1.15],
 				[400, 1.25],
