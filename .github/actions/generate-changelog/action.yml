@@ -51,6 +51,7 @@ runs:
             if ([string]::IsNullOrWhiteSpace($commit)) { return }
             if ($commit -match "(?s)^(?<sha>[a-f0-9]{40})\|(?<type>feat|fix)(?:\((?<scope>[^\)]+)\))?(!?): (?<subject>.+)") {
                 $sha = $Matches['sha']
+                $type = $Matches['type']
                 $raw_subject = $Matches['subject'].Trim()
                 $lines = $raw_subject -split '\r?\n'
                 $header = $lines[0].Trim()
@@ -72,7 +73,7 @@ runs:
                         $formatted += "`n<commit_diff>`n$($diff.Trim())`n</commit_diff>"
                     }
                 }
-                if ($Matches['type'] -eq "feat") { $feats += $formatted } else { $fixes += $formatted }
+                if ($type -eq "feat") { $feats += $formatted } else { $fixes += $formatted }
             } else {
                 if ($commit -match "(?s)^[a-f0-9]+\|(?:chore|docs)(?:\([^\)]+\))?(!?):") { return }
                 if ($commit -match "(?s)^(?<sha>[a-f0-9]{40})\|(?<msg>.*)") {
