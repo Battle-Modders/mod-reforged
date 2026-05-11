@@ -29,6 +29,8 @@ jobs:
       MOD_ROOT: ${{ github.workspace }}
       MOD_PATH: ${{ github.workspace }}\mod_reforged
       GAME_PATH: ${{ github.workspace }}\_game_fake
+      IS_AI_REPHRASE_ACTIVE: ${{ github.event_name != 'workflow_dispatch' || inputs.ai_rephrase }}
+      IS_INCLUDE_DIFFS_ACTIVE: ${{ github.event_name != 'workflow_dispatch' || (inputs.include_diffs && inputs.ai_rephrase) }}
 
     steps:
       # 1. Identify Target Tag
@@ -196,13 +198,13 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           base_tag: ${{ steps.info.outputs.compare_base }}
-          include_diffs: ${{ inputs.include_diffs && inputs.ai_rephrase }}
+          include_diffs: ${{ env.IS_INCLUDE_DIFFS_ACTIVE == 'true' }}
           working_directory: mod_reforged
 
       # 6. AI Rephrase Notes
       - name: AI Rephrase
         id: ai
-        if: steps.find-tag.outputs.skip != 'true' && inputs.ai_rephrase
+        if: steps.find-tag.outputs.skip != 'true' && env.IS_AI_REPHRASE_ACTIVE == 'true'
         uses: ./repo/.github/actions/ai-rephrase
         with:
           notes: "${{ steps.tech_notes.outputs.feats_fixes }}\n${{ steps.tech_notes.outputs.others }}"
@@ -217,7 +219,6 @@ jobs:
         shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          AI_REPHRASE_ACTIVE: ${{ inputs.ai_rephrase }}
           AI_FRIENDLY: ${{ steps.ai.outputs.friendly_with_sha }}
           TECH_FEATS: ${{ steps.tech_notes.outputs.feats_fixes }}
           TECH_OTHERS: ${{ steps.tech_notes.outputs.others }}
@@ -227,7 +228,7 @@ jobs:
               return ""
           }
 
-          $newFriendly = if ($env:AI_REPHRASE_ACTIVE -eq "true") { $env:AI_FRIENDLY } else { "$($env:TECH_FEATS)`n$($env:TECH_OTHERS)" }
+          $newFriendly = if ($env:IS_AI_REPHRASE_ACTIVE -eq "true") { $env:AI_FRIENDLY } else { "$($env:TECH_FEATS)`n$($env:TECH_OTHERS)" }
 
           $mergedFeatures = Get-MarkdownSection $newFriendly "### FEATURES"
           $mergedFixes = Get-MarkdownSection $newFriendly "### FIXES"

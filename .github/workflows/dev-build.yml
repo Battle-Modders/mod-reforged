@@ -38,6 +38,8 @@ jobs:
       MOD_ROOT: ${{ github.workspace }}
       MOD_PATH: ${{ github.workspace }}\mod_reforged
       GAME_PATH: ${{ github.workspace }}\_game_fake
+      IS_AI_REPHRASE_ACTIVE: ${{ github.event_name != 'workflow_dispatch' || inputs.ai_rephrase }}
+      IS_INCLUDE_DIFFS_ACTIVE: ${{ github.event_name != 'workflow_dispatch' || (inputs.include_diffs && inputs.ai_rephrase) }}
 
     steps:
       # ------------------------------------------------------------
@@ -244,7 +246,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           base_tag: ${{ steps.check.outputs.compare_base }}
-          include_diffs: ${{ github.event_name != 'workflow_dispatch' || (github.event.inputs.include_diffs && github.event.inputs.ai_rephrase) }}
+          include_diffs: ${{ env.IS_INCLUDE_DIFFS_ACTIVE == 'true' }}
           working_directory: mod_reforged
 
       # ------------------------------------------------------------
@@ -252,7 +254,7 @@ jobs:
       # ------------------------------------------------------------
       - name: AI Rephrase
         id: ai
-        if: steps.check.outputs.skip != 'true' && inputs.ai_rephrase
+        if: steps.check.outputs.skip != 'true' && env.IS_AI_REPHRASE_ACTIVE == 'true'
         uses: ./mod_reforged/.github/actions/ai-rephrase
         with:
           notes: "${{ steps.tech_notes.outputs.feats_fixes }}\n${{ steps.tech_notes.outputs.others }}"
@@ -270,7 +272,6 @@ jobs:
         working-directory: ${{ github.workspace }}\mod_reforged
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          AI_REPHRASE_ACTIVE: ${{ inputs.ai_rephrase }}
           AI_FRIENDLY_WITH_SHA: ${{ steps.ai.outputs.friendly_with_sha }}
           TECH_FEATS: ${{ steps.tech_notes.outputs.feats_fixes }}
           TECH_OTHERS: ${{ steps.tech_notes.outputs.others }}
@@ -292,8 +293,8 @@ jobs:
               $oldOthers = Get-MarkdownSection $totalContent "### OTHER"
           }
 
-          $aiNotice = if ($env:AI_REPHRASE_ACTIVE -eq "true") { "*Some or all of these notes were generated with the help of AI.*`n`n" } else { "" }
-          $newFriendly = if ($env:AI_REPHRASE_ACTIVE -eq "true") { $env:AI_FRIENDLY_WITH_SHA } else { "$($env:TECH_FEATS)`n$($env:TECH_OTHERS)" }
+          $aiNotice = if ($env:IS_AI_REPHRASE_ACTIVE -eq "true") { "*Some or all of these notes were generated with the help of AI.*`n`n" } else { "" }
+          $newFriendly = if ($env:IS_AI_REPHRASE_ACTIVE -eq "true") { $env:AI_FRIENDLY_WITH_SHA } else { "$($env:TECH_FEATS)`n$($env:TECH_OTHERS)" }
 
           $newFeatures = Get-MarkdownSection $newFriendly "### FEATURES"
           $newFixes = Get-MarkdownSection $newFriendly "### FIXES"
@@ -309,10 +310,17 @@ jobs:
           if ($mergedFeatures) { $releaseNotes += "`n### FEATURES`n$mergedFeatures" }
           if ($mergedFixes) { $releaseNotes += "`n### FIXES`n$mergedFixes" }
           if ($mergedOthers) { $releaseNotes += "`n### OTHER`n$mergedOthers" }
-          $delimiter = [guid]::NewGuid().ToString()
-          "release_notes<<$delimiter" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+          $releaseDelimiter = [guid]::NewGuid().ToString()
+          $friendlyDelimiter = [guid]::NewGuid().ToString()
+
+          "release_notes<<$releaseDelimiter" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           $releaseNotes.Trim() | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          "$delimiter" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "$releaseDelimiter" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+          "new_friendly<<$friendlyDelimiter" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          $newFriendly.Trim() | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "$friendlyDelimiter" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
       # ------------------------------------------------------------
       # 12. Remove old assets from rolling release
@@ -434,14 +442,13 @@ jobs:
           REPO: ${{ github.repository }}
           CORE_CHANGED: ${{ steps.check.outputs.core_changed }}
           ASSETS_CHANGED: ${{ steps.check.outputs.assets_changed }}
-          NEW_NOTES: ${{ steps.ai.outputs.friendly_no_sha }}
+          NEW_NOTES: ${{ steps.body.outputs.new_friendly }}
           CORE_ZIP: ${{ steps.versions.outputs.core_zip }}
           ASSETS_ZIP: ${{ steps.versions.outputs.assets_zip }}
           EXISTING_CORE: ${{ steps.clean.outputs.existing_core }}
           EXISTING_ASSETS: ${{ steps.clean.outputs.existing_assets }}
           STABLE_CORE_URL: ${{ steps.clean.outputs.stable_core_url }}
           STABLE_ASSETS_URL: ${{ steps.clean.outputs.stable_assets_url }}
-          AI_REPHRASE_ACTIVE: ${{ inputs.ai_rephrase }}
         run: |
           $coreChanged = $env:CORE_CHANGED -eq 'true'
           $assetsChanged = $env:ASSETS_CHANGED -eq 'true'
@@ -483,7 +490,7 @@ jobs:
 
           if ($env:NEW_NOTES) {
               $notes = $env:NEW_NOTES
-              $aiNotice = if ($env:AI_REPHRASE_ACTIVE -eq "true") { "*Some or all of these notes were generated with the help of AI.*`n" } else { "" }
+              $aiNotice = if ($env:IS_AI_REPHRASE_ACTIVE -eq "true") { "*Some or all of these notes were generated with the help of AI.*`n" } else { "" }
               $notes = $aiNotice + $notes
               if ($notes.Length -gt 3500) {
                   $notes = $notes.Substring(0, 3500) + "... [Read More](https://github.com/$env:REPO/releases/tag/dev-latest)"
