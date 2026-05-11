@@ -1,5 +1,31 @@
 ::Reforged.HooksMod.hook("scripts/contracts/contract", function(q)
 {
+	// Will auto-negotiate this contract for _numAttempts times.
+	// Will stop if the employer gives his final offer or if negotiations fail.
+	q.RF_autoNegotiate <- { function RF_autoNegotiate( _numAttempts = 1 )
+	{
+		if (!this.isStarted())
+			this.start();
+
+		if (this.m.ActiveScreen.ID == "Negotiation.Fail" || this.m.Payment.IsFinal)
+			return;
+
+		if (this.m.ActiveScreen.ID != "Negotiation")
+			this.setScreen("Negotiation");
+
+		for (local i = 0; i < _numAttempts; i++)
+		{
+			this.setScreen(this.getScreen(this.m.ActiveScreen.Options[1].getResult()));
+			if (this.m.ActiveScreen.ID == "Negotiation.Fail")
+				return;
+
+			// This does not *really* mean Final Offer. All it really means is that
+			// the last negotiation attempt was "rejected" by the employer.
+			if (this.m.Payment.IsFinal)
+				break;
+		}
+	}}.RF_autoNegotiate;
+
 	// Is used to "start" a contract so that its home, origin, destination, payment etc.
 	// is fully set and generated.
 	q.RF_fakeStart <- { function RF_fakeStart()
