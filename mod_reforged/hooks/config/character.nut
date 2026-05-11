@@ -40,6 +40,7 @@ local original_getClone = ::Const.CharacterProperties.getClone;
 	// For mults between 0.0 and 1.0 we instead multiply by 2.0 - mult. This results in
 	// a 50% reduction on a positive value to be a 50% increase on the negative value
 	// in the negative direction. So it behaves more intuitively.
+	// Bonus: Also fixes the vanilla edge-case of division by zero when mult is 0.
 	function __getValueWithMult( _value, _mult )
 	{
 		return ::Math.floor(_value * (_value > 0 ? _mult : (_mult > 1.0 ? 1.0 / _mult : 2.0 - _mult)));
