@@ -2,6 +2,8 @@
 	"mod_legends",
 	// Better Fencing by LordMidas. https://www.nexusmods.com/battlebrothers/mods/369
 	"mod_betterFencing [Is already included and/or enhanced in Reforged]",
+	// Items and Recipes by Vazl. https://www.nexusmods.com/battlebrothers/mods/501
+	"mod_items_recipes [A similar feature is included in Reforged]",
 	// Tactical hit factors by MrBrut. https://www.nexusmods.com/battlebrothers/mods/283
 	"mod_tactical_hit_factors [A similar feature is included in Reforged]",
 	// Tactical tooltip by MrBrut. https://www.nexusmods.com/battlebrothers/mods/266
