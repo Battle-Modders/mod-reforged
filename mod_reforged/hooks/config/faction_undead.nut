@@ -30,7 +30,8 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.SkeletonMedium + 1
 );
 ::Reforged.Entities.addTroop(
 	"RF_SkeletonMediumElitePolearm",
@@ -106,7 +107,8 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.SkeletonHeavy + 1
 );
 ::Reforged.Entities.addTroop(
 	"RF_SkeletonHeavyEliteBodyguard",
@@ -146,7 +148,8 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.RF_SkeletonHeavyElite + 1
 );
 ::Reforged.Entities.addEntity(
 	"RF_SkeletonCenturion",
@@ -178,7 +181,8 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.RF_SkeletonDecanus + 1
 );
 ::Reforged.Entities.addEntity(
 	"RF_SkeletonLegatus",
@@ -212,7 +216,8 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.RF_SkeletonCenturion + 1
 );
 ::Reforged.Entities.addEntity(
 	"RF_VampireLord",
@@ -246,7 +251,8 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.Vampire + 1
 );
 // Draugr
 ::Reforged.Entities.addEntity(
@@ -512,7 +518,8 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.ZombieKnight + 1
 );
 ::Reforged.Entities.addTroop(
 	"RF_ZombieHeroBodyguard",
@@ -551,7 +558,8 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.Ghost + 1
 );
 ::Reforged.Entities.addEntity(
 	"RF_Banshee",
@@ -585,7 +593,8 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.Ghost + 1
 );
 
 // Zombie Orc
@@ -619,52 +628,14 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.Ghost
 );
 ::Reforged.Entities.addTroop(
 	"RF_ZombieOrcYoungBodyguard",
 	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_ZombieOrcYoung, {
 		Row = 2,
 		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_young_bodyguard"
-	})
-);
-::Reforged.Entities.addEntity(
-	"RF_ZombieOrcWarrior",
-	"Wiederganger Orc Warrior",
-	"Wiederganger Orc Warriors",
-	"rf_zombie_orc_warrior_orientation",
-	::Const.FactionType.Zombies,
-	{
-		Variant = 0,
-		Strength = 28,
-		Cost = 25,
-		Row = -1,
-		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_warrior"
-	},
-	{
-		XP = 350,
-		ActionPoints = 7,
-		Hitpoints = 300,
-		Bravery = 90,
-		Stamina = 100,
-		MeleeSkill = 60,
-		RangedSkill = 0,
-		MeleeDefense = -15,
-		RangedDefense = -15,
-		Initiative = 60,
-		FatigueEffectMult = 0.0,
-		MoraleEffectMult = 0.0,
-		Armor = [
-			0,
-			0
-		]
-	}
-);
-::Reforged.Entities.addTroop(
-	"RF_ZombieOrcWarriorBodyguard",
-	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_ZombieOrcWarrior, {
-		Row = 2,
-		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_warrior_bodyguard"
 	})
 );
 ::Reforged.Entities.addEntity(
@@ -697,7 +668,48 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.Ghost
+);
+::Reforged.Entities.addEntity(
+	"RF_ZombieOrcWarrior",
+	"Wiederganger Orc Warrior",
+	"Wiederganger Orc Warriors",
+	"rf_zombie_orc_warrior_orientation",
+	::Const.FactionType.Zombies,
+	{
+		Variant = 0,
+		Strength = 28,
+		Cost = 25,
+		Row = -1,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_warrior"
+	},
+	{
+		XP = 350,
+		ActionPoints = 7,
+		Hitpoints = 300,
+		Bravery = 90,
+		Stamina = 100,
+		MeleeSkill = 60,
+		RangedSkill = 0,
+		MeleeDefense = -15,
+		RangedDefense = -15,
+		Initiative = 60,
+		FatigueEffectMult = 0.0,
+		MoraleEffectMult = 0.0,
+		Armor = [
+			0,
+			0
+		]
+	},
+	::Const.EntityType.Ghost
+);
+::Reforged.Entities.addTroop(
+	"RF_ZombieOrcWarriorBodyguard",
+	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_ZombieOrcWarrior, {
+		Row = 2,
+		Script = "scripts/entity/tactical/enemies/rf_zombie_orc_warrior_bodyguard"
+	})
 );
 ::Reforged.Entities.addEntity(
 	"RF_ZombieOrcWarlord",
@@ -729,7 +741,8 @@
 			0,
 			0
 		]
-	}
+	},
+	::Const.EntityType.Ghost
 );
 
 // OTHER
