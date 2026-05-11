@@ -269,6 +269,7 @@ jobs:
           }
 
           $body = @{
+            content = "<@&1503510173606608896>"
             embeds = @($embed)
           }
 
