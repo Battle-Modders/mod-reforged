@@ -331,7 +331,10 @@
 		if (this.getCurrentProperties().IsImmuneToZoneOfControl || !this.getTile().hasZoneOfControlOtherThan(this.getAlliedFactions()) || (this.getTile().Properties.Effect != null && this.getTile().Properties.Effect.Type == "smoke"))
 			return 0;
 
-		return this.getTile().getZoneOfControlCountOtherThan(this.getAlliedFactions()) * ::Const.Combat.FatigueLossOnBeingMissed * this.getCurrentProperties().FatigueEffectMult * this.getCurrentProperties().FatigueLossOnAnyAttackMult;
+		// We have to "round" the fatigue built for every attack
+		// to mimic the actual numbers that vanilla will get (based on
+		// how it is calculated in actor.onMissed).
+		return this.getTile().getZoneOfControlCountOtherThan(this.getAlliedFactions()) * ::Math.round(::Const.Combat.FatigueLossOnBeingMissed * this.getCurrentProperties().FatigueEffectMult * this.getCurrentProperties().FatigueLossOnAnyAttackMult);
 	}}.RF_getZOCEvasionFatigue;
 });
 
