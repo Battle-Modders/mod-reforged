@@ -209,6 +209,9 @@
 		{
 			// feat: When any hostile character is discovered, then the actual combat music starts playing
 			::Tactical.State.RF_playActualTrackList();
+			// update top bar info because we only show discovered enemies number
+			// (see hook on tactical_state.topbar_round_information_onQueryRoundInformation)
+			::Tactical.State.m.TacticalScreen.m.TopbarRoundInformation.update();
 		}
 	}}.onDiscovered;
 
