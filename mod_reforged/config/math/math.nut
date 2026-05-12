@@ -38,13 +38,22 @@
 		if (vargv.len() == 0)
 			throw "must pass at least one seed argument";
 
+		// Anything bigger than 99999999999 breaks Math.rand(_a, _b) and
+		// it always returns 1.
+		// Note: We cannot use Math.rand() because that does
+		// not depend on Math.seedRandom and uses its own seed.
+		local preservedSeed = ::Math.rand(1, 99999999999);
+
 		vargv.insert(0, this);
 		::Reforged.Math.seedRandom.acall(vargv);
 
 		local ret = ::Math.rand(_min, _max);
-		// + vargv[0] so that calls to this function in the same frame with different seeds
-		// don't always set the random seed to the same value
-		::Math.seedRandom(::Time.getVirtualTimeF() + vargv[1]);
+
+		// We reseed the RNG with a value generated earlier so that any
+		// previous seeding before calling this function is maintained.
+		// The result will be different from the original seed, but
+		// at least it will be the same result every time.
+		::Math.seedRandom(preservedSeed);
 		return ret;
 	}
 
