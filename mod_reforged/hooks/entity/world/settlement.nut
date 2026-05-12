@@ -40,47 +40,6 @@
 		::World.Contracts.m.RF_LastVisitContracts[this.getName()] <- this.m.RF_LastVisitContracts;
 	}}.RF_saveLastVisitInfo;
 
-	q.onEnter = @(__original) { function onEnter()
-	{
-		local ret = __original();
-
-		// If ret is true that means we successfully entered the settlement.
-		// We check for isEnterable() because when entering a *hostile* town via world_state.enterLocation
-		// the game will call `onEnter` even though the town returns false for `isEnterable`. In this case,
-		// the world_state.m.LastEnteredTown will be null which breaks the starting of contracts that need
-		// it for setting their m.Home.
-		// We can't directly check for whether LastEnteredTown is this town because when traveling via
-		// port, the game first calls `onEnter` and then sets the town as the LastEnteredTown.
-		if (ret && this.isEnterable())
-		{
-			this.RF_clearLastVisitInfo();
-
-			// Have to switcheroo the last entered town because contract.start() often needs
-			// getCurrentTown() to set some stuff. Sometimes, this is necessary even to set the
-			// m.Home of the contract. And in some cases (e.g. traveling by Port) the last town
-			// entered is not set until after onEnter.
-			local original_LastEnteredTown = ::World.State.m.LastEnteredTown;
-			::World.State.m.LastEnteredTown = ::MSU.asWeakTableRef(this);
-
-			// Start all contracts present in this settlement.
-			// Starting the contract sets up its origin/home/payment/destination etc.
-			foreach (c in this.getContracts())
-			{
-				if (!c.isStarted())
-					c.start();
-			}
-
-			::World.State.m.LastEnteredTown = original_LastEnteredTown;
-		}
-		return ret;
-	}}.onEnter;
-
-	q.onLeave = @(__original) { function onLeave()
-	{
-		__original();
-		this.RF_saveLastVisitInfo();
-	}}.onLeave;
-
 	// Add character image to the UI information for the character offering this contract.
 	q.getUIContractInformation = @(__original) { function getUIContractInformation()
 	{
@@ -528,4 +487,47 @@
 			}
 		}
 	}}.onDeserialize;
+});
+
+::Reforged.HooksMod.hookTree("scripts/entity/world/settlement", function(q) {
+	q.onEnter = @(__original) { function onEnter()
+	{
+		local ret = __original();
+
+		// If ret is true that means we successfully entered the settlement.
+		// We check for isEnterable() because when entering a *hostile* town via world_state.enterLocation
+		// the game will call `onEnter` even though the town returns false for `isEnterable`. In this case,
+		// the world_state.m.LastEnteredTown will be null which breaks the starting of contracts that need
+		// it for setting their m.Home.
+		// We can't directly check for whether LastEnteredTown is this town because when traveling via
+		// port, the game first calls `onEnter` and then sets the town as the LastEnteredTown.
+		if (ret && this.isEnterable())
+		{
+			this.RF_clearLastVisitInfo();
+
+			// Have to switcheroo the last entered town because contract.start() often needs
+			// getCurrentTown() to set some stuff. Sometimes, this is necessary even to set the
+			// m.Home of the contract. And in some cases (e.g. traveling by Port) the last town
+			// entered is not set until after onEnter.
+			local original_LastEnteredTown = ::World.State.m.LastEnteredTown;
+			::World.State.m.LastEnteredTown = ::MSU.asWeakTableRef(this);
+
+			// Start all contracts present in this settlement.
+			// Starting the contract sets up its origin/home/payment/destination etc.
+			foreach (c in this.getContracts())
+			{
+				if (!c.isStarted())
+					c.start();
+			}
+
+			::World.State.m.LastEnteredTown = original_LastEnteredTown;
+		}
+		return ret;
+	}}.onEnter;
+
+	q.onLeave = @(__original) { function onLeave()
+	{
+		__original();
+		this.RF_saveLastVisitInfo();
+	}}.onLeave;
 });
