@@ -62,6 +62,21 @@
 		return __original(_tag);
 	}
 
+	q.topbar_round_information_onQueryRoundInformation = @(__original) { function topbar_round_information_onQueryRoundInformation()
+	{
+		local ret = __original();
+
+		// feat: Only show the number of discovered enemies in the top bar.
+		// While all the enemies are not discovered we show a range e.g. 5 - ??
+		ret.RF_enemiesCountMin <- ::Tactical.Entities.getAllHostilesAsArray().filter(@(_, _a) _a.isDiscovered()).len();
+		if (ret.RF_enemiesCountMin < ret.enemiesCount)
+		{
+			ret.RF_enemiesCountMax <- "??";
+		}
+
+		return ret;
+	}}.topbar_round_information_onQueryRoundInformation;
+
 // New Functions
 	// Enable combat music, similar to how Vanilla does it in the onShow function
 	q.RF_playActualTrackList <- function()
