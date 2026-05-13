@@ -200,6 +200,7 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 		this.getSprite("arms_icon").setBrightness(0.85);
 		this.getSprite("status_rooted").Scale = 0.55;
 
+		b.Reach = ::Reforged.Reach.Default.Human;
 		this.m.Skills.add(::new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(::new("scripts/skills/actives/hand_to_hand"));
 		this.m.Skills.add(::new("scripts/skills/racial/rf_draugr_racial"));
