@@ -1285,7 +1285,7 @@ local vanillaDescriptions = [
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"The [Action Point|Concept.ActionPoints] cost of the first skill that costs [Action Points|Concept.ActionPoints] used every [turn|Concept.Turn] is " + ::MSU.Text.colorPositive("halved") + ".",
+				"Before [waiting|Concept.Wait] in a [round|Concept.Round], the first skill use that costs [Action Points|Concept.ActionPoints] refunds " + ::MSU.Text.colorPositive("half") + " of its [Action Point|Concept.ActionPoint] cost.",
 				"The effect becomes disabled if you start a [turn|Concept.Turn] with " + ::MSU.Text.colorNegative("30%") + " or more [Fatigue|Concept.Fatigue] built and remains disabled until you use [$ $|Skill+recover_skill]."
 			]
 		}]
