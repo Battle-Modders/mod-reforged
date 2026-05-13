@@ -1276,7 +1276,7 @@ local vanillaDescriptions = [
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Gain " + ::MSU.Text.colorPositive("+1") + " [Reach|Concept.Reach].",
-				"The bonus from each point of [Reach Advantage|Concept.ReachAdvantage] you have is increased by " + ::MSU.Text.colorPositive("+2") + ", without diminishing returns, against enemies in your [Zone of Control|Concept.ZoneOfControl] until they hit you. After being hit this effect expires, but is reset if the [Zone of Control|Concept.ZoneOfControl] is broken."
+				"The bonus from each point of [Reach Advantage|Concept.ReachAdvantage] you have is increased by " + ::MSU.Text.colorPositive("+1") + " against enemies in your [Zone of Control|Concept.ZoneOfControl] until they hit you. After being hit this effect expires, but is reset if the [Zone of Control|Concept.ZoneOfControl] is broken."
 			]
 		}]
 	}),

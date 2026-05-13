@@ -1,6 +1,6 @@
 this.perk_rf_formidable_approach <- ::inherit("scripts/skills/skill", {
 	m = {
-		BonusPerReachAdvantage = 2,
+		BonusPerReachAdvantage = 1,
 		Enemies = []
 	},
 	function create()
