@@ -9,6 +9,12 @@ this.rf_halberd_sunder_skill <- ::inherit("scripts/skills/actives/strike_skill",
 		this.m.Overlay = "rf_halberd_sunder_skill";
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 25;
+
+		this.setApplyAxeMastery(true);
+
+		this.m.DamageType.clear();
+		this.m.DamageType.add(::Const.Damage.DamageType.Cutting);
+		this.m.DamageType.add(::Const.Damage.DamageType.Blunt);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
