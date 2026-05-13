@@ -35,9 +35,7 @@ this.rf_swordstaff <- ::inherit("scripts/items/weapons/weapon", {
 		local prong = ::new("scripts/skills/actives/prong_skill");
 		this.addSkill(prong);
 
-		this.addSkill(::Reforged.new("scripts/skills/actives/overhead_strike", function(o) {
-			o.m.IsIgnoredAsAOO = true;
-		}));
+		this.addSkill(::new("scripts/skills/actives/rf_overhead_strike_swordstaff_skill"));
 
 		this.addSkill(::Reforged.new("scripts/skills/actives/spearwall", function(o) {
 			o.m.ActionPointCost += 2;
