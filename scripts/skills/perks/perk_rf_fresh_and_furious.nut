@@ -4,7 +4,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		ActionPointsRecoveredPct = 0.5,
 
 		// Private
-		UsedSkillBaseAPCost = 0,
+		UsedSkillAPCost = 0,
 		IsSpent = true,
 		RequiresRecover = false,
 		IconMiniBackup = ""
@@ -51,7 +51,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next skill use will refund " + ::MSU.Text.colorizePct(this.m.ActionPointsRecoveredPct) + " of its base [Action Point|Concept.ActionPoints] cost")
+				text = ::Reforged.Mod.Tooltips.parseString("The next skill use will refund " + ::MSU.Text.colorizePct(this.m.ActionPointsRecoveredPct) + " of its [Action Point|Concept.ActionPoints] cost")
 			});
 		}
 
@@ -88,12 +88,12 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		// Sometimes you use a _forFree skill inside the use of a skill that costs AP
-		// In that case we don't want to change the value for UsedSkillBaseAPCost that
+		// In that case we don't want to change the value for UsedSkillAPCost that
 		// has already been set by the originally used skill.
 		if (_forFree)
 			return;
 
-		this.m.UsedSkillBaseAPCost = _skill.getBaseValue("ActionPointCost");
+		this.m.UsedSkillAPCost = _skill.getActionPointCost();
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
@@ -103,11 +103,11 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 			this.m.RequiresRecover = false;
 			this.m.IsSpent = true;
 		}
-		else if (this.m.UsedSkillBaseAPCost != 0)
+		else if (this.m.UsedSkillAPCost != 0)
 		{
 			this.m.IsSpent = true;
 			local actor = this.getContainer().getActor();
-			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + this.m.UsedSkillBaseAPCost * this.m.ActionPointsRecoveredPct));
+			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + this.m.UsedSkillAPCost * this.m.ActionPointsRecoveredPct));
 		}
 	}
 
@@ -117,7 +117,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		if (actor.isPreviewing() && actor.getPreviewSkill() != null && actor.getPreviewSkill().getActionPointCost() != 0)
 		{
-			_costsPreview.actionPointsPreview += ::Math.floor(actor.getPreviewSkill().getBaseValue("ActionPointCost") * this.m.ActionPointsRecoveredPct);
+			_costsPreview.actionPointsPreview += ::Math.floor(actor.getPreviewSkill().getActionPointCost() * this.m.ActionPointsRecoveredPct);
 		}
 	}
 
