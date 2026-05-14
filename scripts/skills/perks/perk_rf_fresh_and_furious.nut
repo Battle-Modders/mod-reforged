@@ -1,9 +1,12 @@
 this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 	m = {
-		IsUsingFreeSkill = false,
+		FatigueThreshold = 0.3,
+		ActionPointsRecoveredPct = 0.5,
+
+		// Private
+		UsedSkillAPCost = 0,
 		IsSpent = true,
 		RequiresRecover = false,
-		FatigueThreshold = 0.3
 		IconMiniBackup = ""
 	},
 	function create()
@@ -48,15 +51,22 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("The next skill costing [Action Points|Concept.ActionPoints] has its [Action Point|Concept.ActionPoints] cost " + ::MSU.Text.colorPositive("halved"))
+				text = ::Reforged.Mod.Tooltips.parseString("The next skill use will refund " + ::MSU.Text.colorizePct(this.m.ActionPointsRecoveredPct) + " of its [Action Point|Concept.ActionPoints] cost")
 			});
 		}
+
+		ret.push({
+			id = 20,
+			type = "text",
+			icon = "ui/icons/warning.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Does not expire when using skills that cost no [Action Points|Concept.ActionPoints] but will expire upon [waiting|Concept.Wait]")
+		});
 
 		// For non-dummy actor we also add the actual fatigue value calculated from the threshold
 		if (this.getContainer().getActor().getID() == ::MSU.getDummyPlayer().getID())
 		{
 			ret.push({
-				id = 12,
+				id = 21,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Becomes disabled when starting a turn with " + ::MSU.Text.colorizePct(this.m.FatigueThreshold, {InvertColor = true}) + " or more [Fatigue|Concept.Fatigue] built")
@@ -65,7 +75,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		else
 		{
 			ret.push({
-				id = 12,
+				id = 21,
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = ::Reforged.Mod.Tooltips.parseString(format("Becomes disabled when starting a turn with %s (%s) or more [Fatigue|Concept.Fatigue] built", ::MSU.Text.colorizePct(this.m.FatigueThreshold, {InvertColor = true}), ::MSU.Text.colorNegative(::Math.round(this.m.FatigueThreshold * this.getContainer().getActor().getFatigueMax()))))
@@ -75,40 +85,40 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties )
-	{
-		if (this.m.IsSpent || this.m.RequiresRecover)
-			return;
-
-		local actor = this.getContainer().getActor();
-		if (!actor.isPreviewing() || actor.getPreviewMovement() != null || actor.getPreviewSkill().getActionPointCost() == 0)
-		{
-			foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active))
-			{
-				if (skill.m.ActionPointCost > 1)
-					skill.m.ActionPointCost /= 2;
-			}
-		}
-	}
-
 	function onBeforeAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		// Sometimes you use a _forFree skill inside the use of a skill that costs AP
-		// In that case we don't want to change the value for IsUsingFreeSkill that
+		// In that case we don't want to change the value for UsedSkillAPCost that
 		// has already been set by the originally used skill.
 		if (_forFree)
 			return;
 
-		this.m.IsUsingFreeSkill = _skill.getActionPointCost() == 0;
+		this.m.UsedSkillAPCost = _skill.getActionPointCost();
 	}
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (!this.m.IsUsingFreeSkill)
-			this.m.IsSpent = true;
-
 		if (_skill.getID() == "actives.recover")
+		{
 			this.m.RequiresRecover = false;
+			this.m.IsSpent = true;
+		}
+		else if (this.m.UsedSkillAPCost != 0)
+		{
+			this.m.IsSpent = true;
+			local actor = this.getContainer().getActor();
+			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + this.m.UsedSkillAPCost * this.m.ActionPointsRecoveredPct));
+		}
+	}
+
+	// Modular Vanilla function
+	function onCostsPreview( _costsPreview )
+	{
+		local actor = this.getContainer().getActor();
+		if (actor.isPreviewing() && actor.getPreviewSkill() != null && actor.getPreviewSkill().getActionPointCost() != 0)
+		{
+			_costsPreview.actionPointsPreview += ::Math.floor(actor.getPreviewSkill().getActionPointCost() * this.m.ActionPointsRecoveredPct);
+		}
 	}
 
 	function onTurnStart()
@@ -126,6 +136,11 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 			this.m.Icon = ::Const.Perks.findById(this.getID()).IconDisabled;
 			this.m.IconMini = "";
 		}
+	}
+
+	function onWaitTurn()
+	{
+		this.m.IsSpent = true;
 	}
 
 	function onCombatFinished()
