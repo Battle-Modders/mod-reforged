@@ -6,8 +6,8 @@
 		b.setValues(::Const.Tactical.Actor.GreaterFleshGolem);
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToRotation = true;
-		b.IsImmuneToStun = true;
-		b.IsImmuneToKnockBackAndGrab = true;
+		// b.IsImmuneToStun = true;					// Now handled by Battering Ram perk
+		// b.IsImmuneToKnockBackAndGrab = true;		// Now handled by Stalwart perk
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -41,6 +41,8 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastHuge;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rf_menacing"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_battering_ram"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_overwhelm"));
+		this.m.Skills.add(::new("scripts/skills/perks/perk_stalwart"));
 	}}.onInit;
 });
