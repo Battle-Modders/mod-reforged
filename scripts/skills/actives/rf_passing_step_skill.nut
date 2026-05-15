@@ -40,10 +40,38 @@ this.rf_passing_step_skill <- ::inherit("scripts/skills/skill", {
 		this.resetField("RequireOffhandFree");
 	}
 
-	// Vanilla does not ensure a non-negative value return (should probably be fixed over at MSU)
 	function getActionPointCost()
 	{
-		return ::Math.max(0, this.skill.getActionPointCost());
+		local cost = this.m.ActionPointCost;
+
+		if (this.MV_getSelectedTarget() != null)
+		{
+			local actor = this.getContainer().getActor();
+			cost += actor.getActionPointCosts()[this.MV_getSelectedTarget().Type];
+			if (actor.isPlacedOnMap() && ::Math.abs(actor.getTile().Level - this.MV_getSelectedTarget().Level) == 1)
+			{
+				cost += actor.getLevelActionPointCost();
+			}
+		}
+
+		return ::Math.max(0, cost);
+	}
+
+	function getFatigueCost()
+	{
+		local cost = this.m.FatigueCost;
+
+		if (this.MV_getSelectedTarget() != null)
+		{
+			local actor = this.getContainer().getActor();
+			cost += actor.getFatigueCosts()[this.MV_getSelectedTarget().Type];
+			if (actor.isPlacedOnMap() && ::Math.abs(actor.getTile().Level - this.MV_getSelectedTarget().Level) == 1)
+			{
+				cost += actor.getLevelFatigueCost();
+			}
+		}
+
+		return ::Math.max(0, cost);
 	}
 
 	function getCostString()
@@ -52,7 +80,7 @@ this.rf_passing_step_skill <- ::inherit("scripts/skills/skill", {
 			return this.skill.getCostString();
 
 		local ret = "Costs " + (this.m.ActionPointCost == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.ActionPointCost, {AddSign = true, InvertColor = true})) + " [Action Points|Concept.ActionPoints] and builds ";
-		ret += (this.m.FatigueCost == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCost, {AddSign = true, InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the starting tile";
+		ret += (this.m.FatigueCost == 0 ? "+0" : ::MSU.Text.colorizeValue(this.m.FatigueCost, {AddSign = true, InvertColor = true})) + " [Fatigue|Concept.Fatigue] compared to the movement costs of the target tile";
 		return ::Reforged.Mod.Tooltips.parseString(ret);
 	}
 
@@ -199,17 +227,6 @@ this.rf_passing_step_skill <- ::inherit("scripts/skills/skill", {
 		::Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
 		this.m.IsSpent = true;
 		return true;
-	}
-
-	function onAfterUpdate( _properties )
-	{
-		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap())
-			return;
-
-		local myTile = actor.getTile();
-		this.m.ActionPointCost += actor.getActionPointCosts()[myTile.Type];
-		this.m.FatigueCost += actor.getFatigueCosts()[myTile.Type];
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
