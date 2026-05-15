@@ -67,4 +67,22 @@
 
 		::Reforged.Skills.addPerkGroupOfEquippedWeapon(this, 4);
 	}}.onSpawned;
+
+	// Chance to drop wolf pelt when dying to spawn dead wolf
+	q.spawnDeadWolf = @(__original) { function spawnDeadWolf( _killer, _skill, _tile, _fatalityType )
+	{
+		__original(_killer, _skill, _tile, _fatalityType);
+
+		if (_tile != null && this.RF_canDropLootForPlayer(_killer))
+		{
+			local n = 1 + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0)
+			for (local i = 0; i < n; i++)
+			{
+				if (::Math.rand(1, 100) > 35)
+					continue;
+
+				this.dropLoot(_tile, [::new("scripts/items/loot/rf_wolf_pelt_item")]);
+			}
+		}
+	}}.spawnDeadWolf;
 });

@@ -47,4 +47,36 @@
 		this.m.BaseProperties.Reach = ::Reforged.Reach.Default.BeastMedium - 1;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 	}}.onInit;
+
+	// We only hook onDeath to add a call to getLootForTile if another mod didn't
+	// already add it. Otherwise we'd end up having double calls to it.
+	if (!q.contains("getLootForTile"))
+	{
+		q.onDeath = @(__original) { function onDeath( _killer, _skill, _tile, _fatalityType )
+		{
+			__original(_killer, _skill, _tile, _fatalityType);
+
+			local deathLoot = this.getItems().getDroppableLoot(_killer);
+			local tileLoot = this.getLootForTile(_killer, deathLoot);
+			this.dropLoot(_tile, tileLoot, !flip);
+		}}.onDeath;
+	}
+
+	// Add Reforged wolf pelt drop.
+	q.getLootForTile = @(__original) { function getLootForTile( _killer, _loot )
+	{
+		if (this.RF_canDropLootForPlayer(_killer))
+		{
+			local n = 1 + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0)
+			for (local i = 0; i < n; i++)
+			{
+				if (::Math.rand(1, 100) > 35)
+					continue;
+
+				_loot.push(::new("scripts/items/loot/rf_wolf_pelt_item"));
+			}
+		}
+
+		return __original(_killer, _loot);
+	}}.getLootForTile;
 });
