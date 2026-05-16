@@ -85,6 +85,16 @@ this.rf_frostbound_effect <- ::inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		_enemy.onDamageReceived(actor, this, hitInfo);
-		actor.setHitpoints(::Math.min(actor.getHitpointsMax(), actor.getHitpoints() + this.m.HealingMult * hitInfo.DamageRegular));
+
+		local healthAdded = ::Math.min(actor.getHitpointsMax() - actor.getHitpoints(), this.m.HealingMult * hitInfo.DamageRegular);
+		if (healthAdded != 0)
+		{
+			actor.setHitpoints(actor.getHitpoints() + healthAdded);
+			actor.setDirty(true);
+			if (!actor.isHiddenToPlayer())
+			{
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(actor) + " heals for " + healthAdded + " points");
+			}
+		}
 	}
 });
