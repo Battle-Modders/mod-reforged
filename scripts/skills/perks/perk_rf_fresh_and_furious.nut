@@ -103,7 +103,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 			this.m.RequiresRecover = false;
 			this.m.IsSpent = true;
 		}
-		else if (this.m.UsedSkillAPCost != 0)
+		else if (!this.m.IsSpent && !this.m.RequiresRecover && this.m.UsedSkillAPCost != 0)
 		{
 			this.m.IsSpent = true;
 			local actor = this.getContainer().getActor();
@@ -115,7 +115,7 @@ this.perk_rf_fresh_and_furious <- ::inherit("scripts/skills/skill", {
 	function onCostsPreview( _costsPreview )
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.isPreviewing() && actor.getPreviewSkill() != null && actor.getPreviewSkill().getActionPointCost() != 0)
+		if (!this.m.IsSpent && !this.m.RequiresRecover && actor.isPreviewing() && actor.getPreviewSkill() != null && actor.getPreviewSkill().getActionPointCost() != 0)
 		{
 			_costsPreview.actionPointsPreview += ::Math.floor(actor.getPreviewSkill().getActionPointCost() * this.m.ActionPointsRecoveredPct);
 		}
