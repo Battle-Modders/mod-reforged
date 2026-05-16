@@ -188,6 +188,12 @@ this.rf_banshee <- ::inherit("scripts/entity/tactical/actor", {
 		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
 		{
 			_loot.push(::new("scripts/items/loot/rf_geist_tear_item"));
+			// TODO: Give something more meaningful as a drop from champions.
+			if (this.m.IsMiniboss)
+			{
+				_loot.push(::new("scripts/items/loot/rf_geist_tear_item"));
+				_loot.push(::new("scripts/items/loot/rf_geist_tear_item"));
+			}
 		}
 
 		return this.actor.getLootForTile(_killer, _loot);
