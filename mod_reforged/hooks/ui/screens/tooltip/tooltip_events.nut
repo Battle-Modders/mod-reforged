@@ -297,7 +297,7 @@
 		switch (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_MovementPreviewHitchances").getValue())
 		{
 			case "None":
-				showplayer = false;
+				showPlayer = false;
 				showEnemy = false;
 				break;
 
