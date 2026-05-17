@@ -81,8 +81,10 @@
 		if (this.m.RF_LastActiveEntityID != 0 && this.m.RF_LastActiveEntityID != activeEntity.getID())
 		{
 			::logInfo("Sending last entity id as " + this.m.RF_LastActiveEntityID + " instead of the bad id " + activeEntity.getID());
-			::logInfo(format("this entity -- isAlive: %s, isDying: %s, isPlacedOnMap: %s, getName: %s", activeEntity.isAlive() + "", activeEntity.isDying() + "", activeEntity.isPlacedOnMap() + "", activeEntity.getName() + ""));
+			::logInfo(format("this entity -- typeof: %s, isAlive: %s, isDying: %s, isPlacedOnMap: %s, getName: %s", typeof activeEntity, activeEntity.isAlive() + "", activeEntity.isDying() + "", activeEntity.isPlacedOnMap() + "", activeEntity.getName() + ""));
 			::MSU.Log.printData(activeEntity.m);
+			::MSU.Log.printData(activeEntity);
+			::Reforged.Mod.Debug.addPopupMessage("Got an issue where active entity id had to be fixed. Check your log.", ::MSU.Popup.State.Full);
 		}
 		this.m.JSHandle.asyncCall("removeEntity", this.m.RF_LastActiveEntityID == 0 ? activeEntity.getID() : this.m.RF_LastActiveEntityID);
 		this.m.RF_LastActiveEntityID = 0;
