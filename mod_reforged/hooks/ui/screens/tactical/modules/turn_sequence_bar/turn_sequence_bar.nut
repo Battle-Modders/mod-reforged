@@ -1,5 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/ui/screens/tactical/modules/turn_sequence_bar/turn_sequence_bar", function(q) {
 	q.m.IsWaitingRound <- false;	// Similar to IsSkippingRound but for the Wait Action
+	q.m.RF_LastActiveEntityID <- 0;
 
 	// In Vanilla this funtion is also called at the start of an actors turn if that actor is flagged with 'IsSkippingTurn' (aka End Round button presset)
 	// We manipulated some other function so it is now also called when that actors 'IsWaitingTurn' is true. So now we can redirect the wait behavior in here
@@ -18,6 +19,7 @@
 		if (_force && ::Time.hasEventScheduled(::TimeUnit.Virtual))
 		{
 			_force = false;
+			this.m.RF_LastActiveEntityID = this.m.CurrentEntities[0].getID();
 			::logInfo("Reforged: initNextTurn changing _force from true to false because of scheduled event");
 		}
 
@@ -76,7 +78,13 @@
 
 		this.m.IsLocked = true;
 		::logInfo("triggering asyncCall removeEntity");
-		this.m.JSHandle.asyncCall("removeEntity", activeEntity.getID());
+		if (this.m.RF_LastActiveEntityID != 0 && this.m.RF_LastActiveEntityID != activeEntity.getID())
+		{
+			::logInfo("Sending last entity id as " + this.m.RF_LastActiveEntityID + " instead of the bad id " + activeEntity.getID());
+			::logInfo(format("this entity -- isAlive: %s, isDying: %s, isPlacedOnMap: %s", activeEntity.isAlive() + "", activeEntity.isDying() + "", activeEntity.isPlacedOnMap() + ""));
+		}
+		this.m.JSHandle.asyncCall("removeEntity", this.m.RF_LastActiveEntityID == 0 ? activeEntity.getID() : this.m.RF_LastActiveEntityID);
+		this.m.RF_LastActiveEntityID = 0;
 		::logInfo("triggering activeEntity.onTurnEnd()");
 		activeEntity.onTurnEnd();
 		this.m.CurrentEntities.remove(0);
