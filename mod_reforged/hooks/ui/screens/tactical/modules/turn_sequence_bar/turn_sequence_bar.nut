@@ -35,7 +35,7 @@
 				::logInfo("initNextTurn setting IsLocked back to false as active entity is NOT null and is dead");
 				return;
 			}
-			::logInfo("initNextTurn return due to IsLocked");
+			::logInfo("initNextTurn return due to IsLocked while CurrentEntities[0] = " + (this.m.CurrentEntities[0] == null ? null : this.m.CurrentEntities[0].getName()));
 			// this.m.IsLocked = false;
 			return;
 		}
@@ -75,7 +75,9 @@
 		}
 
 		this.m.IsLocked = true;
+		::logInfo("triggering asyncCall removeEntity");
 		this.m.JSHandle.asyncCall("removeEntity", activeEntity.getID());
+		::logInfo("triggering activeEntity.onTurnEnd()");
 		activeEntity.onTurnEnd();
 		this.m.CurrentEntities.remove(0);
 		++this.m.TurnPosition;
@@ -84,6 +86,7 @@
 		if (this.m.CurrentEntities.len() >= this.m.MaxVisibleEntities)
 		{
 			local entityToAddIndex = this.Math.min(this.m.CurrentEntities.len() - 1, this.m.MaxVisibleEntities - 1);
+			::logInfo("triggering asyncCall addEntity");
 			this.m.JSHandle.asyncCall("addEntity", this.convertEntityToUIData(this.m.CurrentEntities[entityToAddIndex], entityToAddIndex == this.m.CurrentEntities.len() - 1));
 		}
 
