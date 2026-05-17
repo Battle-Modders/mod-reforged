@@ -21,6 +21,8 @@
 			_force = false;
 			this.m.RF_LastActiveEntityID = this.m.CurrentEntities[0].getID();
 			::logInfo("Reforged: initNextTurn changing _force from true to false because of scheduled event");
+			local activeEntity = this.m.CurrentEntities[0];
+			::logInfo(format("At this time CurrentEntities[0] is: -- typeof: %s, isAlive: %s, isDying: %s, isPlacedOnMap: %s, getName: %s", typeof activeEntity, activeEntity.isAlive() + "", activeEntity.isDying() + "", activeEntity.isPlacedOnMap() + "", activeEntity.getName() + ""));
 		}
 
 		if (this.m.IsBattleEnded)
@@ -83,6 +85,7 @@
 			::logInfo("Sending last entity id as " + this.m.RF_LastActiveEntityID + " instead of the bad id " + activeEntity.getID());
 			::logInfo(format("this entity -- typeof: %s, isAlive: %s, isDying: %s, isPlacedOnMap: %s, getName: %s", typeof activeEntity, activeEntity.isAlive() + "", activeEntity.isDying() + "", activeEntity.isPlacedOnMap() + "", activeEntity.getName() + ""));
 			::MSU.Log.printData(activeEntity.m);
+			::MSU.Log.printData(activeEntity.actor.m);
 			::MSU.Log.printData(activeEntity);
 			::Reforged.Mod.Debug.addPopupMessage("Got an issue where active entity id had to be fixed. Check your log.", ::MSU.Popup.State.Full);
 		}
