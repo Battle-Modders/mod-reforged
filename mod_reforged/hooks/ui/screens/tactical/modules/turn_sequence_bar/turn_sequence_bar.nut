@@ -81,7 +81,8 @@
 		if (this.m.RF_LastActiveEntityID != 0 && this.m.RF_LastActiveEntityID != activeEntity.getID())
 		{
 			::logInfo("Sending last entity id as " + this.m.RF_LastActiveEntityID + " instead of the bad id " + activeEntity.getID());
-			::logInfo(format("this entity -- isAlive: %s, isDying: %s, isPlacedOnMap: %s", activeEntity.isAlive() + "", activeEntity.isDying() + "", activeEntity.isPlacedOnMap() + ""));
+			::logInfo(format("this entity -- isAlive: %s, isDying: %s, isPlacedOnMap: %s, getName: %s", activeEntity.isAlive() + "", activeEntity.isDying() + "", activeEntity.isPlacedOnMap() + "", activeEntity.getName() + ""));
+			::MSU.Log.printData(activeEntity.m);
 		}
 		this.m.JSHandle.asyncCall("removeEntity", this.m.RF_LastActiveEntityID == 0 ? activeEntity.getID() : this.m.RF_LastActiveEntityID);
 		this.m.RF_LastActiveEntityID = 0;
