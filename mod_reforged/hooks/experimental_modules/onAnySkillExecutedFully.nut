@@ -479,17 +479,21 @@ local hasShownPopup = false;
 	}}.executeEntitySkill;
 });
 
-::Reforged.HooksMod.hook("scripts/ui/screens/tactical/modules/turn_sequence_bar/turn_sequence_bar", function(q) {
-	// Vanilla does not initialize next turn while TimeUnit.Virtual events are scheduled.
-	// However, when the active entity is removed from the map (`turn_sequence_bar::removeEntity`),
-	// vanilla passes `true` for the `_force` parameter here which initializes the next turn despite
-	// having scheduled events. We must prevent vanilla from initializing the next turn while
-	// TimeUnit.Virtual events are scheduled otherwise we get errors (e.g. in kraken_ensnare_skill)
-	// where `onTurnEnd` triggers during the scheduled event. Similarly we get situations where
-	// activeEntity is killed via Riposte and events are scheduled from the riposte attack,
-	// but immediately the next turn starts.
-	q.initNextTurn = @(__original) { function initNextTurn( _force = false )
-	{
-		__original(_force && !::Time.hasEventScheduled(::TimeUnit.Virtual));
-	}}.initNextTurn;
-});
+// ::Reforged.HooksMod.hook("scripts/ui/screens/tactical/modules/turn_sequence_bar/turn_sequence_bar", function(q) {
+// 	// Vanilla does not initialize next turn while TimeUnit.Virtual events are scheduled.
+// 	// However, when the active entity is removed from the map (`turn_sequence_bar::removeEntity`),
+// 	// vanilla passes `true` for the `_force` parameter here which initializes the next turn despite
+// 	// having scheduled events. We must prevent vanilla from initializing the next turn while
+// 	// TimeUnit.Virtual events are scheduled otherwise we get errors (e.g. in kraken_ensnare_skill)
+// 	// where `onTurnEnd` triggers during the scheduled event. Similarly we get situations where
+// 	// activeEntity is killed via Riposte and events are scheduled from the riposte attack,
+// 	// but immediately the next turn starts.
+// 	q.initNextTurn = @(__original) { function initNextTurn( _force = false )
+// 	{
+// 		if (_force && ::Time.hasEventScheduled(::TimeUnit.Virtual))
+// 		{
+// 			::logInfo("Reforged: initNextTurn changing _force from true to false because of scheduled event");
+// 		}
+// 		__original(_force && !::Time.hasEventScheduled(::TimeUnit.Virtual));
+// 	}}.initNextTurn;
+// });

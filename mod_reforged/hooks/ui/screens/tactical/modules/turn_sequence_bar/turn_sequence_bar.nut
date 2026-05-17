@@ -3,9 +3,11 @@
 
 	// In Vanilla this funtion is also called at the start of an actors turn if that actor is flagged with 'IsSkippingTurn' (aka End Round button presset)
 	// We manipulated some other function so it is now also called when that actors 'IsWaitingTurn' is true. So now we can redirect the wait behavior in here
-	q.initNextTurn = @(__original) { function initNextTurn( _force = false )
+	q.initNextTurn = @() { function initNextTurn( _force = false )
 	{
+		::logInfo("Reforged initNextTurn _force: " + _force);
 		local activeEntity = this.getActiveEntity();
+		::logInfo(typeof activeEntity);
 		if (activeEntity != null && activeEntity.m.IsWaitingTurn)
 		{
 			activeEntity.m.IsWaitingTurn = false;
@@ -13,7 +15,79 @@
 			return;
 		}
 
-		__original(_force);
+		if (_force && ::Time.hasEventScheduled(::TimeUnit.Virtual))
+		{
+			_force = false;
+			::logInfo("Reforged: initNextTurn changing _force from true to false because of scheduled event");
+		}
+
+		if (this.m.IsBattleEnded)
+		{
+			::logInfo("initNextTurn return due to IsBattleEnded");
+			return;
+		}
+
+		if (this.m.IsLocked)
+		{
+			if (this.m.CurrentEntities[0] != null && !this.m.CurrentEntities[0].isAlive())
+			{
+				this.m.IsLocked = false;
+				::logInfo("initNextTurn setting IsLocked back to false as active entity is NOT null and is dead");
+				return;
+			}
+			::logInfo("initNextTurn return due to IsLocked");
+			// this.m.IsLocked = false;
+			return;
+		}
+
+		if (!_force && (this.Time.hasEventScheduled(this.TimeUnit.Virtual) || this.Tactical.State.isPaused()))
+		{
+			::logInfo("initNextTurn return due to scheduled event or paused");
+			return;
+		}
+
+		if (this.m.OnNextTurnListener != null)
+		{
+			if (!this.m.OnNextTurnListener())
+			{
+				::logInfo("initNextTurn return due to onNextTurnListener");
+				return;
+			}
+		}
+
+		if (this.m.CurrentEntities.len() <= 1)
+		{
+			if (!this.m.IsInitNextRound)
+			{
+				this.m.IsInitNextRound = true;
+				this.m.CheckEnemyRetreat = true;
+			}
+
+			::logInfo("initNextTurn return due to CurrentEntities.len() <= 1");
+			return;
+		}
+
+		local activeEntity = this.m.CurrentEntities[0];
+
+		if (this.m.CurrentEntities.len() > 1)
+		{
+			this.m.CurrentEntities[1].onBeforeActivation();
+		}
+
+		this.m.IsLocked = true;
+		this.m.JSHandle.asyncCall("removeEntity", activeEntity.getID());
+		activeEntity.onTurnEnd();
+		this.m.CurrentEntities.remove(0);
+		++this.m.TurnPosition;
+		this.m.IsLastEntityPlayerControlled = activeEntity.isPlayerControlled();
+
+		if (this.m.CurrentEntities.len() >= this.m.MaxVisibleEntities)
+		{
+			local entityToAddIndex = this.Math.min(this.m.CurrentEntities.len() - 1, this.m.MaxVisibleEntities - 1);
+			this.m.JSHandle.asyncCall("addEntity", this.convertEntityToUIData(this.m.CurrentEntities[entityToAddIndex], entityToAddIndex == this.m.CurrentEntities.len() - 1));
+		}
+
+		// __original(_force);
 	}}.initNextTurn;
 
 	q.initNextRound = @(__original) { function initNextRound()
