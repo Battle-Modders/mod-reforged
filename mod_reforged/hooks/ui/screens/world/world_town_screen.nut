@@ -40,6 +40,28 @@
 				if (c.m.ActiveScreen.ID == "Overview")
 					break;
 
+				// Some contracts may not have a Negotiation screen (e.g. contracts in Stronghold mod)
+				// so we check that we have a Negotiation screen before moving forward.
+				local hasNegotiationScreen = false;
+				foreach (s in c.m.Screens)
+				{
+					if (s.ID == "Negotiation")
+					{
+						hasNegotiationScreen = true;
+						break;
+					}
+				}
+
+				if (!hasNegotiationScreen)
+				{
+					// We should not do `setScreen("Overview")` for such contracts
+					// because going to the Overview screen may be expected
+					// to be from a previous screen's option which may set some
+					// state. So, for such contracts we let them behave unchanged
+					// i.e. don't apply any skipping or auto-negotiation.
+					break;
+				}
+
 				if (skipTo == "Negotiation")
 				{
 					c.setScreen("Negotiation");

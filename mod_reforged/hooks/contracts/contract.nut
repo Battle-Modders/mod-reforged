@@ -11,7 +11,21 @@
 			return;
 
 		if (this.m.ActiveScreen.ID != "Negotiation")
-			this.setScreen("Negotiation");
+		{
+			// Some contracts may not have a Negotiation screen (e.g. contracts in Stronghold mod)
+			// so we check that we have a Negotiation screen before moving forward.
+			foreach (s in this.m.Screens)
+			{
+				if (s.ID == "Negotiation")
+				{
+					this.setScreen("Negotiation");
+					break;
+				}
+			}
+
+			if (this.m.ActiveScreen.ID != "Negotiation")
+				return;
+		}
 
 		for (local i = 0; i < _numAttempts; i++)
 		{
