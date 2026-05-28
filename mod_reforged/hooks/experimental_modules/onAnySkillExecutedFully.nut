@@ -479,17 +479,97 @@ local hasShownPopup = false;
 	}}.executeEntitySkill;
 });
 
-::Reforged.HooksMod.hook("scripts/ui/screens/tactical/modules/turn_sequence_bar/turn_sequence_bar", function(q) {
-	// Vanilla does not initialize next turn while TimeUnit.Virtual events are scheduled.
-	// However, when the active entity is removed from the map (`turn_sequence_bar::removeEntity`),
-	// vanilla passes `true` for the `_force` parameter here which initializes the next turn despite
-	// having scheduled events. We must prevent vanilla from initializing the next turn while
-	// TimeUnit.Virtual events are scheduled otherwise we get errors (e.g. in kraken_ensnare_skill)
-	// where `onTurnEnd` triggers during the scheduled event. Similarly we get situations where
-	// activeEntity is killed via Riposte and events are scheduled from the riposte attack,
-	// but immediately the next turn starts.
-	q.initNextTurn = @(__original) { function initNextTurn( _force = false )
-	{
-		__original(_force && !::Time.hasEventScheduled(::TimeUnit.Virtual));
-	}}.initNextTurn;
+::Reforged.QueueBucket.VeryLate.push(function() {
+	::Reforged.HooksMod.hook("scripts/ui/screens/tactical/modules/turn_sequence_bar/turn_sequence_bar", function(q) {
+		// We store the ID of the last active entity i.e. CurrentEntities[0] here during initNextTurn
+		// when we prevent the force initialization of next turn. This is important because if the entity
+		// died, then the ID may become bad i.e. 1936941420 by the time the next call to initNextTurn happens.
+		q.m.RF_LastActiveEntityID <- 0;
+
+		q.create = @(__original) { function create()
+		{
+			__original();
+
+			local self = this;
+			// Custom JSHandle to "fix" the last active entity id after we change `initNextTurn(true)` to false.
+			// When the active entity dies, and we don't force initialize the next turn immediately, the entity's
+			// getID() can return 1936941420. This causes the `removeEntity` call on the JS side to not be able to
+			// remove the current entity causing the game to freeze. We fix this by storing the first entity's ID
+			// in a member variable and changing the id being passed to the JS side to that stored id.
+			this.m.__RF_JSHandle <- {
+				__JSHandle = null,
+				function asyncCall( _funcName, ... )
+				{
+					if (_funcName == "removeEntity" && self.m.RF_LastActiveEntityID != 0)
+					{
+						if (vargv[0] == 1936941420) // all dead actors return this number from getID()
+						{
+							::Reforged.Mod.Debug.printWarning(format("Reforged: Sending last entity id as %i instead of the bad id %i", self.m.RF_LastActiveEntityID, vargv[0]), ::Reforged.DebugFlag.onAnySkillExecutedFully);
+							vargv[0] = self.m.RF_LastActiveEntityID;
+							// ::Reforged.Mod.Debug.addPopupMessage("Got an issue where active entity id had to be fixed. Check your log.", ::MSU.Popup.State.Full);
+						}
+						self.m.RF_LastActiveEntityID = 0;
+					}
+
+					switch (vargv.len())
+					{
+						case 0:
+							this.__JSHandle.asyncCall(_funcName);
+							break;
+						case 1:
+							this.__JSHandle.asyncCall(_funcName, vargv[0]);
+							break;
+						case 2:
+							this.__JSHandle.asyncCall(_funcName, vargv[0], vargv[1]);
+							break;
+						case 3:
+							this.__JSHandle.asyncCall(_funcName, vargv[0], vargv[1], vargv[2]);
+							break;
+						case 4:
+							this.__JSHandle.asyncCall(_funcName, vargv[0], vargv[1], vargv[2], vargv[3]);
+							break;
+						default:
+							vargv.insert(0, _funcName);
+							vargv.insert(0, this);
+							// For some reason this throws an error. No idea why, even though I've done it
+							// similar to how MSU does it and there it doesn't error. - Midas.
+							this.__JSHandle.asyncCall.acall(vargv);
+							break;
+					}
+				}
+			}
+			this.m.__RF_JSHandle.setdelegate({
+				function _get( _key )
+				{
+					if (_key in this.__JSHandle)
+						return this.__JSHandle[_key];
+					throw null;
+				}
+			});
+		}}.create;
+
+		// Vanilla does not initialize next turn while TimeUnit.Virtual events are scheduled.
+		// However, when the active entity is removed from the map (`turn_sequence_bar::removeEntity`),
+		// vanilla passes `true` for the `_force` parameter here which initializes the next turn despite
+		// having scheduled events. We must prevent vanilla from initializing the next turn while
+		// TimeUnit.Virtual events are scheduled otherwise we get errors (e.g. in kraken_ensnare_skill)
+		// where `onTurnEnd` triggers during the scheduled event. Similarly we get situations where
+		// activeEntity is killed via Riposte and events are scheduled from the riposte attack,
+		// but immediately the next turn starts.
+		q.initNextTurn = @(__original) { function initNextTurn( _force = false )
+		{
+			if (_force && ::Time.hasEventScheduled(::TimeUnit.Virtual))
+			{
+				_force = false;
+				this.m.RF_LastActiveEntityID = this.m.CurrentEntities[0].getID();
+				local activeEntity = this.m.CurrentEntities[0];
+				::Reforged.Mod.Debug.printWarning(format("Reforged: initNextTurn changing _force from true to false because of scheduled event. At this time CurrentEntities[0] is: -- typeof: %s, getID: %i, isAlive: %s, isDying: %s, isPlacedOnMap: %s, getName: %s", typeof activeEntity, activeEntity.getID(), activeEntity.isAlive() + "", activeEntity.isDying() + "", activeEntity.isPlacedOnMap() + "", activeEntity.getName() + ""), ::Reforged.DebugFlag.onAnySkillExecutedFully);
+			}
+
+			this.m.__RF_JSHandle.__JSHandle = this.m.JSHandle;
+			this.m.JSHandle = this.m.__RF_JSHandle;
+			__original(_force);
+			this.m.JSHandle = this.m.__RF_JSHandle.__JSHandle;
+		}}.initNextTurn;
+	});
 });
