@@ -8,6 +8,11 @@
 		UnitBlocks = {},
 		Parties = {}
 	},
+	DebugFlag = {
+		AI = "AI",
+		onAnySkillExecutedFully = "onAnySkillExecutedFully",
+		AIAgentFixes = "AIAgentFixes",
+	},
 	QueueBucket = {
 		Late = [],
 		VeryLate = [], // For experimental modules only
@@ -162,9 +167,9 @@ foreach (requirement in requiredMods)
 	::Reforged.checkConflictWithFilename();
 	delete ::Reforged.checkConflictWithFilename;
 
-	::Reforged.Mod.Debug.setFlag("ai", false);
-	::Reforged.Mod.Debug.setFlag("onAnySkillExecutedFully", true);
-	::Reforged.Mod.Debug.setFlag("AIAgentFixes", false);
+	::Reforged.Mod.Debug.setFlag(::Reforged.DebugFlag.AI, false);
+	::Reforged.Mod.Debug.setFlag(::Reforged.DebugFlag.onAnySkillExecutedFully, true);
+	::Reforged.Mod.Debug.setFlag(::Reforged.DebugFlag.AIAgentFixes, false);
 
 	::include("mod_reforged/hooks/misc.nut");
 	::include("mod_reforged/ui/load.nut");

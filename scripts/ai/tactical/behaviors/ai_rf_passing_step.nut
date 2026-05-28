@@ -140,7 +140,7 @@ this.ai_rf_passing_step <- ::inherit("scripts/ai/tactical/behavior", {
 				time = ::Time.getExactTime();
 			}
 
-			if (::Reforged.Mod.Debug.isEnabled("ai"))
+			if (::Reforged.Mod.Debug.isEnabled(::Reforged.DebugFlag.AI))
 				::logWarning(format("* Evaluating path: %i", pathIdx))
 
 			if (path.BasePath != null)
@@ -149,12 +149,12 @@ this.ai_rf_passing_step <- ::inherit("scripts/ai/tactical/behavior", {
 				path.ScoreMult = path.BasePath.ScoreMult;
 				path.AlliesEvaluated = clone path.BasePath.AlliesEvaluated;
 				path.Reason = path.BasePath.Reason;
-				if (::Reforged.Mod.Debug.isEnabled("ai"))
+				if (::Reforged.Mod.Debug.isEnabled(::Reforged.DebugFlag.AI))
 					::logInfo(format("* Copying path score from path %i", paths.find(path.BasePath)));
 			}
 
 			local tile = path.Tiles.top();
-			if (::Reforged.Mod.Debug.isEnabled("ai"))
+			if (::Reforged.Mod.Debug.isEnabled(::Reforged.DebugFlag.AI))
 			{
 				if (tile.isSameTileAs(myTile))
 					::logWarning(format("* - Evaluating my own tile"));
@@ -197,24 +197,24 @@ this.ai_rf_passing_step <- ::inherit("scripts/ai/tactical/behavior", {
 				if (!skill.isAttack() || skill.isRanged())
 					continue;
 
-				if (::Reforged.Mod.Debug.isEnabled("ai"))
+				if (::Reforged.Mod.Debug.isEnabled(::Reforged.DebugFlag.AI))
 					::logInfo(format("* Evaluating skill: %s", skill.getName()))
 
 				foreach (target in this.queryTargetsInMeleeRange(skill.getMinRange(), skill.getMaxRange(), skill.getMaxLevelDifference(), tile))
 				{
 					local targetTile = target.getTile();
 
-					if (::Reforged.Mod.Debug.isEnabled("ai"))
+					if (::Reforged.Mod.Debug.isEnabled(::Reforged.DebugFlag.AI))
 						::logInfo(format("* --- Evaluating target: %s with ID %i in direction %s from that tile", target.getName(), target.getID(), ::Const.Strings.Direction[tile.getDirectionTo(targetTile)]));
 
 					if (!skill.verifyTargetAndRange(targetTile, tile) || !tile.hasLineOfSightTo(targetTile, vision))
 					{
-						if (::Reforged.Mod.Debug.isEnabled("ai"))
+						if (::Reforged.Mod.Debug.isEnabled(::Reforged.DebugFlag.AI))
 							::logInfo(format("* %s won\'t be usable on target from this tile - Skipping!", skill.getName()));
 						continue;
 					}
 
-					if (::Reforged.Mod.Debug.isEnabled("ai"))
+					if (::Reforged.Mod.Debug.isEnabled(::Reforged.DebugFlag.AI))
 						::logInfo(format("* Current path score: %f", path.Score))
 
 					local levelDifference = tile.Level - targetTile.Level;
@@ -293,7 +293,7 @@ this.ai_rf_passing_step <- ::inherit("scripts/ai/tactical/behavior", {
 
 					if (::Const.AI.VerboseMode)
 					{
-						if (::Reforged.Mod.Debug.isEnabled("ai"))
+						if (::Reforged.Mod.Debug.isEnabled(::Reforged.DebugFlag.AI))
 							::logInfo("* targetScore: " + targetScore);
 						if (targetScore > path.Score)
 						{
@@ -305,13 +305,13 @@ this.ai_rf_passing_step <- ::inherit("scripts/ai/tactical/behavior", {
 				}
 			}
 
-			if (::Reforged.Mod.Debug.isEnabled("ai"))
+			if (::Reforged.Mod.Debug.isEnabled(::Reforged.DebugFlag.AI))
 				::logInfo(format("* Score: %f, ScoreMult: %f, Total Path Score: %f", path.Score, path.ScoreMult, path.Score * path.ScoreMult))
 
 			path.Score *= path.ScoreMult;
 		}
 
-		if (::Reforged.Mod.Debug.isEnabled("ai"))
+		if (::Reforged.Mod.Debug.isEnabled(::Reforged.DebugFlag.AI))
 		{
 			::logInfo("SelectedSkill: " + this.m.Skill.getName());
 			foreach (i, path in paths)

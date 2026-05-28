@@ -26,7 +26,7 @@
 
 	function save()
 	{
-		::Reforged.Mod.Debug.printLog(format("AgentState.save() -- %s (%i)", this.Agent.getActor().getName(), this.Agent.getActor().getID()), "AIAgentFixes");
+		::Reforged.Mod.Debug.printLog(format("AgentState.save() -- %s (%i)", this.Agent.getActor().getName(), this.Agent.getActor().getID()), ::Reforged.DebugFlag.AIAgentFixes);
 		local actor = this.Agent.getActor();
 		this.MoraleState = actor.getMoraleState();
 		this.ActionPoints = actor.getActionPoints();
@@ -38,13 +38,13 @@
 
 	function declareExecution()
 	{
-		::Reforged.Mod.Debug.printWarning(format("AgentState.declareExecution() -- %s (%i)", this.Agent.getActor().getName(), this.Agent.getActor().getID()), "AIAgentFixes");
+		::Reforged.Mod.Debug.printWarning(format("AgentState.declareExecution() -- %s (%i)", this.Agent.getActor().getName(), this.Agent.getActor().getID()), ::Reforged.DebugFlag.AIAgentFixes);
 		this.__IsExecuting = true;
 	}
 
 	function invalidate( _cause = null )
 	{
-		::Reforged.Mod.Debug.printWarning(format("AgentState.invalidate() -- %s (%i) - Cause: %s", this.Agent.getActor().getName(), this.Agent.getActor().getID(), _cause != null ? _cause : split(::getstackinfos(2).src, "/").top() + "." + ::getstackinfos(2).func), "AIAgentFixes");
+		::Reforged.Mod.Debug.printWarning(format("AgentState.invalidate() -- %s (%i) - Cause: %s", this.Agent.getActor().getName(), this.Agent.getActor().getID(), _cause != null ? _cause : split(::getstackinfos(2).src, "/").top() + "." + ::getstackinfos(2).func), ::Reforged.DebugFlag.AIAgentFixes);
 		this.__IsInvalid = true;
 	}
 
@@ -163,7 +163,7 @@
 	// Then during agent.execute we will compare the state with this state to see if anything has changed.
 	q.evaluate = @(__original) { function evaluate( _entity )
 	{
-		::Reforged.Mod.Debug.printLog(format("evaluate -- %s (%i), NextBehaviorToEvaluate: %i (%s)", this.getActor().getName(), this.getActor().getID(), this.m.NextBehaviorToEvaluate, this.m.NextBehaviorToEvaluate < 0 ? "" : this.m.Behaviors[this.m.NextBehaviorToEvaluate].getName()), "AIAgentFixes");
+		::Reforged.Mod.Debug.printLog(format("evaluate -- %s (%i), NextBehaviorToEvaluate: %i (%s)", this.getActor().getName(), this.getActor().getID(), this.m.NextBehaviorToEvaluate, this.m.NextBehaviorToEvaluate < 0 ? "" : this.m.Behaviors[this.m.NextBehaviorToEvaluate].getName()), ::Reforged.DebugFlag.AIAgentFixes);
 		if (this.m.NextBehaviorToEvaluate == -3)
 		{
 			this.m.RF_AgentState.save();
@@ -200,7 +200,7 @@
 	// a new evaluation starts after this function returns true.
 	q.execute = @(__original) { function execute(_entity )
 	{
-		::Reforged.Mod.Debug.printWarning(format("execute -- %s (%i), ActiveBehavior: %s", this.getActor().getName(), this.getActor().getID(), this.m.ActiveBehavior == null ? null : this.m.ActiveBehavior.getName()), "AIAgentFixes");
+		::Reforged.Mod.Debug.printWarning(format("execute -- %s (%i), ActiveBehavior: %s", this.getActor().getName(), this.getActor().getID(), this.m.ActiveBehavior == null ? null : this.m.ActiveBehavior.getName()), ::Reforged.DebugFlag.AIAgentFixes);
 		if (this.m.ActiveBehavior != null && !this.m.RF_AgentState.isExecuting())
 		{
 			// If state was changed then we reset and force a complete reevaluation and don't allow the behavior
@@ -240,7 +240,7 @@
 
 	q.RF_reset <- { function RF_reset()
 	{
-		::Reforged.Mod.Debug.printWarning(format("RF_reset -- %s (%i)", this.getActor().getName(), this.getActor().getID()), "AIAgentFixes");
+		::Reforged.Mod.Debug.printWarning(format("RF_reset -- %s (%i)", this.getActor().getName(), this.getActor().getID()), ::Reforged.DebugFlag.AIAgentFixes);
 
 		// This resets the `agent.think` function to start its logic from the beginning
 		this.m.NextBehaviorToEvaluate = -3;
