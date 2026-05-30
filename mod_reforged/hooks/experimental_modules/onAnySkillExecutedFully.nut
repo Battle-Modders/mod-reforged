@@ -498,7 +498,7 @@ local hasShownPopup = false;
 			// in a member variable and changing the id being passed to the JS side to that stored id.
 			this.m.__RF_JSHandle <- {
 				__JSHandle = null,
-				function asyncCall( _funcName, ... )
+				function __call( _async, _funcName, _args )
 				{
 					if (_funcName == "removeEntity" && self.m.RF_LastActiveEntityID != 0)
 					{
@@ -511,33 +511,44 @@ local hasShownPopup = false;
 						self.m.RF_LastActiveEntityID = 0;
 					}
 
-					switch (vargv.len())
+					switch (_args.len())
 					{
 						case 0:
-							this.__JSHandle.asyncCall(_funcName);
+							_async ? this.__JSHandle.asyncCall(_funcName) : this.__JSHandle.call(_funcName);
 							break;
 						case 1:
-							this.__JSHandle.asyncCall(_funcName, vargv[0]);
+							_async ? this.__JSHandle.asyncCall(_funcName, _args[0]) : this.__JSHandle.call(_funcName, _args[0]);
 							break;
 						case 2:
-							this.__JSHandle.asyncCall(_funcName, vargv[0], vargv[1]);
+							_async ? this.__JSHandle.asyncCall(_funcName, _args[0], _args[1]) : this.__JSHandle.call(_funcName, _args[0], _args[1]);
 							break;
 						case 3:
-							this.__JSHandle.asyncCall(_funcName, vargv[0], vargv[1], vargv[2]);
+							_async ? this.__JSHandle.asyncCall(_funcName, _args[0], _args[1], _args[2]) : this.__JSHandle.call(_funcName, _args[0], _args[1], _args[2]);
 							break;
 						case 4:
-							this.__JSHandle.asyncCall(_funcName, vargv[0], vargv[1], vargv[2], vargv[3]);
+							_async ? this.__JSHandle.asyncCall(_funcName, _args[0], _args[1], _args[2], _args[3]) : this.__JSHandle.call(_funcName, _args[0], _args[1], _args[2], _args[3]);
 							break;
 						default:
-							vargv.insert(0, _funcName);
-							vargv.insert(0, this);
+							_args.insert(0, _funcName);
+							_args.insert(0, this);
 							// For some reason this throws an error. No idea why, even though I've done it
 							// similar to how MSU does it and there it doesn't error. - Midas.
-							this.__JSHandle.asyncCall.acall(vargv);
+							_async ? this.__JSHandle.asyncCall.acall(_args) : this.__JSHandle.call.acall(_args);
 							break;
 					}
 				}
+
+				function asyncCall( _funcName, ... )
+				{
+					this.__call(true, _funcName, vargv);
+				}
+
+				function call( _funcName, ... )
+				{
+					this.__call(false, _funcName, vargv);
+				}
 			}
+
 			this.m.__RF_JSHandle.setdelegate({
 				function _get( _key )
 				{
