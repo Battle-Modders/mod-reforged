@@ -43,7 +43,11 @@ local original_getClone = ::Const.CharacterProperties.getClone;
 	// Bonus: Also fixes the vanilla edge-case of division by zero when mult is 0.
 	function __getValueWithMult( _value, _mult )
 	{
-		return ::Math.floor(_value * (_value > 0 ? _mult : (_mult > 1.0 ? 1.0 / _mult : 2.0 - _mult)));
+		local mult = _value > 0 ? _mult : (_mult > 1.0 ? 1.0 / _mult : 2.0 - _mult);
+		// We round to 1 decimal place to avoid floating point precision issues
+		// that would result in 120 * 1.05 giving 125.9999 instead of 126 and being
+		// floored to 125 instead of giving 126 as the answer.
+		return ::Math.floor(::MSU.Math.roundToDec(_value * mult, 1));
 	}
 
 	function getMeleeDefense()
