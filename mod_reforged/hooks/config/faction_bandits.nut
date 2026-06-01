@@ -51,7 +51,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.BanditRaider
 );
 ::Reforged.Entities.editEntity("BanditRaider",
 	{
@@ -109,7 +110,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.BanditRaider + 1
 );
 ::Reforged.Entities.addTroopAndActor(
 	"RF_BanditThugTough",
@@ -236,7 +238,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.RF_BanditMarauder + 1
 );
 ::Reforged.Entities.addEntity(
 	"RF_BanditOutlaw",
@@ -264,6 +267,7 @@
 		],
 		FatigueRecoveryRate = 15
 	}
+	::Const.EntityType.RF_BanditVandal + 1
 );
 ::Reforged.Entities.addEntity(
 	"RF_BanditHighwayman",
@@ -290,7 +294,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.RF_BanditOutlaw + 1
 );
 ::Reforged.Entities.editEntity("BanditPoacher",
 	null, // Vanilla Cost/Strength: 12/12
@@ -374,7 +379,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.BanditMarksman + 1
 );
 ::Reforged.Entities.editEntity("BanditLeader",
 	{
@@ -434,7 +440,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.BanditLeader + 1
 );
 ::Reforged.Entities.editEntity("Wardog",
 	null, // Vanilla Cost/Strength: 8/9

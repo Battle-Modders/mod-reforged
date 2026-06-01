@@ -150,6 +150,28 @@
 			}
 		}
 	}}.RF_addDevSpawnInfo;
+
+	q.onDeserialize = @(__original) { function onDeserialize( _in )
+	{
+		__original(_in);
+
+		// Update troop EntityType. Necessary to preserve entity names in parties
+		// from older versions as we changed how entity types are added.
+		// TODO: Should be removed in the next save breaking release.
+		if (!::Reforged.Mod.Serialization.isSavedVersionAtLeast("0.8.18", _in.getMetaData()))
+		{
+			local troopScriptToEntityTypeMap = {};
+			foreach (t in ::Const.World.Spawn.Troops)
+			{
+				troopScriptToEntityTypeMap[t.Script] <- t.ID;
+			}
+
+			foreach (t in this.m.Troops)
+			{
+				t.ID = troopScriptToEntityTypeMap[t.Script];
+			}
+		}
+	}}.onDeserialize;
 });
 
 ::Reforged.HooksMod.hookTree("scripts/entity/world/world_entity", function(q) {

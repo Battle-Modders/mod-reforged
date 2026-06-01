@@ -8,16 +8,44 @@ foreach (key, value in ::Const.EntityType)
 ::Reforged.Entities <- {
 	DefaultFaction = {},
 
-	function addEntity( _entityID, _name, _namePlural, _orientationIcon, _defaultFaction, _troopDef, _actorDef )
+	function addEntity( _entityTypeKey, _name, _namePlural, _orientationIcon, _defaultFaction, _troopDef, _actorDef, _atID = null )
 	{
-		::Const.EntityType[_entityID] <- ++highestID;
-		::Const.Strings.EntityName.push(_name);
-		::Const.Strings.EntityNamePlural.push(_namePlural);
-		::Const.EntityIcon.push(_orientationIcon);
-		this.DefaultFaction[highestID] <- _defaultFaction;
-		_troopDef.ID <- highestID;
-		this.addTroop(_entityID, _troopDef);
-		this.addActor(_entityID, _actorDef);
+		local id;
+		if (_atID != null)
+		{
+			id = _atID;
+
+			foreach (k, v in ::Const.EntityType)
+			{
+				if (typeof v == "integer" && v >= _atID)
+				{
+					::Const.EntityType[k] = v + 1;
+				}
+			}
+
+			foreach (v in ::Const.World.Spawn.Troops)
+			{
+				if (v.ID >= _atID)
+				{
+					v.ID += 1;
+				}
+			}
+
+			highestID++;
+		}
+		else
+		{
+			id = ++highestID;
+		}
+
+		::Const.EntityType[_entityTypeKey] <- id;
+		::Const.Strings.EntityName.insert(id, _name);
+		::Const.Strings.EntityNamePlural.insert(id, _namePlural);
+		::Const.EntityIcon.insert(id, _orientationIcon);
+		this.DefaultFaction[id] <- _defaultFaction;
+		_troopDef.ID <- id;
+		this.addTroop(_entityTypeKey, _troopDef);
+		this.addActor(_entityTypeKey, _actorDef);
 	}
 
 	function addTroop( _key, _troopDef )

@@ -53,7 +53,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.Footman + 1
 );
 ::Reforged.Entities.editEntity("Billman",
 	{
@@ -110,7 +111,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.Billman + 1
 );
 ::Reforged.Entities.editEntity("Arbalester", // Crossbowman
 	{
@@ -172,7 +174,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.Arbalester + 1
 );
 ::Reforged.Entities.addEntity(
 	"RF_ManAtArms",
@@ -207,7 +210,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.Greatsword + 1
 );
 ::Reforged.Entities.editEntity("Greatsword", // Zweihander
 	{
@@ -270,7 +274,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.RF_ManAtArms + 1
 );
 ::Reforged.Entities.editEntity("Knight",
 	{
@@ -329,7 +334,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.Knight + 1
 );
 ::Reforged.Entities.addEntity(
 	"RF_Squire",
@@ -362,7 +368,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.RF_KnightAnointed + 1
 );
 ::Reforged.Entities.editEntity("Sergeant",
 	{
@@ -423,7 +430,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.Sergeant + 1
 );
 ::Reforged.Entities.editEntity("StandardBearer",
 	{
@@ -484,7 +492,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.StandardBearer + 1
 );
 ::Reforged.Entities.addEntity(
 	"RF_HeraldsBodyguard", // Royal Guard
@@ -517,7 +526,8 @@
 			0
 		],
 		FatigueRecoveryRate = 15
-	}
+	},
+	::Const.EntityType.RF_Herald + 1
 );
 ::Reforged.Entities.editEntity("Noble",
 	null,
