@@ -2,7 +2,7 @@ name: Upload Latest Release to NexusMods
 
 on:
   release:
-    types: [published, released]
+    types: [published]
   workflow_dispatch:
     inputs:
       is_dry_run:
@@ -128,7 +128,7 @@ jobs:
           echo "  display_name: mod_reforged_core"
           echo "  description: |"
           echo "    Requires mod_reforged_assets."
-          echo "    Release Notes: ${{ steps.info.outputs.gh_core_url }}"
+          echo "    Release Notes: ${{ steps.info.outputs.gh_core_release_url }}"
           echo "  version: ${{ steps.info.outputs.gh_core_ver }}"
           echo "  archive_existing_file: true"
           echo "  primary_mod_manager_download: true"
@@ -146,7 +146,7 @@ jobs:
           description: |
             Requires mod_reforged_assets.
 
-            Release Notes: ${{ steps.info.outputs.gh_core_url }}
+            Release Notes: ${{ steps.info.outputs.gh_core_release_url }}
           version: ${{ steps.info.outputs.gh_core_ver }}
           archive_existing_file: true
           primary_mod_manager_download: true
