@@ -66,8 +66,21 @@
 			local original_LastEnteredTown = ::World.State.m.LastEnteredTown;
 			::World.State.m.LastEnteredTown = ::MSU.asWeakTableRef(this.getHome());
 
+			// TODO: Find a proper fix for this that does not require switcheroo on updateActiveContract.
+			// Bug report: https://github.com/Battle-Modders/mod-reforged/issues/1035
+			// We switcheroo updateActiveContract to do nothing during the fake start,
+			// because `start()` will call `setState` which then calls `updateActiveContract`.
+			// The reported bug shows that if this fake start function is called while you have
+			// an active contract and are roaming on the world map (e.g. it can be called when a
+			// new contract is added and you have the Agent follower), then the UI bugs out
+			// and eventually the game may also crash.
+			local contractManager = ::World.Contracts.get();
+			local original_updateActiveContract = contractManager.updateActiveContract;
+			contractManager.updateActiveContract = @() null;
+
 			this.start();
 
+			contractManager.updateActiveContract = original_updateActiveContract;
 			::World.State.m.LastEnteredTown = original_LastEnteredTown;
 		}
 	}}.RF_fakeStart;
