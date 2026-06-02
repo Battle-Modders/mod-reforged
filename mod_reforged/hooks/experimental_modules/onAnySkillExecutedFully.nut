@@ -502,7 +502,6 @@ local hasShownPopup = false;
 				{
 					if (_funcName == "removeEntity" && self.m.RF_LastActiveEntityID != 0)
 					{
-						if (vargv[0] == 1936941420) // all dead actors return this number from getID()
 						if (_args[0] == 1936941420) // all dead actors return this number from getID()
 						{
 							::Reforged.Mod.Debug.printWarning(format("Reforged: Sending last entity id as %i instead of the bad id %i", self.m.RF_LastActiveEntityID, _args[0]), ::Reforged.DebugFlag.onAnySkillExecutedFully);
