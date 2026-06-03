@@ -200,7 +200,7 @@
 	// a new evaluation starts after this function returns true.
 	q.execute = @(__original) { function execute(_entity )
 	{
-		::Reforged.Mod.Debug.printWarning(format("execute -- %s (%i), ActiveBehavior: %s", this.getActor().getName(), this.getActor().getID(), this.m.ActiveBehavior == null ? null : this.m.ActiveBehavior.getName()), ::Reforged.DebugFlag.AIAgentFixes);
+		::Reforged.Mod.Debug.printWarning(format("execute -- %s (%i), ActiveBehavior: %s", this.getActor().getName(), this.getActor().getID(), this.m.ActiveBehavior == null ? "null" : this.m.ActiveBehavior.getName()), ::Reforged.DebugFlag.AIAgentFixes);
 		if (this.m.ActiveBehavior != null && !this.m.RF_AgentState.isExecuting())
 		{
 			// If state was changed then we reset and force a complete reevaluation and don't allow the behavior
