@@ -590,8 +590,8 @@ local hasShownPopup = false;
 			if (this.m.__RF_JSHandle.__JSHandle != null)
 			{
 				// If we still have the original JSHandle saved at this point, we restore it
-				// These checks are necessary, another call of initNextTurn can happen while
-				// the first call of initNextTurn has not completed yet.
+				// These checks are necessary because another call of initNextTurn can happen
+				// while the first call of initNextTurn has not completed yet.
 				this.m.JSHandle = this.m.__RF_JSHandle.__JSHandle;
 				this.m.__RF_JSHandle.__JSHandle = null;
 			}
