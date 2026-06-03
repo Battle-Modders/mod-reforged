@@ -577,10 +577,22 @@ local hasShownPopup = false;
 				::Reforged.Mod.Debug.printWarning(format("Reforged: initNextTurn changing _force from true to false because of scheduled event. At this time CurrentEntities[0] is: -- typeof: %s, getID: %i, isAlive: %s, isDying: %s, isPlacedOnMap: %s, getName: %s", typeof activeEntity, activeEntity.getID(), activeEntity.isAlive() + "", activeEntity.isDying() + "", activeEntity.isPlacedOnMap() + "", activeEntity.getName() + ""), ::Reforged.DebugFlag.onAnySkillExecutedFully);
 			}
 
-			this.m.__RF_JSHandle.__JSHandle = this.m.JSHandle;
+			if (this.m.__RF_JSHandle.__JSHandle == null)
+			{
+				// If we haven't saved the original already, we save the most up-to-date original JSHandle, to stay as compatible as possible with other mods
+				this.m.__RF_JSHandle.__JSHandle = this.m.JSHandle;
+			}
+
 			this.m.JSHandle = this.m.__RF_JSHandle;
 			__original(_force);
-			this.m.JSHandle = this.m.__RF_JSHandle.__JSHandle;
+
+			if (this.m.__RF_JSHandle.__JSHandle != null)
+			{
+				// If we still have the original JSHandle saved at this point, we restore it
+				// These checks are necessary, because in Reforged another call of initNextTurn can happen while the first call of initNextTurn has not completed yet
+				this.m.JSHandle = this.m.__RF_JSHandle.__JSHandle;
+				this.m.__RF_JSHandle.__JSHandle = null;
+			}
 		}}.initNextTurn;
 	});
 });
