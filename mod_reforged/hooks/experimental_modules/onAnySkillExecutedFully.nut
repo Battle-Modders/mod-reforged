@@ -579,7 +579,8 @@ local hasShownPopup = false;
 
 			if (this.m.__RF_JSHandle.__JSHandle == null)
 			{
-				// If we haven't saved the original already, we save the most up-to-date original JSHandle, to stay as compatible as possible with other mods
+				// If we haven't saved the original already, we save the most up-to-date original JSHandle
+				// This prevents overwriting the JSHandle due to calls to `initNextTurn` before the first call ends.
 				this.m.__RF_JSHandle.__JSHandle = this.m.JSHandle;
 			}
 
@@ -589,7 +590,8 @@ local hasShownPopup = false;
 			if (this.m.__RF_JSHandle.__JSHandle != null)
 			{
 				// If we still have the original JSHandle saved at this point, we restore it
-				// These checks are necessary, because in Reforged another call of initNextTurn can happen while the first call of initNextTurn has not completed yet
+				// These checks are necessary, another call of initNextTurn can happen while
+				// the first call of initNextTurn has not completed yet.
 				this.m.JSHandle = this.m.__RF_JSHandle.__JSHandle;
 				this.m.__RF_JSHandle.__JSHandle = null;
 			}
