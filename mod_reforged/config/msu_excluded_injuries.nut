@@ -7,6 +7,7 @@
 		"injury.broken_ribs",
 		"injury.bruised_leg",
 		"injury.crushed_windpipe",
+		"injury.rf_dislocated_jaw",
 		"injury.fractured_ribs",
 		"injury.severe_concussion",
 		// Burning
