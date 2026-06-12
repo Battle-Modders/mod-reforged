@@ -5,6 +5,17 @@
 		this.getFlags().add("ghost");
 	}
 
+	q.onFactionChanged = @(__original) { function onFactionChanged()
+	{
+		__original();
+
+		local flip = this.isAlliedWithPlayer();
+		this.getSprite("body").setHorizontalFlipping(flip);
+		this.getSprite("head").setHorizontalFlipping(flip);
+		this.getSprite("blur_1").setHorizontalFlipping(flip);
+		this.getSprite("blur_2").setHorizontalFlipping(flip);
+	}}.onFactionChanged;
+
 	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();

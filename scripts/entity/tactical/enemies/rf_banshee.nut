@@ -183,6 +183,17 @@ this.rf_banshee <- ::inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
+	function onFactionChanged()
+	{
+		this.actor.onFactionChanged();
+
+		local flip = this.isAlliedWithPlayer();
+		this.getSprite("body").setHorizontalFlipping(flip);
+		this.getSprite("head").setHorizontalFlipping(flip);
+		this.getSprite("blur_1").setHorizontalFlipping(flip);
+		this.getSprite("blur_2").setHorizontalFlipping(flip);
+	}
+
 	function getLootForTile( _killer, _loot )
 	{
 		if (_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)
