@@ -10,10 +10,10 @@
 		"sounds/combat/dlc6/status_on_fire_03.wav"
 	];
 	::Sound.play(sounds[::Math.rand(0, sounds.len() - 1)], ::Const.Sound.Volume.Actor, _entity.getPos());
-
+	local damageMult = _entity.getCurrentProperties().DamageReceivedFireMult;
 	local damage = ::Math.rand(15, 30);
 	local hitInfo = clone ::Const.Tactical.HitInfo;
-	hitInfo.DamageRegular = damage;
+	hitInfo.DamageRegular = damage * damageMult;
 	hitInfo.DamageArmor = damage;
 	hitInfo.DamageDirect = 0.1;
 	hitInfo.DamageType = ::Const.Damage.DamageType.Burning;	 // Uses damagetype system from MSU

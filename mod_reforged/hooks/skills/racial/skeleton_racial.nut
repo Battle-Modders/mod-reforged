@@ -78,6 +78,14 @@
 		baseProperties.IsImmuneToPoison = true;
 	}}.onAdded;
 
+	q.onUpdate = @(__original) { function onUpdate( _properties )
+	{
+		// We revert the vanilla changes to DamageReceivedFireMult, as we implement burning ground resistance in onBeforeDamageReceived now
+		local old_DamageReceivedFireMult = _properties.DamageReceivedFireMult;
+		__original(_properties);
+		_properties.DamageReceivedFireMult = old_DamageReceivedFireMult;
+	}}.onUpdate;
+
 	q.onBeforeDamageReceived = @() { function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
 		switch (_hitInfo.DamageType)

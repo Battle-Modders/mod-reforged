@@ -1,4 +1,12 @@
 ::Reforged.HooksMod.hook("scripts/skills/items/firearms_resistance_skill", function(q) {
+	q.onUpdate = @(__original) { function onUpdate( _properties )
+	{
+		// We revert the vanilla changes to DamageReceivedFireMult, as we implement burning ground resistance in onBeforeDamageReceived now
+		local old_DamageReceivedFireMult = _properties.DamageReceivedFireMult;
+		__original(_properties);
+		_properties.DamageReceivedFireMult = old_DamageReceivedFireMult;
+	}}.onUpdate;
+
 	// We overwrite the vanilla behavior of that skill completely while replicating its effect pretty future proof
 	q.onBeforeDamageReceived = @() { function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
