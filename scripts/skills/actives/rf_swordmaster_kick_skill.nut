@@ -159,31 +159,7 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 				::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 			}
 
-			target.setCurrentMovementType(::Const.Tactical.MovementType.Involuntary);
-			local damage = ::Math.max(0, ::Math.abs(knockToTile.Level - _targetTile.Level) - 1) * ::Const.Combat.FallingDamage;
-
-			if (damage == 0)
-			{
-				::Tactical.getNavigator().teleport(target, knockToTile, null, null, true);
-			}
-			else
-			{
-				local p = this.getContainer().getActor().getCurrentProperties();
-				local tag = {
-					Attacker = _user,
-					Skill = this,
-					HitInfo = clone ::Const.Tactical.HitInfo,
-					HitInfoBash = null
-				};
-				tag.HitInfo.DamageRegular = damage;
-				tag.HitInfo.DamageFatigue = ::Const.Combat.FatigueReceivedPerHit;
-				tag.HitInfo.DamageDirect = 1.0;
-				tag.HitInfo.BodyPart = ::Const.BodyPart.Body;
-				tag.HitInfo.BodyDamageMult = 1.0;
-				tag.HitInfo.FatalityChanceMult = 1.0;
-
-				::Tactical.getNavigator().teleport(target, knockToTile, this.onKnockedDown, tag, true);
-			}
+			::Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, knockToTile, this, this.onKnockedDown, this.onKnockedBackComplete);
 		}
 
 		return success;
@@ -191,14 +167,9 @@ this.rf_swordmaster_kick_skill <- ::inherit("scripts/skills/actives/rf_swordmast
 
 	function onKnockedDown( _entity, _tag )
 	{
-		if (_tag.HitInfo.DamageRegular != 0)
-		{
-			_entity.onDamageReceived(_tag.Attacker, _tag.Skill, _tag.HitInfo);
-		}
+	}
 
-		if (_tag.HitInfoBash != null)
-		{
-			_entity.onDamageReceived(_tag.Attacker, _tag.Skill, _tag.HitInfoBash);
-		}
+	function onKnockedBackComplete( _entity, _tag )
+	{
 	}
 });
