@@ -268,3 +268,7 @@ foreach(partyDef in parties)
 {
 	::Reforged.Spawns.Parties[partyDef.ID] <- partyDef;
 }
+
+// As a fall-back we implement the vanilla "BanditMarauders" party as a copy of BanditRaiders
+// Because of our hook in world_scaling, this should never naturally occur
+::Reforged.Spawns.Parties["BanditMarauders"] <- ::Reforged.Spawns.Parties["BanditRaiders"];
