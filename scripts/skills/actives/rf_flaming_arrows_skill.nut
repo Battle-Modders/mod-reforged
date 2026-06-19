@@ -124,61 +124,7 @@ this.rf_flaming_arrows_skill <- ::inherit("scripts/skills/actives/aimed_shot", {
 
 	function onApply( _data )
 	{
-		local targets = [];
-		targets.push(_data.TargetTile);
-
-		local p = {
-			Type = "fire",
-			Tooltip = "Fire rages here, melting armor and flesh alike",
-			IsPositive = false,
-			IsAppliedAtRoundStart = false,
-			IsAppliedAtTurnEnd = true,
-			IsAppliedOnMovement = false,
-			IsAppliedOnEnter = false,
-			IsByPlayer = _data.User.isPlayerControlled(),
-			Timeout = ::Time.getRound() + 2,
-			Callback = ::Const.Tactical.Common.onApplyFire,
-			function Applicable( _a )
-			{
-				return true;
-			}
-		};
-
-		foreach (tile in targets)
-		{
-			if (tile.Subtype != ::Const.Tactical.TerrainSubtype.Snow && tile.Subtype != ::Const.Tactical.TerrainSubtype.LightSnow && tile.Type != ::Const.Tactical.TerrainType.ShallowWater && tile.Type != ::Const.Tactical.TerrainType.DeepWater)
-			{
-				if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "fire")
-				{
-					tile.Properties.Effect.Timeout = ::Time.getRound() + 2;
-				}
-				else
-				{
-					if (tile.Properties.Effect != null)
-					{
-						::Tactical.Entities.removeTileEffect(tile);
-					}
-
-					tile.Properties.Effect = clone p;
-					local particles = [];
-
-					for (local i = 0; i < ::Const.Tactical.FireParticles.len(); i++)
-					{
-						particles.push(::Tactical.spawnParticleEffect(true, ::Const.Tactical.FireParticles[i].Brushes, tile, ::Const.Tactical.FireParticles[i].Delay, ::Const.Tactical.FireParticles[i].Quantity, ::Const.Tactical.FireParticles[i].LifeTimeQuantity, ::Const.Tactical.FireParticles[i].SpawnRate, ::Const.Tactical.FireParticles[i].Stages));
-					}
-
-					::Tactical.Entities.addTileEffect(tile, tile.Properties.Effect, particles);
-					tile.clear(::Const.Tactical.DetailFlag.Scorchmark);
-					tile.spawnDetail("impact_decal", ::Const.Tactical.DetailFlag.Scorchmark, false, true);
-				}
-			}
-
-			if (tile.IsOccupiedByActor)
-			{
-				::Const.Tactical.Common.onApplyFire(tile, tile.getEntity());
-			}
-		}
-
+		::Tactical.State.spawnFireOnTile(_data.TargetTile, _data.User.isPlayerControlled(), true);
 		this.m.TargetTile = null;
 	}
 
