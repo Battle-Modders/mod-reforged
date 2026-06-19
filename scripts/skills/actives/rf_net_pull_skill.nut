@@ -147,27 +147,7 @@ this.rf_net_pull_skill <- ::inherit("scripts/skills/skill", {
 			::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 		}
 
-		target.setCurrentMovementType(::Const.Tactical.MovementType.Involuntary);
-		local damage = ::Math.max(0, ::Math.abs(pullToTile.Level - _targetTile.Level) - 1) * ::Const.Combat.FallingDamage;
-		local tag = {
-			Attacker = _user,
-			Skill = this,
-			HitInfo = clone ::Const.Tactical.HitInfo,
-			TargetTile = pullToTile
-		};
-
-		if (damage == 0)
-		{
-			::Tactical.getNavigator().teleport(_targetTile.getEntity(), pullToTile, this.onHookingComplete, tag, true);
-		}
-		else
-		{
-			tag.HitInfo.DamageRegular = damage;
-			tag.HitInfo.DamageFatigue = ::Const.Combat.FatigueReceivedPerHit;
-			tag.HitInfo.DamageDirect = 1.0;
-			tag.HitInfo.BodyPart = ::Const.BodyPart.Body;
-			::Tactical.getNavigator().teleport(_targetTile.getEntity(), pullToTile, this.onPulledDown, tag, true);
-		}
+		::Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, pullToTile, this, this.onPulledDown, this.onHookingComplete);
 
 		return true;
 	}
