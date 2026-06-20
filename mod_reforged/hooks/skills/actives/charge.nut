@@ -38,7 +38,7 @@
 				id = 20,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Cannot be used when [engaged|Concept.ZoneOfControl] in melee")
+				text = ::Reforged.Mod.Tooltips.parseString("Cannot be used because this character is [engaged|Concept.ZoneOfControl] in melee")
 			});
 		}
 
