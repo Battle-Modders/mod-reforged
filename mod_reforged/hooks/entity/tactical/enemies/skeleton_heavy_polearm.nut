@@ -11,7 +11,7 @@
 		// b.IsImmuneToBleeding = true;			// Now handled by racial effect
 		// b.IsImmuneToPoison = true;			// Now handled by racial effect
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 100)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.AncientDead.HonorGuardPolearmSpecDay)
 		// {
 		// 	b.IsSpecializedInPolearms = true;
 		// }

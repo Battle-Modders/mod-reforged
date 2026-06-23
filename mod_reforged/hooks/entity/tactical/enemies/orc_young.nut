@@ -5,11 +5,11 @@
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.OrcYoung);
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 70)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.YoungThrowingSpecDay)
 		// {
 		// 	b.IsSpecializedInThrowing = true;
 
-		// 	if (::World.getTime().Days >= 150)
+		// 	if (::World.getTime().Days >= ::Const.World.Scaling.Orcs.YoungStatIncreaseDay)
 		// 	{
 		// 		b.RangedSkill += 5;
 		// 	}

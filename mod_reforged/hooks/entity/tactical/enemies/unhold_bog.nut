@@ -7,7 +7,7 @@
 		// b.IsImmuneToDisarm = true;		// Now handled by racial effect
 		// b.IsImmuneToRotation = true;		// Now handled by racial effect
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 90)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.UnholdDamageIncreaseDay)
 		// {
 		// 	b.DamageTotalMult += 0.1;
 		// }

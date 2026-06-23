@@ -9,11 +9,11 @@
 		// b.IsImmuneToPoison = true;		// Now handled by racial effect
 		// b.IsImmuneToDisarm = true;		// Now handled by racial effect
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 25)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.WebknechtDamageIncreaseDay)
 		// {
 		// 	b.DamageDirectAdd += 0.05;
 
-		// 	if (::World.getTime().Days >= 50)
+		// 	if (::World.getTime().Days >= ::Const.World.Scaling.Beasts.WebknechtStatIncreaseDay)
 		// 	{
 		// 		b.DamageDirectAdd += 0.05;
 		// 		b.MeleeDefense += 5;

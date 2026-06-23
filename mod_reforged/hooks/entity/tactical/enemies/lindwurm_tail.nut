@@ -18,7 +18,7 @@
 		// b.IsImmuneToRoot = true;				// Now handled by racial effect
 		b.IsImmuneToHeadshots = true;
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 180)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LindwurmTailStatIncreaseDay)
 		// {
 		// 	b.MeleeSkill += 10;
 		// 	b.DamageTotalMult += 0.1;

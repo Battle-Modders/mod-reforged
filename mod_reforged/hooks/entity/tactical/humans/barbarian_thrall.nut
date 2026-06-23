@@ -37,7 +37,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_quick_hands"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 20)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Barbarians.ThrallRelentlessDay)
 		// {
 			this.m.Skills.add(::new("scripts/skills/perks/perk_relentless"));
 		// }

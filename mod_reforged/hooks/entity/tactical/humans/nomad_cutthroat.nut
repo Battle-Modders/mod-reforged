@@ -33,7 +33,7 @@
 		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 35)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Nomads.CutthroatDodgeDay)
 		// {
 		// 	this.m.Skills.add(::new("scripts/skills/effects/dodge_effect")); // we add dodge as a perk
 		// }

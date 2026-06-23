@@ -25,7 +25,7 @@
 		// b.IsAffectedByInjuries = false;			// Now handled by racial effect
 		// b.IsImmuneToDisarm = true;				// Now handled by racial effect
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 250)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.SchratStatIncreaseDay)
 		// {
 		// 	b.MeleeSkill += 5;
 		// }

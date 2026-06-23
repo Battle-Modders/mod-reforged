@@ -41,7 +41,7 @@
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(::new("scripts/skills/actives/crack_the_whip_skill"));
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 30)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Barbarians.BeastmasterDodgeDay)
 		// {
 			// this.m.Skills.add(::new("scripts/skills/effects/dodge_effect")); // Replaced as perk
 		// }

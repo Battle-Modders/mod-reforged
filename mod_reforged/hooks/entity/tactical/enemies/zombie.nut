@@ -10,7 +10,7 @@
 		// b.IsImmuneToBleeding = true;	// Set via rf_zombie_racial
 		// b.IsImmuneToPoison = true;	// Set via rf_zombie_racial
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 90)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Undead.WiedergangerDamageIncreaseDay)
 		// {
 		// 	b.DamageTotalMult += 0.1;
 		// }

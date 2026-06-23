@@ -33,7 +33,7 @@
 		// b.IsAffectedByNight = false;				// Now handled by racial effect
 		// b.IsAffectedByInjuries = false;			// Now handled by racial effect
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 140)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Undead.GeistStatIncreaseDay)
 		// {
 		// 	b.MeleeDefense += 5;
 		// }
