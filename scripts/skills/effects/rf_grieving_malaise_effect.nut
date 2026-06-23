@@ -71,7 +71,10 @@ this.rf_grieving_malaise_effect <- ::inherit("scripts/skills/skill", {
 		else
 		{
 			local actor = this.getContainer().getActor();
-			::Sound.play(::MSU.Array.rand(this.m.SoundOnUse), ::Const.Sound.Volume.Actor * actor.m.SoundVolume[::Const.Sound.ActorEvent.Idle] * (::Math.rand(75, 100) * 0.01), actor.getPos(), actor.m.SoundPitch);
+			if (!actor.isHiddenToPlayer() && actor.getMoraleState() != ::Const.MoraleState.Fleeing && !actor.getCurrentProperties().IsStunned && ::MSU.isKindOf(actor, "human"))
+			{
+				::Sound.play(::MSU.Array.rand(this.m.SoundOnUse), ::Const.Sound.Volume.Actor * actor.m.SoundVolume[::Const.Sound.ActorEvent.Idle] * (::Math.rand(75, 100) * 0.01), actor.getPos(), actor.m.SoundPitch);					
+			}
 		}
 	}
 
