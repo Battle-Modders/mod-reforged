@@ -27,8 +27,6 @@
 			this.getSprite("eye_rings").Visible = true;
 		}
 
-		// if (!this.m.IsLow)
-		// {
 		// 	b.IsSpecializedInSwords = true;
 		// 	b.IsSpecializedInAxes = true;
 		// 	b.IsSpecializedInMaces = true;
@@ -39,12 +37,11 @@
 		// 	b.IsSpecializedInSpears = true;
 		// 	b.IsSpecializedInCleavers = true;
 
-		// 	if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 40)
+		// 	if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Nomads.OutlawStatIncreaseDay)
 		// 	{
 		// 		b.MeleeSkill += 5;
 		// 		b.RangedSkill += 5;
 		// 	}
-		// }
 
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_bullseye"));
@@ -55,7 +52,7 @@
 		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 40)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Nomads.OutlawDodgeDay)
 		// {
 		// 	this.m.Skills.add(::new("scripts/skills/effects/dodge_effect"));
 		// }

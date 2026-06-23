@@ -5,7 +5,7 @@
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.OrcBerserker);
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 190)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.BerserkerStatIncreaseDay)
 		// {
 		// 	b.MeleeSkill += 5;
 		// 	b.DamageTotalMult += 0.1;

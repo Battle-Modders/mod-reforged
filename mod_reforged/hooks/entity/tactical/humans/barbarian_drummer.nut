@@ -41,7 +41,7 @@
 		// this.m.Skills.add(::new("scripts/skills/perks/perk_brawny"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_pathfinder"));
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 30)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Barbarians.DrummerDodgeDay)
 		// {
 			// this.m.Skills.add(::new("scripts/skills/effects/dodge_effect")); // Replaced as perk
 		// }

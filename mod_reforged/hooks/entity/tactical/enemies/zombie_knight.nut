@@ -19,7 +19,7 @@
 		// b.IsImmuneToPoison = true;	// Redundant. Set via rf_zombie_racial
 		// b.FatigueDealtPerHitMult = 2.0;	// Set via rf_zombie_racial
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 90)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Undead.FallenHeroStatIncreaseDay)
 		// {
 		// 	b.MeleeSkill += 5;
 		// 	b.DamageTotalMult += 0.1;

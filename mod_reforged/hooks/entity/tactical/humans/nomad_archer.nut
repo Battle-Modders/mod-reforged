@@ -27,13 +27,18 @@
 		// b.IsSpecializedInBows = true; // Replaced with perk
 		b.Vision = 8;
 
-		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 30)
+		// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Nomads.ArcherBullseyeDay)
 		// {
-		// 	b.RangedSkill += 5;
+		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 
-		// 	if (::World.getTime().Days >= 60)
+		// 	if (::World.getTime().Days >= ::Const.World.Scaling.Nomads.ArcherStatIncreaseDay)
 		// 	{
-		// 		this.m.Skills.add(::new("scripts/skills/perks/perk_head_hunter"));
+		// 		b.RangedSkill += 5;
+		// 	}
+
+		// 	if (::World.getTime().Days >= ::Const.World.Scaling.Nomads.ArcherHeadHunterDay)
+		// 	{
+		// 		this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 		// 		b.RangedDefense += 5;
 		// 	}
 		// }

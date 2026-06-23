@@ -15,11 +15,11 @@
 		b.IsImmuneToFire = true;
 		b.IsImmuneToRoot = true;
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 25)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.AncientDead.SkullStatIncreaseDay)
 		{
 			b.DamageDirectAdd += 0.05;
 
-			if (::World.getTime().Days >= 50)
+			if (::World.getTime().Days >= ::Const.World.Scaling.AncientDead.SkullSecondStatIncreaseDay)
 			{
 				b.DamageDirectAdd += 0.05;
 			}

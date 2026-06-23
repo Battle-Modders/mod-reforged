@@ -20,7 +20,7 @@
 			// b.IsSpecializedInBows = true;
 			b.Vision = 8;
 
-			// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 180)
+			// if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Goblins.AmbusherExtraDamageDay)
 			// {
 			// 	b.DamageDirectMult = 1.35;
 			// }

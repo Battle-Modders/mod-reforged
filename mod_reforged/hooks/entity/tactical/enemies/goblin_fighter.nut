@@ -19,17 +19,21 @@
 		// 	b.IsSpecializedInSpears = true;
 		// 	b.IsSpecializedInSwords = true;
 
-		// 	if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 50)
+		// 	if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Goblins.SkirmisherStatIncreaseDay)
 		// 	{
 		// 		b.MeleeDefense += 5;
 		// 		b.RangedDefense += 5;
-		// 		this.m.Skills.add(::new("scripts/skills/perks/perk_backstabber"));
 
-		// 		if (::World.getTime().Days >= 90)
+		// 		if (::World.getTime().Days >= ::Const.World.Scaling.Goblins.SkirmisherSecondStatIncreaseDay)
 		// 		{
 		// 			b.RangedSkill += 5;
 		// 		}
 		// 	}
+
+		// if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Goblins.SkirmisherBackstabberDay)
+		// {
+		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
+		// }
 
 		// 	this.m.Skills.update();
 		// }
