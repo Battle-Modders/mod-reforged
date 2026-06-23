@@ -1,4 +1,13 @@
 ::Reforged.HooksMod.hook("scripts/entity/world/settlements/buildings/tavern_building", function(q) {
+	q.m.RF_LastRumorFlag <- "RF_LastRumorFlag";
+
+	q.onSettlementEntered = @(__original) { function onSettlementEntered()
+	{
+		__original();
+
+		// VanillaFix: Serialize the value of this.m.LastRumor in the settlement flags, whenever it is changed by the tavern
+		this.getSettlement().getFlags().set(this.m.RF_LastRumorFlag, this.m.LastRumor);
+	}}.onSettlementEntered;
 
 	q.getRumor = @(__original) { function getRumor( _isPaidFor = false )
 	{
@@ -35,6 +44,16 @@
 		return rumor;
 	}}.getRumor;
 
+	q.getRumor = @(__original) { function getRumor( _isPaidFor = false )
+	{
+		local ret = __original(_isPaidFor);
+
+		// VanillaFix: Serialize the value of this.m.LastRumor in the settlement flags, whenever it is changed by the tavern
+		this.getSettlement().getFlags().set(this.m.RF_LastRumorFlag, this.m.LastRumor);
+
+		return ret;
+	}}.getRumor;
+
 	q.buildText = @(__original) { function buildText( _text )
 	{
 		// Switcheroo so that we only change the global 'buildTextFromTemplate' when used by the Tavern Building
@@ -51,6 +70,17 @@
 
 		return ret;
 	}}.buildText;
+
+	q.onDeserialize = @(__original) { function onDeserialize( _in )
+	{
+		__original(_in);
+
+		// VanillaFix: Deserialize the value of this.m.LastRumor from the settlement flags
+		if (this.getSettlement().getFlags().has(this.m.RF_LastRumorFlag))
+		{
+			this.m.LastRumor = this.getSettlement().getFlags().get(this.m.RF_LastRumorFlag);
+		}
+	}}.onDeserialize;
 
 // New Functions
 	q.getLegendaryLocationForRumor <- { function getLegendaryLocationForRumor()
