@@ -235,8 +235,6 @@
 		// the game will call `onEnter` even though the town returns false for `isEnterable`. In this case,
 		// the world_state.m.LastEnteredTown will be null which breaks the starting of contracts that need
 		// it for setting their m.Home.
-		// We can't directly check for whether LastEnteredTown is this town because when traveling via
-		// port, the game first calls `onEnter` and then sets the town as the LastEnteredTown.
 		if (ret && this.isEnterable())
 		{
 			this.RF_clearLastVisitInfo();
