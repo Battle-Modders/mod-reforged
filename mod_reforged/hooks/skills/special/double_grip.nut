@@ -3,7 +3,6 @@
 	// because we go through weapon types alphabetically and choose the first applicable type
 	q.m.CurrWeaponType <- null;
 	q.m.MeleeDamageMult_Dagger <- 1.25;
-	q.m.IsFreeSwapSpent <- true;
 
 	q.create = @(__original) { function create()
 	{
@@ -13,35 +12,6 @@
 		// (primarily because of the fact that it applies Dazed in onTargetHit and other skills may check for the presence of dazed effect)
 		this.m.Order = ::Const.SkillOrder.First;
 	}}.create;
-
-	// Make swapping to bagged non-hybrid dagger a free action.
-	// This has nothing to do with double grip bonus but is implemented in double_grip just for convenience
-	// because double_grip is present on all relevant characters.
-	q.getItemActionCost = @() { function getItemActionCost( _items )
-	{
-		if (this.m.IsFreeSwapSpent)
-			return;
-
-		foreach (item in _items)
-		{
-			if (item != null && item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Dagger, true, true))
-			{
-				return 0;
-			}
-		}
-	}}.getItemActionCost;
-
-	q.onPayForItemAction = @(__original) { function onPayForItemAction( _skill, _items )
-	{
-		__original(_skill, _items);
-		this.m.IsFreeSwapSpent = true;
-	}}.onPayForItemAction;
-
-	q.onTurnStart = @(__original) { function onTurnStart()
-	{
-		__original();
-		this.m.IsFreeSwapSpent = false;
-	}}.onTurnStart;
 
 	// Overwrite vanilla function to allow double-gripping with southern swords with the perk_rf_en_garde perk
 	q.canDoubleGrip = @() { function canDoubleGrip()
