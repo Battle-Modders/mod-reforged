@@ -18,13 +18,13 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Generate Token
         id: app-token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ secrets.REFORGED_RELEASE_APP_ID }}
+          client-id: ${{ secrets.REFORGED_RELEASE_APP_ID }}
           private-key: ${{ secrets.REFORGED_RELEASE_APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
           repositories: mod_reforged_assets
@@ -55,18 +55,11 @@ jobs:
           GH_ASSETS_ZIP_NAME=$(echo "$GH_ASSETS_ASSET" | jq -r .name)
 
           # 3. Fetch Nexus Mod Files Info
-          NEXUS_JSON=$(curl -s -H "apikey: $NEXUS_API_KEY" https://api.nexusmods.com/v3/file-update-groups/$CORE_FILE_GID/versions)
+          NEXUS_JSON=$(curl -s -H "apikey: $NEXUS_API_KEY" https://api.nexusmods.com/v3/mod-files/$CORE_FILE_GID/versions)
+          NEXUS_CORE_VER=$(echo "$NEXUS_JSON" | jq -r '.data.versions[0].version // empty')
 
-          # Parse Nexus Core (Taking the first entry as the latest)
-          NEXUS_CORE_FILE=$(echo "$NEXUS_JSON" | jq -c '.data.versions[0].file')
-          NEXUS_CORE_VER=$(echo "$NEXUS_CORE_FILE" | jq -r .version)
-
-          NEXUS_JSON=$(curl -s -H "apikey: $NEXUS_API_KEY" https://api.nexusmods.com/v3/file-update-groups/$ASSETS_FILE_GID/versions)
-
-          # Parse Nexus Assets (Taking the first entry as the latest)
-          NEXUS_ASSETS_FILE=$(echo "$NEXUS_JSON" | jq -c '.data.versions[0].file')
-          NEXUS_ASSETS_VER=$(echo "$NEXUS_ASSETS_FILE" | jq -r .version)
-          NEXUS_ASSETS_ID=$(echo "$NEXUS_ASSETS_FILE" | jq -r .id)
+          NEXUS_JSON=$(curl -s -H "apikey: $NEXUS_API_KEY" https://api.nexusmods.com/v3/mod-files/$ASSETS_FILE_GID/versions)
+          NEXUS_ASSETS_VER=$(echo "$NEXUS_JSON" | jq -r '.data.versions[0].version // empty')
 
           # Semantic comparison: returns 0 (true) if $2 is newer than $1
           is_newer() {
@@ -123,14 +116,14 @@ jobs:
         if: ${{ inputs.is_dry_run && steps.info.outputs.update_core == 'true' }}
         run: |
           echo "DRY RUN: Uploading Core to Nexus"
-          echo "  file_group_id: ***"
+          echo "  file_id: ***"
           echo "  filename: core_latest.zip"
           echo "  display_name: mod_reforged_core"
           echo "  description: |"
           echo "    Requires mod_reforged_assets."
           echo "    Release Notes: ${{ steps.info.outputs.gh_core_release_url }}"
           echo "  version: ${{ steps.info.outputs.gh_core_ver }}"
-          echo "  archive_existing_file: true"
+          echo "  archive_existing_version: true"
           echo "  primary_mod_manager_download: true"
           echo "  allow_mod_manager_download: true"
           echo "  show_requirements_pop_up: true"
@@ -140,7 +133,7 @@ jobs:
         uses: Nexus-Mods/upload-action@main
         with:
           api_key: ${{ secrets.NEXUSMODS_API_KEY_BATTLEMODDERS }}
-          file_group_id: ${{ secrets.NEXUSMODS_FILE_GROUPID_CORE }}
+          file_id: ${{ secrets.NEXUSMODS_FILE_GROUPID_CORE }}
           filename: core_latest.zip
           display_name: "mod_reforged_core"
           description: |
@@ -148,7 +141,7 @@ jobs:
 
             Release Notes: ${{ steps.info.outputs.gh_core_release_url }}
           version: ${{ steps.info.outputs.gh_core_ver }}
-          archive_existing_file: true
+          archive_existing_version: true
           primary_mod_manager_download: true
           allow_mod_manager_download: true
           show_requirements_pop_up: true
@@ -167,13 +160,13 @@ jobs:
         if: ${{ inputs.is_dry_run && steps.info.outputs.update_assets == 'true' }}
         run: |
           echo "DRY RUN: Uploading Assets to Nexus"
-          echo "  file_group_id: ***"
+          echo "  file_id: ***"
           echo "  filename: assets_latest.zip"
           echo "  version: ${{ steps.info.outputs.gh_assets_ver }}"
           echo "  display_name: mod_reforged_assets"
           echo "  description: Requires mod_reforged_core."
-          echo "  file_category: miscellaneous"
-          echo "  archive_existing_file: true"
+          echo "  category: miscellaneous"
+          echo "  archive_existing_version: true"
           echo "  show_requirements_pop_up: false"
 
       - name: Upload Assets
@@ -181,19 +174,19 @@ jobs:
         uses: Nexus-Mods/upload-action@main
         with:
           api_key: ${{ secrets.NEXUSMODS_API_KEY_BATTLEMODDERS }}
-          file_group_id: ${{ secrets.NEXUSMODS_FILE_GROUPID_ASSETS }}
+          file_id: ${{ secrets.NEXUSMODS_FILE_GROUPID_ASSETS }}
           filename: assets_latest.zip
           display_name: "mod_reforged_assets"
           description: |
             Requires mod_reforged_core.
           version: ${{ steps.info.outputs.gh_assets_ver }}
-          file_category: miscellaneous
-          archive_existing_file: true
+          category: miscellaneous
+          archive_existing_version: true
           show_requirements_pop_up: false
 
       - name: Export Packages for Inspection
         if: ${{ inputs.is_dry_run }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: nexus-dry-run-packages
           path: |
