@@ -74,8 +74,8 @@
 		"mod_reforged_assets", // for devs
 		"mod_reforged_core-" + ::Reforged.Version, // GitHub release naming scheme
 		"mod_reforged_assets-" + ::Reforged.Assets.Version, // GitHub release naming scheme
-		"mod_reforged_core-765-" + ::String.replace(::Reforged.Version, ".", "-") // NexusMods naming scheme
-		"mod_reforged_assets-765-" + ::String.replace(::Reforged.Assets.Version, ".", "-") // NexusMods naming scheme
+		"mod_reforged_core_" + ::Reforged.Version // NexusMods naming scheme
+		"mod_reforged_assets_" + ::Reforged.Assets.Version // NexusMods naming scheme
 	];
 
 	local maxCountAllowed = 2;
@@ -95,13 +95,13 @@
 
 		// NexusMods appends some stuff to the end of the filename. We slice
 		// that out so we can compare it with our valid filenames.
-		if (filename.len() > 22 && filename.slice(0, 22) == "mod_reforged_core-765-")
+		if (filename.len() > 22 && filename.slice(0, 18) == "mod_reforged_core_")
 		{
-			nameToMatch = filename.slice(0, 22 + ::Reforged.Version.len());
+			nameToMatch = filename.slice(0, 18 + ::Reforged.Version.len());
 		}
-		else if (filename.len() > 24 && filename.slice(0, 24) == "mod_reforged_assets-765-")
+		else if (filename.len() > 24 && filename.slice(0, 20) == "mod_reforged_assets_")
 		{
-			nameToMatch = filename.slice(0, 24 + ::Reforged.Assets.Version.len());
+			nameToMatch = filename.slice(0, 20 + ::Reforged.Assets.Version.len());
 		}
 
 		if (validReforgedFilenames.find(nameToMatch) == null)
