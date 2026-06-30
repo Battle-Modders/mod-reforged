@@ -17,5 +17,9 @@
 	[0.5, "scripts/items/helmets/rf_padded_skull_cap"],
 	[1, "scripts/items/helmets/padded_flat_top_helmet"],
 	[1, "scripts/items/helmets/closed_flat_top_helmet"],
-	[0.5, "scripts/items/helmets/closed_flat_top_with_neckguard"]
+	[0.5, "scripts/items/helmets/closed_flat_top_with_neckguard"],
+	[1, "scripts/items/helmets/marauder_helmet_with_rusty_mail"],
+	[1, "scripts/items/helmets/marauder_helmet_with_rusty_mail_cloth"],
+	[1, "scripts/items/helmets/marauder_helmet_with_closed_mail"],
+	[0.5, "scripts/items/helmets/flat_top_with_rusty_mail"]
 ]);

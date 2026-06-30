@@ -119,7 +119,7 @@
 					Apply = function ( _script, _weight )
 					{
 						local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-						if (conditionMax < 210 || conditionMax > 240) return 0.0;
+						if (conditionMax < 210 || conditionMax > 255) return 0.0;
 						return _weight;
 					}
 				})
@@ -132,7 +132,7 @@
 					Apply = function ( _script, _weight )
 					{
 						local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-						if (conditionMax < 180 || conditionMax > 230) return 0.0;
+						if (conditionMax < 180 || conditionMax > 250) return 0.0;
 						return _weight;
 					}
 				})

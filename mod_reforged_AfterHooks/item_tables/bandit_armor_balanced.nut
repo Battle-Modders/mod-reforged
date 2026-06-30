@@ -6,10 +6,13 @@
 	[1, "scripts/items/armor/padded_leather"],
 	[1, "scripts/items/armor/leather_lamellar"],
 	[1, "scripts/items/armor/worn_mail_shirt"],
-	[1, "scripts/items/armor/basic_mail_shirt"],
+	[0.5, "scripts/items/armor/basic_mail_shirt"],
 	[1, "scripts/items/armor/mail_shirt"],
 	[0.5, "scripts/items/armor/leather_scale_armor"],
-	[1, "scripts/items/armor/mail_hauberk"],
+	[1, "scripts/items/armor/rusted_mail_hauberk"],
+	[0.5, "scripts/items/armor/mail_hauberk"],
 	[0.5, "scripts/items/armor/light_scale_armor"],
-	[1, "scripts/items/armor/footman_armor"]
+	[1, "scripts/items/armor/footman_armor"],
+	[1, "scripts/items/armor/patchwork_scale_armor"],
+	[1, "scripts/items/armor/pillaged_heavy_lamellar_armor"]
 ]);

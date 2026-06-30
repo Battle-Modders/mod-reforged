@@ -104,7 +104,7 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 150 || conditionMax > 190) return 0.0;
+					if (conditionMax < 150 || conditionMax > 255) return 0.0;
 					return _weight;
 				}
 			});
@@ -136,7 +136,7 @@ this.rf_bandit_marauder <- ::inherit("scripts/entity/tactical/human", {
 				Apply = function ( _script, _weight )
 				{
 					local conditionMax = ::ItemTables.ItemInfoByScript[_script].ConditionMax;
-					if (conditionMax < 130 || conditionMax > 180) return 0.0;
+					if (conditionMax < 130 || conditionMax > 245) return 0.0;
 					return _weight;
 				}
 			});
