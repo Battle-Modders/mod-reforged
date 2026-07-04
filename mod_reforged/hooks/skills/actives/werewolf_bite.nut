@@ -1,4 +1,4 @@
-::Reforged.HooksMod.hook("scripts/skills/actives/warhound_bite", function(q) {
+::Reforged.HooksMod.hook("scripts/skills/actives/werewolf_bite", function(q) {
 	q.create = @(__original) { function create()
 	{
 		__original();
