@@ -48,15 +48,18 @@
 		"tnf_tryout": "tnf_tryout is incompatible with Reforged. Use Clever Recruiter by Enduriel instead."
 	};
 
-	local reforgedFiles = [];
-
+	local coreCount = 0;
+	local assetsCount = 0;
 	foreach (filePath in ::IO.enumerateFiles("data/"))
 	{
 		// Skip patch files
-		if (filePath.find("data/mod_reforged_core") != null || filePath.find("data/mod_reforged_assets") != null)
+		if (filePath.find("data/mod_reforged_core") != null)
 		{
-			reforgedFiles.push(filePath.slice(5));
-			continue;
+			coreCount++;
+		}
+		else if (filePath.find("data/mod_reforged_assets") != null)
+		{
+			assetsCount++;
 		}
 
 		foreach (filename, reason in conflicts)
@@ -66,21 +69,6 @@
 			{
 				::Hooks.errorAndQuit(reason);
 			}
-		}
-	}
-
-	local coreCount = 0;
-	local assetsCount = 0;
-	foreach (filename in reforgedFiles)
-	{
-		if (filename.find("mod_reforged_core") != null)
-		{
-			coreCount++;
-		}
-
-		if (filename.find("mod_reforged_assets") != null)
-		{
-			assetsCount++;
 		}
 	}
 
