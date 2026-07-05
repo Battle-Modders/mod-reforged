@@ -52,7 +52,6 @@
 	local assetsCount = 0;
 	foreach (filePath in ::IO.enumerateFiles("data/"))
 	{
-		// Skip patch files
 		if (filePath.find("data/mod_reforged_core") != null)
 		{
 			coreCount++;
