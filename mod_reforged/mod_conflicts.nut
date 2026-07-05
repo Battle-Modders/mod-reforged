@@ -52,7 +52,8 @@
 
 	foreach (filePath in ::IO.enumerateFiles("data/"))
 	{
-		if (filePath.find("data/mod_reforged") != null)
+		// Skip patch files
+		if (filePath.find("data/mod_reforged") != null && filePath.find("mod_reforged_patch") == null)
 		{
 			reforgedFiles.push(filePath.slice(5));
 			continue;
