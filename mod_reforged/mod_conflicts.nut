@@ -68,55 +68,32 @@
 		}
 	}
 
-	local validReforgedFilenames = [
-		"mod_reforged", // for devs
-		"mod_reforged_core", // for devs
-		"mod_reforged_assets", // for devs
-		"mod_reforged_core-" + ::Reforged.Version, // GitHub release naming scheme
-		"mod_reforged_assets-" + ::Reforged.Assets.Version, // GitHub release naming scheme
-		"mod_reforged_core_" + ::Reforged.Version // NexusMods naming scheme
-		"mod_reforged_assets_" + ::Reforged.Assets.Version // NexusMods naming scheme
-	];
-
-	local maxCountAllowed = 2;
-
-	local validFileCount = 0;
+	local coreCount = 0;
+	local assetsCount = 0;
 	foreach (filename in reforgedFiles)
 	{
-		// This means you have a single full build of the mod.
 		if (filename == "mod_reforged")
-			maxCountAllowed = 1;
-
-		// skip patch files as we cannot predict their valid names.
-		if (filename.find("patch") != null)
-			continue;
-
-		local nameToMatch = filename;
-
-		// NexusMods appends some stuff to the end of the filename. We slice
-		// that out so we can compare it with our valid filenames.
-		if (filename.len() > 22 && filename.slice(0, 18) == "mod_reforged_core_")
 		{
-			nameToMatch = filename.slice(0, 18 + ::Reforged.Version.len());
-		}
-		else if (filename.len() > 24 && filename.slice(0, 20) == "mod_reforged_assets_")
-		{
-			nameToMatch = filename.slice(0, 20 + ::Reforged.Assets.Version.len());
+			if (reforgedFiles.len() > 1)
+			{
+				::Hooks.errorAndQuit("You have extra Reforged zip files in your data folder. Delete the extra ones and keep the latest version only.");
+			}
+			break;
 		}
 
-		if (validReforgedFilenames.find(nameToMatch) == null)
+		if (filename.find("mod_reforged_core") != null)
 		{
-			::Hooks.errorAndQuit("You have a copy of an invalid Reforged file in your data folder. File: " + filename);
+			coreCount++;
 		}
-		else
+
+		if (filename.find("mod_reforged_assets") != null)
 		{
-			validFileCount++;
+			assetsCount++;
 		}
 	}
 
-	// At most we want `core` and `assets` files. So the valid file count must not be greater than 2.
-	if (validFileCount > maxCountAllowed)
-	{
-		::Hooks.errorAndQuit("You have duplicate copies of valid Reforged files in your data folder. Delete the duplicates.");
-	}
+	if (coreCount > 1)
+		::Hooks.errorAndQuit("You have extra Reforged core files in your data folder. Delete the extra ones and keep the latest version only.");
+	if (assetsCount > 1)
+		::Hooks.errorAndQuit("You have extra Reforged assets files in your data folder. Delete the extra ones and keep the latest version only.");
 }}.checkConflictWithFilename;
