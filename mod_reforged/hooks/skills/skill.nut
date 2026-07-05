@@ -212,3 +212,20 @@
 		return this.m.IsTargeted ? __original(_userTile, _targetTile) : _userTile.isSameTileAs(_targetTile);
 	}}.onVerifyTarget;
 });
+
+::Reforged.QueueBucket.Late.push(function() {
+	::Reforged.HooksMod.hook("scripts/skills/skill", function(q) {
+		// Ensure that skill always has a valid container during getTooltip
+		// to prevent errors when getting tooltips of skills that aren't added to anyone.
+		q.getTooltip = @(__original) { function getTooltip()
+		{
+			if (!::MSU.isNull(this.getContainer()))
+				return __original();
+
+			this.m.Container = ::MSU.getDummyPlayer().getSkills();
+			local ret = __original();
+			this.m.Container = null;
+			return ret;
+		}}.getTooltip;
+	});
+});

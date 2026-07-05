@@ -8,10 +8,6 @@
 	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
-
-		local effect = ::new("scripts/skills/effects/rf_falcon_released_effect");
-		effect.m.Container = ::MSU.getDummyPlayer().getSkills();
-
 		ret.push({
 			id = 10,
 			type = "text",
@@ -19,9 +15,6 @@
 			text = ::Reforged.Mod.Tooltips.parseString(format("Allies who are not [$ $|Skill+stunned_effect], rooted, or [fleeing|Concept.Morale] gain the %s effect", ::Reforged.NestedTooltips.getNestedSkillName(effect))),
 			children = effect.getTooltip().slice(2) // slice 2 to remove name and description
 		});
-
-		effect.m.Container = null;
-
 		return ret;
 	}}.getTooltip;
 
