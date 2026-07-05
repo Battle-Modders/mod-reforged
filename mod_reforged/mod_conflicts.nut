@@ -53,7 +53,7 @@
 	foreach (filePath in ::IO.enumerateFiles("data/"))
 	{
 		// Skip patch files
-		if (filePath.find("data/mod_reforged") != null && filePath.find("mod_reforged_patch") == null)
+		if (filePath.find("data/mod_reforged_core") != null || filePath.find("data/mod_reforged_assets") != null)
 		{
 			reforgedFiles.push(filePath.slice(5));
 			continue;
@@ -73,15 +73,6 @@
 	local assetsCount = 0;
 	foreach (filename in reforgedFiles)
 	{
-		if (filename == "mod_reforged")
-		{
-			if (reforgedFiles.len() > 1)
-			{
-				::Hooks.errorAndQuit("You have extra Reforged zip files in your data folder. Delete the extra ones and keep the latest version only.");
-			}
-			break;
-		}
-
 		if (filename.find("mod_reforged_core") != null)
 		{
 			coreCount++;
