@@ -73,7 +73,10 @@ this.rf_frostbound_effect <- ::inherit("scripts/skills/skill", {
 
 	function onEnemyTurnEnd( _enemy )
 	{
-		this.spawnIcon(this.m.Overlay, _enemy.getTile());
+		if (!_enemy.isHiddenToPlayer())
+		{
+			this.spawnIcon(this.m.Overlay, _enemy.getTile());
+		}
 
 		local hitInfo = ::MSU.Table.merge(clone ::Const.Tactical.HitInfo, {
 			DamageRegular = ::Math.round(_enemy.getHitpointsMax() * this.m.HitpointsTransferPct * this.m.EffectMult),
