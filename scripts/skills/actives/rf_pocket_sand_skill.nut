@@ -9,6 +9,7 @@ this.rf_pocket_sand_skill <- ::inherit("scripts/skills/actives/throw_dirt_skill"
 
 		this.m.ID = "actives.rf_pocket_sand_skill";
 		this.m.Name = "Throw Pocket Sand";
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Distract;
 	}
 
 	function getTooltip()
