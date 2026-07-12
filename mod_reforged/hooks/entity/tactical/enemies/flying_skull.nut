@@ -69,5 +69,6 @@
 		//Reforged
 		this.m.BaseProperties.IsAffectedByReach = false;
 		this.getSkills().update()
+		this.m.Skills.removeByID("special.rf_undead_injury_receiver");	// Make flying skulls immune to injuries again
 	}}.onInit;
 });
