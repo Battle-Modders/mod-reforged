@@ -192,7 +192,7 @@
 	{
 		local ret = __original();
 
-		if (::Tactical.isActive() && this.isActive() && !this.m.IsTargeted)
+		if (::Tactical.isActive() && this.isActive() && !this.m.IsTargeted && ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
 		{
 			ret.push({
 				id = 100,
