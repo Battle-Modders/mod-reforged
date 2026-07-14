@@ -14,27 +14,31 @@
 	}}.create;
 
 	// Overwrite vanilla function to allow double-gripping with southern swords with the perk_rf_en_garde perk
-	q.canDoubleGrip = @() { function canDoubleGrip()
+	// Return original function for compatibility with other mods
+	q.canDoubleGrip = @(__original) { function canDoubleGrip()
 	{
-		local actor = this.getContainer().getActor();
-		if (actor.isDisarmed())
-			return false;
-
-		local weapon = actor.getMainhandItem();
-		if (weapon == null || !weapon.isDoubleGrippable())
-			return false;
-
-		local offhand = actor.getOffhandItem();
-		if (offhand == null)
-			return true;
-
 		local engarde = this.getContainer().getSkillByID("perk.rf_en_garde");
 		if (engarde != null)
 		{
-			return engarde.isWeaponValid(weapon) && engarde.isOffhandItemValid(offhand);
+			local actor = this.getContainer().getActor();
+			if (!actor.isDisarmed())
+			{
+				local weapon = actor.getMainhandItem();
+				if (weapon != null && weapon.isDoubleGrippable())
+				{	
+					local offhand = actor.getOffhandItem();
+					if (offhand != null)
+					{
+						if (engarde.isWeaponValid(weapon) && engarde.isOffhandItemValid(offhand))
+						{
+							return true;
+						}
+					}
+				}
+			}
 		}
 
-		return false;
+		return __original();
 	}}.canDoubleGrip;
 
 	q.applyBonusOnUpdate <- { function applyBonusOnUpdate( _properties )
