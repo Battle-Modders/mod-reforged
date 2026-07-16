@@ -7,6 +7,9 @@ inputs:
   mod_root:
     description: 'Path to the mod root directory'
     required: true
+  verbose:
+    required: false
+    default: "true"
 outputs:
   path:
     description: 'The directory path where BBBuilder is installed'
@@ -70,7 +73,7 @@ runs:
           ModPath  = "${{ inputs.mod_root }}"
           MoveZip  = $false
           UseSteam = $false
-          Verbose  = $true
+          Verbose  = [bool]::Parse("${{ inputs.verbose }}")
           SetPath  = $false
           LogTime  = $true
           FoldersArray = @()
