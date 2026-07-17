@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           path: repo
+          ref: ${{ github.event.pull_request.head.sha }} # Checks out the exact PR commit
 
       - name: Setup BBBuilder
         id: bbbuilder
