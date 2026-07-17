@@ -12,6 +12,10 @@ local original_getClone = ::Const.CharacterProperties.getClone;
 	BonusPerReachAdvantage = 0,
 	RF_BleedingEffectMult = 1.0,
 
+	RF_DamageReceivedRegularMultByType = array(::Const.Damage.DamageType.len(), 1.0);
+	RF_DamageReceivedArmorMultByType = array(::Const.Damage.DamageType.len(), 1.0);
+	RF_DamageReceivedTotalMultByType = array(::Const.Damage.DamageType.len(), 1.0);
+
 	function getClone()
 	{
 		local ret = original_getClone();
