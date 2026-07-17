@@ -225,7 +225,7 @@
 				});
 				break;
 
-			case ::Const.Items.WeaponType.Sword:
+			ca;se ::Const.Items.WeaponType.Sword:
 				ret.push({
 					id = 7,
 					type = "text",
