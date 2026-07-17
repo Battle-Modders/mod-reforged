@@ -70,7 +70,7 @@ runs:
           ModPath  = "${{ inputs.mod_root }}"
           MoveZip  = $false
           UseSteam = $false
-          Verbose  = $true
+          Verbose  = $false
           SetPath  = $false
           LogTime  = $true
           FoldersArray = @()
