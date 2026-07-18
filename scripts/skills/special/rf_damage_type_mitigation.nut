@@ -10,7 +10,7 @@ this.rf_damage_type_mitigation <- ::inherit("scripts/skills/skill", {
 		this.m.IsSerialized = false;
 	}
 
-	q.onBeforeDamageReceived = @() { function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
+	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
 		if (_hitInfo.DamageType != null)
 		{
@@ -18,5 +18,5 @@ this.rf_damage_type_mitigation <- ::inherit("scripts/skills/skill", {
 			_properties.DamageReceivedArmorMult *= _properties.RF_DamageReceivedArmorMultByType[_hitInfo.DamageType];
 			_properties.DamageReceivedTotalMult *= _properties.RF_DamageReceivedTotalMultByType[_hitInfo.DamageType];
 		}
-	}}.onBeforeDamageReceived;
+	}
 });
