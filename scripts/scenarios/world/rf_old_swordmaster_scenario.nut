@@ -249,6 +249,36 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 		}
 	}
 
+	function getPerkGroupMultiplier( _groupID, _perkTree )
+	{
+		// isHired is a Reforged-added function.
+		// We only want to adjust the multiplier for hired bros to prevent them from getting other weapon groups e.g. via Promised Potential.
+		if (!_perkTree.getActor().isHired())
+			return 1.0;
+
+		// If it is a weapon group then return 0 for melee groups except sword.
+		if (::DynamicPerks.PerkGroupCategories.findById("pgc.rf_weapon").getGroups().find(_groupID) != null)
+		{
+			switch (_groupID)
+			{
+				// Give a higher chance to roll sword as a new group as this guy
+				// is under the training of the Old Swordmaster.
+				case "pg.rf_sword":
+					return 2.0;
+
+				case "pg.rf_bow":
+				case "pg.rf_crossbow":
+				case "pg.rf_throwing":
+					return 1.0;
+
+				default:
+					return 0;
+			}
+		}
+
+		return 1.0;
+	}
+
 	function isRecruitValid( _bro )
 	{
 		return _bro.getBackground().getID() != "background.wildman" && _bro.getBackground().onChangeAttributes().MeleeSkill[0] < 8;
