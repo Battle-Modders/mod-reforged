@@ -59,9 +59,9 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 			text = ::Reforged.Mod.Tooltips.parseString("Ignore 1 [Reach Disadvantage|Concept.ReachAdvantage] when attacking a target with lower [Initiative|Concept.Initiative] than yours")
 		});
 
-		if (!::MSU.isEqual(this.getContainer().getActor(), ::MSU.getDummyPlayer()))
+		local actor = this.getContainer().getActor();
+		if (!::MSU.isEqual(actor, ::MSU.getDummyPlayer()))
 		{
-			local actor = this.getContainer().getActor();
 			local maxHPString = ::Math.floor(actor.getHitpointsMax() / (hpBonus * 0.01));
 			local currHPString = ::Math.floor(actor.getHitpoints() / (hpBonus * 0.01));
 
