@@ -1,7 +1,6 @@
 // Implements Damage Resistences on a damage type basis
 this.rf_damage_type_mitigation <- ::inherit("scripts/skills/skill", {
-	m = {
-	},
+	m = {},
 	function create()
 	{
 		this.m.ID = "special.rf_damage_type_mitigation";
