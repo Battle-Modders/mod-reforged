@@ -75,7 +75,7 @@ runs:
                 }
                 if ($type -eq "feat") { $feats += $formatted } else { $fixes += $formatted }
             } else {
-                if ($commit -match "(?s)^[a-f0-9]+\|(?:chore|docs)(?:\([^\)]+\))?(!?):") { return }
+                if ($commit -match "(?s)^[a-f0-9]+\|(?:chore|docs|style|ci)(?:\([^\)]+\))?(!?):") { return }
                 if ($commit -match "(?s)^(?<sha>[a-f0-9]{40})\|(?<msg>.*)") {
                     $sha = $Matches['sha']
                     $raw_msg = $Matches['msg'].Trim()
