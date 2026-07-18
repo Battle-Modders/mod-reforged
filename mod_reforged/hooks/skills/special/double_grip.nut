@@ -13,8 +13,7 @@
 		this.m.Order = ::Const.SkillOrder.First;
 	}}.create;
 
-	// Overwrite vanilla function to allow double-gripping with southern swords with the perk_rf_en_garde perk
-	// Return original function for compatibility with other mods
+	// Allow double-gripping with southern swords with the perk_rf_en_garde perk
 	q.canDoubleGrip = @(__original) { function canDoubleGrip()
 	{
 		local engarde = this.getContainer().getSkillByID("perk.rf_en_garde");
