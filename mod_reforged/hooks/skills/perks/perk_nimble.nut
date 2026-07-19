@@ -49,22 +49,25 @@
 		});
 
 		local actor = this.getContainer().getActor();
-		local maxHPString = ::Math.floor(actor.getHitpointsMax() / (hpBonus * 0.01));
-		local currHPString = ::Math.floor(actor.getHitpoints() / (hpBonus * 0.01));
+		if (!::MSU.isEqual(actor, ::MSU.getDummyPlayer()))
+		{
+			local maxHPString = ::Math.floor(actor.getHitpointsMax() / (hpBonus * 0.01));
+			local currHPString = ::Math.floor(actor.getHitpoints() / (hpBonus * 0.01));
 
-		ret.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = ::MSU.Text.colorPositive("Effective Hitpoints: ") + currHPString + " / " + maxHPString
-		});
+			ret.push({
+				id = 13,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::MSU.Text.colorPositive("Effective Hitpoints: ") + currHPString + " / " + maxHPString
+			});
 
-		ret.push({
-			id = 13,
-			type = "text",
-			icon = "ui/icons/fatigue.png",
-			text = "The effectiveness is reduced above combined head and body armor weight of " + this.getStaminaModifierThreshold()
-		});
+			ret.push({
+				id = 14,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = format("The effectiveness drops above combined head and body armor weight of %s (current: %s)", this.getStaminaModifierThreshold(), -actor.getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]))
+			});
+		}
 
 		return ret;
 	}}.getTooltip;
