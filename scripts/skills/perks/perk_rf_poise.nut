@@ -76,7 +76,7 @@ this.perk_rf_poise <- ::inherit("scripts/skills/skill", {
 				id = 14,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = format("The effectiveness drops above combined head and body armor weight of %s (current: %s)", this.getStaminaModifierThreshold(), -actor.getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]))
+				text = format("The effectiveness drops above combined head and body armor weight of %i (current: %i)", this.getStaminaModifierThreshold(), -actor.getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]))
 			});
 		}
 
