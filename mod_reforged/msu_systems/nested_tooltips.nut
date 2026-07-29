@@ -118,6 +118,29 @@ local getThresholdForInjury = function( _script )
 			return ::Reforged.NestedTooltips.isApplyingNestingForEvents() ? ::Reforged.Mod.Tooltips.parseString(format("[%s|WorldEntity+%i]", ::Reforged.Mod.Tooltips.removeAllFromString(__original()), this.getID())) : __original();
 		}}.getRealName;
 	});
+
+	::Reforged.QueueBucket.Late.push(function() {
+		::Reforged.HooksMod.hook("scripts/statistics/statistics_manager", function(q) {
+			q.addFallen = @(__original) { function addFallen( _fallen )
+			{
+				// Remove nested tooltip tags from the fallen data in case addFallen is called during events
+				// e.g. from "hedgeknight_vs_hedgeknight_event" and "cultist_origin_sacrifice_event" so that
+				// the name stored in the Obituary is without these tags.
+				if (::Reforged.NestedTooltips.isApplyingNestingForEvents())
+				{
+					foreach (k, v in _fallen)
+					{
+						if (typeof v == "string")
+						{
+							_fallen[k] = ::Reforged.Mod.Tooltips.removeAllFromString(v);
+						}
+					}
+				}
+
+				__original(_fallen);
+			}}.addFallen;
+		});
+	});
 }
 
 ::Reforged.NestedTooltips <- {
