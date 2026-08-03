@@ -45,7 +45,18 @@
 				warnings.push(_tooltip.remove(i));
 			}
 		}
-		_tooltip.extend(warnings);
+
+		if (warnings.len() > 0)
+		{
+			_tooltip.push({
+				id = 111,
+				type = "text",
+				text = "rf_divider",
+			});
+
+			_tooltip.extend(warnings);
+		}
+
 		return ret;
 	}}.onQueryTooltip;
 
