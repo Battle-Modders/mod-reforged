@@ -19,4 +19,17 @@
 		});
 		return ret;
 	}}.getTooltip;
+
+	// Ifrits are now immune to wither
+	q.isViableTarget = @(__original) {function isViableTarget( _user, _target )
+	{
+		if (_target.getSkills().hasSkill("racial.golem"))
+		{
+			return false;
+		}
+		else
+		{
+			return __original(_user, _target);
+		}
+	}}.isViableTarget;
 });
