@@ -21,9 +21,10 @@
 	}}.getTooltip;
 
 	// Ifrits are now immune to wither
+	// fix vanilla using getFlags().get instead of proper getFlags().has
 	q.isViableTarget = @(__original) {function isViableTarget( _user, _target )
 	{
-		if (_target.getSkills().hasSkill("racial.golem"))
+		if (_target.getSkills().hasSkill("racial.golem") || target.getFlags().has("undead"))
 		{
 			return false;
 		}
