@@ -31,7 +31,7 @@
 			});
 		}
 
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
+		if (this.m.ApplyDaggerMastery? this.getContainer().getActor().getCurrentProperties().IsSpecializedInDaggers : this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
 		{
 			ret.push({
 				id = 6,
@@ -83,4 +83,55 @@
 			}
 		}
 	}}.onTargetHit;
+
+	// optional dagger mastery for obsidian dagger
+	q.setApplyDaggerMastery <- function( _f )
+	{
+		this.m.ApplyDaggerMastery = _f;
+		// Change damage type to piercing when used with daggers for dagger perk requirements 
+		this.m.DamageType.clear();
+		this.m.DamageType.add(::Conste.Damage.DamageType.Piercing)
+	}
+
+	q.onAfterUpdate = @() { function onAfterUpdate( _properties )
+	{
+		if (this.m.ApplyDaggerMastery)
+		{
+			if (_properties.IsSpecializedInDaggers)
+			{
+				this.m.FatigueCostMult *= ::Const.Combat.WeaponSpecFatigueMult;
+			}
+		}
+		else if (_properties.IsSpecializedInSwords)
+		{
+			this.m.FatigueCostMult *= ::Const.Combat.WeaponSpecFatigueMult;
+		}
+	}}.onAfterUpdate;
+	
+	q.onBeforeTargetHit = @(__original) { function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
+	{
+		if (_skill == this)
+		{
+			if (this.m.ApplyDaggerMastery)
+			{
+				if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInDaggers)
+				{
+					_hitInfo.InjuryThresholdMult *= 0.5;
+				}
+				else
+				{
+					_hitInfo.InjuryThresholdMult *= 0.66;
+				}
+
+				if (_targetEntity.isAlive() && !_targetEntity.getCurrentProperties().IsImmuneToBleeding)
+				{
+					this.Sound.play(this.m.SoundsA[this.Math.rand(0, this.m.SoundsA.len() - 1)], this.Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
+				}
+			}
+			else
+			{
+				return __original(_skill, _targetEntity, _hitInfo);
+			}
+		}
+	}}.onBeforeTargetHit;
 });
