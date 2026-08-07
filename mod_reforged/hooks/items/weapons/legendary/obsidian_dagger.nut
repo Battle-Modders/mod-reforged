@@ -20,11 +20,14 @@
 	q.onEquip = @() { function onEquip()
 	{
 		this.weapon.onEquip();
+
 		// ideally we should make unique skills with custom graphics to match other legendary weapons
 		// and implement wither there too
-		this.addSkill(this.new("scripts/skills/actives/stab"));
-		this.addSkill(this.new("scripts/skills/actives/gash", function(o) {
-			o.m.FatigueCost -= 5;  // 15 fatigue cost gash
+		this.addSkill(::Reforged.new("scripts/skills/actives/stab"));
+
+		this.addSkill(::Reforged.new("scripts/skills/actives/gash_skill", function(o) {
+			// 15 fatigue cost gash
+			o.m.FatigueCost -= 5;
 			o.setApplyDaggerMastery(true);
 		}));
 	}}.onEquip;
@@ -34,12 +37,14 @@
 	q.onDamageDealt = @() { function onDamageDealt( _target, _skill, _hitInfo )
 	{
 		this.weapon.onDamageDealt(_target, _skill, _hitInfo);
+
 		if (!_target.isAlive() || _target.isDying())
 		{
 			return;
 		}
+
 		// reimplement wither condition check here; ideally we can borrow the check in wither_skill?
-		if (_target.getFlags().get("undead") || _target.getSkills().hasSkill("racial.golem"))
+		if (_target.getFlags().has("undead") || _target.getSkills().hasSkill("racial.golem"))
 		{
 			return;
 		}
