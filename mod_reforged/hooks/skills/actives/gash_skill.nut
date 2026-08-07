@@ -1,6 +1,7 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/gash_skill", function(q) {
 	q.m.BleedStacks <- 3;
 	q.m.MeleeSkillAdd <- 5;
+	q.m.ApplyDaggerMastery <- false;
 
 	// MSU Function
 	// Add IsIgnooredAsAOO to softReset so that our adjustment to it
@@ -88,9 +89,12 @@
 	q.setApplyDaggerMastery <- function( _f )
 	{
 		this.m.ApplyDaggerMastery = _f;
-		// Change damage type to piercing when used with daggers for dagger perk requirements 
-		this.m.DamageType.clear();
-		this.m.DamageType.add(::Conste.Damage.DamageType.Piercing)
+		if (_f)
+		{
+			// Change damage type to piercing when used with daggers for dagger perk requirements 
+			this.m.DamageType.clear();
+			this.m.DamageType.add(::Const.Damage.DamageType.Piercing);
+		}
 	}
 
 	q.onAfterUpdate = @() { function onAfterUpdate( _properties )
