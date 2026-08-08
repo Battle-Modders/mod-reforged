@@ -39,9 +39,7 @@
 		this.weapon.onDamageDealt(_target, _skill, _hitInfo);
 
 		if (!_target.isAlive() || _target.isDying())
-		{
 			return;
-		}
 
 		// reimplement wither condition check here; ideally we can borrow the check in wither_skill?
 		if (_target.getFlags().has("undead") || _target.getSkills().hasSkill("racial.golem"))
