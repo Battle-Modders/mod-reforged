@@ -48,6 +48,7 @@
 		{
 			return;
 		}
+		
 		if (_hitInfo.DamageInflictedHitpoints >= ::Const.Combat.PoisonEffectMinDamage)
 		{
 			_target.getSkills().add(::new("scripts/skills/effects/withered_effect"));
