@@ -12,7 +12,7 @@
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Applies [$ $|Skill+withered_effect] when inflicting at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.PoisonEffectMinDamage) + " damage")
+			text = ::Reforged.Mod.Tooltips.parseString("Applies [$ $|Skill+withered_effect] when inflicting at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.PoisonEffectMinDamage) + " damage to [Hitpoints|Concept.Hitpoints]")
 		});
 		return result;
 	}}.getTooltip;
@@ -42,10 +42,8 @@
 			return;
 
 		// reimplement wither condition check here; ideally we can borrow the check in wither_skill?
-		if (_target.getFlags().has("undead") || _target.getSkills().hasSkill("racial.golem"))
-		{
+		if ((_target.getFlags().has("undead") && _target.getCurrentProperties().FatigueEffectMult == 0.0) || _target.getSkills().hasSkill("racial.golem"))  
 			return;
-		}
 		
 		if (_hitInfo.DamageInflictedHitpoints >= ::Const.Combat.PoisonEffectMinDamage)
 		{
