@@ -91,8 +91,7 @@
 		this.m.ApplyDaggerMastery = _f;
 		if (_f)
 		{
-			// Change damage type to piercing when used with daggers for dagger perk requirements 
-			this.m.DamageType.clear();
+			// Change damage type to piercing + cutting when used with daggers for dagger perk requirements 
 			this.m.DamageType.add(::Const.Damage.DamageType.Piercing);
 		}
 	}
