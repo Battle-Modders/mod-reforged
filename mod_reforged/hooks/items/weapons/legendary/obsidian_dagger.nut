@@ -21,15 +21,9 @@
 	{
 		this.weapon.onEquip();
 
-		// ideally we should make unique skills with custom graphics to match other legendary weapons
-		// and implement wither there too
-		this.addSkill(::Reforged.new("scripts/skills/actives/stab"));
-
-		this.addSkill(::Reforged.new("scripts/skills/actives/gash_skill", function(o) {
-			// 15 fatigue cost gash
-			o.m.FatigueCost -= 5;
-			o.setApplyDaggerMastery(true);
-		}));
+		this.addSkill(::Reforged.new("scripts/skills/actives/rf_obsidian_stab_skill"));
+		
+		this.addSkill(::Reforged.new("scripts/skills/actives/rf_obsidian_gash_skill"));
 	}}.onEquip;
 
 	// overwrite vanilla resurrection and add in wither
