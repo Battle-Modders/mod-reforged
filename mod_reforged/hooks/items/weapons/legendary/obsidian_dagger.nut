@@ -7,14 +7,14 @@
 
 	q.getTooltip = @() { function getTooltip()
 	{
-		local result = this.weapon.getTooltip();
-		result.push({
+		local ret = this.weapon.getTooltip();
+		ret.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Applies [$ $|Skill+withered_effect] when inflicting at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.PoisonEffectMinDamage) + " damage to [Hitpoints|Concept.Hitpoints]")
 		});
-		return result;
+		return ret;
 	}}.getTooltip;
 
 	q.onEquip = @() { function onEquip()
