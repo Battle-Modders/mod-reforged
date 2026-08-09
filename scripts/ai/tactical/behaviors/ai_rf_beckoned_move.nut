@@ -67,6 +67,12 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
         settings.ZoneOfControlCost = 0;
         settings.AlliedFactions = Allies;
         settings.Faction = _entity.getFaction();
+        
+        // prevent dancing around the charmer when already there
+        if (_entity.getTile.getDistanceTo(charmerTile) == 1)
+        {
+            return ::Const.AI.Behavior.Score.Zero;
+        }
 
 		if (navigator.findPath(_entity.getTile(), charmerTile, settings, 1))
 		{
@@ -85,7 +91,7 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
         if (charmerTile != null)
         {
             local navigator = this.Tactical.getNavigator();
-            
+
             if (this.m.IsFirstExecuted)  
             {    
                 local entityActionPointCosts = _entity.getActionPointCosts();

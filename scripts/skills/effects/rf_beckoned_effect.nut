@@ -1,7 +1,9 @@
 this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 1,
+		OriginalFaction = 0,
 		OriginalAgent = null,
+		OriginalSocket = null,
 		Master = null,
 		MovementAPCostAdditional = 1,
         OriginalImmuneToZOC = false,
@@ -81,7 +83,7 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = this.Math.max(1, 1 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		local actor = this.getContainer().getActor();
 
         // This entity will have 0 target attraction mult and ignore zoc
@@ -103,12 +105,11 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
         actor.getAIAgent().setActor(actor);
 		// }
 
-        // Does not swap faction yet
-		// this.m.OriginalFaction = actor.getFaction();
-		// actor.setFaction(this.m.MasterFaction);
-		// this.m.OriginalSocket = actor.getSprite("socket").getBrush().Name;
-		// actor.getSprite("socket").setBrush("bust_base_beasts");
-		// actor.getFlags().set("Charmed", true);
+        // Swap to special faction
+		this.m.OriginalFaction = actor.getFaction();
+		actor.setFaction(::Const.Faction.RF_Beckoned);
+		this.m.OriginalSocket = actor.getSprite("socket").getBrush().Name;
+		actor.getSprite("socket").setBrush("bust_base_beasts");
 		actor.setDirty(true);
 
 		if (this.m.SoundOnUse.len() != 0)
@@ -169,6 +170,9 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 		_properties.IsAffectedByDyingAllies = false;
 		_properties.IsAffectedByLosingHitpoints = false;
 		_properties.MovementAPCostAdditional += this.m.MovementAPCostAdditional;
+        // Somehow only in onAdded is not enough?
+        _properties.IsImmuneToZoneOfControl = true;
+        _properties.TargetAttractionMult = 0.0;
 
         // Charm when 1 tile with master
 		if (this.m.Master == null)
@@ -182,7 +186,7 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 			local charmerTile = charmer.getTile();
             if (charmerTile.getDistanceTo(myTile) == 1)
             {
-                local charmSkill = charmer.getSkillByID("actives.charm_skill");
+                local charmSkill = charmer.getSkills().getSkillByID("actives.charm");
                 charmSkill.useForFree(myTile);
             }
 		}
@@ -207,9 +211,8 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
         _properties.TargetAttractionMult = this.m.OriginalTargetAttraction;
         actor.setCurrentProperties(_properties);
 
-		// actor.setFaction(this.m.OriginalFaction);
-		// actor.getSprite("socket").setBrush(this.m.OriginalSocket);
-		// actor.getFlags().set("Charmed", false);
+		actor.setFaction(this.m.OriginalFaction);
+		actor.getSprite("socket").setBrush(this.m.OriginalSocket);
 		actor.setDirty(true);
 
 		if (this.m.Master != null)
