@@ -67,8 +67,6 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
         settings.ZoneOfControlCost = 0;
         settings.AlliedFactions = Allies;
         settings.Faction = _entity.getFaction();
-        settings.HiddenCost = 0;
-        settings.HeatCost = 0;
 
 		if (navigator.findPath(_entity.getTile(), charmerTile, settings, 1))
 		{
@@ -81,36 +79,61 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
 	}
 
 	function onExecute( _entity )
-	{        
+	{      
         local charmer = _entity.getSkills().getSkillByID("effects.rf_beckoned").getCharmer()
-        local navigator = this.Tactical.getNavigator();
-        local entityActionPointCosts = _entity.getActionPointCosts();
-        local entityFatiguePointCosts = _entity.getFatigueCosts();
         local charmerTile = charmer.getTile();
-        local acceptableDistanceFromDest = 1;
-        local settings = navigator.createSettings();
-        local Allies = clone _entity.getAlliedFactions();
-        Allies.extend(charmer.getAlliedFactions());
-        Allies.push(charmer.getFaction());
-        settings.ActionPointCosts = entityActionPointCosts;
-        settings.FatigueCosts = entityFatiguePointCosts;
-        settings.FatigueCostFactor = 0.0;
-        settings.ActionPointCostPerLevel = _entity.getLevelActionPointCost();
-        settings.FatigueCostPerLevel = _entity.getLevelFatigueCost();
-        settings.MaxLevelDifference = _entity.getMaxTraversibleLevels();
-        settings.AllowZoneOfControlPassing = true;
-        settings.ZoneOfControlCost = 0;
-        settings.AlliedFactions = Allies;
-        settings.Faction = _entity.getFaction();
-        settings.HiddenCost = 0;
-        settings.HeatCost = 0;
+        if (charmerTile != null)
+        {
+            local navigator = this.Tactical.getNavigator();
+            
+            if (this.m.IsFirstExecuted)  
+            {    
+                local entityActionPointCosts = _entity.getActionPointCosts();
+                local entityFatiguePointCosts = _entity.getFatigueCosts();
+                local acceptableDistanceFromDest = 1;
+                local settings = navigator.createSettings();
+                local Allies = clone _entity.getAlliedFactions();
+                Allies.extend(charmer.getAlliedFactions());
+                Allies.push(charmer.getFaction());
+                settings.ActionPointCosts = entityActionPointCosts;
+                settings.FatigueCosts = entityFatiguePointCosts;
+                settings.FatigueCostFactor = 0.0;
+                settings.ActionPointCostPerLevel = _entity.getLevelActionPointCost();
+                settings.FatigueCostPerLevel = _entity.getLevelFatigueCost();
+                settings.MaxLevelDifference = _entity.getMaxTraversibleLevels();
+                settings.AllowZoneOfControlPassing = true;
+                settings.ZoneOfControlCost = 0;
+                settings.AlliedFactions = Allies;
+                settings.Faction = _entity.getFaction();
 
-        navigator.findPath(_entity.getTile(), charmerTile, settings, 1);
-        
-        local movement = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
-        this.m.Agent.adjustCameraToDestination(movement.End);
+                navigator.findPath(_entity.getTile(), charmerTile, settings, 1);
+                
+                local movement = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
+                this.m.IsFirstExecuted = false;
+            }   
+            if (!navigator.travel(_entity, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue()))
+			{
+				if (_entity.isAlive())
+				{
+					if (_entity.isPlayerControlled())
+					{
+						_entity.setDirty(true);
+					}
 
-		return true;
+					if (!_entity.isHiddenToPlayer())
+					{
+						this.getAgent().declareAction();
+					}
+				}
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+        }
+		this.getAgent().setFinished(true);
+		return true;        
 	}
 
 });
