@@ -6,8 +6,8 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 		OriginalSocket = null,
 		Master = null,
 		MovementAPCostAdditional = 1,
-        OriginalImmuneToZOC = false,
-        OriginalTargetAttraction = 1.0
+        // OriginalImmuneToZOC = false,
+        // OriginalTargetAttraction = 1.0
 	},
 	// function setMasterFaction( _f )
 	// {
@@ -86,13 +86,13 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 		this.m.TurnsLeft = this.Math.max(1, 1 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		local actor = this.getContainer().getActor();
 
-        // This entity will have 0 target attraction mult and ignore zoc
-        local _properties = actor.getCurrentProperties();
-        this.m.OriginalImmuneToZOC = _properties.IsImmuneToZoneOfControl;
-        this.m.OriginalTargetAttraction = _properties.TargetAttractionMult;
-        _properties.IsImmuneToZoneOfControl = true;
-        _properties.TargetAttractionMult = 0.0;
-        actor.setCurrentProperties(_properties);
+        // Redundant, we make him friends with everyone instead of zoc immune
+        // local _properties = actor.getCurrentProperties();
+        // this.m.OriginalImmuneToZOC = _properties.IsImmuneToZoneOfControl;
+        // this.m.OriginalTargetAttraction = _properties.TargetAttractionMult;
+        // _properties.IsImmuneToZoneOfControl = true;
+        // _properties.TargetAttractionMult = 0.0;
+        // actor.setCurrentProperties(_properties);
 
         // Stagger
         this.Tactical.TurnSequenceBar.pushEntityBack(actor.getID());
@@ -170,9 +170,9 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 		_properties.IsAffectedByDyingAllies = false;
 		_properties.IsAffectedByLosingHitpoints = false;
 		_properties.MovementAPCostAdditional += this.m.MovementAPCostAdditional;
-        // Somehow only in onAdded is not enough?
-        _properties.IsImmuneToZoneOfControl = true;
-        _properties.TargetAttractionMult = 0.0;
+        // // Somehow only in onAdded is not enough?
+        // _properties.IsImmuneToZoneOfControl = true;
+        // _properties.TargetAttractionMult = 0.0;
 
         // Charm when 1 tile with master
 		if (this.m.Master == null)
@@ -206,10 +206,10 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 			actor.setAIAgent(this.m.OriginalAgent);
 		}
         
-        local _properties = actor.getCurrentProperties();
-        _properties.IsImmuneToZoneOfControl = this.m.OriginalImmuneToZOC;
-        _properties.TargetAttractionMult = this.m.OriginalTargetAttraction;
-        actor.setCurrentProperties(_properties);
+        // local _properties = actor.getCurrentProperties();
+        // _properties.IsImmuneToZoneOfControl = this.m.OriginalImmuneToZOC;
+        // _properties.TargetAttractionMult = this.m.OriginalTargetAttraction;
+        // actor.setCurrentProperties(_properties);
 
 		actor.setFaction(this.m.OriginalFaction);
 		actor.getSprite("socket").setBrush(this.m.OriginalSocket);

@@ -55,8 +55,8 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
         local acceptableDistanceFromDest = 1;
         local settings = navigator.createSettings();
         local Allies = clone _entity.getAlliedFactions();
-        Allies.extend(charmer.getAlliedFactions());
-        Allies.push(charmer.getFaction());
+        // Allies.extend(charmer.getAlliedFactions());
+        // Allies.push(charmer.getFaction());
         settings.ActionPointCosts = entityActionPointCosts;
         settings.FatigueCosts = entityFatiguePointCosts;
         settings.FatigueCostFactor = 0.0;
@@ -99,8 +99,8 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
                 local acceptableDistanceFromDest = 1;
                 local settings = navigator.createSettings();
                 local Allies = clone _entity.getAlliedFactions();
-                Allies.extend(charmer.getAlliedFactions());
-                Allies.push(charmer.getFaction());
+                // Allies.extend(charmer.getAlliedFactions());
+                // Allies.push(charmer.getFaction());
                 settings.ActionPointCosts = entityActionPointCosts;
                 settings.FatigueCosts = entityFatiguePointCosts;
                 settings.FatigueCostFactor = 0.0;
