@@ -4,7 +4,7 @@
 		__original();
         // forward original info stored in beckoned and remove it
         local actor = this.getContainer().getActor();
-        if actor.getSkills().hasSkill("effects.rf_beckoned")
+        if (actor.getSkills().hasSkill("effects.rf_beckoned"))
         {
             local beckon_eff = actor.getSkills().getSkillByID("effects.rf_beckoned")
             this.m.OriginalFaction = beckon_eff.m.OriginalFaction;
