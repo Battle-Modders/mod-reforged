@@ -101,7 +101,10 @@ this.rf_obsidian_gash_skill <- ::inherit("scripts/skills/actives/gash_skill", {
 		if (_properties.IsSpecializedInDaggers)
 		{
 			this.m.FatigueCostMult *= ::Const.Combat.WeaponSpecFatigueMult;
-			this.m.ActionPointCost = 3;
+			if (this.m.ActionPointCost > 1)
+			{
+				this.m.ActionPointCost -= 1;
+			}
 		}
 	}
 
