@@ -199,6 +199,26 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
                 charmSkill.useForFree(myTile);
             }
 		}
+
+		// Sprite
+		if (this.m.TurnsLeft != 0)
+			{
+				if (actor.hasSprite("status_beckoned") && !this.getContainer().hasSkill("effects.stunned"))
+				{
+					actor.getSprite("status_beckoned").Visible = true;
+				}
+
+				actor.setDirty(true);
+			}
+			else
+			{
+				if (actor.hasSprite("status_beckoned"))
+				{
+					actor.getSprite("status_beckoned").Visible = false;
+				}
+
+				actor.setDirty(true);
+			}
 	}
 
 	function onRemoved()
