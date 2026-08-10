@@ -38,6 +38,7 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
 
         if (!_entity.getSkills().hasSkill("effects.rf_beckoned"))
         {
+            this.logWarning(_entity.getName() + ": has beckoned agent but no beckoned effect!")
 			return ::Const.AI.Behavior.Score.Zero;
         }
 
@@ -48,15 +49,19 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
 			return ::Const.AI.Behavior.Score.Zero;
         }
 
-        local navigator = this.Tactical.getNavigator();
+        local charmerTile = charmer.getTile();
+        // prevent dancing around the charmer when already there
+        if (_entity.getTile().getDistanceTo(charmerTile) == 1)
+        {
+            return ::Const.AI.Behavior.Score.Zero;
+        }
+
         local entityActionPointCosts = _entity.getActionPointCosts();
         local entityFatiguePointCosts = _entity.getFatigueCosts();
-        local charmerTile = charmer.getTile();
         local acceptableDistanceFromDest = 1;
+        local navigator = this.Tactical.getNavigator();
         local settings = navigator.createSettings();
         local Allies = clone _entity.getAlliedFactions();
-        // Allies.extend(charmer.getAlliedFactions());
-        // Allies.push(charmer.getFaction());
         settings.ActionPointCosts = entityActionPointCosts;
         settings.FatigueCosts = entityFatiguePointCosts;
         settings.FatigueCostFactor = 0.0;
@@ -67,14 +72,8 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
         settings.ZoneOfControlCost = 0;
         settings.AlliedFactions = Allies;
         settings.Faction = _entity.getFaction();
-        
-        // prevent dancing around the charmer when already there
-        if (_entity.getTile().getDistanceTo(charmerTile) == 1)
-        {
-            return ::Const.AI.Behavior.Score.Zero;
-        }
 
-		if (navigator.findPath(_entity.getTile(), charmerTile, settings, 1))
+		if (navigator.findPath(_entity.getTile(), charmerTile, settings, acceptableDistanceFromDest))
 		{
 			return ::Const.AI.Behavior.Score.AlwaysUse;
 		}
@@ -99,8 +98,6 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
                 local acceptableDistanceFromDest = 1;
                 local settings = navigator.createSettings();
                 local Allies = clone _entity.getAlliedFactions();
-                // Allies.extend(charmer.getAlliedFactions());
-                // Allies.push(charmer.getFaction());
                 settings.ActionPointCosts = entityActionPointCosts;
                 settings.FatigueCosts = entityFatiguePointCosts;
                 settings.FatigueCostFactor = 0.0;

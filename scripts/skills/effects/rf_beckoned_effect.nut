@@ -6,13 +6,8 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 		OriginalSocket = null,
 		Master = null,
 		MovementAPCostAdditional = 1,
-        // OriginalImmuneToZOC = false,
-        // OriginalTargetAttraction = 1.0
+		FlippedBackBeforeCharm = false
 	},
-	// function setMasterFaction( _f )
-	// {
-	// 	this.m.MasterFaction = _f;
-	// }
 
 	function setMaster( _f )
 	{
@@ -86,37 +81,19 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 		this.m.TurnsLeft = this.Math.max(1, 1 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		local actor = this.getContainer().getActor();
 
-        // Redundant, we make him friends with everyone instead of zoc immune
-        // local _properties = actor.getCurrentProperties();
-        // this.m.OriginalImmuneToZOC = _properties.IsImmuneToZoneOfControl;
-        // this.m.OriginalTargetAttraction = _properties.TargetAttractionMult;
-        // _properties.IsImmuneToZoneOfControl = true;
-        // _properties.TargetAttractionMult = 0.0;
-        // actor.setCurrentProperties(_properties);
-
         // Stagger
         this.Tactical.TurnSequenceBar.pushEntityBack(actor.getID());
 
         // Change to special agent for ai controlled units too
-		// if (actor.isPlayerControlled())
-		// {
         this.m.OriginalAgent = actor.getAIAgent();
         actor.setAIAgent(this.new("scripts/ai/tactical/agents/rf_beckoned_player_agent"));
         actor.getAIAgent().setActor(actor);
-		// }
 
         // Swap to special faction
 		this.m.OriginalFaction = actor.getFaction();
 		local beckoned_faction = ::World.FactionManager.getFactionOfType(::Const.FactionType.RF_Beckoned);
 		actor.setFaction(beckoned_faction);
 		this.logDebug(actor.getName() + " temporarily changed to faction " + beckoned_faction.getName() + " with id " + beckoned_faction.getID() +  " from faction " + this.m.OriginalFaction )
-		// local allystr = ""
-		// local allies = beckoned_faction.getAllies()
-		// for ( local i = 0; i < allies.len(); i = ++i )
-		// {
-		// 	allystr += (allies[i] + ", ")
-		// }
-		// this.logDebug("Beckoned faction is allies with: " + allystr )
 		this.m.OriginalSocket = actor.getSprite("socket").getBrush().Name;
 		actor.getSprite("socket").setBrush("bust_base_beasts");
 		actor.setDirty(true);
@@ -179,9 +156,6 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 		_properties.IsAffectedByDyingAllies = false;
 		_properties.IsAffectedByLosingHitpoints = false;
 		_properties.MovementAPCostAdditional += this.m.MovementAPCostAdditional;
-        // // Somehow only in onAdded is not enough?
-        // _properties.IsImmuneToZoneOfControl = true;
-        // _properties.TargetAttractionMult = 0.0;
 
         // Charm when 1 tile with master
 		if (this.m.Master == null)
@@ -195,8 +169,17 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 			local charmerTile = charmer.getTile();
             if (charmerTile.getDistanceTo(myTile) == 1)
             {
-                local charmSkill = charmer.getSkills().getSkillByID("actives.charm");
-                charmSkill.useForFree(myTile);
+				this.m.FlippedBackBeforeCharm = true;
+				// flip back agent to use charmed player agent
+				if (this.m.OriginalAgent != null && !this.m.FlippedBackBeforeCharm)
+				{
+					actor.setAIAgent(this.m.OriginalAgent);
+				}
+				// no saves
+				local charmed = this.new("scripts/skills/effects/charmed_effect");
+				charmed.setMasterFaction(charmer.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : charmer.getFaction());
+				charmed.setMaster(charmer.getSkills().getSkillByID("actives.charm"));
+				actor.getSkills().add(charmed);
             }
 		}
 
@@ -224,25 +207,27 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 	function onRemoved()
 	{
 		local actor = this.getContainer().getActor();
+		// only flip back when not charmed
+		if (!actor.getSkills().hasSkill("effects.charmed"))
+		{		
+			if (this.m.SoundOnUse.len() != 0)
+			{
+				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill * 1.0, actor.getPos());
+			}
 
-		if (this.m.SoundOnUse.len() != 0)
-		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill * 1.0, actor.getPos());
+			if (this.m.OriginalAgent != null)
+			{
+				actor.setAIAgent(this.m.OriginalAgent);
+			}
+
+			actor.setFaction(this.m.OriginalFaction);
+			actor.getSprite("socket").setBrush(this.m.OriginalSocket);
 		}
-
-		if (this.m.OriginalAgent != null)
-		{
-			actor.setAIAgent(this.m.OriginalAgent);
-		}
-        
-        // local _properties = actor.getCurrentProperties();
-        // _properties.IsImmuneToZoneOfControl = this.m.OriginalImmuneToZOC;
-        // _properties.TargetAttractionMult = this.m.OriginalTargetAttraction;
-        // actor.setCurrentProperties(_properties);
-
-		actor.setFaction(this.m.OriginalFaction);
-		actor.getSprite("socket").setBrush(this.m.OriginalSocket);
 		actor.setDirty(true);
+		if (actor.hasSprite("status_beckoned"))
+			{
+				actor.getSprite("status_beckoned").Visible = false;
+			}
 
 		if (this.m.Master != null)
 		{

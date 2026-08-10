@@ -48,8 +48,7 @@ local allies = array(100);
 for (local i = 0; i < 100; i++) {
     allies[i] = i;
 }
-// I couldnt make combat simulator custom factions work here
-// allies.extend(["faction-0","faction-1","faction-2","faction-3"])
+
 addFaction("RF_Beckoned",::createColor("#444444"),"bust_base_beasts",[],
 	allies,
 	[])

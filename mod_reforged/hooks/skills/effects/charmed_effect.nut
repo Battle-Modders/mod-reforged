@@ -10,7 +10,7 @@
             this.m.OriginalFaction = beckon_eff.m.OriginalFaction;
             this.m.OriginalAgent = beckon_eff.m.OriginalAgent;
             this.m.OriginalSocket = beckon_eff.m.OriginalSocket;
-            actor.getSkills().removeSkillByID("effects.rf_beckoned");
+            actor.getSkills().removeByID("effects.rf_beckoned");
         }
 	}}.onAdded;
 });

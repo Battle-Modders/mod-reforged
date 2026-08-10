@@ -12,7 +12,7 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 		}
 		
 		this.getContainer().getActor().m.SlavesBeckon = this.m.Slaves.len();
-		if (this.isAlive() && this.getContainer().getActor().m.SlavesBeckon + this.getContainer().getActor().m.SlavesCharm == 0)
+		if (this.isAlive() && this.getContainer().getActor().m.SlavesBeckon == 0 && this.getContainer().getActor().m.SlavesCharm == 0)
 		{
 			this.getContainer().getActor().setCharming(false);
 		}
@@ -116,6 +116,11 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
+		if (_target.getSkills().hasSkill("effects.rf_beckoned"))
+		{
+			return false;
+		}
+
 		return true;
 	}
 
@@ -140,16 +145,6 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 		{
 			local bonus = _targetTile.getDistanceTo(_user.getTile()) == 1 ? -5 : 0;
 
-			// if (target.checkMorale(0, -35 + bonus, ::Const.MoraleCheckType.MentalAttack))
-			// {
-			// 	if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
-			// 	{
-			// 		this.Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists being beckoned thanks to his resolve");
-			// 	}
-
-			// 	return false;
-			// }
-
 			if (target.checkMorale(0, -35 + bonus, ::Const.MoraleCheckType.MentalAttack))
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
@@ -172,7 +167,6 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 
 			this.m.Slaves.push(target.getID());
 			local beckoned = this.new("scripts/skills/effects/rf_beckoned_effect");
-			// charmed.setMasterFaction(_user.getFaction() == ::Const.Faction.Player ? ::Const.Faction.PlayerAnimals : _user.getFaction());
 			beckoned.setMaster(self);
 			target.getSkills().add(beckoned);
 
@@ -203,7 +197,8 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		this.getContainer().getActor().m.SlavesBeckon = this.m.Slaves.len();
-		if (this.getContainer().getActor().m.SlavesBeckon + this.getContainer().getActor().m.SlavesCharm == 0)
+		// this.logDebug("Beckon - Charm slaves: " + this.getContainer().getActor().m.SlavesCharm + "Beckon slaves" + this.getContainer().getActor().m.SlavesBeckon)
+		if (this.getContainer().getActor().m.SlavesBeckon == 0 && this.getContainer().getActor().m.SlavesCharm == 0)
 		{
 			this.getContainer().getActor().setCharming(false);
 		}
