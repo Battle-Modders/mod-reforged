@@ -75,6 +75,12 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
 
 		if (navigator.findPath(_entity.getTile(), charmerTile, settings, acceptableDistanceFromDest))
 		{
+            local movementCosts = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
+            // if more ap than auto end turn but cant move due to difficult terrain
+            if (movementCosts.Tiles == 0)
+            {
+                return ::Const.AI.Behavior.Score.Zero;
+            }
 			return ::Const.AI.Behavior.Score.AlwaysUse;
 		}
         else
