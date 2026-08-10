@@ -33,6 +33,14 @@
 		return ret;
 	}}.getTooltip;
 
+	q.isViableTarget = @(__original){ function isViableTarget( _user, _target ){
+		if (_target.getSkills().hasSkill("effects.rf_beckoned"))
+		{
+			return false;
+		}
+		return __original(_user, _target);
+	}}.isViableTarget;
+
 	// Overwrite to count slaves together with beckon, requires the actor to have SlavesCharm and SlavesBeckon field in m like hexe
 	q.removeSlave = @() { function removeSlave( _entityID )
 	{
