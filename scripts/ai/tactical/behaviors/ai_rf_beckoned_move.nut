@@ -36,9 +36,9 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
+        // This happens after beckoned target reached his destination but before ending the turn
         if (!_entity.getSkills().hasSkill("effects.rf_beckoned"))
         {
-            this.logWarning(_entity.getName() + ": has beckoned agent but no beckoned effect!")
 			return ::Const.AI.Behavior.Score.Zero;
         }
 
