@@ -37,7 +37,8 @@
 	"RF_SkeletonMediumElitePolearm",
 	::MSU.Table.merge(clone ::Const.World.Spawn.Troops.RF_SkeletonMediumElite, {
 		Cost = 35, // follows vanilla trend of skeleton backline costing 5 more than frontline
-		Row = 1
+		Row = 1,
+		Script = "scripts/entity/tactical/enemies/rf_skeleton_medium_elite_polearm"
 	})
 );
 ::Reforged.Entities.editEntity("SkeletonHeavy",
