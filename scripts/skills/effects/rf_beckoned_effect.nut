@@ -170,16 +170,16 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
             if (charmerTile.getDistanceTo(myTile) == 1)
             {
 				this.m.FlippedBackBeforeCharm = true;
-				// flip back agent to use charmed player agent
-				if (this.m.OriginalAgent != null && !this.m.FlippedBackBeforeCharm)
+				if (!this.m.FlippedBackBeforeCharm)
 				{
-					actor.setAIAgent(this.m.OriginalAgent);
+					this.onRemoved();
 				}
-				// no saves
 				local charmed = this.new("scripts/skills/effects/charmed_effect");
 				charmed.setMasterFaction(charmer.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : charmer.getFaction());
 				charmed.setMaster(charmer.getSkills().getSkillByID("actives.charm"));
+				charmed.m.WasBeckoned = true;
 				actor.getSkills().add(charmed);
+				this.removeSelf()
             }
 		}
 
@@ -223,7 +223,9 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 			actor.setFaction(this.m.OriginalFaction);
 			actor.getSprite("socket").setBrush(this.m.OriginalSocket);
 		}
+
 		actor.setDirty(true);
+
 		if (actor.hasSprite("status_beckoned"))
 			{
 				actor.getSprite("status_beckoned").Visible = false;
