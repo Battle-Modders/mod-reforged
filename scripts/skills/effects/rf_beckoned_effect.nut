@@ -107,7 +107,16 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 
         // Swap to special faction
 		this.m.OriginalFaction = actor.getFaction();
-		actor.setFaction(::Const.Faction.RF_Beckoned);
+		local beckoned_faction = ::World.FactionManager.getFactionOfType(::Const.FactionType.RF_Beckoned);
+		actor.setFaction(beckoned_faction);
+		this.logDebug(actor.getName() + " temporarily changed to faction " + beckoned_faction.getName() + " with id " + beckoned_faction.getID() +  " from faction " + this.m.OriginalFaction )
+		// local allystr = ""
+		// local allies = beckoned_faction.getAllies()
+		// for ( local i = 0; i < allies.len(); i = ++i )
+		// {
+		// 	allystr += (allies[i] + ", ")
+		// }
+		// this.logDebug("Beckoned faction is allies with: " + allystr )
 		this.m.OriginalSocket = actor.getSprite("socket").getBrush().Name;
 		actor.getSprite("socket").setBrush("bust_base_beasts");
 		actor.setDirty(true);
