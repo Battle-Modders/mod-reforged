@@ -10,8 +10,9 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 		{
 			this.m.Slaves.remove(i);
 		}
-
-		if (this.m.Slaves.len() == 0 && this.isAlive())
+		
+		this.getContainer().getActor().m.SlavesBeckon = this.m.Slaves.len();
+		if (this.isAlive() && this.getContainer().getActor().m.SlavesBeckon + this.getContainer().getActor().m.SlavesCharm == 0)
 		{
 			this.getContainer().getActor().setCharming(false);
 		}
@@ -68,24 +69,28 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
     function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
+
 		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will trigger " + ::MSU.Text.colorNegative("1") + " [morale checks|Concept.Morale] on the target and if both are successful, the target gains the [$ $|Skill+beckoned_effect] effect")
+			text = ::Reforged.Mod.Tooltips.parseString("Will trigger " + ::MSU.Text.colorNegative("1") + " [morale checks|Concept.Morale] on the target and if successful, the target gains the [$ $|Skill+rf_beckoned_effect] effect")
 		});
+
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/vision.png",
 			text = "Has a range of " + ::MSU.Text.colorizeValue(this.getMaxRange()) + " tiles"
 		});
+
 		ret.push({
 			id = 12,
 			type = "text",
 			icon = "ui/icons/vision.png",
 			text = ::Reforged.Mod.Tooltips.parseString("Will use [$ $|Skill+charm_skill] instead in melee range")
 		});
+
 		return ret;
 	}
 
@@ -197,7 +202,8 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if (this.m.Slaves.len() == 0)
+		this.getContainer().getActor().m.SlavesBeckon = this.m.Slaves.len();
+		if (this.getContainer().getActor().m.SlavesBeckon + this.getContainer().getActor().m.SlavesCharm == 0)
 		{
 			this.getContainer().getActor().setCharming(false);
 		}

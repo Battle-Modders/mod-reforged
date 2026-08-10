@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/hexe", function(q) {
+	q.m.SlavesBeckon = 0;
+	q.m.SlavesCharm = 0;
 	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();

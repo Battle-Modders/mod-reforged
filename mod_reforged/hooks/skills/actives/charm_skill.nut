@@ -32,4 +32,30 @@
 		});
 		return ret;
 	}}.getTooltip;
+
+	// Count slaves together with beckon, requires the actor to have SlavesCharm and SlavesBeckon field in m like hexe
+	q.removeSlave = @() { function removeSlave( _entityID )
+	{
+		local i = this.m.Slaves.find(_entityID);
+
+		if (i != null)
+		{
+			this.m.Slaves.remove(i);
+		}
+		
+		this.getContainer().getActor().m.SlavesCharm = this.m.Slaves.len();
+		if (this.isAlive() && this.getContainer().getActor().m.SlavesBeckon + this.getContainer().getActor().m.SlavesCharm == 0)
+		{
+			this.getContainer().getActor().setCharming(false);
+		}
+	}}.removeSlave;
+
+	q.onUpdate = @() { function onUpdate( _properties )
+	{
+		this.getContainer().getActor().m.SlavesCharm = this.m.Slaves.len();
+		if (this.getContainer().getActor().m.SlavesBeckon + this.getContainer().getActor().m.SlavesCharm == 0)
+		{
+			this.getContainer().getActor().setCharming(false);
+		}
+	}}.onUpdate;
 });
