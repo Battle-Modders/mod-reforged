@@ -69,7 +69,7 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
         settings.Faction = _entity.getFaction();
         
         // prevent dancing around the charmer when already there
-        if (_entity.getTile.getDistanceTo(charmerTile) == 1)
+        if (_entity.getTile().getDistanceTo(charmerTile) == 1)
         {
             return ::Const.AI.Behavior.Score.Zero;
         }
