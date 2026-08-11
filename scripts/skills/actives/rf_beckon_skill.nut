@@ -2,7 +2,7 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		Slaves = []
 	},
-	function removeSlave( _entityID )
+	function removeSlave( _entityID, is_swapping_to_charm )
 	{
 		local i = this.m.Slaves.find(_entityID);
 
@@ -12,7 +12,7 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 		}
 		
 		this.getContainer().getActor().m.SlavesBeckon = this.m.Slaves.len();
-		if (this.isAlive() && this.getContainer().getActor().m.SlavesBeckon == 0 && this.getContainer().getActor().m.SlavesCharm == 0)
+		if (this.isAlive() && !is_swapping_to_charm && this.getContainer().getActor().m.SlavesBeckon == 0 && this.getContainer().getActor().m.SlavesCharm == 0)
 		{
 			this.getContainer().getActor().setCharming(false);
 		}
@@ -192,16 +192,6 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		this.m.Slaves = [];
-	}
-
-	function onUpdate( _properties )
-	{
-		this.getContainer().getActor().m.SlavesBeckon = this.m.Slaves.len();
-		// this.logDebug("Beckon - Charm slaves: " + this.getContainer().getActor().m.SlavesCharm + "Beckon slaves" + this.getContainer().getActor().m.SlavesBeckon)
-		if (this.getContainer().getActor().m.SlavesBeckon == 0 && this.getContainer().getActor().m.SlavesCharm == 0)
-		{
-			this.getContainer().getActor().setCharming(false);
-		}
 	}
 
 });

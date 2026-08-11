@@ -260,7 +260,8 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 
 		if (this.m.Master != null)
 		{
-			this.m.Master.removeSlave(actor.getID());
+			// pass in to let removeSlave not switch back sprite when being removed for charm
+			this.m.Master.removeSlave(actor.getID(), this.m.FlippedBackBeforeCharm );
 			this.m.Master = null;
 		}
 	}

@@ -58,13 +58,8 @@
 		}
 	}}.removeSlave;
 
+	// Sprite change is purely handled through onAdded of charm and beckon effects and removeSlave of skills
 	q.onUpdate = @() { function onUpdate( _properties )
 	{
-		this.getContainer().getActor().m.SlavesCharm = this.m.Slaves.len();
-		// this.logDebug("Charm - Charm slaves: " + this.getContainer().getActor().m.SlavesCharm + "Beckon slaves" + this.getContainer().getActor().m.SlavesBeckon)
-		if (this.getContainer().getActor().m.SlavesBeckon == 0 && this.getContainer().getActor().m.SlavesCharm == 0)
-		{
-			this.getContainer().getActor().setCharming(false);
-		}
 	}}.onUpdate;
 });
