@@ -18,5 +18,10 @@
 		this.addSkill(::new("scripts/skills/actives/assault_skill"));
         
 		this.addSkill(::new("scripts/skills/actives/rf_assault_hew_skill"));
+
+		this.addSkill(::Reforged.new("scripts/skills/actives/split_shield", function(o) {
+			o.m.FatigueCost += 5;
+			o.setApplyAxeMastery(true);
+		}));
 	}}.onEquip;
 });
