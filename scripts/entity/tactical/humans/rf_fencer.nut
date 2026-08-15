@@ -50,7 +50,7 @@ this.rf_fencer <- ::inherit("scripts/entity/tactical/human" {
 		{
 			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/fencing_sword"],
-				[1, "scripts/items/weapons/rf_estoc"]
+				[1, "scripts/items/weapons/estoc"]
 			]).roll()));
 		}
 
@@ -122,7 +122,7 @@ this.rf_fencer <- ::inherit("scripts/entity/tactical/human" {
 		{
 			local weapon = ::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/named/named_fencing_sword"],
-				[1, "scripts/items/weapons/named/named_rf_estoc"]
+				[1, "scripts/items/weapons/named/named_estoc"]
 			]).roll();
 
 			this.m.Items.equip(::new(weapon));

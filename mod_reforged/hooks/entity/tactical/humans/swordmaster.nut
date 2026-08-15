@@ -147,7 +147,7 @@
 				case this.m.SwordmasterVariants.Precise:
 					weapons = ::MSU.Class.WeightedContainer([
 						[1, "scripts/items/weapons/fencing_sword"],
-						[1, "scripts/items/weapons/rf_estoc"]
+						[1, "scripts/items/weapons/estoc"]
 					]);
 					break;
 
@@ -199,7 +199,7 @@
 				case this.m.SwordmasterVariants.Precise:
 					weapon = ::MSU.Class.WeightedContainer([
 						[1, "scripts/items/weapons/named/named_fencing_sword"],
-						[1, "scripts/items/weapons/named/named_rf_estoc"]
+						[1, "scripts/items/weapons/named/named_estoc"]
 					]).roll();
 					break;
 

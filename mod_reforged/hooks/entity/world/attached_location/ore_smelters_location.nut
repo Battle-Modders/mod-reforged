@@ -36,11 +36,6 @@
 							R = 50,
 							P = 1.0,
 							S = "weapons/rf_halberd"
-						},
-						{
-							R = 50,
-							P = 1.0,
-							S = "weapons/rf_poleaxe"
 						}
 					]);
 				}

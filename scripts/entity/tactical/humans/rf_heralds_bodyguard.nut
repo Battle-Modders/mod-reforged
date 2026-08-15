@@ -130,7 +130,7 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 		{
 			this.m.Items.equip(::new(::MSU.Class.WeightedContainer([
 				[1, "scripts/items/weapons/longsword"],
-				[1, "scripts/items/weapons/rf_poleaxe"]
+				[1, "scripts/items/weapons/poleaxe"]
 			]).roll()));
 		}
 
@@ -184,7 +184,7 @@ this.rf_heralds_bodyguard <- ::inherit("scripts/entity/tactical/human" {
 				this.m.Skills.add(::new("scripts/skills/perks/perk_rf_formidable_approach"));
 			}
 
-			if (weapon.getID() == "weapon.rf_poleaxe")
+			if (weapon.getID() == "weapon.poleaxe")
 			{
 				local entityNamePlural = ::Const.Strings.EntityNamePlural[this.getType()];
 				weapon.addSkill(::Reforged.new("scripts/skills/actives/repel", function(o) {

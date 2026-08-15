@@ -98,7 +98,7 @@ this.rf_zombie_hero <- ::inherit("scripts/entity/tactical/enemies/zombie", {
 					[1, "scripts/items/weapons/longsword"],
 					[1, "scripts/items/weapons/greataxe"],
 					[1, "scripts/items/weapons/rf_kriegsmesser"],
-					[1, "scripts/items/weapons/rf_poleaxe"],
+					[1, "scripts/items/weapons/poleaxe"],
 					[1, "scripts/items/weapons/two_handed_flail"],
 					[1, "scripts/items/weapons/two_handed_flanged_mace"],
 					[1, "scripts/items/weapons/two_handed_hammer"],

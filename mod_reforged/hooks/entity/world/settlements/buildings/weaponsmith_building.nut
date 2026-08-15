@@ -37,11 +37,6 @@
 			{
 				R = 80,
 				P = 1.0,
-				S = "weapons/rf_estoc"
-			},
-			{
-				R = 80,
-				P = 1.0,
 				S = "weapons/rf_poleflail"
 			},
 			{
@@ -53,11 +48,6 @@
 				R = 80,
 				P = 1.0,
 				S = "weapons/rf_halberd"
-			},
-			{
-				R = 80,
-				P = 1.0,
-				S = "weapons/rf_poleaxe"
 			}
 		]);
 

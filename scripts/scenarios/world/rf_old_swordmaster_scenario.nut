@@ -208,7 +208,7 @@ this.rf_old_swordmaster_scenario <- ::inherit("scripts/scenarios/world/starting_
 				"scripts/items/weapons/named/named_fencing_sword",
 				"scripts/items/weapons/named/named_warbrand",
 				"scripts/items/weapons/named/named_rf_longsword",
-				"scripts/items/weapons/named/named_rf_estoc",
+				"scripts/items/weapons/named/named_estoc",
 				"scripts/items/weapons/named/named_rf_kriegsmesser",
 				"scripts/items/weapons/named/named_rf_swordstaff"
 			]);

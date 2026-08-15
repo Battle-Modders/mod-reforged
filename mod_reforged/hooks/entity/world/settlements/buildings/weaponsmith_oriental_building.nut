@@ -10,11 +10,6 @@
 				S = "weapons/rf_swordstaff"
 			},
 			{
-				R = 80,
-				P = 1.0,
-				S = "weapons/rf_estoc"
-			},
-			{
 				R = 85,
 				P = 1.0,
 				S = "weapons/rf_battle_axe"

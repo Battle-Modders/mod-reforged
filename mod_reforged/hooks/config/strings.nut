@@ -392,7 +392,7 @@ local vanillaDescriptions = [
 					Description = [
 						"Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue|Concept.Fatigue].",
 						"[$ $|Skill+round_swing] gains " + ::MSU.Text.colorPositive("+5%") + " chance to hit."
-						"The [$ $|Item+longaxe] and [$ $|Item+rf_poleaxe] no longer have a penalty for attacking targets directly adjacent."
+						"The [$ $|Item+longaxe] no longer have a penalty for attacking targets directly adjacent."
 					]
 				},
 				{
