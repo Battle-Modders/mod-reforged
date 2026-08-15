@@ -1,6 +1,6 @@
 this.rf_hew_skill <- ::inherit("scripts/skills/actives/chop", {
 	m = {
-		ReachAdd = -1
+		ReachAdd = 0
 	},
 	function create()
 	{
@@ -12,8 +12,9 @@ this.rf_hew_skill <- ::inherit("scripts/skills/actives/chop", {
 		this.m.Icon = "skills/rf_poleaxe_hew_skill.png";
 		this.m.IconDisabled = "skills/rf_poleaxe_hew_skill_sw.png";
 		this.m.Overlay = "rf_poleaxe_hew_skill";
-		this.m.ActionPointCost = 6;
-		this.m.FatigueCost = 15;
+		this.m.ActionPointCost = 4;
+		this.m.FatigueCost = 13;
+		this.m.DirectDamageMult = 0.4;
 	}
 
 	function getTooltip()
