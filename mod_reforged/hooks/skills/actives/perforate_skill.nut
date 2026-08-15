@@ -38,7 +38,7 @@
 	}}.onAfterUpdate;
 
     // Overwrite to change injury into init difference
-	q.onUse = @(_user, _targetTile) { function onUse( _user, _targetTile )
+	q.onUse = @() { function onUse( _user, _targetTile )
 	{		
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectStab);
 		local target = _targetTile.getEntity();

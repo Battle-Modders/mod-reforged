@@ -18,7 +18,7 @@
 	}}.getTooltip;
 
 	// Put the 2nd hit into separate skill for clarity and easier damage type
-	q.onUse = @(_user, _targetTile) { function onUse( _user, _targetTile )
+	q.onUse = @() { function onUse( _user, _targetTile )
 	{
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectImpale);
 		local target = _targetTile.getEntity();
