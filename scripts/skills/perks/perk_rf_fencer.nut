@@ -13,6 +13,21 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Any;
 	}
 
+	function onEquip( _item )
+	{
+		if (_item.isItemType(::Const.Items.ItemType.Weapon) && _item.isItemType(::Const.Items.ItemType.RF_Fencing))
+		{
+			if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
+			{
+				_item.addSkill(::new("scripts/skills/actives/perforate_skill"));
+			}
+			else
+			{
+				_item.addSkill(::new("scripts/skills/actives/lunge_skill"));
+			}
+		}
+	}
+
 	function isEnabled()
 	{
 		if (this.getContainer().getActor().isDisarmed()) return false;
@@ -35,25 +50,6 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAfterUpdate( _properties )
-	{
-		if (!this.isEnabled()) return;
-
-		local weapon = this.getContainer().getActor().getMainhandItem();
-
-		foreach (skill in weapon.getSkills())
-		{
-			skill.m.FatigueCostMult *= this.m.FatigueMult;
-
-			if (weapon.isItemType(::Const.Items.ItemType.OneHanded)) skill.m.ActionPointCost -= 1;
-			else if (skill.getID() == "actives.lunge")
-			{
-				skill.m.MaxRange += 1;
-				skill.m.Description = "A swift lunge towards a target up to 3 tiles away, followed by a precise thrusting attack to catch them unprepared. The faster you are, the more damage you do.";
-			}
-		}
-	}
-
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (!this.getContainer().getActor().isPlayerControlled() || !this.isEnabled())
@@ -61,7 +57,7 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (_skill.getID() == "actives.lunge" || _skill.getID() == "actives.rf_sword_thrust")
+		if (_skill.getID() == "actives.lunge" || _skill.getID() == "actives.skewer")
 		{
 			_properties.MeleeSkill += this.m.Bonus;
 			_skill.m.HitChanceBonus += this.m.Bonus;

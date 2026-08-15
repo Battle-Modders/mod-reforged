@@ -1222,10 +1222,10 @@ local vanillaDescriptions = [
 		Effects = [{
 			Type = ::UPD.EffectType.Passive,
 			Description = [
-				"Skills build up " + ::MSU.Text.colorPositive("20%") + " less [Fatigue|Concept.Fatigue] and gain " + ::MSU.Text.colorPositive("+10%") + " chance to hit.",
+				"Skills build up " + ::MSU.Text.colorPositive("20%") + " less [Fatigue|Concept.Fatigue]. [$ $|Skill+lunge_skill] and [$ $|Skill+skewer_skill] gain " + ::MSU.Text.colorPositive("+10%") + " chance to hit.",
 				"The Damage Type requirement from [$ $|Skill+rf_passing_step_skill] is removed.",
-				"When using a one-handed fencing sword, the [Action Point|Concept.ActionPoints] costs of [$ $|Skill+rf_sword_thrust_skill], [$ $|Skill+riposte] and [$ $|Skill+lunge_skill] are reduced by " + ::MSU.Text.colorPositive(1) + ".",
-				"When using a two-handed fencing sword, the range of [$ $|Skill+lunge_skill] is increased by " + ::MSU.Text.colorPositive(1) + " tile."
+				"When using a one-handed fencing sword, gain [$ $|Skill+perforate_skill] skill.",
+				"When using a two-handed fencing sword, gain [$ $|Skill+lunge_skill] skill."
 			]
 		}]
 	}),

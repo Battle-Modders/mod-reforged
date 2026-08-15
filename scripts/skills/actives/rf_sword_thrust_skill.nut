@@ -1,6 +1,6 @@
 this.rf_sword_thrust_skill <- ::inherit("scripts/skills/skill", {
 	m = {
-		MeleeSkillAdd = -20
+		MeleeSkillAdd = 0
 	},
 	function create()
 	{
