@@ -39,7 +39,7 @@
 		{
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 		}
-	}}.onAnySkillUsed;
+	}}.onAfterUpdate;
 
 	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{		

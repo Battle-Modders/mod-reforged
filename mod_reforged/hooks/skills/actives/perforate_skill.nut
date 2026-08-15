@@ -35,7 +35,7 @@
 		{
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 		}
-	}}.onAnySkillUsed;
+	}}.onAfterUpdate;
 
     // Overwrite to change injury into init difference
 	q.onUse = @(_user, _targetTile) { function onUse( _user, _targetTile )
