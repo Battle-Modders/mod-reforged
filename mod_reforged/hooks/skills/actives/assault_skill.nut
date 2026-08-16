@@ -45,15 +45,20 @@
 				{
 					if (target.isAlive() && _skill.getContainer() != null)
 					{
-						_skill.getContainer().getSkills().getSkillByID("actives.rf_assault_hew").useForFree(target.getTile())
+						local hew = _skill.getContainer().getSkillByID("actives.rf_assault_hew")
+						hew.m.IsHidden = false;
+						hew.useForFree(target.getTile())
+						hew.m.IsHidden = true;
 					}
 				}.bindenv(this), this);
 			}
 			else
 			{
-				if (target.isAlive() && this._skill.getContainer() != null)
+				if (target.isAlive() && this.getContainer() != null)
 				{
-					this.getContainer().getSkills().getSkillByID("actives.rf_assault_hew").useForFree(target.getTile())
+					local hew = _skill.getContainer().getSkillByID("actives.rf_assault_hew")
+					hew.m.IsHidden = false;
+					hew.useForFree(target.getTile())
 				}
 			}
 		}
