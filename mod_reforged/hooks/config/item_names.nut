@@ -129,3 +129,24 @@
 	"Honor",
 	"Vanquisher"
 ];
+
+::Const.Strings.RF_ExeswordNames <- [
+	"Beheader",
+	"Madness",
+	"Guillotine",
+	"Reaper",
+	"Menfeller",
+	"Harbinger",
+	"Tormentor",
+	"Blade",
+	"Deathdealer",
+	"Mercy",
+	"Slayer",
+	"Bloodspiller",
+	"Oathkeeper",
+	"Avenger",
+	"Red Rivers",
+	"Vengeance",
+	"Honor",
+	"Vanquisher"
+];
