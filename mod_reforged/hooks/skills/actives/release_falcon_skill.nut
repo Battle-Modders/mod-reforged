@@ -8,6 +8,7 @@
 	q.getTooltip = @(__original) { function getTooltip()
 	{
 		local ret = __original();
+		local effect = ::new("scripts/skills/effects/rf_falcon_released_effect");
 		ret.push({
 			id = 10,
 			type = "text",
