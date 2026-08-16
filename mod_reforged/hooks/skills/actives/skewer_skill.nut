@@ -48,7 +48,7 @@
 			local a = this.getContainer().getActor();
             // adjust numbers for rf; skill is worse than default attack when lower than 87.5 init similar to lunge
 			local s = this.Math.minf(2.0, 2.0 * (this.Math.max(0, a.getInitiative() + (_targetEntity != null ? this.getFatigueCost() * a.getCurrentProperties().FatigueToInitiativeRate : 0)) / 175.0));
-			_properties.DamageDirectAdd += (s-1);
+			_properties.DamageDirectAdd += (s-1.0);
 
 			if (!this.getContainer().getActor().isPlayerControlled())
 			{
