@@ -24,7 +24,7 @@
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Performs an additional attack for every 75 [Initiative|Concept.Initiative] higher than the target")
 			}
-		]
+		]);
 		
 		if (this.m.MeleeSkillAdd != 0)
 		{
@@ -35,7 +35,6 @@
 				text = "Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + " chance to hit"
 			});
 		}
-		);
 
 		return ret;
 	}}.getTooltip;
