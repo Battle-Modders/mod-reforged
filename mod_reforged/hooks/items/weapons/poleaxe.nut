@@ -11,13 +11,13 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::new("scripts/skills/actives/rf_hew_skill"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/rf_hew_skill"));
 
-		this.addSkill(::new("scripts/skills/actives/assault_skill"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/assault_skill"));
         
-		this.addSkill(::new("scripts/skills/actives/rf_assault_hew_skill"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/rf_assault_hew_skill"));
 
-		local skillToAdd = this.new("scripts/skills/actives/smite_skill");
+		local skillToAdd = ::Reforged.new("scripts/skills/actives/smite_skill");
 		skillToAdd.m.Icon = "skills/active_241.png";
 		skillToAdd.m.IconDisabled = "skills/active_241_sw.png";
 		skillToAdd.m.Overlay = "active_241";
