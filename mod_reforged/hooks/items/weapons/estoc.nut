@@ -4,6 +4,7 @@
 		__original();
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.RF_Fencing;
+		this.m.Categories = "Sword, Two-Handed";
         this.m.Value = 2400;
 		this.m.Condition = 60.0;
 		this.m.ConditionMax = 60.0;
