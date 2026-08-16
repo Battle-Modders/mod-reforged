@@ -2,6 +2,7 @@
 	q.create = @(__original) { function create()
 	{
 		__original();
+		this.m.Name = "Executioner\'s Blade";
 		this.m.Reach = 5;
 		this.m.Value = 1200;
 		this.m.Condition = 60.0;
@@ -13,6 +14,7 @@
 		this.m.DirectDamageMult = 0.25;
 		this.m.AdditionalAccuracy = -15;
 		this.m.ChanceToHitHead = 0;
+		this.m.Categories = "Cleaver, Two-Handed";
 	}}.create;
 
 	q.onEquip = @() { function onEquip()
