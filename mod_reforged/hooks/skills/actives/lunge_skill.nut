@@ -56,7 +56,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = ::MSU.Text.colorNegative("Cannot be used while [rooted|Concept.Rooted]")
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Cannot be used while [rooted|Concept.Rooted]"))
 			});
 		}
 

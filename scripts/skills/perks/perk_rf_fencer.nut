@@ -10,14 +10,14 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 		this.m.Description = ::Const.Strings.PerkDescription.RF_Fencer;
 		this.m.Icon = "ui/perks/perk_rf_fencer.png";
 		this.m.Type = ::Const.SkillType.Perk;
-		this.m.Order = ::Const.SkillOrder.Any;
+		this.m.Order = ::Const.SkillOrder.Perk;
 	}
 
 	function onEquip( _item )
 	{
 		if (_item.isItemType(::Const.Items.ItemType.Weapon) && _item.isItemType(::Const.Items.ItemType.RF_Fencing))
 		{
-			if (weapon.isItemType(::Const.Items.ItemType.OneHanded))
+			if (_item.isItemType(::Const.Items.ItemType.OneHanded))
 			{
 				_item.addSkill(::new("scripts/skills/actives/perforate_skill"));
 			}
