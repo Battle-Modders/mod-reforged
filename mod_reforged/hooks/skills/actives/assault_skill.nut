@@ -12,6 +12,7 @@
 			id = 9,
 			type = "text",
 			icon = "ui/icons/special.png",
+			// TODO: bind this hew to the item
 			text = ::Reforged.Mod.Tooltips.parseString("Performs an additional free [$ $|Skill+rf_assault_hew_skill] attack against staggered targets")
 		});
 		return ret;
