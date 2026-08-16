@@ -1,4 +1,7 @@
 this.rf_assault_hew_skill <- ::inherit("scripts/skills/actives/chop", {
+	m = {
+		ReachAdd = 0
+	},
 	function create()
 	{
 		this.chop.create();
@@ -13,6 +16,7 @@ this.rf_assault_hew_skill <- ::inherit("scripts/skills/actives/chop", {
 		this.m.FatigueCost = 0;
 		this.m.DirectDamageMult = 0.4;
 	}
+
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		this.chop.onAnySkillUsed(_skill, _targetEntity, _properties);

@@ -2,6 +2,15 @@
 	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
+		// create temp skill to bind to the same container instead of dummy
+		local hew = ::Reforged.new("scripts/skills/actives/rf_assault_hew_skill");
+		hew.m.Container = this.getContainer();
+		hew.saveBaseValues();
+		local extraData = "";
+		if (this.getContainer().getActor() != null)
+		{
+			extraData = "entityId:" + this.getContainer().getActor().getID();
+		}
 		ret.push({
 			id = 6,
 			type = "text",
@@ -12,8 +21,7 @@
 			id = 9,
 			type = "text",
 			icon = "ui/icons/special.png",
-			// TODO: bind this hew to the item
-			text = ::Reforged.Mod.Tooltips.parseString("Performs an additional free [$ $|Skill+rf_assault_hew_skill] attack against staggered targets")
+			text = ::Reforged.Mod.Tooltips.parseString("Follow up with a weaker " + ::Reforged.NestedTooltips.getNestedSkillName(hew,extraData) + " attack against staggered targets")
 		});
 		return ret;
 	}}.getTooltip;
