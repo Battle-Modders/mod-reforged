@@ -28,6 +28,12 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onAdded()
+	{
+		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon != null) this.onEquip(weapon);
+	}
+
 	function isEnabled()
 	{
 		if (this.getContainer().getActor().isDisarmed()) return false;
