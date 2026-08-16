@@ -565,7 +565,7 @@ local vanillaDescriptions = [
 				Description = [
 					"Skills build up " + ::MSU.Text.colorPositive("25%") + " less [Fatigue|Concept.Fatigue].",
 					"Gain the [$ $|Perk+perk_rf_bolster] perk."
-					"All skills with two-handed weapons, with a range of 2 tiles, having an [Action Point|Concept.ActionPoints] cost of " + ::MSU.Text.colorNegative("6") + " have their [Action Point|Concept.ActionPoints] cost reduced to " + ::MSU.Text.colorNegative("5") + ".",
+					"All skills with two-handed weapons, with a range of 2 tiles or used with a polearm, having an [Action Point|Concept.ActionPoints] cost of " + ::MSU.Text.colorNegative("6") + " have their [Action Point|Concept.ActionPoints] cost reduced to " + ::MSU.Text.colorNegative("5") + ".",
 					"Polearms no longer have a penalty for attacking targets directly adjacent."
 				]
 			}]
