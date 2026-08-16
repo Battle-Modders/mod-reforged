@@ -3,7 +3,7 @@
 	q.create = @(__original) { function create()
 	{
 		__original();
-		this.m.NameList = this.Const.Strings.RF_ExeswordNames;
+		this.m.NameList = ::Const.Strings.RF_ExeswordNames;
 		this.m.Description = "An expertly honed executioner\'s blade that ensures a painless demise. The ornately decorated blade suggests it has been used to sever many a noble neck.";
 	}}.create;
 
