@@ -4,6 +4,7 @@
 	q.create = @(__original) { function create()
 	{
 		__original();
+		this.m.Description = "A series of two or more thrusts made in quick succession. The faster you are related to your opponent, the more thrusts you perform.";
 		this.m.DirectDamageMult = 0.25;
 	}}.create;
 
@@ -23,7 +24,18 @@
 				icon = "ui/icons/special.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Performs an additional attack for every 75 [Initiative|Concept.Initiative] higher than the target")
 			}
-		]);
+		]
+		
+		if (this.m.MeleeSkillAdd != 0)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = "Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + " chance to hit"
+			});
+		}
+		);
 
 		return ret;
 	}}.getTooltip;
@@ -42,6 +54,7 @@
 	{		
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectStab);
 		local target = _targetTile.getEntity();
+		// skill.onUse triggers after paying fatigue cost
         // this can be float
 		local injuryCount = (_user.getInitiative() - target.getInitiative())/75;
 		local ret = this.attackEntity(_user, target);
@@ -68,18 +81,34 @@
 				});
 				timeDelay = timeDelay + 150;
 			}
-
-			return true;
 		}
 		else
 		{
 			if (target.isAlive())
 			{
 				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
-				ret = this.attackEntity(_user, target) || ret;
+				this.attackEntity(_user, target)
+				for( local i = 0; i < injuryCount; i = ++i )
+				{
+					this.attackEntity(_user, target)
+				}
 			}
-
-			return ret;
 		}
+
+		// only the first hit counts for the return value
+		return ret;
 	}}.onUse;
+
+	// this is called individually each time skill.attackEntity() is called; 
+	// the -10 is applied separately each time and will not stack 
+	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{		
+		if (_skill == this)
+		{
+			if (!this.getContainer().getActor().isPlayerControlled())
+			{
+				_properties.MeleeSkill += this.m.MeleeSkillAdd;
+			}
+		}
+	}}.onAnySkillUsed;
 });
