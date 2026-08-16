@@ -22,8 +22,6 @@
 			o.m.ActionPointCost -= 1;
 		}));
 
-		this.addSkill(::new("scripts/skills/actives/riposte", function(o) {
-			o.m.ActionPointCost -= 1;
-		}));
+		this.addSkill(::new("scripts/skills/actives/riposte"));
 	}}.onEquip;
 });
