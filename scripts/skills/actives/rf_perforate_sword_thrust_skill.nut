@@ -6,7 +6,7 @@ this.rf_perforate_sword_thrust_skill <- ::inherit("scripts/skills/actives/rf_swo
 	{
 		this.rf_sword_thrust_skill.create();
 		this.m.ID = "actives.rf_perforate_sword_thrust";
-		this.m.Name = "Perforate thrust";
+		this.m.Name = "Perforate Thrust";
 		// hidden and only used as part of perforate
 		this.m.IsHidden = true;
         this.m.KilledString = "Turned into a pincushion";
@@ -17,5 +17,12 @@ this.rf_perforate_sword_thrust_skill <- ::inherit("scripts/skills/actives/rf_swo
 			"sounds/combat/perforate_attack_hit_03.wav",
 			"sounds/combat/perforate_attack_hit_04.wav"
 		];
+	}
+
+	function onUse( _user, _targetTile )
+	{
+		// Consider it as a new skill use because we want this attack to trigger effects/perks
+		::Const.SkillCounter++;
+		this.rf_sword_thrust_skill.onUse(_user, _targetTile)
 	}
 });
