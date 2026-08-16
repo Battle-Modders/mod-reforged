@@ -4,7 +4,7 @@
 	{
 		__original();
 		// Execute name and icon are cooler
-		this.m.Name = "Execute";
+		this.m.Name = "Behead";
 		this.m.Description = "A wide, heavy swing aimed at the head to decapitate the target on the spot. Does more damage to the head. Killing the target will always decapitate it, if at all possible.";
 		this.m.Icon = "skills/active_239.png";
 		this.m.IconDisabled = "skills/active_239_sw.png";
@@ -49,7 +49,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + " chance to hit against target not [$ $|Skill+dazed_effect], [$ $|Skill+stunned_effect], [$ $|Skill+sleeping_effect], [$ $|Skill+net_effect], [$ $|Skill+web_effect], or [$ $|Skill+rooted_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + " chance to hit against target not [$ $|Skill+dazed_effect], [$ $|Skill+stunned_effect], [$ $|Skill+sleeping_effect], [$ $|Skill+horrified_effect], [$ $|Skill+net_effect], [$ $|Skill+web_effect], or [$ $|Skill+rooted_effect]")
 			});
 		}
 
@@ -76,10 +76,9 @@
 		{
 			_properties.DamageAgainstMult[this.Const.BodyPart.Head] += 0.5;
 			_properties.HitChance[this.Const.BodyPart.Head] += 1.0 - _targetEntity.getHitpoints() / (_targetEntity.getHitpointsMax() * 1.0);
-            _properties.MeleeSkill += this.m.MeleeSkillAdd;
-            if (_targetEntity.getSkills().hasSkill("effects.dazed") || _targetEntity.getSkills().hasSkill("effects.sleeping") || _targetEntity.getSkills().hasSkill("effects.stunned") || _targetEntity.getSkills().hasSkill("effects.net") || _targetEntity.getSkills().hasSkill("effects.web") || _targetEntity.getSkills().hasSkill("effects.rooted"))
+            if (!(_targetEntity.getSkills().hasSkill("effects.dazed") || _targetEntity.getSkills().hasSkill("effects.sleeping") || _targetEntity.getSkills().hasSkill("effects.stunned") || _targetEntity.getSkills().hasSkill("effects.horrified") || _targetEntity.getSkills().hasSkill("effects.net") || _targetEntity.getSkills().hasSkill("effects.web") || _targetEntity.getSkills().hasSkill("effects.rooted")))
             {
-                _properties.MeleeSkill -= this.m.MeleeSkillAdd;
+                _properties.MeleeSkill += this.m.MeleeSkillAdd;
             }
 		}
 	}}.onAnySkillUsed;
