@@ -14,14 +14,14 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::new("scripts/skills/actives/rf_sword_thrust_skill", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/rf_sword_thrust_skill", function(o) {
 			o.m.ActionPointCost -= 1;
 		}));
 
-		this.addSkill(::new("scripts/skills/actives/lunge_skill", function(o) {
+		this.addSkill(::Reforged.new("scripts/skills/actives/lunge_skill", function(o) {
 			o.m.ActionPointCost -= 1;
 		}));
 
-		this.addSkill(::new("scripts/skills/actives/riposte"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
 	}}.onEquip;
 });

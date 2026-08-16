@@ -21,10 +21,10 @@
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(::new("scripts/skills/actives/rf_sword_thrust_skill"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/rf_sword_thrust_skill"));
 
-		this.addSkill(::new("scripts/skills/actives/skewer_skill"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/skewer_skill"));
 
-		this.addSkill(::new("scripts/skills/actives/riposte"));
+		this.addSkill(::Reforged.new("scripts/skills/actives/riposte"));
 	}}.onEquip;
 });
