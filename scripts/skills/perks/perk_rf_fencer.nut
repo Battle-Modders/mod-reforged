@@ -19,11 +19,12 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 		{
 			if (_item.isItemType(::Const.Items.ItemType.OneHanded))
 			{
-				_item.addSkill(::new("scripts/skills/actives/perforate_skill"));
+				_item.addSkill(::Reforged.new("scripts/skills/actives/perforate_skill"));
+				_item.addSkill(::Reforged.new("scripts/skills/actives/rf_perforate_sword_thrust_skill"));
 			}
 			else
 			{
-				_item.addSkill(::new("scripts/skills/actives/lunge_skill"));
+				_item.addSkill(::Reforged.new("scripts/skills/actives/lunge_skill"));
 			}
 		}
 	}

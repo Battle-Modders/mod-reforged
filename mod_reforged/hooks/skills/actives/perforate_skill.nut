@@ -58,6 +58,7 @@
 		local injuryCount = (_user.getInitiative() - target.getInitiative())/75;
 		local ret = this.attackEntity(_user, target);
 		local timeDelay = 200;
+		local followup = this.getContainer().getSkillByID("actives.rf_perforate_sword_thrust");
 
 		if ((this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID()) && (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer))
 		{
@@ -66,6 +67,7 @@
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, 150, this.onAdditionalAttack, {
 				User = _user,
 				Skill = this,
+				SkillFollowUp = followup,
 				Target = target,
 				IsLast = injuryCount < 1
 			});
@@ -75,6 +77,7 @@
 				this.Time.scheduleEvent(this.TimeUnit.Virtual, timeDelay + this.Math.rand(0, 55), this.onAdditionalAttack, {
 					User = _user,
 					Skill = this,
+					SkillFollowUp = followup,
 					Target = target,
 					IsLast = i == injuryCount - 1
 				});
@@ -86,10 +89,14 @@
 			if (target.isAlive())
 			{
 				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
-				this.attackEntity(_user, target)
+				followup.m.IsHidden = false;
+				followup.useForFree(target.getTile())
+				followup.m.IsHidden = true;
 				for( local i = 0; i < injuryCount; i = ++i )
 				{
-					this.attackEntity(_user, target)
+					followup.m.IsHidden = false;
+					followup.useForFree(target.getTile());
+					followup.m.IsHidden = true;
 				}
 			}
 		}
@@ -98,8 +105,30 @@
 		return ret;
 	}}.onUse;
 
-	// this is called individually each time skill.attackEntity() is called; 
-	// the -10 is applied separately each time and will not stack 
+	// use a different skill such that it works with tempo etc
+	q.onAdditionalAttack = @() { function onAdditionalAttack( _tag )
+	{		
+		local user = _tag.User;
+		local skill = _tag.Skill;
+		local followup = _tag.SkillFollowUp;
+		local target = _tag.Target;
+		local isLast = _tag.IsLast;
+
+		if (target.isAlive() && skill.getContainer() != null)
+		{
+			followup.m.IsHidden = false;
+			followup.useForFree(target.getTile());
+			followup.m.IsHidden = true;
+		}
+
+		if (isLast)
+		{
+			skill.m.IsDoingAttackMove = true;
+			skill.getContainer().setBusy(false);
+		}
+	}}.onAdditionalAttack;
+
+	// only applies to the first hit, follow up attacks uses the field defined in its own script
 	q.onAnySkillUsed = @() { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{		
 		if (_skill == this)
