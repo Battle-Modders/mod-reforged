@@ -5,7 +5,7 @@
 		this.m.Reach = 5;
 		this.m.WeaponType = ::Const.Items.WeaponType.Axe | ::Const.Items.WeaponType.Polearm;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
-		this.m.Categories = "Axe/Polearm, Two-Handed";
+		this.m.Categories = "Polearm/Axe, Two-Handed";
 	}}.create;
 
 	q.onEquip = @() { function onEquip()
