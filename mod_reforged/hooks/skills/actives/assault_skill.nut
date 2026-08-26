@@ -31,7 +31,6 @@
 	{
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectImpale);
 		local target = _targetTile.getEntity();
-		this.setImpaleInfo();
 		this.m.IsSecondAttack = false;
 		local ret = this.attackEntity(_user, target);
 
@@ -45,6 +44,7 @@
 				{
 					if (target.isAlive() && _skill.getContainer() != null)
 					{
+						_skill.getContainer().setBusy(false);
 						local hew = _skill.getContainer().getSkillByID("actives.rf_assault_hew")
 						hew.m.IsHidden = false;
 						hew.useForFree(target.getTile())
@@ -59,6 +59,7 @@
 					local hew = _skill.getContainer().getSkillByID("actives.rf_assault_hew")
 					hew.m.IsHidden = false;
 					hew.useForFree(target.getTile())
+					hew.m.IsHidden = true;
 				}
 			}
 		}
