@@ -9,6 +9,14 @@
 		IconDisabled = "skills/passive_03.png"
 	},
 	{
+		ID = "perk.captain",
+		Script = "scripts/skills/perks/perk_captain",
+		Name = ::Const.Strings.PerkName.Captain,
+		Tooltip = ::Const.Strings.PerkDescription.Captain,
+		Icon = "ui/perks/perk_12.png",	// TODO
+		IconDisabled = "ui/perks/perk_12.png"	// TODO
+	},
+	{
 		ID = "perk.devastating_strikes",
 		Script = "scripts/skills/perks/perk_devastating_strikes",
 		Name = ::Const.Strings.PerkName.DevastatingStrikes,
