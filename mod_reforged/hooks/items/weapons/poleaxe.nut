@@ -6,6 +6,9 @@
 		this.m.WeaponType = ::Const.Items.WeaponType.Axe | ::Const.Items.WeaponType.Polearm;
 		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.Categories = "Polearm/Axe, Two-Handed";
+		this.m.RegularDamage = 55;
+		this.m.RegularDamageMax = 80;
+		this.m.ArmorDamageMult = 1.3;
 	}}.create;
 
 	q.onEquip = @() { function onEquip()
