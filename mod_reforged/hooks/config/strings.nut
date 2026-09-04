@@ -1224,8 +1224,7 @@ local vanillaDescriptions = [
 			Description = [
 				"Skills build up " + ::MSU.Text.colorPositive("20%") + " less [Fatigue|Concept.Fatigue]. [$ $|Skill+lunge_skill] and [$ $|Skill+skewer_skill] gain " + ::MSU.Text.colorPositive("+10%") + " chance to hit.",
 				"The Damage Type requirement from [$ $|Skill+rf_passing_step_skill] is removed.",
-				"When using a one-handed fencing sword, gain [$ $|Skill+perforate_skill] skill.",
-				"When using a two-handed fencing sword, gain [$ $|Skill+lunge_skill] skill."
+				"Gain [$ $|Skill+perforate_skill] skill."
 			]
 		}]
 	}),
