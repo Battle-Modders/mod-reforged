@@ -8,7 +8,7 @@
 		// Buff damage of named barbarian 2h mace so that it is a meaningful item for the player.
 		// The new values bring the damage output to be only slightly lower than named 2h mace against
 		// armored opponents, and but still being noticeably lower against unarmored opponents.
-		this.m.RegularDamage += 10; // Brings it to 70 from vanilla 60
+		this.m.RegularDamage += 10; // Brings it to 60 from vanilla 50
  		this.m.RegularDamageMax += 15; // Brings it to 85 from vanilla 70
 	}}.setValuesBeforeRandomize;
 
