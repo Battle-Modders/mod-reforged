@@ -42,7 +42,7 @@
 			local entry = _tooltip[i];
 			if ("icon" in entry && (entry.icon == "ui/icons/warning.png" || entry.icon == "ui/tooltips/warning.png"))
 			{
-				warnings.push(_tooltip.remove(i));
+				warnings.insert(0, _tooltip.remove(i));
 			}
 		}
 
