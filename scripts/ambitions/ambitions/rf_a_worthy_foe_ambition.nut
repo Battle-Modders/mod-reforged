@@ -12,7 +12,7 @@ this.rf_a_worthy_foe_ambition <- this.inherit("scripts/ambitions/ambition", {
 		this.m.ButtonText = "We\'ve made a name for ourselves, but there are warriors out there whose names carry even further. Let us seek one out and prove who is better!";
 		this.m.RewardTooltip = "You\'ll be awarded a unique accessory that grants the wearer additional resolve.";
 		this.m.UIText = "Defeat a Champion";
-		this.m.TooltipText = "Defeat a Champion in battle while this ambition is active.\nWhile pursuing this ambition, Champions are " + ::MSU.Text.colorPositive("+" + this.m.ChampionChancePassive + "%") + " more likely to appear.";
+		this.m.TooltipText = "Defeat a Champion in battle while this ambition is active.\n\nWhile pursuing this ambition, Champions are " + ::MSU.Text.colorPositive("+" + this.m.ChampionChancePassive + "%") + " more likely to appear.";
 		this.m.SuccessText = "[img]gfx/ui/events/event_87.png[/img]The champion lying dead before you had earned a reputation few fighting men ever will. It did him little good against the %companyname%.\n\nWord of the victory will travel, and other renowned warriors may now be more eager to test themselves against the company.";
 		this.m.SuccessButtonText = "A worthy foe indeed.";
 		// This reward is implemented in the resetToDefaults function from asset_manager.nut
