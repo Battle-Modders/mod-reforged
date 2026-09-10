@@ -13,7 +13,7 @@ this.rf_a_worthy_foe_ambition <- this.inherit("scripts/ambitions/ambition", {
 		this.m.RewardTooltip = "You\'ll be awarded a unique accessory that grants the wearer additional resolve.";
 		this.m.UIText = "Defeat a Champion";
 		this.m.TooltipText = "Defeat a Champion in battle while this ambition is active.\n\nWhile pursuing this ambition, Champions are " + ::MSU.Text.colorPositive("+" + this.m.ChampionChancePassive + "%") + " more likely to appear.";
-		this.m.SuccessText = "[img]gfx/ui/events/event_87.png[/img]The champion lying dead before you had earned a reputation few fighting men ever will. It did him little good against the %companyname%.\n\nWord of the victory will travel, and other renowned warriors may now be more eager to test themselves against the company.";
+		this.m.SuccessText = "[img]gfx/ui/events/event_87.png[/img]%defeatedchampion% lying dead before you had earned a reputation few fighting men ever will. It did him little good against the %companyname%.\n\nWord of the victory will travel, and other renowned warriors may now be more eager to test themselves against the company.";
 		this.m.SuccessButtonText = "A worthy foe indeed.";
 		// This reward is implemented in the resetToDefaults function from asset_manager.nut
 		this.m.RewardTooltip = "Permanently increases the chance for Champions to appear by " + ::MSU.Text.colorPositive(this.m.ChampionChanceReward + "%");
@@ -33,6 +33,14 @@ this.rf_a_worthy_foe_ambition <- this.inherit("scripts/ambitions/ambition", {
 	{
 		// This condition is checked during the kill function from actor.nut
 		return ::World.Statistics.getFlags().has(this.m.CompletionStateFlag);
+	}
+
+	function onPrepareVariables( _vars )
+	{
+		_vars.push([
+			"defeatedchampion",
+			::World.Statistics.getFlags().has(this.m.CompletionStateFlag) ? ::World.Statistics.getFlags().get(this.m.CompletionStateFlag) : "The champion"
+		]);
 	}
 
 	function onReward()

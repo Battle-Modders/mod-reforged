@@ -157,7 +157,7 @@
 			local currentAmbition = ::World.Ambitions.getActiveAmbition();
 			if (currentAmbition != null && currentAmbition.getID() == "ambition.rf_a_worthy_foe")
 			{
-				::World.Statistics.getFlags().set(currentAmbition.m.CompletionStateFlag, true);
+				::World.Statistics.getFlags().set(currentAmbition.m.CompletionStateFlag, this.getName());
 			}
 		}
 
