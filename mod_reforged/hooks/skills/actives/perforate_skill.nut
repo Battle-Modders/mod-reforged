@@ -73,7 +73,7 @@
 				IsLast = injuryCount < 1
 			});
 
-			for( local i = 0; i < injuryCount; i = ++i )
+			for (local i = 0; i < injuryCount; i = ++i)
 			{
 				this.Time.scheduleEvent(this.TimeUnit.Virtual, timeDelay + this.Math.rand(0, 55), this.onAdditionalAttack, {
 					User = _user,
@@ -91,9 +91,9 @@
 			{
 				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
 				followup.m.IsHidden = false;
-				followup.useForFree(target.getTile())
+				followup.useForFree(target.getTile());
 				followup.m.IsHidden = true;
-				for( local i = 0; i < injuryCount; i = ++i )
+				for (local i = 0; i < injuryCount; i = ++i)
 				{
 					followup.m.IsHidden = false;
 					followup.useForFree(target.getTile());

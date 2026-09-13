@@ -11,10 +11,12 @@ this.ai_rf_attack_assault <- ::inherit("scripts/ai/tactical/behaviors/ai_attack_
 	function queryTargetValue( _entity, _target, _skill = null )
 	{
 		local ret = this.ai_attack_default.queryTargetValue(_entity, _target, _skill);
-		if (_skill == null || _skill.getID() != "actives.assault" || !_target.getSkills().hasSkill("effects.staggered")) return ret;
+		if (_skill == null || _skill.getID() != "actives.assault" || !_target.getSkills().hasSkill("effects.staggered")) 
+			return ret;
 
 		local hew = _entity.getSkills().getSkillByID("actives.rf_assault_hew");
-		if (hew == null) return ret;
+		if (hew == null) 
+			return ret;
 
 		local damage = hew.getExpectedDamage(_target).TotalDamage * hew.getHitchance(_target) / 100.0;
 		local p = _entity.getCurrentProperties();

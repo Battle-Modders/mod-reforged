@@ -11,10 +11,12 @@ this.ai_rf_attack_perforate <- ::inherit("scripts/ai/tactical/behaviors/ai_attac
 	function queryTargetValue( _entity, _target, _skill = null )
 	{
 		local ret = this.ai_attack_default.queryTargetValue(_entity, _target, _skill);
-		if (_skill == null || _skill.getID() != "actives.perforate") return ret;
+		if (_skill == null || _skill.getID() != "actives.perforate") 
+			return ret;
 
 		local followup = _entity.getSkills().getSkillByID("actives.rf_perforate_sword_thrust");
-		if (followup == null) return ret;
+		if (followup == null) 
+			return ret;
 
 		local p = _entity.getCurrentProperties();
 		// Start from the actor's effective initiative, then account for the cost paid before onUse.

@@ -30,6 +30,6 @@ this.rf_assault_hew_skill <- ::inherit("scripts/skills/actives/rf_hew_skill", {
 	{
 		// Consider it as a new skill use because we want this attack to trigger effects/perks
 		::Const.SkillCounter++;
-		this.rf_hew_skill.onUse(_user, _targetTile)
+		this.rf_hew_skill.onUse(_user, _targetTile);
 	}
 });

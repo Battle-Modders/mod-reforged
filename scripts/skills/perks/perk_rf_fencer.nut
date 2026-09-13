@@ -25,18 +25,20 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 	function onAdded()
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon != null) this.onEquip(weapon);
+		if (weapon != null) 
+		{
+			this.onEquip(weapon);
+		}
 	}
 
 	function isEnabled()
 	{
-		if (this.getContainer().getActor().isDisarmed()) return false;
+		if (this.getContainer().getActor().isDisarmed())
+			return false;
 
 		local weapon = this.getContainer().getActor().getMainhandItem();
 		if (weapon == null || !weapon.isItemType(::Const.Items.ItemType.RF_Fencing))
-		{
 			return false;
-		}
 
 		return true;
 	}
@@ -53,9 +55,7 @@ this.perk_rf_fencer <- ::inherit("scripts/skills/skill", {
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (!this.getContainer().getActor().isPlayerControlled() || !this.isEnabled())
-		{
 			return;
-		}
 
 		if (_skill.getID() == "actives.lunge" || _skill.getID() == "actives.skewer")
 		{

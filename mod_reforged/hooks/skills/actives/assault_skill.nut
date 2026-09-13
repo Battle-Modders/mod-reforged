@@ -51,9 +51,9 @@
 					if (target.isAlive() && _skill.getContainer() != null)
 					{
 						_skill.getContainer().setBusy(false);
-						local hew = _skill.getContainer().getSkillByID("actives.rf_assault_hew")
+						local hew = _skill.getContainer().getSkillByID("actives.rf_assault_hew");
 						hew.m.IsHidden = false;
-						hew.useForFree(target.getTile())
+						hew.useForFree(target.getTile());
 						hew.m.IsHidden = true;
 					}
 				}.bindenv(this), this);
@@ -62,9 +62,9 @@
 			{
 				if (target.isAlive() && this.getContainer() != null)
 				{
-					local hew = _skill.getContainer().getSkillByID("actives.rf_assault_hew")
+					local hew = _skill.getContainer().getSkillByID("actives.rf_assault_hew");
 					hew.m.IsHidden = false;
-					hew.useForFree(target.getTile())
+					hew.useForFree(target.getTile());
 					hew.m.IsHidden = true;
 				}
 			}
