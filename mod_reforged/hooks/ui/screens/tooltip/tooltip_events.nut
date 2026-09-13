@@ -7,7 +7,9 @@
 		local ret = __original(_data);
 		if (ret != null && ::isKindOf(entity, "actor") && entity.isAlive() && !entity.isDying()
 			&& entity.isPlacedOnMap() && entity.isDiscovered() && !entity.isHiddenToPlayer())
-			entity.RF_showArrowTemporary();
+			{
+				entity.RF_showArrowTemporary();
+			}
 		return ret;
 	}}.general_queryEntityNestedTooltipData;
 
