@@ -367,9 +367,9 @@
 	q.RF_showArrowTemporary <- function()
 	{
 		this.showArrow(true);
-		::Time.scheduleEvent(::TimeUnit.Real, 2000, function( _actor ) {
-			if (!::MSU.isNull(_actor)) _actor.showArrow(false);
-		}, this.weakref());
+		::Time.scheduleEvent(::TimeUnit.Real, 2000, function( _tag ) {
+			this.showArrow(false);
+		}.bindenv(this), null);
 	}
 });
 
