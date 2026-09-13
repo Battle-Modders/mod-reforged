@@ -4,21 +4,6 @@
 	q.m.RF_CanDropLoot <- true; // Is set to false during onDeath if Players+PlayerAnimals did not do enough damage to this entity
 	q.m.RF_IsShowingArrow <- false;
 
-	q.showArrow = @(__original) { function showArrow( _v )
-	{
-		if (this.m.RF_IsShowingArrow == _v) return;
-		this.m.RF_IsShowingArrow = _v;
-		__original(_v);
-	}}.showArrow;
-
-	q.RF_showArrowTemporary <- function()
-	{
-		this.showArrow(true);
-		::Time.scheduleEvent(::TimeUnit.Real, 2000, function( _actor ) {
-			if (!::MSU.isNull(_actor)) _actor.showArrow(false);
-		}, this.weakref());
-	}
-
 	q.create = @(__original) { function create()
 	{
 		__original();
@@ -377,6 +362,15 @@
 		// how it is calculated in actor.onMissed).
 		return this.getTile().getZoneOfControlCountOtherThan(this.getAlliedFactions()) * ::Math.round(::Const.Combat.FatigueLossOnBeingMissed * this.getCurrentProperties().FatigueEffectMult * this.getCurrentProperties().FatigueLossOnAnyAttackMult);
 	}}.RF_getZOCEvasionFatigue;
+	
+	// Used for entity highlighting
+	q.RF_showArrowTemporary <- function()
+	{
+		this.showArrow(true);
+		::Time.scheduleEvent(::TimeUnit.Real, 2000, function( _actor ) {
+			if (!::MSU.isNull(_actor)) _actor.showArrow(false);
+		}, this.weakref());
+	}
 });
 
 ::Reforged.HooksMod.hookTree("scripts/entity/tactical/actor", function(q) {
@@ -442,6 +436,13 @@
 
 		__original(_killer, _skill, _tile, _fatalityType);
 	}}.onDeath;
+	
+	q.showArrow = @(__original) { function showArrow( _v )
+	{
+		if (this.m.RF_IsShowingArrow == _v) return;
+		this.m.RF_IsShowingArrow = _v;
+		__original(_v);
+	}}.showArrow;
 });
 
 ::Reforged.QueueBucket.Late.push(function() {
