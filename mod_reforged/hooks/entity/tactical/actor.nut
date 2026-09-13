@@ -367,7 +367,7 @@
 	q.RF_showArrowTemporary <- function()
 	{
 		this.showArrow(true);
-		::Time.scheduleEvent(::TimeUnit.Real, 2000, function( _tag ) {
+		::Time.scheduleEvent(::TimeUnit.Real, 2000, function( _ ) {
 			this.showArrow(false);
 		}.bindenv(this), null);
 	}
