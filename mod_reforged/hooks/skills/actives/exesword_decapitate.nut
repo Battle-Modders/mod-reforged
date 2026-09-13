@@ -3,6 +3,7 @@
 	q.create = @(__original) { function create()
 	{
 		__original();
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_AttackBehead;
 		// Execute name and icon are cooler
 		this.m.Name = "Behead";
 		this.m.Description = "A wide, heavy swing aimed at the head to decapitate the target on the spot. Does more damage to the head. Killing the target will always decapitate it, if at all possible.";

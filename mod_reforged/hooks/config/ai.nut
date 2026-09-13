@@ -1,5 +1,9 @@
 ::MSU.AI.addBehavior("RF_AncestralSummons", "RF.AncestralSummons", ::Const.AI.Behavior.Order.RaiseUndead, ::Const.AI.Behavior.Score.RaiseUndead);
 ::MSU.AI.addBehavior("RF_AttackLunge", "RF.AttackLunge", ::Const.AI.Behavior.Order.EngageMelee - 1, ::Const.AI.Behavior.Score.Attack);
+::MSU.AI.addBehavior("RF_AttackPerforate", "RF.AttackPerforate", ::Const.AI.Behavior.Order.AttackSpecial, ::Const.AI.Behavior.Score.Attack);
+::MSU.AI.addBehavior("RF_AttackBehead", "RF.AttackBehead", ::Const.AI.Behavior.Order.AttackSpecial, ::Const.AI.Behavior.Score.Attack);
+::MSU.AI.addBehavior("RF_AttackAssault", "RF.AttackAssault", ::Const.AI.Behavior.Order.AttackSpecial, ::Const.AI.Behavior.Score.Attack);
+::MSU.AI.addBehavior("RF_AttackSkewer", "RF.AttackSkewer", ::Const.AI.Behavior.Order.AttackSpecial, ::Const.AI.Behavior.Score.Attack);
 ::MSU.AI.addBehavior("RF_CoverAlly", "RF.CoverAlly", ::Const.AI.Behavior.Order.Adrenaline, 60);
 ::MSU.AI.addBehavior("RF_FollowUp", "RF.FollowUp", ::Const.AI.Behavior.Order.AttackDefault, 1);
 ::MSU.AI.addBehavior("RF_HoldSteady", "RF.HoldSteady", ::Const.AI.Behavior.Order.BoostMorale, ::Const.AI.Behavior.Score.BoostMorale);

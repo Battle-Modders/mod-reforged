@@ -1,4 +1,10 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/assault_skill", function(q) {
+	q.create = @(__original) { function create()
+	{
+		__original();
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_AttackAssault;
+	}}.create;
+
 	q.getTooltip = @() { function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();

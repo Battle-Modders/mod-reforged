@@ -4,6 +4,7 @@
 	q.create = @(__original) { function create()
 	{
 		__original();
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_AttackSkewer;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ActionPointCost = 5;
 	}}.create;
