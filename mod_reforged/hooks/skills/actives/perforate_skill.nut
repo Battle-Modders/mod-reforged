@@ -55,7 +55,7 @@
 		local target = _targetTile.getEntity();
 		// skill.onUse triggers after paying fatigue cost
         // this can be float
-		local injuryCount = (_user.getInitiative() - target.getInitiative())/75;
+		local injuryCount = ::Math.max(0.01,(_user.getInitiative() - target.getInitiative())/75);
 		local ret = this.attackEntity(_user, target);
 		local timeDelay = 200;
 		local followup = this.getContainer().getSkillByID("actives.rf_perforate_sword_thrust");
