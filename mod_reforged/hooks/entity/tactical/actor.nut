@@ -2,6 +2,34 @@
 	q.m.IsWaitingTurn <- false;		// Is only set true when using the new Wait-All button. While true this entity will try to use Wait when its their turn
 	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
 	q.m.RF_CanDropLoot <- true; // Is set to false during onDeath if Players+PlayerAnimals did not do enough damage to this entity
+	q.m.RF_IsShowingArrow <- false; // Arrow requested by the turn sequence bar or other callers
+	q.m.RF_TemporaryArrow <- null; // Transient token; never serialized
+
+	q.showArrow = @(__original) { function showArrow( _v )
+	{
+		this.m.RF_IsShowingArrow = _v;
+		__original(_v || this.m.RF_TemporaryArrow != null && this.isAlive() && !this.isDying() && this.isPlacedOnMap());
+	}}.showArrow;
+
+	q.RF_showArrowTemporary <- function()
+	{
+		if (this.m.RF_TemporaryArrow != null || !this.isAlive() || this.isDying() || !this.isPlacedOnMap()
+			|| !this.isDiscovered() || this.isHiddenToPlayer())
+			return;
+
+		local token = {};
+		this.m.RF_TemporaryArrow = token;
+		this.showArrow(this.m.RF_IsShowingArrow);
+		::Time.scheduleEvent(::TimeUnit.Real, 2000, function( _data ) {
+			local actor = _data.Actor;
+			if (::MSU.isNull(actor) || actor.m.RF_TemporaryArrow != _data.Token)
+				return;
+
+			actor.m.RF_TemporaryArrow = null;
+			if (actor.isAlive() && !actor.isDying() && actor.isPlacedOnMap())
+				actor.showArrow(actor.m.RF_IsShowingArrow);
+		}, { Actor = this.weakref(), Token = token });
+	}
 
 	q.create = @(__original) { function create()
 	{
@@ -11,6 +39,9 @@
 
 	q.onInit = @(__original) { function onInit()
 	{
+		// Invalidate any timer left over from a previous battle before recreating sprites.
+		this.m.RF_TemporaryArrow = null;
+		this.m.RF_IsShowingArrow = false;
 		__original();
 		this.getSkills().add(::new("scripts/skills/effects/rf_inspired_by_champion_effect"));
 		this.getSkills().add(::new("scripts/skills/special/rf_reach"));

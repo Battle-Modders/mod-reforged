@@ -1,4 +1,15 @@
 ::Reforged.HooksMod.hook("scripts/ui/screens/tooltip/tooltip_events", function(q) {
+	q.general_queryEntityNestedTooltipData = @(__original) { function general_queryEntityNestedTooltipData( _data )
+	{
+		local entity = ::Tactical.getEntityByID(_data.entityId);
+		if (::MSU.isNull(entity)) return null;
+
+		local ret = __original(_data);
+		if (ret != null && ::isKindOf(entity, "actor"))
+			entity.RF_showArrowTemporary();
+		return ret;
+	}}.general_queryEntityNestedTooltipData;
+
 	// Add info about potential attacks of opportunity during movement preview
 	q.tactical_queryTileTooltipData = @(__original) { function tactical_queryTileTooltipData()
 	{
