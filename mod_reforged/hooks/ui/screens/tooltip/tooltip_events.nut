@@ -2,11 +2,12 @@
 	q.general_queryEntityNestedTooltipData = @(__original) { function general_queryEntityNestedTooltipData( _data )
 	{
 		local entity = ::Tactical.getEntityByID(_data.entityId);
-		if (::MSU.isNull(entity)) return null;
+		if (::MSU.isNull(entity) || !entity.isPlacedOnMap())
+			return null;
 
 		local ret = __original(_data);
 		if (ret != null && ::isKindOf(entity, "actor") && entity.isAlive() && !entity.isDying()
-			&& entity.isPlacedOnMap() && entity.isDiscovered() && !entity.isHiddenToPlayer())
+			&& entity.isDiscovered() && !entity.isHiddenToPlayer())
 			{
 				entity.RF_showArrowTemporary();
 			}
