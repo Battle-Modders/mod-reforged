@@ -439,7 +439,8 @@
 	
 	q.showArrow = @(__original) { function showArrow( _v )
 	{
-		if (this.m.RF_IsShowingArrow == _v) return;
+		if (this.m.RF_IsShowingArrow == _v)
+			return;
 		this.m.RF_IsShowingArrow = _v;
 		__original(_v);
 	}}.showArrow;
