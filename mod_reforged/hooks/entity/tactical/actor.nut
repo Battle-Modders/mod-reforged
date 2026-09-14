@@ -6,13 +6,22 @@
 	q.m.RF_IsAnimatingArrow <- false;
 	q.m.RF_ArrowAnimationOffset <- ::createVec(0, 0);
 	q.m.RF_ArrowAnimationStartTime <- 0.0;
-	q.m.RF_TemporaryArrowTriggerCount <- 0;
+	q.m.RF_TemporaryArrowRequestID <- 0;
 
 	q.create = @(__original) { function create()
 	{
 		__original();
 		this.m.RF_DamageReceived = { Total = 0.0 };
 	}}.create;
+
+	q.onPlacedOnMap = @(__original) { function onPlacedOnMap()
+	{
+		// Reset potential leftovers
+		this.m.RF_TemporaryArrowRequestID = 0;
+		this.m.RF_IsShowingArrow = false;
+		this.m.RF_IsAnimatingArrow = false;
+		__original();
+	}}.onPlacedOnMap;
 
 	q.onInit = @(__original) { function onInit()
 	{
@@ -304,6 +313,53 @@
 
 		return potentialInjuries.roll()[1];
 	}}.MV_selectInjury;
+	
+	q.showArrow = @() { function showArrow( _v )
+	{
+		// return if both false; if both true, still try to redo the animation
+		if (!this.m.RF_IsShowingArrow && !_v)
+			return;
+		
+		// reenable callback in case it is disabled without finishing
+		if (this.m.RF_IsAnimatingArrow)
+		{
+			this.setRenderCallbackEnabled(true);
+		}
+
+		if (!_v)
+		{
+			if (!this.m.RF_IsAnimatingArrow)
+			{
+				this.getSprite("arrow").fadeOutAndHide(100);
+				this.m.RF_IsShowingArrow = _v;
+				this.setSpriteOffset("arrow", ::createVec(0, 0));
+				return;
+			}
+			else
+			{
+				// try again later if animation is in effect
+				// attempts after RF_IsAnimatingArros set to false will be captured by beginning guard clause 
+				::Time.scheduleEvent(::TimeUnit.Real, 50, function( _ ) {
+					this.showArrow(false);
+				}.bindenv(this), null);
+			}
+		}
+		else
+		{
+			if (!this.m.RF_IsAnimatingArrow)
+			{
+				local arrow = this.getSprite("arrow");
+				arrow.Alpha = 255;
+				arrow.Visible = true;
+				this.setSpriteOffset("arrow", ::createVec(0, 0));
+				this.m.RF_ArrowAnimationOffset = this.getSpriteOffset("arrow");
+				this.m.RF_IsAnimatingArrow = true;
+				this.m.RF_ArrowAnimationStartTime = ::Time.getVirtualTimeF();
+				this.setRenderCallbackEnabled(true);
+				this.m.RF_IsShowingArrow = _v;
+			}
+		}
+	}}.showArrow;
 
 // New Functions:
 	q.getSurroundedBonus <- { function getSurroundedBonus( _targetEntity )
@@ -369,23 +425,13 @@
 	// Used for entity highlighting
 	q.RF_showArrowTemporary <- function( _duration = 2000 )
 	{
-		if (this.m.RF_TemporaryArrowTriggerCount < 0)
-		{
-			this.m.RF_TemporaryArrowTriggerCount = 0;
-		}
-		this.m.RF_TemporaryArrowTriggerCount++
+		++this.m.RF_TemporaryArrowRequestID;
 		this.showArrow(true);
-		::Time.scheduleEvent(::TimeUnit.Real, _duration, function( _ ) {
-			if (this.m.RF_TemporaryArrowTriggerCount > 0)
-			{
-				this.m.RF_TemporaryArrowTriggerCount--
-			}
-			// check after decrement
-			if (this.m.RF_TemporaryArrowTriggerCount <= 0)
-			{
+		::Time.scheduleEvent(::TimeUnit.Real, _duration, function( _requestID ) {
+			// Only the latest temporary request may expire the arrow.
+			if (this.m.RF_TemporaryArrowRequestID == _requestID)
 				this.showArrow(false);
-			}
-		}.bindenv(this), null);
+		}.bindenv(this), this.m.RF_TemporaryArrowRequestID);
 	}
 });
 
@@ -453,49 +499,6 @@
 		__original(_killer, _skill, _tile, _fatalityType);
 	}}.onDeath;
 	
-	q.showArrow = @(__original) { function showArrow( _v )
-	{
-		// return if both false; if both true, still try to redo the animation
-		if (!this.m.RF_IsShowingArrow && !_v)
-			return;
-		if (!_v)
-		{
-			if (!this.m.RF_IsAnimatingArrow)
-			{
-				__original(false);
-				this.m.RF_IsShowingArrow = _v;
-				this.m.RF_IsAnimatingArrow = false;
-				this.setSpriteOffset("arrow", ::createVec(0, 0));
-				this.m.RF_TemporaryArrowTriggerCount = 0;
-				return;
-			}
-			else
-			{
-				// try again later if animation is in effect
-				// attempts after RF_IsAnimatingArros set to false will be captured by beginning guard clause 
-				::Time.scheduleEvent(::TimeUnit.Real, 50, function( _ ) {
-					this.showArrow(false);
-				}.bindenv(this), null);
-			}
-		}
-		else
-		{
-			if (!this.m.RF_IsAnimatingArrow)
-			{
-				local arrow = this.getSprite("arrow");
-				arrow.Alpha = 255;
-				arrow.Visible = true;
-				this.setSpriteOffset("arrow", ::createVec(0, 0));
-				this.m.RF_ArrowAnimationOffset = this.getSpriteOffset("arrow");
-				this.m.RF_IsAnimatingArrow = true;
-				this.m.RF_ArrowAnimationStartTime = ::Time.getVirtualTimeF();
-				this.setRenderCallbackEnabled(true);
-				this.m.RF_IsShowingArrow = _v;
-			}
-			// else: do nothing - do not reshow when trying to show when already in animation
-		}
-	}}.showArrow;
-	
 	q.onRender = @(__original) { function onRender()
 	{
 		__original();
@@ -507,17 +510,22 @@
 		if (this.moveSpriteOffset("arrow", from, offset, ::Const.Combat.RF_ArrowAnimationTime, this.m.RF_ArrowAnimationStartTime))
 		{
 			this.m.RF_IsAnimatingArrow = false;
-			if (!this.m.IsUsingCustomRendering)
+			if (!this.m.IsUsingCustomRendering && !this.m.IsRaisingShield && !this.m.IsLoweringShield
+				&& !this.m.IsRaisingWeapon && !this.m.IsLoweringWeapon && !this.m.IsRaising
+				&& !this.m.IsSinking && !this.m.IsRaisingRooted)
 			{
 				this.setRenderCallbackEnabled(false);
 			}
 		}
-		else
-		{
-			// Another vanilla animation may have disabled the callback when it finished.
-			this.setRenderCallbackEnabled(true);
-		}
 	}}.onRender;
+
+	q.resetRenderEffects = @(__original) { function resetRenderEffects()
+	{
+		// Vanilla disables rendering here, so also finish the arrow's transient state.
+		this.m.RF_IsAnimatingArrow = false;
+		this.showArrow(false);
+		__original();
+	}}.resetRenderEffects;
 });
 
 ::Reforged.QueueBucket.Late.push(function() {
