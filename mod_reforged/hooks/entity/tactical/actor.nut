@@ -376,7 +376,11 @@
 		this.m.RF_TemporaryArrowTriggerCount++
 		this.showArrow(true);
 		::Time.scheduleEvent(::TimeUnit.Real, _duration, function( _ ) {
-			this.m.RF_TemporaryArrowTriggerCount--
+			if (this.m.RF_TemporaryArrowTriggerCount > 0)
+			{
+				this.m.RF_TemporaryArrowTriggerCount--
+			}
+			// check after decrement
 			if (this.m.RF_TemporaryArrowTriggerCount <= 0)
 			{
 				this.showArrow(false);
