@@ -366,10 +366,10 @@
 	}}.RF_getZOCEvasionFatigue;
 	
 	// Used for entity highlighting
-	q.RF_showArrowTemporary <- function()
+	q.RF_showArrowTemporary <- function( _duration = 2000 )
 	{
 		this.showArrow(true);
-		::Time.scheduleEvent(::TimeUnit.Real, 2000, function( _ ) {
+		::Time.scheduleEvent(::TimeUnit.Real, _duration, function( _ ) {
 			this.showArrow(false);
 		}.bindenv(this), null);
 	}
