@@ -87,6 +87,8 @@ local original_getClone = ::Const.CharacterProperties.getClone;
 ::Const.ProjectileDecals.push(clone ::Const.ProjectileDecals[::Const.ProjectileType.Arrow]);
 ::Const.ProjectileSprite.push("rf_projectile_flaming_arrow");
 
+::Const.Combat.RF_ArrowAnimationTime <- 0.2;
+
 ::Const.Movement.AutoEndTurnBelowAP = 1;
 
 ::Const.Morale.RF_AllyFleeingBraveryModifierPerAlly <- 1;
