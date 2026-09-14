@@ -3,6 +3,9 @@
 	q.m.RF_DamageReceived <- null; // Table with faction number as key and tables as values. These tables have actor ID as key and the damage dealt as their value. Is populated during skill_container.onDamageReceived
 	q.m.RF_CanDropLoot <- true; // Is set to false during onDeath if Players+PlayerAnimals did not do enough damage to this entity
 	q.m.RF_IsShowingArrow <- false;
+	q.m.RF_IsAnimatingArrow <- false;
+	q.m.RF_ArrowAnimationOffset <- ::createVec(0, 0);
+	q.m.RF_ArrowAnimationStartTime <- 0.0;
 
 	q.create = @(__original) { function create()
 	{
@@ -12,7 +15,6 @@
 
 	q.onInit = @(__original) { function onInit()
 	{
-		this.m.RF_IsShowingArrow = false;
 		__original();
 		this.getSkills().add(::new("scripts/skills/effects/rf_inspired_by_champion_effect"));
 		this.getSkills().add(::new("scripts/skills/special/rf_reach"));
@@ -439,11 +441,67 @@
 	
 	q.showArrow = @(__original) { function showArrow( _v )
 	{
-		if (this.m.RF_IsShowingArrow == _v)
+		// return if both false; if both true, still try to redo the animation
+		if (!this.m.RF_IsShowingArrow && !_v)
 			return;
 		this.m.RF_IsShowingArrow = _v;
-		__original(_v);
+		if (!_v)
+		{
+			this.m.RF_IsAnimatingArrow = false;
+			if (!this.m.RF_IsAnimatingArrow)
+			{
+				__original(false);
+				this.m.RF_IsAnimatingArrow = false;
+				this.setSpriteOffset("arrow", ::createVec(0, 0));
+				return;
+			}
+			else
+			{
+				// try again later if animation is in effect
+				// attempts after RF_IsAnimatingArros set to false will be captured by beginning guard clause 
+				::Time.scheduleEvent(::TimeUnit.Real, 50, function( _ ) {
+					this.showArrow(false);
+				}.bindenv(this), null);
+			}
+		}
+		else
+		{
+			if (!this.m.RF_IsAnimatingArrow)
+			{
+				local arrow = this.getSprite("arrow");
+				arrow.Alpha = 255;
+				arrow.Visible = true;
+				this.setSpriteOffset("arrow", ::createVec(0, 0));
+				this.m.RF_ArrowAnimationOffset = this.getSpriteOffset("arrow");
+				this.m.RF_IsAnimatingArrow = true;
+				this.m.RF_ArrowAnimationStartTime = ::Time.getVirtualTimeF();
+				this.setRenderCallbackEnabled(true);
+			}
+		}
 	}}.showArrow;
+	
+	q.onRender = @(__original) { function onRender()
+	{
+		__original();
+		if (!this.m.RF_IsAnimatingArrow)
+			return;
+
+		local offset = this.m.RF_ArrowAnimationOffset;
+		local from = ::createVec(offset.X, offset.Y + 40);
+		if (this.moveSpriteOffset("arrow", from, offset, ::Const.Combat.RF_ArrowAnimationTime, this.m.RF_ArrowAnimationStartTime))
+		{
+			this.m.RF_IsAnimatingArrow = false;
+			if (!this.m.IsUsingCustomRendering)
+			{
+				this.setRenderCallbackEnabled(false);
+			}
+		}
+		else
+		{
+			// Another vanilla animation may have disabled the callback when it finished.
+			this.setRenderCallbackEnabled(true);
+		}
+	}}.onRender;
 });
 
 ::Reforged.QueueBucket.Late.push(function() {
