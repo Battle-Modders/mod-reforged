@@ -6,6 +6,7 @@
 	q.m.RF_IsAnimatingArrow <- false;
 	q.m.RF_ArrowAnimationOffset <- ::createVec(0, 0);
 	q.m.RF_ArrowAnimationStartTime <- 0.0;
+	q.m.RF_TemporaryArrowTriggerCount <- 0;
 
 	q.create = @(__original) { function create()
 	{
@@ -368,9 +369,18 @@
 	// Used for entity highlighting
 	q.RF_showArrowTemporary <- function( _duration = 2000 )
 	{
+		if (this.m.RF_TemporaryArrowTriggerCount < 0)
+		{
+			this.m.RF_TemporaryArrowTriggerCount = 0;
+		}
+		this.m.RF_TemporaryArrowTriggerCount++
 		this.showArrow(true);
 		::Time.scheduleEvent(::TimeUnit.Real, _duration, function( _ ) {
-			this.showArrow(false);
+			this.m.RF_TemporaryArrowTriggerCount--
+			if (this.m.RF_TemporaryArrowTriggerCount <= 0)
+			{
+				this.showArrow(false);
+			}
 		}.bindenv(this), null);
 	}
 });
@@ -453,6 +463,7 @@
 				__original(false);
 				this.m.RF_IsAnimatingArrow = false;
 				this.setSpriteOffset("arrow", ::createVec(0, 0));
+				this.m.RF_TemporaryArrowTriggerCount = 0;
 				return;
 			}
 			else
