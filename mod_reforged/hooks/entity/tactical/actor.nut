@@ -458,12 +458,12 @@
 		// return if both false; if both true, still try to redo the animation
 		if (!this.m.RF_IsShowingArrow && !_v)
 			return;
-		this.m.RF_IsShowingArrow = _v;
 		if (!_v)
 		{
 			if (!this.m.RF_IsAnimatingArrow)
 			{
 				__original(false);
+				this.m.RF_IsShowingArrow = _v;
 				this.m.RF_IsAnimatingArrow = false;
 				this.setSpriteOffset("arrow", ::createVec(0, 0));
 				this.m.RF_TemporaryArrowTriggerCount = 0;
@@ -490,7 +490,9 @@
 				this.m.RF_IsAnimatingArrow = true;
 				this.m.RF_ArrowAnimationStartTime = ::Time.getVirtualTimeF();
 				this.setRenderCallbackEnabled(true);
+				this.m.RF_IsShowingArrow = _v;
 			}
+			// else: do nothing - do not reshow when trying to show when already in animation
 		}
 	}}.showArrow;
 	
