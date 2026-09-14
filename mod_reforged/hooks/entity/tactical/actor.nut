@@ -457,7 +457,6 @@
 		this.m.RF_IsShowingArrow = _v;
 		if (!_v)
 		{
-			this.m.RF_IsAnimatingArrow = false;
 			if (!this.m.RF_IsAnimatingArrow)
 			{
 				__original(false);
