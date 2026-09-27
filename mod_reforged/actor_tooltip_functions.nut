@@ -330,7 +330,7 @@
 					id = currentID,
 					type = "text",
 					icon = "ui/items/" + groundItem.getIcon(),
-					text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:ground]", groundItem.getName(), groundItem.ClassName, groundItem.getInstanceID()))
+					text = ::Reforged.Mod.Tooltips.parseString(format("[%s|Item+%s,itemId:%s,itemOwner:ground,entityId:%i]", groundItem.getName(), groundItem.ClassName, groundItem.getInstanceID(),_actor.getID()))
 				});
 				currentID++;
 			}
