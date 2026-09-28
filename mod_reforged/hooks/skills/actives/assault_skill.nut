@@ -86,6 +86,13 @@
 				text = "Target staggered"
 			});
 		}
+		else
+		{
+			ret.push({
+				icon = "ui/tooltips/negative.png",
+				text = "Target not staggered"
+			});
+		}
 
 		return ret;
 	}}.getHitFactors
