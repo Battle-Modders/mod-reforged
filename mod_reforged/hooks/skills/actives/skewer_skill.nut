@@ -7,6 +7,7 @@
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_AttackSkewer;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ActionPointCost = 5;
+		this.m.FatigueCost = 30;
 	}}.create;
 
 	q.getTooltip = @() { function getTooltip()

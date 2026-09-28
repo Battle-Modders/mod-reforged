@@ -7,6 +7,7 @@
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_AttackPerforate;
 		this.m.Description = "A series of two or more thrusts made in quick succession. The faster you are related to your opponent, the more thrusts you perform.";
 		this.m.DirectDamageMult = 0.25;
+		this.m.FatigueCost = 30;
 	}}.create;
 
 	q.getTooltip = @() { function getTooltip()
