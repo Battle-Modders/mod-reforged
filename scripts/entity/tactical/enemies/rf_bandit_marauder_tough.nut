@@ -54,7 +54,8 @@ this.rf_bandit_marauder_tough <- ::inherit("scripts/entity/tactical/human", {
 				[0.5, "scripts/items/weapons/rf_greatsword"],
 				[1, "scripts/items/weapons/two_handed_mace"],
 				[1, "scripts/items/weapons/two_handed_wooden_hammer"],
-				[1, "scripts/items/weapons/two_handed_wooden_flail"]
+				[1, "scripts/items/weapons/two_handed_wooden_flail"],
+				[1, "scripts/items/weapons/exesword"]
 			]).roll();
 
 			this.m.Items.equip(::new(weapon));
