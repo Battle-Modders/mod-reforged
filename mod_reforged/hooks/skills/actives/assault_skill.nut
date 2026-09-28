@@ -86,13 +86,6 @@
 				text = "Target staggered"
 			});
 		}
-		else
-		{
-			ret.push({
-				icon = this.m.Icon,
-				text = "Target not staggered"
-			});
-		}
 
 		return ret;
 	}}.getHitFactors
