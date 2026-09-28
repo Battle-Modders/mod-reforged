@@ -15,7 +15,7 @@
 		if (bonusDamage >= 1)
 		{
 			ret.push({
-				icon = "ui/tooltips/positive.png",
+				icon = this.m.Icon, // In case decap has icon variants in the future
 				text = ::MSU.Text.colorPositive(bonusDamage + "%") + " bonus damage based on current injury"
 			});
 		}
