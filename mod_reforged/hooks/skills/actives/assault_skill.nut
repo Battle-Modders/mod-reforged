@@ -73,4 +73,20 @@
 		// only the impale hit counts for the return value
 		return ret;
 	}}.onUse;
+
+	q.getHitFactors = @() { function getHitFactors( _targetTile )
+	{
+		local ret = this.skill.getHitFactors(_targetTile);
+		local targetEntity = _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null;
+
+		if (targetEntity.getSkills().hasSkill("effects.staggered"))
+		{
+			ret.push({
+				icon = "ui/tooltips/positive.png",
+				text = "Target staggered"
+			});
+		}
+
+		return ret;
+	}}.getHitFactors
 });

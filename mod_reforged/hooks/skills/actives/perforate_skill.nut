@@ -140,4 +140,20 @@
 			}
 		}
 	}}.onAnySkillUsed;
+
+	q.getHitFactors = @() { function getHitFactors( _targetTile )
+	{
+		local ret = this.skill.getHitFactors(_targetTile);
+		local user = this.m.Container.getActor();
+		local targetEntity = _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null;
+		
+		local injuryCount = ::Math.ceil(::Math.max(0.01,(user.getInitiative() - this.getFatigueCost() * user.getCurrentProperties().FatigueToInitiativeRate - targetEntity.getInitiative())/75));
+		
+		ret.push({
+			icon = "ui/tooltips/positive.png",
+			text = "Will perform " + injuryCount + " additional attacks"
+		});
+
+		return ret;
+	}}.getHitFactors
 });
