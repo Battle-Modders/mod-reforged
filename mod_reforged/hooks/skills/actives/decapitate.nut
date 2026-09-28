@@ -16,7 +16,7 @@
 		{
 			ret.push({
 				icon = "ui/tooltips/positive.png",
-				text = ::MSU.Text.colorPositive(bonusDamage + "%") + " Bonus damage based on current injury"
+				text = ::MSU.Text.colorPositive(bonusDamage + "%") + " bonus damage based on current injury"
 			});
 		}
 
