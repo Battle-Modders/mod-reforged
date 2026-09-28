@@ -55,6 +55,7 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		// free skill does not interfere with combo at all
 		if (_forFree)
 			return;
+
 		if (this.m.IsInEffect)
 		{
 			this.m.IsInEffect = false;
