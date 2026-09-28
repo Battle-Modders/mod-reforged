@@ -17,7 +17,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Ignores additional armor, the higher the user\'s current Initiative")
+				text = ::Reforged.Mod.Tooltips.parseString("Inflicts additional damage, the higher the user\'s current Initiative")
 			});
 
 		if (this.m.MeleeSkillAdd != 0)
@@ -47,9 +47,8 @@
 		if (_skill == this)
 		{
 			local a = this.getContainer().getActor();
-            // adjust numbers for rf; skill is worse than default attack when lower than 87.5 init similar to lunge
-			local s = this.Math.minf(2.0, 2.0 * (this.Math.max(0, a.getInitiative() + (_targetEntity != null ? this.getFatigueCost() * a.getCurrentProperties().FatigueToInitiativeRate : 0)) / 175.0));
-			_properties.DamageDirectAdd += (s-1.0);
+			local s = ::Math.minf(2.0, 2.0 * (this.Math.max(0, a.getInitiative() + (_targetEntity != null ? this.getFatigueCost() * a.getCurrentProperties().FatigueToInitiativeRate : 0)) / 175.0));
+			_properties.DamageTotalMult *= s;
 
 			if (!this.getContainer().getActor().isPlayerControlled())
 			{
