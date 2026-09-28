@@ -12,7 +12,7 @@
 		local bonusDamage = 1.0 - targetEntity.getHitpoints() / (targetEntity.getHitpointsMax() * 1.0);
 		bonusDamage = ::Math.ceil(bonusDamage * 100);
 
-		if (bonusDamage > 0.0)
+		if (bonusDamage >= 1)
 		{
 			ret.push({
 				icon = "ui/tooltips/positive.png",
