@@ -150,7 +150,7 @@
 		local injuryCount = ::Math.ceil(::Math.max(0.01,(user.getInitiative() - this.getFatigueCost() * user.getCurrentProperties().FatigueToInitiativeRate - targetEntity.getInitiative())/75));
 		
 		ret.push({
-			icon = "ui/tooltips/positive.png",
+			icon = this.m.Icon,
 			text = "Will perform " + injuryCount + " additional attacks"
 		});
 

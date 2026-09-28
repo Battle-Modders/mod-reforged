@@ -82,14 +82,14 @@
 		if (targetEntity.getSkills().hasSkill("effects.staggered"))
 		{
 			ret.push({
-				icon = "ui/tooltips/positive.png",
+				icon = this.m.Icon,
 				text = "Target staggered"
 			});
 		}
 		else
 		{
 			ret.push({
-				icon = "ui/tooltips/negative.png",
+				icon = this.m.Icon,
 				text = "Target not staggered"
 			});
 		}
