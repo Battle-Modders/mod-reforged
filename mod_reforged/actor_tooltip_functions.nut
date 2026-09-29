@@ -10,6 +10,11 @@
 			local attributeDeltaText = _attributeDelta == 0 ? "" : "(" + ::MSU.Text.colorizeValue(_attributeDelta, {AddSign = true}) + ")";
 			return format("<span class='rf_tacticalTooltipAttributeEntry'><img src='coui://%s'/> <span class='rf_tacticalTooltipAttributeValue'>%i</span><span class='rf_tacticalTooltipAttributeDelta'>%s</span></span>", _img, _attributeCurrent, attributeDeltaText);
 		}
+		local function formatStringNew( _img, _attributeCurrent, _attributeDelta )
+		{
+			local attributeDeltaText = _attributeDelta == 0 ? "" : "(" + ::MSU.Text.colorizeValue(_attributeDelta, {AddSign = true}) + ")";
+			return format("<span class='rf_tacticalTooltipAttributeEntry'>%s <span class='rf_tacticalTooltipAttributeValue'>%i</span><span class='rf_tacticalTooltipAttributeDelta'>%s</span></span>", _img, _attributeCurrent, attributeDeltaText);
+		}
 		local ret = {
 			id = _startID++,
 			type = "text",
@@ -22,7 +27,16 @@
 		ret.text += formatString("gfx/ui/icons/melee_defense.png", currentProperties.getMeleeDefense(), currentProperties.getMeleeDefense() - baseProperties.getMeleeDefense());
 		ret.text += formatString("gfx/ui/icons/ranged_defense.png", currentProperties.getRangedDefense(), currentProperties.getRangedDefense() - baseProperties.getRangedDefense());
 		ret.text += formatString("gfx/ui/icons/initiative.png", _actor.getInitiative(), _actor.getInitiative() - baseProperties.getInitiative());
+
+		ret.text += formatStringNew("[Img/gfx/ui/icons/melee_skill.png|Concept.MeleeSkill+" + _actor.getID() + "]", currentProperties.getMeleeSkill(), currentProperties.getMeleeSkill() - baseProperties.getMeleeSkill());
+		ret.text += formatStringNew("[Img/gfx/ui/icons/ranged_skill.png|Concept.RangeSkill+" + _actor.getID() + "]", currentProperties.getRangedSkill(), currentProperties.getRangedSkill() - baseProperties.getRangedSkill());
+		ret.text += formatStringNew("[Img/gfx/ui/icons/bravery.png|Concept.Bravery+" + _actor.getID() + "]", currentProperties.getBravery(), currentProperties.getBravery() - baseProperties.getBravery());
+		ret.text += formatStringNew("[Img/gfx/ui/icons/melee_defense.png|Concept.MeleeDefense+" + _actor.getID() + "]", currentProperties.getMeleeDefense(), currentProperties.getMeleeDefense() - baseProperties.getMeleeDefense());
+		ret.text += formatStringNew("[Img/gfx/ui/icons/ranged_defense.png|Concept.RangeDefense+" + _actor.getID() + "]", currentProperties.getRangedDefense(), currentProperties.getRangedDefense() - baseProperties.getRangedDefense());
+		ret.text += formatStringNew("[Img/gfx/ui/icons/initiative.png|Concept.Initiative+" + _actor.getID() + "]", _actor.getInitiative(), _actor.getInitiative() - baseProperties.getInitiative());
+
 		ret.text += "</div>";
+		ret.text = ::Reforged.Mod.Tooltips.parseString(ret.text);
 		return ret;
 	}
 
