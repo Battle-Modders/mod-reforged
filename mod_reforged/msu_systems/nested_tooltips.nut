@@ -258,7 +258,12 @@ local getThresholdForInjury = function( _script )
 	foreach (concept in ::Reforged.NestedTooltips.AutoConcepts)
 	{
 		local c = concept;
-		::Reforged.NestedTooltips.Tooltips.Concept[split(concept, ".").top()] <- ::MSU.Class.CustomTooltip(@(_) ::TooltipScreen.m.TooltipEvents.general_queryUIElementTooltipData(::MSU.getDummyPlayer().getID(), c, null));
+		::Reforged.NestedTooltips.Tooltips.Concept[split(concept, ".").top()] <- ::MSU.Class.CustomTooltip(function ( _data ) {
+			// If ExtraData is not null, we expect it to be the entityId as string which we convert to integer.
+			// TODO: When mod_nested_tooltips provides a standardized function to parse ExtraData we should switch to that.
+			local entityId = _data.ExtraData ? _data.ExtraData.tointeger() : ::MSU.getDummyPlayer().getID();
+			return ::TooltipScreen.m.TooltipEvents.general_queryUIElementTooltipData(entityId, c, null);
+		});
 	}
 
 	::MSU.Table.merge(::Reforged.NestedTooltips.Tooltips.Concept, {
