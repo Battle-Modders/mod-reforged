@@ -2092,7 +2092,8 @@ local vanillaDescriptions = [
 			Type = ::UPD.EffectType.Passive,
 			Description = [
 				"Upon equipping a weapon, temporarily gain the first and second [perk|Concept.Perk] of all of its [perk|Concept.Perk] groups if you have the corresponding [perk|Concept.Perk] in any weapon [perk|Concept.Perk] group regardless of tier.",
-				"For [non-hybrid|Concept.HybridWeapon] weapons, this extends to the third [perk|Concept.Perk] as well."
+				"For [non-hybrid|Concept.HybridWeapon] weapons, this extends to the third [perk|Concept.Perk] as well.",
+				"The perks gained during a battle last until the end of the battle instead of expiring immediately upon unequipping the weapon."
 			]
 		}]
 	}),
