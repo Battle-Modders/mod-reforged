@@ -149,6 +149,21 @@
 		return ret;
 	}}.checkMorale;
 
+	q.kill = @(__original) { function kill( _killer = null, _skill = null, _fatalityType = ::Const.FatalityType.None, _silent = false )
+	{
+		// We use RF_canDropLootForPlayer in order to only count kills, where the player has done more than 50% of the damage
+		if (this.isAlive() && this.m.IsMiniboss && !::Tactical.State.isScenarioMode() && !this.isAlliedWithPlayer() && _killer != null && this.RF_canDropLootForPlayer(_killer))
+		{
+			local currentAmbition = ::World.Ambitions.getActiveAmbition();
+			if (currentAmbition != null && currentAmbition.getID() == "ambition.rf_a_worthy_foe")
+			{
+				::World.Statistics.getFlags().set(currentAmbition.m.CompletionStateFlag, this.getName());
+			}
+		}
+
+		__original(_killer, _skill, _fatalityType, _silent);
+	}}.kill;
+
 	q.onRoundStart = @(__original) { function onRoundStart()
 	{
 		this.m.IsWaitingTurn = false;
