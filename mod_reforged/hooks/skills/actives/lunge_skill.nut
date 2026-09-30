@@ -1,6 +1,4 @@
 ::Reforged.HooksMod.hook("scripts/skills/actives/lunge_skill", function(q) {
-	q.m.MeleeSkillAdd <- -20;
-
 	q.create = @(__original) { function create()
 	{
 		__original();
@@ -30,13 +28,13 @@
 			}
 		]);
 
-		if (this.m.MeleeSkillAdd != 0)
+		if (this.m.HitChanceBonus != 0)
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + " chance to hit"
+				text = "Has " + ::MSU.Text.colorizeValue(this.m.HitChanceBonus, {AddSign = true, AddPercent = true}) + " chance to hit"
 			});
 		}
 
@@ -63,6 +61,11 @@
 		return ret;
 	}}.getTooltip;
 
+	q.getHitChanceModifier <- { function getHitChanceModifier()
+	{
+		return -20;
+	}}.getHitChanceModifier;
+
 	q.onAnySkillUsed = @(__original) { function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		__original(_skill, _targetEntity, _properties);
@@ -70,8 +73,9 @@
 		{
 			if (!this.getContainer().getActor().isPlayerControlled())
 			{
-				_properties.MeleeSkill += this.m.MeleeSkillAdd;
-				// this.m.HitChanceBonus is set by Modular Vanilla based on changes to _properties.MeleeSkill
+				local bonus = this.getHitChanceModifier();
+				_properties.MeleeSkill += bonus;
+				this.m.HitChanceBonus += bonus;
 			}
 		}
 	}}.onAnySkillUsed;

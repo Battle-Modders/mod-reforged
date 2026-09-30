@@ -1,7 +1,5 @@
 this.rf_shield_bash_skill <- ::inherit("scripts/skills/skill", {
-	m = {
-		MeleeSkillAdd = 25
-	},
+	m = {},
 	function create()
 	{
 		this.m.ID = "actives.rf_shield_bash";
@@ -26,7 +24,6 @@ this.rf_shield_bash_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
 		this.m.IsAttack = true;
-		// this.m.HitChanceBonus = 25; // set to 0 by Modular Vanilla
 		this.m.IsIgnoredAsAOO = true;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 15;
@@ -39,13 +36,13 @@ this.rf_shield_bash_skill <- ::inherit("scripts/skills/skill", {
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 
-		if (this.m.MeleeSkillAdd != 0)
+		if (this.m.HitChanceBonus != 0)
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + " chance to hit")
+				text = ::Reforged.Mod.Tooltips.parseString("Has " + ::MSU.Text.colorizeValue(this.m.HitChanceBonus, {AddSign = true, AddPercent = true}) + " chance to hit")
 			});
 		}
 
@@ -92,13 +89,20 @@ this.rf_shield_bash_skill <- ::inherit("scripts/skills/skill", {
 		}
 	}
 
+	function getHitChanceModifier()
+	{
+		return 25;
+	}
+
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
 			_properties.DamageTotalMult = 0.0;
-			_properties.MeleeSkill += this.m.MeleeSkillAdd;
-			// this.m.HitChanceBonus is set by Modular Vanilla based on changes to _properties.MeleeSkill
+
+			local bonus = this.getHitChanceModifier();
+			_properties.MeleeSkill += bonus;
+			this.m.HitChanceBonus += bonus;
 		}
 	}
 });
