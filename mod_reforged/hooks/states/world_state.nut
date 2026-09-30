@@ -22,6 +22,8 @@
 
 	q.onMouseInput = @(__original) { function onMouseInput( _mouse )
 	{
+		local oldCameraZoom = ::World.getCamera().Zoom;
+
 		local ret = __original(_mouse);
 
 		// Hook, in order to increase the interaction range with towns while on a caravan mission
@@ -42,6 +44,15 @@
 						return true;
 					}
 				}
+			}
+		}
+
+		if (oldCameraZoom != ::World.getCamera().Zoom)
+		{
+			// Update the BannerOffsets of all location, as the player just changed the camera zoom with a mouse input
+			foreach (location in ::World.EntityManager.getLocations())
+			{
+				location.adjustBannerOffset();
 			}
 		}
 
