@@ -411,10 +411,7 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 
 			if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush)
 			{
-				// VanillaFix: zombie hair and beard spawning behind head. We add new brushes using vanilla sprites with correct `f` values.
-				// Bug report: https://steamcommunity.com/app/365360/discussions/1/684115425021152205/
-				local spriteName = ::String.replace(sprite_beard.getBrush().Name, "zombie", "rf_draugr") + "_dead";
-				local decal = _tile.spawnDetail(spriteName, ::Const.Tactical.DetailFlag.Corpse, _flip, false, offset);
+				local decal = _tile.spawnDetail(sprite_beard.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, _flip, false, offset);
 				decal.Color = sprite_beard.Color;
 				decal.Saturation = sprite_beard.Saturation;
 				decal.Scale = 0.9;
@@ -422,10 +419,7 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 
 				if (sprite_beard_top.HasBrush)
 				{
-					// VanillaFix: zombie hair and beard spawning behind head. We add new brushes using vanilla sprites with correct `f` values.
-					// Bug report: https://steamcommunity.com/app/365360/discussions/1/684115425021152205/
-					local spriteName = ::String.replace(sprite_beard_top.getBrush().Name, "zombie", "rf_draugr") + "_dead";
-					local decal = _tile.spawnDetail(spriteName, ::Const.Tactical.DetailFlag.Corpse, _flip, false, offset);
+					local decal = _tile.spawnDetail(sprite_beard_top.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, _flip, false, offset);
 					decal.Color = sprite_beard.Color;
 					decal.Saturation = sprite_beard.Saturation;
 					decal.Scale = 0.9;
@@ -443,10 +437,7 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 
 			if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush)
 			{
-				// VanillaFix: zombie hair and beard spawning behind head. We add new brushes using vanilla sprites with correct `f` values.
-				// Bug report: https://steamcommunity.com/app/365360/discussions/1/684115425021152205/
-				local spriteName = ::String.replace(sprite_hair.getBrush().Name, "zombie", "rf_draugr") + "_dead";
-				local decal = _tile.spawnDetail(spriteName, ::Const.Tactical.DetailFlag.Corpse, _flip, false, offset);
+				local decal = _tile.spawnDetail(sprite_hair.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, _flip, false, offset);
 				decal.Color = sprite_hair.Color;
 				decal.Saturation = sprite_hair.Saturation;
 				decal.Scale = 0.9;
@@ -481,10 +472,7 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 
 			if (!appearance.HideBeard && sprite_beard.HasBrush)
 			{
-				// VanillaFix: zombie hair and beard spawning behind head. We add new brushes using vanilla sprites with correct `f` values.
-				// Bug report: https://steamcommunity.com/app/365360/discussions/1/684115425021152205/
-				local spriteName = ::String.replace(sprite_beard.getBrush().Name, "zombie", "rf_draugr") + "_dead";
-				layers.push(spriteName);
+				layers.push(sprite_beard.getBrush().Name + "_dead");
 			}
 
 			if (!appearance.HideCorpseHead)
@@ -495,10 +483,7 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 
 			if (!appearance.HideHair && sprite_hair.HasBrush)
 			{
-				// VanillaFix: zombie hair and beard spawning behind head. We add new brushes using vanilla sprites with correct `f` values.
-				// Bug report: https://steamcommunity.com/app/365360/discussions/1/684115425021152205/
-				local spriteName = ::String.replace(sprite_hair.getBrush().Name, "zombie", "rf_draugr") + "_dead";
-				layers.push(spriteName);
+				layers.push(sprite_hair.getBrush().Name + "_dead");
 			}
 
 			if (appearance.HelmetCorpse.len() != 0)
@@ -508,10 +493,7 @@ this.rf_draugr <- ::inherit("scripts/entity/tactical/actor", {
 
 			if (!appearance.HideBeard && sprite_beard_top.HasBrush)
 			{
-				// VanillaFix: zombie hair and beard spawning behind head. We add new brushes using vanilla sprites with correct `f` values.
-				// Bug report: https://steamcommunity.com/app/365360/discussions/1/684115425021152205/
-				local spriteName = ::String.replace(sprite_beard_top.getBrush().Name, "zombie", "rf_draugr") + "_dead";
-				layers.push(spriteName);
+				layers.push(sprite_beard_top.getBrush().Name + "_dead");
 			}
 
 			local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, ::createVec(0, 0), -90.0, "bust_head_dead_bloodpool_zombified");
