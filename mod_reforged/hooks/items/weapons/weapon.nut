@@ -8,6 +8,18 @@
 			this.m.Reach = ::Math.max(0, this.m.Reach);
 		}
 	}}.create;
+
+	// Vanilla does not allow weapons at their AmmoMax to drop from bag slot.
+	// We want such weapons to drop, so we switcheroo their CurrentSlotType
+	// before running the original function.
+	q.isDroppedAsLoot = @(__original) { function isDroppable()
+	{
+		local original_CurrentSlotType = this.m.CurrentSlotType;
+		this.m.CurrentSlotType = this.m.SlotType;
+		local ret = __original();
+		this.m.CurrentSlotType = original_CurrentSlotType;
+		return ret;
+	}}.isDroppable;
 });
 
 ::Reforged.HooksMod.hook("scripts/items/weapons/weapon", function(q) {
