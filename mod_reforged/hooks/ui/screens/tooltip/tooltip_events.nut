@@ -97,7 +97,8 @@
 		// Add tooltip about zone of control attacks at the starting tile
 		if (!_entity.getCurrentProperties().IsImmuneToZoneOfControl && (_entity.getTile().Properties.Effect == null || _entity.getTile().Properties.Effect.Type != "smoke"))
 		{
-			local attacks = ::Tactical.Entities.getAdjacentActors(_entity.getTile()).filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, false))
+			local attacks = ::Tactical.Entities.getAdjacentActors(_entity.getTile())
+							.filter(@(_, _a) !_a.isAlliedWith(_entity) && _a.onMovementInZoneOfControl(_entity, false) && ::Math.abs(_entity.getTile().Level - _a.getTile().Level) <= 1)
 							.map(function(_a) {
 								local aoo = _a.getSkills().getAttackOfOpportunity();
 								return {
@@ -267,7 +268,7 @@
 		if (!entity.getCurrentProperties().IsImmuneToZoneOfControl && (destTile.Properties.Effect == null || destTile.Properties.Effect.Type != "smoke"))
 		{
 			local spearwallAttacks = ::Tactical.Entities.getAdjacentActors(entity.getPreviewMovement().End)
-									.filter(@(_, _a) !_a.isAlliedWith(entity) && _a.onMovementInZoneOfControl(entity, true))
+									.filter(@(_, _a) !_a.isAlliedWith(entity) && _a.onMovementInZoneOfControl(entity, true) && ::Math.abs(destTile.Level - _a.getTile().Level) <= 1)
 									.map(function(_a) {
 										local aoo = _a.getSkills().getAttackOfOpportunity();
 										_a.getSkills().update();
