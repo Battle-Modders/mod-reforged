@@ -3,9 +3,26 @@
 	q.tactical_queryTileTooltipData = @(__original) { function tactical_queryTileTooltipData()
 	{
 		local ret = __original();
-		if (ret != null && ::Tactical.State.getLastTileHovered().IsEmpty && ::Tactical.State.getCurrentActionState() == ::Const.Tactical.ActionState.ComputePath)
+		if (ret == null)
+			return ret;
+
+		local lastTileHovered = ::Tactical.State.getLastTileHovered();
+
+		if (lastTileHovered.IsEmpty && ::Tactical.State.getCurrentActionState() == ::Const.Tactical.ActionState.ComputePath)
 		{
 			ret.extend(this.RF_getHitchancesForMovementPreview(::Tactical.TurnSequenceBar.getActiveEntity()));
+		}
+
+		if (!lastTileHovered.IsOccupiedByActor && lastTileHovered.Items != null)
+		{
+			foreach (entry in ret)
+			{
+				if ("useItemPath" in entry && entry.type == "icons")
+				{
+					entry.icons = lastTileHovered.Items.map(@(_item) ::Reforged.Mod.Tooltips.parseString(format("[Img/gfx/ui/items/%s|Obj+%s,contentType:ui-item]", _item.getIcon(), ::Reforged.Mod.Tooltips.parseObject(_item))));
+					break;
+				}
+			}
 		}
 		return ret;
 	}}.tactical_queryTileTooltipData;
