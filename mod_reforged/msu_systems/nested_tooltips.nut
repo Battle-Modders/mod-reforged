@@ -258,15 +258,10 @@ local getThresholdForInjury = function( _script )
 	foreach (concept in ::Reforged.NestedTooltips.AutoConcepts)
 	{
 		local c = concept;
-		::Reforged.NestedTooltips.Tooltips.Concept[split(concept, ".").top()] <- ::MSU.Class.CustomTooltip(function (_data) {
-			::logWarning("Reforged: concept " + concept + " CustomTooltip function _data");
-			local owner = ::MSU.getDummyPlayer().getID();
-			if ("entityId" in _data && "TooltipEvents" in this.getroottable())
-			{
-				owner = _data.entityId;
-				::logWarning("Reforged: owner = _data.entityId: " + _data.entityId);
-			}
-			return ::TooltipScreen.m.TooltipEvents.general_queryUIElementTooltipData(owner, c, null);
+		::Reforged.NestedTooltips.Tooltips.Concept[split(concept, ".").top()] <- ::MSU.Class.CustomTooltip(function ( _data ) {
+			// If ExtraData is not null, we expect it to be the entityId as string which we convert to integer.
+			local entityId = _data.ExtraData != null ? _data.ExtraData.tointeger() : ::MSU.getDummyPlayer().getID();
+			return ::TooltipScreen.m.TooltipEvents.general_queryUIElementTooltipData(entityId, c, null);
 		});
 	}
 
