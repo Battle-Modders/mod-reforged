@@ -10,13 +10,12 @@
 		local ret = this.skill.getHitFactors(_targetTile);
 		local targetEntity = _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null;
 		local bonusDamage = 1.0 - targetEntity.getHitpoints() / (targetEntity.getHitpointsMax() * 1.0);
-		bonusDamage = ::Math.ceil(bonusDamage * 100);
 
-		if (bonusDamage >= 1)
+		if (bonusDamage >= 0.01)
 		{
 			ret.push({
 				icon = this.m.Icon, // In case decap has icon variants in the future
-				text = ::MSU.Text.colorPositive(bonusDamage + "%") + " bonus damage based on current injury"
+				text = ::MSU.Text.colorizePct(bonusDamage) + " bonus damage based on current injury"
 			});
 		}
 
