@@ -6,10 +6,13 @@
 			return null;
 
 		local ret = __original(_data);
+		if (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_HighlightEnabled").getValue() == false)
+			return ret;
+		
 		if (ret != null && ::isKindOf(entity, "actor") && entity.isAlive() && !entity.isDying()
 			&& entity.isDiscovered() && !entity.isHiddenToPlayer())
 			{
-				entity.RF_showArrowTemporary();
+				entity.RF_showArrowTemporary(::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_HighlightDuration").getValue()*1000);
 			}
 		return ret;
 	}}.general_queryEntityNestedTooltipData;

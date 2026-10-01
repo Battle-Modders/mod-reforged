@@ -42,6 +42,11 @@
 
 	tooltipsPage.addEnumSetting("TacticalTooltip_MovementPreviewHitchances", "All", ["All", "AI Only", "Player Only", "None"], "Show Predicted Hitchances", "During movement preview, show predicted chance to hit and to be hit based on the hovered tile.");
 	tooltipsPage.addRangeSetting("TacticalTooltip_CollapseHitchanceThreshold", 5, 0, 100, 1, "Collapse Hitchance Threshold", "During movement preview, opponents with predicted hitchance equal to this or less are collapsed into a single tooltip entry.");
+		
+	tooltipsPage.addDivider("Tooltips_Divider3");
+	tooltipsPage.addTitle("Tooltips_Title_EntityHighlight", "Entity Highlight");
+	tooltipsPage.addBooleanSetting("TacticalTooltip_HighlightEnabled", true,"Enable Highlight", "Highlight actor with arrow when mousing over an actor in nested tooltip");
+	tooltipsPage.addRangeSetting("TacticalTooltip_HighlightDuration", 2, 0.5, 5, 0.1, "Highlight Duration", "The duration (second) of the arrow displayed when mousing over an actor.");
 }
 { // Debug page
 	local debugPage = ::Reforged.Mod.ModSettings.addPage("Debug", "Debug & Dev");
