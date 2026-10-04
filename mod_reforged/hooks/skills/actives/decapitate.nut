@@ -15,7 +15,7 @@
 		{
 			ret.push({
 				icon = this.m.Icon, // In case decap has icon variants in the future
-				text = ::MSU.Text.colorizePct(bonusDamage) + " bonus damage based on current injury"
+				text = ::MSU.Text.colorizePct(bonusDamage) + " more damage"
 			});
 		}
 
