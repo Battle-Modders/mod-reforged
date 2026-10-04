@@ -14,7 +14,7 @@
 		if (bonusDamage >= 0.01)
 		{
 			ret.push({
-				icon = this.m.Icon, // In case decap has icon variants in the future
+				icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedSkillImage(this, "entityId:" + this.getContainer().getActor().getID())),
 				text = ::MSU.Text.colorizePct(bonusDamage) + " more damage"
 			});
 		}
