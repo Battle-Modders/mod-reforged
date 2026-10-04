@@ -73,7 +73,7 @@ this.rf_sword_thrust_skill <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill == this)
 		{
-			if (!this.getContainer().getActor().isPlayerControlled())
+			if (this.getContainer().getActor().isPlayerControlled())
 			{
 				_properties.MeleeSkill += this.m.MeleeSkillAdd;
 			}
