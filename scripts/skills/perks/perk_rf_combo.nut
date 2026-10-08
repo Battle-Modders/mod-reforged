@@ -34,7 +34,7 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using a non-free skill, [waiting|Concept.Wait] or ending your [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using a skill that costs [Action Points|Concept.ActionPoints], [waiting|Concept.Wait] or ending your [turn|Concept.Turn]")
 		});
 		return ret;
 	}
@@ -44,26 +44,16 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		// We do this in onBeforeAnySkillExecuted because some skills remove themselves after executing them
 		// or some other effects may be triggered which may change the skill's ActionPointCost after execution
 		// and in both these cases getActionPointCost() will not give us the intended value in onAnySkillExecuted
-		if (!_forFree)
-		{
-			this.m.IsUsingValidSkill = _skill.getActionPointCost() != 0;
-		}
+		this.m.IsUsingValidSkill = !(_forFree || _skill.getActionPointCost() == 0);
 	}
 
 	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		// free skill does not interfere with combo at all
-		if (_forFree)
+		if (!this.m.IsUsingValidSkill)
 			return;
 
-		if (this.m.IsInEffect)
-		{
-			this.m.IsInEffect = false;
-		}
-		else if (this.m.IsUsingValidSkill)
-		{
-			this.m.IsInEffect = true;
-		}
+		this.m.IsInEffect = !this.m.IsInEffect;
 	}
 
 	function onAfterUpdate( _properties )
@@ -73,9 +63,9 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 
 		// When previewing a skill while already in effect, we want to show the effect will be lost
 		// If not already in effect, we want to show that the effect will be available after the previewed skill is used
-		if (actor.isPreviewing() && actor.getPreviewSkill() != null)
+		if (actor.isPreviewing() && actor.getPreviewSkill() != null && actor.getPreviewSkill().getActionPointCost() != 0)
 		{
-			applyEffect = !this.m.IsInEffect && actor.getPreviewSkill().getActionPointCost() != 0;
+			applyEffect = !applyEffect;
 		}
 
 		if (applyEffect)
