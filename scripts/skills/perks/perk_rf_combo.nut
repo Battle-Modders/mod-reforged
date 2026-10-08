@@ -52,10 +52,13 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 
 	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
+		// free skill does not interfere with combo at all
+		if (_forFree)
+			return;
+
 		if (this.m.IsInEffect)
 		{
-			if (!_forFree)
-				this.m.IsInEffect = false;
+			this.m.IsInEffect = false;
 		}
 		else if (this.m.IsUsingValidSkill)
 		{
