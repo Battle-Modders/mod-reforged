@@ -3,7 +3,7 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		ActionPointCostModifier = -1,
 		ActionPointCostMin = 3,
 		IsInEffect = false,
-		IsUsingValidSkill = false, // Set during onBeforeAnySkillExecuted to check if during onAnySkillExecuted we should activate the perk's effect
+		IsUsingValidSkill = false // Set during onBeforeAnySkillExecuted to check if during onAnySkillExecuted we should activate the perk's effect
 	},
 	function create()
 	{
