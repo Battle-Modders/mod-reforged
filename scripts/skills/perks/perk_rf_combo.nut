@@ -3,7 +3,8 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		ActionPointCostModifier = -1,
 		ActionPointCostMin = 3,
 		IsInEffect = false,
-		IsUsingValidSkill = false // Set during onBeforeAnySkillExecuted to check if during onAnySkillExecuted we should activate the perk's effect
+		IsUsingValidSkill = false, // Set during onBeforeAnySkillExecuted to check if during onAnySkillExecuted we should activate the perk's effect
+		IsUsingFreeSkill = false // Set during onBeforeAnySkillExecuted to check if the skill being used was for free
 	},
 	function create()
 	{
@@ -34,7 +35,7 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/warning.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using a non-free skill, [waiting|Concept.Wait] or ending your [turn|Concept.Turn]")
+			text = ::Reforged.Mod.Tooltips.parseString("Will expire upon using a skill that costs [Action Points|Concept.ActionPoints], [waiting|Concept.Wait] or ending your [turn|Concept.Turn]")
 		});
 		return ret;
 	}
@@ -44,16 +45,14 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		// We do this in onBeforeAnySkillExecuted because some skills remove themselves after executing them
 		// or some other effects may be triggered which may change the skill's ActionPointCost after execution
 		// and in both these cases getActionPointCost() will not give us the intended value in onAnySkillExecuted
-		if (!_forFree)
-		{
-			this.m.IsUsingValidSkill = _skill.getActionPointCost() != 0;
-		}
+		this.m.IsUsingFreeSkill = _forFree || _skill.getActionPointCost() == 0;
+		this.m.IsUsingValidSkill = !this.m.IsUsingFreeSkill;
 	}
 
 	function onAnySkillExecutedFully( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		// free skill does not interfere with combo at all
-		if (_forFree)
+		if (this.m.IsUsingFreeSkill)
 			return;
 
 		if (this.m.IsInEffect)
