@@ -16,6 +16,7 @@
 		this.getSkills().add(::new("scripts/skills/special/rf_reach"));
 		this.getSkills().add(::new("scripts/skills/special/rf_formidable_approach_manager"));
 		this.getSkills().add(::new("scripts/skills/special/rf_direct_damage_limiter"));
+		this.getSkills().add(::new("scripts/skills/special/rf_damage_type_mitigation"));
 		this.getSkills().add(::new("scripts/skills/special/rf_polearm_adjacency"));
 		this.getSkills().add(::new("scripts/skills/special/rf_follow_up_proccer"));
 		this.getSkills().add(::new("scripts/skills/special/rf_inspiring_presence_buff_effect"));
