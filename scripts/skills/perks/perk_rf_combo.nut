@@ -53,14 +53,7 @@ this.perk_rf_combo <- ::inherit("scripts/skills/skill", {
 		if (!this.m.IsUsingValidSkill)
 			return;
 
-		if (this.m.IsInEffect)
-		{
-			this.m.IsInEffect = false;
-		}
-		else if (this.m.IsUsingValidSkill)
-		{
-			this.m.IsInEffect = true;
-		}
+		this.m.IsInEffect = !this.m.IsInEffect;
 	}
 
 	function onAfterUpdate( _properties )
