@@ -30,7 +30,6 @@ this.rf_sword_thrust_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsWeaponSkill = true;
 		this.m.InjuriesOnBody = ::Const.Injury.PiercingBody;
 		this.m.InjuriesOnHead = ::Const.Injury.PiercingHead;
-		// this.m.HitChanceBonus = -20; Set to 0 by Modular Vanilla
 		this.m.DirectDamageMult = 0.25;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 10;
@@ -76,8 +75,8 @@ this.rf_sword_thrust_skill <- ::inherit("scripts/skills/skill", {
 			if (this.getContainer().getActor().isPlayerControlled())
 			{
 				_properties.MeleeSkill += this.m.MeleeSkillAdd;
+				this.m.HitChanceBonus += this.m.MeleeSkillAdd;
 			}
-			// this.m.HitChanceBonus is set by Modular Vanilla based on changes to _properties.MeleeSkill
 		}
 	}
 });

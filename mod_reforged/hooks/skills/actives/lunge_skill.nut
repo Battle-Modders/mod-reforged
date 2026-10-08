@@ -71,7 +71,7 @@
 			if (this.getContainer().getActor().isPlayerControlled())
 			{
 				_properties.MeleeSkill += this.m.MeleeSkillAdd;
-				// this.m.HitChanceBonus is set by Modular Vanilla based on changes to _properties.MeleeSkill
+				this.m.HitChanceBonus += this.m.MeleeSkillAdd;
 			}
 		}
 	}}.onAnySkillUsed;
