@@ -32,8 +32,13 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			// "[Action Point|Concept.ActionPoints] costs of piercing dagger attacks are reduced by 2 to a minimum of 2" - we make the assumption that this will always reduce ap cost
-			text = ::Reforged.Mod.Tooltips.parseString(format("[Action Point|Concept.ActionPoints] costs of%s%s attacks are reduced by %s to a minimum of %i", damageTypeString, weaponTypeString, ::MSU.Text.colorizeValue( - this.m.ActionPointCostModifier, {AddSign = false}), this.m.ActionPointCostMin))
+			// "Piercing dagger attacks cost -2(green) [Action Point|Concept.ActionPoints] to a minimum of 2"
+			text = ::Reforged.Mod.Tooltips.parseString(format("%s%s%s cost %s [Action Point|Concept.ActionPoints] to a minimum of %i",
+														damageTypeString,
+														weaponTypeString,
+														attacksString,
+														::MSU.Text.colorizeValue(this.m.ActionPointCostModifier, {InvertColor = true, AddSign = true}),
+														this.m.ActionPointCostMin))
 		});
 
 		ret.push({
