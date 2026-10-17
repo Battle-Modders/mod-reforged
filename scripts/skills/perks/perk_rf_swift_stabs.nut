@@ -28,6 +28,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 
 		local weaponTypeString = this.m.RequiredWeaponType == null ? "" : " " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower();
 		local damageTypeString = this.m.RequiredDamageType == null ? "" : " " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType).tolower();
+		local attacksString = damageTypeString == "" && weaponTypeString == "" ? "Attacks" : " attacks";
 		ret.push({
 			id = 10,
 			type = "text",
