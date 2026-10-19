@@ -78,7 +78,6 @@
 			::Const.World.Spawn.Troops.SkeletonMediumPolearm,
 			::Const.World.Spawn.Troops.RF_SkeletonMediumElite,
 			::Const.World.Spawn.Troops.RF_SkeletonMediumElitePolearm,
-			::Const.World.Spawn.Troops.RF_SkeletonHeavyLesser,
 			::Const.World.Spawn.Troops.SkeletonHeavy,
 			::Const.World.Spawn.Troops.SkeletonPriest,
 			::Const.World.Spawn.Troops.Vampire
