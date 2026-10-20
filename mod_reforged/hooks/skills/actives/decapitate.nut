@@ -4,4 +4,21 @@
 		__original();
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Decapitate;
 	}}.create;
+
+	q.getHitFactors = @() { function getHitFactors( _targetTile )
+	{
+		local ret = this.skill.getHitFactors(_targetTile);
+		local targetEntity = _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null;
+		local bonusDamage = 1.0 - targetEntity.getHitpoints() / (targetEntity.getHitpointsMax() * 1.0);
+
+		if (bonusDamage >= 0.01)
+		{
+			ret.push({
+				icon = ::Reforged.Mod.Tooltips.parseString(::Reforged.NestedTooltips.getNestedSkillImage(this, "entityId:" + this.getContainer().getActor().getID())),
+				text = ::MSU.Text.colorizePct(bonusDamage) + " more damage"
+			});
+		}
+
+		return ret;
+	}}.getHitFactors
 });
