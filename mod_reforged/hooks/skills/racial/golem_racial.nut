@@ -53,34 +53,40 @@
 				id = 24,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Immune to being knocked back or grabbed"
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to [$ $|Skill+withered_effect]")
 			},
 			{
 				id = 25,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Immune to fire"
+				text = "Immune to being knocked back or grabbed"
 			},
 			{
 				id = 26,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [$ $|Skill+disarmed_effect]")
+				text = "Immune to fire"
 			},
 			{
 				id = 27,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [$ $|Skill+stunned_effect]")
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [$ $|Skill+disarmed_effect]")
 			},
 			{
 				id = 28,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Reforged.Mod.Tooltips.parseString("Immune to being [$ $|Skill+stunned_effect]")
+			},
+			{
+				id = 29,
 				type = "text",
 				icon = "ui/icons/morale.png",
 				text = ::Reforged.Mod.Tooltips.parseString("Not affected by [Morale|Concept.Morale]")
 			},
 			{
-				id = 29,
+				id = 30,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Cannot receive hits to the head"
