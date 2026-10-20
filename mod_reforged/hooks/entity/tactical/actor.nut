@@ -425,6 +425,15 @@
 
 		__original(_killer, _skill, _tile, _fatalityType);
 	}}.onDeath;
+
+	q.addDefaultStatusSprites = @(__original){ function addDefaultStatusSprites()
+	{
+		__original();
+		local beckoned = this.addSprite("status_beckoned");
+		beckoned.setBrush("effect_heart_01");
+		this.setSpriteOffset("status_beckoned", this.createVec(0,70));
+		beckoned.Visible = false;
+	}}.addDefaultStatusSprites
 });
 
 ::Reforged.QueueBucket.Late.push(function() {
