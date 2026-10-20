@@ -1,4 +1,22 @@
 ::Reforged.HooksMod.hook("scripts/ui/screens/tooltip/tooltip_events", function(q) {
+	q.general_queryEntityNestedTooltipData = @(__original) { function general_queryEntityNestedTooltipData( _data )
+	{
+		local entity = ::Tactical.getEntityByID(_data.entityId);
+		if (::MSU.isNull(entity) || !entity.isPlacedOnMap())
+			return null;
+
+		local ret = __original(_data);
+		if (::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_HighlightEnabled").getValue() == false)
+			return ret;
+		
+		if (ret != null && ::isKindOf(entity, "actor") && entity.isAlive() && !entity.isDying()
+			&& entity.isDiscovered() && !entity.isHiddenToPlayer())
+			{
+				entity.RF_showArrowTemporary(::Reforged.Mod.ModSettings.getSetting("TacticalTooltip_HighlightDuration").getValue()*1000);
+			}
+		return ret;
+	}}.general_queryEntityNestedTooltipData;
+
 	// Add info about potential attacks of opportunity during movement preview
 	q.tactical_queryTileTooltipData = @(__original) { function tactical_queryTileTooltipData()
 	{
