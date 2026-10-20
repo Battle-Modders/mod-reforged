@@ -29,6 +29,7 @@
 		// this.m.Skills.add(::new("scripts/skills/actives/recover_skill"));	// Now granted to all humans by default
 
 		//Reforged
+		b.TargetAttractionMult = 1.1;
 		b.RangedDefense += 15;
 		this.m.Skills.add(::new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(::new("scripts/skills/perks/perk_footwork"));
