@@ -27,7 +27,7 @@ this.rf_whimpering_veil_effect <- ::inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = ::Reforged.Mod.Tooltips.parseString("Melee attackers must pass [morale checks|Concept.Morale] equal to the number of [morale|Concept.Morale] states they are below " + ::Const.MoraleStateName[this.m.MoraleStateRequired] " in order to do damage")
+			text = ::Reforged.Mod.Tooltips.parseString("To inflict damage, melee attackers must pass [morale checks|Concept.Morale] equal to the number of [morale|Concept.Morale] states they are below " + ::Const.MoraleStateName[this.m.MoraleStateRequired])
 		});
 		ret.push({
 			id = 11,
