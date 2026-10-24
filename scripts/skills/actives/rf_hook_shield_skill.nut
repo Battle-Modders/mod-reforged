@@ -45,7 +45,7 @@ this.rf_hook_shield_skill <- ::inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 25;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
-		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.KnockOut;
+		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.RF_HookShield;
 	}
 
 	function getTooltip()
