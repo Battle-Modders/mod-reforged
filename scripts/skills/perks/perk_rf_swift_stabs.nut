@@ -34,7 +34,7 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 			type = "text",
 			icon = "ui/icons/action_points.png",
 			// "Piercing dagger attacks cost -2(green) [Action Point|Concept.ActionPoints] to a minimum of 2"
-			text = ::Reforged.Mod.Tooltips.parseString(format("%s%s%s cost %s [Action Point|Concept.ActionPoints] to a minimum of %i",
+			text = ::Reforged.Mod.Tooltips.parseString(format("%s%s%s cost %s [Action Point(s)|Concept.ActionPoints] to a minimum of %i",
 														damageTypeString,
 														weaponTypeString,
 														attacksString,
