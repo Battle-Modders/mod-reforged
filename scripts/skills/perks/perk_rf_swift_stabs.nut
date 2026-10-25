@@ -28,11 +28,18 @@ this.perk_rf_swift_stabs <- ::inherit("scripts/skills/skill", {
 
 		local weaponTypeString = this.m.RequiredWeaponType == null ? "" : " " + ::Const.Items.getWeaponTypeName(this.m.RequiredWeaponType).tolower();
 		local damageTypeString = this.m.RequiredDamageType == null ? "" : " " + ::Const.Damage.getDamageTypeName(this.m.RequiredDamageType).tolower();
+		local attacksString = damageTypeString == "" && weaponTypeString == "" ? "Attacks" : " attacks";
 		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = ::Reforged.Mod.Tooltips.parseString(format("[Action Point|Concept.ActionPoints] costs of%s%s attacks are %s by %s to a minimum of %i", damageTypeString, weaponTypeString, ::MSU.Text.colorizeValue(this.m.ActionPointCostModifier, {InvertColor = true, AddSign = true}), this.m.ActionPointCostMin))
+			// "Piercing dagger attacks cost -2(green) [Action Point|Concept.ActionPoints] to a minimum of 2"
+			text = ::Reforged.Mod.Tooltips.parseString(format("%s%s%s cost %s [Action Point(s)|Concept.ActionPoints] to a minimum of %i",
+														damageTypeString,
+														weaponTypeString,
+														attacksString,
+														::MSU.Text.colorizeValue(this.m.ActionPointCostModifier, {InvertColor = true, AddSign = true}),
+														this.m.ActionPointCostMin))
 		});
 
 		ret.push({
