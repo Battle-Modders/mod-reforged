@@ -26,7 +26,6 @@ this.rf_shield_bash_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
 		this.m.IsAttack = true;
-		// this.m.HitChanceBonus = 25; // set to 0 by Modular Vanilla
 		this.m.IsIgnoredAsAOO = true;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 15;
@@ -98,7 +97,7 @@ this.rf_shield_bash_skill <- ::inherit("scripts/skills/skill", {
 		{
 			_properties.DamageTotalMult = 0.0;
 			_properties.MeleeSkill += this.m.MeleeSkillAdd;
-			// this.m.HitChanceBonus is set by Modular Vanilla based on changes to _properties.MeleeSkill
+			this.m.HitChanceBonus += this.m.MeleeSkillAdd;
 		}
 	}
 });
