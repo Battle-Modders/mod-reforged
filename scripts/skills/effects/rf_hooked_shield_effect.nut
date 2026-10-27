@@ -132,18 +132,4 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 			text = ::MSU.Text.colorPositive(bonus + "% ") + this.getName()
 		});
 	}
-
-	function onQueryTooltip( _skill, _tooltip )
-	{
-		if (_skill.getID() == "effects.rf_rebuke" && !this.isHidden())
-		{
-			local filename = ::IO.scriptFilenameByHash(this.ClassNameHash).split("/").top();
-			_tooltip.push({
-				id = 7,
-				type = "text",
-				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Is disabled because of [" + this.getName() + "|Skill+" + filename"]"))
-			});
-		}
-	}
 });
