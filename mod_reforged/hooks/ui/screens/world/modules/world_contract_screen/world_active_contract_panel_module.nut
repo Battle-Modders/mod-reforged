@@ -2,10 +2,8 @@
 	q.m.SelectionClickedArray <- [];
 	q.onActiveContractDetailsClicked <- { function onActiveContractDetailsClicked()
 	{
-		// Map size: 140 x 170 tiles
-		// This does not translate entirely to the Pos style distances, but 25000 radius covers the whole map
-		local centerTile = ::World.getTileSquare(70, 85);
-		local entities = ::World.getAllEntitiesAtPos(centerTile, 25000);
+		// A radius this large covers the whole map, whatever its size
+		local entities = ::World.getAllEntitiesAtPos(::createVec(0, 0), 1.0e9);
 		local markedEntites = entities.filter(function(_idx, _entity){
 			return _entity.getSprite("selection").Visible && _entity.isDiscovered();
 		})
