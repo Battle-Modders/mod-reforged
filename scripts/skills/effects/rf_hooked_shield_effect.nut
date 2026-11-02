@@ -137,12 +137,11 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 	{
 		if (_skill.getID() == "perk.rf_rebuke" && !this.isHidden())
 		{
-			// Hard coded skill name as this is exclusively used in hooked shield effect here
 			_tooltip.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Is disabled because of [Hooked Shield|Skill+rf_hooked_shield_effect]"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative(format("Disabled due to %s", ::Reforged.NestedTooltips.getNestedSkillName(this, "entityId:" + this.getContainer().getActor().getID()))))
 			});
 		}
 	}
