@@ -5,9 +5,9 @@
 		this.m.AIBehaviorID = ::Const.AI.Behavior.ID.Decapitate;
 	}}.create;
 
-	q.getHitFactors = @() { function getHitFactors( _targetTile )
+	q.getHitFactors = @(__original) { function getHitFactors( _targetTile )
 	{
-		local ret = this.skill.getHitFactors(_targetTile);
+		local ret = __original(_targetTile);
 		local targetEntity = _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null;
 		local bonusDamage = 1.0 - targetEntity.getHitpoints() / (targetEntity.getHitpointsMax() * 1.0);
 
