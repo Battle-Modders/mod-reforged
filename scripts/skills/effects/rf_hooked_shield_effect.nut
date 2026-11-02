@@ -135,14 +135,13 @@ this.rf_hooked_shield_effect <- ::inherit("scripts/skills/skill", {
 
 	function onQueryTooltip( _skill, _tooltip )
 	{
-		if (_skill.getID() == "effects.rf_rebuke" && !this.isHidden())
+		if (_skill.getID() == "perk.rf_rebuke" && !this.isHidden())
 		{
-			local filename = ::IO.scriptFilenameByHash(this.ClassNameHash).split("/").top();
 			_tooltip.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative("Is disabled because of [" + this.getName() + "|Skill+" + filename"]"))
+				text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative(format("Disabled due to %s", ::Reforged.NestedTooltips.getNestedSkillName(this, "entityId:" + this.getContainer().getActor().getID()))))
 			});
 		}
 	}
