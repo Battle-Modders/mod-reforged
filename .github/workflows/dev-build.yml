@@ -112,7 +112,10 @@ jobs:
           "core_changed=$($coreChanged.ToString().ToLower())" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           "assets_changed=$($assetsChanged.ToString().ToLower())" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
           "latest_stable_tag=$latestStableTag" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          "short_sha=$("${env:GITHUB_SHA}".Substring(0,7))" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          # Use the checked-out development HEAD, not GITHUB_SHA (the commit that triggered the run, which can be on another branch)
+          $headSha = git rev-parse HEAD
+          "head_sha=$headSha" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "short_sha=$($headSha.Substring(0,7))" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
       # ------------------------------------------------------------
       # 4. Compute Version Numbers
@@ -257,7 +260,7 @@ jobs:
         if: steps.check.outputs.skip != 'true' && env.IS_AI_REPHRASE_ACTIVE == 'true'
         uses: ./mod_reforged/.github/actions/ai-rephrase
         with:
-          notes: "${{ steps.tech_notes.outputs.feats_fixes }}\n${{ steps.tech_notes.outputs.others }}"
+          items_file: ${{ steps.tech_notes.outputs.items_file }}
           api_key: ${{ secrets.GEMINI_API_KEY }}
           system_instructions: ${{ vars.AI_SYSTEM_INSTRUCTIONS_RELEASE_NOTES }}
           models: ${{ vars.GEMINI_TEXT_MODELS }}
@@ -402,9 +405,9 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          # Use the GITHUB_SHA directly for the tag
-          Write-Host "Moving dev-latest to ${env:GITHUB_SHA}"
-          git tag -f dev-latest ${env:GITHUB_SHA}
+          $headSha = "${{ steps.check.outputs.head_sha }}"
+          Write-Host "Moving dev-latest to $headSha"
+          git tag -f dev-latest $headSha
           git push origin dev-latest --force
 
       # 13. Publish rolling dev release
@@ -491,9 +494,9 @@ jobs:
           if ($env:NEW_NOTES) {
               $notes = $env:NEW_NOTES
 
-              # Remove PR references (e.g., (#123)) and commit SHAs (7-40 hex chars, bracketed or bare)
-              $notes = $notes -replace '\s*\(\#\d+\)', ''
-              $notes = $notes -replace '\s*\[?[a-f0-9]{7,40}\]?', ''
+              # Remove PR references (e.g., (#123)) and bracketed commit SHAs (e.g., [abc1234])
+              $notes = $notes -creplace '\s*\(#\d+\)', ''
+              $notes = $notes -creplace '\s*\[[0-9a-f]{7,40}\]', ''
 
               $aiNotice = if ($env:IS_AI_REPHRASE_ACTIVE -eq "true") { "*Some or all of these notes were generated with the help of AI.*`n" } else { "" }
               $notes = $aiNotice + $notes

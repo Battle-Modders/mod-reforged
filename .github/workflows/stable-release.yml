@@ -207,7 +207,7 @@ jobs:
         if: steps.find-tag.outputs.skip != 'true' && env.IS_AI_REPHRASE_ACTIVE == 'true'
         uses: ./repo/.github/actions/ai-rephrase
         with:
-          notes: "${{ steps.tech_notes.outputs.feats_fixes }}\n${{ steps.tech_notes.outputs.others }}"
+          items_file: ${{ steps.tech_notes.outputs.items_file }}
           api_key: ${{ secrets.GEMINI_API_KEY }}
           system_instructions: ${{ vars.AI_SYSTEM_INSTRUCTIONS_RELEASE_NOTES }}
           models: ${{ vars.GEMINI_TEXT_MODELS }}

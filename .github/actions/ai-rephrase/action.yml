@@ -1,24 +1,24 @@
 name: 'AI Rephrase'
-description: 'Rephrases technical notes using Gemini or a local fallback'
+description: 'Rephrases changelog items using Gemini or a local fallback'
 inputs:
-  notes:
-    description: 'The technical notes to rephrase'
+  items_file:
+    description: 'Path to the JSON items file from the generate-changelog action'
     required: true
   api_key:
     description: 'Gemini API Key'
     required: false
   system_instructions:
-    description: 'Instructions for the AI'
+    description: 'Instructions for the AI (style and wording only; output format and refs are handled by this action)'
     required: true
   models:
     description: 'Comma-separated list of Gemini models'
     required: true
 outputs:
   friendly_with_sha:
-    description: 'Rephrased notes with commit SHAs preserved'
+    description: 'Rephrased notes with PR numbers and commit SHAs'
     value: ${{ steps.ai.outputs.friendly_with_sha }}
   friendly_no_sha:
-    description: 'Rephrased notes with commit SHAs removed'
+    description: 'Rephrased notes without PR numbers and commit SHAs'
     value: ${{ steps.ai.outputs.friendly_no_sha }}
 
 runs:
@@ -27,14 +27,19 @@ runs:
     - name: AI Logic
       id: ai
       env:
-        INPUT_NOTES: ${{ inputs.notes }}
+        INPUT_ITEMS_FILE: ${{ inputs.items_file }}
         INPUT_API_KEY: ${{ inputs.api_key }}
         INPUT_SYSTEM_INSTRUCTIONS: ${{ inputs.system_instructions }}
         INPUT_MODELS: ${{ inputs.models }}
       shell: pwsh
       run: |
-        $notes = $env:INPUT_NOTES
+        # The AI only rewrites the text of each item. Refs, prefixes, headers and bullet structure
+        # are added here, so the AI can neither invent entries nor alter commit/PR references.
         $apiKey = $env:INPUT_API_KEY
+        $items = @()
+        if ($env:INPUT_ITEMS_FILE -and (Test-Path $env:INPUT_ITEMS_FILE)) {
+            $items = @(Get-Content $env:INPUT_ITEMS_FILE -Raw -Encoding utf8 | ConvertFrom-Json)
+        }
 
         function Write-Outputs($text) {
             $d1 = [guid]::NewGuid().ToString()
@@ -44,33 +49,111 @@ runs:
 
             $d2 = [guid]::NewGuid().ToString()
             "friendly_no_sha<<$d2" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-            ($text -replace '\s*\[[a-f0-9]+\]', '') | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+            ($text -creplace '(?m) (\(#\d+\)|\[[0-9a-f]{7,40}\])(?=\r?$)', '') | Out-File -FilePath $env:GITHUB_OUTPUT -Append
             "$d2" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
         }
 
-        $fallback = $notes -replace '(?m)^- (?<msg>[^\r\n]+)(?s:.*?)(?<sha> \[[a-f0-9]+\])?\s*(?=\r?\n- |\r?\n### |$)', '- ${msg}${sha}'
+        # Single line of plain text without anything that looks like a ref: (#123), [abc1234], [10 ++--], bare SHAs
+        function Get-CleanText($s) {
+            if (-not $s) { return "" }
+            $s = (([string]$s -split '\r?\n') | ForEach-Object { $_.Trim() } | Where-Object { $_ }) -join " "
+            $s = $s -creplace '^([-*]|#+)\s+', ''
+            $s = $s -creplace '^Vanilla Fix:?\s*', ''
+            $s = $s -creplace '\s*\(#\d+\)', ''
+            $s = $s -creplace '\s*\[[0-9a-fA-F+\-\s]*\]', ''
+            $s = $s -creplace '\s*\b(?=[0-9a-f]*[0-9])(?=[0-9a-f]*[a-f])[0-9a-f]{7,40}\b', ''
+            ($s -creplace '\s{2,}', ' ').Trim()
+        }
 
-        if ([string]::IsNullOrWhiteSpace($notes) -or -not $apiKey) {
+        function Format-Notes($texts, $details) {
+            $out = foreach ($section in "FEATURES", "FIXES", "OTHER") {
+                $sectionItems = @($items | Where-Object { $_.section -eq $section })
+                if ($sectionItems.Count -eq 0) { continue }
+                "### $section"
+                foreach ($it in $sectionItems) {
+                    "- $($it.prefix)$($texts[$it.id]) $($it.ref)"
+                    foreach ($d in $details[$it.id]) { "    - $d" }
+                }
+            }
+            $out -join "`n"
+        }
+
+        # Maps the AI response to item texts. Unknown or duplicate ids are dropped and missing ones keep their original header.
+        function Get-ValidatedNotes($responseText) {
+            $parsed = @($responseText | ConvertFrom-Json -ErrorAction Stop)
+            $known = @{}; foreach ($it in $items) { $known[$it.id] = $it }
+            $texts = @{}; $details = @{}
+            foreach ($entry in $parsed) {
+                $id = [string]$entry.id
+                if (-not $known.ContainsKey($id)) { Write-Warning "AI returned unknown id '$id', dropped: $($entry.text)"; continue }
+                if ($texts.ContainsKey($id)) { Write-Warning "AI returned duplicate id '$id', dropped: $($entry.text)"; continue }
+                $text = Get-CleanText $entry.text
+                if (-not $text) { continue }
+                $texts[$id] = $text
+                $details[$id] = @($entry.details | ForEach-Object { Get-CleanText $_ } | Where-Object { $_ } | Select-Object -First 5)
+            }
+            if ($texts.Count -eq 0) { throw "Response contained no usable entries." }
+            foreach ($it in $items) {
+                if (-not $texts.ContainsKey($it.id)) {
+                    Write-Warning "AI returned no entry for '$($it.id)', using the commit header."
+                    $texts[$it.id] = $it.header
+                    $details[$it.id] = @()
+                }
+            }
+            Format-Notes $texts $details
+        }
+
+        $fallbackTexts = @{}; foreach ($it in $items) { $fallbackTexts[$it.id] = $it.header }
+        $fallback = Format-Notes $fallbackTexts @{}
+
+        if ($items.Count -eq 0 -or -not $apiKey) {
             Write-Outputs $fallback
             return
         }
 
-        $prompt = "$($env:INPUT_SYSTEM_INSTRUCTIONS)`n`nTechnical Notes:`n$notes"
-        $payload = @{ contents = @( @{ parts = @( @{ text = $prompt } ) } ) } | ConvertTo-Json -Depth 10
+        $outputRules = @'
+        OUTPUT RULES (enforced by the release script):
+        - Return a JSON array with exactly one object per input item: {"id": "<the item's id>", "text": "<one sentence>", "details": ["<optional sub-point>", ...]}.
+        - Use only ids from the input. Never add, merge, split or invent items.
+        - Plain text only: no markdown, bullet characters, headers, commit hashes, PR numbers or bracketed references. These are added automatically.
+        - Do not add a "Vanilla Fix" prefix. It is added automatically.
+        - The `diff` field is context only. Never describe changes that are not supported by the item's own header, body or diff.
+        '@
+
+        $aiItems = @($items | ForEach-Object { [ordered]@{ id = $_.id; section = $_.section; header = $_.header; body = $_.body; diff = $_.diff } })
+        $payload = @{
+            systemInstruction = @{ parts = @( @{ text = "$($env:INPUT_SYSTEM_INSTRUCTIONS)`n`n$outputRules" } ) }
+            contents = @( @{ role = "user"; parts = @( @{ text = (ConvertTo-Json -InputObject $aiItems -Depth 5) } ) } )
+            generationConfig = @{
+                temperature = 0.2
+                responseMimeType = "application/json"
+                responseSchema = @{
+                    type = "ARRAY"
+                    items = @{
+                        type = "OBJECT"
+                        properties = @{
+                            id = @{ type = "STRING" }
+                            text = @{ type = "STRING" }
+                            details = @{ type = "ARRAY"; items = @{ type = "STRING" } }
+                        }
+                        required = @("id", "text")
+                    }
+                }
+            }
+        } | ConvertTo-Json -Depth 20
         $models = $env:INPUT_MODELS.Split(",").Trim()
 
         foreach ($model in $models) {
             try {
                 Write-Host "Trying model $model..."
                 $uri = "https://generativelanguage.googleapis.com/v1beta/models/$($model):generateContent?key=$apiKey"
-                $response = Invoke-RestMethod -Uri $uri -Method Post -Body $payload -ContentType "application/json" -ErrorAction Stop
-                $result = $response.candidates[0].content.parts[0].text.Trim()
-                if ($result) {
-                    Write-Host "Model $model succeeded."
-                    Write-Outputs $result
-                    return
-                }
-            } catch { # Catch specific errors from Invoke-RestMethod
+                $response = Invoke-RestMethod -Uri $uri -Method Post -Body $payload -ContentType "application/json; charset=utf-8" -ErrorAction Stop
+                $responseText = (@($response.candidates[0].content.parts) | Where-Object { -not $_.thought } | ForEach-Object { $_.text }) -join ""
+                $result = Get-ValidatedNotes $responseText
+                Write-Host "Model $model succeeded."
+                Write-Outputs $result
+                return
+            } catch {
                 Write-Warning "Model $model failed with error: $($_.Exception.Message). Trying next..."
                 continue
             }
