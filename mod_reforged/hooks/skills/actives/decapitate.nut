@@ -9,10 +9,6 @@
 	{
 		local ret = __original(_targetTile);
 		local targetEntity = _targetTile.getEntity();
-
-		if ::MSU.isNull(targetEntity)
-			return ret;
-
 		local bonusDamage = 1.0 - targetEntity.getHitpoints() / (targetEntity.getHitpointsMax() * 1.0);
 
 		if (bonusDamage >= 0.01)
