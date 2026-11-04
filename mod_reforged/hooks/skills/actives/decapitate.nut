@@ -8,6 +8,10 @@
 	q.getHitFactors = @(__original) { function getHitFactors( _targetTile )
 	{
 		local ret = __original(_targetTile);
+
+		if (!_targetTile.IsOccupiedByActor)
+			return ret;
+		
 		local targetEntity = _targetTile.getEntity();
 		local bonusDamage = 1.0 - targetEntity.getHitpoints() / (targetEntity.getHitpointsMax() * 1.0);
 
