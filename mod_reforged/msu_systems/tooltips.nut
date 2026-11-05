@@ -126,7 +126,7 @@ local tooltipImageKeywords = {
 		switch (_field)
 		{
 			case "Name":
-				return tooltip.getUIData(_extraData)[0].text;
+				return tooltip.getUIData({ ExtraData = _extraData })[0].text;
 		}
 	}
 }
