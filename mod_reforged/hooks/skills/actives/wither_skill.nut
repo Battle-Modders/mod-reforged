@@ -19,4 +19,18 @@
 		});
 		return ret;
 	}}.getTooltip;
+
+	// Ifrits are now immune to wither
+	// fix vanilla using getFlags().get instead of proper getFlags().has
+	q.isViableTarget = @(__original) {function isViableTarget( _user, _target )
+	{
+		if (_target.getSkills().hasSkill("racial.golem") || target.getFlags().has("undead") && _target.getCurrentProperties().FatigueEffectMult == 0.0)
+		{
+			return false;
+		}
+		else
+		{
+			return __original(_user, _target);
+		}
+	}}.isViableTarget;
 });
