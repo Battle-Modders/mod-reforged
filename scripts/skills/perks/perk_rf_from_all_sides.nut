@@ -12,9 +12,9 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}
 
-	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
+	function onTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		if (!this.isSkillValid(_skill))
+		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
 			return;
 
 		if (!this.RF_isNewSkillUseOrEntity(_targetEntity))
