@@ -12,7 +12,7 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 		this.m.Order = ::Const.SkillOrder.Perk;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _hitInfo )
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (!_targetEntity.isAlive() || !this.isSkillValid(_skill))
 			return;
@@ -26,7 +26,7 @@ this.perk_rf_from_all_sides <- ::inherit("scripts/skills/skill", {
 			effect = ::new("scripts/skills/effects/rf_from_all_sides_effect");
 		}
 
-		effect.proc(_hitInfo);
+		effect.proc(_bodyPart);
 		_targetEntity.getSkills().add(effect);
 	}
 

@@ -44,9 +44,9 @@ this.rf_from_all_sides_effect <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function proc( _hitInfo = null )
+	function proc( _bodyPart )
 	{
-		this.m.Stacks += _hitInfo.BodyPart == ::Const.BodyPart.Head ? 2 : 1;
+		this.m.Stacks += _bodyPart == ::Const.BodyPart.Head ? 2 : 1;
 	}
 
 	function onRefresh()
