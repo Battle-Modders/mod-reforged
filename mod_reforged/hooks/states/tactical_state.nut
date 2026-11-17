@@ -23,6 +23,7 @@
 			break;
 		}
 
+		::Reforged.HitchanceOverlay.reset();
 		__original();
 	}}.initMap;
 

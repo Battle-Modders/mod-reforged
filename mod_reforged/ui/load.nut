@@ -6,6 +6,7 @@
 ::Hooks.registerCSS("ui/mods/mod_reforged/controls.css");
 
 ::Hooks.registerJS("ui/mods/mod_reforged/reforged_js_connection.js");
+::Hooks.registerJS("ui/mods/mod_reforged/rf_hitchance_overlay.js");
 ::include("mod_reforged/ui/reforged_js_connection");
 
 ::Reforged.QueueBucket.AfterHooks.push(function() {

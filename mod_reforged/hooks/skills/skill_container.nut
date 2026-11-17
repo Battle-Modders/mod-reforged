@@ -24,7 +24,12 @@
 	{
 		__original();
 		if (!this.m.IsUpdating && this.getActor().isAlive())
+		{
 			this.onSkillsUpdated();
+			// Preview updates don't change the real state of the actor
+			if (!this.getActor().m.MV_IsDoingPreviewUpdate && ::Tactical.isActive())
+				::Reforged.HitchanceOverlay.setDirty();
+		}
 	}}.update;
 
 	q.onSkillsUpdated <- { function onSkillsUpdated()

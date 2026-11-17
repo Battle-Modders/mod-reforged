@@ -149,6 +149,13 @@
 		return ret;
 	}}.checkMorale;
 
+	q.setDirty = @(__original) { function setDirty( _value )
+	{
+		__original(_value);
+		if (_value && this.isPlacedOnMap())
+			::Reforged.HitchanceOverlay.setDirty();
+	}}.setDirty;
+
 	q.onRoundStart = @(__original) { function onRoundStart()
 	{
 		this.m.IsWaitingTurn = false;

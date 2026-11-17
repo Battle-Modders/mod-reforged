@@ -5,6 +5,7 @@
 	// We manipulated some other function so it is now also called when that actors 'IsWaitingTurn' is true. So now we can redirect the wait behavior in here
 	q.initNextTurn = @(__original) { function initNextTurn( _force = false )
 	{
+		::Reforged.HitchanceOverlay.setDirty();
 		local activeEntity = this.getActiveEntity();
 		if (activeEntity != null && activeEntity.m.IsWaitingTurn)
 		{

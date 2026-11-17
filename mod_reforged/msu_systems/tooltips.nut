@@ -20,6 +20,29 @@
 
 		return ::TooltipEvents.general_queryUIElementTooltipData(entity.getID(), "CharacterNameAndTitles", null);
 	}),
+	HitchanceOverlay = {
+		// Labels of the hit-chance overlay; ExtraData is the ID of the enemy of the label
+		Label = ::MSU.Class.CustomTooltip(function( _data ) {
+			return ::Reforged.HitchanceOverlay.getLabelTooltip(_data.ExtraData.tointeger());
+		}),
+		// Topbar button that cycles the display mode
+		DisplayButton = ::MSU.Class.CustomTooltip(function( _data ) {
+			local overlay = ::Reforged.HitchanceOverlay;
+			local current = overlay.getMode();
+			local ret = [
+				{ id = 1, type = "title", text = "Hit Chance Display" },
+				{ id = 2, type = "description", text = "How predicted chances to hit and to be hit are shown in combat." }
+			];
+			local id = 3;
+			foreach (mode in ::Reforged.Mod.ModSettings.getSetting("HitchanceDisplay_Mode").Array)
+			{
+				local text = mode + ": " + overlay.getModeInfo(mode).Description;
+				ret.push({ id = id++, type = "text", icon = "ui/icons/special.png", text = mode == current ? ::MSU.Text.colorPositive(text) : text });
+			}
+			ret.push({ id = id++, type = "hint", icon = "ui/icons/mouse_left_button.png", text = "Click or press " + ::Reforged.Mod.Keybinds.getKeybind("Tactical_CycleHitchanceDisplay").getKeyCombinationsCapitalized() + " to cycle" });
+			return ret;
+		})
+	},
 	Faction = ::MSU.Class.CustomTooltip(function( _data ) {
 		local ret = [
 			{ contentType = "settlement-status-effect" }

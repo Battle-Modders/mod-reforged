@@ -1,0 +1,197 @@
+/* Hit-chance overlay of Reforged: labels at the side of opponents in tactical combat.
+   Label sizes are in em: JS sets the label's font-size in rem, scaled with the camera zoom.
+   Three styles (setting HitchanceOverlay_Style), set as a class on the container:
+   - rf-style-compact: sword icons and outlined values directly on the map, like vanilla's floating combat text.
+   - rf-style-icons: framed skill icons and outlined values directly on the map.
+   - rf-style-parchment: a miniature vanilla tooltip (whole paper plus wooden top ornament) with dark text
+     and framed skill icons (to hit frame #7a623e, to be hit frame #5e1f17).
+   rf-on-map is set for the two styles without paper and holds what keeps them readable on the terrain.
+   Value colors are set by JS (from bad over neutral to good). Coherent has no CSS custom properties. */
+
+.tactical-screen .rf-hitchance-overlay
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.tactical-screen .rf-hitchance-overlay .rf-hitchance-label
+{
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	white-space: nowrap;
+	font-family: 'FreeUniversal';
+	font-size: 1.4rem;
+	line-height: 1.2em;
+
+	pointer-events: none;
+}
+
+.tactical-screen .rf-hitchance-overlay.rf-hoverable .rf-hitchance-label
+{
+	pointer-events: auto;
+}
+
+.tactical-screen .rf-hitchance-overlay .rf-hitchance-label.rf-hidden-label
+{
+	visibility: hidden;
+	pointer-events: none;
+}
+
+/* Labels fading out */
+.tactical-screen .rf-hitchance-overlay.rf-hoverable .rf-hitchance-label.rf-removing,
+.tactical-screen .rf-hitchance-overlay .rf-hitchance-label.rf-removing
+{
+	pointer-events: none;
+}
+
+.tactical-screen .rf-hitchance-overlay .rf-hitchance-part
+{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.tactical-screen .rf-hitchance-overlay .rf-hitchance-part + .rf-hitchance-part
+{
+	margin-top: 0.1em;
+}
+
+/* Placement Above (setting HitchanceOverlay_Placement): the rows side by side, like the health bars */
+.tactical-screen .rf-hitchance-overlay.rf-placement-above .rf-hitchance-label
+{
+	flex-direction: row;
+	align-items: center;
+}
+
+.tactical-screen .rf-hitchance-overlay.rf-placement-above .rf-hitchance-part + .rf-hitchance-part
+{
+	margin-top: 0;
+	margin-left: 0.4em;
+}
+
+.tactical-screen .rf-hitchance-overlay .rf-hitchance-icon
+{
+	box-sizing: border-box;
+	margin-right: 0.15em;
+}
+
+/* Attacks on movement (zone of control) or on arrival (e.g. Spearwall) */
+.tactical-screen .rf-hitchance-overlay .rf-hitchance-warning
+{
+	width: 0.9em;
+	height: 0.9em;
+	margin-left: 0.2em;
+}
+
+/* The opponent has acted this round. The warning stays, attacks on movement still happen.
+   On the map a dimmed row must stay readable, so it fades less than on parchment. */
+.tactical-screen .rf-hitchance-overlay.rf-on-map .rf-dimmed .rf-hitchance-icon,
+.tactical-screen .rf-hitchance-overlay.rf-on-map .rf-dimmed .rf-hitchance-value
+{
+	opacity: 0.7;
+}
+
+.tactical-screen .rf-hitchance-overlay.rf-style-parchment .rf-dimmed .rf-hitchance-icon,
+.tactical-screen .rf-hitchance-overlay.rf-style-parchment .rf-dimmed .rf-hitchance-value
+{
+	opacity: 0.45;
+}
+
+/* Styles on the map (Compact, Skill Icons): no background, outlined values */
+.tactical-screen .rf-hitchance-overlay.rf-on-map .rf-hitchance-label
+{
+	padding: 0.05em;
+	/* A full dark outline plus a soft drop shadow, so the values stay readable on bright terrain (snow, sand) */
+	text-shadow: -0.06em 0 0 black, 0.06em 0 0 black, 0 -0.06em 0 black, 0 0.06em 0 black, 0.08em 0.08em 0.15em black;
+}
+
+/* Skill Icons style: framed skill icons with a dark shadow that sets them off from the terrain */
+.tactical-screen .rf-hitchance-overlay.rf-style-icons .rf-hitchance-icon
+{
+	width: 1.2em;
+	height: 1.2em;
+	border: 0.07em solid #7a623e;
+	border-radius: 0.15em;
+	box-shadow: 0.05em 0.05em 0.15em black;
+}
+
+.tactical-screen .rf-hitchance-overlay.rf-style-icons .rf-hitchance-to-be-hit .rf-hitchance-icon
+{
+	border-color: #7a2a20;
+}
+
+/* Compact style */
+
+.tactical-screen .rf-hitchance-overlay.rf-style-compact .rf-hitchance-icon
+{
+	width: 1.1em;
+	height: 1.1em;
+	/* A dark round backing: the grey swords alone vanish on snow and sand */
+	padding: 0.08em;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.55);
+}
+
+/* damage_dealt.png points to the right: mirror the opponent's sword so it points back to the left */
+.tactical-screen .rf-hitchance-overlay.rf-style-compact .rf-hitchance-to-be-hit .rf-hitchance-icon
+{
+	transform: scaleX(-1);
+}
+
+/* Parchment style */
+.tactical-screen .rf-hitchance-overlay.rf-style-parchment .rf-hitchance-label
+{
+	/* A miniature vanilla tooltip: the whole paper with its torn edges scaled into the label,
+	   room at the top for the wooden ornament and at the bottom for the torn edge */
+	padding: 0.4em 0.35em 0.35em 0.3em;
+	text-shadow: none;
+	font-weight: normal;
+}
+
+/* The paper is its own layer below the content, so both have their own opacity setting */
+.tactical-screen .rf-hitchance-overlay.rf-style-parchment .rf-hitchance-paper
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url("coui://gfx/ui/skin/tooltip_255_bottom.png");
+	background-size: 100% 100%;
+}
+
+.tactical-screen .rf-hitchance-overlay.rf-style-parchment .rf-hitchance-part
+{
+	position: relative;
+}
+
+.tactical-screen .rf-hitchance-overlay.rf-style-parchment .rf-hitchance-ornament
+{
+	position: absolute;
+	top: -0.05em;
+	left: -0.08em;
+	right: -0.08em;
+	height: 0.4em;
+	background-image: url("coui://gfx/ui/skin/tooltip_255_top.png");
+	background-size: 100% 100%;
+}
+
+.tactical-screen .rf-hitchance-overlay.rf-style-parchment .rf-hitchance-icon
+{
+	width: 1.2em;
+	height: 1.2em;
+	border: 0.07em solid #7a623e;
+	border-radius: 0.15em;
+}
+
+.tactical-screen .rf-hitchance-overlay.rf-style-parchment .rf-hitchance-to-be-hit .rf-hitchance-icon
+{
+	border-color: #5e1f17;
+}

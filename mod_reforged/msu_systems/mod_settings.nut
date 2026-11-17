@@ -37,11 +37,25 @@
 	tooltipsPage.addBooleanSetting("TacticalTooltip_ShowStatusPerkAndEffect", true, "Show Status Perk And Effect", "Some Perks are also Status Effects. Usually their Effect is hidden until some condition is fulfilled. When this setting is enabled, these perks show up in the Perks category even when they show up under Effects (e.g. when their effect is active). When disabled, when they appear under Effects, they will be hidden from the Perks category. This can help save space on the tooltip.");
 	tooltipsPage.addBooleanSetting("TacticalTooltip_HeaderForEmptyCategories", false, "Show Header for empty categories");
 
+	// Hit-chance overlay and the movement preview tile tooltip (::Reforged.HitchanceOverlay)
 	tooltipsPage.addDivider("Tooltips_Divider2");
-	tooltipsPage.addTitle("Tooltips_Title_MovementPreview", "Movement Preview");
+	tooltipsPage.addTitle("Tooltips_Title_HitChances", "Predicted Hit Chances");
+	// The option array is the cycle order of the topbar button and the keybind; descriptions: ::Reforged.HitchanceOverlay.__Modes
+	tooltipsPage.addEnumSetting("HitchanceDisplay_Mode", "Overlay", ["Overlay", "Overlay + Tooltip", "Tooltip", "Off"], "Hit Chance Display", "How predicted chances to hit and to be hit are shown in combat: while your character whose turn it is previews a movement (from the tile you clicked) or has an attack selected (that attack, from his current tile), and while you hover one of your characters (from his current tile).\n\nOverlay: small labels next to opponents.\nTooltip: a list in the tooltip of the tile during movement preview.\n\nThe topbar button and the \'Cycle Hit Chance Display\' key (default V) cycle through these options.").addAfterChangeCallback(@( _newValue ) ::Reforged.HitchanceOverlay.onModeChanged());
+	tooltipsPage.addEnumSetting("HitchanceDisplay_Shown", "All", ["All", "AI Only", "Player Only", "None"], "Shown Hit Chances", "Which predicted hit chances are shown in the overlay and the tooltip. Player Only: chances of your character to hit opponents. AI Only: chances of opponents to hit your character.").addAfterChangeCallback(@( _newValue ) ::Reforged.HitchanceOverlay.setDirty());
+	tooltipsPage.addEnumSetting("HitchanceDisplay_ZOCAttacks", "Always", ["Always", "Follow Display Settings"], "Attacks on Movement", "Attacks of opponents when your character leaves their zone of control or arrives next to them (e.g. Spearwall) during movement preview.\n\nAlways: listed in the tooltip of the tile, whatever the \'Hit Chance Display\' and \'Shown Hit Chances\' settings, and marked by a warning icon on overlay labels.\n\nFollow Display Settings: shown only like the chances of opponents to hit your character.").addAfterChangeCallback(@( _newValue ) ::Reforged.HitchanceOverlay.setDirty());
+	tooltipsPage.addEnumSetting("HitchanceOverlay_EnemyAttack", "Primary Attack", ["Primary Attack", "Best Hit Chance"], "Opponent Attack", "Which attack of an opponent its predicted chance to hit your character is shown for, in the overlay and the tooltip.\n\nPrimary Attack: its first attack in skill bar order that can reach your character, usually the attack of its main weapon.\n\nBest Hit Chance: whichever of its attacks has the highest chance to hit.").addAfterChangeCallback(@( _newValue ) ::Reforged.HitchanceOverlay.setDirty());
+	tooltipsPage.addRangeSetting("HitchanceDisplay_CollapseThreshold", 5, 0, 100, 1, "Tooltip Collapse Threshold", "In the tooltip during movement preview, opponents with a predicted hit chance equal to this or less are collapsed into a single tooltip entry.");
 
-	tooltipsPage.addEnumSetting("TacticalTooltip_MovementPreviewHitchances", "All", ["All", "AI Only", "Player Only", "None"], "Show Predicted Hitchances", "During movement preview, show predicted chance to hit and to be hit based on the hovered tile.");
-	tooltipsPage.addRangeSetting("TacticalTooltip_CollapseHitchanceThreshold", 5, 0, 100, 1, "Collapse Hitchance Threshold", "During movement preview, opponents with predicted hitchance equal to this or less are collapsed into a single tooltip entry.");
+	tooltipsPage.addDivider("Tooltips_Divider3");
+	tooltipsPage.addTitle("Tooltips_Title_HitchanceOverlay", "Hit-Chance Overlay Labels");
+	tooltipsPage.addEnumSetting("HitchanceOverlay_LabelInteraction", "Hoverable", ["Hoverable", "Click-through"], "Overlay Label Interaction", "Hoverable: hovering an overlay label shows details in a tooltip. While the mouse is over a label, the tile below it can't be hovered, e.g. for movement preview. Hold the \'Hit Chance Overlay Interaction\' key (default X) to make the labels click-through.\n\nClick-through: the labels never block the map. Hold the key to make them hoverable.");
+	tooltipsPage.addEnumSetting("HitchanceOverlay_Style", "Skill Icons", ["Compact", "Skill Icons", "Parchment"], "Overlay Label Style", "Compact: a sword pointing at the opponent for your character\'s chance to hit it and a sword pointing back for its chance to hit your character, without a background.\n\nSkill Icons: the icons of the attacking skills instead of the swords, without a background.\n\nParchment: a parchment label with the icons of the attacking skills.\n\nA warning icon marks opponents that attack your character when he moves (zone of control) or arrives (e.g. Spearwall). The label\'s tooltip shows the details.").addAfterChangeCallback(@( _newValue ) ::Reforged.HitchanceOverlay.setDirty());
+	tooltipsPage.addEnumSetting("HitchanceOverlay_Placement", "Beside", ["Beside", "Above"], "Overlay Label Placement", "Beside: a vertical label at the outer corner of the unit\'s hex, at torso height.\n\nAbove: a horizontal label above the unit\'s head and its health bars. It can cover the unit on the tile above.").addAfterChangeCallback(@( _newValue ) ::Reforged.HitchanceOverlay.setDirty());
+	tooltipsPage.addRangeSetting("HitchanceOverlay_Scale", 0.7, 0.4, 1.5, 0.05, "Overlay Label Size", "Size multiplier of the overlay labels. They also shrink when you zoom out.").addAfterChangeCallback(@( _newValue ) ::Reforged.HitchanceOverlay.setDirty());
+	tooltipsPage.addRangeSetting("HitchanceOverlay_ParchmentOpacity", 1.0, 0.0, 1.0, 0.05, "Parchment Opacity", "Opacity of the parchment background of overlay labels in the Parchment style.").addAfterChangeCallback(@( _newValue ) ::Reforged.HitchanceOverlay.setDirty());
+	tooltipsPage.addRangeSetting("HitchanceOverlay_ContentOpacity", 1.0, 0.0, 1.0, 0.05, "Overlay Content Opacity", "Opacity of the icons and values of overlay labels in all styles.").addAfterChangeCallback(@( _newValue ) ::Reforged.HitchanceOverlay.setDirty());
+	tooltipsPage.addRangeSetting("HitchanceOverlay_FadeTime", 0, 0, 500, 10, "Overlay Fade Time (ms)", "How long overlay labels take to fade in and out. 0 shows and hides them instantly.");
 }
 { // Debug page
 	local debugPage = ::Reforged.Mod.ModSettings.addPage("Debug", "Debug & Dev");
@@ -85,6 +99,17 @@
 	}, "Pause Tactical Combat");
 
 	::Reforged.Mod.Keybinds.addSQKeybind("ConfirmSkillUseKeybind", "ctrl", ::MSU.Key.State.Tactical, @() true, "Confirm Skill Use", null, "Used to toggle the confirmation requirement for skills that are normally used immediately (e.g. Shieldwall, Rally). It allows you to either preview the Action Point and Fatigue costs or bypass confirmation, depending on your \'Confirm Skill Use\' setting.");
+
+	::Reforged.Mod.Keybinds.addSQKeybind("Tactical_CycleHitchanceDisplay", "v", ::MSU.Key.State.Tactical, function()
+	{
+		if (this.m.MenuStack.hasBacksteps() || this.isInCharacterScreen())
+			return false;
+
+		::Reforged.HitchanceOverlay.cycleMode();
+		return true;
+	}, "Cycle Hit Chance Display", null, "Cycles the \'Hit Chance Display\' setting: Overlay, Overlay + Tooltip, Tooltip, Off.");
+
+	::Reforged.Mod.Keybinds.addJSKeybind("Tactical_HitchanceOverlayInteraction", "x", "Hit Chance Overlay Interaction", "Hold to invert the \'Overlay Label Interaction\' setting: hoverable labels become click-through and vice versa.");
 
 	::Reforged.Mod.Keybinds.addSQKeybind("ToggleReforgedDevMode", "ctrl+tab", ::MSU.Key.State.All, function() { ::Reforged.__toggleDevMode(); return true; }, "Toggle Reforged Dev Mode", null, "Used to toggle Dev mode for Reforged. This enables/disables the various Dev mode settings all at once.");
 }

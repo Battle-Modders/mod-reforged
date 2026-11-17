@@ -11,6 +11,14 @@ TacticalScreen.prototype.createDIV = function (_parentDiv)
 	this.mRF_PausedWrapper.append(this.mRF_PausedSpacebarDiv);
 
 	this.mContainer.append(this.mRF_PausedWrapper);
+
+	var self = this;
+	this.mRF_HitchanceOverlay = new RF_HitchanceOverlay(function( _isHovered )
+	{
+		if (self.mSQHandle !== null)
+			SQ.call(self.mSQHandle, 'RF_onHitchanceLabelHovered', _isHovered);
+	});
+	this.mRF_HitchanceOverlay.create(this.mContainer);
 }
 
 Reforged.Hooks.TacticalScreen_destroyDIV = TacticalScreen.prototype.destroyDIV;
@@ -20,6 +28,8 @@ TacticalScreen.prototype.destroyDIV = function ()
 	this.mRF_PausedWrapper = null;
 	this.mRF_PausedDiv = null;
 	this.mRF_PausedSpacebarDiv = null;
+	this.mRF_HitchanceOverlay.destroy();
+	this.mRF_HitchanceOverlay = null;
 	Reforged.Hooks.TacticalScreen_destroyDIV.call(this);
 }
 
@@ -35,5 +45,20 @@ TacticalScreen.prototype.destroyDIV = function ()
 	TacticalScreen.prototype.RF_hideMessage = function()
 	{
 		this.mRF_PausedWrapper.addClass('rf-hidden');
+	}
+
+	TacticalScreen.prototype.RF_setHitchanceLabels = function(_labels)
+	{
+		this.mRF_HitchanceOverlay.setLabels(_labels);
+	}
+
+	TacticalScreen.prototype.RF_updateHitchanceLabelPositions = function(_positions)
+	{
+		this.mRF_HitchanceOverlay.updatePositions(_positions);
+	}
+
+	TacticalScreen.prototype.RF_clearHitchanceLabels = function()
+	{
+		this.mRF_HitchanceOverlay.clear();
 	}
 }
