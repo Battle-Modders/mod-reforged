@@ -152,8 +152,11 @@
 }
 .rf_tacticalTooltipAttributeDelta > span
 {
-		/*With the default font, + is much wider than -*/
-	font-family: 'Arsenal-Regular', monospace;
+	/* With the default font, + is much wider than -.
+	Don't use 'Arsenal-Regular' here: vanilla declares it in fonts.css but doesn't ship the font file,
+	so it never loads and logs an "Unable to open file gfx/fonts/arsenal/Arsenal-Regular.ttf" error
+	the first time this tooltip renders. It always fell back to monospace (vanilla's default font). */
+	font-family: monospace;
 	font-weight: bolder;
 	vertical-align: -1px;
 }
