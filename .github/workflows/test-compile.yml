@@ -31,4 +31,4 @@ jobs:
         working-directory: ${{ steps.bbbuilder.outputs.path }}
         env:
           DOTNET_ROLL_FORWARD: Major
-        run: BBbuilder.exe build "%MOD_PATH%" -rebuild -ex "brushes,gfx,music,sounds,scripts/!mods_preload/mod_reforged_assets,scripts/!mods_preload/mod_reforged_patch" -zipname "${{ steps.info.outputs.core_zip }}"
+        run: BBbuilder.exe build "%MOD_PATH%" -rebuild -ex ".claude,.agents,tests,brushes,gfx,music,sounds,scripts/!mods_preload/mod_reforged_assets,scripts/!mods_preload/mod_reforged_patch" -zipname "${{ steps.info.outputs.core_zip }}"

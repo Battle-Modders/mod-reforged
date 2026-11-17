@@ -227,7 +227,7 @@ jobs:
         env:
           DOTNET_ROLL_FORWARD: Major
         run: |
-          BBbuilder.exe build "%MOD_PATH%" -rebuild -ex "brushes,gfx,music,sounds,scripts/!mods_preload/mod_reforged_assets,scripts/!mods_preload/mod_reforged_patch" -zipname "${{ steps.versions.outputs.core_zip }}"
+          BBbuilder.exe build "%MOD_PATH%" -rebuild -ex ".claude,.agents,tests,brushes,gfx,music,sounds,scripts/!mods_preload/mod_reforged_assets,scripts/!mods_preload/mod_reforged_patch" -zipname "${{ steps.versions.outputs.core_zip }}"
 
       - name: Build Assets
         if: steps.check.outputs.assets_changed == 'true'
@@ -236,7 +236,7 @@ jobs:
         env:
           DOTNET_ROLL_FORWARD: Major
         run: |
-          BBbuilder.exe build "%MOD_PATH%" -rebuild -ex "mod_reforged,mod_reforged_AfterHooks,preload,scripts,ui" -in "scripts/!mods_preload/mod_reforged_assets" -zipname "${{ steps.versions.outputs.assets_zip }}"
+          BBbuilder.exe build "%MOD_PATH%" -rebuild -ex ".claude,.agents,tests,mod_reforged,mod_reforged_AfterHooks,preload,scripts,ui" -in "scripts/!mods_preload/mod_reforged_assets" -zipname "${{ steps.versions.outputs.assets_zip }}"
 
       # ------------------------------------------------------------
       # 5. Generate Technical Changelog
