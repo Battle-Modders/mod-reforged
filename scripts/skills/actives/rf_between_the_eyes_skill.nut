@@ -35,6 +35,11 @@ this.rf_between_the_eyes_skill <- ::inherit("scripts/skills/skill", {
 		return ret;
 	}
 
+	function isUsable()
+	{
+		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.rf_between_the_eyes");
+	}
+
 	function onUse( _user, _targetTile )
 	{
 		_user.getSkills().add(::new("scripts/skills/effects/rf_between_the_eyes_effect"));
