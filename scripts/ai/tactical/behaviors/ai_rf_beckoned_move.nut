@@ -1,6 +1,5 @@
 this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
-	m = {
-	},
+	m = {},
 	function create()
 	{
 		this.m.ID = ::Const.AI.Behavior.ID.RF_BeckonedMove;

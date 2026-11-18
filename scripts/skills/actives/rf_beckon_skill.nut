@@ -20,14 +20,14 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 
 	function isAlive()
 	{
-		return this.getContainer() != null && !this.getContainer().isNull() && this.getContainer().getActor() != null && !this.getContainer().getActor().isNull() && this.getContainer().getActor().isAlive() && this.getContainer().getActor().getHitpoints() > 0;
+		return !::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().isAlive() && this.getContainer().getActor().getHitpoints() > 0;
 	}
 
 	function create()
 	{
 		this.m.ID = "actives.rf_beckon_skill";
 		this.m.Name = "Beckon";
-		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Try to beckon a character, forcing him to come to you and be charmed or expose himself. The higher a character\'s [Resolve|Concept.Bravery], the higher the chance to resist being charmed.");
+		this.m.Description = ::Reforged.Mod.Tooltips.parseString("Beckon your victim, forcing him to give up all thought and come towards you. The higher a character\'s [Resolve|Concept.Bravery], the higher the chance to resist being beckoned.");
 		this.m.Icon = "skills/active_120.png";
 		this.m.IconDisabled = "skills/active_120.png";
 		this.m.Overlay = "active_120";
@@ -130,7 +130,7 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 			User = _user,
 			TargetTile = _targetTile
 		};
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 500, this.onDelayedEffect.bindenv(this), tag);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 500, this.onDelayedEffect.bindenv(this), tag);
 		return true;
 	}
 
@@ -193,6 +193,5 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 
 		this.m.Slaves = [];
 	}
-
 });
 

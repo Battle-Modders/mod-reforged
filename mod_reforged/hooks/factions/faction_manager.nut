@@ -42,14 +42,14 @@
 		this.RF_createDraugr();
 		this.RF_createBeckoned();
 		__original();
-		for( local i = 0; i < this.m.Factions.len(); i = ++i )
+		for (local i = 0; i < this.m.Factions.len(); i++)
 		{
 			if (this.m.Factions[i] == null)
+				continue;			
+			
+			if (this.m.Factions[i].getType() == ::Const.FactionType.RF_Beckoned)
 			{
-			}
-			else if (this.m.Factions[i].getType() == ::Const.FactionType.RF_Beckoned)
-			{
-				for( local j = 0; j < this.m.Factions.len(); j = ++j )
+				for (local j = 0; j < this.m.Factions.len(); j++)
 				{
 					if (this.m.Factions[j] != null)
 					{
@@ -60,11 +60,9 @@
 			}
 			else
 			{
-				for( local j = 0; j < this.m.Factions.len(); j = ++j )
+				for (local j = 0; j < this.m.Factions.len(); j++)
 				{
-					if (this.m.Factions[j] == null)
-						continue;
-					if (this.m.Factions[j].getType() == ::Const.FactionType.RF_Beckoned)
+					if (this.m.Factions[j] != null && this.m.Factions[j].getType() == ::Const.FactionType.RF_Beckoned)
 					{
 						this.m.Factions[i].addAlly(j);
 					}

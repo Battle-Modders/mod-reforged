@@ -55,7 +55,7 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_target.getSkills().hasSkill("effects.charmed")||target.getSkills().hasSkill("effects.rf_beckoned"))
+		if (_target.getSkills().hasSkill("effects.charmed") || target.getSkills().hasSkill("effects.rf_beckoned"))
 		{
 			return false;
 		}
@@ -65,7 +65,7 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has been beckoned. He no longer has any control over his actions and will slowly move towards his master. Wears off in [color=" + ::Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s) or until he reaches his master and become charmed.\n\nThe higher a character\'s resolve, the higher the chance to resist being beckoned.";
+		return ::Reforged.Mod.Tooltips.parseString("This character has been beckoned. He no longer has any control over his actions and will slowly move towards his caller. Wears off in " + ::MSU.Text.colorNegative(this.m.TurnsLeft) + " turn(s) or until he reaches his caller.\n\nThe higher a character\'s [Resolve|Concept.Bravery], the higher the chance to resist being beckoned.");
 	}
 
 	function getTooltip()
@@ -76,7 +76,7 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 			id = 9,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = "This character is uncontrollable and moves towards his master, on reaching his destination he will be charmed."
+			text = "This character is uncontrollable and moves towards his caller, on reaching his destination he will be charmed"
 		});
 
 		ret.push({
@@ -90,7 +90,7 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/action_points.png",
-			text = "Ignores zone of control and moves through enemies."
+			text = ::Reforged.Mod.Tooltips.parseString("Ignores [zone of control|Concept.ZoneOfControl] and moves through enemies")
 		});
 
 		return ret;
@@ -103,7 +103,7 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 1 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 1 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		local actor = this.getContainer().getActor();
 
         // Stagger
@@ -323,7 +323,7 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 		for (local i = 0; i < 100; i++) {
 			faction_allies[i] = i;
 		}
-		addFaction("RF_Beckoned",::createColor("#444444"),"bust_base_beasts",[],faction_allies,[])
+		addFaction("RF_Beckoned", ::createColor("#444444"), "bust_base_beasts", [], faction_allies, []);
 
 		if (::World != null && ::World.FactionManager != null)
 		{			

@@ -14,6 +14,5 @@ this.rf_beckoned_player_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function onUpdate()
 	{
 	}
-
 });
 
