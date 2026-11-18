@@ -1,4 +1,6 @@
 ::Reforged.HooksMod.hook("scripts/entity/tactical/enemies/hexe", function(q) {
+	q.m.SlavesBeckon <- 0;
+	q.m.SlavesCharm <- 0;
 	q.onInit = @() { function onInit()
 	{
 		this.actor.onInit();
@@ -43,6 +45,7 @@
 		this.m.Skills.add(::new("scripts/skills/actives/fake_drink_night_vision_skill"));
 
 		// Reforged
+		this.m.Skills.add(::new("scripts/skills/actives/rf_beckon_skill"));
 		b.RangedDefense += 10;
 		this.m.BaseProperties.IsAffectedByReach = false;
 		this.getSkills().update()
