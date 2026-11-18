@@ -10,30 +10,28 @@ this.rf_obsidian_gash_skill <- ::inherit("scripts/skills/actives/gash_skill", {
 	{
         this.gash_skill.create();
         // does not change id or name of the skill here
-        this.m.Description = "A skillful combination of slash and pierce that cripples your target with bleed, injury and wither.";
+        this.m.Description = "A skillful combination of slash and pierce that cripples your target.";
         this.m.KilledString = "Sacrificed";
         // TODO: make cooler art for legendary weapon
 		this.m.Icon = "skills/active_189.png";
 		this.m.IconDisabled = "skills/active_189_sw.png";
 		this.m.Overlay = "active_189";
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingAndPiercingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingAndPiercingBody;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingAndPiercingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingAndPiercingHead;
         this.m.FatigueCost = 15;
-        this.m.BleedStacks = 3;
-        this.m.MeleeSkillAdd = 0;
     }
-    
+
 	function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
 
-		if (this.m.MeleeSkillAdd != 0)
+		if (this.m.HitChanceBonus != 0)
 		{
 			ret.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has " + ::MSU.Text.colorizeValue(this.m.MeleeSkillAdd, {AddSign = true, AddPercent = true}) + " chance to hit"
+				text = "Has " + ::MSU.Text.colorizeValue(this.m.HitChanceBonus, {AddSign = true, AddPercent = true}) + " chance to hit"
 			});
 		}
 
@@ -76,15 +74,6 @@ this.rf_obsidian_gash_skill <- ::inherit("scripts/skills/actives/gash_skill", {
 		return ret;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			_properties.MeleeSkill += this.m.MeleeSkillAdd;
-			// this.m.HitChanceBonus is set by Modular Vanilla based on changes to _properties.MeleeSkill
-		}
-	}
-
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (_skill == this && _targetEntity.isAlive() && _damageInflictedHitpoints >= ::Const.Combat.MinDamageToApplyBleeding && !_targetEntity.getCurrentProperties().IsImmuneToBleeding)
@@ -123,7 +112,7 @@ this.rf_obsidian_gash_skill <- ::inherit("scripts/skills/actives/gash_skill", {
 
             if (_targetEntity.isAlive() && !_targetEntity.getCurrentProperties().IsImmuneToBleeding)
             {
-                this.Sound.play(this.m.SoundsA[this.Math.rand(0, this.m.SoundsA.len() - 1)], this.Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
+                ::Sound.play(::MSU.Array.rand(this.m.SoundsA), ::Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
             }
 		}
 	}
