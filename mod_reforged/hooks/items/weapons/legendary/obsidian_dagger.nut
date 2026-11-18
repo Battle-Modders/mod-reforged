@@ -32,16 +32,13 @@
 	{
 		this.weapon.onDamageDealt(_target, _skill, _hitInfo);
 
-		if (!_target.isAlive() || _target.isDying())
+		if (!_target.isAlive() || _target.isDying() || _hitInfo.DamageInflictedHitpoints < ::Const.Combat.PoisonEffectMinDamage)
 			return;
 
 		// reimplement wither condition check here; ideally we can borrow the check in wither_skill?
 		if ((_target.getFlags().has("undead") && _target.getCurrentProperties().FatigueEffectMult == 0.0) || _target.getSkills().hasSkill("racial.golem"))  
 			return;
 		
-		if (_hitInfo.DamageInflictedHitpoints >= ::Const.Combat.PoisonEffectMinDamage)
-		{
-			_target.getSkills().add(::new("scripts/skills/effects/withered_effect"));
-		}
+		_target.getSkills().add(::new("scripts/skills/effects/withered_effect"));
 	}}.onDamageDealt;
 });

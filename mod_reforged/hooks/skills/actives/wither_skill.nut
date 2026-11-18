@@ -28,9 +28,7 @@
 		{
 			return false;
 		}
-		else
-		{
-			return __original(_user, _target);
-		}
+		
+		return __original(_user, _target);
 	}}.isViableTarget;
 });
