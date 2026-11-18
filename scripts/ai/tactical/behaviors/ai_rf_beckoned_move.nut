@@ -143,6 +143,5 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
 		this.getAgent().setFinished(true);
 		return true;        
 	}
-
 });
 
