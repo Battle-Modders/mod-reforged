@@ -429,9 +429,9 @@
 	q.addDefaultStatusSprites = @(__original){ function addDefaultStatusSprites()
 	{
 		__original();
-		local beckoned = this.addSprite("status_beckoned");
+		local beckoned = this.addSprite("rf_status_beckoned");
 		beckoned.setBrush("effect_heart_01");
-		this.setSpriteOffset("status_beckoned", this.createVec(0,70));
+		this.setSpriteOffset("rf_status_beckoned", ::createVec(0,70));
 		beckoned.Visible = false;
 	}}.addDefaultStatusSprites
 });

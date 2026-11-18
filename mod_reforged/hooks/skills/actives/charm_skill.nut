@@ -33,7 +33,8 @@
 		return ret;
 	}}.getTooltip;
 
-	q.isViableTarget = @(__original){ function isViableTarget( _user, _target ){
+	q.isViableTarget = @(__original){ function isViableTarget( _user, _target )
+	{
 		if (_target.getSkills().hasSkill("effects.rf_beckoned"))
 		{
 			return false;
@@ -50,7 +51,7 @@
 		{
 			this.m.Slaves.remove(i);
 		}
-		
+
 		this.getContainer().getActor().m.SlavesCharm = this.m.Slaves.len();
 		if (this.isAlive() && this.getContainer().getActor().m.SlavesBeckon == 0 && this.getContainer().getActor().m.SlavesCharm == 0)
 		{

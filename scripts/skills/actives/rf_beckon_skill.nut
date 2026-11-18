@@ -1,4 +1,4 @@
-this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
+this.rf_beckon_skill <- ::inherit("scripts/skills/skill", {
 	m = {
 		Slaves = []
 	},
@@ -10,7 +10,7 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 		{
 			this.m.Slaves.remove(i);
 		}
-		
+
 		this.getContainer().getActor().m.SlavesBeckon = this.m.Slaves.len();
 		if (this.isAlive() && !is_swapping_to_charm && this.getContainer().getActor().m.SlavesBeckon == 0 && this.getContainer().getActor().m.SlavesCharm == 0)
 		{
@@ -111,12 +111,7 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_target.getSkills().hasSkill("effects.charmed"))
-		{
-			return false;
-		}
-
-		if (_target.getSkills().hasSkill("effects.rf_beckoned"))
+		if (_target.getSkills().hasSkill("effects.rf_beckoned") || _target.getSkills().hasSkill("effects.charmed"))
 		{
 			return false;
 		}
@@ -139,9 +134,9 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 		local _targetTile = _tag.TargetTile;
 		local _user = _tag.User;
 		local target = _targetTile.getEntity();
-		local time = this.Tactical.spawnProjectileEffect("effect_heart_01", _user.getTile(), _targetTile, 0.33, 2.0, false, false);
+		local time = ::Tactical.spawnProjectileEffect("effect_heart_01", _user.getTile(), _targetTile, 0.33, 2.0, false, false);
 		local self = this;
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, time, function ( _e )
+		::Time.scheduleEvent(::TimeUnit.Virtual, time, function ( _e )
 		{
 			local bonus = _targetTile.getDistanceTo(_user.getTile()) == 1 ? -5 : 0;
 
@@ -149,30 +144,30 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists being beckoned thanks to his resolve");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists being beckoned thanks to his resolve");
 				}
 
 				return false;
 			}
 
-			if (target.getCurrentProperties().IsResistantToAnyStatuses && this.Math.rand(1, 100) <= 50)
+			if (target.getCurrentProperties().IsResistantToAnyStatuses && ::Math.rand(1, 100) <= 50)
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists being beckoned thanks to his unnatural physiology");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists being beckoned thanks to his unnatural physiology");
 				}
 
 				return false;
 			}
 
 			this.m.Slaves.push(target.getID());
-			local beckoned = this.new("scripts/skills/effects/rf_beckoned_effect");
+			local beckoned = ::new("scripts/skills/effects/rf_beckoned_effect");
 			beckoned.setMaster(self);
 			target.getSkills().add(beckoned);
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " is beckoned");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " is beckoned");
 			}
 
 			_user.setCharming(true);
@@ -183,7 +178,7 @@ this.rf_beckon_skill <- this.inherit("scripts/skills/skill", {
 	{
 		foreach( id in this.m.Slaves )
 		{
-			local e = this.Tactical.getEntityByID(id);
+			local e = ::Tactical.getEntityByID(id);
 
 			if (e != null)
 			{

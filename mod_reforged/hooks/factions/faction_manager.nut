@@ -8,7 +8,7 @@
 		f.addTrait(::Const.FactionTrait.RF_Draugr);
 		this.m.Factions.push(f);
 	}}.RF_createDraugr;
-	
+
 	q.RF_createBeckoned <- { function RF_createBeckoned()
 	{
 		local f = ::new("scripts/factions/rf_beckoned_faction");
@@ -17,6 +17,37 @@
 		f.setDiscovered(true);
 		this.m.Factions.push(f);
 	}}.RF_createBeckoned;
+
+	q.RF_createBeckonedAlliances <- { function RF_createBeckonedAlliances()
+	{
+		for (local i = 0; i < this.m.Factions.len(); i++)
+		{
+			if (this.m.Factions[i] == null)
+				continue;
+
+			if (this.m.Factions[i].getType() == ::Const.FactionType.RF_Beckoned)
+			{
+				for (local j = 0; j < this.m.Factions.len(); j++)
+				{
+					if (this.m.Factions[j] != null)
+					{
+						this.m.Factions[i].addAlly(j);
+					}
+				}
+				this.m.Factions[i].updatePlayerRelation();
+			}
+			else
+			{
+				for (local j = 0; j < this.m.Factions.len(); j++)
+				{
+					if (this.m.Factions[j] != null && this.m.Factions[j].getType() == ::Const.FactionType.RF_Beckoned)
+					{
+						this.m.Factions[i].addAlly(j);
+					}
+				}
+			}
+		}
+	}}.RF_createBeckonedAlliances;
 
 	q.createNobleHouses = @(__original) { function createNobleHouses()
 	{
@@ -41,35 +72,13 @@
 	{
 		this.RF_createDraugr();
 		this.RF_createBeckoned();
+
 		__original();
-		for (local i = 0; i < this.m.Factions.len(); i++)
-		{
-			if (this.m.Factions[i] == null)
-				continue;			
-			
-			if (this.m.Factions[i].getType() == ::Const.FactionType.RF_Beckoned)
-			{
-				for (local j = 0; j < this.m.Factions.len(); j++)
-				{
-					if (this.m.Factions[j] != null)
-					{
-						this.m.Factions[i].addAlly(j);
-					}
-				}
-				this.m.Factions[i].updatePlayerRelation();
-			}
-			else
-			{
-				for (local j = 0; j < this.m.Factions.len(); j++)
-				{
-					if (this.m.Factions[j] != null && this.m.Factions[j].getType() == ::Const.FactionType.RF_Beckoned)
-					{
-						this.m.Factions[i].addAlly(j);
-					}
-				}
-			}
-		}
+
+		this.RF_createBeckonedAlliances();
 	}}.createAlliances;
+
+
 
 	q.runSimulation = @(__original) { function runSimulation()
 	{

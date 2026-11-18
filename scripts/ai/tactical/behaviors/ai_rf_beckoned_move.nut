@@ -1,4 +1,4 @@
-this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
+this.ai_rf_beckoned_move <- ::inherit("scripts/ai/tactical/behavior", {
 	m = {},
 	function create()
 	{
@@ -7,7 +7,7 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
 		this.m.IsThreaded = false;
 		this.behavior.create();
 	}
-    
+
 	function onEvaluate( _entity )
 	{
 		if (!_entity.isPlacedOnMap())
@@ -25,101 +25,100 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-        if (_entity.getActionPointCostsRaw() == ::Const.ImmobileMovementAPCost)
-        {
-            return ::Const.AI.Behavior.Score.Zero;
-        }
+		if (_entity.getActionPointCostsRaw() == ::Const.ImmobileMovementAPCost)
+		{
+			return ::Const.AI.Behavior.Score.Zero;
+		}
 
 		if (_entity.getCurrentProperties().IsRooted)
 		{
 			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-        // This happens after beckoned target reached his destination but before ending the turn
-        if (!_entity.getSkills().hasSkill("effects.rf_beckoned"))
-        {
-			return ::Const.AI.Behavior.Score.Zero;
-        }
-
-        local charmer = _entity.getSkills().getSkillByID("effects.rf_beckoned").getCharmer()
-
-        if (charmer == null || !charmer.isPlacedOnMap())
-        {
-			return ::Const.AI.Behavior.Score.Zero;
-        }
-
-        local charmerTile = charmer.getTile();
-        // prevent dancing around the charmer when already there
-        if (_entity.getTile().getDistanceTo(charmerTile) == 1)
-        {
-            return ::Const.AI.Behavior.Score.Zero;
-        }
-
-        local entityActionPointCosts = _entity.getActionPointCosts();
-        local entityFatiguePointCosts = _entity.getFatigueCosts();
-        local acceptableDistanceFromDest = 1;
-        local navigator = this.Tactical.getNavigator();
-        local settings = navigator.createSettings();
-        local Allies = clone _entity.getAlliedFactions();
-        settings.ActionPointCosts = entityActionPointCosts;
-        settings.FatigueCosts = entityFatiguePointCosts;
-        settings.FatigueCostFactor = 0.0;
-        settings.ActionPointCostPerLevel = _entity.getLevelActionPointCost();
-        settings.FatigueCostPerLevel = _entity.getLevelFatigueCost();
-        settings.MaxLevelDifference = _entity.getMaxTraversibleLevels();
-        settings.AllowZoneOfControlPassing = true;
-        settings.ZoneOfControlCost = 0;
-        settings.AlliedFactions = Allies;
-        settings.Faction = _entity.getFaction();
-
-		if (navigator.findPath(_entity.getTile(), charmerTile, settings, acceptableDistanceFromDest))
+		// This happens after beckoned target reached his destination but before ending the turn
+		if (!_entity.getSkills().hasSkill("effects.rf_beckoned"))
 		{
-            local movementCosts = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
-            // if more ap than auto end turn but cant move due to difficult terrain
-            if (movementCosts.Tiles == 0)
-            {
-                return ::Const.AI.Behavior.Score.Zero;
-            }
-			return ::Const.AI.Behavior.Score.AlwaysUse;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
-        else
-        {
-            return ::Const.AI.Behavior.Score.Zero;
-        }
+
+		local charmer = _entity.getSkills().getSkillByID("effects.rf_beckoned").getCharmer()
+
+		if (charmer == null || !charmer.isPlacedOnMap())
+		{
+			return ::Const.AI.Behavior.Score.Zero;
+		}
+
+		local charmerTile = charmer.getTile();
+		// prevent dancing around the charmer when already there
+		if (_entity.getTile().getDistanceTo(charmerTile) == 1)
+		{
+			return ::Const.AI.Behavior.Score.Zero;
+		}
+
+		local entityActionPointCosts = _entity.getActionPointCosts();
+		local entityFatiguePointCosts = _entity.getFatigueCosts();
+		local acceptableDistanceFromDest = 1;
+		local navigator = ::Tactical.getNavigator();
+		local settings = navigator.createSettings();
+		local Allies = clone _entity.getAlliedFactions();
+		settings.ActionPointCosts = entityActionPointCosts;
+		settings.FatigueCosts = entityFatiguePointCosts;
+		settings.FatigueCostFactor = 0.0;
+		settings.ActionPointCostPerLevel = _entity.getLevelActionPointCost();
+		settings.FatigueCostPerLevel = _entity.getLevelFatigueCost();
+		settings.MaxLevelDifference = _entity.getMaxTraversibleLevels();
+		settings.AllowZoneOfControlPassing = true;
+		settings.ZoneOfControlCost = 0;
+		settings.AlliedFactions = Allies;
+		settings.Faction = _entity.getFaction();
+
+		if (!navigator.findPath(_entity.getTile(), charmerTile, settings, acceptableDistanceFromDest))
+		{
+			return ::Const.AI.Behavior.Score.Zero;
+		}
+
+		local movementCosts = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
+		// if more ap than auto end turn but cant move due to difficult terrain
+		if (movementCosts.Tiles == 0)
+		{
+			return ::Const.AI.Behavior.Score.Zero;
+		}
+
+		return ::Const.AI.Behavior.Score.AlwaysUse;
 	}
 
 	function onExecute( _entity )
-	{      
-        local charmer = _entity.getSkills().getSkillByID("effects.rf_beckoned").getCharmer()
-        local charmerTile = charmer.getTile();
-        if (charmerTile != null)
-        {
-            local navigator = this.Tactical.getNavigator();
+	{
+		local charmer = _entity.getSkills().getSkillByID("effects.rf_beckoned").getCharmer();
+		local charmerTile = charmer.getTile();
+		if (charmerTile != null)
+		{
+			local navigator = ::Tactical.getNavigator();
 
-            if (this.m.IsFirstExecuted)  
-            {    
-                local entityActionPointCosts = _entity.getActionPointCosts();
-                local entityFatiguePointCosts = _entity.getFatigueCosts();
-                local acceptableDistanceFromDest = 1;
-                local settings = navigator.createSettings();
-                local Allies = clone _entity.getAlliedFactions();
-                settings.ActionPointCosts = entityActionPointCosts;
-                settings.FatigueCosts = entityFatiguePointCosts;
-                settings.FatigueCostFactor = 0.0;
-                settings.ActionPointCostPerLevel = _entity.getLevelActionPointCost();
-                settings.FatigueCostPerLevel = _entity.getLevelFatigueCost();
-                settings.MaxLevelDifference = _entity.getMaxTraversibleLevels();
-                settings.AllowZoneOfControlPassing = true;
-                settings.ZoneOfControlCost = 0;
-                settings.AlliedFactions = Allies;
-                settings.Faction = _entity.getFaction();
+			if (this.m.IsFirstExecuted)
+			{
+				local entityActionPointCosts = _entity.getActionPointCosts();
+				local entityFatiguePointCosts = _entity.getFatigueCosts();
+				local acceptableDistanceFromDest = 1;
+				local settings = navigator.createSettings();
+				local Allies = clone _entity.getAlliedFactions();
+				settings.ActionPointCosts = entityActionPointCosts;
+				settings.FatigueCosts = entityFatiguePointCosts;
+				settings.FatigueCostFactor = 0.0;
+				settings.ActionPointCostPerLevel = _entity.getLevelActionPointCost();
+				settings.FatigueCostPerLevel = _entity.getLevelFatigueCost();
+				settings.MaxLevelDifference = _entity.getMaxTraversibleLevels();
+				settings.AllowZoneOfControlPassing = true;
+				settings.ZoneOfControlCost = 0;
+				settings.AlliedFactions = Allies;
+				settings.Faction = _entity.getFaction();
 
-                navigator.findPath(_entity.getTile(), charmerTile, settings, 1);
-                
-                local movement = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
-                this.m.IsFirstExecuted = false;
-            }   
-            if (!navigator.travel(_entity, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue()))
+				navigator.findPath(_entity.getTile(), charmerTile, settings, 1);
+
+				local movement = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
+				this.m.IsFirstExecuted = false;
+			}
+			if (!navigator.travel(_entity, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue()))
 			{
 				if (_entity.isAlive())
 				{
@@ -139,9 +138,9 @@ this.ai_rf_beckoned_move <- this.inherit("scripts/ai/tactical/behavior", {
 			{
 				return false;
 			}
-        }
+		}
 		this.getAgent().setFinished(true);
-		return true;        
+		return true;
 	}
 });
 

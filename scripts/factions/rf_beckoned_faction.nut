@@ -23,4 +23,3 @@ this.rf_beckoned_faction <- ::inherit("scripts/factions/faction", {
 		this.faction.onDeserialize(_in);
 	}
 });
-

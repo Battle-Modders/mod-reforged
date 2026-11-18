@@ -1,4 +1,4 @@
-this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
+this.rf_beckoned_effect <- ::inhert("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 1,
 		OriginalFaction = 0,
@@ -55,7 +55,7 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_target.getSkills().hasSkill("effects.charmed") || target.getSkills().hasSkill("effects.rf_beckoned"))
+		if (target.getSkills().hasSkill("effects.rf_beckoned") || _target.getSkills().hasSkill("effects.charmed"))
 		{
 			return false;
 		}
@@ -213,18 +213,18 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 		// Sprite
 		if (this.m.TurnsLeft != 0)
 			{
-				if (actor.hasSprite("status_beckoned") && !this.getContainer().hasSkill("effects.stunned"))
+				if (actor.hasSprite("rf_status_beckoned") && !this.getContainer().hasSkill("effects.stunned"))
 				{
-					actor.getSprite("status_beckoned").Visible = true;
+					actor.getSprite("rf_status_beckoned").Visible = true;
 				}
 
 				actor.setDirty(true);
 			}
 			else
 			{
-				if (actor.hasSprite("status_beckoned"))
+				if (actor.hasSprite("rf_status_beckoned"))
 				{
-					actor.getSprite("status_beckoned").Visible = false;
+					actor.getSprite("rf_status_beckoned").Visible = false;
 				}
 
 				actor.setDirty(true);
@@ -236,7 +236,7 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		// only flip back when not charmed
 		if (!actor.getSkills().hasSkill("effects.charmed"))
-		{		
+		{
 			if (this.m.SoundOnUse.len() != 0)
 			{
 				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill * 1.0, actor.getPos());
@@ -253,9 +253,9 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 
 		actor.setDirty(true);
 
-		if (actor.hasSprite("status_beckoned"))
+		if (actor.hasSprite("rf_status_beckoned"))
 			{
-				actor.getSprite("status_beckoned").Visible = false;
+				actor.getSprite("rf_status_beckoned").Visible = false;
 			}
 
 		if (this.m.Master != null)
@@ -326,42 +326,13 @@ this.rf_beckoned_effect <- this.inherit("scripts/skills/skill", {
 		addFaction("RF_Beckoned", ::createColor("#444444"), "bust_base_beasts", [], faction_allies, []);
 
 		if (::World != null && ::World.FactionManager != null)
-		{			
+		{
 			local f = ::new("scripts/factions/rf_beckoned_faction");
 			f.setID(::World.FactionManager.m.Factions.len());
 			f.setName("Beckoned");
 			f.setDiscovered(true);
 			::World.FactionManager.m.Factions.push(f);
-			for( local i = 0; i < ::World.FactionManager.m.Factions.len(); i = ++i )
-			{
-				if (::World.FactionManager.m.Factions[i] == null)
-				{
-				}
-				else if (::World.FactionManager.m.Factions[i].getType() == ::Const.FactionType.RF_Beckoned)
-				{
-					for( local j = 0; j < ::World.FactionManager.m.Factions.len(); j = ++j )
-					{
-						if (::World.FactionManager.m.Factions[j] != null)
-						{
-							::World.FactionManager.m.Factions[i].addAlly(j);
-						}
-					}
-					::World.FactionManager.m.Factions[i].updatePlayerRelation();
-				}
-				else
-				{
-					for( local j = 0; j < ::World.FactionManager.m.Factions.len(); j = ++j )
-					{
-						if (::World.FactionManager.m.Factions[j] == null)
-							continue;
-						if (::World.FactionManager.m.Factions[j].getType() == ::Const.FactionType.RF_Beckoned)
-						{
-							::World.FactionManager.m.Factions[i].addAlly(j);
-						}
-					}
-				}
-			}
+			::World.FactionManager.RF_createBeckonedAlliances();
 		}
 	}
 });
-

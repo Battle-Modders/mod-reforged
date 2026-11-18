@@ -44,11 +44,10 @@ addFaction(
 	]
 );
 
+// Beckoned units are allied with everyone
 local allies = array(100);
 for (local i = 0; i < 100; i++) {
     allies[i] = i;
 }
 
-addFaction("RF_Beckoned",::createColor("#444444"),"bust_base_beasts",[],
-	allies,
-	[])
+addFaction("RF_Beckoned", ::createColor("#444444"), "bust_base_beasts", [], allies, []);
