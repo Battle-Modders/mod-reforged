@@ -14,16 +14,16 @@ this.rf_beckoned_effect <- ::inhert("scripts/skills/skill", {
 		this.m.Master = _f;
 	}
 
-    function getCharmer()
-    {
-        return this.m.Master.getContainer().getActor();
-    }
+	function getCharmer()
+	{
+		return this.m.Master.getContainer().getActor();
+	}
 
 	function create()
 	{
 		this.m.ID = "effects.rf_beckoned";
 		this.m.Name = "Beckoned";
-        // TODO: different icon for this stage of charmed
+		// TODO: different icon for this stage of charmed
 		this.m.Icon = "skills/status_effect_85.png";
 		this.m.IconMini = "status_effect_85_mini";
 		this.m.Overlay = "status_effect_85";
@@ -72,7 +72,7 @@ this.rf_beckoned_effect <- ::inhert("scripts/skills/skill", {
 	{
 		local ret = this.skill.getTooltip();
 
-        ret.push({
+		ret.push({
 			id = 9,
 			type = "text",
 			icon = "ui/icons/action_points.png",
@@ -86,7 +86,7 @@ this.rf_beckoned_effect <- ::inhert("scripts/skills/skill", {
 			text = ::Reforged.Mod.Tooltips.parseString(::MSU.Text.colorNegative(this.m.MovementAPCostAdditional) + " additional [Action Points|Concept.ActionPoints] per tile moved")
 		});
 
-        ret.push({
+		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/action_points.png",
@@ -106,15 +106,15 @@ this.rf_beckoned_effect <- ::inhert("scripts/skills/skill", {
 		this.m.TurnsLeft = ::Math.max(1, 1 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		local actor = this.getContainer().getActor();
 
-        // Stagger
-        this.Tactical.TurnSequenceBar.pushEntityBack(actor.getID());
+		// Stagger
+		this.Tactical.TurnSequenceBar.pushEntityBack(actor.getID());
 
-        // Change to special agent for ai controlled units too
-        this.m.OriginalAgent = actor.getAIAgent();
-        actor.setAIAgent(this.new("scripts/ai/tactical/agents/rf_beckoned_player_agent"));
-        actor.getAIAgent().setActor(actor);
+		// Change to special agent for ai controlled units too
+		this.m.OriginalAgent = actor.getAIAgent();
+		actor.setAIAgent(this.new("scripts/ai/tactical/agents/rf_beckoned_player_agent"));
+		actor.getAIAgent().setActor(actor);
 
-        // Swap to special faction
+		// Swap to special faction
 		this.m.OriginalFaction = actor.getFaction();
 		this.createOnFly()
 		local beckoned_faction = ::World.FactionManager.getFactionOfType(::Const.FactionType.RF_Beckoned);
@@ -184,18 +184,18 @@ this.rf_beckoned_effect <- ::inhert("scripts/skills/skill", {
 		_properties.IsAffectedByLosingHitpoints = false;
 		_properties.MovementAPCostAdditional += this.m.MovementAPCostAdditional;
 
-        // Charm when 1 tile with master
+		// Charm when 1 tile with master
 		if (this.m.Master == null)
 			return;
 
 		local actor = this.getContainer().getActor();
-        local charmer = this.getCharmer();
+		local charmer = this.getCharmer();
 		if (actor.isPlacedOnMap() && charmer.isPlacedOnMap())
 		{
 			local myTile = actor.getTile();
 			local charmerTile = charmer.getTile();
-            if (charmerTile.getDistanceTo(myTile) == 1)
-            {
+			if (charmerTile.getDistanceTo(myTile) == 1)
+			{
 				this.m.FlippedBackBeforeCharm = true;
 				if (!this.m.FlippedBackBeforeCharm)
 				{
@@ -207,7 +207,7 @@ this.rf_beckoned_effect <- ::inhert("scripts/skills/skill", {
 				charmed.m.WasBeckoned = true;
 				actor.getSkills().add(charmed);
 				this.removeSelf()
-            }
+			}
 		}
 
 		// Sprite

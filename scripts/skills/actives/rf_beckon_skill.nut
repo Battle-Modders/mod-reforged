@@ -57,16 +57,16 @@ this.rf_beckon_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsUsingHitchance = false;
 		this.m.IsDoingForwardMove = false;
 		this.m.IsVisibleTileNeeded = true;
-        // Maybe allow the hexe to beckon 2 dudes with 4ap?
+		// Maybe allow the hexe to beckon 2 dudes with 4ap?
 		this.m.ActionPointCost = 5;
 		this.m.FatigueCost = 10;
-        // Use charm in melee instead
+		// Use charm in melee instead
 		this.m.MinRange = 2;
 		this.m.MaxRange = 8;
 		this.m.MaxLevelDifference = 4;
 	}
 
-    function getTooltip()
+	function getTooltip()
 	{
 		local ret = this.skill.getDefaultUtilityTooltip();
 

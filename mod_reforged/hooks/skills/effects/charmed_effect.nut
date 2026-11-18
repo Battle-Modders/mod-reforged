@@ -1,5 +1,5 @@
 ::Reforged.HooksMod.hook("scripts/skills/effects/charmed_effect", function(q) {
-    q.m.WasBeckoned <- false;
+	q.m.WasBeckoned <- false;
 
 	q.onAdded = @(__original) { function onAdded()
 	{
