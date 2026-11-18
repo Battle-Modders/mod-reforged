@@ -6,20 +6,20 @@ this.rf_obsidian_gash_skill <- ::inherit("scripts/skills/actives/gash_skill", {
 			"sounds/combat/cleave_hit_hitpoints_03.wav"
 		]
 	},
-    function create()
+	function create()
 	{
-        this.gash_skill.create();
-        // does not change id or name of the skill here
-        this.m.Description = "A skillful combination of slash and pierce that cripples your target.";
-        this.m.KilledString = "Sacrificed";
-        // TODO: make cooler art for legendary weapon
+		this.gash_skill.create();
+		// does not change id or name of the skill here
+		this.m.Description = "A skillful combination of slash and pierce that cripples your target.";
+		this.m.KilledString = "Sacrificed";
+		// TODO: make cooler art for legendary weapon
 		this.m.Icon = "skills/active_189.png";
 		this.m.IconDisabled = "skills/active_189_sw.png";
 		this.m.Overlay = "active_189";
 		this.m.InjuriesOnBody = ::Const.Injury.CuttingAndPiercingBody;
 		this.m.InjuriesOnHead = ::Const.Injury.CuttingAndPiercingHead;
-        this.m.FatigueCost = 15;
-    }
+		this.m.FatigueCost = 15;
+	}
 
 	function getTooltip()
 	{
@@ -64,12 +64,12 @@ this.rf_obsidian_gash_skill <- ::inherit("scripts/skills/actives/gash_skill", {
 			});
 		}
 
-        ret.push({
-            id = 8,
-            type = "text",
-            icon = "ui/icons/special.png",
-            text = ::Reforged.Mod.Tooltips.parseString("Applies [$ $|Skill+withered_effect] when inflicting at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.PoisonEffectMinDamage) + " damage to [Hitpoints|Concept.Hitpoints]")
-        });
+		ret.push({
+			id = 8,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = ::Reforged.Mod.Tooltips.parseString("Applies [$ $|Skill+withered_effect] when inflicting at least " + ::MSU.Text.color(::Const.UI.Color.DamageValue, ::Const.Combat.PoisonEffectMinDamage) + " damage to [Hitpoints|Concept.Hitpoints]")
+		});
 
 		return ret;
 	}
@@ -85,7 +85,7 @@ this.rf_obsidian_gash_skill <- ::inherit("scripts/skills/actives/gash_skill", {
 		}
 	}
 
-    function onAfterUpdate( _properties )
+	function onAfterUpdate( _properties )
 	{
 		if (_properties.IsSpecializedInDaggers)
 		{
@@ -97,23 +97,23 @@ this.rf_obsidian_gash_skill <- ::inherit("scripts/skills/actives/gash_skill", {
 		}
 	}
 
-    function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
+	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
 		if (_skill == this)
 		{
-            if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInDaggers)
-            {
-                _hitInfo.InjuryThresholdMult *= 0.5;
-            }
-            else
-            {
-                _hitInfo.InjuryThresholdMult *= 0.66;
-            }
+			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInDaggers)
+			{
+				_hitInfo.InjuryThresholdMult *= 0.5;
+			}
+			else
+			{
+				_hitInfo.InjuryThresholdMult *= 0.66;
+			}
 
-            if (_targetEntity.isAlive() && !_targetEntity.getCurrentProperties().IsImmuneToBleeding)
-            {
-                ::Sound.play(::MSU.Array.rand(this.m.SoundsA), ::Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
-            }
+			if (_targetEntity.isAlive() && !_targetEntity.getCurrentProperties().IsImmuneToBleeding)
+			{
+				::Sound.play(::MSU.Array.rand(this.m.SoundsA), ::Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
+			}
 		}
 	}
 });
