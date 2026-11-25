@@ -63,7 +63,7 @@ this.perk_rf_pattern_recognition <- ::inherit("scripts/skills/skill", {
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
 	{
 		local targetEntity = _targetTile.getEntity();
-		if (skill.isRanged() || targetEntity == null) return;
+		if (_skill.isRanged() || targetEntity == null) return;
 
 		if (targetEntity.getID() in this.m.Opponents)
 		{
